@@ -278,6 +278,9 @@ type RDSAPI interface {
 	DescribeDBClusterAutomatedBackupsWithContext(aws.Context, *rds.DescribeDBClusterAutomatedBackupsInput, ...request.Option) (*rds.DescribeDBClusterAutomatedBackupsOutput, error)
 	DescribeDBClusterAutomatedBackupsRequest(*rds.DescribeDBClusterAutomatedBackupsInput) (*request.Request, *rds.DescribeDBClusterAutomatedBackupsOutput)
 
+	DescribeDBClusterAutomatedBackupsPages(*rds.DescribeDBClusterAutomatedBackupsInput, func(*rds.DescribeDBClusterAutomatedBackupsOutput, bool) bool) error
+	DescribeDBClusterAutomatedBackupsPagesWithContext(aws.Context, *rds.DescribeDBClusterAutomatedBackupsInput, func(*rds.DescribeDBClusterAutomatedBackupsOutput, bool) bool, ...request.Option) error
+
 	DescribeDBClusterBacktracks(*rds.DescribeDBClusterBacktracksInput) (*rds.DescribeDBClusterBacktracksOutput, error)
 	DescribeDBClusterBacktracksWithContext(aws.Context, *rds.DescribeDBClusterBacktracksInput, ...request.Option) (*rds.DescribeDBClusterBacktracksOutput, error)
 	DescribeDBClusterBacktracksRequest(*rds.DescribeDBClusterBacktracksInput) (*request.Request, *rds.DescribeDBClusterBacktracksOutput)

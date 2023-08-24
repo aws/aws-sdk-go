@@ -1,3 +1,26 @@
+Release v1.44.331 (2023-08-24)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Amazon EC2 M7a instances, powered by 4th generation AMD EPYC processors, deliver up to 50% higher performance compared to M6a instances. Amazon EC2 Hpc7a instances, powered by 4th Gen AMD EPYC processors, deliver up to 2.5x better performance compared to Amazon EC2 Hpc6a instances.
+* `service/glue`: Updates service API and documentation
+  * Added API attributes that help in the monitoring of sessions.
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes additional audio channel tags in Quicktime outputs, support for film grain synthesis for AV1 outputs, ability to create audio-only FLAC outputs, and ability to specify Amazon S3 destination storage class.
+* `service/medialive`: Updates service API and documentation
+  * MediaLive now supports passthrough of KLV data to a HLS output group with a TS container. MediaLive now supports setting an attenuation mode for AC3 audio when the coding mode is 3/2 LFE. MediaLive now supports specifying whether to include filler NAL units in RTMP output group settings.
+* `service/mediatailor`: Updates service API and documentation
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Excel support in Snapshot Export APIs. Removed Required trait for some insight Computations. Namespace-shared Folders support. Global Filters support. Table pin Column support.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release updates the supported versions for Percona XtraBackup in Aurora MySQL.
+* `service/s3`: Updates service examples
+  * Updates to endpoint ruleset tests to address Smithy validation issues.
+* `service/s3control`: Adds new service
+  * Updates to endpoint ruleset tests to address Smithy validation issues and standardize the capitalization of DualStack.
+* `service/verifiedpermissions`: Updates service documentation
+
 Release v1.44.330 (2023-08-23)
 ===
 

@@ -14,7 +14,7 @@
     "DeleteQueue": "Permanently delete a queue you have created.",
     "DescribeEndpoints": "Send an request with an empty body to the regional API endpoint to get your account API endpoint.",
     "DisassociateCertificate": "Removes an association between the Amazon Resource Name (ARN) of an AWS Certificate Manager (ACM) certificate and an AWS Elemental MediaConvert resource.",
-    "GetJob": "Retrieve the JSON for a specific completed transcoding job.",
+    "GetJob": "Retrieve the JSON for a specific transcoding job.",
     "GetJobTemplate": "Retrieve the JSON for a specific job template.",
     "GetPolicy": "Retrieve the JSON for your policy.",
     "GetPreset": "Retrieve the JSON for a specific preset.",
@@ -364,6 +364,12 @@
       "base": "Specify the Bit depth. You can choose 8-bit or 10-bit.",
       "refs": {
         "Av1Settings$BitDepth": "Specify the Bit depth. You can choose 8-bit or 10-bit."
+      }
+    },
+    "Av1FilmGrainSynthesis": {
+      "base": "Film grain synthesis replaces film grain present in your content with similar quality synthesized AV1 film grain. We recommend that you choose Enabled to reduce the bandwidth of your QVBR quality level 5, 6, 7, or 8 outputs. For QVBR quality level 9 or 10 outputs we recommend that you keep the default value, Disabled. When you include Film grain synthesis, you cannot include the Noise reducer preprocessor.",
+      "refs": {
+        "Av1Settings$FilmGrainSynthesis": "Film grain synthesis replaces film grain present in your content with similar quality synthesized AV1 film grain. We recommend that you choose Enabled to reduce the bandwidth of your QVBR quality level 5, 6, 7, or 8 outputs. For QVBR quality level 9 or 10 outputs we recommend that you keep the default value, Disabled. When you include Film grain synthesis, you cannot include the Noise reducer preprocessor."
       }
     },
     "Av1FramerateControl": {
@@ -1547,6 +1553,12 @@
       "base": "When you use the setting Time delta to adjust the sync between your sidecar captions and your video, use this setting to specify the units for the delta that you specify. When you don't specify a value for Time delta units, MediaConvert uses seconds by default.",
       "refs": {
         "FileSourceSettings$TimeDeltaUnits": "When you use the setting Time delta to adjust the sync between your sidecar captions and your video, use this setting to specify the units for the delta that you specify. When you don't specify a value for Time delta units, MediaConvert uses seconds by default."
+      }
+    },
+    "FlacSettings": {
+      "base": "Required when you set Codec, under AudioDescriptions>CodecSettings, to the value FLAC.",
+      "refs": {
+        "AudioCodecSettings$FlacSettings": "Required when you set Codec, under AudioDescriptions>CodecSettings, to the value FLAC."
       }
     },
     "FontScript": {
@@ -3338,6 +3350,12 @@
         "S3EncryptionSettings$EncryptionType": "Specify how you want your data keys managed. AWS uses data keys to encrypt your content. AWS also encrypts the data keys themselves, using a customer master key (CMK), and then stores the encrypted data keys alongside your encrypted content. Use this setting to specify which AWS service manages the CMK. For simplest set up, choose Amazon S3. If you want your master key to be managed by AWS Key Management Service (KMS), choose AWS KMS. By default, when you choose AWS KMS, KMS uses the AWS managed customer master key (CMK) associated with Amazon S3 to encrypt your data keys. You can optionally choose to specify a different, customer managed CMK. Do so by specifying the Amazon Resource Name (ARN) of the key for the setting KMS ARN."
       }
     },
+    "S3StorageClass": {
+      "base": "Specify the S3 storage class to use for this destination.",
+      "refs": {
+        "S3DestinationSettings$StorageClass": "Specify the S3 storage class to use for this destination."
+      }
+    },
     "SampleRangeConversion": {
       "base": "Specify how MediaConvert limits the color sample range for this output. To create a limited range output from a full range input: Choose Limited range squeeze. For full range inputs, MediaConvert performs a linear offset to color samples equally across all pixels and frames. Color samples in 10-bit outputs are limited to 64 through 940, and 8-bit outputs are limited to 16 through 235. Note: For limited range inputs, values for color samples are passed through to your output unchanged. MediaConvert does not limit the sample range. To correct pixels in your input that are out of range or out of gamut: Choose Limited range clip. Use for broadcast applications. MediaConvert conforms any pixels outside of the values that you specify under Minimum YUV and Maximum YUV to limited range bounds. MediaConvert also corrects any YUV values that, when converted to RGB, would be outside the bounds you specify under Minimum RGB tolerance and Maximum RGB tolerance. With either limited range conversion, MediaConvert writes the sample range metadata in the output.",
       "refs": {
@@ -3493,6 +3511,13 @@
       "base": "Settings specific to caption sources that are specified by track number. Currently, this is only IMSC captions in an IMF package. If your caption source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead of TrackSourceSettings.",
       "refs": {
         "CaptionSourceSettings$TrackSourceSettings": "Settings specific to caption sources that are specified by track number. Currently, this is only IMSC captions in an IMF package. If your caption source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead of TrackSourceSettings."
+      }
+    },
+    "TsPtsOffset": {
+      "base": "Specify the initial presentation timestamp (PTS) offset for your transport stream output. To let MediaConvert automatically determine the initial PTS offset: Keep the default value, Auto. We recommend that you choose Auto for the widest player compatibility. The initial PTS will be at least two seconds and vary depending on your output's bitrate, HRD buffer size and HRD buffer initial fill percentage. To manually specify an initial PTS offset: Choose Seconds. Then specify the number of seconds with PTS offset.",
+      "refs": {
+        "M2tsSettings$PtsOffsetMode": "Specify the initial presentation timestamp (PTS) offset for your transport stream output. To let MediaConvert automatically determine the initial PTS offset: Keep the default value, Auto. We recommend that you choose Auto for the widest player compatibility. The initial PTS will be at least two seconds and vary depending on your output's bitrate, HRD buffer size and HRD buffer initial fill percentage. To manually specify an initial PTS offset: Choose Seconds. Then specify the number of seconds with PTS offset.",
+        "M3u8Settings$PtsOffsetMode": "Specify the initial presentation timestamp (PTS) offset for your transport stream output. To let MediaConvert automatically determine the initial PTS offset: Keep the default value, Auto. We recommend that you choose Auto for the widest player compatibility. The initial PTS will be at least two seconds and vary depending on your output's bitrate, HRD buffer size and HRD buffer initial fill percentage. To manually specify an initial PTS offset: Choose Seconds. Then specify the number of seconds with PTS offset."
       }
     },
     "TtmlDestinationSettings": {
@@ -4189,7 +4214,9 @@
     "__integerMin0Max3600": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$ProgramDateTimePeriod": "Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds."
+        "HlsGroupSettings$ProgramDateTimePeriod": "Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds.",
+        "M2tsSettings$PtsOffset": "Manually specify the initial PTS offset, in seconds, when you set PTS offset to Seconds. Enter an integer from 0 to 3600. Leave blank to keep the default value 2.",
+        "M3u8Settings$PtsOffset": "Manually specify the initial PTS offset, in seconds, when you set PTS offset to Seconds. Enter an integer from 0 to 3600. Leave blank to keep the default value 2."
       }
     },
     "__integerMin0Max4": {
@@ -4302,8 +4329,8 @@
     "__integerMin100000Max100000000": {
       "base": null,
       "refs": {
-        "AutomatedAbrSettings$MaxAbrBitrate": "Optional. The maximum target bit rate used in your automated ABR stack. Use this value to set an upper limit on the bandwidth consumed by the highest-quality rendition. This is the rendition that is delivered to viewers with the fastest internet connections. If you don't specify a value, MediaConvert uses 8,000,000 (8 mb/s) by default.",
-        "AutomatedAbrSettings$MinAbrBitrate": "Optional. The minimum target bitrate used in your automated ABR stack. Use this value to set a lower limit on the bitrate of video delivered to viewers with slow internet connections. If you don't specify a value, MediaConvert uses 600,000 (600 kb/s) by default."
+        "AutomatedAbrSettings$MaxAbrBitrate": "Specify the maximum average bitrate for MediaConvert to use in your automated ABR stack. If you don't specify a value, MediaConvert uses 8,000,000 (8 mb/s) by default. The average bitrate of your highest-quality rendition will be equal to or below this value, depending on the quality, complexity, and resolution of your content. Note that the instantaneous maximum bitrate may vary above the value that you specify.",
+        "AutomatedAbrSettings$MinAbrBitrate": "Specify the minimum average bitrate for MediaConvert to use in your automated ABR stack. If you don't specify a value, MediaConvert uses 600,000 (600 kb/s) by default. The average bitrate of your lowest-quality rendition will be near this value. Note that the instantaneous minimum bitrate may vary below the value that you specify."
       }
     },
     "__integerMin1000Max1152000000": {
@@ -4379,6 +4406,7 @@
       "base": null,
       "refs": {
         "AiffSettings$BitDepth": "Specify Bit depth, in bits per sample, to choose the encoding quality for this audio track.",
+        "FlacSettings$BitDepth": "Specify Bit depth (BitDepth), in bits per sample, to choose the encoding quality for this audio track.",
         "WavSettings$BitDepth": "Specify Bit depth, in bits per sample, to choose the encoding quality for this audio track."
       }
     },
@@ -4565,9 +4593,16 @@
         "WavSettings$Channels": "Specify the number of channels in this output audio track. Valid values are 1 and even numbers up to 64. For example, 1, 2, 4, 6, and so on, up to 64."
       }
     },
+    "__integerMin1Max8": {
+      "base": null,
+      "refs": {
+        "FlacSettings$Channels": "Specify the number of channels in this output audio track. Choosing Mono on the console gives you 1 output channel; choosing Stereo gives you 2. In the API, valid values are between 1 and 8."
+      }
+    },
     "__integerMin22050Max48000": {
       "base": null,
       "refs": {
+        "FlacSettings$SampleRate": "Sample rate in hz.",
         "Mp3Settings$SampleRate": "Sample rate in hz.",
         "VorbisSettings$SampleRate": "Optional. Specify the audio sample rate in Hz. Valid values are 22050, 32000, 44100, and 48000. The default value is 48000."
       }

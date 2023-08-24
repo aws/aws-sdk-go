@@ -6342,6 +6342,10 @@ func (s *AacSettings) SetVbrQuality(v string) *AacSettings {
 type Ac3Settings struct {
 	_ struct{} `type:"structure"`
 
+	// Applies a 3 dB attenuation to the surround channels. Applies only when the
+	// coding mode parameter is CODING_MODE_3_2_LFE.
+	AttenuationControl *string `locationName:"attenuationControl" type:"string" enum:"Ac3AttenuationControl"`
+
 	// Average bitrate in bits/second. Valid bitrates depend on the coding mode.
 	Bitrate *float64 `locationName:"bitrate" type:"double"`
 
@@ -6399,6 +6403,12 @@ func (s *Ac3Settings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttenuationControl sets the AttenuationControl field's value.
+func (s *Ac3Settings) SetAttenuationControl(v string) *Ac3Settings {
+	s.AttenuationControl = &v
+	return s
 }
 
 // SetBitrate sets the Bitrate field's value.
@@ -22821,6 +22831,16 @@ type M3u8Settings struct {
 	// This parameter is unused and deprecated.
 	EcmPid *string `locationName:"ecmPid" type:"string"`
 
+	// If set to passthrough, passes any KLV data from the input source to this
+	// output.
+	KlvBehavior *string `locationName:"klvBehavior" type:"string" enum:"M3u8KlvBehavior"`
+
+	// Packet Identifier (PID) for input source KLV data to this output. Multiple
+	// values are accepted, and can be entered in ranges and/or by comma separation.
+	// Can be entered as decimal or hexadecimal values. Each PID specified must
+	// be in the range of 32 (or 0x20)..8182 (or 0x1ff6).
+	KlvDataPids *string `locationName:"klvDataPids" type:"string"`
+
 	// If set to passthrough, Nielsen inaudible tones for media tracking will be
 	// detected in the input audio and an equivalent ID3 tag will be inserted in
 	// the output.
@@ -22912,6 +22932,18 @@ func (s *M3u8Settings) SetAudioPids(v string) *M3u8Settings {
 // SetEcmPid sets the EcmPid field's value.
 func (s *M3u8Settings) SetEcmPid(v string) *M3u8Settings {
 	s.EcmPid = &v
+	return s
+}
+
+// SetKlvBehavior sets the KlvBehavior field's value.
+func (s *M3u8Settings) SetKlvBehavior(v string) *M3u8Settings {
+	s.KlvBehavior = &v
+	return s
+}
+
+// SetKlvDataPids sets the KlvDataPids field's value.
+func (s *M3u8Settings) SetKlvDataPids(v string) *M3u8Settings {
+	s.KlvDataPids = &v
 	return s
 }
 
@@ -27354,6 +27386,13 @@ type RtmpGroupSettings struct {
 	// 1 video will be passed.
 	CaptionData *string `locationName:"captionData" type:"string" enum:"RtmpCaptionData"`
 
+	// Applies only when the rate control mode (in the codec settings) is CBR (constant
+	// bit rate). Controls whether the RTMP output stream is padded (with FILL NAL
+	// units) in order to achieve a constant bit rate that is truly constant. When
+	// there is no padding, the bandwidth varies (up to the bitrate value in the
+	// codec settings). We recommend that you choose Auto.
+	IncludeFillerNalUnits *string `locationName:"includeFillerNalUnits" type:"string" enum:"IncludeFillerNalUnits"`
+
 	// Controls the behavior of this RTMP group if input becomes unavailable.- emitOutput:
 	// Emit a slate until input returns.- pauseOutput: Stop transmitting data until
 	// input returns. This does not close the underlying RTMP connection.
@@ -27422,6 +27461,12 @@ func (s *RtmpGroupSettings) SetCacheLength(v int64) *RtmpGroupSettings {
 // SetCaptionData sets the CaptionData field's value.
 func (s *RtmpGroupSettings) SetCaptionData(v string) *RtmpGroupSettings {
 	s.CaptionData = &v
+	return s
+}
+
+// SetIncludeFillerNalUnits sets the IncludeFillerNalUnits field's value.
+func (s *RtmpGroupSettings) SetIncludeFillerNalUnits(v string) *RtmpGroupSettings {
+	s.IncludeFillerNalUnits = &v
 	return s
 }
 
@@ -32869,6 +32914,23 @@ func AacVbrQuality_Values() []string {
 	}
 }
 
+// Ac3 Attenuation Control
+const (
+	// Ac3AttenuationControlAttenuate3Db is a Ac3AttenuationControl enum value
+	Ac3AttenuationControlAttenuate3Db = "ATTENUATE_3_DB"
+
+	// Ac3AttenuationControlNone is a Ac3AttenuationControl enum value
+	Ac3AttenuationControlNone = "NONE"
+)
+
+// Ac3AttenuationControl_Values returns all elements of the Ac3AttenuationControl enum
+func Ac3AttenuationControl_Values() []string {
+	return []string{
+		Ac3AttenuationControlAttenuate3Db,
+		Ac3AttenuationControlNone,
+	}
+}
+
 // Ac3 Bitstream Mode
 const (
 	// Ac3BitstreamModeCommentary is a Ac3BitstreamMode enum value
@@ -35730,6 +35792,27 @@ func IFrameOnlyPlaylistType_Values() []string {
 	}
 }
 
+// Include Filler Nal Units
+const (
+	// IncludeFillerNalUnitsAuto is a IncludeFillerNalUnits enum value
+	IncludeFillerNalUnitsAuto = "AUTO"
+
+	// IncludeFillerNalUnitsDrop is a IncludeFillerNalUnits enum value
+	IncludeFillerNalUnitsDrop = "DROP"
+
+	// IncludeFillerNalUnitsInclude is a IncludeFillerNalUnits enum value
+	IncludeFillerNalUnitsInclude = "INCLUDE"
+)
+
+// IncludeFillerNalUnits_Values returns all elements of the IncludeFillerNalUnits enum
+func IncludeFillerNalUnits_Values() []string {
+	return []string{
+		IncludeFillerNalUnitsAuto,
+		IncludeFillerNalUnitsDrop,
+		IncludeFillerNalUnitsInclude,
+	}
+}
+
 // A standard input has two sources and a single pipeline input only has one.
 const (
 	// InputClassStandard is a InputClass enum value
@@ -36665,6 +36748,23 @@ func M2tsTimedMetadataBehavior_Values() []string {
 	return []string{
 		M2tsTimedMetadataBehaviorNoPassthrough,
 		M2tsTimedMetadataBehaviorPassthrough,
+	}
+}
+
+// M3u8 Klv Behavior
+const (
+	// M3u8KlvBehaviorNoPassthrough is a M3u8KlvBehavior enum value
+	M3u8KlvBehaviorNoPassthrough = "NO_PASSTHROUGH"
+
+	// M3u8KlvBehaviorPassthrough is a M3u8KlvBehavior enum value
+	M3u8KlvBehaviorPassthrough = "PASSTHROUGH"
+)
+
+// M3u8KlvBehavior_Values returns all elements of the M3u8KlvBehavior enum
+func M3u8KlvBehavior_Values() []string {
+	return []string{
+		M3u8KlvBehaviorNoPassthrough,
+		M3u8KlvBehaviorPassthrough,
 	}
 }
 

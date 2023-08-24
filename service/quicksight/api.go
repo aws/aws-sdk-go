@@ -6733,6 +6733,12 @@ func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermi
 		Name:       opDescribeFolderPermissions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/permissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6773,6 +6779,9 @@ func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermi
 //   - ThrottlingException
 //     Access is throttled.
 //
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
 //   - UnsupportedUserEditionException
 //     This error indicates that you are calling an operation on an Amazon QuickSight
 //     subscription where the edition doesn't include support for that operation.
@@ -6802,6 +6811,57 @@ func (c *QuickSight) DescribeFolderPermissionsWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeFolderPermissionsPages iterates over the pages of a DescribeFolderPermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFolderPermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFolderPermissions operation.
+//	pageNum := 0
+//	err := client.DescribeFolderPermissionsPages(params,
+//	    func(page *quicksight.DescribeFolderPermissionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) DescribeFolderPermissionsPages(input *DescribeFolderPermissionsInput, fn func(*DescribeFolderPermissionsOutput, bool) bool) error {
+	return c.DescribeFolderPermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFolderPermissionsPagesWithContext same as DescribeFolderPermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderPermissionsPagesWithContext(ctx aws.Context, input *DescribeFolderPermissionsInput, fn func(*DescribeFolderPermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFolderPermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFolderPermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFolderPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeFolderResolvedPermissions = "DescribeFolderResolvedPermissions"
@@ -6834,6 +6894,12 @@ func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFol
 		Name:       opDescribeFolderResolvedPermissions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/resolved-permissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6875,6 +6941,9 @@ func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFol
 //   - ThrottlingException
 //     Access is throttled.
 //
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
 //   - UnsupportedUserEditionException
 //     This error indicates that you are calling an operation on an Amazon QuickSight
 //     subscription where the edition doesn't include support for that operation.
@@ -6904,6 +6973,57 @@ func (c *QuickSight) DescribeFolderResolvedPermissionsWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeFolderResolvedPermissionsPages iterates over the pages of a DescribeFolderResolvedPermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFolderResolvedPermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFolderResolvedPermissions operation.
+//	pageNum := 0
+//	err := client.DescribeFolderResolvedPermissionsPages(params,
+//	    func(page *quicksight.DescribeFolderResolvedPermissionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) DescribeFolderResolvedPermissionsPages(input *DescribeFolderResolvedPermissionsInput, fn func(*DescribeFolderResolvedPermissionsOutput, bool) bool) error {
+	return c.DescribeFolderResolvedPermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFolderResolvedPermissionsPagesWithContext same as DescribeFolderResolvedPermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderResolvedPermissionsPagesWithContext(ctx aws.Context, input *DescribeFolderResolvedPermissionsInput, fn func(*DescribeFolderResolvedPermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFolderResolvedPermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFolderResolvedPermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFolderResolvedPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeGroup = "DescribeGroup"
@@ -10572,6 +10692,12 @@ func (c *QuickSight) ListFolderMembersRequest(input *ListFolderMembersInput) (re
 		Name:       opListFolderMembers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10646,6 +10772,57 @@ func (c *QuickSight) ListFolderMembersWithContext(ctx aws.Context, input *ListFo
 	return out, req.Send()
 }
 
+// ListFolderMembersPages iterates over the pages of a ListFolderMembers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFolderMembers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFolderMembers operation.
+//	pageNum := 0
+//	err := client.ListFolderMembersPages(params,
+//	    func(page *quicksight.ListFolderMembersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListFolderMembersPages(input *ListFolderMembersInput, fn func(*ListFolderMembersOutput, bool) bool) error {
+	return c.ListFolderMembersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFolderMembersPagesWithContext same as ListFolderMembersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFolderMembersPagesWithContext(ctx aws.Context, input *ListFolderMembersInput, fn func(*ListFolderMembersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFolderMembersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFolderMembersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFolderMembersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFolders = "ListFolders"
 
 // ListFoldersRequest generates a "aws/request.Request" representing the
@@ -10676,6 +10853,12 @@ func (c *QuickSight) ListFoldersRequest(input *ListFoldersInput) (req *request.R
 		Name:       opListFolders,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/folders",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -10748,6 +10931,57 @@ func (c *QuickSight) ListFoldersWithContext(ctx aws.Context, input *ListFoldersI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListFoldersPages iterates over the pages of a ListFolders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFolders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFolders operation.
+//	pageNum := 0
+//	err := client.ListFoldersPages(params,
+//	    func(page *quicksight.ListFoldersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListFoldersPages(input *ListFoldersInput, fn func(*ListFoldersOutput, bool) bool) error {
+	return c.ListFoldersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFoldersPagesWithContext same as ListFoldersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFoldersPagesWithContext(ctx aws.Context, input *ListFoldersInput, fn func(*ListFoldersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFoldersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFoldersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFoldersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListGroupMemberships = "ListGroupMemberships"
@@ -14491,6 +14725,12 @@ func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *reque
 		Name:       opSearchFolders,
 		HTTPMethod: "POST",
 		HTTPPath:   "/accounts/{AwsAccountId}/search/folders",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -14567,6 +14807,57 @@ func (c *QuickSight) SearchFoldersWithContext(ctx aws.Context, input *SearchFold
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// SearchFoldersPages iterates over the pages of a SearchFolders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchFolders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchFolders operation.
+//	pageNum := 0
+//	err := client.SearchFoldersPages(params,
+//	    func(page *quicksight.SearchFoldersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) SearchFoldersPages(input *SearchFoldersInput, fn func(*SearchFoldersOutput, bool) bool) error {
+	return c.SearchFoldersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchFoldersPagesWithContext same as SearchFoldersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchFoldersPagesWithContext(ctx aws.Context, input *SearchFoldersInput, fn func(*SearchFoldersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchFoldersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchFoldersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchFoldersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opSearchGroups = "SearchGroups"
@@ -15008,6 +15299,8 @@ func (c *QuickSight) StartDashboardSnapshotJobRequest(input *StartDashboardSnaps
 // one of the following format configurations per API call.
 //
 //   - 1 paginated PDF
+//
+//   - 1 Excel workbook
 //
 //   - 5 CSVs
 //
@@ -18812,6 +19105,33 @@ func (s *AggregationSortConfiguration) SetColumn(v *ColumnIdentifier) *Aggregati
 func (s *AggregationSortConfiguration) SetSortDirection(v string) *AggregationSortConfiguration {
 	s.SortDirection = &v
 	return s
+}
+
+// The configuration for applying a filter to all sheets. You can apply this
+// filter to all visuals on every sheet.
+//
+// This is a union type structure. For this structure to be valid, only one
+// of the attributes can be defined.
+type AllSheetsFilterScopeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllSheetsFilterScopeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllSheetsFilterScopeConfiguration) GoString() string {
+	return s.String()
 }
 
 // The parameters for OpenSearch.
@@ -29958,6 +30278,10 @@ type CreateFolderInput struct {
 	// To specify no permissions, omit Permissions.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
+	// An optional parameter that determines the sharing scope of the folder. The
+	// default value for this parameter is ACCOUNT.
+	SharingModel *string `type:"string" enum:"SharingModel"`
+
 	// Tags for the folder.
 	Tags []*Tag `min:"1" type:"list"`
 }
@@ -30067,6 +30391,12 @@ func (s *CreateFolderInput) SetPermissions(v []*ResourcePermission) *CreateFolde
 	return s
 }
 
+// SetSharingModel sets the SharingModel field's value.
+func (s *CreateFolderInput) SetSharingModel(v string) *CreateFolderInput {
+	s.SharingModel = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
 	s.Tags = v
@@ -30086,12 +30416,12 @@ type CreateFolderMembershipInput struct {
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 
-	// The ID of the asset (the dashboard, analysis, or dataset).
+	// The ID of the asset that you want to add to the folder.
 	//
 	// MemberId is a required field
 	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
 
-	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET.
+	// The member type of the asset that you want to add to a folder.
 	//
 	// MemberType is a required field
 	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
@@ -40393,13 +40723,12 @@ type DeleteFolderMembershipInput struct {
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 
-	// The ID of the asset (the dashboard, analysis, or dataset) that you want to
-	// delete.
+	// The ID of the asset that you want to delete.
 	//
 	// MemberId is a required field
 	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
 
-	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET
+	// The member type of the asset that you want to delete from a folder.
 	//
 	// MemberType is a required field
 	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
@@ -45391,6 +45720,15 @@ type DescribeFolderPermissionsInput struct {
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The namespace of the folder whose permissions you want described.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+
+	// A pagination token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
 // String returns the string representation.
@@ -45426,6 +45764,9 @@ func (s *DescribeFolderPermissionsInput) Validate() error {
 	if s.FolderId != nil && len(*s.FolderId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -45445,6 +45786,24 @@ func (s *DescribeFolderPermissionsInput) SetFolderId(v string) *DescribeFolderPe
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeFolderPermissionsInput) SetMaxResults(v int64) *DescribeFolderPermissionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeFolderPermissionsInput) SetNamespace(v string) *DescribeFolderPermissionsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFolderPermissionsInput) SetNextToken(v string) *DescribeFolderPermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeFolderPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -45453,6 +45812,10 @@ type DescribeFolderPermissionsOutput struct {
 
 	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
+
+	// The pagination token for the next set of results, or null if there are no
+	// more results.
+	NextToken *string `type:"string"`
 
 	// Information about the permissions on the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
@@ -45494,6 +45857,12 @@ func (s *DescribeFolderPermissionsOutput) SetFolderId(v string) *DescribeFolderP
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFolderPermissionsOutput) SetNextToken(v string) *DescribeFolderPermissionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // SetPermissions sets the Permissions field's value.
 func (s *DescribeFolderPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeFolderPermissionsOutput {
 	s.Permissions = v
@@ -45524,6 +45893,15 @@ type DescribeFolderResolvedPermissionsInput struct {
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The namespace of the folder whose permissions you want described.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+
+	// A pagination token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
 // String returns the string representation.
@@ -45559,6 +45937,9 @@ func (s *DescribeFolderResolvedPermissionsInput) Validate() error {
 	if s.FolderId != nil && len(*s.FolderId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -45578,6 +45959,24 @@ func (s *DescribeFolderResolvedPermissionsInput) SetFolderId(v string) *Describe
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetMaxResults(v int64) *DescribeFolderResolvedPermissionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetNamespace(v string) *DescribeFolderResolvedPermissionsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetNextToken(v string) *DescribeFolderResolvedPermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeFolderResolvedPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -45586,6 +45985,10 @@ type DescribeFolderResolvedPermissionsOutput struct {
 
 	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
+
+	// A pagination token for the next set of results, or null if there are no more
+	// results.
+	NextToken *string `type:"string"`
 
 	// Information about the permissions for the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
@@ -45624,6 +46027,12 @@ func (s *DescribeFolderResolvedPermissionsOutput) SetArn(v string) *DescribeFold
 // SetFolderId sets the FolderId field's value.
 func (s *DescribeFolderResolvedPermissionsOutput) SetFolderId(v string) *DescribeFolderResolvedPermissionsOutput {
 	s.FolderId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetNextToken(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -51798,6 +52207,9 @@ func (s *FilterRelativeDateTimeControl) SetTitle(v string) *FilterRelativeDateTi
 type FilterScopeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for applying a filter to all sheets.
+	AllSheets *AllSheetsFilterScopeConfiguration `type:"structure"`
+
 	// The configuration for applying a filter to specific sheets.
 	SelectedSheets *SelectedSheetsFilterScopeConfiguration `type:"structure"`
 }
@@ -51833,6 +52245,12 @@ func (s *FilterScopeConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllSheets sets the AllSheets field's value.
+func (s *FilterScopeConfiguration) SetAllSheets(v *AllSheetsFilterScopeConfiguration) *FilterScopeConfiguration {
+	s.AllSheets = v
+	return s
 }
 
 // SetSelectedSheets sets the SelectedSheets field's value.
@@ -52259,6 +52677,9 @@ type Folder struct {
 
 	// A display name for the folder.
 	Name *string `min:"1" type:"string"`
+
+	// The sharing scope of the folder.
+	SharingModel *string `type:"string" enum:"SharingModel"`
 }
 
 // String returns the string representation.
@@ -52318,6 +52739,12 @@ func (s *Folder) SetLastUpdatedTime(v time.Time) *Folder {
 // SetName sets the Name field's value.
 func (s *Folder) SetName(v string) *Folder {
 	s.Name = &v
+	return s
+}
+
+// SetSharingModel sets the SharingModel field's value.
+func (s *Folder) SetSharingModel(v string) *Folder {
+	s.SharingModel = &v
 	return s
 }
 
@@ -52478,6 +52905,9 @@ type FolderSummary struct {
 
 	// The display name of the folder.
 	Name *string `min:"1" type:"string"`
+
+	// The sharing scope of the folder.
+	SharingModel *string `type:"string" enum:"SharingModel"`
 }
 
 // String returns the string representation.
@@ -52531,6 +52961,12 @@ func (s *FolderSummary) SetLastUpdatedTime(v time.Time) *FolderSummary {
 // SetName sets the Name field's value.
 func (s *FolderSummary) SetName(v string) *FolderSummary {
 	s.Name = &v
+	return s
+}
+
+// SetSharingModel sets the SharingModel field's value.
+func (s *FolderSummary) SetSharingModel(v string) *FolderSummary {
+	s.SharingModel = &v
 	return s
 }
 
@@ -52734,9 +53170,7 @@ type ForecastComputation struct {
 	Seasonality *string `type:"string" enum:"ForecastComputationSeasonality"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The upper boundary setup of a forecast computation.
 	UpperBoundary *float64 `type:"double"`
@@ -52780,9 +53214,6 @@ func (s *ForecastComputation) Validate() error {
 	}
 	if s.PredictionInterval != nil && *s.PredictionInterval < 50 {
 		invalidParams.Add(request.NewErrParamMinValue("PredictionInterval", 50))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Time != nil {
 		if err := s.Time.Validate(); err != nil {
@@ -57055,9 +57486,7 @@ type GrowthRateComputation struct {
 	PeriodSize *int64 `min:"2" type:"integer"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The value field that is used in a computation.
 	Value *MeasureField `type:"structure"`
@@ -57092,9 +57521,6 @@ func (s *GrowthRateComputation) Validate() error {
 	}
 	if s.PeriodSize != nil && *s.PeriodSize < 2 {
 		invalidParams.Add(request.NewErrParamMinValue("PeriodSize", 2))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Time != nil {
 		if err := s.Time.Validate(); err != nil {
@@ -66451,9 +66877,7 @@ type MaximumMinimumComputation struct {
 	Name *string `type:"string"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The type of computation. Choose one of the following options:
 	//
@@ -66494,9 +66918,6 @@ func (s *MaximumMinimumComputation) Validate() error {
 	}
 	if s.ComputationId != nil && len(*s.ComputationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComputationId", 1))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
@@ -66689,22 +67110,16 @@ type MetricComparisonComputation struct {
 	ComputationId *string `min:"1" type:"string" required:"true"`
 
 	// The field that is used in a metric comparison from value setup.
-	//
-	// FromValue is a required field
-	FromValue *MeasureField `type:"structure" required:"true"`
+	FromValue *MeasureField `type:"structure"`
 
 	// The name of a computation.
 	Name *string `type:"string"`
 
 	// The field that is used in a metric comparison to value setup.
-	//
-	// TargetValue is a required field
-	TargetValue *MeasureField `type:"structure" required:"true"`
+	TargetValue *MeasureField `type:"structure"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 }
 
 // String returns the string representation.
@@ -66733,15 +67148,6 @@ func (s *MetricComparisonComputation) Validate() error {
 	}
 	if s.ComputationId != nil && len(*s.ComputationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComputationId", 1))
-	}
-	if s.FromValue == nil {
-		invalidParams.Add(request.NewErrParamRequired("FromValue"))
-	}
-	if s.TargetValue == nil {
-		invalidParams.Add(request.NewErrParamRequired("TargetValue"))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.FromValue != nil {
 		if err := s.FromValue.Validate(); err != nil {
@@ -70215,9 +70621,7 @@ type PeriodOverPeriodComputation struct {
 	Name *string `type:"string"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The value field that is used in a computation.
 	Value *MeasureField `type:"structure"`
@@ -70249,9 +70653,6 @@ func (s *PeriodOverPeriodComputation) Validate() error {
 	}
 	if s.ComputationId != nil && len(*s.ComputationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComputationId", 1))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Time != nil {
 		if err := s.Time.Validate(); err != nil {
@@ -70315,9 +70716,7 @@ type PeriodToDateComputation struct {
 	PeriodTimeGranularity *string `type:"string" enum:"TimeGranularity"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The value field that is used in a computation.
 	Value *MeasureField `type:"structure"`
@@ -70349,9 +70748,6 @@ func (s *PeriodToDateComputation) Validate() error {
 	}
 	if s.ComputationId != nil && len(*s.ComputationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComputationId", 1))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Time != nil {
 		if err := s.Time.Validate(); err != nil {
@@ -81743,8 +82139,8 @@ func (s *SnapshotDestinationConfiguration) SetS3Destinations(v []*SnapshotS3Dest
 type SnapshotFile struct {
 	_ struct{} `type:"structure"`
 
-	// The format of the snapshot file to be generated. You can choose between CSV
-	// or PDF.
+	// The format of the snapshot file to be generated. You can choose between CSV,
+	// Excel, or PDF.
 	//
 	// FormatType is a required field
 	FormatType *string `type:"string" required:"true" enum:"SnapshotFileFormatType"`
@@ -81752,7 +82148,8 @@ type SnapshotFile struct {
 	// A list of SnapshotFileSheetSelection objects that contain information on
 	// the dashboard sheet that is exported. These objects provide information about
 	// the snapshot artifacts that are generated during the job. This structure
-	// can hold a maximum of 5 CSV configurations or 1 configuration for PDF.
+	// can hold a maximum of 5 CSV configurations, 5 Excel configurations, or 1
+	// configuration for PDF.
 	//
 	// SheetSelections is a required field
 	SheetSelections []*SnapshotFileSheetSelection `min:"1" type:"list" required:"true"`
@@ -81886,20 +82283,24 @@ type SnapshotFileSheetSelection struct {
 	//    is required if the snapshot is a PDF.
 	//
 	//    * SELECTED_VISUALS - Select the visual that you want to add to the snapshot.
-	//    This value is required if the snapshot is a CSV.
+	//    This value is required if the snapshot is a CSV or Excel workbook.
 	//
 	// SelectionScope is a required field
 	SelectionScope *string `type:"string" required:"true" enum:"SnapshotFileSheetSelectionScope"`
 
 	// The sheet ID of the dashboard to generate the snapshot artifact from. This
-	// value is required for CSV and PDF format types.
+	// value is required for CSV, Excel, and PDF format types.
 	//
 	// SheetId is a required field
 	SheetId *string `min:"1" type:"string" required:"true"`
 
-	// A list of visual IDs that are located in the selected sheet. This structure
-	// supports tables and pivot tables. This structure is required if you are generating
-	// a CSV. You can add a maximum of 1 visual ID to this structure.
+	// A structure that lists the IDs of the visuals in the selected sheet. Supported
+	// visual types are table, pivot table visuals. This value is required if you
+	// are generating a CSV or Excel workbook. This value supports a maximum of
+	// 1 visual ID for CSV and 5 visual IDs across up to 5 sheet selections for
+	// Excel. If you are generating an Excel workbook, the order of the visual IDs
+	// provided in this structure determines the order of the worksheets in the
+	// Excel file.
 	VisualIds []*string `min:"1" type:"list"`
 }
 
@@ -84803,14 +85204,18 @@ func (s *TableFieldOption) SetWidth(v string) *TableFieldOption {
 	return s
 }
 
-// The field options for a table visual.
+// The field options of a table visual.
 type TableFieldOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The order of field IDs of the field options for a table visual.
+	// The order of the field IDs that are configured as field options for a table
+	// visual.
 	Order []*string `type:"list"`
 
-	// The selected field options for the table field options.
+	// The settings for the pinned columns of a table visual.
+	PinnedFieldOptions *TablePinnedFieldOptions `type:"structure"`
+
+	// The field options to be configured to a table.
 	SelectedFieldOptions []*TableFieldOption `type:"list"`
 }
 
@@ -84855,6 +85260,12 @@ func (s *TableFieldOptions) Validate() error {
 // SetOrder sets the Order field's value.
 func (s *TableFieldOptions) SetOrder(v []*string) *TableFieldOptions {
 	s.Order = v
+	return s
+}
+
+// SetPinnedFieldOptions sets the PinnedFieldOptions field's value.
+func (s *TableFieldOptions) SetPinnedFieldOptions(v *TablePinnedFieldOptions) *TableFieldOptions {
+	s.PinnedFieldOptions = v
 	return s
 }
 
@@ -85149,6 +85560,38 @@ func (s *TablePaginatedReportOptions) SetOverflowColumnHeaderVisibility(v string
 // SetVerticalOverflowVisibility sets the VerticalOverflowVisibility field's value.
 func (s *TablePaginatedReportOptions) SetVerticalOverflowVisibility(v string) *TablePaginatedReportOptions {
 	s.VerticalOverflowVisibility = &v
+	return s
+}
+
+// The settings for the pinned columns of a table visual.
+type TablePinnedFieldOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of columns to be pinned to the left of a table visual.
+	PinnedLeftFields []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TablePinnedFieldOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TablePinnedFieldOptions) GoString() string {
+	return s.String()
+}
+
+// SetPinnedLeftFields sets the PinnedLeftFields field's value.
+func (s *TablePinnedFieldOptions) SetPinnedLeftFields(v []*string) *TablePinnedFieldOptions {
+	s.PinnedLeftFields = v
 	return s
 }
 
@@ -88464,9 +88907,7 @@ type TopBottomMoversComputation struct {
 	_ struct{} `type:"structure"`
 
 	// The category field that is used in a computation.
-	//
-	// Category is a required field
-	Category *DimensionField `type:"structure" required:"true"`
+	Category *DimensionField `type:"structure"`
 
 	// The ID for a computation.
 	//
@@ -88483,9 +88924,7 @@ type TopBottomMoversComputation struct {
 	SortOrder *string `type:"string" enum:"TopBottomSortOrder"`
 
 	// The time field that is used in a computation.
-	//
-	// Time is a required field
-	Time *DimensionField `type:"structure" required:"true"`
+	Time *DimensionField `type:"structure"`
 
 	// The computation type. Choose from the following options:
 	//
@@ -88521,9 +88960,6 @@ func (s TopBottomMoversComputation) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TopBottomMoversComputation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TopBottomMoversComputation"}
-	if s.Category == nil {
-		invalidParams.Add(request.NewErrParamRequired("Category"))
-	}
 	if s.ComputationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComputationId"))
 	}
@@ -88532,9 +88968,6 @@ func (s *TopBottomMoversComputation) Validate() error {
 	}
 	if s.MoverSize != nil && *s.MoverSize < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MoverSize", 1))
-	}
-	if s.Time == nil {
-		invalidParams.Add(request.NewErrParamRequired("Time"))
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
@@ -88614,9 +89047,7 @@ type TopBottomRankedComputation struct {
 	_ struct{} `type:"structure"`
 
 	// The category field that is used in a computation.
-	//
-	// Category is a required field
-	Category *DimensionField `type:"structure" required:"true"`
+	Category *DimensionField `type:"structure"`
 
 	// The ID for a computation.
 	//
@@ -88663,9 +89094,6 @@ func (s TopBottomRankedComputation) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TopBottomRankedComputation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TopBottomRankedComputation"}
-	if s.Category == nil {
-		invalidParams.Add(request.NewErrParamRequired("Category"))
-	}
 	if s.ComputationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComputationId"))
 	}
@@ -90136,9 +90564,7 @@ type TotalAggregationComputation struct {
 	Name *string `type:"string"`
 
 	// The value field that is used in a computation.
-	//
-	// Value is a required field
-	Value *MeasureField `type:"structure" required:"true"`
+	Value *MeasureField `type:"structure"`
 }
 
 // String returns the string representation.
@@ -90167,9 +90593,6 @@ func (s *TotalAggregationComputation) Validate() error {
 	}
 	if s.ComputationId != nil && len(*s.ComputationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComputationId", 1))
-	}
-	if s.Value == nil {
-		invalidParams.Add(request.NewErrParamRequired("Value"))
 	}
 	if s.Value != nil {
 		if err := s.Value.Validate(); err != nil {
@@ -91329,9 +91752,7 @@ type UniqueValuesComputation struct {
 	_ struct{} `type:"structure"`
 
 	// The category field that is used in a computation.
-	//
-	// Category is a required field
-	Category *DimensionField `type:"structure" required:"true"`
+	Category *DimensionField `type:"structure"`
 
 	// The ID for a computation.
 	//
@@ -91363,9 +91784,6 @@ func (s UniqueValuesComputation) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UniqueValuesComputation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UniqueValuesComputation"}
-	if s.Category == nil {
-		invalidParams.Add(request.NewErrParamRequired("Category"))
-	}
 	if s.ComputationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComputationId"))
 	}
@@ -103280,6 +103698,22 @@ func SelectedTooltipType_Values() []string {
 }
 
 const (
+	// SharingModelAccount is a SharingModel enum value
+	SharingModelAccount = "ACCOUNT"
+
+	// SharingModelNamespace is a SharingModel enum value
+	SharingModelNamespace = "NAMESPACE"
+)
+
+// SharingModel_Values returns all elements of the SharingModel enum
+func SharingModel_Values() []string {
+	return []string{
+		SharingModelAccount,
+		SharingModelNamespace,
+	}
+}
+
+const (
 	// SheetContentTypePaginated is a SheetContentType enum value
 	SheetContentTypePaginated = "PAGINATED"
 
@@ -103445,6 +103879,9 @@ const (
 
 	// SnapshotFileFormatTypePdf is a SnapshotFileFormatType enum value
 	SnapshotFileFormatTypePdf = "PDF"
+
+	// SnapshotFileFormatTypeExcel is a SnapshotFileFormatType enum value
+	SnapshotFileFormatTypeExcel = "EXCEL"
 )
 
 // SnapshotFileFormatType_Values returns all elements of the SnapshotFileFormatType enum
@@ -103452,6 +103889,7 @@ func SnapshotFileFormatType_Values() []string {
 	return []string{
 		SnapshotFileFormatTypeCsv,
 		SnapshotFileFormatTypePdf,
+		SnapshotFileFormatTypeExcel,
 	}
 }
 

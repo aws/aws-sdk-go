@@ -27354,7 +27354,23 @@
         "m7i-flex.xlarge",
         "m7i-flex.2xlarge",
         "m7i-flex.4xlarge",
-        "m7i-flex.8xlarge"
+        "m7i-flex.8xlarge",
+        "m7a.medium",
+        "m7a.large",
+        "m7a.xlarge",
+        "m7a.2xlarge",
+        "m7a.4xlarge",
+        "m7a.8xlarge",
+        "m7a.12xlarge",
+        "m7a.16xlarge",
+        "m7a.24xlarge",
+        "m7a.32xlarge",
+        "m7a.48xlarge",
+        "m7a.metal-48xl",
+        "hpc7a.12xlarge",
+        "hpc7a.24xlarge",
+        "hpc7a.48xlarge",
+        "hpc7a.96xlarge"
       ]
     },
     "InstanceTypeHypervisor":{

@@ -85,6 +85,11 @@ func (c *VerifiedPermissions) CreateIdentitySourceRequest(input *CreateIdentityS
 // parameter for this operation. The CognitoUserPoolId and CognitoClientId are
 // defined by the Amazon Cognito user pool.
 //
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -237,6 +242,11 @@ func (c *VerifiedPermissions) CreatePolicyRequest(input *CreatePolicyInput) (req
 // store. If the policy doesn't pass validation, the operation fails and the
 // policy isn't stored.
 //
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -378,6 +388,11 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 // Although Cedar supports multiple namespaces (https://docs.cedarpolicy.com/schema.html#namespace),
 // Verified Permissions currently supports only one namespace per policy store.
 //
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -518,6 +533,11 @@ func (c *VerifiedPermissions) CreatePolicyTemplateRequest(input *CreatePolicyTem
 // instantiated policy works identically to any other policy, except that it
 // is dynamically linked to the template. If the template changes, then any
 // policies that are linked to that template are immediately updated as well.
+//
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2972,6 +2992,11 @@ func (c *VerifiedPermissions) PutSchemaRequest(input *PutSchemaInput) (req *requ
 // re-evaluated against the changed schema. If you later update a policy, then
 // it is evaluated against the new schema at that time.
 //
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3115,6 +3140,11 @@ func (c *VerifiedPermissions) UpdateIdentitySourceRequest(input *UpdateIdentityS
 // Updates the specified identity source to use a new identity provider (IdP)
 // source, or to change the mapping of identities from the IdP to a different
 // principal entity type.
+//
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3273,6 +3303,11 @@ func (c *VerifiedPermissions) UpdatePolicyRequest(input *UpdatePolicyInput) (req
 //
 //   - To update a template-linked policy, you must update the template instead.
 //
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3414,6 +3449,11 @@ func (c *VerifiedPermissions) UpdatePolicyStoreRequest(input *UpdatePolicyStoreI
 // UpdatePolicyStore API operation for Amazon Verified Permissions.
 //
 // Modifies the validation setting for a policy store.
+//
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3558,6 +3598,11 @@ func (c *VerifiedPermissions) UpdatePolicyTemplateRequest(input *UpdatePolicyTem
 // Changes you make to the policy template content are immediately reflected
 // in authorization decisions that involve all template-linked policies instantiated
 // from this template.
+//
+// Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
+// . It can take a few seconds for a new or changed element to be propagate
+// through the service and be visible in the results of other Verified Permissions
+// operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5443,9 +5488,9 @@ func (s *EntityIdentifier) SetEntityType(v string) *EntityIdentifier {
 // This data type is used as one of the fields in the EntitiesDefinition (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_EntitiesDefinition.html)
 // structure.
 //
-// { "id": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg" }, "Attributes":
-// {}, "Parents": [ { "entityType": "Album", "entityId": "alice_folder" } ]
-// }
+// { "identifier": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg"
+// }, "attributes": {}, "parents": [ { "entityType": "Album", "entityId": "alice_folder"
+// } ] }
 type EntityItem struct {
 	_ struct{} `type:"structure"`
 

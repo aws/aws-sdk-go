@@ -8261,6 +8261,10 @@
       },
       "exception":true
     },
+    "IdleTimeout":{
+      "type":"integer",
+      "box":true
+    },
     "IllegalBlueprintStateException":{
       "type":"structure",
       "members":{
@@ -10998,7 +11002,13 @@
         "Progress":{"shape":"DoubleValue"},
         "MaxCapacity":{"shape":"NullableDouble"},
         "SecurityConfiguration":{"shape":"NameString"},
-        "GlueVersion":{"shape":"GlueVersionString"}
+        "GlueVersion":{"shape":"GlueVersionString"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "WorkerType":{"shape":"WorkerType"},
+        "CompletedOn":{"shape":"TimestampValue"},
+        "ExecutionTime":{"shape":"NullableDouble"},
+        "DPUSeconds":{"shape":"NullableDouble"},
+        "IdleTimeout":{"shape":"IdleTimeout"}
       }
     },
     "SessionCommand":{

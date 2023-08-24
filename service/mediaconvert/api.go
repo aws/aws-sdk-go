@@ -1184,7 +1184,7 @@ func (c *MediaConvert) GetJobRequest(input *GetJobInput) (req *request.Request, 
 
 // GetJob API operation for AWS Elemental MediaConvert.
 //
-// Retrieve the JSON for a specific completed transcoding job.
+// Retrieve the JSON for a specific transcoding job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3572,6 +3572,10 @@ type AudioCodecSettings struct {
 	// Required when you set Codec to the value EAC3.
 	Eac3Settings *Eac3Settings `locationName:"eac3Settings" type:"structure"`
 
+	// Required when you set Codec, under AudioDescriptions>CodecSettings, to the
+	// value FLAC.
+	FlacSettings *FlacSettings `locationName:"flacSettings" type:"structure"`
+
 	// Required when you set Codec to the value MP2.
 	Mp2Settings *Mp2Settings `locationName:"mp2Settings" type:"structure"`
 
@@ -3635,6 +3639,11 @@ func (s *AudioCodecSettings) Validate() error {
 	if s.Eac3Settings != nil {
 		if err := s.Eac3Settings.Validate(); err != nil {
 			invalidParams.AddNested("Eac3Settings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FlacSettings != nil {
+		if err := s.FlacSettings.Validate(); err != nil {
+			invalidParams.AddNested("FlacSettings", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Mp2Settings != nil {
@@ -3702,6 +3711,12 @@ func (s *AudioCodecSettings) SetEac3AtmosSettings(v *Eac3AtmosSettings) *AudioCo
 // SetEac3Settings sets the Eac3Settings field's value.
 func (s *AudioCodecSettings) SetEac3Settings(v *Eac3Settings) *AudioCodecSettings {
 	s.Eac3Settings = v
+	return s
+}
+
+// SetFlacSettings sets the FlacSettings field's value.
+func (s *AudioCodecSettings) SetFlacSettings(v *FlacSettings) *AudioCodecSettings {
+	s.FlacSettings = v
 	return s
 }
 
@@ -4440,11 +4455,12 @@ func (s *AutomatedAbrRule) SetType(v string) *AutomatedAbrRule {
 type AutomatedAbrSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Optional. The maximum target bit rate used in your automated ABR stack. Use
-	// this value to set an upper limit on the bandwidth consumed by the highest-quality
-	// rendition. This is the rendition that is delivered to viewers with the fastest
-	// internet connections. If you don't specify a value, MediaConvert uses 8,000,000
-	// (8 mb/s) by default.
+	// Specify the maximum average bitrate for MediaConvert to use in your automated
+	// ABR stack. If you don't specify a value, MediaConvert uses 8,000,000 (8 mb/s)
+	// by default. The average bitrate of your highest-quality rendition will be
+	// equal to or below this value, depending on the quality, complexity, and resolution
+	// of your content. Note that the instantaneous maximum bitrate may vary above
+	// the value that you specify.
 	MaxAbrBitrate *int64 `locationName:"maxAbrBitrate" min:"100000" type:"integer"`
 
 	// Optional. The maximum number of renditions that MediaConvert will create
@@ -4454,10 +4470,11 @@ type AutomatedAbrSettings struct {
 	// your JSON job specification, MediaConvert defaults to a limit of 15.
 	MaxRenditions *int64 `locationName:"maxRenditions" min:"3" type:"integer"`
 
-	// Optional. The minimum target bitrate used in your automated ABR stack. Use
-	// this value to set a lower limit on the bitrate of video delivered to viewers
-	// with slow internet connections. If you don't specify a value, MediaConvert
-	// uses 600,000 (600 kb/s) by default.
+	// Specify the minimum average bitrate for MediaConvert to use in your automated
+	// ABR stack. If you don't specify a value, MediaConvert uses 600,000 (600 kb/s)
+	// by default. The average bitrate of your lowest-quality rendition will be
+	// near this value. Note that the instantaneous minimum bitrate may vary below
+	// the value that you specify.
 	MinAbrBitrate *int64 `locationName:"minAbrBitrate" min:"100000" type:"integer"`
 
 	// Optional. Use Automated ABR rules to specify restrictions for the rendition
@@ -4672,6 +4689,14 @@ type Av1Settings struct {
 	// Specify the Bit depth. You can choose 8-bit or 10-bit.
 	BitDepth *string `locationName:"bitDepth" type:"string" enum:"Av1BitDepth"`
 
+	// Film grain synthesis replaces film grain present in your content with similar
+	// quality synthesized AV1 film grain. We recommend that you choose Enabled
+	// to reduce the bandwidth of your QVBR quality level 5, 6, 7, or 8 outputs.
+	// For QVBR quality level 9 or 10 outputs we recommend that you keep the default
+	// value, Disabled. When you include Film grain synthesis, you cannot include
+	// the Noise reducer preprocessor.
+	FilmGrainSynthesis *string `locationName:"filmGrainSynthesis" type:"string" enum:"Av1FilmGrainSynthesis"`
+
 	// Use the Framerate setting to specify the frame rate for this output. If you
 	// want to keep the same frame rate as the input video, choose Follow source.
 	// If you want to do frame rate conversion, choose a frame rate from the dropdown
@@ -4809,6 +4834,12 @@ func (s *Av1Settings) SetAdaptiveQuantization(v string) *Av1Settings {
 // SetBitDepth sets the BitDepth field's value.
 func (s *Av1Settings) SetBitDepth(v string) *Av1Settings {
 	s.BitDepth = &v
+	return s
+}
+
+// SetFilmGrainSynthesis sets the FilmGrainSynthesis field's value.
+func (s *Av1Settings) SetFilmGrainSynthesis(v string) *Av1Settings {
+	s.FilmGrainSynthesis = &v
 	return s
 }
 
@@ -11480,6 +11511,79 @@ func (s *FileSourceSettings) SetTimeDeltaUnits(v string) *FileSourceSettings {
 	return s
 }
 
+// Required when you set Codec, under AudioDescriptions>CodecSettings, to the
+// value FLAC.
+type FlacSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify Bit depth (BitDepth), in bits per sample, to choose the encoding
+	// quality for this audio track.
+	BitDepth *int64 `locationName:"bitDepth" min:"16" type:"integer"`
+
+	// Specify the number of channels in this output audio track. Choosing Mono
+	// on the console gives you 1 output channel; choosing Stereo gives you 2. In
+	// the API, valid values are between 1 and 8.
+	Channels *int64 `locationName:"channels" min:"1" type:"integer"`
+
+	// Sample rate in hz.
+	SampleRate *int64 `locationName:"sampleRate" min:"22050" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlacSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlacSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlacSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlacSettings"}
+	if s.BitDepth != nil && *s.BitDepth < 16 {
+		invalidParams.Add(request.NewErrParamMinValue("BitDepth", 16))
+	}
+	if s.Channels != nil && *s.Channels < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Channels", 1))
+	}
+	if s.SampleRate != nil && *s.SampleRate < 22050 {
+		invalidParams.Add(request.NewErrParamMinValue("SampleRate", 22050))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBitDepth sets the BitDepth field's value.
+func (s *FlacSettings) SetBitDepth(v int64) *FlacSettings {
+	s.BitDepth = &v
+	return s
+}
+
+// SetChannels sets the Channels field's value.
+func (s *FlacSettings) SetChannels(v int64) *FlacSettings {
+	s.Channels = &v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *FlacSettings) SetSampleRate(v int64) *FlacSettings {
+	s.SampleRate = &v
+	return s
+}
+
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18107,6 +18211,20 @@ type M2tsSettings struct {
 	// data.
 	ProgramNumber *int64 `locationName:"programNumber" type:"integer"`
 
+	// Manually specify the initial PTS offset, in seconds, when you set PTS offset
+	// to Seconds. Enter an integer from 0 to 3600. Leave blank to keep the default
+	// value 2.
+	PtsOffset *int64 `locationName:"ptsOffset" type:"integer"`
+
+	// Specify the initial presentation timestamp (PTS) offset for your transport
+	// stream output. To let MediaConvert automatically determine the initial PTS
+	// offset: Keep the default value, Auto. We recommend that you choose Auto for
+	// the widest player compatibility. The initial PTS will be at least two seconds
+	// and vary depending on your output's bitrate, HRD buffer size and HRD buffer
+	// initial fill percentage. To manually specify an initial PTS offset: Choose
+	// Seconds. Then specify the number of seconds with PTS offset.
+	PtsOffsetMode *string `locationName:"ptsOffsetMode" type:"string" enum:"TsPtsOffset"`
+
 	// When set to CBR, inserts null packets into transport stream to fill specified
 	// bitrate. When set to VBR, the bitrate setting acts as the maximum bitrate,
 	// but the output will not be padded up to that bitrate.
@@ -18411,6 +18529,18 @@ func (s *M2tsSettings) SetProgramNumber(v int64) *M2tsSettings {
 	return s
 }
 
+// SetPtsOffset sets the PtsOffset field's value.
+func (s *M2tsSettings) SetPtsOffset(v int64) *M2tsSettings {
+	s.PtsOffset = &v
+	return s
+}
+
+// SetPtsOffsetMode sets the PtsOffsetMode field's value.
+func (s *M2tsSettings) SetPtsOffsetMode(v string) *M2tsSettings {
+	s.PtsOffsetMode = &v
+	return s
+}
+
 // SetRateMode sets the RateMode field's value.
 func (s *M2tsSettings) SetRateMode(v string) *M2tsSettings {
 	s.RateMode = &v
@@ -18540,6 +18670,20 @@ type M3u8Settings struct {
 
 	// The value of the program number field in the Program Map Table.
 	ProgramNumber *int64 `locationName:"programNumber" type:"integer"`
+
+	// Manually specify the initial PTS offset, in seconds, when you set PTS offset
+	// to Seconds. Enter an integer from 0 to 3600. Leave blank to keep the default
+	// value 2.
+	PtsOffset *int64 `locationName:"ptsOffset" type:"integer"`
+
+	// Specify the initial presentation timestamp (PTS) offset for your transport
+	// stream output. To let MediaConvert automatically determine the initial PTS
+	// offset: Keep the default value, Auto. We recommend that you choose Auto for
+	// the widest player compatibility. The initial PTS will be at least two seconds
+	// and vary depending on your output's bitrate, HRD buffer size and HRD buffer
+	// initial fill percentage. To manually specify an initial PTS offset: Choose
+	// Seconds. Then specify the number of seconds with PTS offset.
+	PtsOffsetMode *string `locationName:"ptsOffsetMode" type:"string" enum:"TsPtsOffset"`
 
 	// Packet Identifier (PID) of the SCTE-35 stream in the transport stream.
 	Scte35Pid *int64 `locationName:"scte35Pid" min:"32" type:"integer"`
@@ -18690,6 +18834,18 @@ func (s *M3u8Settings) SetPrivateMetadataPid(v int64) *M3u8Settings {
 // SetProgramNumber sets the ProgramNumber field's value.
 func (s *M3u8Settings) SetProgramNumber(v int64) *M3u8Settings {
 	s.ProgramNumber = &v
+	return s
+}
+
+// SetPtsOffset sets the PtsOffset field's value.
+func (s *M3u8Settings) SetPtsOffset(v int64) *M3u8Settings {
+	s.PtsOffset = &v
+	return s
+}
+
+// SetPtsOffsetMode sets the PtsOffsetMode field's value.
+func (s *M3u8Settings) SetPtsOffsetMode(v string) *M3u8Settings {
+	s.PtsOffsetMode = &v
 	return s
 }
 
@@ -22943,6 +23099,9 @@ type S3DestinationSettings struct {
 	// Settings for how your job outputs are encrypted as they are uploaded to Amazon
 	// S3.
 	Encryption *S3EncryptionSettings `locationName:"encryption" type:"structure"`
+
+	// Specify the S3 storage class to use for this destination.
+	StorageClass *string `locationName:"storageClass" type:"string" enum:"S3StorageClass"`
 }
 
 // String returns the string representation.
@@ -22972,6 +23131,12 @@ func (s *S3DestinationSettings) SetAccessControl(v *S3DestinationAccessControl) 
 // SetEncryption sets the Encryption field's value.
 func (s *S3DestinationSettings) SetEncryption(v *S3EncryptionSettings) *S3DestinationSettings {
 	s.Encryption = v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *S3DestinationSettings) SetStorageClass(v string) *S3DestinationSettings {
+	s.StorageClass = &v
 	return s
 }
 
@@ -27520,6 +27685,45 @@ const (
 
 	// AudioChannelTagVhr is a AudioChannelTag enum value
 	AudioChannelTagVhr = "VHR"
+
+	// AudioChannelTagTbl is a AudioChannelTag enum value
+	AudioChannelTagTbl = "TBL"
+
+	// AudioChannelTagTbc is a AudioChannelTag enum value
+	AudioChannelTagTbc = "TBC"
+
+	// AudioChannelTagTbr is a AudioChannelTag enum value
+	AudioChannelTagTbr = "TBR"
+
+	// AudioChannelTagRsl is a AudioChannelTag enum value
+	AudioChannelTagRsl = "RSL"
+
+	// AudioChannelTagRsr is a AudioChannelTag enum value
+	AudioChannelTagRsr = "RSR"
+
+	// AudioChannelTagLw is a AudioChannelTag enum value
+	AudioChannelTagLw = "LW"
+
+	// AudioChannelTagRw is a AudioChannelTag enum value
+	AudioChannelTagRw = "RW"
+
+	// AudioChannelTagLfe2 is a AudioChannelTag enum value
+	AudioChannelTagLfe2 = "LFE2"
+
+	// AudioChannelTagLt is a AudioChannelTag enum value
+	AudioChannelTagLt = "LT"
+
+	// AudioChannelTagRt is a AudioChannelTag enum value
+	AudioChannelTagRt = "RT"
+
+	// AudioChannelTagHi is a AudioChannelTag enum value
+	AudioChannelTagHi = "HI"
+
+	// AudioChannelTagNar is a AudioChannelTag enum value
+	AudioChannelTagNar = "NAR"
+
+	// AudioChannelTagM is a AudioChannelTag enum value
+	AudioChannelTagM = "M"
 )
 
 // AudioChannelTag_Values returns all elements of the AudioChannelTag enum
@@ -27540,6 +27744,19 @@ func AudioChannelTag_Values() []string {
 		AudioChannelTagVhl,
 		AudioChannelTagVhc,
 		AudioChannelTagVhr,
+		AudioChannelTagTbl,
+		AudioChannelTagTbc,
+		AudioChannelTagTbr,
+		AudioChannelTagRsl,
+		AudioChannelTagRsr,
+		AudioChannelTagLw,
+		AudioChannelTagRw,
+		AudioChannelTagLfe2,
+		AudioChannelTagLt,
+		AudioChannelTagRt,
+		AudioChannelTagHi,
+		AudioChannelTagNar,
+		AudioChannelTagM,
 	}
 }
 
@@ -27584,6 +27801,9 @@ const (
 
 	// AudioCodecPassthrough is a AudioCodec enum value
 	AudioCodecPassthrough = "PASSTHROUGH"
+
+	// AudioCodecFlac is a AudioCodec enum value
+	AudioCodecFlac = "FLAC"
 )
 
 // AudioCodec_Values returns all elements of the AudioCodec enum
@@ -27600,6 +27820,7 @@ func AudioCodec_Values() []string {
 		AudioCodecVorbis,
 		AudioCodecOpus,
 		AudioCodecPassthrough,
+		AudioCodecFlac,
 	}
 }
 
@@ -27863,6 +28084,28 @@ func Av1BitDepth_Values() []string {
 	return []string{
 		Av1BitDepthBit8,
 		Av1BitDepthBit10,
+	}
+}
+
+// Film grain synthesis replaces film grain present in your content with similar
+// quality synthesized AV1 film grain. We recommend that you choose Enabled
+// to reduce the bandwidth of your QVBR quality level 5, 6, 7, or 8 outputs.
+// For QVBR quality level 9 or 10 outputs we recommend that you keep the default
+// value, Disabled. When you include Film grain synthesis, you cannot include
+// the Noise reducer preprocessor.
+const (
+	// Av1FilmGrainSynthesisDisabled is a Av1FilmGrainSynthesis enum value
+	Av1FilmGrainSynthesisDisabled = "DISABLED"
+
+	// Av1FilmGrainSynthesisEnabled is a Av1FilmGrainSynthesis enum value
+	Av1FilmGrainSynthesisEnabled = "ENABLED"
+)
+
+// Av1FilmGrainSynthesis_Values returns all elements of the Av1FilmGrainSynthesis enum
+func Av1FilmGrainSynthesis_Values() []string {
+	return []string{
+		Av1FilmGrainSynthesisDisabled,
+		Av1FilmGrainSynthesisEnabled,
 	}
 }
 
@@ -36420,6 +36663,43 @@ func S3ServerSideEncryptionType_Values() []string {
 	}
 }
 
+// Specify the S3 storage class to use for this destination.
+const (
+	// S3StorageClassStandard is a S3StorageClass enum value
+	S3StorageClassStandard = "STANDARD"
+
+	// S3StorageClassReducedRedundancy is a S3StorageClass enum value
+	S3StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+
+	// S3StorageClassStandardIa is a S3StorageClass enum value
+	S3StorageClassStandardIa = "STANDARD_IA"
+
+	// S3StorageClassOnezoneIa is a S3StorageClass enum value
+	S3StorageClassOnezoneIa = "ONEZONE_IA"
+
+	// S3StorageClassIntelligentTiering is a S3StorageClass enum value
+	S3StorageClassIntelligentTiering = "INTELLIGENT_TIERING"
+
+	// S3StorageClassGlacier is a S3StorageClass enum value
+	S3StorageClassGlacier = "GLACIER"
+
+	// S3StorageClassDeepArchive is a S3StorageClass enum value
+	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
+)
+
+// S3StorageClass_Values returns all elements of the S3StorageClass enum
+func S3StorageClass_Values() []string {
+	return []string{
+		S3StorageClassStandard,
+		S3StorageClassReducedRedundancy,
+		S3StorageClassStandardIa,
+		S3StorageClassOnezoneIa,
+		S3StorageClassIntelligentTiering,
+		S3StorageClassGlacier,
+		S3StorageClassDeepArchive,
+	}
+}
+
 // Specify how MediaConvert limits the color sample range for this output. To
 // create a limited range output from a full range input: Choose Limited range
 // squeeze. For full range inputs, MediaConvert performs a linear offset to
@@ -36742,6 +37022,29 @@ func TimedMetadata_Values() []string {
 	return []string{
 		TimedMetadataPassthrough,
 		TimedMetadataNone,
+	}
+}
+
+// Specify the initial presentation timestamp (PTS) offset for your transport
+// stream output. To let MediaConvert automatically determine the initial PTS
+// offset: Keep the default value, Auto. We recommend that you choose Auto for
+// the widest player compatibility. The initial PTS will be at least two seconds
+// and vary depending on your output's bitrate, HRD buffer size and HRD buffer
+// initial fill percentage. To manually specify an initial PTS offset: Choose
+// Seconds. Then specify the number of seconds with PTS offset.
+const (
+	// TsPtsOffsetAuto is a TsPtsOffset enum value
+	TsPtsOffsetAuto = "AUTO"
+
+	// TsPtsOffsetSeconds is a TsPtsOffset enum value
+	TsPtsOffsetSeconds = "SECONDS"
+)
+
+// TsPtsOffset_Values returns all elements of the TsPtsOffset enum
+func TsPtsOffset_Values() []string {
+	return []string{
+		TsPtsOffsetAuto,
+		TsPtsOffsetSeconds,
 	}
 }
 

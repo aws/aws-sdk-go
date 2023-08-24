@@ -320,9 +320,15 @@ type QuickSightAPI interface {
 	DescribeFolderPermissionsWithContext(aws.Context, *quicksight.DescribeFolderPermissionsInput, ...request.Option) (*quicksight.DescribeFolderPermissionsOutput, error)
 	DescribeFolderPermissionsRequest(*quicksight.DescribeFolderPermissionsInput) (*request.Request, *quicksight.DescribeFolderPermissionsOutput)
 
+	DescribeFolderPermissionsPages(*quicksight.DescribeFolderPermissionsInput, func(*quicksight.DescribeFolderPermissionsOutput, bool) bool) error
+	DescribeFolderPermissionsPagesWithContext(aws.Context, *quicksight.DescribeFolderPermissionsInput, func(*quicksight.DescribeFolderPermissionsOutput, bool) bool, ...request.Option) error
+
 	DescribeFolderResolvedPermissions(*quicksight.DescribeFolderResolvedPermissionsInput) (*quicksight.DescribeFolderResolvedPermissionsOutput, error)
 	DescribeFolderResolvedPermissionsWithContext(aws.Context, *quicksight.DescribeFolderResolvedPermissionsInput, ...request.Option) (*quicksight.DescribeFolderResolvedPermissionsOutput, error)
 	DescribeFolderResolvedPermissionsRequest(*quicksight.DescribeFolderResolvedPermissionsInput) (*request.Request, *quicksight.DescribeFolderResolvedPermissionsOutput)
+
+	DescribeFolderResolvedPermissionsPages(*quicksight.DescribeFolderResolvedPermissionsInput, func(*quicksight.DescribeFolderResolvedPermissionsOutput, bool) bool) error
+	DescribeFolderResolvedPermissionsPagesWithContext(aws.Context, *quicksight.DescribeFolderResolvedPermissionsInput, func(*quicksight.DescribeFolderResolvedPermissionsOutput, bool) bool, ...request.Option) error
 
 	DescribeGroup(*quicksight.DescribeGroupInput) (*quicksight.DescribeGroupOutput, error)
 	DescribeGroupWithContext(aws.Context, *quicksight.DescribeGroupInput, ...request.Option) (*quicksight.DescribeGroupOutput, error)
@@ -473,9 +479,15 @@ type QuickSightAPI interface {
 	ListFolderMembersWithContext(aws.Context, *quicksight.ListFolderMembersInput, ...request.Option) (*quicksight.ListFolderMembersOutput, error)
 	ListFolderMembersRequest(*quicksight.ListFolderMembersInput) (*request.Request, *quicksight.ListFolderMembersOutput)
 
+	ListFolderMembersPages(*quicksight.ListFolderMembersInput, func(*quicksight.ListFolderMembersOutput, bool) bool) error
+	ListFolderMembersPagesWithContext(aws.Context, *quicksight.ListFolderMembersInput, func(*quicksight.ListFolderMembersOutput, bool) bool, ...request.Option) error
+
 	ListFolders(*quicksight.ListFoldersInput) (*quicksight.ListFoldersOutput, error)
 	ListFoldersWithContext(aws.Context, *quicksight.ListFoldersInput, ...request.Option) (*quicksight.ListFoldersOutput, error)
 	ListFoldersRequest(*quicksight.ListFoldersInput) (*request.Request, *quicksight.ListFoldersOutput)
+
+	ListFoldersPages(*quicksight.ListFoldersInput, func(*quicksight.ListFoldersOutput, bool) bool) error
+	ListFoldersPagesWithContext(aws.Context, *quicksight.ListFoldersInput, func(*quicksight.ListFoldersOutput, bool) bool, ...request.Option) error
 
 	ListGroupMemberships(*quicksight.ListGroupMembershipsInput) (*quicksight.ListGroupMembershipsOutput, error)
 	ListGroupMembershipsWithContext(aws.Context, *quicksight.ListGroupMembershipsInput, ...request.Option) (*quicksight.ListGroupMembershipsOutput, error)
@@ -641,6 +653,9 @@ type QuickSightAPI interface {
 	SearchFolders(*quicksight.SearchFoldersInput) (*quicksight.SearchFoldersOutput, error)
 	SearchFoldersWithContext(aws.Context, *quicksight.SearchFoldersInput, ...request.Option) (*quicksight.SearchFoldersOutput, error)
 	SearchFoldersRequest(*quicksight.SearchFoldersInput) (*request.Request, *quicksight.SearchFoldersOutput)
+
+	SearchFoldersPages(*quicksight.SearchFoldersInput, func(*quicksight.SearchFoldersOutput, bool) bool) error
+	SearchFoldersPagesWithContext(aws.Context, *quicksight.SearchFoldersInput, func(*quicksight.SearchFoldersOutput, bool) bool, ...request.Option) error
 
 	SearchGroups(*quicksight.SearchGroupsInput) (*quicksight.SearchGroupsOutput, error)
 	SearchGroupsWithContext(aws.Context, *quicksight.SearchGroupsInput, ...request.Option) (*quicksight.SearchGroupsOutput, error)
