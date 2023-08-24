@@ -8,7 +8,6 @@
 package defaults
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -200,24 +199,17 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 	return httpCredProvider(cfg, handlers, u)
 }
 
-type authTokenFile struct {
-	Content string `json:"content"`
-}
-
 func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
 	var authToken string
 	var errMsg string
 	var err error
 
 	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
-		var tokenFile authTokenFile
 		var contents []byte
 		if contents, err = ioutil.ReadFile(authFilePath); err != nil {
 			errMsg = fmt.Sprintf("failed to read authorization token from %v: %v", authFilePath, err)
-		} else if err = json.Unmarshal(contents, &tokenFile); err != nil {
-			errMsg = fmt.Sprintf("failed to unmashal the token file: %v", err)
 		}
-		authToken = tokenFile.Content
+		authToken = string(contents)
 	} else {
 		authToken = os.Getenv(httpProviderAuthorizationEnvVar)
 	}
