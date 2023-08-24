@@ -115,8 +115,8 @@ func CredProviders(cfg *aws.Config, handlers request.Handlers) []credentials.Pro
 const (
 	httpProviderAuthorizationEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN"
 	httpProviderEnvVar              = "AWS_CONTAINER_CREDENTIALS_FULL_URI"
-	ECSContainerHost                = "169.254.170.2"
-	EKSContainerHost                = "169.254.170.23"
+	ecsContainerHost                = "169.254.170.2"
+	eksContainerHost                = "169.254.170.23"
 )
 
 // RemoteCredProvider returns a credentials provider for the default remote
@@ -158,7 +158,7 @@ func isAllowedHost(host string) (bool, error) {
 }
 
 func isHostAllowed(host string) bool {
-	if host == ECSContainerHost || host == EKSContainerHost {
+	if host == ecsContainerHost || host == eksContainerHost {
 		return true
 	}
 	ip := net.ParseIP(host)
