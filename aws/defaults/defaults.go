@@ -9,7 +9,6 @@ package defaults
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
@@ -114,7 +113,6 @@ func CredProviders(cfg *aws.Config, handlers request.Handlers) []credentials.Pro
 }
 
 const (
-	httpProviderAuthFileEnvVar      = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE"
 	httpProviderAuthorizationEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN"
 	httpProviderEnvVar              = "AWS_CONTAINER_CREDENTIALS_FULL_URI"
 	ECSContainerHost                = "169.254.170.2"
@@ -138,10 +136,11 @@ func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.P
 
 var lookupHostFn = net.LookupHost
 
-func isLoopbackHost(host string) (bool, error) {
-	ip := net.ParseIP(host)
-	if ip != nil {
-		return ip.IsLoopback(), nil
+// isAllowedHost allows host to be loopback host,ECS container host 169.254.170.2
+// and EKS container host 169.254.170.23
+func isAllowedHost(host string) (bool, error) {
+	if isHostAllowed(host) {
+		return true, nil
 	}
 
 	// Host is not an ip, perform lookup
@@ -150,7 +149,7 @@ func isLoopbackHost(host string) (bool, error) {
 		return false, err
 	}
 	for _, addr := range addrs {
-		if !net.ParseIP(addr).IsLoopback() {
+		if !isHostAllowed(addr) {
 			return false, nil
 		}
 	}
@@ -158,13 +157,15 @@ func isLoopbackHost(host string) (bool, error) {
 	return true, nil
 }
 
-// isAllowedHost allows host to be loopback host,ECS container host 169.254.170.2
-// and EKS container host 169.254.170.23
-func isAllowedHost(host string) (bool, error) {
+func isHostAllowed(host string) bool {
 	if host == ECSContainerHost || host == EKSContainerHost {
-		return true, nil
+		return true
 	}
-	return isLoopbackHost(host)
+	ip := net.ParseIP(host)
+	if ip != nil {
+		return ip.IsLoopback()
+	}
+	return false
 }
 
 func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
@@ -200,34 +201,10 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 }
 
 func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
-	var authToken string
-	var errMsg string
-	var err error
-
-	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
-		var contents []byte
-		if contents, err = ioutil.ReadFile(authFilePath); err != nil {
-			errMsg = fmt.Sprintf("failed to read authorization token from %v: %v", authFilePath, err)
-		}
-		authToken = string(contents)
-	} else {
-		authToken = os.Getenv(httpProviderAuthorizationEnvVar)
-	}
-
-	if errMsg != "" {
-		if cfg.Logger != nil {
-			cfg.Logger.Log("Ignoring, HTTP credential provider", errMsg, err)
-		}
-		return credentials.ErrorProvider{
-			Err:          awserr.New("CredentialsEndpointError", errMsg, err),
-			ProviderName: endpointcreds.ProviderName,
-		}
-	}
-
 	return endpointcreds.NewProviderClient(cfg, handlers, u,
 		func(p *endpointcreds.Provider) {
 			p.ExpiryWindow = 5 * time.Minute
-			p.AuthorizationToken = authToken
+			p.AuthorizationToken = os.Getenv(httpProviderAuthorizationEnvVar)
 		},
 	)
 }

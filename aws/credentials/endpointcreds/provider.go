@@ -7,30 +7,37 @@
 //
 // Static credentials will never expire once they have been retrieved. The format
 // of the static credentials response:
-//    {
-//        "AccessKeyId" : "MUA...",
-//        "SecretAccessKey" : "/7PC5om....",
-//    }
+//
+//	{
+//	    "AccessKeyId" : "MUA...",
+//	    "SecretAccessKey" : "/7PC5om....",
+//	}
 //
 // Refreshable credentials will expire within the "ExpiryWindow" of the Expiration
 // value in the response. The format of the refreshable credentials response:
-//    {
-//        "AccessKeyId" : "MUA...",
-//        "SecretAccessKey" : "/7PC5om....",
-//        "Token" : "AQoDY....=",
-//        "Expiration" : "2016-02-25T06:03:31Z"
-//    }
+//
+//	{
+//	    "AccessKeyId" : "MUA...",
+//	    "SecretAccessKey" : "/7PC5om....",
+//	    "Token" : "AQoDY....=",
+//	    "Expiration" : "2016-02-25T06:03:31Z"
+//	}
 //
 // Errors should be returned in the following format and only returned with 400
 // or 500 HTTP status codes.
-//    {
-//        "code": "ErrorCode",
-//        "message": "Helpful error message."
-//    }
+//
+//	{
+//	    "code": "ErrorCode",
+//	    "message": "Helpful error message."
+//	}
 package endpointcreds
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -43,7 +50,10 @@ import (
 )
 
 // ProviderName is the name of the credentials provider.
-const ProviderName = `CredentialsEndpointProvider`
+const (
+	ProviderName               = `CredentialsEndpointProvider`
+	httpProviderAuthFileEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE"
+)
 
 // Provider satisfies the credentials.Provider interface, and is a client to
 // retrieve credentials from an arbitrary endpoint.
@@ -164,7 +174,22 @@ func (p *Provider) getCredentials(ctx aws.Context) (*getCredentialsOutput, error
 	req := p.Client.NewRequest(op, nil, out)
 	req.SetContext(ctx)
 	req.HTTPRequest.Header.Set("Accept", "application/json")
-	if authToken := p.AuthorizationToken; len(authToken) != 0 {
+
+	authToken := p.AuthorizationToken
+	var err error
+
+	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
+		var contents []byte
+		if contents, err = ioutil.ReadFile(authFilePath); err != nil {
+			return &getCredentialsOutput{}, fmt.Errorf("failed to read authorization token from %v: %v", authFilePath, err)
+		}
+		authToken = string(contents)
+	}
+
+	if strings.ContainsAny(authToken, "\r\n") {
+		return &getCredentialsOutput{}, fmt.Errorf("authorization token contains invalid newline sequence")
+	}
+	if len(authToken) != 0 {
 		req.HTTPRequest.Header.Set("Authorization", authToken)
 	}
 
