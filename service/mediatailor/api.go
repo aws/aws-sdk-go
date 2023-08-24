@@ -3774,7 +3774,7 @@ type AccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication used to access content from HttpConfiguration::BaseUrl
-	// on your source location. Accepted value: S3_SIGV4.
+	// on your source location.
 	//
 	// S3_SIGV4 - AWS Signature Version 4 authentication for Amazon S3 hosted virtual-style
 	// access. If your source location base URL is an Amazon S3 bucket, MediaTailor
@@ -3791,6 +3791,40 @@ type AccessConfiguration struct {
 	//
 	// • The mediatailor.amazonaws.com service principal must have permissions
 	// to read all top level manifests referenced by the VodSource packaging configurations.
+	//
+	// • The caller of the API must have s3:GetObject IAM permissions to read
+	// all top level manifests referenced by your MediaTailor VodSource packaging
+	// configurations.
+	//
+	// AUTODETECT_SIGV4 - AWS Signature Version 4 authentication for a set of supported
+	// services: MediaPackage Version 2 and Amazon S3 hosted virtual-style access.
+	// If your source location base URL is a MediaPackage Version 2 endpoint or
+	// an Amazon S3 bucket, MediaTailor can use AWS Signature Version 4 (SigV4)
+	// authentication to access the resource where your source content is stored.
+	//
+	// Before you can use AUTODETECT_SIGV4 with a MediaPackage Version 2 endpoint,
+	// you must meet these requirements:
+	//
+	// • You must grant MediaTailor access to your MediaPackage endpoint by granting
+	// mediatailor.amazonaws.com principal access in an Origin Access policy on
+	// the endpoint.
+	//
+	// • Your MediaTailor source location base URL must be a MediaPackage V2 endpoint.
+	//
+	// • The caller of the API must have mediapackagev2:GetObject IAM permissions
+	// to read all top level manifests referenced by the MediaTailor source packaging
+	// configurations.
+	//
+	// Before you can use AUTODETECT_SIGV4 with an Amazon S3 bucket, you must meet
+	// these requirements:
+	//
+	// • You must grant MediaTailor access to your S3 bucket by granting mediatailor.amazonaws.com
+	// principal access in IAM. For more information about configuring access in
+	// IAM, see Access management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+	// in the IAM User Guide..
+	//
+	// • The mediatailor.amazonaws.com service principal must have permissions
+	// to read all top-level manifests referenced by the VodSource packaging configurations.
 	//
 	// • The caller of the API must have s3:GetObject IAM permissions to read
 	// all top level manifests referenced by your MediaTailor VodSource packaging
@@ -13255,6 +13289,9 @@ const (
 
 	// AccessTypeSecretsManagerAccessToken is a AccessType enum value
 	AccessTypeSecretsManagerAccessToken = "SECRETS_MANAGER_ACCESS_TOKEN"
+
+	// AccessTypeAutodetectSigv4 is a AccessType enum value
+	AccessTypeAutodetectSigv4 = "AUTODETECT_SIGV4"
 )
 
 // AccessType_Values returns all elements of the AccessType enum
@@ -13262,6 +13299,7 @@ func AccessType_Values() []string {
 	return []string{
 		AccessTypeS3Sigv4,
 		AccessTypeSecretsManagerAccessToken,
+		AccessTypeAutodetectSigv4,
 	}
 }
 

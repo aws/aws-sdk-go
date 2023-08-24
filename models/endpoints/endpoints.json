@@ -2037,6 +2037,12 @@
             "deprecated" : true,
             "hostname" : "athena-fips.us-west-2.amazonaws.com"
           },
+          "il-central-1" : {
+            "variants" : [ {
+              "hostname" : "athena.il-central-1.api.aws",
+              "tags" : [ "dualstack" ]
+            } ]
+          },
           "me-central-1" : {
             "variants" : [ {
               "hostname" : "athena.me-central-1.api.aws",
@@ -4404,6 +4410,7 @@
             "deprecated" : true,
             "hostname" : "datasync-fips.us-west-2.amazonaws.com"
           },
+          "il-central-1" : { },
           "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },

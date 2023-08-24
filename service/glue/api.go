@@ -63950,11 +63950,17 @@ type Session struct {
 	// The command object.See SessionCommand.
 	Command *SessionCommand `type:"structure"`
 
+	// The date and time that this session is completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
 	// The number of connections used for the session.
 	Connections *ConnectionsList `type:"structure"`
 
 	// The time and date when the session was created.
 	CreatedOn *time.Time `type:"timestamp"`
+
+	// The DPUs consumed by the session (formula: ExecutionTime * MaxCapacity).
+	DPUSeconds *float64 `type:"double"`
 
 	// A map array of key-value pairs. Max is 75 pairs.
 	DefaultArguments map[string]*string `type:"map"`
@@ -63965,6 +63971,9 @@ type Session struct {
 	// The error message displayed during the session.
 	ErrorMessage *string `type:"string"`
 
+	// The total time the session ran for.
+	ExecutionTime *float64 `type:"double"`
+
 	// The Glue version determines the versions of Apache Spark and Python that
 	// Glue supports. The GlueVersion must be greater than 2.0.
 	GlueVersion *string `min:"1" type:"string"`
@@ -63972,10 +63981,16 @@ type Session struct {
 	// The ID of the session.
 	Id *string `min:"1" type:"string"`
 
+	// The number of minutes when idle before the session times out.
+	IdleTimeout *int64 `type:"integer"`
+
 	// The number of Glue data processing units (DPUs) that can be allocated when
 	// the job runs. A DPU is a relative measure of processing power that consists
 	// of 4 vCPUs of compute capacity and 16 GB memory.
 	MaxCapacity *float64 `type:"double"`
+
+	// The number of workers of a defined WorkerType to use for the session.
+	NumberOfWorkers *int64 `type:"integer"`
 
 	// The code execution progress of the session.
 	Progress *float64 `type:"double"`
@@ -63989,6 +64004,11 @@ type Session struct {
 
 	// The session status.
 	Status *string `type:"string" enum:"SessionStatus"`
+
+	// The type of predefined worker that is allocated when a session runs. Accepts
+	// a value of G.1X, G.2X, G.4X, or G.8X for Spark sessions. Accepts the value
+	// Z.2X for Ray sessions.
+	WorkerType *string `type:"string" enum:"WorkerType"`
 }
 
 // String returns the string representation.
@@ -64015,6 +64035,12 @@ func (s *Session) SetCommand(v *SessionCommand) *Session {
 	return s
 }
 
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *Session) SetCompletedOn(v time.Time) *Session {
+	s.CompletedOn = &v
+	return s
+}
+
 // SetConnections sets the Connections field's value.
 func (s *Session) SetConnections(v *ConnectionsList) *Session {
 	s.Connections = v
@@ -64024,6 +64050,12 @@ func (s *Session) SetConnections(v *ConnectionsList) *Session {
 // SetCreatedOn sets the CreatedOn field's value.
 func (s *Session) SetCreatedOn(v time.Time) *Session {
 	s.CreatedOn = &v
+	return s
+}
+
+// SetDPUSeconds sets the DPUSeconds field's value.
+func (s *Session) SetDPUSeconds(v float64) *Session {
+	s.DPUSeconds = &v
 	return s
 }
 
@@ -64045,6 +64077,12 @@ func (s *Session) SetErrorMessage(v string) *Session {
 	return s
 }
 
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *Session) SetExecutionTime(v float64) *Session {
+	s.ExecutionTime = &v
+	return s
+}
+
 // SetGlueVersion sets the GlueVersion field's value.
 func (s *Session) SetGlueVersion(v string) *Session {
 	s.GlueVersion = &v
@@ -64057,9 +64095,21 @@ func (s *Session) SetId(v string) *Session {
 	return s
 }
 
+// SetIdleTimeout sets the IdleTimeout field's value.
+func (s *Session) SetIdleTimeout(v int64) *Session {
+	s.IdleTimeout = &v
+	return s
+}
+
 // SetMaxCapacity sets the MaxCapacity field's value.
 func (s *Session) SetMaxCapacity(v float64) *Session {
 	s.MaxCapacity = &v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *Session) SetNumberOfWorkers(v int64) *Session {
+	s.NumberOfWorkers = &v
 	return s
 }
 
@@ -64084,6 +64134,12 @@ func (s *Session) SetSecurityConfiguration(v string) *Session {
 // SetStatus sets the Status field's value.
 func (s *Session) SetStatus(v string) *Session {
 	s.Status = &v
+	return s
+}
+
+// SetWorkerType sets the WorkerType field's value.
+func (s *Session) SetWorkerType(v string) *Session {
+	s.WorkerType = &v
 	return s
 }
 

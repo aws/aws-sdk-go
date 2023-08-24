@@ -1166,6 +1166,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -1183,6 +1184,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -2980,6 +2982,11 @@
       "max":2048,
       "min":1,
       "pattern":"[\\w\\-]+|(\\$LATEST)|(\\$PUBLISHED)"
+    },
+    "AllSheetsFilterScopeConfiguration":{
+      "type":"structure",
+      "members":{
+      }
     },
     "AmazonElasticsearchParameters":{
       "type":"structure",
@@ -5220,7 +5227,8 @@
         "FolderType":{"shape":"FolderType"},
         "ParentFolderArn":{"shape":"Arn"},
         "Permissions":{"shape":"ResourcePermissionList"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SharingModel":{"shape":"SharingModel"}
       }
     },
     "CreateFolderResponse":{
@@ -8425,6 +8433,22 @@
           "shape":"RestrictiveResourceId",
           "location":"uri",
           "locationName":"FolderId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
         }
       }
     },
@@ -8438,7 +8462,8 @@
         "FolderId":{"shape":"RestrictiveResourceId"},
         "Arn":{"shape":"Arn"},
         "Permissions":{"shape":"ResourcePermissionList"},
-        "RequestId":{"shape":"String"}
+        "RequestId":{"shape":"String"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeFolderRequest":{
@@ -8476,6 +8501,22 @@
           "shape":"RestrictiveResourceId",
           "location":"uri",
           "locationName":"FolderId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
         }
       }
     },
@@ -8489,7 +8530,8 @@
         "FolderId":{"shape":"RestrictiveResourceId"},
         "Arn":{"shape":"Arn"},
         "Permissions":{"shape":"ResourcePermissionList"},
-        "RequestId":{"shape":"String"}
+        "RequestId":{"shape":"String"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeFolderResponse":{
@@ -9823,7 +9865,8 @@
     "FilterScopeConfiguration":{
       "type":"structure",
       "members":{
-        "SelectedSheets":{"shape":"SelectedSheetsFilterScopeConfiguration"}
+        "SelectedSheets":{"shape":"SelectedSheetsFilterScopeConfiguration"},
+        "AllSheets":{"shape":"AllSheetsFilterScopeConfiguration"}
       }
     },
     "FilterSelectableValues":{
@@ -9903,7 +9946,8 @@
         "FolderType":{"shape":"FolderType"},
         "FolderPath":{"shape":"Path"},
         "CreatedTime":{"shape":"Timestamp"},
-        "LastUpdatedTime":{"shape":"Timestamp"}
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SharingModel":{"shape":"SharingModel"}
       }
     },
     "FolderColumnList":{
@@ -9961,7 +10005,8 @@
         "Name":{"shape":"FolderName"},
         "FolderType":{"shape":"FolderType"},
         "CreatedTime":{"shape":"Timestamp"},
-        "LastUpdatedTime":{"shape":"Timestamp"}
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SharingModel":{"shape":"SharingModel"}
       }
     },
     "FolderSummaryList":{
@@ -10029,10 +10074,7 @@
     },
     "ForecastComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -10804,10 +10846,7 @@
     },
     "GrowthRateComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -13008,7 +13047,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Time",
         "Type"
       ],
       "members":{
@@ -13057,12 +13095,7 @@
     },
     "MetricComparisonComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time",
-        "FromValue",
-        "TargetValue"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -13818,10 +13851,7 @@
     },
     "PeriodOverPeriodComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -13831,10 +13861,7 @@
     },
     "PeriodToDateComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -15751,6 +15778,13 @@
         "BackgroundColor":{"shape":"ConditionalFormattingColor"}
       }
     },
+    "SharingModel":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT",
+        "NAMESPACE"
+      ]
+    },
     "Sheet":{
       "type":"structure",
       "members":{
@@ -16100,7 +16134,8 @@
       "type":"string",
       "enum":[
         "CSV",
-        "PDF"
+        "PDF",
+        "EXCEL"
       ]
     },
     "SnapshotFileGroup":{
@@ -16112,7 +16147,7 @@
     "SnapshotFileGroupList":{
       "type":"list",
       "member":{"shape":"SnapshotFileGroup"},
-      "max":6,
+      "max":7,
       "min":1
     },
     "SnapshotFileList":{
@@ -16136,7 +16171,7 @@
     "SnapshotFileSheetSelectionList":{
       "type":"list",
       "member":{"shape":"SnapshotFileSheetSelection"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "SnapshotFileSheetSelectionScope":{
@@ -16149,7 +16184,7 @@
     "SnapshotFileSheetSelectionVisualIdList":{
       "type":"list",
       "member":{"shape":"ShortRestrictiveResourceId"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "SnapshotJobErrorInfo":{
@@ -16719,8 +16754,14 @@
       "type":"structure",
       "members":{
         "SelectedFieldOptions":{"shape":"TableFieldOptionList"},
-        "Order":{"shape":"FieldOrderList"}
+        "Order":{"shape":"FieldOrderList"},
+        "PinnedFieldOptions":{"shape":"TablePinnedFieldOptions"}
       }
+    },
+    "TableFieldOrderList":{
+      "type":"list",
+      "member":{"shape":"FieldId"},
+      "max":201
     },
     "TableFieldURLConfiguration":{
       "type":"structure",
@@ -16768,6 +16809,12 @@
       "members":{
         "VerticalOverflowVisibility":{"shape":"Visibility"},
         "OverflowColumnHeaderVisibility":{"shape":"Visibility"}
+      }
+    },
+    "TablePinnedFieldOptions":{
+      "type":"structure",
+      "members":{
+        "PinnedLeftFields":{"shape":"TableFieldOrderList"}
       }
     },
     "TableRowConditionalFormatting":{
@@ -17413,8 +17460,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Time",
-        "Category",
         "Type"
       ],
       "members":{
@@ -17437,7 +17482,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Category",
         "Type"
       ],
       "members":{
@@ -17733,10 +17777,7 @@
     },
     "TotalAggregationComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Value"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},
@@ -17925,10 +17966,7 @@
     },
     "UniqueValuesComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Category"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"String"},

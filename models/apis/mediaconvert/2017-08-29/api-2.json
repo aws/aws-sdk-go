@@ -1357,7 +1357,20 @@
         "TCS",
         "VHL",
         "VHC",
-        "VHR"
+        "VHR",
+        "TBL",
+        "TBC",
+        "TBR",
+        "RSL",
+        "RSR",
+        "LW",
+        "RW",
+        "LFE2",
+        "LT",
+        "RT",
+        "HI",
+        "NAR",
+        "M"
       ]
     },
     "AudioChannelTaggingSettings": {
@@ -1382,7 +1395,8 @@
         "EAC3_ATMOS",
         "VORBIS",
         "OPUS",
-        "PASSTHROUGH"
+        "PASSTHROUGH",
+        "FLAC"
       ]
     },
     "AudioCodecSettings": {
@@ -1411,6 +1425,10 @@
         "Eac3Settings": {
           "shape": "Eac3Settings",
           "locationName": "eac3Settings"
+        },
+        "FlacSettings": {
+          "shape": "FlacSettings",
+          "locationName": "flacSettings"
         },
         "Mp2Settings": {
           "shape": "Mp2Settings",
@@ -1720,6 +1738,13 @@
         "BIT_10"
       ]
     },
+    "Av1FilmGrainSynthesis": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "Av1FramerateControl": {
       "type": "string",
       "enum": [
@@ -1764,6 +1789,10 @@
         "BitDepth": {
           "shape": "Av1BitDepth",
           "locationName": "bitDepth"
+        },
+        "FilmGrainSynthesis": {
+          "shape": "Av1FilmGrainSynthesis",
+          "locationName": "filmGrainSynthesis"
         },
         "FramerateControl": {
           "shape": "Av1FramerateControl",
@@ -4551,6 +4580,23 @@
         "SECONDS",
         "MILLISECONDS"
       ]
+    },
+    "FlacSettings": {
+      "type": "structure",
+      "members": {
+        "BitDepth": {
+          "shape": "__integerMin16Max24",
+          "locationName": "bitDepth"
+        },
+        "Channels": {
+          "shape": "__integerMin1Max8",
+          "locationName": "channels"
+        },
+        "SampleRate": {
+          "shape": "__integerMin22050Max48000",
+          "locationName": "sampleRate"
+        }
+      }
     },
     "FontScript": {
       "type": "string",
@@ -7479,6 +7525,14 @@
           "shape": "__integerMin0Max65535",
           "locationName": "programNumber"
         },
+        "PtsOffset": {
+          "shape": "__integerMin0Max3600",
+          "locationName": "ptsOffset"
+        },
+        "PtsOffsetMode": {
+          "shape": "TsPtsOffset",
+          "locationName": "ptsOffsetMode"
+        },
         "RateMode": {
           "shape": "M2tsRateMode",
           "locationName": "rateMode"
@@ -7610,6 +7664,14 @@
         "ProgramNumber": {
           "shape": "__integerMin0Max65535",
           "locationName": "programNumber"
+        },
+        "PtsOffset": {
+          "shape": "__integerMin0Max3600",
+          "locationName": "ptsOffset"
+        },
+        "PtsOffsetMode": {
+          "shape": "TsPtsOffset",
+          "locationName": "ptsOffsetMode"
         },
         "Scte35Pid": {
           "shape": "__integerMin32Max8182",
@@ -9318,6 +9380,10 @@
         "Encryption": {
           "shape": "S3EncryptionSettings",
           "locationName": "encryption"
+        },
+        "StorageClass": {
+          "shape": "S3StorageClass",
+          "locationName": "storageClass"
         }
       }
     },
@@ -9352,6 +9418,18 @@
       "enum": [
         "SERVER_SIDE_ENCRYPTION_S3",
         "SERVER_SIDE_ENCRYPTION_KMS"
+      ]
+    },
+    "S3StorageClass": {
+      "type": "string",
+      "enum": [
+        "STANDARD",
+        "REDUCED_REDUNDANCY",
+        "STANDARD_IA",
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING",
+        "GLACIER",
+        "DEEP_ARCHIVE"
       ]
     },
     "SampleRangeConversion": {
@@ -9666,6 +9744,13 @@
           "locationName": "trackNumber"
         }
       }
+    },
+    "TsPtsOffset": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "SECONDS"
+      ]
     },
     "TtmlDestinationSettings": {
       "type": "structure",
@@ -11150,6 +11235,11 @@
       "type": "integer",
       "min": 1,
       "max": 64
+    },
+    "__integerMin1Max8": {
+      "type": "integer",
+      "min": 1,
+      "max": 8
     },
     "__integerMin22050Max48000": {
       "type": "integer",

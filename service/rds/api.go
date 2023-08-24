@@ -5270,6 +5270,12 @@ func (c *RDS) DescribeDBClusterAutomatedBackupsRequest(input *DescribeDBClusterA
 		Name:       opDescribeDBClusterAutomatedBackups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5321,6 +5327,57 @@ func (c *RDS) DescribeDBClusterAutomatedBackupsWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeDBClusterAutomatedBackupsPages iterates over the pages of a DescribeDBClusterAutomatedBackups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterAutomatedBackups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeDBClusterAutomatedBackups operation.
+//	pageNum := 0
+//	err := client.DescribeDBClusterAutomatedBackupsPages(params,
+//	    func(page *rds.DescribeDBClusterAutomatedBackupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RDS) DescribeDBClusterAutomatedBackupsPages(input *DescribeDBClusterAutomatedBackupsInput, fn func(*DescribeDBClusterAutomatedBackupsOutput, bool) bool) error {
+	return c.DescribeDBClusterAutomatedBackupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterAutomatedBackupsPagesWithContext same as DescribeDBClusterAutomatedBackupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterAutomatedBackupsPagesWithContext(ctx aws.Context, input *DescribeDBClusterAutomatedBackupsInput, fn func(*DescribeDBClusterAutomatedBackupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterAutomatedBackupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterAutomatedBackupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterAutomatedBackupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDBClusterBacktracks = "DescribeDBClusterBacktracks"
@@ -48376,7 +48433,7 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Aurora MySQL
 	//
-	// Examples: 5.7.mysql_aurora.2.07.1, 8.0.mysql_aurora.3.02.0
+	// Examples: 5.7.mysql_aurora.2.12.0, 8.0.mysql_aurora.3.04.0
 	EngineVersion *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
@@ -48549,9 +48606,9 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The version of the database that the backup files were created from.
 	//
-	// MySQL versions 5.5, 5.6, and 5.7 are supported.
+	// MySQL versions 5.7 and 8.0 are supported.
 	//
-	// Example: 5.6.40, 5.7.28
+	// Example: 5.7.40, 8.0.28
 	//
 	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`

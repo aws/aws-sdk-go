@@ -114,6 +114,12 @@
         "AacSettings$VbrQuality": "VBR Quality Level - Only used if rateControlMode is VBR."
       }
     },
+    "Ac3AttenuationControl": {
+      "base": "Ac3 Attenuation Control",
+      "refs": {
+        "Ac3Settings$AttenuationControl": "Applies a 3 dB attenuation to the surround channels. Applies only when the coding mode parameter is CODING_MODE_3_2_LFE."
+      }
+    },
     "Ac3BitstreamMode": {
       "base": "Ac3 Bitstream Mode",
       "refs": {
@@ -1683,6 +1689,12 @@
         "ScheduleActionStartSettings$ImmediateModeScheduleActionStartSettings": "Option for specifying an action that should be applied immediately."
       }
     },
+    "IncludeFillerNalUnits": {
+      "base": "Include Filler Nal Units",
+      "refs": {
+        "RtmpGroupSettings$IncludeFillerNalUnits": "Applies only when the rate control mode (in the codec settings) is CBR (constant bit rate). Controls whether the RTMP output stream is padded (with FILL NAL units) in order to achieve a constant bit rate that is truly constant. When there is no padding, the bandwidth varies (up to the bitrate value in the codec settings). We recommend that you choose Auto."
+      }
+    },
     "Input": {
       "base": null,
       "refs": {
@@ -2256,6 +2268,12 @@
       "base": "M2ts Timed Metadata Behavior",
       "refs": {
         "M2tsSettings$TimedMetadataBehavior": "When set to passthrough, timed metadata will be passed through from input to output."
+      }
+    },
+    "M3u8KlvBehavior": {
+      "base": "M3u8 Klv Behavior",
+      "refs": {
+        "M3u8Settings$KlvBehavior": "If set to passthrough, passes any KLV data from the input source to this output."
       }
     },
     "M3u8NielsenId3Behavior": {
@@ -4676,6 +4694,7 @@
         "M2tsSettings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.",
         "M3u8Settings$EcmPid": "This parameter is unused and deprecated.",
+        "M3u8Settings$KlvDataPids": "Packet Identifier (PID) for input source KLV data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.  Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value.",

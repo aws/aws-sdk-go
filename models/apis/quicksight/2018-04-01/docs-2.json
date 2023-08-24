@@ -131,7 +131,7 @@
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
     "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 5 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
-    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request one of the following format configurations per API call.</p> <ul> <li> <p>1 paginated PDF</p> </li> <li> <p>5 CSVs</p> </li> </ul> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
+    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request one of the following format configurations per API call.</p> <ul> <li> <p>1 paginated PDF</p> </li> <li> <p>1 Excel workbook</p> </li> <li> <p>5 CSVs</p> </li> </ul> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -277,6 +277,12 @@
         "ThemeAlias$AliasName": "<p>The display name of the theme alias.</p>",
         "UpdateTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to update. If you name a specific alias, you update the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
         "UpdateThemeAliasRequest$AliasName": "<p>The name of the theme alias that you want to update.</p>"
+      }
+    },
+    "AllSheetsFilterScopeConfiguration": {
+      "base": "<p>The configuration for applying a filter to all sheets. You can apply this filter to all visuals on every sheet.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
+      "refs": {
+        "FilterScopeConfiguration$AllSheets": "<p>The configuration for applying a filter to all sheets.</p>"
       }
     },
     "AmazonElasticsearchParameters": {
@@ -4515,6 +4521,7 @@
         "SelectedFieldList$member": null,
         "TableCellConditionalFormatting$FieldId": "<p>The field ID of the cell for conditional formatting.</p>",
         "TableFieldOption$FieldId": "<p>The field ID for a table field.</p>",
+        "TableFieldOrderList$member": null,
         "UnaggregatedField$FieldId": "<p>The custom field ID.</p>"
       }
     },
@@ -4527,7 +4534,7 @@
     "FieldOrderList": {
       "base": null,
       "refs": {
-        "TableFieldOptions$Order": "<p>The order of field IDs of the field options for a table visual.</p>"
+        "TableFieldOptions$Order": "<p>The order of the field IDs that are configured as field options for a table visual.</p>"
       }
     },
     "FieldSeriesItem": {
@@ -6741,6 +6748,8 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "DescribeFolderPermissionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "DescribeFolderResolvedPermissionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListAnalysesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListAssetBundleExportJobsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListAssetBundleImportJobsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
@@ -6847,8 +6856,8 @@
     "MemberType": {
       "base": null,
       "refs": {
-        "CreateFolderMembershipRequest$MemberType": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>.</p>",
-        "DeleteFolderMembershipRequest$MemberType": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code> </p>",
+        "CreateFolderMembershipRequest$MemberType": "<p>The member type of the asset that you want to add to a folder.</p>",
+        "DeleteFolderMembershipRequest$MemberType": "<p>The member type of the asset that you want to delete from a folder.</p>",
         "FolderMember$MemberType": "<p>The type of asset that it is.</p>"
       }
     },
@@ -6945,6 +6954,8 @@
         "DeleteUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DescribeAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you want to describe Amazon QuickSight customizations for.</p>",
         "DescribeAccountCustomizationResponse$Namespace": "<p>The Amazon QuickSight namespace that you're describing. </p>",
+        "DescribeFolderPermissionsRequest$Namespace": "<p>The namespace of the folder whose permissions you want described.</p>",
+        "DescribeFolderResolvedPermissionsRequest$Namespace": "<p>The namespace of the folder whose permissions you want described.</p>",
         "DescribeGroupMembershipRequest$Namespace": "<p>The namespace that includes the group you are searching within.</p>",
         "DescribeGroupRequest$Namespace": "<p>The namespace of the group that you want described.</p>",
         "DescribeIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
@@ -8459,11 +8470,11 @@
       "refs": {
         "AnonymousUserQSearchBarEmbeddingConfiguration$InitialTopicId": "<p>The QuickSight Q topic ID of the topic that you want the anonymous user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders the Q search bar with this topic pre-selected.</p> <p>The Amazon Resource Name (ARN) of this Q topic must be included in the <code>AuthorizedResourceArns</code> parameter. Otherwise, the request will fail with <code>InvalidParameterValueException</code>.</p>",
         "CreateFolderMembershipRequest$FolderId": "<p>The ID of the folder.</p>",
-        "CreateFolderMembershipRequest$MemberId": "<p>The ID of the asset (the dashboard, analysis, or dataset).</p>",
+        "CreateFolderMembershipRequest$MemberId": "<p>The ID of the asset that you want to add to the folder.</p>",
         "CreateFolderRequest$FolderId": "<p>The ID of the folder.</p>",
         "CreateFolderResponse$FolderId": "<p>The folder ID for the newly created folder.</p>",
         "DeleteFolderMembershipRequest$FolderId": "<p>The Folder ID.</p>",
-        "DeleteFolderMembershipRequest$MemberId": "<p>The ID of the asset (the dashboard, analysis, or dataset) that you want to delete.</p>",
+        "DeleteFolderMembershipRequest$MemberId": "<p>The ID of the asset that you want to delete.</p>",
         "DeleteFolderRequest$FolderId": "<p>The ID of the folder.</p>",
         "DeleteFolderResponse$FolderId": "<p>The ID of the folder.</p>",
         "DescribeFolderPermissionsRequest$FolderId": "<p>The ID of the folder.</p>",
@@ -9071,6 +9082,14 @@
         "FilledMapShapeConditionalFormatting$Format": "<p>The conditional formatting that determines the background color of a filled map's shape.</p>"
       }
     },
+    "SharingModel": {
+      "base": null,
+      "refs": {
+        "CreateFolderRequest$SharingModel": "<p>An optional parameter that determines the sharing scope of the folder. The default value for this parameter is <code>ACCOUNT</code>.</p>",
+        "Folder$SharingModel": "<p>The sharing scope of the folder.</p>",
+        "FolderSummary$SharingModel": "<p>The sharing scope of the folder.</p>"
+      }
+    },
     "Sheet": {
       "base": "<p>A <i>sheet</i>, which is an object that contains a set of visuals that are viewed together on one page in Amazon QuickSight. Every analysis and dashboard contains at least one sheet. Each sheet contains at least one visualization widget, for example a chart, pivot table, or narrative insight. Sheets can be associated with other components, such as controls, filters, and so on.</p>",
       "refs": {
@@ -9414,7 +9433,7 @@
         "SheetDefinition$SheetId": "<p>The unique identifier of a sheet.</p>",
         "SheetTextBox$SheetTextBoxId": "<p>The unique identifier for a text box. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have text boxes that share identifiers.</p>",
         "SheetVisualScopingConfiguration$SheetId": "<p>The selected sheet that the filter is applied to.</p>",
-        "SnapshotFileSheetSelection$SheetId": "<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV and PDF format types.</p>",
+        "SnapshotFileSheetSelection$SheetId": "<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV, Excel, and PDF format types.</p>",
         "SnapshotFileSheetSelectionVisualIdList$member": null,
         "StartAssetBundleExportJobRequest$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
         "StartAssetBundleExportJobResponse$AssetBundleExportJobId": "<p>The ID of the job. This ID is unique while the job is running. After the job is completed, you can reuse this ID for another job.</p>",
@@ -9589,7 +9608,7 @@
     "SnapshotFileFormatType": {
       "base": null,
       "refs": {
-        "SnapshotFile$FormatType": "<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code> or <code>PDF</code>.</p>"
+        "SnapshotFile$FormatType": "<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code>, <code>Excel</code>, or <code>PDF</code>.</p>"
       }
     },
     "SnapshotFileGroup": {
@@ -9620,19 +9639,19 @@
     "SnapshotFileSheetSelectionList": {
       "base": null,
       "refs": {
-        "SnapshotFile$SheetSelections": "<p>A list of <code>SnapshotFileSheetSelection</code> objects that contain information on the dashboard sheet that is exported. These objects provide information about the snapshot artifacts that are generated during the job. This structure can hold a maximum of 5 CSV configurations or 1 configuration for PDF.</p>"
+        "SnapshotFile$SheetSelections": "<p>A list of <code>SnapshotFileSheetSelection</code> objects that contain information on the dashboard sheet that is exported. These objects provide information about the snapshot artifacts that are generated during the job. This structure can hold a maximum of 5 CSV configurations, 5 Excel configurations, or 1 configuration for PDF.</p>"
       }
     },
     "SnapshotFileSheetSelectionScope": {
       "base": null,
       "refs": {
-        "SnapshotFileSheetSelection$SelectionScope": "<p>The selection scope of the visuals on a sheet of a dashboard that you are generating a snapthot of. You can choose one of the following options.</p> <ul> <li> <p> <code>ALL_VISUALS</code> - Selects all visuals that are on the sheet. This value is required if the snapshot is a PDF.</p> </li> <li> <p> <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot. This value is required if the snapshot is a CSV.</p> </li> </ul>"
+        "SnapshotFileSheetSelection$SelectionScope": "<p>The selection scope of the visuals on a sheet of a dashboard that you are generating a snapthot of. You can choose one of the following options.</p> <ul> <li> <p> <code>ALL_VISUALS</code> - Selects all visuals that are on the sheet. This value is required if the snapshot is a PDF.</p> </li> <li> <p> <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot. This value is required if the snapshot is a CSV or Excel workbook.</p> </li> </ul>"
       }
     },
     "SnapshotFileSheetSelectionVisualIdList": {
       "base": null,
       "refs": {
-        "SnapshotFileSheetSelection$VisualIds": "<p> A list of visual IDs that are located in the selected sheet. This structure supports tables and pivot tables. This structure is required if you are generating a CSV. You can add a maximum of 1 visual ID to this structure. </p>"
+        "SnapshotFileSheetSelection$VisualIds": "<p> A structure that lists the IDs of the visuals in the selected sheet. Supported visual types are table, pivot table visuals. This value is required if you are generating a CSV or Excel workbook. This value supports a maximum of 1 visual ID for CSV and 5 visual IDs across up to 5 sheet selections for Excel. If you are generating an Excel workbook, the order of the visual IDs provided in this structure determines the order of the worksheets in the Excel file. </p>"
       }
     },
     "SnapshotJobErrorInfo": {
@@ -10100,8 +10119,12 @@
         "DescribeDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourcePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeFolderPermissionsRequest$NextToken": "<p>A pagination token for the next set of results.</p>",
         "DescribeFolderPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeFolderPermissionsResponse$NextToken": "<p>The pagination token for the next set of results, or null if there are no more results.</p>",
+        "DescribeFolderResolvedPermissionsRequest$NextToken": "<p>A pagination token for the next set of results.</p>",
         "DescribeFolderResolvedPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeFolderResolvedPermissionsResponse$NextToken": "<p>A pagination token for the next set of results, or null if there are no more results.</p>",
         "DescribeFolderResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeGroupMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10634,13 +10657,19 @@
     "TableFieldOptionList": {
       "base": null,
       "refs": {
-        "TableFieldOptions$SelectedFieldOptions": "<p>The selected field options for the table field options.</p>"
+        "TableFieldOptions$SelectedFieldOptions": "<p>The field options to be configured to a table.</p>"
       }
     },
     "TableFieldOptions": {
-      "base": "<p>The field options for a table visual.</p>",
+      "base": "<p>The field options of a table visual.</p>",
       "refs": {
         "TableConfiguration$FieldOptions": "<p>The field options for a table visual.</p>"
+      }
+    },
+    "TableFieldOrderList": {
+      "base": "<p>A list of table field IDs.</p>",
+      "refs": {
+        "TablePinnedFieldOptions$PinnedLeftFields": "<p>A list of columns to be pinned to the left of a table visual.</p>"
       }
     },
     "TableFieldURLConfiguration": {
@@ -10683,6 +10712,12 @@
       "base": "<p>The paginated report options for a table visual.</p>",
       "refs": {
         "TableConfiguration$PaginatedReportOptions": "<p>The paginated report options for a table visual.</p>"
+      }
+    },
+    "TablePinnedFieldOptions": {
+      "base": "<p>The settings for the pinned columns of a table visual.</p>",
+      "refs": {
+        "TableFieldOptions$PinnedFieldOptions": "<p>The settings for the pinned columns of a table visual.</p>"
       }
     },
     "TableRowConditionalFormatting": {

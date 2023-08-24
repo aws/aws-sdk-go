@@ -2443,6 +2443,13 @@
         "MEDIUM_LOW"
       ]
     },
+    "Ac3AttenuationControl": {
+      "type": "string",
+      "enum": [
+        "ATTENUATE_3_DB",
+        "NONE"
+      ]
+    },
     "Ac3BitstreamMode": {
       "type": "string",
       "enum": [
@@ -2516,6 +2523,10 @@
         "MetadataControl": {
           "shape": "Ac3MetadataControl",
           "locationName": "metadataControl"
+        },
+        "AttenuationControl": {
+          "shape": "Ac3AttenuationControl",
+          "locationName": "attenuationControl"
         }
       }
     },
@@ -7896,6 +7907,14 @@
       "members": {
       }
     },
+    "IncludeFillerNalUnits": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "DROP",
+        "INCLUDE"
+      ]
+    },
     "Input": {
       "type": "structure",
       "members": {
@@ -9715,6 +9734,13 @@
         "PASSTHROUGH"
       ]
     },
+    "M3u8KlvBehavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
+    },
     "M3u8NielsenId3Behavior": {
       "type": "string",
       "enum": [
@@ -9806,6 +9832,14 @@
         "VideoPid": {
           "shape": "__string",
           "locationName": "videoPid"
+        },
+        "KlvBehavior": {
+          "shape": "M3u8KlvBehavior",
+          "locationName": "klvBehavior"
+        },
+        "KlvDataPids": {
+          "shape": "__string",
+          "locationName": "klvDataPids"
         }
       }
     },
@@ -11539,6 +11573,10 @@
         "RestartDelay": {
           "shape": "__integerMin0",
           "locationName": "restartDelay"
+        },
+        "IncludeFillerNalUnits": {
+          "shape": "IncludeFillerNalUnits",
+          "locationName": "includeFillerNalUnits"
         }
       }
     },
