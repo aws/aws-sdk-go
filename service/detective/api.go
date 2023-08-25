@@ -2817,8 +2817,12 @@ type Account struct {
 	// The Amazon Web Services account root user email address for the Amazon Web
 	// Services account.
 	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Account's
+	// String and GoString methods.
+	//
 	// EmailAddress is a required field
-	EmailAddress *string `min:"1" type:"string" required:"true"`
+	EmailAddress *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -3288,7 +3292,11 @@ type CreateMembersInput struct {
 
 	// Customized message text to include in the invitation email message to the
 	// invited member accounts.
-	Message *string `min:"1" type:"string"`
+	//
+	// Message is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateMembersInput's
+	// String and GoString methods.
+	Message *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4801,7 +4809,11 @@ type MemberDetail struct {
 	DisabledReason *string `type:"string" enum:"MemberDisabledReason"`
 
 	// The Amazon Web Services account root user email address for the member account.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MemberDetail's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The ARN of the behavior graph.
 	GraphArn *string `type:"string"`

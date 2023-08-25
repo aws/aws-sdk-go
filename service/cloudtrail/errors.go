@@ -576,6 +576,12 @@ const (
 	// permitted amount. Currently, the limit is 50.
 	ErrCodeTagsLimitExceededException = "TagsLimitExceededException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// This exception is thrown when the request rate exceeds the limit.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeTrailAlreadyExistsException for service response error code
 	// "TrailAlreadyExistsException".
 	//
@@ -677,6 +683,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceTypeNotSupportedException":                      newErrorResourceTypeNotSupportedException,
 	"S3BucketDoesNotExistException":                          newErrorS3BucketDoesNotExistException,
 	"TagsLimitExceededException":                             newErrorTagsLimitExceededException,
+	"ThrottlingException":                                    newErrorThrottlingException,
 	"TrailAlreadyExistsException":                            newErrorTrailAlreadyExistsException,
 	"TrailNotFoundException":                                 newErrorTrailNotFoundException,
 	"TrailNotProvidedException":                              newErrorTrailNotProvidedException,

@@ -1774,6 +1774,11 @@
         "UpdateEventDataStoreResponse$TerminationProtectionEnabled": "<p>Indicates whether termination protection is enabled for the event data store.</p>"
       }
     },
+    "ThrottlingException": {
+      "base": "<p> This exception is thrown when the request rate exceeds the limit. </p>",
+      "refs": {
+      }
+    },
     "Trail": {
       "base": "<p>The settings for a trail.</p>",
       "refs": {
