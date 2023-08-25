@@ -1,3 +1,13 @@
+Release v1.44.332 (2023-08-25)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * Add ThrottlingException with error code 429 to handle CloudTrail Delegated Admin request rate exceeded on organization resources.
+* `service/detective`: Updates service API
+* `service/monitoring`: Updates service documentation
+  * Doc-only update to get doc bug fixes into the SDK docs
+
 Release v1.44.331 (2023-08-24)
 ===
 
