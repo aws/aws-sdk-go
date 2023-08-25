@@ -782,6 +782,9 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
 //
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CreateTrail
 func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
 	req, out := c.CreateTrailRequest(input)
@@ -1220,6 +1223,9 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //     before CloudTrail has time to fully load the resource, or because another
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
+//
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
 //
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a Region
@@ -2120,6 +2126,9 @@ func (c *CloudTrail) GetInsightSelectorsRequest(input *GetInsightSelectorsInput)
 //   - NoManagementAccountSLRExistsException
 //     This exception is thrown when the management account does not have a service-linked
 //     role.
+//
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetInsightSelectors
 func (c *CloudTrail) GetInsightSelectors(input *GetInsightSelectorsInput) (*GetInsightSelectorsOutput, error) {
@@ -4258,6 +4267,9 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
 //
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
+//
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
@@ -4436,6 +4448,9 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //   - NoManagementAccountSLRExistsException
 //     This exception is thrown when the management account does not have a service-linked
 //     role.
+//
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutInsightSelectors
 func (c *CloudTrail) PutInsightSelectors(input *PutInsightSelectorsInput) (*PutInsightSelectorsOutput, error) {
@@ -5328,6 +5343,9 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
 //
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
+//
 //   - TrailNotFoundException
 //     This exception is thrown when the trail with the given name is not found.
 //
@@ -5836,6 +5854,9 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
 //
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
+//
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a Region
 //     other than the Region in which the trail was created.
@@ -6332,6 +6353,9 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //     before CloudTrail has time to fully load the resource, or because another
 //     operation is modifying the resource. If this exception occurs, wait a few
 //     minutes, and then try the operation again.
+//
+//   - ThrottlingException
+//     This exception is thrown when the request rate exceeds the limit.
 //
 //   - InvalidParameterCombinationException
 //     This exception is thrown when the combination of parameters provided is not
@@ -18752,6 +18776,70 @@ func (s *TagsLimitExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *TagsLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the request rate exceeds the limit.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

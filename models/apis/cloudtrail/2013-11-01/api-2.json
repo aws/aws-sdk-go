@@ -154,7 +154,8 @@
         {"shape":"OrganizationNotInAllFeaturesModeException"},
         {"shape":"NoManagementAccountSLRExistsException"},
         {"shape":"CloudTrailInvalidClientTokenIdException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
@@ -227,6 +228,7 @@
         {"shape":"InvalidTrailNameException"},
         {"shape":"CloudTrailARNInvalidException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
@@ -377,7 +379,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InsightNotEnabledException"},
-        {"shape":"NoManagementAccountSLRExistsException"}
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
@@ -630,6 +633,7 @@
         {"shape":"InvalidHomeRegionException"},
         {"shape":"InvalidEventSelectorsException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NotOrganizationMasterAccountException"},
@@ -659,7 +663,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NotOrganizationMasterAccountException"},
-        {"shape":"NoManagementAccountSLRExistsException"}
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"ThrottlingException"}
       ],
       "idempotent":true
     },
@@ -813,6 +818,7 @@
       "errors":[
         {"shape":"CloudTrailARNInvalidException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidHomeRegionException"},
@@ -899,6 +905,7 @@
         {"shape":"InvalidTrailNameException"},
         {"shape":"CloudTrailARNInvalidException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
@@ -984,6 +991,7 @@
         {"shape":"InvalidEventSelectorsException"},
         {"shape":"CloudTrailARNInvalidException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"KmsKeyNotFoundException"},
@@ -2855,6 +2863,12 @@
       "max":200
     },
     "TerminationProtectionEnabled":{"type":"boolean"},
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "Trail":{
       "type":"structure",
       "members":{
