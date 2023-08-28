@@ -373,6 +373,14 @@
       "min":1,
       "pattern":"arn:aws(-[\\w]+)*:*:.+:[0-9]{12}:.+"
     },
+    "AppliedLevelEnum":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT",
+        "RESOURCE",
+        "ALL"
+      ]
+    },
     "AssociateServiceQuotaTemplateRequest":{
       "type":"structure",
       "members":{
@@ -512,7 +520,8 @@
       ],
       "members":{
         "ServiceCode":{"shape":"ServiceCode"},
-        "QuotaCode":{"shape":"QuotaCode"}
+        "QuotaCode":{"shape":"QuotaCode"},
+        "ContextId":{"shape":"QuotaContextId"}
       }
     },
     "GetServiceQuotaResponse":{
@@ -579,7 +588,8 @@
         "QuotaCode":{"shape":"QuotaCode"},
         "Status":{"shape":"RequestStatus"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "QuotaRequestedAtLevel":{"shape":"AppliedLevelEnum"}
       }
     },
     "ListRequestedServiceQuotaChangeHistoryByQuotaResponse":{
@@ -595,7 +605,8 @@
         "ServiceCode":{"shape":"ServiceCode"},
         "Status":{"shape":"RequestStatus"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "QuotaRequestedAtLevel":{"shape":"AppliedLevelEnum"}
       }
     },
     "ListRequestedServiceQuotaChangeHistoryResponse":{
@@ -627,7 +638,9 @@
       "members":{
         "ServiceCode":{"shape":"ServiceCode"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "QuotaCode":{"shape":"QuotaCode"},
+        "QuotaAppliedAtLevel":{"shape":"AppliedLevelEnum"}
       }
     },
     "ListServiceQuotasResponse":{
@@ -759,6 +772,23 @@
       "min":1,
       "pattern":"[a-zA-Z][a-zA-Z0-9-]{1,128}"
     },
+    "QuotaContextId":{"type":"string"},
+    "QuotaContextInfo":{
+      "type":"structure",
+      "members":{
+        "ContextScope":{"shape":"QuotaContextScope"},
+        "ContextScopeType":{"shape":"QuotaContextScopeType"},
+        "ContextId":{"shape":"QuotaContextId"}
+      }
+    },
+    "QuotaContextScope":{
+      "type":"string",
+      "enum":[
+        "RESOURCE",
+        "ACCOUNT"
+      ]
+    },
+    "QuotaContextScopeType":{"type":"string"},
     "QuotaExceededException":{
       "type":"structure",
       "members":{
@@ -798,7 +828,8 @@
       "members":{
         "ServiceCode":{"shape":"ServiceCode"},
         "QuotaCode":{"shape":"QuotaCode"},
-        "DesiredValue":{"shape":"QuotaValue"}
+        "DesiredValue":{"shape":"QuotaValue"},
+        "ContextId":{"shape":"QuotaContextId"}
       }
     },
     "RequestServiceQuotaIncreaseResponse":{
@@ -814,7 +845,9 @@
         "CASE_OPENED",
         "APPROVED",
         "DENIED",
-        "CASE_CLOSED"
+        "CASE_CLOSED",
+        "NOT_APPROVED",
+        "INVALID_REQUEST"
       ]
     },
     "RequestedServiceQuotaChange":{
@@ -833,7 +866,9 @@
         "Requester":{"shape":"Requester"},
         "QuotaArn":{"shape":"QuotaArn"},
         "GlobalQuota":{"shape":"GlobalQuota"},
-        "Unit":{"shape":"QuotaUnit"}
+        "Unit":{"shape":"QuotaUnit"},
+        "QuotaRequestedAtLevel":{"shape":"AppliedLevelEnum"},
+        "QuotaContext":{"shape":"QuotaContextInfo"}
       }
     },
     "RequestedServiceQuotaChangeHistoryListDefinition":{
@@ -888,7 +923,9 @@
         "GlobalQuota":{"shape":"GlobalQuota"},
         "UsageMetric":{"shape":"MetricInfo"},
         "Period":{"shape":"QuotaPeriod"},
-        "ErrorReason":{"shape":"ErrorReason"}
+        "ErrorReason":{"shape":"ErrorReason"},
+        "QuotaAppliedAtLevel":{"shape":"AppliedLevelEnum"},
+        "QuotaContext":{"shape":"QuotaContextInfo"}
       }
     },
     "ServiceQuotaIncreaseRequestInTemplate":{

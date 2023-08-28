@@ -1,3 +1,15 @@
+Release v1.44.333 (2023-08-28)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Documentation updates for permissions and links.
+* `service/securitylake`: Updates service API
+* `service/service-quotas`: Updates service API and documentation
+* `service/workspaces-web`: Updates service API and documentation
+
 Release v1.44.332 (2023-08-25)
 ===
 

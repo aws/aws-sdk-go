@@ -91,6 +91,10 @@ type ComputeOptimizerAPI interface {
 	ExportLambdaFunctionRecommendationsWithContext(aws.Context, *computeoptimizer.ExportLambdaFunctionRecommendationsInput, ...request.Option) (*computeoptimizer.ExportLambdaFunctionRecommendationsOutput, error)
 	ExportLambdaFunctionRecommendationsRequest(*computeoptimizer.ExportLambdaFunctionRecommendationsInput) (*request.Request, *computeoptimizer.ExportLambdaFunctionRecommendationsOutput)
 
+	ExportLicenseRecommendations(*computeoptimizer.ExportLicenseRecommendationsInput) (*computeoptimizer.ExportLicenseRecommendationsOutput, error)
+	ExportLicenseRecommendationsWithContext(aws.Context, *computeoptimizer.ExportLicenseRecommendationsInput, ...request.Option) (*computeoptimizer.ExportLicenseRecommendationsOutput, error)
+	ExportLicenseRecommendationsRequest(*computeoptimizer.ExportLicenseRecommendationsInput) (*request.Request, *computeoptimizer.ExportLicenseRecommendationsOutput)
+
 	GetAutoScalingGroupRecommendations(*computeoptimizer.GetAutoScalingGroupRecommendationsInput) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)
 	GetAutoScalingGroupRecommendationsWithContext(aws.Context, *computeoptimizer.GetAutoScalingGroupRecommendationsInput, ...request.Option) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)
 	GetAutoScalingGroupRecommendationsRequest(*computeoptimizer.GetAutoScalingGroupRecommendationsInput) (*request.Request, *computeoptimizer.GetAutoScalingGroupRecommendationsOutput)
@@ -136,6 +140,10 @@ type ComputeOptimizerAPI interface {
 
 	GetLambdaFunctionRecommendationsPages(*computeoptimizer.GetLambdaFunctionRecommendationsInput, func(*computeoptimizer.GetLambdaFunctionRecommendationsOutput, bool) bool) error
 	GetLambdaFunctionRecommendationsPagesWithContext(aws.Context, *computeoptimizer.GetLambdaFunctionRecommendationsInput, func(*computeoptimizer.GetLambdaFunctionRecommendationsOutput, bool) bool, ...request.Option) error
+
+	GetLicenseRecommendations(*computeoptimizer.GetLicenseRecommendationsInput) (*computeoptimizer.GetLicenseRecommendationsOutput, error)
+	GetLicenseRecommendationsWithContext(aws.Context, *computeoptimizer.GetLicenseRecommendationsInput, ...request.Option) (*computeoptimizer.GetLicenseRecommendationsOutput, error)
+	GetLicenseRecommendationsRequest(*computeoptimizer.GetLicenseRecommendationsInput) (*request.Request, *computeoptimizer.GetLicenseRecommendationsOutput)
 
 	GetRecommendationPreferences(*computeoptimizer.GetRecommendationPreferencesInput) (*computeoptimizer.GetRecommendationPreferencesOutput, error)
 	GetRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.GetRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.GetRecommendationPreferencesOutput, error)

@@ -632,10 +632,11 @@ func (c *Backup) CreateLogicallyAirGappedBackupVaultRequest(input *CreateLogical
 
 // CreateLogicallyAirGappedBackupVault API operation for AWS Backup.
 //
-// This request creates a logical container where backups are stored.
+// This request creates a logical container to where backups may be copied.
 //
-// This request includes a name, optionally one or more resource tags, an encryption
-// key, and a request ID.
+// This request includes a name, the Region, the maximum number of retention
+// days, the minimum number of retention days, and optionally can include tags
+// and a creator request ID.
 //
 // Do not include sensitive data, such as passport numbers, in the name of a
 // backup vault.
@@ -12995,8 +12996,7 @@ type FrameworkControl struct {
 
 	// The scope of a control. The control scope defines what the control will evaluate.
 	// Three examples of control scopes are: a specific backup plan, all backup
-	// plans with a specific tag, or all backup plans. For more information, see
-	// ControlScope. (aws-backup/latest/devguide/API_ControlScope.html)
+	// plans with a specific tag, or all backup plans.
 	ControlScope *ControlScope `type:"structure"`
 }
 
@@ -19313,6 +19313,10 @@ type Rule struct {
 	// For a table of examples, click the preceding link and scroll down the page.
 	ScheduleExpression *string `type:"string"`
 
+	// This is the timezone in which the schedule expression is set. By default,
+	// ScheduleExpressions are in UTC. You can modify this to a specified timezone.
+	ScheduleExpressionTimezone *string `type:"string"`
+
 	// A value in minutes after a backup is scheduled before a job will be canceled
 	// if it doesn't start successfully. This value is optional. If this value is
 	// included, it must be at least 60 minutes to avoid errors.
@@ -19401,6 +19405,12 @@ func (s *Rule) SetScheduleExpression(v string) *Rule {
 	return s
 }
 
+// SetScheduleExpressionTimezone sets the ScheduleExpressionTimezone field's value.
+func (s *Rule) SetScheduleExpressionTimezone(v string) *Rule {
+	s.ScheduleExpressionTimezone = &v
+	return s
+}
+
 // SetStartWindowMinutes sets the StartWindowMinutes field's value.
 func (s *Rule) SetStartWindowMinutes(v int64) *Rule {
 	s.StartWindowMinutes = &v
@@ -19463,6 +19473,10 @@ type RuleInput struct {
 
 	// A CRON expression in UTC specifying when Backup initiates a backup job.
 	ScheduleExpression *string `type:"string"`
+
+	// This is the timezone in which the schedule expression is set. By default,
+	// ScheduleExpressions are in UTC. You can modify this to a specified timezone.
+	ScheduleExpressionTimezone *string `type:"string"`
 
 	// A value in minutes after a backup is scheduled before a job will be canceled
 	// if it doesn't start successfully. This value is optional. If this value is
@@ -19571,6 +19585,12 @@ func (s *RuleInput) SetRuleName(v string) *RuleInput {
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *RuleInput) SetScheduleExpression(v string) *RuleInput {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleExpressionTimezone sets the ScheduleExpressionTimezone field's value.
+func (s *RuleInput) SetScheduleExpressionTimezone(v string) *RuleInput {
+	s.ScheduleExpressionTimezone = &v
 	return s
 }
 

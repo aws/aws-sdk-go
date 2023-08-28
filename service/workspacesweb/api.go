@@ -6655,7 +6655,9 @@ type BrowserSettingsSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the browser settings.
-	BrowserSettingsArn *string `locationName:"browserSettingsArn" min:"20" type:"string"`
+	//
+	// BrowserSettingsArn is a required field
+	BrowserSettingsArn *string `locationName:"browserSettingsArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6896,6 +6898,150 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Specifies a single cookie or set of cookies in an end user's browser.
+type CookieSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The domain of the cookie.
+	//
+	// Domain is a required field
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the cookie.
+	Name *string `locationName:"name" type:"string"`
+
+	// The path of the cookie.
+	Path *string `locationName:"path" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CookieSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CookieSpecification"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CookieSpecification) SetDomain(v string) *CookieSpecification {
+	s.Domain = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CookieSpecification) SetName(v string) *CookieSpecification {
+	s.Name = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *CookieSpecification) SetPath(v string) *CookieSpecification {
+	s.Path = &v
+	return s
+}
+
+// The configuration that specifies which cookies should be synchronized from
+// the end user's local browser to the remote browser.
+type CookieSynchronizationConfiguration struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The list of cookie specifications that are allowed to be synchronized to
+	// the remote browser.
+	//
+	// Allowlist is a required field
+	Allowlist []*CookieSpecification `locationName:"allowlist" type:"list" required:"true"`
+
+	// The list of cookie specifications that are blocked from being synchronized
+	// to the remote browser.
+	Blocklist []*CookieSpecification `locationName:"blocklist" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieSynchronizationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieSynchronizationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CookieSynchronizationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CookieSynchronizationConfiguration"}
+	if s.Allowlist == nil {
+		invalidParams.Add(request.NewErrParamRequired("Allowlist"))
+	}
+	if s.Allowlist != nil {
+		for i, v := range s.Allowlist {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Allowlist", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Blocklist != nil {
+		for i, v := range s.Blocklist {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Blocklist", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowlist sets the Allowlist field's value.
+func (s *CookieSynchronizationConfiguration) SetAllowlist(v []*CookieSpecification) *CookieSynchronizationConfiguration {
+	s.Allowlist = v
+	return s
+}
+
+// SetBlocklist sets the Blocklist field's value.
+func (s *CookieSynchronizationConfiguration) SetBlocklist(v []*CookieSpecification) *CookieSynchronizationConfiguration {
+	s.Blocklist = v
+	return s
 }
 
 type CreateBrowserSettingsInput struct {
@@ -7973,6 +8119,9 @@ func (s *CreateUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettingsArn(
 type CreateUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The additional encryption context of the user settings.
+	AdditionalEncryptionContext map[string]*string `locationName:"additionalEncryptionContext" type:"map"`
+
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. Idempotency ensures that an API request completes only once.
 	// With an idempotent request, if the original request completes successfully,
@@ -7983,11 +8132,23 @@ type CreateUserSettingsInput struct {
 	// AWS SDK.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The configuration that specifies which cookies should be synchronized from
+	// the end user's local browser to the remote browser.
+	//
+	// CookieSynchronizationConfiguration is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserSettingsInput's
+	// String and GoString methods.
+	CookieSynchronizationConfiguration *CookieSynchronizationConfiguration `locationName:"cookieSynchronizationConfiguration" type:"structure" sensitive:"true"`
+
 	// Specifies whether the user can copy text from the streaming session to the
 	// local device.
 	//
 	// CopyAllowed is a required field
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" required:"true" enum:"EnabledType"`
+
+	// The customer managed key used to encrypt sensitive information in the user
+	// settings.
+	CustomerManagedKey *string `locationName:"customerManagedKey" min:"20" type:"string"`
 
 	// The amount of time that a streaming session remains active after users disconnect.
 	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
@@ -8050,6 +8211,9 @@ func (s *CreateUserSettingsInput) Validate() error {
 	if s.CopyAllowed == nil {
 		invalidParams.Add(request.NewErrParamRequired("CopyAllowed"))
 	}
+	if s.CustomerManagedKey != nil && len(*s.CustomerManagedKey) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerManagedKey", 20))
+	}
 	if s.DisconnectTimeoutInMinutes != nil && *s.DisconnectTimeoutInMinutes < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("DisconnectTimeoutInMinutes", 1))
 	}
@@ -8064,6 +8228,11 @@ func (s *CreateUserSettingsInput) Validate() error {
 	}
 	if s.UploadAllowed == nil {
 		invalidParams.Add(request.NewErrParamRequired("UploadAllowed"))
+	}
+	if s.CookieSynchronizationConfiguration != nil {
+		if err := s.CookieSynchronizationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CookieSynchronizationConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -8082,15 +8251,33 @@ func (s *CreateUserSettingsInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalEncryptionContext sets the AdditionalEncryptionContext field's value.
+func (s *CreateUserSettingsInput) SetAdditionalEncryptionContext(v map[string]*string) *CreateUserSettingsInput {
+	s.AdditionalEncryptionContext = v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateUserSettingsInput) SetClientToken(v string) *CreateUserSettingsInput {
 	s.ClientToken = &v
 	return s
 }
 
+// SetCookieSynchronizationConfiguration sets the CookieSynchronizationConfiguration field's value.
+func (s *CreateUserSettingsInput) SetCookieSynchronizationConfiguration(v *CookieSynchronizationConfiguration) *CreateUserSettingsInput {
+	s.CookieSynchronizationConfiguration = v
+	return s
+}
+
 // SetCopyAllowed sets the CopyAllowed field's value.
 func (s *CreateUserSettingsInput) SetCopyAllowed(v string) *CreateUserSettingsInput {
 	s.CopyAllowed = &v
+	return s
+}
+
+// SetCustomerManagedKey sets the CustomerManagedKey field's value.
+func (s *CreateUserSettingsInput) SetCustomerManagedKey(v string) *CreateUserSettingsInput {
+	s.CustomerManagedKey = &v
 	return s
 }
 
@@ -9727,7 +9914,9 @@ type GetTrustStoreCertificateOutput struct {
 	Certificate *Certificate `locationName:"certificate" type:"structure"`
 
 	// The ARN of the trust store certificate.
-	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string"`
+	//
+	// TrustStoreArn is a required field
+	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -10090,7 +10279,9 @@ type IdentityProviderSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the identity provider.
-	IdentityProviderArn *string `locationName:"identityProviderArn" min:"20" type:"string"`
+	//
+	// IdentityProviderArn is a required field
+	IdentityProviderArn *string `locationName:"identityProviderArn" min:"20" type:"string" required:"true"`
 
 	// The identity provider name.
 	//
@@ -10320,7 +10511,9 @@ type IpAccessSettingsSummary struct {
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The ARN of IP access settings.
-	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string"`
+	//
+	// IpAccessSettingsArn is a required field
+	IpAccessSettingsArn *string `locationName:"ipAccessSettingsArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11092,7 +11285,9 @@ type ListTrustStoreCertificatesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The ARN of the trust store.
-	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string"`
+	//
+	// TrustStoreArn is a required field
+	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11499,7 +11694,9 @@ type NetworkSettingsSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the network settings.
-	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
+	//
+	// NetworkSettingsArn is a required field
+	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string" required:"true"`
 
 	// The VPC ID of the network settings.
 	VpcId *string `locationName:"vpcId" min:"1" type:"string"`
@@ -11577,7 +11774,9 @@ type Portal struct {
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
 
 	// The ARN of the web portal.
-	PortalArn *string `locationName:"portalArn" min:"20" type:"string"`
+	//
+	// PortalArn is a required field
+	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
 
 	// The endpoint URL of the web portal that users access in order to start streaming
 	// sessions.
@@ -11753,7 +11952,9 @@ type PortalSummary struct {
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
 
 	// The ARN of the web portal.
-	PortalArn *string `locationName:"portalArn" min:"20" type:"string"`
+	//
+	// PortalArn is a required field
+	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
 
 	// The endpoint URL of the web portal that users access in order to start streaming
 	// sessions.
@@ -12363,7 +12564,9 @@ type TrustStore struct {
 	AssociatedPortalArns []*string `locationName:"associatedPortalArns" type:"list"`
 
 	// The ARN of the trust store.
-	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string"`
+	//
+	// TrustStoreArn is a required field
+	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13449,6 +13652,16 @@ type UpdateUserSettingsInput struct {
 	// AWS SDK.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The configuration that specifies which cookies should be synchronized from
+	// the end user's local browser to the remote browser.
+	//
+	// If the allowlist and blocklist are empty, the configuration becomes null.
+	//
+	// CookieSynchronizationConfiguration is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserSettingsInput's
+	// String and GoString methods.
+	CookieSynchronizationConfiguration *CookieSynchronizationConfiguration `locationName:"cookieSynchronizationConfiguration" type:"structure" sensitive:"true"`
+
 	// Specifies whether the user can copy text from the streaming session to the
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
@@ -13514,6 +13727,11 @@ func (s *UpdateUserSettingsInput) Validate() error {
 	if s.UserSettingsArn != nil && len(*s.UserSettingsArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("UserSettingsArn", 20))
 	}
+	if s.CookieSynchronizationConfiguration != nil {
+		if err := s.CookieSynchronizationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CookieSynchronizationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13524,6 +13742,12 @@ func (s *UpdateUserSettingsInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdateUserSettingsInput) SetClientToken(v string) *UpdateUserSettingsInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCookieSynchronizationConfiguration sets the CookieSynchronizationConfiguration field's value.
+func (s *UpdateUserSettingsInput) SetCookieSynchronizationConfiguration(v *CookieSynchronizationConfiguration) *UpdateUserSettingsInput {
+	s.CookieSynchronizationConfiguration = v
 	return s
 }
 
@@ -13670,7 +13894,9 @@ type UserAccessLoggingSettingsSummary struct {
 	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string"`
 
 	// The ARN of the user access logging settings.
-	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string"`
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13711,6 +13937,14 @@ type UserSettings struct {
 
 	// A list of web portal ARNs that this user settings is associated with.
 	AssociatedPortalArns []*string `locationName:"associatedPortalArns" type:"list"`
+
+	// The configuration that specifies which cookies should be synchronized from
+	// the end user's local browser to the remote browser.
+	//
+	// CookieSynchronizationConfiguration is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserSettings's
+	// String and GoString methods.
+	CookieSynchronizationConfiguration *CookieSynchronizationConfiguration `locationName:"cookieSynchronizationConfiguration" type:"structure" sensitive:"true"`
 
 	// Specifies whether the user can copy text from the streaming session to the
 	// local device.
@@ -13768,6 +14002,12 @@ func (s *UserSettings) SetAssociatedPortalArns(v []*string) *UserSettings {
 	return s
 }
 
+// SetCookieSynchronizationConfiguration sets the CookieSynchronizationConfiguration field's value.
+func (s *UserSettings) SetCookieSynchronizationConfiguration(v *CookieSynchronizationConfiguration) *UserSettings {
+	s.CookieSynchronizationConfiguration = v
+	return s
+}
+
 // SetCopyAllowed sets the CopyAllowed field's value.
 func (s *UserSettings) SetCopyAllowed(v string) *UserSettings {
 	s.CopyAllowed = &v
@@ -13820,6 +14060,14 @@ func (s *UserSettings) SetUserSettingsArn(v string) *UserSettings {
 type UserSettingsSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration that specifies which cookies should be synchronized from
+	// the end user's local browser to the remote browser.
+	//
+	// CookieSynchronizationConfiguration is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserSettingsSummary's
+	// String and GoString methods.
+	CookieSynchronizationConfiguration *CookieSynchronizationConfiguration `locationName:"cookieSynchronizationConfiguration" type:"structure" sensitive:"true"`
+
 	// Specifies whether the user can copy text from the streaming session to the
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
@@ -13847,7 +14095,9 @@ type UserSettingsSummary struct {
 	UploadAllowed *string `locationName:"uploadAllowed" type:"string" enum:"EnabledType"`
 
 	// The ARN of the user settings.
-	UserSettingsArn *string `locationName:"userSettingsArn" min:"20" type:"string"`
+	//
+	// UserSettingsArn is a required field
+	UserSettingsArn *string `locationName:"userSettingsArn" min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13866,6 +14116,12 @@ func (s UserSettingsSummary) String() string {
 // value will be replaced with "sensitive".
 func (s UserSettingsSummary) GoString() string {
 	return s.String()
+}
+
+// SetCookieSynchronizationConfiguration sets the CookieSynchronizationConfiguration field's value.
+func (s *UserSettingsSummary) SetCookieSynchronizationConfiguration(v *CookieSynchronizationConfiguration) *UserSettingsSummary {
+	s.CookieSynchronizationConfiguration = v
+	return s
 }
 
 // SetCopyAllowed sets the CopyAllowed field's value.
