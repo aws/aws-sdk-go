@@ -829,6 +829,116 @@ func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsWithContext(ctx aw
 	return out, req.Send()
 }
 
+const opExportLicenseRecommendations = "ExportLicenseRecommendations"
+
+// ExportLicenseRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportLicenseRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportLicenseRecommendations for more information on using the ExportLicenseRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ExportLicenseRecommendationsRequest method.
+//	req, resp := client.ExportLicenseRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportLicenseRecommendations
+func (c *ComputeOptimizer) ExportLicenseRecommendationsRequest(input *ExportLicenseRecommendationsInput) (req *request.Request, output *ExportLicenseRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportLicenseRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportLicenseRecommendationsInput{}
+	}
+
+	output = &ExportLicenseRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportLicenseRecommendations API operation for AWS Compute Optimizer.
+//
+// Export optimization recommendations for your licenses.
+//
+// Recommendations are exported in a comma-separated values (CSV) file, and
+// its metadata in a JavaScript Object Notation (JSON) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one license export job in progress per Amazon Web Services
+// Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportLicenseRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OptInRequiredException
+//     The account is not opted in to Compute Optimizer.
+//
+//   - InternalServerException
+//     An internal error has occurred. Try your call again.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidParameterValueException
+//     The value supplied for the input parameter is out of range or not valid.
+//
+//   - MissingAuthenticationToken
+//     The request must contain either a valid (registered) Amazon Web Services
+//     access key ID or X.509 certificate.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportLicenseRecommendations
+func (c *ComputeOptimizer) ExportLicenseRecommendations(input *ExportLicenseRecommendationsInput) (*ExportLicenseRecommendationsOutput, error) {
+	req, out := c.ExportLicenseRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportLicenseRecommendationsWithContext is the same as ExportLicenseRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportLicenseRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportLicenseRecommendationsWithContext(ctx aws.Context, input *ExportLicenseRecommendationsInput, opts ...request.Option) (*ExportLicenseRecommendationsOutput, error) {
+	req, out := c.ExportLicenseRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations"
 
 // GetAutoScalingGroupRecommendationsRequest generates a "aws/request.Request" representing the
@@ -1986,6 +2096,113 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsPagesWithContext(ctx 
 	}
 
 	return p.Err()
+}
+
+const opGetLicenseRecommendations = "GetLicenseRecommendations"
+
+// GetLicenseRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetLicenseRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLicenseRecommendations for more information on using the GetLicenseRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLicenseRecommendationsRequest method.
+//	req, resp := client.GetLicenseRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetLicenseRecommendations
+func (c *ComputeOptimizer) GetLicenseRecommendationsRequest(input *GetLicenseRecommendationsInput) (req *request.Request, output *GetLicenseRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opGetLicenseRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLicenseRecommendationsInput{}
+	}
+
+	output = &GetLicenseRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLicenseRecommendations API operation for AWS Compute Optimizer.
+//
+// Returns license recommendations for Amazon EC2 instances that run on a specific
+// license.
+//
+// Compute Optimizer generates recommendations for licenses that meet a specific
+// set of requirements. For more information, see the Supported resources and
+// requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetLicenseRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OptInRequiredException
+//     The account is not opted in to Compute Optimizer.
+//
+//   - InternalServerException
+//     An internal error has occurred. Try your call again.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidParameterValueException
+//     The value supplied for the input parameter is out of range or not valid.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action doesn't exist.
+//
+//   - MissingAuthenticationToken
+//     The request must contain either a valid (registered) Amazon Web Services
+//     access key ID or X.509 certificate.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetLicenseRecommendations
+func (c *ComputeOptimizer) GetLicenseRecommendations(input *GetLicenseRecommendationsInput) (*GetLicenseRecommendationsOutput, error) {
+	req, out := c.GetLicenseRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// GetLicenseRecommendationsWithContext is the same as GetLicenseRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLicenseRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetLicenseRecommendationsWithContext(ctx aws.Context, input *GetLicenseRecommendationsInput, opts ...request.Option) (*GetLicenseRecommendationsOutput, error) {
+	req, out := c.GetLicenseRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetRecommendationPreferences = "GetRecommendationPreferences"
@@ -5282,6 +5499,183 @@ func (s *ExportLambdaFunctionRecommendationsOutput) SetS3Destination(v *S3Destin
 	return s
 }
 
+type ExportLicenseRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the Amazon Web Services accounts for which to export license recommendations.
+	//
+	// If your account is the management account of an organization, use this parameter
+	// to specify the member account for which you want to export recommendations.
+	//
+	// This parameter can't be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// If this parameter is omitted, recommendations for member accounts aren't
+	// included in the export.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableLicenseField"`
+
+	// The format of the export file.
+	//
+	// A CSV file is the only export format currently supported.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects to specify a filter that exports a more specific set
+	// of license recommendations.
+	Filters []*LicenseRecommendationFilter `locationName:"filters" type:"list"`
+
+	// Indicates whether to include recommendations for resources in all member
+	// accounts of the organization if your account is the management account of
+	// an organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
+	//
+	// If this parameter is omitted, recommendations for member accounts of the
+	// organization aren't included in the export file .
+	//
+	// This parameter cannot be specified together with the account IDs parameter.
+	// The parameters are mutually exclusive.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and key prefix for a recommendations export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer User Guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportLicenseRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportLicenseRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportLicenseRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportLicenseRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportLicenseRecommendationsInput) SetAccountIds(v []*string) *ExportLicenseRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportLicenseRecommendationsInput) SetFieldsToExport(v []*string) *ExportLicenseRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportLicenseRecommendationsInput) SetFileFormat(v string) *ExportLicenseRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportLicenseRecommendationsInput) SetFilters(v []*LicenseRecommendationFilter) *ExportLicenseRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportLicenseRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportLicenseRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportLicenseRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportLicenseRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportLicenseRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// To view the status of an export job, use the DescribeRecommendationExportJobs
+	// action and specify the job ID.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and object keys of a recommendations export file, and its associated
+	// metadata file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportLicenseRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportLicenseRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportLicenseRecommendationsOutput) SetJobId(v string) *ExportLicenseRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportLicenseRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportLicenseRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
 // Describes Compute Optimizer's integration status with your chosen external
 // metric provider. For example, Datadog.
 type ExternalMetricStatus struct {
@@ -6749,6 +7143,135 @@ func (s *GetLambdaFunctionRecommendationsOutput) SetLambdaFunctionRecommendation
 
 // SetNextToken sets the NextToken field's value.
 func (s *GetLambdaFunctionRecommendationsOutput) SetNextToken(v string) *GetLambdaFunctionRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetLicenseRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account for which to return license recommendations.
+	//
+	// If your account is the management account of an organization, use this parameter
+	// to specify the member account for which you want to return license recommendations.
+	//
+	// Only one account ID can be specified per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// An array of objects to specify a filter that returns a more specific list
+	// of license recommendations.
+	Filters []*LicenseRecommendationFilter `locationName:"filters" type:"list"`
+
+	// The maximum number of license recommendations to return with a single request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// nextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of license recommendations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The ARN that identifies the Amazon EC2 instance.
+	//
+	// The following is the format of the ARN:
+	//
+	// arn:aws:ec2:region:aws_account_id:instance/instance-id
+	ResourceArns []*string `locationName:"resourceArns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *GetLicenseRecommendationsInput) SetAccountIds(v []*string) *GetLicenseRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetLicenseRecommendationsInput) SetFilters(v []*LicenseRecommendationFilter) *GetLicenseRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetLicenseRecommendationsInput) SetMaxResults(v int64) *GetLicenseRecommendationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLicenseRecommendationsInput) SetNextToken(v string) *GetLicenseRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *GetLicenseRecommendationsInput) SetResourceArns(v []*string) *GetLicenseRecommendationsInput {
+	s.ResourceArns = v
+	return s
+}
+
+type GetLicenseRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe errors of the request.
+	Errors []*GetRecommendationError `locationName:"errors" type:"list"`
+
+	// An array of objects that describe license recommendations.
+	LicenseRecommendations []*LicenseRecommendation `locationName:"licenseRecommendations" type:"list"`
+
+	// The token to use to advance to the next page of license recommendations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *GetLicenseRecommendationsOutput) SetErrors(v []*GetRecommendationError) *GetLicenseRecommendationsOutput {
+	s.Errors = v
+	return s
+}
+
+// SetLicenseRecommendations sets the LicenseRecommendations field's value.
+func (s *GetLicenseRecommendationsOutput) SetLicenseRecommendations(v []*LicenseRecommendation) *GetLicenseRecommendationsOutput {
+	s.LicenseRecommendations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLicenseRecommendationsOutput) SetNextToken(v string) *GetLicenseRecommendationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -8278,6 +8801,393 @@ func (s *LambdaFunctionUtilizationMetric) SetValue(v float64) *LambdaFunctionUti
 	return s
 }
 
+// Describes the configuration of a license for an Amazon EC2 instance.
+type LicenseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The instance type used in the license.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The edition of the license for the application that runs on the instance.
+	LicenseEdition *string `locationName:"licenseEdition" type:"string" enum:"LicenseEdition"`
+
+	// The license type associated with the instance.
+	LicenseModel *string `locationName:"licenseModel" type:"string" enum:"LicenseModel"`
+
+	// The name of the license for the application that runs on the instance.
+	LicenseName *string `locationName:"licenseName" type:"string" enum:"LicenseName"`
+
+	// The version of the license for the application that runs on the instance.
+	LicenseVersion *string `locationName:"licenseVersion" type:"string"`
+
+	// The list of metric sources required to generate recommendations for commercial
+	// software licenses.
+	MetricsSource []*MetricSource `locationName:"metricsSource" type:"list"`
+
+	// The current number of cores associated with the instance.
+	NumberOfCores *int64 `locationName:"numberOfCores" type:"integer"`
+
+	// The operating system of the instance.
+	OperatingSystem *string `locationName:"operatingSystem" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *LicenseConfiguration) SetInstanceType(v string) *LicenseConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLicenseEdition sets the LicenseEdition field's value.
+func (s *LicenseConfiguration) SetLicenseEdition(v string) *LicenseConfiguration {
+	s.LicenseEdition = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *LicenseConfiguration) SetLicenseModel(v string) *LicenseConfiguration {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetLicenseName sets the LicenseName field's value.
+func (s *LicenseConfiguration) SetLicenseName(v string) *LicenseConfiguration {
+	s.LicenseName = &v
+	return s
+}
+
+// SetLicenseVersion sets the LicenseVersion field's value.
+func (s *LicenseConfiguration) SetLicenseVersion(v string) *LicenseConfiguration {
+	s.LicenseVersion = &v
+	return s
+}
+
+// SetMetricsSource sets the MetricsSource field's value.
+func (s *LicenseConfiguration) SetMetricsSource(v []*MetricSource) *LicenseConfiguration {
+	s.MetricsSource = v
+	return s
+}
+
+// SetNumberOfCores sets the NumberOfCores field's value.
+func (s *LicenseConfiguration) SetNumberOfCores(v int64) *LicenseConfiguration {
+	s.NumberOfCores = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *LicenseConfiguration) SetOperatingSystem(v string) *LicenseConfiguration {
+	s.OperatingSystem = &v
+	return s
+}
+
+// Describes a license recommendation for an EC2 instance.
+type LicenseRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the license.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// An object that describes the current configuration of an instance that runs
+	// on a license.
+	CurrentLicenseConfiguration *LicenseConfiguration `locationName:"currentLicenseConfiguration" type:"structure"`
+
+	// The finding classification for an instance that runs on a license.
+	//
+	// Findings include:
+	//
+	//    * InsufficentMetrics — When Compute Optimizer detects that your CloudWatch
+	//    Application Insights isn't enabled or is enabled with insufficient permissions.
+	//
+	//    * NotOptimized — When Compute Optimizer detects that your EC2 infrastructure
+	//    isn't using any of the SQL server license features you're paying for,
+	//    a license is considered not optimized.
+	//
+	//    * Optimized — When Compute Optimizer detects that all specifications
+	//    of your license meet the performance requirements of your workload.
+	Finding *string `locationName:"finding" type:"string" enum:"LicenseFinding"`
+
+	// The reason for the finding classification for an instance that runs on a
+	// license.
+	//
+	// Finding reason codes include:
+	//
+	//    * Optimized — All specifications of your license meet the performance
+	//    requirements of your workload.
+	//
+	//    * LicenseOverprovisioned — A license is considered over-provisioned
+	//    when your license can be downgraded while still meeting the performance
+	//    requirements of your workload.
+	//
+	//    * InvalidCloudwatchApplicationInsights — CloudWatch Application Insights
+	//    isn't configured properly.
+	//
+	//    * CloudwatchApplicationInsightsError — There is a CloudWatch Application
+	//    Insights error.
+	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list" enum:"LicenseFindingReasonCode"`
+
+	// The timestamp of when the license recommendation was last generated.
+	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
+
+	// An array of objects that describe the license recommendation options.
+	LicenseRecommendationOptions []*LicenseRecommendationOption `locationName:"licenseRecommendationOptions" type:"list"`
+
+	// The number of days for which utilization metrics were analyzed for an instance
+	// that runs on a license.
+	LookbackPeriodInDays *float64 `locationName:"lookbackPeriodInDays" type:"double"`
+
+	// The ARN that identifies the Amazon EC2 instance.
+	ResourceArn *string `locationName:"resourceArn" type:"string"`
+
+	// A list of tags assigned to an EC2 instance.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LicenseRecommendation) SetAccountId(v string) *LicenseRecommendation {
+	s.AccountId = &v
+	return s
+}
+
+// SetCurrentLicenseConfiguration sets the CurrentLicenseConfiguration field's value.
+func (s *LicenseRecommendation) SetCurrentLicenseConfiguration(v *LicenseConfiguration) *LicenseRecommendation {
+	s.CurrentLicenseConfiguration = v
+	return s
+}
+
+// SetFinding sets the Finding field's value.
+func (s *LicenseRecommendation) SetFinding(v string) *LicenseRecommendation {
+	s.Finding = &v
+	return s
+}
+
+// SetFindingReasonCodes sets the FindingReasonCodes field's value.
+func (s *LicenseRecommendation) SetFindingReasonCodes(v []*string) *LicenseRecommendation {
+	s.FindingReasonCodes = v
+	return s
+}
+
+// SetLastRefreshTimestamp sets the LastRefreshTimestamp field's value.
+func (s *LicenseRecommendation) SetLastRefreshTimestamp(v time.Time) *LicenseRecommendation {
+	s.LastRefreshTimestamp = &v
+	return s
+}
+
+// SetLicenseRecommendationOptions sets the LicenseRecommendationOptions field's value.
+func (s *LicenseRecommendation) SetLicenseRecommendationOptions(v []*LicenseRecommendationOption) *LicenseRecommendation {
+	s.LicenseRecommendationOptions = v
+	return s
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *LicenseRecommendation) SetLookbackPeriodInDays(v float64) *LicenseRecommendation {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *LicenseRecommendation) SetResourceArn(v string) *LicenseRecommendation {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LicenseRecommendation) SetTags(v []*Tag) *LicenseRecommendation {
+	s.Tags = v
+	return s
+}
+
+// Describes a filter that returns a more specific list of license recommendations.
+// Use this filter with the GetLicenseRecommendation action.
+type LicenseRecommendationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Specify Finding to return recommendations with a specific finding classification.
+	//
+	// Specify FindingReasonCode to return recommendations with a specific finding
+	// reason code.
+	//
+	// You can filter your license recommendations by tag:key and tag-key tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your license
+	// recommendations. Use the tag key in the filter name and the tag value as
+	// the filter value. For example, to find all license recommendations that have
+	// a tag with the key of Owner and the value of TeamA, specify tag:Owner for
+	// the filter name and TeamA for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your license recommendations. Use
+	// this filter to find all of your license recommendations that have a tag with
+	// a specific key. This doesn’t consider the tag value. For example, you can
+	// find your license recommendations with a tag key value of Owner or without
+	// any tag keys assigned.
+	Name *string `locationName:"name" type:"string" enum:"LicenseRecommendationFilterName"`
+
+	// The value of the filter.
+	//
+	// The valid values for this parameter are as follows, depending on what you
+	// specify for the name parameter:
+	//
+	//    * If you specify the name parameter as Finding, then specify Optimized,
+	//    NotOptimized, or InsufficentMetrics.
+	//
+	//    * If you specify the name parameter as FindingReasonCode, then specify
+	//    Optimized, LicenseOverprovisioned, InvalidCloudwatchApplicationInsights,
+	//    or CloudwatchApplicationInsightsError.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendationFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LicenseRecommendationFilter) SetName(v string) *LicenseRecommendationFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *LicenseRecommendationFilter) SetValues(v []*string) *LicenseRecommendationFilter {
+	s.Values = v
+	return s
+}
+
+// Describes the recommendation options for licenses.
+type LicenseRecommendationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The recommended edition of the license for the application that runs on the
+	// instance.
+	LicenseEdition *string `locationName:"licenseEdition" type:"string" enum:"LicenseEdition"`
+
+	// The recommended license type associated with the instance.
+	LicenseModel *string `locationName:"licenseModel" type:"string" enum:"LicenseModel"`
+
+	// The operating system of a license recommendation option.
+	OperatingSystem *string `locationName:"operatingSystem" type:"string"`
+
+	// The rank of the license recommendation option.
+	//
+	// The top recommendation option is ranked as 1.
+	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// Describes the savings opportunity for recommendations of a given resource
+	// type or for the recommendation option of an individual resource.
+	//
+	// Savings opportunity represents the estimated monthly savings you can achieve
+	// by implementing a given Compute Optimizer recommendation.
+	//
+	// Savings opportunity data requires that you opt in to Cost Explorer, as well
+	// as activate Receive Amazon EC2 resource recommendations in the Cost Explorer
+	// preferences page. That creates a connection between Cost Explorer and Compute
+	// Optimizer. With this connection, Cost Explorer generates savings estimates
+	// considering the price of existing resources, the price of recommended resources,
+	// and historical usage data. Estimated monthly savings reflects the projected
+	// dollar savings associated with each of the recommendations generated. For
+	// more information, see Enabling Cost Explorer (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html)
+	// and Optimizing your cost with Rightsizing Recommendations (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html)
+	// in the Cost Management User Guide.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseRecommendationOption) GoString() string {
+	return s.String()
+}
+
+// SetLicenseEdition sets the LicenseEdition field's value.
+func (s *LicenseRecommendationOption) SetLicenseEdition(v string) *LicenseRecommendationOption {
+	s.LicenseEdition = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *LicenseRecommendationOption) SetLicenseModel(v string) *LicenseRecommendationOption {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *LicenseRecommendationOption) SetOperatingSystem(v string) *LicenseRecommendationOption {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetRank sets the Rank field's value.
+func (s *LicenseRecommendationOption) SetRank(v int64) *LicenseRecommendationOption {
+	s.Rank = &v
+	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *LicenseRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *LicenseRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
 // The request exceeds a limit of the service.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -8380,6 +9290,48 @@ func (s *MemorySizeConfiguration) SetMemory(v int64) *MemorySizeConfiguration {
 // SetMemoryReservation sets the MemoryReservation field's value.
 func (s *MemorySizeConfiguration) SetMemoryReservation(v int64) *MemorySizeConfiguration {
 	s.MemoryReservation = &v
+	return s
+}
+
+// The list of metric sources required to generate recommendations for commercial
+// software licenses.
+type MetricSource struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric source provider.
+	Provider *string `locationName:"provider" type:"string" enum:"MetricSourceProvider"`
+
+	// The ARN of the metric source provider.
+	ProviderArn *string `locationName:"providerArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricSource) GoString() string {
+	return s.String()
+}
+
+// SetProvider sets the Provider field's value.
+func (s *MetricSource) SetProvider(v string) *MetricSource {
+	s.Provider = &v
+	return s
+}
+
+// SetProviderArn sets the ProviderArn field's value.
+func (s *MetricSource) SetProviderArn(v string) *MetricSource {
+	s.ProviderArn = &v
 	return s
 }
 
@@ -11303,6 +12255,98 @@ func ExportableLambdaFunctionField_Values() []string {
 }
 
 const (
+	// ExportableLicenseFieldAccountId is a ExportableLicenseField enum value
+	ExportableLicenseFieldAccountId = "AccountId"
+
+	// ExportableLicenseFieldResourceArn is a ExportableLicenseField enum value
+	ExportableLicenseFieldResourceArn = "ResourceArn"
+
+	// ExportableLicenseFieldLookbackPeriodInDays is a ExportableLicenseField enum value
+	ExportableLicenseFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableLicenseFieldLastRefreshTimestamp is a ExportableLicenseField enum value
+	ExportableLicenseFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableLicenseFieldFinding is a ExportableLicenseField enum value
+	ExportableLicenseFieldFinding = "Finding"
+
+	// ExportableLicenseFieldFindingReasonCodes is a ExportableLicenseField enum value
+	ExportableLicenseFieldFindingReasonCodes = "FindingReasonCodes"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationNumberOfCores is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationNumberOfCores = "CurrentLicenseConfigurationNumberOfCores"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationInstanceType is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationInstanceType = "CurrentLicenseConfigurationInstanceType"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationOperatingSystem is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationOperatingSystem = "CurrentLicenseConfigurationOperatingSystem"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationLicenseName is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationLicenseName = "CurrentLicenseConfigurationLicenseName"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationLicenseEdition is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationLicenseEdition = "CurrentLicenseConfigurationLicenseEdition"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationLicenseModel is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationLicenseModel = "CurrentLicenseConfigurationLicenseModel"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationLicenseVersion is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationLicenseVersion = "CurrentLicenseConfigurationLicenseVersion"
+
+	// ExportableLicenseFieldCurrentLicenseConfigurationMetricsSource is a ExportableLicenseField enum value
+	ExportableLicenseFieldCurrentLicenseConfigurationMetricsSource = "CurrentLicenseConfigurationMetricsSource"
+
+	// ExportableLicenseFieldRecommendationOptionsOperatingSystem is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsOperatingSystem = "RecommendationOptionsOperatingSystem"
+
+	// ExportableLicenseFieldRecommendationOptionsLicenseEdition is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsLicenseEdition = "RecommendationOptionsLicenseEdition"
+
+	// ExportableLicenseFieldRecommendationOptionsLicenseModel is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsLicenseModel = "RecommendationOptionsLicenseModel"
+
+	// ExportableLicenseFieldRecommendationOptionsSavingsOpportunityPercentage is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsSavingsOpportunityPercentage = "RecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsCurrency = "RecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableLicenseField enum value
+	ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableLicenseFieldTags is a ExportableLicenseField enum value
+	ExportableLicenseFieldTags = "Tags"
+)
+
+// ExportableLicenseField_Values returns all elements of the ExportableLicenseField enum
+func ExportableLicenseField_Values() []string {
+	return []string{
+		ExportableLicenseFieldAccountId,
+		ExportableLicenseFieldResourceArn,
+		ExportableLicenseFieldLookbackPeriodInDays,
+		ExportableLicenseFieldLastRefreshTimestamp,
+		ExportableLicenseFieldFinding,
+		ExportableLicenseFieldFindingReasonCodes,
+		ExportableLicenseFieldCurrentLicenseConfigurationNumberOfCores,
+		ExportableLicenseFieldCurrentLicenseConfigurationInstanceType,
+		ExportableLicenseFieldCurrentLicenseConfigurationOperatingSystem,
+		ExportableLicenseFieldCurrentLicenseConfigurationLicenseName,
+		ExportableLicenseFieldCurrentLicenseConfigurationLicenseEdition,
+		ExportableLicenseFieldCurrentLicenseConfigurationLicenseModel,
+		ExportableLicenseFieldCurrentLicenseConfigurationLicenseVersion,
+		ExportableLicenseFieldCurrentLicenseConfigurationMetricsSource,
+		ExportableLicenseFieldRecommendationOptionsOperatingSystem,
+		ExportableLicenseFieldRecommendationOptionsLicenseEdition,
+		ExportableLicenseFieldRecommendationOptionsLicenseModel,
+		ExportableLicenseFieldRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableLicenseFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableLicenseFieldTags,
+	}
+}
+
+const (
 	// ExportableVolumeFieldAccountId is a ExportableVolumeField enum value
 	ExportableVolumeFieldAccountId = "AccountId"
 
@@ -11907,6 +12951,122 @@ func LambdaFunctionRecommendationFindingReasonCode_Values() []string {
 }
 
 const (
+	// LicenseEditionEnterprise is a LicenseEdition enum value
+	LicenseEditionEnterprise = "Enterprise"
+
+	// LicenseEditionStandard is a LicenseEdition enum value
+	LicenseEditionStandard = "Standard"
+
+	// LicenseEditionFree is a LicenseEdition enum value
+	LicenseEditionFree = "Free"
+
+	// LicenseEditionNoLicenseEditionFound is a LicenseEdition enum value
+	LicenseEditionNoLicenseEditionFound = "NoLicenseEditionFound"
+)
+
+// LicenseEdition_Values returns all elements of the LicenseEdition enum
+func LicenseEdition_Values() []string {
+	return []string{
+		LicenseEditionEnterprise,
+		LicenseEditionStandard,
+		LicenseEditionFree,
+		LicenseEditionNoLicenseEditionFound,
+	}
+}
+
+const (
+	// LicenseFindingInsufficientMetrics is a LicenseFinding enum value
+	LicenseFindingInsufficientMetrics = "InsufficientMetrics"
+
+	// LicenseFindingOptimized is a LicenseFinding enum value
+	LicenseFindingOptimized = "Optimized"
+
+	// LicenseFindingNotOptimized is a LicenseFinding enum value
+	LicenseFindingNotOptimized = "NotOptimized"
+)
+
+// LicenseFinding_Values returns all elements of the LicenseFinding enum
+func LicenseFinding_Values() []string {
+	return []string{
+		LicenseFindingInsufficientMetrics,
+		LicenseFindingOptimized,
+		LicenseFindingNotOptimized,
+	}
+}
+
+const (
+	// LicenseFindingReasonCodeInvalidCloudWatchApplicationInsightsSetup is a LicenseFindingReasonCode enum value
+	LicenseFindingReasonCodeInvalidCloudWatchApplicationInsightsSetup = "InvalidCloudWatchApplicationInsightsSetup"
+
+	// LicenseFindingReasonCodeCloudWatchApplicationInsightsError is a LicenseFindingReasonCode enum value
+	LicenseFindingReasonCodeCloudWatchApplicationInsightsError = "CloudWatchApplicationInsightsError"
+
+	// LicenseFindingReasonCodeLicenseOverprovisioned is a LicenseFindingReasonCode enum value
+	LicenseFindingReasonCodeLicenseOverprovisioned = "LicenseOverprovisioned"
+
+	// LicenseFindingReasonCodeOptimized is a LicenseFindingReasonCode enum value
+	LicenseFindingReasonCodeOptimized = "Optimized"
+)
+
+// LicenseFindingReasonCode_Values returns all elements of the LicenseFindingReasonCode enum
+func LicenseFindingReasonCode_Values() []string {
+	return []string{
+		LicenseFindingReasonCodeInvalidCloudWatchApplicationInsightsSetup,
+		LicenseFindingReasonCodeCloudWatchApplicationInsightsError,
+		LicenseFindingReasonCodeLicenseOverprovisioned,
+		LicenseFindingReasonCodeOptimized,
+	}
+}
+
+const (
+	// LicenseModelLicenseIncluded is a LicenseModel enum value
+	LicenseModelLicenseIncluded = "LicenseIncluded"
+
+	// LicenseModelBringYourOwnLicense is a LicenseModel enum value
+	LicenseModelBringYourOwnLicense = "BringYourOwnLicense"
+)
+
+// LicenseModel_Values returns all elements of the LicenseModel enum
+func LicenseModel_Values() []string {
+	return []string{
+		LicenseModelLicenseIncluded,
+		LicenseModelBringYourOwnLicense,
+	}
+}
+
+const (
+	// LicenseNameSqlserver is a LicenseName enum value
+	LicenseNameSqlserver = "SQLServer"
+)
+
+// LicenseName_Values returns all elements of the LicenseName enum
+func LicenseName_Values() []string {
+	return []string{
+		LicenseNameSqlserver,
+	}
+}
+
+const (
+	// LicenseRecommendationFilterNameFinding is a LicenseRecommendationFilterName enum value
+	LicenseRecommendationFilterNameFinding = "Finding"
+
+	// LicenseRecommendationFilterNameFindingReasonCode is a LicenseRecommendationFilterName enum value
+	LicenseRecommendationFilterNameFindingReasonCode = "FindingReasonCode"
+
+	// LicenseRecommendationFilterNameLicenseName is a LicenseRecommendationFilterName enum value
+	LicenseRecommendationFilterNameLicenseName = "LicenseName"
+)
+
+// LicenseRecommendationFilterName_Values returns all elements of the LicenseRecommendationFilterName enum
+func LicenseRecommendationFilterName_Values() []string {
+	return []string{
+		LicenseRecommendationFilterNameFinding,
+		LicenseRecommendationFilterNameFindingReasonCode,
+		LicenseRecommendationFilterNameLicenseName,
+	}
+}
+
+const (
 	// MetricNameCpu is a MetricName enum value
 	MetricNameCpu = "Cpu"
 
@@ -11967,6 +13127,18 @@ func MetricName_Values() []string {
 		MetricNameNetworkOutBytesPerSecond,
 		MetricNameNetworkPacketsInPerSecond,
 		MetricNameNetworkPacketsOutPerSecond,
+	}
+}
+
+const (
+	// MetricSourceProviderCloudWatchApplicationInsights is a MetricSourceProvider enum value
+	MetricSourceProviderCloudWatchApplicationInsights = "CloudWatchApplicationInsights"
+)
+
+// MetricSourceProvider_Values returns all elements of the MetricSourceProvider enum
+func MetricSourceProvider_Values() []string {
+	return []string{
+		MetricSourceProviderCloudWatchApplicationInsights,
 	}
 }
 
@@ -12077,6 +13249,9 @@ const (
 
 	// RecommendationSourceTypeEcsService is a RecommendationSourceType enum value
 	RecommendationSourceTypeEcsService = "EcsService"
+
+	// RecommendationSourceTypeLicense is a RecommendationSourceType enum value
+	RecommendationSourceTypeLicense = "License"
 )
 
 // RecommendationSourceType_Values returns all elements of the RecommendationSourceType enum
@@ -12087,6 +13262,7 @@ func RecommendationSourceType_Values() []string {
 		RecommendationSourceTypeEbsVolume,
 		RecommendationSourceTypeLambdaFunction,
 		RecommendationSourceTypeEcsService,
+		RecommendationSourceTypeLicense,
 	}
 }
 
@@ -12108,6 +13284,9 @@ const (
 
 	// ResourceTypeEcsService is a ResourceType enum value
 	ResourceTypeEcsService = "EcsService"
+
+	// ResourceTypeLicense is a ResourceType enum value
+	ResourceTypeLicense = "License"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -12119,6 +13298,7 @@ func ResourceType_Values() []string {
 		ResourceTypeLambdaFunction,
 		ResourceTypeNotApplicable,
 		ResourceTypeEcsService,
+		ResourceTypeLicense,
 	}
 }
 

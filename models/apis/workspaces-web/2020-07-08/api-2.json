@@ -1263,6 +1263,7 @@
     },
     "BrowserSettingsSummary":{
       "type":"structure",
+      "required":["browserSettingsArn"],
       "members":{
         "browserSettingsArn":{"shape":"ARN"}
       }
@@ -1335,6 +1336,47 @@
       },
       "exception":true
     },
+    "CookieDomain":{
+      "type":"string",
+      "max":253,
+      "min":0,
+      "pattern":"^(\\.?)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+    },
+    "CookieName":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
+    "CookiePath":{
+      "type":"string",
+      "max":2000,
+      "min":0,
+      "pattern":"^/(\\S)*$"
+    },
+    "CookieSpecification":{
+      "type":"structure",
+      "required":["domain"],
+      "members":{
+        "domain":{"shape":"CookieDomain"},
+        "name":{"shape":"CookieName"},
+        "path":{"shape":"CookiePath"}
+      }
+    },
+    "CookieSpecifications":{
+      "type":"list",
+      "member":{"shape":"CookieSpecification"},
+      "max":10,
+      "min":0
+    },
+    "CookieSynchronizationConfiguration":{
+      "type":"structure",
+      "required":["allowlist"],
+      "members":{
+        "allowlist":{"shape":"CookieSpecifications"},
+        "blocklist":{"shape":"CookieSpecifications"}
+      },
+      "sensitive":true
+    },
     "CreateBrowserSettingsRequest":{
       "type":"structure",
       "required":["browserPolicy"],
@@ -1379,7 +1421,7 @@
       "type":"structure",
       "required":["identityProviderArn"],
       "members":{
-        "identityProviderArn":{"shape":"ARN"}
+        "identityProviderArn":{"shape":"SubresourceARN"}
       }
     },
     "CreateIpAccessSettingsRequest":{
@@ -1503,11 +1545,14 @@
         "uploadAllowed"
       ],
       "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
+        "customerManagedKey":{"shape":"keyArn"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},
@@ -1545,7 +1590,7 @@
       "required":["identityProviderArn"],
       "members":{
         "identityProviderArn":{
-          "shape":"ARN",
+          "shape":"SubresourceARN",
           "location":"uri",
           "locationName":"identityProviderArn"
         }
@@ -1804,7 +1849,7 @@
       "required":["identityProviderArn"],
       "members":{
         "identityProviderArn":{
-          "shape":"ARN",
+          "shape":"SubresourceARN",
           "location":"uri",
           "locationName":"identityProviderArn"
         }
@@ -1907,6 +1952,7 @@
     },
     "GetTrustStoreCertificateResponse":{
       "type":"structure",
+      "required":["trustStoreArn"],
       "members":{
         "certificate":{"shape":"Certificate"},
         "trustStoreArn":{"shape":"ARN"}
@@ -1967,7 +2013,7 @@
       "type":"structure",
       "required":["identityProviderArn"],
       "members":{
-        "identityProviderArn":{"shape":"ARN"},
+        "identityProviderArn":{"shape":"SubresourceARN"},
         "identityProviderDetails":{"shape":"IdentityProviderDetails"},
         "identityProviderName":{"shape":"IdentityProviderName"},
         "identityProviderType":{"shape":"IdentityProviderType"}
@@ -1992,8 +2038,9 @@
     },
     "IdentityProviderSummary":{
       "type":"structure",
+      "required":["identityProviderArn"],
       "members":{
-        "identityProviderArn":{"shape":"ARN"},
+        "identityProviderArn":{"shape":"SubresourceARN"},
         "identityProviderName":{"shape":"IdentityProviderName"},
         "identityProviderType":{"shape":"IdentityProviderType"}
       }
@@ -2047,6 +2094,7 @@
     },
     "IpAccessSettingsSummary":{
       "type":"structure",
+      "required":["ipAccessSettingsArn"],
       "members":{
         "creationDate":{"shape":"Timestamp"},
         "description":{"shape":"Description"},
@@ -2236,6 +2284,7 @@
     },
     "ListTrustStoreCertificatesResponse":{
       "type":"structure",
+      "required":["trustStoreArn"],
       "members":{
         "certificateList":{"shape":"CertificateSummaryList"},
         "nextToken":{"shape":"PaginationToken"},
@@ -2330,6 +2379,7 @@
     },
     "NetworkSettingsSummary":{
       "type":"structure",
+      "required":["networkSettingsArn"],
       "members":{
         "networkSettingsArn":{"shape":"ARN"},
         "vpcId":{"shape":"VpcId"}
@@ -2343,6 +2393,7 @@
     },
     "Portal":{
       "type":"structure",
+      "required":["portalArn"],
       "members":{
         "authenticationType":{"shape":"AuthenticationType"},
         "browserSettingsArn":{"shape":"ARN"},
@@ -2381,6 +2432,7 @@
     },
     "PortalSummary":{
       "type":"structure",
+      "required":["portalArn"],
       "members":{
         "authenticationType":{"shape":"AuthenticationType"},
         "browserSettingsArn":{"shape":"ARN"},
@@ -2476,6 +2528,12 @@
       "member":{"shape":"SubnetId"},
       "max":3,
       "min":2
+    },
+    "SubresourceARN":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:[\\w+=\\/,.@-]+:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]*:[a-zA-Z0-9]{1,12}:[a-zA-Z]+(\\/[a-fA-F0-9\\-]{36}){2,}$"
     },
     "Tag":{
       "type":"structure",
@@ -2573,6 +2631,7 @@
     },
     "TrustStore":{
       "type":"structure",
+      "required":["trustStoreArn"],
       "members":{
         "associatedPortalArns":{"shape":"ArnList"},
         "trustStoreArn":{"shape":"ARN"}
@@ -2644,7 +2703,7 @@
           "idempotencyToken":true
         },
         "identityProviderArn":{
-          "shape":"ARN",
+          "shape":"SubresourceARN",
           "location":"uri",
           "locationName":"identityProviderArn"
         },
@@ -2784,6 +2843,7 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
@@ -2820,6 +2880,7 @@
     },
     "UserAccessLoggingSettingsSummary":{
       "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
       "members":{
         "kinesisStreamArn":{"shape":"KinesisStreamArn"},
         "userAccessLoggingSettingsArn":{"shape":"ARN"}
@@ -2830,6 +2891,7 @@
       "required":["userSettingsArn"],
       "members":{
         "associatedPortalArns":{"shape":"ArnList"},
+        "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
@@ -2846,7 +2908,9 @@
     },
     "UserSettingsSummary":{
       "type":"structure",
+      "required":["userSettingsArn"],
       "members":{
+        "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},

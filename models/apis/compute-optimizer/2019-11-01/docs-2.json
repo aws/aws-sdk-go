@@ -9,6 +9,7 @@
     "ExportEC2InstanceRecommendations": "<p>Exports optimization recommendations for Amazon EC2 instances.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon EC2 instance export job in progress per Amazon Web Services Region.</p>",
     "ExportECSServiceRecommendations": "<p> Exports optimization recommendations for Amazon ECS services on Fargate. </p> <p>Recommendations are exported in a CSV file, and its metadata in a JSON file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can only have one Amazon ECS service export job in progress per Amazon Web Services Region.</p>",
     "ExportLambdaFunctionRecommendations": "<p>Exports optimization recommendations for Lambda functions.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Lambda function export job in progress per Amazon Web Services Region.</p>",
+    "ExportLicenseRecommendations": "<p> Export optimization recommendations for your licenses. </p> <p>Recommendations are exported in a comma-separated values (CSV) file, and its metadata in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one license export job in progress per Amazon Web Services Region.</p>",
     "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetEBSVolumeRecommendations": "<p>Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon EBS volumes that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
@@ -19,6 +20,7 @@
     "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the Compute Optimizer service.</p> <p>If the account is the management account of an organization, this action also confirms the enrollment status of member accounts of the organization. Use the <a>GetEnrollmentStatusesForOrganization</a> action to get detailed information about the enrollment status of member accounts of an organization.</p>",
     "GetEnrollmentStatusesForOrganization": "<p>Returns the Compute Optimizer enrollment (opt-in) status of organization member accounts, if your account is an organization management account.</p> <p>To get the enrollment status of standalone accounts, use the <a>GetEnrollmentStatus</a> action.</p>",
     "GetLambdaFunctionRecommendations": "<p>Returns Lambda function recommendations.</p> <p>Compute Optimizer generates recommendations for functions that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
+    "GetLicenseRecommendations": "<p>Returns license recommendations for Amazon EC2 instances that run on a specific license.</p> <p>Compute Optimizer generates recommendations for licenses that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationPreferences": "<p>Returns existing recommendation preferences, such as enhanced infrastructure metrics.</p> <p>Use the <code>scope</code> parameter to specify which preferences to return. You can specify to return preferences for an organization, a specific account ID, or a specific EC2 instance or Auto Scaling group Amazon Resource Name (ARN).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Activating enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>It returns the number of:</p> <ul> <li> <p>Amazon EC2 instances in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code>.</p> </li> <li> <p>Auto Scaling groups in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Amazon EBS volumes in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Lambda functions in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Amazon ECS services in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code>.</p> </li> </ul>",
     "PutRecommendationPreferences": "<p>Creates a new recommendation preference or updates an existing recommendation preference, such as enhanced infrastructure metrics.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Activating enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
@@ -51,6 +53,7 @@
         "ECSServiceRecommendation$accountId": "<p> The Amazon Web Services account ID of the Amazon ECS service. </p>",
         "InstanceRecommendation$accountId": "<p>The Amazon Web Services account ID of the instance.</p>",
         "LambdaFunctionRecommendation$accountId": "<p>The Amazon Web Services account ID of the function.</p>",
+        "LicenseRecommendation$accountId": "<p> The Amazon Web Services account ID of the license. </p>",
         "RecommendationSummary$accountId": "<p>The Amazon Web Services account ID of the recommendation summary.</p>",
         "VolumeRecommendation$accountId": "<p>The Amazon Web Services account ID of the volume.</p>"
       }
@@ -63,11 +66,13 @@
         "ExportEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportECSServiceRecommendationsRequest$accountIds": "<p> The Amazon Web Services account IDs for the export Amazon ECS service recommendations. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportLambdaFunctionRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export Lambda function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportLicenseRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export license recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter is omitted, recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
         "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetECSServiceRecommendationsRequest$accountIds": "<p> Return the Amazon ECS service recommendations to the specified Amazon Web Services account IDs. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to return the Amazon ECS service recommendations to specific member accounts.</p> <p>You can only specify one account ID per request.</p>",
         "GetLambdaFunctionRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return function recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetLicenseRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return license recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return license recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetRecommendationSummariesRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return recommendation summaries.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
       }
     },
@@ -546,6 +551,16 @@
       "refs": {
       }
     },
+    "ExportLicenseRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportLicenseRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ExportableAutoScalingGroupField": {
       "base": null,
       "refs": {
@@ -592,6 +607,18 @@
       "base": null,
       "refs": {
         "ExportLambdaFunctionRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
+      }
+    },
+    "ExportableLicenseField": {
+      "base": null,
+      "refs": {
+        "ExportableLicenseFields$member": null
+      }
+    },
+    "ExportableLicenseFields": {
+      "base": null,
+      "refs": {
+        "ExportLicenseRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
     "ExportableVolumeField": {
@@ -652,7 +679,8 @@
         "ExportEBSVolumeRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
         "ExportEC2InstanceRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
         "ExportECSServiceRecommendationsRequest$fileFormat": "<p> The format of the export file. </p> <p>The CSV file is the only export file format currently supported.</p>",
-        "ExportLambdaFunctionRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>"
+        "ExportLambdaFunctionRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
+        "ExportLicenseRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>A CSV file is the only export format currently supported.</p>"
       }
     },
     "Filter": {
@@ -681,7 +709,8 @@
         "EnrollmentFilter$values": "<p>The value of the filter.</p> <p>The valid values are <code>Active</code>, <code>Inactive</code>, <code>Pending</code>, and <code>Failed</code>.</p>",
         "Filter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter and the resource type that you wish to filter results for:</p> <ul> <li> <p>Specify <code>Optimized</code> or <code>NotOptimized</code> if you specify the <code>name</code> parameter as <code>Finding</code> and you want to filter results for Auto Scaling groups.</p> </li> <li> <p>Specify <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code> if you specify the <code>name</code> parameter as <code>Finding</code> and you want to filter results for EC2 instances.</p> </li> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specify the <code>name</code> parameter as <code>RecommendationSourceType</code>.</p> </li> <li> <p>Specify one of the following options if you specify the <code>name</code> parameter as <code>FindingReasonCodes</code>:</p> <ul> <li> <p> <b> <code>CPUOverprovisioned</code> </b> — The instance’s CPU configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>CPUUnderprovisioned</code> </b> — The instance’s CPU configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better CPU performance.</p> </li> <li> <p> <b> <code>MemoryOverprovisioned</code> </b> — The instance’s memory configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>MemoryUnderprovisioned</code> </b> — The instance’s memory configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better memory performance.</p> </li> <li> <p> <b> <code>EBSThroughputOverprovisioned</code> </b> — The instance’s EBS throughput configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>EBSThroughputUnderprovisioned</code> </b> — The instance’s EBS throughput configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better EBS throughput performance.</p> </li> <li> <p> <b> <code>EBSIOPSOverprovisioned</code> </b> — The instance’s EBS IOPS configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>EBSIOPSUnderprovisioned</code> </b> — The instance’s EBS IOPS configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better EBS IOPS performance.</p> </li> <li> <p> <b> <code>NetworkBandwidthOverprovisioned</code> </b> — The instance’s network bandwidth configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>NetworkBandwidthUnderprovisioned</code> </b> — The instance’s network bandwidth configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better network bandwidth performance. This finding reason happens when the <code>NetworkIn</code> or <code>NetworkOut</code> performance of an instance is impacted.</p> </li> <li> <p> <b> <code>NetworkPPSOverprovisioned</code> </b> — The instance’s network PPS (packets per second) configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>NetworkPPSUnderprovisioned</code> </b> — The instance’s network PPS (packets per second) configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better network PPS performance.</p> </li> <li> <p> <b> <code>DiskIOPSOverprovisioned</code> </b> — The instance’s disk IOPS configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>DiskIOPSUnderprovisioned</code> </b> — The instance’s disk IOPS configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better disk IOPS performance.</p> </li> <li> <p> <b> <code>DiskThroughputOverprovisioned</code> </b> — The instance’s disk throughput configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>DiskThroughputUnderprovisioned</code> </b> — The instance’s disk throughput configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better disk throughput performance.</p> </li> </ul> </li> </ul>",
         "JobFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specify the <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS volumes because volume recommendations cannot be exported at this time.</p> </li> <li> <p>Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code> if you specify the <code>name</code> parameter as <code>JobStatus</code>.</p> </li> </ul>",
-        "LambdaFunctionRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>Unavailable</code> if you specify the <code>name</code> parameter as <code>Finding</code>.</p> </li> <li> <p>Specify <code>MemoryOverprovisioned</code>, <code>MemoryUnderprovisioned</code>, <code>InsufficientData</code>, or <code>Inconclusive</code> if you specify the <code>name</code> parameter as <code>FindingReasonCode</code>.</p> </li> </ul>"
+        "LambdaFunctionRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>Unavailable</code> if you specify the <code>name</code> parameter as <code>Finding</code>.</p> </li> <li> <p>Specify <code>MemoryOverprovisioned</code>, <code>MemoryUnderprovisioned</code>, <code>InsufficientData</code>, or <code>Inconclusive</code> if you specify the <code>name</code> parameter as <code>FindingReasonCode</code>.</p> </li> </ul>",
+        "LicenseRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>If you specify the <code>name</code> parameter as <code>Finding</code>, then specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>InsufficentMetrics</code>.</p> </li> <li> <p>If you specify the <code>name</code> parameter as <code>FindingReasonCode</code>, then specify <code>Optimized</code>, <code>LicenseOverprovisioned</code>, <code>InvalidCloudwatchApplicationInsights</code>, or <code>CloudwatchApplicationInsightsError</code>.</p> </li> </ul>"
       }
     },
     "Filters": {
@@ -826,6 +855,16 @@
       "refs": {
       }
     },
+    "GetLicenseRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLicenseRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRecommendationError": {
       "base": "<p>Describes an error experienced when getting recommendations.</p> <p>For example, an error is returned if you request recommendations for an unsupported Auto Scaling group, or if you request recommendations for an instance of an unsupported instance family.</p>",
       "refs": {
@@ -838,7 +877,8 @@
         "GetAutoScalingGroupRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an unsupported Auto Scaling group.</p>",
         "GetEBSVolumeRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an unsupported volume.</p>",
         "GetEC2InstanceRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an instance of an unsupported instance family.</p>",
-        "GetECSServiceRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>"
+        "GetECSServiceRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>",
+        "GetLicenseRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>"
       }
     },
     "GetRecommendationPreferencesRequest": {
@@ -881,6 +921,7 @@
         "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
         "ExportECSServiceRecommendationsRequest$includeMemberAccounts": "<p>If your account is the management account or the delegated administrator of an organization, this parameter indicates whether to include recommendations for resources in all member accounts of the organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file.</p> <p>If this parameter or the account ID parameter is omitted, recommendations for member accounts aren't included in the export.</p>",
         "ExportLambdaFunctionRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportLicenseRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file .</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p>",
         "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the account is the management account of an organization.</p>"
       }
     },
@@ -978,7 +1019,8 @@
       "base": null,
       "refs": {
         "AutoScalingGroupConfiguration$instanceType": "<p>The instance type for the Auto Scaling group.</p>",
-        "InstanceRecommendationOption$instanceType": "<p>The instance type of the instance recommendation.</p>"
+        "InstanceRecommendationOption$instanceType": "<p>The instance type of the instance recommendation.</p>",
+        "LicenseConfiguration$instanceType": "<p> The instance type used in the license. </p>"
       }
     },
     "InternalServerException": {
@@ -1017,6 +1059,7 @@
         "ExportEC2InstanceRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <a>DescribeRecommendationExportJobs</a> action, and specify the job ID to view the status of an export job.</p>",
         "ExportECSServiceRecommendationsResponse$jobId": "<p> The identification number of the export job. </p> <p>To view the status of an export job, use the <a>DescribeRecommendationExportJobs</a> action and specify the job ID. </p>",
         "ExportLambdaFunctionRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <a>DescribeRecommendationExportJobs</a> action, and specify the job ID to view the status of an export job.</p>",
+        "ExportLicenseRecommendationsResponse$jobId": "<p> The identification number of the export job. </p> <p>To view the status of an export job, use the <a>DescribeRecommendationExportJobs</a> action and specify the job ID.</p>",
         "JobIds$member": null,
         "RecommendationExportJob$jobId": "<p>The identification number of the export job.</p>"
       }
@@ -1149,6 +1192,7 @@
         "ECSServiceRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the Amazon ECS service recommendation was last generated. </p>",
         "InstanceRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the instance recommendation was last generated.</p>",
         "LambdaFunctionRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the function recommendation was last generated.</p>",
+        "LicenseRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the license recommendation was last generated. </p>",
         "VolumeRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the volume recommendation was last generated.</p>"
       }
     },
@@ -1158,6 +1202,99 @@
         "AccountEnrollmentStatus$lastUpdatedTimestamp": "<p>The Unix epoch timestamp, in seconds, of when the account enrollment status was last updated.</p>",
         "GetEnrollmentStatusResponse$lastUpdatedTimestamp": "<p>The Unix epoch timestamp, in seconds, of when the account enrollment status was last updated.</p>",
         "RecommendationExportJob$lastUpdatedTimestamp": "<p>The timestamp of when the export job was last updated.</p>"
+      }
+    },
+    "LicenseConfiguration": {
+      "base": "<p> Describes the configuration of a license for an Amazon EC2 instance. </p>",
+      "refs": {
+        "LicenseRecommendation$currentLicenseConfiguration": "<p> An object that describes the current configuration of an instance that runs on a license. </p>"
+      }
+    },
+    "LicenseEdition": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$licenseEdition": "<p> The edition of the license for the application that runs on the instance. </p>",
+        "LicenseRecommendationOption$licenseEdition": "<p> The recommended edition of the license for the application that runs on the instance. </p>"
+      }
+    },
+    "LicenseFinding": {
+      "base": null,
+      "refs": {
+        "LicenseRecommendation$finding": "<p> The finding classification for an instance that runs on a license. </p> <p>Findings include:</p> <ul> <li> <p> <code>InsufficentMetrics</code> — When Compute Optimizer detects that your CloudWatch Application Insights isn't enabled or is enabled with insufficient permissions. </p> </li> <li> <p> <code>NotOptimized</code> — When Compute Optimizer detects that your EC2 infrastructure isn't using any of the SQL server license features you're paying for, a license is considered not optimized.</p> </li> <li> <p> <code>Optimized</code> — When Compute Optimizer detects that all specifications of your license meet the performance requirements of your workload. </p> </li> </ul>"
+      }
+    },
+    "LicenseFindingReasonCode": {
+      "base": null,
+      "refs": {
+        "LicenseFindingReasonCodes$member": null
+      }
+    },
+    "LicenseFindingReasonCodes": {
+      "base": null,
+      "refs": {
+        "LicenseRecommendation$findingReasonCodes": "<p> The reason for the finding classification for an instance that runs on a license. </p> <p>Finding reason codes include:</p> <ul> <li> <p> <code>Optimized</code> — All specifications of your license meet the performance requirements of your workload. </p> </li> <li> <p> <code>LicenseOverprovisioned</code> — A license is considered over-provisioned when your license can be downgraded while still meeting the performance requirements of your workload.</p> </li> <li> <p> <code>InvalidCloudwatchApplicationInsights</code> — CloudWatch Application Insights isn't configured properly.</p> </li> <li> <p> <code>CloudwatchApplicationInsightsError</code> — There is a CloudWatch Application Insights error. </p> </li> </ul>"
+      }
+    },
+    "LicenseModel": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$licenseModel": "<p> The license type associated with the instance. </p>",
+        "LicenseRecommendationOption$licenseModel": "<p> The recommended license type associated with the instance. </p>"
+      }
+    },
+    "LicenseName": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$licenseName": "<p> The name of the license for the application that runs on the instance. </p>"
+      }
+    },
+    "LicenseRecommendation": {
+      "base": "<p> Describes a license recommendation for an EC2 instance. </p>",
+      "refs": {
+        "LicenseRecommendations$member": null
+      }
+    },
+    "LicenseRecommendationFilter": {
+      "base": "<p> Describes a filter that returns a more specific list of license recommendations. Use this filter with the <code>GetLicenseRecommendation</code> action. </p>",
+      "refs": {
+        "LicenseRecommendationFilters$member": null
+      }
+    },
+    "LicenseRecommendationFilterName": {
+      "base": null,
+      "refs": {
+        "LicenseRecommendationFilter$name": "<p>The name of the filter.</p> <p>Specify <code>Finding</code> to return recommendations with a specific finding classification.</p> <p>Specify <code>FindingReasonCode</code> to return recommendations with a specific finding reason code.</p> <p>You can filter your license recommendations by <code>tag:key</code> and <code>tag-key</code> tags.</p> <p>A <code>tag:key</code> is a key and value combination of a tag assigned to your license recommendations. Use the tag key in the filter name and the tag value as the filter value. For example, to find all license recommendations that have a tag with the key of <code>Owner</code> and the value of <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> <p>A <code>tag-key</code> is the key of a tag assigned to your license recommendations. Use this filter to find all of your license recommendations that have a tag with a specific key. This doesn’t consider the tag value. For example, you can find your license recommendations with a tag key value of <code>Owner</code> or without any tag keys assigned.</p>"
+      }
+    },
+    "LicenseRecommendationFilters": {
+      "base": null,
+      "refs": {
+        "ExportLicenseRecommendationsRequest$filters": "<p> An array of objects to specify a filter that exports a more specific set of license recommendations. </p>",
+        "GetLicenseRecommendationsRequest$filters": "<p> An array of objects to specify a filter that returns a more specific list of license recommendations. </p>"
+      }
+    },
+    "LicenseRecommendationOption": {
+      "base": "<p> Describes the recommendation options for licenses. </p>",
+      "refs": {
+        "LicenseRecommendationOptions$member": null
+      }
+    },
+    "LicenseRecommendationOptions": {
+      "base": null,
+      "refs": {
+        "LicenseRecommendation$licenseRecommendationOptions": "<p> An array of objects that describe the license recommendation options. </p>"
+      }
+    },
+    "LicenseRecommendations": {
+      "base": null,
+      "refs": {
+        "GetLicenseRecommendationsResponse$licenseRecommendations": "<p> An array of objects that describe license recommendations. </p>"
+      }
+    },
+    "LicenseVersion": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$licenseVersion": "<p> The version of the license for the application that runs on the instance. </p>"
       }
     },
     "LimitExceededException": {
@@ -1172,6 +1309,7 @@
         "ECSServiceRecommendation$lookbackPeriodInDays": "<p> The number of days the Amazon ECS service utilization metrics were analyzed. </p>",
         "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>",
         "LambdaFunctionRecommendation$lookbackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the function.</p>",
+        "LicenseRecommendation$lookbackPeriodInDays": "<p> The number of days for which utilization metrics were analyzed for an instance that runs on a license. </p>",
         "VolumeRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the volume.</p>"
       }
     },
@@ -1197,6 +1335,7 @@
         "GetECSServiceRecommendationsRequest$maxResults": "<p> The maximum number of Amazon ECS service recommendations to return with a single request. </p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetEnrollmentStatusesForOrganizationRequest$maxResults": "<p>The maximum number of account enrollment statuses to return with a single request. You can specify up to 100 statuses to return with each request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetLambdaFunctionRecommendationsRequest$maxResults": "<p>The maximum number of function recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
+        "GetLicenseRecommendationsRequest$maxResults": "<p> The maximum number of license recommendations to return with a single request. </p> <p> To retrieve the remaining results, make another request with the returned <code>nextToken</code> value. </p>",
         "GetRecommendationPreferencesRequest$maxResults": "<p>The maximum number of recommendation preferences to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetRecommendationSummariesRequest$maxResults": "<p>The maximum number of recommendation summaries to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>"
       }
@@ -1253,6 +1392,24 @@
         "UtilizationMetric$name": "<p>The name of the utilization metric.</p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Cpu</code> - The percentage of allocated EC2 compute units that are currently in use on the instance. This metric identifies the processing power required to run an application on the instance.</p> <p>Depending on the instance type, tools in your operating system can show a lower percentage than CloudWatch when the instance is not allocated a full processor core.</p> <p>Units: Percent</p> </li> <li> <p> <code>Memory</code> - The percentage of memory that is currently in use on the instance. This metric identifies the amount of memory required to run an application on the instance.</p> <p>Units: Percent</p> <note> <p>The <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note> </li> <li> <p> <code>EBS_READ_OPS_PER_SECOND</code> - The completed read operations from all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>EBS_WRITE_OPS_PER_SECOND</code> - The completed write operations to all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>EBS_READ_BYTES_PER_SECOND</code> - The bytes read from all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Bytes</p> </li> <li> <p> <code>EBS_WRITE_BYTES_PER_SECOND</code> - The bytes written to all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Bytes</p> </li> <li> <p> <code>DISK_READ_OPS_PER_SECOND</code> - The completed read operations from all instance store volumes available to the instance in a specified period of time.</p> <p>If there are no instance store volumes, either the value is <code>0</code> or the metric is not reported.</p> </li> <li> <p> <code>DISK_WRITE_OPS_PER_SECOND</code> - The completed write operations from all instance store volumes available to the instance in a specified period of time.</p> <p>If there are no instance store volumes, either the value is <code>0</code> or the metric is not reported.</p> </li> <li> <p> <code>DISK_READ_BYTES_PER_SECOND</code> - The bytes read from all instance store volumes available to the instance. This metric is used to determine the volume of the data the application reads from the disk of the instance. This can be used to determine the speed of the application.</p> <p>If there are no instance store volumes, either the value is <code>0</code> or the metric is not reported.</p> </li> <li> <p> <code>DISK_WRITE_BYTES_PER_SECOND</code> - The bytes written to all instance store volumes available to the instance. This metric is used to determine the volume of the data the application writes onto the disk of the instance. This can be used to determine the speed of the application.</p> <p>If there are no instance store volumes, either the value is <code>0</code> or the metric is not reported.</p> </li> <li> <p> <code>NETWORK_IN_BYTES_PER_SECOND</code> - The number of bytes received by the instance on all network interfaces. This metric identifies the volume of incoming network traffic to a single instance.</p> </li> <li> <p> <code>NETWORK_OUT_BYTES_PER_SECOND</code> - The number of bytes sent out by the instance on all network interfaces. This metric identifies the volume of outgoing network traffic from a single instance.</p> </li> <li> <p> <code>NETWORK_PACKETS_IN_PER_SECOND</code> - The number of packets received by the instance on all network interfaces. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance.</p> </li> <li> <p> <code>NETWORK_PACKETS_OUT_PER_SECOND</code> - The number of packets sent out by the instance on all network interfaces. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance.</p> </li> </ul>"
       }
     },
+    "MetricProviderArn": {
+      "base": null,
+      "refs": {
+        "MetricSource$providerArn": "<p> The ARN of the metric source provider. </p>"
+      }
+    },
+    "MetricSource": {
+      "base": "<p> The list of metric sources required to generate recommendations for commercial software licenses. </p>",
+      "refs": {
+        "MetricsSource$member": null
+      }
+    },
+    "MetricSourceProvider": {
+      "base": null,
+      "refs": {
+        "MetricSource$provider": "<p> The name of the metric source provider. </p>"
+      }
+    },
     "MetricStatistic": {
       "base": null,
       "refs": {
@@ -1279,6 +1436,12 @@
         "ECSServiceProjectedMetric$upperBoundValues": "<p> The upper bound values for the projected metric. </p>",
         "ECSServiceProjectedMetric$lowerBoundValues": "<p> The lower bound values for the projected metric. </p>",
         "ProjectedMetric$values": "<p>The values of the projected utilization metrics.</p>"
+      }
+    },
+    "MetricsSource": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$metricsSource": "<p> The list of metric sources required to generate recommendations for commercial software licenses. </p>"
       }
     },
     "MigrationEffort": {
@@ -1316,6 +1479,8 @@
         "GetEnrollmentStatusesForOrganizationResponse$nextToken": "<p>The token to use to advance to the next page of account enrollment statuses.</p> <p>This value is null when there are no more pages of account enrollment statuses to return.</p>",
         "GetLambdaFunctionRecommendationsRequest$nextToken": "<p>The token to advance to the next page of function recommendations.</p>",
         "GetLambdaFunctionRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of function recommendations.</p> <p>This value is null when there are no more pages of function recommendations to return.</p>",
+        "GetLicenseRecommendationsRequest$nextToken": "<p> The token to advance to the next page of license recommendations. </p>",
+        "GetLicenseRecommendationsResponse$nextToken": "<p> The token to use to advance to the next page of license recommendations. </p>",
         "GetRecommendationPreferencesRequest$nextToken": "<p>The token to advance to the next page of recommendation preferences.</p>",
         "GetRecommendationPreferencesResponse$nextToken": "<p>The token to use to advance to the next page of recommendation preferences.</p> <p>This value is null when there are no more pages of recommendation preferences to return.</p>",
         "GetRecommendationSummariesRequest$nextToken": "<p>The token to advance to the next page of recommendation summaries.</p>",
@@ -1345,6 +1510,12 @@
         "MemorySizeConfiguration$memoryReservation": "<p> The limit of memory reserve for the container. </p>"
       }
     },
+    "NumberOfCores": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$numberOfCores": "<p> The current number of cores associated with the instance. </p>"
+      }
+    },
     "NumberOfInvocations": {
       "base": null,
       "refs": {
@@ -1355,6 +1526,13 @@
       "base": null,
       "refs": {
         "GetEnrollmentStatusResponse$numberOfMemberAccountsOptedIn": "<p>The count of organization member accounts that are opted in to the service, if your account is an organization management account.</p>"
+      }
+    },
+    "OperatingSystem": {
+      "base": null,
+      "refs": {
+        "LicenseConfiguration$operatingSystem": "<p> The operating system of the instance. </p>",
+        "LicenseRecommendationOption$operatingSystem": "<p> The operating system of a license recommendation option. </p>"
       }
     },
     "OptInRequiredException": {
@@ -1424,6 +1602,7 @@
         "AutoScalingGroupRecommendationOption$rank": "<p>The rank of the Auto Scaling group recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "InstanceRecommendationOption$rank": "<p>The rank of the instance recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "LambdaFunctionMemoryRecommendationOption$rank": "<p>The rank of the function recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
+        "LicenseRecommendationOption$rank": "<p> The rank of the license recommendation option. </p> <p> The top recommendation option is ranked as <code>1</code>. </p>",
         "RecommendedOptionProjectedMetric$rank": "<p>The rank of the recommendation option projected metric.</p> <p>The top recommendation option is ranked as <code>1</code>.</p> <p>The projected metric rank correlates to the recommendation option rank. For example, the projected metric ranked as <code>1</code> is related to the recommendation option that is also ranked as <code>1</code> in the same response.</p>",
         "VolumeRecommendationOption$rank": "<p>The rank of the volume recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>"
       }
@@ -1550,7 +1729,15 @@
     "ResourceArn": {
       "base": null,
       "refs": {
-        "GetEffectiveRecommendationPreferencesRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to confirm effective recommendation preferences. Only EC2 instance and Auto Scaling group ARNs are currently supported.</p>"
+        "GetEffectiveRecommendationPreferencesRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to confirm effective recommendation preferences. Only EC2 instance and Auto Scaling group ARNs are currently supported.</p>",
+        "LicenseRecommendation$resourceArn": "<p> The ARN that identifies the Amazon EC2 instance. </p>",
+        "ResourceArns$member": null
+      }
+    },
+    "ResourceArns": {
+      "base": null,
+      "refs": {
+        "GetLicenseRecommendationsRequest$resourceArns": "<p> The ARN that identifies the Amazon EC2 instance. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ec2:region:aws_account_id:instance/instance-id</code> </p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1582,7 +1769,8 @@
         "ExportEBSVolumeRecommendationsResponse$s3Destination": null,
         "ExportEC2InstanceRecommendationsResponse$s3Destination": "<p>An object that describes the destination Amazon S3 bucket of a recommendations export file.</p>",
         "ExportECSServiceRecommendationsResponse$s3Destination": null,
-        "ExportLambdaFunctionRecommendationsResponse$s3Destination": null
+        "ExportLambdaFunctionRecommendationsResponse$s3Destination": null,
+        "ExportLicenseRecommendationsResponse$s3Destination": null
       }
     },
     "S3DestinationConfig": {
@@ -1592,7 +1780,8 @@
         "ExportEBSVolumeRecommendationsRequest$s3DestinationConfig": null,
         "ExportEC2InstanceRecommendationsRequest$s3DestinationConfig": "<p>An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permissions policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p>",
         "ExportECSServiceRecommendationsRequest$s3DestinationConfig": null,
-        "ExportLambdaFunctionRecommendationsRequest$s3DestinationConfig": null
+        "ExportLambdaFunctionRecommendationsRequest$s3DestinationConfig": null,
+        "ExportLicenseRecommendationsRequest$s3DestinationConfig": null
       }
     },
     "SavingsOpportunity": {
@@ -1602,6 +1791,7 @@
         "ECSServiceRecommendationOption$savingsOpportunity": null,
         "InstanceRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the instance recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
         "LambdaFunctionMemoryRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the Lambda function recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
+        "LicenseRecommendationOption$savingsOpportunity": null,
         "RecommendationSummary$savingsOpportunity": "<p>An object that describes the savings opportunity for a given resource type. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
         "VolumeRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the EBS volume recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>"
       }
@@ -1718,6 +1908,7 @@
         "ECSServiceRecommendation$tags": "<p> A list of tags assigned to your Amazon ECS service recommendations. </p>",
         "InstanceRecommendation$tags": "<p> A list of tags assigned to your Amazon EC2 instance recommendations. </p>",
         "LambdaFunctionRecommendation$tags": "<p> A list of tags assigned to your Lambda function recommendations. </p>",
+        "LicenseRecommendation$tags": "<p> A list of tags assigned to an EC2 instance. </p>",
         "VolumeRecommendation$tags": "<p> A list of tags assigned to your Amazon EBS volume recommendations. </p>"
       }
     },
