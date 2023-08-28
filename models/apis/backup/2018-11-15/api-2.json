@@ -1331,7 +1331,8 @@
         "RecoveryPointTags":{"shape":"Tags"},
         "RuleId":{"shape":"string"},
         "CopyActions":{"shape":"CopyActions"},
-        "EnableContinuousBackup":{"shape":"Boolean"}
+        "EnableContinuousBackup":{"shape":"Boolean"},
+        "ScheduleExpressionTimezone":{"shape":"Timezone"}
       }
     },
     "BackupRuleInput":{
@@ -1349,7 +1350,8 @@
         "Lifecycle":{"shape":"Lifecycle"},
         "RecoveryPointTags":{"shape":"Tags"},
         "CopyActions":{"shape":"CopyActions"},
-        "EnableContinuousBackup":{"shape":"Boolean"}
+        "EnableContinuousBackup":{"shape":"Boolean"},
+        "ScheduleExpressionTimezone":{"shape":"Timezone"}
       }
     },
     "BackupRuleName":{
@@ -3704,6 +3706,7 @@
       "value":{"shape":"TagValue"},
       "sensitive":true
     },
+    "Timezone":{"type":"string"},
     "UntagResourceInput":{
       "type":"structure",
       "required":[

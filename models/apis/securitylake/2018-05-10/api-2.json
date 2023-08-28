@@ -1389,7 +1389,8 @@
     },
     "NextToken":{
       "type":"string",
-      "pattern":"^[\\\\\\w\\-_:/.@=+]*$"
+      "max":2048,
+      "min":0
     },
     "NotificationConfiguration":{
       "type":"structure",
