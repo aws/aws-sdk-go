@@ -33,8 +33,6 @@ package endpointcreds
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"os"
 	"strings"
 	"time"
 
@@ -48,10 +46,7 @@ import (
 )
 
 // ProviderName is the name of the credentials provider.
-const (
-	ProviderName               = `CredentialsEndpointProvider`
-	httpProviderAuthFileEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE"
-)
+const ProviderName = `CredentialsEndpointProvider`
 
 // Provider satisfies the credentials.Provider interface, and is a client to
 // retrieve credentials from an arbitrary endpoint.
@@ -77,7 +72,37 @@ type Provider struct {
 
 	// Optional authorization token value if set will be used as the value of
 	// the Authorization header of the endpoint credential request.
+	//
+	// When constructed from environment, the provider will use the value of
+	// AWS_CONTAINER_AUTHORIZATION_TOKEN environment variable as the token
+	//
+	// Will be overridden if AuthorizationTokenProvider is configured
 	AuthorizationToken string
+
+	// Optional auth provider func to dynamically load the auth token from a file
+	// everytime a credential is retrieved
+	//
+	// When constructed from environment, the provider will read and use the content
+	// of the file pointed to by AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE environment variable
+	// as the auth token everytime credentials are retrieved
+	//
+	// Will override AuthorizationToken if configured
+	AuthorizationTokenProvider AuthTokenProvider
+}
+
+// AuthTokenProvider defines an interface to dynamically load a value to be passed
+// for the Authorization header of a credentials request.
+type AuthTokenProvider interface {
+	GetToken() (string, error)
+}
+
+// TokenProvider is a func type implementing AuthTokenProvider interface
+// and enables customizing token provider behavior
+type TokenProvider func() (string, error)
+
+// GetToken func retrieves auth token according to TokenProvider implementation
+func (p TokenProvider) GetToken() (string, error) {
+	return p()
 }
 
 // NewProviderClient returns a credentials Provider for retrieving AWS credentials
@@ -175,13 +200,11 @@ func (p *Provider) getCredentials(ctx aws.Context) (*getCredentialsOutput, error
 
 	authToken := p.AuthorizationToken
 	var err error
-
-	if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
-		var contents []byte
-		if contents, err = ioutil.ReadFile(authFilePath); err != nil {
-			return &getCredentialsOutput{}, fmt.Errorf("failed to read authorization token from %v: %v", authFilePath, err)
+	if p.AuthorizationTokenProvider != nil {
+		authToken, err = p.AuthorizationTokenProvider.GetToken()
+		if err != nil {
+			return &getCredentialsOutput{}, err
 		}
-		authToken = string(contents)
 	}
 
 	if strings.ContainsAny(authToken, "\r\n") {

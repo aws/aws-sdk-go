@@ -92,6 +92,27 @@ func TestHTTPCredProvider(t *testing.T) {
 	}
 }
 
+func TestHTTPAuthTokenFile(t *testing.T) {
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
+	os.Setenv(httpProviderAuthFileEnvVar, "path/to/file")
+	os.Setenv(httpProviderEnvVar, "http://169.254.170.23/abc/123")
+
+	provider := RemoteCredProvider(aws.Config{}, request.Handlers{})
+	if provider == nil {
+		t.Fatalf("expect provider not to be nil, but was")
+	}
+
+	httpProvider := provider.(*endpointcreds.Provider)
+	if httpProvider == nil {
+		t.Fatalf("expect provider not to be nil, but was")
+	}
+
+	if httpProvider.AuthorizationTokenProvider == nil {
+		t.Fatalf("expect auth token provider no to be nil, but was")
+	}
+}
+
 func TestECSCredProvider(t *testing.T) {
 	restoreEnvFn := sdktesting.StashEnv()
 	defer restoreEnvFn()

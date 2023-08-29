@@ -9,6 +9,7 @@ package defaults
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
@@ -114,6 +115,7 @@ func CredProviders(cfg *aws.Config, handlers request.Handlers) []credentials.Pro
 
 const (
 	httpProviderAuthorizationEnvVar = "AWS_CONTAINER_AUTHORIZATION_TOKEN"
+	httpProviderAuthFileEnvVar      = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE"
 	httpProviderEnvVar              = "AWS_CONTAINER_CREDENTIALS_FULL_URI"
 	ecsContainerHost                = "169.254.170.2"
 	eksContainerHost                = "169.254.170.23"
@@ -205,6 +207,15 @@ func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) crede
 		func(p *endpointcreds.Provider) {
 			p.ExpiryWindow = 5 * time.Minute
 			p.AuthorizationToken = os.Getenv(httpProviderAuthorizationEnvVar)
+			if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
+				p.AuthorizationTokenProvider = endpointcreds.TokenProvider(func() (string, error) {
+					if contents, err := ioutil.ReadFile(authFilePath); err != nil {
+						return "", fmt.Errorf("failed to read authorization token from %v: %v", authFilePath, err)
+					} else {
+						return string(contents), nil
+					}
+				})
+			}
 		},
 	)
 }
