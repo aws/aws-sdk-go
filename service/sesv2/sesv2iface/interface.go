@@ -64,6 +64,10 @@ type SESV2API interface {
 	BatchGetMetricDataWithContext(aws.Context, *sesv2.BatchGetMetricDataInput, ...request.Option) (*sesv2.BatchGetMetricDataOutput, error)
 	BatchGetMetricDataRequest(*sesv2.BatchGetMetricDataInput) (*request.Request, *sesv2.BatchGetMetricDataOutput)
 
+	CancelExportJob(*sesv2.CancelExportJobInput) (*sesv2.CancelExportJobOutput, error)
+	CancelExportJobWithContext(aws.Context, *sesv2.CancelExportJobInput, ...request.Option) (*sesv2.CancelExportJobOutput, error)
+	CancelExportJobRequest(*sesv2.CancelExportJobInput) (*request.Request, *sesv2.CancelExportJobOutput)
+
 	CreateConfigurationSet(*sesv2.CreateConfigurationSetInput) (*sesv2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetWithContext(aws.Context, *sesv2.CreateConfigurationSetInput, ...request.Option) (*sesv2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetRequest(*sesv2.CreateConfigurationSetInput) (*request.Request, *sesv2.CreateConfigurationSetOutput)
@@ -103,6 +107,10 @@ type SESV2API interface {
 	CreateEmailTemplate(*sesv2.CreateEmailTemplateInput) (*sesv2.CreateEmailTemplateOutput, error)
 	CreateEmailTemplateWithContext(aws.Context, *sesv2.CreateEmailTemplateInput, ...request.Option) (*sesv2.CreateEmailTemplateOutput, error)
 	CreateEmailTemplateRequest(*sesv2.CreateEmailTemplateInput) (*request.Request, *sesv2.CreateEmailTemplateOutput)
+
+	CreateExportJob(*sesv2.CreateExportJobInput) (*sesv2.CreateExportJobOutput, error)
+	CreateExportJobWithContext(aws.Context, *sesv2.CreateExportJobInput, ...request.Option) (*sesv2.CreateExportJobOutput, error)
+	CreateExportJobRequest(*sesv2.CreateExportJobInput) (*request.Request, *sesv2.CreateExportJobOutput)
 
 	CreateImportJob(*sesv2.CreateImportJobInput) (*sesv2.CreateImportJobOutput, error)
 	CreateImportJobWithContext(aws.Context, *sesv2.CreateImportJobInput, ...request.Option) (*sesv2.CreateImportJobOutput, error)
@@ -219,9 +227,17 @@ type SESV2API interface {
 	GetEmailTemplateWithContext(aws.Context, *sesv2.GetEmailTemplateInput, ...request.Option) (*sesv2.GetEmailTemplateOutput, error)
 	GetEmailTemplateRequest(*sesv2.GetEmailTemplateInput) (*request.Request, *sesv2.GetEmailTemplateOutput)
 
+	GetExportJob(*sesv2.GetExportJobInput) (*sesv2.GetExportJobOutput, error)
+	GetExportJobWithContext(aws.Context, *sesv2.GetExportJobInput, ...request.Option) (*sesv2.GetExportJobOutput, error)
+	GetExportJobRequest(*sesv2.GetExportJobInput) (*request.Request, *sesv2.GetExportJobOutput)
+
 	GetImportJob(*sesv2.GetImportJobInput) (*sesv2.GetImportJobOutput, error)
 	GetImportJobWithContext(aws.Context, *sesv2.GetImportJobInput, ...request.Option) (*sesv2.GetImportJobOutput, error)
 	GetImportJobRequest(*sesv2.GetImportJobInput) (*request.Request, *sesv2.GetImportJobOutput)
+
+	GetMessageInsights(*sesv2.GetMessageInsightsInput) (*sesv2.GetMessageInsightsOutput, error)
+	GetMessageInsightsWithContext(aws.Context, *sesv2.GetMessageInsightsInput, ...request.Option) (*sesv2.GetMessageInsightsOutput, error)
+	GetMessageInsightsRequest(*sesv2.GetMessageInsightsInput) (*request.Request, *sesv2.GetMessageInsightsOutput)
 
 	GetSuppressedDestination(*sesv2.GetSuppressedDestinationInput) (*sesv2.GetSuppressedDestinationOutput, error)
 	GetSuppressedDestinationWithContext(aws.Context, *sesv2.GetSuppressedDestinationInput, ...request.Option) (*sesv2.GetSuppressedDestinationOutput, error)
@@ -289,6 +305,13 @@ type SESV2API interface {
 
 	ListEmailTemplatesPages(*sesv2.ListEmailTemplatesInput, func(*sesv2.ListEmailTemplatesOutput, bool) bool) error
 	ListEmailTemplatesPagesWithContext(aws.Context, *sesv2.ListEmailTemplatesInput, func(*sesv2.ListEmailTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListExportJobs(*sesv2.ListExportJobsInput) (*sesv2.ListExportJobsOutput, error)
+	ListExportJobsWithContext(aws.Context, *sesv2.ListExportJobsInput, ...request.Option) (*sesv2.ListExportJobsOutput, error)
+	ListExportJobsRequest(*sesv2.ListExportJobsInput) (*request.Request, *sesv2.ListExportJobsOutput)
+
+	ListExportJobsPages(*sesv2.ListExportJobsInput, func(*sesv2.ListExportJobsOutput, bool) bool) error
+	ListExportJobsPagesWithContext(aws.Context, *sesv2.ListExportJobsInput, func(*sesv2.ListExportJobsOutput, bool) bool, ...request.Option) error
 
 	ListImportJobs(*sesv2.ListImportJobsInput) (*sesv2.ListImportJobsOutput, error)
 	ListImportJobsWithContext(aws.Context, *sesv2.ListImportJobsInput, ...request.Option) (*sesv2.ListImportJobsOutput, error)

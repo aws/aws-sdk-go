@@ -5665,6 +5665,9 @@
         "resourceDigests": {
           "shape": "RunResourceDigests"
         },
+        "retentionMode": {
+          "shape": "RunRetentionMode"
+        },
         "roleArn": {
           "shape": "RunRoleArn"
         },
@@ -8262,6 +8265,15 @@
         "shape": "RunResourceDigest"
       }
     },
+    "RunRetentionMode": {
+      "enum": [
+        "RETAIN",
+        "REMOVE"
+      ],
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
     "RunRoleArn": {
       "max": 128,
       "min": 1,
@@ -8900,6 +8912,9 @@
         "requestId": {
           "idempotencyToken": true,
           "shape": "RunRequestId"
+        },
+        "retentionMode": {
+          "shape": "RunRetentionMode"
         },
         "roleArn": {
           "shape": "RunRoleArn"
