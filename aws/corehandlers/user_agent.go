@@ -39,6 +39,9 @@ var AddHostExecEnvUserAgentHander = request.NamedHandler{
 var AddAwsInternal = request.NamedHandler{
 	Name: "core.AddAwsInternal",
 	Fn: func(r *request.Request) {
+		if len(isAwsInternal) == 0 {
+			return
+		}
 		request.AddToUserAgent(r, isAwsInternal)
 	},
 }
