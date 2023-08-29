@@ -1,3 +1,12 @@
+Release v1.44.334 (2023-08-29)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API, documentation, and examples
+* `service/fsx`: Updates service documentation
+* `service/omics`: Updates service API and documentation
+* `service/sesv2`: Updates service API, documentation, paginators, and examples
+
 Release v1.44.333 (2023-08-28)
 ===
 

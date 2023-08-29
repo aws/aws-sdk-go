@@ -543,7 +543,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ChangePassword":{
       "name":"ChangePassword",
@@ -590,7 +591,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ConfirmForgotPassword":{
       "name":"ConfirmForgotPassword",
@@ -1039,7 +1041,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ForgotPassword":{
       "name":"ForgotPassword",
@@ -1103,7 +1106,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "GetGroup":{
       "name":"GetGroup",
@@ -1266,7 +1270,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "InitiateAuth":{
       "name":"InitiateAuth",
@@ -1314,7 +1319,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ListGroups":{
       "name":"ListGroups",
@@ -1535,7 +1541,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"UnsupportedTokenTypeException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "SetLogDeliveryConfiguration":{
       "name":"SetLogDeliveryConfiguration",
@@ -1605,7 +1612,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "SetUserPoolMfaConfig":{
       "name":"SetUserPoolMfaConfig",
@@ -1754,7 +1762,8 @@
         {"shape":"UserNotFoundException"},
         {"shape":"UserPoolAddOnNotEnabledException"},
         {"shape":"InternalErrorException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "UpdateDeviceStatus":{
       "name":"UpdateDeviceStatus",
@@ -1775,7 +1784,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "UpdateGroup":{
       "name":"UpdateGroup",
@@ -1938,7 +1948,8 @@
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"CodeMismatchException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "VerifyUserAttribute":{
       "name":"VerifyUserAttribute",
@@ -2759,7 +2770,8 @@
     "ChallengeResponsesType":{
       "type":"map",
       "key":{"shape":"StringType"},
-      "value":{"shape":"StringType"}
+      "value":{"shape":"StringType"},
+      "sensitive":true
     },
     "ChangePasswordRequest":{
       "type":"structure",
@@ -2998,7 +3010,7 @@
       ],
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
-        "ProviderName":{"shape":"ProviderNameTypeV1"},
+        "ProviderName":{"shape":"ProviderNameTypeV2"},
         "ProviderType":{"shape":"IdentityProviderTypeType"},
         "ProviderDetails":{"shape":"ProviderDetailsType"},
         "AttributeMapping":{"shape":"AttributeMappingType"},
@@ -4401,6 +4413,7 @@
     },
     "PaginationKey":{
       "type":"string",
+      "max":131072,
       "min":1,
       "pattern":"[\\S]+"
     },
@@ -4489,13 +4502,13 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+"
+      "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\p{Z}]+"
     },
-    "ProviderNameTypeV1":{
+    "ProviderNameTypeV2":{
       "type":"string",
       "max":32,
-      "min":3,
-      "pattern":"[^_][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_]+"
+      "min":1,
+      "pattern":"[^_\\p{Z}][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_\\p{Z}]+"
     },
     "ProviderUserIdentifierType":{
       "type":"structure",
@@ -4807,7 +4820,8 @@
     "SessionType":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "sensitive":true
     },
     "SetLogDeliveryConfigurationRequest":{
       "type":"structure",
@@ -4978,7 +4992,8 @@
       "type":"string",
       "max":6,
       "min":6,
-      "pattern":"[0-9]+"
+      "pattern":"[0-9]+",
+      "sensitive":true
     },
     "SoftwareTokenMfaConfigType":{
       "type":"structure",
@@ -5403,7 +5418,8 @@
       "members":{
         "IpAddress":{"shape":"StringType"},
         "EncodedData":{"shape":"StringType"}
-      }
+      },
+      "sensitive":true
     },
     "UserFilterType":{
       "type":"string",
