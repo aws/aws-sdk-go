@@ -23,10 +23,12 @@ func TestHTTPCredProvider(t *testing.T) {
 			Addrs []string
 			Err   error
 		}{
-			"localhost":       {Addrs: []string{"::1", "127.0.0.1"}},
-			"actuallylocal":   {Addrs: []string{"127.0.0.2"}},
-			"notlocal":        {Addrs: []string{"::1", "127.0.0.1", "192.168.1.10"}},
-			"www.example.com": {Addrs: []string{"10.10.10.10"}},
+			"localhost":         {Addrs: []string{"::1", "127.0.0.1"}},
+			"actuallylocal":     {Addrs: []string{"127.0.0.2"}},
+			"notlocal":          {Addrs: []string{"::1", "127.0.0.1", "192.168.1.10"}},
+			"www.example.com":   {Addrs: []string{"10.10.10.10"}},
+			"www.eks.legit.com": {Addrs: []string{"fd00:ec2::23"}},
+			"www.eks.scary.com": {Addrs: []string{"fd00:ec3::23"}},
 		}
 
 		h, ok := m[host]
@@ -51,6 +53,11 @@ func TestHTTPCredProvider(t *testing.T) {
 		{Host: "www.example.com", Fail: true},
 		{Host: "169.254.170.2", Fail: false},
 		{Host: "169.254.170.23", Fail: false},
+		{Host: "[fd00:ec2::23]", Fail: false},
+		{Host: "[fd00:ec2:0::23]", Fail: false},
+		{Host: "[fd00:ec2:0:1::23]", Fail: true},
+		{Host: "www.eks.legit.com", Fail: false},
+		{Host: "www.eks.scary.com", Fail: true},
 		{Host: "localhost", Fail: false, AuthToken: "Basic abc123"},
 	}
 
