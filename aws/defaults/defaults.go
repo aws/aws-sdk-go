@@ -208,7 +208,7 @@ func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) crede
 			p.ExpiryWindow = 5 * time.Minute
 			p.AuthorizationToken = os.Getenv(httpProviderAuthorizationEnvVar)
 			if authFilePath := os.Getenv(httpProviderAuthFileEnvVar); authFilePath != "" {
-				p.AuthorizationTokenProvider = endpointcreds.TokenProvider(func() (string, error) {
+				p.AuthorizationTokenProvider = endpointcreds.TokenProviderFunc(func() (string, error) {
 					if contents, err := ioutil.ReadFile(authFilePath); err != nil {
 						return "", fmt.Errorf("failed to read authorization token from %v: %v", authFilePath, err)
 					} else {

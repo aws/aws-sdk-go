@@ -96,12 +96,12 @@ type AuthTokenProvider interface {
 	GetToken() (string, error)
 }
 
-// TokenProvider is a func type implementing AuthTokenProvider interface
+// TokenProviderFunc is a func type implementing AuthTokenProvider interface
 // and enables customizing token provider behavior
-type TokenProvider func() (string, error)
+type TokenProviderFunc func() (string, error)
 
-// GetToken func retrieves auth token according to TokenProvider implementation
-func (p TokenProvider) GetToken() (string, error) {
+// GetToken func retrieves auth token according to TokenProviderFunc implementation
+func (p TokenProviderFunc) GetToken() (string, error) {
 	return p()
 }
 
@@ -203,12 +203,12 @@ func (p *Provider) getCredentials(ctx aws.Context) (*getCredentialsOutput, error
 	if p.AuthorizationTokenProvider != nil {
 		authToken, err = p.AuthorizationTokenProvider.GetToken()
 		if err != nil {
-			return &getCredentialsOutput{}, err
+			return nil, fmt.Errorf("get authorization token: %v", err)
 		}
 	}
 
 	if strings.ContainsAny(authToken, "\r\n") {
-		return &getCredentialsOutput{}, fmt.Errorf("authorization token contains invalid newline sequence")
+		return nil, fmt.Errorf("authorization token contains invalid newline sequence")
 	}
 	if len(authToken) != 0 {
 		req.HTTPRequest.Header.Set("Authorization", authToken)

@@ -177,7 +177,7 @@ func TestAuthorizationToken(t *testing.T) {
 			ExpectPath: "/path/to/endpoint",
 			ServerPath: "/path/to/endpoint?something=else",
 			AuthToken:  "Basic abc123",
-			AuthTokenProvider: endpointcreds.TokenProvider(func() (string, error) {
+			AuthTokenProvider: endpointcreds.TokenProviderFunc(func() (string, error) {
 				return "Hello %20world", nil
 			}),
 			ExpectAuthToken: "Hello %20world",
@@ -186,7 +186,7 @@ func TestAuthorizationToken(t *testing.T) {
 			ExpectPath: "/path/to/endpoint",
 			ServerPath: "/path/to/endpoint?something=else",
 			AuthToken:  "Basic abc123",
-			AuthTokenProvider: endpointcreds.TokenProvider(func() (string, error) {
+			AuthTokenProvider: endpointcreds.TokenProviderFunc(func() (string, error) {
 				return "", fmt.Errorf("test error")
 			}),
 			ExpectAuthToken: "Hello %20world",
