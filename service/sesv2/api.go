@@ -105,6 +105,92 @@ func (c *SESV2) BatchGetMetricDataWithContext(ctx aws.Context, input *BatchGetMe
 	return out, req.Send()
 }
 
+const opCancelExportJob = "CancelExportJob"
+
+// CancelExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CancelExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelExportJob for more information on using the CancelExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelExportJobRequest method.
+//	req, resp := client.CancelExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CancelExportJob
+func (c *SESV2) CancelExportJobRequest(input *CancelExportJobInput) (req *request.Request, output *CancelExportJobOutput) {
+	op := &request.Operation{
+		Name:       opCancelExportJob,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/export-jobs/{JobId}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelExportJobInput{}
+	}
+
+	output = &CancelExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelExportJob API operation for Amazon Simple Email Service.
+//
+// Cancels an export job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CancelExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CancelExportJob
+func (c *SESV2) CancelExportJob(input *CancelExportJobInput) (*CancelExportJobOutput, error) {
+	req, out := c.CancelExportJobRequest(input)
+	return out, req.Send()
+}
+
+// CancelExportJobWithContext is the same as CancelExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) CancelExportJobWithContext(ctx aws.Context, input *CancelExportJobInput, opts ...request.Option) (*CancelExportJobOutput, error) {
+	req, out := c.CancelExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConfigurationSet = "CreateConfigurationSet"
 
 // CreateConfigurationSetRequest generates a "aws/request.Request" representing the
@@ -1103,6 +1189,96 @@ func (c *SESV2) CreateEmailTemplate(input *CreateEmailTemplateInput) (*CreateEma
 // for more information on using Contexts.
 func (c *SESV2) CreateEmailTemplateWithContext(ctx aws.Context, input *CreateEmailTemplateInput, opts ...request.Option) (*CreateEmailTemplateOutput, error) {
 	req, out := c.CreateEmailTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateExportJob = "CreateExportJob"
+
+// CreateExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExportJob for more information on using the CreateExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateExportJobRequest method.
+//	req, resp := client.CreateExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateExportJob
+func (c *SESV2) CreateExportJobRequest(input *CreateExportJobInput) (req *request.Request, output *CreateExportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/export-jobs",
+	}
+
+	if input == nil {
+		input = &CreateExportJobInput{}
+	}
+
+	output = &CreateExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExportJob API operation for Amazon Simple Email Service.
+//
+// Creates an export job for a data source and destination.
+//
+// You can execute this operation no more than once per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - LimitExceededException
+//     There are too many instances of the specified resource type.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateExportJob
+func (c *SESV2) CreateExportJob(input *CreateExportJobInput) (*CreateExportJobOutput, error) {
+	req, out := c.CreateExportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateExportJobWithContext is the same as CreateExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) CreateExportJobWithContext(ctx aws.Context, input *CreateExportJobInput, opts ...request.Option) (*CreateExportJobOutput, error) {
+	req, out := c.CreateExportJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3654,6 +3830,91 @@ func (c *SESV2) GetEmailTemplateWithContext(ctx aws.Context, input *GetEmailTemp
 	return out, req.Send()
 }
 
+const opGetExportJob = "GetExportJob"
+
+// GetExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExportJob for more information on using the GetExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetExportJobRequest method.
+//	req, resp := client.GetExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetExportJob
+func (c *SESV2) GetExportJobRequest(input *GetExportJobInput) (req *request.Request, output *GetExportJobOutput) {
+	op := &request.Operation{
+		Name:       opGetExportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/export-jobs/{JobId}",
+	}
+
+	if input == nil {
+		input = &GetExportJobInput{}
+	}
+
+	output = &GetExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExportJob API operation for Amazon Simple Email Service.
+//
+// Provides information about an export job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetExportJob
+func (c *SESV2) GetExportJob(input *GetExportJobInput) (*GetExportJobOutput, error) {
+	req, out := c.GetExportJobRequest(input)
+	return out, req.Send()
+}
+
+// GetExportJobWithContext is the same as GetExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetExportJobWithContext(ctx aws.Context, input *GetExportJobInput, opts ...request.Option) (*GetExportJobOutput, error) {
+	req, out := c.GetExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetImportJob = "GetImportJob"
 
 // GetImportJobRequest generates a "aws/request.Request" representing the
@@ -3734,6 +3995,95 @@ func (c *SESV2) GetImportJob(input *GetImportJobInput) (*GetImportJobOutput, err
 // for more information on using Contexts.
 func (c *SESV2) GetImportJobWithContext(ctx aws.Context, input *GetImportJobInput, opts ...request.Option) (*GetImportJobOutput, error) {
 	req, out := c.GetImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMessageInsights = "GetMessageInsights"
+
+// GetMessageInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMessageInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMessageInsights for more information on using the GetMessageInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMessageInsightsRequest method.
+//	req, resp := client.GetMessageInsightsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetMessageInsights
+func (c *SESV2) GetMessageInsightsRequest(input *GetMessageInsightsInput) (req *request.Request, output *GetMessageInsightsOutput) {
+	op := &request.Operation{
+		Name:       opGetMessageInsights,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/insights/{MessageId}/",
+	}
+
+	if input == nil {
+		input = &GetMessageInsightsInput{}
+	}
+
+	output = &GetMessageInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMessageInsights API operation for Amazon Simple Email Service.
+//
+// Provides information about a specific message, including the from address,
+// the subject, the recipient address, email tags, as well as events associated
+// with the message.
+//
+// You can execute this operation no more than once per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetMessageInsights for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetMessageInsights
+func (c *SESV2) GetMessageInsights(input *GetMessageInsightsInput) (*GetMessageInsightsOutput, error) {
+	req, out := c.GetMessageInsightsRequest(input)
+	return out, req.Send()
+}
+
+// GetMessageInsightsWithContext is the same as GetMessageInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMessageInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetMessageInsightsWithContext(ctx aws.Context, input *GetMessageInsightsInput, opts ...request.Option) (*GetMessageInsightsOutput, error) {
+	req, out := c.GetMessageInsightsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5105,6 +5455,145 @@ func (c *SESV2) ListEmailTemplatesPagesWithContext(ctx aws.Context, input *ListE
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEmailTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExportJobs = "ListExportJobs"
+
+// ListExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExportJobs for more information on using the ListExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExportJobsRequest method.
+//	req, resp := client.ListExportJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListExportJobs
+func (c *SESV2) ListExportJobsRequest(input *ListExportJobsInput) (req *request.Request, output *ListExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListExportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/list-export-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExportJobsInput{}
+	}
+
+	output = &ListExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExportJobs API operation for Amazon Simple Email Service.
+//
+// Lists all of the export jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListExportJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListExportJobs
+func (c *SESV2) ListExportJobs(input *ListExportJobsInput) (*ListExportJobsOutput, error) {
+	req, out := c.ListExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListExportJobsWithContext is the same as ListExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListExportJobsWithContext(ctx aws.Context, input *ListExportJobsInput, opts ...request.Option) (*ListExportJobsOutput, error) {
+	req, out := c.ListExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExportJobsPages iterates over the pages of a ListExportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExportJobs operation.
+//	pageNum := 0
+//	err := client.ListExportJobsPages(params,
+//	    func(page *sesv2.ListExportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SESV2) ListExportJobsPages(input *ListExportJobsInput, fn func(*ListExportJobsOutput, bool) bool) error {
+	return c.ListExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExportJobsPagesWithContext same as ListExportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListExportJobsPagesWithContext(ctx aws.Context, input *ListExportJobsInput, fn func(*ListExportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExportJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -9302,6 +9791,59 @@ func (s *Body) SetText(v *Content) *Body {
 	return s
 }
 
+// Information about a Bounce event.
+type Bounce struct {
+	_ struct{} `type:"structure"`
+
+	// The subtype of the bounce, as determined by SES.
+	BounceSubType *string `type:"string"`
+
+	// The type of the bounce, as determined by SES. Can be one of UNDETERMINED,
+	// TRANSIENT, or PERMANENT
+	BounceType *string `type:"string" enum:"BounceType"`
+
+	// The status code issued by the reporting Message Transfer Authority (MTA).
+	// This field only appears if a delivery status notification (DSN) was attached
+	// to the bounce and the Diagnostic-Code was provided in the DSN.
+	DiagnosticCode *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Bounce) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Bounce) GoString() string {
+	return s.String()
+}
+
+// SetBounceSubType sets the BounceSubType field's value.
+func (s *Bounce) SetBounceSubType(v string) *Bounce {
+	s.BounceSubType = &v
+	return s
+}
+
+// SetBounceType sets the BounceType field's value.
+func (s *Bounce) SetBounceType(v string) *Bounce {
+	s.BounceType = &v
+	return s
+}
+
+// SetDiagnosticCode sets the DiagnosticCode field's value.
+func (s *Bounce) SetDiagnosticCode(v string) *Bounce {
+	s.DiagnosticCode = &v
+	return s
+}
+
 // An object that contains the body of the message. You can specify a template
 // message.
 type BulkEmailContent struct {
@@ -9531,6 +10073,80 @@ func (s *BulkEmailEntryResult) SetStatus(v string) *BulkEmailEntryResult {
 	return s
 }
 
+// Represents a request to cancel an export job using the export job ID.
+type CancelExportJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The export job ID.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"JobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelExportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CancelExportJobInput) SetJobId(v string) *CancelExportJobInput {
+	s.JobId = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type CancelExportJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelExportJobOutput) GoString() string {
+	return s.String()
+}
+
 // An object that defines an Amazon CloudWatch destination for email events.
 // You can use Amazon CloudWatch to monitor and gain insights on your email
 // sending metrics.
@@ -9681,6 +10297,50 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionName(v string) *CloudWatc
 // SetDimensionValueSource sets the DimensionValueSource field's value.
 func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *CloudWatchDimensionConfiguration {
 	s.DimensionValueSource = &v
+	return s
+}
+
+// Information about a Complaint event.
+type Complaint struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the Feedback-Type field from the feedback report received from
+	// the ISP.
+	ComplaintFeedbackType *string `type:"string"`
+
+	// Can either be null or OnAccountSuppressionList. If the value is OnAccountSuppressionList,
+	// SES accepted the message, but didn't attempt to send it because it was on
+	// the account-level suppression list.
+	ComplaintSubType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Complaint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Complaint) GoString() string {
+	return s.String()
+}
+
+// SetComplaintFeedbackType sets the ComplaintFeedbackType field's value.
+func (s *Complaint) SetComplaintFeedbackType(v string) *Complaint {
+	s.ComplaintFeedbackType = &v
+	return s
+}
+
+// SetComplaintSubType sets the ComplaintSubType field's value.
+func (s *Complaint) SetComplaintSubType(v string) *Complaint {
+	s.ComplaintSubType = &v
 	return s
 }
 
@@ -11319,6 +11979,111 @@ func (s CreateEmailTemplateOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateEmailTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// Represents a request to create an export job from a data source to a data
+// destination.
+type CreateExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The data source for the export job.
+	//
+	// ExportDataSource is a required field
+	ExportDataSource *ExportDataSource `type:"structure" required:"true"`
+
+	// The destination for the export job.
+	//
+	// ExportDestination is a required field
+	ExportDestination *ExportDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExportJobInput"}
+	if s.ExportDataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportDataSource"))
+	}
+	if s.ExportDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportDestination"))
+	}
+	if s.ExportDataSource != nil {
+		if err := s.ExportDataSource.Validate(); err != nil {
+			invalidParams.AddNested("ExportDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExportDestination != nil {
+		if err := s.ExportDestination.Validate(); err != nil {
+			invalidParams.AddNested("ExportDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportDataSource sets the ExportDataSource field's value.
+func (s *CreateExportJobInput) SetExportDataSource(v *ExportDataSource) *CreateExportJobInput {
+	s.ExportDataSource = v
+	return s
+}
+
+// SetExportDestination sets the ExportDestination field's value.
+func (s *CreateExportJobInput) SetExportDestination(v *ExportDestination) *CreateExportJobInput {
+	s.ExportDestination = v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type CreateExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string that represents the export job ID.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateExportJobOutput) SetJobId(v string) *CreateExportJobOutput {
+	s.JobId = &v
+	return s
 }
 
 // Represents a request to create an import job from a data source for a data
@@ -13347,6 +14112,61 @@ func (s *EmailContent) SetTemplate(v *Template) *EmailContent {
 	return s
 }
 
+// An email's insights contain metadata and delivery information about a specific
+// email.
+type EmailInsights struct {
+	_ struct{} `type:"structure"`
+
+	// The recipient of the email.
+	//
+	// Destination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EmailInsights's
+	// String and GoString methods.
+	Destination *string `min:"1" type:"string" sensitive:"true"`
+
+	// A list of events associated with the sent email.
+	Events []*InsightsEvent `type:"list"`
+
+	// The recipient's ISP (e.g., Gmail, Yahoo, etc.).
+	Isp *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailInsights) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailInsights) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *EmailInsights) SetDestination(v string) *EmailInsights {
+	s.Destination = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *EmailInsights) SetEvents(v []*InsightsEvent) *EmailInsights {
+	s.Events = v
+	return s
+}
+
+// SetIsp sets the Isp field's value.
+func (s *EmailInsights) SetIsp(v string) *EmailInsights {
+	s.Isp = &v
+	return s
+}
+
 // The content of the email, composed of a subject line, an HTML part, and a
 // text-only part.
 type EmailTemplateContent struct {
@@ -13706,14 +14526,378 @@ func (s *EventDestinationDefinition) SetSnsDestination(v *SnsDestination) *Event
 	return s
 }
 
-// An object that contains the failure details about an import job.
+// Contains a Bounce object if the event type is BOUNCE. Contains a Complaint
+// object if the event type is COMPLAINT.
+type EventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a Bounce event.
+	Bounce *Bounce `type:"structure"`
+
+	// Information about a Complaint event.
+	Complaint *Complaint `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDetails) GoString() string {
+	return s.String()
+}
+
+// SetBounce sets the Bounce field's value.
+func (s *EventDetails) SetBounce(v *Bounce) *EventDetails {
+	s.Bounce = v
+	return s
+}
+
+// SetComplaint sets the Complaint field's value.
+func (s *EventDetails) SetComplaint(v *Complaint) *EventDetails {
+	s.Complaint = v
+	return s
+}
+
+// An object that contains details about the data source of the export job.
+// It can only contain one of MetricsDataSource or MessageInsightsDataSource
+// object.
+type ExportDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains filters applied when performing the Message Insights
+	// export.
+	MessageInsightsDataSource *MessageInsightsDataSource `type:"structure"`
+
+	// An object that contains details about the data source for the metrics export.
+	MetricsDataSource *MetricsDataSource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportDataSource"}
+	if s.MessageInsightsDataSource != nil {
+		if err := s.MessageInsightsDataSource.Validate(); err != nil {
+			invalidParams.AddNested("MessageInsightsDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MetricsDataSource != nil {
+		if err := s.MetricsDataSource.Validate(); err != nil {
+			invalidParams.AddNested("MetricsDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMessageInsightsDataSource sets the MessageInsightsDataSource field's value.
+func (s *ExportDataSource) SetMessageInsightsDataSource(v *MessageInsightsDataSource) *ExportDataSource {
+	s.MessageInsightsDataSource = v
+	return s
+}
+
+// SetMetricsDataSource sets the MetricsDataSource field's value.
+func (s *ExportDataSource) SetMetricsDataSource(v *MetricsDataSource) *ExportDataSource {
+	s.MetricsDataSource = v
+	return s
+}
+
+// An object that contains details about the destination of the export job.
+type ExportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The data format of the final export job file, can be one of the following:
+	//
+	//    * CSV - A comma-separated values file.
+	//
+	//    * JSON - A Json file.
+	//
+	// DataFormat is a required field
+	DataFormat *string `type:"string" required:"true" enum:"DataFormat"`
+
+	// An Amazon S3 pre-signed URL that points to the generated export file.
+	S3Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportDestination"}
+	if s.DataFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataFormat"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *ExportDestination) SetDataFormat(v string) *ExportDestination {
+	s.DataFormat = &v
+	return s
+}
+
+// SetS3Url sets the S3Url field's value.
+func (s *ExportDestination) SetS3Url(v string) *ExportDestination {
+	s.S3Url = &v
+	return s
+}
+
+// A summary of the export job.
+type ExportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the export job was completed.
+	CompletedTimestamp *time.Time `type:"timestamp"`
+
+	// The timestamp of when the export job was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The source type of the export job.
+	ExportSourceType *string `type:"string" enum:"ExportSourceType"`
+
+	// The export job ID.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the export job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCompletedTimestamp sets the CompletedTimestamp field's value.
+func (s *ExportJobSummary) SetCompletedTimestamp(v time.Time) *ExportJobSummary {
+	s.CompletedTimestamp = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ExportJobSummary) SetCreatedTimestamp(v time.Time) *ExportJobSummary {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetExportSourceType sets the ExportSourceType field's value.
+func (s *ExportJobSummary) SetExportSourceType(v string) *ExportJobSummary {
+	s.ExportSourceType = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportJobSummary) SetJobId(v string) *ExportJobSummary {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ExportJobSummary) SetJobStatus(v string) *ExportJobSummary {
+	s.JobStatus = &v
+	return s
+}
+
+// An object that contains a mapping between a Metric and MetricAggregation.
+type ExportMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation to apply to a metric, can be one of the following:
+	//
+	//    * VOLUME - The volume of events for this metric.
+	//
+	//    * RATE - The rate for this metric relative to the SEND metric volume.
+	Aggregation *string `type:"string" enum:"MetricAggregation"`
+
+	// The metric to export, can be one of the following:
+	//
+	//    * SEND - Emails sent eligible for tracking in the VDM dashboard. This
+	//    excludes emails sent to the mailbox simulator and emails addressed to
+	//    more than one recipient.
+	//
+	//    * COMPLAINT - Complaints received for your account. This excludes complaints
+	//    from the mailbox simulator, those originating from your account-level
+	//    suppression list (if enabled), and those for emails addressed to more
+	//    than one recipient
+	//
+	//    * PERMANENT_BOUNCE - Permanent bounces - i.e., feedback received for emails
+	//    sent to non-existent mailboxes. Excludes bounces from the mailbox simulator,
+	//    those originating from your account-level suppression list (if enabled),
+	//    and those for emails addressed to more than one recipient.
+	//
+	//    * TRANSIENT_BOUNCE - Transient bounces - i.e., feedback received for delivery
+	//    failures excluding issues with non-existent mailboxes. Excludes bounces
+	//    from the mailbox simulator, and those for emails addressed to more than
+	//    one recipient.
+	//
+	//    * OPEN - Unique open events for emails including open trackers. Excludes
+	//    opens for emails addressed to more than one recipient.
+	//
+	//    * CLICK - Unique click events for emails including wrapped links. Excludes
+	//    clicks for emails addressed to more than one recipient.
+	//
+	//    * DELIVERY - Successful deliveries for email sending attempts. Excludes
+	//    deliveries to the mailbox simulator and for emails addressed to more than
+	//    one recipient.
+	//
+	//    * DELIVERY_OPEN - Successful deliveries for email sending attempts. Excludes
+	//    deliveries to the mailbox simulator, for emails addressed to more than
+	//    one recipient, and emails without open trackers.
+	//
+	//    * DELIVERY_CLICK - Successful deliveries for email sending attempts. Excludes
+	//    deliveries to the mailbox simulator, for emails addressed to more than
+	//    one recipient, and emails without click trackers.
+	//
+	//    * DELIVERY_COMPLAINT - Successful deliveries for email sending attempts.
+	//    Excludes deliveries to the mailbox simulator, for emails addressed to
+	//    more than one recipient, and emails addressed to recipients hosted by
+	//    ISPs with which Amazon SES does not have a feedback loop agreement.
+	Name *string `type:"string" enum:"Metric"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportMetric) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *ExportMetric) SetAggregation(v string) *ExportMetric {
+	s.Aggregation = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ExportMetric) SetName(v string) *ExportMetric {
+	s.Name = &v
+	return s
+}
+
+// Statistics about the execution of an export job.
+type ExportStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The number of records that were exported to the final export file.
+	//
+	// This value might not be available for all export source types
+	ExportedRecordsCount *int64 `type:"integer"`
+
+	// The number of records that were processed to generate the final export file.
+	ProcessedRecordsCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportStatistics) GoString() string {
+	return s.String()
+}
+
+// SetExportedRecordsCount sets the ExportedRecordsCount field's value.
+func (s *ExportStatistics) SetExportedRecordsCount(v int64) *ExportStatistics {
+	s.ExportedRecordsCount = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *ExportStatistics) SetProcessedRecordsCount(v int64) *ExportStatistics {
+	s.ProcessedRecordsCount = &v
+	return s
+}
+
+// An object that contains the failure details about a job.
 type FailureInfo struct {
 	_ struct{} `type:"structure"`
 
-	// A message about why the import job failed.
+	// A message about why the job failed.
 	ErrorMessage *string `type:"string"`
 
-	// An Amazon S3 presigned URL that contains all the failed records and related
+	// An Amazon S3 pre-signed URL that contains all the failed records and related
 	// information.
 	FailedRecordsS3Url *string `type:"string"`
 }
@@ -15721,6 +16905,162 @@ func (s *GetEmailTemplateOutput) SetTemplateName(v string) *GetEmailTemplateOutp
 	return s
 }
 
+// Represents a request to retrieve information about an export job using the
+// export job ID.
+type GetExportJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The export job ID.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"JobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetExportJobInput) SetJobId(v string) *GetExportJobInput {
+	s.JobId = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type GetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the export job was completed.
+	CompletedTimestamp *time.Time `type:"timestamp"`
+
+	// The timestamp of when the export job was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The data source of the export job.
+	ExportDataSource *ExportDataSource `type:"structure"`
+
+	// The destination of the export job.
+	ExportDestination *ExportDestination `type:"structure"`
+
+	// The type of source of the export job.
+	ExportSourceType *string `type:"string" enum:"ExportSourceType"`
+
+	// The failure details about an export job.
+	FailureInfo *FailureInfo `type:"structure"`
+
+	// The export job ID.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the export job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The statistics about the export job.
+	Statistics *ExportStatistics `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletedTimestamp sets the CompletedTimestamp field's value.
+func (s *GetExportJobOutput) SetCompletedTimestamp(v time.Time) *GetExportJobOutput {
+	s.CompletedTimestamp = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *GetExportJobOutput) SetCreatedTimestamp(v time.Time) *GetExportJobOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetExportDataSource sets the ExportDataSource field's value.
+func (s *GetExportJobOutput) SetExportDataSource(v *ExportDataSource) *GetExportJobOutput {
+	s.ExportDataSource = v
+	return s
+}
+
+// SetExportDestination sets the ExportDestination field's value.
+func (s *GetExportJobOutput) SetExportDestination(v *ExportDestination) *GetExportJobOutput {
+	s.ExportDestination = v
+	return s
+}
+
+// SetExportSourceType sets the ExportSourceType field's value.
+func (s *GetExportJobOutput) SetExportSourceType(v string) *GetExportJobOutput {
+	s.ExportSourceType = &v
+	return s
+}
+
+// SetFailureInfo sets the FailureInfo field's value.
+func (s *GetExportJobOutput) SetFailureInfo(v *FailureInfo) *GetExportJobOutput {
+	s.FailureInfo = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetExportJobOutput) SetJobId(v string) *GetExportJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetExportJobOutput) SetJobStatus(v string) *GetExportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetExportJobOutput) SetStatistics(v *ExportStatistics) *GetExportJobOutput {
+	s.Statistics = v
+	return s
+}
+
 // Represents a request for information about an import job using the import
 // job ID.
 type GetImportJobInput struct {
@@ -15875,6 +17215,134 @@ func (s *GetImportJobOutput) SetJobStatus(v string) *GetImportJobOutput {
 // SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
 func (s *GetImportJobOutput) SetProcessedRecordsCount(v int64) *GetImportJobOutput {
 	s.ProcessedRecordsCount = &v
+	return s
+}
+
+// A request to return information about a message.
+type GetMessageInsightsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A MessageId is a unique identifier for a message, and is returned when sending
+	// emails through Amazon SES.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"MessageId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessageInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessageInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMessageInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMessageInsightsInput"}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *GetMessageInsightsInput) SetMessageId(v string) *GetMessageInsightsInput {
+	s.MessageId = &v
+	return s
+}
+
+// Information about a message.
+type GetMessageInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags, in the form of name/value pairs, that were applied to the
+	// email you sent, along with Amazon SES Auto-Tags (https://docs.aws.amazon.com/ses/latest/dg/monitor-using-event-publishing.html).
+	EmailTags []*MessageTag `type:"list"`
+
+	// The from address used to send the message.
+	//
+	// FromEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetMessageInsightsOutput's
+	// String and GoString methods.
+	FromEmailAddress *string `min:"1" type:"string" sensitive:"true"`
+
+	// A set of insights associated with the message.
+	Insights []*EmailInsights `type:"list"`
+
+	// A unique identifier for the message.
+	MessageId *string `type:"string"`
+
+	// The subject line of the message.
+	//
+	// Subject is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetMessageInsightsOutput's
+	// String and GoString methods.
+	Subject *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessageInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessageInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEmailTags sets the EmailTags field's value.
+func (s *GetMessageInsightsOutput) SetEmailTags(v []*MessageTag) *GetMessageInsightsOutput {
+	s.EmailTags = v
+	return s
+}
+
+// SetFromEmailAddress sets the FromEmailAddress field's value.
+func (s *GetMessageInsightsOutput) SetFromEmailAddress(v string) *GetMessageInsightsOutput {
+	s.FromEmailAddress = &v
+	return s
+}
+
+// SetInsights sets the Insights field's value.
+func (s *GetMessageInsightsOutput) SetInsights(v []*EmailInsights) *GetMessageInsightsOutput {
+	s.Insights = v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *GetMessageInsightsOutput) SetMessageId(v string) *GetMessageInsightsOutput {
+	s.MessageId = &v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *GetMessageInsightsOutput) SetSubject(v string) *GetMessageInsightsOutput {
+	s.Subject = &v
 	return s
 }
 
@@ -16258,10 +17726,18 @@ type ImportJobSummary struct {
 	// job is going to target.
 	ImportDestination *ImportDestination `type:"structure"`
 
-	// A string that represents the import job ID.
+	// A string that represents a job ID.
 	JobId *string `min:"1" type:"string"`
 
-	// The status of the import job.
+	// The status of a job.
+	//
+	//    * CREATED – Job has just been created.
+	//
+	//    * PROCESSING – Job is processing.
+	//
+	//    * ERROR – An error occurred during processing.
+	//
+	//    * COMPLETED – Job has completed processing successfully.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
 	// The current number of records processed.
@@ -16364,6 +17840,82 @@ func (s *InboxPlacementTrackingOption) SetGlobal(v bool) *InboxPlacementTracking
 // SetTrackedIsps sets the TrackedIsps field's value.
 func (s *InboxPlacementTrackingOption) SetTrackedIsps(v []*string) *InboxPlacementTrackingOption {
 	s.TrackedIsps = v
+	return s
+}
+
+// An object containing details about a specific event.
+type InsightsEvent struct {
+	_ struct{} `type:"structure"`
+
+	// Details about bounce or complaint events.
+	Details *EventDetails `type:"structure"`
+
+	// The timestamp of the event.
+	Timestamp *time.Time `type:"timestamp"`
+
+	// The type of event:
+	//
+	//    * SEND - The send request was successful and SES will attempt to deliver
+	//    the message to the recipient’s mail server. (If account-level or global
+	//    suppression is being used, SES will still count it as a send, but delivery
+	//    is suppressed.)
+	//
+	//    * DELIVERY - SES successfully delivered the email to the recipient's mail
+	//    server. Excludes deliveries to the mailbox simulator, and those from emails
+	//    addressed to more than one recipient.
+	//
+	//    * BOUNCE - Feedback received for delivery failures. Additional details
+	//    about the bounce are provided in the Details object. Excludes bounces
+	//    from the mailbox simulator, and those from emails addressed to more than
+	//    one recipient.
+	//
+	//    * COMPLAINT - Complaint received for the email. Additional details about
+	//    the complaint are provided in the Details object. This excludes complaints
+	//    from the mailbox simulator, those originating from your account-level
+	//    suppression list (if enabled), and those from emails addressed to more
+	//    than one recipient.
+	//
+	//    * OPEN - Open event for emails including open trackers. Excludes opens
+	//    for emails addressed to more than one recipient.
+	//
+	//    * CLICK - Click event for emails including wrapped links. Excludes clicks
+	//    for emails addressed to more than one recipient.
+	Type *string `type:"string" enum:"EventType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsEvent) GoString() string {
+	return s.String()
+}
+
+// SetDetails sets the Details field's value.
+func (s *InsightsEvent) SetDetails(v *EventDetails) *InsightsEvent {
+	s.Details = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *InsightsEvent) SetTimestamp(v time.Time) *InsightsEvent {
+	s.Timestamp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *InsightsEvent) SetType(v string) *InsightsEvent {
+	s.Type = &v
 	return s
 }
 
@@ -17630,6 +19182,113 @@ func (s *ListEmailTemplatesOutput) SetTemplatesMetadata(v []*EmailTemplateMetada
 	return s
 }
 
+// Represents a request to list all export jobs with filters.
+type ListExportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A value used to list export jobs that have a certain ExportSourceType.
+	ExportSourceType *string `type:"string" enum:"ExportSourceType"`
+
+	// A value used to list export jobs that have a certain JobStatus.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The pagination token returned from a previous call to ListExportJobs to indicate
+	// the position in the list of export jobs.
+	NextToken *string `type:"string"`
+
+	// Maximum number of export jobs to return at once. Use this parameter to paginate
+	// results. If additional export jobs exist beyond the specified limit, the
+	// NextToken element is sent in the response. Use the NextToken value in subsequent
+	// calls to ListExportJobs to retrieve additional export jobs.
+	PageSize *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// SetExportSourceType sets the ExportSourceType field's value.
+func (s *ListExportJobsInput) SetExportSourceType(v string) *ListExportJobsInput {
+	s.ExportSourceType = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ListExportJobsInput) SetJobStatus(v string) *ListExportJobsInput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportJobsInput) SetNextToken(v string) *ListExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListExportJobsInput) SetPageSize(v int64) *ListExportJobsInput {
+	s.PageSize = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type ListExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the export job summaries.
+	ExportJobs []*ExportJobSummary `type:"list"`
+
+	// A string token indicating that there might be additional export jobs available
+	// to be listed. Use this token to a subsequent call to ListExportJobs with
+	// the same parameters to retrieve the next page of export jobs.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportJobs sets the ExportJobs field's value.
+func (s *ListExportJobsOutput) SetExportJobs(v []*ExportJobSummary) *ListExportJobsOutput {
+	s.ExportJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportJobsOutput) SetNextToken(v string) *ListExportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents a request to list all of the import jobs for a data destination
 // within the specified maximum number of import jobs.
 type ListImportJobsInput struct {
@@ -18316,6 +19975,194 @@ func (s *Message) SetSubject(v *Content) *Message {
 	return s
 }
 
+// An object that contains filters applied when performing the Message Insights
+// export.
+type MessageInsightsDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the end date for the export interval as a timestamp. The end date
+	// is inclusive.
+	//
+	// EndDate is a required field
+	EndDate *time.Time `type:"timestamp" required:"true"`
+
+	// Filters for results to be excluded from the export file.
+	Exclude *MessageInsightsFilters `type:"structure"`
+
+	// Filters for results to be included in the export file.
+	Include *MessageInsightsFilters `type:"structure"`
+
+	// The maximum number of results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Represents the start date for the export interval as a timestamp. The start
+	// date is inclusive.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageInsightsDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageInsightsDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageInsightsDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageInsightsDataSource"}
+	if s.EndDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDate"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StartDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *MessageInsightsDataSource) SetEndDate(v time.Time) *MessageInsightsDataSource {
+	s.EndDate = &v
+	return s
+}
+
+// SetExclude sets the Exclude field's value.
+func (s *MessageInsightsDataSource) SetExclude(v *MessageInsightsFilters) *MessageInsightsDataSource {
+	s.Exclude = v
+	return s
+}
+
+// SetInclude sets the Include field's value.
+func (s *MessageInsightsDataSource) SetInclude(v *MessageInsightsFilters) *MessageInsightsDataSource {
+	s.Include = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *MessageInsightsDataSource) SetMaxResults(v int64) *MessageInsightsDataSource {
+	s.MaxResults = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *MessageInsightsDataSource) SetStartDate(v time.Time) *MessageInsightsDataSource {
+	s.StartDate = &v
+	return s
+}
+
+// An object containing Message Insights filters.
+//
+// If you specify multiple filters, the filters are joined by AND.
+//
+// If you specify multiple values for a filter, the values are joined by OR.
+// Filter values are case-sensitive.
+//
+// FromEmailAddress, Destination, and Subject filters support partial match.
+// A partial match is performed by using the * wildcard character placed at
+// the beginning (suffix match), the end (prefix match) or both ends of the
+// string (contains match). In order to match the literal characters * or \,
+// they must be escaped using the \ character. If no wildcard character is present,
+// an exact match is performed.
+type MessageInsightsFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The recipient's email address.
+	Destination []*string `type:"list"`
+
+	// The from address used to send the message.
+	FromEmailAddress []*string `type:"list"`
+
+	// The recipient's ISP (e.g., Gmail, Yahoo, etc.).
+	Isp []*string `type:"list"`
+
+	// The last delivery-related event for the email, where the ordering is as follows:
+	// SEND < BOUNCE < DELIVERY < COMPLAINT.
+	LastDeliveryEvent []*string `type:"list" enum:"DeliveryEventType"`
+
+	// The last engagement-related event for the email, where the ordering is as
+	// follows: OPEN < CLICK.
+	//
+	// Engagement events are only available if Engagement tracking (https://docs.aws.amazon.com/ses/latest/dg/vdm-settings.html)
+	// is enabled.
+	LastEngagementEvent []*string `type:"list" enum:"EngagementEventType"`
+
+	// The subject line of the message.
+	Subject []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageInsightsFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageInsightsFilters) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *MessageInsightsFilters) SetDestination(v []*string) *MessageInsightsFilters {
+	s.Destination = v
+	return s
+}
+
+// SetFromEmailAddress sets the FromEmailAddress field's value.
+func (s *MessageInsightsFilters) SetFromEmailAddress(v []*string) *MessageInsightsFilters {
+	s.FromEmailAddress = v
+	return s
+}
+
+// SetIsp sets the Isp field's value.
+func (s *MessageInsightsFilters) SetIsp(v []*string) *MessageInsightsFilters {
+	s.Isp = v
+	return s
+}
+
+// SetLastDeliveryEvent sets the LastDeliveryEvent field's value.
+func (s *MessageInsightsFilters) SetLastDeliveryEvent(v []*string) *MessageInsightsFilters {
+	s.LastDeliveryEvent = v
+	return s
+}
+
+// SetLastEngagementEvent sets the LastEngagementEvent field's value.
+func (s *MessageInsightsFilters) SetLastEngagementEvent(v []*string) *MessageInsightsFilters {
+	s.LastEngagementEvent = v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *MessageInsightsFilters) SetSubject(v []*string) *MessageInsightsFilters {
+	s.Subject = v
+	return s
+}
+
 // The message can't be sent because it contains invalid content.
 type MessageRejected struct {
 	_            struct{}                  `type:"structure"`
@@ -18557,6 +20404,117 @@ func (s *MetricDataResult) SetTimestamps(v []*time.Time) *MetricDataResult {
 // SetValues sets the Values field's value.
 func (s *MetricDataResult) SetValues(v []*int64) *MetricDataResult {
 	s.Values = v
+	return s
+}
+
+// An object that contains details about the data source for the metrics export.
+type MetricsDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains a mapping between a MetricDimensionName and MetricDimensionValue
+	// to filter metrics by. Must contain a least 1 dimension but no more than 3
+	// unique ones.
+	//
+	// Dimensions is a required field
+	Dimensions map[string][]*string `min:"1" type:"map" required:"true"`
+
+	// Represents the end date for the export interval as a timestamp.
+	//
+	// EndDate is a required field
+	EndDate *time.Time `type:"timestamp" required:"true"`
+
+	// A list of ExportMetric objects to export.
+	//
+	// Metrics is a required field
+	Metrics []*ExportMetric `min:"1" type:"list" required:"true"`
+
+	// The metrics namespace - e.g., VDM.
+	//
+	// Namespace is a required field
+	Namespace *string `type:"string" required:"true" enum:"MetricNamespace"`
+
+	// Represents the start date for the export interval as a timestamp.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricsDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricsDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricsDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricsDataSource"}
+	if s.Dimensions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Dimensions"))
+	}
+	if s.Dimensions != nil && len(s.Dimensions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dimensions", 1))
+	}
+	if s.EndDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDate"))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.StartDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *MetricsDataSource) SetDimensions(v map[string][]*string) *MetricsDataSource {
+	s.Dimensions = v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *MetricsDataSource) SetEndDate(v time.Time) *MetricsDataSource {
+	s.EndDate = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *MetricsDataSource) SetMetrics(v []*ExportMetric) *MetricsDataSource {
+	s.Metrics = v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *MetricsDataSource) SetNamespace(v string) *MetricsDataSource {
+	s.Namespace = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *MetricsDataSource) SetStartDate(v time.Time) *MetricsDataSource {
+	s.StartDate = &v
 	return s
 }
 
@@ -23746,6 +25704,26 @@ func BehaviorOnMxFailure_Values() []string {
 }
 
 const (
+	// BounceTypeUndetermined is a BounceType enum value
+	BounceTypeUndetermined = "UNDETERMINED"
+
+	// BounceTypeTransient is a BounceType enum value
+	BounceTypeTransient = "TRANSIENT"
+
+	// BounceTypePermanent is a BounceType enum value
+	BounceTypePermanent = "PERMANENT"
+)
+
+// BounceType_Values returns all elements of the BounceType enum
+func BounceType_Values() []string {
+	return []string{
+		BounceTypeUndetermined,
+		BounceTypeTransient,
+		BounceTypePermanent,
+	}
+}
+
+const (
 	// BulkEmailStatusSuccess is a BulkEmailStatus enum value
 	BulkEmailStatusSuccess = "SUCCESS"
 
@@ -23841,7 +25819,11 @@ func ContactListImportAction_Values() []string {
 	}
 }
 
-// The data format of the import job's data source.
+// The data format of a file, can be one of the following:
+//
+//   - CSV – A comma-separated values file.
+//
+//   - JSON – A JSON file.
 const (
 	// DataFormatCsv is a DataFormat enum value
 	DataFormatCsv = "CSV"
@@ -23899,6 +25881,64 @@ func DeliverabilityTestStatus_Values() []string {
 	return []string{
 		DeliverabilityTestStatusInProgress,
 		DeliverabilityTestStatusCompleted,
+	}
+}
+
+// The type of delivery events:
+//
+//   - SEND - The send request was successful and SES will attempt to deliver
+//     the message to the recipient’s mail server. (If account-level or global
+//     suppression is being used, SES will still count it as a send, but delivery
+//     is suppressed.)
+//
+//   - DELIVERY - SES successfully delivered the email to the recipient's mail
+//     server. Excludes deliveries to the mailbox simulator and emails addressed
+//     to more than one recipient.
+//
+//   - TRANSIENT_BOUNCE - Feedback received for delivery failures excluding
+//     issues with non-existent mailboxes. Excludes bounces from the mailbox
+//     simulator, and those from emails addressed to more than one recipient.
+//
+//   - PERMANENT_BOUNCE - Feedback received for emails sent to non-existent
+//     mailboxes. Excludes bounces from the mailbox simulator, those originating
+//     from your account-level suppression list (if enabled), and those from
+//     emails addressed to more than one recipient.
+//
+//   - UNDETERMINED_BOUNCE - SES was unable to determine the bounce reason.
+//
+//   - COMPLAINT - Complaint received for the email. This excludes complaints
+//     from the mailbox simulator, those originating from your account-level
+//     suppression list (if enabled), and those from emails addressed to more
+//     than one recipient.
+const (
+	// DeliveryEventTypeSend is a DeliveryEventType enum value
+	DeliveryEventTypeSend = "SEND"
+
+	// DeliveryEventTypeDelivery is a DeliveryEventType enum value
+	DeliveryEventTypeDelivery = "DELIVERY"
+
+	// DeliveryEventTypeTransientBounce is a DeliveryEventType enum value
+	DeliveryEventTypeTransientBounce = "TRANSIENT_BOUNCE"
+
+	// DeliveryEventTypePermanentBounce is a DeliveryEventType enum value
+	DeliveryEventTypePermanentBounce = "PERMANENT_BOUNCE"
+
+	// DeliveryEventTypeUndeterminedBounce is a DeliveryEventType enum value
+	DeliveryEventTypeUndeterminedBounce = "UNDETERMINED_BOUNCE"
+
+	// DeliveryEventTypeComplaint is a DeliveryEventType enum value
+	DeliveryEventTypeComplaint = "COMPLAINT"
+)
+
+// DeliveryEventType_Values returns all elements of the DeliveryEventType enum
+func DeliveryEventType_Values() []string {
+	return []string{
+		DeliveryEventTypeSend,
+		DeliveryEventTypeDelivery,
+		DeliveryEventTypeTransientBounce,
+		DeliveryEventTypePermanentBounce,
+		DeliveryEventTypeUndeterminedBounce,
+		DeliveryEventTypeComplaint,
 	}
 }
 
@@ -24004,6 +26044,29 @@ func DkimStatus_Values() []string {
 	}
 }
 
+// The type of delivery events:
+//
+//   - OPEN - Open event for emails including open trackers. Excludes opens
+//     for emails addressed to more than one recipient.
+//
+//   - CLICK - Click event for emails including wrapped links. Excludes clicks
+//     for emails addressed to more than one recipient.
+const (
+	// EngagementEventTypeOpen is a EngagementEventType enum value
+	EngagementEventTypeOpen = "OPEN"
+
+	// EngagementEventTypeClick is a EngagementEventType enum value
+	EngagementEventTypeClick = "CLICK"
+)
+
+// EngagementEventType_Values returns all elements of the EngagementEventType enum
+func EngagementEventType_Values() []string {
+	return []string{
+		EngagementEventTypeOpen,
+		EngagementEventTypeClick,
+	}
+}
+
 // An email sending event type. For example, email sends, opens, and bounces
 // are all email events.
 const (
@@ -24051,6 +26114,27 @@ func EventType_Values() []string {
 		EventTypeRenderingFailure,
 		EventTypeDeliveryDelay,
 		EventTypeSubscription,
+	}
+}
+
+// The type of data source of an export, can be one of the following:
+//
+//   - METRICS_DATA - The metrics export.
+//
+//   - MESSAGE_INSIGHTS - The Message Insights export.
+const (
+	// ExportSourceTypeMetricsData is a ExportSourceType enum value
+	ExportSourceTypeMetricsData = "METRICS_DATA"
+
+	// ExportSourceTypeMessageInsights is a ExportSourceType enum value
+	ExportSourceTypeMessageInsights = "MESSAGE_INSIGHTS"
+)
+
+// ExportSourceType_Values returns all elements of the ExportSourceType enum
+func ExportSourceType_Values() []string {
+	return []string{
+		ExportSourceTypeMetricsData,
+		ExportSourceTypeMessageInsights,
 	}
 }
 
@@ -24108,7 +26192,15 @@ func ImportDestinationType_Values() []string {
 	}
 }
 
-// The status of the import job.
+// The status of a job.
+//
+//   - CREATED – Job has just been created.
+//
+//   - PROCESSING – Job is processing.
+//
+//   - ERROR – An error occurred during processing.
+//
+//   - COMPLETED – Job has completed processing successfully.
 const (
 	// JobStatusCreated is a JobStatus enum value
 	JobStatusCreated = "CREATED"
@@ -24121,6 +26213,9 @@ const (
 
 	// JobStatusFailed is a JobStatus enum value
 	JobStatusFailed = "FAILED"
+
+	// JobStatusCancelled is a JobStatus enum value
+	JobStatusCancelled = "CANCELLED"
 )
 
 // JobStatus_Values returns all elements of the JobStatus enum
@@ -24130,6 +26225,7 @@ func JobStatus_Values() []string {
 		JobStatusProcessing,
 		JobStatusCompleted,
 		JobStatusFailed,
+		JobStatusCancelled,
 	}
 }
 
@@ -24220,6 +26316,49 @@ func MailType_Values() []string {
 	}
 }
 
+// The metric to export, can be one of the following:
+//
+//   - SEND - Emails sent eligible for tracking in the VDM dashboard. This
+//     excludes emails sent to the mailbox simulator and emails addressed to
+//     more than one recipient.
+//
+//   - COMPLAINT - Complaints received for your account. This excludes complaints
+//     from the mailbox simulator, those originating from your account-level
+//     suppression list (if enabled), and those for emails addressed to more
+//     than one recipient
+//
+//   - PERMANENT_BOUNCE - Permanent bounces - i.e., feedback received for emails
+//     sent to non-existent mailboxes. Excludes bounces from the mailbox simulator,
+//     those originating from your account-level suppression list (if enabled),
+//     and those for emails addressed to more than one recipient.
+//
+//   - TRANSIENT_BOUNCE - Transient bounces - i.e., feedback received for delivery
+//     failures excluding issues with non-existent mailboxes. Excludes bounces
+//     from the mailbox simulator, and those for emails addressed to more than
+//     one recipient.
+//
+//   - OPEN - Unique open events for emails including open trackers. Excludes
+//     opens for emails addressed to more than one recipient.
+//
+//   - CLICK - Unique click events for emails including wrapped links. Excludes
+//     clicks for emails addressed to more than one recipient.
+//
+//   - DELIVERY - Successful deliveries for email sending attempts. Excludes
+//     deliveries to the mailbox simulator and for emails addressed to more than
+//     one recipient.
+//
+//   - DELIVERY_OPEN - Successful deliveries for email sending attempts. Excludes
+//     deliveries to the mailbox simulator, for emails addressed to more than
+//     one recipient, and emails without open trackers.
+//
+//   - DELIVERY_CLICK - Successful deliveries for email sending attempts. Excludes
+//     deliveries to the mailbox simulator, for emails addressed to more than
+//     one recipient, and emails without click trackers.
+//
+//   - DELIVERY_COMPLAINT - Successful deliveries for email sending attempts.
+//     Excludes deliveries to the mailbox simulator, for emails addressed to
+//     more than one recipient, and emails addressed to recipients hosted by
+//     ISPs with which Amazon SES does not have a feedback loop agreement.
 const (
 	// MetricSend is a Metric enum value
 	MetricSend = "SEND"
@@ -24265,6 +26404,27 @@ func Metric_Values() []string {
 		MetricDeliveryOpen,
 		MetricDeliveryClick,
 		MetricDeliveryComplaint,
+	}
+}
+
+// The aggregation to apply to a metric, can be one of the following:
+//
+//   - VOLUME - The volume of events for this metric.
+//
+//   - RATE - The rate for this metric relative to the SEND metric volume.
+const (
+	// MetricAggregationRate is a MetricAggregation enum value
+	MetricAggregationRate = "RATE"
+
+	// MetricAggregationVolume is a MetricAggregation enum value
+	MetricAggregationVolume = "VOLUME"
+)
+
+// MetricAggregation_Values returns all elements of the MetricAggregation enum
+func MetricAggregation_Values() []string {
+	return []string{
+		MetricAggregationRate,
+		MetricAggregationVolume,
 	}
 }
 

@@ -8330,7 +8330,13 @@ func (c *Omics) StartRunRequest(input *StartRunInput) (req *request.Request, out
 
 // StartRun API operation for Amazon Omics.
 //
-// Starts a run.
+// Starts a workflow run. To duplicate a run, specify the run's ID and a role
+// ARN. The remaining parameters are copied from the previous run.
+//
+// The total number of runs in your account is subject to a quota per Region.
+// To avoid needing to delete runs manually, you can set the retention mode
+// to REMOVE. Runs with this setting are deleted automatically when the run
+// quoata is exceeded.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16209,6 +16215,9 @@ type GetRunOutput struct {
 	// The run's resource digests.
 	ResourceDigests map[string]*string `locationName:"resourceDigests" type:"map"`
 
+	// The run's retention mode.
+	RetentionMode *string `locationName:"retentionMode" min:"1" type:"string" enum:"RunRetentionMode"`
+
 	// The run's service role ARN.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
@@ -16327,6 +16336,12 @@ func (s *GetRunOutput) SetPriority(v int64) *GetRunOutput {
 // SetResourceDigests sets the ResourceDigests field's value.
 func (s *GetRunOutput) SetResourceDigests(v map[string]*string) *GetRunOutput {
 	s.ResourceDigests = v
+	return s
+}
+
+// SetRetentionMode sets the RetentionMode field's value.
+func (s *GetRunOutput) SetRetentionMode(v string) *GetRunOutput {
+	s.RetentionMode = &v
 	return s
 }
 
@@ -24109,6 +24124,9 @@ type StartRunInput struct {
 	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The retention mode for the run.
+	RetentionMode *string `locationName:"retentionMode" min:"1" type:"string" enum:"RunRetentionMode"`
+
 	// A service role for the run.
 	//
 	// RoleArn is a required field
@@ -24117,7 +24135,7 @@ type StartRunInput struct {
 	// The run's group ID.
 	RunGroupId *string `locationName:"runGroupId" min:"1" type:"string"`
 
-	// The run's ID.
+	// The ID of a run to duplicate.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
 	// A storage capacity for the run in gigabytes.
@@ -24129,7 +24147,7 @@ type StartRunInput struct {
 	// The run's workflow ID.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
 
-	// The run's workflows type.
+	// The run's workflow type.
 	WorkflowType *string `locationName:"workflowType" min:"1" type:"string" enum:"WorkflowType"`
 }
 
@@ -24165,6 +24183,9 @@ func (s *StartRunInput) Validate() error {
 	}
 	if s.RequestId != nil && len(*s.RequestId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestId", 1))
+	}
+	if s.RetentionMode != nil && len(*s.RetentionMode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RetentionMode", 1))
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
@@ -24218,6 +24239,12 @@ func (s *StartRunInput) SetPriority(v int64) *StartRunInput {
 // SetRequestId sets the RequestId field's value.
 func (s *StartRunInput) SetRequestId(v string) *StartRunInput {
 	s.RequestId = &v
+	return s
+}
+
+// SetRetentionMode sets the RetentionMode field's value.
+func (s *StartRunInput) SetRetentionMode(v string) *StartRunInput {
+	s.RetentionMode = &v
 	return s
 }
 
@@ -27177,6 +27204,22 @@ func RunLogLevel_Values() []string {
 		RunLogLevelFatal,
 		RunLogLevelError,
 		RunLogLevelAll,
+	}
+}
+
+const (
+	// RunRetentionModeRetain is a RunRetentionMode enum value
+	RunRetentionModeRetain = "RETAIN"
+
+	// RunRetentionModeRemove is a RunRetentionMode enum value
+	RunRetentionModeRemove = "REMOVE"
+)
+
+// RunRetentionMode_Values returns all elements of the RunRetentionMode enum
+func RunRetentionMode_Values() []string {
+	return []string{
+		RunRetentionModeRetain,
+		RunRetentionModeRemove,
 	}
 }
 

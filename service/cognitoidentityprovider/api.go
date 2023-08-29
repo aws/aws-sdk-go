@@ -3295,7 +3295,8 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 // in the Amazon Cognito Developer Guide.
 //
 // Updates the specified user's attributes, including developer attributes,
-// as an administrator. Works on any user.
+// as an administrator. Works on any user. To delete an attribute from your
+// user, submit the attribute in your API request with a blank value.
 //
 // For custom attributes, you must prepend the custom: prefix to the attribute
 // name.
@@ -3554,6 +3555,7 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 
 	output = &AssociateSoftwareTokenOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	return
 }
 
@@ -3799,6 +3801,7 @@ func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput
 
 	output = &ConfirmDeviceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	return
 }
 
@@ -6524,6 +6527,7 @@ func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) 
 
 	output = &ForgetDeviceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -6905,6 +6909,7 @@ func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *
 
 	output = &GetDeviceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	return
 }
 
@@ -7870,6 +7875,7 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 
 	output = &GlobalSignOutOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -8148,6 +8154,7 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 
 	output = &ListDevicesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	return
 }
 
@@ -9942,6 +9949,7 @@ func (c *CognitoIdentityProvider) RevokeTokenRequest(input *RevokeTokenInput) (r
 
 	output = &RevokeTokenOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -10362,6 +10370,7 @@ func (c *CognitoIdentityProvider) SetUserMFAPreferenceRequest(input *SetUserMFAP
 
 	output = &SetUserMFAPreferenceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -11279,6 +11288,7 @@ func (c *CognitoIdentityProvider) UpdateAuthEventFeedbackRequest(input *UpdateAu
 
 	output = &UpdateAuthEventFeedbackOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -11388,6 +11398,7 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceS
 
 	output = &UpdateDeviceStatusOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
@@ -12410,6 +12421,7 @@ func (c *CognitoIdentityProvider) VerifySoftwareTokenRequest(input *VerifySoftwa
 
 	output = &VerifySoftwareTokenOutput{}
 	req = c.newRequest(op, input, output)
+	req.Config.Credentials = credentials.AnonymousCredentials
 	return
 }
 
@@ -14843,7 +14855,11 @@ type AdminInitiateAuthOutput struct {
 	// determines that the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next AdminRespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminInitiateAuthOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -15726,7 +15742,11 @@ type AdminRespondToAuthChallengeInput struct {
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash).
 	// For information about DEVICE_KEY, see Working with user devices in your user
 	// pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
-	ChallengeResponses map[string]*string `type:"map"`
+	//
+	// ChallengeResponses is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeInput's
+	// String and GoString methods.
+	ChallengeResponses map[string]*string `type:"map" sensitive:"true"`
 
 	// The app client ID.
 	//
@@ -15796,7 +15816,11 @@ type AdminRespondToAuthChallengeInput struct {
 	// that the caller must pass another challenge, it returns a session with other
 	// challenge parameters. This session should be passed as it is to the next
 	// RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The ID of the Amazon Cognito user pool.
 	//
@@ -15920,7 +15944,11 @@ type AdminRespondToAuthChallengeOutput struct {
 	// the service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AdminRespondToAuthChallengeOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -17044,7 +17072,11 @@ type AssociateSoftwareTokenInput struct {
 	// The session that should be passed both ways in challenge-response calls to
 	// the service. This allows authentication of the user as part of the MFA setup
 	// process.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateSoftwareTokenInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -17104,7 +17136,11 @@ type AssociateSoftwareTokenOutput struct {
 	// The session that should be passed both ways in challenge-response calls to
 	// the service. This allows authentication of the user as part of the MFA setup
 	// process.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateSoftwareTokenOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -17550,6 +17586,11 @@ type CloudWatchLogsConfigurationType struct {
 	// user pool sends logs. The log group must not be encrypted with Key Management
 	// Service and must be in the same Amazon Web Services account as your user
 	// pool.
+	//
+	// To send logs to log groups with a resource policy of a size greater than
+	// 5120 characters, configure a log group with a path that starts with /aws/vendedlogs.
+	// For more information, see Enabling logging from certain Amazon Web Services
+	// services (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html).
 	LogGroupArn *string `min:"20" type:"string"`
 }
 
@@ -18144,7 +18185,11 @@ type ConfirmForgotPasswordInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConfirmForgotPasswordInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user for whom you want to enter a code to retrieve a
 	// forgotten password.
@@ -18353,7 +18398,11 @@ type ConfirmSignUpInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConfirmSignUpInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user whose registration you want to confirm.
 	//
@@ -18759,7 +18808,7 @@ type CreateIdentityProviderInput struct {
 	// The IdP name.
 	//
 	// ProviderName is a required field
-	ProviderName *string `min:"3" type:"string" required:"true"`
+	ProviderName *string `min:"1" type:"string" required:"true"`
 
 	// The IdP type.
 	//
@@ -18799,8 +18848,8 @@ func (s *CreateIdentityProviderInput) Validate() error {
 	if s.ProviderName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProviderName"))
 	}
-	if s.ProviderName != nil && len(*s.ProviderName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("ProviderName", 3))
+	if s.ProviderName != nil && len(*s.ProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderName", 1))
 	}
 	if s.ProviderType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
@@ -22716,7 +22765,11 @@ type ForgotPasswordInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ForgotPasswordInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user for whom you want to enter a code to reset a forgotten
 	// password.
@@ -24401,7 +24454,11 @@ type InitiateAuthInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InitiateAuthInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -24546,7 +24603,11 @@ type InitiateAuthOutput struct {
 	// service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InitiateAuthOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -27788,7 +27849,11 @@ type ResendConfirmationCodeInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ResendConfirmationCodeInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The username attribute of the user to whom you want to resend a confirmation
 	// code.
@@ -28160,7 +28225,11 @@ type RespondToAuthChallengeInput struct {
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash).
 	// For information about DEVICE_KEY, see Working with user devices in your user
 	// pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
-	ChallengeResponses map[string]*string `type:"map"`
+	//
+	// ChallengeResponses is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	ChallengeResponses map[string]*string `type:"map" sensitive:"true"`
 
 	// The app client ID.
 	//
@@ -28208,13 +28277,21 @@ type RespondToAuthChallengeInput struct {
 	// that the caller must pass another challenge, they return a session with other
 	// challenge parameters. This session should be passed as it is to the next
 	// RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// Contextual data about your user session, such as the device fingerprint,
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -28317,7 +28394,11 @@ type RespondToAuthChallengeOutput struct {
 	// the service. If the caller must pass another challenge, they return a session
 	// with other challenge parameters. This session should be passed as it is to
 	// the next RespondToAuthChallenge API call.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RespondToAuthChallengeOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -29614,7 +29695,11 @@ type SignUpInput struct {
 	// IP address, or location. Amazon Cognito advanced security evaluates the risk
 	// of an authentication event based on the context that your app generates and
 	// passes to Amazon Cognito when it makes API requests.
-	UserContextData *UserContextDataType `type:"structure"`
+	//
+	// UserContextData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SignUpInput's
+	// String and GoString methods.
+	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
 	// The user name of the user you want to register.
 	//
@@ -32982,7 +33067,7 @@ func (s *UserAttributeUpdateSettingsType) SetAttributesRequireVerificationBefore
 // used for evaluating the risk of an unexpected event by Amazon Cognito advanced
 // security.
 type UserContextDataType struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Encoded device-fingerprint details that your app collected with the Amazon
 	// Cognito context data collection library. For more information, see Adding
@@ -35018,13 +35103,21 @@ type VerifySoftwareTokenInput struct {
 
 	// The session that should be passed both ways in challenge-response calls to
 	// the service.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenInput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The one- time password computed using the secret code returned by AssociateSoftwareToken
 	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html).
 	//
+	// UserCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenInput's
+	// String and GoString methods.
+	//
 	// UserCode is a required field
-	UserCode *string `min:"6" type:"string" required:"true"`
+	UserCode *string `min:"6" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -35093,7 +35186,11 @@ type VerifySoftwareTokenOutput struct {
 
 	// The session that should be passed both ways in challenge-response calls to
 	// the service.
-	Session *string `min:"20" type:"string"`
+	//
+	// Session is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifySoftwareTokenOutput's
+	// String and GoString methods.
+	Session *string `min:"20" type:"string" sensitive:"true"`
 
 	// The status of the verify software token.
 	Status *string `type:"string" enum:"VerifySoftwareTokenResponseType"`

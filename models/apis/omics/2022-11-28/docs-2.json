@@ -74,7 +74,7 @@
     "StartReadSetExportJob": "<p>Exports a read set to Amazon S3.</p>",
     "StartReadSetImportJob": "<p>Starts a read set import job.</p>",
     "StartReferenceImportJob": "<p>Starts a reference import job.</p>",
-    "StartRun": "<p>Starts a run.</p>",
+    "StartRun": "<p>Starts a workflow run. To duplicate a run, specify the run's ID and a role ARN. The remaining parameters are copied from the previous run.</p> <p>The total number of runs in your account is subject to a quota per Region. To avoid needing to delete runs manually, you can set the retention mode to <code>REMOVE</code>. Runs with this setting are deleted automatically when the run quoata is exceeded.</p>",
     "StartVariantImportJob": "<p>Starts a variant import job.</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
@@ -2278,7 +2278,7 @@
         "GetRunTaskRequest$id": "<p>The task's ID.</p>",
         "ListRunTasksRequest$id": "<p>The run's ID.</p>",
         "RunListItem$id": "<p>The run's ID.</p>",
-        "StartRunRequest$runId": "<p>The run's ID.</p>",
+        "StartRunRequest$runId": "<p>The ID of a run to duplicate.</p>",
         "StartRunResponse$id": "<p>The run's ID.</p>"
       }
     },
@@ -2376,6 +2376,13 @@
       "base": null,
       "refs": {
         "GetRunResponse$resourceDigests": "<p>The run's resource digests.</p>"
+      }
+    },
+    "RunRetentionMode": {
+      "base": null,
+      "refs": {
+        "GetRunResponse$retentionMode": "<p>The run's retention mode.</p>",
+        "StartRunRequest$retentionMode": "<p>The retention mode for the run.</p>"
       }
     },
     "RunRoleArn": {
@@ -3586,7 +3593,7 @@
         "GetWorkflowRequest$type": "<p>The workflow's type.</p>",
         "GetWorkflowResponse$type": "<p>The workflow's type.</p>",
         "ListWorkflowsRequest$type": "<p>The workflows' type.</p>",
-        "StartRunRequest$workflowType": "<p>The run's workflows type.</p>",
+        "StartRunRequest$workflowType": "<p>The run's workflow type.</p>",
         "WorkflowListItem$type": "<p>The workflow's type.</p>"
       }
     }
