@@ -6698,7 +6698,11 @@ type AWSAccount struct {
 	_ struct{} `type:"structure"`
 
 	// The email address that's associated with the Amazon Web Services account.
-	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AWSAccount's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string" sensitive:"true"`
 
 	// The identifier for the Amazon Web Services account.
 	Id *string `locationName:"id" min:"12" type:"string"`
@@ -6891,7 +6895,11 @@ type Assessment struct {
 	AwsAccount *AWSAccount `locationName:"awsAccount" type:"structure"`
 
 	// The framework that the assessment was created from.
-	Framework *AssessmentFramework `locationName:"framework" type:"structure"`
+	//
+	// Framework is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Assessment's
+	// String and GoString methods.
+	Framework *AssessmentFramework `locationName:"framework" type:"structure" sensitive:"true"`
 
 	// The metadata for the assessment.
 	Metadata *AssessmentMetadata `locationName:"metadata" type:"structure"`
@@ -7075,7 +7083,11 @@ type AssessmentControlSet struct {
 	ManualEvidenceCount *int64 `locationName:"manualEvidenceCount" type:"integer"`
 
 	// The roles that are associated with the control set.
-	Roles []*Role `locationName:"roles" type:"list"`
+	//
+	// Roles is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentControlSet's
+	// String and GoString methods.
+	Roles []*Role `locationName:"roles" type:"list" sensitive:"true"`
 
 	// The current status of the control set.
 	Status *string `locationName:"status" type:"string" enum:"ControlSetStatus"`
@@ -7346,7 +7358,7 @@ func (s *AssessmentEvidenceFolder) SetTotalEvidence(v int64) *AssessmentEvidence
 // The file used to structure and automate Audit Manager assessments for a given
 // compliance standard.
 type AssessmentFramework struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the framework.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
@@ -7412,7 +7424,11 @@ type AssessmentFrameworkMetadata struct {
 
 	// The compliance type that the new custom framework supports, such as CIS or
 	// HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentFrameworkMetadata's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The number of control sets that are associated with the framework.
 	ControlSetsCount *int64 `locationName:"controlSetsCount" type:"integer"`
@@ -7535,7 +7551,11 @@ type AssessmentFrameworkShareRequest struct {
 
 	// The compliance type that the shared custom framework supports, such as CIS
 	// or HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentFrameworkShareRequest's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The time when the share request was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
@@ -7690,11 +7710,19 @@ type AssessmentMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The destination that evidence reports are stored in for the assessment.
-	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure"`
+	//
+	// AssessmentReportsDestination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure" sensitive:"true"`
 
 	// The name of the compliance standard that's related to the assessment, such
 	// as PCI-DSS.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// Specifies when the assessment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
@@ -7703,7 +7731,11 @@ type AssessmentMetadata struct {
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
 	// The description of the assessment.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The unique identifier for the assessment.
 	Id *string `locationName:"id" min:"36" type:"string"`
@@ -7712,14 +7744,26 @@ type AssessmentMetadata struct {
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
 
 	// The name of the assessment.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
 	// The roles that are associated with the assessment.
-	Roles []*Role `locationName:"roles" type:"list"`
+	//
+	// Roles is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	Roles []*Role `locationName:"roles" type:"list" sensitive:"true"`
 
 	// The wrapper of Amazon Web Services accounts and services that are in scope
 	// for the assessment.
-	Scope *Scope `locationName:"scope" type:"structure"`
+	//
+	// Scope is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadata's
+	// String and GoString methods.
+	Scope *Scope `locationName:"scope" type:"structure" sensitive:"true"`
 
 	// The overall status of the assessment.
 	Status *string `locationName:"status" type:"string" enum:"AssessmentStatus"`
@@ -7815,7 +7859,11 @@ type AssessmentMetadataItem struct {
 
 	// The name of the compliance standard that's related to the assessment, such
 	// as PCI-DSS.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadataItem's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// Specifies when the assessment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
@@ -7830,10 +7878,18 @@ type AssessmentMetadataItem struct {
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
 
 	// The name of the assessment.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadataItem's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
 	// The roles that are associated with the assessment.
-	Roles []*Role `locationName:"roles" type:"list"`
+	//
+	// Roles is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentMetadataItem's
+	// String and GoString methods.
+	Roles []*Role `locationName:"roles" type:"list" sensitive:"true"`
 
 	// The current status of the assessment.
 	Status *string `locationName:"status" type:"string" enum:"AssessmentStatus"`
@@ -7916,10 +7972,18 @@ type AssessmentReport struct {
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the associated assessment.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReport's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// The name of the user who created the assessment report.
-	Author *string `locationName:"author" min:"1" type:"string"`
+	//
+	// Author is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReport's
+	// String and GoString methods.
+	Author *string `locationName:"author" min:"1" type:"string" sensitive:"true"`
 
 	// The identifier for the specified Amazon Web Services account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
@@ -7928,7 +7992,11 @@ type AssessmentReport struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The description of the specified assessment report.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReport's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The unique identifier for the assessment report.
 	Id *string `locationName:"id" min:"36" type:"string"`
@@ -8071,16 +8139,28 @@ type AssessmentReportMetadata struct {
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the associated assessment.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReportMetadata's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// The name of the user who created the assessment report.
-	Author *string `locationName:"author" min:"1" type:"string"`
+	//
+	// Author is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReportMetadata's
+	// String and GoString methods.
+	Author *string `locationName:"author" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies when the assessment report was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The description of the assessment report.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentReportMetadata's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The unique identifier for the assessment report.
 	Id *string `locationName:"id" min:"36" type:"string"`
@@ -8160,7 +8240,7 @@ func (s *AssessmentReportMetadata) SetStatus(v string) *AssessmentReportMetadata
 
 // The location where Audit Manager saves assessment reports for the given assessment.
 type AssessmentReportsDestination struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The destination bucket where Audit Manager stores assessment reports.
 	Destination *string `locationName:"destination" min:"1" type:"string"`
@@ -8481,8 +8561,12 @@ type BatchCreateDelegationByAssessmentInput struct {
 
 	// The API request to batch create delegations in Audit Manager.
 	//
+	// CreateDelegationRequests is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchCreateDelegationByAssessmentInput's
+	// String and GoString methods.
+	//
 	// CreateDelegationRequests is a required field
-	CreateDelegationRequests []*CreateDelegationRequest `locationName:"createDelegationRequests" min:"1" type:"list" required:"true"`
+	CreateDelegationRequests []*CreateDelegationRequest `locationName:"createDelegationRequests" min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8554,7 +8638,11 @@ type BatchCreateDelegationByAssessmentOutput struct {
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
 	// A list of errors that the BatchCreateDelegationByAssessment API returned.
-	Errors []*BatchCreateDelegationByAssessmentError `locationName:"errors" type:"list"`
+	//
+	// Errors is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchCreateDelegationByAssessmentOutput's
+	// String and GoString methods.
+	Errors []*BatchCreateDelegationByAssessmentError `locationName:"errors" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8708,7 +8796,11 @@ type BatchDeleteDelegationByAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of errors that the BatchDeleteDelegationByAssessment API returned.
-	Errors []*BatchDeleteDelegationByAssessmentError `locationName:"errors" type:"list"`
+	//
+	// Errors is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchDeleteDelegationByAssessmentOutput's
+	// String and GoString methods.
+	Errors []*BatchDeleteDelegationByAssessmentError `locationName:"errors" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9122,10 +9214,18 @@ type Control struct {
 	_ struct{} `type:"structure"`
 
 	// The recommended actions to carry out if the control isn't fulfilled.
-	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
+	//
+	// ActionPlanInstructions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string" sensitive:"true"`
 
 	// The title of the action plan for remediating the control.
-	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
+	//
+	// ActionPlanTitle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the control.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
@@ -9141,7 +9241,11 @@ type Control struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The user or role that created the control.
-	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+	//
+	// CreatedBy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string" sensitive:"true"`
 
 	// The description of the control.
 	Description *string `locationName:"description" type:"string"`
@@ -9153,7 +9257,11 @@ type Control struct {
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The user or role that most recently updated the control.
-	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
+	//
+	// LastUpdatedBy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string" sensitive:"true"`
 
 	// The name of the control.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -9162,7 +9270,11 @@ type Control struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The steps that you should follow to determine if the control has been satisfied.
-	TestingInformation *string `locationName:"testingInformation" type:"string"`
+	//
+	// TestingInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	TestingInformation *string `locationName:"testingInformation" type:"string" sensitive:"true"`
 
 	// Specifies whether the control is a standard control or a custom control.
 	Type *string `locationName:"type" type:"string" enum:"ControlType"`
@@ -9282,10 +9394,18 @@ type ControlComment struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the user who authored the comment.
-	AuthorName *string `locationName:"authorName" min:"1" type:"string"`
+	//
+	// AuthorName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ControlComment's
+	// String and GoString methods.
+	AuthorName *string `locationName:"authorName" min:"1" type:"string" sensitive:"true"`
 
 	// The body text of a control comment.
-	CommentBody *string `locationName:"commentBody" type:"string"`
+	//
+	// CommentBody is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ControlComment's
+	// String and GoString methods.
+	CommentBody *string `locationName:"commentBody" type:"string" sensitive:"true"`
 
 	// The time when the comment was posted.
 	PostedDate *time.Time `locationName:"postedDate" type:"timestamp"`
@@ -9592,7 +9712,11 @@ type ControlMappingSource struct {
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
 	// The instructions for troubleshooting the control.
-	TroubleshootingText *string `locationName:"troubleshootingText" type:"string"`
+	//
+	// TroubleshootingText is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ControlMappingSource's
+	// String and GoString methods.
+	TroubleshootingText *string `locationName:"troubleshootingText" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9941,7 +10065,11 @@ type CreateAssessmentFrameworkInput struct {
 
 	// The compliance type that the new custom framework supports, such as CIS or
 	// HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentFrameworkInput's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The control sets that are associated with the framework.
 	//
@@ -10080,11 +10208,19 @@ type CreateAssessmentInput struct {
 	// The assessment report storage destination for the assessment that's being
 	// created.
 	//
+	// AssessmentReportsDestination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentInput's
+	// String and GoString methods.
+	//
 	// AssessmentReportsDestination is a required field
-	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure" required:"true"`
+	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure" required:"true" sensitive:"true"`
 
 	// The optional description of the assessment to be created.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The identifier for the framework that the assessment will be created from.
 	//
@@ -10093,19 +10229,31 @@ type CreateAssessmentInput struct {
 
 	// The name of the assessment to be created.
 	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentInput's
+	// String and GoString methods.
+	//
 	// Name is a required field
-	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The list of roles for the assessment.
 	//
+	// Roles is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentInput's
+	// String and GoString methods.
+	//
 	// Roles is a required field
-	Roles []*Role `locationName:"roles" type:"list" required:"true"`
+	Roles []*Role `locationName:"roles" type:"list" required:"true" sensitive:"true"`
 
 	// The wrapper that contains the Amazon Web Services accounts and services that
 	// are in scope for the assessment.
 	//
+	// Scope is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentInput's
+	// String and GoString methods.
+	//
 	// Scope is a required field
-	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
+	Scope *Scope `locationName:"scope" type:"structure" required:"true" sensitive:"true"`
 
 	// The tags that are associated with the assessment.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -10263,7 +10411,11 @@ type CreateAssessmentReportInput struct {
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
 	// The description of the assessment report.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssessmentReportInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The name of the new assessment report.
 	//
@@ -10390,10 +10542,18 @@ type CreateControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The recommended actions to carry out if the control isn't fulfilled.
-	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
+	//
+	// ActionPlanInstructions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateControlInput's
+	// String and GoString methods.
+	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string" sensitive:"true"`
 
 	// The title of the action plan for remediating the control.
-	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
+	//
+	// ActionPlanTitle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateControlInput's
+	// String and GoString methods.
+	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string" sensitive:"true"`
 
 	// The data mapping sources for the control.
 	//
@@ -10412,7 +10572,11 @@ type CreateControlInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The steps to follow to determine if the control is satisfied.
-	TestingInformation *string `locationName:"testingInformation" type:"string"`
+	//
+	// TestingInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateControlInput's
+	// String and GoString methods.
+	TestingInformation *string `locationName:"testingInformation" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -10551,7 +10715,11 @@ type CreateControlMappingSource struct {
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
 	// The instructions for troubleshooting the control.
-	TroubleshootingText *string `locationName:"troubleshootingText" type:"string"`
+	//
+	// TroubleshootingText is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateControlMappingSource's
+	// String and GoString methods.
+	TroubleshootingText *string `locationName:"troubleshootingText" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -10669,7 +10837,11 @@ type CreateDelegationRequest struct {
 	_ struct{} `type:"structure"`
 
 	// A comment that's related to the delegation request.
-	Comment *string `locationName:"comment" type:"string"`
+	//
+	// Comment is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateDelegationRequest's
+	// String and GoString methods.
+	Comment *string `locationName:"comment" type:"string" sensitive:"true"`
 
 	// The unique identifier for the control set.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
@@ -10802,22 +10974,34 @@ func (s *DefaultExportDestination) SetDestinationType(v string) *DefaultExportDe
 
 // The assignment of a control set to a delegate for review.
 type Delegation struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The identifier for the assessment that's associated with the delegation.
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the assessment that's associated with the delegation.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Delegation's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// The comment that's related to the delegation.
-	Comment *string `locationName:"comment" type:"string"`
+	//
+	// Comment is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Delegation's
+	// String and GoString methods.
+	Comment *string `locationName:"comment" type:"string" sensitive:"true"`
 
 	// The identifier for the control set that's associated with the delegation.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
 	// The user or role that created the delegation.
-	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+	//
+	// CreatedBy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Delegation's
+	// String and GoString methods.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies when the delegation was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
@@ -10936,7 +11120,11 @@ type DelegationMetadata struct {
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the associated assessment.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DelegationMetadata's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// Specifies the name of the control set that was delegated for review.
 	ControlSetName *string `locationName:"controlSetName" min:"1" type:"string"`
@@ -12006,10 +12194,18 @@ type Framework struct {
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
 	// The compliance type that the framework supports, such as CIS or HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Framework's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The control sets that are associated with the framework.
-	ControlSets []*ControlSet `locationName:"controlSets" min:"1" type:"list"`
+	//
+	// ControlSets is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Framework's
+	// String and GoString methods.
+	ControlSets []*ControlSet `locationName:"controlSets" min:"1" type:"list" sensitive:"true"`
 
 	// The control data sources where Audit Manager collects evidence from.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
@@ -12018,7 +12214,11 @@ type Framework struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The user or role that created the framework.
-	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+	//
+	// CreatedBy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Framework's
+	// String and GoString methods.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string" sensitive:"true"`
 
 	// The description of the framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -12030,7 +12230,11 @@ type Framework struct {
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The user or role that most recently updated the framework.
-	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
+	//
+	// LastUpdatedBy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Framework's
+	// String and GoString methods.
+	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string" sensitive:"true"`
 
 	// The logo that's associated with the framework.
 	Logo *string `locationName:"logo" min:"1" type:"string"`
@@ -12153,7 +12357,11 @@ type FrameworkMetadata struct {
 
 	// The compliance standard that's associated with the framework. For example,
 	// this could be PCI DSS or HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FrameworkMetadata's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The description of the framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -12162,7 +12370,11 @@ type FrameworkMetadata struct {
 	Logo *string `locationName:"logo" min:"1" type:"string"`
 
 	// The name of the framework.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FrameworkMetadata's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12999,8 +13211,12 @@ type GetEvidenceFileUploadUrlInput struct {
 	// Supported file types for manual evidence (https://docs.aws.amazon.com/audit-manager/latest/userguide/upload-evidence.html#supported-manual-evidence-files)
 	// in the Audit Manager User Guide.
 	//
+	// FileName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetEvidenceFileUploadUrlInput's
+	// String and GoString methods.
+	//
 	// FileName is a required field
-	FileName *string `location:"querystring" locationName:"fileName" min:"1" type:"string" required:"true"`
+	FileName *string `location:"querystring" locationName:"fileName" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -13044,7 +13260,7 @@ func (s *GetEvidenceFileUploadUrlInput) SetFileName(v string) *GetEvidenceFileUp
 }
 
 type GetEvidenceFileUploadUrlOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The name of the uploaded manual evidence file that the presigned URL was
 	// generated for.
@@ -15511,13 +15727,21 @@ type ManualEvidence struct {
 	// The name of the file that's uploaded as manual evidence. This name is populated
 	// using the evidenceFileName value from the GetEvidenceFileUploadUrl (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFileUploadUrl.html)
 	// API response.
-	EvidenceFileName *string `locationName:"evidenceFileName" min:"1" type:"string"`
+	//
+	// EvidenceFileName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ManualEvidence's
+	// String and GoString methods.
+	EvidenceFileName *string `locationName:"evidenceFileName" min:"1" type:"string" sensitive:"true"`
 
 	// The S3 URL of the object that's imported as manual evidence.
 	S3ResourcePath *string `locationName:"s3ResourcePath" min:"1" type:"string"`
 
 	// The plain text response that's entered and saved as manual evidence.
-	TextResponse *string `locationName:"textResponse" min:"1" type:"string"`
+	//
+	// TextResponse is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ManualEvidence's
+	// String and GoString methods.
+	TextResponse *string `locationName:"textResponse" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -15585,7 +15809,11 @@ type Notification struct {
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the related assessment.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Notification's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// The identifier for the control set.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
@@ -16060,10 +16288,14 @@ func (s *Role) SetRoleType(v string) *Role {
 // The wrapper that contains the Amazon Web Services accounts and services that
 // are in scope for the assessment.
 type Scope struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The Amazon Web Services accounts that are included in the scope of the assessment.
-	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list"`
+	//
+	// AwsAccounts is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Scope's
+	// String and GoString methods.
+	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list" sensitive:"true"`
 
 	// The Amazon Web Services services that are included in the scope of the assessment.
 	AwsServices []*AWSService `locationName:"awsServices" type:"list"`
@@ -16262,13 +16494,21 @@ type Settings struct {
 	_ struct{} `type:"structure"`
 
 	// The default S3 destination bucket for storing assessment reports.
-	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure"`
+	//
+	// DefaultAssessmentReportsDestination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Settings's
+	// String and GoString methods.
+	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure" sensitive:"true"`
 
 	// The default S3 destination bucket for storing evidence finder exports.
 	DefaultExportDestination *DefaultExportDestination `locationName:"defaultExportDestination" type:"structure"`
 
 	// The designated default audit owners.
-	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
+	//
+	// DefaultProcessOwners is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Settings's
+	// String and GoString methods.
+	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list" sensitive:"true"`
 
 	// The deregistration policy for your Audit Manager data. You can use this attribute
 	// to determine how your data is handled when you deregister Audit Manager.
@@ -16284,7 +16524,11 @@ type Settings struct {
 	KmsKey *string `locationName:"kmsKey" min:"7" type:"string"`
 
 	// The designated Amazon Simple Notification Service (Amazon SNS) topic.
-	SnsTopic *string `locationName:"snsTopic" min:"1" type:"string"`
+	//
+	// SnsTopic is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Settings's
+	// String and GoString methods.
+	SnsTopic *string `locationName:"snsTopic" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -16905,7 +17149,11 @@ type UpdateAssessmentControlInput struct {
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
 	// The comment body text for the control.
-	CommentBody *string `locationName:"commentBody" type:"string"`
+	//
+	// CommentBody is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentControlInput's
+	// String and GoString methods.
+	CommentBody *string `locationName:"commentBody" type:"string" sensitive:"true"`
 
 	// The unique identifier for the control.
 	//
@@ -17039,8 +17287,12 @@ type UpdateAssessmentControlSetStatusInput struct {
 
 	// The comment that's related to the status update.
 	//
+	// Comment is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentControlSetStatusInput's
+	// String and GoString methods.
+	//
 	// Comment is a required field
-	Comment *string `locationName:"comment" type:"string" required:"true"`
+	Comment *string `locationName:"comment" type:"string" required:"true" sensitive:"true"`
 
 	// The unique identifier for the control set.
 	//
@@ -17250,7 +17502,11 @@ type UpdateAssessmentFrameworkInput struct {
 
 	// The compliance type that the new custom framework supports, such as CIS or
 	// HIPAA.
-	ComplianceType *string `locationName:"complianceType" type:"string"`
+	//
+	// ComplianceType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentFrameworkInput's
+	// String and GoString methods.
+	ComplianceType *string `locationName:"complianceType" type:"string" sensitive:"true"`
 
 	// The control sets that are associated with the framework.
 	//
@@ -17504,7 +17760,11 @@ type UpdateAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the assessment.
-	AssessmentDescription *string `locationName:"assessmentDescription" type:"string"`
+	//
+	// AssessmentDescription is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentInput's
+	// String and GoString methods.
+	AssessmentDescription *string `locationName:"assessmentDescription" type:"string" sensitive:"true"`
 
 	// The unique identifier for the assessment.
 	//
@@ -17512,19 +17772,35 @@ type UpdateAssessmentInput struct {
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
 	// The name of the assessment to be updated.
-	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
+	//
+	// AssessmentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentInput's
+	// String and GoString methods.
+	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string" sensitive:"true"`
 
 	// The assessment report storage destination for the assessment that's being
 	// updated.
-	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure"`
+	//
+	// AssessmentReportsDestination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentInput's
+	// String and GoString methods.
+	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure" sensitive:"true"`
 
 	// The list of roles for the assessment.
-	Roles []*Role `locationName:"roles" type:"list"`
+	//
+	// Roles is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentInput's
+	// String and GoString methods.
+	Roles []*Role `locationName:"roles" type:"list" sensitive:"true"`
 
 	// The scope of the assessment.
 	//
+	// Scope is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssessmentInput's
+	// String and GoString methods.
+	//
 	// Scope is a required field
-	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
+	Scope *Scope `locationName:"scope" type:"structure" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -17753,10 +18029,18 @@ type UpdateControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The recommended actions to carry out if the control isn't fulfilled.
-	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
+	//
+	// ActionPlanInstructions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateControlInput's
+	// String and GoString methods.
+	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string" sensitive:"true"`
 
 	// The title of the action plan for remediating the control.
-	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
+	//
+	// ActionPlanTitle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateControlInput's
+	// String and GoString methods.
+	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string" sensitive:"true"`
 
 	// The identifier for the control.
 	//
@@ -17777,7 +18061,11 @@ type UpdateControlInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The steps that you should follow to determine if the control is met.
-	TestingInformation *string `locationName:"testingInformation" type:"string"`
+	//
+	// TestingInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateControlInput's
+	// String and GoString methods.
+	TestingInformation *string `locationName:"testingInformation" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -17913,13 +18201,21 @@ type UpdateSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The default S3 destination bucket for storing assessment reports.
-	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure"`
+	//
+	// DefaultAssessmentReportsDestination is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSettingsInput's
+	// String and GoString methods.
+	DefaultAssessmentReportsDestination *AssessmentReportsDestination `locationName:"defaultAssessmentReportsDestination" type:"structure" sensitive:"true"`
 
 	// The default S3 destination bucket for storing evidence finder exports.
 	DefaultExportDestination *DefaultExportDestination `locationName:"defaultExportDestination" type:"structure"`
 
 	// A list of the default audit owners.
-	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
+	//
+	// DefaultProcessOwners is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSettingsInput's
+	// String and GoString methods.
+	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list" sensitive:"true"`
 
 	// The deregistration policy for your Audit Manager data. You can use this attribute
 	// to determine how your data is handled when you deregister Audit Manager.

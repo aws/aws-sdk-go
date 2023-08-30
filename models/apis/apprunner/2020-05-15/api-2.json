@@ -1500,7 +1500,10 @@
     },
     "ProviderType":{
       "type":"string",
-      "enum":["GITHUB"]
+      "enum":[
+        "GITHUB",
+        "BITBUCKET"
+      ]
     },
     "ResourceNotFoundException":{
       "type":"structure",

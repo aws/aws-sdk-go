@@ -2989,6 +2989,12 @@
         "Channel$DataSource": "<p>The location of the channel data.</p>"
       }
     },
+    "DataSourceName": {
+      "base": null,
+      "refs": {
+        "IdentityProviderOAuthSetting$DataSourceName": "<p>The name of the data source that you're connecting to. Canvas currently supports OAuth for Snowflake and Salesforce Data Cloud.</p>"
+      }
+    },
     "Database": {
       "base": null,
       "refs": {
@@ -5445,6 +5451,7 @@
     "FeatureStatus": {
       "base": null,
       "refs": {
+        "IdentityProviderOAuthSetting$Status": "<p>Describes whether OAuth for a data source is enabled or disabled in the Canvas application.</p>",
         "ModelRegisterSettings$Status": "<p>Describes whether the integration to the model registry is enabled or disabled in the Canvas application.</p>",
         "TimeSeriesForecastingSettings$Status": "<p>Describes whether time series forecasting is enabled or disabled in the Canvas application.</p>"
       }
@@ -6413,6 +6420,18 @@
         "StopPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once.</p>"
       }
     },
+    "IdentityProviderOAuthSetting": {
+      "base": "<p>The Amazon SageMaker Canvas app setting where you configure OAuth for connecting to an external data source, such as Snowflake.</p>",
+      "refs": {
+        "IdentityProviderOAuthSettings$member": null
+      }
+    },
+    "IdentityProviderOAuthSettings": {
+      "base": null,
+      "refs": {
+        "CanvasAppSettings$IdentityProviderOAuthSettings": "<p>The settings for connecting to an external data source with OAuth.</p>"
+      }
+    },
     "Image": {
       "base": "<p>A SageMaker image. A SageMaker image represents a set of container images that are derived from a common base container image. Each of these container images is represented by a SageMaker <code>ImageVersion</code>.</p>",
       "refs": {
@@ -6986,7 +7005,7 @@
     "JobDurationInSeconds": {
       "base": null,
       "refs": {
-        "RecommendationJobInputConfig$JobDurationInSeconds": "<p>Specifies the maximum duration of the job, in seconds. The maximum value is 7200.</p>"
+        "RecommendationJobInputConfig$JobDurationInSeconds": "<p>Specifies the maximum duration of the job, in seconds. The maximum value is 18,000 seconds.</p>"
       }
     },
     "JobReferenceCode": {
@@ -12363,7 +12382,8 @@
       "base": null,
       "refs": {
         "GitConfig$SecretArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the git repository. The secret must have a staging label of <code>AWSCURRENT</code> and must be in the following format:</p> <p> <code>{\"username\": <i>UserName</i>, \"password\": <i>Password</i>}</code> </p>",
-        "GitConfigForUpdate$SecretArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the git repository. The secret must have a staging label of <code>AWSCURRENT</code> and must be in the following format:</p> <p> <code>{\"username\": <i>UserName</i>, \"password\": <i>Password</i>}</code> </p>"
+        "GitConfigForUpdate$SecretArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the git repository. The secret must have a staging label of <code>AWSCURRENT</code> and must be in the following format:</p> <p> <code>{\"username\": <i>UserName</i>, \"password\": <i>Password</i>}</code> </p>",
+        "IdentityProviderOAuthSetting$SecretArn": "<p>The ARN of an Amazon Web Services Secrets Manager secret that stores the credentials from your identity provider, such as the client ID and secret, authorization URL, and token URL. </p>"
       }
     },
     "SecurityGroupId": {

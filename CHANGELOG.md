@@ -1,3 +1,22 @@
+Release v1.45.0 (2023-08-30)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/apprunner`: Updates service API and documentation
+* `service/auditmanager`: Updates service API
+* `service/cleanrooms`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/neptunedata`: Adds new service
+* `service/network-firewall`: Updates service API and documentation
+* `service/pca-connector-ad`: Adds new service
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Canvas adds IdentityProviderOAuthSettings support for CanvasAppSettings
+
+### SDK Features
+* `aws/corehandlers`: Add internal flag in user agent functionality
+  * Added handler which will add aws internal metadata to the user agent string
+
 Release v1.44.334 (2023-08-29)
 ===
 

@@ -4831,7 +4831,8 @@
       "members":{
         "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"},
         "ModelRegisterSettings":{"shape":"ModelRegisterSettings"},
-        "WorkspaceSettings":{"shape":"WorkspaceSettings"}
+        "WorkspaceSettings":{"shape":"WorkspaceSettings"},
+        "IdentityProviderOAuthSettings":{"shape":"IdentityProviderOAuthSettings"}
       }
     },
     "CapacitySize":{
@@ -7108,6 +7109,13 @@
         "S3DataSource":{"shape":"S3DataSource"},
         "FileSystemDataSource":{"shape":"FileSystemDataSource"}
       }
+    },
+    "DataSourceName":{
+      "type":"string",
+      "enum":[
+        "SalesforceGenie",
+        "Snowflake"
+      ]
     },
     "Database":{
       "type":"string",
@@ -11791,6 +11799,19 @@
       "type":"string",
       "max":128,
       "min":32
+    },
+    "IdentityProviderOAuthSetting":{
+      "type":"structure",
+      "members":{
+        "DataSourceName":{"shape":"DataSourceName"},
+        "Status":{"shape":"FeatureStatus"},
+        "SecretArn":{"shape":"SecretArn"}
+      }
+    },
+    "IdentityProviderOAuthSettings":{
+      "type":"list",
+      "member":{"shape":"IdentityProviderOAuthSetting"},
+      "max":20
     },
     "Image":{
       "type":"structure",

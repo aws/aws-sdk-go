@@ -1267,9 +1267,10 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 
 // CreateTask API operation for AWS DataSync.
 //
-// Configures a task, which defines where and how DataSync transfers your data.
+// Configures a transfer task, which defines where and how DataSync moves your
+// data.
 //
-// A task includes a source location, a destination location, and the preferences
+// A task includes a source location, destination location, and the options
 // for how and when you want to transfer your data (such as bandwidth limits,
 // scheduling, among other options).
 //
@@ -1528,7 +1529,7 @@ func (c *DataSync) DeleteTaskRequest(input *DeleteTaskInput) (req *request.Reque
 
 // DeleteTask API operation for AWS DataSync.
 //
-// Deletes an DataSync task.
+// Deletes an DataSync transfer task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3144,7 +3145,9 @@ func (c *DataSync) DescribeTaskExecutionRequest(input *DescribeTaskExecutionInpu
 
 // DescribeTaskExecution API operation for AWS DataSync.
 //
-// Provides information about an DataSync transfer task that's running.
+// Provides information about an execution of your DataSync task. You can use
+// this operation to help monitor the progress of an ongoing transfer or check
+// the results of the transfer.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4491,8 +4494,8 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 
 // StartTaskExecution API operation for AWS DataSync.
 //
-// Starts an DataSync task. For each task, you can only run one task execution
-// at a time.
+// Starts an DataSync transfer task. For each task, you can only run one task
+// execution at a time.
 //
 // There are several phases to a task execution. For more information, see Task
 // execution statuses (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses).
@@ -5522,7 +5525,7 @@ func (c *DataSync) UpdateTaskRequest(input *UpdateTaskInput) (req *request.Reque
 
 // UpdateTask API operation for AWS DataSync.
 //
-// Updates the metadata associated with a task.
+// Updates the configuration of a DataSync transfer task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5605,11 +5608,11 @@ func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (
 
 // UpdateTaskExecution API operation for AWS DataSync.
 //
-// Modifies a running DataSync task.
+// Updates the configuration of a running DataSync task execution.
 //
 // Currently, the only Option that you can modify with UpdateTaskExecution is
 // BytesPerSecond (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond)
-// , which throttles bandwidth for a running or queued task.
+// , which throttles bandwidth for a running or queued task execution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5906,8 +5909,8 @@ func (s *AgentListEntry) SetStatus(v string) *AgentListEntry {
 type AzureBlobSasConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a SAS token that provides permissions at the Azure storage account,
-	// container, or folder level.
+	// Specifies a SAS token that provides permissions to access your Azure Blob
+	// Storage.
 	//
 	// The token is part of the SAS URI string that comes after the storage resource
 	// URI and a question mark. A token looks something like this:
@@ -8288,6 +8291,10 @@ type CreateTaskInput struct {
 	// Tags are key-value pairs that help you manage, filter, and search for your
 	// DataSync resources.
 	Tags []*TagListEntry `type:"list"`
+
+	// Specifies how you want to configure a task report, which provides detailed
+	// information about for your DataSync transfer.
+	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8338,6 +8345,11 @@ func (s *CreateTaskInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.TaskReportConfig != nil {
+		if err := s.TaskReportConfig.Validate(); err != nil {
+			invalidParams.AddNested("TaskReportConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -8398,6 +8410,12 @@ func (s *CreateTaskInput) SetSourceLocationArn(v string) *CreateTaskInput {
 // SetTags sets the Tags field's value.
 func (s *CreateTaskInput) SetTags(v []*TagListEntry) *CreateTaskInput {
 	s.Tags = v
+	return s
+}
+
+// SetTaskReportConfig sets the TaskReportConfig field's value.
+func (s *CreateTaskInput) SetTaskReportConfig(v *TaskReportConfig) *CreateTaskInput {
+	s.TaskReportConfig = v
 	return s
 }
 
@@ -10945,7 +10963,8 @@ func (s *DescribeStorageSystemResourcesOutput) SetResourceDetails(v *ResourceDet
 type DescribeTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the transfer task that's running.
+	// Specifies the Amazon Resource Name (ARN) of the task execution that you want
+	// information about.
 	//
 	// TaskExecutionArn is a required field
 	TaskExecutionArn *string `type:"string" required:"true"`
@@ -11001,19 +11020,23 @@ type DescribeTaskExecutionOutput struct {
 	// of bytes sent over the network, see BytesCompressed.
 	BytesTransferred *int64 `type:"long"`
 
-	// The number of logical bytes written to the destination Amazon Web Services
-	// storage resource.
+	// The number of logical bytes written to the destination location.
 	BytesWritten *int64 `type:"long"`
 
-	// The estimated physical number of bytes that is to be transferred over the
-	// network.
+	// The estimated physical number of bytes that will transfer over the network.
 	EstimatedBytesToTransfer *int64 `type:"long"`
 
-	// The expected number of files that is to be transferred over the network.
-	// This value is calculated during the PREPARING phase before the TRANSFERRING
-	// phase of the task execution. This value is the expected number of files to
-	// be transferred. It's calculated based on comparing the content of the source
-	// and destination locations and finding the delta that needs to be transferred.
+	// The expected number of files, objects, and directories that DataSync will
+	// delete in your destination location. If you don't configure your task (https://docs.aws.amazon.com/datasync/latest/userguide/configure-metadata.html)
+	// to delete data in the destination that isn't in the source, the value is
+	// always 0.
+	EstimatedFilesToDelete *int64 `type:"long"`
+
+	// The expected number of files, objects, and directories that DataSync will
+	// transfer over the network. This value is calculated during the task execution's
+	// PREPARING phase before the TRANSFERRING phase. The calculation is based on
+	// comparing the content of the source and destination locations and finding
+	// the difference that needs to be transferred.
 	EstimatedFilesToTransfer *int64 `type:"long"`
 
 	// A list of filter rules that exclude specific data during your transfer. For
@@ -11021,51 +11044,69 @@ type DescribeTaskExecutionOutput struct {
 	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
 
-	// The actual number of files that was transferred over the network. This value
-	// is calculated and updated on an ongoing basis during the TRANSFERRING phase
-	// of the task execution. It's updated periodically when each file is read from
-	// the source and sent over the network.
+	// The number of files, objects, and directories that DataSync deleted in your
+	// destination location. If you don't configure your task (https://docs.aws.amazon.com/datasync/latest/userguide/configure-metadata.html)
+	// to delete data in the destination that isn't in the source, the value is
+	// always 0.
+	FilesDeleted *int64 `type:"long"`
+
+	// The number of files, objects, and directories that DataSync skipped during
+	// your transfer.
+	FilesSkipped *int64 `type:"long"`
+
+	// The actual number of files, objects, and directories that DataSync transferred
+	// over the network. This value is updated periodically during the task execution's
+	// TRANSFERRING phase when something is read from the source and sent over the
+	// network.
 	//
-	// If failures occur during a transfer, this value can be less than EstimatedFilesToTransfer.
+	// If DataSync fails to transfer something, this value can be less than EstimatedFilesToTransfer.
 	// In some cases, this value can also be greater than EstimatedFilesToTransfer.
 	// This element is implementation-specific for some location types, so don't
-	// use it as an indicator for a correct file number or to monitor your task
+	// use it as an exact indication of what transferred or to monitor your task
 	// execution.
 	FilesTransferred *int64 `type:"long"`
+
+	// The number of files, objects, and directories that DataSync verified during
+	// your transfer.
+	FilesVerified *int64 `type:"long"`
 
 	// A list of filter rules that include specific data during your transfer. For
 	// more information and examples, see Filtering data transferred by DataSync
 	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Includes []*FilterRule `type:"list"`
 
-	// Configures your DataSync task settings. These options include how DataSync
-	// handles files, objects, and their associated metadata. You also can specify
-	// how DataSync verifies data integrity, set bandwidth limits for your task,
-	// among other options.
+	// Indicates how your transfer task is configured. These options include how
+	// DataSync handles files, objects, and their associated metadata during your
+	// transfer. You also can specify how to verify data integrity, set bandwidth
+	// limits for your task, among other options.
 	//
-	// Each task setting has a default value. Unless you need to, you don't have
-	// to configure any of these Options before starting your task.
+	// Each option has a default value. Unless you need to, you don't have to configure
+	// any of these options before starting your task.
 	Options *Options `type:"structure"`
+
+	// Indicates whether DataSync generated a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html)
+	// for your transfer.
+	ReportResult *ReportResult `type:"structure"`
 
 	// The result of the task execution.
 	Result *TaskExecutionResultDetail `type:"structure"`
 
-	// The time that the task execution was started.
+	// The time when the task execution started.
 	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the task execution.
-	//
-	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the DataSync User Guide.
 	Status *string `type:"string" enum:"TaskExecutionStatus"`
 
-	// The Amazon Resource Name (ARN) of the task execution that was described.
-	// TaskExecutionArn is hierarchical and includes TaskArn for the task that was
-	// executed.
+	// The ARN of the task execution that you wanted information about. TaskExecutionArn
+	// is hierarchical and includes TaskArn for the task that was executed.
 	//
 	// For example, a TaskExecution value with the ARN arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2/execution/exec-08ef1e88ec491019b
 	// executed the task with the ARN arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2.
 	TaskExecutionArn *string `type:"string"`
+
+	// The configuration of your task report, which provides detailed information
+	// about for your DataSync transfer.
+	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11110,6 +11151,12 @@ func (s *DescribeTaskExecutionOutput) SetEstimatedBytesToTransfer(v int64) *Desc
 	return s
 }
 
+// SetEstimatedFilesToDelete sets the EstimatedFilesToDelete field's value.
+func (s *DescribeTaskExecutionOutput) SetEstimatedFilesToDelete(v int64) *DescribeTaskExecutionOutput {
+	s.EstimatedFilesToDelete = &v
+	return s
+}
+
 // SetEstimatedFilesToTransfer sets the EstimatedFilesToTransfer field's value.
 func (s *DescribeTaskExecutionOutput) SetEstimatedFilesToTransfer(v int64) *DescribeTaskExecutionOutput {
 	s.EstimatedFilesToTransfer = &v
@@ -11122,9 +11169,27 @@ func (s *DescribeTaskExecutionOutput) SetExcludes(v []*FilterRule) *DescribeTask
 	return s
 }
 
+// SetFilesDeleted sets the FilesDeleted field's value.
+func (s *DescribeTaskExecutionOutput) SetFilesDeleted(v int64) *DescribeTaskExecutionOutput {
+	s.FilesDeleted = &v
+	return s
+}
+
+// SetFilesSkipped sets the FilesSkipped field's value.
+func (s *DescribeTaskExecutionOutput) SetFilesSkipped(v int64) *DescribeTaskExecutionOutput {
+	s.FilesSkipped = &v
+	return s
+}
+
 // SetFilesTransferred sets the FilesTransferred field's value.
 func (s *DescribeTaskExecutionOutput) SetFilesTransferred(v int64) *DescribeTaskExecutionOutput {
 	s.FilesTransferred = &v
+	return s
+}
+
+// SetFilesVerified sets the FilesVerified field's value.
+func (s *DescribeTaskExecutionOutput) SetFilesVerified(v int64) *DescribeTaskExecutionOutput {
+	s.FilesVerified = &v
 	return s
 }
 
@@ -11137,6 +11202,12 @@ func (s *DescribeTaskExecutionOutput) SetIncludes(v []*FilterRule) *DescribeTask
 // SetOptions sets the Options field's value.
 func (s *DescribeTaskExecutionOutput) SetOptions(v *Options) *DescribeTaskExecutionOutput {
 	s.Options = v
+	return s
+}
+
+// SetReportResult sets the ReportResult field's value.
+func (s *DescribeTaskExecutionOutput) SetReportResult(v *ReportResult) *DescribeTaskExecutionOutput {
+	s.ReportResult = v
 	return s
 }
 
@@ -11161,6 +11232,12 @@ func (s *DescribeTaskExecutionOutput) SetStatus(v string) *DescribeTaskExecution
 // SetTaskExecutionArn sets the TaskExecutionArn field's value.
 func (s *DescribeTaskExecutionOutput) SetTaskExecutionArn(v string) *DescribeTaskExecutionOutput {
 	s.TaskExecutionArn = &v
+	return s
+}
+
+// SetTaskReportConfig sets the TaskReportConfig field's value.
+func (s *DescribeTaskExecutionOutput) SetTaskReportConfig(v *TaskReportConfig) *DescribeTaskExecutionOutput {
+	s.TaskReportConfig = v
 	return s
 }
 
@@ -11287,6 +11364,10 @@ type DescribeTaskOutput struct {
 
 	// The Amazon Resource Name (ARN) of the task that was described.
 	TaskArn *string `type:"string"`
+
+	// The configuration of your task report. For more information, see Creating
+	// a task report (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11400,6 +11481,12 @@ func (s *DescribeTaskOutput) SetStatus(v string) *DescribeTaskOutput {
 // SetTaskArn sets the TaskArn field's value.
 func (s *DescribeTaskOutput) SetTaskArn(v string) *DescribeTaskOutput {
 	s.TaskArn = &v
+	return s
+}
+
+// SetTaskReportConfig sets the TaskReportConfig field's value.
+func (s *DescribeTaskOutput) SetTaskReportConfig(v *TaskReportConfig) *DescribeTaskOutput {
+	s.TaskReportConfig = v
 	return s
 }
 
@@ -13799,13 +13886,13 @@ func (s *OnPremConfig) SetAgentArns(v []*string) *OnPremConfig {
 	return s
 }
 
-// Configures your DataSync task settings. These options include how DataSync
-// handles files, objects, and their associated metadata. You also can specify
-// how DataSync verifies data integrity, set bandwidth limits for your task,
-// among other options.
+// Indicates how your transfer task is configured. These options include how
+// DataSync handles files, objects, and their associated metadata during your
+// transfer. You also can specify how to verify data integrity, set bandwidth
+// limits for your task, among other options.
 //
-// Each task setting has a default value. Unless you need to, you don't have
-// to configure any of these Options before starting your task.
+// Each option has a default value. Unless you need to, you don't have to configure
+// any of these options before starting your task.
 type Options struct {
 	_ struct{} `type:"structure"`
 
@@ -14433,6 +14520,287 @@ func (s RemoveStorageSystemOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+type ReportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 bucket where DataSync uploads your task report.
+	S3 *ReportDestinationS3 `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportDestination"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *ReportDestination) SetS3(v *ReportDestinationS3) *ReportDestination {
+	s.S3 = v
+	return s
+}
+
+// Specifies the Amazon S3 bucket where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+type ReportDestinationS3 struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the IAM policy that allows DataSync
+	// to upload a task report to your S3 bucket. For more information, see Allowing
+	// DataSync to upload a task report to an Amazon S3 bucket (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+	//
+	// BucketAccessRoleArn is a required field
+	BucketAccessRoleArn *string `type:"string" required:"true"`
+
+	// Specifies the ARN of the S3 bucket where DataSync uploads your report.
+	//
+	// S3BucketArn is a required field
+	S3BucketArn *string `type:"string" required:"true"`
+
+	// Specifies a bucket prefix for your report.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportDestinationS3) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportDestinationS3) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportDestinationS3) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportDestinationS3"}
+	if s.BucketAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketAccessRoleArn"))
+	}
+	if s.S3BucketArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketAccessRoleArn sets the BucketAccessRoleArn field's value.
+func (s *ReportDestinationS3) SetBucketAccessRoleArn(v string) *ReportDestinationS3 {
+	s.BucketAccessRoleArn = &v
+	return s
+}
+
+// SetS3BucketArn sets the S3BucketArn field's value.
+func (s *ReportDestinationS3) SetS3BucketArn(v string) *ReportDestinationS3 {
+	s.S3BucketArn = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *ReportDestinationS3) SetSubdirectory(v string) *ReportDestinationS3 {
+	s.Subdirectory = &v
+	return s
+}
+
+// Specifies the level of detail for a particular aspect of your DataSync task
+// report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+type ReportOverride struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether your task report includes errors only or successes and
+	// errors.
+	//
+	// For example, your report might mostly include only what didn't go well in
+	// your transfer (ERRORS_ONLY). At the same time, you want to verify that your
+	// task filter (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html)
+	// is working correctly. In this situation, you can get a list of what files
+	// DataSync successfully skipped and if something transferred that you didn't
+	// to transfer (SUCCESSES_AND_ERRORS).
+	ReportLevel *string `type:"string" enum:"ReportLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportOverride) GoString() string {
+	return s.String()
+}
+
+// SetReportLevel sets the ReportLevel field's value.
+func (s *ReportOverride) SetReportLevel(v string) *ReportOverride {
+	s.ReportLevel = &v
+	return s
+}
+
+// The level of detail included in each aspect of your DataSync task report
+// (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+type ReportOverrides struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the level of reporting for the files, objects, and directories
+	// that DataSync attempted to delete in your destination location. This only
+	// applies if you configure your task (https://docs.aws.amazon.com/datasync/latest/userguide/configure-metadata.html)
+	// to delete data in the destination that isn't in the source.
+	Deleted *ReportOverride `type:"structure"`
+
+	// Specifies the level of reporting for the files, objects, and directories
+	// that DataSync attempted to skip during your transfer.
+	Skipped *ReportOverride `type:"structure"`
+
+	// Specifies the level of reporting for the files, objects, and directories
+	// that DataSync attempted to transfer.
+	Transferred *ReportOverride `type:"structure"`
+
+	// Specifies the level of reporting for the files, objects, and directories
+	// that DataSync attempted to verify at the end of your transfer. This only
+	// applies if you configure your task (https://docs.aws.amazon.com/datasync/latest/userguide/configure-data-verification-options.html)
+	// to verify data during and after the transfer (which DataSync does by default).
+	Verified *ReportOverride `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportOverrides) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportOverrides) GoString() string {
+	return s.String()
+}
+
+// SetDeleted sets the Deleted field's value.
+func (s *ReportOverrides) SetDeleted(v *ReportOverride) *ReportOverrides {
+	s.Deleted = v
+	return s
+}
+
+// SetSkipped sets the Skipped field's value.
+func (s *ReportOverrides) SetSkipped(v *ReportOverride) *ReportOverrides {
+	s.Skipped = v
+	return s
+}
+
+// SetTransferred sets the Transferred field's value.
+func (s *ReportOverrides) SetTransferred(v *ReportOverride) *ReportOverrides {
+	s.Transferred = v
+	return s
+}
+
+// SetVerified sets the Verified field's value.
+func (s *ReportOverrides) SetVerified(v *ReportOverride) *ReportOverrides {
+	s.Verified = v
+	return s
+}
+
+// Indicates whether DataSync created a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html)
+// for your transfer.
+type ReportResult struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the code associated with the error if DataSync can't create a complete
+	// report.
+	ErrorCode *string `type:"string"`
+
+	// Provides details about issues creating a report.
+	ErrorDetail *string `type:"string"`
+
+	// Indicates whether DataSync is still working on your report, created a report,
+	// or can't create a complete report.
+	Status *string `type:"string" enum:"PhaseStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReportResult) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ReportResult) SetErrorCode(v string) *ReportResult {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorDetail sets the ErrorDetail field's value.
+func (s *ReportResult) SetErrorDetail(v string) *ReportResult {
+	s.ErrorDetail = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReportResult) SetStatus(v string) *ReportResult {
+	s.Status = &v
+	return s
+}
+
 // Information provided by DataSync Discovery about the resources in your on-premises
 // storage system.
 type ResourceDetails struct {
@@ -14810,13 +15178,13 @@ type StartTaskExecutionInput struct {
 	// pipe), for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
-	// Configures your DataSync task settings. These options include how DataSync
-	// handles files, objects, and their associated metadata. You also can specify
-	// how DataSync verifies data integrity, set bandwidth limits for your task,
-	// among other options.
+	// Indicates how your transfer task is configured. These options include how
+	// DataSync handles files, objects, and their associated metadata during your
+	// transfer. You also can specify how to verify data integrity, set bandwidth
+	// limits for your task, among other options.
 	//
-	// Each task setting has a default value. Unless you need to, you don't have
-	// to configure any of these Options before starting your task.
+	// Each option has a default value. Unless you need to, you don't have to configure
+	// any of these options before starting your task.
 	OverrideOptions *Options `type:"structure"`
 
 	// Specifies the tags that you want to apply to the Amazon Resource Name (ARN)
@@ -14830,6 +15198,10 @@ type StartTaskExecutionInput struct {
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
+
+	// Specifies how you want to configure a task report, which provides detailed
+	// information about for your DataSync transfer.
+	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14871,6 +15243,11 @@ func (s *StartTaskExecutionInput) Validate() error {
 			}
 		}
 	}
+	if s.TaskReportConfig != nil {
+		if err := s.TaskReportConfig.Validate(); err != nil {
+			invalidParams.AddNested("TaskReportConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14905,6 +15282,12 @@ func (s *StartTaskExecutionInput) SetTags(v []*TagListEntry) *StartTaskExecution
 // SetTaskArn sets the TaskArn field's value.
 func (s *StartTaskExecutionInput) SetTaskArn(v string) *StartTaskExecutionInput {
 	s.TaskArn = &v
+	return s
+}
+
+// SetTaskReportConfig sets the TaskReportConfig field's value.
+func (s *StartTaskExecutionInput) SetTaskReportConfig(v *TaskReportConfig) *StartTaskExecutionInput {
+	s.TaskReportConfig = v
 	return s
 }
 
@@ -15495,6 +15878,115 @@ func (s *TaskListEntry) SetStatus(v string) *TaskListEntry {
 // SetTaskArn sets the TaskArn field's value.
 func (s *TaskListEntry) SetTaskArn(v string) *TaskListEntry {
 	s.TaskArn = &v
+	return s
+}
+
+// Specifies how you want to configure a task report, which provides detailed
+// information about for your DataSync transfer.
+//
+// For more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+type TaskReportConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 bucket where DataSync uploads your task report. For
+	// more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html#task-report-access).
+	Destination *ReportDestination `type:"structure"`
+
+	// Specifies whether your task report includes the new version of each object
+	// transferred into an S3 bucket. This only applies if you enable versioning
+	// on your bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/manage-versioning-examples.html).
+	// Keep in mind that setting this to INCLUDE can increase the duration of your
+	// task execution.
+	ObjectVersionIds *string `type:"string" enum:"ObjectVersionIds"`
+
+	// Specifies the type of task report that you want:
+	//
+	//    * SUMMARY_ONLY: Provides necessary details about your task, including
+	//    the number of files, objects, and directories transferred and transfer
+	//    duration.
+	//
+	//    * STANDARD: Provides complete details about your task, including a full
+	//    list of files, objects, and directories that were transferred, skipped,
+	//    verified, and more.
+	OutputType *string `type:"string" enum:"ReportOutputType"`
+
+	// Customizes the reporting level for aspects of your task report. For example,
+	// your report might generally only include errors, but you could specify that
+	// you want a list of successes and errors just for the files that DataSync
+	// attempted to delete in your destination location.
+	Overrides *ReportOverrides `type:"structure"`
+
+	// Specifies whether you want your task report to include only what went wrong
+	// with your transfer or a list of what succeeded and didn't.
+	//
+	//    * ERRORS_ONLY: A report shows what DataSync was unable to transfer, skip,
+	//    verify, and delete.
+	//
+	//    * SUCCESSES_AND_ERRORS: A report shows what DataSync was able and unable
+	//    to transfer, skip, verify, and delete.
+	ReportLevel *string `type:"string" enum:"ReportLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskReportConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskReportConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskReportConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskReportConfig"}
+	if s.Destination != nil {
+		if err := s.Destination.Validate(); err != nil {
+			invalidParams.AddNested("Destination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *TaskReportConfig) SetDestination(v *ReportDestination) *TaskReportConfig {
+	s.Destination = v
+	return s
+}
+
+// SetObjectVersionIds sets the ObjectVersionIds field's value.
+func (s *TaskReportConfig) SetObjectVersionIds(v string) *TaskReportConfig {
+	s.ObjectVersionIds = &v
+	return s
+}
+
+// SetOutputType sets the OutputType field's value.
+func (s *TaskReportConfig) SetOutputType(v string) *TaskReportConfig {
+	s.OutputType = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *TaskReportConfig) SetOverrides(v *ReportOverrides) *TaskReportConfig {
+	s.Overrides = v
+	return s
+}
+
+// SetReportLevel sets the ReportLevel field's value.
+func (s *TaskReportConfig) SetReportLevel(v string) *TaskReportConfig {
+	s.ReportLevel = &v
 	return s
 }
 
@@ -16785,13 +17277,13 @@ func (s UpdateStorageSystemOutput) GoString() string {
 type UpdateTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Configures your DataSync task settings. These options include how DataSync
-	// handles files, objects, and their associated metadata. You also can specify
-	// how DataSync verifies data integrity, set bandwidth limits for your task,
-	// among other options.
+	// Indicates how your transfer task is configured. These options include how
+	// DataSync handles files, objects, and their associated metadata during your
+	// transfer. You also can specify how to verify data integrity, set bandwidth
+	// limits for your task, among other options.
 	//
-	// Each task setting has a default value. Unless you need to, you don't have
-	// to configure any of these Options before starting your task.
+	// Each option has a default value. Unless you need to, you don't have to configure
+	// any of these options before starting your task.
 	//
 	// Options is a required field
 	Options *Options `type:"structure" required:"true"`
@@ -16897,13 +17389,13 @@ type UpdateTaskInput struct {
 	// The name of the task to update.
 	Name *string `min:"1" type:"string"`
 
-	// Configures your DataSync task settings. These options include how DataSync
-	// handles files, objects, and their associated metadata. You also can specify
-	// how DataSync verifies data integrity, set bandwidth limits for your task,
-	// among other options.
+	// Indicates how your transfer task is configured. These options include how
+	// DataSync handles files, objects, and their associated metadata during your
+	// transfer. You also can specify how to verify data integrity, set bandwidth
+	// limits for your task, among other options.
 	//
-	// Each task setting has a default value. Unless you need to, you don't have
-	// to configure any of these Options before starting your task.
+	// Each option has a default value. Unless you need to, you don't have to configure
+	// any of these options before starting your task.
 	Options *Options `type:"structure"`
 
 	// Specifies a schedule used to periodically transfer files from a source to
@@ -16917,6 +17409,10 @@ type UpdateTaskInput struct {
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
+
+	// Specifies how you want to configure a task report, which provides detailed
+	// information about for your DataSync transfer.
+	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -16954,6 +17450,11 @@ func (s *UpdateTaskInput) Validate() error {
 	if s.Schedule != nil {
 		if err := s.Schedule.Validate(); err != nil {
 			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TaskReportConfig != nil {
+		if err := s.TaskReportConfig.Validate(); err != nil {
+			invalidParams.AddNested("TaskReportConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -17002,6 +17503,12 @@ func (s *UpdateTaskInput) SetSchedule(v *TaskSchedule) *UpdateTaskInput {
 // SetTaskArn sets the TaskArn field's value.
 func (s *UpdateTaskInput) SetTaskArn(v string) *UpdateTaskInput {
 	s.TaskArn = &v
+	return s
+}
+
+// SetTaskReportConfig sets the TaskReportConfig field's value.
+func (s *UpdateTaskInput) SetTaskReportConfig(v *TaskReportConfig) *UpdateTaskInput {
+	s.TaskReportConfig = v
 	return s
 }
 
@@ -17432,6 +17939,22 @@ func ObjectTags_Values() []string {
 }
 
 const (
+	// ObjectVersionIdsInclude is a ObjectVersionIds enum value
+	ObjectVersionIdsInclude = "INCLUDE"
+
+	// ObjectVersionIdsNone is a ObjectVersionIds enum value
+	ObjectVersionIdsNone = "NONE"
+)
+
+// ObjectVersionIds_Values returns all elements of the ObjectVersionIds enum
+func ObjectVersionIds_Values() []string {
+	return []string{
+		ObjectVersionIdsInclude,
+		ObjectVersionIdsNone,
+	}
+}
+
+const (
 	// OperatorEquals is a Operator enum value
 	OperatorEquals = "Equals"
 
@@ -17584,6 +18107,38 @@ func RecommendationStatus_Values() []string {
 		RecommendationStatusInProgress,
 		RecommendationStatusCompleted,
 		RecommendationStatusFailed,
+	}
+}
+
+const (
+	// ReportLevelErrorsOnly is a ReportLevel enum value
+	ReportLevelErrorsOnly = "ERRORS_ONLY"
+
+	// ReportLevelSuccessesAndErrors is a ReportLevel enum value
+	ReportLevelSuccessesAndErrors = "SUCCESSES_AND_ERRORS"
+)
+
+// ReportLevel_Values returns all elements of the ReportLevel enum
+func ReportLevel_Values() []string {
+	return []string{
+		ReportLevelErrorsOnly,
+		ReportLevelSuccessesAndErrors,
+	}
+}
+
+const (
+	// ReportOutputTypeSummaryOnly is a ReportOutputType enum value
+	ReportOutputTypeSummaryOnly = "SUMMARY_ONLY"
+
+	// ReportOutputTypeStandard is a ReportOutputType enum value
+	ReportOutputTypeStandard = "STANDARD"
+)
+
+// ReportOutputType_Values returns all elements of the ReportOutputType enum
+func ReportOutputType_Values() []string {
+	return []string{
+		ReportOutputTypeSummaryOnly,
+		ReportOutputTypeStandard,
 	}
 }
 

@@ -59,7 +59,8 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
         {"shape":"ConnectorAuthenticationException"},
-        {"shape":"ConnectorServerException"}
+        {"shape":"ConnectorServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteConnectorProfile":{
@@ -387,7 +388,8 @@
         {"shape":"ConflictException"},
         {"shape":"ConnectorAuthenticationException"},
         {"shape":"ConnectorServerException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     }
   },
@@ -1653,7 +1655,9 @@
         "errorInfo":{"shape":"ErrorInfo"},
         "bytesProcessed":{"shape":"Long"},
         "bytesWritten":{"shape":"Long"},
-        "recordsProcessed":{"shape":"Long"}
+        "recordsProcessed":{"shape":"Long"},
+        "numParallelProcesses":{"shape":"Long"},
+        "maxPageSize":{"shape":"Long"}
       }
     },
     "ExecutionStatus":{
@@ -2763,15 +2767,47 @@
         "writeOperationType":{"shape":"WriteOperationType"}
       }
     },
+    "SAPODataMaxPageSize":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
+    "SAPODataMaxParallelism":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
     "SAPODataMetadata":{
       "type":"structure",
       "members":{
       }
     },
+    "SAPODataPaginationConfig":{
+      "type":"structure",
+      "required":["maxPageSize"],
+      "members":{
+        "maxPageSize":{
+          "shape":"SAPODataMaxPageSize",
+          "box":true
+        }
+      }
+    },
+    "SAPODataParallelismConfig":{
+      "type":"structure",
+      "required":["maxParallelism"],
+      "members":{
+        "maxParallelism":{
+          "shape":"SAPODataMaxParallelism",
+          "box":true
+        }
+      }
+    },
     "SAPODataSourceProperties":{
       "type":"structure",
       "members":{
-        "objectPath":{"shape":"Object"}
+        "objectPath":{"shape":"Object"},
+        "parallelismConfig":{"shape":"SAPODataParallelismConfig"},
+        "paginationConfig":{"shape":"SAPODataPaginationConfig"}
       }
     },
     "SalesforceConnectorOperator":{

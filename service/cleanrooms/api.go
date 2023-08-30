@@ -3786,7 +3786,7 @@ func (c *CleanRooms) StartProtectedQueryRequest(input *StartProtectedQueryInput)
 
 // StartProtectedQuery API operation for AWS Clean Rooms Service.
 //
-// Creates a protected query that is started by Clean Rooms .
+// Creates a protected query that is started by Clean Rooms.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8332,6 +8332,10 @@ type CreateMembershipInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
+	// The default protected query result configuration as specified by the member
+	// who can receive results.
+	DefaultResultConfiguration *MembershipProtectedQueryResultConfiguration `locationName:"defaultResultConfiguration" type:"structure"`
+
 	// An indicator as to whether query logging has been enabled or disabled for
 	// the collaboration.
 	//
@@ -8375,6 +8379,11 @@ func (s *CreateMembershipInput) Validate() error {
 	if s.QueryLogStatus == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryLogStatus"))
 	}
+	if s.DefaultResultConfiguration != nil {
+		if err := s.DefaultResultConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultResultConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8385,6 +8394,12 @@ func (s *CreateMembershipInput) Validate() error {
 // SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
 func (s *CreateMembershipInput) SetCollaborationIdentifier(v string) *CreateMembershipInput {
 	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetDefaultResultConfiguration sets the DefaultResultConfiguration field's value.
+func (s *CreateMembershipInput) SetDefaultResultConfiguration(v *MembershipProtectedQueryResultConfiguration) *CreateMembershipInput {
+	s.DefaultResultConfiguration = v
 	return s
 }
 
@@ -11523,6 +11538,10 @@ type Membership struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
+	// The default protected query result configuration as specified by the member
+	// who can receive results.
+	DefaultResultConfiguration *MembershipProtectedQueryResultConfiguration `locationName:"defaultResultConfiguration" type:"structure"`
+
 	// The unique ID of the membership.
 	//
 	// Id is a required field
@@ -11610,6 +11629,12 @@ func (s *Membership) SetCreateTime(v time.Time) *Membership {
 	return s
 }
 
+// SetDefaultResultConfiguration sets the DefaultResultConfiguration field's value.
+func (s *Membership) SetDefaultResultConfiguration(v *MembershipProtectedQueryResultConfiguration) *Membership {
+	s.DefaultResultConfiguration = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *Membership) SetId(v string) *Membership {
 	s.Id = &v
@@ -11637,6 +11662,119 @@ func (s *Membership) SetStatus(v string) *Membership {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *Membership) SetUpdateTime(v time.Time) *Membership {
 	s.UpdateTime = &v
+	return s
+}
+
+// Contains configurations for protected query results.
+type MembershipProtectedQueryOutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the configuration to write the query results to S3.
+	S3 *ProtectedQueryS3OutputConfiguration `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipProtectedQueryOutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipProtectedQueryOutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MembershipProtectedQueryOutputConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MembershipProtectedQueryOutputConfiguration"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *MembershipProtectedQueryOutputConfiguration) SetS3(v *ProtectedQueryS3OutputConfiguration) *MembershipProtectedQueryOutputConfiguration {
+	s.S3 = v
+	return s
+}
+
+// Contains configurations for protected query results.
+type MembershipProtectedQueryResultConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration for protected query results.
+	//
+	// OutputConfiguration is a required field
+	OutputConfiguration *MembershipProtectedQueryOutputConfiguration `locationName:"outputConfiguration" type:"structure" required:"true"`
+
+	// The unique ARN for an IAM role that is used by Clean Rooms to write protected
+	// query results to the result location, given by the member who can receive
+	// results.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipProtectedQueryResultConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipProtectedQueryResultConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MembershipProtectedQueryResultConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MembershipProtectedQueryResultConfiguration"}
+	if s.OutputConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfiguration"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.OutputConfiguration != nil {
+		if err := s.OutputConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOutputConfiguration sets the OutputConfiguration field's value.
+func (s *MembershipProtectedQueryResultConfiguration) SetOutputConfiguration(v *MembershipProtectedQueryOutputConfiguration) *MembershipProtectedQueryResultConfiguration {
+	s.OutputConfiguration = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *MembershipProtectedQueryResultConfiguration) SetRoleArn(v string) *MembershipProtectedQueryResultConfiguration {
+	s.RoleArn = &v
 	return s
 }
 
@@ -11816,18 +11954,14 @@ type ProtectedQuery struct {
 	Result *ProtectedQueryResult `locationName:"result" type:"structure"`
 
 	// Contains any details needed to write the query results.
-	//
-	// ResultConfiguration is a required field
-	ResultConfiguration *ProtectedQueryResultConfiguration `locationName:"resultConfiguration" type:"structure" required:"true"`
+	ResultConfiguration *ProtectedQueryResultConfiguration `locationName:"resultConfiguration" type:"structure"`
 
 	// The protected query SQL parameters.
 	//
 	// SqlParameters is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ProtectedQuery's
 	// String and GoString methods.
-	//
-	// SqlParameters is a required field
-	SqlParameters *ProtectedQuerySQLParameters `locationName:"sqlParameters" type:"structure" required:"true" sensitive:"true"`
+	SqlParameters *ProtectedQuerySQLParameters `locationName:"sqlParameters" type:"structure" sensitive:"true"`
 
 	// Statistics about protected query execution.
 	Statistics *ProtectedQueryStatistics `locationName:"statistics" type:"structure"`
@@ -12012,6 +12146,10 @@ func (s *ProtectedQueryOutputConfiguration) SetS3(v *ProtectedQueryS3OutputConfi
 type ProtectedQueryOutput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The list of member Amazon Web Services account(s) that received the results
+	// of the query.
+	MemberList []*ProtectedQuerySingleMemberOutput_ `locationName:"memberList" type:"list"`
+
 	// If present, the output for a protected query with an `S3` output type.
 	S3 *ProtectedQueryS3Output_ `locationName:"s3" type:"structure"`
 }
@@ -12032,6 +12170,12 @@ func (s ProtectedQueryOutput_) String() string {
 // value will be replaced with "sensitive".
 func (s ProtectedQueryOutput_) GoString() string {
 	return s.String()
+}
+
+// SetMemberList sets the MemberList field's value.
+func (s *ProtectedQueryOutput_) SetMemberList(v []*ProtectedQuerySingleMemberOutput_) *ProtectedQueryOutput_ {
+	s.MemberList = v
+	return s
 }
 
 // SetS3 sets the S3 field's value.
@@ -12281,6 +12425,41 @@ func (s *ProtectedQuerySQLParameters) SetParameters(v map[string]*string) *Prote
 // SetQueryString sets the QueryString field's value.
 func (s *ProtectedQuerySQLParameters) SetQueryString(v string) *ProtectedQuerySQLParameters {
 	s.QueryString = &v
+	return s
+}
+
+// Details about the member who received the query result.
+type ProtectedQuerySingleMemberOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the member in the collaboration who
+	// can receive results for the query.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQuerySingleMemberOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQuerySingleMemberOutput_) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ProtectedQuerySingleMemberOutput_) SetAccountId(v string) *ProtectedQuerySingleMemberOutput_ {
+	s.AccountId = &v
 	return s
 }
 
@@ -12829,9 +13008,7 @@ type StartProtectedQueryInput struct {
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
 	// The details needed to write the query results.
-	//
-	// ResultConfiguration is a required field
-	ResultConfiguration *ProtectedQueryResultConfiguration `locationName:"resultConfiguration" type:"structure" required:"true"`
+	ResultConfiguration *ProtectedQueryResultConfiguration `locationName:"resultConfiguration" type:"structure"`
 
 	// The protected SQL query parameters.
 	//
@@ -12874,9 +13051,6 @@ func (s *StartProtectedQueryInput) Validate() error {
 	}
 	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
-	}
-	if s.ResultConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResultConfiguration"))
 	}
 	if s.SqlParameters == nil {
 		invalidParams.Add(request.NewErrParamRequired("SqlParameters"))
@@ -13802,6 +13976,10 @@ func (s *UpdateConfiguredTableOutput) SetConfiguredTable(v *ConfiguredTable) *Up
 type UpdateMembershipInput struct {
 	_ struct{} `type:"structure"`
 
+	// The default protected query result configuration as specified by the member
+	// who can receive results.
+	DefaultResultConfiguration *MembershipProtectedQueryResultConfiguration `locationName:"defaultResultConfiguration" type:"structure"`
+
 	// The unique identifier of the membership.
 	//
 	// MembershipIdentifier is a required field
@@ -13839,11 +14017,22 @@ func (s *UpdateMembershipInput) Validate() error {
 	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
 	}
+	if s.DefaultResultConfiguration != nil {
+		if err := s.DefaultResultConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultResultConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDefaultResultConfiguration sets the DefaultResultConfiguration field's value.
+func (s *UpdateMembershipInput) SetDefaultResultConfiguration(v *MembershipProtectedQueryResultConfiguration) *UpdateMembershipInput {
+	s.DefaultResultConfiguration = v
+	return s
 }
 
 // SetMembershipIdentifier sets the MembershipIdentifier field's value.

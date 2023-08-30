@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Welcome to the <i>Clean Rooms API Reference</i>.</p> <p>Clean Rooms is an Amazon Web Services service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the collective datasets without either party getting access to the other party's raw data.</p> <p>To learn more about Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">Clean Rooms User Guide</a>.</p>",
+  "service": "<p>Welcome to the <i>Clean Rooms API Reference</i>.</p> <p>Clean Rooms is an Amazon Web Services service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the collective datasets without either party getting access to the other party's raw data.</p> <p>To learn more about Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">Clean Rooms User Guide</a>.</p> <p>To learn more about SQL commands, functions, and conditions supported in Clean Rooms, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/sql-reference/sql-reference.html\">Clean Rooms SQL Reference</a>.</p>",
   "operations": {
     "BatchGetCollaborationAnalysisTemplate": "<p>Retrieves multiple analysis templates within a collaboration by their Amazon Resource Names (ARNs).</p>",
     "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
@@ -37,7 +37,7 @@
     "ListProtectedQueries": "<p>Lists protected queries, sorted by the most recent query.</p>",
     "ListSchemas": "<p>Lists the schemas for relations within a collaboration.</p>",
     "ListTagsForResource": "<p>Lists all of the tags that have been added to a resource.</p>",
-    "StartProtectedQuery": "<p>Creates a protected query that is started by Clean Rooms .</p>",
+    "StartProtectedQuery": "<p>Creates a protected query that is started by Clean Rooms.</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes a tag or list of tags from a resource.</p>",
     "UpdateAnalysisTemplate": "<p>Updates the analysis template metadata.</p>",
@@ -73,6 +73,7 @@
         "MemberSummary$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "Membership$collaborationCreatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "MembershipSummary$collaborationCreatorAccountId": "<p>The identifier of the Amazon Web Services principal that created the collaboration. Currently only supports Amazon Web Services account ID.</p>",
+        "ProtectedQuerySingleMemberOutput$accountId": "<p>The Amazon Web Services account ID of the member in the collaboration who can receive results for the query.</p>",
         "Schema$creatorAccountId": "<p>The unique account ID for the Amazon Web Services account that owns the schema.</p>",
         "SchemaSummary$creatorAccountId": "<p>The unique account ID for the Amazon Web Services account that owns the schema.</p>"
       }
@@ -1181,6 +1182,20 @@
         "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
       }
     },
+    "MembershipProtectedQueryOutputConfiguration": {
+      "base": "<p>Contains configurations for protected query results.</p>",
+      "refs": {
+        "MembershipProtectedQueryResultConfiguration$outputConfiguration": "<p>Configuration for protected query results.</p>"
+      }
+    },
+    "MembershipProtectedQueryResultConfiguration": {
+      "base": "<p>Contains configurations for protected query results.</p>",
+      "refs": {
+        "CreateMembershipInput$defaultResultConfiguration": "<p>The default protected query result configuration as specified by the member who can receive results.</p>",
+        "Membership$defaultResultConfiguration": "<p>The default protected query result configuration as specified by the member who can receive results.</p>",
+        "UpdateMembershipInput$defaultResultConfiguration": "<p>The default protected query result configuration as specified by the member who can receive results.</p>"
+      }
+    },
     "MembershipQueryLogStatus": {
       "base": null,
       "refs": {
@@ -1279,6 +1294,12 @@
         "UpdateProtectedQueryInput$protectedQueryIdentifier": "<p>The identifier for a protected query instance.</p>"
       }
     },
+    "ProtectedQueryMemberOutputList": {
+      "base": null,
+      "refs": {
+        "ProtectedQueryOutput$memberList": "<p>The list of member Amazon Web Services account(s) that received the results of the query. </p>"
+      }
+    },
     "ProtectedQueryOutput": {
       "base": "<p>Contains details about the protected query output.</p>",
       "refs": {
@@ -1313,6 +1334,7 @@
     "ProtectedQueryS3OutputConfiguration": {
       "base": "<p>Contains the configuration to write the query results to S3.</p>",
       "refs": {
+        "MembershipProtectedQueryOutputConfiguration$s3": null,
         "ProtectedQueryOutputConfiguration$s3": "<p>Required configuration for a protected query with an `S3` output type.</p>"
       }
     },
@@ -1333,6 +1355,12 @@
       "base": null,
       "refs": {
         "ProtectedQuerySQLParameters$queryString": "<p>The query string to be submitted.</p>"
+      }
+    },
+    "ProtectedQuerySingleMemberOutput": {
+      "base": "<p>Details about the member who received the query result.</p>",
+      "refs": {
+        "ProtectedQueryMemberOutputList$member": null
       }
     },
     "ProtectedQueryStatistics": {
@@ -1416,6 +1444,7 @@
       "refs": {
         "ConfiguredTableAssociation$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>",
         "CreateConfiguredTableAssociationInput$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>",
+        "MembershipProtectedQueryResultConfiguration$roleArn": "<p>The unique ARN for an IAM role that is used by Clean Rooms to write protected query results to the result location, given by the member who can receive results.</p>",
         "UpdateConfiguredTableAssociationInput$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>"
       }
     },
