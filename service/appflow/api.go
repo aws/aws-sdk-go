@@ -313,6 +313,9 @@ func (c *Appflow) CreateFlowRequest(input *CreateFlowInput) (req *request.Reques
 //   - ConnectorServerException
 //     An error occurred when retrieving data from the connector endpoint.
 //
+//   - AccessDeniedException
+//     AppFlow/Requester has invalid or missing permissions.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/CreateFlow
 func (c *Appflow) CreateFlow(input *CreateFlowInput) (*CreateFlowOutput, error) {
 	req, out := c.CreateFlowRequest(input)
@@ -2641,6 +2644,9 @@ func (c *Appflow) UpdateFlowRequest(input *UpdateFlowInput) (req *request.Reques
 //   - InternalServerException
 //     An internal service error occurred during the processing of your request.
 //     Try again later.
+//
+//   - AccessDeniedException
+//     AppFlow/Requester has invalid or missing permissions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/UpdateFlow
 func (c *Appflow) UpdateFlow(input *UpdateFlowInput) (*UpdateFlowOutput, error) {
@@ -8463,6 +8469,14 @@ type ExecutionResult struct {
 	// Provides any error message information related to the flow run.
 	ErrorInfo *ErrorInfo `locationName:"errorInfo" type:"structure"`
 
+	// The maximum number of records that Amazon AppFlow receives in each page of
+	// the response from your SAP application.
+	MaxPageSize *int64 `locationName:"maxPageSize" type:"long"`
+
+	// The number of processes that Amazon AppFlow ran at the same time when it
+	// retrieved your data.
+	NumParallelProcesses *int64 `locationName:"numParallelProcesses" type:"long"`
+
 	// The number of records processed in the flow run.
 	RecordsProcessed *int64 `locationName:"recordsProcessed" type:"long"`
 }
@@ -8500,6 +8514,18 @@ func (s *ExecutionResult) SetBytesWritten(v int64) *ExecutionResult {
 // SetErrorInfo sets the ErrorInfo field's value.
 func (s *ExecutionResult) SetErrorInfo(v *ErrorInfo) *ExecutionResult {
 	s.ErrorInfo = v
+	return s
+}
+
+// SetMaxPageSize sets the MaxPageSize field's value.
+func (s *ExecutionResult) SetMaxPageSize(v int64) *ExecutionResult {
+	s.MaxPageSize = &v
+	return s
+}
+
+// SetNumParallelProcesses sets the NumParallelProcesses field's value.
+func (s *ExecutionResult) SetNumParallelProcesses(v int64) *ExecutionResult {
+	s.NumParallelProcesses = &v
 	return s
 }
 
@@ -12546,12 +12572,130 @@ func (s SAPODataMetadata) GoString() string {
 	return s.String()
 }
 
+// Sets the page size for each concurrent process that transfers OData records
+// from your SAP instance. A concurrent process is query that retrieves a batch
+// of records as part of a flow run. Amazon AppFlow can run multiple concurrent
+// processes in parallel to transfer data faster.
+type SAPODataPaginationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of records that Amazon AppFlow receives in each page of
+	// the response from your SAP application. For transfers of OData records, the
+	// maximum page size is 3,000. For transfers of data that comes from an ODP
+	// provider, the maximum page size is 10,000.
+	//
+	// MaxPageSize is a required field
+	MaxPageSize *int64 `locationName:"maxPageSize" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataPaginationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataPaginationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataPaginationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataPaginationConfig"}
+	if s.MaxPageSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxPageSize"))
+	}
+	if s.MaxPageSize != nil && *s.MaxPageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxPageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxPageSize sets the MaxPageSize field's value.
+func (s *SAPODataPaginationConfig) SetMaxPageSize(v int64) *SAPODataPaginationConfig {
+	s.MaxPageSize = &v
+	return s
+}
+
+// Sets the number of concurrent processes that transfer OData records from
+// your SAP instance. A concurrent process is query that retrieves a batch of
+// records as part of a flow run. Amazon AppFlow can run multiple concurrent
+// processes in parallel to transfer data faster.
+type SAPODataParallelismConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of processes that Amazon AppFlow runs at the same time
+	// when it retrieves your data from your SAP application.
+	//
+	// MaxParallelism is a required field
+	MaxParallelism *int64 `locationName:"maxParallelism" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataParallelismConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataParallelismConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataParallelismConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataParallelismConfig"}
+	if s.MaxParallelism == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxParallelism"))
+	}
+	if s.MaxParallelism != nil && *s.MaxParallelism < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxParallelism", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxParallelism sets the MaxParallelism field's value.
+func (s *SAPODataParallelismConfig) SetMaxParallelism(v int64) *SAPODataParallelismConfig {
+	s.MaxParallelism = &v
+	return s
+}
+
 // The properties that are applied when using SAPOData as a flow source.
 type SAPODataSourceProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The object path specified in the SAPOData flow source.
 	ObjectPath *string `locationName:"objectPath" type:"string"`
+
+	// Sets the page size for each concurrent process that transfers OData records
+	// from your SAP instance.
+	PaginationConfig *SAPODataPaginationConfig `locationName:"paginationConfig" type:"structure"`
+
+	// Sets the number of concurrent processes that transfers OData records from
+	// your SAP instance.
+	ParallelismConfig *SAPODataParallelismConfig `locationName:"parallelismConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -12572,9 +12716,41 @@ func (s SAPODataSourceProperties) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataSourceProperties"}
+	if s.PaginationConfig != nil {
+		if err := s.PaginationConfig.Validate(); err != nil {
+			invalidParams.AddNested("PaginationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ParallelismConfig != nil {
+		if err := s.ParallelismConfig.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetObjectPath sets the ObjectPath field's value.
 func (s *SAPODataSourceProperties) SetObjectPath(v string) *SAPODataSourceProperties {
 	s.ObjectPath = &v
+	return s
+}
+
+// SetPaginationConfig sets the PaginationConfig field's value.
+func (s *SAPODataSourceProperties) SetPaginationConfig(v *SAPODataPaginationConfig) *SAPODataSourceProperties {
+	s.PaginationConfig = v
+	return s
+}
+
+// SetParallelismConfig sets the ParallelismConfig field's value.
+func (s *SAPODataSourceProperties) SetParallelismConfig(v *SAPODataParallelismConfig) *SAPODataSourceProperties {
+	s.ParallelismConfig = v
 	return s
 }
 
@@ -14278,6 +14454,11 @@ func (s *SourceConnectorProperties) Validate() error {
 	if s.S3 != nil {
 		if err := s.S3.Validate(); err != nil {
 			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SAPOData != nil {
+		if err := s.SAPOData.Validate(); err != nil {
+			invalidParams.AddNested("SAPOData", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Salesforce != nil {

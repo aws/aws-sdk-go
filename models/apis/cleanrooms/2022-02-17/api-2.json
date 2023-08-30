@@ -873,7 +873,7 @@
     "AllowedColumnList":{
       "type":"list",
       "member":{"shape":"ColumnName"},
-      "max":100,
+      "max":225,
       "min":1
     },
     "AnalysisFormat":{
@@ -1747,7 +1747,8 @@
       "members":{
         "collaborationIdentifier":{"shape":"CollaborationIdentifier"},
         "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"}
       }
     },
     "CreateMembershipOutput":{
@@ -2226,7 +2227,9 @@
     },
     "KeyPrefix":{
       "type":"string",
-      "pattern":"[\\w!.*/-]*"
+      "max":512,
+      "min":0,
+      "pattern":"[\\w!.=*/-]*"
     },
     "ListAnalysisTemplatesInput":{
       "type":"structure",
@@ -2611,7 +2614,8 @@
         "updateTime":{"shape":"Timestamp"},
         "status":{"shape":"MembershipStatus"},
         "memberAbilities":{"shape":"MemberAbilities"},
-        "queryLogStatus":{"shape":"MembershipQueryLogStatus"}
+        "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
+        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"}
       }
     },
     "MembershipArn":{
@@ -2625,6 +2629,21 @@
       "max":36,
       "min":36,
       "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+    },
+    "MembershipProtectedQueryOutputConfiguration":{
+      "type":"structure",
+      "members":{
+        "s3":{"shape":"ProtectedQueryS3OutputConfiguration"}
+      },
+      "union":true
+    },
+    "MembershipProtectedQueryResultConfiguration":{
+      "type":"structure",
+      "required":["outputConfiguration"],
+      "members":{
+        "outputConfiguration":{"shape":"MembershipProtectedQueryOutputConfiguration"},
+        "roleArn":{"shape":"RoleArn"}
+      }
     },
     "MembershipQueryLogStatus":{
       "type":"string",
@@ -2722,9 +2741,7 @@
         "membershipId",
         "membershipArn",
         "createTime",
-        "sqlParameters",
-        "status",
-        "resultConfiguration"
+        "status"
       ],
       "members":{
         "id":{"shape":"UUID"},
@@ -2756,10 +2773,15 @@
       "min":1,
       "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
     },
+    "ProtectedQueryMemberOutputList":{
+      "type":"list",
+      "member":{"shape":"ProtectedQuerySingleMemberOutput"}
+    },
     "ProtectedQueryOutput":{
       "type":"structure",
       "members":{
-        "s3":{"shape":"ProtectedQueryS3Output"}
+        "s3":{"shape":"ProtectedQueryS3Output"},
+        "memberList":{"shape":"ProtectedQueryMemberOutputList"}
       },
       "union":true
     },
@@ -2822,6 +2844,13 @@
       "type":"string",
       "max":15000,
       "min":0
+    },
+    "ProtectedQuerySingleMemberOutput":{
+      "type":"structure",
+      "required":["accountId"],
+      "members":{
+        "accountId":{"shape":"AccountId"}
+      }
     },
     "ProtectedQueryStatistics":{
       "type":"structure",
@@ -3035,8 +3064,7 @@
       "required":[
         "type",
         "membershipIdentifier",
-        "sqlParameters",
-        "resultConfiguration"
+        "sqlParameters"
       ],
       "members":{
         "type":{"shape":"ProtectedQueryType"},
@@ -3301,7 +3329,8 @@
           "location":"uri",
           "locationName":"membershipIdentifier"
         },
-        "queryLogStatus":{"shape":"MembershipQueryLogStatus"}
+        "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
+        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"}
       }
     },
     "UpdateMembershipOutput":{

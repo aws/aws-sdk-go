@@ -263,9 +263,9 @@ func (c *AppRunner) CreateConnectionRequest(input *CreateConnectionInput) (req *
 // from certain third-party providers. You can share a connection across multiple
 // services.
 //
-// A connection resource is needed to access GitHub repositories. GitHub requires
-// a user interface approval process through the App Runner console before you
-// can use the connection.
+// A connection resource is needed to access GitHub and Bitbucket repositories.
+// Both require a user interface approval process through the App Runner console
+// before you can use the connection.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9180,11 +9180,10 @@ type Service struct {
 	// The current state of the App Runner service. These particular values mean
 	// the following.
 	//
-	//    * CREATE_FAILED – The service failed to create. To troubleshoot this
+	//    * CREATE_FAILED – The service failed to create. The failed service isn't
+	//    usable, and still counts towards your service quota. To troubleshoot this
 	//    failure, read the failure events and logs, change any parameters that
-	//    need to be fixed, and retry the call to create the service. The failed
-	//    service isn't usable, and still counts towards your service quota. When
-	//    you're done analyzing the failure, delete the service.
+	//    need to be fixed, and rebuild your service using UpdateService.
 	//
 	//    * DELETE_FAILED – The service failed to delete and can't be successfully
 	//    recovered. Retry the service deletion call to ensure that all related
@@ -9478,11 +9477,10 @@ type ServiceSummary struct {
 	// The current state of the App Runner service. These particular values mean
 	// the following.
 	//
-	//    * CREATE_FAILED – The service failed to create. Read the failure events
-	//    and logs, change any parameters that need to be fixed, and retry the call
-	//    to create the service. The failed service isn't usable, and still counts
-	//    towards your service quota. When you're done analyzing the failure, delete
-	//    the service.
+	//    * CREATE_FAILED – The service failed to create. The failed service isn't
+	//    usable, and still counts towards your service quota. To troubleshoot this
+	//    failure, read the failure events and logs, change any parameters that
+	//    need to be fixed, and rebuild your service using UpdateService.
 	//
 	//    * DELETE_FAILED – The service failed to delete and can't be successfully
 	//    recovered. Retry the service deletion call to ensure that all related
@@ -10959,12 +10957,16 @@ func OperationType_Values() []string {
 const (
 	// ProviderTypeGithub is a ProviderType enum value
 	ProviderTypeGithub = "GITHUB"
+
+	// ProviderTypeBitbucket is a ProviderType enum value
+	ProviderTypeBitbucket = "BITBUCKET"
 )
 
 // ProviderType_Values returns all elements of the ProviderType enum
 func ProviderType_Values() []string {
 	return []string{
 		ProviderTypeGithub,
+		ProviderTypeBitbucket,
 	}
 }
 

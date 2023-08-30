@@ -13,6 +13,9 @@
 // To learn more about Clean Rooms concepts, procedures, and best practices,
 // see the Clean Rooms User Guide (https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html).
 //
+// To learn more about SQL commands, functions, and conditions supported in
+// Clean Rooms, see the Clean Rooms SQL Reference (https://docs.aws.amazon.com/clean-rooms/latest/sql-reference/sql-reference.html).
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17 for more information on this service.
 //
 // See cleanrooms package documentation for more information.

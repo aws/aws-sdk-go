@@ -1562,7 +1562,9 @@
         "ErrorInfo$putFailuresCount": "<p> Specifies the failure count for the attempted flow. </p>",
         "ExecutionResult$bytesProcessed": "<p> The total number of bytes processed by the flow run. </p>",
         "ExecutionResult$bytesWritten": "<p> The total number of bytes written as a result of the flow run. </p>",
-        "ExecutionResult$recordsProcessed": "<p> The number of records processed in the flow run. </p>"
+        "ExecutionResult$recordsProcessed": "<p> The number of records processed in the flow run. </p>",
+        "ExecutionResult$numParallelProcesses": "<p>The number of processes that Amazon AppFlow ran at the same time when it retrieved your data.</p>",
+        "ExecutionResult$maxPageSize": "<p>The maximum number of records that Amazon AppFlow receives in each page of the response from your SAP application.</p>"
       }
     },
     "LookoutMetricsDestinationProperties": {
@@ -2106,10 +2108,34 @@
         "DestinationConnectorProperties$SAPOData": "<p>The properties required to query SAPOData.</p>"
       }
     },
+    "SAPODataMaxPageSize": {
+      "base": null,
+      "refs": {
+        "SAPODataPaginationConfig$maxPageSize": "<p>The maximum number of records that Amazon AppFlow receives in each page of the response from your SAP application. For transfers of OData records, the maximum page size is 3,000. For transfers of data that comes from an ODP provider, the maximum page size is 10,000.</p>"
+      }
+    },
+    "SAPODataMaxParallelism": {
+      "base": null,
+      "refs": {
+        "SAPODataParallelismConfig$maxParallelism": "<p>The maximum number of processes that Amazon AppFlow runs at the same time when it retrieves your data from your SAP application.</p>"
+      }
+    },
     "SAPODataMetadata": {
       "base": "<p> The connector metadata specific to SAPOData. </p>",
       "refs": {
         "ConnectorMetadata$SAPOData": null
+      }
+    },
+    "SAPODataPaginationConfig": {
+      "base": "<p>Sets the page size for each <i>concurrent process</i> that transfers OData records from your SAP instance. A concurrent process is query that retrieves a batch of records as part of a flow run. Amazon AppFlow can run multiple concurrent processes in parallel to transfer data faster.</p>",
+      "refs": {
+        "SAPODataSourceProperties$paginationConfig": "<p>Sets the page size for each concurrent process that transfers OData records from your SAP instance.</p>"
+      }
+    },
+    "SAPODataParallelismConfig": {
+      "base": "<p>Sets the number of <i>concurrent processes</i> that transfer OData records from your SAP instance. A concurrent process is query that retrieves a batch of records as part of a flow run. Amazon AppFlow can run multiple concurrent processes in parallel to transfer data faster.</p>",
+      "refs": {
+        "SAPODataSourceProperties$parallelismConfig": "<p>Sets the number of concurrent processes that transfers OData records from your SAP instance.</p>"
       }
     },
     "SAPODataSourceProperties": {
