@@ -14,7 +14,7 @@
 //
 // Refreshable credentials will expire within the "ExpiryWindow" of the Expiration
 // value in the response. The format of the refreshable credentials response:
-//	{
+// 	{
 //	    "AccessKeyId" : "MUA...",
 //	    "SecretAccessKey" : "/7PC5om....",
 //	    "Token" : "AQoDY....=",
@@ -23,7 +23,6 @@
 //
 // Errors should be returned in the following format and only returned with 400
 // or 500 HTTP status codes.
-
 //	{
 //	    "code": "ErrorCode",
 //	    "message": "Helpful error message."
