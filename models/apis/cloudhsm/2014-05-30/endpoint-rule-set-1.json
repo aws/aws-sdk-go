@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://cloudhsm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -225,7 +225,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://cloudhsm-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -277,7 +277,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://cloudhsm.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -295,7 +295,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://profile.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://cloudhsm.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

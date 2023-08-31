@@ -4,7 +4,7 @@
             "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.af-south-1.amazonaws.com"
+                    "url": "https://events.af-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-east-1.amazonaws.com"
+                    "url": "https://events.ap-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-northeast-1.amazonaws.com"
+                    "url": "https://events.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-northeast-2.amazonaws.com"
+                    "url": "https://events.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +56,7 @@
             "documentation": "For region ap-northeast-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-northeast-3.amazonaws.com"
+                    "url": "https://events.ap-northeast-3.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-south-1.amazonaws.com"
+                    "url": "https://events.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-southeast-1.amazonaws.com"
+                    "url": "https://events.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ap-southeast-2.amazonaws.com"
+                    "url": "https://events.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -105,10 +105,23 @@
             }
         },
         {
+            "documentation": "For region ap-southeast-3 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://events.ap-southeast-3.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-southeast-3",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.ca-central-1.amazonaws.com"
+                    "url": "https://events.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -121,7 +134,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-central-1.amazonaws.com"
+                    "url": "https://events.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +147,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-north-1.amazonaws.com"
+                    "url": "https://events.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -147,7 +160,7 @@
             "documentation": "For region eu-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-south-1.amazonaws.com"
+                    "url": "https://events.eu-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +173,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-west-1.amazonaws.com"
+                    "url": "https://events.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +186,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-west-2.amazonaws.com"
+                    "url": "https://events.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +199,7 @@
             "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.eu-west-3.amazonaws.com"
+                    "url": "https://events.eu-west-3.amazonaws.com"
                 }
             },
             "params": {
@@ -199,7 +212,7 @@
             "documentation": "For region me-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.me-south-1.amazonaws.com"
+                    "url": "https://events.me-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +225,7 @@
             "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.sa-east-1.amazonaws.com"
+                    "url": "https://events.sa-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -225,7 +238,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-east-1.amazonaws.com"
+                    "url": "https://events.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -238,7 +251,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime-fips.sagemaker.us-east-1.amazonaws.com"
+                    "url": "https://events-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -251,7 +264,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-east-2.amazonaws.com"
+                    "url": "https://events.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -264,7 +277,7 @@
             "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime-fips.sagemaker.us-east-2.amazonaws.com"
+                    "url": "https://events-fips.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -277,7 +290,7 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-west-1.amazonaws.com"
+                    "url": "https://events.us-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -290,7 +303,7 @@
             "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime-fips.sagemaker.us-west-1.amazonaws.com"
+                    "url": "https://events-fips.us-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -303,7 +316,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-west-2.amazonaws.com"
+                    "url": "https://events.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -316,7 +329,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime-fips.sagemaker.us-west-2.amazonaws.com"
+                    "url": "https://events-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -329,7 +342,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.us-east-1.api.aws"
+                    "url": "https://events-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -342,7 +355,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-east-1.api.aws"
+                    "url": "https://events.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -355,7 +368,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.cn-north-1.amazonaws.com.cn"
+                    "url": "https://events.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -368,7 +381,7 @@
             "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.cn-northwest-1.amazonaws.com.cn"
+                    "url": "https://events.cn-northwest-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -381,7 +394,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://events-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -394,7 +407,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://events-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -407,7 +420,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://events.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -417,10 +430,36 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://events.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://events.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-gov-west-1.amazonaws.com"
+                    "url": "https://events.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -433,7 +472,7 @@
             "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-gov-west-1.amazonaws.com"
+                    "url": "https://events.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -446,33 +485,20 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.us-gov-east-1.api.aws"
+                    "url": "https://events-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": true,
                 "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://runtime.sagemaker.us-gov-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
-                "UseDualStack": false
             }
         },
         {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-gov-east-1.api.aws"
+                    "url": "https://events.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -482,27 +508,27 @@
             }
         },
         {
-            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-gov-east-1.amazonaws.com"
+                    "url": "https://events.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
-                "Region": "us-gov-east-1",
+                "Region": "us-iso-east-1",
                 "UseFIPS": false,
                 "UseDualStack": false
             }
         },
         {
-            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-iso-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://events.us-iso-west-1.c2s.ic.gov"
                 }
             },
             "params": {
-                "Region": "us-iso-east-1",
+                "Region": "us-iso-west-1",
                 "UseFIPS": false,
                 "UseDualStack": false
             }
@@ -522,7 +548,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://events-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -543,6 +569,19 @@
             }
         },
         {
+            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://events.us-isob-east-1.sc2s.sgov.gov"
+                }
+            },
+            "params": {
+                "Region": "us-isob-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "error": "FIPS and DualStack are enabled, but this partition does not support one or both"
@@ -557,7 +596,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://runtime.sagemaker-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://events-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -575,19 +614,6 @@
                 "Region": "us-isob-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://runtime.sagemaker.us-isob-east-1.sc2s.sgov.gov"
-                }
-            },
-            "params": {
-                "Region": "us-isob-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
             }
         },
         {

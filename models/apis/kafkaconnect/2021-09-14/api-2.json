@@ -412,7 +412,7 @@
       ],
       "members":{
         "capacity":{"shape":"Capacity"},
-        "connectorConfiguration":{"shape":"SyntheticCreateConnectorRequest__mapOf__string"},
+        "connectorConfiguration":{"shape":"__sensitive__mapOf__string"},
         "connectorDescription":{"shape":"__stringMax1024"},
         "connectorName":{"shape":"__stringMin1Max128"},
         "kafkaCluster":{"shape":"KafkaCluster"},
@@ -465,7 +465,7 @@
       "members":{
         "description":{"shape":"__stringMax1024"},
         "name":{"shape":"__stringMin1Max128"},
-        "propertiesFileContent":{"shape":"SyntheticCreateWorkerConfigurationRequest__string"}
+        "propertiesFileContent":{"shape":"__sensitiveString"}
       }
     },
     "CreateWorkerConfigurationResponse":{
@@ -612,7 +612,7 @@
       "members":{
         "capacity":{"shape":"CapacityDescription"},
         "connectorArn":{"shape":"__string"},
-        "connectorConfiguration":{"shape":"SyntheticDescribeConnectorResponse__mapOf__string"},
+        "connectorConfiguration":{"shape":"__sensitive__mapOf__string"},
         "connectorDescription":{"shape":"__string"},
         "connectorName":{"shape":"__string"},
         "connectorState":{"shape":"ConnectorState"},
@@ -996,26 +996,6 @@
         "message":{"shape":"__string"}
       }
     },
-    "SyntheticCreateConnectorRequest__mapOf__string":{
-      "type":"map",
-      "key":{"shape":"__string"},
-      "value":{"shape":"__string"},
-      "sensitive":true
-    },
-    "SyntheticCreateWorkerConfigurationRequest__string":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticDescribeConnectorResponse__mapOf__string":{
-      "type":"map",
-      "key":{"shape":"__string"},
-      "value":{"shape":"__string"},
-      "sensitive":true
-    },
-    "SyntheticWorkerConfigurationRevisionDescription__string":{
-      "type":"string",
-      "sensitive":true
-    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -1104,7 +1084,7 @@
       "members":{
         "creationTime":{"shape":"__timestampIso8601"},
         "description":{"shape":"__string"},
-        "propertiesFileContent":{"shape":"SyntheticWorkerConfigurationRevisionDescription__string"},
+        "propertiesFileContent":{"shape":"__sensitiveString"},
         "revision":{"shape":"__long"}
       }
     },
@@ -1188,6 +1168,16 @@
       "type":"long",
       "max":9223372036854775807,
       "min":1
+    },
+    "__sensitiveString":{
+      "type":"string",
+      "sensitive":true
+    },
+    "__sensitive__mapOf__string":{
+      "type":"map",
+      "key":{"shape":"__string"},
+      "value":{"shape":"__string"},
+      "sensitive":true
     },
     "__string":{"type":"string"},
     "__stringMax1024":{

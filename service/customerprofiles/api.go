@@ -5172,7 +5172,7 @@ func (s *AdditionalSearchKey) SetValues(v []*string) *AdditionalSearchKey {
 // A generic address associated with the customer that is not mailing, shipping,
 // or billing.
 type Address struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The first line of a customer address.
 	Address1 *string `min:"1" type:"string"`
@@ -5334,8 +5334,12 @@ type AppflowIntegration struct {
 	// the source, Amazon AppFlow. Customer Profiles uses this information to create
 	// an AppFlow flow on behalf of customers.
 	//
+	// FlowDefinition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppflowIntegration's
+	// String and GoString methods.
+	//
 	// FlowDefinition is a required field
-	FlowDefinition *FlowDefinition `type:"structure" required:"true"`
+	FlowDefinition *FlowDefinition `type:"structure" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5626,7 +5630,7 @@ func (s *AppflowIntegrationWorkflowStep) SetStatus(v string) *AppflowIntegration
 
 // Mathematical expression and a list of attribute items specified in that expression.
 type AttributeDetails struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list of attribute items specified in the mathematical expression.
 	//
@@ -6094,7 +6098,7 @@ func (s *Batch) SetStartTime(v time.Time) *Batch {
 // The conditions including range, object count, and threshold for the calculated
 // attribute.
 type Conditions struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The number of profile objects used for the calculated attribute.
 	ObjectCount *int64 `min:"1" type:"integer"`
@@ -6355,8 +6359,12 @@ type CreateCalculatedAttributeDefinitionInput struct {
 
 	// Mathematical expression and a list of attribute items specified in that expression.
 	//
+	// AttributeDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	//
 	// AttributeDetails is a required field
-	AttributeDetails *AttributeDetails `type:"structure" required:"true"`
+	AttributeDetails *AttributeDetails `type:"structure" required:"true" sensitive:"true"`
 
 	// The unique name of the calculated attribute.
 	//
@@ -6365,7 +6373,11 @@ type CreateCalculatedAttributeDefinitionInput struct {
 
 	// The conditions including range, object count, and threshold for the calculated
 	// attribute.
-	Conditions *Conditions `type:"structure"`
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The description of the calculated attribute.
 	Description *string `min:"1" type:"string"`
@@ -6380,8 +6392,12 @@ type CreateCalculatedAttributeDefinitionInput struct {
 
 	// The aggregation operation to perform for the calculated attribute.
 	//
+	// Statistic is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	//
 	// Statistic is a required field
-	Statistic *string `type:"string" required:"true" enum:"Statistic"`
+	Statistic *string `type:"string" required:"true" enum:"Statistic" sensitive:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -6504,14 +6520,22 @@ type CreateCalculatedAttributeDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Mathematical expression and a list of attribute items specified in that expression.
-	AttributeDetails *AttributeDetails `type:"structure"`
+	//
+	// AttributeDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	AttributeDetails *AttributeDetails `type:"structure" sensitive:"true"`
 
 	// The unique name of the calculated attribute.
 	CalculatedAttributeName *string `min:"1" type:"string"`
 
 	// The conditions including range, object count, and threshold for the calculated
 	// attribute.
-	Conditions *Conditions `type:"structure"`
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The timestamp of when the calculated attribute definition was created.
 	CreatedAt *time.Time `type:"timestamp"`
@@ -6527,7 +6551,11 @@ type CreateCalculatedAttributeDefinitionOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
 	// The aggregation operation to perform for the calculated attribute.
-	Statistic *string `type:"string" enum:"Statistic"`
+	//
+	// Statistic is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Statistic *string `type:"string" enum:"Statistic" sensitive:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -7186,32 +7214,68 @@ type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique account number that you have given to the customer.
-	AccountNumber *string `min:"1" type:"string"`
+	//
+	// AccountNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	AccountNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// Any additional information relevant to the customer’s profile.
-	AdditionalInformation *string `min:"1" type:"string"`
+	//
+	// AdditionalInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	AdditionalInformation *string `min:"1" type:"string" sensitive:"true"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
 	// or billing.
-	Address *Address `type:"structure"`
+	//
+	// Address is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	Address *Address `type:"structure" sensitive:"true"`
 
 	// A key value pair of attributes of a customer profile.
-	Attributes map[string]*string `type:"map"`
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	Attributes map[string]*string `type:"map" sensitive:"true"`
 
 	// The customer’s billing address.
-	BillingAddress *Address `type:"structure"`
+	//
+	// BillingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	BillingAddress *Address `type:"structure" sensitive:"true"`
 
 	// The customer’s birth date.
-	BirthDate *string `min:"1" type:"string"`
+	//
+	// BirthDate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	BirthDate *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s business email address.
-	BusinessEmailAddress *string `min:"1" type:"string"`
+	//
+	// BusinessEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	BusinessEmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of the customer’s business.
-	BusinessName *string `min:"1" type:"string"`
+	//
+	// BusinessName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	BusinessName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s business phone number.
-	BusinessPhoneNumber *string `min:"1" type:"string"`
+	//
+	// BusinessPhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	BusinessPhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The unique name of the domain.
 	//
@@ -7220,47 +7284,103 @@ type CreateProfileInput struct {
 
 	// The customer’s email address, which has not been specified as a personal
 	// or business address.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s first name.
-	FirstName *string `min:"1" type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	FirstName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The gender with which the customer identifies.
-	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
+	//
+	// Gender is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	Gender *string `deprecated:"true" type:"string" enum:"Gender" sensitive:"true"`
 
 	// An alternative to Gender which accepts any string as input.
-	GenderString *string `min:"1" type:"string"`
+	//
+	// GenderString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	GenderString *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s home phone number.
-	HomePhoneNumber *string `min:"1" type:"string"`
+	//
+	// HomePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	HomePhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s last name.
-	LastName *string `min:"1" type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	LastName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s mailing address.
-	MailingAddress *Address `type:"structure"`
+	//
+	// MailingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	MailingAddress *Address `type:"structure" sensitive:"true"`
 
 	// The customer’s middle name.
-	MiddleName *string `min:"1" type:"string"`
+	//
+	// MiddleName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	MiddleName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s mobile phone number.
-	MobilePhoneNumber *string `min:"1" type:"string"`
+	//
+	// MobilePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	MobilePhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
+	//
+	// PartyType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType" sensitive:"true"`
 
 	// An alternative to PartyType which accepts any string as input.
-	PartyTypeString *string `min:"1" type:"string"`
+	//
+	// PartyTypeString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	PartyTypeString *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s personal email address.
-	PersonalEmailAddress *string `min:"1" type:"string"`
+	//
+	// PersonalEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	PersonalEmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s phone number, which has not been specified as a mobile,
 	// home, or business number.
-	PhoneNumber *string `min:"1" type:"string"`
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	PhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s shipping address.
-	ShippingAddress *Address `type:"structure"`
+	//
+	// ShippingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateProfileInput's
+	// String and GoString methods.
+	ShippingAddress *Address `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9011,7 +9131,7 @@ func (s *FieldSourceProfileIds) SetShippingAddress(v string) *FieldSourceProfile
 // the source, Amazon AppFlow. Customer Profiles uses this information to create
 // an AppFlow flow on behalf of customers.
 type FlowDefinition struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A description of the flow you want to create.
 	Description *string `type:"string"`
@@ -9420,14 +9540,22 @@ type GetCalculatedAttributeDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Mathematical expression and a list of attribute items specified in that expression.
-	AttributeDetails *AttributeDetails `type:"structure"`
+	//
+	// AttributeDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	AttributeDetails *AttributeDetails `type:"structure" sensitive:"true"`
 
 	// The unique name of the calculated attribute.
 	CalculatedAttributeName *string `min:"1" type:"string"`
 
 	// The conditions including range, object count, and threshold for the calculated
 	// attribute.
-	Conditions *Conditions `type:"structure"`
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The timestamp of when the calculated attribute definition was created.
 	CreatedAt *time.Time `type:"timestamp"`
@@ -9443,7 +9571,11 @@ type GetCalculatedAttributeDefinitionOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
 	// The aggregation operation to perform for the calculated attribute.
-	Statistic *string `type:"string" enum:"Statistic"`
+	//
+	// Statistic is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Statistic *string `type:"string" enum:"Statistic" sensitive:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -10612,8 +10744,12 @@ type GetProfileObjectTypeOutput struct {
 
 	// The description of the profile object type.
 	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProfileObjectTypeOutput's
+	// String and GoString methods.
+	//
 	// Description is a required field
-	Description *string `min:"1" type:"string" required:"true"`
+	Description *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The customer-provided key to encrypt the profile object that will be created
 	// in this profile object type.
@@ -10623,10 +10759,18 @@ type GetProfileObjectTypeOutput struct {
 	ExpirationDays *int64 `min:"1" type:"integer"`
 
 	// A map of the name and ObjectType field.
-	Fields map[string]*ObjectTypeField `type:"map"`
+	//
+	// Fields is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProfileObjectTypeOutput's
+	// String and GoString methods.
+	Fields map[string]*ObjectTypeField `type:"map" sensitive:"true"`
 
 	// A list of unique keys that can be used to map data to the profile.
-	Keys map[string][]*ObjectTypeKey `type:"map"`
+	//
+	// Keys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProfileObjectTypeOutput's
+	// String and GoString methods.
+	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
 
 	// The timestamp of when the domain was most recently edited.
 	LastUpdatedAt *time.Time `type:"timestamp"`
@@ -10797,10 +10941,18 @@ type GetProfileObjectTypeTemplateOutput struct {
 	AllowProfileCreation *bool `type:"boolean"`
 
 	// A map of the name and ObjectType field.
-	Fields map[string]*ObjectTypeField `type:"map"`
+	//
+	// Fields is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProfileObjectTypeTemplateOutput's
+	// String and GoString methods.
+	Fields map[string]*ObjectTypeField `type:"map" sensitive:"true"`
 
 	// A list of unique keys that can be used to map data to the profile.
-	Keys map[string][]*ObjectTypeKey `type:"map"`
+	//
+	// Keys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProfileObjectTypeTemplateOutput's
+	// String and GoString methods.
+	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
 
 	// The format of your sourceLastUpdatedTimestamp that was previously set up.
 	SourceLastUpdatedTimestampFormat *string `min:"1" type:"string"`
@@ -13192,7 +13344,11 @@ type ListProfileObjectTypesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of ListProfileObjectTypes instances.
-	Items []*ListProfileObjectTypeItem `type:"list"`
+	//
+	// Items is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListProfileObjectTypesOutput's
+	// String and GoString methods.
+	Items []*ListProfileObjectTypeItem `type:"list" sensitive:"true"`
 
 	// Identifies the next page of results to return.
 	NextToken *string `min:"1" type:"string"`
@@ -13352,7 +13508,11 @@ type ListProfileObjectsItem struct {
 	_ struct{} `type:"structure"`
 
 	// A JSON representation of a ProfileObject that belongs to a profile.
-	Object *string `min:"1" type:"string"`
+	//
+	// Object is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListProfileObjectsItem's
+	// String and GoString methods.
+	Object *string `min:"1" type:"string" sensitive:"true"`
 
 	// Specifies the kind of object being added to a profile, such as "Salesforce-Account."
 	ObjectTypeName *string `min:"1" type:"string"`
@@ -14527,39 +14687,83 @@ type Profile struct {
 	_ struct{} `type:"structure"`
 
 	// A unique account number that you have given to the customer.
-	AccountNumber *string `min:"1" type:"string"`
+	//
+	// AccountNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	AccountNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// Any additional information relevant to the customer’s profile.
-	AdditionalInformation *string `min:"1" type:"string"`
+	//
+	// AdditionalInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	AdditionalInformation *string `min:"1" type:"string" sensitive:"true"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
 	// or billing.
-	Address *Address `type:"structure"`
+	//
+	// Address is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	Address *Address `type:"structure" sensitive:"true"`
 
 	// A key value pair of attributes of a customer profile.
-	Attributes map[string]*string `type:"map"`
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	Attributes map[string]*string `type:"map" sensitive:"true"`
 
 	// The customer’s billing address.
-	BillingAddress *Address `type:"structure"`
+	//
+	// BillingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	BillingAddress *Address `type:"structure" sensitive:"true"`
 
 	// The customer’s birth date.
-	BirthDate *string `min:"1" type:"string"`
+	//
+	// BirthDate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	BirthDate *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s business email address.
-	BusinessEmailAddress *string `min:"1" type:"string"`
+	//
+	// BusinessEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	BusinessEmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of the customer’s business.
-	BusinessName *string `min:"1" type:"string"`
+	//
+	// BusinessName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	BusinessName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s home phone number.
-	BusinessPhoneNumber *string `min:"1" type:"string"`
+	//
+	// BusinessPhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	BusinessPhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s email address, which has not been specified as a personal
 	// or business address.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s first name.
-	FirstName *string `min:"1" type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	FirstName *string `min:"1" type:"string" sensitive:"true"`
 
 	// A list of items used to find a profile returned in a SearchProfiles (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
 	// response. An item is a key-value(s) pair that matches an attribute in the
@@ -14585,44 +14789,92 @@ type Profile struct {
 	FoundByItems []*FoundByKeyValue `min:"1" type:"list"`
 
 	// The gender with which the customer identifies.
-	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
+	//
+	// Gender is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	Gender *string `deprecated:"true" type:"string" enum:"Gender" sensitive:"true"`
 
 	// An alternative to Gender which accepts any string as input.
-	GenderString *string `min:"1" type:"string"`
+	//
+	// GenderString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	GenderString *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s home phone number.
-	HomePhoneNumber *string `min:"1" type:"string"`
+	//
+	// HomePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	HomePhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s last name.
-	LastName *string `min:"1" type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	LastName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s mailing address.
-	MailingAddress *Address `type:"structure"`
+	//
+	// MailingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	MailingAddress *Address `type:"structure" sensitive:"true"`
 
 	// The customer’s middle name.
-	MiddleName *string `min:"1" type:"string"`
+	//
+	// MiddleName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	MiddleName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s mobile phone number.
-	MobilePhoneNumber *string `min:"1" type:"string"`
+	//
+	// MobilePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	MobilePhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
+	//
+	// PartyType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType" sensitive:"true"`
 
 	// An alternative to PartyType which accepts any string as input.
-	PartyTypeString *string `min:"1" type:"string"`
+	//
+	// PartyTypeString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	PartyTypeString *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer’s personal email address.
-	PersonalEmailAddress *string `min:"1" type:"string"`
+	//
+	// PersonalEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	PersonalEmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The customer's phone number, which has not been specified as a mobile, home,
 	// or business number.
-	PhoneNumber *string `min:"1" type:"string"`
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	PhoneNumber *string `min:"1" type:"string" sensitive:"true"`
 
 	// The unique identifier of a customer profile.
 	ProfileId *string `type:"string"`
 
 	// The customer’s shipping address.
-	ShippingAddress *Address `type:"structure"`
+	//
+	// ShippingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Profile's
+	// String and GoString methods.
+	ShippingAddress *Address `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -14803,7 +15055,11 @@ type PutIntegrationInput struct {
 
 	// The configuration that controls how Customer Profiles retrieves data from
 	// the source.
-	FlowDefinition *FlowDefinition `type:"structure"`
+	//
+	// FlowDefinition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutIntegrationInput's
+	// String and GoString methods.
+	FlowDefinition *FlowDefinition `type:"structure" sensitive:"true"`
 
 	// The name of the profile object type.
 	ObjectTypeName *string `min:"1" type:"string"`
@@ -15033,8 +15289,12 @@ type PutProfileObjectInput struct {
 
 	// A string that is serialized from a JSON object.
 	//
+	// Object is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectInput's
+	// String and GoString methods.
+	//
 	// Object is a required field
-	Object *string `min:"1" type:"string" required:"true"`
+	Object *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The name of the profile object type.
 	//
@@ -15150,8 +15410,12 @@ type PutProfileObjectTypeInput struct {
 
 	// Description of the profile object type.
 	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeInput's
+	// String and GoString methods.
+	//
 	// Description is a required field
-	Description *string `min:"1" type:"string" required:"true"`
+	Description *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The unique name of the domain.
 	//
@@ -15166,10 +15430,18 @@ type PutProfileObjectTypeInput struct {
 	ExpirationDays *int64 `min:"1" type:"integer"`
 
 	// A map of the name and ObjectType field.
-	Fields map[string]*ObjectTypeField `type:"map"`
+	//
+	// Fields is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeInput's
+	// String and GoString methods.
+	Fields map[string]*ObjectTypeField `type:"map" sensitive:"true"`
 
 	// A list of unique keys that can be used to map data to the profile.
-	Keys map[string][]*ObjectTypeKey `type:"map"`
+	//
+	// Keys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeInput's
+	// String and GoString methods.
+	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
 
 	// The name of the profile object type.
 	//
@@ -15341,8 +15613,12 @@ type PutProfileObjectTypeOutput struct {
 
 	// Description of the profile object type.
 	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeOutput's
+	// String and GoString methods.
+	//
 	// Description is a required field
-	Description *string `min:"1" type:"string" required:"true"`
+	Description *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The customer-provided key to encrypt the profile object that will be created
 	// in this profile object type.
@@ -15352,10 +15628,18 @@ type PutProfileObjectTypeOutput struct {
 	ExpirationDays *int64 `min:"1" type:"integer"`
 
 	// A map of the name and ObjectType field.
-	Fields map[string]*ObjectTypeField `type:"map"`
+	//
+	// Fields is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeOutput's
+	// String and GoString methods.
+	Fields map[string]*ObjectTypeField `type:"map" sensitive:"true"`
 
 	// A list of unique keys that can be used to map data to the profile.
-	Keys map[string][]*ObjectTypeKey `type:"map"`
+	//
+	// Keys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutProfileObjectTypeOutput's
+	// String and GoString methods.
+	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
 
 	// The timestamp of when the domain was most recently edited.
 	LastUpdatedAt *time.Time `type:"timestamp"`
@@ -17148,7 +17432,7 @@ func (s UntagResourceOutput) GoString() string {
 
 // Updates associated with the address properties of a customer profile.
 type UpdateAddress struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The first line of a customer address.
 	Address1 *string `type:"string"`
@@ -17269,7 +17553,11 @@ type UpdateCalculatedAttributeDefinitionInput struct {
 
 	// The conditions including range, object count, and threshold for the calculated
 	// attribute.
-	Conditions *Conditions `type:"structure"`
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The description of the calculated attribute.
 	Description *string `min:"1" type:"string"`
@@ -17369,14 +17657,22 @@ type UpdateCalculatedAttributeDefinitionOutput struct {
 
 	// The mathematical expression and a list of attribute items specified in that
 	// expression.
-	AttributeDetails *AttributeDetails `type:"structure"`
+	//
+	// AttributeDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	AttributeDetails *AttributeDetails `type:"structure" sensitive:"true"`
 
 	// The unique name of the calculated attribute.
 	CalculatedAttributeName *string `min:"1" type:"string"`
 
 	// The conditions including range, object count, and threshold for the calculated
 	// attribute.
-	Conditions *Conditions `type:"structure"`
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The timestamp of when the calculated attribute definition was created.
 	CreatedAt *time.Time `type:"timestamp"`
@@ -17392,7 +17688,11 @@ type UpdateCalculatedAttributeDefinitionOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
 	// The aggregation operation to perform for the calculated attribute.
-	Statistic *string `type:"string" enum:"Statistic"`
+	//
+	// Statistic is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Statistic *string `type:"string" enum:"Statistic" sensitive:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -17738,32 +18038,68 @@ type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique account number that you have given to the customer.
-	AccountNumber *string `type:"string"`
+	//
+	// AccountNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	AccountNumber *string `type:"string" sensitive:"true"`
 
 	// Any additional information relevant to the customer’s profile.
-	AdditionalInformation *string `type:"string"`
+	//
+	// AdditionalInformation is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	AdditionalInformation *string `type:"string" sensitive:"true"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
 	// or billing.
-	Address *UpdateAddress `type:"structure"`
+	//
+	// Address is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	Address *UpdateAddress `type:"structure" sensitive:"true"`
 
 	// A key value pair of attributes of a customer profile.
-	Attributes map[string]*string `type:"map"`
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	Attributes map[string]*string `type:"map" sensitive:"true"`
 
 	// The customer’s billing address.
-	BillingAddress *UpdateAddress `type:"structure"`
+	//
+	// BillingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	BillingAddress *UpdateAddress `type:"structure" sensitive:"true"`
 
 	// The customer’s birth date.
-	BirthDate *string `type:"string"`
+	//
+	// BirthDate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	BirthDate *string `type:"string" sensitive:"true"`
 
 	// The customer’s business email address.
-	BusinessEmailAddress *string `type:"string"`
+	//
+	// BusinessEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	BusinessEmailAddress *string `type:"string" sensitive:"true"`
 
 	// The name of the customer’s business.
-	BusinessName *string `type:"string"`
+	//
+	// BusinessName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	BusinessName *string `type:"string" sensitive:"true"`
 
 	// The customer’s business phone number.
-	BusinessPhoneNumber *string `type:"string"`
+	//
+	// BusinessPhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	BusinessPhoneNumber *string `type:"string" sensitive:"true"`
 
 	// The unique name of the domain.
 	//
@@ -17772,44 +18108,96 @@ type UpdateProfileInput struct {
 
 	// The customer’s email address, which has not been specified as a personal
 	// or business address.
-	EmailAddress *string `type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	EmailAddress *string `type:"string" sensitive:"true"`
 
 	// The customer’s first name.
-	FirstName *string `type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	FirstName *string `type:"string" sensitive:"true"`
 
 	// The gender with which the customer identifies.
-	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
+	//
+	// Gender is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	Gender *string `deprecated:"true" type:"string" enum:"Gender" sensitive:"true"`
 
 	// An alternative to Gender which accepts any string as input.
-	GenderString *string `type:"string"`
+	//
+	// GenderString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	GenderString *string `type:"string" sensitive:"true"`
 
 	// The customer’s home phone number.
-	HomePhoneNumber *string `type:"string"`
+	//
+	// HomePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	HomePhoneNumber *string `type:"string" sensitive:"true"`
 
 	// The customer’s last name.
-	LastName *string `type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	LastName *string `type:"string" sensitive:"true"`
 
 	// The customer’s mailing address.
-	MailingAddress *UpdateAddress `type:"structure"`
+	//
+	// MailingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	MailingAddress *UpdateAddress `type:"structure" sensitive:"true"`
 
 	// The customer’s middle name.
-	MiddleName *string `type:"string"`
+	//
+	// MiddleName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	MiddleName *string `type:"string" sensitive:"true"`
 
 	// The customer’s mobile phone number.
-	MobilePhoneNumber *string `type:"string"`
+	//
+	// MobilePhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	MobilePhoneNumber *string `type:"string" sensitive:"true"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
+	//
+	// PartyType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType" sensitive:"true"`
 
 	// An alternative to PartyType which accepts any string as input.
-	PartyTypeString *string `type:"string"`
+	//
+	// PartyTypeString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	PartyTypeString *string `type:"string" sensitive:"true"`
 
 	// The customer’s personal email address.
-	PersonalEmailAddress *string `type:"string"`
+	//
+	// PersonalEmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	PersonalEmailAddress *string `type:"string" sensitive:"true"`
 
 	// The customer’s phone number, which has not been specified as a mobile,
 	// home, or business number.
-	PhoneNumber *string `type:"string"`
+	//
+	// PhoneNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	PhoneNumber *string `type:"string" sensitive:"true"`
 
 	// The unique identifier of a customer profile.
 	//
@@ -17817,7 +18205,11 @@ type UpdateProfileInput struct {
 	ProfileId *string `type:"string" required:"true"`
 
 	// The customer’s shipping address.
-	ShippingAddress *UpdateAddress `type:"structure"`
+	//
+	// ShippingAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateProfileInput's
+	// String and GoString methods.
+	ShippingAddress *UpdateAddress `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.

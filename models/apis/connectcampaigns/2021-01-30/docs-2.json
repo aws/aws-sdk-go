@@ -31,6 +31,12 @@
       "refs": {
       }
     },
+    "AgentlessDialerConfig": {
+      "base": "<p>Agentless Dialer config</p>",
+      "refs": {
+        "DialerConfig$agentlessDialerConfig": null
+      }
+    },
     "AnswerMachineDetectionConfig": {
       "base": "<p>Answering Machine Detection config</p>",
       "refs": {
@@ -234,6 +240,14 @@
         "Campaign$dialerConfig": null,
         "CreateCampaignRequest$dialerConfig": null,
         "UpdateCampaignDialerConfigRequest$dialerConfig": null
+      }
+    },
+    "DialingCapacity": {
+      "base": "<p>Allocates dialing capacity for this campaign between multiple active campaigns</p>",
+      "refs": {
+        "AgentlessDialerConfig$dialingCapacity": null,
+        "PredictiveDialerConfig$dialingCapacity": null,
+        "ProgressiveDialerConfig$dialingCapacity": null
       }
     },
     "Enabled": {

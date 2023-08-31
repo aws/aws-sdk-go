@@ -236,6 +236,98 @@ func (c *ConnectParticipant) CreateParticipantConnectionWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opDescribeView = "DescribeView"
+
+// DescribeViewRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeView for more information on using the DescribeView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeViewRequest method.
+//	req, resp := client.DescribeViewRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/DescribeView
+func (c *ConnectParticipant) DescribeViewRequest(input *DescribeViewInput) (req *request.Request, output *DescribeViewOutput) {
+	op := &request.Operation{
+		Name:       opDescribeView,
+		HTTPMethod: "GET",
+		HTTPPath:   "/participant/views/{ViewToken}",
+	}
+
+	if input == nil {
+		input = &DescribeViewInput{}
+	}
+
+	output = &DescribeViewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeView API operation for Amazon Connect Participant Service.
+//
+// Retrieves the view for the specified view token.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Participant Service's
+// API operation DescribeView for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon Connect
+//     service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     The resource was not found.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Amazon Connect.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/DescribeView
+func (c *ConnectParticipant) DescribeView(input *DescribeViewInput) (*DescribeViewOutput, error) {
+	req, out := c.DescribeViewRequest(input)
+	return out, req.Send()
+}
+
+// DescribeViewWithContext is the same as DescribeView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectParticipant) DescribeViewWithContext(ctx aws.Context, input *DescribeViewInput, opts ...request.Option) (*DescribeViewOutput, error) {
+	req, out := c.DescribeViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisconnectParticipant = "DisconnectParticipant"
 
 // DisconnectParticipantRequest generates a "aws/request.Request" representing the
@@ -1218,8 +1310,9 @@ type CreateParticipantConnectionInput struct {
 	// ParticipantToken is a required field
 	ParticipantToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
 
-	// Type of connection information required. This can be omitted if ConnectParticipant
-	// is true.
+	// Type of connection information required. If you need CONNECTION_CREDENTIALS
+	// along with marking participant as connected, pass CONNECTION_CREDENTIALS
+	// in Type.
 	Type []*string `min:"1" type:"list" enum:"ConnectionType"`
 }
 
@@ -1316,6 +1409,105 @@ func (s *CreateParticipantConnectionOutput) SetConnectionCredentials(v *Connecti
 // SetWebsocket sets the Websocket field's value.
 func (s *CreateParticipantConnectionOutput) SetWebsocket(v *Websocket) *CreateParticipantConnectionOutput {
 	s.Websocket = v
+	return s
+}
+
+type DescribeViewInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The connection token.
+	//
+	// ConnectionToken is a required field
+	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
+
+	// An encrypted token originating from the interactive message of a ShowView
+	// block operation. Represents the desired view.
+	//
+	// ViewToken is a required field
+	ViewToken *string `location:"uri" locationName:"ViewToken" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeViewInput"}
+	if s.ConnectionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionToken"))
+	}
+	if s.ConnectionToken != nil && len(*s.ConnectionToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionToken", 1))
+	}
+	if s.ViewToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewToken"))
+	}
+	if s.ViewToken != nil && len(*s.ViewToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionToken sets the ConnectionToken field's value.
+func (s *DescribeViewInput) SetConnectionToken(v string) *DescribeViewInput {
+	s.ConnectionToken = &v
+	return s
+}
+
+// SetViewToken sets the ViewToken field's value.
+func (s *DescribeViewInput) SetViewToken(v string) *DescribeViewInput {
+	s.ViewToken = &v
+	return s
+}
+
+type DescribeViewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A view resource object. Contains metadata and content necessary to render
+	// the view.
+	View *View `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewOutput) GoString() string {
+	return s.String()
+}
+
+// SetView sets the View field's value.
+func (s *DescribeViewOutput) SetView(v *View) *DescribeViewOutput {
+	s.View = v
 	return s
 }
 
@@ -1968,6 +2160,76 @@ func (s *Receipt) SetReadTimestamp(v string) *Receipt {
 func (s *Receipt) SetRecipientParticipantId(v string) *Receipt {
 	s.RecipientParticipantId = &v
 	return s
+}
+
+// The resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The identifier of the resource.
+	ResourceId *string `type:"string"`
+
+	// The type of Amazon Connect resource.
+	ResourceType *string `type:"string" enum:"ResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type SendEventInput struct {
@@ -2733,6 +2995,140 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A view resource object. Contains metadata and content necessary to render
+// the view.
+type View struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the view.
+	Arn *string `type:"string"`
+
+	// View content containing all content necessary to render a view except for
+	// runtime input data.
+	Content *ViewContent `type:"structure"`
+
+	// The identifier of the view.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the view.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by View's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The current version of the view.
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s View) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s View) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *View) SetArn(v string) *View {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *View) SetContent(v *ViewContent) *View {
+	s.Content = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *View) SetId(v string) *View {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *View) SetName(v string) *View {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *View) SetVersion(v int64) *View {
+	s.Version = &v
+	return s
+}
+
+// View content containing all content necessary to render a view except for
+// runtime input data.
+type ViewContent struct {
+	_ struct{} `type:"structure"`
+
+	// A list of actions possible from the view
+	Actions []*string `type:"list"`
+
+	// The schema representing the input data that the view template must be supplied
+	// to render.
+	//
+	// InputSchema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ViewContent's
+	// String and GoString methods.
+	InputSchema *string `type:"string" sensitive:"true"`
+
+	// The view template representing the structure of the view.
+	//
+	// Template is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ViewContent's
+	// String and GoString methods.
+	Template *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewContent) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *ViewContent) SetActions(v []*string) *ViewContent {
+	s.Actions = v
+	return s
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *ViewContent) SetInputSchema(v string) *ViewContent {
+	s.InputSchema = &v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *ViewContent) SetTemplate(v string) *ViewContent {
+	s.Template = &v
+	return s
+}
+
 // The websocket for the participant's connection.
 type Websocket struct {
 	_ struct{} `type:"structure"`
@@ -2878,6 +3274,9 @@ const (
 
 	// ParticipantRoleSystem is a ParticipantRole enum value
 	ParticipantRoleSystem = "SYSTEM"
+
+	// ParticipantRoleCustomBot is a ParticipantRole enum value
+	ParticipantRoleCustomBot = "CUSTOM_BOT"
 )
 
 // ParticipantRole_Values returns all elements of the ParticipantRole enum
@@ -2886,6 +3285,43 @@ func ParticipantRole_Values() []string {
 		ParticipantRoleAgent,
 		ParticipantRoleCustomer,
 		ParticipantRoleSystem,
+		ParticipantRoleCustomBot,
+	}
+}
+
+const (
+	// ResourceTypeContact is a ResourceType enum value
+	ResourceTypeContact = "CONTACT"
+
+	// ResourceTypeContactFlow is a ResourceType enum value
+	ResourceTypeContactFlow = "CONTACT_FLOW"
+
+	// ResourceTypeInstance is a ResourceType enum value
+	ResourceTypeInstance = "INSTANCE"
+
+	// ResourceTypeParticipant is a ResourceType enum value
+	ResourceTypeParticipant = "PARTICIPANT"
+
+	// ResourceTypeHierarchyLevel is a ResourceType enum value
+	ResourceTypeHierarchyLevel = "HIERARCHY_LEVEL"
+
+	// ResourceTypeHierarchyGroup is a ResourceType enum value
+	ResourceTypeHierarchyGroup = "HIERARCHY_GROUP"
+
+	// ResourceTypeUser is a ResourceType enum value
+	ResourceTypeUser = "USER"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeContact,
+		ResourceTypeContactFlow,
+		ResourceTypeInstance,
+		ResourceTypeParticipant,
+		ResourceTypeHierarchyLevel,
+		ResourceTypeHierarchyGroup,
+		ResourceTypeUser,
 	}
 }
 

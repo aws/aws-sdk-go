@@ -6759,6 +6759,10 @@ type MediaInsightsPipeline struct {
 	// The time at which the media insights pipeline was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The statuses that the elements in a media insights pipeline can have during
+	// data processing.
+	ElementStatuses []*MediaInsightsPipelineElementStatus `type:"list"`
+
 	// The runtime configuration settings for a Kinesis recording video stream in
 	// a media insights pipeline.
 	KinesisVideoStreamRecordingSourceRuntimeConfiguration *KinesisVideoStreamRecordingSourceRuntimeConfiguration `type:"structure"`
@@ -6820,6 +6824,12 @@ func (s MediaInsightsPipeline) GoString() string {
 // SetCreatedTimestamp sets the CreatedTimestamp field's value.
 func (s *MediaInsightsPipeline) SetCreatedTimestamp(v time.Time) *MediaInsightsPipeline {
 	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetElementStatuses sets the ElementStatuses field's value.
+func (s *MediaInsightsPipeline) SetElementStatuses(v []*MediaInsightsPipelineElementStatus) *MediaInsightsPipeline {
+	s.ElementStatuses = v
 	return s
 }
 
@@ -7015,6 +7025,9 @@ type MediaInsightsPipelineConfigurationElement struct {
 	// The voice analytics configuration settings in a media insights pipeline configuration
 	// element.
 	VoiceAnalyticsProcessorConfiguration *VoiceAnalyticsProcessorConfiguration `type:"structure"`
+
+	// The configuration settings for the VoiceEnhancementSinkConfiguration element.
+	VoiceEnhancementSinkConfiguration *VoiceEnhancementSinkConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7137,6 +7150,12 @@ func (s *MediaInsightsPipelineConfigurationElement) SetVoiceAnalyticsProcessorCo
 	return s
 }
 
+// SetVoiceEnhancementSinkConfiguration sets the VoiceEnhancementSinkConfiguration field's value.
+func (s *MediaInsightsPipelineConfigurationElement) SetVoiceEnhancementSinkConfiguration(v *VoiceEnhancementSinkConfiguration) *MediaInsightsPipelineConfigurationElement {
+	s.VoiceEnhancementSinkConfiguration = v
+	return s
+}
+
 // A summary of the media insights pipeline configuration.
 type MediaInsightsPipelineConfigurationSummary struct {
 	_ struct{} `type:"structure"`
@@ -7188,6 +7207,47 @@ func (s *MediaInsightsPipelineConfigurationSummary) SetMediaInsightsPipelineConf
 // SetMediaInsightsPipelineConfigurationName sets the MediaInsightsPipelineConfigurationName field's value.
 func (s *MediaInsightsPipelineConfigurationSummary) SetMediaInsightsPipelineConfigurationName(v string) *MediaInsightsPipelineConfigurationSummary {
 	s.MediaInsightsPipelineConfigurationName = &v
+	return s
+}
+
+// The status of the pipeline element.
+type MediaInsightsPipelineElementStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The element's status.
+	Status *string `type:"string" enum:"MediaPipelineElementStatus"`
+
+	// The type of status.
+	Type *string `type:"string" enum:"MediaInsightsPipelineConfigurationElementType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaInsightsPipelineElementStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaInsightsPipelineElementStatus) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaInsightsPipelineElementStatus) SetStatus(v string) *MediaInsightsPipelineElementStatus {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MediaInsightsPipelineElementStatus) SetType(v string) *MediaInsightsPipelineElementStatus {
+	s.Type = &v
 	return s
 }
 
@@ -9370,7 +9430,7 @@ func (s UpdateMediaInsightsPipelineStatusOutput) GoString() string {
 	return s.String()
 }
 
-// Defines the configuration settings for a vertial layout.
+// Defines the configuration settings for a vertical layout.
 type VerticalLayoutConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9658,6 +9718,39 @@ func (s *VoiceAnalyticsProcessorConfiguration) SetSpeakerSearchStatus(v string) 
 // SetVoiceToneAnalysisStatus sets the VoiceToneAnalysisStatus field's value.
 func (s *VoiceAnalyticsProcessorConfiguration) SetVoiceToneAnalysisStatus(v string) *VoiceAnalyticsProcessorConfiguration {
 	s.VoiceToneAnalysisStatus = &v
+	return s
+}
+
+// A static structure that contains the configuration data for a VoiceEnhancementSinkConfiguration
+// element.
+type VoiceEnhancementSinkConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Disables the VoiceEnhancementSinkConfiguration element.
+	Disabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceEnhancementSinkConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceEnhancementSinkConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *VoiceEnhancementSinkConfiguration) SetDisabled(v bool) *VoiceEnhancementSinkConfiguration {
+	s.Disabled = &v
 	return s
 }
 
@@ -10133,6 +10226,9 @@ const (
 
 	// MediaInsightsPipelineConfigurationElementTypeS3recordingSink is a MediaInsightsPipelineConfigurationElementType enum value
 	MediaInsightsPipelineConfigurationElementTypeS3recordingSink = "S3RecordingSink"
+
+	// MediaInsightsPipelineConfigurationElementTypeVoiceEnhancementSink is a MediaInsightsPipelineConfigurationElementType enum value
+	MediaInsightsPipelineConfigurationElementTypeVoiceEnhancementSink = "VoiceEnhancementSink"
 )
 
 // MediaInsightsPipelineConfigurationElementType_Values returns all elements of the MediaInsightsPipelineConfigurationElementType enum
@@ -10146,6 +10242,47 @@ func MediaInsightsPipelineConfigurationElementType_Values() []string {
 		MediaInsightsPipelineConfigurationElementTypeSqsQueueSink,
 		MediaInsightsPipelineConfigurationElementTypeSnsTopicSink,
 		MediaInsightsPipelineConfigurationElementTypeS3recordingSink,
+		MediaInsightsPipelineConfigurationElementTypeVoiceEnhancementSink,
+	}
+}
+
+const (
+	// MediaPipelineElementStatusNotStarted is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusNotStarted = "NotStarted"
+
+	// MediaPipelineElementStatusNotSupported is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusNotSupported = "NotSupported"
+
+	// MediaPipelineElementStatusInitializing is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusInitializing = "Initializing"
+
+	// MediaPipelineElementStatusInProgress is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusInProgress = "InProgress"
+
+	// MediaPipelineElementStatusFailed is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusFailed = "Failed"
+
+	// MediaPipelineElementStatusStopping is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusStopping = "Stopping"
+
+	// MediaPipelineElementStatusStopped is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusStopped = "Stopped"
+
+	// MediaPipelineElementStatusPaused is a MediaPipelineElementStatus enum value
+	MediaPipelineElementStatusPaused = "Paused"
+)
+
+// MediaPipelineElementStatus_Values returns all elements of the MediaPipelineElementStatus enum
+func MediaPipelineElementStatus_Values() []string {
+	return []string{
+		MediaPipelineElementStatusNotStarted,
+		MediaPipelineElementStatusNotSupported,
+		MediaPipelineElementStatusInitializing,
+		MediaPipelineElementStatusInProgress,
+		MediaPipelineElementStatusFailed,
+		MediaPipelineElementStatusStopping,
+		MediaPipelineElementStatusStopped,
+		MediaPipelineElementStatusPaused,
 	}
 }
 
@@ -10191,6 +10328,9 @@ const (
 
 	// MediaPipelineStatusPaused is a MediaPipelineStatus enum value
 	MediaPipelineStatusPaused = "Paused"
+
+	// MediaPipelineStatusNotStarted is a MediaPipelineStatus enum value
+	MediaPipelineStatusNotStarted = "NotStarted"
 )
 
 // MediaPipelineStatus_Values returns all elements of the MediaPipelineStatus enum
@@ -10202,6 +10342,7 @@ func MediaPipelineStatus_Values() []string {
 		MediaPipelineStatusStopping,
 		MediaPipelineStatusStopped,
 		MediaPipelineStatusPaused,
+		MediaPipelineStatusNotStarted,
 	}
 }
 

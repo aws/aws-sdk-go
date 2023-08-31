@@ -217,6 +217,12 @@
       "refs": {
       }
     },
+    "HexEvenLengthBetween16And32": {
+      "base": null,
+      "refs": {
+        "TranslatePinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography translates.</p>"
+      }
+    },
     "HexEvenLengthBetween16And4064": {
       "base": null,
       "refs": {
@@ -231,6 +237,19 @@
         "EncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>",
         "ReEncryptDataInput$CipherText": "<p>Ciphertext to be encrypted. The minimum allowed length is 16 bytes and maximum allowed length is 4096 bytes.</p>",
         "ReEncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>"
+      }
+    },
+    "HexEvenLengthBetween2And4096": {
+      "base": null,
+      "refs": {
+        "GenerateMacInput$MessageData": "<p>The data for which a MAC is under generation.</p>",
+        "VerifyMacInput$MessageData": "<p>The data on for which MAC is under verification.</p>"
+      }
+    },
+    "HexEvenLengthBetween4And128": {
+      "base": null,
+      "refs": {
+        "VerifyMacInput$Mac": "<p>The MAC being verified.</p>"
       }
     },
     "HexLength16Or32": {
@@ -254,7 +273,6 @@
       "refs": {
         "GeneratePinDataOutput$EncryptedPinBlock": "<p>The PIN block encrypted under PEK from Amazon Web Services Payment Cryptography. The encrypted PIN block is a composite of PAN (Primary Account Number) and PIN (Personal Identification Number), generated in accordance with ISO 9564 standard.</p>",
         "Ibm3624PinOffset$EncryptedPinBlock": "<p>The encrypted PIN block data. According to ISO 9564 standard, a PIN Block is an encoded representation of a payment card Personal Account Number (PAN) and the cardholder Personal Identification Number (PIN).</p>",
-        "TranslatePinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography translates.</p>",
         "TranslatePinDataOutput$PinBlock": "<p>The ougoing encrypted PIN block data after tranlation.</p>",
         "VerifyPinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography verifies.</p>",
         "VisaPinVerificationValue$EncryptedPinBlock": "<p>The encrypted PIN block data to verify.</p>"
@@ -292,13 +310,6 @@
         "SessionKeyMastercard$ApplicationTransactionCounter": "<p>The transaction counter that is provided by the terminal during transaction processing.</p>"
       }
     },
-    "HexLengthBetween2And4096": {
-      "base": null,
-      "refs": {
-        "GenerateMacInput$MessageData": "<p>The data for which a MAC is under generation.</p>",
-        "VerifyMacInput$MessageData": "<p>The data on for which MAC is under verification.</p>"
-      }
-    },
     "HexLengthBetween2And8": {
       "base": null,
       "refs": {
@@ -311,8 +322,7 @@
     "HexLengthBetween4And128": {
       "base": null,
       "refs": {
-        "GenerateMacOutput$Mac": "<p>The MAC cryptogram generated within Amazon Web Services Payment Cryptography.</p>",
-        "VerifyMacInput$Mac": "<p>The MAC being verified.</p>"
+        "GenerateMacOutput$Mac": "<p>The MAC cryptogram generated within Amazon Web Services Payment Cryptography.</p>"
       }
     },
     "HexLengthEquals1": {

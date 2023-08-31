@@ -43,6 +43,23 @@
         {"shape":"ServiceUnavailable"},
         {"shape":"ValidationError"}
       ]
+    },
+    "InvokeEndpointWithResponseStream":{
+      "name":"InvokeEndpointWithResponseStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/endpoints/{EndpointName}/invocations-response-stream"
+      },
+      "input":{"shape":"InvokeEndpointWithResponseStreamInput"},
+      "output":{"shape":"InvokeEndpointWithResponseStreamOutput"},
+      "errors":[
+        {"shape":"InternalFailure"},
+        {"shape":"ServiceUnavailable"},
+        {"shape":"ValidationError"},
+        {"shape":"ModelError"},
+        {"shape":"ModelStreamError"},
+        {"shape":"InternalStreamFailure"}
+      ]
     }
   },
   "shapes":{
@@ -68,6 +85,7 @@
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "ErrorCode":{"type":"string"},
     "Header":{
       "type":"string",
       "max":1024,
@@ -101,6 +119,15 @@
         "Message":{"shape":"Message"}
       },
       "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true,
+      "synthetic":true
+    },
+    "InternalStreamFailure":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
       "exception":true,
       "fault":true,
       "synthetic":true
@@ -254,6 +281,75 @@
       },
       "payload":"Body"
     },
+    "InvokeEndpointWithResponseStreamInput":{
+      "type":"structure",
+      "required":[
+        "EndpointName",
+        "Body"
+      ],
+      "members":{
+        "EndpointName":{
+          "shape":"EndpointName",
+          "location":"uri",
+          "locationName":"EndpointName"
+        },
+        "Body":{"shape":"BodyBlob"},
+        "ContentType":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"Content-Type"
+        },
+        "Accept":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Accept"
+        },
+        "CustomAttributes":{
+          "shape":"CustomAttributesHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Custom-Attributes"
+        },
+        "TargetVariant":{
+          "shape":"TargetVariantHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Target-Variant"
+        },
+        "TargetContainerHostname":{
+          "shape":"TargetContainerHostnameHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Target-Container-Hostname"
+        },
+        "InferenceId":{
+          "shape":"InferenceId",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Inference-Id"
+        }
+      },
+      "payload":"Body"
+    },
+    "InvokeEndpointWithResponseStreamOutput":{
+      "type":"structure",
+      "required":["Body"],
+      "members":{
+        "Body":{"shape":"ResponseStream"},
+        "ContentType":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Content-Type"
+        },
+        "InvokedProductionVariant":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"x-Amzn-Invoked-Production-Variant"
+        },
+        "CustomAttributes":{
+          "shape":"CustomAttributesHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Custom-Attributes"
+        }
+      },
+      "payload":"Body"
+    },
     "LogStreamArn":{"type":"string"},
     "Message":{
       "type":"string",
@@ -279,10 +375,42 @@
       "exception":true,
       "synthetic":true
     },
+    "ModelStreamError":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"},
+        "ErrorCode":{"shape":"ErrorCode"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
+    "PartBlob":{
+      "type":"blob",
+      "sensitive":true
+    },
+    "PayloadPart":{
+      "type":"structure",
+      "members":{
+        "Bytes":{
+          "shape":"PartBlob",
+          "eventpayload":true
+        }
+      },
+      "event":true
+    },
     "RequestTTLSecondsHeader":{
       "type":"integer",
       "max":21600,
       "min":60
+    },
+    "ResponseStream":{
+      "type":"structure",
+      "members":{
+        "PayloadPart":{"shape":"PayloadPart"},
+        "ModelStreamError":{"shape":"ModelStreamError"},
+        "InternalStreamFailure":{"shape":"InternalStreamFailure"}
+      },
+      "eventstream":true
     },
     "ServiceUnavailable":{
       "type":"structure",

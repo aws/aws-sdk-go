@@ -3060,9 +3060,7 @@ type EncryptDataOutput struct {
 	// KCV by using standard algorithms, typically by encrypting 8 or 16 bytes or
 	// "00" or "01" and then truncating the result to the first 3 bytes, or 6 hex
 	// digits, of the resulting cryptogram.
-	//
-	// KeyCheckValue is a required field
-	KeyCheckValue *string `min:"4" type:"string" required:"true"`
+	KeyCheckValue *string `min:"4" type:"string"`
 }
 
 // String returns the string representation.
@@ -3357,8 +3355,12 @@ type GenerateMacInput struct {
 
 	// The data for which a MAC is under generation.
 	//
+	// MessageData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GenerateMacInput's
+	// String and GoString methods.
+	//
 	// MessageData is a required field
-	MessageData *string `min:"2" type:"string" required:"true"`
+	MessageData *string `min:"2" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5897,8 +5899,12 @@ type TranslatePinDataInput struct {
 	// The encrypted PIN block data that Amazon Web Services Payment Cryptography
 	// translates.
 	//
+	// EncryptedPinBlock is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TranslatePinDataInput's
+	// String and GoString methods.
+	//
 	// EncryptedPinBlock is a required field
-	EncryptedPinBlock *string `min:"16" type:"string" required:"true"`
+	EncryptedPinBlock *string `min:"16" type:"string" required:"true" sensitive:"true"`
 
 	// The attributes and values to use for incoming DUKPT encryption key for PIN
 	// block tranlation.
@@ -6826,16 +6832,24 @@ type VerifyMacInput struct {
 
 	// The MAC being verified.
 	//
+	// Mac is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifyMacInput's
+	// String and GoString methods.
+	//
 	// Mac is a required field
-	Mac *string `min:"4" type:"string" required:"true"`
+	Mac *string `min:"4" type:"string" required:"true" sensitive:"true"`
 
 	// The length of the MAC.
 	MacLength *int64 `min:"4" type:"integer"`
 
 	// The data on for which MAC is under verification.
 	//
+	// MessageData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VerifyMacInput's
+	// String and GoString methods.
+	//
 	// MessageData is a required field
-	MessageData *string `min:"2" type:"string" required:"true"`
+	MessageData *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
 	// The attributes and data values to use for MAC verification within Amazon
 	// Web Services Payment Cryptography.

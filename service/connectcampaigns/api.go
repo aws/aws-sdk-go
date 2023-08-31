@@ -2194,6 +2194,51 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Agentless Dialer config
+type AgentlessDialerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Allocates dialing capacity for this campaign between multiple active campaigns
+	DialingCapacity *float64 `locationName:"dialingCapacity" min:"0.01" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentlessDialerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentlessDialerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AgentlessDialerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AgentlessDialerConfig"}
+	if s.DialingCapacity != nil && *s.DialingCapacity < 0.01 {
+		invalidParams.Add(request.NewErrParamMinValue("DialingCapacity", 0.01))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDialingCapacity sets the DialingCapacity field's value.
+func (s *AgentlessDialerConfig) SetDialingCapacity(v float64) *AgentlessDialerConfig {
+	s.DialingCapacity = &v
+	return s
+}
+
 // Answering Machine Detection config
 type AnswerMachineDetectionConfig struct {
 	_ struct{} `type:"structure"`
@@ -3084,6 +3129,9 @@ func (s *DialRequest) SetPhoneNumber(v string) *DialRequest {
 type DialerConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Agentless Dialer config
+	AgentlessDialerConfig *AgentlessDialerConfig `locationName:"agentlessDialerConfig" type:"structure"`
+
 	// Predictive Dialer config
 	PredictiveDialerConfig *PredictiveDialerConfig `locationName:"predictiveDialerConfig" type:"structure"`
 
@@ -3112,6 +3160,11 @@ func (s DialerConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DialerConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DialerConfig"}
+	if s.AgentlessDialerConfig != nil {
+		if err := s.AgentlessDialerConfig.Validate(); err != nil {
+			invalidParams.AddNested("AgentlessDialerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PredictiveDialerConfig != nil {
 		if err := s.PredictiveDialerConfig.Validate(); err != nil {
 			invalidParams.AddNested("PredictiveDialerConfig", err.(request.ErrInvalidParams))
@@ -3127,6 +3180,12 @@ func (s *DialerConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgentlessDialerConfig sets the AgentlessDialerConfig field's value.
+func (s *DialerConfig) SetAgentlessDialerConfig(v *AgentlessDialerConfig) *DialerConfig {
+	s.AgentlessDialerConfig = v
+	return s
 }
 
 // SetPredictiveDialerConfig sets the PredictiveDialerConfig field's value.
@@ -4227,9 +4286,7 @@ type OutboundCallConfig struct {
 	// ID is the phone number specified in the queue. If you do not specify a queue,
 	// the queue defined in the contact flow is used. If you do not specify a queue,
 	// you must specify a source phone number.
-	//
-	// ConnectQueueId is a required field
-	ConnectQueueId *string `locationName:"connectQueueId" type:"string" required:"true"`
+	ConnectQueueId *string `locationName:"connectQueueId" type:"string"`
 
 	// The phone number associated with the Amazon Connect instance, in E.164 format.
 	// If you do not specify a source phone number, you must specify a queue.
@@ -4259,9 +4316,6 @@ func (s *OutboundCallConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "OutboundCallConfig"}
 	if s.ConnectContactFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectContactFlowId"))
-	}
-	if s.ConnectQueueId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ConnectQueueId"))
 	}
 	if s.AnswerMachineDetectionConfig != nil {
 		if err := s.AnswerMachineDetectionConfig.Validate(); err != nil {
@@ -4379,6 +4433,9 @@ type PredictiveDialerConfig struct {
 	//
 	// BandwidthAllocation is a required field
 	BandwidthAllocation *float64 `locationName:"bandwidthAllocation" type:"double" required:"true"`
+
+	// Allocates dialing capacity for this campaign between multiple active campaigns
+	DialingCapacity *float64 `locationName:"dialingCapacity" min:"0.01" type:"double"`
 }
 
 // String returns the string representation.
@@ -4405,6 +4462,9 @@ func (s *PredictiveDialerConfig) Validate() error {
 	if s.BandwidthAllocation == nil {
 		invalidParams.Add(request.NewErrParamRequired("BandwidthAllocation"))
 	}
+	if s.DialingCapacity != nil && *s.DialingCapacity < 0.01 {
+		invalidParams.Add(request.NewErrParamMinValue("DialingCapacity", 0.01))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4418,6 +4478,12 @@ func (s *PredictiveDialerConfig) SetBandwidthAllocation(v float64) *PredictiveDi
 	return s
 }
 
+// SetDialingCapacity sets the DialingCapacity field's value.
+func (s *PredictiveDialerConfig) SetDialingCapacity(v float64) *PredictiveDialerConfig {
+	s.DialingCapacity = &v
+	return s
+}
+
 // Progressive Dialer config
 type ProgressiveDialerConfig struct {
 	_ struct{} `type:"structure"`
@@ -4426,6 +4492,9 @@ type ProgressiveDialerConfig struct {
 	//
 	// BandwidthAllocation is a required field
 	BandwidthAllocation *float64 `locationName:"bandwidthAllocation" type:"double" required:"true"`
+
+	// Allocates dialing capacity for this campaign between multiple active campaigns
+	DialingCapacity *float64 `locationName:"dialingCapacity" min:"0.01" type:"double"`
 }
 
 // String returns the string representation.
@@ -4452,6 +4521,9 @@ func (s *ProgressiveDialerConfig) Validate() error {
 	if s.BandwidthAllocation == nil {
 		invalidParams.Add(request.NewErrParamRequired("BandwidthAllocation"))
 	}
+	if s.DialingCapacity != nil && *s.DialingCapacity < 0.01 {
+		invalidParams.Add(request.NewErrParamMinValue("DialingCapacity", 0.01))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4462,6 +4534,12 @@ func (s *ProgressiveDialerConfig) Validate() error {
 // SetBandwidthAllocation sets the BandwidthAllocation field's value.
 func (s *ProgressiveDialerConfig) SetBandwidthAllocation(v float64) *ProgressiveDialerConfig {
 	s.BandwidthAllocation = &v
+	return s
+}
+
+// SetDialingCapacity sets the DialingCapacity field's value.
+func (s *ProgressiveDialerConfig) SetDialingCapacity(v float64) *ProgressiveDialerConfig {
+	s.DialingCapacity = &v
 	return s
 }
 

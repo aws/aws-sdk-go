@@ -471,8 +471,7 @@
       "type":"structure",
       "required":[
         "CipherText",
-        "KeyArn",
-        "KeyCheckValue"
+        "KeyArn"
       ],
       "members":{
         "CipherText":{"shape":"HexEvenLengthBetween16And4096"},
@@ -540,7 +539,7 @@
         "GenerationAttributes":{"shape":"MacAttributes"},
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "MacLength":{"shape":"IntegerRangeBetween4And16"},
-        "MessageData":{"shape":"HexLengthBetween2And4096"}
+        "MessageData":{"shape":"HexEvenLengthBetween2And4096"}
       }
     },
     "GenerateMacOutput":{
@@ -596,6 +595,13 @@
         "PinData":{"shape":"PinData"}
       }
     },
+    "HexEvenLengthBetween16And32":{
+      "type":"string",
+      "max":32,
+      "min":16,
+      "pattern":"^(?:[0-9a-fA-F][0-9a-fA-F])+$",
+      "sensitive":true
+    },
     "HexEvenLengthBetween16And4064":{
       "type":"string",
       "max":4064,
@@ -607,6 +613,20 @@
       "type":"string",
       "max":4096,
       "min":16,
+      "pattern":"^(?:[0-9a-fA-F][0-9a-fA-F])+$",
+      "sensitive":true
+    },
+    "HexEvenLengthBetween2And4096":{
+      "type":"string",
+      "max":4096,
+      "min":2,
+      "pattern":"^(?:[0-9a-fA-F][0-9a-fA-F])+$",
+      "sensitive":true
+    },
+    "HexEvenLengthBetween4And128":{
+      "type":"string",
+      "max":128,
+      "min":4,
       "pattern":"^(?:[0-9a-fA-F][0-9a-fA-F])+$",
       "sensitive":true
     },
@@ -650,12 +670,6 @@
     "HexLengthBetween2And4":{
       "type":"string",
       "max":4,
-      "min":2,
-      "pattern":"^[0-9a-fA-F]+$"
-    },
-    "HexLengthBetween2And4096":{
-      "type":"string",
-      "max":4096,
       "min":2,
       "pattern":"^[0-9a-fA-F]+$"
     },
@@ -1144,7 +1158,7 @@
         "OutgoingTranslationAttributes"
       ],
       "members":{
-        "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
+        "EncryptedPinBlock":{"shape":"HexEvenLengthBetween16And32"},
         "IncomingDukptAttributes":{"shape":"DukptDerivationAttributes"},
         "IncomingKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "IncomingTranslationAttributes":{"shape":"TranslationIsoFormats"},
@@ -1303,9 +1317,9 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "Mac":{"shape":"HexLengthBetween4And128"},
+        "Mac":{"shape":"HexEvenLengthBetween4And128"},
         "MacLength":{"shape":"IntegerRangeBetween4And16"},
-        "MessageData":{"shape":"HexLengthBetween2And4096"},
+        "MessageData":{"shape":"HexEvenLengthBetween2And4096"},
         "VerificationAttributes":{"shape":"MacAttributes"}
       }
     },

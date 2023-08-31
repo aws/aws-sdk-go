@@ -25,7 +25,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "CreateHapg":{
       "name":"CreateHapg",
@@ -39,7 +41,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "CreateHsm":{
       "name":"CreateHsm",
@@ -53,7 +57,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "CreateLunaClient":{
       "name":"CreateLunaClient",
@@ -67,7 +73,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DeleteHapg":{
       "name":"DeleteHapg",
@@ -81,7 +89,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DeleteHsm":{
       "name":"DeleteHsm",
@@ -95,7 +105,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DeleteLunaClient":{
       "name":"DeleteLunaClient",
@@ -109,7 +121,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DescribeHapg":{
       "name":"DescribeHapg",
@@ -123,7 +137,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DescribeHsm":{
       "name":"DescribeHsm",
@@ -137,7 +153,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "DescribeLunaClient":{
       "name":"DescribeLunaClient",
@@ -151,7 +169,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "GetConfig":{
       "name":"GetConfig",
@@ -165,7 +185,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ListAvailableZones":{
       "name":"ListAvailableZones",
@@ -179,7 +201,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ListHapgs":{
       "name":"ListHapgs",
@@ -193,7 +217,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ListHsms":{
       "name":"ListHsms",
@@ -207,7 +233,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ListLunaClients":{
       "name":"ListLunaClients",
@@ -221,7 +249,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -235,7 +265,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ModifyHapg":{
       "name":"ModifyHapg",
@@ -249,7 +281,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ModifyHsm":{
       "name":"ModifyHsm",
@@ -263,7 +297,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "ModifyLunaClient":{
       "name":"ModifyLunaClient",
@@ -275,7 +311,9 @@
       "output":{"shape":"ModifyLunaClientResponse"},
       "errors":[
         {"shape":"CloudHsmServiceException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     },
     "RemoveTagsFromResource":{
       "name":"RemoveTagsFromResource",
@@ -289,7 +327,9 @@
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInternalException"},
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is deprecated."
     }
   },
   "shapes":{

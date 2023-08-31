@@ -6,6 +6,7 @@
     "DescribeAffectedEntities": "<p>Returns a list of entities that have been affected by the specified events, based on the specified filter criteria. Entities can refer to individual customer resources, groups of customer resources, or any other construct, depending on the Amazon Web Service. Events that have impact beyond that of the affected entities, or where the extent of impact is unknown, include at least one entity indicating this.</p> <p>At least one event ARN is required.</p> <note> <ul> <li> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the next request to return more results.</p> </li> <li> <p>This operation supports resource-level permissions. You can use this operation to allow or deny access to specific Health events. For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions\">Resource- and action-based conditions</a> in the <i>Health User Guide</i>.</p> </li> </ul> </note>",
     "DescribeAffectedEntitiesForOrganization": "<p>Returns a list of entities that have been affected by one or more events for one or more accounts in your organization in Organizations, based on the filter criteria. Entities can refer to individual customer resources, groups of customer resources, or any other construct, depending on the Amazon Web Service.</p> <p>At least one event Amazon Resource Name (ARN) and account ID are required.</p> <p>Before you can call this operation, you must first enable Health to work with Organizations. To do this, call the <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html\">EnableHealthServiceAccessForOrganization</a> operation from your organization's management account.</p> <note> <ul> <li> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the next request to return more results.</p> </li> <li> <p>This operation doesn't support resource-level permissions. You can't use this operation to allow or deny access to specific Health events. For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions\">Resource- and action-based conditions</a> in the <i>Health User Guide</i>.</p> </li> </ul> </note>",
     "DescribeEntityAggregates": "<p>Returns the number of entities that are affected by each of the specified events.</p>",
+    "DescribeEntityAggregatesForOrganization": "<p>Returns a list of entity aggregates for your Organizations that are affected by each of the specified events.</p>",
     "DescribeEventAggregates": "<p>Returns the number of events of each event type (issue, scheduled change, and account notification). If no filter is specified, the counts of all events in each category are returned.</p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the next request to return more results.</p> </note>",
     "DescribeEventDetails": "<p>Returns detailed information about one or more specified events. Information includes standard event data (Amazon Web Services Region, service, and so on, as returned by <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html\">DescribeEvents</a>), a detailed event description, and possible additional metadata that depends upon the nature of the event. Affected entities are not included. To retrieve the entities, use the <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html\">DescribeAffectedEntities</a> operation.</p> <p>If a specified event can't be retrieved, an error message is returned for that event.</p> <note> <p>This operation supports resource-level permissions. You can use this operation to allow or deny access to specific Health events. For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions\">Resource- and action-based conditions</a> in the <i>Health User Guide</i>.</p> </note>",
     "DescribeEventDetailsForOrganization": "<p>Returns detailed information about one or more specified events for one or more Amazon Web Services accounts in your organization. This information includes standard event data (such as the Amazon Web Services Region and service), an event description, and (depending on the event) possible metadata. This operation doesn't return affected entities, such as the resources related to the event. To return affected entities, use the <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html\">DescribeAffectedEntitiesForOrganization</a> operation.</p> <note> <p>Before you can call this operation, you must first enable Health to work with Organizations. To do this, call the <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html\">EnableHealthServiceAccessForOrganization</a> operation from your organization's management account.</p> </note> <p>When you call the <code>DescribeEventDetailsForOrganization</code> operation, specify the <code>organizationEventDetailFilters</code> object in the request. Depending on the Health event type, note the following differences:</p> <ul> <li> <p>To return event details for a public event, you must specify a null value for the <code>awsAccountId</code> parameter. If you specify an account ID for a public event, Health returns an error message because public events aren't specific to an account.</p> </li> <li> <p>To return event details for an event that is specific to an account in your organization, you must specify the <code>awsAccountId</code> parameter in the request. If you don't specify an account ID, Health returns an error message because the event is specific to an account in your organization. </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html\">Event</a>.</p> <note> <p>This operation doesn't support resource-level permissions. You can't use this operation to allow or deny access to specific Health events. For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions\">Resource- and action-based conditions</a> in the <i>Health User Guide</i>.</p> </note>",
@@ -17,6 +18,18 @@
     "EnableHealthServiceAccessForOrganization": "<p>Enables Health to work with Organizations. You can use the organizational view feature to aggregate events from all Amazon Web Services accounts in your organization in a centralized location. </p> <p>This operation also creates a service-linked role for the management account in the organization. </p> <note> <p>To call this operation, you must meet the following requirements:</p> <ul> <li> <p>You must have a Business, Enterprise On-Ramp, or Enterprise Support plan from <a href=\"http://aws.amazon.com/premiumsupport/\">Amazon Web Services Support</a> to use the Health API. If you call the Health API from an Amazon Web Services account that doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan, you receive a <code>SubscriptionRequiredException</code> error.</p> </li> <li> <p>You must have permission to call this operation from the organization's management account. For example IAM policies, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html\">Health identity-based policy examples</a>.</p> </li> </ul> </note> <p>If you don't have the required support plan, you can instead use the Health console to enable the organizational view feature. For more information, see <a href=\"https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html\">Aggregating Health events</a> in the <i>Health User Guide</i>.</p>"
   },
   "shapes": {
+    "AccountEntityAggregate": {
+      "base": "<p>The number of entities in an account that are impacted by a specific event aggregated by the entity status codes.</p>",
+      "refs": {
+        "AccountEntityAggregatesList$member": null
+      }
+    },
+    "AccountEntityAggregatesList": {
+      "base": null,
+      "refs": {
+        "OrganizationEntityAggregate$accounts": "<p>A list of entity aggregates for each of the specified accounts in your organization that are affected by a specific event. If there are no <code>awsAccountIds</code> provided in the request, this field will be empty in the response.</p>"
+      }
+    },
     "AffectedEntity": {
       "base": "<p>Information about an entity that is affected by a Health event.</p>",
       "refs": {
@@ -69,6 +82,16 @@
       }
     },
     "DescribeAffectedEntitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEntityAggregatesForOrganizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEntityAggregatesForOrganizationResponse": {
       "base": null,
       "refs": {
       }
@@ -170,6 +193,12 @@
     "DescribeHealthServiceStatusForOrganizationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "EntityAccountFilter": {
+      "base": "<p>A JSON set of elements including the <code>awsAccountId</code>, <code>eventArn</code> and a set of <code>statusCodes</code>.</p>",
+      "refs": {
+        "OrganizationEntityAccountFiltersList$member": null
       }
     },
     "EntityAggregate": {
@@ -297,10 +326,34 @@
       "refs": {
       }
     },
+    "OrganizationAccountIdsList": {
+      "base": null,
+      "refs": {
+        "DescribeEntityAggregatesForOrganizationRequest$awsAccountIds": "<p>A list of 12-digit Amazon Web Services account numbers that contains the affected entities.</p>"
+      }
+    },
     "OrganizationAffectedEntitiesErrorItem": {
       "base": "<p>Error information returned when a <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html\">DescribeAffectedEntitiesForOrganization</a> operation can't find or process a specific entity.</p>",
       "refs": {
         "DescribeAffectedEntitiesForOrganizationFailedSet$member": null
+      }
+    },
+    "OrganizationEntityAccountFiltersList": {
+      "base": null,
+      "refs": {
+        "DescribeAffectedEntitiesForOrganizationRequest$organizationEntityAccountFilters": "<p>A JSON set of elements including the <code>awsAccountId</code>, <code>eventArn</code> and a set of <code>statusCodes</code>.</p>"
+      }
+    },
+    "OrganizationEntityAggregate": {
+      "base": "<p>The aggregate results of entities affected by the specified event in your organization. The results are aggregated by the entity status codes for the specified set of accountsIDs.</p>",
+      "refs": {
+        "OrganizationEntityAggregatesList$member": null
+      }
+    },
+    "OrganizationEntityAggregatesList": {
+      "base": null,
+      "refs": {
+        "DescribeEntityAggregatesForOrganizationResponse$organizationEntityAggregates": "<p>The list of entity aggregates for each of the specified accounts that are affected by each of the specified events.</p>"
       }
     },
     "OrganizationEntityFiltersList": {
@@ -313,6 +366,12 @@
       "base": "<p>Summary information about an event, returned by the <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html\">DescribeEventsForOrganization</a> operation.</p>",
       "refs": {
         "OrganizationEventList$member": null
+      }
+    },
+    "OrganizationEventArnsList": {
+      "base": null,
+      "refs": {
+        "DescribeEntityAggregatesForOrganizationRequest$eventArns": "<p>A list of event ARNs (unique identifiers). For example: <code>\"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456\", \"arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101\"</code> </p>"
       }
     },
     "OrganizationEventDetailFiltersList": {
@@ -354,7 +413,9 @@
       "base": null,
       "refs": {
         "AffectedEntity$awsAccountId": "<p>The 12-digit Amazon Web Services account number that contains the affected entity.</p>",
+        "EntityAccountFilter$awsAccountId": "<p>The 12-digit Amazon Web Services account numbers that contains the affected entities.</p>",
         "EventAccountFilter$awsAccountId": "<p>The 12-digit Amazon Web Services account numbers that contains the affected entities.</p>",
+        "OrganizationAccountIdsList$member": null,
         "OrganizationAffectedEntitiesErrorItem$awsAccountId": "<p>The 12-digit Amazon Web Services account numbers that contains the affected entities.</p>",
         "OrganizationEventDetails$awsAccountId": "<p>The 12-digit Amazon Web Services account numbers that contains the affected entities.</p>",
         "OrganizationEventDetailsErrorItem$awsAccountId": "<p>Error information returned when a <a href=\"https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html\">DescribeEventDetailsForOrganization</a> operation can't find a specified event.</p>",
@@ -396,8 +457,11 @@
     "count": {
       "base": null,
       "refs": {
+        "AccountEntityAggregate$count": "<p>The number of entities that match the filter criteria for the specified events.</p>",
         "EntityAggregate$count": "<p>The number of entities that match the criteria for the specified events.</p>",
-        "EventAggregate$count": "<p>The number of events of the associated issue type.</p>"
+        "EventAggregate$count": "<p>The number of events of the associated issue type.</p>",
+        "OrganizationEntityAggregate$count": "<p>The number of entities for the organization that match the filter criteria for the specified events.</p>",
+        "entityStatuses$value": null
       }
     },
     "dateTimeRangeList": {
@@ -428,13 +492,23 @@
       "base": null,
       "refs": {
         "AffectedEntity$statusCode": "<p>The most recent status of the entity affected by the event. The possible values are <code>IMPAIRED</code>, <code>UNIMPAIRED</code>, and <code>UNKNOWN</code>.</p>",
-        "entityStatusCodeList$member": null
+        "entityStatusCodeList$member": null,
+        "entityStatuses$key": null
       }
     },
     "entityStatusCodeList": {
       "base": null,
       "refs": {
+        "EntityAccountFilter$statusCodes": "<p>A list of entity status codes.</p>",
         "EntityFilter$statusCodes": "<p>A list of entity status codes (<code>IMPAIRED</code>, <code>UNIMPAIRED</code>, or <code>UNKNOWN</code>).</p>"
+      }
+    },
+    "entityStatuses": {
+      "base": null,
+      "refs": {
+        "AccountEntityAggregate$statuses": "<p>The number of affected entities aggregated by the entity status codes.</p>",
+        "EntityAggregate$statuses": "<p>The number of affected entities aggregated by the entity status codes.</p>",
+        "OrganizationEntityAggregate$statuses": "<p>The number of affected entities aggregated by the entitiy status codes.</p>"
       }
     },
     "entityUrl": {
@@ -467,15 +541,19 @@
     "eventArn": {
       "base": null,
       "refs": {
+        "AccountEntityAggregate$accountId": "<p>The 12-digit Amazon Web Services account numbers that contains the affected entities.</p>",
         "AffectedEntity$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "DescribeAffectedAccountsForOrganizationRequest$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
+        "EntityAccountFilter$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "EntityAggregate$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "Event$arn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "EventAccountFilter$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "EventArnsList$member": null,
         "EventDetailsErrorItem$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "OrganizationAffectedEntitiesErrorItem$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
+        "OrganizationEntityAggregate$eventArn": "<p>A list of event ARNs (unique identifiers). For example: <code>\"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456\", \"arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101\"</code> </p>",
         "OrganizationEvent$arn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
+        "OrganizationEventArnsList$member": null,
         "OrganizationEventDetailsErrorItem$eventArn": "<p>The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code> format.</p> <p>For example, an event ARN might look like the following:</p> <p> <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>",
         "eventArnList$member": null
       }

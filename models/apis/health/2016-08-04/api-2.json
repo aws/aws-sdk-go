@@ -64,6 +64,16 @@
       "output":{"shape":"DescribeEntityAggregatesResponse"},
       "idempotent":true
     },
+    "DescribeEntityAggregatesForOrganization":{
+      "name":"DescribeEntityAggregatesForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEntityAggregatesForOrganizationRequest"},
+      "output":{"shape":"DescribeEntityAggregatesForOrganizationResponse"},
+      "idempotent":true
+    },
     "DescribeEventAggregates":{
       "name":"DescribeEventAggregates",
       "http":{
@@ -178,6 +188,18 @@
     }
   },
   "shapes":{
+    "AccountEntityAggregate":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"eventArn"},
+        "count":{"shape":"count"},
+        "statuses":{"shape":"entityStatuses"}
+      }
+    },
+    "AccountEntityAggregatesList":{
+      "type":"list",
+      "member":{"shape":"AccountEntityAggregate"}
+    },
     "AffectedEntity":{
       "type":"structure",
       "members":{
@@ -228,12 +250,16 @@
     },
     "DescribeAffectedEntitiesForOrganizationRequest":{
       "type":"structure",
-      "required":["organizationEntityFilters"],
       "members":{
-        "organizationEntityFilters":{"shape":"OrganizationEntityFiltersList"},
+        "organizationEntityFilters":{
+          "shape":"OrganizationEntityFiltersList",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use organizationEntityAccountFilters instead."
+        },
         "locale":{"shape":"locale"},
         "nextToken":{"shape":"nextToken"},
-        "maxResults":{"shape":"maxResultsLowerRange"}
+        "maxResults":{"shape":"maxResultsLowerRange"},
+        "organizationEntityAccountFilters":{"shape":"OrganizationEntityAccountFiltersList"}
       }
     },
     "DescribeAffectedEntitiesForOrganizationResponse":{
@@ -259,6 +285,20 @@
       "members":{
         "entities":{"shape":"EntityList"},
         "nextToken":{"shape":"nextToken"}
+      }
+    },
+    "DescribeEntityAggregatesForOrganizationRequest":{
+      "type":"structure",
+      "required":["eventArns"],
+      "members":{
+        "eventArns":{"shape":"OrganizationEventArnsList"},
+        "awsAccountIds":{"shape":"OrganizationAccountIdsList"}
+      }
+    },
+    "DescribeEntityAggregatesForOrganizationResponse":{
+      "type":"structure",
+      "members":{
+        "organizationEntityAggregates":{"shape":"OrganizationEntityAggregatesList"}
       }
     },
     "DescribeEntityAggregatesRequest":{
@@ -390,11 +430,21 @@
         "healthServiceAccessStatusForOrganization":{"shape":"healthServiceAccessStatusForOrganization"}
       }
     },
+    "EntityAccountFilter":{
+      "type":"structure",
+      "required":["eventArn"],
+      "members":{
+        "eventArn":{"shape":"eventArn"},
+        "awsAccountId":{"shape":"accountId"},
+        "statusCodes":{"shape":"entityStatusCodeList"}
+      }
+    },
     "EntityAggregate":{
       "type":"structure",
       "members":{
         "eventArn":{"shape":"eventArn"},
-        "count":{"shape":"count"}
+        "count":{"shape":"count"},
+        "statuses":{"shape":"entityStatuses"}
       }
     },
     "EntityAggregateList":{
@@ -541,6 +591,12 @@
       },
       "exception":true
     },
+    "OrganizationAccountIdsList":{
+      "type":"list",
+      "member":{"shape":"accountId"},
+      "max":25,
+      "min":1
+    },
     "OrganizationAffectedEntitiesErrorItem":{
       "type":"structure",
       "members":{
@@ -549,6 +605,25 @@
         "errorName":{"shape":"string"},
         "errorMessage":{"shape":"string"}
       }
+    },
+    "OrganizationEntityAccountFiltersList":{
+      "type":"list",
+      "member":{"shape":"EntityAccountFilter"},
+      "max":10,
+      "min":1
+    },
+    "OrganizationEntityAggregate":{
+      "type":"structure",
+      "members":{
+        "eventArn":{"shape":"eventArn"},
+        "count":{"shape":"count"},
+        "statuses":{"shape":"entityStatuses"},
+        "accounts":{"shape":"AccountEntityAggregatesList"}
+      }
+    },
+    "OrganizationEntityAggregatesList":{
+      "type":"list",
+      "member":{"shape":"OrganizationEntityAggregate"}
     },
     "OrganizationEntityFiltersList":{
       "type":"list",
@@ -570,6 +645,12 @@
         "lastUpdatedTime":{"shape":"timestamp"},
         "statusCode":{"shape":"eventStatusCode"}
       }
+    },
+    "OrganizationEventArnsList":{
+      "type":"list",
+      "member":{"shape":"eventArn"},
+      "max":25,
+      "min":1
     },
     "OrganizationEventDetailFiltersList":{
       "type":"list",
@@ -671,14 +752,21 @@
       "enum":[
         "IMPAIRED",
         "UNIMPAIRED",
-        "UNKNOWN"
+        "UNKNOWN",
+        "PENDING",
+        "RESOLVED"
       ]
     },
     "entityStatusCodeList":{
       "type":"list",
       "member":{"shape":"entityStatusCode"},
-      "max":3,
+      "max":5,
       "min":1
+    },
+    "entityStatuses":{
+      "type":"map",
+      "key":{"shape":"entityStatusCode"},
+      "value":{"shape":"count"}
     },
     "entityUrl":{"type":"string"},
     "entityValue":{
