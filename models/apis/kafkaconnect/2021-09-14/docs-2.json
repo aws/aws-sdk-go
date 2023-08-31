@@ -475,30 +475,6 @@
         "DescribeCustomPluginResponse$stateDescription": "<p>Details about the state of a custom plugin.</p>"
       }
     },
-    "SyntheticCreateConnectorRequest__mapOf__string": {
-      "base": null,
-      "refs": {
-        "CreateConnectorRequest$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
-      }
-    },
-    "SyntheticCreateWorkerConfigurationRequest__string": {
-      "base": null,
-      "refs": {
-        "CreateWorkerConfigurationRequest$propertiesFileContent": "<p>Base64 encoded contents of connect-distributed.properties file.</p>"
-      }
-    },
-    "SyntheticDescribeConnectorResponse__mapOf__string": {
-      "base": null,
-      "refs": {
-        "DescribeConnectorResponse$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
-      }
-    },
-    "SyntheticWorkerConfigurationRevisionDescription__string": {
-      "base": null,
-      "refs": {
-        "WorkerConfigurationRevisionDescription$propertiesFileContent": "<p>Base64 encoded contents of the connect-distributed.properties file.</p>"
-      }
-    },
     "TooManyRequestsException": {
       "base": "<p>HTTP Status Code 429: Limit exceeded. Resource limit reached.</p>",
       "refs": {
@@ -686,6 +662,20 @@
         "WorkerConfiguration$revision": "<p>The revision of the worker configuration.</p>"
       }
     },
+    "__sensitiveString": {
+      "base": null,
+      "refs": {
+        "CreateWorkerConfigurationRequest$propertiesFileContent": "<p>Base64 encoded contents of connect-distributed.properties file.</p>",
+        "WorkerConfigurationRevisionDescription$propertiesFileContent": "<p>Base64 encoded contents of the connect-distributed.properties file.</p>"
+      }
+    },
+    "__sensitive__mapOf__string": {
+      "base": null,
+      "refs": {
+        "CreateConnectorRequest$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>",
+        "DescribeConnectorResponse$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
+      }
+    },
     "__string": {
       "base": null,
       "refs": {
@@ -761,10 +751,6 @@
         "ServiceUnavailableException$message": null,
         "StateDescription$code": "<p>A code that describes the state of a resource.</p>",
         "StateDescription$message": "<p>A message that describes the state of a resource.</p>",
-        "SyntheticCreateConnectorRequest__mapOf__string$key": null,
-        "SyntheticCreateConnectorRequest__mapOf__string$value": null,
-        "SyntheticDescribeConnectorResponse__mapOf__string$key": null,
-        "SyntheticDescribeConnectorResponse__mapOf__string$value": null,
         "TooManyRequestsException$message": null,
         "UnauthorizedException$message": null,
         "UpdateConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to update.</p>",
@@ -777,7 +763,9 @@
         "WorkerConfigurationSummary$description": "<p>The description of a worker configuration.</p>",
         "WorkerConfigurationSummary$name": "<p>The name of the worker configuration.</p>",
         "WorkerConfigurationSummary$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration.</p>",
-        "__listOf__string$member": null
+        "__listOf__string$member": null,
+        "__sensitive__mapOf__string$key": null,
+        "__sensitive__mapOf__string$value": null
       }
     },
     "__stringMax1024": {

@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://events-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -223,9 +223,47 @@
                                     "type": "tree",
                                     "rules": [
                                         {
+                                            "conditions": [
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Region"
+                                                        },
+                                                        "us-gov-east-1"
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://events.us-gov-east-1.amazonaws.com",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Region"
+                                                        },
+                                                        "us-gov-west-1"
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://events.us-gov-west-1.amazonaws.com",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://events-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -277,7 +315,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://profile.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://events.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -295,7 +333,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://profile.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://events.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

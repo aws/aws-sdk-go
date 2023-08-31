@@ -1,10 +1,23 @@
 {
     "testCases": [
         {
+            "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://cloudhsm.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-east-1.api.aws"
+                    "url": "https://cloudhsm-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -17,7 +30,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-east-1.amazonaws.com"
+                    "url": "https://cloudhsm-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +43,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-east-1.api.aws"
+                    "url": "https://cloudhsm.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -40,23 +53,10 @@
             }
         },
         {
-            "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://cloudhsm-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://cloudhsm-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://cloudhsm.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.cn-north-1.amazonaws.com.cn"
+                    "url": "https://cloudhsm.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -105,10 +105,23 @@
             }
         },
         {
+            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://cloudhsm.us-gov-west-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-west-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-gov-east-1.api.aws"
+                    "url": "https://cloudhsm-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -121,7 +134,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://cloudhsm-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +147,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-gov-east-1.api.aws"
+                    "url": "https://cloudhsm.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -147,7 +160,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-gov-east-1.amazonaws.com"
+                    "url": "https://cloudhsm.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -171,7 +184,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://cloudhsm-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -195,7 +208,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://cloudhsm.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -219,7 +232,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://cloudhsm-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -243,7 +256,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://dataplane.payment-cryptography.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://cloudhsm.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

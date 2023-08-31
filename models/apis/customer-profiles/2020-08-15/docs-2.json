@@ -1914,36 +1914,15 @@
         "S3ExportingConfig$S3KeyName": "<p>The S3 key name of the location where Identity Resolution Jobs write result files.</p>"
       }
     },
-    "sqsQueueUrl": {
-      "base": null,
-      "refs": {
-        "CreateDomainRequest$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.</p>",
-        "CreateDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>",
-        "GetDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>",
-        "UpdateDomainRequest$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. If specified as an empty string, it will clear any existing value. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.</p>",
-        "UpdateDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>"
-      }
-    },
-    "string0To1000": {
+    "sensitiveString0To1000": {
       "base": null,
       "refs": {
         "UpdateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>"
       }
     },
-    "string0To255": {
+    "sensitiveString0To255": {
       "base": null,
       "refs": {
-        "UpdateAddress$Address1": "<p>The first line of a customer address.</p>",
-        "UpdateAddress$Address2": "<p>The second line of a customer address.</p>",
-        "UpdateAddress$Address3": "<p>The third line of a customer address.</p>",
-        "UpdateAddress$Address4": "<p>The fourth line of a customer address.</p>",
-        "UpdateAddress$City": "<p>The city in which a customer lives.</p>",
-        "UpdateAddress$County": "<p>The county in which a customer lives.</p>",
-        "UpdateAddress$State": "<p>The state in which a customer lives.</p>",
-        "UpdateAddress$Province": "<p>The province in which a customer lives.</p>",
-        "UpdateAddress$Country": "<p>The country in which a customer lives.</p>",
-        "UpdateAddress$PostalCode": "<p>The postal code of a customer address.</p>",
-        "UpdateAttributes$value": null,
         "UpdateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
         "UpdateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
         "UpdateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
@@ -1961,12 +1940,86 @@
         "UpdateProfileRequest$GenderString": "<p>An alternative to <code>Gender</code> which accepts any string as input.</p>"
       }
     },
-    "string1To1000": {
+    "sensitiveString1To1000": {
       "base": null,
       "refs": {
         "CreateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>",
-        "EventStreamDestinationDetails$Message": "<p>The human-readable string that corresponds to the error or success while enabling the streaming destination.</p>",
         "Profile$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>"
+      }
+    },
+    "sensitiveString1To255": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
+        "CreateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
+        "CreateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
+        "CreateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
+        "CreateProfileRequest$LastName": "<p>The customer’s last name.</p>",
+        "CreateProfileRequest$BirthDate": "<p>The customer’s birth date. </p>",
+        "CreateProfileRequest$PhoneNumber": "<p>The customer’s phone number, which has not been specified as a mobile, home, or business number. </p>",
+        "CreateProfileRequest$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
+        "CreateProfileRequest$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
+        "CreateProfileRequest$BusinessPhoneNumber": "<p>The customer’s business phone number.</p>",
+        "CreateProfileRequest$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
+        "CreateProfileRequest$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
+        "CreateProfileRequest$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
+        "CreateProfileRequest$PartyTypeString": "<p>An alternative to <code>PartyType</code> which accepts any string as input.</p>",
+        "CreateProfileRequest$GenderString": "<p>An alternative to <code>Gender</code> which accepts any string as input.</p>",
+        "Profile$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
+        "Profile$BusinessName": "<p>The name of the customer’s business.</p>",
+        "Profile$FirstName": "<p>The customer’s first name.</p>",
+        "Profile$MiddleName": "<p>The customer’s middle name.</p>",
+        "Profile$LastName": "<p>The customer’s last name.</p>",
+        "Profile$BirthDate": "<p>The customer’s birth date. </p>",
+        "Profile$PhoneNumber": "<p>The customer's phone number, which has not been specified as a mobile, home, or business number.</p>",
+        "Profile$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
+        "Profile$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
+        "Profile$BusinessPhoneNumber": "<p>The customer’s home phone number.</p>",
+        "Profile$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
+        "Profile$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
+        "Profile$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
+        "Profile$PartyTypeString": "<p>An alternative to PartyType which accepts any string as input.</p>",
+        "Profile$GenderString": "<p>An alternative to Gender which accepts any string as input.</p>"
+      }
+    },
+    "sensitiveText": {
+      "base": null,
+      "refs": {
+        "GetProfileObjectTypeResponse$Description": "<p>The description of the profile object type.</p>",
+        "PutProfileObjectTypeRequest$Description": "<p>Description of the profile object type.</p>",
+        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>"
+      }
+    },
+    "sqsQueueUrl": {
+      "base": null,
+      "refs": {
+        "CreateDomainRequest$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.</p>",
+        "CreateDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>",
+        "GetDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>",
+        "UpdateDomainRequest$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. If specified as an empty string, it will clear any existing value. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.</p>",
+        "UpdateDomainResponse$DeadLetterQueueUrl": "<p>The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications.</p>"
+      }
+    },
+    "string0To255": {
+      "base": null,
+      "refs": {
+        "UpdateAddress$Address1": "<p>The first line of a customer address.</p>",
+        "UpdateAddress$Address2": "<p>The second line of a customer address.</p>",
+        "UpdateAddress$Address3": "<p>The third line of a customer address.</p>",
+        "UpdateAddress$Address4": "<p>The fourth line of a customer address.</p>",
+        "UpdateAddress$City": "<p>The city in which a customer lives.</p>",
+        "UpdateAddress$County": "<p>The county in which a customer lives.</p>",
+        "UpdateAddress$State": "<p>The state in which a customer lives.</p>",
+        "UpdateAddress$Province": "<p>The province in which a customer lives.</p>",
+        "UpdateAddress$Country": "<p>The country in which a customer lives.</p>",
+        "UpdateAddress$PostalCode": "<p>The postal code of a customer address.</p>",
+        "UpdateAttributes$value": null
+      }
+    },
+    "string1To1000": {
+      "base": null,
+      "refs": {
+        "EventStreamDestinationDetails$Message": "<p>The human-readable string that corresponds to the error or success while enabling the streaming destination.</p>"
       }
     },
     "string1To255": {
@@ -1995,21 +2048,6 @@
         "CreateEventStreamRequest$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name</p>",
         "CreateEventStreamResponse$EventStreamArn": "<p>A unique identifier for the event stream.</p>",
         "CreateIntegrationWorkflowResponse$Message": "<p>A message indicating create request was received.</p>",
-        "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
-        "CreateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
-        "CreateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
-        "CreateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
-        "CreateProfileRequest$LastName": "<p>The customer’s last name.</p>",
-        "CreateProfileRequest$BirthDate": "<p>The customer’s birth date. </p>",
-        "CreateProfileRequest$PhoneNumber": "<p>The customer’s phone number, which has not been specified as a mobile, home, or business number. </p>",
-        "CreateProfileRequest$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
-        "CreateProfileRequest$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
-        "CreateProfileRequest$BusinessPhoneNumber": "<p>The customer’s business phone number.</p>",
-        "CreateProfileRequest$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
-        "CreateProfileRequest$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
-        "CreateProfileRequest$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
-        "CreateProfileRequest$PartyTypeString": "<p>An alternative to <code>PartyType</code> which accepts any string as input.</p>",
-        "CreateProfileRequest$GenderString": "<p>An alternative to <code>Gender</code> which accepts any string as input.</p>",
         "DeleteIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "DeleteProfileObjectRequest$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "DeleteWorkflowRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
@@ -2043,21 +2081,6 @@
         "MatchingRuleAttributeList$member": null,
         "ObjectTypeNames$key": null,
         "PhoneNumberList$member": null,
-        "Profile$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
-        "Profile$BusinessName": "<p>The name of the customer’s business.</p>",
-        "Profile$FirstName": "<p>The customer’s first name.</p>",
-        "Profile$MiddleName": "<p>The customer’s middle name.</p>",
-        "Profile$LastName": "<p>The customer’s last name.</p>",
-        "Profile$BirthDate": "<p>The customer’s birth date. </p>",
-        "Profile$PhoneNumber": "<p>The customer's phone number, which has not been specified as a mobile, home, or business number.</p>",
-        "Profile$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
-        "Profile$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
-        "Profile$BusinessPhoneNumber": "<p>The customer’s home phone number.</p>",
-        "Profile$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
-        "Profile$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
-        "Profile$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
-        "Profile$PartyTypeString": "<p>An alternative to PartyType which accepts any string as input.</p>",
-        "Profile$GenderString": "<p>An alternative to Gender which accepts any string as input.</p>",
         "PutIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutIntegrationResponse$WorkflowId": "<p>Unique identifier for the workflow.</p>",
@@ -2090,13 +2113,10 @@
         "CreateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
         "CreateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
         "GetCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
-        "GetProfileObjectTypeResponse$Description": "<p>The description of the profile object type.</p>",
         "ListCalculatedAttributeDefinitionItem$Description": "<p>The threshold for the calculated attribute.</p>",
         "ListProfileObjectTypeItem$Description": "<p>Description of the profile object type.</p>",
         "ObjectTypeField$Source": "<p>A field of a ProfileObject. For example: _source.FirstName, where “_source” is a ProfileObjectType of a Zendesk user and “FirstName” is a field in that ObjectType.</p>",
         "ObjectTypeField$Target": "<p>The location of the data in the standard ProfileObject model. For example: _profile.Address.PostalCode.</p>",
-        "PutProfileObjectTypeRequest$Description": "<p>Description of the profile object type.</p>",
-        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>",
         "UpdateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
         "UpdateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>"
       }

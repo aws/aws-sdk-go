@@ -413,6 +413,12 @@
       },
       "exception":true
     },
+    "AgentlessDialerConfig":{
+      "type":"structure",
+      "members":{
+        "dialingCapacity":{"shape":"DialingCapacity"}
+      }
+    },
     "AnswerMachineDetectionConfig":{
       "type":"structure",
       "required":["enableAnswerMachineDetection"],
@@ -424,13 +430,13 @@
       "type":"string",
       "max":500,
       "min":20,
-      "pattern":"^arn:.*"
+      "pattern":"arn:.*"
     },
     "AttributeName":{
       "type":"string",
       "max":32767,
       "min":0,
-      "pattern":"^[a-zA-Z0-9\\-_]+$"
+      "pattern":"[a-zA-Z0-9\\-_]+"
     },
     "AttributeValue":{
       "type":"string",
@@ -456,19 +462,19 @@
     "Campaign":{
       "type":"structure",
       "required":[
+        "id",
         "arn",
+        "name",
         "connectInstanceId",
         "dialerConfig",
-        "id",
-        "name",
         "outboundCallConfig"
       ],
       "members":{
+        "id":{"shape":"CampaignId"},
         "arn":{"shape":"CampaignArn"},
+        "name":{"shape":"CampaignName"},
         "connectInstanceId":{"shape":"InstanceId"},
         "dialerConfig":{"shape":"DialerConfig"},
-        "id":{"shape":"CampaignId"},
-        "name":{"shape":"CampaignName"},
         "outboundCallConfig":{"shape":"OutboundCallConfig"},
         "tags":{"shape":"TagMap"}
       }
@@ -507,16 +513,16 @@
     "CampaignSummary":{
       "type":"structure",
       "required":[
-        "arn",
-        "connectInstanceId",
         "id",
-        "name"
+        "arn",
+        "name",
+        "connectInstanceId"
       ],
       "members":{
-        "arn":{"shape":"CampaignArn"},
-        "connectInstanceId":{"shape":"InstanceId"},
         "id":{"shape":"CampaignId"},
-        "name":{"shape":"CampaignName"}
+        "arn":{"shape":"CampaignArn"},
+        "name":{"shape":"CampaignName"},
+        "connectInstanceId":{"shape":"InstanceId"}
       }
     },
     "CampaignSummaryList":{
@@ -553,15 +559,15 @@
     "CreateCampaignRequest":{
       "type":"structure",
       "required":[
+        "name",
         "connectInstanceId",
         "dialerConfig",
-        "name",
         "outboundCallConfig"
       ],
       "members":{
+        "name":{"shape":"CampaignName"},
         "connectInstanceId":{"shape":"InstanceId"},
         "dialerConfig":{"shape":"DialerConfig"},
-        "name":{"shape":"CampaignName"},
         "outboundCallConfig":{"shape":"OutboundCallConfig"},
         "tags":{"shape":"TagMap"}
       }
@@ -569,8 +575,8 @@
     "CreateCampaignResponse":{
       "type":"structure",
       "members":{
-        "arn":{"shape":"CampaignArn"},
         "id":{"shape":"CampaignId"},
+        "arn":{"shape":"CampaignArn"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -633,16 +639,16 @@
     "DialRequest":{
       "type":"structure",
       "required":[
-        "attributes",
         "clientToken",
+        "phoneNumber",
         "expirationTime",
-        "phoneNumber"
+        "attributes"
       ],
       "members":{
-        "attributes":{"shape":"Attributes"},
         "clientToken":{"shape":"ClientToken"},
+        "phoneNumber":{"shape":"DestinationPhoneNumber"},
         "expirationTime":{"shape":"TimeStamp"},
-        "phoneNumber":{"shape":"DestinationPhoneNumber"}
+        "attributes":{"shape":"Attributes"}
       }
     },
     "DialRequestId":{"type":"string"},
@@ -655,10 +661,17 @@
     "DialerConfig":{
       "type":"structure",
       "members":{
+        "progressiveDialerConfig":{"shape":"ProgressiveDialerConfig"},
         "predictiveDialerConfig":{"shape":"PredictiveDialerConfig"},
-        "progressiveDialerConfig":{"shape":"ProgressiveDialerConfig"}
+        "agentlessDialerConfig":{"shape":"AgentlessDialerConfig"}
       },
       "union":true
+    },
+    "DialingCapacity":{
+      "type":"double",
+      "box":true,
+      "max":1,
+      "min":0.01
     },
     "Enabled":{"type":"boolean"},
     "EncryptionConfig":{
@@ -696,8 +709,8 @@
       "type":"structure",
       "members":{
         "clientToken":{"shape":"ClientToken"},
-        "failureCode":{"shape":"FailureCode"},
-        "id":{"shape":"DialRequestId"}
+        "id":{"shape":"DialRequestId"},
+        "failureCode":{"shape":"FailureCode"}
       }
     },
     "FailedRequestList":{
@@ -737,8 +750,8 @@
     "GetCampaignStateBatchResponse":{
       "type":"structure",
       "members":{
-        "failedRequests":{"shape":"FailedCampaignStateResponseList"},
-        "successfulRequests":{"shape":"SuccessfulCampaignStateResponseList"}
+        "successfulRequests":{"shape":"SuccessfulCampaignStateResponseList"},
+        "failedRequests":{"shape":"FailedCampaignStateResponseList"}
       }
     },
     "GetCampaignStateRequest":{
@@ -796,13 +809,13 @@
       "type":"structure",
       "required":[
         "connectInstanceId",
-        "encryptionConfig",
-        "serviceLinkedRoleArn"
+        "serviceLinkedRoleArn",
+        "encryptionConfig"
       ],
       "members":{
         "connectInstanceId":{"shape":"InstanceId"},
-        "encryptionConfig":{"shape":"EncryptionConfig"},
-        "serviceLinkedRoleArn":{"shape":"ServiceLinkedRoleArn"}
+        "serviceLinkedRoleArn":{"shape":"ServiceLinkedRoleArn"},
+        "encryptionConfig":{"shape":"EncryptionConfig"}
       }
     },
     "InstanceId":{
@@ -813,12 +826,12 @@
     "InstanceIdFilter":{
       "type":"structure",
       "required":[
-        "operator",
-        "value"
+        "value",
+        "operator"
       ],
       "members":{
-        "operator":{"shape":"InstanceIdFilterOperator"},
-        "value":{"shape":"InstanceId"}
+        "value":{"shape":"InstanceId"},
+        "operator":{"shape":"InstanceIdFilterOperator"}
       }
     },
     "InstanceIdFilterOperator":{
@@ -844,8 +857,8 @@
       ],
       "members":{
         "connectInstanceId":{"shape":"InstanceId"},
-        "failureCode":{"shape":"InstanceOnboardingJobFailureCode"},
-        "status":{"shape":"InstanceOnboardingJobStatusCode"}
+        "status":{"shape":"InstanceOnboardingJobStatusCode"},
+        "failureCode":{"shape":"InstanceOnboardingJobFailureCode"}
       }
     },
     "InstanceOnboardingJobStatusCode":{
@@ -875,12 +888,12 @@
     "InvalidCampaignStateException":{
       "type":"structure",
       "required":[
-        "message",
-        "state"
+        "state",
+        "message"
       ],
       "members":{
-        "message":{"shape":"String"},
         "state":{"shape":"CampaignState"},
+        "message":{"shape":"String"},
         "xAmzErrorType":{
           "shape":"XAmazonErrorType",
           "location":"header",
@@ -913,16 +926,16 @@
     "ListCampaignsRequest":{
       "type":"structure",
       "members":{
-        "filters":{"shape":"CampaignFilters"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "filters":{"shape":"CampaignFilters"}
       }
     },
     "ListCampaignsResponse":{
       "type":"structure",
       "members":{
-        "campaignSummaryList":{"shape":"CampaignSummaryList"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "campaignSummaryList":{"shape":"CampaignSummaryList"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -955,15 +968,12 @@
     },
     "OutboundCallConfig":{
       "type":"structure",
-      "required":[
-        "connectContactFlowId",
-        "connectQueueId"
-      ],
+      "required":["connectContactFlowId"],
       "members":{
-        "answerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"},
         "connectContactFlowId":{"shape":"ContactFlowId"},
+        "connectSourcePhoneNumber":{"shape":"SourcePhoneNumber"},
         "connectQueueId":{"shape":"QueueId"},
-        "connectSourcePhoneNumber":{"shape":"SourcePhoneNumber"}
+        "answerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"}
       }
     },
     "PauseCampaignRequest":{
@@ -981,36 +991,38 @@
       "type":"structure",
       "required":["bandwidthAllocation"],
       "members":{
-        "bandwidthAllocation":{"shape":"BandwidthAllocation"}
+        "bandwidthAllocation":{"shape":"BandwidthAllocation"},
+        "dialingCapacity":{"shape":"DialingCapacity"}
       }
     },
     "ProgressiveDialerConfig":{
       "type":"structure",
       "required":["bandwidthAllocation"],
       "members":{
-        "bandwidthAllocation":{"shape":"BandwidthAllocation"}
+        "bandwidthAllocation":{"shape":"BandwidthAllocation"},
+        "dialingCapacity":{"shape":"DialingCapacity"}
       }
     },
     "PutDialRequestBatchRequest":{
       "type":"structure",
       "required":[
-        "dialRequests",
-        "id"
+        "id",
+        "dialRequests"
       ],
       "members":{
-        "dialRequests":{"shape":"DialRequestList"},
         "id":{
           "shape":"CampaignId",
           "location":"uri",
           "locationName":"id"
-        }
+        },
+        "dialRequests":{"shape":"DialRequestList"}
       }
     },
     "PutDialRequestBatchResponse":{
       "type":"structure",
       "members":{
-        "failedRequests":{"shape":"FailedRequestList"},
-        "successfulRequests":{"shape":"SuccessfulRequestList"}
+        "successfulRequests":{"shape":"SuccessfulRequestList"},
+        "failedRequests":{"shape":"FailedRequestList"}
       }
     },
     "QueueId":{
@@ -1147,7 +1159,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+      "pattern":"(?!aws:)[a-zA-Z+-=._:/]+"
     },
     "TagKeyList":{
       "type":"list",
@@ -1224,16 +1236,16 @@
     "UpdateCampaignDialerConfigRequest":{
       "type":"structure",
       "required":[
-        "dialerConfig",
-        "id"
+        "id",
+        "dialerConfig"
       ],
       "members":{
-        "dialerConfig":{"shape":"DialerConfig"},
         "id":{
           "shape":"CampaignId",
           "location":"uri",
           "locationName":"id"
-        }
+        },
+        "dialerConfig":{"shape":"DialerConfig"}
       }
     },
     "UpdateCampaignNameRequest":{
@@ -1255,14 +1267,14 @@
       "type":"structure",
       "required":["id"],
       "members":{
-        "answerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"},
-        "connectContactFlowId":{"shape":"ContactFlowId"},
-        "connectSourcePhoneNumber":{"shape":"SourcePhoneNumber"},
         "id":{
           "shape":"CampaignId",
           "location":"uri",
           "locationName":"id"
-        }
+        },
+        "connectContactFlowId":{"shape":"ContactFlowId"},
+        "connectSourcePhoneNumber":{"shape":"SourcePhoneNumber"},
+        "answerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"}
       }
     },
     "ValidationException":{

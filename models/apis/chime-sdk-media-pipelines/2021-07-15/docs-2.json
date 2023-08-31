@@ -173,7 +173,8 @@
         "AmazonTranscribeProcessorConfiguration$FilterPartialResults": "<p>If true, <code>TranscriptEvents</code> with <code>IsPartial: true</code> are filtered out of the insights target.</p>",
         "AmazonTranscribeProcessorConfiguration$IdentifyLanguage": "<p>Turns language identification on or off.</p>",
         "KeywordMatchConfiguration$Negate": "<p>Matches keywords or phrases on their presence or absence. If set to <code>TRUE</code>, the rule matches when all the specified keywords or phrases are absent. Default: <code>FALSE</code>.</p>",
-        "RealTimeAlertConfiguration$Disabled": "<p>Turns off real-time alerts.</p>"
+        "RealTimeAlertConfiguration$Disabled": "<p>Turns off real-time alerts.</p>",
+        "VoiceEnhancementSinkConfiguration$Disabled": "<p>Disables the <code>VoiceEnhancementSinkConfiguration</code> element.</p>"
       }
     },
     "BorderColor": {
@@ -790,7 +791,8 @@
     "MediaInsightsPipelineConfigurationElementType": {
       "base": null,
       "refs": {
-        "MediaInsightsPipelineConfigurationElement$Type": "<p>The element type.</p>"
+        "MediaInsightsPipelineConfigurationElement$Type": "<p>The element type.</p>",
+        "MediaInsightsPipelineElementStatus$Type": "<p>The type of status.</p>"
       }
     },
     "MediaInsightsPipelineConfigurationElements": {
@@ -821,6 +823,18 @@
         "ListMediaInsightsPipelineConfigurationsResponse$MediaInsightsPipelineConfigurations": "<p>The requested list of media insights pipeline configurations.</p>"
       }
     },
+    "MediaInsightsPipelineElementStatus": {
+      "base": "<p>The status of the pipeline element.</p>",
+      "refs": {
+        "MediaInsightsPipelineElementStatuses$member": null
+      }
+    },
+    "MediaInsightsPipelineElementStatuses": {
+      "base": null,
+      "refs": {
+        "MediaInsightsPipeline$ElementStatuses": "<p>The statuses that the elements in a media insights pipeline can have during data processing.</p>"
+      }
+    },
     "MediaInsightsRuntimeMetadata": {
       "base": null,
       "refs": {
@@ -839,6 +853,12 @@
       "base": "<p>A pipeline consisting of a media capture, media concatenation, or live-streaming pipeline.</p>",
       "refs": {
         "GetMediaPipelineResponse$MediaPipeline": "<p>The media pipeline object.</p>"
+      }
+    },
+    "MediaPipelineElementStatus": {
+      "base": null,
+      "refs": {
+        "MediaInsightsPipelineElementStatus$Status": "<p>The element's status.</p>"
       }
     },
     "MediaPipelineList": {
@@ -1284,7 +1304,7 @@
       }
     },
     "VerticalLayoutConfiguration": {
-      "base": "<p>Defines the configuration settings for a vertial layout.</p>",
+      "base": "<p>Defines the configuration settings for a vertical layout.</p>",
       "refs": {
         "GridViewConfiguration$VerticalLayoutConfiguration": "<p>The configuration settings for a vertical layout.</p>"
       }
@@ -1363,6 +1383,12 @@
       "base": "<p>The configuration settings for a voice analytics processor.</p>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$VoiceAnalyticsProcessorConfiguration": "<p>The voice analytics configuration settings in a media insights pipeline configuration element.</p>"
+      }
+    },
+    "VoiceEnhancementSinkConfiguration": {
+      "base": "<p>A static structure that contains the configuration data for a <code>VoiceEnhancementSinkConfiguration</code> element.</p>",
+      "refs": {
+        "MediaInsightsPipelineConfigurationElement$VoiceEnhancementSinkConfiguration": "<p>The configuration settings for the <code>VoiceEnhancementSinkConfiguration</code> element.</p>"
       }
     }
   }

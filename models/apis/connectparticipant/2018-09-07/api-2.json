@@ -45,6 +45,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeView":{
+      "name":"DescribeView",
+      "http":{
+        "method":"GET",
+        "requestUri":"/participant/views/{ViewToken}"
+      },
+      "input":{"shape":"DescribeViewRequest"},
+      "output":{"shape":"DescribeViewResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DisconnectParticipant":{
       "name":"DisconnectParticipant",
       "http":{
@@ -138,6 +154,7 @@
     }
   },
   "shapes":{
+    "ARN":{"type":"string"},
     "AccessDeniedException":{
       "type":"structure",
       "required":["Message"],
@@ -308,6 +325,31 @@
         "ConnectionCredentials":{"shape":"ConnectionCredentials"}
       }
     },
+    "DescribeViewRequest":{
+      "type":"structure",
+      "required":[
+        "ViewToken",
+        "ConnectionToken"
+      ],
+      "members":{
+        "ViewToken":{
+          "shape":"ViewToken",
+          "location":"uri",
+          "locationName":"ViewToken"
+        },
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "DescribeViewResponse":{
+      "type":"structure",
+      "members":{
+        "View":{"shape":"View"}
+      }
+    },
     "DisconnectParticipantRequest":{
       "type":"structure",
       "required":["ConnectionToken"],
@@ -454,7 +496,8 @@
       "enum":[
         "AGENT",
         "CUSTOMER",
-        "SYSTEM"
+        "SYSTEM",
+        "CUSTOM_BOT"
       ]
     },
     "ParticipantToken":{
@@ -488,6 +531,29 @@
     "Receipts":{
       "type":"list",
       "member":{"shape":"Receipt"}
+    },
+    "ResourceId":{"type":"string"},
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"ResourceType"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "CONTACT",
+        "CONTACT_FLOW",
+        "INSTANCE",
+        "PARTICIPANT",
+        "HIERARCHY_LEVEL",
+        "HIERARCHY_GROUP",
+        "USER"
+      ]
     },
     "ScanDirection":{
       "type":"string",
@@ -656,6 +722,62 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "View":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ViewId"},
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"ViewName"},
+        "Version":{"shape":"ViewVersion"},
+        "Content":{"shape":"ViewContent"}
+      }
+    },
+    "ViewAction":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{N}_.:\\/=+\\-@()']+[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@()']*)$",
+      "sensitive":true
+    },
+    "ViewActions":{
+      "type":"list",
+      "member":{"shape":"ViewAction"}
+    },
+    "ViewContent":{
+      "type":"structure",
+      "members":{
+        "InputSchema":{"shape":"ViewInputSchema"},
+        "Template":{"shape":"ViewTemplate"},
+        "Actions":{"shape":"ViewActions"}
+      }
+    },
+    "ViewId":{
+      "type":"string",
+      "max":500,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\_\\-:\\/$]+$"
+    },
+    "ViewInputSchema":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ViewName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{N}_.:\\/=+\\-@()']+[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@()']*)$",
+      "sensitive":true
+    },
+    "ViewTemplate":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ViewToken":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "ViewVersion":{"type":"integer"},
     "Websocket":{
       "type":"structure",
       "members":{

@@ -4290,11 +4290,19 @@ type RoleValues struct {
 
 	// A list of groups from the SAML assertion attribute to grant the Grafana Admin
 	// role to.
-	Admin []*string `locationName:"admin" type:"list"`
+	//
+	// Admin is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RoleValues's
+	// String and GoString methods.
+	Admin []*string `locationName:"admin" type:"list" sensitive:"true"`
 
 	// A list of groups from the SAML assertion attribute to grant the Grafana Editor
 	// role to.
-	Editor []*string `locationName:"editor" type:"list"`
+	//
+	// Editor is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RoleValues's
+	// String and GoString methods.
+	Editor []*string `locationName:"editor" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5780,7 +5788,7 @@ type VpcConfiguration struct {
 	// workspace to connect. Duplicates not allowed.
 	//
 	// SubnetIds is a required field
-	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list" required:"true"`
+	SubnetIds []*string `locationName:"subnetIds" min:"2" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -5813,8 +5821,8 @@ func (s *VpcConfiguration) Validate() error {
 	if s.SubnetIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
 	}
-	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
+	if s.SubnetIds != nil && len(s.SubnetIds) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 2))
 	}
 
 	if invalidParams.Len() > 0 {

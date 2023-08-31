@@ -1365,7 +1365,8 @@
         "MediaInsightsRuntimeMetadata":{"shape":"MediaInsightsRuntimeMetadata"},
         "KinesisVideoStreamRecordingSourceRuntimeConfiguration":{"shape":"KinesisVideoStreamRecordingSourceRuntimeConfiguration"},
         "S3RecordingSinkRuntimeConfiguration":{"shape":"S3RecordingSinkRuntimeConfiguration"},
-        "CreatedTimestamp":{"shape":"Iso8601Timestamp"}
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "ElementStatuses":{"shape":"MediaInsightsPipelineElementStatuses"}
       }
     },
     "MediaInsightsPipelineConfiguration":{
@@ -1393,7 +1394,8 @@
         "VoiceAnalyticsProcessorConfiguration":{"shape":"VoiceAnalyticsProcessorConfiguration"},
         "LambdaFunctionSinkConfiguration":{"shape":"LambdaFunctionSinkConfiguration"},
         "SqsQueueSinkConfiguration":{"shape":"SqsQueueSinkConfiguration"},
-        "SnsTopicSinkConfiguration":{"shape":"SnsTopicSinkConfiguration"}
+        "SnsTopicSinkConfiguration":{"shape":"SnsTopicSinkConfiguration"},
+        "VoiceEnhancementSinkConfiguration":{"shape":"VoiceEnhancementSinkConfiguration"}
       }
     },
     "MediaInsightsPipelineConfigurationElementType":{
@@ -1406,7 +1408,8 @@
         "LambdaFunctionSink",
         "SqsQueueSink",
         "SnsTopicSink",
-        "S3RecordingSink"
+        "S3RecordingSink",
+        "VoiceEnhancementSink"
       ]
     },
     "MediaInsightsPipelineConfigurationElements":{
@@ -1430,6 +1433,17 @@
     "MediaInsightsPipelineConfigurationSummaryList":{
       "type":"list",
       "member":{"shape":"MediaInsightsPipelineConfigurationSummary"}
+    },
+    "MediaInsightsPipelineElementStatus":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"MediaInsightsPipelineConfigurationElementType"},
+        "Status":{"shape":"MediaPipelineElementStatus"}
+      }
+    },
+    "MediaInsightsPipelineElementStatuses":{
+      "type":"list",
+      "member":{"shape":"MediaInsightsPipelineElementStatus"}
     },
     "MediaInsightsRuntimeMetadata":{
       "type":"map",
@@ -1458,6 +1472,19 @@
         "MediaInsightsPipeline":{"shape":"MediaInsightsPipeline"}
       }
     },
+    "MediaPipelineElementStatus":{
+      "type":"string",
+      "enum":[
+        "NotStarted",
+        "NotSupported",
+        "Initializing",
+        "InProgress",
+        "Failed",
+        "Stopping",
+        "Stopped",
+        "Paused"
+      ]
+    },
     "MediaPipelineList":{
       "type":"list",
       "member":{"shape":"MediaPipelineSummary"}
@@ -1478,7 +1505,8 @@
         "Failed",
         "Stopping",
         "Stopped",
-        "Paused"
+        "Paused",
+        "NotStarted"
       ]
     },
     "MediaPipelineStatusUpdate":{
@@ -2038,6 +2066,12 @@
       "members":{
         "SpeakerSearchStatus":{"shape":"VoiceAnalyticsConfigurationStatus"},
         "VoiceToneAnalysisStatus":{"shape":"VoiceAnalyticsConfigurationStatus"}
+      }
+    },
+    "VoiceEnhancementSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "Disabled":{"shape":"Boolean"}
       }
     }
   }

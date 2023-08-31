@@ -3161,7 +3161,8 @@
         "awsvpcTrunking",
         "containerInsights",
         "fargateFIPSMode",
-        "tagResourceAuthorization"
+        "tagResourceAuthorization",
+        "fargateTaskRetirementWaitPeriod"
       ]
     },
     "Settings":{

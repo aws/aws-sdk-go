@@ -1,3 +1,25 @@
+Release v1.45.1 (2023-08-31)
+===
+
+### Service Client Updates
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/cloudhsm`: Updates service API
+  * Deprecating CloudHSM Classic API Service.
+* `service/connectcampaigns`: Updates service API and documentation
+* `service/connectparticipant`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for an account-level setting that you can use to configure the number of days for AWS Fargate task retirement.
+* `service/events`: Updates service documentation
+  * Documentation updates for CloudWatch Events.
+* `service/grafana`: Updates service API
+* `service/health`: Updates service API and documentation
+  * Adds new API DescribeEntityAggregatesForOrganization that retrieves entity aggregates across your organization. Also adds support for resource status filtering in DescribeAffectedEntitiesForOrganization, resource status aggregates in the DescribeEntityAggregates response, and new resource statuses.
+* `service/ivs`: Updates service documentation
+* `service/kafkaconnect`: Updates service API and documentation
+* `service/payment-cryptography-data`: Updates service API and documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+
 Release v1.45.0 (2023-08-30)
 ===
 
