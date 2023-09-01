@@ -24,7 +24,7 @@ const (
 	// "ContactNotFoundException".
 	//
 	// The contact with the specified ID is not active or does not exist. Applies
-	// to Voice calls only, not to Chat, Task, or Voice Callback.
+	// to Voice calls only, not to Chat or Task contacts.
 	ErrCodeContactNotFoundException = "ContactNotFoundException"
 
 	// ErrCodeDestinationNotAllowedException for service response error code
@@ -136,6 +136,12 @@ const (
 	// The throttling limit has been exceeded.
 	ErrCodeThrottlingException = "ThrottlingException"
 
+	// ErrCodeTooManyRequestsException for service response error code
+	// "TooManyRequestsException".
+	//
+	// Displayed when rate-related API limits are exceeded.
+	ErrCodeTooManyRequestsException = "TooManyRequestsException"
+
 	// ErrCodeUserNotFoundException for service response error code
 	// "UserNotFoundException".
 	//
@@ -165,5 +171,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ServiceQuotaExceededException":        newErrorServiceQuotaExceededException,
 	"ThrottlingException":                  newErrorThrottlingException,
+	"TooManyRequestsException":             newErrorTooManyRequestsException,
 	"UserNotFoundException":                newErrorUserNotFoundException,
 }

@@ -1577,7 +1577,7 @@
     "NextToken": {
       "max": 65535,
       "min": 1,
-      "pattern": "[-a-zA-Z0-9+=/:]*",
+      "pattern": "[-a-zA-Z0-9+=/:_]*",
       "type": "string"
     },
     "PhoneNumber": {

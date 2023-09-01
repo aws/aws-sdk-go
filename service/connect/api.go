@@ -2248,22 +2248,25 @@ func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Requ
 //
 // Creates a new queue for the specified Amazon Connect instance.
 //
-// If the number being used in the input is claimed to a traffic distribution
-// group, and you are calling this API using an instance in the Amazon Web Services
-// Region where the traffic distribution group was created, you can use either
-// a full phone number ARN or UUID value for the OutboundCallerIdNumberId value
-// of the OutboundCallerConfig (https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig)
-// request body parameter. However, if the number is claimed to a traffic distribution
-// group and you are calling this API using an instance in the alternate Amazon
-// Web Services Region associated with the traffic distribution group, you must
-// provide a full phone number ARN. If a UUID is provided in this scenario,
-// you will receive a ResourceNotFoundException.
+//   - If the phone number is claimed to a traffic distribution group that
+//     was created in the same Region as the Amazon Connect instance where you
+//     are calling this API, then you can use a full phone number ARN or a UUID
+//     for OutboundCallerIdNumberId. However, if the phone number is claimed
+//     to a traffic distribution group that is in one Region, and you are calling
+//     this API from an instance in another Amazon Web Services Region that is
+//     associated with the traffic distribution group, you must provide a full
+//     phone number ARN. If a UUID is provided in this scenario, you will receive
+//     a ResourceNotFoundException.
 //
-// Only use the phone number ARN format that doesn't contain instance in the
-// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
-// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
-// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
-// API.
+//   - Only use the phone number ARN format that doesn't contain instance in
+//     the path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+//     This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+//     (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+//     API.
+//
+//   - If you plan to use IAM policies to allow/deny access to this API for
+//     phone number resources claimed to a traffic distribution group, see Allow
+//     or Deny queue API actions for phone numbers in a replica Region (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2850,6 +2853,12 @@ func (c *Connect) CreateTrafficDistributionGroupRequest(input *CreateTrafficDist
 // Creates a traffic distribution group given an Amazon Connect instance that
 // has been replicated.
 //
+// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
+// (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
+// data type). If you call UpdateTrafficDistribution with a modified SignInConfig
+// and a non-default TrafficDistributionGroup, an InvalidRequestException is
+// returned.
+//
 // For more information about creating traffic distribution groups, see Set
 // up traffic distribution groups (https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html)
 // in the Amazon Connect Administrator Guide.
@@ -3193,6 +3202,223 @@ func (c *Connect) CreateUserHierarchyGroup(input *CreateUserHierarchyGroupInput)
 // for more information on using Contexts.
 func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *CreateUserHierarchyGroupInput, opts ...request.Option) (*CreateUserHierarchyGroupOutput, error) {
 	req, out := c.CreateUserHierarchyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateView = "CreateView"
+
+// CreateViewRequest generates a "aws/request.Request" representing the
+// client's request for the CreateView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateView for more information on using the CreateView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateViewRequest method.
+//	req, resp := client.CreateViewRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateView
+func (c *Connect) CreateViewRequest(input *CreateViewInput) (req *request.Request, output *CreateViewOutput) {
+	op := &request.Operation{
+		Name:       opCreateView,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/views/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateViewInput{}
+	}
+
+	output = &CreateViewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateView API operation for Amazon Connect Service.
+//
+// Creates a new view with the possible status of SAVED or PUBLISHED.
+//
+// The views will have a unique name for each connect instance.
+//
+// It performs basic content validation if the status is SAVED or full content
+// validation if the status is set to PUBLISHED. An error is returned if validation
+// fails. It associates either the $SAVED qualifier or both of the $SAVED and
+// $LATEST qualifiers with the provided view content based on the status. The
+// view is idempotent if ClientToken is provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateView for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateView
+func (c *Connect) CreateView(input *CreateViewInput) (*CreateViewOutput, error) {
+	req, out := c.CreateViewRequest(input)
+	return out, req.Send()
+}
+
+// CreateViewWithContext is the same as CreateView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateViewWithContext(ctx aws.Context, input *CreateViewInput, opts ...request.Option) (*CreateViewOutput, error) {
+	req, out := c.CreateViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateViewVersion = "CreateViewVersion"
+
+// CreateViewVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateViewVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateViewVersion for more information on using the CreateViewVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateViewVersionRequest method.
+//	req, resp := client.CreateViewVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateViewVersion
+func (c *Connect) CreateViewVersionRequest(input *CreateViewVersionInput) (req *request.Request, output *CreateViewVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateViewVersion,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}/versions",
+	}
+
+	if input == nil {
+		input = &CreateViewVersionInput{}
+	}
+
+	output = &CreateViewVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateViewVersion API operation for Amazon Connect Service.
+//
+// Publishes a new version of the view identifier.
+//
+// Versions are immutable and monotonically increasing.
+//
+// It returns the highest version if there is no change in content compared
+// to that version. An error is displayed if the supplied ViewContentSha256
+// is different from the ViewContentSha256 of the $LATEST alias.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateViewVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateViewVersion
+func (c *Connect) CreateViewVersion(input *CreateViewVersionInput) (*CreateViewVersionOutput, error) {
+	req, out := c.CreateViewVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateViewVersionWithContext is the same as CreateViewVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateViewVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateViewVersionWithContext(ctx aws.Context, input *CreateViewVersionInput, opts ...request.Option) (*CreateViewVersionOutput, error) {
+	req, out := c.CreateViewVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5079,6 +5305,203 @@ func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput)
 // for more information on using Contexts.
 func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *DeleteUserHierarchyGroupInput, opts ...request.Option) (*DeleteUserHierarchyGroupOutput, error) {
 	req, out := c.DeleteUserHierarchyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteView = "DeleteView"
+
+// DeleteViewRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteView for more information on using the DeleteView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteViewRequest method.
+//	req, resp := client.DeleteViewRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteView
+func (c *Connect) DeleteViewRequest(input *DeleteViewInput) (req *request.Request, output *DeleteViewOutput) {
+	op := &request.Operation{
+		Name:       opDeleteView,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}",
+	}
+
+	if input == nil {
+		input = &DeleteViewInput{}
+	}
+
+	output = &DeleteViewOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteView API operation for Amazon Connect Service.
+//
+// Deletes the view entirely. It deletes the view and all associated qualifiers
+// (versions and aliases).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteView for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteView
+func (c *Connect) DeleteView(input *DeleteViewInput) (*DeleteViewOutput, error) {
+	req, out := c.DeleteViewRequest(input)
+	return out, req.Send()
+}
+
+// DeleteViewWithContext is the same as DeleteView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteViewWithContext(ctx aws.Context, input *DeleteViewInput, opts ...request.Option) (*DeleteViewOutput, error) {
+	req, out := c.DeleteViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteViewVersion = "DeleteViewVersion"
+
+// DeleteViewVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteViewVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteViewVersion for more information on using the DeleteViewVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteViewVersionRequest method.
+//	req, resp := client.DeleteViewVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteViewVersion
+func (c *Connect) DeleteViewVersionRequest(input *DeleteViewVersionInput) (req *request.Request, output *DeleteViewVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteViewVersion,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}/versions/{ViewVersion}",
+	}
+
+	if input == nil {
+		input = &DeleteViewVersionInput{}
+	}
+
+	output = &DeleteViewVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteViewVersion API operation for Amazon Connect Service.
+//
+// Deletes the particular version specified in ViewVersion identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteViewVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteViewVersion
+func (c *Connect) DeleteViewVersion(input *DeleteViewVersionInput) (*DeleteViewVersionOutput, error) {
+	req, out := c.DeleteViewVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteViewVersionWithContext is the same as DeleteViewVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteViewVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteViewVersionWithContext(ctx aws.Context, input *DeleteViewVersionInput, opts ...request.Option) (*DeleteViewVersionOutput, error) {
+	req, out := c.DeleteViewVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7122,6 +7545,110 @@ func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStr
 // for more information on using Contexts.
 func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, input *DescribeUserHierarchyStructureInput, opts ...request.Option) (*DescribeUserHierarchyStructureOutput, error) {
 	req, out := c.DescribeUserHierarchyStructureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeView = "DescribeView"
+
+// DescribeViewRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeView for more information on using the DescribeView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeViewRequest method.
+//	req, resp := client.DescribeViewRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeView
+func (c *Connect) DescribeViewRequest(input *DescribeViewInput) (req *request.Request, output *DescribeViewOutput) {
+	op := &request.Operation{
+		Name:       opDescribeView,
+		HTTPMethod: "GET",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}",
+	}
+
+	if input == nil {
+		input = &DescribeViewInput{}
+	}
+
+	output = &DescribeViewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeView API operation for Amazon Connect Service.
+//
+// Retrieves the view for the specified Amazon Connect instance and view identifier.
+//
+// The view identifier can be supplied as a ViewId or ARN.
+//
+// $SAVED needs to be supplied if a view is unpublished.
+//
+// The view identifier can contain an optional qualifier, for example, <view-id>:$SAVED,
+// which is either an actual version number or an Amazon Connect managed qualifier
+// $SAVED | $LATEST. If it is not supplied, then $LATEST is assumed for customer
+// managed views and an error is returned if there is no published content available.
+// Version 1 is assumed for Amazon Web Services managed views.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeView for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeView
+func (c *Connect) DescribeView(input *DescribeViewInput) (*DescribeViewOutput, error) {
+	req, out := c.DescribeViewRequest(input)
+	return out, req.Send()
+}
+
+// DescribeViewWithContext is the same as DescribeView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeViewWithContext(ctx aws.Context, input *DescribeViewInput, opts ...request.Option) (*DescribeViewOutput, error) {
+	req, out := c.DescribeViewRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11923,12 +12450,17 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 // Contact Center (https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html)
 // in the Amazon Connect Administrator Guide.
 //
-// The phone number Arn value that is returned from each of the items in the
-// PhoneNumberSummaryList (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList)
-// cannot be used to tag phone number resources. It will fail with a ResourceNotFoundException.
-// Instead, use the ListPhoneNumbersV2 (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
-// API. It returns the new phone number ARN that can be used to tag phone number
-// resources.
+//   - We recommend using ListPhoneNumbersV2 (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+//     to return phone number types. ListPhoneNumbers doesn't support number
+//     types UIFN, SHARED, THIRD_PARTY_TF, and THIRD_PARTY_DID. While it returns
+//     numbers of those types, it incorrectly lists them as TOLL_FREE or DID.
+//
+//   - The phone number Arn value that is returned from each of the items in
+//     the PhoneNumberSummaryList (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList)
+//     cannot be used to tag phone number resources. It will fail with a ResourceNotFoundException.
+//     Instead, use the ListPhoneNumbersV2 (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+//     API. It returns the new phone number ARN that can be used to tag phone
+//     number resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14675,6 +15207,313 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opListViewVersions = "ListViewVersions"
+
+// ListViewVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListViewVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListViewVersions for more information on using the ListViewVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListViewVersionsRequest method.
+//	req, resp := client.ListViewVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListViewVersions
+func (c *Connect) ListViewVersionsRequest(input *ListViewVersionsInput) (req *request.Request, output *ListViewVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListViewVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListViewVersionsInput{}
+	}
+
+	output = &ListViewVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListViewVersions API operation for Amazon Connect Service.
+//
+// Returns all the available versions for the specified Amazon Connect instance
+// and view identifier.
+//
+// Results will be sorted from highest to lowest.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListViewVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListViewVersions
+func (c *Connect) ListViewVersions(input *ListViewVersionsInput) (*ListViewVersionsOutput, error) {
+	req, out := c.ListViewVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListViewVersionsWithContext is the same as ListViewVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListViewVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListViewVersionsWithContext(ctx aws.Context, input *ListViewVersionsInput, opts ...request.Option) (*ListViewVersionsOutput, error) {
+	req, out := c.ListViewVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListViewVersionsPages iterates over the pages of a ListViewVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListViewVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListViewVersions operation.
+//	pageNum := 0
+//	err := client.ListViewVersionsPages(params,
+//	    func(page *connect.ListViewVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListViewVersionsPages(input *ListViewVersionsInput, fn func(*ListViewVersionsOutput, bool) bool) error {
+	return c.ListViewVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListViewVersionsPagesWithContext same as ListViewVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListViewVersionsPagesWithContext(ctx aws.Context, input *ListViewVersionsInput, fn func(*ListViewVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListViewVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListViewVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListViewVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListViews = "ListViews"
+
+// ListViewsRequest generates a "aws/request.Request" representing the
+// client's request for the ListViews operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListViews for more information on using the ListViews
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListViewsRequest method.
+//	req, resp := client.ListViewsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListViews
+func (c *Connect) ListViewsRequest(input *ListViewsInput) (req *request.Request, output *ListViewsOutput) {
+	op := &request.Operation{
+		Name:       opListViews,
+		HTTPMethod: "GET",
+		HTTPPath:   "/views/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListViewsInput{}
+	}
+
+	output = &ListViewsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListViews API operation for Amazon Connect Service.
+//
+// Returns views in the given instance.
+//
+// Results are sorted primarily by type, and secondarily by name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListViews for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListViews
+func (c *Connect) ListViews(input *ListViewsInput) (*ListViewsOutput, error) {
+	req, out := c.ListViewsRequest(input)
+	return out, req.Send()
+}
+
+// ListViewsWithContext is the same as ListViews with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListViews for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListViewsWithContext(ctx aws.Context, input *ListViewsInput, opts ...request.Option) (*ListViewsOutput, error) {
+	req, out := c.ListViewsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListViewsPages iterates over the pages of a ListViews operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListViews method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListViews operation.
+//	pageNum := 0
+//	err := client.ListViewsPages(params,
+//	    func(page *connect.ListViewsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListViewsPages(input *ListViewsInput, fn func(*ListViewsOutput, bool) bool) error {
+	return c.ListViewsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListViewsPagesWithContext same as ListViewsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListViewsPagesWithContext(ctx aws.Context, input *ListViewsInput, fn func(*ListViewsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListViewsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListViewsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListViewsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opMonitorContact = "MonitorContact"
 
 // MonitorContactRequest generates a "aws/request.Request" representing the
@@ -17348,14 +18187,17 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 
 // StopContact API operation for Amazon Connect Service.
 //
-// Ends the specified contact. This call does not work for the following initiation
-// methods:
+// Ends the specified contact. This call does not work for voice contacts that
+// use the following initiation methods:
 //
 //   - DISCONNECT
 //
 //   - TRANSFER
 //
 //   - QUEUE_TRANSFER
+//
+// Chat and task contacts, however, can be terminated in any state, regardless
+// of initiation method.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17371,7 +18213,7 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 //
 //   - ContactNotFoundException
 //     The contact with the specified ID is not active or does not exist. Applies
-//     to Voice calls only, not to Chat, Task, or Voice Callback.
+//     to Voice calls only, not to Chat or Task contacts.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -20092,22 +20934,25 @@ func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutbo
 // Updates the outbound caller ID name, number, and outbound whisper flow for
 // a specified queue.
 //
-// If the number being used in the input is claimed to a traffic distribution
-// group, and you are calling this API using an instance in the Amazon Web Services
-// Region where the traffic distribution group was created, you can use either
-// a full phone number ARN or UUID value for the OutboundCallerIdNumberId value
-// of the OutboundCallerConfig (https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig)
-// request body parameter. However, if the number is claimed to a traffic distribution
-// group and you are calling this API using an instance in the alternate Amazon
-// Web Services Region associated with the traffic distribution group, you must
-// provide a full phone number ARN. If a UUID is provided in this scenario,
-// you will receive a ResourceNotFoundException.
+//   - If the phone number is claimed to a traffic distribution group that
+//     was created in the same Region as the Amazon Connect instance where you
+//     are calling this API, then you can use a full phone number ARN or a UUID
+//     for OutboundCallerIdNumberId. However, if the phone number is claimed
+//     to a traffic distribution group that is in one Region, and you are calling
+//     this API from an instance in another Amazon Web Services Region that is
+//     associated with the traffic distribution group, you must provide a full
+//     phone number ARN. If a UUID is provided in this scenario, you will receive
+//     a ResourceNotFoundException.
 //
-// Only use the phone number ARN format that doesn't contain instance in the
-// path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
-// This is the same ARN format that is returned when you call the ListPhoneNumbersV2
-// (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
-// API.
+//   - Only use the phone number ARN format that doesn't contain instance in
+//     the path, for example, arn:aws:connect:us-east-1:1234567890:phone-number/uuid.
+//     This is the same ARN format that is returned when you call the ListPhoneNumbersV2
+//     (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+//     API.
+//
+//   - If you plan to use IAM policies to allow/deny access to this API for
+//     phone number resources claimed to a traffic distribution group, see Allow
+//     or Deny queue API actions for phone numbers in a replica Region (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21234,9 +22079,11 @@ func (c *Connect) UpdateTrafficDistributionRequest(input *UpdateTrafficDistribut
 //
 // Updates the traffic distribution for a given traffic distribution group.
 //
-// You can change the SignInConfig only for a default TrafficDistributionGroup.
-// If you call UpdateTrafficDistribution with a modified SignInConfig and a
-// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
+// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
+// (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
+// data type). If you call UpdateTrafficDistribution with a modified SignInConfig
+// and a non-default TrafficDistributionGroup, an InvalidRequestException is
+// returned.
 //
 // For more information about updating a traffic distribution group, see Update
 // telephony traffic distribution across Amazon Web Services Regions (https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html)
@@ -21945,6 +22792,210 @@ func (c *Connect) UpdateUserSecurityProfiles(input *UpdateUserSecurityProfilesIn
 // for more information on using Contexts.
 func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *UpdateUserSecurityProfilesInput, opts ...request.Option) (*UpdateUserSecurityProfilesOutput, error) {
 	req, out := c.UpdateUserSecurityProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateViewContent = "UpdateViewContent"
+
+// UpdateViewContentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateViewContent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateViewContent for more information on using the UpdateViewContent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateViewContentRequest method.
+//	req, resp := client.UpdateViewContentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateViewContent
+func (c *Connect) UpdateViewContentRequest(input *UpdateViewContentInput) (req *request.Request, output *UpdateViewContentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateViewContent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}",
+	}
+
+	if input == nil {
+		input = &UpdateViewContentInput{}
+	}
+
+	output = &UpdateViewContentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateViewContent API operation for Amazon Connect Service.
+//
+// Updates the view content of the given view identifier in the specified Amazon
+// Connect instance.
+//
+// It performs content validation if Status is set to SAVED and performs full
+// content validation if Status is PUBLISHED. Note that the $SAVED alias' content
+// will always be updated, but the $LATEST alias' content will only be updated
+// if Status is PUBLISHED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateViewContent for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateViewContent
+func (c *Connect) UpdateViewContent(input *UpdateViewContentInput) (*UpdateViewContentOutput, error) {
+	req, out := c.UpdateViewContentRequest(input)
+	return out, req.Send()
+}
+
+// UpdateViewContentWithContext is the same as UpdateViewContent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateViewContent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateViewContentWithContext(ctx aws.Context, input *UpdateViewContentInput, opts ...request.Option) (*UpdateViewContentOutput, error) {
+	req, out := c.UpdateViewContentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateViewMetadata = "UpdateViewMetadata"
+
+// UpdateViewMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateViewMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateViewMetadata for more information on using the UpdateViewMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateViewMetadataRequest method.
+//	req, resp := client.UpdateViewMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateViewMetadata
+func (c *Connect) UpdateViewMetadataRequest(input *UpdateViewMetadataInput) (req *request.Request, output *UpdateViewMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateViewMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/views/{InstanceId}/{ViewId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateViewMetadataInput{}
+	}
+
+	output = &UpdateViewMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateViewMetadata API operation for Amazon Connect Service.
+//
+// Updates the view metadata. Note that either Name or Description must be provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateViewMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - TooManyRequestsException
+//     Displayed when rate-related API limits are exceeded.
+//
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateViewMetadata
+func (c *Connect) UpdateViewMetadata(input *UpdateViewMetadataInput) (*UpdateViewMetadataOutput, error) {
+	req, out := c.UpdateViewMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateViewMetadataWithContext is the same as UpdateViewMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateViewMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateViewMetadataWithContext(ctx aws.Context, input *UpdateViewMetadataInput, opts ...request.Option) (*UpdateViewMetadataOutput, error) {
+	req, out := c.UpdateViewMetadataRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -24975,7 +26026,7 @@ func (s *ContactFlowSummary) SetName(v string) *ContactFlowSummary {
 }
 
 // The contact with the specified ID is not active or does not exist. Applies
-// to Voice calls only, not to Chat, Task, or Voice Callback.
+// to Voice calls only, not to Chat or Task contacts.
 type ContactNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -28291,6 +29342,299 @@ func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
 	return s
 }
 
+type CreateViewInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique Id for each create view request to avoid duplicate view creation.
+	// For example, the view is idempotent ClientToken is provided.
+	ClientToken *string `type:"string"`
+
+	// View content containing all content necessary to render a view except for
+	// runtime input data.
+	//
+	// The total uncompressed content has a maximum file size of 400kB.
+	//
+	// Content is a required field
+	Content *ViewInputContent `type:"structure" required:"true"`
+
+	// The description of the view.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the view.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateViewInput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Indicates the view status as either SAVED or PUBLISHED. The PUBLISHED status
+	// will initiate validation on the content.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ViewStatus"`
+
+	// The tags associated with the view resource (not specific to view version).These
+	// tags can be used to organize, track, or control access for this resource.
+	// For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateViewInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateViewInput) SetClientToken(v string) *CreateViewInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateViewInput) SetContent(v *ViewInputContent) *CreateViewInput {
+	s.Content = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateViewInput) SetDescription(v string) *CreateViewInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateViewInput) SetInstanceId(v string) *CreateViewInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateViewInput) SetName(v string) *CreateViewInput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateViewInput) SetStatus(v string) *CreateViewInput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateViewInput) SetTags(v map[string]*string) *CreateViewInput {
+	s.Tags = v
+	return s
+}
+
+type CreateViewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A view resource object. Contains metadata and content necessary to render
+	// the view.
+	View *View `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewOutput) GoString() string {
+	return s.String()
+}
+
+// SetView sets the View field's value.
+func (s *CreateViewOutput) SetView(v *View) *CreateViewOutput {
+	s.View = v
+	return s
+}
+
+type CreateViewVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The description for the version being published.
+	VersionDescription *string `min:"1" type:"string"`
+
+	// Indicates the checksum value of the latest published view content.
+	ViewContentSha256 *string `min:"1" type:"string"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateViewVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateViewVersionInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VersionDescription != nil && len(*s.VersionDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionDescription", 1))
+	}
+	if s.ViewContentSha256 != nil && len(*s.ViewContentSha256) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewContentSha256", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateViewVersionInput) SetInstanceId(v string) *CreateViewVersionInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *CreateViewVersionInput) SetVersionDescription(v string) *CreateViewVersionInput {
+	s.VersionDescription = &v
+	return s
+}
+
+// SetViewContentSha256 sets the ViewContentSha256 field's value.
+func (s *CreateViewVersionInput) SetViewContentSha256(v string) *CreateViewVersionInput {
+	s.ViewContentSha256 = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *CreateViewVersionInput) SetViewId(v string) *CreateViewVersionInput {
+	s.ViewId = &v
+	return s
+}
+
+type CreateViewVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// All view data is contained within the View object.
+	View *View `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateViewVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetView sets the View field's value.
+func (s *CreateViewVersionOutput) SetView(v *View) *CreateViewVersionOutput {
+	s.View = v
+	return s
+}
+
 type CreateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -30631,6 +31975,198 @@ func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteViewInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteViewInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteViewInput) SetInstanceId(v string) *DeleteViewInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *DeleteViewInput) SetViewId(v string) *DeleteViewInput {
+	s.ViewId = &v
+	return s
+}
+
+type DeleteViewOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteViewVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+
+	// The version number of the view.
+	//
+	// ViewVersion is a required field
+	ViewVersion *int64 `location:"uri" locationName:"ViewVersion" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteViewVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteViewVersionInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+	if s.ViewVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteViewVersionInput) SetInstanceId(v string) *DeleteViewVersionInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *DeleteViewVersionInput) SetViewId(v string) *DeleteViewVersionInput {
+	s.ViewId = &v
+	return s
+}
+
+// SetViewVersion sets the ViewVersion field's value.
+func (s *DeleteViewVersionInput) SetViewVersion(v int64) *DeleteViewVersionInput {
+	s.ViewVersion = &v
+	return s
+}
+
+type DeleteViewVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteViewVersionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteVocabularyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -32804,6 +34340,105 @@ func (s DescribeUserOutput) GoString() string {
 // SetUser sets the User field's value.
 func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 	s.User = v
+	return s
+}
+
+type DescribeViewInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The ViewId of the view. This must be an ARN for Amazon Web Services managed
+	// views.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeViewInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeViewInput) SetInstanceId(v string) *DescribeViewInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *DescribeViewInput) SetViewId(v string) *DescribeViewInput {
+	s.ViewId = &v
+	return s
+}
+
+type DescribeViewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// All view data is contained within the View object.
+	View *View `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeViewOutput) GoString() string {
+	return s.String()
+}
+
+// SetView sets the View field's value.
+func (s *DescribeViewOutput) SetView(v *View) *DescribeViewOutput {
+	s.View = v
 	return s
 }
 
@@ -45498,6 +47133,266 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 	return s
 }
 
+type ListViewVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListViewVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListViewVersionsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListViewVersionsInput) SetInstanceId(v string) *ListViewVersionsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListViewVersionsInput) SetMaxResults(v int64) *ListViewVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListViewVersionsInput) SetNextToken(v string) *ListViewVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *ListViewVersionsInput) SetViewId(v string) *ListViewVersionsInput {
+	s.ViewId = &v
+	return s
+}
+
+type ListViewVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of view version summaries.
+	ViewVersionSummaryList []*ViewVersionSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListViewVersionsOutput) SetNextToken(v string) *ListViewVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetViewVersionSummaryList sets the ViewVersionSummaryList field's value.
+func (s *ListViewVersionsOutput) SetViewVersionSummaryList(v []*ViewVersionSummary) *ListViewVersionsOutput {
+	s.ViewVersionSummaryList = v
+	return s
+}
+
+type ListViewsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page. The default MaxResult size
+	// is 100.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The type of the view.
+	Type *string `location:"querystring" locationName:"type" type:"string" enum:"ViewType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListViewsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListViewsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListViewsInput) SetInstanceId(v string) *ListViewsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListViewsInput) SetMaxResults(v int64) *ListViewsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListViewsInput) SetNextToken(v string) *ListViewsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListViewsInput) SetType(v string) *ListViewsInput {
+	s.Type = &v
+	return s
+}
+
+type ListViewsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of view summaries.
+	ViewsSummaryList []*ViewSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListViewsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListViewsOutput) SetNextToken(v string) *ListViewsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetViewsSummaryList sets the ViewsSummaryList field's value.
+func (s *ListViewsOutput) SetViewsSummaryList(v []*ViewSummary) *ListViewsOutput {
+	s.ViewsSummaryList = v
+	return s
+}
+
 // Maximum number (1000) of tags have been returned with current request. Consider
 // changing request parameters to get more tags.
 type MaximumResultReturnedException struct {
@@ -54828,6 +56723,70 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Displayed when rate-related API limits are exceeded.
+type TooManyRequestsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyRequestsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyRequestsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Information about a traffic distribution group.
 type TrafficDistributionGroup struct {
 	_ struct{} `type:"structure"`
@@ -54852,9 +56811,11 @@ type TrafficDistributionGroup struct {
 	// the DeleteTrafficDistributionGroup API. The default traffic distribution
 	// group is deleted as part of the process for deleting a replica.
 	//
-	// You can change the SignInConfig only for a default TrafficDistributionGroup.
-	// If you call UpdateTrafficDistribution with a modified SignInConfig and a
-	// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
+	// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
+	// (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
+	// data type). If you call UpdateTrafficDistribution with a modified SignInConfig
+	// and a non-default TrafficDistributionGroup, an InvalidRequestException is
+	// returned.
 	IsDefault *bool `type:"boolean"`
 
 	// The name of the traffic distribution group.
@@ -60259,6 +62220,255 @@ func (s UpdateUserSecurityProfilesOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateViewContentInput struct {
+	_ struct{} `type:"structure"`
+
+	// View content containing all content necessary to render a view except for
+	// runtime input data and the runtime input schema, which is auto-generated
+	// by this operation.
+	//
+	// The total uncompressed content has a maximum file size of 400kB.
+	//
+	// Content is a required field
+	Content *ViewInputContent `type:"structure" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Indicates the view status as either SAVED or PUBLISHED. The PUBLISHED status
+	// will initiate validation on the content.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ViewStatus"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewContentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewContentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateViewContentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateViewContentInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *UpdateViewContentInput) SetContent(v *ViewInputContent) *UpdateViewContentInput {
+	s.Content = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateViewContentInput) SetInstanceId(v string) *UpdateViewContentInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateViewContentInput) SetStatus(v string) *UpdateViewContentInput {
+	s.Status = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *UpdateViewContentInput) SetViewId(v string) *UpdateViewContentInput {
+	s.ViewId = &v
+	return s
+}
+
+type UpdateViewContentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A view resource object. Contains metadata and content necessary to render
+	// the view.
+	View *View `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewContentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewContentOutput) GoString() string {
+	return s.String()
+}
+
+// SetView sets the View field's value.
+func (s *UpdateViewContentOutput) SetView(v *View) *UpdateViewContentOutput {
+	s.View = v
+	return s
+}
+
+type UpdateViewMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the view.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the view.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateViewMetadataInput's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the view. Both ViewArn and ViewId can be used.
+	//
+	// ViewId is a required field
+	ViewId *string `location:"uri" locationName:"ViewId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateViewMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateViewMetadataInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViewId"))
+	}
+	if s.ViewId != nil && len(*s.ViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViewId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateViewMetadataInput) SetDescription(v string) *UpdateViewMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateViewMetadataInput) SetInstanceId(v string) *UpdateViewMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateViewMetadataInput) SetName(v string) *UpdateViewMetadataInput {
+	s.Name = &v
+	return s
+}
+
+// SetViewId sets the ViewId field's value.
+func (s *UpdateViewMetadataInput) SetViewId(v string) *UpdateViewMetadataInput {
+	s.ViewId = &v
+	return s
+}
+
+type UpdateViewMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateViewMetadataOutput) GoString() string {
+	return s.String()
+}
+
 // The URL reference.
 type UrlReference struct {
 	_ struct{} `type:"structure"`
@@ -61307,6 +63517,424 @@ func (s *UserSummary) SetId(v string) *UserSummary {
 // SetUsername sets the Username field's value.
 func (s *UserSummary) SetUsername(v string) *UserSummary {
 	s.Username = &v
+	return s
+}
+
+// A view resource object. Contains metadata and content necessary to render
+// the view.
+type View struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the view.
+	Arn *string `type:"string"`
+
+	// View content containing all content necessary to render a view except for
+	// runtime input data.
+	Content *ViewContent `type:"structure"`
+
+	// The timestamp of when the view was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the view.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the view.
+	Id *string `min:"1" type:"string"`
+
+	// Latest timestamp of the UpdateViewContent or CreateViewVersion operations.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the view.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by View's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// Indicates the view status as either SAVED or PUBLISHED. The PUBLISHED status
+	// will initiate validation on the content.
+	Status *string `type:"string" enum:"ViewStatus"`
+
+	// The tags associated with the view resource (not specific to view version).
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The type of the view - CUSTOMER_MANAGED.
+	Type *string `type:"string" enum:"ViewType"`
+
+	// Current version of the view.
+	Version *int64 `type:"integer"`
+
+	// The description of the version.
+	VersionDescription *string `min:"1" type:"string"`
+
+	// Indicates the checksum value of the latest published view content.
+	ViewContentSha256 *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s View) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s View) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *View) SetArn(v string) *View {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *View) SetContent(v *ViewContent) *View {
+	s.Content = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *View) SetCreatedTime(v time.Time) *View {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *View) SetDescription(v string) *View {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *View) SetId(v string) *View {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *View) SetLastModifiedTime(v time.Time) *View {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *View) SetName(v string) *View {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *View) SetStatus(v string) *View {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *View) SetTags(v map[string]*string) *View {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *View) SetType(v string) *View {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *View) SetVersion(v int64) *View {
+	s.Version = &v
+	return s
+}
+
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *View) SetVersionDescription(v string) *View {
+	s.VersionDescription = &v
+	return s
+}
+
+// SetViewContentSha256 sets the ViewContentSha256 field's value.
+func (s *View) SetViewContentSha256(v string) *View {
+	s.ViewContentSha256 = &v
+	return s
+}
+
+// View content containing all content necessary to render a view except for
+// runtime input data.
+type ViewContent struct {
+	_ struct{} `type:"structure"`
+
+	// A list of possible actions from the view.
+	Actions []*string `type:"list"`
+
+	// The data schema matching data that the view template must be provided to
+	// render.
+	//
+	// InputSchema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ViewContent's
+	// String and GoString methods.
+	InputSchema *string `type:"string" sensitive:"true"`
+
+	// The view template representing the structure of the view.
+	Template *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewContent) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *ViewContent) SetActions(v []*string) *ViewContent {
+	s.Actions = v
+	return s
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *ViewContent) SetInputSchema(v string) *ViewContent {
+	s.InputSchema = &v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *ViewContent) SetTemplate(v string) *ViewContent {
+	s.Template = &v
+	return s
+}
+
+// View content containing all content necessary to render a view except for
+// runtime input data and the runtime input schema, which is auto-generated
+// by this operation.
+type ViewInputContent struct {
+	_ struct{} `type:"structure"`
+
+	// A list of possible actions from the view.
+	Actions []*string `type:"list"`
+
+	// The view template representing the structure of the view.
+	Template *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewInputContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewInputContent) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *ViewInputContent) SetActions(v []*string) *ViewInputContent {
+	s.Actions = v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *ViewInputContent) SetTemplate(v string) *ViewInputContent {
+	s.Template = &v
+	return s
+}
+
+// A summary of a view's metadata.
+type ViewSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the view.
+	Arn *string `type:"string"`
+
+	// The description of the view.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the view.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the view.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ViewSummary's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// Indicates the view status as either SAVED or PUBLISHED. The PUBLISHED status
+	// will initiate validation on the content.
+	Status *string `type:"string" enum:"ViewStatus"`
+
+	// The type of the view.
+	Type *string `type:"string" enum:"ViewType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ViewSummary) SetArn(v string) *ViewSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ViewSummary) SetDescription(v string) *ViewSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ViewSummary) SetId(v string) *ViewSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ViewSummary) SetName(v string) *ViewSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ViewSummary) SetStatus(v string) *ViewSummary {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ViewSummary) SetType(v string) *ViewSummary {
+	s.Type = &v
+	return s
+}
+
+// A summary of a view version's metadata.
+type ViewVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the view version.
+	Arn *string `type:"string"`
+
+	// The description of the view version.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the view version.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the view version.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ViewVersionSummary's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The type of the view version.
+	Type *string `type:"string" enum:"ViewType"`
+
+	// The sequentially incremented version of the view version.
+	Version *int64 `type:"integer"`
+
+	// The description of the view version.
+	VersionDescription *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ViewVersionSummary) SetArn(v string) *ViewVersionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ViewVersionSummary) SetDescription(v string) *ViewVersionSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ViewVersionSummary) SetId(v string) *ViewVersionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ViewVersionSummary) SetName(v string) *ViewVersionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ViewVersionSummary) SetType(v string) *ViewVersionSummary {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ViewVersionSummary) SetVersion(v int64) *ViewVersionSummary {
+	s.Version = &v
+	return s
+}
+
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *ViewVersionSummary) SetVersionDescription(v string) *ViewVersionSummary {
+	s.VersionDescription = &v
 	return s
 }
 
@@ -64122,6 +66750,38 @@ func UseCaseType_Values() []string {
 	return []string{
 		UseCaseTypeRulesEvaluation,
 		UseCaseTypeConnectCampaigns,
+	}
+}
+
+const (
+	// ViewStatusPublished is a ViewStatus enum value
+	ViewStatusPublished = "PUBLISHED"
+
+	// ViewStatusSaved is a ViewStatus enum value
+	ViewStatusSaved = "SAVED"
+)
+
+// ViewStatus_Values returns all elements of the ViewStatus enum
+func ViewStatus_Values() []string {
+	return []string{
+		ViewStatusPublished,
+		ViewStatusSaved,
+	}
+}
+
+const (
+	// ViewTypeCustomerManaged is a ViewType enum value
+	ViewTypeCustomerManaged = "CUSTOMER_MANAGED"
+
+	// ViewTypeAwsManaged is a ViewType enum value
+	ViewTypeAwsManaged = "AWS_MANAGED"
+)
+
+// ViewType_Values returns all elements of the ViewType enum
+func ViewType_Values() []string {
+	return []string{
+		ViewTypeCustomerManaged,
+		ViewTypeAwsManaged,
 	}
 }
 

@@ -775,6 +775,10 @@ func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineRequest(input *DeleteMediaPi
 //   - UnauthorizedClientException
 //     The client is not currently authorized to make the request.
 //
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
 //   - ServiceUnavailableException
 //     The service is currently unavailable.
 //
@@ -1089,6 +1093,200 @@ func (c *ChimeSDKMediaPipelines) GetMediaPipeline(input *GetMediaPipelineInput) 
 // for more information on using Contexts.
 func (c *ChimeSDKMediaPipelines) GetMediaPipelineWithContext(ctx aws.Context, input *GetMediaPipelineInput, opts ...request.Option) (*GetMediaPipelineOutput, error) {
 	req, out := c.GetMediaPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSpeakerSearchTask = "GetSpeakerSearchTask"
+
+// GetSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSpeakerSearchTask for more information on using the GetSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSpeakerSearchTaskRequest method.
+//	req, resp := client.GetSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) GetSpeakerSearchTaskRequest(input *GetSpeakerSearchTaskInput) (req *request.Request, output *GetSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetSpeakerSearchTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/speaker-search-tasks/{speakerSearchTaskId}",
+	}
+
+	if input == nil {
+		input = &GetSpeakerSearchTaskInput{}
+	}
+
+	output = &GetSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSpeakerSearchTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Retrieves the details of the specified speaker search task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation GetSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) GetSpeakerSearchTask(input *GetSpeakerSearchTaskInput) (*GetSpeakerSearchTaskOutput, error) {
+	req, out := c.GetSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetSpeakerSearchTaskWithContext is the same as GetSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) GetSpeakerSearchTaskWithContext(ctx aws.Context, input *GetSpeakerSearchTaskInput, opts ...request.Option) (*GetSpeakerSearchTaskOutput, error) {
+	req, out := c.GetSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVoiceToneAnalysisTask = "GetVoiceToneAnalysisTask"
+
+// GetVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVoiceToneAnalysisTask for more information on using the GetVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.GetVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) GetVoiceToneAnalysisTaskRequest(input *GetVoiceToneAnalysisTaskInput) (req *request.Request, output *GetVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetVoiceToneAnalysisTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks/{voiceToneAnalysisTaskId}",
+	}
+
+	if input == nil {
+		input = &GetVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &GetVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVoiceToneAnalysisTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Retrieves the details of a voice tone analysis task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation GetVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) GetVoiceToneAnalysisTask(input *GetVoiceToneAnalysisTaskInput) (*GetVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.GetVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetVoiceToneAnalysisTaskWithContext is the same as GetVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) GetVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *GetVoiceToneAnalysisTaskInput, opts ...request.Option) (*GetVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.GetVoiceToneAnalysisTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1648,6 +1846,424 @@ func (c *ChimeSDKMediaPipelines) ListTagsForResource(input *ListTagsForResourceI
 // for more information on using Contexts.
 func (c *ChimeSDKMediaPipelines) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSpeakerSearchTask = "StartSpeakerSearchTask"
+
+// StartSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSpeakerSearchTask for more information on using the StartSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSpeakerSearchTaskRequest method.
+//	req, resp := client.StartSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StartSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) StartSpeakerSearchTaskRequest(input *StartSpeakerSearchTaskInput) (req *request.Request, output *StartSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartSpeakerSearchTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/speaker-search-tasks?operation=start",
+	}
+
+	if input == nil {
+		input = &StartSpeakerSearchTaskInput{}
+	}
+
+	output = &StartSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSpeakerSearchTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Starts a speaker search task.
+//
+// Before starting any speaker search tasks, you must provide all notices and
+// obtain all consents from the speaker as required under applicable privacy
+// and biometrics laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation StartSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StartSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) StartSpeakerSearchTask(input *StartSpeakerSearchTaskInput) (*StartSpeakerSearchTaskOutput, error) {
+	req, out := c.StartSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartSpeakerSearchTaskWithContext is the same as StartSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) StartSpeakerSearchTaskWithContext(ctx aws.Context, input *StartSpeakerSearchTaskInput, opts ...request.Option) (*StartSpeakerSearchTaskOutput, error) {
+	req, out := c.StartSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartVoiceToneAnalysisTask = "StartVoiceToneAnalysisTask"
+
+// StartVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartVoiceToneAnalysisTask for more information on using the StartVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.StartVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StartVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) StartVoiceToneAnalysisTaskRequest(input *StartVoiceToneAnalysisTaskInput) (req *request.Request, output *StartVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartVoiceToneAnalysisTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks?operation=start",
+	}
+
+	if input == nil {
+		input = &StartVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &StartVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartVoiceToneAnalysisTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Starts a voice tone analysis task. For more information about voice tone
+// analysis, see Using Amazon Chime SDK voice analytics (https://docs.aws.amazon.com/chime-sdk/latest/dg/voice-analytics.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Before starting any voice tone analysis tasks, you must provide all notices
+// and obtain all consents from the speaker as required under applicable privacy
+// and biometrics laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation StartVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StartVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) StartVoiceToneAnalysisTask(input *StartVoiceToneAnalysisTaskInput) (*StartVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StartVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartVoiceToneAnalysisTaskWithContext is the same as StartVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) StartVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *StartVoiceToneAnalysisTaskInput, opts ...request.Option) (*StartVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StartVoiceToneAnalysisTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSpeakerSearchTask = "StopSpeakerSearchTask"
+
+// StopSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSpeakerSearchTask for more information on using the StopSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopSpeakerSearchTaskRequest method.
+//	req, resp := client.StopSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StopSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) StopSpeakerSearchTaskRequest(input *StopSpeakerSearchTaskInput) (req *request.Request, output *StopSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opStopSpeakerSearchTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/speaker-search-tasks/{speakerSearchTaskId}?operation=stop",
+	}
+
+	if input == nil {
+		input = &StopSpeakerSearchTaskInput{}
+	}
+
+	output = &StopSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopSpeakerSearchTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Stops a speaker search task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation StopSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StopSpeakerSearchTask
+func (c *ChimeSDKMediaPipelines) StopSpeakerSearchTask(input *StopSpeakerSearchTaskInput) (*StopSpeakerSearchTaskOutput, error) {
+	req, out := c.StopSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// StopSpeakerSearchTaskWithContext is the same as StopSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) StopSpeakerSearchTaskWithContext(ctx aws.Context, input *StopSpeakerSearchTaskInput, opts ...request.Option) (*StopSpeakerSearchTaskOutput, error) {
+	req, out := c.StopSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopVoiceToneAnalysisTask = "StopVoiceToneAnalysisTask"
+
+// StopVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopVoiceToneAnalysisTask for more information on using the StopVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.StopVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StopVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) StopVoiceToneAnalysisTaskRequest(input *StopVoiceToneAnalysisTaskInput) (req *request.Request, output *StopVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opStopVoiceToneAnalysisTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks/{voiceToneAnalysisTaskId}?operation=stop",
+	}
+
+	if input == nil {
+		input = &StopVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &StopVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopVoiceToneAnalysisTask API operation for Amazon Chime SDK Media Pipelines.
+//
+// Stops a voice tone analysis task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation StopVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/StopVoiceToneAnalysisTask
+func (c *ChimeSDKMediaPipelines) StopVoiceToneAnalysisTask(input *StopVoiceToneAnalysisTaskInput) (*StopVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StopVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// StopVoiceToneAnalysisTaskWithContext is the same as StopVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) StopVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *StopVoiceToneAnalysisTaskInput, opts ...request.Option) (*StopVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StopVoiceToneAnalysisTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4959,7 +5575,7 @@ type FragmentSelector struct {
 	_ struct{} `type:"structure"`
 
 	// The origin of the timestamps to use, Server or Producer. For more information,
-	// see StartSelectorType (kinesisvideostreams/latest/dg/API_dataplane_StartSelector.html#KinesisVideo-Type-dataplane_StartSelector-StartSelectorType)
+	// see StartSelectorType (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_StartSelector.html)
 	// in the Amazon Kinesis Video Streams Developer Guide.
 	//
 	// FragmentSelectorType is a required field
@@ -5260,6 +5876,202 @@ func (s GetMediaPipelineOutput) GoString() string {
 // SetMediaPipeline sets the MediaPipeline field's value.
 func (s *GetMediaPipelineOutput) SetMediaPipeline(v *MediaPipeline) *GetMediaPipelineOutput {
 	s.MediaPipeline = v
+	return s
+}
+
+type GetSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The ID of the speaker search task.
+	//
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `location:"uri" locationName:"speakerSearchTaskId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSpeakerSearchTaskInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetSpeakerSearchTaskInput) SetIdentifier(v string) *GetSpeakerSearchTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *GetSpeakerSearchTaskInput) SetSpeakerSearchTaskId(v string) *GetSpeakerSearchTaskInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+type GetSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the speaker search task.
+	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetSpeakerSearchTask sets the SpeakerSearchTask field's value.
+func (s *GetSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask) *GetSpeakerSearchTaskOutput {
+	s.SpeakerSearchTask = v
+	return s
+}
+
+type GetVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The ID of the voice tone anlysis task.
+	//
+	// VoiceToneAnalysisTaskId is a required field
+	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"voiceToneAnalysisTaskId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVoiceToneAnalysisTaskInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.VoiceToneAnalysisTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceToneAnalysisTaskId"))
+	}
+	if s.VoiceToneAnalysisTaskId != nil && len(*s.VoiceToneAnalysisTaskId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceToneAnalysisTaskId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetVoiceToneAnalysisTaskInput) SetIdentifier(v string) *GetVoiceToneAnalysisTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *GetVoiceToneAnalysisTaskInput) SetVoiceToneAnalysisTaskId(v string) *GetVoiceToneAnalysisTaskInput {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+type GetVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the voice tone analysis task.
+	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceToneAnalysisTask sets the VoiceToneAnalysisTask field's value.
+func (s *GetVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceToneAnalysisTask) *GetVoiceToneAnalysisTaskOutput {
+	s.VoiceToneAnalysisTask = v
 	return s
 }
 
@@ -5808,6 +6620,82 @@ func (s *KinesisVideoStreamSourceRuntimeConfiguration) SetMediaSampleRate(v int6
 // SetStreams sets the Streams field's value.
 func (s *KinesisVideoStreamSourceRuntimeConfiguration) SetStreams(v []*StreamConfiguration) *KinesisVideoStreamSourceRuntimeConfiguration {
 	s.Streams = v
+	return s
+}
+
+// The task configuration settings for the Kinesis video stream source.
+type KinesisVideoStreamSourceTaskConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The channel ID.
+	//
+	// ChannelId is a required field
+	ChannelId *int64 `type:"integer" required:"true"`
+
+	// The unique identifier of the fragment to begin processing.
+	FragmentNumber *string `min:"1" type:"string"`
+
+	// The ARN of the stream.
+	//
+	// StreamArn is a required field
+	StreamArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamSourceTaskConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamSourceTaskConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisVideoStreamSourceTaskConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisVideoStreamSourceTaskConfiguration"}
+	if s.ChannelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelId"))
+	}
+	if s.FragmentNumber != nil && len(*s.FragmentNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FragmentNumber", 1))
+	}
+	if s.StreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamArn"))
+	}
+	if s.StreamArn != nil && len(*s.StreamArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *KinesisVideoStreamSourceTaskConfiguration) SetChannelId(v int64) *KinesisVideoStreamSourceTaskConfiguration {
+	s.ChannelId = &v
+	return s
+}
+
+// SetFragmentNumber sets the FragmentNumber field's value.
+func (s *KinesisVideoStreamSourceTaskConfiguration) SetFragmentNumber(v string) *KinesisVideoStreamSourceTaskConfiguration {
+	s.FragmentNumber = &v
+	return s
+}
+
+// SetStreamArn sets the StreamArn field's value.
+func (s *KinesisVideoStreamSourceTaskConfiguration) SetStreamArn(v string) *KinesisVideoStreamSourceTaskConfiguration {
+	s.StreamArn = &v
 	return s
 }
 
@@ -7026,7 +7914,8 @@ type MediaInsightsPipelineConfigurationElement struct {
 	// element.
 	VoiceAnalyticsProcessorConfiguration *VoiceAnalyticsProcessorConfiguration `type:"structure"`
 
-	// The configuration settings for the VoiceEnhancementSinkConfiguration element.
+	// The configuration settings for voice enhancement sink in a media insights
+	// pipeline configuration element.
 	VoiceEnhancementSinkConfiguration *VoiceEnhancementSinkConfiguration `type:"structure"`
 }
 
@@ -8504,6 +9393,66 @@ func (s *SourceConfiguration) SetSelectedVideoStreams(v *SelectedVideoStreams) *
 	return s
 }
 
+// A representation of an asynchronous request to perform speaker search analysis
+// on a media insights pipeline.
+type SpeakerSearchTask struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which a speaker search task was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The speaker search task ID.
+	SpeakerSearchTaskId *string `min:"36" type:"string"`
+
+	// The status of the speaker search task.
+	SpeakerSearchTaskStatus *string `type:"string" enum:"MediaPipelineTaskStatus"`
+
+	// The time at which a speaker search task was updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchTask) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *SpeakerSearchTask) SetCreatedTimestamp(v time.Time) *SpeakerSearchTask {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *SpeakerSearchTask) SetSpeakerSearchTaskId(v string) *SpeakerSearchTask {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+// SetSpeakerSearchTaskStatus sets the SpeakerSearchTaskStatus field's value.
+func (s *SpeakerSearchTask) SetSpeakerSearchTaskStatus(v string) *SpeakerSearchTask {
+	s.SpeakerSearchTaskStatus = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *SpeakerSearchTask) SetUpdatedTimestamp(v time.Time) *SpeakerSearchTask {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
 // The configuration settings for the SQS sink.
 type SqsQueueSinkConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -8551,6 +9500,445 @@ func (s *SqsQueueSinkConfiguration) Validate() error {
 func (s *SqsQueueSinkConfiguration) SetInsightsTarget(v string) *SqsQueueSinkConfiguration {
 	s.InsightsTarget = &v
 	return s
+}
+
+type StartSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the client request. Use a different token for different
+	// speaker search tasks.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSpeakerSearchTaskInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The task configuration for the Kinesis video stream source of the media insights
+	// pipeline.
+	KinesisVideoStreamSourceTaskConfiguration *KinesisVideoStreamSourceTaskConfiguration `type:"structure"`
+
+	// The ARN of the voice profile domain that will store the voice profile.
+	//
+	// VoiceProfileDomainArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartSpeakerSearchTaskInput's
+	// String and GoString methods.
+	//
+	// VoiceProfileDomainArn is a required field
+	VoiceProfileDomainArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSpeakerSearchTaskInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.VoiceProfileDomainArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainArn"))
+	}
+	if s.VoiceProfileDomainArn != nil && len(*s.VoiceProfileDomainArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainArn", 1))
+	}
+	if s.KinesisVideoStreamSourceTaskConfiguration != nil {
+		if err := s.KinesisVideoStreamSourceTaskConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("KinesisVideoStreamSourceTaskConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSpeakerSearchTaskInput) SetClientRequestToken(v string) *StartSpeakerSearchTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StartSpeakerSearchTaskInput) SetIdentifier(v string) *StartSpeakerSearchTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetKinesisVideoStreamSourceTaskConfiguration sets the KinesisVideoStreamSourceTaskConfiguration field's value.
+func (s *StartSpeakerSearchTaskInput) SetKinesisVideoStreamSourceTaskConfiguration(v *KinesisVideoStreamSourceTaskConfiguration) *StartSpeakerSearchTaskInput {
+	s.KinesisVideoStreamSourceTaskConfiguration = v
+	return s
+}
+
+// SetVoiceProfileDomainArn sets the VoiceProfileDomainArn field's value.
+func (s *StartSpeakerSearchTaskInput) SetVoiceProfileDomainArn(v string) *StartSpeakerSearchTaskInput {
+	s.VoiceProfileDomainArn = &v
+	return s
+}
+
+type StartSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the speaker search task.
+	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetSpeakerSearchTask sets the SpeakerSearchTask field's value.
+func (s *StartSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask) *StartSpeakerSearchTaskOutput {
+	s.SpeakerSearchTask = v
+	return s
+}
+
+type StartVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the client request. Use a different token for different
+	// voice tone analysis tasks.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartVoiceToneAnalysisTaskInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The task configuration for the Kinesis video stream source of the media insights
+	// pipeline.
+	KinesisVideoStreamSourceTaskConfiguration *KinesisVideoStreamSourceTaskConfiguration `type:"structure"`
+
+	// The language code.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VoiceAnalyticsLanguageCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartVoiceToneAnalysisTaskInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.KinesisVideoStreamSourceTaskConfiguration != nil {
+		if err := s.KinesisVideoStreamSourceTaskConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("KinesisVideoStreamSourceTaskConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetClientRequestToken(v string) *StartVoiceToneAnalysisTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetIdentifier(v string) *StartVoiceToneAnalysisTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetKinesisVideoStreamSourceTaskConfiguration sets the KinesisVideoStreamSourceTaskConfiguration field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetKinesisVideoStreamSourceTaskConfiguration(v *KinesisVideoStreamSourceTaskConfiguration) *StartVoiceToneAnalysisTaskInput {
+	s.KinesisVideoStreamSourceTaskConfiguration = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetLanguageCode(v string) *StartVoiceToneAnalysisTaskInput {
+	s.LanguageCode = &v
+	return s
+}
+
+type StartVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the voice tone analysis task.
+	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceToneAnalysisTask sets the VoiceToneAnalysisTask field's value.
+func (s *StartVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceToneAnalysisTask) *StartVoiceToneAnalysisTaskOutput {
+	s.VoiceToneAnalysisTask = v
+	return s
+}
+
+type StopSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The speaker search task ID.
+	//
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `location:"uri" locationName:"speakerSearchTaskId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSpeakerSearchTaskInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StopSpeakerSearchTaskInput) SetIdentifier(v string) *StopSpeakerSearchTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *StopSpeakerSearchTaskInput) SetSpeakerSearchTaskId(v string) *StopSpeakerSearchTaskInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+type StopSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+type StopVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the resource to be updated. Valid values include
+	// the ID and ARN of the media insights pipeline.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The ID of the voice tone analysis task.
+	//
+	// VoiceToneAnalysisTaskId is a required field
+	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"voiceToneAnalysisTaskId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopVoiceToneAnalysisTaskInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.VoiceToneAnalysisTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceToneAnalysisTaskId"))
+	}
+	if s.VoiceToneAnalysisTaskId != nil && len(*s.VoiceToneAnalysisTaskId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceToneAnalysisTaskId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StopVoiceToneAnalysisTaskInput) SetIdentifier(v string) *StopVoiceToneAnalysisTaskInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *StopVoiceToneAnalysisTaskInput) SetVoiceToneAnalysisTaskId(v string) *StopVoiceToneAnalysisTaskInput {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+type StopVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
 }
 
 // Defines a streaming channel.
@@ -9754,6 +11142,66 @@ func (s *VoiceEnhancementSinkConfiguration) SetDisabled(v bool) *VoiceEnhancemen
 	return s
 }
 
+// A representation of an asynchronous request to perform voice tone analysis
+// on a media insights pipeline.
+type VoiceToneAnalysisTask struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which a voice tone analysis task was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time at which a voice tone analysis task was updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of the voice tone analysis task.
+	VoiceToneAnalysisTaskId *string `min:"36" type:"string"`
+
+	// The status of a voice tone analysis task.
+	VoiceToneAnalysisTaskStatus *string `type:"string" enum:"MediaPipelineTaskStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceToneAnalysisTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceToneAnalysisTask) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceToneAnalysisTask) SetCreatedTimestamp(v time.Time) *VoiceToneAnalysisTask {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceToneAnalysisTask) SetUpdatedTimestamp(v time.Time) *VoiceToneAnalysisTask {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *VoiceToneAnalysisTask) SetVoiceToneAnalysisTaskId(v string) *VoiceToneAnalysisTask {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskStatus sets the VoiceToneAnalysisTaskStatus field's value.
+func (s *VoiceToneAnalysisTask) SetVoiceToneAnalysisTaskStatus(v string) *VoiceToneAnalysisTask {
+	s.VoiceToneAnalysisTaskStatus = &v
+	return s
+}
+
 const (
 	// ActiveSpeakerPositionTopLeft is a ActiveSpeakerPosition enum value
 	ActiveSpeakerPositionTopLeft = "TopLeft"
@@ -10363,6 +11811,38 @@ func MediaPipelineStatusUpdate_Values() []string {
 }
 
 const (
+	// MediaPipelineTaskStatusNotStarted is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusNotStarted = "NotStarted"
+
+	// MediaPipelineTaskStatusInitializing is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusInitializing = "Initializing"
+
+	// MediaPipelineTaskStatusInProgress is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusInProgress = "InProgress"
+
+	// MediaPipelineTaskStatusFailed is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusFailed = "Failed"
+
+	// MediaPipelineTaskStatusStopping is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusStopping = "Stopping"
+
+	// MediaPipelineTaskStatusStopped is a MediaPipelineTaskStatus enum value
+	MediaPipelineTaskStatusStopped = "Stopped"
+)
+
+// MediaPipelineTaskStatus_Values returns all elements of the MediaPipelineTaskStatus enum
+func MediaPipelineTaskStatus_Values() []string {
+	return []string{
+		MediaPipelineTaskStatusNotStarted,
+		MediaPipelineTaskStatusInitializing,
+		MediaPipelineTaskStatusInProgress,
+		MediaPipelineTaskStatusFailed,
+		MediaPipelineTaskStatusStopping,
+		MediaPipelineTaskStatusStopped,
+	}
+}
+
+const (
 	// PartialResultsStabilityHigh is a PartialResultsStability enum value
 	PartialResultsStabilityHigh = "high"
 
@@ -10563,5 +12043,17 @@ func VoiceAnalyticsConfigurationStatus_Values() []string {
 	return []string{
 		VoiceAnalyticsConfigurationStatusEnabled,
 		VoiceAnalyticsConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// VoiceAnalyticsLanguageCodeEnUs is a VoiceAnalyticsLanguageCode enum value
+	VoiceAnalyticsLanguageCodeEnUs = "en-US"
+)
+
+// VoiceAnalyticsLanguageCode_Values returns all elements of the VoiceAnalyticsLanguageCode enum
+func VoiceAnalyticsLanguageCode_Values() []string {
+	return []string{
+		VoiceAnalyticsLanguageCodeEnUs,
 	}
 }

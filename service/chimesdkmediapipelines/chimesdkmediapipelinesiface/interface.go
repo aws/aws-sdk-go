@@ -104,6 +104,14 @@ type ChimeSDKMediaPipelinesAPI interface {
 	GetMediaPipelineWithContext(aws.Context, *chimesdkmediapipelines.GetMediaPipelineInput, ...request.Option) (*chimesdkmediapipelines.GetMediaPipelineOutput, error)
 	GetMediaPipelineRequest(*chimesdkmediapipelines.GetMediaPipelineInput) (*request.Request, *chimesdkmediapipelines.GetMediaPipelineOutput)
 
+	GetSpeakerSearchTask(*chimesdkmediapipelines.GetSpeakerSearchTaskInput) (*chimesdkmediapipelines.GetSpeakerSearchTaskOutput, error)
+	GetSpeakerSearchTaskWithContext(aws.Context, *chimesdkmediapipelines.GetSpeakerSearchTaskInput, ...request.Option) (*chimesdkmediapipelines.GetSpeakerSearchTaskOutput, error)
+	GetSpeakerSearchTaskRequest(*chimesdkmediapipelines.GetSpeakerSearchTaskInput) (*request.Request, *chimesdkmediapipelines.GetSpeakerSearchTaskOutput)
+
+	GetVoiceToneAnalysisTask(*chimesdkmediapipelines.GetVoiceToneAnalysisTaskInput) (*chimesdkmediapipelines.GetVoiceToneAnalysisTaskOutput, error)
+	GetVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkmediapipelines.GetVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkmediapipelines.GetVoiceToneAnalysisTaskOutput, error)
+	GetVoiceToneAnalysisTaskRequest(*chimesdkmediapipelines.GetVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkmediapipelines.GetVoiceToneAnalysisTaskOutput)
+
 	ListMediaCapturePipelines(*chimesdkmediapipelines.ListMediaCapturePipelinesInput) (*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, error)
 	ListMediaCapturePipelinesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaCapturePipelinesInput, ...request.Option) (*chimesdkmediapipelines.ListMediaCapturePipelinesOutput, error)
 	ListMediaCapturePipelinesRequest(*chimesdkmediapipelines.ListMediaCapturePipelinesInput) (*request.Request, *chimesdkmediapipelines.ListMediaCapturePipelinesOutput)
@@ -128,6 +136,22 @@ type ChimeSDKMediaPipelinesAPI interface {
 	ListTagsForResource(*chimesdkmediapipelines.ListTagsForResourceInput) (*chimesdkmediapipelines.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chimesdkmediapipelines.ListTagsForResourceInput, ...request.Option) (*chimesdkmediapipelines.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chimesdkmediapipelines.ListTagsForResourceInput) (*request.Request, *chimesdkmediapipelines.ListTagsForResourceOutput)
+
+	StartSpeakerSearchTask(*chimesdkmediapipelines.StartSpeakerSearchTaskInput) (*chimesdkmediapipelines.StartSpeakerSearchTaskOutput, error)
+	StartSpeakerSearchTaskWithContext(aws.Context, *chimesdkmediapipelines.StartSpeakerSearchTaskInput, ...request.Option) (*chimesdkmediapipelines.StartSpeakerSearchTaskOutput, error)
+	StartSpeakerSearchTaskRequest(*chimesdkmediapipelines.StartSpeakerSearchTaskInput) (*request.Request, *chimesdkmediapipelines.StartSpeakerSearchTaskOutput)
+
+	StartVoiceToneAnalysisTask(*chimesdkmediapipelines.StartVoiceToneAnalysisTaskInput) (*chimesdkmediapipelines.StartVoiceToneAnalysisTaskOutput, error)
+	StartVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkmediapipelines.StartVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkmediapipelines.StartVoiceToneAnalysisTaskOutput, error)
+	StartVoiceToneAnalysisTaskRequest(*chimesdkmediapipelines.StartVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkmediapipelines.StartVoiceToneAnalysisTaskOutput)
+
+	StopSpeakerSearchTask(*chimesdkmediapipelines.StopSpeakerSearchTaskInput) (*chimesdkmediapipelines.StopSpeakerSearchTaskOutput, error)
+	StopSpeakerSearchTaskWithContext(aws.Context, *chimesdkmediapipelines.StopSpeakerSearchTaskInput, ...request.Option) (*chimesdkmediapipelines.StopSpeakerSearchTaskOutput, error)
+	StopSpeakerSearchTaskRequest(*chimesdkmediapipelines.StopSpeakerSearchTaskInput) (*request.Request, *chimesdkmediapipelines.StopSpeakerSearchTaskOutput)
+
+	StopVoiceToneAnalysisTask(*chimesdkmediapipelines.StopVoiceToneAnalysisTaskInput) (*chimesdkmediapipelines.StopVoiceToneAnalysisTaskOutput, error)
+	StopVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkmediapipelines.StopVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkmediapipelines.StopVoiceToneAnalysisTaskOutput, error)
+	StopVoiceToneAnalysisTaskRequest(*chimesdkmediapipelines.StopVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkmediapipelines.StopVoiceToneAnalysisTaskOutput)
 
 	TagResource(*chimesdkmediapipelines.TagResourceInput) (*chimesdkmediapipelines.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *chimesdkmediapipelines.TagResourceInput, ...request.Option) (*chimesdkmediapipelines.TagResourceOutput, error)
