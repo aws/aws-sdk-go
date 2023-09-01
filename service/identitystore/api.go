@@ -685,6 +685,10 @@ func (c *IdentityStore) DescribeGroupRequest(input *DescribeGroupInput) (req *re
 //
 // Retrieves the group metadata and attributes from GroupId in an identity store.
 //
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -778,6 +782,10 @@ func (c *IdentityStore) DescribeGroupMembershipRequest(input *DescribeGroupMembe
 //
 // Retrieves membership metadata and attributes from MembershipId in an identity
 // store.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -873,6 +881,10 @@ func (c *IdentityStore) DescribeUserRequest(input *DescribeUserInput) (req *requ
 // Retrieves the user metadata and attributes from the UserId in an identity
 // store.
 //
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -965,6 +977,10 @@ func (c *IdentityStore) GetGroupIdRequest(input *GetGroupIdInput) (req *request.
 // GetGroupId API operation for AWS SSO Identity Store.
 //
 // Retrieves GroupId in an identity store.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1059,6 +1075,10 @@ func (c *IdentityStore) GetGroupMembershipIdRequest(input *GetGroupMembershipIdI
 //
 // Retrieves the MembershipId in an identity store.
 //
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1151,6 +1171,10 @@ func (c *IdentityStore) GetUserIdRequest(input *GetUserIdInput) (req *request.Re
 // GetUserId API operation for AWS SSO Identity Store.
 //
 // Retrieves the UserId in an identity store.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1245,6 +1269,10 @@ func (c *IdentityStore) IsMemberInGroupsRequest(input *IsMemberInGroupsInput) (r
 //
 // Checks the user's membership in all requested groups and returns if the member
 // exists in all queried groups.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1345,6 +1373,10 @@ func (c *IdentityStore) ListGroupMembershipsRequest(input *ListGroupMembershipsI
 //
 // For the specified group in the specified identity store, returns the list
 // of all GroupMembership objects and returns results in paginated form.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1496,6 +1528,10 @@ func (c *IdentityStore) ListGroupMembershipsForMemberRequest(input *ListGroupMem
 //
 // For the specified member in the specified identity store, returns the list
 // of all GroupMembership objects and returns results in paginated form.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1649,6 +1685,10 @@ func (c *IdentityStore) ListGroupsRequest(input *ListGroupsInput) (req *request.
 // Group objects. Filtering for a Group by the DisplayName attribute is deprecated.
 // Instead, use the GetGroupId API action.
 //
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1800,6 +1840,10 @@ func (c *IdentityStore) ListUsersRequest(input *ListUsersInput) (req *request.Re
 // Lists all users in the identity store. Returns a paginated list of complete
 // User objects. Filtering for a User by the UserName attribute is deprecated.
 // Instead, use the GetUserId API action.
+//
+// If you have administrator access to a member account, you can use this API
+// from the member account. Read about member accounts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2540,8 +2584,8 @@ type CreateGroupInput struct {
 	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// A string containing the name of the group. This value is commonly displayed
-	// when the group is referenced. "Administrator" and "AWSAdministrators" are
-	// reserved names and can't be used for users or groups.
+	// when the group is referenced. Administrator and AWSAdministrators are reserved
+	// names and can't be used for users or groups.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateGroupInput's
@@ -2863,9 +2907,8 @@ type CreateUserInput struct {
 	// A unique string used to identify the user. The length limit is 128 characters.
 	// This value can consist of letters, accented characters, symbols, numbers,
 	// and punctuation. This value is specified at the time the user is created
-	// and stored as an attribute of the user object in the identity store. "Administrator"
-	// and "AWSAdministrators" are reserved names and can't be used for users or
-	// groups.
+	// and stored as an attribute of the user object in the identity store. Administrator
+	// and AWSAdministrators are reserved names and can't be used for users or groups.
 	//
 	// UserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's

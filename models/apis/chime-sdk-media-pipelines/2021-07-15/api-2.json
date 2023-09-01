@@ -159,6 +159,7 @@
         {"shape":"ThrottledClientException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -210,6 +211,44 @@
       },
       "input":{"shape":"GetMediaPipelineRequest"},
       "output":{"shape":"GetMediaPipelineResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetSpeakerSearchTask":{
+      "name":"GetSpeakerSearchTask",
+      "http":{
+        "method":"GET",
+        "requestUri":"/media-insights-pipelines/{identifier}/speaker-search-tasks/{speakerSearchTaskId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSpeakerSearchTaskRequest"},
+      "output":{"shape":"GetSpeakerSearchTaskResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceToneAnalysisTask":{
+      "name":"GetVoiceToneAnalysisTask",
+      "http":{
+        "method":"GET",
+        "requestUri":"/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks/{voiceToneAnalysisTaskId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceToneAnalysisTaskRequest"},
+      "output":{"shape":"GetVoiceToneAnalysisTaskResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -292,6 +331,84 @@
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "StartSpeakerSearchTask":{
+      "name":"StartSpeakerSearchTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipelines/{identifier}/speaker-search-tasks?operation=start",
+        "responseCode":201
+      },
+      "input":{"shape":"StartSpeakerSearchTaskRequest"},
+      "output":{"shape":"StartSpeakerSearchTaskResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "StartVoiceToneAnalysisTask":{
+      "name":"StartVoiceToneAnalysisTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks?operation=start",
+        "responseCode":201
+      },
+      "input":{"shape":"StartVoiceToneAnalysisTaskRequest"},
+      "output":{"shape":"StartVoiceToneAnalysisTaskResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "StopSpeakerSearchTask":{
+      "name":"StopSpeakerSearchTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipelines/{identifier}/speaker-search-tasks/{speakerSearchTaskId}?operation=stop",
+        "responseCode":204
+      },
+      "input":{"shape":"StopSpeakerSearchTaskRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "StopVoiceToneAnalysisTask":{
+      "name":"StopVoiceToneAnalysisTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipelines/{identifier}/voice-tone-analysis-tasks/{voiceToneAnalysisTaskId}?operation=stop",
+        "responseCode":204
+      },
+      "input":{"shape":"StopVoiceToneAnalysisTaskRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1027,6 +1144,56 @@
         "MediaPipeline":{"shape":"MediaPipeline"}
       }
     },
+    "GetSpeakerSearchTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "SpeakerSearchTaskId"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "SpeakerSearchTaskId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"speakerSearchTaskId"
+        }
+      }
+    },
+    "GetSpeakerSearchTaskResponse":{
+      "type":"structure",
+      "members":{
+        "SpeakerSearchTask":{"shape":"SpeakerSearchTask"}
+      }
+    },
+    "GetVoiceToneAnalysisTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "VoiceToneAnalysisTaskId"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "VoiceToneAnalysisTaskId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"voiceToneAnalysisTaskId"
+        }
+      }
+    },
+    "GetVoiceToneAnalysisTaskResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceToneAnalysisTask":{"shape":"VoiceToneAnalysisTask"}
+      }
+    },
     "GridViewConfiguration":{
       "type":"structure",
       "required":["ContentShareLayout"],
@@ -1142,6 +1309,18 @@
         "Streams":{"shape":"Streams"},
         "MediaEncoding":{"shape":"MediaEncoding"},
         "MediaSampleRate":{"shape":"MediaSampleRateHertz"}
+      }
+    },
+    "KinesisVideoStreamSourceTaskConfiguration":{
+      "type":"structure",
+      "required":[
+        "StreamArn",
+        "ChannelId"
+      ],
+      "members":{
+        "StreamArn":{"shape":"KinesisVideoStreamArn"},
+        "ChannelId":{"shape":"ChannelId"},
+        "FragmentNumber":{"shape":"FragmentNumberString"}
       }
     },
     "LambdaFunctionSinkConfiguration":{
@@ -1523,6 +1702,17 @@
         "MediaPipelineArn":{"shape":"AmazonResourceName"}
       }
     },
+    "MediaPipelineTaskStatus":{
+      "type":"string",
+      "enum":[
+        "NotStarted",
+        "Initializing",
+        "InProgress",
+        "Failed",
+        "Stopping",
+        "Stopped"
+      ]
+    },
     "MediaSampleRateHertz":{
       "type":"integer",
       "max":48000,
@@ -1782,10 +1972,109 @@
         "SelectedVideoStreams":{"shape":"SelectedVideoStreams"}
       }
     },
+    "SpeakerSearchTask":{
+      "type":"structure",
+      "members":{
+        "SpeakerSearchTaskId":{"shape":"GuidString"},
+        "SpeakerSearchTaskStatus":{"shape":"MediaPipelineTaskStatus"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
     "SqsQueueSinkConfiguration":{
       "type":"structure",
       "members":{
         "InsightsTarget":{"shape":"Arn"}
+      }
+    },
+    "StartSpeakerSearchTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "VoiceProfileDomainArn"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "VoiceProfileDomainArn":{"shape":"Arn"},
+        "KinesisVideoStreamSourceTaskConfiguration":{"shape":"KinesisVideoStreamSourceTaskConfiguration"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartSpeakerSearchTaskResponse":{
+      "type":"structure",
+      "members":{
+        "SpeakerSearchTask":{"shape":"SpeakerSearchTask"}
+      }
+    },
+    "StartVoiceToneAnalysisTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "LanguageCode"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "LanguageCode":{"shape":"VoiceAnalyticsLanguageCode"},
+        "KinesisVideoStreamSourceTaskConfiguration":{"shape":"KinesisVideoStreamSourceTaskConfiguration"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartVoiceToneAnalysisTaskResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceToneAnalysisTask":{"shape":"VoiceToneAnalysisTask"}
+      }
+    },
+    "StopSpeakerSearchTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "SpeakerSearchTaskId"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "SpeakerSearchTaskId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"speakerSearchTaskId"
+        }
+      }
+    },
+    "StopVoiceToneAnalysisTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "VoiceToneAnalysisTaskId"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "VoiceToneAnalysisTaskId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"voiceToneAnalysisTaskId"
+        }
       }
     },
     "StreamChannelDefinition":{
@@ -2061,6 +2350,10 @@
         "Disabled"
       ]
     },
+    "VoiceAnalyticsLanguageCode":{
+      "type":"string",
+      "enum":["en-US"]
+    },
     "VoiceAnalyticsProcessorConfiguration":{
       "type":"structure",
       "members":{
@@ -2072,6 +2365,15 @@
       "type":"structure",
       "members":{
         "Disabled":{"shape":"Boolean"}
+      }
+    },
+    "VoiceToneAnalysisTask":{
+      "type":"structure",
+      "members":{
+        "VoiceToneAnalysisTaskId":{"shape":"GuidString"},
+        "VoiceToneAnalysisTaskStatus":{"shape":"MediaPipelineTaskStatus"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
       }
     }
   }

@@ -228,6 +228,18 @@
       "output_token": "NextToken",
       "result_key": "UserSummaryList"
     },
+    "ListViewVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ViewVersionSummaryList"
+    },
+    "ListViews": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ViewsSummaryList"
+    },
     "SearchAvailablePhoneNumbers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

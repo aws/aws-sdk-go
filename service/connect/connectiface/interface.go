@@ -188,6 +188,14 @@ type ConnectAPI interface {
 	CreateUserHierarchyGroupWithContext(aws.Context, *connect.CreateUserHierarchyGroupInput, ...request.Option) (*connect.CreateUserHierarchyGroupOutput, error)
 	CreateUserHierarchyGroupRequest(*connect.CreateUserHierarchyGroupInput) (*request.Request, *connect.CreateUserHierarchyGroupOutput)
 
+	CreateView(*connect.CreateViewInput) (*connect.CreateViewOutput, error)
+	CreateViewWithContext(aws.Context, *connect.CreateViewInput, ...request.Option) (*connect.CreateViewOutput, error)
+	CreateViewRequest(*connect.CreateViewInput) (*request.Request, *connect.CreateViewOutput)
+
+	CreateViewVersion(*connect.CreateViewVersionInput) (*connect.CreateViewVersionOutput, error)
+	CreateViewVersionWithContext(aws.Context, *connect.CreateViewVersionInput, ...request.Option) (*connect.CreateViewVersionOutput, error)
+	CreateViewVersionRequest(*connect.CreateViewVersionInput) (*request.Request, *connect.CreateViewVersionOutput)
+
 	CreateVocabulary(*connect.CreateVocabularyInput) (*connect.CreateVocabularyOutput, error)
 	CreateVocabularyWithContext(aws.Context, *connect.CreateVocabularyInput, ...request.Option) (*connect.CreateVocabularyOutput, error)
 	CreateVocabularyRequest(*connect.CreateVocabularyInput) (*request.Request, *connect.CreateVocabularyOutput)
@@ -267,6 +275,14 @@ type ConnectAPI interface {
 	DeleteUserHierarchyGroup(*connect.DeleteUserHierarchyGroupInput) (*connect.DeleteUserHierarchyGroupOutput, error)
 	DeleteUserHierarchyGroupWithContext(aws.Context, *connect.DeleteUserHierarchyGroupInput, ...request.Option) (*connect.DeleteUserHierarchyGroupOutput, error)
 	DeleteUserHierarchyGroupRequest(*connect.DeleteUserHierarchyGroupInput) (*request.Request, *connect.DeleteUserHierarchyGroupOutput)
+
+	DeleteView(*connect.DeleteViewInput) (*connect.DeleteViewOutput, error)
+	DeleteViewWithContext(aws.Context, *connect.DeleteViewInput, ...request.Option) (*connect.DeleteViewOutput, error)
+	DeleteViewRequest(*connect.DeleteViewInput) (*request.Request, *connect.DeleteViewOutput)
+
+	DeleteViewVersion(*connect.DeleteViewVersionInput) (*connect.DeleteViewVersionOutput, error)
+	DeleteViewVersionWithContext(aws.Context, *connect.DeleteViewVersionInput, ...request.Option) (*connect.DeleteViewVersionOutput, error)
+	DeleteViewVersionRequest(*connect.DeleteViewVersionInput) (*request.Request, *connect.DeleteViewVersionOutput)
 
 	DeleteVocabulary(*connect.DeleteVocabularyInput) (*connect.DeleteVocabularyOutput, error)
 	DeleteVocabularyWithContext(aws.Context, *connect.DeleteVocabularyInput, ...request.Option) (*connect.DeleteVocabularyOutput, error)
@@ -355,6 +371,10 @@ type ConnectAPI interface {
 	DescribeUserHierarchyStructure(*connect.DescribeUserHierarchyStructureInput) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureWithContext(aws.Context, *connect.DescribeUserHierarchyStructureInput, ...request.Option) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureRequest(*connect.DescribeUserHierarchyStructureInput) (*request.Request, *connect.DescribeUserHierarchyStructureOutput)
+
+	DescribeView(*connect.DescribeViewInput) (*connect.DescribeViewOutput, error)
+	DescribeViewWithContext(aws.Context, *connect.DescribeViewInput, ...request.Option) (*connect.DescribeViewOutput, error)
+	DescribeViewRequest(*connect.DescribeViewInput) (*request.Request, *connect.DescribeViewOutput)
 
 	DescribeVocabulary(*connect.DescribeVocabularyInput) (*connect.DescribeVocabularyOutput, error)
 	DescribeVocabularyWithContext(aws.Context, *connect.DescribeVocabularyInput, ...request.Option) (*connect.DescribeVocabularyOutput, error)
@@ -701,6 +721,20 @@ type ConnectAPI interface {
 	ListUsersPages(*connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool, ...request.Option) error
 
+	ListViewVersions(*connect.ListViewVersionsInput) (*connect.ListViewVersionsOutput, error)
+	ListViewVersionsWithContext(aws.Context, *connect.ListViewVersionsInput, ...request.Option) (*connect.ListViewVersionsOutput, error)
+	ListViewVersionsRequest(*connect.ListViewVersionsInput) (*request.Request, *connect.ListViewVersionsOutput)
+
+	ListViewVersionsPages(*connect.ListViewVersionsInput, func(*connect.ListViewVersionsOutput, bool) bool) error
+	ListViewVersionsPagesWithContext(aws.Context, *connect.ListViewVersionsInput, func(*connect.ListViewVersionsOutput, bool) bool, ...request.Option) error
+
+	ListViews(*connect.ListViewsInput) (*connect.ListViewsOutput, error)
+	ListViewsWithContext(aws.Context, *connect.ListViewsInput, ...request.Option) (*connect.ListViewsOutput, error)
+	ListViewsRequest(*connect.ListViewsInput) (*request.Request, *connect.ListViewsOutput)
+
+	ListViewsPages(*connect.ListViewsInput, func(*connect.ListViewsOutput, bool) bool) error
+	ListViewsPagesWithContext(aws.Context, *connect.ListViewsInput, func(*connect.ListViewsOutput, bool) bool, ...request.Option) error
+
 	MonitorContact(*connect.MonitorContactInput) (*connect.MonitorContactOutput, error)
 	MonitorContactWithContext(aws.Context, *connect.MonitorContactInput, ...request.Option) (*connect.MonitorContactOutput, error)
 	MonitorContactRequest(*connect.MonitorContactInput) (*request.Request, *connect.MonitorContactOutput)
@@ -1006,6 +1040,14 @@ type ConnectAPI interface {
 	UpdateUserSecurityProfiles(*connect.UpdateUserSecurityProfilesInput) (*connect.UpdateUserSecurityProfilesOutput, error)
 	UpdateUserSecurityProfilesWithContext(aws.Context, *connect.UpdateUserSecurityProfilesInput, ...request.Option) (*connect.UpdateUserSecurityProfilesOutput, error)
 	UpdateUserSecurityProfilesRequest(*connect.UpdateUserSecurityProfilesInput) (*request.Request, *connect.UpdateUserSecurityProfilesOutput)
+
+	UpdateViewContent(*connect.UpdateViewContentInput) (*connect.UpdateViewContentOutput, error)
+	UpdateViewContentWithContext(aws.Context, *connect.UpdateViewContentInput, ...request.Option) (*connect.UpdateViewContentOutput, error)
+	UpdateViewContentRequest(*connect.UpdateViewContentInput) (*request.Request, *connect.UpdateViewContentOutput)
+
+	UpdateViewMetadata(*connect.UpdateViewMetadataInput) (*connect.UpdateViewMetadataOutput, error)
+	UpdateViewMetadataWithContext(aws.Context, *connect.UpdateViewMetadataInput, ...request.Option) (*connect.UpdateViewMetadataOutput, error)
+	UpdateViewMetadataRequest(*connect.UpdateViewMetadataInput) (*request.Request, *connect.UpdateViewMetadataOutput)
 }
 
 var _ ConnectAPI = (*connect.Connect)(nil)

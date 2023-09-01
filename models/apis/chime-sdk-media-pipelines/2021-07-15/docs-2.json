@@ -13,10 +13,16 @@
     "GetMediaCapturePipeline": "<p>Gets an existing media pipeline.</p>",
     "GetMediaInsightsPipelineConfiguration": "<p>Gets the configuration settings for a media insights pipeline.</p>",
     "GetMediaPipeline": "<p>Gets an existing media pipeline.</p>",
+    "GetSpeakerSearchTask": "<p>Retrieves the details of the specified speaker search task.</p>",
+    "GetVoiceToneAnalysisTask": "<p>Retrieves the details of a voice tone analysis task.</p>",
     "ListMediaCapturePipelines": "<p>Returns a list of media pipelines.</p>",
     "ListMediaInsightsPipelineConfigurations": "<p>Lists the available media insights pipeline configurations.</p>",
     "ListMediaPipelines": "<p>Returns a list of media pipelines.</p>",
     "ListTagsForResource": "<p>Lists the tags available for a media pipeline.</p>",
+    "StartSpeakerSearchTask": "<p>Starts a speaker search task.</p> <important> <p>Before starting any speaker search tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the <a href=\"https://aws.amazon.com/service-terms/\">AWS service terms</a> for the Amazon Chime SDK.</p> </important>",
+    "StartVoiceToneAnalysisTask": "<p>Starts a voice tone analysis task. For more information about voice tone analysis, see <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/dg/voice-analytics.html\">Using Amazon Chime SDK voice analytics</a> in the <i>Amazon Chime SDK Developer Guide</i>.</p> <important> <p>Before starting any voice tone analysis tasks, you must provide all notices and obtain all consents from the speaker as required under applicable privacy and biometrics laws, and as required under the <a href=\"https://aws.amazon.com/service-terms/\">AWS service terms</a> for the Amazon Chime SDK.</p> </important>",
+    "StopSpeakerSearchTask": "<p>Stops a speaker search task.</p>",
+    "StopVoiceToneAnalysisTask": "<p>Stops a voice tone analysis task.</p>",
     "TagResource": "<p>The ARN of the media pipeline that you want to tag. Consists of the pipeline's endpoint region, resource ID, and pipeline ID.</p>",
     "UntagResource": "<p>Removes any tags from a media pipeline.</p>",
     "UpdateMediaInsightsPipelineConfiguration": "<p>Updates the media insights pipeline's configuration settings.</p>",
@@ -83,6 +89,7 @@
         "S3RecordingSinkRuntimeConfiguration$Destination": "<p>The URI of the S3 bucket used as the sink.</p>",
         "SnsTopicSinkConfiguration$InsightsTarget": "<p>The ARN of the SNS sink.</p>",
         "SqsQueueSinkConfiguration$InsightsTarget": "<p>The ARN of the SQS sink.</p>",
+        "StartSpeakerSearchTaskRequest$VoiceProfileDomainArn": "<p>The ARN of the voice profile domain that will store the voice profile.</p>",
         "UpdateMediaInsightsPipelineConfigurationRequest$ResourceAccessRoleArn": "<p>The ARN of the role used by the service to access Amazon Web Services resources.</p>"
       }
     },
@@ -230,7 +237,8 @@
     "ChannelId": {
       "base": null,
       "refs": {
-        "ChannelDefinition$ChannelId": "<p>The channel ID.</p>"
+        "ChannelDefinition$ChannelId": "<p>The channel ID.</p>",
+        "KinesisVideoStreamSourceTaskConfiguration$ChannelId": "<p>The channel ID.</p>"
       }
     },
     "ChimeSdkMeetingConcatenationConfiguration": {
@@ -259,7 +267,9 @@
         "CreateMediaConcatenationPipelineRequest$ClientRequestToken": "<p>The unique identifier for the client request. The token makes the API request idempotent. Use a unique token for each media concatenation pipeline request.</p>",
         "CreateMediaInsightsPipelineConfigurationRequest$ClientRequestToken": "<p>The unique identifier for the media insights pipeline configuration request.</p>",
         "CreateMediaInsightsPipelineRequest$ClientRequestToken": "<p>The unique identifier for the media insights pipeline request.</p>",
-        "CreateMediaLiveConnectorPipelineRequest$ClientRequestToken": "<p>The token assigned to the client making the request.</p>"
+        "CreateMediaLiveConnectorPipelineRequest$ClientRequestToken": "<p>The token assigned to the client making the request.</p>",
+        "StartSpeakerSearchTaskRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different speaker search tasks.</p>",
+        "StartVoiceToneAnalysisTaskRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different voice tone analysis tasks.</p>"
       }
     },
     "CompositedVideoArtifactsConfiguration": {
@@ -468,6 +478,7 @@
     "FragmentNumberString": {
       "base": null,
       "refs": {
+        "KinesisVideoStreamSourceTaskConfiguration$FragmentNumber": "<p>The unique identifier of the fragment to begin processing.</p>",
         "StreamConfiguration$FragmentNumber": "<p>The unique identifier of the fragment to begin processing.</p>"
       }
     },
@@ -480,7 +491,7 @@
     "FragmentSelectorType": {
       "base": null,
       "refs": {
-        "FragmentSelector$FragmentSelectorType": "<p>The origin of the timestamps to use, <code>Server</code> or <code>Producer</code>. For more information, see <a href=\"kinesisvideostreams/latest/dg/API_dataplane_StartSelector.html#KinesisVideo-Type-dataplane_StartSelector-StartSelectorType\">StartSelectorType</a> in the <i>Amazon Kinesis Video Streams Developer Guide</i>.</p>"
+        "FragmentSelector$FragmentSelectorType": "<p>The origin of the timestamps to use, <code>Server</code> or <code>Producer</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_StartSelector.html\">StartSelectorType</a> in the <i>Amazon Kinesis Video Streams Developer Guide</i>.</p>"
       }
     },
     "GetMediaCapturePipelineRequest": {
@@ -513,6 +524,26 @@
       "refs": {
       }
     },
+    "GetSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSpeakerSearchTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceToneAnalysisTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GridViewConfiguration": {
       "base": "<p>Specifies the type of grid layout.</p>",
       "refs": {
@@ -527,6 +558,8 @@
         "DeleteMediaPipelineRequest$MediaPipelineId": "<p>The ID of the media pipeline to delete.</p>",
         "GetMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the pipeline that you want to get.</p>",
         "GetMediaPipelineRequest$MediaPipelineId": "<p>The ID of the pipeline that you want to get.</p>",
+        "GetSpeakerSearchTaskRequest$SpeakerSearchTaskId": "<p>The ID of the speaker search task.</p>",
+        "GetVoiceToneAnalysisTaskRequest$VoiceToneAnalysisTaskId": "<p>The ID of the voice tone anlysis task.</p>",
         "MediaCapturePipeline$MediaPipelineId": "<p>The ID of a media pipeline.</p>",
         "MediaCapturePipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>",
         "MediaConcatenationPipeline$MediaPipelineId": "<p>The ID of the media pipeline being concatenated.</p>",
@@ -534,7 +567,11 @@
         "MediaInsightsPipelineConfiguration$MediaInsightsPipelineConfigurationId": "<p>The ID of the configuration.</p>",
         "MediaInsightsPipelineConfigurationSummary$MediaInsightsPipelineConfigurationId": "<p>The ID of the media insights pipeline configuration.</p>",
         "MediaLiveConnectorPipeline$MediaPipelineId": "<p>The connector pipeline's ID.</p>",
-        "MediaPipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>"
+        "MediaPipelineSummary$MediaPipelineId": "<p>The ID of the media pipeline in the summary.</p>",
+        "SpeakerSearchTask$SpeakerSearchTaskId": "<p>The speaker search task ID.</p>",
+        "StopSpeakerSearchTaskRequest$SpeakerSearchTaskId": "<p>The speaker search task ID.</p>",
+        "StopVoiceToneAnalysisTaskRequest$VoiceToneAnalysisTaskId": "<p>The ID of the voice tone analysis task.</p>",
+        "VoiceToneAnalysisTask$VoiceToneAnalysisTaskId": "<p>The ID of the voice tone analysis task.</p>"
       }
     },
     "HighlightColor": {
@@ -566,7 +603,11 @@
         "MediaInsightsPipelineConfiguration$CreatedTimestamp": "<p>The time at which the configuration was created.</p>",
         "MediaInsightsPipelineConfiguration$UpdatedTimestamp": "<p>The time at which the configuration was last updated.</p>",
         "MediaLiveConnectorPipeline$CreatedTimestamp": "<p>The time at which the connector pipeline was created.</p>",
-        "MediaLiveConnectorPipeline$UpdatedTimestamp": "<p>The time at which the connector pipeline was last updated.</p>"
+        "MediaLiveConnectorPipeline$UpdatedTimestamp": "<p>The time at which the connector pipeline was last updated.</p>",
+        "SpeakerSearchTask$CreatedTimestamp": "<p>The time at which a speaker search task was created.</p>",
+        "SpeakerSearchTask$UpdatedTimestamp": "<p>The time at which a speaker search task was updated.</p>",
+        "VoiceToneAnalysisTask$CreatedTimestamp": "<p>The time at which a voice tone analysis task was created.</p>",
+        "VoiceToneAnalysisTask$UpdatedTimestamp": "<p>The time at which a voice tone analysis task was updated.</p>"
       }
     },
     "IssueDetectionConfiguration": {
@@ -602,6 +643,7 @@
     "KinesisVideoStreamArn": {
       "base": null,
       "refs": {
+        "KinesisVideoStreamSourceTaskConfiguration$StreamArn": "<p>The ARN of the stream.</p>",
         "RecordingStreamConfiguration$StreamArn": "<p>The ARN of the recording stream.</p>",
         "StreamConfiguration$StreamArn": "<p>The ARN of the stream.</p>"
       }
@@ -618,6 +660,13 @@
       "refs": {
         "CreateMediaInsightsPipelineRequest$KinesisVideoStreamSourceRuntimeConfiguration": "<p>The runtime configuration for the Kinesis video stream source of the media insights pipeline.</p>",
         "MediaInsightsPipeline$KinesisVideoStreamSourceRuntimeConfiguration": "<p>The configuration settings for a Kinesis runtime video stream in a media insights pipeline.</p>"
+      }
+    },
+    "KinesisVideoStreamSourceTaskConfiguration": {
+      "base": "<p>The task configuration settings for the Kinesis video stream source.</p>",
+      "refs": {
+        "StartSpeakerSearchTaskRequest$KinesisVideoStreamSourceTaskConfiguration": "<p>The task configuration for the Kinesis video stream source of the media insights pipeline.</p>",
+        "StartVoiceToneAnalysisTaskRequest$KinesisVideoStreamSourceTaskConfiguration": "<p>The task configuration for the Kinesis video stream source of the media insights pipeline.</p>"
       }
     },
     "LambdaFunctionSinkConfiguration": {
@@ -902,6 +951,13 @@
         "MediaPipelineList$member": null
       }
     },
+    "MediaPipelineTaskStatus": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchTask$SpeakerSearchTaskStatus": "<p>The status of the speaker search task.</p>",
+        "VoiceToneAnalysisTask$VoiceToneAnalysisTaskStatus": "<p>The status of a voice tone analysis task.</p>"
+      }
+    },
     "MediaSampleRateHertz": {
       "base": null,
       "refs": {
@@ -926,7 +982,13 @@
       "refs": {
         "DeleteMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier of the resource to be deleted. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
         "GetMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier of the requested resource. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
+        "GetSpeakerSearchTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
+        "GetVoiceToneAnalysisTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
         "MediaInsightsRuntimeMetadata$key": null,
+        "StartSpeakerSearchTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
+        "StartVoiceToneAnalysisTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
+        "StopSpeakerSearchTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
+        "StopVoiceToneAnalysisTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
         "UpdateMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier for the resource to be updated. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
         "UpdateMediaInsightsPipelineStatusRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>"
       }
@@ -1124,10 +1186,47 @@
         "ChimeSdkMeetingLiveConnectorConfiguration$SourceConfiguration": "<p>The source configuration settings of the media pipeline's configuration object.</p>"
       }
     },
+    "SpeakerSearchTask": {
+      "base": "<p>A representation of an asynchronous request to perform speaker search analysis on a media insights pipeline.</p>",
+      "refs": {
+        "GetSpeakerSearchTaskResponse$SpeakerSearchTask": "<p>The details of the speaker search task.</p>",
+        "StartSpeakerSearchTaskResponse$SpeakerSearchTask": "<p>The details of the speaker search task.</p>"
+      }
+    },
     "SqsQueueSinkConfiguration": {
       "base": "<p>The configuration settings for the SQS sink.</p>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$SqsQueueSinkConfiguration": "<p>The configuration settings for an SQS queue sink in a media insights pipeline configuration element.</p>"
+      }
+    },
+    "StartSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSpeakerSearchTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVoiceToneAnalysisTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "StreamChannelDefinition": {
@@ -1379,6 +1478,12 @@
         "VoiceAnalyticsProcessorConfiguration$VoiceToneAnalysisStatus": "<p>The status of the voice tone analysis task.</p>"
       }
     },
+    "VoiceAnalyticsLanguageCode": {
+      "base": null,
+      "refs": {
+        "StartVoiceToneAnalysisTaskRequest$LanguageCode": "<p>The language code.</p>"
+      }
+    },
     "VoiceAnalyticsProcessorConfiguration": {
       "base": "<p>The configuration settings for a voice analytics processor.</p>",
       "refs": {
@@ -1388,7 +1493,14 @@
     "VoiceEnhancementSinkConfiguration": {
       "base": "<p>A static structure that contains the configuration data for a <code>VoiceEnhancementSinkConfiguration</code> element.</p>",
       "refs": {
-        "MediaInsightsPipelineConfigurationElement$VoiceEnhancementSinkConfiguration": "<p>The configuration settings for the <code>VoiceEnhancementSinkConfiguration</code> element.</p>"
+        "MediaInsightsPipelineConfigurationElement$VoiceEnhancementSinkConfiguration": "<p>The configuration settings for voice enhancement sink in a media insights pipeline configuration element.</p>"
+      }
+    },
+    "VoiceToneAnalysisTask": {
+      "base": "<p>A representation of an asynchronous request to perform voice tone analysis on a media insights pipeline.</p>",
+      "refs": {
+        "GetVoiceToneAnalysisTaskResponse$VoiceToneAnalysisTask": "<p>The details of the voice tone analysis task.</p>",
+        "StartVoiceToneAnalysisTaskResponse$VoiceToneAnalysisTask": "<p>The details of the voice tone analysis task.</p>"
       }
     }
   }

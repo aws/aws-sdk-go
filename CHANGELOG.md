@@ -1,3 +1,12 @@
+Release v1.45.2 (2023-09-01)
+===
+
+### Service Client Updates
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/identitystore`: Updates service API and documentation
+* `service/neptunedata`: Updates service documentation
+
 Release v1.45.1 (2023-08-31)
 ===
 
