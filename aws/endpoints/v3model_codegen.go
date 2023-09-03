@@ -89,6 +89,14 @@ func partitionVarName(id string) string {
 	return fmt.Sprintf("%sPartition", strings.ToLower(toSymbol(id)))
 }
 
+func partitionInitOnceVarName(id string) string {
+	return fmt.Sprintf("%sInitOnce", strings.ToLower(toSymbol(id)))
+}
+
+func partitionInitFuncName(id string) string {
+	return fmt.Sprintf("%sInit", strings.ToLower(toSymbol(id)))
+}
+
 func listPartitionNames(ps partitions) string {
 	names := []string{}
 	switch len(ps) {
@@ -206,20 +214,22 @@ func defaultKeySetter(e defaultKey) (string, error) {
 }
 
 var funcMap = template.FuncMap{
-	"ToSymbol":              toSymbol,
-	"QuoteString":           quoteString,
-	"RegionConst":           regionConstName,
-	"PartitionGetter":       partitionGetter,
-	"PartitionVarName":      partitionVarName,
-	"ListPartitionNames":    listPartitionNames,
-	"BoxedBoolIfSet":        boxedBoolIfSet,
-	"StringIfSet":           stringIfSet,
-	"StringSliceIfSet":      stringSliceIfSet,
-	"EndpointIsSet":         endpointIsSet,
-	"ServicesSet":           serviceSet,
-	"EndpointVariantSetter": endpointVariantSetter,
-	"EndpointKeySetter":     endpointKeySetter,
-	"DefaultKeySetter":      defaultKeySetter,
+	"ToSymbol":                 toSymbol,
+	"QuoteString":              quoteString,
+	"RegionConst":              regionConstName,
+	"PartitionGetter":          partitionGetter,
+	"PartitionVarName":         partitionVarName,
+	"PartitionInitOnceVarName": partitionInitOnceVarName,
+	"PartitionInitFuncName":    partitionInitFuncName,
+	"ListPartitionNames":       listPartitionNames,
+	"BoxedBoolIfSet":           boxedBoolIfSet,
+	"StringIfSet":              stringIfSet,
+	"StringSliceIfSet":         stringSliceIfSet,
+	"EndpointIsSet":            endpointIsSet,
+	"ServicesSet":              serviceSet,
+	"EndpointVariantSetter":    endpointVariantSetter,
+	"EndpointKeySetter":        endpointKeySetter,
+	"DefaultKeySetter":         defaultKeySetter,
 }
 
 const v3Tmpl = `
@@ -230,6 +240,7 @@ package endpoints
 
 import (
 	"regexp"
+	"sync"
 )
 
 	{{ template "partition consts" $.Resolver }}
@@ -241,7 +252,7 @@ import (
 	{{ if not $.DisableGenerateServiceIDs -}}
 	{{ template "service consts" $.Resolver }}
 	{{- end }}
-	
+
 	{{ template "endpoint resolvers" $.Resolver }}
 {{- end }}
 
@@ -279,7 +290,7 @@ import (
 	//
 	// Use DefaultPartitions() to get the list of the default partitions.
 	func DefaultResolver() Resolver {
-		return defaultPartitions
+		return defaultPartitions()
 	}
 
 	// DefaultPartitions returns a list of the partitions the SDK is bundled
@@ -290,33 +301,40 @@ import (
 	//        // ... inspect partitions
 	//    }
 	func DefaultPartitions() []Partition {
-		return defaultPartitions.Partitions()
+		return defaultPartitions().Partitions()
 	}
 
-	var defaultPartitions = partitions{
+	func defaultPartitions() partitions {
 		{{ range $_, $partition := . -}}
-			{{ PartitionVarName $partition.ID }},
+			{{ PartitionInitFuncName $partition.ID }}()
 		{{ end }}
-	}
-	
-	{{ range $_, $partition := . -}}
-		{{ $name := PartitionGetter $partition.ID -}}
-		// {{ $name }} returns the Resolver for {{ $partition.Name }}.
-		func {{ $name }}() Partition {
-			return  {{ PartitionVarName $partition.ID }}.Partition()
-		}
-		var {{ PartitionVarName $partition.ID }} = {{ template "gocode Partition" $partition }}
-	{{ end }}
-{{ end }}
 
-{{ define "default partitions" }}
-	func DefaultPartitions() []Partition {
-		return []partition{
+		return partitions{
 			{{ range $_, $partition := . -}}
-			// {{ ToSymbol $partition.ID}}Partition(),
+				{{ PartitionVarName $partition.ID }},
 			{{ end }}
 		}
 	}
+
+	{{ range $_, $partition := . -}}
+		var (
+			{{ PartitionVarName $partition.ID }} partition
+			{{ PartitionInitOnceVarName $partition.ID }} sync.Once
+		)
+
+		{{ $name := PartitionGetter $partition.ID -}}
+		// {{ $name }} returns the Resolver for {{ $partition.Name }}.
+		func {{ $name }}() Partition {
+			{{ PartitionInitFuncName $partition.ID }}()
+			return  {{ PartitionVarName $partition.ID }}.Partition()
+		}
+
+		func {{ PartitionInitFuncName $partition.ID }}() {
+			{{ PartitionInitOnceVarName $partition.ID }}.Do(func() {
+				{{ PartitionVarName $partition.ID }} = {{ template "gocode Partition" $partition }}
+			})
+		}
+	{{ end }}
 {{ end }}
 
 {{ define "gocode Partition" -}}
