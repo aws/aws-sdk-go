@@ -689,6 +689,38 @@
       "refs": {
       }
     },
+    "LineItemFilter": {
+      "base": "<p>A representation of the line item filter for your custom line item. You can use line item filters to include or exclude specific resource values from the billing group's total cost. For example, if you create a custom line item and you want to filter out a value, such as Savings Plan discounts, you can update <code>LineItemFilter</code> to exclude it.</p>",
+      "refs": {
+        "LineItemFiltersList$member": null
+      }
+    },
+    "LineItemFilterAttributeName": {
+      "base": null,
+      "refs": {
+        "LineItemFilter$Attribute": "<p>The attribute of the line item filter. This specifies what attribute that you can filter on.</p>"
+      }
+    },
+    "LineItemFilterValue": {
+      "base": null,
+      "refs": {
+        "LineItemFilterValuesList$member": null
+      }
+    },
+    "LineItemFilterValuesList": {
+      "base": null,
+      "refs": {
+        "LineItemFilter$Values": "<p>The values of the line item filter. This specifies the values to filter on. Currently, you can only exclude Savings Plan discounts.</p>"
+      }
+    },
+    "LineItemFiltersList": {
+      "base": null,
+      "refs": {
+        "CustomLineItemChargeDetails$LineItemFilters": "<p>A representation of the line item filter.</p>",
+        "ListCustomLineItemChargeDetails$LineItemFilters": "<p>A representation of the line item filter.</p>",
+        "UpdateCustomLineItemChargeDetails$LineItemFilters": "<p>A representation of the line item filter.</p>"
+      }
+    },
     "ListAccountAssociationsFilter": {
       "base": "<p>The filter on the account ID of the linked account, or any of the following:</p> <p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn.</p>",
       "refs": {
@@ -901,6 +933,12 @@
       "base": null,
       "refs": {
         "BillingGroupCostReportElement$MarginPercentage": "<p>The percentage of billing group margin.</p>"
+      }
+    },
+    "MatchOption": {
+      "base": null,
+      "refs": {
+        "LineItemFilter$MatchOption": "<p>The match criteria of the line item filter. This parameter specifies whether not to include the resource value from the billing group total cost.</p>"
       }
     },
     "MaxBillingGroupResults": {

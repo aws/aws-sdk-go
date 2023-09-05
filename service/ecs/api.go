@@ -18542,13 +18542,14 @@ type PutAccountSettingDefaultInput struct {
 	// When you specify fargateTaskRetirementWaitPeriod for the name, the following
 	// are the valid values:
 	//
-	//    * 0 - immediately retire the tasks and patch Fargate There is no advanced
-	//    notification. Your tasks are retired immediately, and Fargate is patched
-	//    without any notification.
+	//    * 0 - Amazon Web Services sends the notification, and immediately retires
+	//    the affected tasks.
 	//
-	//    * 7 -wait 7 calendar days to retire the tasks and patch Fargate
+	//    * 7 - Amazon Web Services sends the notification, and waits 7 calendar
+	//    days to retire the tasks.
 	//
-	//    * 14 - wait 14 calendar days to retire the tasks and patch Fargate
+	//    * 14 - Amazon Web Services sends the notification, and waits 14 calendar
+	//    days to retire the tasks.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -18670,13 +18671,14 @@ type PutAccountSettingInput struct {
 	// When you specify fargateTaskRetirementWaitPeriod for the name, the following
 	// are the valid values:
 	//
-	//    * 0 - immediately retire the tasks and patch Fargate There is no advanced
-	//    notification. Your tasks are retired immediately, and Fargate is patched
-	//    without any notification.
+	//    * 0 - Amazon Web Services sends the notification, and immediately retires
+	//    the affected tasks.
 	//
-	//    * 7 -wait 7 calendar days to retire the tasks and patch Fargate
+	//    * 7 - Amazon Web Services sends the notification, and waits 7 calendar
+	//    days to retire the tasks.
 	//
-	//    * 14 - wait 14 calendar days to retire the tasks and patch Fargate
+	//    * 14 - Amazon Web Services sends the notification, and waits 14 calendar
+	//    days to retire the tasks.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`

@@ -141,6 +141,7 @@
       "output":{"shape":"CreateServiceNetworkServiceAssociationResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
@@ -558,6 +559,7 @@
       "output":{"shape":"GetTargetGroupResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
@@ -574,6 +576,7 @@
       "output":{"shape":"ListAccessLogSubscriptionsResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -687,6 +690,7 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
@@ -806,6 +810,7 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ],
@@ -935,6 +940,7 @@
       "output":{"shape":"UpdateTargetGroupResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
@@ -1027,8 +1033,7 @@
     "AuthPolicyString":{
       "type":"string",
       "max":10000,
-      "min":0,
-      "pattern":"^.*\\S.*$"
+      "min":0
     },
     "AuthType":{
       "type":"string",
@@ -2029,6 +2034,13 @@
         "IPV6"
       ]
     },
+    "LambdaEventStructureVersion":{
+      "type":"string",
+      "enum":[
+        "V1",
+        "V2"
+      ]
+    },
     "ListAccessLogSubscriptionsRequest":{
       "type":"structure",
       "required":["resourceIdentifier"],
@@ -2697,7 +2709,7 @@
       "type":"string",
       "max":32,
       "min":32,
-      "pattern":"^servicenetwork-[0-9a-z]{17}$"
+      "pattern":"^sn-[0-9a-z]{17}$"
     },
     "ServiceNetworkIdentifier":{
       "type":"string",
@@ -2713,7 +2725,7 @@
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"^(?!servicenetwork-)(?![-])(?!.*[-]$)(?!.*[-]{2})[a-z0-9-]+$"
+      "pattern":"^(?![-])(?!.*[-]$)(?!.*[-]{2})[a-z0-9-]+$"
     },
     "ServiceNetworkServiceAssociationArn":{
       "type":"string",
@@ -2937,14 +2949,10 @@
     },
     "TargetGroupConfig":{
       "type":"structure",
-      "required":[
-        "port",
-        "protocol",
-        "vpcIdentifier"
-      ],
       "members":{
         "healthCheck":{"shape":"HealthCheckConfig"},
         "ipAddressType":{"shape":"IpAddressType"},
+        "lambdaEventStructureVersion":{"shape":"LambdaEventStructureVersion"},
         "port":{"shape":"Port"},
         "protocol":{"shape":"TargetGroupProtocol"},
         "protocolVersion":{"shape":"TargetGroupProtocolVersion"},
@@ -3005,6 +3013,7 @@
         "createdAt":{"shape":"Timestamp"},
         "id":{"shape":"TargetGroupId"},
         "ipAddressType":{"shape":"IpAddressType"},
+        "lambdaEventStructureVersion":{"shape":"LambdaEventStructureVersion"},
         "lastUpdatedAt":{"shape":"Timestamp"},
         "name":{"shape":"TargetGroupName"},
         "port":{"shape":"Port"},

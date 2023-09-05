@@ -5392,6 +5392,9 @@ type CustomLineItemChargeDetails struct {
 	// flat custom line item.
 	Flat *CustomLineItemFlatChargeDetails `type:"structure"`
 
+	// A representation of the line item filter.
+	LineItemFilters []*LineItemFilter `type:"list"`
+
 	// A CustomLineItemPercentageChargeDetails that describes the charge details
 	// of a percentage custom line item.
 	Percentage *CustomLineItemPercentageChargeDetails `type:"structure"`
@@ -5432,6 +5435,16 @@ func (s *CustomLineItemChargeDetails) Validate() error {
 			invalidParams.AddNested("Flat", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LineItemFilters != nil {
+		for i, v := range s.LineItemFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LineItemFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Percentage != nil {
 		if err := s.Percentage.Validate(); err != nil {
 			invalidParams.AddNested("Percentage", err.(request.ErrInvalidParams))
@@ -5447,6 +5460,12 @@ func (s *CustomLineItemChargeDetails) Validate() error {
 // SetFlat sets the Flat field's value.
 func (s *CustomLineItemChargeDetails) SetFlat(v *CustomLineItemFlatChargeDetails) *CustomLineItemChargeDetails {
 	s.Flat = v
+	return s
+}
+
+// SetLineItemFilters sets the LineItemFilters field's value.
+func (s *CustomLineItemChargeDetails) SetLineItemFilters(v []*LineItemFilter) *CustomLineItemChargeDetails {
+	s.LineItemFilters = v
 	return s
 }
 
@@ -6499,6 +6518,91 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A representation of the line item filter for your custom line item. You can
+// use line item filters to include or exclude specific resource values from
+// the billing group's total cost. For example, if you create a custom line
+// item and you want to filter out a value, such as Savings Plan discounts,
+// you can update LineItemFilter to exclude it.
+type LineItemFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute of the line item filter. This specifies what attribute that
+	// you can filter on.
+	//
+	// Attribute is a required field
+	Attribute *string `type:"string" required:"true" enum:"LineItemFilterAttributeName"`
+
+	// The match criteria of the line item filter. This parameter specifies whether
+	// not to include the resource value from the billing group total cost.
+	//
+	// MatchOption is a required field
+	MatchOption *string `type:"string" required:"true" enum:"MatchOption"`
+
+	// The values of the line item filter. This specifies the values to filter on.
+	// Currently, you can only exclude Savings Plan discounts.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true" enum:"LineItemFilterValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineItemFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineItemFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LineItemFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LineItemFilter"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.MatchOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchOption"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *LineItemFilter) SetAttribute(v string) *LineItemFilter {
+	s.Attribute = &v
+	return s
+}
+
+// SetMatchOption sets the MatchOption field's value.
+func (s *LineItemFilter) SetMatchOption(v string) *LineItemFilter {
+	s.MatchOption = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *LineItemFilter) SetValues(v []*string) *LineItemFilter {
+	s.Values = v
+	return s
+}
+
 // The filter on the account ID of the linked account, or any of the following:
 //
 // MONITORED: linked accounts that are associated to billing groups.
@@ -7085,6 +7189,9 @@ type ListCustomLineItemChargeDetails struct {
 	// a flat custom line item.
 	Flat *ListCustomLineItemFlatChargeDetails `type:"structure"`
 
+	// A representation of the line item filter.
+	LineItemFilters []*LineItemFilter `type:"list"`
+
 	// A ListCustomLineItemPercentageChargeDetails that describes the charge details
 	// of a percentage custom line item.
 	Percentage *ListCustomLineItemPercentageChargeDetails `type:"structure"`
@@ -7117,6 +7224,12 @@ func (s ListCustomLineItemChargeDetails) GoString() string {
 // SetFlat sets the Flat field's value.
 func (s *ListCustomLineItemChargeDetails) SetFlat(v *ListCustomLineItemFlatChargeDetails) *ListCustomLineItemChargeDetails {
 	s.Flat = v
+	return s
+}
+
+// SetLineItemFilters sets the LineItemFilters field's value.
+func (s *ListCustomLineItemChargeDetails) SetLineItemFilters(v []*LineItemFilter) *ListCustomLineItemChargeDetails {
+	s.LineItemFilters = v
 	return s
 }
 
@@ -9466,6 +9579,9 @@ type UpdateCustomLineItemChargeDetails struct {
 	// of a flat custom line item.
 	Flat *UpdateCustomLineItemFlatChargeDetails `type:"structure"`
 
+	// A representation of the line item filter.
+	LineItemFilters []*LineItemFilter `type:"list"`
+
 	// An UpdateCustomLineItemPercentageChargeDetails that describes the new charge
 	// details of a percentage custom line item.
 	Percentage *UpdateCustomLineItemPercentageChargeDetails `type:"structure"`
@@ -9497,6 +9613,16 @@ func (s *UpdateCustomLineItemChargeDetails) Validate() error {
 			invalidParams.AddNested("Flat", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LineItemFilters != nil {
+		for i, v := range s.LineItemFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LineItemFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Percentage != nil {
 		if err := s.Percentage.Validate(); err != nil {
 			invalidParams.AddNested("Percentage", err.(request.ErrInvalidParams))
@@ -9512,6 +9638,12 @@ func (s *UpdateCustomLineItemChargeDetails) Validate() error {
 // SetFlat sets the Flat field's value.
 func (s *UpdateCustomLineItemChargeDetails) SetFlat(v *UpdateCustomLineItemFlatChargeDetails) *UpdateCustomLineItemChargeDetails {
 	s.Flat = v
+	return s
+}
+
+// SetLineItemFilters sets the LineItemFilters field's value.
+func (s *UpdateCustomLineItemChargeDetails) SetLineItemFilters(v []*LineItemFilter) *UpdateCustomLineItemChargeDetails {
+	s.LineItemFilters = v
 	return s
 }
 
@@ -10571,6 +10703,42 @@ func CustomLineItemType_Values() []string {
 	return []string{
 		CustomLineItemTypeCredit,
 		CustomLineItemTypeFee,
+	}
+}
+
+const (
+	// LineItemFilterAttributeNameLineItemType is a LineItemFilterAttributeName enum value
+	LineItemFilterAttributeNameLineItemType = "LINE_ITEM_TYPE"
+)
+
+// LineItemFilterAttributeName_Values returns all elements of the LineItemFilterAttributeName enum
+func LineItemFilterAttributeName_Values() []string {
+	return []string{
+		LineItemFilterAttributeNameLineItemType,
+	}
+}
+
+const (
+	// LineItemFilterValueSavingsPlanNegation is a LineItemFilterValue enum value
+	LineItemFilterValueSavingsPlanNegation = "SAVINGS_PLAN_NEGATION"
+)
+
+// LineItemFilterValue_Values returns all elements of the LineItemFilterValue enum
+func LineItemFilterValue_Values() []string {
+	return []string{
+		LineItemFilterValueSavingsPlanNegation,
+	}
+}
+
+const (
+	// MatchOptionNotEqual is a MatchOption enum value
+	MatchOptionNotEqual = "NOT_EQUAL"
+)
+
+// MatchOption_Values returns all elements of the MatchOption enum
+func MatchOption_Values() []string {
+	return []string{
+		MatchOptionNotEqual,
 	}
 }
 

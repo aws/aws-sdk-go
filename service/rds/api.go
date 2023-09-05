@@ -13966,6 +13966,10 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 //     The DB subnet group doesn't cover all Availability Zones after it's created
 //     because of users' change.
 //
+//   - ErrCodeDBSubnetGroupDoesNotCoverEnoughAZs "DBSubnetGroupDoesNotCoverEnoughAZs"
+//     Subnets in the DB subnet group should cover at least two Availability Zones
+//     unless there is only one Availability Zone.
+//
 //   - ErrCodeInvalidRestoreFault "InvalidRestoreFault"
 //     Cannot restore from VPC backup to non-VPC DB instance.
 //
@@ -25152,6 +25156,10 @@ type DBCluster struct {
 	// be created.
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services
+	// Backup.
+	AwsBackupRecoveryPointArn *string `type:"string"`
+
 	// The number of change records stored for Backtrack.
 	BacktrackConsumedChangeRecords *int64 `type:"long"`
 
@@ -25545,6 +25553,12 @@ func (s *DBCluster) SetAutomaticRestartTime(v time.Time) *DBCluster {
 // SetAvailabilityZones sets the AvailabilityZones field's value.
 func (s *DBCluster) SetAvailabilityZones(v []*string) *DBCluster {
 	s.AvailabilityZones = v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *DBCluster) SetAwsBackupRecoveryPointArn(v string) *DBCluster {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 
@@ -25949,6 +25963,10 @@ type DBClusterAutomatedBackup struct {
 	// Regions and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html).
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services
+	// Backup.
+	AwsBackupRecoveryPointArn *string `type:"string"`
+
 	// The retention period for the automated backups.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
@@ -26056,6 +26074,12 @@ func (s *DBClusterAutomatedBackup) SetAllocatedStorage(v int64) *DBClusterAutoma
 // SetAvailabilityZones sets the AvailabilityZones field's value.
 func (s *DBClusterAutomatedBackup) SetAvailabilityZones(v []*string) *DBClusterAutomatedBackup {
 	s.AvailabilityZones = v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *DBClusterAutomatedBackup) SetAwsBackupRecoveryPointArn(v string) *DBClusterAutomatedBackup {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 
@@ -28270,6 +28294,10 @@ type DBInstanceAutomatedBackup struct {
 	// Zones (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
 	AvailabilityZone *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services
+	// Backup.
+	AwsBackupRecoveryPointArn *string `type:"string"`
+
 	// The retention period for the automated backups.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
@@ -28399,6 +28427,12 @@ func (s *DBInstanceAutomatedBackup) SetAllocatedStorage(v int64) *DBInstanceAuto
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *DBInstanceAutomatedBackup) SetAvailabilityZone(v string) *DBInstanceAutomatedBackup {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *DBInstanceAutomatedBackup) SetAwsBackupRecoveryPointArn(v string) *DBInstanceAutomatedBackup {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 
@@ -41332,6 +41366,10 @@ type ModifyDBClusterInput struct {
 	// Valid for Cluster Type: Multi-AZ DB clusters only
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services
+	// Backup.
+	AwsBackupRecoveryPointArn *string `min:"43" type:"string"`
+
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
@@ -41859,6 +41897,9 @@ func (s ModifyDBClusterInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModifyDBClusterInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModifyDBClusterInput"}
+	if s.AwsBackupRecoveryPointArn != nil && len(*s.AwsBackupRecoveryPointArn) < 43 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsBackupRecoveryPointArn", 43))
+	}
 	if s.DBClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
 	}
@@ -41896,6 +41937,12 @@ func (s *ModifyDBClusterInput) SetApplyImmediately(v bool) *ModifyDBClusterInput
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
 func (s *ModifyDBClusterInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBClusterInput {
 	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *ModifyDBClusterInput) SetAwsBackupRecoveryPointArn(v string) *ModifyDBClusterInput {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 

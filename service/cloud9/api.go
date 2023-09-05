@@ -1619,6 +1619,8 @@ type CreateEnvironmentEC2Input struct {
 	//
 	//    * Ubuntu 18.04: ubuntu-18.04-x86_64
 	//
+	//    * Ubuntu 22.04: ubuntu-22.04-x86_64
+	//
 	// SSM paths
 	//
 	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
@@ -1626,6 +1628,8 @@ type CreateEnvironmentEC2Input struct {
 	//    * Amazon Linux 2: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
+	//
+	//    * Ubuntu 22.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64
 	ImageId *string `locationName:"imageId" type:"string"`
 
 	// The type of instance to connect to the environment (for example, t2.micro).
