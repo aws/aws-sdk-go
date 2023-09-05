@@ -1049,7 +1049,8 @@
       "members":{
         "Flat":{"shape":"CustomLineItemFlatChargeDetails"},
         "Percentage":{"shape":"CustomLineItemPercentageChargeDetails"},
-        "Type":{"shape":"CustomLineItemType"}
+        "Type":{"shape":"CustomLineItemType"},
+        "LineItemFilters":{"shape":"LineItemFiltersList"}
       }
     },
     "CustomLineItemChargeValue":{
@@ -1279,6 +1280,39 @@
       "exception":true,
       "fault":true
     },
+    "LineItemFilter":{
+      "type":"structure",
+      "required":[
+        "Attribute",
+        "MatchOption",
+        "Values"
+      ],
+      "members":{
+        "Attribute":{"shape":"LineItemFilterAttributeName"},
+        "MatchOption":{"shape":"MatchOption"},
+        "Values":{"shape":"LineItemFilterValuesList"}
+      }
+    },
+    "LineItemFilterAttributeName":{
+      "type":"string",
+      "enum":["LINE_ITEM_TYPE"]
+    },
+    "LineItemFilterValue":{
+      "type":"string",
+      "enum":["SAVINGS_PLAN_NEGATION"]
+    },
+    "LineItemFilterValuesList":{
+      "type":"list",
+      "member":{"shape":"LineItemFilterValue"},
+      "max":1,
+      "min":1
+    },
+    "LineItemFiltersList":{
+      "type":"list",
+      "member":{"shape":"LineItemFilter"},
+      "max":1,
+      "min":0
+    },
     "ListAccountAssociationsFilter":{
       "type":"structure",
       "members":{
@@ -1361,7 +1395,8 @@
       "members":{
         "Flat":{"shape":"ListCustomLineItemFlatChargeDetails"},
         "Percentage":{"shape":"ListCustomLineItemPercentageChargeDetails"},
-        "Type":{"shape":"CustomLineItemType"}
+        "Type":{"shape":"CustomLineItemType"},
+        "LineItemFilters":{"shape":"LineItemFiltersList"}
       }
     },
     "ListCustomLineItemFlatChargeDetails":{
@@ -1572,6 +1607,10 @@
     },
     "Margin":{"type":"string"},
     "MarginPercentage":{"type":"string"},
+    "MatchOption":{
+      "type":"string",
+      "enum":["NOT_EQUAL"]
+    },
     "MaxBillingGroupResults":{
       "type":"integer",
       "box":true,
@@ -1920,7 +1959,8 @@
       "type":"structure",
       "members":{
         "Flat":{"shape":"UpdateCustomLineItemFlatChargeDetails"},
-        "Percentage":{"shape":"UpdateCustomLineItemPercentageChargeDetails"}
+        "Percentage":{"shape":"UpdateCustomLineItemPercentageChargeDetails"},
+        "LineItemFilters":{"shape":"LineItemFiltersList"}
       }
     },
     "UpdateCustomLineItemFlatChargeDetails":{

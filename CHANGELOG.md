@@ -1,3 +1,22 @@
+Release v1.45.3 (2023-09-05)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/cloud9`: Updates service documentation
+  * Added support for Ubuntu 22.04 that was not picked up in a previous Trebuchet request. Doc-only update.
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Introducing Amazon EC2 C7gd, M7gd, and R7gd Instances with up to 3.8 TB of local NVMe-based SSD block-level storage. These instances are powered by AWS Graviton3 processors, delivering up to 25% better performance over Graviton2-based instances.
+* `service/ecs`: Updates service documentation
+  * Documentation only update for Amazon ECS.
+* `service/eventbridge`: Adds new service
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Add support for feature integration with AWS Backup.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Neo now supports data input shape derivation for Pytorch 2.0  and XGBoost compilation job for cloud instance targets. You can skip DataInputConfig field during compilation job creation. You can also access derived information from model in DescribeCompilationJob response.
+* `service/vpc-lattice`: Updates service API and documentation
+
 Release v1.45.2 (2023-09-01)
 ===
 

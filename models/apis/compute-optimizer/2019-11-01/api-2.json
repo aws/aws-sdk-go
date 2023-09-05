@@ -507,7 +507,8 @@
         "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"},
         "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"},
         "effectiveRecommendationPreferences":{"shape":"EffectiveRecommendationPreferences"},
-        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypes"}
+        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypes"},
+        "currentInstanceGpuInfo":{"shape":"GpuInfo"}
       }
     },
     "AutoScalingGroupRecommendationOption":{
@@ -518,7 +519,8 @@
         "performanceRisk":{"shape":"PerformanceRisk"},
         "rank":{"shape":"Rank"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
-        "migrationEffort":{"shape":"MigrationEffort"}
+        "migrationEffort":{"shape":"MigrationEffort"},
+        "instanceGpuInfo":{"shape":"GpuInfo"}
       }
     },
     "AutoScalingGroupRecommendationOptions":{
@@ -1036,7 +1038,13 @@
         "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics",
         "EffectiveRecommendationPreferencesInferredWorkloadTypes",
         "InferredWorkloadTypes",
-        "RecommendationOptionsMigrationEffort"
+        "RecommendationOptionsMigrationEffort",
+        "CurrentInstanceGpuInfo",
+        "RecommendationOptionsInstanceGpuInfo",
+        "UtilizationMetricsGpuPercentageMaximum",
+        "UtilizationMetricsGpuMemoryPercentageMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum"
       ]
     },
     "ExportableAutoScalingGroupFields":{
@@ -1135,7 +1143,14 @@
         "InstanceState",
         "Tags",
         "ExternalMetricStatusCode",
-        "ExternalMetricStatusReason"
+        "ExternalMetricStatusReason",
+        "CurrentInstanceGpuInfo",
+        "RecommendationOptionsInstanceGpuInfo",
+        "UtilizationMetricsGpuPercentageMaximum",
+        "UtilizationMetricsGpuMemoryPercentageMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum",
+        "Idle"
       ]
     },
     "ExportableInstanceFields":{
@@ -1240,7 +1255,8 @@
         "RecommendationOptionsEstimatedMonthlySavingsCurrency",
         "RecommendationOptionsEstimatedMonthlySavingsValue",
         "RootVolume",
-        "Tags"
+        "Tags",
+        "CurrentConfigurationRootVolume"
       ]
     },
     "ExportableVolumeFields":{
@@ -1581,6 +1597,25 @@
         "recommendationSummaries":{"shape":"RecommendationSummaries"}
       }
     },
+    "Gpu":{
+      "type":"structure",
+      "members":{
+        "gpuCount":{"shape":"GpuCount"},
+        "gpuMemorySizeInMiB":{"shape":"GpuMemorySizeInMiB"}
+      }
+    },
+    "GpuCount":{"type":"integer"},
+    "GpuInfo":{
+      "type":"structure",
+      "members":{
+        "gpus":{"shape":"Gpus"}
+      }
+    },
+    "GpuMemorySizeInMiB":{"type":"integer"},
+    "Gpus":{
+      "type":"list",
+      "member":{"shape":"Gpu"}
+    },
     "High":{"type":"long"},
     "Identifier":{"type":"string"},
     "IncludeMemberAccounts":{"type":"boolean"},
@@ -1625,6 +1660,13 @@
       "type":"list",
       "member":{"shape":"InstanceArn"}
     },
+    "InstanceIdle":{
+      "type":"string",
+      "enum":[
+        "True",
+        "False"
+      ]
+    },
     "InstanceName":{"type":"string"},
     "InstanceRecommendation":{
       "type":"structure",
@@ -1645,7 +1687,9 @@
         "inferredWorkloadTypes":{"shape":"InferredWorkloadTypes"},
         "instanceState":{"shape":"InstanceState"},
         "tags":{"shape":"Tags"},
-        "externalMetricStatus":{"shape":"ExternalMetricStatus"}
+        "externalMetricStatus":{"shape":"ExternalMetricStatus"},
+        "currentInstanceGpuInfo":{"shape":"GpuInfo"},
+        "idle":{"shape":"InstanceIdle"}
       }
     },
     "InstanceRecommendationFindingReasonCode":{
@@ -1666,7 +1710,11 @@
         "DiskIOPSOverprovisioned",
         "DiskIOPSUnderprovisioned",
         "DiskThroughputOverprovisioned",
-        "DiskThroughputUnderprovisioned"
+        "DiskThroughputUnderprovisioned",
+        "GPUUnderprovisioned",
+        "GPUOverprovisioned",
+        "GPUMemoryUnderprovisioned",
+        "GPUMemoryOverprovisioned"
       ]
     },
     "InstanceRecommendationFindingReasonCodes":{
@@ -1682,7 +1730,8 @@
         "performanceRisk":{"shape":"PerformanceRisk"},
         "rank":{"shape":"Rank"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
-        "migrationEffort":{"shape":"MigrationEffort"}
+        "migrationEffort":{"shape":"MigrationEffort"},
+        "instanceGpuInfo":{"shape":"GpuInfo"}
       }
     },
     "InstanceRecommendations":{
@@ -2027,7 +2076,9 @@
         "NETWORK_IN_BYTES_PER_SECOND",
         "NETWORK_OUT_BYTES_PER_SECOND",
         "NETWORK_PACKETS_IN_PER_SECOND",
-        "NETWORK_PACKETS_OUT_PER_SECOND"
+        "NETWORK_PACKETS_OUT_PER_SECOND",
+        "GPU_PERCENTAGE",
+        "GPU_MEMORY_PERCENTAGE"
       ]
     },
     "MetricProviderArn":{"type":"string"},

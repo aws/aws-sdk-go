@@ -3884,6 +3884,8 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeInvalidDBClusterSnapshotStateFault, aerr.Error())
 			case rds.ErrCodeInvalidVPCNetworkStateFault:
 				fmt.Println(rds.ErrCodeInvalidVPCNetworkStateFault, aerr.Error())
+			case rds.ErrCodeDBSubnetGroupDoesNotCoverEnoughAZs:
+				fmt.Println(rds.ErrCodeDBSubnetGroupDoesNotCoverEnoughAZs, aerr.Error())
 			case rds.ErrCodeInvalidRestoreFault:
 				fmt.Println(rds.ErrCodeInvalidRestoreFault, aerr.Error())
 			case rds.ErrCodeInvalidSubnet:

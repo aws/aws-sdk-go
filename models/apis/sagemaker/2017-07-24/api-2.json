@@ -7742,6 +7742,12 @@
         "DeviceNames":{"shape":"DeviceNames"}
       }
     },
+    "DerivedInformation":{
+      "type":"structure",
+      "members":{
+        "DerivedDataInputConfig":{"shape":"DataInputConfig"}
+      }
+    },
     "DescribeActionRequest":{
       "type":"structure",
       "required":["ActionName"],
@@ -8021,7 +8027,8 @@
         "RoleArn":{"shape":"RoleArn"},
         "InputConfig":{"shape":"InputConfig"},
         "OutputConfig":{"shape":"OutputConfig"},
-        "VpcConfig":{"shape":"NeoVpcConfig"}
+        "VpcConfig":{"shape":"NeoVpcConfig"},
+        "DerivedInformation":{"shape":"DerivedInformation"}
       }
     },
     "DescribeContextRequest":{
@@ -12255,7 +12262,6 @@
       "type":"structure",
       "required":[
         "S3Uri",
-        "DataInputConfig",
         "Framework"
       ],
       "members":{

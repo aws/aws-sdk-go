@@ -696,6 +696,9 @@ func (c *VPCLattice) CreateServiceNetworkServiceAssociationRequest(input *Create
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
+//
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
@@ -789,11 +792,10 @@ func (c *VPCLattice) CreateServiceNetworkVpcAssociationRequest(input *CreateServ
 // As a result of this operation, the association gets created in the service
 // network account and the VPC owner account.
 //
-// If you add a security group to the service network and VPC association, the
-// association must continue to always have at least one security group. You
-// can add or edit security groups at any time. However, to remove all security
-// groups, you must first delete the association and recreate it without security
-// groups.
+// Once a security group is added to the VPC association it cannot be removed.
+// You can add or update the security groups being used for the VPC association
+// once a security group is attached. To remove all security groups you must
+// reassociate the VPC.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1090,11 +1092,11 @@ func (c *VPCLattice) DeleteAuthPolicyRequest(input *DeleteAuthPolicyInput) (req 
 
 // DeleteAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Deletes the specified auth policy. If an auth is set to AWS_IAM and the auth
-// policy is deleted, all requests will be denied by default. If you are trying
-// to remove the auth policy completely, you must set the auth_type to NONE.
-// If auth is enabled on the resource, but no auth policy is set, all requests
-// will be denied.
+// Deletes the specified auth policy. If an auth is set to Amazon Web Services_IAM
+// and the auth policy is deleted, all requests will be denied by default. If
+// you are trying to remove the auth policy completely, you must set the auth_type
+// to NONE. If auth is enabled on the resource, but no auth policy is set, all
+// requests will be denied.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2344,7 +2346,8 @@ func (c *VPCLattice) GetResourcePolicyRequest(input *GetResourcePolicyInput) (re
 // GetResourcePolicy API operation for Amazon VPC Lattice.
 //
 // Retrieves information about the resource policy. The resource policy is an
-// IAM policy created on behalf of the resource owner when they share a resource.
+// IAM policy created by AWS RAM on behalf of the resource owner when they share
+// a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2916,6 +2919,9 @@ func (c *VPCLattice) GetTargetGroupRequest(input *GetTargetGroupInput) (req *req
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
+//
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
@@ -3010,6 +3016,9 @@ func (c *VPCLattice) ListAccessLogSubscriptionsRequest(input *ListAccessLogSubsc
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
+//
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
@@ -4044,6 +4053,9 @@ func (c *VPCLattice) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
+//
 //   - ResourceNotFoundException
 //     The request references a resource that does not exist.
 //
@@ -4413,8 +4425,7 @@ func (c *VPCLattice) PutAuthPolicyRequest(input *PutAuthPolicyInput) (req *reque
 
 // PutAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Creates or updates the auth policy. The policy string in JSON must not contain
-// newlines or blank lines.
+// Creates or updates the auth policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4810,6 +4821,9 @@ func (c *VPCLattice) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
+//
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request references a resource that does not exist.
@@ -5363,11 +5377,8 @@ func (c *VPCLattice) UpdateServiceNetworkVpcAssociationRequest(input *UpdateServ
 
 // UpdateServiceNetworkVpcAssociation API operation for Amazon VPC Lattice.
 //
-// Updates the service network and VPC association. If you add a security group
-// to the service network and VPC association, the association must continue
-// to always have at least one security group. You can add or edit security
-// groups at any time. However, to remove all security groups, you must first
-// delete the association and recreate it without security groups.
+// Updates the service network and VPC association. Once you add a security
+// group, it cannot be removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5477,6 +5488,9 @@ func (c *VPCLattice) UpdateTargetGroupRequest(input *UpdateTargetGroupInput) (re
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
+//
+//   - AccessDeniedException
+//     The user does not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
@@ -8789,10 +8803,10 @@ type GetAuthPolicyOutput struct {
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to AWS_IAM. If you provide a policy, then authentication and
-	// authorization decisions are made based on this policy and the client's IAM
-	// policy. If the auth type is NONE, then any auth policy you provide will remain
-	// inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
+	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
+	// and authorization decisions are made based on this policy and the client's
+	// IAM policy. If the auth type is NONE, then any auth policy you provide will
+	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
 }
@@ -9021,7 +9035,7 @@ func (s *GetListenerOutput) SetServiceId(v string) *GetListenerOutput {
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the service network or service.
+	// An IAM policy.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -9070,7 +9084,7 @@ func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInpu
 type GetResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An IAM policy.
+	// The Amazon Resource Name (ARN) of the service network or service.
 	Policy *string `locationName:"policy" min:"1" type:"string"`
 }
 
@@ -11980,8 +11994,7 @@ func (s *PathMatchType) SetPrefix(v string) *PathMatchType {
 type PutAuthPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy. The policy string in JSON must not contain newlines or blank
-	// lines.
+	// The auth policy.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
@@ -12045,14 +12058,13 @@ func (s *PutAuthPolicyInput) SetResourceIdentifier(v string) *PutAuthPolicyInput
 type PutAuthPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy. The policy string in JSON must not contain newlines or blank
-	// lines.
+	// The auth policy.
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to AWS_IAM. If you provide a policy, then authentication and
-	// authorization decisions are made based on this policy and the client's IAM
-	// policy. If the Auth type is NONE, then, any auth policy you provide will
+	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
+	// and authorization decisions are made based on this policy and the client's
+	// IAM policy. If the Auth type is NONE, then, any auth policy you provide will
 	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
@@ -12091,8 +12103,7 @@ func (s *PutAuthPolicyOutput) SetState(v string) *PutAuthPolicyOutput {
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// An IAM policy. The policy string in JSON must not contain newlines or blank
-	// lines.
+	// An IAM policy.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
@@ -13545,25 +13556,22 @@ type TargetGroupConfig struct {
 	// type defaults to ipv4.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
 
+	// Lambda event structure version
+	LambdaEventStructureVersion *string `locationName:"lambdaEventStructureVersion" type:"string" enum:"LambdaEventStructureVersion"`
+
 	// The port on which the targets are listening. For HTTP, the default is 80.
 	// For HTTPS, the default is 443
-	//
-	// Port is a required field
-	Port *int64 `locationName:"port" min:"1" type:"integer" required:"true"`
+	Port *int64 `locationName:"port" min:"1" type:"integer"`
 
 	// The protocol to use for routing traffic to the targets. Default is the protocol
 	// of a target group.
-	//
-	// Protocol is a required field
-	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"TargetGroupProtocol"`
+	Protocol *string `locationName:"protocol" type:"string" enum:"TargetGroupProtocol"`
 
 	// The protocol version. Default value is HTTP1.
 	ProtocolVersion *string `locationName:"protocolVersion" type:"string" enum:"TargetGroupProtocolVersion"`
 
 	// The ID of the VPC.
-	//
-	// VpcIdentifier is a required field
-	VpcIdentifier *string `locationName:"vpcIdentifier" min:"5" type:"string" required:"true"`
+	VpcIdentifier *string `locationName:"vpcIdentifier" min:"5" type:"string"`
 }
 
 // String returns the string representation.
@@ -13587,17 +13595,8 @@ func (s TargetGroupConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TargetGroupConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TargetGroupConfig"}
-	if s.Port == nil {
-		invalidParams.Add(request.NewErrParamRequired("Port"))
-	}
 	if s.Port != nil && *s.Port < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
-	}
-	if s.Protocol == nil {
-		invalidParams.Add(request.NewErrParamRequired("Protocol"))
-	}
-	if s.VpcIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("VpcIdentifier"))
 	}
 	if s.VpcIdentifier != nil && len(*s.VpcIdentifier) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("VpcIdentifier", 5))
@@ -13618,6 +13617,12 @@ func (s *TargetGroupConfig) SetHealthCheck(v *HealthCheckConfig) *TargetGroupCon
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *TargetGroupConfig) SetIpAddressType(v string) *TargetGroupConfig {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetLambdaEventStructureVersion sets the LambdaEventStructureVersion field's value.
+func (s *TargetGroupConfig) SetLambdaEventStructureVersion(v string) *TargetGroupConfig {
+	s.LambdaEventStructureVersion = &v
 	return s
 }
 
@@ -13663,6 +13668,9 @@ type TargetGroupSummary struct {
 	// ipv4 and ipv6. This is an optional parameter. If not specified, the IP address
 	// type defaults to ipv4.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
+
+	// Lambda event structure version
+	LambdaEventStructureVersion *string `locationName:"lambdaEventStructureVersion" type:"string" enum:"LambdaEventStructureVersion"`
 
 	// The date and time that the target group was last updated, specified in ISO-8601
 	// format.
@@ -13729,6 +13737,12 @@ func (s *TargetGroupSummary) SetId(v string) *TargetGroupSummary {
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *TargetGroupSummary) SetIpAddressType(v string) *TargetGroupSummary {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetLambdaEventStructureVersion sets the LambdaEventStructureVersion field's value.
+func (s *TargetGroupSummary) SetLambdaEventStructureVersion(v string) *TargetGroupSummary {
+	s.LambdaEventStructureVersion = &v
 	return s
 }
 
@@ -14745,7 +14759,8 @@ func (s *UpdateServiceNetworkOutput) SetName(v string) *UpdateServiceNetworkOutp
 type UpdateServiceNetworkVpcAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the security groups.
+	// The IDs of the security groups. Once you add a security group, it cannot
+	// be removed.
 	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
@@ -15336,6 +15351,22 @@ func IpAddressType_Values() []string {
 	return []string{
 		IpAddressTypeIpv4,
 		IpAddressTypeIpv6,
+	}
+}
+
+const (
+	// LambdaEventStructureVersionV1 is a LambdaEventStructureVersion enum value
+	LambdaEventStructureVersionV1 = "V1"
+
+	// LambdaEventStructureVersionV2 is a LambdaEventStructureVersion enum value
+	LambdaEventStructureVersionV2 = "V2"
+)
+
+// LambdaEventStructureVersion_Values returns all elements of the LambdaEventStructureVersion enum
+func LambdaEventStructureVersion_Values() []string {
+	return []string{
+		LambdaEventStructureVersionV1,
+		LambdaEventStructureVersionV2,
 	}
 }
 

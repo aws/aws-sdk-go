@@ -2959,6 +2959,10 @@ type AutoScalingGroupRecommendation struct {
 	// group.
 	CurrentConfiguration *AutoScalingGroupConfiguration `locationName:"currentConfiguration" type:"structure"`
 
+	// Describes the GPU accelerator settings for the current instance type of the
+	// Auto Scaling group.
+	CurrentInstanceGpuInfo *GpuInfo `locationName:"currentInstanceGpuInfo" type:"structure"`
+
 	// The risk of the current Auto Scaling group not meeting the performance needs
 	// of its workloads. The higher the risk, the more likely the current Auto Scaling
 	// group configuration has insufficient capacity and cannot meet workload requirements.
@@ -3066,6 +3070,12 @@ func (s *AutoScalingGroupRecommendation) SetCurrentConfiguration(v *AutoScalingG
 	return s
 }
 
+// SetCurrentInstanceGpuInfo sets the CurrentInstanceGpuInfo field's value.
+func (s *AutoScalingGroupRecommendation) SetCurrentInstanceGpuInfo(v *GpuInfo) *AutoScalingGroupRecommendation {
+	s.CurrentInstanceGpuInfo = v
+	return s
+}
+
 // SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
 func (s *AutoScalingGroupRecommendation) SetCurrentPerformanceRisk(v string) *AutoScalingGroupRecommendation {
 	s.CurrentPerformanceRisk = &v
@@ -3120,6 +3130,10 @@ type AutoScalingGroupRecommendationOption struct {
 
 	// An array of objects that describe an Auto Scaling group configuration.
 	Configuration *AutoScalingGroupConfiguration `locationName:"configuration" type:"structure"`
+
+	// Describes the GPU accelerator settings for the recommended instance type
+	// of the Auto Scaling group.
+	InstanceGpuInfo *GpuInfo `locationName:"instanceGpuInfo" type:"structure"`
 
 	// The level of effort required to migrate from the current instance type to
 	// the recommended instance type.
@@ -3190,6 +3204,12 @@ func (s AutoScalingGroupRecommendationOption) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *AutoScalingGroupRecommendationOption) SetConfiguration(v *AutoScalingGroupConfiguration) *AutoScalingGroupRecommendationOption {
 	s.Configuration = v
+	return s
+}
+
+// SetInstanceGpuInfo sets the InstanceGpuInfo field's value.
+func (s *AutoScalingGroupRecommendationOption) SetInstanceGpuInfo(v *GpuInfo) *AutoScalingGroupRecommendationOption {
+	s.InstanceGpuInfo = v
 	return s
 }
 
@@ -7565,6 +7585,80 @@ func (s *GetRecommendationSummariesOutput) SetRecommendationSummaries(v []*Recom
 	return s
 }
 
+// Describes the GPU accelerators for the instance type.
+type Gpu struct {
+	_ struct{} `type:"structure"`
+
+	// The number of GPUs for the instance type.
+	GpuCount *int64 `locationName:"gpuCount" type:"integer"`
+
+	// The total size of the memory for the GPU accelerators for the instance type,
+	// in MiB.
+	GpuMemorySizeInMiB *int64 `locationName:"gpuMemorySizeInMiB" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Gpu) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Gpu) GoString() string {
+	return s.String()
+}
+
+// SetGpuCount sets the GpuCount field's value.
+func (s *Gpu) SetGpuCount(v int64) *Gpu {
+	s.GpuCount = &v
+	return s
+}
+
+// SetGpuMemorySizeInMiB sets the GpuMemorySizeInMiB field's value.
+func (s *Gpu) SetGpuMemorySizeInMiB(v int64) *Gpu {
+	s.GpuMemorySizeInMiB = &v
+	return s
+}
+
+// Describes the GPU accelerator settings for the instance type.
+type GpuInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the GPU accelerators for the instance type.
+	Gpus []*Gpu `locationName:"gpus" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GpuInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GpuInfo) GoString() string {
+	return s.String()
+}
+
+// SetGpus sets the Gpus field's value.
+func (s *GpuInfo) SetGpus(v []*Gpu) *GpuInfo {
+	s.Gpus = v
+	return s
+}
+
 // The estimated monthly savings after you adjust the configurations of your
 // instances running on the inferred workload types to the recommended configurations.
 // If the inferredWorkloadTypes list contains multiple entries, then the savings
@@ -7641,6 +7735,9 @@ type InstanceRecommendation struct {
 
 	// The Amazon Web Services account ID of the instance.
 	AccountId *string `locationName:"accountId" type:"string"`
+
+	// Describes the GPU accelerator settings for the current instance type.
+	CurrentInstanceGpuInfo *GpuInfo `locationName:"currentInstanceGpuInfo" type:"structure"`
 
 	// The instance type of the current instance.
 	CurrentInstanceType *string `locationName:"currentInstanceType" type:"string"`
@@ -7793,6 +7890,9 @@ type InstanceRecommendation struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list" enum:"InstanceRecommendationFindingReasonCode"`
 
+	// Describes if an Amazon EC2 instance is idle.
+	Idle *string `locationName:"idle" type:"string" enum:"InstanceIdle"`
+
 	// The applications that might be running on the instance as inferred by Compute
 	// Optimizer.
 	//
@@ -7871,6 +7971,12 @@ func (s *InstanceRecommendation) SetAccountId(v string) *InstanceRecommendation 
 	return s
 }
 
+// SetCurrentInstanceGpuInfo sets the CurrentInstanceGpuInfo field's value.
+func (s *InstanceRecommendation) SetCurrentInstanceGpuInfo(v *GpuInfo) *InstanceRecommendation {
+	s.CurrentInstanceGpuInfo = v
+	return s
+}
+
 // SetCurrentInstanceType sets the CurrentInstanceType field's value.
 func (s *InstanceRecommendation) SetCurrentInstanceType(v string) *InstanceRecommendation {
 	s.CurrentInstanceType = &v
@@ -7904,6 +8010,12 @@ func (s *InstanceRecommendation) SetFinding(v string) *InstanceRecommendation {
 // SetFindingReasonCodes sets the FindingReasonCodes field's value.
 func (s *InstanceRecommendation) SetFindingReasonCodes(v []*string) *InstanceRecommendation {
 	s.FindingReasonCodes = v
+	return s
+}
+
+// SetIdle sets the Idle field's value.
+func (s *InstanceRecommendation) SetIdle(v string) *InstanceRecommendation {
+	s.Idle = &v
 	return s
 }
 
@@ -7970,6 +8082,9 @@ func (s *InstanceRecommendation) SetUtilizationMetrics(v []*UtilizationMetric) *
 // Describes a recommendation option for an Amazon EC2 instance.
 type InstanceRecommendationOption struct {
 	_ struct{} `type:"structure"`
+
+	// Describes the GPU accelerator settings for the recommended instance type.
+	InstanceGpuInfo *GpuInfo `locationName:"instanceGpuInfo" type:"structure"`
 
 	// The instance type of the instance recommendation.
 	InstanceType *string `locationName:"instanceType" type:"string"`
@@ -8115,6 +8230,12 @@ func (s InstanceRecommendationOption) String() string {
 // value will be replaced with "sensitive".
 func (s InstanceRecommendationOption) GoString() string {
 	return s.String()
+}
+
+// SetInstanceGpuInfo sets the InstanceGpuInfo field's value.
+func (s *InstanceRecommendationOption) SetInstanceGpuInfo(v *GpuInfo) *InstanceRecommendationOption {
+	s.InstanceGpuInfo = v
+	return s
 }
 
 // SetInstanceType sets the InstanceType field's value.
@@ -9472,11 +9593,12 @@ func (s *OptInRequiredException) RequestID() string {
 // utilization metric data to determine the performance difference between your
 // current resource and the recommended option.
 //
-// The Cpu and Memory metrics are the only projected utilization metrics returned
-// when you run the GetEC2RecommendationProjectedMetrics action. Additionally,
-// the Memory metric is returned only for resources that have the unified CloudWatch
-// agent installed on them. For more information, see Enabling Memory Utilization
-// with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
+// The Cpu, Memory, GPU, and GPU_MEMORY metrics are the only projected utilization
+// metrics returned when you run the GetEC2RecommendationProjectedMetrics action.
+// Additionally, these metrics are only returned for resources with the unified
+// CloudWatch agent installed on them. For more information, see Enabling Memory
+// Utilization with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent)
+// and Enabling NVIDIA GPU utilization with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#nvidia-cw-agent).
 type ProjectedMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -9489,16 +9611,24 @@ type ProjectedMetric struct {
 	//    the analyzed period. This metric identifies the processing power required
 	//    to run an application on the recommendation option. Depending on the instance
 	//    type, tools in your operating system can show a lower percentage than
-	//    CloudWatch when the instance is not allocated a full processor core. Units:
-	//    Percent
+	//    CloudWatch when the instance is not allocated a full processor core.
 	//
 	//    * Memory - The percentage of memory that would be in use on the recommendation
 	//    option had you used that resource during the analyzed period. This metric
 	//    identifies the amount of memory required to run an application on the
-	//    recommendation option. Units: Percent The Memory metric is returned only
-	//    for resources that have the unified CloudWatch agent installed on them.
-	//    For more information, see Enabling Memory Utilization with the CloudWatch
+	//    recommendation option. Units: Percent The Memory metric is only returned
+	//    for resources with the unified CloudWatch agent installed on them. For
+	//    more information, see Enabling Memory Utilization with the CloudWatch
 	//    Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
+	//
+	//    * GPU - The projected percentage of allocated GPUs if you adjust your
+	//    configurations to Compute Optimizer's recommendation option.
+	//
+	//    * GPU_MEMORY - The projected percentage of total GPU memory if you adjust
+	//    your configurations to Compute Optimizer's recommendation option. The
+	//    GPU and GPU_MEMORY metrics are only returned for resources with the unified
+	//    CloudWatch Agent installed on them. For more information, see Enabling
+	//    NVIDIA GPU utilization with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#nvidia-cw-agent).
 	Name *string `locationName:"name" type:"string" enum:"MetricName"`
 
 	// The timestamps of the projected utilization metric.
@@ -10026,7 +10156,7 @@ type RecommendationSummary struct {
 
 	// An array of objects that describes the estimated monthly saving amounts for
 	// the instances running on the specified inferredWorkloadTypes. The array contains
-	// the top three savings opportunites for the instances running inferred workload
+	// the top five savings opportunites for the instances that run inferred workload
 	// types.
 	InferredWorkloadSavings []*InferredWorkloadSaving `locationName:"inferredWorkloadSavings" type:"list"`
 
@@ -10914,6 +11044,14 @@ type UtilizationMetric struct {
 	//    more information, see Enabling Memory Utilization with the CloudWatch
 	//    Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 	//
+	//    * GPU - The percentage of allocated GPUs that currently run on the instance.
+	//
+	//    * GPU_MEMORY - The percentage of total GPU memory that currently runs
+	//    on the instance. The GPU and GPU_MEMORY metrics are only returned for
+	//    resources with the unified CloudWatch Agent installed on them. For more
+	//    information, see Enabling NVIDIA GPU utilization with the CloudWatch Agent
+	//    (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#nvidia-cw-agent).
+	//
 	//    * EBS_READ_OPS_PER_SECOND - The completed read operations from all EBS
 	//    volumes attached to the instance in a specified period of time. Unit:
 	//    Count
@@ -11736,6 +11874,24 @@ const (
 
 	// ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort = "RecommendationOptionsMigrationEffort"
+
+	// ExportableAutoScalingGroupFieldCurrentInstanceGpuInfo is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentInstanceGpuInfo = "CurrentInstanceGpuInfo"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsInstanceGpuInfo is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsInstanceGpuInfo = "RecommendationOptionsInstanceGpuInfo"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsGpuPercentageMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsGpuPercentageMaximum = "UtilizationMetricsGpuPercentageMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsGpuMemoryPercentageMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsGpuMemoryPercentageMaximum = "UtilizationMetricsGpuMemoryPercentageMaximum"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum = "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum = "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum"
 )
 
 // ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
@@ -11795,6 +11951,12 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes,
 		ExportableAutoScalingGroupFieldInferredWorkloadTypes,
 		ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort,
+		ExportableAutoScalingGroupFieldCurrentInstanceGpuInfo,
+		ExportableAutoScalingGroupFieldRecommendationOptionsInstanceGpuInfo,
+		ExportableAutoScalingGroupFieldUtilizationMetricsGpuPercentageMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsGpuMemoryPercentageMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum,
 	}
 }
 
@@ -12073,6 +12235,27 @@ const (
 
 	// ExportableInstanceFieldExternalMetricStatusReason is a ExportableInstanceField enum value
 	ExportableInstanceFieldExternalMetricStatusReason = "ExternalMetricStatusReason"
+
+	// ExportableInstanceFieldCurrentInstanceGpuInfo is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentInstanceGpuInfo = "CurrentInstanceGpuInfo"
+
+	// ExportableInstanceFieldRecommendationOptionsInstanceGpuInfo is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsInstanceGpuInfo = "RecommendationOptionsInstanceGpuInfo"
+
+	// ExportableInstanceFieldUtilizationMetricsGpuPercentageMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsGpuPercentageMaximum = "UtilizationMetricsGpuPercentageMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsGpuMemoryPercentageMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsGpuMemoryPercentageMaximum = "UtilizationMetricsGpuMemoryPercentageMaximum"
+
+	// ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum = "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum"
+
+	// ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum = "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum"
+
+	// ExportableInstanceFieldIdle is a ExportableInstanceField enum value
+	ExportableInstanceFieldIdle = "Idle"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -12135,6 +12318,13 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldTags,
 		ExportableInstanceFieldExternalMetricStatusCode,
 		ExportableInstanceFieldExternalMetricStatusReason,
+		ExportableInstanceFieldCurrentInstanceGpuInfo,
+		ExportableInstanceFieldRecommendationOptionsInstanceGpuInfo,
+		ExportableInstanceFieldUtilizationMetricsGpuPercentageMaximum,
+		ExportableInstanceFieldUtilizationMetricsGpuMemoryPercentageMaximum,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum,
+		ExportableInstanceFieldIdle,
 	}
 }
 
@@ -12436,6 +12626,9 @@ const (
 
 	// ExportableVolumeFieldTags is a ExportableVolumeField enum value
 	ExportableVolumeFieldTags = "Tags"
+
+	// ExportableVolumeFieldCurrentConfigurationRootVolume is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationRootVolume = "CurrentConfigurationRootVolume"
 )
 
 // ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
@@ -12471,6 +12664,7 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableVolumeFieldRootVolume,
 		ExportableVolumeFieldTags,
+		ExportableVolumeFieldCurrentConfigurationRootVolume,
 	}
 }
 
@@ -12683,6 +12877,22 @@ func InferredWorkloadTypesPreference_Values() []string {
 }
 
 const (
+	// InstanceIdleTrue is a InstanceIdle enum value
+	InstanceIdleTrue = "True"
+
+	// InstanceIdleFalse is a InstanceIdle enum value
+	InstanceIdleFalse = "False"
+)
+
+// InstanceIdle_Values returns all elements of the InstanceIdle enum
+func InstanceIdle_Values() []string {
+	return []string{
+		InstanceIdleTrue,
+		InstanceIdleFalse,
+	}
+}
+
+const (
 	// InstanceRecommendationFindingReasonCodeCpuoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
 	InstanceRecommendationFindingReasonCodeCpuoverprovisioned = "CPUOverprovisioned"
 
@@ -12730,6 +12940,18 @@ const (
 
 	// InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
 	InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned = "DiskThroughputUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeGpuunderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeGpuunderprovisioned = "GPUUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeGpuoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeGpuoverprovisioned = "GPUOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeGpumemoryUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeGpumemoryUnderprovisioned = "GPUMemoryUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeGpumemoryOverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeGpumemoryOverprovisioned = "GPUMemoryOverprovisioned"
 )
 
 // InstanceRecommendationFindingReasonCode_Values returns all elements of the InstanceRecommendationFindingReasonCode enum
@@ -12751,6 +12973,10 @@ func InstanceRecommendationFindingReasonCode_Values() []string {
 		InstanceRecommendationFindingReasonCodeDiskIopsunderprovisioned,
 		InstanceRecommendationFindingReasonCodeDiskThroughputOverprovisioned,
 		InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned,
+		InstanceRecommendationFindingReasonCodeGpuunderprovisioned,
+		InstanceRecommendationFindingReasonCodeGpuoverprovisioned,
+		InstanceRecommendationFindingReasonCodeGpumemoryUnderprovisioned,
+		InstanceRecommendationFindingReasonCodeGpumemoryOverprovisioned,
 	}
 }
 
@@ -13108,6 +13334,12 @@ const (
 
 	// MetricNameNetworkPacketsOutPerSecond is a MetricName enum value
 	MetricNameNetworkPacketsOutPerSecond = "NETWORK_PACKETS_OUT_PER_SECOND"
+
+	// MetricNameGpuPercentage is a MetricName enum value
+	MetricNameGpuPercentage = "GPU_PERCENTAGE"
+
+	// MetricNameGpuMemoryPercentage is a MetricName enum value
+	MetricNameGpuMemoryPercentage = "GPU_MEMORY_PERCENTAGE"
 )
 
 // MetricName_Values returns all elements of the MetricName enum
@@ -13127,6 +13359,8 @@ func MetricName_Values() []string {
 		MetricNameNetworkOutBytesPerSecond,
 		MetricNameNetworkPacketsInPerSecond,
 		MetricNameNetworkPacketsOutPerSecond,
+		MetricNameGpuPercentage,
+		MetricNameGpuMemoryPercentage,
 	}
 }
 
