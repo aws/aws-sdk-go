@@ -2975,13 +2975,10 @@
     },
     "ServiceNowConnectorProfileCredentials":{
       "type":"structure",
-      "required":[
-        "username",
-        "password"
-      ],
       "members":{
         "username":{"shape":"Username"},
-        "password":{"shape":"Password"}
+        "password":{"shape":"Password"},
+        "oAuth2Credentials":{"shape":"OAuth2Credentials"}
       }
     },
     "ServiceNowConnectorProfileProperties":{

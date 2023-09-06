@@ -1673,7 +1673,8 @@
     "OAuth2Credentials": {
       "base": "<p>The OAuth 2.0 credentials required for OAuth 2.0 authentication.</p>",
       "refs": {
-        "CustomConnectorProfileCredentials$oauth2": "<p>The OAuth 2.0 credentials required for the authentication of the user.</p>"
+        "CustomConnectorProfileCredentials$oauth2": "<p>The OAuth 2.0 credentials required for the authentication of the user.</p>",
+        "ServiceNowConnectorProfileCredentials$oAuth2Credentials": "<p> The OAuth 2.0 credentials required to authenticate the user. </p>"
       }
     },
     "OAuth2CustomParameter": {

@@ -1,3 +1,15 @@
+Release v1.45.4 (2023-09-06)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * This release adds 'outpost' location type to the DescribeInstanceTypeOfferings API, allowing customers that have been allowlisted for outpost to query their offerings in the API.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/medialive`: Updates service API and documentation
+  * Adds advanced Output Locking options for Epoch Locking: Custom Epoch and Jam Sync Time
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.45.3 (2023-09-05)
 ===
 

@@ -6606,6 +6606,21 @@ func (s *AWSManagedRulesATPRuleSet) SetResponseInspection(v *ResponseInspection)
 type AWSManagedRulesBotControlRuleSet struct {
 	_ struct{} `type:"structure"`
 
+	// Applies only to the targeted inspection level.
+	//
+	// Determines whether to use machine learning (ML) to analyze your web traffic
+	// for bot-related activity. Machine learning is required for the Bot Control
+	// rules TGT_ML_CoordinatedActivityLow and TGT_ML_CoordinatedActivityMedium,
+	// which inspect for anomalous behavior that might indicate distributed, coordinated
+	// bot activity.
+	//
+	// For more information about this choice, see the listing for these rules in
+	// the table at Bot Control rules listing (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html#aws-managed-rule-groups-bot-rules)
+	// in the WAF Developer Guide.
+	//
+	// Default: TRUE
+	EnableMachineLearning *bool `type:"boolean"`
+
 	// The inspection level to use for the Bot Control rule group. The common level
 	// is the least expensive. The targeted level includes all common level rules
 	// and adds rules with more advanced inspection criteria. For details, see WAF
@@ -6645,6 +6660,12 @@ func (s *AWSManagedRulesBotControlRuleSet) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableMachineLearning sets the EnableMachineLearning field's value.
+func (s *AWSManagedRulesBotControlRuleSet) SetEnableMachineLearning(v bool) *AWSManagedRulesBotControlRuleSet {
+	s.EnableMachineLearning = &v
+	return s
 }
 
 // SetInspectionLevel sets the InspectionLevel field's value.
@@ -7046,7 +7067,7 @@ func (s AssociateWebACLOutput) GoString() string {
 //
 // Use this to customize the maximum size of the request body that your protected
 // CloudFront distributions forward to WAF for inspection. The default is 16
-// KB (16,384 kilobytes).
+// KB (16,384 bytes).
 //
 // You are charged additional fees when your protected resources forward body
 // sizes that are larger than the default. For more information, see WAF Pricing
@@ -7056,7 +7077,7 @@ type AssociationConfig struct {
 
 	// Customizes the maximum size of the request body that your protected CloudFront
 	// distributions forward to WAF for inspection. The default size is 16 KB (16,384
-	// kilobytes).
+	// bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
@@ -7177,8 +7198,8 @@ type Body struct {
 	// the underlying host service only forwards the contents that are below the
 	// limit to WAF for inspection.
 	//
-	// The default limit is 8 KB (8,192 kilobytes) for regional resources and 16
-	// KB (16,384 kilobytes) for CloudFront distributions. For CloudFront distributions,
+	// The default limit is 8 KB (8,192 bytes) for regional resources and 16 KB
+	// (16,384 bytes) for CloudFront distributions. For CloudFront distributions,
 	// you can increase the limit in the web ACL AssociationConfig, for additional
 	// processing fees.
 	//
@@ -8921,7 +8942,7 @@ type CreateWebACLInput struct {
 	//
 	// Use this to customize the maximum size of the request body that your protected
 	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 kilobytes).
+	// KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
@@ -11074,7 +11095,7 @@ type FieldToMatch struct {
 	//
 	// A limited amount of the request body is forwarded to WAF for inspection by
 	// the underlying host service. For regional resources, the limit is 8 KB (8,192
-	// kilobytes) and for CloudFront distributions, the limit is 16 KB (16,384 kilobytes).
+	// bytes) and for CloudFront distributions, the limit is 16 KB (16,384 bytes).
 	// For CloudFront distributions, you can increase the limit in the web ACL's
 	// AssociationConfig, for additional processing fees.
 	//
@@ -11118,7 +11139,7 @@ type FieldToMatch struct {
 	//
 	// A limited amount of the request body is forwarded to WAF for inspection by
 	// the underlying host service. For regional resources, the limit is 8 KB (8,192
-	// kilobytes) and for CloudFront distributions, the limit is 16 KB (16,384 kilobytes).
+	// bytes) and for CloudFront distributions, the limit is 16 KB (16,384 bytes).
 	// For CloudFront distributions, you can increase the limit in the web ACL's
 	// AssociationConfig, for additional processing fees.
 	//
@@ -14259,8 +14280,8 @@ type JsonBody struct {
 	// the underlying host service only forwards the contents that are below the
 	// limit to WAF for inspection.
 	//
-	// The default limit is 8 KB (8,192 kilobytes) for regional resources and 16
-	// KB (16,384 kilobytes) for CloudFront distributions. For CloudFront distributions,
+	// The default limit is 8 KB (8,192 bytes) for regional resources and 16 KB
+	// (16,384 bytes) for CloudFront distributions. For CloudFront distributions,
 	// you can increase the limit in the web ACL AssociationConfig, for additional
 	// processing fees.
 	//
@@ -19826,7 +19847,7 @@ func (s *ReleaseSummary) SetTimestamp(v time.Time) *ReleaseSummary {
 
 // Customizes the maximum size of the request body that your protected CloudFront
 // distributions forward to WAF for inspection. The default size is 16 KB (16,384
-// kilobytes).
+// bytes).
 //
 // You are charged additional fees when your protected resources forward body
 // sizes that are larger than the default. For more information, see WAF Pricing
@@ -19840,7 +19861,7 @@ type RequestBodyAssociatedResourceTypeConfig struct {
 	// CloudFront distribution should send to WAF for inspection. This applies to
 	// statements in the web ACL that inspect the body or JSON body.
 	//
-	// Default: 16 KB (16,384 kilobytes)
+	// Default: 16 KB (16,384 bytes)
 	//
 	// DefaultSizeInspectionLimit is a required field
 	DefaultSizeInspectionLimit *string `type:"string" required:"true" enum:"SizeInspectionLimit"`
@@ -20735,8 +20756,12 @@ type Rule struct {
 	// this, WAF uses the challenge configuration that's defined for the web ACL.
 	ChallengeConfig *ChallengeConfig `type:"structure"`
 
-	// The name of the rule. You can't change the name of a Rule after you create
-	// it.
+	// The name of the rule.
+	//
+	// If you change the name of a Rule after you create it and you want the rule's
+	// metric name to reflect the change, update the metric name in the rule's VisibilityConfig
+	// settings. WAF doesn't automatically update the metric name when you update
+	// the rule name.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -20792,6 +20817,10 @@ type Rule struct {
 	Statement *Statement `type:"structure" required:"true"`
 
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
+	//
+	// If you change the name of a Rule after you create it and you want the rule's
+	// metric name to reflect the change, update the metric name as well. WAF doesn't
+	// automatically update the metric name.
 	//
 	// VisibilityConfig is a required field
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
@@ -21798,12 +21827,12 @@ func (s *SingleQueryArgument) SetName(v string) *SingleQueryArgument {
 //
 // If you configure WAF to inspect the request body, WAF inspects only the number
 // of bytes of the body up to the limit for the web ACL. By default, for regional
-// web ACLs, this limit is 8 KB (8,192 kilobytes) and for CloudFront web ACLs,
-// this limit is 16 KB (16,384 kilobytes). For CloudFront web ACLs, you can
-// increase the limit in the web ACL AssociationConfig, for additional fees.
-// If you know that the request body for your web requests should never exceed
-// the inspection limit, you could use a size constraint statement to block
-// requests that have a larger request body size.
+// web ACLs, this limit is 8 KB (8,192 bytes) and for CloudFront web ACLs, this
+// limit is 16 KB (16,384 bytes). For CloudFront web ACLs, you can increase
+// the limit in the web ACL AssociationConfig, for additional fees. If you know
+// that the request body for your web requests should never exceed the inspection
+// limit, you could use a size constraint statement to block requests that have
+// a larger request body size.
 //
 // If you choose URI for the value of Part of the request to filter on, the
 // slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -22238,12 +22267,12 @@ type Statement struct {
 	//
 	// If you configure WAF to inspect the request body, WAF inspects only the number
 	// of bytes of the body up to the limit for the web ACL. By default, for regional
-	// web ACLs, this limit is 8 KB (8,192 kilobytes) and for CloudFront web ACLs,
-	// this limit is 16 KB (16,384 kilobytes). For CloudFront web ACLs, you can
-	// increase the limit in the web ACL AssociationConfig, for additional fees.
-	// If you know that the request body for your web requests should never exceed
-	// the inspection limit, you could use a size constraint statement to block
-	// requests that have a larger request body size.
+	// web ACLs, this limit is 8 KB (8,192 bytes) and for CloudFront web ACLs, this
+	// limit is 16 KB (16,384 bytes). For CloudFront web ACLs, you can increase
+	// the limit in the web ACL AssociationConfig, for additional fees. If you know
+	// that the request body for your web requests should never exceed the inspection
+	// limit, you could use a size constraint statement to block requests that have
+	// a larger request body size.
 	//
 	// If you choose URI for the value of Part of the request to filter on, the
 	// slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -23877,7 +23906,7 @@ type UpdateWebACLInput struct {
 	//
 	// Use this to customize the maximum size of the request body that your protected
 	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 kilobytes).
+	// KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
@@ -25774,7 +25803,7 @@ type WebACL struct {
 	//
 	// Use this to customize the maximum size of the request body that your protected
 	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 kilobytes).
+	// KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
