@@ -21,14 +21,14 @@ func TestEnumDefaultPartitions(t *testing.T) {
 
 	ps := enum.Partitions()
 
-	if a, e := len(ps), len(defaultPartitions); a != e {
+	if a, e := len(ps), len(defaultPartitions()); a != e {
 		t.Errorf("expected %d partitions, got %d", e, a)
 	}
 }
 
 func TestEnumDefaultRegions(t *testing.T) {
-	expectPart := defaultPartitions[0]
-	partEnum := defaultPartitions[0].Partition()
+	expectPart := defaultPartitions()[0]
+	partEnum := defaultPartitions()[0].Partition()
 
 	regEnum := partEnum.Regions()
 
