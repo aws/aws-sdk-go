@@ -4820,11 +4820,6 @@ func (s *ConnectorProfileCredentials) Validate() error {
 			invalidParams.AddNested("Salesforce", err.(request.ErrInvalidParams))
 		}
 	}
-	if s.ServiceNow != nil {
-		if err := s.ServiceNow.Validate(); err != nil {
-			invalidParams.AddNested("ServiceNow", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.Singular != nil {
 		if err := s.Singular.Validate(); err != nil {
 			invalidParams.AddNested("Singular", err.(request.ErrInvalidParams))
@@ -13425,19 +13420,18 @@ func (s *ScheduledTriggerProperties) SetTimezone(v string) *ScheduledTriggerProp
 type ServiceNowConnectorProfileCredentials struct {
 	_ struct{} `type:"structure"`
 
+	// The OAuth 2.0 credentials required to authenticate the user.
+	OAuth2Credentials *OAuth2Credentials `locationName:"oAuth2Credentials" type:"structure"`
+
 	// The password that corresponds to the user name.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ServiceNowConnectorProfileCredentials's
 	// String and GoString methods.
-	//
-	// Password is a required field
-	Password *string `locationName:"password" type:"string" required:"true" sensitive:"true"`
+	Password *string `locationName:"password" type:"string" sensitive:"true"`
 
 	// The name of the user.
-	//
-	// Username is a required field
-	Username *string `locationName:"username" type:"string" required:"true"`
+	Username *string `locationName:"username" type:"string"`
 }
 
 // String returns the string representation.
@@ -13458,20 +13452,10 @@ func (s ServiceNowConnectorProfileCredentials) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ServiceNowConnectorProfileCredentials) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ServiceNowConnectorProfileCredentials"}
-	if s.Password == nil {
-		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Username == nil {
-		invalidParams.Add(request.NewErrParamRequired("Username"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
+// SetOAuth2Credentials sets the OAuth2Credentials field's value.
+func (s *ServiceNowConnectorProfileCredentials) SetOAuth2Credentials(v *OAuth2Credentials) *ServiceNowConnectorProfileCredentials {
+	s.OAuth2Credentials = v
+	return s
 }
 
 // SetPassword sets the Password field's value.

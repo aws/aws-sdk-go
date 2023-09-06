@@ -939,7 +939,8 @@
       "type":"structure",
       "required":["InspectionLevel"],
       "members":{
-        "InspectionLevel":{"shape":"InspectionLevel"}
+        "InspectionLevel":{"shape":"InspectionLevel"},
+        "EnableMachineLearning":{"shape":"Boolean"}
       }
     },
     "Action":{"type":"string"},

@@ -15640,6 +15640,54 @@ func (s *EncoderSettings) SetVideoDescriptions(v []*VideoDescription) *EncoderSe
 	return s
 }
 
+// Epoch Locking Settings
+type EpochLockingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Enter a value here to use a custom epoch, instead of the standard
+	// epoch (which started at 1970-01-01T00:00:00 UTC). Specify the start time
+	// of the custom epoch, in YYYY-MM-DDTHH:MM:SS in UTC. The time must be 2000-01-01T00:00:00
+	// or later. Always set the MM:SS portion to 00:00.
+	CustomEpoch *string `locationName:"customEpoch" type:"string"`
+
+	// Optional. Enter a time for the jam sync. The default is midnight UTC. When
+	// epoch locking is enabled, MediaLive performs a daily jam sync on every output
+	// encode to ensure timecodes don’t diverge from the wall clock. The jam sync
+	// applies only to encodes with frame rate of 29.97 or 59.94 FPS. To override,
+	// enter a time in HH:MM:SS in UTC. Always set the MM:SS portion to 00:00.
+	JamSyncTime *string `locationName:"jamSyncTime" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EpochLockingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EpochLockingSettings) GoString() string {
+	return s.String()
+}
+
+// SetCustomEpoch sets the CustomEpoch field's value.
+func (s *EpochLockingSettings) SetCustomEpoch(v string) *EpochLockingSettings {
+	s.CustomEpoch = &v
+	return s
+}
+
+// SetJamSyncTime sets the JamSyncTime field's value.
+func (s *EpochLockingSettings) SetJamSyncTime(v string) *EpochLockingSettings {
+	s.JamSyncTime = &v
+	return s
+}
+
 // Esam
 type Esam struct {
 	_ struct{} `type:"structure"`
@@ -16552,6 +16600,9 @@ type GlobalConfiguration struct {
 	// Unix epoch.
 	OutputLockingMode *string `locationName:"outputLockingMode" type:"string" enum:"GlobalConfigurationOutputLockingMode"`
 
+	// Advanced output locking settings
+	OutputLockingSettings *OutputLockingSettings `locationName:"outputLockingSettings" type:"structure"`
+
 	// Indicates whether the rate of frames emitted by the Live encoder should be
 	// paced by its system clock (which optionally may be locked to another source
 	// via NTP) or should be locked to the clock of the source that is providing
@@ -16621,6 +16672,12 @@ func (s *GlobalConfiguration) SetInputLossBehavior(v *InputLossBehavior) *Global
 // SetOutputLockingMode sets the OutputLockingMode field's value.
 func (s *GlobalConfiguration) SetOutputLockingMode(v string) *GlobalConfiguration {
 	s.OutputLockingMode = &v
+	return s
+}
+
+// SetOutputLockingSettings sets the OutputLockingSettings field's value.
+func (s *GlobalConfiguration) SetOutputLockingSettings(v *OutputLockingSettings) *GlobalConfiguration {
+	s.OutputLockingSettings = v
 	return s
 }
 
@@ -26229,6 +26286,47 @@ func (s *OutputLocationRef) SetDestinationRefId(v string) *OutputLocationRef {
 	return s
 }
 
+// Output Locking Settings
+type OutputLockingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Epoch Locking Settings
+	EpochLockingSettings *EpochLockingSettings `locationName:"epochLockingSettings" type:"structure"`
+
+	// Pipeline Locking Settings
+	PipelineLockingSettings *PipelineLockingSettings `locationName:"pipelineLockingSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputLockingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputLockingSettings) GoString() string {
+	return s.String()
+}
+
+// SetEpochLockingSettings sets the EpochLockingSettings field's value.
+func (s *OutputLockingSettings) SetEpochLockingSettings(v *EpochLockingSettings) *OutputLockingSettings {
+	s.EpochLockingSettings = v
+	return s
+}
+
+// SetPipelineLockingSettings sets the PipelineLockingSettings field's value.
+func (s *OutputLockingSettings) SetPipelineLockingSettings(v *PipelineLockingSettings) *OutputLockingSettings {
+	s.PipelineLockingSettings = v
+	return s
+}
+
 // Output Settings
 type OutputSettings struct {
 	_ struct{} `type:"structure"`
@@ -26503,6 +26601,29 @@ func (s *PipelineDetail) SetActiveMotionGraphicsUri(v string) *PipelineDetail {
 func (s *PipelineDetail) SetPipelineId(v string) *PipelineDetail {
 	s.PipelineId = &v
 	return s
+}
+
+// Pipeline Locking Settings
+type PipelineLockingSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineLockingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineLockingSettings) GoString() string {
+	return s.String()
 }
 
 // Settings for pausing a pipeline.

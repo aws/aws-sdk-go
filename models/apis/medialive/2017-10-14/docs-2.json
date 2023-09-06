@@ -1000,6 +1000,12 @@
         "UpdateChannel$EncoderSettings": "The encoder settings for this channel."
       }
     },
+    "EpochLockingSettings": {
+      "base": "Epoch Locking Settings",
+      "refs": {
+        "OutputLockingSettings$EpochLockingSettings": null
+      }
+    },
     "Esam": {
       "base": "Esam",
       "refs": {
@@ -2731,6 +2737,12 @@
         "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002)."
       }
     },
+    "OutputLockingSettings": {
+      "base": "Output Locking Settings",
+      "refs": {
+        "GlobalConfiguration$OutputLockingSettings": "Advanced output locking settings"
+      }
+    },
     "OutputSettings": {
       "base": "Output Settings",
       "refs": {
@@ -2759,6 +2771,12 @@
       "base": "Pipeline ID",
       "refs": {
         "PipelinePauseStateSettings$PipelineId": "Pipeline ID to pause (\"PIPELINE_0\" or \"PIPELINE_1\")."
+      }
+    },
+    "PipelineLockingSettings": {
+      "base": "Pipeline Locking Settings",
+      "refs": {
+        "OutputLockingSettings$PipelineLockingSettings": null
       }
     },
     "PipelinePauseStateSettings": {

@@ -6209,6 +6209,19 @@
         "TimecodeConfig"
       ]
     },
+    "EpochLockingSettings": {
+      "type": "structure",
+      "members": {
+        "CustomEpoch": {
+          "shape": "__string",
+          "locationName": "customEpoch"
+        },
+        "JamSyncTime": {
+          "shape": "__string",
+          "locationName": "jamSyncTime"
+        }
+      }
+    },
     "Esam": {
       "type": "structure",
       "members": {
@@ -6588,6 +6601,10 @@
         "SupportLowFramerateInputs": {
           "shape": "GlobalConfigurationLowFramerateInputs",
           "locationName": "supportLowFramerateInputs"
+        },
+        "OutputLockingSettings": {
+          "shape": "OutputLockingSettings",
+          "locationName": "outputLockingSettings"
         }
       }
     },
@@ -11007,6 +11024,19 @@
         }
       }
     },
+    "OutputLockingSettings": {
+      "type": "structure",
+      "members": {
+        "EpochLockingSettings": {
+          "shape": "EpochLockingSettings",
+          "locationName": "epochLockingSettings"
+        },
+        "PipelineLockingSettings": {
+          "shape": "PipelineLockingSettings",
+          "locationName": "pipelineLockingSettings"
+        }
+      }
+    },
     "OutputSettings": {
       "type": "structure",
       "members": {
@@ -11089,6 +11119,11 @@
         "PIPELINE_0",
         "PIPELINE_1"
       ]
+    },
+    "PipelineLockingSettings": {
+      "type": "structure",
+      "members": {
+      }
     },
     "PipelinePauseStateSettings": {
       "type": "structure",
