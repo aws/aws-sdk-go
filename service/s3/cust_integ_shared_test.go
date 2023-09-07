@@ -180,7 +180,7 @@ func getAccountID() (string, error) {
 
 	output, err := stsSvc.GetCallerIdentity(nil)
 	if err != nil {
-		return "", fmt.Errorf("faield to get sts caller identity")
+		return "", fmt.Errorf("failed to get sts caller identity")
 	}
 
 	return *output.Account, nil
