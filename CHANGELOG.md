@@ -1,3 +1,11 @@
+Release v1.45.5 (2023-09-07)
+===
+
+### Service Client Updates
+* `service/neptunedata`: Updates service API
+* `service/securityhub`: Updates service documentation
+* `service/simspaceweaver`: Updates service API
+
 Release v1.45.4 (2023-09-06)
 ===
 

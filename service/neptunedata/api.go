@@ -50,7 +50,6 @@ func (c *Neptunedata) CancelGremlinQueryRequest(input *CancelGremlinQueryInput) 
 
 	output = &CancelGremlinQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -171,7 +170,6 @@ func (c *Neptunedata) CancelLoaderJobRequest(input *CancelLoaderJobInput) (req *
 
 	output = &CancelLoaderJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -290,7 +288,6 @@ func (c *Neptunedata) CancelMLDataProcessingJobRequest(input *CancelMLDataProces
 
 	output = &CancelMLDataProcessingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -401,7 +398,6 @@ func (c *Neptunedata) CancelMLModelTrainingJobRequest(input *CancelMLModelTraini
 
 	output = &CancelMLModelTrainingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -512,7 +508,6 @@ func (c *Neptunedata) CancelMLModelTransformJobRequest(input *CancelMLModelTrans
 
 	output = &CancelMLModelTransformJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -623,7 +618,6 @@ func (c *Neptunedata) CancelOpenCypherQueryRequest(input *CancelOpenCypherQueryI
 
 	output = &CancelOpenCypherQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -748,7 +742,6 @@ func (c *Neptunedata) CreateMLEndpointRequest(input *CreateMLEndpointInput) (req
 
 	output = &CreateMLEndpointOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -860,7 +853,6 @@ func (c *Neptunedata) DeleteMLEndpointRequest(input *DeleteMLEndpointInput) (req
 
 	output = &DeleteMLEndpointOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -971,7 +963,6 @@ func (c *Neptunedata) DeletePropertygraphStatisticsRequest(input *DeleteProperty
 
 	output = &DeletePropertygraphStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1087,7 +1078,6 @@ func (c *Neptunedata) DeleteSparqlStatisticsRequest(input *DeleteSparqlStatistic
 
 	output = &DeleteSparqlStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1203,7 +1193,6 @@ func (c *Neptunedata) ExecuteFastResetRequest(input *ExecuteFastResetInput) (req
 
 	output = &ExecuteFastResetOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1326,7 +1315,6 @@ func (c *Neptunedata) ExecuteGremlinExplainQueryRequest(input *ExecuteGremlinExp
 
 	output = &ExecuteGremlinExplainQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1478,7 +1466,6 @@ func (c *Neptunedata) ExecuteGremlinProfileQueryRequest(input *ExecuteGremlinPro
 
 	output = &ExecuteGremlinProfileQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1622,7 +1609,6 @@ func (c *Neptunedata) ExecuteGremlinQueryRequest(input *ExecuteGremlinQueryInput
 
 	output = &ExecuteGremlinQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1767,7 +1753,6 @@ func (c *Neptunedata) ExecuteOpenCypherExplainQueryRequest(input *ExecuteOpenCyp
 
 	output = &ExecuteOpenCypherExplainQueryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -1913,7 +1898,6 @@ func (c *Neptunedata) GetEngineStatusRequest(input *GetEngineStatusInput) (req *
 
 	output = &GetEngineStatusOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2014,7 +1998,6 @@ func (c *Neptunedata) GetGremlinQueryStatusRequest(input *GetGremlinQueryStatusI
 
 	output = &GetGremlinQueryStatusOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2140,7 +2123,6 @@ func (c *Neptunedata) GetMLDataProcessingJobRequest(input *GetMLDataProcessingJo
 
 	output = &GetMLDataProcessingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2251,7 +2233,6 @@ func (c *Neptunedata) GetMLEndpointRequest(input *GetMLEndpointInput) (req *requ
 
 	output = &GetMLEndpointOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2362,7 +2343,6 @@ func (c *Neptunedata) GetMLModelTrainingJobRequest(input *GetMLModelTrainingJobI
 
 	output = &GetMLModelTrainingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2473,7 +2453,6 @@ func (c *Neptunedata) GetMLModelTransformJobRequest(input *GetMLModelTransformJo
 
 	output = &GetMLModelTransformJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2584,7 +2563,6 @@ func (c *Neptunedata) GetOpenCypherQueryStatusRequest(input *GetOpenCypherQueryS
 
 	output = &GetOpenCypherQueryStatusOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2713,7 +2691,6 @@ func (c *Neptunedata) GetPropertygraphStatisticsRequest(input *GetPropertygraphS
 
 	output = &GetPropertygraphStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2829,7 +2806,6 @@ func (c *Neptunedata) GetPropertygraphSummaryRequest(input *GetPropertygraphSumm
 
 	output = &GetPropertygraphSummaryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -2945,7 +2921,6 @@ func (c *Neptunedata) GetRDFGraphSummaryRequest(input *GetRDFGraphSummaryInput) 
 
 	output = &GetRDFGraphSummaryOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3061,7 +3036,6 @@ func (c *Neptunedata) GetSparqlStatisticsRequest(input *GetSparqlStatisticsInput
 
 	output = &GetSparqlStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3177,7 +3151,6 @@ func (c *Neptunedata) GetSparqlStreamRequest(input *GetSparqlStreamInput) (req *
 
 	output = &GetSparqlStreamOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3303,7 +3276,6 @@ func (c *Neptunedata) ListGremlinQueriesRequest(input *ListGremlinQueriesInput) 
 
 	output = &ListGremlinQueriesOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3430,7 +3402,6 @@ func (c *Neptunedata) ListLoaderJobsRequest(input *ListLoaderJobsInput) (req *re
 
 	output = &ListLoaderJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3543,7 +3514,6 @@ func (c *Neptunedata) ListMLDataProcessingJobsRequest(input *ListMLDataProcessin
 
 	output = &ListMLDataProcessingJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3654,7 +3624,6 @@ func (c *Neptunedata) ListMLEndpointsRequest(input *ListMLEndpointsInput) (req *
 
 	output = &ListMLEndpointsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3765,7 +3734,6 @@ func (c *Neptunedata) ListMLModelTrainingJobsRequest(input *ListMLModelTrainingJ
 
 	output = &ListMLModelTrainingJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3876,7 +3844,6 @@ func (c *Neptunedata) ListMLModelTransformJobsRequest(input *ListMLModelTransfor
 
 	output = &ListMLModelTransformJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -3987,7 +3954,6 @@ func (c *Neptunedata) ListOpenCypherQueriesRequest(input *ListOpenCypherQueriesI
 
 	output = &ListOpenCypherQueriesOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4117,7 +4083,6 @@ func (c *Neptunedata) ManagePropertygraphStatisticsRequest(input *ManageProperty
 
 	output = &ManagePropertygraphStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4233,7 +4198,6 @@ func (c *Neptunedata) ManageSparqlStatisticsRequest(input *ManageSparqlStatistic
 
 	output = &ManageSparqlStatisticsOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4349,7 +4313,6 @@ func (c *Neptunedata) StartLoaderJobRequest(input *StartLoaderJobInput) (req *re
 
 	output = &StartLoaderJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4470,7 +4433,6 @@ func (c *Neptunedata) StartMLDataProcessingJobRequest(input *StartMLDataProcessi
 
 	output = &StartMLDataProcessingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4581,7 +4543,6 @@ func (c *Neptunedata) StartMLModelTrainingJobRequest(input *StartMLModelTraining
 
 	output = &StartMLModelTrainingJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
@@ -4692,7 +4653,6 @@ func (c *Neptunedata) StartMLModelTransformJobRequest(input *StartMLModelTransfo
 
 	output = &StartMLModelTransformJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	return
 }
 
