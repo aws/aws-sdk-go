@@ -3022,7 +3022,9 @@ type S3Destination struct {
 	// The name of an Amazon S3 bucket. For more information about buckets, see
 	// Creating, configuring, and working with Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html)
 	// in the Amazon Simple Storage Service User Guide.
-	BucketName *string `min:"3" type:"string"`
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
 
 	// A string prefix for an Amazon S3 object key. It's usually a folder name.
 	// For more information about folders in Amazon S3, see Organizing objects in
@@ -3052,6 +3054,9 @@ func (s S3Destination) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *S3Destination) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "S3Destination"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
 	if s.BucketName != nil && len(*s.BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
 	}
@@ -3084,13 +3089,17 @@ type S3Location struct {
 	// The name of an Amazon S3 bucket. For more information about buckets, see
 	// Creating, configuring, and working with Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html)
 	// in the Amazon Simple Storage Service User Guide.
-	BucketName *string `min:"3" type:"string"`
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
 
 	// The key name of an object in Amazon S3. For more information about Amazon
 	// S3 objects and object keys, see Uploading, downloading, and working with
 	// objects in Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-downloading-objects.html)
 	// in the Amazon Simple Storage Service User Guide.
-	ObjectKey *string `min:"1" type:"string"`
+	//
+	// ObjectKey is a required field
+	ObjectKey *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3114,8 +3123,14 @@ func (s S3Location) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *S3Location) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "S3Location"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
 	if s.BucketName != nil && len(*s.BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.ObjectKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectKey"))
 	}
 	if s.ObjectKey != nil && len(*s.ObjectKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ObjectKey", 1))

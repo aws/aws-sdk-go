@@ -663,6 +663,7 @@
     },
     "S3Destination":{
       "type":"structure",
+      "required":["BucketName"],
       "members":{
         "BucketName":{"shape":"BucketName"},
         "ObjectKeyPrefix":{"shape":"ObjectKeyPrefix"}
@@ -670,6 +671,10 @@
     },
     "S3Location":{
       "type":"structure",
+      "required":[
+        "BucketName",
+        "ObjectKey"
+      ],
       "members":{
         "BucketName":{"shape":"BucketName"},
         "ObjectKey":{"shape":"ObjectKey"}
