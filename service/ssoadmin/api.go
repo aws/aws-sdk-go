@@ -68,13 +68,6 @@ func (c *SSOAdmin) AttachCustomerManagedPolicyReferenceToPermissionSetRequest(in
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -83,11 +76,18 @@ func (c *SSOAdmin) AttachCustomerManagedPolicyReferenceToPermissionSetRequest(in
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -161,7 +161,7 @@ func (c *SSOAdmin) AttachManagedPolicyToPermissionSetRequest(input *AttachManage
 
 // AttachManagedPolicyToPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Attaches an AWS managed policy ARN to a permission set.
+// Attaches an Amazon Web Services managed policy ARN to a permission set.
 //
 // If the permission set is already referenced by one or more account assignments,
 // you will need to call ProvisionPermissionSet after this operation. Calling
@@ -177,13 +177,6 @@ func (c *SSOAdmin) AttachManagedPolicyToPermissionSetRequest(input *AttachManage
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -192,11 +185,18 @@ func (c *SSOAdmin) AttachManagedPolicyToPermissionSetRequest(input *AttachManage
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -269,8 +269,8 @@ func (c *SSOAdmin) CreateAccountAssignmentRequest(input *CreateAccountAssignment
 
 // CreateAccountAssignment API operation for AWS Single Sign-On Admin.
 //
-// Assigns access to a principal for a specified AWS account using a specified
-// permission set.
+// Assigns access to a principal for a specified Amazon Web Services account
+// using a specified permission set.
 //
 // The term principal here refers to a user or group that is defined in IAM
 // Identity Center.
@@ -294,13 +294,6 @@ func (c *SSOAdmin) CreateAccountAssignmentRequest(input *CreateAccountAssignment
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -309,11 +302,18 @@ func (c *SSOAdmin) CreateAccountAssignmentRequest(input *CreateAccountAssignment
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -405,22 +405,22 @@ func (c *SSOAdmin) CreateInstanceAccessControlAttributeConfigurationRequest(inpu
 //
 // Returned Error Types:
 //
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
-//
 //   - ThrottlingException
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
 //
 //   - ResourceNotFoundException
 //     Indicates that a requested resource is not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -495,7 +495,8 @@ func (c *SSOAdmin) CreatePermissionSetRequest(input *CreatePermissionSetInput) (
 //
 // Creates a permission set within a specified IAM Identity Center instance.
 //
-// To grant users and groups access to AWS account resources, use CreateAccountAssignment .
+// To grant users and groups access to Amazon Web Services account resources,
+// use CreateAccountAssignment .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -506,13 +507,6 @@ func (c *SSOAdmin) CreatePermissionSetRequest(input *CreatePermissionSetInput) (
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -521,11 +515,18 @@ func (c *SSOAdmin) CreatePermissionSetRequest(input *CreatePermissionSetInput) (
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -598,10 +599,10 @@ func (c *SSOAdmin) DeleteAccountAssignmentRequest(input *DeleteAccountAssignment
 
 // DeleteAccountAssignment API operation for AWS Single Sign-On Admin.
 //
-// Deletes a principal's access from a specified AWS account using a specified
-// permission set.
+// Deletes a principal's access from a specified Amazon Web Services account
+// using a specified permission set.
 //
-// After a successful response, call DescribeAccountAssignmentCreationStatus
+// After a successful response, call DescribeAccountAssignmentDeletionStatus
 // to describe the status of an assignment deletion request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -613,22 +614,22 @@ func (c *SSOAdmin) DeleteAccountAssignmentRequest(input *DeleteAccountAssignment
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -713,22 +714,22 @@ func (c *SSOAdmin) DeleteInlinePolicyFromPermissionSetRequest(input *DeleteInlin
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -819,22 +820,22 @@ func (c *SSOAdmin) DeleteInstanceAccessControlAttributeConfigurationRequest(inpu
 //
 // Returned Error Types:
 //
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
-//
 //   - ThrottlingException
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
 //
 //   - ResourceNotFoundException
 //     Indicates that a requested resource is not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -919,22 +920,22 @@ func (c *SSOAdmin) DeletePermissionSetRequest(input *DeletePermissionSetInput) (
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -1019,22 +1020,22 @@ func (c *SSOAdmin) DeletePermissionsBoundaryFromPermissionSetRequest(input *Dele
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/DeletePermissionsBoundaryFromPermissionSet
 func (c *SSOAdmin) DeletePermissionsBoundaryFromPermissionSet(input *DeletePermissionsBoundaryFromPermissionSetInput) (*DeletePermissionsBoundaryFromPermissionSetOutput, error) {
@@ -1112,22 +1113,22 @@ func (c *SSOAdmin) DescribeAccountAssignmentCreationStatusRequest(input *Describ
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/DescribeAccountAssignmentCreationStatus
 func (c *SSOAdmin) DescribeAccountAssignmentCreationStatus(input *DescribeAccountAssignmentCreationStatusInput) (*DescribeAccountAssignmentCreationStatusOutput, error) {
@@ -1205,22 +1206,22 @@ func (c *SSOAdmin) DescribeAccountAssignmentDeletionStatusRequest(input *Describ
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/DescribeAccountAssignmentDeletionStatus
 func (c *SSOAdmin) DescribeAccountAssignmentDeletionStatus(input *DescribeAccountAssignmentDeletionStatusInput) (*DescribeAccountAssignmentDeletionStatusOutput, error) {
@@ -1303,19 +1304,19 @@ func (c *SSOAdmin) DescribeInstanceAccessControlAttributeConfigurationRequest(in
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
+//
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
-//
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
 //
 //   - ValidationException
 //     The request failed because it contains a syntax error.
@@ -1396,22 +1397,22 @@ func (c *SSOAdmin) DescribePermissionSetRequest(input *DescribePermissionSetInpu
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/DescribePermissionSet
 func (c *SSOAdmin) DescribePermissionSet(input *DescribePermissionSetInput) (*DescribePermissionSetOutput, error) {
@@ -1489,22 +1490,22 @@ func (c *SSOAdmin) DescribePermissionSetProvisioningStatusRequest(input *Describ
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/DescribePermissionSetProvisioningStatus
 func (c *SSOAdmin) DescribePermissionSetProvisioningStatus(input *DescribePermissionSetProvisioningStatusInput) (*DescribePermissionSetProvisioningStatusOutput, error) {
@@ -1583,22 +1584,22 @@ func (c *SSOAdmin) DetachCustomerManagedPolicyReferenceFromPermissionSetRequest(
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -1672,8 +1673,8 @@ func (c *SSOAdmin) DetachManagedPolicyFromPermissionSetRequest(input *DetachMana
 
 // DetachManagedPolicyFromPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Detaches the attached AWS managed policy ARN from the specified permission
-// set.
+// Detaches the attached Amazon Web Services managed policy ARN from the specified
+// permission set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1684,22 +1685,22 @@ func (c *SSOAdmin) DetachManagedPolicyFromPermissionSetRequest(input *DetachMana
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -1783,22 +1784,22 @@ func (c *SSOAdmin) GetInlinePolicyForPermissionSetRequest(input *GetInlinePolicy
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/GetInlinePolicyForPermissionSet
 func (c *SSOAdmin) GetInlinePolicyForPermissionSet(input *GetInlinePolicyForPermissionSetInput) (*GetInlinePolicyForPermissionSetOutput, error) {
@@ -1876,22 +1877,22 @@ func (c *SSOAdmin) GetPermissionsBoundaryForPermissionSetRequest(input *GetPermi
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/GetPermissionsBoundaryForPermissionSet
 func (c *SSOAdmin) GetPermissionsBoundaryForPermissionSet(input *GetPermissionsBoundaryForPermissionSetInput) (*GetPermissionsBoundaryForPermissionSetOutput, error) {
@@ -1964,8 +1965,8 @@ func (c *SSOAdmin) ListAccountAssignmentCreationStatusRequest(input *ListAccount
 
 // ListAccountAssignmentCreationStatus API operation for AWS Single Sign-On Admin.
 //
-// Lists the status of the AWS account assignment creation requests for a specified
-// IAM Identity Center instance.
+// Lists the status of the Amazon Web Services account assignment creation requests
+// for a specified IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1976,22 +1977,22 @@ func (c *SSOAdmin) ListAccountAssignmentCreationStatusRequest(input *ListAccount
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListAccountAssignmentCreationStatus
 func (c *SSOAdmin) ListAccountAssignmentCreationStatus(input *ListAccountAssignmentCreationStatusInput) (*ListAccountAssignmentCreationStatusOutput, error) {
@@ -2115,8 +2116,8 @@ func (c *SSOAdmin) ListAccountAssignmentDeletionStatusRequest(input *ListAccount
 
 // ListAccountAssignmentDeletionStatus API operation for AWS Single Sign-On Admin.
 //
-// Lists the status of the AWS account assignment deletion requests for a specified
-// IAM Identity Center instance.
+// Lists the status of the Amazon Web Services account assignment deletion requests
+// for a specified IAM Identity Center instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2127,22 +2128,22 @@ func (c *SSOAdmin) ListAccountAssignmentDeletionStatusRequest(input *ListAccount
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListAccountAssignmentDeletionStatus
 func (c *SSOAdmin) ListAccountAssignmentDeletionStatus(input *ListAccountAssignmentDeletionStatusInput) (*ListAccountAssignmentDeletionStatusOutput, error) {
@@ -2266,8 +2267,8 @@ func (c *SSOAdmin) ListAccountAssignmentsRequest(input *ListAccountAssignmentsIn
 
 // ListAccountAssignments API operation for AWS Single Sign-On Admin.
 //
-// Lists the assignee of the specified AWS account with the specified permission
-// set.
+// Lists the assignee of the specified Amazon Web Services account with the
+// specified permission set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2278,22 +2279,22 @@ func (c *SSOAdmin) ListAccountAssignmentsRequest(input *ListAccountAssignmentsIn
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListAccountAssignments
 func (c *SSOAdmin) ListAccountAssignments(input *ListAccountAssignmentsInput) (*ListAccountAssignmentsOutput, error) {
@@ -2417,7 +2418,8 @@ func (c *SSOAdmin) ListAccountsForProvisionedPermissionSetRequest(input *ListAcc
 
 // ListAccountsForProvisionedPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Lists all the AWS accounts where the specified permission set is provisioned.
+// Lists all the Amazon Web Services accounts where the specified permission
+// set is provisioned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2428,22 +2430,22 @@ func (c *SSOAdmin) ListAccountsForProvisionedPermissionSetRequest(input *ListAcc
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListAccountsForProvisionedPermissionSet
 func (c *SSOAdmin) ListAccountsForProvisionedPermissionSet(input *ListAccountsForProvisionedPermissionSetInput) (*ListAccountsForProvisionedPermissionSetOutput, error) {
@@ -2578,22 +2580,22 @@ func (c *SSOAdmin) ListCustomerManagedPolicyReferencesInPermissionSetRequest(inp
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListCustomerManagedPolicyReferencesInPermissionSet
 func (c *SSOAdmin) ListCustomerManagedPolicyReferencesInPermissionSet(input *ListCustomerManagedPolicyReferencesInPermissionSetInput) (*ListCustomerManagedPolicyReferencesInPermissionSetOutput, error) {
@@ -2728,13 +2730,13 @@ func (c *SSOAdmin) ListInstancesRequest(input *ListInstancesInput) (req *request
 //
 // Returned Error Types:
 //
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ThrottlingException
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
@@ -2864,7 +2866,8 @@ func (c *SSOAdmin) ListManagedPoliciesInPermissionSetRequest(input *ListManagedP
 
 // ListManagedPoliciesInPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Lists the AWS managed policy that is attached to a specified permission set.
+// Lists the Amazon Web Services managed policy that is attached to a specified
+// permission set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2875,22 +2878,22 @@ func (c *SSOAdmin) ListManagedPoliciesInPermissionSetRequest(input *ListManagedP
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListManagedPoliciesInPermissionSet
 func (c *SSOAdmin) ListManagedPoliciesInPermissionSet(input *ListManagedPoliciesInPermissionSetInput) (*ListManagedPoliciesInPermissionSetOutput, error) {
@@ -3026,22 +3029,22 @@ func (c *SSOAdmin) ListPermissionSetProvisioningStatusRequest(input *ListPermiss
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListPermissionSetProvisioningStatus
 func (c *SSOAdmin) ListPermissionSetProvisioningStatus(input *ListPermissionSetProvisioningStatusInput) (*ListPermissionSetProvisioningStatusOutput, error) {
@@ -3176,22 +3179,22 @@ func (c *SSOAdmin) ListPermissionSetsRequest(input *ListPermissionSetsInput) (re
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListPermissionSets
 func (c *SSOAdmin) ListPermissionSets(input *ListPermissionSetsInput) (*ListPermissionSetsOutput, error) {
@@ -3315,7 +3318,8 @@ func (c *SSOAdmin) ListPermissionSetsProvisionedToAccountRequest(input *ListPerm
 
 // ListPermissionSetsProvisionedToAccount API operation for AWS Single Sign-On Admin.
 //
-// Lists all the permission sets that are provisioned to a specified AWS account.
+// Lists all the permission sets that are provisioned to a specified Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3326,22 +3330,22 @@ func (c *SSOAdmin) ListPermissionSetsProvisionedToAccountRequest(input *ListPerm
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListPermissionSetsProvisionedToAccount
 func (c *SSOAdmin) ListPermissionSetsProvisionedToAccount(input *ListPermissionSetsProvisionedToAccountInput) (*ListPermissionSetsProvisionedToAccountOutput, error) {
@@ -3476,22 +3480,22 @@ func (c *SSOAdmin) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sso-admin-2020-07-20/ListTagsForResource
 func (c *SSOAdmin) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3621,22 +3625,22 @@ func (c *SSOAdmin) ProvisionPermissionSetRequest(input *ProvisionPermissionSetIn
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -3725,13 +3729,6 @@ func (c *SSOAdmin) PutInlinePolicyToPermissionSetRequest(input *PutInlinePolicyT
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -3740,11 +3737,18 @@ func (c *SSOAdmin) PutInlinePolicyToPermissionSetRequest(input *PutInlinePolicyT
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -3818,8 +3822,8 @@ func (c *SSOAdmin) PutPermissionsBoundaryToPermissionSetRequest(input *PutPermis
 
 // PutPermissionsBoundaryToPermissionSet API operation for AWS Single Sign-On Admin.
 //
-// Attaches an AWS managed or customer managed policy to the specified PermissionSet
-// as a permissions boundary.
+// Attaches an Amazon Web Services managed or customer managed policy to the
+// specified PermissionSet as a permissions boundary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3830,22 +3834,22 @@ func (c *SSOAdmin) PutPermissionsBoundaryToPermissionSetRequest(input *PutPermis
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -3930,13 +3934,6 @@ func (c *SSOAdmin) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
-//
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
 //   - ServiceQuotaExceededException
 //     Indicates that the principal has crossed the permitted number of resources
 //     that can be created.
@@ -3945,11 +3942,18 @@ func (c *SSOAdmin) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
+//
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -4034,22 +4038,22 @@ func (c *SSOAdmin) UntagResourceRequest(input *UntagResourceInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -4142,22 +4146,22 @@ func (c *SSOAdmin) UpdateInstanceAccessControlAttributeConfigurationRequest(inpu
 //
 // Returned Error Types:
 //
-//   - InternalServerException
-//     The request processing has failed because of an unknown error, exception,
-//     or failure with an internal server.
-//
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
-//
 //   - ThrottlingException
 //     Indicates that the principal has crossed the throttling limits of the API
 //     operations.
 //
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception,
+//     or failure with an internal server.
 //
 //   - ResourceNotFoundException
 //     Indicates that a requested resource is not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -4242,22 +4246,22 @@ func (c *SSOAdmin) UpdatePermissionSetRequest(input *UpdatePermissionSetInput) (
 //
 // Returned Error Types:
 //
-//   - ResourceNotFoundException
-//     Indicates that a requested resource is not found.
+//   - ThrottlingException
+//     Indicates that the principal has crossed the throttling limits of the API
+//     operations.
 //
 //   - InternalServerException
 //     The request processing has failed because of an unknown error, exception,
 //     or failure with an internal server.
 //
-//   - ThrottlingException
-//     Indicates that the principal has crossed the throttling limits of the API
-//     operations.
-//
-//   - ValidationException
-//     The request failed because it contains a syntax error.
+//   - ResourceNotFoundException
+//     Indicates that a requested resource is not found.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request failed because it contains a syntax error.
 //
 //   - ConflictException
 //     Occurs when a conflict with a previous successful write is detected. This
@@ -4289,10 +4293,10 @@ func (c *SSOAdmin) UpdatePermissionSetWithContext(ctx aws.Context, input *Update
 
 // These are IAM Identity Center identity store attributes that you can configure
 // for use in attributes-based access control (ABAC). You can create permissions
-// policies that determine who can access your AWS resources based upon the
-// configured attribute values. When you enable ABAC and specify AccessControlAttributes,
-// IAM Identity Center passes the attribute values of the authenticated user
-// into IAM for use in policy evaluation.
+// policies that determine who can access your Amazon Web Services resources
+// based upon the configured attribute values. When you enable ABAC and specify
+// AccessControlAttributes, IAM Identity Center passes the attribute values
+// of the authenticated user into IAM for use in policy evaluation.
 type AccessControlAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -4481,19 +4485,19 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // The assignment that indicates a principal's limited access to a specified
-// AWS account with a specified permission set.
+// Amazon Web Services account with a specified permission set.
 //
 // The term principal here refers to a user or group that is defined in IAM
 // Identity Center.
 type AccountAssignment struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account.
+	// The identifier of the Amazon Web Services account.
 	AccountId *string `min:"12" type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// An identifier for an object in IAM Identity Center, such as a user or group.
@@ -4560,8 +4564,8 @@ type AccountAssignmentOperationStatus struct {
 	FailureReason *string `type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// An identifier for an object in IAM Identity Center, such as a user or group.
@@ -4580,8 +4584,7 @@ type AccountAssignmentOperationStatus struct {
 	// The status of the permission set provisioning process.
 	Status *string `type:"string" enum:"StatusValues"`
 
-	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
-	// example, 123456789012).
+	// TargetID is an Amazon Web Services account identifier, (For example, 123456789012).
 	TargetId *string `min:"12" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -4715,8 +4718,8 @@ type AttachCustomerManagedPolicyReferenceToPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each AWS account where you want
-	// to deploy your permission set.
+	// IAM policy that matches the name and path in each Amazon Web Services account
+	// where you want to deploy your permission set.
 	//
 	// CustomerManagedPolicyReference is a required field
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure" required:"true"`
@@ -4826,13 +4829,14 @@ type AttachManagedPolicyToPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
 
-	// The AWS managed policy ARN to be attached to a permission set.
+	// The Amazon Web Services managed policy ARN to be attached to a permission
+	// set.
 	//
 	// ManagedPolicyArn is a required field
 	ManagedPolicyArn *string `min:"20" type:"string" required:"true"`
@@ -4929,16 +4933,17 @@ func (s AttachManagedPolicyToPermissionSetOutput) GoString() string {
 	return s.String()
 }
 
-// A structure that stores the details of the AWS managed policy.
+// A structure that stores the details of the Amazon Web Services managed policy.
 type AttachedManagedPolicy struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the AWS managed policy. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// The ARN of the Amazon Web Services managed policy. For more information about
+	// ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces
+	// (/general/latest/gr/aws-arns-and-namespaces.html) in the Amazon Web Services
+	// General Reference.
 	Arn *string `min:"20" type:"string"`
 
-	// The name of the AWS managed policy.
+	// The name of the Amazon Web Services managed policy.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -5044,8 +5049,8 @@ type CreateAccountAssignmentInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5069,8 +5074,7 @@ type CreateAccountAssignmentInput struct {
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
 
-	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
-	// example, 123456789012).
+	// TargetID is an Amazon Web Services account identifier, (For example, 123456789012).
 	//
 	// TargetId is a required field
 	TargetId *string `min:"12" type:"string" required:"true"`
@@ -5311,8 +5315,8 @@ type CreatePermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5432,7 +5436,7 @@ func (s *CreatePermissionSetInput) SetTags(v []*Tag) *CreatePermissionSetInput {
 type CreatePermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines the level of access on an AWS account.
+	// Defines the level of access on an Amazon Web Services account.
 	PermissionSet *PermissionSet `type:"structure"`
 }
 
@@ -5461,8 +5465,8 @@ func (s *CreatePermissionSetOutput) SetPermissionSet(v *PermissionSet) *CreatePe
 }
 
 // Specifies the name and path of a customer managed policy. You must have an
-// IAM policy that matches the name and path in each AWS account where you want
-// to deploy your permission set.
+// IAM policy that matches the name and path in each Amazon Web Services account
+// where you want to deploy your permission set.
 type CustomerManagedPolicyReference struct {
 	_ struct{} `type:"structure"`
 
@@ -5533,8 +5537,8 @@ type DeleteAccountAssignmentInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5557,8 +5561,7 @@ type DeleteAccountAssignmentInput struct {
 	// PrincipalType is a required field
 	PrincipalType *string `type:"string" required:"true" enum:"PrincipalType"`
 
-	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
-	// example, 123456789012).
+	// TargetID is an Amazon Web Services account identifier, (For example, 123456789012).
 	//
 	// TargetId is a required field
 	TargetId *string `min:"12" type:"string" required:"true"`
@@ -5699,8 +5702,8 @@ type DeleteInlinePolicyFromPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -5862,8 +5865,8 @@ type DeletePermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6047,8 +6050,8 @@ type DescribeAccountAssignmentCreationStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6147,8 +6150,8 @@ type DescribeAccountAssignmentDeletionStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6342,8 +6345,8 @@ type DescribePermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6409,7 +6412,7 @@ func (s *DescribePermissionSetInput) SetPermissionSetArn(v string) *DescribePerm
 type DescribePermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the level of access on an AWS account.
+	// Describes the level of access on an Amazon Web Services account.
 	PermissionSet *PermissionSet `type:"structure"`
 }
 
@@ -6442,8 +6445,8 @@ type DescribePermissionSetProvisioningStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6542,8 +6545,8 @@ type DetachCustomerManagedPolicyReferenceFromPermissionSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each AWS account where you want
-	// to deploy your permission set.
+	// IAM policy that matches the name and path in each Amazon Web Services account
+	// where you want to deploy your permission set.
 	//
 	// CustomerManagedPolicyReference is a required field
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure" required:"true"`
@@ -6653,13 +6656,14 @@ type DetachManagedPolicyFromPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
 
-	// The AWS managed policy ARN to be detached from a permission set.
+	// The Amazon Web Services managed policy ARN to be detached from a permission
+	// set.
 	//
 	// ManagedPolicyArn is a required field
 	ManagedPolicyArn *string `min:"20" type:"string" required:"true"`
@@ -6761,8 +6765,8 @@ type GetInlinePolicyForPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -6829,6 +6833,9 @@ type GetInlinePolicyForPermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The inline policy that is attached to the permission set.
+	//
+	// For Length Constraints, if a valid ARN is provided for a permission set,
+	// it is possible for an empty inline policy to be returned.
 	InlinePolicy *string `min:"1" type:"string"`
 }
 
@@ -7023,8 +7030,8 @@ type InstanceMetadata struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	InstanceArn *string `min:"10" type:"string"`
 }
 
@@ -7131,8 +7138,8 @@ type ListAccountAssignmentCreationStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7255,8 +7262,8 @@ type ListAccountAssignmentDeletionStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7374,15 +7381,16 @@ func (s *ListAccountAssignmentDeletionStatusOutput) SetNextToken(v string) *List
 type ListAccountAssignmentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account from which to list the assignments.
+	// The identifier of the Amazon Web Services account from which to list the
+	// assignments.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7482,7 +7490,8 @@ func (s *ListAccountAssignmentsInput) SetPermissionSetArn(v string) *ListAccount
 type ListAccountAssignmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of assignments that match the input AWS account and permission set.
+	// The list of assignments that match the input Amazon Web Services account
+	// and permission set.
 	AccountAssignments []*AccountAssignment `type:"list"`
 
 	// The pagination token for the list API. Initially the value is null. Use the
@@ -7525,8 +7534,8 @@ type ListAccountsForProvisionedPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -7538,13 +7547,13 @@ type ListAccountsForProvisionedPermissionSetInput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// The ARN of the PermissionSet from which the associated AWS accounts will
-	// be listed.
+	// The ARN of the PermissionSet from which the associated Amazon Web Services
+	// accounts will be listed.
 	//
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// The permission set provisioning status for an AWS account.
+	// The permission set provisioning status for an Amazon Web Services account.
 	ProvisioningStatus *string `type:"string" enum:"ProvisioningStatus"`
 }
 
@@ -7624,7 +7633,7 @@ func (s *ListAccountsForProvisionedPermissionSetInput) SetProvisioningStatus(v s
 type ListAccountsForProvisionedPermissionSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of AWS AccountIds.
+	// The list of Amazon Web Services AccountIds.
 	AccountIds []*string `type:"list"`
 
 	// The pagination token for the list API. Initially the value is null. Use the
@@ -7893,8 +7902,8 @@ type ListManagedPoliciesInPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8028,8 +8037,8 @@ type ListPermissionSetProvisioningStatusInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8149,8 +8158,8 @@ type ListPermissionSetsInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8225,7 +8234,7 @@ type ListPermissionSetsOutput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// Defines the level of access on an AWS account.
+	// Defines the level of access on an Amazon Web Services account.
 	PermissionSets []*string `type:"list"`
 }
 
@@ -8262,15 +8271,16 @@ func (s *ListPermissionSetsOutput) SetPermissionSets(v []*string) *ListPermissio
 type ListPermissionSetsProvisionedToAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account from which to list the assignments.
+	// The identifier of the Amazon Web Services account from which to list the
+	// assignments.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8366,7 +8376,7 @@ type ListPermissionSetsProvisionedToAccountOutput struct {
 	// output of previous API calls to make subsequent calls.
 	NextToken *string `type:"string"`
 
-	// Defines the level of access that an AWS account has.
+	// Defines the level of access that an Amazon Web Services account has.
 	PermissionSets []*string `type:"list"`
 }
 
@@ -8405,8 +8415,8 @@ type ListTagsForResourceInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8566,8 +8576,8 @@ type PermissionSet struct {
 	Name *string `min:"1" type:"string"`
 
 	// The ARN of the permission set. For more information about ARNs, see Amazon
-	// Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Resource Names (ARNs) and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// Used to redirect users within the application during the federation authentication
@@ -8638,7 +8648,8 @@ func (s *PermissionSet) SetSessionDuration(v string) *PermissionSet {
 type PermissionSetProvisioningStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account from which to list the assignments.
+	// The identifier of the Amazon Web Services account from which to list the
+	// assignments.
 	AccountId *string `min:"12" type:"string"`
 
 	// The date that the permission set was created.
@@ -8648,8 +8659,9 @@ type PermissionSetProvisioningStatus struct {
 	FailureReason *string `type:"string"`
 
 	// The ARN of the permission set that is being provisioned. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service
+	// Namespaces (/general/latest/gr/aws-arns-and-namespaces.html) in the Amazon
+	// Web Services General Reference.
 	PermissionSetArn *string `min:"10" type:"string"`
 
 	// The identifier for tracking the request operation that is generated by the
@@ -8765,12 +8777,13 @@ func (s *PermissionSetProvisioningStatusMetadata) SetStatus(v string) *Permissio
 	return s
 }
 
-// Specifies the configuration of the AWS managed or customer managed policy
-// that you want to set as a permissions boundary. Specify either CustomerManagedPolicyReference
-// to use the name and path of a customer managed policy, or ManagedPolicyArn
-// to use the ARN of an AWS managed policy. A permissions boundary represents
-// the maximum permissions that any policy can grant your role. For more information,
-// see Permissions boundaries for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
+// Specifies the configuration of the Amazon Web Services managed or customer
+// managed policy that you want to set as a permissions boundary. Specify either
+// CustomerManagedPolicyReference to use the name and path of a customer managed
+// policy, or ManagedPolicyArn to use the ARN of an Amazon Web Services managed
+// policy. A permissions boundary represents the maximum permissions that any
+// policy can grant your role. For more information, see Permissions boundaries
+// for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
 // in the IAM User Guide.
 //
 // Policies used as permissions boundaries don't provide permissions. You must
@@ -8781,12 +8794,12 @@ type PermissionsBoundary struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name and path of a customer managed policy. You must have an
-	// IAM policy that matches the name and path in each AWS account where you want
-	// to deploy your permission set.
+	// IAM policy that matches the name and path in each Amazon Web Services account
+	// where you want to deploy your permission set.
 	CustomerManagedPolicyReference *CustomerManagedPolicyReference `type:"structure"`
 
-	// The AWS managed policy ARN that you want to attach to a permission set as
-	// a permissions boundary.
+	// The Amazon Web Services managed policy ARN that you want to attach to a permission
+	// set as a permissions boundary.
 	ManagedPolicyArn *string `min:"20" type:"string"`
 }
 
@@ -8843,8 +8856,8 @@ type ProvisionPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -8854,8 +8867,7 @@ type ProvisionPermissionSetInput struct {
 	// PermissionSetArn is a required field
 	PermissionSetArn *string `min:"10" type:"string" required:"true"`
 
-	// TargetID is an AWS account identifier, typically a 10-12 digit string (For
-	// example, 123456789012).
+	// TargetID is an Amazon Web Services account identifier, (For example, 123456789012).
 	TargetId *string `min:"12" type:"string"`
 
 	// The entity type for which the assignment will be created.
@@ -8975,8 +8987,8 @@ type PutInlinePolicyToPermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9312,7 +9324,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 
 // A set of key-value pairs that are used to manage the resource. Tags can only
 // be applied to permission sets and cannot be applied to corresponding roles
-// that IAM Identity Center creates in AWS accounts.
+// that IAM Identity Center creates in Amazon Web Services accounts.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -9381,8 +9393,8 @@ type TagResourceInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9561,8 +9573,8 @@ type UntagResourceInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`
@@ -9763,8 +9775,8 @@ type UpdatePermissionSetInput struct {
 
 	// The ARN of the IAM Identity Center instance under which the operation will
 	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// and Amazon Web Services Service Namespaces (/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// InstanceArn is a required field
 	InstanceArn *string `min:"10" type:"string" required:"true"`

@@ -5652,6 +5652,12 @@
         "CompleteOnConvergence":{"shape":"CompleteOnConvergence"}
       }
     },
+    "CountryCode":{
+      "type":"string",
+      "max":2,
+      "min":2,
+      "pattern":"[A-Z]{2}"
+    },
     "CreateActionRequest":{
       "type":"structure",
       "required":[
@@ -11125,6 +11131,18 @@
       "member":{"shape":"Group"},
       "max":10,
       "min":1
+    },
+    "HolidayConfig":{
+      "type":"list",
+      "member":{"shape":"HolidayConfigAttributes"},
+      "max":1,
+      "min":1
+    },
+    "HolidayConfigAttributes":{
+      "type":"structure",
+      "members":{
+        "CountryCode":{"shape":"CountryCode"}
+      }
     },
     "HookParameters":{
       "type":"map",
@@ -19748,7 +19766,8 @@
         "ForecastHorizon":{"shape":"ForecastHorizon"},
         "ForecastQuantiles":{"shape":"ForecastQuantiles"},
         "Transformations":{"shape":"TimeSeriesTransformations"},
-        "TimeSeriesConfig":{"shape":"TimeSeriesConfig"}
+        "TimeSeriesConfig":{"shape":"TimeSeriesConfig"},
+        "HolidayConfig":{"shape":"HolidayConfig"}
       }
     },
     "TimeSeriesForecastingSettings":{

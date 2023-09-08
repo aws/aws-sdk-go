@@ -905,6 +905,7 @@
       "base": null,
       "refs": {
         "AccountModification$ErrorMessage": "<p>The text of the error message that is returned if the configuration of BYOL cannot be modified.</p>",
+        "ErrorDetails$ErrorMessage": "<p>The text of the error message related the error code.</p>",
         "FailedCreateStandbyWorkspacesRequest$ErrorMessage": "<p>The text of the error message that is returned if the standby WorkSpace could not be created.</p>",
         "FailedCreateWorkspaceRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
         "FailedWorkspaceChangeRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be rebooted.</p>",
@@ -990,6 +991,18 @@
       "base": null,
       "refs": {
         "ImportWorkspaceImageRequest$Ec2ImageId": "<p>The identifier of the EC2 image.</p>"
+      }
+    },
+    "ErrorDetails": {
+      "base": "<p>Provides in-depth details about the error. These details include the possible causes of the errors and troubleshooting information.</p>",
+      "refs": {
+        "ErrorDetailsList$member": null
+      }
+    },
+    "ErrorDetailsList": {
+      "base": null,
+      "refs": {
+        "WorkspaceImage$ErrorDetails": "<p>The details of the error returned for the image.</p>"
       }
     },
     "ErrorType": {
@@ -2137,6 +2150,12 @@
       "base": null,
       "refs": {
         "WorkspaceImage$ErrorCode": "<p>The error code that is returned for the image.</p>"
+      }
+    },
+    "WorkspaceImageErrorDetailCode": {
+      "base": null,
+      "refs": {
+        "ErrorDetails$ErrorCode": "<p>Indicates the error code returned.</p>"
       }
     },
     "WorkspaceImageId": {

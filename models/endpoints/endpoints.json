@@ -19027,6 +19027,12 @@
         "isRegionalized" : false,
         "partitionEndpoint" : "aws-cn-global"
       },
+      "identitystore" : {
+        "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
+        }
+      },
       "internetmonitor" : {
         "defaults" : {
           "dnsSuffix" : "api.amazonwebservices.com.cn",

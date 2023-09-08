@@ -500,7 +500,7 @@
       "base": "<p>The configuration object for the Microsoft Windows file system used in <code>CreateFileSystem</code> and <code>CreateFileSystemFromBackup</code> operations.</p>",
       "refs": {
         "CreateFileSystemFromBackupRequest$WindowsConfiguration": "<p>The configuration for this Microsoft Windows file system.</p>",
-        "CreateFileSystemRequest$WindowsConfiguration": "<p>The Microsoft Windows configuration for the file system that's being created. </p>"
+        "CreateFileSystemRequest$WindowsConfiguration": "<p>The Microsoft Windows configuration for the file system that's being created.</p>"
       }
     },
     "CreateOntapVolumeConfiguration": {
@@ -683,7 +683,7 @@
       }
     },
     "DataRepositoryTask": {
-      "base": "<p>A description of the data repository task.</p> <ul> <li> <p>You use import and export data repository tasks to perform bulk transfer operations between an Amazon FSx for Lustre file system and a linked data repository.</p> </li> <li> <p>You use release data repository tasks to release have been exported to a linked S3 bucketed files from your Amazon FSx for Lustre file system.</p> </li> <li> <p>An Amazon File Cache resource uses a task to automatically release files from the cache.</p> </li> </ul> <p>To learn more about data repository tasks, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html\">Data Repository Tasks</a>. </p>",
+      "base": "<p>A description of the data repository task.</p> <ul> <li> <p>You use import and export data repository tasks to perform bulk transfer operations between an Amazon FSx for Lustre file system and a linked data repository.</p> </li> <li> <p>You use release data repository tasks to release files that have been exported to a linked S3 bucket from your Amazon FSx for Lustre file system.</p> </li> <li> <p>An Amazon File Cache resource uses a task to automatically release files from the cache.</p> </li> </ul> <p>To learn more about data repository tasks, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html\">Data Repository Tasks</a>. </p>",
       "refs": {
         "CreateDataRepositoryTaskResponse$DataRepositoryTask": "<p>The description of the data repository task that you just created.</p>",
         "DataRepositoryTasks$member": null
@@ -1374,10 +1374,10 @@
       "refs": {
         "CreateFileCacheRequest$FileCacheTypeVersion": "<p>Sets the Lustre version for the cache that you're creating, which must be <code>2.12</code>.</p>",
         "CreateFileSystemFromBackupRequest$FileSystemTypeVersion": "<p>Sets the version for the Amazon FSx for Lustre file system that you're creating from a backup. Valid values are <code>2.10</code>, <code>2.12</code>, and <code>2.15</code>.</p> <p>You don't need to specify <code>FileSystemTypeVersion</code> because it will be applied using the backup's <code>FileSystemTypeVersion</code> setting. If you choose to specify <code>FileSystemTypeVersion</code> when creating from backup, the value must match the backup's <code>FileSystemTypeVersion</code> setting.</p>",
-        "CreateFileSystemRequest$FileSystemTypeVersion": "<p>(Optional) For FSx for Lustre file systems, sets the Lustre version for the file system that you're creating. Valid values are <code>2.10</code>, <code>2.12</code>m and <code>2.15</code>:</p> <ul> <li> <p>2.10 is supported by the Scratch and Persistent_1 Lustre deployment types.</p> </li> <li> <p>2.12 and 2.15 are supported by all Lustre deployment types. <code>2.12</code> or <code>2.15</code> is required when setting FSx for Lustre <code>DeploymentType</code> to <code>PERSISTENT_2</code>.</p> </li> </ul> <p>Default value = <code>2.10</code>, except when <code>DeploymentType</code> is set to <code>PERSISTENT_2</code>, then the default is <code>2.12</code>.</p> <note> <p>If you set <code>FileSystemTypeVersion</code> to <code>2.10</code> for a <code>PERSISTENT_2</code> Lustre deployment type, the <code>CreateFileSystem</code> operation fails.</p> </note>",
+        "CreateFileSystemRequest$FileSystemTypeVersion": "<p>(Optional) For FSx for Lustre file systems, sets the Lustre version for the file system that you're creating. Valid values are <code>2.10</code>, <code>2.12</code>, and <code>2.15</code>:</p> <ul> <li> <p>2.10 is supported by the Scratch and Persistent_1 Lustre deployment types.</p> </li> <li> <p>2.12 and 2.15 are supported by all Lustre deployment types. <code>2.12</code> or <code>2.15</code> is required when setting FSx for Lustre <code>DeploymentType</code> to <code>PERSISTENT_2</code>.</p> </li> </ul> <p>Default value = <code>2.10</code>, except when <code>DeploymentType</code> is set to <code>PERSISTENT_2</code>, then the default is <code>2.12</code>.</p> <note> <p>If you set <code>FileSystemTypeVersion</code> to <code>2.10</code> for a <code>PERSISTENT_2</code> Lustre deployment type, the <code>CreateFileSystem</code> operation fails.</p> </note>",
         "FileCache$FileCacheTypeVersion": "<p>The Lustre version of the cache, which must be <code>2.12</code>.</p>",
         "FileCacheCreating$FileCacheTypeVersion": "<p>The Lustre version of the cache, which must be <code>2.12</code>.</p>",
-        "FileSystem$FileSystemTypeVersion": "<p>The Lustre version of the Amazon FSx for Lustre file system, which is <code>2.10</code>, <code>2.12</code>, or <code>2.15</code>.</p>"
+        "FileSystem$FileSystemTypeVersion": "<p>The Lustre version of the Amazon FSx for Lustre file system, which can be <code>2.10</code>, <code>2.12</code>, or <code>2.15</code>.</p>"
       }
     },
     "FileSystems": {

@@ -1,3 +1,14 @@
+Release v1.45.6 (2023-09-08)
+===
+
+### Service Client Updates
+* `service/fsx`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Autopilot APIs will now support holiday featurization for Timeseries models. The models will now hold holiday metadata and should be able to accommodate holiday effect during inference.
+* `service/sso-admin`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * A new field "ErrorDetails" will be added to the output of "DescribeWorkspaceImages" API call. This field provides in-depth details about the error occurred during image import process. These details include the possible causes of the errors and troubleshooting information.
+
 Release v1.45.5 (2023-09-07)
 ===
 

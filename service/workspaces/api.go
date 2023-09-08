@@ -11058,6 +11058,48 @@ func (s DisassociateIpGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// Provides in-depth details about the error. These details include the possible
+// causes of the errors and troubleshooting information.
+type ErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the error code returned.
+	ErrorCode *string `type:"string" enum:"WorkspaceImageErrorDetailCode"`
+
+	// The text of the error message related the error code.
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ErrorDetails) SetErrorCode(v string) *ErrorDetails {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ErrorDetails) SetErrorMessage(v string) *ErrorDetails {
+	s.ErrorMessage = &v
+	return s
+}
+
 // Describes the standby WorkSpace that could not be created.
 type FailedCreateStandbyWorkspacesRequest struct {
 	_ struct{} `type:"structure"`
@@ -16638,6 +16680,9 @@ type WorkspaceImage struct {
 	// The error code that is returned for the image.
 	ErrorCode *string `type:"string"`
 
+	// The details of the error returned for the image.
+	ErrorDetails []*ErrorDetails `type:"list"`
+
 	// The text of the error message that is returned for the image.
 	ErrorMessage *string `type:"string"`
 
@@ -16698,6 +16743,12 @@ func (s *WorkspaceImage) SetDescription(v string) *WorkspaceImage {
 // SetErrorCode sets the ErrorCode field's value.
 func (s *WorkspaceImage) SetErrorCode(v string) *WorkspaceImage {
 	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *WorkspaceImage) SetErrorDetails(v []*ErrorDetails) *WorkspaceImage {
+	s.ErrorDetails = v
 	return s
 }
 
@@ -17597,6 +17648,118 @@ func WorkspaceDirectoryType_Values() []string {
 	return []string{
 		WorkspaceDirectoryTypeSimpleAd,
 		WorkspaceDirectoryTypeAdConnector,
+	}
+}
+
+const (
+	// WorkspaceImageErrorDetailCodeOutdatedPowershellVersion is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeOutdatedPowershellVersion = "OutdatedPowershellVersion"
+
+	// WorkspaceImageErrorDetailCodeOfficeInstalled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeOfficeInstalled = "OfficeInstalled"
+
+	// WorkspaceImageErrorDetailCodePcoIpagentInstalled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodePcoIpagentInstalled = "PCoIPAgentInstalled"
+
+	// WorkspaceImageErrorDetailCodeWindowsUpdatesEnabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeWindowsUpdatesEnabled = "WindowsUpdatesEnabled"
+
+	// WorkspaceImageErrorDetailCodeAutoMountDisabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeAutoMountDisabled = "AutoMountDisabled"
+
+	// WorkspaceImageErrorDetailCodeWorkspacesByolaccountNotFound is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeWorkspacesByolaccountNotFound = "WorkspacesBYOLAccountNotFound"
+
+	// WorkspaceImageErrorDetailCodeWorkspacesByolaccountDisabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeWorkspacesByolaccountDisabled = "WorkspacesBYOLAccountDisabled"
+
+	// WorkspaceImageErrorDetailCodeDhcpdisabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeDhcpdisabled = "DHCPDisabled"
+
+	// WorkspaceImageErrorDetailCodeDiskFreeSpace is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeDiskFreeSpace = "DiskFreeSpace"
+
+	// WorkspaceImageErrorDetailCodeAdditionalDrivesAttached is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeAdditionalDrivesAttached = "AdditionalDrivesAttached"
+
+	// WorkspaceImageErrorDetailCodeOsnotSupported is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeOsnotSupported = "OSNotSupported"
+
+	// WorkspaceImageErrorDetailCodeDomainJoined is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeDomainJoined = "DomainJoined"
+
+	// WorkspaceImageErrorDetailCodeAzureDomainJoined is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeAzureDomainJoined = "AzureDomainJoined"
+
+	// WorkspaceImageErrorDetailCodeFirewallEnabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeFirewallEnabled = "FirewallEnabled"
+
+	// WorkspaceImageErrorDetailCodeVmwareToolsInstalled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeVmwareToolsInstalled = "VMWareToolsInstalled"
+
+	// WorkspaceImageErrorDetailCodeDiskSizeExceeded is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeDiskSizeExceeded = "DiskSizeExceeded"
+
+	// WorkspaceImageErrorDetailCodeIncompatiblePartitioning is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeIncompatiblePartitioning = "IncompatiblePartitioning"
+
+	// WorkspaceImageErrorDetailCodePendingReboot is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodePendingReboot = "PendingReboot"
+
+	// WorkspaceImageErrorDetailCodeAutoLogonEnabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeAutoLogonEnabled = "AutoLogonEnabled"
+
+	// WorkspaceImageErrorDetailCodeRealTimeUniversalDisabled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeRealTimeUniversalDisabled = "RealTimeUniversalDisabled"
+
+	// WorkspaceImageErrorDetailCodeMultipleBootPartition is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeMultipleBootPartition = "MultipleBootPartition"
+
+	// WorkspaceImageErrorDetailCodeRequires64bitOs is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeRequires64bitOs = "Requires64BitOS"
+
+	// WorkspaceImageErrorDetailCodeZeroRearmCount is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeZeroRearmCount = "ZeroRearmCount"
+
+	// WorkspaceImageErrorDetailCodeInPlaceUpgrade is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeInPlaceUpgrade = "InPlaceUpgrade"
+
+	// WorkspaceImageErrorDetailCodeAntiVirusInstalled is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeAntiVirusInstalled = "AntiVirusInstalled"
+
+	// WorkspaceImageErrorDetailCodeUefinotSupported is a WorkspaceImageErrorDetailCode enum value
+	WorkspaceImageErrorDetailCodeUefinotSupported = "UEFINotSupported"
+)
+
+// WorkspaceImageErrorDetailCode_Values returns all elements of the WorkspaceImageErrorDetailCode enum
+func WorkspaceImageErrorDetailCode_Values() []string {
+	return []string{
+		WorkspaceImageErrorDetailCodeOutdatedPowershellVersion,
+		WorkspaceImageErrorDetailCodeOfficeInstalled,
+		WorkspaceImageErrorDetailCodePcoIpagentInstalled,
+		WorkspaceImageErrorDetailCodeWindowsUpdatesEnabled,
+		WorkspaceImageErrorDetailCodeAutoMountDisabled,
+		WorkspaceImageErrorDetailCodeWorkspacesByolaccountNotFound,
+		WorkspaceImageErrorDetailCodeWorkspacesByolaccountDisabled,
+		WorkspaceImageErrorDetailCodeDhcpdisabled,
+		WorkspaceImageErrorDetailCodeDiskFreeSpace,
+		WorkspaceImageErrorDetailCodeAdditionalDrivesAttached,
+		WorkspaceImageErrorDetailCodeOsnotSupported,
+		WorkspaceImageErrorDetailCodeDomainJoined,
+		WorkspaceImageErrorDetailCodeAzureDomainJoined,
+		WorkspaceImageErrorDetailCodeFirewallEnabled,
+		WorkspaceImageErrorDetailCodeVmwareToolsInstalled,
+		WorkspaceImageErrorDetailCodeDiskSizeExceeded,
+		WorkspaceImageErrorDetailCodeIncompatiblePartitioning,
+		WorkspaceImageErrorDetailCodePendingReboot,
+		WorkspaceImageErrorDetailCodeAutoLogonEnabled,
+		WorkspaceImageErrorDetailCodeRealTimeUniversalDisabled,
+		WorkspaceImageErrorDetailCodeMultipleBootPartition,
+		WorkspaceImageErrorDetailCodeRequires64bitOs,
+		WorkspaceImageErrorDetailCodeZeroRearmCount,
+		WorkspaceImageErrorDetailCodeInPlaceUpgrade,
+		WorkspaceImageErrorDetailCodeAntiVirusInstalled,
+		WorkspaceImageErrorDetailCodeUefinotSupported,
 	}
 }
 
