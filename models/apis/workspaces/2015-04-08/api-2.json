@@ -1990,6 +1990,17 @@
       "type":"string",
       "pattern":"^ami\\-([a-f0-9]{8}|[a-f0-9]{17})$"
     },
+    "ErrorDetails":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"WorkspaceImageErrorDetailCode"},
+        "ErrorMessage":{"shape":"Description"}
+      }
+    },
+    "ErrorDetailsList":{
+      "type":"list",
+      "member":{"shape":"ErrorDetails"}
+    },
     "ErrorType":{"type":"string"},
     "ExceptionErrorCode":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
@@ -3148,7 +3159,8 @@
         "ErrorMessage":{"shape":"Description"},
         "Created":{"shape":"Timestamp"},
         "OwnerAccountId":{"shape":"AwsAccount"},
-        "Updates":{"shape":"UpdateResult"}
+        "Updates":{"shape":"UpdateResult"},
+        "ErrorDetails":{"shape":"ErrorDetailsList"}
       }
     },
     "WorkspaceImageDescription":{
@@ -3158,6 +3170,37 @@
       "pattern":"^[a-zA-Z0-9_./() -]+$"
     },
     "WorkspaceImageErrorCode":{"type":"string"},
+    "WorkspaceImageErrorDetailCode":{
+      "type":"string",
+      "enum":[
+        "OutdatedPowershellVersion",
+        "OfficeInstalled",
+        "PCoIPAgentInstalled",
+        "WindowsUpdatesEnabled",
+        "AutoMountDisabled",
+        "WorkspacesBYOLAccountNotFound",
+        "WorkspacesBYOLAccountDisabled",
+        "DHCPDisabled",
+        "DiskFreeSpace",
+        "AdditionalDrivesAttached",
+        "OSNotSupported",
+        "DomainJoined",
+        "AzureDomainJoined",
+        "FirewallEnabled",
+        "VMWareToolsInstalled",
+        "DiskSizeExceeded",
+        "IncompatiblePartitioning",
+        "PendingReboot",
+        "AutoLogonEnabled",
+        "RealTimeUniversalDisabled",
+        "MultipleBootPartition",
+        "Requires64BitOS",
+        "ZeroRearmCount",
+        "InPlaceUpgrade",
+        "AntiVirusInstalled",
+        "UEFINotSupported"
+      ]
+    },
     "WorkspaceImageId":{
       "type":"string",
       "pattern":"wsi-[0-9a-z]{9,63}$"

@@ -7868,7 +7868,7 @@ type CreateFileSystemInput struct {
 	FileSystemType *string `type:"string" required:"true" enum:"FileSystemType"`
 
 	// (Optional) For FSx for Lustre file systems, sets the Lustre version for the
-	// file system that you're creating. Valid values are 2.10, 2.12m and 2.15:
+	// file system that you're creating. Valid values are 2.10, 2.12, and 2.15:
 	//
 	//    * 2.10 is supported by the Scratch and Persistent_1 Lustre deployment
 	//    types.
@@ -11067,8 +11067,8 @@ func (s *DataRepositoryFailureDetails) SetMessage(v string) *DataRepositoryFailu
 //     operations between an Amazon FSx for Lustre file system and a linked data
 //     repository.
 //
-//   - You use release data repository tasks to release have been exported
-//     to a linked S3 bucketed files from your Amazon FSx for Lustre file system.
+//   - You use release data repository tasks to release files that have been
+//     exported to a linked S3 bucket from your Amazon FSx for Lustre file system.
 //
 //   - An Amazon File Cache resource uses a task to automatically release files
 //     from the cache.
@@ -15186,8 +15186,8 @@ type FileSystem struct {
 	// or OPENZFS.
 	FileSystemType *string `type:"string" enum:"FileSystemType"`
 
-	// The Lustre version of the Amazon FSx for Lustre file system, which is 2.10,
-	// 2.12, or 2.15.
+	// The Lustre version of the Amazon FSx for Lustre file system, which can be
+	// 2.10, 2.12, or 2.15.
 	FileSystemTypeVersion *string `min:"1" type:"string"`
 
 	// The ID of the Key Management Service (KMS) key used to encrypt Amazon FSx

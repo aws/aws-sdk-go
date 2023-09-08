@@ -23,12 +23,12 @@
       "input":{"shape":"AttachCustomerManagedPolicyReferenceToPermissionSetRequest"},
       "output":{"shape":"AttachCustomerManagedPolicyReferenceToPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -41,12 +41,12 @@
       "input":{"shape":"AttachManagedPolicyToPermissionSetRequest"},
       "output":{"shape":"AttachManagedPolicyToPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -59,12 +59,12 @@
       "input":{"shape":"CreateAccountAssignmentRequest"},
       "output":{"shape":"CreateAccountAssignmentResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -77,11 +77,11 @@
       "input":{"shape":"CreateInstanceAccessControlAttributeConfigurationRequest"},
       "output":{"shape":"CreateInstanceAccessControlAttributeConfigurationResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -94,12 +94,12 @@
       "input":{"shape":"CreatePermissionSetRequest"},
       "output":{"shape":"CreatePermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -112,11 +112,11 @@
       "input":{"shape":"DeleteAccountAssignmentRequest"},
       "output":{"shape":"DeleteAccountAssignmentResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -129,11 +129,11 @@
       "input":{"shape":"DeleteInlinePolicyFromPermissionSetRequest"},
       "output":{"shape":"DeleteInlinePolicyFromPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -146,11 +146,11 @@
       "input":{"shape":"DeleteInstanceAccessControlAttributeConfigurationRequest"},
       "output":{"shape":"DeleteInstanceAccessControlAttributeConfigurationResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -163,11 +163,11 @@
       "input":{"shape":"DeletePermissionSetRequest"},
       "output":{"shape":"DeletePermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -180,11 +180,11 @@
       "input":{"shape":"DeletePermissionsBoundaryFromPermissionSetRequest"},
       "output":{"shape":"DeletePermissionsBoundaryFromPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeAccountAssignmentCreationStatus":{
@@ -196,11 +196,11 @@
       "input":{"shape":"DescribeAccountAssignmentCreationStatusRequest"},
       "output":{"shape":"DescribeAccountAssignmentCreationStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeAccountAssignmentDeletionStatus":{
@@ -212,11 +212,11 @@
       "input":{"shape":"DescribeAccountAssignmentDeletionStatusRequest"},
       "output":{"shape":"DescribeAccountAssignmentDeletionStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeInstanceAccessControlAttributeConfiguration":{
@@ -228,10 +228,10 @@
       "input":{"shape":"DescribeInstanceAccessControlAttributeConfigurationRequest"},
       "output":{"shape":"DescribeInstanceAccessControlAttributeConfigurationResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -244,11 +244,11 @@
       "input":{"shape":"DescribePermissionSetRequest"},
       "output":{"shape":"DescribePermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribePermissionSetProvisioningStatus":{
@@ -260,11 +260,11 @@
       "input":{"shape":"DescribePermissionSetProvisioningStatusRequest"},
       "output":{"shape":"DescribePermissionSetProvisioningStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DetachCustomerManagedPolicyReferenceFromPermissionSet":{
@@ -276,11 +276,11 @@
       "input":{"shape":"DetachCustomerManagedPolicyReferenceFromPermissionSetRequest"},
       "output":{"shape":"DetachCustomerManagedPolicyReferenceFromPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -293,11 +293,11 @@
       "input":{"shape":"DetachManagedPolicyFromPermissionSetRequest"},
       "output":{"shape":"DetachManagedPolicyFromPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -310,11 +310,11 @@
       "input":{"shape":"GetInlinePolicyForPermissionSetRequest"},
       "output":{"shape":"GetInlinePolicyForPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetPermissionsBoundaryForPermissionSet":{
@@ -326,11 +326,11 @@
       "input":{"shape":"GetPermissionsBoundaryForPermissionSetRequest"},
       "output":{"shape":"GetPermissionsBoundaryForPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListAccountAssignmentCreationStatus":{
@@ -342,11 +342,11 @@
       "input":{"shape":"ListAccountAssignmentCreationStatusRequest"},
       "output":{"shape":"ListAccountAssignmentCreationStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListAccountAssignmentDeletionStatus":{
@@ -358,11 +358,11 @@
       "input":{"shape":"ListAccountAssignmentDeletionStatusRequest"},
       "output":{"shape":"ListAccountAssignmentDeletionStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListAccountAssignments":{
@@ -374,11 +374,11 @@
       "input":{"shape":"ListAccountAssignmentsRequest"},
       "output":{"shape":"ListAccountAssignmentsResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListAccountsForProvisionedPermissionSet":{
@@ -390,11 +390,11 @@
       "input":{"shape":"ListAccountsForProvisionedPermissionSetRequest"},
       "output":{"shape":"ListAccountsForProvisionedPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListCustomerManagedPolicyReferencesInPermissionSet":{
@@ -406,11 +406,11 @@
       "input":{"shape":"ListCustomerManagedPolicyReferencesInPermissionSetRequest"},
       "output":{"shape":"ListCustomerManagedPolicyReferencesInPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListInstances":{
@@ -422,8 +422,8 @@
       "input":{"shape":"ListInstancesRequest"},
       "output":{"shape":"ListInstancesResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
@@ -437,11 +437,11 @@
       "input":{"shape":"ListManagedPoliciesInPermissionSetRequest"},
       "output":{"shape":"ListManagedPoliciesInPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListPermissionSetProvisioningStatus":{
@@ -453,11 +453,11 @@
       "input":{"shape":"ListPermissionSetProvisioningStatusRequest"},
       "output":{"shape":"ListPermissionSetProvisioningStatusResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListPermissionSets":{
@@ -469,11 +469,11 @@
       "input":{"shape":"ListPermissionSetsRequest"},
       "output":{"shape":"ListPermissionSetsResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListPermissionSetsProvisionedToAccount":{
@@ -485,11 +485,11 @@
       "input":{"shape":"ListPermissionSetsProvisionedToAccountRequest"},
       "output":{"shape":"ListPermissionSetsProvisionedToAccountResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListTagsForResource":{
@@ -501,11 +501,11 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ProvisionPermissionSet":{
@@ -517,11 +517,11 @@
       "input":{"shape":"ProvisionPermissionSetRequest"},
       "output":{"shape":"ProvisionPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -534,12 +534,12 @@
       "input":{"shape":"PutInlinePolicyToPermissionSetRequest"},
       "output":{"shape":"PutInlinePolicyToPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -552,11 +552,11 @@
       "input":{"shape":"PutPermissionsBoundaryToPermissionSetRequest"},
       "output":{"shape":"PutPermissionsBoundaryToPermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -569,12 +569,12 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -587,11 +587,11 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -604,11 +604,11 @@
       "input":{"shape":"UpdateInstanceAccessControlAttributeConfigurationRequest"},
       "output":{"shape":"UpdateInstanceAccessControlAttributeConfigurationResponse"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -621,11 +621,11 @@
       "input":{"shape":"UpdatePermissionSetRequest"},
       "output":{"shape":"UpdatePermissionSetResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     }
@@ -646,7 +646,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]+"
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]+$"
     },
     "AccessControlAttributeList":{
       "type":"list",
@@ -665,7 +665,7 @@
       "type":"string",
       "max":256,
       "min":0,
-      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@\\[\\]\\{\\}\\$\\\\\"]*"
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@\\[\\]\\{\\}\\$\\\\\"]*$"
     },
     "AccessControlAttributeValueSourceList":{
       "type":"list",
@@ -686,8 +686,8 @@
       "members":{
         "AccountId":{"shape":"AccountId"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "PrincipalType":{"shape":"PrincipalType"},
-        "PrincipalId":{"shape":"PrincipalId"}
+        "PrincipalId":{"shape":"PrincipalId"},
+        "PrincipalType":{"shape":"PrincipalType"}
       }
     },
     "AccountAssignmentList":{
@@ -697,15 +697,15 @@
     "AccountAssignmentOperationStatus":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"StatusValues"},
-        "RequestId":{"shape":"UUId"},
+        "CreatedDate":{"shape":"Date"},
         "FailureReason":{"shape":"Reason"},
-        "TargetId":{"shape":"TargetId"},
-        "TargetType":{"shape":"TargetType"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "PrincipalType":{"shape":"PrincipalType"},
         "PrincipalId":{"shape":"PrincipalId"},
-        "CreatedDate":{"shape":"Date"}
+        "PrincipalType":{"shape":"PrincipalType"},
+        "RequestId":{"shape":"UUId"},
+        "Status":{"shape":"StatusValues"},
+        "TargetId":{"shape":"TargetId"},
+        "TargetType":{"shape":"TargetType"}
       }
     },
     "AccountAssignmentOperationStatusList":{
@@ -715,16 +715,16 @@
     "AccountAssignmentOperationStatusMetadata":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"StatusValues"},
+        "CreatedDate":{"shape":"Date"},
         "RequestId":{"shape":"UUId"},
-        "CreatedDate":{"shape":"Date"}
+        "Status":{"shape":"StatusValues"}
       }
     },
     "AccountId":{
       "type":"string",
       "max":12,
       "min":12,
-      "pattern":"\\d{12}"
+      "pattern":"^\\d{12}$"
     },
     "AccountList":{
       "type":"list",
@@ -733,14 +733,14 @@
     "AttachCustomerManagedPolicyReferenceToPermissionSetRequest":{
       "type":"structure",
       "required":[
+        "CustomerManagedPolicyReference",
         "InstanceArn",
-        "PermissionSetArn",
-        "CustomerManagedPolicyReference"
+        "PermissionSetArn"
       ],
       "members":{
+        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"},
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"}
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "AttachCustomerManagedPolicyReferenceToPermissionSetResponse":{
@@ -752,13 +752,13 @@
       "type":"structure",
       "required":[
         "InstanceArn",
-        "PermissionSetArn",
-        "ManagedPolicyArn"
+        "ManagedPolicyArn",
+        "PermissionSetArn"
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "ManagedPolicyArn":{"shape":"ManagedPolicyArn"}
+        "ManagedPolicyArn":{"shape":"ManagedPolicyArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "AttachManagedPolicyToPermissionSetResponse":{
@@ -769,8 +769,8 @@
     "AttachedManagedPolicy":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"Name"},
-        "Arn":{"shape":"ManagedPolicyArn"}
+        "Arn":{"shape":"ManagedPolicyArn"},
+        "Name":{"shape":"Name"}
       }
     },
     "AttachedManagedPolicyList":{
@@ -789,19 +789,19 @@
       "type":"structure",
       "required":[
         "InstanceArn",
-        "TargetId",
-        "TargetType",
         "PermissionSetArn",
+        "PrincipalId",
         "PrincipalType",
-        "PrincipalId"
+        "TargetId",
+        "TargetType"
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "TargetId":{"shape":"TargetId"},
-        "TargetType":{"shape":"TargetType"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "PrincipalId":{"shape":"PrincipalId"},
         "PrincipalType":{"shape":"PrincipalType"},
-        "PrincipalId":{"shape":"PrincipalId"}
+        "TargetId":{"shape":"TargetId"},
+        "TargetType":{"shape":"TargetType"}
       }
     },
     "CreateAccountAssignmentResponse":{
@@ -813,12 +813,12 @@
     "CreateInstanceAccessControlAttributeConfigurationRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
-        "InstanceAccessControlAttributeConfiguration"
+        "InstanceAccessControlAttributeConfiguration",
+        "InstanceArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
-        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"},
+        "InstanceArn":{"shape":"InstanceArn"}
       }
     },
     "CreateInstanceAccessControlAttributeConfigurationResponse":{
@@ -829,15 +829,15 @@
     "CreatePermissionSetRequest":{
       "type":"structure",
       "required":[
-        "Name",
-        "InstanceArn"
+        "InstanceArn",
+        "Name"
       ],
       "members":{
-        "Name":{"shape":"PermissionSetName"},
         "Description":{"shape":"PermissionSetDescription"},
         "InstanceArn":{"shape":"InstanceArn"},
-        "SessionDuration":{"shape":"Duration"},
+        "Name":{"shape":"PermissionSetName"},
         "RelayState":{"shape":"RelayState"},
+        "SessionDuration":{"shape":"Duration"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -864,19 +864,19 @@
       "type":"structure",
       "required":[
         "InstanceArn",
-        "TargetId",
-        "TargetType",
         "PermissionSetArn",
+        "PrincipalId",
         "PrincipalType",
-        "PrincipalId"
+        "TargetId",
+        "TargetType"
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "TargetId":{"shape":"TargetId"},
-        "TargetType":{"shape":"TargetType"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "PrincipalId":{"shape":"PrincipalId"},
         "PrincipalType":{"shape":"PrincipalType"},
-        "PrincipalId":{"shape":"PrincipalId"}
+        "TargetId":{"shape":"TargetId"},
+        "TargetType":{"shape":"TargetType"}
       }
     },
     "DeleteAccountAssignmentResponse":{
@@ -948,12 +948,12 @@
     "DescribeAccountAssignmentCreationStatusRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
-        "AccountAssignmentCreationRequestId"
+        "AccountAssignmentCreationRequestId",
+        "InstanceArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
-        "AccountAssignmentCreationRequestId":{"shape":"UUId"}
+        "AccountAssignmentCreationRequestId":{"shape":"UUId"},
+        "InstanceArn":{"shape":"InstanceArn"}
       }
     },
     "DescribeAccountAssignmentCreationStatusResponse":{
@@ -965,12 +965,12 @@
     "DescribeAccountAssignmentDeletionStatusRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
-        "AccountAssignmentDeletionRequestId"
+        "AccountAssignmentDeletionRequestId",
+        "InstanceArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
-        "AccountAssignmentDeletionRequestId":{"shape":"UUId"}
+        "AccountAssignmentDeletionRequestId":{"shape":"UUId"},
+        "InstanceArn":{"shape":"InstanceArn"}
       }
     },
     "DescribeAccountAssignmentDeletionStatusResponse":{
@@ -989,9 +989,9 @@
     "DescribeInstanceAccessControlAttributeConfigurationResponse":{
       "type":"structure",
       "members":{
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"},
         "Status":{"shape":"InstanceAccessControlAttributeConfigurationStatus"},
-        "StatusReason":{"shape":"InstanceAccessControlAttributeConfigurationStatusReason"},
-        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
+        "StatusReason":{"shape":"InstanceAccessControlAttributeConfigurationStatusReason"}
       }
     },
     "DescribePermissionSetProvisioningStatusRequest":{
@@ -1031,14 +1031,14 @@
     "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest":{
       "type":"structure",
       "required":[
+        "CustomerManagedPolicyReference",
         "InstanceArn",
-        "PermissionSetArn",
-        "CustomerManagedPolicyReference"
+        "PermissionSetArn"
       ],
       "members":{
+        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"},
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "CustomerManagedPolicyReference":{"shape":"CustomerManagedPolicyReference"}
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "DetachCustomerManagedPolicyReferenceFromPermissionSetResponse":{
@@ -1050,13 +1050,13 @@
       "type":"structure",
       "required":[
         "InstanceArn",
-        "PermissionSetArn",
-        "ManagedPolicyArn"
+        "ManagedPolicyArn",
+        "PermissionSetArn"
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "ManagedPolicyArn":{"shape":"ManagedPolicyArn"}
+        "ManagedPolicyArn":{"shape":"ManagedPolicyArn"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "DetachManagedPolicyFromPermissionSetResponse":{
@@ -1108,7 +1108,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-zA-Z0-9-]*"
+      "pattern":"^[a-zA-Z0-9-]*$"
     },
     "InstanceAccessControlAttributeConfiguration":{
       "type":"structure",
@@ -1130,7 +1130,7 @@
       "type":"string",
       "max":1224,
       "min":10,
-      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}"
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$"
     },
     "InstanceList":{
       "type":"list",
@@ -1139,8 +1139,8 @@
     "InstanceMetadata":{
       "type":"structure",
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
-        "IdentityStoreId":{"shape":"Id"}
+        "IdentityStoreId":{"shape":"Id"},
+        "InstanceArn":{"shape":"InstanceArn"}
       }
     },
     "InternalFailureMessage":{"type":"string"},
@@ -1149,16 +1149,17 @@
       "members":{
         "Message":{"shape":"InternalFailureMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "ListAccountAssignmentCreationStatusRequest":{
       "type":"structure",
       "required":["InstanceArn"],
       "members":{
+        "Filter":{"shape":"OperationStatusFilter"},
         "InstanceArn":{"shape":"InstanceArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"},
-        "Filter":{"shape":"OperationStatusFilter"}
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListAccountAssignmentCreationStatusResponse":{
@@ -1172,10 +1173,10 @@
       "type":"structure",
       "required":["InstanceArn"],
       "members":{
+        "Filter":{"shape":"OperationStatusFilter"},
         "InstanceArn":{"shape":"InstanceArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"},
-        "Filter":{"shape":"OperationStatusFilter"}
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListAccountAssignmentDeletionStatusResponse":{
@@ -1188,16 +1189,16 @@
     "ListAccountAssignmentsRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
         "AccountId",
+        "InstanceArn",
         "PermissionSetArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
         "AccountId":{"shape":"TargetId"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "InstanceArn":{"shape":"InstanceArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "ListAccountAssignmentsResponse":{
@@ -1215,10 +1216,10 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "ProvisioningStatus":{"shape":"ProvisioningStatus"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "ProvisioningStatus":{"shape":"ProvisioningStatus"}
       }
     },
     "ListAccountsForProvisionedPermissionSetResponse":{
@@ -1236,9 +1237,9 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "ListCustomerManagedPolicyReferencesInPermissionSetResponse":{
@@ -1270,9 +1271,9 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "ListManagedPoliciesInPermissionSetResponse":{
@@ -1286,31 +1287,31 @@
       "type":"structure",
       "required":["InstanceArn"],
       "members":{
+        "Filter":{"shape":"OperationStatusFilter"},
         "InstanceArn":{"shape":"InstanceArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"},
-        "Filter":{"shape":"OperationStatusFilter"}
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListPermissionSetProvisioningStatusResponse":{
       "type":"structure",
       "members":{
-        "PermissionSetsProvisioningStatus":{"shape":"PermissionSetProvisioningStatusList"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSetsProvisioningStatus":{"shape":"PermissionSetProvisioningStatusList"}
       }
     },
     "ListPermissionSetsProvisionedToAccountRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
-        "AccountId"
+        "AccountId",
+        "InstanceArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
         "AccountId":{"shape":"AccountId"},
-        "ProvisioningStatus":{"shape":"ProvisioningStatus"},
+        "InstanceArn":{"shape":"InstanceArn"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "ProvisioningStatus":{"shape":"ProvisioningStatus"}
       }
     },
     "ListPermissionSetsProvisionedToAccountResponse":{
@@ -1325,15 +1326,15 @@
       "required":["InstanceArn"],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListPermissionSetsResponse":{
       "type":"structure",
       "members":{
-        "PermissionSets":{"shape":"PermissionSetList"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "PermissionSets":{"shape":"PermissionSetList"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1344,37 +1345,38 @@
       ],
       "members":{
         "InstanceArn":{"shape":"InstanceArn"},
-        "ResourceArn":{"shape":"TaggableResourceArn"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "ResourceArn":{"shape":"TaggableResourceArn"}
       }
     },
     "ListTagsForResourceResponse":{
       "type":"structure",
       "members":{
-        "Tags":{"shape":"TagList"},
-        "NextToken":{"shape":"Token"}
+        "NextToken":{"shape":"Token"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ManagedPolicyArn":{
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::aws:policy/[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]+"
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::aws:policy/[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]+$"
     },
     "ManagedPolicyName":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[\\w+=,.@-]+"
+      "pattern":"^[\\w+=,.@-]+$"
     },
     "ManagedPolicyPath":{
       "type":"string",
       "max":512,
       "min":1,
-      "pattern":"((/[A-Za-z0-9\\.,\\+@=_-]+)*)/"
+      "pattern":"^((/[A-Za-z0-9\\.,\\+@=_-]+)*)/$"
     },
     "MaxResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
@@ -1392,25 +1394,25 @@
     "PermissionSet":{
       "type":"structure",
       "members":{
+        "CreatedDate":{"shape":"Date"},
+        "Description":{"shape":"PermissionSetDescription"},
         "Name":{"shape":"PermissionSetName"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "Description":{"shape":"PermissionSetDescription"},
-        "CreatedDate":{"shape":"Date"},
-        "SessionDuration":{"shape":"Duration"},
-        "RelayState":{"shape":"RelayState"}
+        "RelayState":{"shape":"RelayState"},
+        "SessionDuration":{"shape":"Duration"}
       }
     },
     "PermissionSetArn":{
       "type":"string",
       "max":1224,
       "min":10,
-      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}"
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}$"
     },
     "PermissionSetDescription":{
       "type":"string",
       "max":700,
       "min":1,
-      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A0-\\u00FF]*"
+      "pattern":"^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]*$"
     },
     "PermissionSetList":{
       "type":"list",
@@ -1420,23 +1422,23 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"[\\w+=,.@-]+"
+      "pattern":"^[\\w+=,.@-]+$"
     },
     "PermissionSetPolicyDocument":{
       "type":"string",
-      "max":10240,
+      "max":32768,
       "min":1,
-      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+      "pattern":"^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$"
     },
     "PermissionSetProvisioningStatus":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"StatusValues"},
-        "RequestId":{"shape":"UUId"},
         "AccountId":{"shape":"AccountId"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "CreatedDate":{"shape":"Date"},
         "FailureReason":{"shape":"Reason"},
-        "CreatedDate":{"shape":"Date"}
+        "PermissionSetArn":{"shape":"PermissionSetArn"},
+        "RequestId":{"shape":"UUId"},
+        "Status":{"shape":"StatusValues"}
       }
     },
     "PermissionSetProvisioningStatusList":{
@@ -1446,9 +1448,9 @@
     "PermissionSetProvisioningStatusMetadata":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"StatusValues"},
+        "CreatedDate":{"shape":"Date"},
         "RequestId":{"shape":"UUId"},
-        "CreatedDate":{"shape":"Date"}
+        "Status":{"shape":"StatusValues"}
       }
     },
     "PermissionsBoundary":{
@@ -1508,14 +1510,14 @@
     "PutInlinePolicyToPermissionSetRequest":{
       "type":"structure",
       "required":[
+        "InlinePolicy",
         "InstanceArn",
-        "PermissionSetArn",
-        "InlinePolicy"
+        "PermissionSetArn"
       ],
       "members":{
+        "InlinePolicy":{"shape":"PermissionSetPolicyDocument"},
         "InstanceArn":{"shape":"InstanceArn"},
-        "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "InlinePolicy":{"shape":"PermissionSetPolicyDocument"}
+        "PermissionSetArn":{"shape":"PermissionSetArn"}
       }
     },
     "PutInlinePolicyToPermissionSetResponse":{
@@ -1543,13 +1545,13 @@
     },
     "Reason":{
       "type":"string",
-      "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*"
+      "pattern":"^[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*$"
     },
     "RelayState":{
       "type":"string",
       "max":240,
       "min":1,
-      "pattern":"[a-zA-Z0-9&$@#\\\\\\/%?=~\\-_'\"|!:,.;*+\\[\\]\\ \\(\\)\\{\\}]+"
+      "pattern":"^[a-zA-Z0-9&$@#\\\\\\/%?=~\\-_'\"|!:,.;*+\\[\\]\\ \\(\\)\\{\\}]+$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1632,13 +1634,13 @@
       "type":"string",
       "max":2048,
       "min":10,
-      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}"
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::permissionSet/(sso)?ins-[a-zA-Z0-9-.]{16}/ps-[a-zA-Z0-9-./]{16}$"
     },
     "TargetId":{
       "type":"string",
       "max":12,
       "min":12,
-      "pattern":"\\d{12}"
+      "pattern":"^\\d{12}$"
     },
     "TargetType":{
       "type":"string",
@@ -1655,13 +1657,14 @@
     "Token":{
       "type":"string",
       "max":2048,
-      "pattern":"^[-a-zA-Z0-9+=/_]*"
+      "min":0,
+      "pattern":"^[-a-zA-Z0-9+=/_]*$"
     },
     "UUId":{
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":"\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b"
+      "pattern":"^\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b$"
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -1684,12 +1687,12 @@
     "UpdateInstanceAccessControlAttributeConfigurationRequest":{
       "type":"structure",
       "required":[
-        "InstanceArn",
-        "InstanceAccessControlAttributeConfiguration"
+        "InstanceAccessControlAttributeConfiguration",
+        "InstanceArn"
       ],
       "members":{
-        "InstanceArn":{"shape":"InstanceArn"},
-        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"},
+        "InstanceArn":{"shape":"InstanceArn"}
       }
     },
     "UpdateInstanceAccessControlAttributeConfigurationResponse":{
@@ -1704,11 +1707,11 @@
         "PermissionSetArn"
       ],
       "members":{
+        "Description":{"shape":"PermissionSetDescription"},
         "InstanceArn":{"shape":"InstanceArn"},
         "PermissionSetArn":{"shape":"PermissionSetArn"},
-        "Description":{"shape":"PermissionSetDescription"},
-        "SessionDuration":{"shape":"Duration"},
-        "RelayState":{"shape":"RelayState"}
+        "RelayState":{"shape":"RelayState"},
+        "SessionDuration":{"shape":"Duration"}
       }
     },
     "UpdatePermissionSetResponse":{
