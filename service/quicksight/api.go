@@ -60153,6 +60153,128 @@ func (s *JoinKeyProperties) SetUniqueKey(v bool) *JoinKeyProperties {
 	return s
 }
 
+// The conditional formatting for the actual value of a KPI visual.
+type KPIActualValueConditionalFormatting struct {
+	_ struct{} `type:"structure"`
+
+	// The conditional formatting of the actual value's icon.
+	Icon *ConditionalFormattingIcon `type:"structure"`
+
+	// The conditional formatting of the actual value's text color.
+	TextColor *ConditionalFormattingColor `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIActualValueConditionalFormatting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIActualValueConditionalFormatting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KPIActualValueConditionalFormatting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KPIActualValueConditionalFormatting"}
+	if s.Icon != nil {
+		if err := s.Icon.Validate(); err != nil {
+			invalidParams.AddNested("Icon", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextColor != nil {
+		if err := s.TextColor.Validate(); err != nil {
+			invalidParams.AddNested("TextColor", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIcon sets the Icon field's value.
+func (s *KPIActualValueConditionalFormatting) SetIcon(v *ConditionalFormattingIcon) *KPIActualValueConditionalFormatting {
+	s.Icon = v
+	return s
+}
+
+// SetTextColor sets the TextColor field's value.
+func (s *KPIActualValueConditionalFormatting) SetTextColor(v *ConditionalFormattingColor) *KPIActualValueConditionalFormatting {
+	s.TextColor = v
+	return s
+}
+
+// The conditional formatting for the comparison value of a KPI visual.
+type KPIComparisonValueConditionalFormatting struct {
+	_ struct{} `type:"structure"`
+
+	// The conditional formatting of the comparison value's icon.
+	Icon *ConditionalFormattingIcon `type:"structure"`
+
+	// The conditional formatting of the comparison value's text color.
+	TextColor *ConditionalFormattingColor `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIComparisonValueConditionalFormatting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIComparisonValueConditionalFormatting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KPIComparisonValueConditionalFormatting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KPIComparisonValueConditionalFormatting"}
+	if s.Icon != nil {
+		if err := s.Icon.Validate(); err != nil {
+			invalidParams.AddNested("Icon", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextColor != nil {
+		if err := s.TextColor.Validate(); err != nil {
+			invalidParams.AddNested("TextColor", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIcon sets the Icon field's value.
+func (s *KPIComparisonValueConditionalFormatting) SetIcon(v *ConditionalFormattingIcon) *KPIComparisonValueConditionalFormatting {
+	s.Icon = v
+	return s
+}
+
+// SetTextColor sets the TextColor field's value.
+func (s *KPIComparisonValueConditionalFormatting) SetTextColor(v *ConditionalFormattingColor) *KPIComparisonValueConditionalFormatting {
+	s.TextColor = v
+	return s
+}
+
 // The conditional formatting of a KPI visual.
 type KPIConditionalFormatting struct {
 	_ struct{} `type:"structure"`
@@ -60209,6 +60331,12 @@ func (s *KPIConditionalFormatting) SetConditionalFormattingOptions(v []*KPICondi
 type KPIConditionalFormattingOption struct {
 	_ struct{} `type:"structure"`
 
+	// The conditional formatting for the actual value of a KPI visual.
+	ActualValue *KPIActualValueConditionalFormatting `type:"structure"`
+
+	// The conditional formatting for the comparison value of a KPI visual.
+	ComparisonValue *KPIComparisonValueConditionalFormatting `type:"structure"`
+
 	// The conditional formatting for the primary value of a KPI visual.
 	PrimaryValue *KPIPrimaryValueConditionalFormatting `type:"structure"`
 
@@ -60237,6 +60365,16 @@ func (s KPIConditionalFormattingOption) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *KPIConditionalFormattingOption) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "KPIConditionalFormattingOption"}
+	if s.ActualValue != nil {
+		if err := s.ActualValue.Validate(); err != nil {
+			invalidParams.AddNested("ActualValue", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ComparisonValue != nil {
+		if err := s.ComparisonValue.Validate(); err != nil {
+			invalidParams.AddNested("ComparisonValue", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PrimaryValue != nil {
 		if err := s.PrimaryValue.Validate(); err != nil {
 			invalidParams.AddNested("PrimaryValue", err.(request.ErrInvalidParams))
@@ -60252,6 +60390,18 @@ func (s *KPIConditionalFormattingOption) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActualValue sets the ActualValue field's value.
+func (s *KPIConditionalFormattingOption) SetActualValue(v *KPIActualValueConditionalFormatting) *KPIConditionalFormattingOption {
+	s.ActualValue = v
+	return s
+}
+
+// SetComparisonValue sets the ComparisonValue field's value.
+func (s *KPIConditionalFormattingOption) SetComparisonValue(v *KPIComparisonValueConditionalFormatting) *KPIConditionalFormattingOption {
+	s.ComparisonValue = v
+	return s
 }
 
 // SetPrimaryValue sets the PrimaryValue field's value.
@@ -60455,8 +60605,15 @@ type KPIOptions struct {
 	// The options that determine the secondary value font configuration.
 	SecondaryValueFontConfiguration *FontConfiguration `type:"structure"`
 
+	// The options that determine the visibility, color, type, and tooltip visibility
+	// of the sparkline of a KPI visual.
+	Sparkline *KPISparklineOptions `type:"structure"`
+
 	// The options that determine the presentation of trend arrows in a KPI visual.
 	TrendArrows *TrendArrowOptions `type:"structure"`
+
+	// The options that determine the layout a KPI visual.
+	VisualLayoutOptions *KPIVisualLayoutOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -60483,6 +60640,16 @@ func (s *KPIOptions) Validate() error {
 	if s.Comparison != nil {
 		if err := s.Comparison.Validate(); err != nil {
 			invalidParams.AddNested("Comparison", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sparkline != nil {
+		if err := s.Sparkline.Validate(); err != nil {
+			invalidParams.AddNested("Sparkline", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VisualLayoutOptions != nil {
+		if err := s.VisualLayoutOptions.Validate(); err != nil {
+			invalidParams.AddNested("VisualLayoutOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -60528,9 +60695,21 @@ func (s *KPIOptions) SetSecondaryValueFontConfiguration(v *FontConfiguration) *K
 	return s
 }
 
+// SetSparkline sets the Sparkline field's value.
+func (s *KPIOptions) SetSparkline(v *KPISparklineOptions) *KPIOptions {
+	s.Sparkline = v
+	return s
+}
+
 // SetTrendArrows sets the TrendArrows field's value.
 func (s *KPIOptions) SetTrendArrows(v *TrendArrowOptions) *KPIOptions {
 	s.TrendArrows = v
+	return s
+}
+
+// SetVisualLayoutOptions sets the VisualLayoutOptions field's value.
+func (s *KPIOptions) SetVisualLayoutOptions(v *KPIVisualLayoutOptions) *KPIOptions {
+	s.VisualLayoutOptions = v
 	return s
 }
 
@@ -60694,6 +60873,81 @@ func (s *KPISortConfiguration) SetTrendGroupSort(v []*FieldSortOptions) *KPISort
 	return s
 }
 
+// The options that determine the visibility, color, type, and tooltip visibility
+// of the sparkline of a KPI visual.
+type KPISparklineOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The color of the sparkline.
+	Color *string `type:"string"`
+
+	// The tooltip visibility of the sparkline.
+	TooltipVisibility *string `type:"string" enum:"Visibility"`
+
+	// The type of the sparkline.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"KPISparklineType"`
+
+	// The visibility of the sparkline.
+	Visibility *string `type:"string" enum:"Visibility"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPISparklineOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPISparklineOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KPISparklineOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KPISparklineOptions"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColor sets the Color field's value.
+func (s *KPISparklineOptions) SetColor(v string) *KPISparklineOptions {
+	s.Color = &v
+	return s
+}
+
+// SetTooltipVisibility sets the TooltipVisibility field's value.
+func (s *KPISparklineOptions) SetTooltipVisibility(v string) *KPISparklineOptions {
+	s.TooltipVisibility = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KPISparklineOptions) SetType(v string) *KPISparklineOptions {
+	s.Type = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *KPISparklineOptions) SetVisibility(v string) *KPISparklineOptions {
+	s.Visibility = &v
+	return s
+}
+
 // A key performance indicator (KPI).
 //
 // For more information, see Using KPIs (https://docs.aws.amazon.com/quicksight/latest/user/kpi.html)
@@ -60840,6 +61094,100 @@ func (s *KPIVisual) SetTitle(v *VisualTitleLabelOptions) *KPIVisual {
 // SetVisualId sets the VisualId field's value.
 func (s *KPIVisual) SetVisualId(v string) *KPIVisual {
 	s.VisualId = &v
+	return s
+}
+
+// The options that determine the layout a KPI visual.
+type KPIVisualLayoutOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The standard layout of the KPI visual.
+	StandardLayout *KPIVisualStandardLayout `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIVisualLayoutOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIVisualLayoutOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KPIVisualLayoutOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KPIVisualLayoutOptions"}
+	if s.StandardLayout != nil {
+		if err := s.StandardLayout.Validate(); err != nil {
+			invalidParams.AddNested("StandardLayout", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStandardLayout sets the StandardLayout field's value.
+func (s *KPIVisualLayoutOptions) SetStandardLayout(v *KPIVisualStandardLayout) *KPIVisualLayoutOptions {
+	s.StandardLayout = v
+	return s
+}
+
+// The standard layout of the KPI visual.
+type KPIVisualStandardLayout struct {
+	_ struct{} `type:"structure"`
+
+	// The standard layout type.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"KPIVisualStandardLayoutType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIVisualStandardLayout) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KPIVisualStandardLayout) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KPIVisualStandardLayout) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KPIVisualStandardLayout"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *KPIVisualStandardLayout) SetType(v string) *KPIVisualStandardLayout {
+	s.Type = &v
 	return s
 }
 
@@ -102534,6 +102882,38 @@ func JoinType_Values() []string {
 		JoinTypeOuter,
 		JoinTypeLeft,
 		JoinTypeRight,
+	}
+}
+
+const (
+	// KPISparklineTypeLine is a KPISparklineType enum value
+	KPISparklineTypeLine = "LINE"
+
+	// KPISparklineTypeArea is a KPISparklineType enum value
+	KPISparklineTypeArea = "AREA"
+)
+
+// KPISparklineType_Values returns all elements of the KPISparklineType enum
+func KPISparklineType_Values() []string {
+	return []string{
+		KPISparklineTypeLine,
+		KPISparklineTypeArea,
+	}
+}
+
+const (
+	// KPIVisualStandardLayoutTypeClassic is a KPIVisualStandardLayoutType enum value
+	KPIVisualStandardLayoutTypeClassic = "CLASSIC"
+
+	// KPIVisualStandardLayoutTypeVertical is a KPIVisualStandardLayoutType enum value
+	KPIVisualStandardLayoutTypeVertical = "VERTICAL"
+)
+
+// KPIVisualStandardLayoutType_Values returns all elements of the KPIVisualStandardLayoutType enum
+func KPIVisualStandardLayoutType_Values() []string {
+	return []string{
+		KPIVisualStandardLayoutTypeClassic,
+		KPIVisualStandardLayoutTypeVertical,
 	}
 }
 

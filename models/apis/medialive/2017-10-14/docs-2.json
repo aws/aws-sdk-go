@@ -51,9 +51,11 @@
     "RejectInputDeviceTransfer": "Reject the transfer of the specified input device to your AWS account.",
     "UpdateAccountConfiguration": "Update account configuration",
     "StartChannel": "Starts an existing channel",
+    "StartInputDevice": "Start an input device that is attached to a MediaConnect flow. (There is no need to start a device that is attached to a MediaLive input; MediaLive starts the device when the channel starts.)",
     "StartInputDeviceMaintenanceWindow": "Start a maintenance window for the specified input device. Starting a maintenance window will give the device up to two hours to install software. If the device was streaming prior to the maintenance, it will resume streaming when the software is fully installed. Devices automatically install updates while they are powered on and their MediaLive channels are stopped. A maintenance window allows you to update a device without having to stop MediaLive channels that use the device. The device must remain powered on and connected to the internet for the duration of the maintenance.",
     "StartMultiplex": "Start (run) the multiplex. Starting the multiplex does not start the channels. You must explicitly start each channel.",
     "StopChannel": "Stops a running channel",
+    "StopInputDevice": "Stop an input device that is attached to a MediaConnect flow. (There is no need to stop a device that is attached to a MediaLive input; MediaLive automatically stops the device when the channel stops.)",
     "StopMultiplex": "Stops a running multiplex. If the multiplex isn't running, this action has no effect.",
     "TransferInputDevice": "Start an input device transfer to another AWS account. After you make the request, the other account must accept or reject the transfer.",
     "UpdateChannel": "Updates a channel.",
@@ -1783,6 +1785,13 @@
         "InputDeviceUhdSettings$ActiveInput": "If you specified Auto as the configured input, specifies which of the sources is currently active (SDI or HDMI)."
       }
     },
+    "InputDeviceCodec": {
+      "base": "The codec to use on the video that the device produces.",
+      "refs": {
+        "InputDeviceConfigurableSettings$Codec": "Choose the codec for the video that the device produces. Only UHD devices can specify this parameter.",
+        "InputDeviceUhdSettings$Codec": "The codec for the video that the device produces."
+      }
+    },
     "InputDeviceConfigurableSettings": {
       "base": "Configurable settings for the input device.",
       "refs": {
@@ -1823,11 +1832,30 @@
         "InputDeviceNetworkSettings$IpScheme": "Specifies whether the input device has been configured (outside of MediaLive) to use a dynamic IP address assignment (DHCP) or a static IP address."
       }
     },
+    "InputDeviceMediaConnectConfigurableSettings": {
+      "base": "Parameters required to attach a MediaConnect flow to the device.",
+      "refs": {
+        "InputDeviceConfigurableSettings$MediaconnectSettings": "To attach this device to a MediaConnect flow, specify these parameters. To detach an existing flow, enter {} for the value of mediaconnectSettings. Only UHD devices can specify this parameter."
+      }
+    },
+    "InputDeviceMediaConnectSettings": {
+      "base": "Information about the MediaConnect flow attached to the device.",
+      "refs": {
+        "InputDeviceUhdSettings$MediaconnectSettings": "Information about the MediaConnect flow attached to the device. Returned only if the outputType is MEDIACONNECT_FLOW."
+      }
+    },
     "InputDeviceNetworkSettings": {
       "base": "The network settings for the input device.",
       "refs": {
         "InputDevice$NetworkSettings": "The network settings for the input device.",
         "InputDeviceSummary$NetworkSettings": "Network settings for the input device."
+      }
+    },
+    "InputDeviceOutputType": {
+      "base": "The output attachment type of the input device.",
+      "refs": {
+        "InputDevice$OutputType": "The output attachment type of the input device. Specifies MEDIACONNECT_FLOW if this device is the source for a MediaConnect flow. Specifies MEDIALIVE_INPUT if this device is the source for a MediaLive input.",
+        "InputDeviceSummary$OutputType": "The output attachment type of the input device. Specifies MEDIACONNECT_FLOW if this device is the source for a MediaConnect flow. Specifies MEDIALIVE_INPUT if this device is the source for a MediaLive input."
       }
     },
     "InputDeviceRequest": {
@@ -4519,7 +4547,9 @@
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$InputPartnerIds": "A list of IDs for all Inputs which are partners of this one.",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
+        "InputDevice$MedialiveInputArns": "An array of the ARNs for the MediaLive inputs attached to the device. Returned only if the outputType is MEDIALIVE_INPUT.",
         "InputDeviceNetworkSettings$DnsAddresses": "The DNS addresses of the input device.",
+        "InputDeviceSummary$MedialiveInputArns": "An array of the ARNs for the MediaLive inputs attached to the device. Returned only if the outputType is MEDIALIVE_INPUT.",
         "InputPrepareScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
         "InputSwitchScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
@@ -4659,6 +4689,14 @@
         "InputDevice$Name": "A name that you specify for the input device.",
         "InputDevice$SerialNumber": "The unique serial number of the input device.",
         "InputDeviceConfigurationValidationError$Message": "The error message.",
+        "InputDeviceMediaConnectConfigurableSettings$FlowArn": "The ARN of the MediaConnect flow to attach this device to.",
+        "InputDeviceMediaConnectConfigurableSettings$RoleArn": "The ARN for the role that MediaLive assumes to access the attached flow and secret. For more information about how to create this role, see the MediaLive user guide.",
+        "InputDeviceMediaConnectConfigurableSettings$SecretArn": "The ARN for the secret that holds the encryption key to encrypt the content output by the device.",
+        "InputDeviceMediaConnectConfigurableSettings$SourceName": "The name of the MediaConnect Flow source to stream to.",
+        "InputDeviceMediaConnectSettings$FlowArn": "The ARN of the MediaConnect flow.",
+        "InputDeviceMediaConnectSettings$RoleArn": "The ARN for the role that MediaLive assumes to access the attached flow and secret.",
+        "InputDeviceMediaConnectSettings$SecretArn": "The ARN of the secret used to encrypt the stream.",
+        "InputDeviceMediaConnectSettings$SourceName": "The name of the MediaConnect flow source.",
         "InputDeviceNetworkSettings$Gateway": "The network gateway IP address.",
         "InputDeviceNetworkSettings$IpAddress": "The IP address of the input device.",
         "InputDeviceNetworkSettings$SubnetMask": "The subnet mask of the input device.",

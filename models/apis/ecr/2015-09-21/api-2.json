@@ -138,7 +138,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyNotFoundException"}
+        {"shape":"LifecyclePolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeletePullThroughCacheRule":{
@@ -334,7 +335,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyNotFoundException"}
+        {"shape":"LifecyclePolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetLifecyclePolicyPreview":{
@@ -349,7 +351,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"LifecyclePolicyPreviewNotFoundException"}
+        {"shape":"LifecyclePolicyPreviewNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetRegistryPolicy":{
@@ -500,7 +503,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutRegistryPolicy":{
@@ -590,7 +594,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"LifecyclePolicyNotFoundException"},
-        {"shape":"LifecyclePolicyPreviewInProgressException"}
+        {"shape":"LifecyclePolicyPreviewInProgressException"},
+        {"shape":"ValidationException"}
       ]
     },
     "TagResource":{
@@ -2345,6 +2350,10 @@
     "Status":{"type":"string"},
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}

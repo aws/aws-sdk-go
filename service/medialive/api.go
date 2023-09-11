@@ -4926,6 +4926,101 @@ func (c *MediaLive) StartChannelWithContext(ctx aws.Context, input *StartChannel
 	return out, req.Send()
 }
 
+const opStartInputDevice = "StartInputDevice"
+
+// StartInputDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the StartInputDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartInputDevice for more information on using the StartInputDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartInputDeviceRequest method.
+//	req, resp := client.StartInputDeviceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartInputDevice
+func (c *MediaLive) StartInputDeviceRequest(input *StartInputDeviceInput) (req *request.Request, output *StartInputDeviceOutput) {
+	op := &request.Operation{
+		Name:       opStartInputDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/start",
+	}
+
+	if input == nil {
+		input = &StartInputDeviceInput{}
+	}
+
+	output = &StartInputDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartInputDevice API operation for AWS Elemental MediaLive.
+//
+// Start an input device that is attached to a MediaConnect flow. (There is
+// no need to start a device that is attached to a MediaLive input; MediaLive
+// starts the device when the channel starts.)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StartInputDevice for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnprocessableEntityException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - NotFoundException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartInputDevice
+func (c *MediaLive) StartInputDevice(input *StartInputDeviceInput) (*StartInputDeviceOutput, error) {
+	req, out := c.StartInputDeviceRequest(input)
+	return out, req.Send()
+}
+
+// StartInputDeviceWithContext is the same as StartInputDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartInputDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StartInputDeviceWithContext(ctx aws.Context, input *StartInputDeviceInput, opts ...request.Option) (*StartInputDeviceOutput, error) {
+	req, out := c.StartInputDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartInputDeviceMaintenanceWindow = "StartInputDeviceMaintenanceWindow"
 
 // StartInputDeviceMaintenanceWindowRequest generates a "aws/request.Request" representing the
@@ -5206,6 +5301,101 @@ func (c *MediaLive) StopChannel(input *StopChannelInput) (*StopChannelOutput, er
 // for more information on using Contexts.
 func (c *MediaLive) StopChannelWithContext(ctx aws.Context, input *StopChannelInput, opts ...request.Option) (*StopChannelOutput, error) {
 	req, out := c.StopChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopInputDevice = "StopInputDevice"
+
+// StopInputDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the StopInputDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopInputDevice for more information on using the StopInputDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopInputDeviceRequest method.
+//	req, resp := client.StopInputDeviceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StopInputDevice
+func (c *MediaLive) StopInputDeviceRequest(input *StopInputDeviceInput) (req *request.Request, output *StopInputDeviceOutput) {
+	op := &request.Operation{
+		Name:       opStopInputDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/stop",
+	}
+
+	if input == nil {
+		input = &StopInputDeviceInput{}
+	}
+
+	output = &StopInputDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopInputDevice API operation for AWS Elemental MediaLive.
+//
+// Stop an input device that is attached to a MediaConnect flow. (There is no
+// need to stop a device that is attached to a MediaLive input; MediaLive automatically
+// stops the device when the channel stops.)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StopInputDevice for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnprocessableEntityException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - NotFoundException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StopInputDevice
+func (c *MediaLive) StopInputDevice(input *StopInputDeviceInput) (*StopInputDeviceOutput, error) {
+	req, out := c.StopInputDeviceRequest(input)
+	return out, req.Send()
+}
+
+// StopInputDeviceWithContext is the same as StopInputDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopInputDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StopInputDeviceWithContext(ctx aws.Context, input *StopInputDeviceInput, opts ...request.Option) (*StopInputDeviceOutput, error) {
+	req, out := c.StopInputDeviceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12902,10 +13092,15 @@ type DescribeInputDeviceOutput struct {
 
 	MacAddress *string `locationName:"macAddress" type:"string"`
 
+	MedialiveInputArns []*string `locationName:"medialiveInputArns" type:"list"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	// The network settings for the input device.
 	NetworkSettings *InputDeviceNetworkSettings `locationName:"networkSettings" type:"structure"`
+
+	// The output attachment type of the input device.
+	OutputType *string `locationName:"outputType" type:"string" enum:"InputDeviceOutputType"`
 
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
@@ -12986,6 +13181,12 @@ func (s *DescribeInputDeviceOutput) SetMacAddress(v string) *DescribeInputDevice
 	return s
 }
 
+// SetMedialiveInputArns sets the MedialiveInputArns field's value.
+func (s *DescribeInputDeviceOutput) SetMedialiveInputArns(v []*string) *DescribeInputDeviceOutput {
+	s.MedialiveInputArns = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DescribeInputDeviceOutput) SetName(v string) *DescribeInputDeviceOutput {
 	s.Name = &v
@@ -12995,6 +13196,12 @@ func (s *DescribeInputDeviceOutput) SetName(v string) *DescribeInputDeviceOutput
 // SetNetworkSettings sets the NetworkSettings field's value.
 func (s *DescribeInputDeviceOutput) SetNetworkSettings(v *InputDeviceNetworkSettings) *DescribeInputDeviceOutput {
 	s.NetworkSettings = v
+	return s
+}
+
+// SetOutputType sets the OutputType field's value.
+func (s *DescribeInputDeviceOutput) SetOutputType(v string) *DescribeInputDeviceOutput {
+	s.OutputType = &v
 	return s
 }
 
@@ -19710,6 +19917,10 @@ func (s *InputDestinationVpc) SetNetworkInterfaceId(v string) *InputDestinationV
 type InputDeviceConfigurableSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Choose the codec for the video that the device produces. Only UHD devices
+	// can specify this parameter.
+	Codec *string `locationName:"codec" type:"string" enum:"InputDeviceCodec"`
+
 	// The input source that you want to use. If the device has a source connected
 	// to only one of its input ports, or if you don't care which source the device
 	// sends, specify Auto. If the device has sources connected to both its input
@@ -19722,6 +19933,11 @@ type InputDeviceConfigurableSettings struct {
 	// The maximum bitrate in bits per second. Set a value here to throttle the
 	// bitrate of the source video.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
+
+	// To attach this device to a MediaConnect flow, specify these parameters. To
+	// detach an existing flow, enter {} for the value of mediaconnectSettings.
+	// Only UHD devices can specify this parameter.
+	MediaconnectSettings *InputDeviceMediaConnectConfigurableSettings `locationName:"mediaconnectSettings" type:"structure"`
 }
 
 // String returns the string representation.
@@ -19742,6 +19958,12 @@ func (s InputDeviceConfigurableSettings) GoString() string {
 	return s.String()
 }
 
+// SetCodec sets the Codec field's value.
+func (s *InputDeviceConfigurableSettings) SetCodec(v string) *InputDeviceConfigurableSettings {
+	s.Codec = &v
+	return s
+}
+
 // SetConfiguredInput sets the ConfiguredInput field's value.
 func (s *InputDeviceConfigurableSettings) SetConfiguredInput(v string) *InputDeviceConfigurableSettings {
 	s.ConfiguredInput = &v
@@ -19757,6 +19979,12 @@ func (s *InputDeviceConfigurableSettings) SetLatencyMs(v int64) *InputDeviceConf
 // SetMaxBitrate sets the MaxBitrate field's value.
 func (s *InputDeviceConfigurableSettings) SetMaxBitrate(v int64) *InputDeviceConfigurableSettings {
 	s.MaxBitrate = &v
+	return s
+}
+
+// SetMediaconnectSettings sets the MediaconnectSettings field's value.
+func (s *InputDeviceConfigurableSettings) SetMediaconnectSettings(v *InputDeviceMediaConnectConfigurableSettings) *InputDeviceConfigurableSettings {
+	s.MediaconnectSettings = v
 	return s
 }
 
@@ -19866,6 +20094,128 @@ func (s *InputDeviceHdSettings) SetScanType(v string) *InputDeviceHdSettings {
 // SetWidth sets the Width field's value.
 func (s *InputDeviceHdSettings) SetWidth(v int64) *InputDeviceHdSettings {
 	s.Width = &v
+	return s
+}
+
+// Parameters required to attach a MediaConnect flow to the device.
+type InputDeviceMediaConnectConfigurableSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the MediaConnect flow to attach this device to.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The ARN for the role that MediaLive assumes to access the attached flow and
+	// secret. For more information about how to create this role, see the MediaLive
+	// user guide.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The ARN for the secret that holds the encryption key to encrypt the content
+	// output by the device.
+	SecretArn *string `locationName:"secretArn" type:"string"`
+
+	// The name of the MediaConnect Flow source to stream to.
+	SourceName *string `locationName:"sourceName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceMediaConnectConfigurableSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceMediaConnectConfigurableSettings) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *InputDeviceMediaConnectConfigurableSettings) SetFlowArn(v string) *InputDeviceMediaConnectConfigurableSettings {
+	s.FlowArn = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *InputDeviceMediaConnectConfigurableSettings) SetRoleArn(v string) *InputDeviceMediaConnectConfigurableSettings {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *InputDeviceMediaConnectConfigurableSettings) SetSecretArn(v string) *InputDeviceMediaConnectConfigurableSettings {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *InputDeviceMediaConnectConfigurableSettings) SetSourceName(v string) *InputDeviceMediaConnectConfigurableSettings {
+	s.SourceName = &v
+	return s
+}
+
+// Information about the MediaConnect flow attached to the device.
+type InputDeviceMediaConnectSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the MediaConnect flow.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The ARN for the role that MediaLive assumes to access the attached flow and
+	// secret.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The ARN of the secret used to encrypt the stream.
+	SecretArn *string `locationName:"secretArn" type:"string"`
+
+	// The name of the MediaConnect flow source.
+	SourceName *string `locationName:"sourceName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceMediaConnectSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceMediaConnectSettings) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *InputDeviceMediaConnectSettings) SetFlowArn(v string) *InputDeviceMediaConnectSettings {
+	s.FlowArn = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *InputDeviceMediaConnectSettings) SetRoleArn(v string) *InputDeviceMediaConnectSettings {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *InputDeviceMediaConnectSettings) SetSecretArn(v string) *InputDeviceMediaConnectSettings {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSourceName sets the SourceName field's value.
+func (s *InputDeviceMediaConnectSettings) SetSourceName(v string) *InputDeviceMediaConnectSettings {
+	s.SourceName = &v
 	return s
 }
 
@@ -20034,11 +20384,20 @@ type InputDeviceSummary struct {
 	// The network MAC address of the input device.
 	MacAddress *string `locationName:"macAddress" type:"string"`
 
+	// An array of the ARNs for the MediaLive inputs attached to the device. Returned
+	// only if the outputType is MEDIALIVE_INPUT.
+	MedialiveInputArns []*string `locationName:"medialiveInputArns" type:"list"`
+
 	// A name that you specify for the input device.
 	Name *string `locationName:"name" type:"string"`
 
 	// Network settings for the input device.
 	NetworkSettings *InputDeviceNetworkSettings `locationName:"networkSettings" type:"structure"`
+
+	// The output attachment type of the input device. Specifies MEDIACONNECT_FLOW
+	// if this device is the source for a MediaConnect flow. Specifies MEDIALIVE_INPUT
+	// if this device is the source for a MediaLive input.
+	OutputType *string `locationName:"outputType" type:"string" enum:"InputDeviceOutputType"`
 
 	// The unique serial number of the input device.
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
@@ -20119,6 +20478,12 @@ func (s *InputDeviceSummary) SetMacAddress(v string) *InputDeviceSummary {
 	return s
 }
 
+// SetMedialiveInputArns sets the MedialiveInputArns field's value.
+func (s *InputDeviceSummary) SetMedialiveInputArns(v []*string) *InputDeviceSummary {
+	s.MedialiveInputArns = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *InputDeviceSummary) SetName(v string) *InputDeviceSummary {
 	s.Name = &v
@@ -20128,6 +20493,12 @@ func (s *InputDeviceSummary) SetName(v string) *InputDeviceSummary {
 // SetNetworkSettings sets the NetworkSettings field's value.
 func (s *InputDeviceSummary) SetNetworkSettings(v *InputDeviceNetworkSettings) *InputDeviceSummary {
 	s.NetworkSettings = v
+	return s
+}
+
+// SetOutputType sets the OutputType field's value.
+func (s *InputDeviceSummary) SetOutputType(v string) *InputDeviceSummary {
+	s.OutputType = &v
 	return s
 }
 
@@ -20164,6 +20535,9 @@ type InputDeviceUhdSettings struct {
 	// is currently active (SDI or HDMI).
 	ActiveInput *string `locationName:"activeInput" type:"string" enum:"InputDeviceActiveInput"`
 
+	// The codec for the video that the device produces.
+	Codec *string `locationName:"codec" type:"string" enum:"InputDeviceCodec"`
+
 	// The source at the input device that is currently active. You can specify
 	// this source.
 	ConfiguredInput *string `locationName:"configuredInput" type:"string" enum:"InputDeviceConfiguredInput"`
@@ -20184,6 +20558,10 @@ type InputDeviceUhdSettings struct {
 	// The current maximum bitrate for ingesting this source, in bits per second.
 	// You can specify this maximum.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
+
+	// Information about the MediaConnect flow attached to the device. Returned
+	// only if the outputType is MEDIACONNECT_FLOW.
+	MediaconnectSettings *InputDeviceMediaConnectSettings `locationName:"mediaconnectSettings" type:"structure"`
 
 	// The scan type of the video source.
 	ScanType *string `locationName:"scanType" type:"string" enum:"InputDeviceScanType"`
@@ -20213,6 +20591,12 @@ func (s InputDeviceUhdSettings) GoString() string {
 // SetActiveInput sets the ActiveInput field's value.
 func (s *InputDeviceUhdSettings) SetActiveInput(v string) *InputDeviceUhdSettings {
 	s.ActiveInput = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *InputDeviceUhdSettings) SetCodec(v string) *InputDeviceUhdSettings {
+	s.Codec = &v
 	return s
 }
 
@@ -20249,6 +20633,12 @@ func (s *InputDeviceUhdSettings) SetLatencyMs(v int64) *InputDeviceUhdSettings {
 // SetMaxBitrate sets the MaxBitrate field's value.
 func (s *InputDeviceUhdSettings) SetMaxBitrate(v int64) *InputDeviceUhdSettings {
 	s.MaxBitrate = &v
+	return s
+}
+
+// SetMediaconnectSettings sets the MediaconnectSettings field's value.
+func (s *InputDeviceUhdSettings) SetMediaconnectSettings(v *InputDeviceMediaConnectSettings) *InputDeviceUhdSettings {
+	s.MediaconnectSettings = v
 	return s
 }
 
@@ -29222,6 +29612,53 @@ func (s *StartChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StartChann
 	return s
 }
 
+type StartInputDeviceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartInputDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartInputDeviceInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *StartInputDeviceInput) SetInputDeviceId(v string) *StartInputDeviceInput {
+	s.InputDeviceId = &v
+	return s
+}
+
 type StartInputDeviceMaintenanceWindowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29288,6 +29725,28 @@ func (s StartInputDeviceMaintenanceWindowOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s StartInputDeviceMaintenanceWindowOutput) GoString() string {
+	return s.String()
+}
+
+type StartInputDeviceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartInputDeviceOutput) GoString() string {
 	return s.String()
 }
 
@@ -29957,6 +30416,75 @@ func (s *StopChannelOutput) SetTags(v map[string]*string) *StopChannelOutput {
 func (s *StopChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StopChannelOutput {
 	s.Vpc = v
 	return s
+}
+
+type StopInputDeviceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInputDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInputDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopInputDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopInputDeviceInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *StopInputDeviceInput) SetInputDeviceId(v string) *StopInputDeviceInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type StopInputDeviceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInputDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInputDeviceOutput) GoString() string {
+	return s.String()
 }
 
 type StopMultiplexInput struct {
@@ -31530,10 +32058,15 @@ type UpdateInputDeviceOutput struct {
 
 	MacAddress *string `locationName:"macAddress" type:"string"`
 
+	MedialiveInputArns []*string `locationName:"medialiveInputArns" type:"list"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	// The network settings for the input device.
 	NetworkSettings *InputDeviceNetworkSettings `locationName:"networkSettings" type:"structure"`
+
+	// The output attachment type of the input device.
+	OutputType *string `locationName:"outputType" type:"string" enum:"InputDeviceOutputType"`
 
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
@@ -31614,6 +32147,12 @@ func (s *UpdateInputDeviceOutput) SetMacAddress(v string) *UpdateInputDeviceOutp
 	return s
 }
 
+// SetMedialiveInputArns sets the MedialiveInputArns field's value.
+func (s *UpdateInputDeviceOutput) SetMedialiveInputArns(v []*string) *UpdateInputDeviceOutput {
+	s.MedialiveInputArns = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateInputDeviceOutput) SetName(v string) *UpdateInputDeviceOutput {
 	s.Name = &v
@@ -31623,6 +32162,12 @@ func (s *UpdateInputDeviceOutput) SetName(v string) *UpdateInputDeviceOutput {
 // SetNetworkSettings sets the NetworkSettings field's value.
 func (s *UpdateInputDeviceOutput) SetNetworkSettings(v *InputDeviceNetworkSettings) *UpdateInputDeviceOutput {
 	s.NetworkSettings = v
+	return s
+}
+
+// SetOutputType sets the OutputType field's value.
+func (s *UpdateInputDeviceOutput) SetOutputType(v string) *UpdateInputDeviceOutput {
+	s.OutputType = &v
 	return s
 }
 
@@ -36023,6 +36568,23 @@ func InputDeviceActiveInput_Values() []string {
 	}
 }
 
+// The codec to use on the video that the device produces.
+const (
+	// InputDeviceCodecHevc is a InputDeviceCodec enum value
+	InputDeviceCodecHevc = "HEVC"
+
+	// InputDeviceCodecAvc is a InputDeviceCodec enum value
+	InputDeviceCodecAvc = "AVC"
+)
+
+// InputDeviceCodec_Values returns all elements of the InputDeviceCodec enum
+func InputDeviceCodec_Values() []string {
+	return []string{
+		InputDeviceCodecHevc,
+		InputDeviceCodecAvc,
+	}
+}
+
 // The source to activate (use) from the input device.
 const (
 	// InputDeviceConfiguredInputAuto is a InputDeviceConfiguredInput enum value
@@ -36076,6 +36638,27 @@ func InputDeviceIpScheme_Values() []string {
 	return []string{
 		InputDeviceIpSchemeStatic,
 		InputDeviceIpSchemeDhcp,
+	}
+}
+
+// The output attachment type of the input device.
+const (
+	// InputDeviceOutputTypeNone is a InputDeviceOutputType enum value
+	InputDeviceOutputTypeNone = "NONE"
+
+	// InputDeviceOutputTypeMedialiveInput is a InputDeviceOutputType enum value
+	InputDeviceOutputTypeMedialiveInput = "MEDIALIVE_INPUT"
+
+	// InputDeviceOutputTypeMediaconnectFlow is a InputDeviceOutputType enum value
+	InputDeviceOutputTypeMediaconnectFlow = "MEDIACONNECT_FLOW"
+)
+
+// InputDeviceOutputType_Values returns all elements of the InputDeviceOutputType enum
+func InputDeviceOutputType_Values() []string {
+	return []string{
+		InputDeviceOutputTypeNone,
+		InputDeviceOutputTypeMedialiveInput,
+		InputDeviceOutputTypeMediaconnectFlow,
 	}
 }
 

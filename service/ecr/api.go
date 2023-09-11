@@ -772,6 +772,9 @@ func (c *ECR) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyInput) (r
 //   - LifecyclePolicyNotFoundException
 //     The lifecycle policy could not be found, and no policy is set to the repository.
 //
+//   - ValidationException
+//     There was an exception validating this request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteLifecyclePolicy
 func (c *ECR) DeleteLifecyclePolicy(input *DeleteLifecyclePolicyInput) (*DeleteLifecyclePolicyOutput, error) {
 	req, out := c.DeleteLifecyclePolicyRequest(input)
@@ -2201,6 +2204,9 @@ func (c *ECR) GetLifecyclePolicyRequest(input *GetLifecyclePolicyInput) (req *re
 //   - LifecyclePolicyNotFoundException
 //     The lifecycle policy could not be found, and no policy is set to the repository.
 //
+//   - ValidationException
+//     There was an exception validating this request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetLifecyclePolicy
 func (c *ECR) GetLifecyclePolicy(input *GetLifecyclePolicyInput) (*GetLifecyclePolicyOutput, error) {
 	req, out := c.GetLifecyclePolicyRequest(input)
@@ -2297,6 +2303,9 @@ func (c *ECR) GetLifecyclePolicyPreviewRequest(input *GetLifecyclePolicyPreviewI
 //
 //   - LifecyclePolicyPreviewNotFoundException
 //     There is no dry run for this repository.
+//
+//   - ValidationException
+//     There was an exception validating this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetLifecyclePolicyPreview
 func (c *ECR) GetLifecyclePolicyPreview(input *GetLifecyclePolicyPreviewInput) (*GetLifecyclePolicyPreviewOutput, error) {
@@ -3344,6 +3353,9 @@ func (c *ECR) PutLifecyclePolicyRequest(input *PutLifecyclePolicyInput) (req *re
 //     The specified repository could not be found. Check the spelling of the specified
 //     repository and ensure that you are performing operations on the correct registry.
 //
+//   - ValidationException
+//     There was an exception validating this request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutLifecyclePolicy
 func (c *ECR) PutLifecyclePolicy(input *PutLifecyclePolicyInput) (*PutLifecyclePolicyOutput, error) {
 	req, out := c.PutLifecyclePolicyRequest(input)
@@ -3905,6 +3917,9 @@ func (c *ECR) StartLifecyclePolicyPreviewRequest(input *StartLifecyclePolicyPrev
 //   - LifecyclePolicyPreviewInProgressException
 //     The previous lifecycle policy preview request has not completed. Wait and
 //     try again.
+//
+//   - ValidationException
+//     There was an exception validating this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/StartLifecyclePolicyPreview
 func (c *ECR) StartLifecyclePolicyPreview(input *StartLifecyclePolicyPreviewInput) (*StartLifecyclePolicyPreviewOutput, error) {
@@ -5217,6 +5232,9 @@ type CreateRepositoryInput struct {
 	// on its own (such as nginx-web-app) or it can be prepended with a namespace
 	// to group the repository into a category (such as project-a/nginx-web-app).
 	//
+	// The repository name must start with a letter and can only contain lowercase
+	// letters, numbers, hyphens, underscores, and forward slashes.
+	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 
@@ -5257,6 +5275,16 @@ func (s *CreateRepositoryInput) Validate() error {
 	if s.EncryptionConfiguration != nil {
 		if err := s.EncryptionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -11644,7 +11672,8 @@ type RegistryScanningRule struct {
 	// The frequency that scans are performed at for a private registry. When the
 	// ENHANCED scan type is specified, the supported scan frequencies are CONTINUOUS_SCAN
 	// and SCAN_ON_PUSH. When the BASIC scan type is specified, the SCAN_ON_PUSH
-	// and MANUAL scan frequencies are supported.
+	// scan frequency is supported. If scan on push is not specified, then the MANUAL
+	// scan frequency is set by default.
 	//
 	// ScanFrequency is a required field
 	ScanFrequency *string `locationName:"scanFrequency" type:"string" required:"true" enum:"ScanFrequency"`
@@ -11969,7 +11998,7 @@ type Repository struct {
 	// The Amazon Resource Name (ARN) that identifies the repository. The ARN contains
 	// the arn:aws:ecr namespace, followed by the region of the repository, Amazon
 	// Web Services account ID of the repository owner, repository namespace, and
-	// repository name. For example, arn:aws:ecr:region:012345678910:repository/test.
+	// repository name. For example, arn:aws:ecr:region:012345678910:repository-namespace/repository-name.
 	RepositoryArn *string `locationName:"repositoryArn" type:"string"`
 
 	// The name of the repository.
@@ -12113,8 +12142,8 @@ func (s *RepositoryAlreadyExistsException) RequestID() string {
 
 // The filter settings used with image replication. Specifying a repository
 // filter to a replication rule provides a method for controlling which repositories
-// in a private registry are replicated. If no repository filter is specified,
-// all images in the repository are replicated.
+// in a private registry are replicated. If no filters are added, the contents
+// of all repositories are replicated.
 type RepositoryFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -13231,10 +13260,14 @@ type Tag struct {
 
 	// One part of a key-value pair that make up a tag. A key is a general label
 	// that acts like a category for more specific tag values.
-	Key *string `type:"string"`
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true"`
 
 	// A value acts as a descriptor within a tag category (key).
-	Value *string `type:"string"`
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13253,6 +13286,22 @@ func (s Tag) String() string {
 // value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetKey sets the Key field's value.
@@ -13310,6 +13359,16 @@ func (s *TagResourceInput) Validate() error {
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {

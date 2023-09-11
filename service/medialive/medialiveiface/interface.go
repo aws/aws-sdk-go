@@ -282,6 +282,10 @@ type MediaLiveAPI interface {
 	StartChannelWithContext(aws.Context, *medialive.StartChannelInput, ...request.Option) (*medialive.StartChannelOutput, error)
 	StartChannelRequest(*medialive.StartChannelInput) (*request.Request, *medialive.StartChannelOutput)
 
+	StartInputDevice(*medialive.StartInputDeviceInput) (*medialive.StartInputDeviceOutput, error)
+	StartInputDeviceWithContext(aws.Context, *medialive.StartInputDeviceInput, ...request.Option) (*medialive.StartInputDeviceOutput, error)
+	StartInputDeviceRequest(*medialive.StartInputDeviceInput) (*request.Request, *medialive.StartInputDeviceOutput)
+
 	StartInputDeviceMaintenanceWindow(*medialive.StartInputDeviceMaintenanceWindowInput) (*medialive.StartInputDeviceMaintenanceWindowOutput, error)
 	StartInputDeviceMaintenanceWindowWithContext(aws.Context, *medialive.StartInputDeviceMaintenanceWindowInput, ...request.Option) (*medialive.StartInputDeviceMaintenanceWindowOutput, error)
 	StartInputDeviceMaintenanceWindowRequest(*medialive.StartInputDeviceMaintenanceWindowInput) (*request.Request, *medialive.StartInputDeviceMaintenanceWindowOutput)
@@ -293,6 +297,10 @@ type MediaLiveAPI interface {
 	StopChannel(*medialive.StopChannelInput) (*medialive.StopChannelOutput, error)
 	StopChannelWithContext(aws.Context, *medialive.StopChannelInput, ...request.Option) (*medialive.StopChannelOutput, error)
 	StopChannelRequest(*medialive.StopChannelInput) (*request.Request, *medialive.StopChannelOutput)
+
+	StopInputDevice(*medialive.StopInputDeviceInput) (*medialive.StopInputDeviceOutput, error)
+	StopInputDeviceWithContext(aws.Context, *medialive.StopInputDeviceInput, ...request.Option) (*medialive.StopInputDeviceOutput, error)
+	StopInputDeviceRequest(*medialive.StopInputDeviceInput) (*request.Request, *medialive.StopInputDeviceOutput)
 
 	StopMultiplex(*medialive.StopMultiplexInput) (*medialive.StopMultiplexOutput, error)
 	StopMultiplexWithContext(aws.Context, *medialive.StopMultiplexInput, ...request.Option) (*medialive.StopMultiplexOutput, error)

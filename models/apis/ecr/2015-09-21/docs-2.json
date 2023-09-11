@@ -56,7 +56,7 @@
       "base": null,
       "refs": {
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
-        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, Amazon Web Services account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>",
+        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, Amazon Web Services account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository-namespace/repository-name</code>.</p>",
         "RepositoryScanningConfiguration$repositoryArn": "<p>The ARN of the repository.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the the resource to which to add tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags. Currently, the only supported resource is an Amazon ECR repository.</p>"
@@ -1461,7 +1461,7 @@
       }
     },
     "RepositoryFilter": {
-      "base": "<p>The filter settings used with image replication. Specifying a repository filter to a replication rule provides a method for controlling which repositories in a private registry are replicated. If no repository filter is specified, all images in the repository are replicated.</p>",
+      "base": "<p>The filter settings used with image replication. Specifying a repository filter to a replication rule provides a method for controlling which repositories in a private registry are replicated. If no filters are added, the contents of all repositories are replicated.</p>",
       "refs": {
         "RepositoryFilterList$member": null
       }
@@ -1499,7 +1499,7 @@
         "BatchGetImageRequest$repositoryName": "<p>The repository that contains the images to describe.</p>",
         "CompleteLayerUploadRequest$repositoryName": "<p>The name of the repository to associate with the image layer.</p>",
         "CompleteLayerUploadResponse$repositoryName": "<p>The repository name associated with the request.</p>",
-        "CreateRepositoryRequest$repositoryName": "<p>The name to use for the repository. The repository name may be specified on its own (such as <code>nginx-web-app</code>) or it can be prepended with a namespace to group the repository into a category (such as <code>project-a/nginx-web-app</code>).</p>",
+        "CreateRepositoryRequest$repositoryName": "<p>The name to use for the repository. The repository name may be specified on its own (such as <code>nginx-web-app</code>) or it can be prepended with a namespace to group the repository into a category (such as <code>project-a/nginx-web-app</code>).</p> <p>The repository name must start with a letter and can only contain lowercase letters, numbers, hyphens, underscores, and forward slashes.</p>",
         "DeleteLifecyclePolicyRequest$repositoryName": "<p>The name of the repository.</p>",
         "DeleteLifecyclePolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$repositoryName": "<p>The name of the repository that is associated with the repository policy to delete.</p>",
@@ -1625,7 +1625,7 @@
     "ScanFrequency": {
       "base": null,
       "refs": {
-        "RegistryScanningRule$scanFrequency": "<p>The frequency that scans are performed at for a private registry. When the <code>ENHANCED</code> scan type is specified, the supported scan frequencies are <code>CONTINUOUS_SCAN</code> and <code>SCAN_ON_PUSH</code>. When the <code>BASIC</code> scan type is specified, the <code>SCAN_ON_PUSH</code> and <code>MANUAL</code> scan frequencies are supported.</p>",
+        "RegistryScanningRule$scanFrequency": "<p>The frequency that scans are performed at for a private registry. When the <code>ENHANCED</code> scan type is specified, the supported scan frequencies are <code>CONTINUOUS_SCAN</code> and <code>SCAN_ON_PUSH</code>. When the <code>BASIC</code> scan type is specified, the <code>SCAN_ON_PUSH</code> scan frequency is supported. If scan on push is not specified, then the <code>MANUAL</code> scan frequency is set by default.</p>",
         "RepositoryScanningConfiguration$scanFrequency": "<p>The scan frequency for the repository.</p>"
       }
     },
