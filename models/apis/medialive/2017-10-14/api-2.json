@@ -1828,6 +1828,46 @@
         }
       ]
     },
+    "StartInputDevice": {
+      "name": "StartInputDevice",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/start",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "StartInputDeviceRequest"
+      },
+      "output": {
+        "shape": "StartInputDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "StartInputDeviceMaintenanceWindow": {
       "name": "StartInputDeviceMaintenanceWindow",
       "http": {
@@ -1945,6 +1985,46 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "StopInputDevice": {
+      "name": "StopInputDevice",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/stop",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "StopInputDeviceRequest"
+      },
+      "output": {
+        "shape": "StopInputDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -5085,6 +5165,14 @@
         "AvailabilityZone": {
           "shape": "__string",
           "locationName": "availabilityZone"
+        },
+        "MedialiveInputArns": {
+          "shape": "__listOf__string",
+          "locationName": "medialiveInputArns"
+        },
+        "OutputType": {
+          "shape": "InputDeviceOutputType",
+          "locationName": "outputType"
         }
       }
     },
@@ -8189,6 +8277,14 @@
         "AvailabilityZone": {
           "shape": "__string",
           "locationName": "availabilityZone"
+        },
+        "MedialiveInputArns": {
+          "shape": "__listOf__string",
+          "locationName": "medialiveInputArns"
+        },
+        "OutputType": {
+          "shape": "InputDeviceOutputType",
+          "locationName": "outputType"
         }
       }
     },
@@ -8197,6 +8293,13 @@
       "enum": [
         "HDMI",
         "SDI"
+      ]
+    },
+    "InputDeviceCodec": {
+      "type": "string",
+      "enum": [
+        "HEVC",
+        "AVC"
       ]
     },
     "InputDeviceConfigurableSettings": {
@@ -8213,6 +8316,14 @@
         "LatencyMs": {
           "shape": "__integer",
           "locationName": "latencyMs"
+        },
+        "Codec": {
+          "shape": "InputDeviceCodec",
+          "locationName": "codec"
+        },
+        "MediaconnectSettings": {
+          "shape": "InputDeviceMediaConnectConfigurableSettings",
+          "locationName": "mediaconnectSettings"
         }
       }
     },
@@ -8292,6 +8403,48 @@
         "DHCP"
       ]
     },
+    "InputDeviceMediaConnectConfigurableSettings": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        },
+        "SecretArn": {
+          "shape": "__string",
+          "locationName": "secretArn"
+        },
+        "SourceName": {
+          "shape": "__string",
+          "locationName": "sourceName"
+        }
+      }
+    },
+    "InputDeviceMediaConnectSettings": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        },
+        "SecretArn": {
+          "shape": "__string",
+          "locationName": "secretArn"
+        },
+        "SourceName": {
+          "shape": "__string",
+          "locationName": "sourceName"
+        }
+      }
+    },
     "InputDeviceNetworkSettings": {
       "type": "structure",
       "members": {
@@ -8316,6 +8469,14 @@
           "locationName": "subnetMask"
         }
       }
+    },
+    "InputDeviceOutputType": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "MEDIALIVE_INPUT",
+        "MEDIACONNECT_FLOW"
+      ]
     },
     "InputDeviceRequest": {
       "type": "structure",
@@ -8407,6 +8568,14 @@
         "AvailabilityZone": {
           "shape": "__string",
           "locationName": "availabilityZone"
+        },
+        "MedialiveInputArns": {
+          "shape": "__listOf__string",
+          "locationName": "medialiveInputArns"
+        },
+        "OutputType": {
+          "shape": "InputDeviceOutputType",
+          "locationName": "outputType"
         }
       }
     },
@@ -8462,6 +8631,14 @@
         "LatencyMs": {
           "shape": "__integer",
           "locationName": "latencyMs"
+        },
+        "Codec": {
+          "shape": "InputDeviceCodec",
+          "locationName": "codec"
+        },
+        "MediaconnectSettings": {
+          "shape": "InputDeviceMediaConnectSettings",
+          "locationName": "mediaconnectSettings"
         }
       }
     },
@@ -12322,6 +12499,24 @@
       "members": {
       }
     },
+    "StartInputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "StartInputDeviceResponse": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "StartMultiplexRequest": {
       "type": "structure",
       "members": {
@@ -12554,6 +12749,24 @@
           "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
+      }
+    },
+    "StopInputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "StopInputDeviceResponse": {
+      "type": "structure",
+      "members": {
       }
     },
     "StopMultiplexRequest": {
@@ -13317,6 +13530,14 @@
         "AvailabilityZone": {
           "shape": "__string",
           "locationName": "availabilityZone"
+        },
+        "MedialiveInputArns": {
+          "shape": "__listOf__string",
+          "locationName": "medialiveInputArns"
+        },
+        "OutputType": {
+          "shape": "InputDeviceOutputType",
+          "locationName": "outputType"
         }
       }
     },

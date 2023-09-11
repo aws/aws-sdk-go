@@ -2221,6 +2221,8 @@
       "refs": {
         "GaugeChartArcConditionalFormatting$ForegroundColor": "<p>The conditional formatting of the arc foreground color.</p>",
         "GaugeChartPrimaryValueConditionalFormatting$TextColor": "<p>The conditional formatting of the primary value text color.</p>",
+        "KPIActualValueConditionalFormatting$TextColor": "<p>The conditional formatting of the actual value's text color.</p>",
+        "KPIComparisonValueConditionalFormatting$TextColor": "<p>The conditional formatting of the comparison value's text color.</p>",
         "KPIPrimaryValueConditionalFormatting$TextColor": "<p>The conditional formatting of the primary value's text color.</p>",
         "KPIProgressBarConditionalFormatting$ForegroundColor": "<p>The conditional formatting of the progress bar's foreground color.</p>",
         "ShapeConditionalFormat$BackgroundColor": "<p>The conditional formatting for the shape background color of a filled map visual.</p>",
@@ -2252,6 +2254,8 @@
       "base": "<p>The formatting configuration for the icon.</p>",
       "refs": {
         "GaugeChartPrimaryValueConditionalFormatting$Icon": "<p>The conditional formatting of the primary value icon.</p>",
+        "KPIActualValueConditionalFormatting$Icon": "<p>The conditional formatting of the actual value's icon.</p>",
+        "KPIComparisonValueConditionalFormatting$Icon": "<p>The conditional formatting of the comparison value's icon.</p>",
         "KPIPrimaryValueConditionalFormatting$Icon": "<p>The conditional formatting of the primary value's icon.</p>",
         "TextConditionalFormat$Icon": "<p>The conditional formatting for the icon.</p>"
       }
@@ -5560,6 +5564,7 @@
         "FunnelChartDataLabelOptions$LabelColor": "<p>The color of the data label text.</p>",
         "GeospatialHeatmapDataColor$Color": "<p>The hex color to be used in the heatmap point style.</p>",
         "GradientStop$Color": "<p>Determines the color.</p>",
+        "KPISparklineOptions$Color": "<p>The color of the sparkline.</p>",
         "LineChartMarkerStyleSettings$MarkerColor": "<p>Color of marker in the series.</p>",
         "RadarChartConfiguration$AlternateBandEvenColor": "<p>The color of the even-numbered alternate bands of a radar chart.</p>",
         "RadarChartConfiguration$AlternateBandOddColor": "<p>The color of the odd-numbered alternate bands of a radar chart.</p>",
@@ -6025,6 +6030,18 @@
         "JoinInstruction$Type": "<p>The type of join that it is.</p>"
       }
     },
+    "KPIActualValueConditionalFormatting": {
+      "base": "<p>The conditional formatting for the actual value of a KPI visual.</p>",
+      "refs": {
+        "KPIConditionalFormattingOption$ActualValue": "<p>The conditional formatting for the actual value of a KPI visual.</p>"
+      }
+    },
+    "KPIComparisonValueConditionalFormatting": {
+      "base": "<p>The conditional formatting for the comparison value of a KPI visual.</p>",
+      "refs": {
+        "KPIConditionalFormattingOption$ComparisonValue": "<p>The conditional formatting for the comparison value of a KPI visual.</p>"
+      }
+    },
     "KPIConditionalFormatting": {
       "base": "<p>The conditional formatting of a KPI visual.</p>",
       "refs": {
@@ -6079,10 +6096,40 @@
         "KPIConfiguration$SortConfiguration": "<p>The sort configuration of a KPI visual.</p>"
       }
     },
+    "KPISparklineOptions": {
+      "base": "<p>The options that determine the visibility, color, type, and tooltip visibility of the sparkline of a KPI visual.</p>",
+      "refs": {
+        "KPIOptions$Sparkline": "<p>The options that determine the visibility, color, type, and tooltip visibility of the sparkline of a KPI visual.</p>"
+      }
+    },
+    "KPISparklineType": {
+      "base": null,
+      "refs": {
+        "KPISparklineOptions$Type": "<p>The type of the sparkline.</p>"
+      }
+    },
     "KPIVisual": {
       "base": "<p>A key performance indicator (KPI).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/kpi.html\">Using KPIs</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
       "refs": {
         "Visual$KPIVisual": "<p>A key performance indicator (KPI).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/kpi.html\">Using KPIs</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+      }
+    },
+    "KPIVisualLayoutOptions": {
+      "base": "<p>The options that determine the layout a KPI visual.</p>",
+      "refs": {
+        "KPIOptions$VisualLayoutOptions": "<p>The options that determine the layout a KPI visual.</p>"
+      }
+    },
+    "KPIVisualStandardLayout": {
+      "base": "<p>The standard layout of the KPI visual.</p>",
+      "refs": {
+        "KPIVisualLayoutOptions$StandardLayout": "<p>The standard layout of the KPI visual.</p>"
+      }
+    },
+    "KPIVisualStandardLayoutType": {
+      "base": null,
+      "refs": {
+        "KPIVisualStandardLayout$Type": "<p>The standard layout type.</p>"
       }
     },
     "LabelOptions": {
@@ -12200,6 +12247,8 @@
         "FunnelChartDataLabelOptions$Visibility": "<p>The visibility option that determines if data labels are displayed.</p>",
         "FunnelChartDataLabelOptions$CategoryLabelVisibility": "<p>The visibility of the category labels within the data labels.</p>",
         "FunnelChartDataLabelOptions$MeasureLabelVisibility": "<p>The visibility of the measure labels within the data labels.</p>",
+        "KPISparklineOptions$Visibility": "<p>The visibility of the sparkline.</p>",
+        "KPISparklineOptions$TooltipVisibility": "<p>The tooltip visibility of the sparkline.</p>",
         "LabelOptions$Visibility": "<p>Determines whether or not the label is visible.</p>",
         "LegendOptions$Visibility": "<p>Determines whether or not the legend is visible.</p>",
         "LineChartLineStyleSettings$LineVisibility": "<p>Configuration option that determines whether to show the line for the series.</p>",

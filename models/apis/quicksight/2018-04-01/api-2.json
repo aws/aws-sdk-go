@@ -2920,7 +2920,7 @@
     "ActionList":{
       "type":"list",
       "member":{"shape":"String"},
-      "max":16,
+      "max":20,
       "min":1
     },
     "ActiveIAMPolicyAssignment":{
@@ -11497,6 +11497,20 @@
         "RIGHT"
       ]
     },
+    "KPIActualValueConditionalFormatting":{
+      "type":"structure",
+      "members":{
+        "TextColor":{"shape":"ConditionalFormattingColor"},
+        "Icon":{"shape":"ConditionalFormattingIcon"}
+      }
+    },
+    "KPIComparisonValueConditionalFormatting":{
+      "type":"structure",
+      "members":{
+        "TextColor":{"shape":"ConditionalFormattingColor"},
+        "Icon":{"shape":"ConditionalFormattingIcon"}
+      }
+    },
     "KPIConditionalFormatting":{
       "type":"structure",
       "members":{
@@ -11507,7 +11521,9 @@
       "type":"structure",
       "members":{
         "PrimaryValue":{"shape":"KPIPrimaryValueConditionalFormatting"},
-        "ProgressBar":{"shape":"KPIProgressBarConditionalFormatting"}
+        "ProgressBar":{"shape":"KPIProgressBarConditionalFormatting"},
+        "ActualValue":{"shape":"KPIActualValueConditionalFormatting"},
+        "ComparisonValue":{"shape":"KPIComparisonValueConditionalFormatting"}
       }
     },
     "KPIConditionalFormattingOptionList":{
@@ -11540,7 +11556,9 @@
         "Comparison":{"shape":"ComparisonConfiguration"},
         "PrimaryValueDisplayType":{"shape":"PrimaryValueDisplayType"},
         "PrimaryValueFontConfiguration":{"shape":"FontConfiguration"},
-        "SecondaryValueFontConfiguration":{"shape":"FontConfiguration"}
+        "SecondaryValueFontConfiguration":{"shape":"FontConfiguration"},
+        "Sparkline":{"shape":"KPISparklineOptions"},
+        "VisualLayoutOptions":{"shape":"KPIVisualLayoutOptions"}
       }
     },
     "KPIPrimaryValueConditionalFormatting":{
@@ -11562,6 +11580,23 @@
         "TrendGroupSort":{"shape":"FieldSortOptionsList"}
       }
     },
+    "KPISparklineOptions":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "Type":{"shape":"KPISparklineType"},
+        "Color":{"shape":"HexColor"},
+        "TooltipVisibility":{"shape":"Visibility"}
+      }
+    },
+    "KPISparklineType":{
+      "type":"string",
+      "enum":[
+        "LINE",
+        "AREA"
+      ]
+    },
     "KPIVisual":{
       "type":"structure",
       "required":["VisualId"],
@@ -11574,6 +11609,26 @@
         "Actions":{"shape":"VisualCustomActionList"},
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"}
       }
+    },
+    "KPIVisualLayoutOptions":{
+      "type":"structure",
+      "members":{
+        "StandardLayout":{"shape":"KPIVisualStandardLayout"}
+      }
+    },
+    "KPIVisualStandardLayout":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"KPIVisualStandardLayoutType"}
+      }
+    },
+    "KPIVisualStandardLayoutType":{
+      "type":"string",
+      "enum":[
+        "CLASSIC",
+        "VERTICAL"
+      ]
     },
     "LabelOptions":{
       "type":"structure",

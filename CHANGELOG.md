@@ -1,3 +1,14 @@
+Release v1.45.7 (2023-09-11)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service API, documentation, and examples
+  * This release will have ValidationException be thrown from ECR LifecyclePolicy APIs in regions LifecyclePolicy is not supported, this includes existing Amazon Dedicated Cloud (ADC) regions. This release will also change Tag: TagValue and Tag: TagKey to required.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental Link now supports attaching a Link UHD device to a MediaConnect flow.
+* `service/quicksight`: Updates service API and documentation
+  * This release launches new updates to QuickSight KPI visuals - support for sparklines, new templated layout and new targets for conditional formatting rules.
+
 Release v1.45.6 (2023-09-08)
 ===
 
