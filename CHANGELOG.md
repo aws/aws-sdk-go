@@ -1,3 +1,17 @@
+Release v1.45.8 (2023-09-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for restricting public sharing of AMIs through AMI Block Public Access
+* `service/eventbridge`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports confidence score buckets for retrieved passage results using the Retrieve API.
+
+### SDK Enhancements
+* `service/glacier`: Improve efficiency of tree hash algorithm
+  * Refactor tree hashing to reduce allocations.
+
 Release v1.45.7 (2023-09-11)
 ===
 
