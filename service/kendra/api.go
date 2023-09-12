@@ -270,7 +270,12 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 //
 // The documents are deleted asynchronously. You can see the progress of the
 // deletion by using Amazon Web Services CloudWatch. Any error messages related
-// to the processing of the batch are sent to you CloudWatch log.
+// to the processing of the batch are sent to your Amazon Web Services CloudWatch
+// log. You can also use the BatchGetDocumentStatus API to monitor the progress
+// of deleting your documents.
+//
+// Deleting documents from an index using BatchDeleteDocument could take up
+// to an hour or more, depending on the number of documents you want to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -593,6 +598,8 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 // The documents are indexed asynchronously. You can see the progress of the
 // batch using Amazon Web Services CloudWatch. Any error messages related to
 // processing the batch are sent to your Amazon Web Services CloudWatch log.
+// You can also use the BatchGetDocumentStatus API to monitor the progress of
+// indexing your documents.
 //
 // For an example of ingesting inline documents using Python and Java SDKs,
 // see Adding files directly to an index (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-binary-doc.html).
@@ -1407,8 +1414,8 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 // from a call to DescribeIndex. The Status field is set to ACTIVE when the
 // index is ready to use.
 //
-// Once the index is active you can index your documents using the BatchPutDocument
-// API or using one of the supported data sources.
+// Once the index is active, you can index your documents using the BatchPutDocument
+// API or using one of the supported data sources (https://docs.aws.amazon.com/kendra/latest/dg/data-sources.html).
 //
 // For an example of creating an index and data source using the Python SDK,
 // see Getting started with Python SDK (https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html).
@@ -1864,6 +1871,10 @@ func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *req
 // if the data source is already being deleted. While the data source is being
 // deleted, the Status field returned by a call to the DescribeDataSource API
 // is set to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
+//
+// Deleting an entire data source or re-syncing your index after deleting specific
+// documents from a data source could take up to an hour or more, depending
+// on the number of documents you want to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6238,8 +6249,8 @@ func (c *Kendra) RetrieveRequest(input *RetrieveInput) (req *request.Request, ou
 // doesn't include question-answer or FAQ type responses from your index. The
 // passages are text excerpts that can be semantically extracted from multiple
 // documents and multiple parts of the same document. If in extreme cases your
-// documents produce no relevant passages using the Retrieve API, you can alternatively
-// use the Query API.
+// documents produce zero passages using the Retrieve API, you can alternatively
+// use the Query API and its types of responses.
 //
 // You can also do the following:
 //
@@ -6251,6 +6262,11 @@ func (c *Kendra) RetrieveRequest(input *RetrieveInput) (req *request.Request, ou
 //
 // You can also include certain fields in the response that might provide useful
 // additional information.
+//
+// The Retrieve API shares the number of query capacity units (https://docs.aws.amazon.com/kendra/latest/APIReference/API_CapacityUnitsConfiguration.html)
+// that you set for your index. For more information on what's included in a
+// single capacity unit and the default base capacity for an index, see Adjusting
+// capacity (https://docs.aws.amazon.com/kendra/latest/dg/adjusting-capacity.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6360,6 +6376,10 @@ func (c *Kendra) StartDataSourceSyncJobRequest(input *StartDataSourceSyncJobInpu
 // Starts a synchronization job for a data source connector. If a synchronization
 // job is already in progress, Amazon Kendra returns a ResourceInUseException
 // exception.
+//
+// Re-syncing your data source with your index after modifying, adding, or deleting
+// documents from your data source respository could take up to an hour or more,
+// depending on the number of documents to sync.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8517,61 +8537,77 @@ func (s *AssociatePersonasToEntitiesOutput) SetFailedEntityList(v []*FailedEntit
 	return s
 }
 
-// Provides filtering the query results based on document attributes or metadata
-// fields.
+// Filters the search results based on document attributes or fields.
 //
-// When you use the AndAllFilters or OrAllFilters, filters you can use 2 layers
-// under the first attribute filter. For example, you can use:
+// You can filter results using attributes for your particular documents. The
+// attributes must exist in your index. For example, if your documents include
+// the custom attribute "Department", you can filter documents that belong to
+// the "HR" department. You would use the EqualsTo operation to filter results
+// or documents with "Department" equals to "HR".
 //
-// <AndAllFilters>
+// You can use AndAllFilters and AndOrFilters in combination with each other
+// or with other operations such as EqualsTo. For example:
 //
-// <OrAllFilters>
+// AndAllFilters
 //
-// <EqualsTo>
+//   - EqualsTo: "Department", "HR"
 //
-// If you use more than 2 layers, you receive a ValidationException exception
-// with the message "AttributeFilter cannot have a depth of more than 2."
+//   - AndOrFilters ContainsAny: "Project Name", ["new hires", "new hiring"]
 //
-// If you use more than 10 attribute filters in a given list for AndAllFilters
+// This example filters results or documents that belong to the HR department
+// and belong to projects that contain "new hires" or "new hiring" in the project
+// name (must use ContainAny with StringListValue). This example is filtering
+// with a depth of 2.
+//
+// You cannot filter more than a depth of 2, otherwise you receive a ValidationException
+// exception with the message "AttributeFilter cannot have a depth of more than
+// 2." Also, if you use more than 10 attribute filters in a given list for AndAllFilters
 // or OrAllFilters, you receive a ValidationException with the message "AttributeFilter
 // cannot have a length of more than 10".
+//
+// For examples of using AttributeFilter, see Using document attributes to filter
+// search results (https://docs.aws.amazon.com/kendra/latest/dg/filtering.html#search-filtering).
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
-	// Performs a logical AND operation on all supplied filters.
+	// Performs a logical AND operation on all filters that you specify.
 	AndAllFilters []*AttributeFilter `type:"list"`
 
-	// Returns true when a document contains all of the specified document attributes
-	// or metadata fields. This filter is only applicable to StringListValue metadata.
+	// Returns true when a document contains all of the specified document attributes/fields.
+	// This filter is only applicable to StringListValue (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html).
 	ContainsAll *DocumentAttribute `type:"structure"`
 
-	// Returns true when a document contains any of the specified document attributes
-	// or metadata fields. This filter is only applicable to StringListValue metadata.
+	// Returns true when a document contains any of the specified document attributes/fields.
+	// This filter is only applicable to StringListValue (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html).
 	ContainsAny *DocumentAttribute `type:"structure"`
 
-	// Performs an equals operation on two document attributes or metadata fields.
+	// Performs an equals operation on document attributes/fields and their values.
 	EqualsTo *DocumentAttribute `type:"structure"`
 
-	// Performs a greater than operation on two document attributes or metadata
-	// fields. Use with a document attribute of type Date or Long.
+	// Performs a greater than operation on document attributes/fields and their
+	// values. Use with the document attribute type (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html)
+	// Date or Long.
 	GreaterThan *DocumentAttribute `type:"structure"`
 
-	// Performs a greater or equals than operation on two document attributes or
-	// metadata fields. Use with a document attribute of type Date or Long.
+	// Performs a greater or equals than operation on document attributes/fields
+	// and their values. Use with the document attribute type (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html)
+	// Date or Long.
 	GreaterThanOrEquals *DocumentAttribute `type:"structure"`
 
-	// Performs a less than operation on two document attributes or metadata fields.
-	// Use with a document attribute of type Date or Long.
+	// Performs a less than operation on document attributes/fields and their values.
+	// Use with the document attribute type (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html)
+	// Date or Long.
 	LessThan *DocumentAttribute `type:"structure"`
 
-	// Performs a less than or equals operation on two document attributes or metadata
-	// fields. Use with a document attribute of type Date or Long.
+	// Performs a less than or equals operation on document attributes/fields and
+	// their values. Use with the document attribute type (https://docs.aws.amazon.com/kendra/latest/APIReference/API_DocumentAttributeValue.html)
+	// Date or Long.
 	LessThanOrEquals *DocumentAttribute `type:"structure"`
 
-	// Performs a logical NOT operation on all supplied filters.
+	// Performs a logical NOT operation on all filters that you specify.
 	NotFilter *AttributeFilter `type:"structure"`
 
-	// Performs a logical OR operation on all supplied filters.
+	// Performs a logical OR operation on all filters that you specify.
 	OrAllFilters []*AttributeFilter `type:"list"`
 }
 
@@ -9706,7 +9742,7 @@ type BatchPutDocumentOutput struct {
 	//
 	// If there was an error adding a document to an index the error is reported
 	// in your Amazon Web Services CloudWatch log. For more information, see Monitoring
-	// Amazon Kendra with Amazon CloudWatch Logs (https://docs.aws.amazon.com/kendra/latest/dg/cloudwatch-logs.html)
+	// Amazon Kendra with Amazon CloudWatch logs (https://docs.aws.amazon.com/kendra/latest/dg/cloudwatch-logs.html).
 	FailedDocuments []*BatchPutDocumentResponseFailedDocument `type:"list"`
 }
 
@@ -13985,20 +14021,29 @@ func (s *DataSourceSyncJobMetrics) SetDocumentsScanned(v string) *DataSourceSync
 	return s
 }
 
-// Maps a column or attribute in the data source to an index field. You must
-// first create the fields in the index using the UpdateIndex API.
+// Maps attributes or field names of the documents synced from the data source
+// to Amazon Kendra index field names. You can set up field mappings for each
+// data source when calling CreateDataSource (https://docs.aws.amazon.com/kendra/latest/APIReference/API_CreateDataSource.html)
+// or UpdateDataSource (https://docs.aws.amazon.com/kendra/latest/APIReference/API_UpdateDataSource.html)
+// API. To create custom fields, use the UpdateIndex API to first create an
+// index field and then map to the data source field. For more information,
+// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
 type DataSourceToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the column or attribute in the data source.
+	// The name of the field in the data source. You must first create the index
+	// field using the UpdateIndex API.
 	//
 	// DataSourceFieldName is a required field
 	DataSourceFieldName *string `min:"1" type:"string" required:"true"`
 
-	// The type of data stored in the column or attribute.
+	// The format for date fields in the data source. If the field specified in
+	// DataSourceFieldName is a date field, you must specify the date format. If
+	// the field is not a date field, an exception is thrown.
 	DateFieldFormat *string `min:"4" type:"string"`
 
-	// The name of the field in the index.
+	// The name of the index field to map to the data source field. The index field
+	// type must match the data source field type.
 	//
 	// IndexFieldName is a required field
 	IndexFieldName *string `min:"1" type:"string" required:"true"`
@@ -14135,7 +14180,8 @@ func (s *DataSourceVpcConfiguration) SetSubnetIds(v []*string) *DataSourceVpcCon
 	return s
 }
 
-// Provides the configuration information to connect to a index.
+// Provides the configuration information to an Amazon Kendra supported database
+// (https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html).
 type DatabaseConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -17717,20 +17763,20 @@ func (s *DocumentAttributeValue) SetStringValue(v string) *DocumentAttributeValu
 	return s
 }
 
-// Provides the count of documents that match a particular attribute when doing
-// a faceted search.
+// Provides the count of documents that match a particular document attribute
+// or field when doing a faceted search.
 type DocumentAttributeValueCountPair struct {
 	_ struct{} `type:"structure"`
 
-	// The number of documents in the response that have the attribute value for
-	// the key.
+	// The number of documents in the response that have the attribute/field value
+	// for the key.
 	Count *int64 `type:"integer"`
 
-	// The value of the attribute. For example, "HR".
+	// The value of the attribute/field. For example, "HR".
 	DocumentAttributeValue *DocumentAttributeValue `type:"structure"`
 
-	// Contains the results of a document attribute that is a nested facet. A FacetResult
-	// contains the counts for each facet nested within a facet.
+	// Contains the results of a document attribute/field that is a nested facet.
+	// A FacetResult contains the counts for each facet nested within a facet.
 	//
 	// For example, the document attribute or facet "Department" includes a value
 	// called "Engineering". In addition, the document attribute or facet "SubDepartment"
@@ -18535,8 +18581,8 @@ func (s *ExperiencesSummary) SetStatus(v string) *ExperiencesSummary {
 	return s
 }
 
-// Information about a document attribute. You can use document attributes as
-// facets.
+// Information about a document attribute or field. You can use document attributes
+// as facets.
 //
 // For example, the document attribute or facet "Department" includes the values
 // "HR", "Engineering", and "Accounting". You can display these values in the
@@ -25695,6 +25741,11 @@ type RetrieveResultItem struct {
 
 	// The identifier of the relevant passage result.
 	Id *string `min:"1" type:"string"`
+
+	// The confidence score bucket for a retrieved passage result. The confidence
+	// bucket provides a relative ranking that indicates how confident Amazon Kendra
+	// is that the response is relevant to the query.
+	ScoreAttributes *ScoreAttributes `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25748,6 +25799,12 @@ func (s *RetrieveResultItem) SetDocumentURI(v string) *RetrieveResultItem {
 // SetId sets the Id field's value.
 func (s *RetrieveResultItem) SetId(v string) *RetrieveResultItem {
 	s.Id = &v
+	return s
+}
+
+// SetScoreAttributes sets the ScoreAttributes field's value.
+func (s *RetrieveResultItem) SetScoreAttributes(v *ScoreAttributes) *RetrieveResultItem {
+	s.ScoreAttributes = v
 	return s
 }
 

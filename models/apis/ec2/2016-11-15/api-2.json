@@ -3339,6 +3339,15 @@
       "input":{"shape":"DisableFastSnapshotRestoresRequest"},
       "output":{"shape":"DisableFastSnapshotRestoresResult"}
     },
+    "DisableImageBlockPublicAccess":{
+      "name":"DisableImageBlockPublicAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableImageBlockPublicAccessRequest"},
+      "output":{"shape":"DisableImageBlockPublicAccessResult"}
+    },
     "DisableImageDeprecation":{
       "name":"DisableImageDeprecation",
       "http":{
@@ -3569,6 +3578,15 @@
       },
       "input":{"shape":"EnableFastSnapshotRestoresRequest"},
       "output":{"shape":"EnableFastSnapshotRestoresResult"}
+    },
+    "EnableImageBlockPublicAccess":{
+      "name":"EnableImageBlockPublicAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableImageBlockPublicAccessRequest"},
+      "output":{"shape":"EnableImageBlockPublicAccessResult"}
     },
     "EnableImageDeprecation":{
       "name":"EnableImageDeprecation",
@@ -3801,6 +3819,15 @@
       },
       "input":{"shape":"GetHostReservationPurchasePreviewRequest"},
       "output":{"shape":"GetHostReservationPurchasePreviewResult"}
+    },
+    "GetImageBlockPublicAccessState":{
+      "name":"GetImageBlockPublicAccessState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetImageBlockPublicAccessStateRequest"},
+      "output":{"shape":"GetImageBlockPublicAccessStateResult"}
     },
     "GetInstanceTypesFromInstanceRequirements":{
       "name":"GetInstanceTypesFromInstanceRequirements",
@@ -19319,6 +19346,21 @@
         }
       }
     },
+    "DisableImageBlockPublicAccessRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableImageBlockPublicAccessResult":{
+      "type":"structure",
+      "members":{
+        "ImageBlockPublicAccessState":{
+          "shape":"ImageBlockPublicAccessDisabledState",
+          "locationName":"imageBlockPublicAccessState"
+        }
+      }
+    },
     "DisableImageDeprecationRequest":{
       "type":"structure",
       "required":["ImageId"],
@@ -20658,6 +20700,23 @@
         "Unsuccessful":{
           "shape":"EnableFastSnapshotRestoreErrorSet",
           "locationName":"unsuccessful"
+        }
+      }
+    },
+    "EnableImageBlockPublicAccessRequest":{
+      "type":"structure",
+      "required":["ImageBlockPublicAccessState"],
+      "members":{
+        "ImageBlockPublicAccessState":{"shape":"ImageBlockPublicAccessEnabledState"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableImageBlockPublicAccessResult":{
+      "type":"structure",
+      "members":{
+        "ImageBlockPublicAccessState":{
+          "shape":"ImageBlockPublicAccessEnabledState",
+          "locationName":"imageBlockPublicAccessState"
         }
       }
     },
@@ -22745,6 +22804,21 @@
         }
       }
     },
+    "GetImageBlockPublicAccessStateRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetImageBlockPublicAccessStateResult":{
+      "type":"structure",
+      "members":{
+        "ImageBlockPublicAccessState":{
+          "shape":"String",
+          "locationName":"imageBlockPublicAccessState"
+        }
+      }
+    },
     "GetInstanceTypesFromInstanceRequirementsRequest":{
       "type":"structure",
       "required":[
@@ -24391,6 +24465,14 @@
         "lastLaunchedTime",
         "imdsSupport"
       ]
+    },
+    "ImageBlockPublicAccessDisabledState":{
+      "type":"string",
+      "enum":["unblocked"]
+    },
+    "ImageBlockPublicAccessEnabledState":{
+      "type":"string",
+      "enum":["block-new-sharing"]
     },
     "ImageDiskContainer":{
       "type":"structure",

@@ -7520,6 +7520,9 @@
         },
         "Id": {
           "shape": "ResultId"
+        },
+        "ScoreAttributes": {
+          "shape": "ScoreAttributes"
         }
       },
       "type": "structure"
