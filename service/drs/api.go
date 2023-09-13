@@ -596,6 +596,99 @@ func (c *Drs) DeleteJobWithContext(ctx aws.Context, input *DeleteJobInput, opts 
 	return out, req.Send()
 }
 
+const opDeleteLaunchAction = "DeleteLaunchAction"
+
+// DeleteLaunchActionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLaunchAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLaunchAction for more information on using the DeleteLaunchAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLaunchActionRequest method.
+//	req, resp := client.DeleteLaunchActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DeleteLaunchAction
+func (c *Drs) DeleteLaunchActionRequest(input *DeleteLaunchActionInput) (req *request.Request, output *DeleteLaunchActionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLaunchAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteLaunchAction",
+	}
+
+	if input == nil {
+		input = &DeleteLaunchActionInput{}
+	}
+
+	output = &DeleteLaunchActionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLaunchAction API operation for Elastic Disaster Recovery Service.
+//
+// Deletes a resource launch action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation DeleteLaunchAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/DeleteLaunchAction
+func (c *Drs) DeleteLaunchAction(input *DeleteLaunchActionInput) (*DeleteLaunchActionOutput, error) {
+	req, out := c.DeleteLaunchActionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLaunchActionWithContext is the same as DeleteLaunchAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLaunchAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) DeleteLaunchActionWithContext(ctx aws.Context, input *DeleteLaunchActionInput, opts ...request.Option) (*DeleteLaunchActionOutput, error) {
+	req, out := c.DeleteLaunchActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteLaunchConfigurationTemplate = "DeleteLaunchConfigurationTemplate"
 
 // DeleteLaunchConfigurationTemplateRequest generates a "aws/request.Request" representing the
@@ -3072,6 +3165,155 @@ func (c *Drs) ListExtensibleSourceServersPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListLaunchActions = "ListLaunchActions"
+
+// ListLaunchActionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLaunchActions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLaunchActions for more information on using the ListLaunchActions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLaunchActionsRequest method.
+//	req, resp := client.ListLaunchActionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListLaunchActions
+func (c *Drs) ListLaunchActionsRequest(input *ListLaunchActionsInput) (req *request.Request, output *ListLaunchActionsOutput) {
+	op := &request.Operation{
+		Name:       opListLaunchActions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListLaunchActions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLaunchActionsInput{}
+	}
+
+	output = &ListLaunchActionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLaunchActions API operation for Elastic Disaster Recovery Service.
+//
+// Lists resource launch actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation ListLaunchActions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListLaunchActions
+func (c *Drs) ListLaunchActions(input *ListLaunchActionsInput) (*ListLaunchActionsOutput, error) {
+	req, out := c.ListLaunchActionsRequest(input)
+	return out, req.Send()
+}
+
+// ListLaunchActionsWithContext is the same as ListLaunchActions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLaunchActions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListLaunchActionsWithContext(ctx aws.Context, input *ListLaunchActionsInput, opts ...request.Option) (*ListLaunchActionsOutput, error) {
+	req, out := c.ListLaunchActionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLaunchActionsPages iterates over the pages of a ListLaunchActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLaunchActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLaunchActions operation.
+//	pageNum := 0
+//	err := client.ListLaunchActionsPages(params,
+//	    func(page *drs.ListLaunchActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Drs) ListLaunchActionsPages(input *ListLaunchActionsInput, fn func(*ListLaunchActionsOutput, bool) bool) error {
+	return c.ListLaunchActionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLaunchActionsPagesWithContext same as ListLaunchActionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListLaunchActionsPagesWithContext(ctx aws.Context, input *ListLaunchActionsInput, fn func(*ListLaunchActionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLaunchActionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLaunchActionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLaunchActionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListStagingAccounts = "ListStagingAccounts"
 
 // ListStagingAccountsRequest generates a "aws/request.Request" representing the
@@ -3308,6 +3550,102 @@ func (c *Drs) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsFor
 // for more information on using Contexts.
 func (c *Drs) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutLaunchAction = "PutLaunchAction"
+
+// PutLaunchActionRequest generates a "aws/request.Request" representing the
+// client's request for the PutLaunchAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutLaunchAction for more information on using the PutLaunchAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutLaunchActionRequest method.
+//	req, resp := client.PutLaunchActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/PutLaunchAction
+func (c *Drs) PutLaunchActionRequest(input *PutLaunchActionInput) (req *request.Request, output *PutLaunchActionOutput) {
+	op := &request.Operation{
+		Name:       opPutLaunchAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/PutLaunchAction",
+	}
+
+	if input == nil {
+		input = &PutLaunchActionInput{}
+	}
+
+	output = &PutLaunchActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutLaunchAction API operation for Elastic Disaster Recovery Service.
+//
+// Puts a resource launch action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation PutLaunchAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/PutLaunchAction
+func (c *Drs) PutLaunchAction(input *PutLaunchActionInput) (*PutLaunchActionOutput, error) {
+	req, out := c.PutLaunchActionRequest(input)
+	return out, req.Send()
+}
+
+// PutLaunchActionWithContext is the same as PutLaunchAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutLaunchAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) PutLaunchActionWithContext(ctx aws.Context, input *PutLaunchActionInput, opts ...request.Option) (*PutLaunchActionOutput, error) {
+	req, out := c.PutLaunchActionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5539,6 +5877,9 @@ type CreateLaunchConfigurationTemplateInput struct {
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
+	// Whether we want to activate post-launch actions.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
+
 	// Request to associate tags during creation of a Launch Configuration Template.
 	//
 	// Tags is a sensitive parameter and its value will be
@@ -5608,6 +5949,12 @@ func (s *CreateLaunchConfigurationTemplateInput) SetLaunchDisposition(v string) 
 // SetLicensing sets the Licensing field's value.
 func (s *CreateLaunchConfigurationTemplateInput) SetLicensing(v *Licensing) *CreateLaunchConfigurationTemplateInput {
 	s.Licensing = v
+	return s
+}
+
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *CreateLaunchConfigurationTemplateInput) SetPostLaunchEnabled(v bool) *CreateLaunchConfigurationTemplateInput {
+	s.PostLaunchEnabled = &v
 	return s
 }
 
@@ -6580,6 +6927,91 @@ func (s DeleteJobOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteJobOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLaunchActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Launch action Id.
+	//
+	// ActionId is a required field
+	ActionId *string `locationName:"actionId" min:"1" type:"string" required:"true"`
+
+	// Launch configuration template Id or Source Server Id
+	//
+	// ResourceId is a required field
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLaunchActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLaunchActionInput"}
+	if s.ActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionId"))
+	}
+	if s.ActionId != nil && len(*s.ActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionId", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *DeleteLaunchActionInput) SetActionId(v string) *DeleteLaunchActionInput {
+	s.ActionId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeleteLaunchActionInput) SetResourceId(v string) *DeleteLaunchActionInput {
+	s.ResourceId = &v
+	return s
+}
+
+type DeleteLaunchActionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLaunchActionOutput) GoString() string {
 	return s.String()
 }
 
@@ -8691,6 +9123,9 @@ type GetLaunchConfigurationOutput struct {
 	// The name of the launch configuration.
 	Name *string `locationName:"name" type:"string"`
 
+	// Whether we want to activate post-launch actions for the Source Server.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
+
 	// The ID of the Source Server for this launch configuration.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
@@ -8750,6 +9185,12 @@ func (s *GetLaunchConfigurationOutput) SetLicensing(v *Licensing) *GetLaunchConf
 // SetName sets the Name field's value.
 func (s *GetLaunchConfigurationOutput) SetName(v string) *GetLaunchConfigurationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *GetLaunchConfigurationOutput) SetPostLaunchEnabled(v bool) *GetLaunchConfigurationOutput {
+	s.PostLaunchEnabled = &v
 	return s
 }
 
@@ -9415,6 +9856,315 @@ func (s *JobLogEventData) SetTargetInstanceID(v string) *JobLogEventData {
 	return s
 }
 
+// Launch action.
+type LaunchAction struct {
+	_ struct{} `type:"structure"`
+
+	// Launch action code.
+	ActionCode *string `locationName:"actionCode" min:"1" type:"string"`
+
+	// Launch action Id.
+	ActionId *string `locationName:"actionId" min:"1" type:"string"`
+
+	// Launch action version.
+	ActionVersion *string `locationName:"actionVersion" min:"1" type:"string"`
+
+	// Whether the launch action is active.
+	Active *bool `locationName:"active" type:"boolean"`
+
+	// Launch action category.
+	Category *string `locationName:"category" type:"string" enum:"LaunchActionCategory"`
+
+	// Launch action description.
+	Description *string `locationName:"description" type:"string"`
+
+	// Launch action name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Whether the launch will not be marked as failed if this action fails.
+	Optional *bool `locationName:"optional" type:"boolean"`
+
+	// Launch action order.
+	Order *int64 `locationName:"order" min:"2" type:"integer"`
+
+	// Launch action parameters.
+	Parameters map[string]*LaunchActionParameter `locationName:"parameters" type:"map"`
+
+	// Launch action type.
+	Type *string `locationName:"type" type:"string" enum:"LaunchActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchAction) GoString() string {
+	return s.String()
+}
+
+// SetActionCode sets the ActionCode field's value.
+func (s *LaunchAction) SetActionCode(v string) *LaunchAction {
+	s.ActionCode = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *LaunchAction) SetActionId(v string) *LaunchAction {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionVersion sets the ActionVersion field's value.
+func (s *LaunchAction) SetActionVersion(v string) *LaunchAction {
+	s.ActionVersion = &v
+	return s
+}
+
+// SetActive sets the Active field's value.
+func (s *LaunchAction) SetActive(v bool) *LaunchAction {
+	s.Active = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *LaunchAction) SetCategory(v string) *LaunchAction {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LaunchAction) SetDescription(v string) *LaunchAction {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LaunchAction) SetName(v string) *LaunchAction {
+	s.Name = &v
+	return s
+}
+
+// SetOptional sets the Optional field's value.
+func (s *LaunchAction) SetOptional(v bool) *LaunchAction {
+	s.Optional = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *LaunchAction) SetOrder(v int64) *LaunchAction {
+	s.Order = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *LaunchAction) SetParameters(v map[string]*LaunchActionParameter) *LaunchAction {
+	s.Parameters = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LaunchAction) SetType(v string) *LaunchAction {
+	s.Type = &v
+	return s
+}
+
+// Launch action parameter.
+type LaunchActionParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Type.
+	Type *string `locationName:"type" type:"string" enum:"LaunchActionParameterType"`
+
+	// Value.
+	Value *string `locationName:"value" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LaunchActionParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LaunchActionParameter"}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *LaunchActionParameter) SetType(v string) *LaunchActionParameter {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *LaunchActionParameter) SetValue(v string) *LaunchActionParameter {
+	s.Value = &v
+	return s
+}
+
+// Launch action run.
+type LaunchActionRun struct {
+	_ struct{} `type:"structure"`
+
+	// Action.
+	Action *LaunchAction `locationName:"action" type:"structure"`
+
+	// Failure reason.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// Run Id.
+	RunId *string `locationName:"runId" min:"1" type:"string"`
+
+	// Run status.
+	Status *string `locationName:"status" type:"string" enum:"LaunchActionRunStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionRun) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionRun) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *LaunchActionRun) SetAction(v *LaunchAction) *LaunchActionRun {
+	s.Action = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *LaunchActionRun) SetFailureReason(v string) *LaunchActionRun {
+	s.FailureReason = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *LaunchActionRun) SetRunId(v string) *LaunchActionRun {
+	s.RunId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LaunchActionRun) SetStatus(v string) *LaunchActionRun {
+	s.Status = &v
+	return s
+}
+
+// Resource launch actions filter.
+type LaunchActionsRequestFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Launch actions Ids.
+	ActionIds []*string `locationName:"actionIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionsRequestFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionsRequestFilters) GoString() string {
+	return s.String()
+}
+
+// SetActionIds sets the ActionIds field's value.
+func (s *LaunchActionsRequestFilters) SetActionIds(v []*string) *LaunchActionsRequestFilters {
+	s.ActionIds = v
+	return s
+}
+
+// Launch actions status.
+type LaunchActionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// List of post launch action status.
+	Runs []*LaunchActionRun `locationName:"runs" type:"list"`
+
+	// Time where the AWS Systems Manager was detected as running on the launched
+	// instance.
+	SsmAgentDiscoveryDatetime *string `locationName:"ssmAgentDiscoveryDatetime" min:"19" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchActionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetRuns sets the Runs field's value.
+func (s *LaunchActionsStatus) SetRuns(v []*LaunchActionRun) *LaunchActionsStatus {
+	s.Runs = v
+	return s
+}
+
+// SetSsmAgentDiscoveryDatetime sets the SsmAgentDiscoveryDatetime field's value.
+func (s *LaunchActionsStatus) SetSsmAgentDiscoveryDatetime(v string) *LaunchActionsStatus {
+	s.SsmAgentDiscoveryDatetime = &v
+	return s
+}
+
 // Account level Launch Configuration Template.
 type LaunchConfigurationTemplate struct {
 	_ struct{} `type:"structure"`
@@ -9439,6 +10189,9 @@ type LaunchConfigurationTemplate struct {
 
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
+
+	// Post-launch actions activated.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
 
 	// Tags of the Launch Configuration Template.
 	//
@@ -9508,6 +10261,12 @@ func (s *LaunchConfigurationTemplate) SetLaunchDisposition(v string) *LaunchConf
 // SetLicensing sets the Licensing field's value.
 func (s *LaunchConfigurationTemplate) SetLicensing(v *Licensing) *LaunchConfigurationTemplate {
 	s.Licensing = v
+	return s
+}
+
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *LaunchConfigurationTemplate) SetPostLaunchEnabled(v bool) *LaunchConfigurationTemplate {
+	s.PostLaunchEnabled = &v
 	return s
 }
 
@@ -9823,6 +10582,122 @@ func (s *ListExtensibleSourceServersOutput) SetItems(v []*StagingSourceServer) *
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListExtensibleSourceServersOutput) SetNextToken(v string) *ListExtensibleSourceServersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLaunchActionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to apply when listing resource launch actions.
+	Filters *LaunchActionsRequestFilters `locationName:"filters" type:"structure"`
+
+	// Maximum amount of items to return when listing resource launch actions.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Next token to use when listing resource launch actions.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Launch configuration template Id or Source Server Id
+	//
+	// ResourceId is a required field
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLaunchActionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLaunchActionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLaunchActionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLaunchActionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListLaunchActionsInput) SetFilters(v *LaunchActionsRequestFilters) *ListLaunchActionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLaunchActionsInput) SetMaxResults(v int64) *ListLaunchActionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLaunchActionsInput) SetNextToken(v string) *ListLaunchActionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ListLaunchActionsInput) SetResourceId(v string) *ListLaunchActionsInput {
+	s.ResourceId = &v
+	return s
+}
+
+type ListLaunchActionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of resource launch actions.
+	Items []*LaunchAction `locationName:"items" type:"list"`
+
+	// Next token returned when listing resource launch actions.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLaunchActionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLaunchActionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListLaunchActionsOutput) SetItems(v []*LaunchAction) *ListLaunchActionsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLaunchActionsOutput) SetNextToken(v string) *ListLaunchActionsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -10263,6 +11138,9 @@ func (s *ParticipatingResourceID) SetSourceNetworkID(v string) *ParticipatingRes
 type ParticipatingServer struct {
 	_ struct{} `type:"structure"`
 
+	// The post-launch action runs of a participating server.
+	LaunchActionsStatus *LaunchActionsStatus `locationName:"launchActionsStatus" type:"structure"`
+
 	// The launch status of a participating server.
 	LaunchStatus *string `locationName:"launchStatus" type:"string" enum:"LaunchStatus"`
 
@@ -10291,6 +11169,12 @@ func (s ParticipatingServer) GoString() string {
 	return s.String()
 }
 
+// SetLaunchActionsStatus sets the LaunchActionsStatus field's value.
+func (s *ParticipatingServer) SetLaunchActionsStatus(v *LaunchActionsStatus) *ParticipatingServer {
+	s.LaunchActionsStatus = v
+	return s
+}
+
 // SetLaunchStatus sets the LaunchStatus field's value.
 func (s *ParticipatingServer) SetLaunchStatus(v string) *ParticipatingServer {
 	s.LaunchStatus = &v
@@ -10306,6 +11190,337 @@ func (s *ParticipatingServer) SetRecoveryInstanceID(v string) *ParticipatingServ
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *ParticipatingServer) SetSourceServerID(v string) *ParticipatingServer {
 	s.SourceServerID = &v
+	return s
+}
+
+type PutLaunchActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Launch action code.
+	//
+	// ActionCode is a required field
+	ActionCode *string `locationName:"actionCode" min:"1" type:"string" required:"true"`
+
+	// Launch action Id.
+	//
+	// ActionId is a required field
+	ActionId *string `locationName:"actionId" min:"1" type:"string" required:"true"`
+
+	// Launch action version.
+	//
+	// ActionVersion is a required field
+	ActionVersion *string `locationName:"actionVersion" min:"1" type:"string" required:"true"`
+
+	// Whether the launch action is active.
+	//
+	// Active is a required field
+	Active *bool `locationName:"active" type:"boolean" required:"true"`
+
+	// Launch action category.
+	//
+	// Category is a required field
+	Category *string `locationName:"category" type:"string" required:"true" enum:"LaunchActionCategory"`
+
+	// Launch action description.
+	Description *string `locationName:"description" type:"string"`
+
+	// Launch action name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Whether the launch will not be marked as failed if this action fails.
+	//
+	// Optional is a required field
+	Optional *bool `locationName:"optional" type:"boolean" required:"true"`
+
+	// Launch action order.
+	//
+	// Order is a required field
+	Order *int64 `locationName:"order" min:"2" type:"integer" required:"true"`
+
+	// Launch action parameters.
+	Parameters map[string]*LaunchActionParameter `locationName:"parameters" type:"map"`
+
+	// Launch configuration template Id or Source Server Id
+	//
+	// ResourceId is a required field
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutLaunchActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutLaunchActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutLaunchActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutLaunchActionInput"}
+	if s.ActionCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionCode"))
+	}
+	if s.ActionCode != nil && len(*s.ActionCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionCode", 1))
+	}
+	if s.ActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionId"))
+	}
+	if s.ActionId != nil && len(*s.ActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionId", 1))
+	}
+	if s.ActionVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionVersion"))
+	}
+	if s.ActionVersion != nil && len(*s.ActionVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionVersion", 1))
+	}
+	if s.Active == nil {
+		invalidParams.Add(request.NewErrParamRequired("Active"))
+	}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Optional == nil {
+		invalidParams.Add(request.NewErrParamRequired("Optional"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+	if s.Order != nil && *s.Order < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("Order", 2))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionCode sets the ActionCode field's value.
+func (s *PutLaunchActionInput) SetActionCode(v string) *PutLaunchActionInput {
+	s.ActionCode = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *PutLaunchActionInput) SetActionId(v string) *PutLaunchActionInput {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionVersion sets the ActionVersion field's value.
+func (s *PutLaunchActionInput) SetActionVersion(v string) *PutLaunchActionInput {
+	s.ActionVersion = &v
+	return s
+}
+
+// SetActive sets the Active field's value.
+func (s *PutLaunchActionInput) SetActive(v bool) *PutLaunchActionInput {
+	s.Active = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *PutLaunchActionInput) SetCategory(v string) *PutLaunchActionInput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutLaunchActionInput) SetDescription(v string) *PutLaunchActionInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutLaunchActionInput) SetName(v string) *PutLaunchActionInput {
+	s.Name = &v
+	return s
+}
+
+// SetOptional sets the Optional field's value.
+func (s *PutLaunchActionInput) SetOptional(v bool) *PutLaunchActionInput {
+	s.Optional = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *PutLaunchActionInput) SetOrder(v int64) *PutLaunchActionInput {
+	s.Order = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *PutLaunchActionInput) SetParameters(v map[string]*LaunchActionParameter) *PutLaunchActionInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *PutLaunchActionInput) SetResourceId(v string) *PutLaunchActionInput {
+	s.ResourceId = &v
+	return s
+}
+
+type PutLaunchActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Launch action code.
+	ActionCode *string `locationName:"actionCode" min:"1" type:"string"`
+
+	// Launch action Id.
+	ActionId *string `locationName:"actionId" min:"1" type:"string"`
+
+	// Launch action version.
+	ActionVersion *string `locationName:"actionVersion" min:"1" type:"string"`
+
+	// Whether the launch action is active.
+	Active *bool `locationName:"active" type:"boolean"`
+
+	// Launch action category.
+	Category *string `locationName:"category" type:"string" enum:"LaunchActionCategory"`
+
+	// Launch action description.
+	Description *string `locationName:"description" type:"string"`
+
+	// Launch action name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Whether the launch will not be marked as failed if this action fails.
+	Optional *bool `locationName:"optional" type:"boolean"`
+
+	// Launch action order.
+	Order *int64 `locationName:"order" min:"2" type:"integer"`
+
+	// Launch action parameters.
+	Parameters map[string]*LaunchActionParameter `locationName:"parameters" type:"map"`
+
+	// Launch configuration template Id or Source Server Id
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// Launch action type.
+	Type *string `locationName:"type" type:"string" enum:"LaunchActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutLaunchActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutLaunchActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetActionCode sets the ActionCode field's value.
+func (s *PutLaunchActionOutput) SetActionCode(v string) *PutLaunchActionOutput {
+	s.ActionCode = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *PutLaunchActionOutput) SetActionId(v string) *PutLaunchActionOutput {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionVersion sets the ActionVersion field's value.
+func (s *PutLaunchActionOutput) SetActionVersion(v string) *PutLaunchActionOutput {
+	s.ActionVersion = &v
+	return s
+}
+
+// SetActive sets the Active field's value.
+func (s *PutLaunchActionOutput) SetActive(v bool) *PutLaunchActionOutput {
+	s.Active = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *PutLaunchActionOutput) SetCategory(v string) *PutLaunchActionOutput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutLaunchActionOutput) SetDescription(v string) *PutLaunchActionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutLaunchActionOutput) SetName(v string) *PutLaunchActionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetOptional sets the Optional field's value.
+func (s *PutLaunchActionOutput) SetOptional(v bool) *PutLaunchActionOutput {
+	s.Optional = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *PutLaunchActionOutput) SetOrder(v int64) *PutLaunchActionOutput {
+	s.Order = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *PutLaunchActionOutput) SetParameters(v map[string]*LaunchActionParameter) *PutLaunchActionOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *PutLaunchActionOutput) SetResourceId(v string) *PutLaunchActionOutput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PutLaunchActionOutput) SetType(v string) *PutLaunchActionOutput {
+	s.Type = &v
 	return s
 }
 
@@ -13787,6 +15002,9 @@ type UpdateLaunchConfigurationInput struct {
 	// The name of the launch configuration.
 	Name *string `locationName:"name" type:"string"`
 
+	// Whether we want to enable post-launch actions for the Source Server.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
+
 	// The ID of the Source Server that we want to retrieve a Launch Configuration
 	// for.
 	//
@@ -13862,6 +15080,12 @@ func (s *UpdateLaunchConfigurationInput) SetName(v string) *UpdateLaunchConfigur
 	return s
 }
 
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *UpdateLaunchConfigurationInput) SetPostLaunchEnabled(v bool) *UpdateLaunchConfigurationInput {
+	s.PostLaunchEnabled = &v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *UpdateLaunchConfigurationInput) SetSourceServerID(v string) *UpdateLaunchConfigurationInput {
 	s.SourceServerID = &v
@@ -13896,6 +15120,9 @@ type UpdateLaunchConfigurationOutput struct {
 
 	// The name of the launch configuration.
 	Name *string `locationName:"name" type:"string"`
+
+	// Whether we want to activate post-launch actions for the Source Server.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
 
 	// The ID of the Source Server for this launch configuration.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
@@ -13959,6 +15186,12 @@ func (s *UpdateLaunchConfigurationOutput) SetName(v string) *UpdateLaunchConfigu
 	return s
 }
 
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *UpdateLaunchConfigurationOutput) SetPostLaunchEnabled(v bool) *UpdateLaunchConfigurationOutput {
+	s.PostLaunchEnabled = &v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *UpdateLaunchConfigurationOutput) SetSourceServerID(v string) *UpdateLaunchConfigurationOutput {
 	s.SourceServerID = &v
@@ -13993,6 +15226,9 @@ type UpdateLaunchConfigurationTemplateInput struct {
 
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
+
+	// Whether we want to activate post-launch actions.
+	PostLaunchEnabled *bool `locationName:"postLaunchEnabled" type:"boolean"`
 
 	// Target instance type right-sizing method.
 	TargetInstanceTypeRightSizingMethod *string `locationName:"targetInstanceTypeRightSizingMethod" type:"string" enum:"TargetInstanceTypeRightSizingMethod"`
@@ -14068,6 +15304,12 @@ func (s *UpdateLaunchConfigurationTemplateInput) SetLaunchDisposition(v string) 
 // SetLicensing sets the Licensing field's value.
 func (s *UpdateLaunchConfigurationTemplateInput) SetLicensing(v *Licensing) *UpdateLaunchConfigurationTemplateInput {
 	s.Licensing = v
+	return s
+}
+
+// SetPostLaunchEnabled sets the PostLaunchEnabled field's value.
+func (s *UpdateLaunchConfigurationTemplateInput) SetPostLaunchEnabled(v bool) *UpdateLaunchConfigurationTemplateInput {
+	s.PostLaunchEnabled = &v
 	return s
 }
 
@@ -15655,6 +16897,87 @@ func LastLaunchType_Values() []string {
 	return []string{
 		LastLaunchTypeRecovery,
 		LastLaunchTypeDrill,
+	}
+}
+
+// Launch action category.
+const (
+	// LaunchActionCategoryMonitoring is a LaunchActionCategory enum value
+	LaunchActionCategoryMonitoring = "MONITORING"
+
+	// LaunchActionCategoryValidation is a LaunchActionCategory enum value
+	LaunchActionCategoryValidation = "VALIDATION"
+
+	// LaunchActionCategoryConfiguration is a LaunchActionCategory enum value
+	LaunchActionCategoryConfiguration = "CONFIGURATION"
+
+	// LaunchActionCategorySecurity is a LaunchActionCategory enum value
+	LaunchActionCategorySecurity = "SECURITY"
+
+	// LaunchActionCategoryOther is a LaunchActionCategory enum value
+	LaunchActionCategoryOther = "OTHER"
+)
+
+// LaunchActionCategory_Values returns all elements of the LaunchActionCategory enum
+func LaunchActionCategory_Values() []string {
+	return []string{
+		LaunchActionCategoryMonitoring,
+		LaunchActionCategoryValidation,
+		LaunchActionCategoryConfiguration,
+		LaunchActionCategorySecurity,
+		LaunchActionCategoryOther,
+	}
+}
+
+const (
+	// LaunchActionParameterTypeSsmStore is a LaunchActionParameterType enum value
+	LaunchActionParameterTypeSsmStore = "SSM_STORE"
+
+	// LaunchActionParameterTypeDynamic is a LaunchActionParameterType enum value
+	LaunchActionParameterTypeDynamic = "DYNAMIC"
+)
+
+// LaunchActionParameterType_Values returns all elements of the LaunchActionParameterType enum
+func LaunchActionParameterType_Values() []string {
+	return []string{
+		LaunchActionParameterTypeSsmStore,
+		LaunchActionParameterTypeDynamic,
+	}
+}
+
+const (
+	// LaunchActionRunStatusInProgress is a LaunchActionRunStatus enum value
+	LaunchActionRunStatusInProgress = "IN_PROGRESS"
+
+	// LaunchActionRunStatusSucceeded is a LaunchActionRunStatus enum value
+	LaunchActionRunStatusSucceeded = "SUCCEEDED"
+
+	// LaunchActionRunStatusFailed is a LaunchActionRunStatus enum value
+	LaunchActionRunStatusFailed = "FAILED"
+)
+
+// LaunchActionRunStatus_Values returns all elements of the LaunchActionRunStatus enum
+func LaunchActionRunStatus_Values() []string {
+	return []string{
+		LaunchActionRunStatusInProgress,
+		LaunchActionRunStatusSucceeded,
+		LaunchActionRunStatusFailed,
+	}
+}
+
+const (
+	// LaunchActionTypeSsmAutomation is a LaunchActionType enum value
+	LaunchActionTypeSsmAutomation = "SSM_AUTOMATION"
+
+	// LaunchActionTypeSsmCommand is a LaunchActionType enum value
+	LaunchActionTypeSsmCommand = "SSM_COMMAND"
+)
+
+// LaunchActionType_Values returns all elements of the LaunchActionType enum
+func LaunchActionType_Values() []string {
+	return []string{
+		LaunchActionTypeSsmAutomation,
+		LaunchActionTypeSsmCommand,
 	}
 }
 

@@ -3228,6 +3228,9 @@ func (s *ParticipantSummary) SetUserId(v string) *ParticipantSummary {
 }
 
 // Object specifying a participant token in a stage.
+//
+// Important: Treat tokens as opaque; i.e., do not build functionality based
+// on token contents. The format of tokens could change in the future.
 type ParticipantToken struct {
 	_ struct{} `type:"structure"`
 

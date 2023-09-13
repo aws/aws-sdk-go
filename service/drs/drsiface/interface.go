@@ -84,6 +84,10 @@ type DrsAPI interface {
 	DeleteJobWithContext(aws.Context, *drs.DeleteJobInput, ...request.Option) (*drs.DeleteJobOutput, error)
 	DeleteJobRequest(*drs.DeleteJobInput) (*request.Request, *drs.DeleteJobOutput)
 
+	DeleteLaunchAction(*drs.DeleteLaunchActionInput) (*drs.DeleteLaunchActionOutput, error)
+	DeleteLaunchActionWithContext(aws.Context, *drs.DeleteLaunchActionInput, ...request.Option) (*drs.DeleteLaunchActionOutput, error)
+	DeleteLaunchActionRequest(*drs.DeleteLaunchActionInput) (*request.Request, *drs.DeleteLaunchActionOutput)
+
 	DeleteLaunchConfigurationTemplate(*drs.DeleteLaunchConfigurationTemplateInput) (*drs.DeleteLaunchConfigurationTemplateOutput, error)
 	DeleteLaunchConfigurationTemplateWithContext(aws.Context, *drs.DeleteLaunchConfigurationTemplateInput, ...request.Option) (*drs.DeleteLaunchConfigurationTemplateOutput, error)
 	DeleteLaunchConfigurationTemplateRequest(*drs.DeleteLaunchConfigurationTemplateInput) (*request.Request, *drs.DeleteLaunchConfigurationTemplateOutput)
@@ -195,6 +199,13 @@ type DrsAPI interface {
 	ListExtensibleSourceServersPages(*drs.ListExtensibleSourceServersInput, func(*drs.ListExtensibleSourceServersOutput, bool) bool) error
 	ListExtensibleSourceServersPagesWithContext(aws.Context, *drs.ListExtensibleSourceServersInput, func(*drs.ListExtensibleSourceServersOutput, bool) bool, ...request.Option) error
 
+	ListLaunchActions(*drs.ListLaunchActionsInput) (*drs.ListLaunchActionsOutput, error)
+	ListLaunchActionsWithContext(aws.Context, *drs.ListLaunchActionsInput, ...request.Option) (*drs.ListLaunchActionsOutput, error)
+	ListLaunchActionsRequest(*drs.ListLaunchActionsInput) (*request.Request, *drs.ListLaunchActionsOutput)
+
+	ListLaunchActionsPages(*drs.ListLaunchActionsInput, func(*drs.ListLaunchActionsOutput, bool) bool) error
+	ListLaunchActionsPagesWithContext(aws.Context, *drs.ListLaunchActionsInput, func(*drs.ListLaunchActionsOutput, bool) bool, ...request.Option) error
+
 	ListStagingAccounts(*drs.ListStagingAccountsInput) (*drs.ListStagingAccountsOutput, error)
 	ListStagingAccountsWithContext(aws.Context, *drs.ListStagingAccountsInput, ...request.Option) (*drs.ListStagingAccountsOutput, error)
 	ListStagingAccountsRequest(*drs.ListStagingAccountsInput) (*request.Request, *drs.ListStagingAccountsOutput)
@@ -205,6 +216,10 @@ type DrsAPI interface {
 	ListTagsForResource(*drs.ListTagsForResourceInput) (*drs.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *drs.ListTagsForResourceInput, ...request.Option) (*drs.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*drs.ListTagsForResourceInput) (*request.Request, *drs.ListTagsForResourceOutput)
+
+	PutLaunchAction(*drs.PutLaunchActionInput) (*drs.PutLaunchActionOutput, error)
+	PutLaunchActionWithContext(aws.Context, *drs.PutLaunchActionInput, ...request.Option) (*drs.PutLaunchActionOutput, error)
+	PutLaunchActionRequest(*drs.PutLaunchActionInput) (*request.Request, *drs.PutLaunchActionOutput)
 
 	RetryDataReplication(*drs.RetryDataReplicationInput) (*drs.RetryDataReplicationOutput, error)
 	RetryDataReplicationWithContext(aws.Context, *drs.RetryDataReplicationInput, ...request.Option) (*drs.RetryDataReplicationOutput, error)

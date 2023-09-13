@@ -265,7 +265,7 @@
       }
     },
     "ParticipantToken": {
-      "base": "<p>Object specifying a participant token in a stage.</p>",
+      "base": "<p>Object specifying a participant token in a stage.</p> <p> <b>Important</b>: Treat tokens as opaque; i.e., do not build functionality based on token contents. The format of tokens could change in the future.</p>",
       "refs": {
         "CreateParticipantTokenResponse$participantToken": "<p>The participant token that was created.</p>",
         "ParticipantTokenList$member": null
