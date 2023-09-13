@@ -1460,6 +1460,7 @@
         "Service$EndTime": "<p>The end time of the last segment that the service generated.</p>",
         "TelemetryRecord$Timestamp": "<p/>",
         "TimeSeriesServiceStatistics$Timestamp": "<p>Timestamp of the window for which statistics are aggregated.</p>",
+        "TraceSummary$StartTime": "<p>The start time of a trace, based on the earliest trace segment start time.</p>",
         "TraceSummary$MatchedEventTime": "<p>The matched time stamp of a defined event.</p>"
       }
     },

@@ -10354,6 +10354,9 @@ type TraceSummary struct {
 	// Service IDs from the trace's segment documents.
 	ServiceIds []*ServiceId `type:"list"`
 
+	// The start time of a trace, based on the earliest trace segment start time.
+	StartTime *time.Time `type:"timestamp"`
+
 	// Users from the trace's segment documents.
 	Users []*TraceUser `type:"list"`
 }
@@ -10487,6 +10490,12 @@ func (s *TraceSummary) SetRevision(v int64) *TraceSummary {
 // SetServiceIds sets the ServiceIds field's value.
 func (s *TraceSummary) SetServiceIds(v []*ServiceId) *TraceSummary {
 	s.ServiceIds = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *TraceSummary) SetStartTime(v time.Time) *TraceSummary {
+	s.StartTime = &v
 	return s
 }
 

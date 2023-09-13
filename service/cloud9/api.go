@@ -1611,6 +1611,9 @@ type CreateEnvironmentEC2Input struct {
 	// then become the default AMI, which is used to launch your instance if no
 	// parameter is explicitly defined.
 	//
+	// Since Ubuntu 18.04 has ended standard support as of May 31, 2023, we recommend
+	// you choose Ubuntu 22.04.
+	//
 	// AMI aliases
 	//
 	//    * Amazon Linux (default): amazonlinux-1-x86_64

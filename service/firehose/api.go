@@ -84,11 +84,14 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 // You can also invoke StartDeliveryStreamEncryption to turn on SSE for an existing
 // delivery stream that doesn't have SSE enabled.
 //
-// A delivery stream is configured with a single destination: Amazon S3, Amazon
-// ES, Amazon Redshift, or Splunk. You must specify only one of the following
-// destination configuration parameters: ExtendedS3DestinationConfiguration,
-// S3DestinationConfiguration, ElasticsearchDestinationConfiguration, RedshiftDestinationConfiguration,
-// or SplunkDestinationConfiguration.
+// A delivery stream is configured with a single destination, such as Amazon
+// Simple Storage Service (Amazon S3), Amazon Redshift, Amazon OpenSearch Service,
+// Amazon OpenSearch Serverless, Splunk, and any custom HTTP endpoint or HTTP
+// endpoints owned by or supported by third-party service providers, including
+// Datadog, Dynatrace, LogicMonitor, MongoDB, New Relic, and Sumo Logic. You
+// must specify only one of the following destination configuration parameters:
+// ExtendedS3DestinationConfiguration, S3DestinationConfiguration, ElasticsearchDestinationConfiguration,
+// RedshiftDestinationConfiguration, or SplunkDestinationConfiguration.
 //
 // When you specify S3DestinationConfiguration, you can also provide the following
 // optional values: BufferingHints, EncryptionConfiguration, and CompressionFormat.
@@ -1294,8 +1297,9 @@ func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req 
 // writes to the delivery stream can continue during this process. The updated
 // configurations are usually effective within a few minutes.
 //
-// Switching between Amazon ES and other services is not supported. For an Amazon
-// ES destination, you can only update to another Amazon ES destination.
+// Switching between Amazon OpenSearch Service and other services is not supported.
+// For an Amazon OpenSearch Service destination, you can only update to another
+// Amazon OpenSearch Service destination.
 //
 // If the destination type is the same, Kinesis Data Firehose merges the configuration
 // parameters specified with the destination configuration that already exists
@@ -1472,7 +1476,8 @@ type AmazonOpenSearchServerlessDestinationConfiguration struct {
 	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
 
-	// The details of the VPC of the Amazon ES destination.
+	// The details of the VPC of the Amazon OpenSearch or Amazon OpenSearch Serverless
+	// destination.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -1626,7 +1631,7 @@ type AmazonOpenSearchServerlessDestinationDescription struct {
 	// The Serverless offering for Amazon OpenSearch Service retry options.
 	RetryOptions *AmazonOpenSearchServerlessRetryOptions `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS credentials.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services credentials.
 	RoleARN *string `min:"1" type:"string"`
 
 	// The Amazon S3 backup mode.
@@ -1969,6 +1974,11 @@ type AmazonopensearchserviceDestinationConfiguration struct {
 	// ClusterEndpoint or the DomainARN field.
 	ClusterEndpoint *string `min:"1" type:"string"`
 
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
+
 	// The ARN of the Amazon OpenSearch Service domain. The IAM role must have permissions
 	// for DescribeElasticsearchDomain, DescribeElasticsearchDomains, and DescribeElasticsearchDomainConfig
 	// after assuming the role specified in RoleARN.
@@ -2016,7 +2026,8 @@ type AmazonopensearchserviceDestinationConfiguration struct {
 	// during run time.
 	TypeName *string `type:"string"`
 
-	// The details of the VPC of the Amazon ES destination.
+	// The details of the VPC of the Amazon OpenSearch or Amazon OpenSearch Serverless
+	// destination.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -2067,6 +2078,11 @@ func (s *AmazonopensearchserviceDestinationConfiguration) Validate() error {
 			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentIdOptions != nil {
+		if err := s.DocumentIdOptions.Validate(); err != nil {
+			invalidParams.AddNested("DocumentIdOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -2104,6 +2120,12 @@ func (s *AmazonopensearchserviceDestinationConfiguration) SetCloudWatchLoggingOp
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *AmazonopensearchserviceDestinationConfiguration) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationConfiguration {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetDocumentIdOptions(v *DocumentIdOptions) *AmazonopensearchserviceDestinationConfiguration {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -2182,6 +2204,11 @@ type AmazonopensearchserviceDestinationDescription struct {
 	// OpenSearch Service.
 	ClusterEndpoint *string `min:"1" type:"string"`
 
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
+
 	// The ARN of the Amazon OpenSearch Service domain.
 	DomainARN *string `min:"1" type:"string"`
 
@@ -2248,6 +2275,12 @@ func (s *AmazonopensearchserviceDestinationDescription) SetCloudWatchLoggingOpti
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *AmazonopensearchserviceDestinationDescription) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationDescription {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetDocumentIdOptions(v *DocumentIdOptions) *AmazonopensearchserviceDestinationDescription {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -2326,6 +2359,11 @@ type AmazonopensearchserviceDestinationUpdate struct {
 	// ClusterEndpoint or the DomainARN field.
 	ClusterEndpoint *string `min:"1" type:"string"`
 
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
+
 	// The ARN of the Amazon OpenSearch Service domain. The IAM role must have permissions
 	// for DescribeDomain, DescribeDomains, and DescribeDomainConfig after assuming
 	// the IAM role specified in RoleARN.
@@ -2403,6 +2441,11 @@ func (s *AmazonopensearchserviceDestinationUpdate) Validate() error {
 			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentIdOptions != nil {
+		if err := s.DocumentIdOptions.Validate(); err != nil {
+			invalidParams.AddNested("DocumentIdOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -2435,6 +2478,12 @@ func (s *AmazonopensearchserviceDestinationUpdate) SetCloudWatchLoggingOptions(v
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *AmazonopensearchserviceDestinationUpdate) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationUpdate {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetDocumentIdOptions(v *DocumentIdOptions) *AmazonopensearchserviceDestinationUpdate {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -3835,6 +3884,68 @@ func (s *DestinationDescription) SetSplunkDestinationDescription(v *SplunkDestin
 	return s
 }
 
+// Indicates the method for setting up document ID. The supported methods are
+// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+// document ID.
+type DocumentIdOptions struct {
+	_ struct{} `type:"structure"`
+
+	// When the FIREHOSE_DEFAULT option is chosen, Kinesis Data Firehose generates
+	// a unique document ID for each record based on a unique internal identifier.
+	// The generated document ID is stable across multiple delivery attempts, which
+	// helps prevent the same record from being indexed multiple times with different
+	// document IDs.
+	//
+	// When the NO_DOCUMENT_ID option is chosen, Kinesis Data Firehose does not
+	// include any document IDs in the requests it sends to the Amazon OpenSearch
+	// Service. This causes the Amazon OpenSearch Service domain to generate document
+	// IDs. In case of multiple delivery attempts, this may cause the same record
+	// to be indexed more than once with different document IDs. This option enables
+	// write-heavy operations, such as the ingestion of logs and observability data,
+	// to consume less resources in the Amazon OpenSearch Service domain, resulting
+	// in improved performance.
+	//
+	// DefaultDocumentIdFormat is a required field
+	DefaultDocumentIdFormat *string `type:"string" required:"true" enum:"DefaultDocumentIdFormat"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentIdOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentIdOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentIdOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentIdOptions"}
+	if s.DefaultDocumentIdFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultDocumentIdFormat"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultDocumentIdFormat sets the DefaultDocumentIdFormat field's value.
+func (s *DocumentIdOptions) SetDefaultDocumentIdFormat(v string) *DocumentIdOptions {
+	s.DefaultDocumentIdFormat = &v
+	return s
+}
+
 // The configuration of the dynamic partitioning mechanism that creates smaller
 // data sets from the streaming data by partitioning it based on partition keys.
 // Currently, dynamic partitioning is only supported for Amazon S3 destinations.
@@ -3959,6 +4070,11 @@ type ElasticsearchDestinationConfiguration struct {
 	// ClusterEndpoint or the DomainARN field.
 	ClusterEndpoint *string `min:"1" type:"string"`
 
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
+
 	// The ARN of the Amazon ES domain. The IAM role must have permissions for DescribeDomain,
 	// DescribeDomains, and DescribeDomainConfig after assuming the role specified
 	// in RoleARN. For more information, see Amazon Resource Names (ARNs) and Amazon
@@ -4020,7 +4136,7 @@ type ElasticsearchDestinationConfiguration struct {
 	// For Elasticsearch 7.x, don't specify a TypeName.
 	TypeName *string `type:"string"`
 
-	// The details of the VPC of the Amazon ES destination.
+	// The details of the VPC of the Amazon destination.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -4071,6 +4187,11 @@ func (s *ElasticsearchDestinationConfiguration) Validate() error {
 			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentIdOptions != nil {
+		if err := s.DocumentIdOptions.Validate(); err != nil {
+			invalidParams.AddNested("DocumentIdOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -4108,6 +4229,12 @@ func (s *ElasticsearchDestinationConfiguration) SetCloudWatchLoggingOptions(v *C
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *ElasticsearchDestinationConfiguration) SetClusterEndpoint(v string) *ElasticsearchDestinationConfiguration {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *ElasticsearchDestinationConfiguration) SetDocumentIdOptions(v *DocumentIdOptions) *ElasticsearchDestinationConfiguration {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -4186,6 +4313,11 @@ type ElasticsearchDestinationDescription struct {
 	// ES.
 	ClusterEndpoint *string `min:"1" type:"string"`
 
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
+
 	// The ARN of the Amazon ES domain. For more information, see Amazon Resource
 	// Names (ARNs) and Amazon Web Services Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
@@ -4221,7 +4353,8 @@ type ElasticsearchDestinationDescription struct {
 	// for TypeName.
 	TypeName *string `type:"string"`
 
-	// The details of the VPC of the Amazon ES destination.
+	// The details of the VPC of the Amazon OpenSearch or the Amazon OpenSearch
+	// Serverless destination.
 	VpcConfigurationDescription *VpcConfigurationDescription `type:"structure"`
 }
 
@@ -4258,6 +4391,12 @@ func (s *ElasticsearchDestinationDescription) SetCloudWatchLoggingOptions(v *Clo
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *ElasticsearchDestinationDescription) SetClusterEndpoint(v string) *ElasticsearchDestinationDescription {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *ElasticsearchDestinationDescription) SetDocumentIdOptions(v *DocumentIdOptions) *ElasticsearchDestinationDescription {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -4335,6 +4474,11 @@ type ElasticsearchDestinationUpdate struct {
 	// The endpoint to use when communicating with the cluster. Specify either this
 	// ClusterEndpoint or the DomainARN field.
 	ClusterEndpoint *string `min:"1" type:"string"`
+
+	// Indicates the method for setting up document ID. The supported methods are
+	// Kinesis Data Firehose generated document ID and OpenSearch Service generated
+	// document ID.
+	DocumentIdOptions *DocumentIdOptions `type:"structure"`
 
 	// The ARN of the Amazon ES domain. The IAM role must have permissions for DescribeDomain,
 	// DescribeDomains, and DescribeDomainConfig after assuming the IAM role specified
@@ -4420,6 +4564,11 @@ func (s *ElasticsearchDestinationUpdate) Validate() error {
 			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentIdOptions != nil {
+		if err := s.DocumentIdOptions.Validate(); err != nil {
+			invalidParams.AddNested("DocumentIdOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -4452,6 +4601,12 @@ func (s *ElasticsearchDestinationUpdate) SetCloudWatchLoggingOptions(v *CloudWat
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *ElasticsearchDestinationUpdate) SetClusterEndpoint(v string) *ElasticsearchDestinationUpdate {
 	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDocumentIdOptions sets the DocumentIdOptions field's value.
+func (s *ElasticsearchDestinationUpdate) SetDocumentIdOptions(v *DocumentIdOptions) *ElasticsearchDestinationUpdate {
+	s.DocumentIdOptions = v
 	return s
 }
 
@@ -10113,7 +10268,8 @@ func (s UpdateDestinationOutput) GoString() string {
 	return s.String()
 }
 
-// The details of the VPC of the Amazon ES destination.
+// The details of the VPC of the Amazon OpenSearch or Amazon OpenSearch Serverless
+// destination.
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10461,6 +10617,22 @@ func ContentEncoding_Values() []string {
 	return []string{
 		ContentEncodingNone,
 		ContentEncodingGzip,
+	}
+}
+
+const (
+	// DefaultDocumentIdFormatFirehoseDefault is a DefaultDocumentIdFormat enum value
+	DefaultDocumentIdFormatFirehoseDefault = "FIREHOSE_DEFAULT"
+
+	// DefaultDocumentIdFormatNoDocumentId is a DefaultDocumentIdFormat enum value
+	DefaultDocumentIdFormatNoDocumentId = "NO_DOCUMENT_ID"
+)
+
+// DefaultDocumentIdFormat_Values returns all elements of the DefaultDocumentIdFormat enum
+func DefaultDocumentIdFormat_Values() []string {
+	return []string{
+		DefaultDocumentIdFormatFirehoseDefault,
+		DefaultDocumentIdFormatNoDocumentId,
 	}
 }
 

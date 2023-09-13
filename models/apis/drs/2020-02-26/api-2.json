@@ -124,6 +124,23 @@
       ],
       "idempotent":true
     },
+    "DeleteLaunchAction":{
+      "name":"DeleteLaunchAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteLaunchAction",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteLaunchActionRequest"},
+      "output":{"shape":"DeleteLaunchActionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
     "DeleteLaunchConfigurationTemplate":{
       "name":"DeleteLaunchConfigurationTemplate",
       "http":{
@@ -477,6 +494,23 @@
         {"shape":"UninitializedAccountException"}
       ]
     },
+    "ListLaunchActions":{
+      "name":"ListLaunchActions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLaunchActions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListLaunchActionsRequest"},
+      "output":{"shape":"ListLaunchActionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
     "ListStagingAccounts":{
       "name":"ListStagingAccounts",
       "http":{
@@ -509,6 +543,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "PutLaunchAction":{
+      "name":"PutLaunchAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/PutLaunchAction",
+        "responseCode":200
+      },
+      "input":{"shape":"PutLaunchActionRequest"},
+      "output":{"shape":"PutLaunchActionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
       ]
     },
     "RetryDataReplication":{
@@ -893,13 +945,13 @@
       "type":"string",
       "max":255,
       "min":0,
-      "pattern":"^(us(-gov)?|ap|ca|cn|eu|sa|af|me)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-[0-9][a-z]$"
+      "pattern":"^(us(-gov)?|ap|ca|cn|eu|sa|af|me|il)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-[0-9][a-z]$"
     },
     "AwsRegion":{
       "type":"string",
       "max":255,
       "min":0,
-      "pattern":"^(us(-gov)?|ap|ca|cn|eu|sa|af|me)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-[0-9]$"
+      "pattern":"^(us(-gov)?|ap|ca|cn|eu|sa|af|me|il)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-[0-9]$"
     },
     "Boolean":{
       "type":"boolean",
@@ -981,6 +1033,7 @@
         "exportBucketArn":{"shape":"ARN"},
         "launchDisposition":{"shape":"LaunchDisposition"},
         "licensing":{"shape":"Licensing"},
+        "postLaunchEnabled":{"shape":"Boolean"},
         "tags":{"shape":"TagsMap"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
@@ -1167,6 +1220,22 @@
       }
     },
     "DeleteJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteLaunchActionRequest":{
+      "type":"structure",
+      "required":[
+        "actionId",
+        "resourceId"
+      ],
+      "members":{
+        "actionId":{"shape":"LaunchActionId"},
+        "resourceId":{"shape":"LaunchActionResourceId"}
+      }
+    },
+    "DeleteLaunchActionResponse":{
       "type":"structure",
       "members":{
       }
@@ -1547,6 +1616,12 @@
         "FAILBACK_LAUNCH_STATE_NOT_AVAILABLE"
       ]
     },
+    "FailureReason":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[0-9a-zA-Z ():/.,'-_#*;]*$"
+    },
     "GetFailbackReplicationConfigurationRequest":{
       "type":"structure",
       "required":["recoveryInstanceID"],
@@ -1759,6 +1834,157 @@
         "DRILL"
       ]
     },
+    "LaunchAction":{
+      "type":"structure",
+      "members":{
+        "actionCode":{"shape":"SsmDocumentName"},
+        "actionId":{"shape":"LaunchActionId"},
+        "actionVersion":{"shape":"LaunchActionVersion"},
+        "active":{"shape":"Boolean"},
+        "category":{"shape":"LaunchActionCategory"},
+        "description":{"shape":"LaunchActionDescription"},
+        "name":{"shape":"LaunchActionName"},
+        "optional":{"shape":"Boolean"},
+        "order":{"shape":"LaunchActionOrder"},
+        "parameters":{"shape":"LaunchActionParameters"},
+        "type":{"shape":"LaunchActionType"}
+      }
+    },
+    "LaunchActionCategory":{
+      "type":"string",
+      "enum":[
+        "MONITORING",
+        "VALIDATION",
+        "CONFIGURATION",
+        "SECURITY",
+        "OTHER"
+      ]
+    },
+    "LaunchActionDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"^[0-9a-zA-Z ():/.,'-_#*; ]*$"
+    },
+    "LaunchActionId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "LaunchActionIds":{
+      "type":"list",
+      "member":{"shape":"LaunchActionId"},
+      "max":100,
+      "min":0
+    },
+    "LaunchActionName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9 /_-]*$"
+    },
+    "LaunchActionOrder":{
+      "type":"integer",
+      "max":10000,
+      "min":2
+    },
+    "LaunchActionParameter":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"LaunchActionParameterType"},
+        "value":{"shape":"LaunchActionParameterValue"}
+      }
+    },
+    "LaunchActionParameterName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^([A-Za-z0-9])+$"
+    },
+    "LaunchActionParameterType":{
+      "type":"string",
+      "enum":[
+        "SSM_STORE",
+        "DYNAMIC"
+      ]
+    },
+    "LaunchActionParameterValue":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^[A-Za-z0-9.-]+$"
+    },
+    "LaunchActionParameters":{
+      "type":"map",
+      "key":{"shape":"LaunchActionParameterName"},
+      "value":{"shape":"LaunchActionParameter"},
+      "max":20,
+      "min":0
+    },
+    "LaunchActionResourceId":{
+      "type":"string",
+      "pattern":"^(s-[0-9a-zA-Z]{17}$|lct-[0-9a-zA-Z]{17})$"
+    },
+    "LaunchActionRun":{
+      "type":"structure",
+      "members":{
+        "action":{"shape":"LaunchAction"},
+        "failureReason":{"shape":"FailureReason"},
+        "runId":{"shape":"LaunchActionRunId"},
+        "status":{"shape":"LaunchActionRunStatus"}
+      }
+    },
+    "LaunchActionRunId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "LaunchActionRunStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "LaunchActionRuns":{
+      "type":"list",
+      "member":{"shape":"LaunchActionRun"}
+    },
+    "LaunchActionType":{
+      "type":"string",
+      "enum":[
+        "SSM_AUTOMATION",
+        "SSM_COMMAND"
+      ]
+    },
+    "LaunchActionVersion":{
+      "type":"string",
+      "max":10,
+      "min":1,
+      "pattern":"^(\\$DEFAULT|\\$LATEST|[0-9]+)$"
+    },
+    "LaunchActions":{
+      "type":"list",
+      "member":{"shape":"LaunchAction"},
+      "max":200,
+      "min":0
+    },
+    "LaunchActionsRequestFilters":{
+      "type":"structure",
+      "members":{
+        "actionIds":{"shape":"LaunchActionIds"}
+      }
+    },
+    "LaunchActionsStatus":{
+      "type":"structure",
+      "members":{
+        "runs":{"shape":"LaunchActionRuns"},
+        "ssmAgentDiscoveryDatetime":{"shape":"ISO8601DatetimeString"}
+      }
+    },
     "LaunchConfiguration":{
       "type":"structure",
       "members":{
@@ -1768,6 +1994,7 @@
         "launchDisposition":{"shape":"LaunchDisposition"},
         "licensing":{"shape":"Licensing"},
         "name":{"shape":"SmallBoundedString"},
+        "postLaunchEnabled":{"shape":"Boolean"},
         "sourceServerID":{"shape":"SourceServerID"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
@@ -1782,6 +2009,7 @@
         "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"},
         "launchDisposition":{"shape":"LaunchDisposition"},
         "licensing":{"shape":"Licensing"},
+        "postLaunchEnabled":{"shape":"Boolean"},
         "tags":{"shape":"TagsMap"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
@@ -1865,6 +2093,23 @@
       "type":"structure",
       "members":{
         "items":{"shape":"StagingSourceServersList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLaunchActionsRequest":{
+      "type":"structure",
+      "required":["resourceId"],
+      "members":{
+        "filters":{"shape":"LaunchActionsRequestFilters"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"},
+        "resourceId":{"shape":"LaunchActionResourceId"}
+      }
+    },
+    "ListLaunchActionsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"LaunchActions"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -2005,6 +2250,7 @@
     "ParticipatingServer":{
       "type":"structure",
       "members":{
+        "launchActionsStatus":{"shape":"LaunchActionsStatus"},
         "launchStatus":{"shape":"LaunchStatus"},
         "recoveryInstanceID":{"shape":"RecoveryInstanceID"},
         "sourceServerID":{"shape":"SourceServerID"}
@@ -2017,6 +2263,50 @@
     "PositiveInteger":{
       "type":"long",
       "min":0
+    },
+    "PutLaunchActionRequest":{
+      "type":"structure",
+      "required":[
+        "actionCode",
+        "actionId",
+        "actionVersion",
+        "active",
+        "category",
+        "name",
+        "optional",
+        "order",
+        "resourceId"
+      ],
+      "members":{
+        "actionCode":{"shape":"SsmDocumentName"},
+        "actionId":{"shape":"LaunchActionId"},
+        "actionVersion":{"shape":"LaunchActionVersion"},
+        "active":{"shape":"Boolean"},
+        "category":{"shape":"LaunchActionCategory"},
+        "description":{"shape":"LaunchActionDescription"},
+        "name":{"shape":"LaunchActionName"},
+        "optional":{"shape":"Boolean"},
+        "order":{"shape":"LaunchActionOrder"},
+        "parameters":{"shape":"LaunchActionParameters"},
+        "resourceId":{"shape":"LaunchActionResourceId"}
+      }
+    },
+    "PutLaunchActionResponse":{
+      "type":"structure",
+      "members":{
+        "actionCode":{"shape":"SsmDocumentName"},
+        "actionId":{"shape":"LaunchActionId"},
+        "actionVersion":{"shape":"LaunchActionVersion"},
+        "active":{"shape":"Boolean"},
+        "category":{"shape":"LaunchActionCategory"},
+        "description":{"shape":"LaunchActionDescription"},
+        "name":{"shape":"LaunchActionName"},
+        "optional":{"shape":"Boolean"},
+        "order":{"shape":"LaunchActionOrder"},
+        "parameters":{"shape":"LaunchActionParameters"},
+        "resourceId":{"shape":"LaunchActionResourceId"},
+        "type":{"shape":"LaunchActionType"}
+      }
     },
     "RecoveryInstance":{
       "type":"structure",
@@ -2551,6 +2841,12 @@
       "type":"list",
       "member":{"shape":"SourceServer"}
     },
+    "SsmDocumentName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^([A-Za-z0-9-])+$"
+    },
     "StagingArea":{
       "type":"structure",
       "members":{
@@ -2849,6 +3145,7 @@
         "launchDisposition":{"shape":"LaunchDisposition"},
         "licensing":{"shape":"Licensing"},
         "name":{"shape":"SmallBoundedString"},
+        "postLaunchEnabled":{"shape":"Boolean"},
         "sourceServerID":{"shape":"SourceServerID"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
@@ -2863,6 +3160,7 @@
         "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"},
         "launchDisposition":{"shape":"LaunchDisposition"},
         "licensing":{"shape":"Licensing"},
+        "postLaunchEnabled":{"shape":"Boolean"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
     },

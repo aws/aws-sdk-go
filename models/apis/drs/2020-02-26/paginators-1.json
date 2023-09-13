@@ -54,6 +54,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListLaunchActions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "items"
+    },
     "ListStagingAccounts": {
       "input_token": "nextToken",
       "output_token": "nextToken",

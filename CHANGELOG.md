@@ -1,3 +1,20 @@
+Release v1.45.9 (2023-09-13)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service documentation
+  * Update to include information on Ubuntu 18 deprecation.
+* `service/drs`: Updates service API, documentation, and paginators
+* `service/firehose`: Updates service API and documentation
+  * DocumentIdOptions has been added for the Amazon OpenSearch destination.
+* `service/guardduty`: Updates service API and documentation
+  * Add `managementType` field to ListCoverage API response.
+* `service/internetmonitor`: Adds new service
+* `service/ivs-realtime`: Updates service documentation
+* `service/simspaceweaver`: Updates service documentation
+* `service/xray`: Updates service API and documentation
+  * Add StartTime field in GetTraceSummaries API response for each TraceSummary.
+
 Release v1.45.8 (2023-09-12)
 ===
 

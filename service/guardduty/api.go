@@ -1974,8 +1974,8 @@ func (c *GuardDuty) DisableOrganizationAdminAccountRequest(input *DisableOrganiz
 
 // DisableOrganizationAdminAccount API operation for Amazon GuardDuty.
 //
-// Disables an Amazon Web Services account within the Organization as the GuardDuty
-// delegated administrator.
+// Removes the existing GuardDuty delegated administrator of the organization.
+// Only the organization's management account can run this API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2270,7 +2270,7 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 //
 // With autoEnableOrganizationMembers configuration for your organization set
 // to ALL, you'll receive an error if you attempt to disassociate a member account
-// before removing them from your Amazon Web Services organization.
+// before removing them from your organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2353,8 +2353,9 @@ func (c *GuardDuty) EnableOrganizationAdminAccountRequest(input *EnableOrganizat
 
 // EnableOrganizationAdminAccount API operation for Amazon GuardDuty.
 //
-// Enables an Amazon Web Services account within the organization as the GuardDuty
-// delegated administrator.
+// Designates an Amazon Web Services account within the organization as your
+// GuardDuty delegated administrator. Only the organization's management account
+// can run this API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2436,8 +2437,11 @@ func (c *GuardDuty) GetAdministratorAccountRequest(input *GetAdministratorAccoun
 
 // GetAdministratorAccount API operation for Amazon GuardDuty.
 //
-// Provides the details for the GuardDuty administrator account associated with
+// Provides the details of the GuardDuty administrator account associated with
 // the current GuardDuty member account.
+//
+// If the organization's management account or a delegated administrator runs
+// this API, it will return success (HTTP 200) but no content.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3759,9 +3763,9 @@ func (c *GuardDuty) InviteMembersRequest(input *InviteMembersInput) (req *reques
 //
 // Invites Amazon Web Services accounts to become members of an organization
 // administered by the Amazon Web Services account that invokes this API. If
-// you are using Amazon Web Services Organizations to manager your GuardDuty
-// environment, this step is not needed. For more information, see Managing
-// accounts with Amazon Web Services Organizations (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
+// you are using organizations to manager your GuardDuty environment, this step
+// is not needed. For more information, see Managing accounts with organizations
+// (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
 //
 // To invite Amazon Web Services accounts, the first step is to ensure that
 // GuardDuty has been enabled in the potential member accounts. You can now
@@ -4849,7 +4853,8 @@ func (c *GuardDuty) ListOrganizationAdminAccountsRequest(input *ListOrganization
 
 // ListOrganizationAdminAccounts API operation for Amazon GuardDuty.
 //
-// Lists the accounts configured as GuardDuty delegated administrators.
+// Lists the accounts configured as GuardDuty delegated administrators. Only
+// the organization's management account can run this API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5123,7 +5128,7 @@ func (c *GuardDuty) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 //
 // Lists tags for a resource. Tagging is currently supported for detectors,
 // finding filters, IP sets, threat intel sets, and publishing destination,
-// with a limit of 50 tags per each resource. When invoked, this operation returns
+// with a limit of 50 tags per resource. When invoked, this operation returns
 // all assigned tags for a given resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6374,7 +6379,8 @@ func (c *GuardDuty) UpdateOrganizationConfigurationRequest(input *UpdateOrganiza
 // UpdateOrganizationConfiguration API operation for Amazon GuardDuty.
 //
 // Configures the delegated administrator account with the provided values.
-// You must provide the value for either autoEnableOrganizationMembers or autoEnable.
+// You must provide a value for either autoEnableOrganizationMembers or autoEnable,
+// but not both.
 //
 // There might be regional differences because some data sources might not be
 // available in all the Amazon Web Services Regions where GuardDuty is presently
@@ -8188,6 +8194,15 @@ type CoverageEksClusterDetails struct {
 	// Represents the nodes within the EKS cluster that have a HEALTHY coverage
 	// status.
 	CoveredNodes *int64 `locationName:"coveredNodes" type:"long"`
+
+	// Indicates how the Amazon EKS add-on GuardDuty agent is managed for this EKS
+	// cluster.
+	//
+	// AUTO_MANAGED indicates GuardDuty deploys and manages updates for this resource.
+	//
+	// MANUAL indicates that you are responsible to deploy, update, and manage the
+	// Amazon EKS add-on GuardDuty agent for this resource.
+	ManagementType *string `locationName:"managementType" type:"string" enum:"ManagementType"`
 }
 
 // String returns the string representation.
@@ -8229,6 +8244,12 @@ func (s *CoverageEksClusterDetails) SetCompatibleNodes(v int64) *CoverageEksClus
 // SetCoveredNodes sets the CoveredNodes field's value.
 func (s *CoverageEksClusterDetails) SetCoveredNodes(v int64) *CoverageEksClusterDetails {
 	s.CoveredNodes = &v
+	return s
+}
+
+// SetManagementType sets the ManagementType field's value.
+func (s *CoverageEksClusterDetails) SetManagementType(v string) *CoverageEksClusterDetails {
+	s.ManagementType = &v
 	return s
 }
 
@@ -10999,14 +11020,14 @@ type DescribeOrganizationConfigurationOutput struct {
 	//    * NEW: Indicates that when a new account joins the organization, they
 	//    will have GuardDuty enabled automatically.
 	//
-	//    * ALL: Indicates that all accounts in the Amazon Web Services Organization
-	//    have GuardDuty enabled automatically. This includes NEW accounts that
-	//    join the organization and accounts that may have been suspended or removed
-	//    from the organization in GuardDuty.
+	//    * ALL: Indicates that all accounts in the organization have GuardDuty
+	//    enabled automatically. This includes NEW accounts that join the organization
+	//    and accounts that may have been suspended or removed from the organization
+	//    in GuardDuty.
 	//
 	//    * NONE: Indicates that GuardDuty will not be automatically enabled for
-	//    any accounts in the organization. GuardDuty must be managed for each account
-	//    individually by the administrator.
+	//    any account in the organization. The administrator must manage GuardDuty
+	//    for each account in the organization individually.
 	AutoEnableOrganizationMembers *string `locationName:"autoEnableOrganizationMembers" type:"string" enum:"AutoEnableMembers"`
 
 	// Describes which data sources are enabled automatically for member accounts.
@@ -18191,7 +18212,21 @@ type OrganizationAdditionalConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the additional configuration that will be configured for the
-	// organization.
+	// organization. Use one of the following values to configure the feature status
+	// for the entire organization:
+	//
+	//    * NEW: Indicates that when a new account joins the organization, they
+	//    will have the additional configuration enabled automatically.
+	//
+	//    * ALL: Indicates that all accounts in the organization have the additional
+	//    configuration enabled automatically. This includes NEW accounts that join
+	//    the organization and accounts that may have been suspended or removed
+	//    from the organization in GuardDuty. It may take up to 24 hours to update
+	//    the configuration for all the member accounts.
+	//
+	//    * NONE: Indicates that the additional configuration will not be automatically
+	//    enabled for any account in the organization. The administrator must manage
+	//    the additional configuration for each account individually.
 	AutoEnable *string `locationName:"autoEnable" type:"string" enum:"OrgFeatureStatus"`
 
 	// The name of the additional configuration that will be configured for the
@@ -18233,14 +18268,22 @@ func (s *OrganizationAdditionalConfiguration) SetName(v string) *OrganizationAdd
 type OrganizationAdditionalConfigurationResult struct {
 	_ struct{} `type:"structure"`
 
-	// Describes how The status of the additional configuration that are configured
-	// for the member accounts within the organization.
+	// Describes the status of the additional configuration that is configured for
+	// the member accounts within the organization. One of the following values
+	// is the status for the entire organization:
 	//
-	// If you set AutoEnable to NEW, a feature will be configured for only the new
-	// accounts when they join the organization.
+	//    * NEW: Indicates that when a new account joins the organization, they
+	//    will have the additional configuration enabled automatically.
 	//
-	// If you set AutoEnable to NONE, no feature will be configured for the accounts
-	// when they join the organization.
+	//    * ALL: Indicates that all accounts in the organization have the additional
+	//    configuration enabled automatically. This includes NEW accounts that join
+	//    the organization and accounts that may have been suspended or removed
+	//    from the organization in GuardDuty. It may take up to 24 hours to update
+	//    the configuration for all the member accounts.
+	//
+	//    * NONE: Indicates that the additional configuration will not be automatically
+	//    enabled for any account in the organization. The administrator must manage
+	//    the additional configuration for each account individually.
 	AutoEnable *string `locationName:"autoEnable" type:"string" enum:"OrgFeatureStatus"`
 
 	// The name of the additional configuration that is configured for the member
@@ -18478,7 +18521,22 @@ type OrganizationFeatureConfiguration struct {
 	// The additional information that will be configured for the organization.
 	AdditionalConfiguration []*OrganizationAdditionalConfiguration `locationName:"additionalConfiguration" type:"list"`
 
-	// The status of the feature that will be configured for the organization.
+	// The status of the feature that will be configured for the organization. Use
+	// one of the following values to configure the feature status for the entire
+	// organization:
+	//
+	//    * NEW: Indicates that when a new account joins the organization, they
+	//    will have the feature enabled automatically.
+	//
+	//    * ALL: Indicates that all accounts in the organization have the feature
+	//    enabled automatically. This includes NEW accounts that join the organization
+	//    and accounts that may have been suspended or removed from the organization
+	//    in GuardDuty. It may take up to 24 hours to update the configuration for
+	//    all the member accounts.
+	//
+	//    * NONE: Indicates that the feature will not be automatically enabled for
+	//    any account in the organization. The administrator must manage the feature
+	//    for each account individually.
 	AutoEnable *string `locationName:"autoEnable" type:"string" enum:"OrgFeatureStatus"`
 
 	// The name of the feature that will be configured for the organization.
@@ -18529,14 +18587,20 @@ type OrganizationFeatureConfigurationResult struct {
 	// the organization.
 	AdditionalConfiguration []*OrganizationAdditionalConfigurationResult `locationName:"additionalConfiguration" type:"list"`
 
-	// Describes how The status of the feature that are configured for the member
-	// accounts within the organization.
+	// Describes the status of the feature that is configured for the member accounts
+	// within the organization.
 	//
-	// If you set AutoEnable to NEW, a feature will be configured for only the new
-	// accounts when they join the organization.
+	//    * NEW: Indicates that when a new account joins the organization, they
+	//    will have the feature enabled automatically.
 	//
-	// If you set AutoEnable to NONE, no feature will be configured for the accounts
-	// when they join the organization.
+	//    * ALL: Indicates that all accounts in the organization have the feature
+	//    enabled automatically. This includes NEW accounts that join the organization
+	//    and accounts that may have been suspended or removed from the organization
+	//    in GuardDuty.
+	//
+	//    * NONE: Indicates that the feature will not be automatically enabled for
+	//    any account in the organization. In this case, each account will be managed
+	//    individually by the administrator.
 	AutoEnable *string `locationName:"autoEnable" type:"string" enum:"OrgFeatureStatus"`
 
 	// The name of the feature that is configured for the member accounts within
@@ -22935,25 +22999,30 @@ type UpdateOrganizationConfigurationInput struct {
 	// Indicates whether to automatically enable member accounts in the organization.
 	//
 	// Even though this is still supported, we recommend using AutoEnableOrganizationMembers
-	// to achieve the similar results.
+	// to achieve the similar results. You must provide the value for either autoEnableOrganizationMembers
+	// or autoEnable.
 	//
 	// Deprecated: This field is deprecated, use AutoEnableOrganizationMembers instead
 	AutoEnable *bool `locationName:"autoEnable" deprecated:"true" type:"boolean"`
 
 	// Indicates the auto-enablement configuration of GuardDuty for the member accounts
-	// in the organization.
+	// in the organization. You must provide a value for either autoEnableOrganizationMembers
+	// or autoEnable.
+	//
+	// Use one of the following configuration values for autoEnableOrganizationMembers:
 	//
 	//    * NEW: Indicates that when a new account joins the organization, they
 	//    will have GuardDuty enabled automatically.
 	//
-	//    * ALL: Indicates that all accounts in the Amazon Web Services Organization
-	//    have GuardDuty enabled automatically. This includes NEW accounts that
-	//    join the organization and accounts that may have been suspended or removed
-	//    from the organization in GuardDuty.
+	//    * ALL: Indicates that all accounts in the organization have GuardDuty
+	//    enabled automatically. This includes NEW accounts that join the organization
+	//    and accounts that may have been suspended or removed from the organization
+	//    in GuardDuty. It may take up to 24 hours to update the configuration for
+	//    all the member accounts.
 	//
 	//    * NONE: Indicates that GuardDuty will not be automatically enabled for
-	//    any accounts in the organization. GuardDuty must be managed for each account
-	//    individually by the administrator.
+	//    any account in the organization. The administrator must manage GuardDuty
+	//    for each account in the organization individually.
 	AutoEnableOrganizationMembers *string `locationName:"autoEnableOrganizationMembers" type:"string" enum:"AutoEnableMembers"`
 
 	// Describes which data sources will be updated.
@@ -23863,6 +23932,9 @@ const (
 
 	// CoverageFilterCriterionKeyAddonVersion is a CoverageFilterCriterionKey enum value
 	CoverageFilterCriterionKeyAddonVersion = "ADDON_VERSION"
+
+	// CoverageFilterCriterionKeyManagementType is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyManagementType = "MANAGEMENT_TYPE"
 )
 
 // CoverageFilterCriterionKey_Values returns all elements of the CoverageFilterCriterionKey enum
@@ -23873,6 +23945,7 @@ func CoverageFilterCriterionKey_Values() []string {
 		CoverageFilterCriterionKeyResourceType,
 		CoverageFilterCriterionKeyCoverageStatus,
 		CoverageFilterCriterionKeyAddonVersion,
+		CoverageFilterCriterionKeyManagementType,
 	}
 }
 
@@ -24345,6 +24418,22 @@ func IpSetStatus_Values() []string {
 		IpSetStatusError,
 		IpSetStatusDeletePending,
 		IpSetStatusDeleted,
+	}
+}
+
+const (
+	// ManagementTypeAutoManaged is a ManagementType enum value
+	ManagementTypeAutoManaged = "AUTO_MANAGED"
+
+	// ManagementTypeManual is a ManagementType enum value
+	ManagementTypeManual = "MANUAL"
+)
+
+// ManagementType_Values returns all elements of the ManagementType enum
+func ManagementType_Values() []string {
+	return []string{
+		ManagementTypeAutoManaged,
+		ManagementTypeManual,
 	}
 }
 
