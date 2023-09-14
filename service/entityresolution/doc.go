@@ -3,23 +3,21 @@
 // Package entityresolution provides the client and types for making API
 // requests to AWS EntityResolution.
 //
-// Welcome to the AWS Entity Resolution API Reference.
+// Welcome to the Entity Resolution API Reference.
 //
-// AWS Entity Resolution is an AWS service that provides pre-configured entity
-// resolution capabilities that enable developers and analysts at advertising
+// Entity Resolution is an Amazon Web Services service that provides pre-configured
+// entity resolution capabilities that enable developers and analysts at advertising
 // and marketing companies to build an accurate and complete view of their consumers.
 //
-// With AWS Entity Resolution, you have the ability to match source records
-// containing consumer identifiers, such as name, email address, and phone number.
-// This holds true even when these records have incomplete or conflicting identifiers.
-// For example, AWS Entity Resolution can effectively match a source record
-// from a customer relationship management (CRM) system, which includes account
-// information like first name, last name, postal address, phone number, and
-// email address, with a source record from a marketing system containing campaign
-// information, such as username and email address.
+// With Entity Resolution, you can match source records containing consumer
+// identifiers, such as name, email address, and phone number. This is true
+// even when these records have incomplete or conflicting identifiers. For example,
+// Entity Resolution can effectively match a source record from a customer relationship
+// management (CRM) system with a source record from a marketing system containing
+// campaign information.
 //
-// To learn more about AWS Entity Resolution concepts, procedures, and best
-// practices, see the AWS Entity Resolution User Guide (https://docs.aws.amazon.com/entityresolution/latest/userguide/what-is-service.html).
+// To learn more about Entity Resolution concepts, procedures, and best practices,
+// see the Entity Resolution User Guide (https://docs.aws.amazon.com/entityresolution/latest/userguide/what-is-service.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10 for more information on this service.
 //

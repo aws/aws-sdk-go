@@ -1,3 +1,14 @@
+Release v1.45.10 (2023-09-14)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and waiters
+  * This release introduces multi-session fleets, allowing customers to provision more than one user session on a single fleet instance.
+* `service/cloudformation`: Updates service documentation
+  * Documentation updates for AWS CloudFormation
+* `service/entityresolution`: Updates service API and documentation
+* `service/lookoutequipment`: Updates service API, documentation, paginators, and examples
+
 Release v1.45.9 (2023-09-13)
 ===
 

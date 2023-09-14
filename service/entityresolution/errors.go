@@ -27,15 +27,15 @@ const (
 	// "ExceedsLimitException".
 	//
 	// The request was rejected because it attempted to create resources beyond
-	// the current AWS Entity Resolution account limits. The error message describes
+	// the current Entity Resolution account limits. The error message describes
 	// the limit exceeded. HTTP Status Code: 402
 	ErrCodeExceedsLimitException = "ExceedsLimitException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// This exception occurs when there is an internal failure in the AWS Entity
-	// Resolution service. HTTP Status Code: 500
+	// This exception occurs when there is an internal failure in the Entity Resolution
+	// service. HTTP Status Code: 500
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -53,7 +53,7 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints specified by AWS Entity Resolution.
+	// The input fails to satisfy the constraints specified by Entity Resolution.
 	// HTTP Status Code: 400
 	ErrCodeValidationException = "ValidationException"
 )
