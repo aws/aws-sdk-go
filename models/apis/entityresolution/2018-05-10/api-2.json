@@ -367,7 +367,10 @@
     },
     "CreateSchemaMappingInput":{
       "type":"structure",
-      "required":["schemaName"],
+      "required":[
+        "mappedInputFields",
+        "schemaName"
+      ],
       "members":{
         "description":{"shape":"Description"},
         "mappedInputFields":{"shape":"SchemaInputAttributes"},
@@ -451,7 +454,9 @@
     "ExceedsLimitException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "quotaName":{"shape":"String"},
+        "quotaValue":{"shape":"Integer"}
       },
       "error":{
         "httpStatusCode":402,
@@ -825,7 +830,7 @@
         "KMSArn":{"shape":"KMSArn"},
         "applyNormalization":{"shape":"Boolean"},
         "output":{"shape":"OutputSourceOutputList"},
-        "outputS3Path":{"shape":"OutputSourceOutputS3PathString"}
+        "outputS3Path":{"shape":"S3Path"}
       }
     },
     "OutputSourceConfig":{
@@ -839,10 +844,6 @@
       "member":{"shape":"OutputAttribute"},
       "max":750,
       "min":0
-    },
-    "OutputSourceOutputS3PathString":{
-      "type":"string",
-      "pattern":"^s3://([^/]+)/?(.*?([^/]+)/?)$"
     },
     "RecordAttributeMap":{
       "type":"map",
@@ -864,6 +865,7 @@
     },
     "ResolutionTechniques":{
       "type":"structure",
+      "required":["resolutionType"],
       "members":{
         "resolutionType":{"shape":"ResolutionType"},
         "ruleBasedProperties":{"shape":"RuleBasedProperties"}
@@ -926,6 +928,10 @@
       "max":255,
       "min":0,
       "pattern":"^[a-zA-Z_0-9- \\t]*$"
+    },
+    "S3Path":{
+      "type":"string",
+      "pattern":"^s3://([^/]+)/?(.*?([^/]+)/?)$"
     },
     "SchemaAttributeType":{
       "type":"string",

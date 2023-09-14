@@ -80,6 +80,10 @@ type LookoutEquipmentAPI interface {
 	CreateModelWithContext(aws.Context, *lookoutequipment.CreateModelInput, ...request.Option) (*lookoutequipment.CreateModelOutput, error)
 	CreateModelRequest(*lookoutequipment.CreateModelInput) (*request.Request, *lookoutequipment.CreateModelOutput)
 
+	CreateRetrainingScheduler(*lookoutequipment.CreateRetrainingSchedulerInput) (*lookoutequipment.CreateRetrainingSchedulerOutput, error)
+	CreateRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.CreateRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.CreateRetrainingSchedulerOutput, error)
+	CreateRetrainingSchedulerRequest(*lookoutequipment.CreateRetrainingSchedulerInput) (*request.Request, *lookoutequipment.CreateRetrainingSchedulerOutput)
+
 	DeleteDataset(*lookoutequipment.DeleteDatasetInput) (*lookoutequipment.DeleteDatasetOutput, error)
 	DeleteDatasetWithContext(aws.Context, *lookoutequipment.DeleteDatasetInput, ...request.Option) (*lookoutequipment.DeleteDatasetOutput, error)
 	DeleteDatasetRequest(*lookoutequipment.DeleteDatasetInput) (*request.Request, *lookoutequipment.DeleteDatasetOutput)
@@ -103,6 +107,10 @@ type LookoutEquipmentAPI interface {
 	DeleteResourcePolicy(*lookoutequipment.DeleteResourcePolicyInput) (*lookoutequipment.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyWithContext(aws.Context, *lookoutequipment.DeleteResourcePolicyInput, ...request.Option) (*lookoutequipment.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyRequest(*lookoutequipment.DeleteResourcePolicyInput) (*request.Request, *lookoutequipment.DeleteResourcePolicyOutput)
+
+	DeleteRetrainingScheduler(*lookoutequipment.DeleteRetrainingSchedulerInput) (*lookoutequipment.DeleteRetrainingSchedulerOutput, error)
+	DeleteRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.DeleteRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.DeleteRetrainingSchedulerOutput, error)
+	DeleteRetrainingSchedulerRequest(*lookoutequipment.DeleteRetrainingSchedulerInput) (*request.Request, *lookoutequipment.DeleteRetrainingSchedulerOutput)
 
 	DescribeDataIngestionJob(*lookoutequipment.DescribeDataIngestionJobInput) (*lookoutequipment.DescribeDataIngestionJobOutput, error)
 	DescribeDataIngestionJobWithContext(aws.Context, *lookoutequipment.DescribeDataIngestionJobInput, ...request.Option) (*lookoutequipment.DescribeDataIngestionJobOutput, error)
@@ -135,6 +143,10 @@ type LookoutEquipmentAPI interface {
 	DescribeResourcePolicy(*lookoutequipment.DescribeResourcePolicyInput) (*lookoutequipment.DescribeResourcePolicyOutput, error)
 	DescribeResourcePolicyWithContext(aws.Context, *lookoutequipment.DescribeResourcePolicyInput, ...request.Option) (*lookoutequipment.DescribeResourcePolicyOutput, error)
 	DescribeResourcePolicyRequest(*lookoutequipment.DescribeResourcePolicyInput) (*request.Request, *lookoutequipment.DescribeResourcePolicyOutput)
+
+	DescribeRetrainingScheduler(*lookoutequipment.DescribeRetrainingSchedulerInput) (*lookoutequipment.DescribeRetrainingSchedulerOutput, error)
+	DescribeRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.DescribeRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.DescribeRetrainingSchedulerOutput, error)
+	DescribeRetrainingSchedulerRequest(*lookoutequipment.DescribeRetrainingSchedulerInput) (*request.Request, *lookoutequipment.DescribeRetrainingSchedulerOutput)
 
 	ImportDataset(*lookoutequipment.ImportDatasetInput) (*lookoutequipment.ImportDatasetOutput, error)
 	ImportDatasetWithContext(aws.Context, *lookoutequipment.ImportDatasetInput, ...request.Option) (*lookoutequipment.ImportDatasetOutput, error)
@@ -207,6 +219,13 @@ type LookoutEquipmentAPI interface {
 	ListModelsPages(*lookoutequipment.ListModelsInput, func(*lookoutequipment.ListModelsOutput, bool) bool) error
 	ListModelsPagesWithContext(aws.Context, *lookoutequipment.ListModelsInput, func(*lookoutequipment.ListModelsOutput, bool) bool, ...request.Option) error
 
+	ListRetrainingSchedulers(*lookoutequipment.ListRetrainingSchedulersInput) (*lookoutequipment.ListRetrainingSchedulersOutput, error)
+	ListRetrainingSchedulersWithContext(aws.Context, *lookoutequipment.ListRetrainingSchedulersInput, ...request.Option) (*lookoutequipment.ListRetrainingSchedulersOutput, error)
+	ListRetrainingSchedulersRequest(*lookoutequipment.ListRetrainingSchedulersInput) (*request.Request, *lookoutequipment.ListRetrainingSchedulersOutput)
+
+	ListRetrainingSchedulersPages(*lookoutequipment.ListRetrainingSchedulersInput, func(*lookoutequipment.ListRetrainingSchedulersOutput, bool) bool) error
+	ListRetrainingSchedulersPagesWithContext(aws.Context, *lookoutequipment.ListRetrainingSchedulersInput, func(*lookoutequipment.ListRetrainingSchedulersOutput, bool) bool, ...request.Option) error
+
 	ListSensorStatistics(*lookoutequipment.ListSensorStatisticsInput) (*lookoutequipment.ListSensorStatisticsOutput, error)
 	ListSensorStatisticsWithContext(aws.Context, *lookoutequipment.ListSensorStatisticsInput, ...request.Option) (*lookoutequipment.ListSensorStatisticsOutput, error)
 	ListSensorStatisticsRequest(*lookoutequipment.ListSensorStatisticsInput) (*request.Request, *lookoutequipment.ListSensorStatisticsOutput)
@@ -230,9 +249,17 @@ type LookoutEquipmentAPI interface {
 	StartInferenceSchedulerWithContext(aws.Context, *lookoutequipment.StartInferenceSchedulerInput, ...request.Option) (*lookoutequipment.StartInferenceSchedulerOutput, error)
 	StartInferenceSchedulerRequest(*lookoutequipment.StartInferenceSchedulerInput) (*request.Request, *lookoutequipment.StartInferenceSchedulerOutput)
 
+	StartRetrainingScheduler(*lookoutequipment.StartRetrainingSchedulerInput) (*lookoutequipment.StartRetrainingSchedulerOutput, error)
+	StartRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.StartRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.StartRetrainingSchedulerOutput, error)
+	StartRetrainingSchedulerRequest(*lookoutequipment.StartRetrainingSchedulerInput) (*request.Request, *lookoutequipment.StartRetrainingSchedulerOutput)
+
 	StopInferenceScheduler(*lookoutequipment.StopInferenceSchedulerInput) (*lookoutequipment.StopInferenceSchedulerOutput, error)
 	StopInferenceSchedulerWithContext(aws.Context, *lookoutequipment.StopInferenceSchedulerInput, ...request.Option) (*lookoutequipment.StopInferenceSchedulerOutput, error)
 	StopInferenceSchedulerRequest(*lookoutequipment.StopInferenceSchedulerInput) (*request.Request, *lookoutequipment.StopInferenceSchedulerOutput)
+
+	StopRetrainingScheduler(*lookoutequipment.StopRetrainingSchedulerInput) (*lookoutequipment.StopRetrainingSchedulerOutput, error)
+	StopRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.StopRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.StopRetrainingSchedulerOutput, error)
+	StopRetrainingSchedulerRequest(*lookoutequipment.StopRetrainingSchedulerInput) (*request.Request, *lookoutequipment.StopRetrainingSchedulerOutput)
 
 	TagResource(*lookoutequipment.TagResourceInput) (*lookoutequipment.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *lookoutequipment.TagResourceInput, ...request.Option) (*lookoutequipment.TagResourceOutput, error)
@@ -253,6 +280,14 @@ type LookoutEquipmentAPI interface {
 	UpdateLabelGroup(*lookoutequipment.UpdateLabelGroupInput) (*lookoutequipment.UpdateLabelGroupOutput, error)
 	UpdateLabelGroupWithContext(aws.Context, *lookoutequipment.UpdateLabelGroupInput, ...request.Option) (*lookoutequipment.UpdateLabelGroupOutput, error)
 	UpdateLabelGroupRequest(*lookoutequipment.UpdateLabelGroupInput) (*request.Request, *lookoutequipment.UpdateLabelGroupOutput)
+
+	UpdateModel(*lookoutequipment.UpdateModelInput) (*lookoutequipment.UpdateModelOutput, error)
+	UpdateModelWithContext(aws.Context, *lookoutequipment.UpdateModelInput, ...request.Option) (*lookoutequipment.UpdateModelOutput, error)
+	UpdateModelRequest(*lookoutequipment.UpdateModelInput) (*request.Request, *lookoutequipment.UpdateModelOutput)
+
+	UpdateRetrainingScheduler(*lookoutequipment.UpdateRetrainingSchedulerInput) (*lookoutequipment.UpdateRetrainingSchedulerOutput, error)
+	UpdateRetrainingSchedulerWithContext(aws.Context, *lookoutequipment.UpdateRetrainingSchedulerInput, ...request.Option) (*lookoutequipment.UpdateRetrainingSchedulerOutput, error)
+	UpdateRetrainingSchedulerRequest(*lookoutequipment.UpdateRetrainingSchedulerInput) (*request.Request, *lookoutequipment.UpdateRetrainingSchedulerOutput)
 }
 
 var _ LookoutEquipmentAPI = (*lookoutequipment.LookoutEquipment)(nil)

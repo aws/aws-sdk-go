@@ -74,8 +74,8 @@ func (c *EntityResolution) CreateMatchingWorkflowRequest(input *CreateMatchingWo
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
@@ -83,7 +83,7 @@ func (c *EntityResolution) CreateMatchingWorkflowRequest(input *CreateMatchingWo
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
-//     the current AWS Entity Resolution account limits. The error message describes
+//     the current Entity Resolution account limits. The error message describes
 //     the limit exceeded. HTTP Status Code: 402
 //
 //   - ConflictException
@@ -92,7 +92,7 @@ func (c *EntityResolution) CreateMatchingWorkflowRequest(input *CreateMatchingWo
 //     Workflow is currently running, etc. HTTP Status Code: 400
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateMatchingWorkflow
@@ -178,8 +178,8 @@ func (c *EntityResolution) CreateSchemaMappingRequest(input *CreateSchemaMapping
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
@@ -187,7 +187,7 @@ func (c *EntityResolution) CreateSchemaMappingRequest(input *CreateSchemaMapping
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
-//     the current AWS Entity Resolution account limits. The error message describes
+//     the current Entity Resolution account limits. The error message describes
 //     the limit exceeded. HTTP Status Code: 402
 //
 //   - ConflictException
@@ -196,7 +196,7 @@ func (c *EntityResolution) CreateSchemaMappingRequest(input *CreateSchemaMapping
 //     Workflow is currently running, etc. HTTP Status Code: 400
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateSchemaMapping
@@ -280,15 +280,15 @@ func (c *EntityResolution) DeleteMatchingWorkflowRequest(input *DeleteMatchingWo
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteMatchingWorkflow
@@ -374,8 +374,8 @@ func (c *EntityResolution) DeleteSchemaMappingRequest(input *DeleteSchemaMapping
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
@@ -387,7 +387,7 @@ func (c *EntityResolution) DeleteSchemaMappingRequest(input *DeleteSchemaMapping
 //     Workflow is currently running, etc. HTTP Status Code: 400
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteSchemaMapping
@@ -471,8 +471,8 @@ func (c *EntityResolution) GetMatchIdRequest(input *GetMatchIdInput) (req *reque
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -482,7 +482,7 @@ func (c *EntityResolution) GetMatchIdRequest(input *GetMatchIdInput) (req *reque
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchId
@@ -566,8 +566,8 @@ func (c *EntityResolution) GetMatchingJobRequest(input *GetMatchingJobInput) (re
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -577,7 +577,7 @@ func (c *EntityResolution) GetMatchingJobRequest(input *GetMatchingJobInput) (re
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchingJob
@@ -660,8 +660,8 @@ func (c *EntityResolution) GetMatchingWorkflowRequest(input *GetMatchingWorkflow
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -671,7 +671,7 @@ func (c *EntityResolution) GetMatchingWorkflowRequest(input *GetMatchingWorkflow
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchingWorkflow
@@ -754,8 +754,8 @@ func (c *EntityResolution) GetSchemaMappingRequest(input *GetSchemaMappingInput)
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -765,7 +765,7 @@ func (c *EntityResolution) GetSchemaMappingRequest(input *GetSchemaMappingInput)
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetSchemaMapping
@@ -854,8 +854,8 @@ func (c *EntityResolution) ListMatchingJobsRequest(input *ListMatchingJobsInput)
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -865,7 +865,7 @@ func (c *EntityResolution) ListMatchingJobsRequest(input *ListMatchingJobsInput)
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListMatchingJobs
@@ -991,7 +991,7 @@ func (c *EntityResolution) ListMatchingWorkflowsRequest(input *ListMatchingWorkf
 // ListMatchingWorkflows API operation for AWS EntityResolution.
 //
 // Returns a list of all the MatchingWorkflows that have been created for an
-// AWS account.
+// Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1006,15 +1006,15 @@ func (c *EntityResolution) ListMatchingWorkflowsRequest(input *ListMatchingWorkf
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListMatchingWorkflows
@@ -1139,8 +1139,8 @@ func (c *EntityResolution) ListSchemaMappingsRequest(input *ListSchemaMappingsIn
 
 // ListSchemaMappings API operation for AWS EntityResolution.
 //
-// Returns a list of all the SchemaMappings that have been created for an AWS
-// account.
+// Returns a list of all the SchemaMappings that have been created for an Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1155,15 +1155,15 @@ func (c *EntityResolution) ListSchemaMappingsRequest(input *ListSchemaMappingsIn
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. HTTP Status Code:
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListSchemaMappings
@@ -1282,7 +1282,7 @@ func (c *EntityResolution) ListTagsForResourceRequest(input *ListTagsForResource
 
 // ListTagsForResource API operation for AWS EntityResolution.
 //
-// Displays the tags associated with an AWS Entity Resolution resource. In Entity
+// Displays the tags associated with an Entity Resolution resource. In Entity
 // Resolution, SchemaMapping, and MatchingWorkflow can be tagged.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1295,14 +1295,14 @@ func (c *EntityResolution) ListTagsForResourceRequest(input *ListTagsForResource
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListTagsForResource
@@ -1386,8 +1386,8 @@ func (c *EntityResolution) StartMatchingJobRequest(input *StartMatchingJobInput)
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -1398,7 +1398,7 @@ func (c *EntityResolution) StartMatchingJobRequest(input *StartMatchingJobInput)
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
-//     the current AWS Entity Resolution account limits. The error message describes
+//     the current Entity Resolution account limits. The error message describes
 //     the limit exceeded. HTTP Status Code: 402
 //
 //   - ConflictException
@@ -1407,7 +1407,7 @@ func (c *EntityResolution) StartMatchingJobRequest(input *StartMatchingJobInput)
 //     Workflow is currently running, etc. HTTP Status Code: 400
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/StartMatchingJob
@@ -1476,17 +1476,17 @@ func (c *EntityResolution) TagResourceRequest(input *TagResourceInput) (req *req
 
 // TagResource API operation for AWS EntityResolution.
 //
-// Assigns one or more tags (key-value pairs) to the specified AWS Entity Resolution
+// Assigns one or more tags (key-value pairs) to the specified Entity Resolution
 // resource. Tags can help you organize and categorize your resources. You can
 // also use them to scope user permissions by granting a user permission to
 // access or change only resources with certain tag values. In Entity Resolution,
-// SchemaMapping, and MatchingWorkflow can be tagged. Tags don't have any semantic
-// meaning to AWS and are interpreted strictly as strings of characters. You
-// can use the TagResource action with a resource that already has tags. If
-// you specify a new tag key, this tag is appended to the list of tags associated
-// with the resource. If you specify a tag key that is already associated with
-// the resource, the new tag value that you specify replaces the previous value
-// for that tag.
+// SchemaMapping and MatchingWorkflow can be tagged. Tags don't have any semantic
+// meaning to Amazon Web Services and are interpreted strictly as strings of
+// characters. You can use the TagResource action with a resource that already
+// has tags. If you specify a new tag key, this tag is appended to the list
+// of tags associated with the resource. If you specify a tag key that is already
+// associated with the resource, the new tag value that you specify replaces
+// the previous value for that tag.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1498,14 +1498,14 @@ func (c *EntityResolution) TagResourceRequest(input *TagResourceInput) (req *req
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/TagResource
@@ -1574,8 +1574,8 @@ func (c *EntityResolution) UntagResourceRequest(input *UntagResourceInput) (req 
 
 // UntagResource API operation for AWS EntityResolution.
 //
-// Removes one or more tags from the specified AWS Entity Resolution resource.
-// In Entity Resolution, SchemaMapping, and MatchingWorkflow can be tagged.
+// Removes one or more tags from the specified Entity Resolution resource. In
+// Entity Resolution, SchemaMapping, and MatchingWorkflow can be tagged.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1587,8 +1587,8 @@ func (c *EntityResolution) UntagResourceRequest(input *UntagResourceInput) (req 
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -1675,8 +1675,8 @@ func (c *EntityResolution) UpdateMatchingWorkflowRequest(input *UpdateMatchingWo
 //     The request was denied due to request throttling. HTTP Status Code: 429
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Entity
-//     Resolution service. HTTP Status Code: 500
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
 //
 //   - ResourceNotFoundException
 //     The resource could not be found. HTTP Status Code: 404
@@ -1686,7 +1686,7 @@ func (c *EntityResolution) UpdateMatchingWorkflowRequest(input *UpdateMatchingWo
 //     403
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by AWS Entity Resolution.
+//     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateMatchingWorkflow
@@ -1863,12 +1863,12 @@ type CreateMatchingWorkflowInput struct {
 	// OutputSourceConfig is a required field
 	OutputSourceConfig []*OutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
 
-	// An object which defines the resolutionType and the ruleBasedProperties
+	// An object which defines the resolutionType and the ruleBasedProperties.
 	//
 	// ResolutionTechniques is a required field
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role. AWS Entity Resolution assumes
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
@@ -2027,12 +2027,12 @@ type CreateMatchingWorkflowOutput struct {
 	// OutputSourceConfig is a required field
 	OutputSourceConfig []*OutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
 
-	// An object which defines the resolutionType and the ruleBasedProperties
+	// An object which defines the resolutionType and the ruleBasedProperties.
 	//
 	// ResolutionTechniques is a required field
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role. AWS Entity Resolution assumes
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
@@ -2124,7 +2124,9 @@ type CreateSchemaMappingInput struct {
 	// A list of MappedInputFields. Each MappedInputField corresponds to a column
 	// the source data table, and contains column name plus additional information
 	// that Entity Resolution uses for matching.
-	MappedInputFields []*SchemaInputAttribute `locationName:"mappedInputFields" min:"2" type:"list"`
+	//
+	// MappedInputFields is a required field
+	MappedInputFields []*SchemaInputAttribute `locationName:"mappedInputFields" min:"2" type:"list" required:"true"`
 
 	// The name of the schema. There cannot be multiple SchemaMappings with the
 	// same name.
@@ -2157,6 +2159,9 @@ func (s CreateSchemaMappingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSchemaMappingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSchemaMappingInput"}
+	if s.MappedInputFields == nil {
+		invalidParams.Add(request.NewErrParamRequired("MappedInputFields"))
+	}
 	if s.MappedInputFields != nil && len(s.MappedInputFields) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MappedInputFields", 2))
 	}
@@ -2469,13 +2474,19 @@ func (s *ErrorDetails) SetErrorMessage(v string) *ErrorDetails {
 }
 
 // The request was rejected because it attempted to create resources beyond
-// the current AWS Entity Resolution account limits. The error message describes
+// the current Entity Resolution account limits. The error message describes
 // the limit exceeded. HTTP Status Code: 402
 type ExceedsLimitException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
+
+	// The name of the quota that has been breached.
+	QuotaName *string `locationName:"quotaName" type:"string"`
+
+	// The current quota value for the customers.
+	QuotaValue *int64 `locationName:"quotaValue" type:"integer"`
 }
 
 // String returns the string representation.
@@ -2521,7 +2532,7 @@ func (s *ExceedsLimitException) OrigErr() error {
 }
 
 func (s *ExceedsLimitException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -2721,7 +2732,7 @@ type GetMatchingJobOutput struct {
 	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 
-	// The current status of the job. Either running, succeeded, queued, or failed.
+	// The current status of the job.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
@@ -2856,12 +2867,12 @@ type GetMatchingWorkflowOutput struct {
 	// OutputSourceConfig is a required field
 	OutputSourceConfig []*OutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
 
-	// An object which defines the resolutionType and the ruleBasedProperties
+	// An object which defines the resolutionType and the ruleBasedProperties.
 	//
 	// ResolutionTechniques is a required field
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role. AWS Entity Resolution assumes
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to access resources on your behalf.
 	//
 	// RoleArn is a required field
@@ -3222,8 +3233,8 @@ func (s *InputSource) SetSchemaName(v string) *InputSource {
 	return s
 }
 
-// This exception occurs when there is an internal failure in the AWS Entity
-// Resolution service. HTTP Status Code: 500
+// This exception occurs when there is an internal failure in the Entity Resolution
+// service. HTTP Status Code: 500
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3297,7 +3308,7 @@ type JobMetrics struct {
 	// The total number of matchIDs generated.
 	MatchIDs *int64 `locationName:"matchIDs" type:"integer"`
 
-	// The total number of records that did not get processed,
+	// The total number of records that did not get processed.
 	RecordsNotProcessed *int64 `locationName:"recordsNotProcessed" type:"integer"`
 
 	// The total number of records processed.
@@ -3363,7 +3374,7 @@ type JobSummary struct {
 	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 
-	// The current status of the job. Either running, succeeded, queued, or failed.
+	// The current status of the job.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
@@ -4019,12 +4030,15 @@ func (s *OutputSource) SetOutputS3Path(v string) *OutputSource {
 	return s
 }
 
-// An object which defines the resolutionType and the ruleBasedProperties
+// An object which defines the resolutionType and the ruleBasedProperties.
 type ResolutionTechniques struct {
 	_ struct{} `type:"structure"`
 
-	// There are two types of matching, RULE_MATCHING and ML_MATCHING
-	ResolutionType *string `locationName:"resolutionType" type:"string" enum:"ResolutionType"`
+	// The type of matching. There are two types of matching: RULE_MATCHING and
+	// ML_MATCHING.
+	//
+	// ResolutionType is a required field
+	ResolutionType *string `locationName:"resolutionType" type:"string" required:"true" enum:"ResolutionType"`
 
 	// An object which defines the list of matching rules to run and has a field
 	// Rules, which is a list of rule objects.
@@ -4052,6 +4066,9 @@ func (s ResolutionTechniques) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResolutionTechniques) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResolutionTechniques"}
+	if s.ResolutionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResolutionType"))
+	}
 	if s.RuleBasedProperties != nil {
 		if err := s.RuleBasedProperties.Validate(); err != nil {
 			invalidParams.AddNested("RuleBasedProperties", err.(request.ErrInvalidParams))
@@ -4211,14 +4228,15 @@ func (s *Rule) SetRuleName(v string) *Rule {
 type RuleBasedProperties struct {
 	_ struct{} `type:"structure"`
 
-	// You can either choose ONE_TO_ONE or MANY_TO_MANY as the AttributeMatchingModel.
-	// When choosing MANY_TO_MANY, the system can match attribute across the sub-types
-	// of an attribute type. For example, if the value of the Email field of Profile
-	// A and the value of BusinessEmail field of Profile B matches, the two profiles
-	// are matched on the Email type. When choosing ONE_TO_ONE the system can only
-	// match if the sub-types are exact matches. For example, only when the value
-	// of the Email field of Profile A and the value of the Email field of Profile
-	// B matches, the two profiles are matched on the Email type.
+	// The comparison type. You can either choose ONE_TO_ONE or MANY_TO_MANY as
+	// the AttributeMatchingModel. When choosing MANY_TO_MANY, the system can match
+	// attributes across the sub-types of an attribute type. For example, if the
+	// value of the Email field of Profile A and the value of BusinessEmail field
+	// of Profile B matches, the two profiles are matched on the Email type. When
+	// choosing ONE_TO_ONE ,the system can only match if the sub-types are exact
+	// matches. For example, only when the value of the Email field of Profile A
+	// and the value of the Email field of Profile B matches, the two profiles are
+	// matched on the Email type.
 	//
 	// AttributeMatchingModel is a required field
 	AttributeMatchingModel *string `locationName:"attributeMatchingModel" type:"string" required:"true" enum:"AttributeMatchingModel"`
@@ -4306,7 +4324,7 @@ type SchemaInputAttribute struct {
 	// A key that allows grouping of multiple input attributes into a unified matching
 	// group. For example, let's consider a scenario where the source table contains
 	// various addresses, such as business_address and shipping_address. By assigning
-	// the MatchKey Address' to both attributes, Entity Resolution will match records
+	// the MatchKey Address to both attributes, Entity Resolution will match records
 	// across these fields to create a consolidated matching group. If no MatchKey
 	// is specified for a column, it won't be utilized for matching purposes but
 	// will still be included in the output table.
@@ -4780,12 +4798,12 @@ type UpdateMatchingWorkflowInput struct {
 	// OutputSourceConfig is a required field
 	OutputSourceConfig []*OutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
 
-	// An object which defines the resolutionType and the ruleBasedProperties
+	// An object which defines the resolutionType and the ruleBasedProperties.
 	//
 	// ResolutionTechniques is a required field
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role. AWS Entity Resolution assumes
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
@@ -4942,7 +4960,7 @@ type UpdateMatchingWorkflowOutput struct {
 	// ResolutionTechniques is a required field
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role. AWS Entity Resolution assumes
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
@@ -5014,7 +5032,7 @@ func (s *UpdateMatchingWorkflowOutput) SetWorkflowName(v string) *UpdateMatching
 	return s
 }
 
-// The input fails to satisfy the constraints specified by AWS Entity Resolution.
+// The input fails to satisfy the constraints specified by Entity Resolution.
 // HTTP Status Code: 400
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`

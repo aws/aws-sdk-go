@@ -1487,9 +1487,9 @@
     },
     "ComputeCapacity":{
       "type":"structure",
-      "required":["DesiredInstances"],
       "members":{
-        "DesiredInstances":{"shape":"Integer"}
+        "DesiredInstances":{"shape":"Integer"},
+        "DesiredSessions":{"shape":"Integer"}
       }
     },
     "ComputeCapacityStatus":{
@@ -1499,7 +1499,11 @@
         "Desired":{"shape":"Integer"},
         "Running":{"shape":"Integer"},
         "InUse":{"shape":"Integer"},
-        "Available":{"shape":"Integer"}
+        "Available":{"shape":"Integer"},
+        "DesiredUserSessions":{"shape":"Integer"},
+        "AvailableUserSessions":{"shape":"Integer"},
+        "ActiveUserSessions":{"shape":"Integer"},
+        "ActualUserSessions":{"shape":"Integer"}
       }
     },
     "ConcurrentModificationException":{
@@ -1692,7 +1696,8 @@
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
         "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
-        "SessionScriptS3Location":{"shape":"S3Location"}
+        "SessionScriptS3Location":{"shape":"S3Location"},
+        "MaxSessionsPerInstance":{"shape":"Integer"}
       }
     },
     "CreateFleetResult":{
@@ -2186,12 +2191,13 @@
         "FleetName"
       ],
       "members":{
-        "StackName":{"shape":"String"},
-        "FleetName":{"shape":"String"},
+        "StackName":{"shape":"Name"},
+        "FleetName":{"shape":"Name"},
         "UserId":{"shape":"UserId"},
         "NextToken":{"shape":"String"},
         "Limit":{"shape":"Integer"},
-        "AuthenticationType":{"shape":"AuthenticationType"}
+        "AuthenticationType":{"shape":"AuthenticationType"},
+        "InstanceId":{"shape":"String"}
       }
     },
     "DescribeSessionsResult":{
@@ -2540,7 +2546,8 @@
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
         "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
-        "SessionScriptS3Location":{"shape":"S3Location"}
+        "SessionScriptS3Location":{"shape":"S3Location"},
+        "MaxSessionsPerInstance":{"shape":"Integer"}
       }
     },
     "FleetAttribute":{
@@ -2551,7 +2558,8 @@
         "DOMAIN_JOIN_INFO",
         "IAM_ROLE_ARN",
         "USB_DEVICE_FILTER_STRINGS",
-        "SESSION_SCRIPT_S3_LOCATION"
+        "SESSION_SCRIPT_S3_LOCATION",
+        "MAX_SESSIONS_PER_INSTANCE"
       ]
     },
     "FleetAttributes":{
@@ -3063,7 +3071,8 @@
         "StartTime":{"shape":"Timestamp"},
         "MaxExpirationTime":{"shape":"Timestamp"},
         "AuthenticationType":{"shape":"AuthenticationType"},
-        "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"}
+        "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"},
+        "InstanceId":{"shape":"String"}
       }
     },
     "SessionConnectionState":{
@@ -3438,7 +3447,7 @@
       "members":{
         "ImageName":{"shape":"String"},
         "ImageArn":{"shape":"Arn"},
-        "Name":{"shape":"String"},
+        "Name":{"shape":"Name"},
         "InstanceType":{"shape":"String"},
         "ComputeCapacity":{"shape":"ComputeCapacity"},
         "VpcConfig":{"shape":"VpcConfig"},
@@ -3459,7 +3468,8 @@
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
         "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
-        "SessionScriptS3Location":{"shape":"S3Location"}
+        "SessionScriptS3Location":{"shape":"S3Location"},
+        "MaxSessionsPerInstance":{"shape":"Integer"}
       }
     },
     "UpdateFleetResult":{
