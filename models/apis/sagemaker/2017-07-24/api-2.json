@@ -6501,7 +6501,8 @@
         "Domain":{"shape":"String"},
         "Task":{"shape":"String"},
         "SamplePayloadUrl":{"shape":"S3Uri"},
-        "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"}
+        "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
+        "SkipModelValidation":{"shape":"SkipModelValidation"}
       }
     },
     "CreateModelPackageOutput":{
@@ -8987,7 +8988,8 @@
         "Domain":{"shape":"String"},
         "Task":{"shape":"String"},
         "SamplePayloadUrl":{"shape":"String"},
-        "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"}
+        "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
+        "SkipModelValidation":{"shape":"SkipModelValidation"}
       }
     },
     "DescribeModelQualityJobDefinitionRequest":{
@@ -15237,7 +15239,8 @@
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "Tags":{"shape":"TagList"},
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
-        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"}
+        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
+        "SkipModelValidation":{"shape":"SkipModelValidation"}
       }
     },
     "ModelPackageArn":{
@@ -18891,6 +18894,13 @@
     "SingleSignOnUserIdentifier":{
       "type":"string",
       "pattern":"UserName"
+    },
+    "SkipModelValidation":{
+      "type":"string",
+      "enum":[
+        "All",
+        "None"
+      ]
     },
     "SnsTopicArn":{
       "type":"string",

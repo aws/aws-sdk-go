@@ -8321,15 +8321,9 @@ type ComputeCapacity struct {
 	_ struct{} `type:"structure"`
 
 	// The desired number of streaming instances.
-	DesiredInstances *int64 `type:"integer"`
-
-	// The desired number of user sessions for a multi-session fleet. This is not
-	// allowed for single-session fleets.
 	//
-	// When you create a fleet, you must set either the DesiredSessions or DesiredInstances
-	// attribute, based on the type of fleet you create. You can’t define both
-	// attributes or leave both attributes blank.
-	DesiredSessions *int64 `type:"integer"`
+	// DesiredInstances is a required field
+	DesiredInstances *int64 `type:"integer" required:"true"`
 }
 
 // String returns the string representation.
@@ -8350,15 +8344,22 @@ func (s ComputeCapacity) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ComputeCapacity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ComputeCapacity"}
+	if s.DesiredInstances == nil {
+		invalidParams.Add(request.NewErrParamRequired("DesiredInstances"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetDesiredInstances sets the DesiredInstances field's value.
 func (s *ComputeCapacity) SetDesiredInstances(v int64) *ComputeCapacity {
 	s.DesiredInstances = &v
-	return s
-}
-
-// SetDesiredSessions sets the DesiredSessions field's value.
-func (s *ComputeCapacity) SetDesiredSessions(v int64) *ComputeCapacity {
-	s.DesiredSessions = &v
 	return s
 }
 
@@ -8366,41 +8367,13 @@ func (s *ComputeCapacity) SetDesiredSessions(v int64) *ComputeCapacity {
 type ComputeCapacityStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The number of user sessions currently being used for streaming sessions.
-	// This only applies to multi-session fleets.
-	ActiveUserSessions *int64 `type:"integer"`
-
-	// The total number of session slots that are available for streaming or are
-	// currently streaming.
-	//
-	// ActualUserSessionCapacity = AvailableUserSessionCapacity + ActiveUserSessions
-	//
-	// This only applies to multi-session fleets.
-	ActualUserSessions *int64 `type:"integer"`
-
 	// The number of currently available instances that can be used to stream sessions.
 	Available *int64 `type:"integer"`
-
-	// The number of idle session slots currently available for user sessions.
-	//
-	// AvailableUserSessionCapacity = ActualUserSessionCapacity - ActiveUserSessions
-	//
-	// This only applies to multi-session fleets.
-	AvailableUserSessions *int64 `type:"integer"`
 
 	// The desired number of streaming instances.
 	//
 	// Desired is a required field
 	Desired *int64 `type:"integer" required:"true"`
-
-	// The total number of sessions slots that are either running or pending. This
-	// represents the total number of concurrent streaming sessions your fleet can
-	// support in a steady state.
-	//
-	// DesiredUserSessionCapacity = ActualUserSessionCapacity + PendingUserSessionCapacity
-	//
-	// This only applies to multi-session fleets.
-	DesiredUserSessions *int64 `type:"integer"`
 
 	// The number of instances in use for streaming.
 	InUse *int64 `type:"integer"`
@@ -8427,39 +8400,15 @@ func (s ComputeCapacityStatus) GoString() string {
 	return s.String()
 }
 
-// SetActiveUserSessions sets the ActiveUserSessions field's value.
-func (s *ComputeCapacityStatus) SetActiveUserSessions(v int64) *ComputeCapacityStatus {
-	s.ActiveUserSessions = &v
-	return s
-}
-
-// SetActualUserSessions sets the ActualUserSessions field's value.
-func (s *ComputeCapacityStatus) SetActualUserSessions(v int64) *ComputeCapacityStatus {
-	s.ActualUserSessions = &v
-	return s
-}
-
 // SetAvailable sets the Available field's value.
 func (s *ComputeCapacityStatus) SetAvailable(v int64) *ComputeCapacityStatus {
 	s.Available = &v
 	return s
 }
 
-// SetAvailableUserSessions sets the AvailableUserSessions field's value.
-func (s *ComputeCapacityStatus) SetAvailableUserSessions(v int64) *ComputeCapacityStatus {
-	s.AvailableUserSessions = &v
-	return s
-}
-
 // SetDesired sets the Desired field's value.
 func (s *ComputeCapacityStatus) SetDesired(v int64) *ComputeCapacityStatus {
 	s.Desired = &v
-	return s
-}
-
-// SetDesiredUserSessions sets the DesiredUserSessions field's value.
-func (s *ComputeCapacityStatus) SetDesiredUserSessions(v int64) *ComputeCapacityStatus {
-	s.DesiredUserSessions = &v
 	return s
 }
 
@@ -9804,17 +9753,13 @@ type CreateFleetInput struct {
 	// Elastic fleets, and not allowed for other fleet types.
 	MaxConcurrentSessions *int64 `type:"integer"`
 
-	// The maximum number of user sessions on an instance. This only applies to
-	// multi-session fleets.
-	MaxSessionsPerInstance *int64 `type:"integer"`
-
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
 	// before this limit is reached, they are prompted to save any open documents
 	// before being disconnected. After this time elapses, the instance is terminated
 	// and replaced by a new instance.
 	//
-	// Specify a value between 600 and 432000.
+	// Specify a value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
@@ -9896,6 +9841,11 @@ func (s *CreateFleetInput) Validate() error {
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ComputeCapacity != nil {
+		if err := s.ComputeCapacity.Validate(); err != nil {
+			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SessionScriptS3Location != nil {
 		if err := s.SessionScriptS3Location.Validate(); err != nil {
@@ -9984,12 +9934,6 @@ func (s *CreateFleetInput) SetInstanceType(v string) *CreateFleetInput {
 // SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
 func (s *CreateFleetInput) SetMaxConcurrentSessions(v int64) *CreateFleetInput {
 	s.MaxConcurrentSessions = &v
-	return s
-}
-
-// SetMaxSessionsPerInstance sets the MaxSessionsPerInstance field's value.
-func (s *CreateFleetInput) SetMaxSessionsPerInstance(v int64) *CreateFleetInput {
-	s.MaxSessionsPerInstance = &v
 	return s
 }
 
@@ -13323,10 +13267,7 @@ type DescribeSessionsInput struct {
 	// The name of the fleet. This value is case-sensitive.
 	//
 	// FleetName is a required field
-	FleetName *string `type:"string" required:"true"`
-
-	// The identifier for the instance hosting the session.
-	InstanceId *string `min:"1" type:"string"`
+	FleetName *string `min:"1" type:"string" required:"true"`
 
 	// The size of each page of results. The default value is 20 and the maximum
 	// value is 50.
@@ -13339,7 +13280,7 @@ type DescribeSessionsInput struct {
 	// The name of the stack. This value is case-sensitive.
 	//
 	// StackName is a required field
-	StackName *string `type:"string" required:"true"`
+	StackName *string `min:"1" type:"string" required:"true"`
 
 	// The user identifier (ID). If you specify a user ID, you must also specify
 	// the authentication type.
@@ -13370,14 +13311,17 @@ func (s *DescribeSessionsInput) Validate() error {
 	if s.FleetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FleetName"))
 	}
-	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	if s.FleetName != nil && len(*s.FleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetName", 1))
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
 	if s.StackName == nil {
 		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+	if s.StackName != nil && len(*s.StackName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StackName", 1))
 	}
 	if s.UserId != nil && len(*s.UserId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
@@ -13398,12 +13342,6 @@ func (s *DescribeSessionsInput) SetAuthenticationType(v string) *DescribeSession
 // SetFleetName sets the FleetName field's value.
 func (s *DescribeSessionsInput) SetFleetName(v string) *DescribeSessionsInput {
 	s.FleetName = &v
-	return s
-}
-
-// SetInstanceId sets the InstanceId field's value.
-func (s *DescribeSessionsInput) SetInstanceId(v string) *DescribeSessionsInput {
-	s.InstanceId = &v
 	return s
 }
 
@@ -15201,10 +15139,6 @@ type Fleet struct {
 	// The maximum number of concurrent sessions for the fleet.
 	MaxConcurrentSessions *int64 `type:"integer"`
 
-	// The maximum number of user sessions on an instance. This only applies to
-	// multi-session fleets.
-	MaxSessionsPerInstance *int64 `type:"integer"`
-
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
 	// before this limit is reached, they are prompted to save any open documents
@@ -15357,12 +15291,6 @@ func (s *Fleet) SetInstanceType(v string) *Fleet {
 // SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
 func (s *Fleet) SetMaxConcurrentSessions(v int64) *Fleet {
 	s.MaxConcurrentSessions = &v
-	return s
-}
-
-// SetMaxSessionsPerInstance sets the MaxSessionsPerInstance field's value.
-func (s *Fleet) SetMaxSessionsPerInstance(v int64) *Fleet {
-	s.MaxSessionsPerInstance = &v
 	return s
 }
 
@@ -17558,9 +17486,6 @@ type Session struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for the instance hosting the session.
-	InstanceId *string `min:"1" type:"string"`
-
 	// The time when the streaming session is set to expire. This time is based
 	// on the MaxUserDurationinSeconds value, which determines the maximum length
 	// of time that a streaming session can run. A streaming session might end earlier
@@ -17631,12 +17556,6 @@ func (s *Session) SetFleetName(v string) *Session {
 // SetId sets the Id field's value.
 func (s *Session) SetId(v string) *Session {
 	s.Id = &v
-	return s
-}
-
-// SetInstanceId sets the InstanceId field's value.
-func (s *Session) SetInstanceId(v string) *Session {
-	s.InstanceId = &v
 	return s
 }
 
@@ -19449,10 +19368,6 @@ type UpdateFleetInput struct {
 	// The maximum number of concurrent sessions for a fleet.
 	MaxConcurrentSessions *int64 `type:"integer"`
 
-	// The maximum number of user sessions on an instance. This only applies to
-	// multi-session fleets.
-	MaxSessionsPerInstance *int64 `type:"integer"`
-
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
 	// before this limit is reached, they are prompted to save any open documents
@@ -19463,7 +19378,7 @@ type UpdateFleetInput struct {
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The platform of the fleet. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported
 	// for Elastic fleets.
@@ -19518,6 +19433,14 @@ func (s *UpdateFleetInput) Validate() error {
 	}
 	if s.InstanceType != nil && len(*s.InstanceType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceType", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ComputeCapacity != nil {
+		if err := s.ComputeCapacity.Validate(); err != nil {
+			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SessionScriptS3Location != nil {
 		if err := s.SessionScriptS3Location.Validate(); err != nil {
@@ -19612,12 +19535,6 @@ func (s *UpdateFleetInput) SetInstanceType(v string) *UpdateFleetInput {
 // SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
 func (s *UpdateFleetInput) SetMaxConcurrentSessions(v int64) *UpdateFleetInput {
 	s.MaxConcurrentSessions = &v
-	return s
-}
-
-// SetMaxSessionsPerInstance sets the MaxSessionsPerInstance field's value.
-func (s *UpdateFleetInput) SetMaxSessionsPerInstance(v int64) *UpdateFleetInput {
-	s.MaxSessionsPerInstance = &v
 	return s
 }
 
@@ -20703,9 +20620,6 @@ const (
 
 	// FleetAttributeSessionScriptS3Location is a FleetAttribute enum value
 	FleetAttributeSessionScriptS3Location = "SESSION_SCRIPT_S3_LOCATION"
-
-	// FleetAttributeMaxSessionsPerInstance is a FleetAttribute enum value
-	FleetAttributeMaxSessionsPerInstance = "MAX_SESSIONS_PER_INSTANCE"
 )
 
 // FleetAttribute_Values returns all elements of the FleetAttribute enum
@@ -20717,7 +20631,6 @@ func FleetAttribute_Values() []string {
 		FleetAttributeIamRoleArn,
 		FleetAttributeUsbDeviceFilterStrings,
 		FleetAttributeSessionScriptS3Location,
-		FleetAttributeMaxSessionsPerInstance,
 	}
 }
 

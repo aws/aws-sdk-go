@@ -3241,10 +3241,6 @@ func (c *DataSync) GenerateRecommendationsRequest(input *GenerateRecommendations
 // (https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeStorageSystemResources.html)
 // operation.
 //
-// If your discovery job completes successfully (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#discovery-job-statuses-table),
-// you don't need to use this operation. DataSync Discovery generates the recommendations
-// for you automatically.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14700,9 +14696,7 @@ type ReportOverrides struct {
 	Transferred *ReportOverride `type:"structure"`
 
 	// Specifies the level of reporting for the files, objects, and directories
-	// that DataSync attempted to verify at the end of your transfer. This only
-	// applies if you configure your task (https://docs.aws.amazon.com/datasync/latest/userguide/configure-data-verification-options.html)
-	// to verify data during and after the transfer (which DataSync does by default).
+	// that DataSync attempted to verify at the end of your transfer.
 	Verified *ReportOverride `type:"structure"`
 }
 
