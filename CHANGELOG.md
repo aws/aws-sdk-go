@@ -1,3 +1,14 @@
+Release v1.45.11 (2023-09-15)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and waiters
+  * This release introduces app block builder, allowing customers to provision a resource to package applications into an app block
+* `service/connect`: Updates service API
+* `service/datasync`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release introduces Skip Model Validation for Model Packages
+
 Release v1.45.10 (2023-09-14)
 ===
 
