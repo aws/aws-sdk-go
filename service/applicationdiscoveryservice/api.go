@@ -2834,7 +2834,7 @@ func (s *AgentInfo) SetVersion(v string) *AgentInfo {
 
 // Network details about the host where the agent/collector resides.
 type AgentNetworkInfo struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The IP address for the host where the agent/collector resides.
 	IpAddress *string `locationName:"ipAddress" type:"string"`

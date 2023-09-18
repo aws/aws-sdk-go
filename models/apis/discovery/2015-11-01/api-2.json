@@ -473,7 +473,8 @@
       "members":{
         "ipAddress":{"shape":"String"},
         "macAddress":{"shape":"String"}
-      }
+      },
+      "sensitive":true
     },
     "AgentNetworkInfoList":{
       "type":"list",
