@@ -25,7 +25,8 @@
         {"shape":"EntityStateException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -202,7 +203,8 @@
         {"shape":"NameAvailabilityException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"},
-        {"shape":"ReservedNameException"}
+        {"shape":"ReservedNameException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -392,7 +394,8 @@
         {"shape":"EntityStateException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -480,6 +483,22 @@
       ],
       "idempotent":true
     },
+    "DescribeEntity":{
+      "name":"DescribeEntity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEntityRequest"},
+      "output":{"shape":"DescribeEntityResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "DescribeGroup":{
       "name":"DescribeGroup",
       "http":{
@@ -552,7 +571,8 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -585,7 +605,8 @@
         {"shape":"EntityStateException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -698,6 +719,7 @@
       "input":{"shape":"GetMailboxDetailsRequest"},
       "output":{"shape":"GetMailboxDetailsResponse"},
       "errors":[
+        {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"},
         {"shape":"EntityNotFoundException"}
@@ -807,6 +829,23 @@
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
+    "ListGroupsForEntity":{
+      "name":"ListGroupsForEntity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListGroupsForEntityRequest"},
+      "output":{"shape":"ListGroupsForEntityResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"InvalidParameterException"}
       ],
       "idempotent":true
     },
@@ -925,7 +964,8 @@
         {"shape":"EntityStateException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -940,7 +980,8 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"}
       ],
       "idempotent":true
     },
@@ -1154,6 +1195,7 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
+        {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyTagsException"},
         {"shape":"OrganizationStateException"}
@@ -1215,6 +1257,24 @@
         {"shape":"MailDomainStateException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateGroup":{
+      "name":"UpdateGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateGroupRequest"},
+      "output":{"shape":"UpdateGroupResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"},
         {"shape":"InvalidParameterException"}
       ],
       "idempotent":true
@@ -1311,7 +1371,29 @@
         {"shape":"MailDomainStateException"},
         {"shape":"NameAvailabilityException"},
         {"shape":"OrganizationNotFoundException"},
-        {"shape":"OrganizationStateException"}
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateUser":{
+      "name":"UpdateUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateUserRequest"},
+      "output":{"shape":"UpdateUserResponse"},
+      "errors":[
+        {"shape":"DirectoryServiceAuthenticationFailedException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"EntityStateException"}
       ],
       "idempotent":true
     }
@@ -1392,7 +1474,8 @@
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
-      "min":1
+      "min":1,
+      "pattern":"arn:aws:workmail:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}"
     },
     "AssociateDelegateToResourceRequest":{
       "type":"structure",
@@ -1403,8 +1486,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"ResourceId"},
-        "EntityId":{"shape":"WorkMailIdentifier"}
+        "ResourceId":{"shape":"EntityIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"}
       }
     },
     "AssociateDelegateToResourceResponse":{
@@ -1421,8 +1504,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "GroupId":{"shape":"WorkMailIdentifier"},
-        "MemberId":{"shape":"WorkMailIdentifier"}
+        "GroupId":{"shape":"EntityIdentifier"},
+        "MemberId":{"shape":"EntityIdentifier"}
       }
     },
     "AssociateMemberToGroupResponse":{
@@ -1549,7 +1632,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "Name":{"shape":"GroupName"}
+        "Name":{"shape":"GroupName"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"}
       }
     },
     "CreateGroupResponse":{
@@ -1647,7 +1731,9 @@
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "Name":{"shape":"ResourceName"},
-        "Type":{"shape":"ResourceType"}
+        "Type":{"shape":"ResourceType"},
+        "Description":{"shape":"ResourceDescription"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"}
       }
     },
     "CreateResourceResponse":{
@@ -1661,14 +1747,17 @@
       "required":[
         "OrganizationId",
         "Name",
-        "DisplayName",
-        "Password"
+        "DisplayName"
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "Name":{"shape":"UserName"},
-        "DisplayName":{"shape":"String"},
-        "Password":{"shape":"Password"}
+        "DisplayName":{"shape":"UserAttribute"},
+        "Password":{"shape":"Password"},
+        "Role":{"shape":"UserRole"},
+        "FirstName":{"shape":"UserAttribute"},
+        "LastName":{"shape":"UserAttribute"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"}
       }
     },
     "CreateUserResponse":{
@@ -1758,7 +1847,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "GroupId":{"shape":"WorkMailIdentifier"}
+        "GroupId":{"shape":"EntityIdentifier"}
       }
     },
     "DeleteGroupResponse":{
@@ -1791,8 +1880,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
-        "GranteeId":{"shape":"WorkMailIdentifier"}
+        "EntityId":{"shape":"EntityIdentifier"},
+        "GranteeId":{"shape":"EntityIdentifier"}
       }
     },
     "DeleteMailboxPermissionsResponse":{
@@ -1846,7 +1935,8 @@
           "idempotencyToken":true
         },
         "OrganizationId":{"shape":"OrganizationId"},
-        "DeleteDirectory":{"shape":"Boolean"}
+        "DeleteDirectory":{"shape":"Boolean"},
+        "ForceDelete":{"shape":"Boolean"}
       }
     },
     "DeleteOrganizationResponse":{
@@ -1864,7 +1954,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"ResourceId"}
+        "ResourceId":{"shape":"EntityIdentifier"}
       }
     },
     "DeleteResourceResponse":{
@@ -1896,7 +1986,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "UserId":{"shape":"WorkMailIdentifier"}
+        "UserId":{"shape":"EntityIdentifier"}
       }
     },
     "DeleteUserResponse":{
@@ -1912,7 +2002,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"}
+        "EntityId":{"shape":"EntityIdentifier"}
       }
     },
     "DeregisterFromWorkMailResponse":{
@@ -1950,6 +2040,25 @@
         "LogGroupArn":{"shape":"LogGroupArn"}
       }
     },
+    "DescribeEntityRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Email"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Email":{"shape":"EmailAddress"}
+      }
+    },
+    "DescribeEntityResponse":{
+      "type":"structure",
+      "members":{
+        "EntityId":{"shape":"WorkMailIdentifier"},
+        "Name":{"shape":"String"},
+        "Type":{"shape":"EntityType"}
+      }
+    },
     "DescribeGroupRequest":{
       "type":"structure",
       "required":[
@@ -1958,7 +2067,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "GroupId":{"shape":"WorkMailIdentifier"}
+        "GroupId":{"shape":"EntityIdentifier"}
       }
     },
     "DescribeGroupResponse":{
@@ -1969,7 +2078,8 @@
         "Email":{"shape":"EmailAddress"},
         "State":{"shape":"EntityState"},
         "EnabledDate":{"shape":"Timestamp"},
-        "DisabledDate":{"shape":"Timestamp"}
+        "DisabledDate":{"shape":"Timestamp"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"}
       }
     },
     "DescribeInboundDmarcSettingsRequest":{
@@ -2031,7 +2141,9 @@
         "DefaultMailDomain":{"shape":"String"},
         "CompletedDate":{"shape":"Timestamp"},
         "ErrorMessage":{"shape":"String"},
-        "ARN":{"shape":"AmazonResourceName"}
+        "ARN":{"shape":"AmazonResourceName"},
+        "MigrationAdmin":{"shape":"WorkMailIdentifier"},
+        "InteroperabilityEnabled":{"shape":"Boolean"}
       }
     },
     "DescribeResourceRequest":{
@@ -2042,7 +2154,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"ResourceId"}
+        "ResourceId":{"shape":"EntityIdentifier"}
       }
     },
     "DescribeResourceResponse":{
@@ -2055,7 +2167,9 @@
         "BookingOptions":{"shape":"BookingOptions"},
         "State":{"shape":"EntityState"},
         "EnabledDate":{"shape":"Timestamp"},
-        "DisabledDate":{"shape":"Timestamp"}
+        "DisabledDate":{"shape":"Timestamp"},
+        "Description":{"shape":"ResourceDescription"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"}
       }
     },
     "DescribeUserRequest":{
@@ -2066,7 +2180,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "UserId":{"shape":"WorkMailIdentifier"}
+        "UserId":{"shape":"EntityIdentifier"}
       }
     },
     "DescribeUserResponse":{
@@ -2075,11 +2189,26 @@
         "UserId":{"shape":"WorkMailIdentifier"},
         "Name":{"shape":"UserName"},
         "Email":{"shape":"EmailAddress"},
-        "DisplayName":{"shape":"String"},
+        "DisplayName":{"shape":"UserAttribute"},
         "State":{"shape":"EntityState"},
         "UserRole":{"shape":"UserRole"},
         "EnabledDate":{"shape":"Timestamp"},
-        "DisabledDate":{"shape":"Timestamp"}
+        "DisabledDate":{"shape":"Timestamp"},
+        "MailboxProvisionedDate":{"shape":"Timestamp"},
+        "MailboxDeprovisionedDate":{"shape":"Timestamp"},
+        "FirstName":{"shape":"UserAttribute"},
+        "LastName":{"shape":"UserAttribute"},
+        "HiddenFromGlobalAddressList":{"shape":"Boolean"},
+        "Initials":{"shape":"UserAttribute"},
+        "Telephone":{"shape":"UserAttribute"},
+        "Street":{"shape":"UserAttribute"},
+        "JobTitle":{"shape":"UserAttribute"},
+        "City":{"shape":"UserAttribute"},
+        "Company":{"shape":"UserAttribute"},
+        "ZipCode":{"shape":"UserAttribute"},
+        "Department":{"shape":"UserAttribute"},
+        "Country":{"shape":"UserAttribute"},
+        "Office":{"shape":"UserAttribute"}
       }
     },
     "Description":{
@@ -2178,8 +2307,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"ResourceId"},
-        "EntityId":{"shape":"WorkMailIdentifier"}
+        "ResourceId":{"shape":"EntityIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"}
       }
     },
     "DisassociateDelegateFromResourceResponse":{
@@ -2196,8 +2325,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "GroupId":{"shape":"WorkMailIdentifier"},
-        "MemberId":{"shape":"WorkMailIdentifier"}
+        "GroupId":{"shape":"EntityIdentifier"},
+        "MemberId":{"shape":"EntityIdentifier"}
       }
     },
     "DisassociateMemberFromGroupResponse":{
@@ -2227,6 +2356,7 @@
     },
     "Domain":{
       "type":"structure",
+      "required":["DomainName"],
       "members":{
         "DomainName":{"shape":"DomainName"},
         "HostedZoneId":{"shape":"HostedZoneId"}
@@ -2236,7 +2366,7 @@
       "type":"string",
       "max":255,
       "min":3,
-      "pattern":"[a-zA-Z0-9.-]+\\.[a-zA-Z-]{2,}"
+      "pattern":"[a-zA-Z0-9.-]+"
     },
     "Domains":{
       "type":"list",
@@ -2291,6 +2421,14 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "EntityType":{
+      "type":"string",
+      "enum":[
+        "GROUP",
+        "USER",
+        "RESOURCE"
+      ]
     },
     "EwsAvailabilityProvider":{
       "type":"structure",
@@ -2451,7 +2589,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "UserId":{"shape":"WorkMailIdentifier"}
+        "UserId":{"shape":"EntityIdentifier"}
       }
     },
     "GetMailboxDetailsResponse":{
@@ -2514,6 +2652,17 @@
         "DisabledDate":{"shape":"Timestamp"}
       }
     },
+    "GroupIdentifier":{
+      "type":"structure",
+      "members":{
+        "GroupId":{"shape":"WorkMailIdentifier"},
+        "GroupName":{"shape":"GroupName"}
+      }
+    },
+    "GroupIdentifiers":{
+      "type":"list",
+      "member":{"shape":"GroupIdentifier"}
+    },
     "GroupName":{
       "type":"string",
       "max":256,
@@ -2528,7 +2677,7 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"[\\S\\s]*"
+      "pattern":"[^/\\\\]*"
     },
     "IdempotencyClientToken":{
       "type":"string",
@@ -2774,7 +2923,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "GroupId":{"shape":"WorkMailIdentifier"},
+        "GroupId":{"shape":"EntityIdentifier"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"}
       }
@@ -2786,13 +2935,49 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListGroupsFilters":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"String"},
+        "PrimaryEmailPrefix":{"shape":"String"},
+        "State":{"shape":"EntityState"}
+      }
+    },
+    "ListGroupsForEntityFilters":{
+      "type":"structure",
+      "members":{
+        "GroupNamePrefix":{"shape":"String"}
+      }
+    },
+    "ListGroupsForEntityRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "EntityId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "EntityId":{"shape":"EntityIdentifier"},
+        "Filters":{"shape":"ListGroupsForEntityFilters"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListGroupsForEntityResponse":{
+      "type":"structure",
+      "members":{
+        "Groups":{"shape":"GroupIdentifiers"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListGroupsRequest":{
       "type":"structure",
       "required":["OrganizationId"],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"ListGroupsFilters"}
       }
     },
     "ListGroupsResponse":{
@@ -2858,7 +3043,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"}
       }
@@ -2923,7 +3108,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"WorkMailIdentifier"},
+        "ResourceId":{"shape":"EntityIdentifier"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"}
       }
@@ -2935,13 +3120,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListResourcesFilters":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"String"},
+        "PrimaryEmailPrefix":{"shape":"String"},
+        "State":{"shape":"EntityState"}
+      }
+    },
     "ListResourcesRequest":{
       "type":"structure",
       "required":["OrganizationId"],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"ListResourcesFilters"}
       }
     },
     "ListResourcesResponse":{
@@ -2964,13 +3158,23 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ListUsersFilters":{
+      "type":"structure",
+      "members":{
+        "UsernamePrefix":{"shape":"String"},
+        "DisplayNamePrefix":{"shape":"UserAttribute"},
+        "PrimaryEmailPrefix":{"shape":"String"},
+        "State":{"shape":"EntityState"}
+      }
+    },
     "ListUsersRequest":{
       "type":"structure",
       "required":["OrganizationId"],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"ListUsersFilters"}
       }
     },
     "ListUsersResponse":{
@@ -3175,6 +3379,11 @@
       },
       "exception":true
     },
+    "NewResourceDescription":{
+      "type":"string",
+      "max":64,
+      "min":0
+    },
     "NextToken":{
       "type":"string",
       "max":1024,
@@ -3339,8 +3548,8 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
-        "GranteeId":{"shape":"WorkMailIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"},
+        "GranteeId":{"shape":"EntityIdentifier"},
         "PermissionValues":{"shape":"PermissionValues"}
       }
     },
@@ -3426,7 +3635,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"},
         "Email":{"shape":"EmailAddress"}
       }
     },
@@ -3469,12 +3678,18 @@
         "Type":{"shape":"ResourceType"},
         "State":{"shape":"EntityState"},
         "EnabledDate":{"shape":"Timestamp"},
-        "DisabledDate":{"shape":"Timestamp"}
+        "DisabledDate":{"shape":"Timestamp"},
+        "Description":{"shape":"ResourceDescription"}
       }
     },
     "ResourceDelegates":{
       "type":"list",
       "member":{"shape":"Delegate"}
+    },
+    "ResourceDescription":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "ResourceId":{
       "type":"string",
@@ -3523,7 +3738,8 @@
     "RoleArn":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"arn:aws:iam:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}"
     },
     "S3BucketName":{
       "type":"string",
@@ -3560,7 +3776,7 @@
           "idempotencyToken":true
         },
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"},
         "Description":{"shape":"Description"},
         "RoleArn":{"shape":"RoleArn"},
         "KmsKeyArn":{"shape":"KmsKeyArn"},
@@ -3715,6 +3931,23 @@
       "members":{
       }
     },
+    "UpdateGroupRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "GroupId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "GroupId":{"shape":"EntityIdentifier"},
+        "HiddenFromGlobalAddressList":{"shape":"BooleanObject"}
+      }
+    },
+    "UpdateGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateImpersonationRoleRequest":{
       "type":"structure",
       "required":[
@@ -3747,7 +3980,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "UserId":{"shape":"WorkMailIdentifier"},
+        "UserId":{"shape":"EntityIdentifier"},
         "MailboxQuota":{"shape":"MailboxQuota"}
       }
     },
@@ -3794,7 +4027,7 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "EntityId":{"shape":"WorkMailIdentifier"},
+        "EntityId":{"shape":"EntityIdentifier"},
         "Email":{"shape":"EmailAddress"}
       }
     },
@@ -3811,12 +4044,46 @@
       ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
-        "ResourceId":{"shape":"ResourceId"},
+        "ResourceId":{"shape":"EntityIdentifier"},
         "Name":{"shape":"ResourceName"},
-        "BookingOptions":{"shape":"BookingOptions"}
+        "BookingOptions":{"shape":"BookingOptions"},
+        "Description":{"shape":"NewResourceDescription"},
+        "Type":{"shape":"ResourceType"},
+        "HiddenFromGlobalAddressList":{"shape":"BooleanObject"}
       }
     },
     "UpdateResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateUserRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "UserId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "UserId":{"shape":"EntityIdentifier"},
+        "Role":{"shape":"UserRole"},
+        "DisplayName":{"shape":"UserAttribute"},
+        "FirstName":{"shape":"UserAttribute"},
+        "LastName":{"shape":"UserAttribute"},
+        "HiddenFromGlobalAddressList":{"shape":"BooleanObject"},
+        "Initials":{"shape":"UserAttribute"},
+        "Telephone":{"shape":"UserAttribute"},
+        "Street":{"shape":"UserAttribute"},
+        "JobTitle":{"shape":"UserAttribute"},
+        "City":{"shape":"UserAttribute"},
+        "Company":{"shape":"UserAttribute"},
+        "ZipCode":{"shape":"UserAttribute"},
+        "Department":{"shape":"UserAttribute"},
+        "Country":{"shape":"UserAttribute"},
+        "Office":{"shape":"UserAttribute"}
+      }
+    },
+    "UpdateUserResponse":{
       "type":"structure",
       "members":{
       }
@@ -3839,6 +4106,11 @@
         "DisabledDate":{"shape":"Timestamp"}
       }
     },
+    "UserAttribute":{
+      "type":"string",
+      "max":256,
+      "sensitive":true
+    },
     "UserIdList":{
       "type":"list",
       "member":{"shape":"WorkMailIdentifier"},
@@ -3856,7 +4128,8 @@
       "enum":[
         "USER",
         "RESOURCE",
-        "SYSTEM_USER"
+        "SYSTEM_USER",
+        "REMOTE_USER"
       ]
     },
     "Users":{
@@ -3867,7 +4140,7 @@
       "type":"string",
       "max":209,
       "min":3,
-      "pattern":"[a-zA-Z0-9.-]+\\.[a-zA-Z-]{2,}"
+      "pattern":"[a-zA-Z0-9.-]+"
     },
     "WorkMailIdentifier":{
       "type":"string",

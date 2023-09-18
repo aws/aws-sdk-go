@@ -30,6 +30,7 @@
     "DeregisterFromWorkMail": "<p>Mark a user, group, or resource as no longer used in WorkMail. This action disassociates the mailbox and schedules it for clean-up. WorkMail keeps mailboxes for 30 days before they are permanently removed. The functionality in the console is <i>Disable</i>.</p>",
     "DeregisterMailDomain": "<p>Removes a domain from WorkMail, stops email routing to WorkMail, and removes the authorization allowing WorkMail use. SES keeps the domain because other applications may use it. You must first remove any email address used by WorkMail entities before you remove the domain.</p>",
     "DescribeEmailMonitoringConfiguration": "<p>Describes the current email monitoring configuration for a specified organization.</p>",
+    "DescribeEntity": "<p>Returns basic details about an entity in WorkMail. </p>",
     "DescribeGroup": "<p>Returns the data available for the group.</p>",
     "DescribeInboundDmarcSettings": "<p>Lists the settings in a DMARC policy for a specified organization.</p>",
     "DescribeMailboxExportJob": "<p>Describes the current status of a mailbox export job.</p>",
@@ -51,6 +52,7 @@
     "ListAvailabilityConfigurations": "<p>List all the <code>AvailabilityConfiguration</code>'s for the given WorkMail organization.</p>",
     "ListGroupMembers": "<p>Returns an overview of the members of a group. Users and groups can be members of a group.</p>",
     "ListGroups": "<p>Returns summaries of the organization's groups.</p>",
+    "ListGroupsForEntity": "<p>Returns all the groups to which an entity belongs.</p>",
     "ListImpersonationRoles": "<p>Lists all the impersonation roles for the given WorkMail organization.</p>",
     "ListMailDomains": "<p>Lists the mail domains in a given WorkMail organization.</p>",
     "ListMailboxExportJobs": "<p>Lists the mailbox export jobs started for the specified organization within the last seven days.</p>",
@@ -77,11 +79,13 @@
     "UntagResource": "<p>Untags the specified tags from the specified WorkMail organization resource.</p>",
     "UpdateAvailabilityConfiguration": "<p>Updates an existing <code>AvailabilityConfiguration</code> for the given WorkMail organization and domain.</p>",
     "UpdateDefaultMailDomain": "<p>Updates the default mail domain for an organization. The default mail domain is used by the WorkMail AWS Console to suggest an email address when enabling a mail user. You can only have one default domain.</p>",
+    "UpdateGroup": "<p>Updates attibutes in a group.</p>",
     "UpdateImpersonationRole": "<p>Updates an impersonation role for the given WorkMail organization.</p>",
     "UpdateMailboxQuota": "<p>Updates a user's current mailbox quota for a specified organization and user.</p>",
     "UpdateMobileDeviceAccessRule": "<p>Updates a mobile device access rule for the specified WorkMail organization.</p>",
     "UpdatePrimaryEmailAddress": "<p>Updates the primary email for a user, group, or resource. The current email is moved into the list of aliases (or swapped between an existing alias and the current primary email), and the email provided in the input is promoted as the primary.</p>",
-    "UpdateResource": "<p>Updates data for the resource. To have the latest information, it must be preceded by a <a>DescribeResource</a> call. The dataset in the request should be the one expected when performing another <code>DescribeResource</code> call.</p>"
+    "UpdateResource": "<p>Updates data for the resource. To have the latest information, it must be preceded by a <a>DescribeResource</a> call. The dataset in the request should be the one expected when performing another <code>DescribeResource</code> call.</p>",
+    "UpdateUser": "<p>Updates data for the user. To have the latest information, it must be preceded by a <a>DescribeUser</a> call. The dataset in the request should be the one expected when performing another <code>DescribeUser</code> call.</p>"
   },
   "shapes": {
     "AccessControlRule": {
@@ -225,9 +229,17 @@
         "BookingOptions$AutoAcceptRequests": "<p>The resource's ability to automatically reply to requests. If disabled, delegates must be associated to the resource.</p>",
         "BookingOptions$AutoDeclineRecurringRequests": "<p>The resource's ability to automatically decline any recurring requests.</p>",
         "BookingOptions$AutoDeclineConflictingRequests": "<p>The resource's ability to automatically decline any conflicting requests.</p>",
+        "CreateGroupRequest$HiddenFromGlobalAddressList": "<p>If this parameter is enabled, the group will be hidden from the address book.</p>",
         "CreateOrganizationRequest$EnableInteroperability": "<p>When <code>true</code>, allows organization interoperability between WorkMail and Microsoft Exchange. If <code>true</code>, you must include a AD Connector directory ID in the request.</p>",
+        "CreateResourceRequest$HiddenFromGlobalAddressList": "<p>If this parameter is enabled, the resource will be hidden from the address book.</p>",
+        "CreateUserRequest$HiddenFromGlobalAddressList": "<p>If this parameter is enabled, the user will be hidden from the address book.</p>",
         "DeleteOrganizationRequest$DeleteDirectory": "<p>If true, deletes the AWS Directory Service directory associated with the organization.</p>",
+        "DeleteOrganizationRequest$ForceDelete": "<p>Deletes a WorkMail organization even if the organization has enabled users.</p>",
+        "DescribeGroupResponse$HiddenFromGlobalAddressList": "<p>If the value is set to <i>true</i>, the group is hidden from the address book.</p>",
         "DescribeInboundDmarcSettingsResponse$Enforced": "<p>Lists the enforcement setting of the applied policy.</p>",
+        "DescribeOrganizationResponse$InteroperabilityEnabled": "<p>Indicates if interoperability is enabled for this organization.</p>",
+        "DescribeResourceResponse$HiddenFromGlobalAddressList": "<p>If enabled, the resource is hidden from the global address list.</p>",
+        "DescribeUserResponse$HiddenFromGlobalAddressList": "<p>If enabled, the user is hidden from the global address list.</p>",
         "GetMailDomainResponse$IsTestDomain": "<p>Specifies whether the domain is a test domain provided by WorkMail, or a custom domain.</p>",
         "GetMailDomainResponse$IsDefault": "<p>Specifies whether the domain is the default domain for your organization.</p>",
         "MailDomainSummary$DefaultDomain": "<p>Whether the domain is default or not.</p>",
@@ -237,7 +249,10 @@
     "BooleanObject": {
       "base": null,
       "refs": {
-        "PutInboundDmarcSettingsRequest$Enforced": "<p>Enforces or suspends a policy after it's applied.</p>"
+        "PutInboundDmarcSettingsRequest$Enforced": "<p>Enforces or suspends a policy after it's applied.</p>",
+        "UpdateGroupRequest$HiddenFromGlobalAddressList": "<p>If enabled, the group is hidden from the global address list.</p>",
+        "UpdateResourceRequest$HiddenFromGlobalAddressList": "<p>If enabled, the resource is hidden from the global address list.</p>",
+        "UpdateUserRequest$HiddenFromGlobalAddressList": "<p>If enabled, the user is hidden from the global address list.</p>"
       }
     },
     "CancelMailboxExportJobRequest": {
@@ -496,6 +511,16 @@
       "refs": {
       }
     },
+    "DescribeEntityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEntityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeGroupRequest": {
       "base": null,
       "refs": {
@@ -738,6 +763,7 @@
         "Aliases$member": null,
         "CreateAliasRequest$Alias": "<p>The alias to add to the member set.</p>",
         "DeleteAliasRequest$Alias": "<p>The aliases to be removed from the user's set of aliases. Duplicate entries in the list are collapsed into single entries (the list is transformed into a set).</p>",
+        "DescribeEntityRequest$Email": "<p>The email under which the entity exists.</p>",
         "DescribeGroupResponse$Email": "<p>The email of the described group.</p>",
         "DescribeResourceResponse$Email": "<p>The email of the described resource.</p>",
         "DescribeUserResponse$Email": "<p>The email of the user.</p>",
@@ -761,12 +787,43 @@
     "EntityIdentifier": {
       "base": null,
       "refs": {
+        "AssociateDelegateToResourceRequest$ResourceId": "<p>The resource for which members (users or groups) are associated.</p> <p>The identifier can accept <i>ResourceId</i>, <i>Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: resource@domain.tld</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "AssociateDelegateToResourceRequest$EntityId": "<p>The member (user or group) to associate to the resource.</p> <p>The entity ID can accept <i>UserId or GroupID</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity: entity</p> </li> </ul>",
+        "AssociateMemberToGroupRequest$GroupId": "<p>The group to which the member (user or group) is associated.</p> <p>The identifier can accept <i>GroupId</i>, <i>Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: group@domain.tld</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "AssociateMemberToGroupRequest$MemberId": "<p>The member (user or group) to associate to the group.</p> <p>The member ID can accept <i>UserID or GroupId</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Member: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: member@domain.tld</p> </li> <li> <p>Member name: member</p> </li> </ul>",
+        "DeleteGroupRequest$GroupId": "<p>The identifier of the group to be deleted.</p> <p>The identifier can be the <i>GroupId</i>, or <i>Groupname</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "DeleteMailboxPermissionsRequest$EntityId": "<p>The identifier of the entity that owns the mailbox.</p> <p>The identifier can be <i>UserId or Group Id</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "DeleteMailboxPermissionsRequest$GranteeId": "<p>The identifier of the entity for which to delete granted permissions.</p> <p>The identifier can be <i>UserId, ResourceID, or Group Id</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Grantee ID: 12345678-1234-1234-1234-123456789012,r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: grantee@domain.tld</p> </li> <li> <p>Grantee name: grantee</p> </li> </ul>",
         "DeleteMobileDeviceAccessOverrideRequest$UserId": "<p>The WorkMail user for which you want to delete the override. Accepts the following types of user identities:</p> <ul> <li> <p>User ID: <code>12345678-1234-1234-1234-123456789012</code> or <code>S-1-1-12-1234567890-123456789-123456789-1234</code> </p> </li> <li> <p>Email address: <code>user@domain.tld</code> </p> </li> <li> <p>User name: <code>user</code> </p> </li> </ul>",
+        "DeleteResourceRequest$ResourceId": "<p>The identifier of the resource to be deleted.</p> <p>The identifier can accept <i>ResourceId</i>, or <i>Resourcename</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "DeleteUserRequest$UserId": "<p>The identifier of the user to be deleted.</p> <p>The identifier can be the <i>UserId</i> or <i>Username</i>. The following identity formats are available:</p> <ul> <li> <p>User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>User name: user</p> </li> </ul>",
+        "DeregisterFromWorkMailRequest$EntityId": "<p>The identifier for the member to be updated.</p> <p>The identifier can be <i>UserId, ResourceId, or Group Id</i>, <i>Username, Resourcename, or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "DescribeGroupRequest$GroupId": "<p>The identifier for the group to be described.</p> <p>The identifier can accept <i>GroupId</i>, <i>Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: group@domain.tld</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "DescribeResourceRequest$ResourceId": "<p>The identifier of the resource to be described.</p> <p>The identifier can accept <i>ResourceId</i>, <i>Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: resource@domain.tld</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "DescribeUserRequest$UserId": "<p>The identifier for the user to be described.</p> <p>The identifier can be the <i>UserId</i>, <i>Username</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: user@domain.tld</p> </li> <li> <p>User name: user</p> </li> </ul> <p/>",
+        "DisassociateDelegateFromResourceRequest$ResourceId": "<p>The identifier of the resource from which delegates' set members are removed. </p> <p>The identifier can accept <i>ResourceId</i>, <i>Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: resource@domain.tld</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "DisassociateDelegateFromResourceRequest$EntityId": "<p>The identifier for the member (user, group) to be removed from the resource's delegates.</p> <p>The entity ID can accept <i>UserId or GroupID</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity: entity</p> </li> </ul>",
+        "DisassociateMemberFromGroupRequest$GroupId": "<p>The identifier for the group from which members are removed.</p> <p>The identifier can accept <i>GroupId</i>, <i>Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: group@domain.tld</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "DisassociateMemberFromGroupRequest$MemberId": "<p>The identifier for the member to be removed from the group.</p> <p>The member ID can accept <i>UserID or GroupId</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Member ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: member@domain.tld</p> </li> <li> <p>Member name: member</p> </li> </ul>",
         "GetImpersonationRoleEffectRequest$TargetUser": "<p>The WorkMail organization user chosen to test the impersonation role. The following identity formats are available:</p> <ul> <li> <p>User ID: <code>12345678-1234-1234-1234-123456789012</code> or <code>S-1-1-12-1234567890-123456789-123456789-1234</code> </p> </li> <li> <p>Email address: <code>user@domain.tld</code> </p> </li> <li> <p>User name: <code>user</code> </p> </li> </ul>",
+        "GetMailboxDetailsRequest$UserId": "<p>The identifier for the user whose mailbox details are being requested.</p> <p>The identifier can be the <i>UserId</i>, <i>Username</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: user@domain.tld</p> </li> <li> <p>User name: user</p> </li> </ul>",
         "GetMobileDeviceAccessOverrideRequest$UserId": "<p>Identifies the WorkMail user for the override. Accepts the following types of user identities: </p> <ul> <li> <p>User ID: <code>12345678-1234-1234-1234-123456789012</code> or <code>S-1-1-12-1234567890-123456789-123456789-1234</code> </p> </li> <li> <p>Email address: <code>user@domain.tld</code> </p> </li> <li> <p>User name: <code>user</code> </p> </li> </ul>",
+        "ListGroupMembersRequest$GroupId": "<p>The identifier for the group to which the members (users or groups) are associated.</p> <p>The identifier can accept <i>GroupId</i>, <i>Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: group@domain.tld</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "ListGroupsForEntityRequest$EntityId": "<p>The identifier for the entity.</p> <p>The entity ID can accept <i>UserId or GroupID</i>, <i>Username or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "ListMailboxPermissionsRequest$EntityId": "<p>The identifier of the user, or resource for which to list mailbox permissions.</p> <p>The entity ID can accept <i>UserId or ResourceId</i>, <i>Username or Resourcename</i>, or <i>email</i>.</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, or r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
         "ListMobileDeviceAccessOverridesRequest$UserId": "<p>The WorkMail user under which you list the mobile device access overrides. Accepts the following types of user identities:</p> <ul> <li> <p>User ID: <code>12345678-1234-1234-1234-123456789012</code> or <code>S-1-1-12-1234567890-123456789-123456789-1234</code> </p> </li> <li> <p>Email address: <code>user@domain.tld</code> </p> </li> <li> <p>User name: <code>user</code> </p> </li> </ul>",
+        "ListResourceDelegatesRequest$ResourceId": "<p>The identifier for the resource whose delegates are listed.</p> <p>The identifier can accept <i>ResourceId</i>, <i>Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: resource@domain.tld</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "PutMailboxPermissionsRequest$EntityId": "<p>The identifier of the user or resource for which to update mailbox permissions.</p> <p>The identifier can be <i>UserId, ResourceID, or Group Id</i>, <i>Username, Resourcename, or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "PutMailboxPermissionsRequest$GranteeId": "<p>The identifier of the user, group, or resource to which to grant the permissions.</p> <p>The identifier can be <i>UserId, ResourceID, or Group Id</i>, <i>Username, Resourcename, or Groupname</i>, or <i>email</i>.</p> <ul> <li> <p>Grantee ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: grantee@domain.tld</p> </li> <li> <p>Grantee name: grantee</p> </li> </ul>",
         "PutMobileDeviceAccessOverrideRequest$UserId": "<p>The WorkMail user for which you create the override. Accepts the following types of user identities:</p> <ul> <li> <p>User ID: <code>12345678-1234-1234-1234-123456789012</code> or <code>S-1-1-12-1234567890-123456789-123456789-1234</code> </p> </li> <li> <p>Email address: <code>user@domain.tld</code> </p> </li> <li> <p>User name: <code>user</code> </p> </li> </ul>",
-        "TargetUsers$member": null
+        "RegisterToWorkMailRequest$EntityId": "<p>The identifier for the user, group, or resource to be updated.</p> <p>The identifier can accept <i>UserId, ResourceId, or GroupId</i>, or <i>Username, Resourcename, or Groupname</i>. The following identity formats are available:</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "StartMailboxExportJobRequest$EntityId": "<p>The identifier of the user or resource associated with the mailbox.</p> <p>The identifier can accept <i>UserId or ResourceId</i>, <i>Username or Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789 , or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "TargetUsers$member": null,
+        "UpdateGroupRequest$GroupId": "<p>The identifier for the group to be updated.</p> <p>The identifier can accept <i>GroupId</i>, <i>Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: group@domain.tld</p> </li> <li> <p>Group name: group</p> </li> </ul>",
+        "UpdateMailboxQuotaRequest$UserId": "<p>The identifer for the user for whom to update the mailbox quota.</p> <p>The identifier can be the <i>UserId</i>, <i>Username</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: user@domain.tld</p> </li> <li> <p>User name: user</p> </li> </ul>",
+        "UpdatePrimaryEmailAddressRequest$EntityId": "<p>The user, group, or resource to update.</p> <p>The identifier can accept <i>UseriD, ResourceId, or GroupId</i>, <i>Username, Resourcename, or Groupname</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789, or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: entity@domain.tld</p> </li> <li> <p>Entity name: entity</p> </li> </ul>",
+        "UpdateResourceRequest$ResourceId": "<p>The identifier of the resource to be updated.</p> <p>The identifier can accept <i>ResourceId</i>, <i>Resourcename</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>Resource ID: r-0123456789a0123456789b0123456789</p> </li> <li> <p>Email address: resource@domain.tld</p> </li> <li> <p>Resource name: resource</p> </li> </ul>",
+        "UpdateUserRequest$UserId": "<p>The identifier for the user to be updated.</p> <p>The identifier can be the <i>UserId</i>, <i>Username</i>, or <i>email</i>. The following identity formats are available:</p> <ul> <li> <p>User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234</p> </li> <li> <p>Email address: user@domain.tld</p> </li> <li> <p>User name: user</p> </li> </ul>"
       }
     },
     "EntityNotFoundException": {
@@ -781,6 +838,9 @@
         "DescribeResourceResponse$State": "<p>The state of the resource: enabled (registered to WorkMail), disabled (deregistered or never registered to WorkMail), or deleted.</p>",
         "DescribeUserResponse$State": "<p>The state of a user: enabled (registered to WorkMail) or disabled (deregistered or never registered to WorkMail).</p>",
         "Group$State": "<p>The state of the group, which can be ENABLED, DISABLED, or DELETED.</p>",
+        "ListGroupsFilters$State": "<p>Filters only groups with the provided state.</p>",
+        "ListResourcesFilters$State": "<p>Filters only resource with the provided state.</p>",
+        "ListUsersFilters$State": "<p>Filters only users with the provided state.</p>",
         "Member$State": "<p>The state of the member, which can be ENABLED, DISABLED, or DELETED.</p>",
         "Resource$State": "<p>The state of the resource, which can be ENABLED, DISABLED, or DELETED.</p>",
         "User$State": "<p>The state of the user, which can be ENABLED, DISABLED, or DELETED.</p>"
@@ -789,6 +849,12 @@
     "EntityStateException": {
       "base": "<p>You are performing an operation on a user, group, or resource that isn't in the expected state, such as trying to delete an active user.</p>",
       "refs": {
+      }
+    },
+    "EntityType": {
+      "base": null,
+      "refs": {
+        "DescribeEntityResponse$Type": "<p>Entity type.</p>"
       }
     },
     "EwsAvailabilityProvider": {
@@ -917,12 +983,25 @@
         "Groups$member": null
       }
     },
+    "GroupIdentifier": {
+      "base": "<p>The identifier that contains the Group ID and name of a group.</p>",
+      "refs": {
+        "GroupIdentifiers$member": null
+      }
+    },
+    "GroupIdentifiers": {
+      "base": null,
+      "refs": {
+        "ListGroupsForEntityResponse$Groups": "<p>The overview of groups in an organization.</p>"
+      }
+    },
     "GroupName": {
       "base": null,
       "refs": {
         "CreateGroupRequest$Name": "<p>The name of the group.</p>",
         "DescribeGroupResponse$Name": "<p>The name of the described group.</p>",
-        "Group$Name": "<p>The name of the group.</p>"
+        "Group$Name": "<p>The name of the group.</p>",
+        "GroupIdentifier$GroupName": "<p>Group name that matched the group.</p>"
       }
     },
     "Groups": {
@@ -1180,6 +1259,28 @@
       "refs": {
       }
     },
+    "ListGroupsFilters": {
+      "base": "<p> Filtering options for <i>ListGroups</i> operation. This is only used as input to Operation.</p>",
+      "refs": {
+        "ListGroupsRequest$Filters": "<p>Limit the search results based on the filter criteria. Only one filter per request is supported.</p>"
+      }
+    },
+    "ListGroupsForEntityFilters": {
+      "base": "<p> Filtering options for <i>ListGroupsForEntity</i> operation. This is only used as input to Operation.</p>",
+      "refs": {
+        "ListGroupsForEntityRequest$Filters": "<p>Limit the search results based on the filter criteria.</p>"
+      }
+    },
+    "ListGroupsForEntityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListGroupsForEntityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListGroupsRequest": {
       "base": null,
       "refs": {
@@ -1270,6 +1371,12 @@
       "refs": {
       }
     },
+    "ListResourcesFilters": {
+      "base": "<p>Filtering options for <i>ListResources</i> operation. This is only used as input to Operation.</p>",
+      "refs": {
+        "ListResourcesRequest$Filters": "<p>Limit the resource search results based on the filter criteria. You can only use one filter per request.</p>"
+      }
+    },
     "ListResourcesRequest": {
       "base": null,
       "refs": {
@@ -1288,6 +1395,12 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListUsersFilters": {
+      "base": "<p> Filtering options for <i>ListUsers</i> operation. This is only used as input to Operation.</p>",
+      "refs": {
+        "ListUsersRequest$Filters": "<p>Limit the user search results based on the filter criteria. You can only use one filter per request.</p>"
       }
     },
     "ListUsersRequest": {
@@ -1381,6 +1494,7 @@
         "ListAliasesRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListAvailabilityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListGroupMembersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListGroupsForEntityRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListGroupsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListImpersonationRolesRequest$MaxResults": "<p>The maximum number of results returned in a single call.</p>",
         "ListMailDomainsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
@@ -1496,6 +1610,12 @@
       "refs": {
       }
     },
+    "NewResourceDescription": {
+      "base": null,
+      "refs": {
+        "UpdateResourceRequest$Description": "<p>Updates the resource description.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -1505,6 +1625,8 @@
         "ListAvailabilityConfigurationsResponse$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no further results to return.</p>",
         "ListGroupMembersRequest$NextToken": "<p> The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
         "ListGroupMembersResponse$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
+        "ListGroupsForEntityRequest$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
+        "ListGroupsForEntityResponse$NextToken": "<p>The token to use to retrieve the next page of results. This value is `null` when there are no more results to return.</p>",
         "ListGroupsRequest$NextToken": "<p>The token to use to retrieve the next page of results. The first call does not contain any tokens.</p>",
         "ListGroupsResponse$NextToken": "<p>The token to use to retrieve the next page of results. The value is \"null\" when there are no more results to return.</p>",
         "ListImpersonationRolesRequest$NextToken": "<p>The token used to retrieve the next page of results. The first call doesn't require a token.</p>",
@@ -1559,6 +1681,7 @@
         "DeregisterFromWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the WorkMail entity exists.</p>",
         "DeregisterMailDomainRequest$OrganizationId": "<p>The WorkMail organization for which the domain will be deregistered.</p>",
         "DescribeEmailMonitoringConfigurationRequest$OrganizationId": "<p>The ID of the organization for which the email monitoring configuration is described.</p>",
+        "DescribeEntityRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
         "DescribeGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "DescribeInboundDmarcSettingsRequest$OrganizationId": "<p>Lists the ID of the given organization.</p>",
         "DescribeMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
@@ -1580,6 +1703,7 @@
         "ListAliasesRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
         "ListAvailabilityConfigurationsRequest$OrganizationId": "<p>The WorkMail organization for which the <code>AvailabilityConfiguration</code>'s will be listed.</p>",
         "ListGroupMembersRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
+        "ListGroupsForEntityRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
         "ListGroupsRequest$OrganizationId": "<p>The identifier for the organization under which the groups exist.</p>",
         "ListImpersonationRolesRequest$OrganizationId": "<p>The WorkMail organization to which the listed impersonation roles belong.</p>",
         "ListMailDomainsRequest$OrganizationId": "<p>The WorkMail organization for which to list domains.</p>",
@@ -1604,11 +1728,13 @@
         "TestAvailabilityConfigurationRequest$OrganizationId": "<p>The WorkMail organization where the availability provider will be tested.</p>",
         "UpdateAvailabilityConfigurationRequest$OrganizationId": "<p>The WorkMail organization for which the <code>AvailabilityConfiguration</code> will be updated.</p>",
         "UpdateDefaultMailDomainRequest$OrganizationId": "<p>The WorkMail organization for which to list domains.</p>",
+        "UpdateGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "UpdateImpersonationRoleRequest$OrganizationId": "<p>The WorkMail organization that contains the impersonation role to update.</p>",
         "UpdateMailboxQuotaRequest$OrganizationId": "<p>The identifier for the organization that contains the user for whom to update the mailbox quota.</p>",
         "UpdateMobileDeviceAccessRuleRequest$OrganizationId": "<p>The WorkMail organization under which the rule will be updated.</p>",
         "UpdatePrimaryEmailAddressRequest$OrganizationId": "<p>The organization that contains the user, group, or resource to update.</p>",
-        "UpdateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is updated.</p>"
+        "UpdateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is updated.</p>",
+        "UpdateUserRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>"
       }
     },
     "OrganizationName": {
@@ -1800,16 +1926,19 @@
         "ListResourceDelegatesResponse$Delegates": "<p>One page of the resource's delegates.</p>"
       }
     },
+    "ResourceDescription": {
+      "base": null,
+      "refs": {
+        "CreateResourceRequest$Description": "<p>Resource description.</p>",
+        "DescribeResourceResponse$Description": "<p>Description of the resource.</p>",
+        "Resource$Description": "<p>Resource description.</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
-        "AssociateDelegateToResourceRequest$ResourceId": "<p>The resource for which members (users or groups) are associated.</p>",
         "CreateResourceResponse$ResourceId": "<p>The identifier of the new resource.</p>",
-        "DeleteResourceRequest$ResourceId": "<p>The identifier of the resource to be deleted.</p>",
-        "DescribeResourceRequest$ResourceId": "<p>The identifier of the resource to be described.</p>",
-        "DescribeResourceResponse$ResourceId": "<p>The identifier of the described resource.</p>",
-        "DisassociateDelegateFromResourceRequest$ResourceId": "<p>The identifier of the resource from which delegates' set members are removed. </p>",
-        "UpdateResourceRequest$ResourceId": "<p>The identifier of the resource to be updated.</p>"
+        "DescribeResourceResponse$ResourceId": "<p>The identifier of the described resource.</p>"
       }
     },
     "ResourceName": {
@@ -1831,7 +1960,8 @@
       "refs": {
         "CreateResourceRequest$Type": "<p>The type of the new resource. The available types are <code>equipment</code> and <code>room</code>.</p>",
         "DescribeResourceResponse$Type": "<p>The type of the described resource.</p>",
-        "Resource$Type": "<p>The type of the resource: equipment or room.</p>"
+        "Resource$Type": "<p>The type of the resource: equipment or room.</p>",
+        "UpdateResourceRequest$Type": "<p>Updates the resource type.</p>"
       }
     },
     "Resources": {
@@ -1901,15 +2031,14 @@
     "String": {
       "base": null,
       "refs": {
-        "CreateUserRequest$DisplayName": "<p>The display name for the new user.</p>",
         "Delegate$Id": "<p>The identifier for the user or group associated as the resource's delegate.</p>",
         "DeleteOrganizationResponse$State": "<p>The state of the organization.</p>",
+        "DescribeEntityResponse$Name": "<p>Username, GroupName, or ResourceName based on entity type.</p>",
         "DescribeOrganizationResponse$State": "<p>The state of an organization.</p>",
         "DescribeOrganizationResponse$DirectoryId": "<p>The identifier for the directory associated with an WorkMail organization.</p>",
         "DescribeOrganizationResponse$DirectoryType": "<p>The type of directory associated with the WorkMail organization.</p>",
         "DescribeOrganizationResponse$DefaultMailDomain": "<p>The default mail domain associated with the organization.</p>",
         "DescribeOrganizationResponse$ErrorMessage": "<p>(Optional) The error message indicating if unexpected behavior was encountered with regards to the organization.</p>",
-        "DescribeUserResponse$DisplayName": "<p>The display name of the user.</p>",
         "DirectoryInUseException$Message": null,
         "DirectoryServiceAuthenticationFailedException$Message": null,
         "DirectoryUnavailableException$Message": null,
@@ -1926,6 +2055,13 @@
         "InvalidParameterException$Message": null,
         "InvalidPasswordException$Message": null,
         "LimitExceededException$Message": null,
+        "ListGroupsFilters$NamePrefix": "<p>Filters only groups with the provided name prefix.</p>",
+        "ListGroupsFilters$PrimaryEmailPrefix": "<p>Filters only groups with the provided primary email prefix.</p>",
+        "ListGroupsForEntityFilters$GroupNamePrefix": "<p>Filters only group names that start with the provided name prefix.</p>",
+        "ListResourcesFilters$NamePrefix": "<p>Filters only resource that start with the entered name prefix .</p>",
+        "ListResourcesFilters$PrimaryEmailPrefix": "<p>Filters only resource with the provided primary email prefix.</p>",
+        "ListUsersFilters$UsernamePrefix": "<p>Filters only users with the provided username prefix.</p>",
+        "ListUsersFilters$PrimaryEmailPrefix": "<p>Filters only users with the provided email prefix.</p>",
         "MailDomainInUseException$Message": null,
         "MailDomainNotFoundException$Message": null,
         "MailDomainStateException$Message": null,
@@ -2019,6 +2155,8 @@
         "DescribeResourceResponse$DisabledDate": "<p>The date and time when a resource was disabled from WorkMail, in UNIX epoch time format.</p>",
         "DescribeUserResponse$EnabledDate": "<p>The date and time at which the user was enabled for WorkMailusage, in UNIX epoch time format.</p>",
         "DescribeUserResponse$DisabledDate": "<p>The date and time at which the user was disabled for WorkMail usage, in UNIX epoch time format.</p>",
+        "DescribeUserResponse$MailboxProvisionedDate": "<p>The date when the mailbox was created for the user.</p>",
+        "DescribeUserResponse$MailboxDeprovisionedDate": "<p>The date when the mailbox was removed for the user.</p>",
         "GetImpersonationRoleResponse$DateCreated": "<p>The date when the impersonation role was created.</p>",
         "GetImpersonationRoleResponse$DateModified": "<p>The date when the impersonation role was last modified.</p>",
         "GetMobileDeviceAccessOverrideResponse$DateCreated": "<p>The date the override was first created.</p>",
@@ -2081,6 +2219,16 @@
       "refs": {
       }
     },
+    "UpdateGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateImpersonationRoleRequest": {
       "base": null,
       "refs": {
@@ -2131,6 +2279,16 @@
       "refs": {
       }
     },
+    "UpdateUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Url": {
       "base": null,
       "refs": {
@@ -2142,6 +2300,41 @@
       "base": "<p>The representation of an WorkMail user.</p>",
       "refs": {
         "Users$member": null
+      }
+    },
+    "UserAttribute": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$DisplayName": "<p>The display name for the new user.</p>",
+        "CreateUserRequest$FirstName": "<p>The first name of the new user.</p>",
+        "CreateUserRequest$LastName": "<p>The last name of the new user. </p>",
+        "DescribeUserResponse$DisplayName": "<p>The display name of the user.</p>",
+        "DescribeUserResponse$FirstName": "<p>First name of the user.</p>",
+        "DescribeUserResponse$LastName": "<p>Last name of the user.</p>",
+        "DescribeUserResponse$Initials": "<p>Initials of the user.</p>",
+        "DescribeUserResponse$Telephone": "<p>User's contact number.</p>",
+        "DescribeUserResponse$Street": "<p>Street where the user is located.</p>",
+        "DescribeUserResponse$JobTitle": "<p>Job title of the user.</p>",
+        "DescribeUserResponse$City": "<p>City where the user is located.</p>",
+        "DescribeUserResponse$Company": "<p>Company of the user.</p>",
+        "DescribeUserResponse$ZipCode": "<p>Zip code of the user.</p>",
+        "DescribeUserResponse$Department": "<p>Department of the user.</p>",
+        "DescribeUserResponse$Country": "<p>Country where the user is located.</p>",
+        "DescribeUserResponse$Office": "<p>Office where the user is located.</p>",
+        "ListUsersFilters$DisplayNamePrefix": "<p>Filters only users with the provided display name prefix.</p>",
+        "UpdateUserRequest$DisplayName": "<p>Updates the display name of the user.</p>",
+        "UpdateUserRequest$FirstName": "<p>Updates the user's first name.</p>",
+        "UpdateUserRequest$LastName": "<p>Updates the user's last name.</p>",
+        "UpdateUserRequest$Initials": "<p>Updates the user's initials.</p>",
+        "UpdateUserRequest$Telephone": "<p>Updates the user's contact details.</p>",
+        "UpdateUserRequest$Street": "<p>Updates the user's street address.</p>",
+        "UpdateUserRequest$JobTitle": "<p>Updates the user's job title.</p>",
+        "UpdateUserRequest$City": "<p>Updates the user's city.</p>",
+        "UpdateUserRequest$Company": "<p>Updates the user's company.</p>",
+        "UpdateUserRequest$ZipCode": "<p>Updates the user's zipcode.</p>",
+        "UpdateUserRequest$Department": "<p>Updates the user's department.</p>",
+        "UpdateUserRequest$Country": "<p>Updates the user's country.</p>",
+        "UpdateUserRequest$Office": "<p>Updates the user's office.</p>"
       }
     },
     "UserIdList": {
@@ -2164,7 +2357,9 @@
     "UserRole": {
       "base": null,
       "refs": {
-        "DescribeUserResponse$UserRole": "<p>In certain cases, other entities are modeled as users. If interoperability is enabled, resources are imported into WorkMail as users. Because different WorkMail organizations rely on different directory types, administrators can distinguish between an unregistered user (account is disabled and has a user role) and the directory administrators. The values are USER, RESOURCE, and SYSTEM_USER.</p>",
+        "CreateUserRequest$Role": "<p>The role of the new user.</p> <p>You cannot pass <i>SYSTEM_USER</i> or <i>RESOURCE</i> role in a single request. When a user role is not selected, the default role of <i>USER</i> is selected.</p>",
+        "DescribeUserResponse$UserRole": "<p>In certain cases, other entities are modeled as users. If interoperability is enabled, resources are imported into WorkMail as users. Because different WorkMail organizations rely on different directory types, administrators can distinguish between an unregistered user (account is disabled and has a user role) and the directory administrators. The values are USER, RESOURCE, SYSTEM_USER, and REMOTE_USER.</p>",
+        "UpdateUserRequest$Role": "<p>Updates the user role.</p> <p>You cannot pass <i>SYSTEM_USER</i> or <i>RESOURCE</i>.</p>",
         "User$UserRole": "<p>The role of the user.</p>"
       }
     },
@@ -2186,45 +2381,25 @@
     "WorkMailIdentifier": {
       "base": null,
       "refs": {
-        "AssociateDelegateToResourceRequest$EntityId": "<p>The member (user or group) to associate to the resource.</p>",
-        "AssociateMemberToGroupRequest$GroupId": "<p>The group to which the member (user or group) is associated.</p>",
-        "AssociateMemberToGroupRequest$MemberId": "<p>The member (user or group) to associate to the group.</p>",
         "CreateAliasRequest$EntityId": "<p>The member (user or group) to which this alias is added.</p>",
         "CreateGroupResponse$GroupId": "<p>The identifier of the group.</p>",
         "CreateUserResponse$UserId": "<p>The identifier for the new user.</p>",
         "DeleteAliasRequest$EntityId": "<p>The identifier for the member (user or group) from which to have the aliases removed.</p>",
-        "DeleteGroupRequest$GroupId": "<p>The identifier of the group to be deleted.</p>",
-        "DeleteMailboxPermissionsRequest$EntityId": "<p>The identifier of the member (user or group) that owns the mailbox.</p>",
-        "DeleteMailboxPermissionsRequest$GranteeId": "<p>The identifier of the member (user or group) for which to delete granted permissions.</p>",
-        "DeleteUserRequest$UserId": "<p>The identifier of the user to be deleted.</p>",
-        "DeregisterFromWorkMailRequest$EntityId": "<p>The identifier for the member (user or group) to be updated.</p>",
-        "DescribeGroupRequest$GroupId": "<p>The identifier for the group to be described.</p>",
+        "DescribeEntityResponse$EntityId": "<p>The entity ID under which the entity exists.</p>",
         "DescribeGroupResponse$GroupId": "<p>The identifier of the described group.</p>",
         "DescribeMailboxExportJobResponse$EntityId": "<p>The identifier of the user or resource associated with the mailbox.</p>",
-        "DescribeUserRequest$UserId": "<p>The identifier for the user to be described.</p>",
+        "DescribeOrganizationResponse$MigrationAdmin": "<p>The user ID of the migration admin if migration is enabled for the organization.</p>",
         "DescribeUserResponse$UserId": "<p>The identifier for the described user.</p>",
-        "DisassociateDelegateFromResourceRequest$EntityId": "<p>The identifier for the member (user, group) to be removed from the resource's delegates.</p>",
-        "DisassociateMemberFromGroupRequest$GroupId": "<p>The identifier for the group from which members are removed.</p>",
-        "DisassociateMemberFromGroupRequest$MemberId": "<p>The identifier for the member to be removed to the group.</p>",
         "GetAccessControlEffectRequest$UserId": "<p>The user ID.</p>",
-        "GetMailboxDetailsRequest$UserId": "<p>The identifier for the user whose mailbox details are being requested.</p>",
         "GetMobileDeviceAccessOverrideResponse$UserId": "<p>The WorkMail user to which the access override applies.</p>",
         "Group$Id": "<p>The identifier of the group.</p>",
+        "GroupIdentifier$GroupId": "<p>Group ID that matched the group.</p>",
         "ListAliasesRequest$EntityId": "<p>The identifier for the entity for which to list the aliases.</p>",
-        "ListGroupMembersRequest$GroupId": "<p>The identifier for the group to which the members (users or groups) are associated.</p>",
-        "ListMailboxPermissionsRequest$EntityId": "<p>The identifier of the user, group, or resource for which to list mailbox permissions.</p>",
-        "ListResourceDelegatesRequest$ResourceId": "<p>The identifier for the resource whose delegates are listed.</p>",
         "MailboxExportJob$EntityId": "<p>The identifier of the user or resource associated with the mailbox.</p>",
         "MobileDeviceAccessOverride$UserId": "<p>The WorkMail user to which the access override applies.</p>",
         "Permission$GranteeId": "<p>The identifier of the user, group, or resource to which the permissions are granted.</p>",
-        "PutMailboxPermissionsRequest$EntityId": "<p>The identifier of the user, group, or resource for which to update mailbox permissions.</p>",
-        "PutMailboxPermissionsRequest$GranteeId": "<p>The identifier of the user, group, or resource to which to grant the permissions.</p>",
-        "RegisterToWorkMailRequest$EntityId": "<p>The identifier for the user, group, or resource to be updated.</p>",
         "ResetPasswordRequest$UserId": "<p>The identifier of the user for whom the password is reset.</p>",
         "Resource$Id": "<p>The identifier of the resource.</p>",
-        "StartMailboxExportJobRequest$EntityId": "<p>The identifier of the user or resource associated with the mailbox.</p>",
-        "UpdateMailboxQuotaRequest$UserId": "<p>The identifer for the user for whom to update the mailbox quota.</p>",
-        "UpdatePrimaryEmailAddressRequest$EntityId": "<p>The user, group, or resource to update.</p>",
         "User$Id": "<p>The identifier of the user.</p>",
         "UserIdList$member": null
       }

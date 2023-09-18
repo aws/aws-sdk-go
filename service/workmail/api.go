@@ -87,6 +87,9 @@ func (c *WorkMail) AssociateDelegateToResourceRequest(input *AssociateDelegateTo
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
 //
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/AssociateDelegateToResource
 func (c *WorkMail) AssociateDelegateToResource(input *AssociateDelegateToResourceInput) (*AssociateDelegateToResourceOutput, error) {
 	req, out := c.AssociateDelegateToResourceRequest(input)
@@ -1086,6 +1089,9 @@ func (c *WorkMail) CreateResourceRequest(input *CreateResourceInput) (req *reque
 //
 //   - ReservedNameException
 //     This user, group, or resource name is not allowed in WorkMail.
+//
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateResource
 func (c *WorkMail) CreateResource(input *CreateResourceInput) (*CreateResourceOutput, error) {
@@ -2210,6 +2216,9 @@ func (c *WorkMail) DeleteResourceRequest(input *DeleteResourceInput) (req *reque
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
 //
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteResource
 func (c *WorkMail) DeleteResource(input *DeleteResourceInput) (*DeleteResourceOutput, error) {
 	req, out := c.DeleteResourceRequest(input)
@@ -2715,6 +2724,97 @@ func (c *WorkMail) DescribeEmailMonitoringConfigurationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opDescribeEntity = "DescribeEntity"
+
+// DescribeEntityRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEntity operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEntity for more information on using the DescribeEntity
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEntityRequest method.
+//	req, resp := client.DescribeEntityRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeEntity
+func (c *WorkMail) DescribeEntityRequest(input *DescribeEntityInput) (req *request.Request, output *DescribeEntityOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEntity,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEntityInput{}
+	}
+
+	output = &DescribeEntityOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEntity API operation for Amazon WorkMail.
+//
+// Returns basic details about an entity in WorkMail.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DescribeEntity for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     The identifier supplied for the user, group, or resource does not exist in
+//     your organization.
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
+//   - OrganizationNotFoundException
+//     An operation received a valid organization identifier that either doesn't
+//     belong or exist in the system.
+//
+//   - OrganizationStateException
+//     The organization must have a valid state to perform certain operations on
+//     the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeEntity
+func (c *WorkMail) DescribeEntity(input *DescribeEntityInput) (*DescribeEntityOutput, error) {
+	req, out := c.DescribeEntityRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEntityWithContext is the same as DescribeEntity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEntity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DescribeEntityWithContext(ctx aws.Context, input *DescribeEntityInput, opts ...request.Option) (*DescribeEntityOutput, error) {
+	req, out := c.DescribeEntityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeGroup = "DescribeGroup"
 
 // DescribeGroupRequest generates a "aws/request.Request" representing the
@@ -3133,6 +3233,9 @@ func (c *WorkMail) DescribeResourceRequest(input *DescribeResourceInput) (req *r
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
 //
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeResource
 func (c *WorkMail) DescribeResource(input *DescribeResourceInput) (*DescribeResourceOutput, error) {
 	req, out := c.DescribeResourceRequest(input)
@@ -3319,6 +3422,9 @@ func (c *WorkMail) DisassociateDelegateFromResourceRequest(input *DisassociateDe
 //   - OrganizationStateException
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
+//
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DisassociateDelegateFromResource
 func (c *WorkMail) DisassociateDelegateFromResource(input *DisassociateDelegateFromResourceInput) (*DisassociateDelegateFromResourceOutput, error) {
@@ -3967,6 +4073,9 @@ func (c *WorkMail) GetMailboxDetailsRequest(input *GetMailboxDetailsInput) (req 
 // API operation GetMailboxDetails for usage and error information.
 //
 // Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
 //
 //   - OrganizationNotFoundException
 //     An operation received a valid organization identifier that either doesn't
@@ -4858,6 +4967,158 @@ func (c *WorkMail) ListGroupsPagesWithContext(ctx aws.Context, input *ListGroups
 
 	for p.Next() {
 		if !fn(p.Page().(*ListGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListGroupsForEntity = "ListGroupsForEntity"
+
+// ListGroupsForEntityRequest generates a "aws/request.Request" representing the
+// client's request for the ListGroupsForEntity operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListGroupsForEntity for more information on using the ListGroupsForEntity
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListGroupsForEntityRequest method.
+//	req, resp := client.ListGroupsForEntityRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListGroupsForEntity
+func (c *WorkMail) ListGroupsForEntityRequest(input *ListGroupsForEntityInput) (req *request.Request, output *ListGroupsForEntityOutput) {
+	op := &request.Operation{
+		Name:       opListGroupsForEntity,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListGroupsForEntityInput{}
+	}
+
+	output = &ListGroupsForEntityOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListGroupsForEntity API operation for Amazon WorkMail.
+//
+// Returns all the groups to which an entity belongs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListGroupsForEntity for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     The identifier supplied for the user, group, or resource does not exist in
+//     your organization.
+//
+//   - EntityStateException
+//     You are performing an operation on a user, group, or resource that isn't
+//     in the expected state, such as trying to delete an active user.
+//
+//   - OrganizationNotFoundException
+//     An operation received a valid organization identifier that either doesn't
+//     belong or exist in the system.
+//
+//   - OrganizationStateException
+//     The organization must have a valid state to perform certain operations on
+//     the organization or its members.
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListGroupsForEntity
+func (c *WorkMail) ListGroupsForEntity(input *ListGroupsForEntityInput) (*ListGroupsForEntityOutput, error) {
+	req, out := c.ListGroupsForEntityRequest(input)
+	return out, req.Send()
+}
+
+// ListGroupsForEntityWithContext is the same as ListGroupsForEntity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListGroupsForEntity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListGroupsForEntityWithContext(ctx aws.Context, input *ListGroupsForEntityInput, opts ...request.Option) (*ListGroupsForEntityOutput, error) {
+	req, out := c.ListGroupsForEntityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListGroupsForEntityPages iterates over the pages of a ListGroupsForEntity operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGroupsForEntity method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGroupsForEntity operation.
+//	pageNum := 0
+//	err := client.ListGroupsForEntityPages(params,
+//	    func(page *workmail.ListGroupsForEntityOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WorkMail) ListGroupsForEntityPages(input *ListGroupsForEntityInput, fn func(*ListGroupsForEntityOutput, bool) bool) error {
+	return c.ListGroupsForEntityPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGroupsForEntityPagesWithContext same as ListGroupsForEntityPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListGroupsForEntityPagesWithContext(ctx aws.Context, input *ListGroupsForEntityInput, fn func(*ListGroupsForEntityOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGroupsForEntityInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGroupsForEntityRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupsForEntityOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5898,6 +6159,9 @@ func (c *WorkMail) ListResourceDelegatesRequest(input *ListResourceDelegatesInpu
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
 //
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListResourceDelegates
 func (c *WorkMail) ListResourceDelegates(input *ListResourceDelegatesInput) (*ListResourceDelegatesOutput, error) {
 	req, out := c.ListResourceDelegatesRequest(input)
@@ -6041,6 +6305,9 @@ func (c *WorkMail) ListResourcesRequest(input *ListResourcesInput) (req *request
 //   - OrganizationStateException
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
+//
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListResources
 func (c *WorkMail) ListResources(input *ListResourcesInput) (*ListResourcesOutput, error) {
@@ -7382,6 +7649,9 @@ func (c *WorkMail) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //
 // Returned Error Types:
 //
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
 //   - ResourceNotFoundException
 //     The resource cannot be found.
 //
@@ -7776,6 +8046,105 @@ func (c *WorkMail) UpdateDefaultMailDomain(input *UpdateDefaultMailDomainInput) 
 // for more information on using Contexts.
 func (c *WorkMail) UpdateDefaultMailDomainWithContext(ctx aws.Context, input *UpdateDefaultMailDomainInput, opts ...request.Option) (*UpdateDefaultMailDomainOutput, error) {
 	req, out := c.UpdateDefaultMailDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateGroup = "UpdateGroup"
+
+// UpdateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGroup for more information on using the UpdateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateGroupRequest method.
+//	req, resp := client.UpdateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateGroup
+func (c *WorkMail) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateGroupInput{}
+	}
+
+	output = &UpdateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateGroup API operation for Amazon WorkMail.
+//
+// Updates attibutes in a group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     The identifier supplied for the user, group, or resource does not exist in
+//     your organization.
+//
+//   - EntityStateException
+//     You are performing an operation on a user, group, or resource that isn't
+//     in the expected state, such as trying to delete an active user.
+//
+//   - OrganizationNotFoundException
+//     An operation received a valid organization identifier that either doesn't
+//     belong or exist in the system.
+//
+//   - OrganizationStateException
+//     The organization must have a valid state to perform certain operations on
+//     the organization or its members.
+//
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateGroup
+func (c *WorkMail) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
+	req, out := c.UpdateGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGroupWithContext is the same as UpdateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateGroupWithContext(ctx aws.Context, input *UpdateGroupInput, opts ...request.Option) (*UpdateGroupOutput, error) {
+	req, out := c.UpdateGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8288,6 +8657,12 @@ func (c *WorkMail) UpdateResourceRequest(input *UpdateResourceInput) (req *reque
 //     The organization must have a valid state to perform certain operations on
 //     the organization or its members.
 //
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateResource
 func (c *WorkMail) UpdateResource(input *UpdateResourceInput) (*UpdateResourceOutput, error) {
 	req, out := c.UpdateResourceRequest(input)
@@ -8305,6 +8680,113 @@ func (c *WorkMail) UpdateResource(input *UpdateResourceInput) (*UpdateResourceOu
 // for more information on using Contexts.
 func (c *WorkMail) UpdateResourceWithContext(ctx aws.Context, input *UpdateResourceInput, opts ...request.Option) (*UpdateResourceOutput, error) {
 	req, out := c.UpdateResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateUser = "UpdateUser"
+
+// UpdateUserRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUser for more information on using the UpdateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateUserRequest method.
+//	req, resp := client.UpdateUserRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateUser
+func (c *WorkMail) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, output *UpdateUserOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateUserInput{}
+	}
+
+	output = &UpdateUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateUser API operation for Amazon WorkMail.
+//
+// Updates data for the user. To have the latest information, it must be preceded
+// by a DescribeUser call. The dataset in the request should be the one expected
+// when performing another DescribeUser call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateUser for usage and error information.
+//
+// Returned Error Types:
+//
+//   - DirectoryServiceAuthenticationFailedException
+//     The directory service doesn't recognize the credentials supplied by WorkMail.
+//
+//   - DirectoryUnavailableException
+//     The directory is unavailable. It might be located in another Region or deleted.
+//
+//   - EntityNotFoundException
+//     The identifier supplied for the user, group, or resource does not exist in
+//     your organization.
+//
+//   - InvalidParameterException
+//     One or more of the input parameters don't match the service's restrictions.
+//
+//   - OrganizationNotFoundException
+//     An operation received a valid organization identifier that either doesn't
+//     belong or exist in the system.
+//
+//   - OrganizationStateException
+//     The organization must have a valid state to perform certain operations on
+//     the organization or its members.
+//
+//   - UnsupportedOperationException
+//     You can't perform a write operation against a read-only directory.
+//
+//   - EntityStateException
+//     You are performing an operation on a user, group, or resource that isn't
+//     in the expected state, such as trying to delete an active user.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateUser
+func (c *WorkMail) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
+	req, out := c.UpdateUserRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserWithContext is the same as UpdateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput, opts ...request.Option) (*UpdateUserOutput, error) {
+	req, out := c.UpdateUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8457,8 +8939,16 @@ type AssociateDelegateToResourceInput struct {
 
 	// The member (user or group) to associate to the resource.
 	//
+	// The entity ID can accept UserId or GroupID, Username or Groupname, or email.
+	//
+	//    * Entity: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity: entity
+	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The organization under which the resource exists.
 	//
@@ -8467,8 +8957,17 @@ type AssociateDelegateToResourceInput struct {
 
 	// The resource for which members (users or groups) are associated.
 	//
+	// The identifier can accept ResourceId, Resourcename, or email. The following
+	// identity formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: resource@domain.tld
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"34" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -8495,8 +8994,8 @@ func (s *AssociateDelegateToResourceInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -8507,8 +9006,8 @@ func (s *AssociateDelegateToResourceInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 34 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 34))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8562,13 +9061,30 @@ type AssociateMemberToGroupInput struct {
 
 	// The group to which the member (user or group) is associated.
 	//
+	// The identifier can accept GroupId, Groupname, or email. The following identity
+	// formats are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: group@domain.tld
+	//
+	//    * Group name: group
+	//
 	// GroupId is a required field
-	GroupId *string `min:"12" type:"string" required:"true"`
+	GroupId *string `min:"1" type:"string" required:"true"`
 
 	// The member (user or group) to associate to the group.
 	//
+	// The member ID can accept UserID or GroupId, Username or Groupname, or email.
+	//
+	//    * Member: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: member@domain.tld
+	//
+	//    * Member name: member
+	//
 	// MemberId is a required field
-	MemberId *string `min:"12" type:"string" required:"true"`
+	MemberId *string `min:"1" type:"string" required:"true"`
 
 	// The organization under which the group exists.
 	//
@@ -8600,14 +9116,14 @@ func (s *AssociateMemberToGroupInput) Validate() error {
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
-	if s.GroupId != nil && len(*s.GroupId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupId", 12))
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
 	}
 	if s.MemberId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberId"))
 	}
-	if s.MemberId != nil && len(*s.MemberId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("MemberId", 12))
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -9238,6 +9754,9 @@ func (s CreateAvailabilityConfigurationOutput) GoString() string {
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// If this parameter is enabled, the group will be hidden from the address book.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
 	// The name of the group.
 	//
 	// Name is a required field
@@ -9287,6 +9806,12 @@ func (s *CreateGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *CreateGroupInput) SetHiddenFromGlobalAddressList(v bool) *CreateGroupInput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -9874,6 +10399,13 @@ func (s *CreateOrganizationOutput) SetOrganizationId(v string) *CreateOrganizati
 type CreateResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// Resource description.
+	Description *string `min:"1" type:"string"`
+
+	// If this parameter is enabled, the resource will be hidden from the address
+	// book.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
 	// The name of the new resource.
 	//
 	// Name is a required field
@@ -9912,6 +10444,9 @@ func (s CreateResourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateResourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateResourceInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -9932,6 +10467,18 @@ func (s *CreateResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateResourceInput) SetDescription(v string) *CreateResourceInput {
+	s.Description = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *CreateResourceInput) SetHiddenFromGlobalAddressList(v bool) *CreateResourceInput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -9988,8 +10535,29 @@ type CreateUserInput struct {
 
 	// The display name for the new user.
 	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	//
 	// DisplayName is a required field
-	DisplayName *string `type:"string" required:"true"`
+	DisplayName *string `type:"string" required:"true" sensitive:"true"`
+
+	// The first name of the new user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	FirstName *string `type:"string" sensitive:"true"`
+
+	// If this parameter is enabled, the user will be hidden from the address book.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
+	// The last name of the new user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	LastName *string `type:"string" sensitive:"true"`
 
 	// The name for the new user. WorkMail directory user names have a maximum length
 	// of 64. All others have a maximum length of 20.
@@ -10007,9 +10575,13 @@ type CreateUserInput struct {
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
 	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// The role of the new user.
 	//
-	// Password is a required field
-	Password *string `type:"string" required:"true" sensitive:"true"`
+	// You cannot pass SYSTEM_USER or RESOURCE role in a single request. When a
+	// user role is not selected, the default role of USER is selected.
+	Role *string `type:"string" enum:"UserRole"`
 }
 
 // String returns the string representation.
@@ -10048,9 +10620,6 @@ func (s *CreateUserInput) Validate() error {
 	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
 		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
 	}
-	if s.Password == nil {
-		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10061,6 +10630,24 @@ func (s *CreateUserInput) Validate() error {
 // SetDisplayName sets the DisplayName field's value.
 func (s *CreateUserInput) SetDisplayName(v string) *CreateUserInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *CreateUserInput) SetFirstName(v string) *CreateUserInput {
+	s.FirstName = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *CreateUserInput) SetHiddenFromGlobalAddressList(v bool) *CreateUserInput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *CreateUserInput) SetLastName(v string) *CreateUserInput {
+	s.LastName = &v
 	return s
 }
 
@@ -10079,6 +10666,12 @@ func (s *CreateUserInput) SetOrganizationId(v string) *CreateUserInput {
 // SetPassword sets the Password field's value.
 func (s *CreateUserInput) SetPassword(v string) *CreateUserInput {
 	s.Password = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateUserInput) SetRole(v string) *CreateUserInput {
+	s.Role = &v
 	return s
 }
 
@@ -10521,8 +11114,15 @@ type DeleteGroupInput struct {
 
 	// The identifier of the group to be deleted.
 	//
+	// The identifier can be the GroupId, or Groupname. The following identity formats
+	// are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Group name: group
+	//
 	// GroupId is a required field
-	GroupId *string `min:"12" type:"string" required:"true"`
+	GroupId *string `min:"1" type:"string" required:"true"`
 
 	// The organization that contains the group.
 	//
@@ -10554,8 +11154,8 @@ func (s *DeleteGroupInput) Validate() error {
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
-	if s.GroupId != nil && len(*s.GroupId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupId", 12))
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -10695,16 +11295,34 @@ func (s DeleteImpersonationRoleOutput) GoString() string {
 type DeleteMailboxPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the member (user or group) that owns the mailbox.
+	// The identifier of the entity that owns the mailbox.
+	//
+	// The identifier can be UserId or Group Id, Username or Groupname, or email.
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
 	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the member (user or group) for which to delete granted
-	// permissions.
+	// The identifier of the entity for which to delete granted permissions.
+	//
+	// The identifier can be UserId, ResourceID, or Group Id, Username or Groupname,
+	// or email.
+	//
+	//    * Grantee ID: 12345678-1234-1234-1234-123456789012,r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: grantee@domain.tld
+	//
+	//    * Grantee name: grantee
 	//
 	// GranteeId is a required field
-	GranteeId *string `min:"12" type:"string" required:"true"`
+	GranteeId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the organization under which the member (user or group)
 	// exists.
@@ -10737,14 +11355,14 @@ func (s *DeleteMailboxPermissionsInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.GranteeId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GranteeId"))
 	}
-	if s.GranteeId != nil && len(*s.GranteeId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GranteeId", 12))
+	if s.GranteeId != nil && len(*s.GranteeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GranteeId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -11011,6 +11629,9 @@ type DeleteOrganizationInput struct {
 	// DeleteDirectory is a required field
 	DeleteDirectory *bool `type:"boolean" required:"true"`
 
+	// Deletes a WorkMail organization even if the organization has enabled users.
+	ForceDelete *bool `type:"boolean"`
+
 	// The organization ID.
 	//
 	// OrganizationId is a required field
@@ -11066,6 +11687,12 @@ func (s *DeleteOrganizationInput) SetClientToken(v string) *DeleteOrganizationIn
 // SetDeleteDirectory sets the DeleteDirectory field's value.
 func (s *DeleteOrganizationInput) SetDeleteDirectory(v bool) *DeleteOrganizationInput {
 	s.DeleteDirectory = &v
+	return s
+}
+
+// SetForceDelete sets the ForceDelete field's value.
+func (s *DeleteOrganizationInput) SetForceDelete(v bool) *DeleteOrganizationInput {
+	s.ForceDelete = &v
 	return s
 }
 
@@ -11126,8 +11753,15 @@ type DeleteResourceInput struct {
 
 	// The identifier of the resource to be deleted.
 	//
+	// The identifier can accept ResourceId, or Resourcename. The following identity
+	// formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"34" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11160,8 +11794,8 @@ func (s *DeleteResourceInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 34 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 34))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11302,8 +11936,15 @@ type DeleteUserInput struct {
 
 	// The identifier of the user to be deleted.
 	//
+	// The identifier can be the UserId or Username. The following identity formats
+	// are available:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * User name: user
+	//
 	// UserId is a required field
-	UserId *string `min:"12" type:"string" required:"true"`
+	UserId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11336,8 +11977,8 @@ func (s *DeleteUserInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
-	if s.UserId != nil && len(*s.UserId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11383,10 +12024,20 @@ func (s DeleteUserOutput) GoString() string {
 type DeregisterFromWorkMailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the member (user or group) to be updated.
+	// The identifier for the member to be updated.
+	//
+	// The identifier can be UserId, ResourceId, or Group Id, Username, Resourcename,
+	// or Groupname, or email.
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
 	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier for the organization under which the WorkMail entity exists.
 	//
@@ -11418,8 +12069,8 @@ func (s *DeregisterFromWorkMailInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -11648,13 +12299,137 @@ func (s *DescribeEmailMonitoringConfigurationOutput) SetRoleArn(v string) *Descr
 	return s
 }
 
+type DescribeEntityInput struct {
+	_ struct{} `type:"structure"`
+
+	// The email under which the entity exists.
+	//
+	// Email is a required field
+	Email *string `min:"1" type:"string" required:"true"`
+
+	// The identifier for the organization under which the entity exists.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntityInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntityInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEntityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEntityInput"}
+	if s.Email == nil {
+		invalidParams.Add(request.NewErrParamRequired("Email"))
+	}
+	if s.Email != nil && len(*s.Email) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Email", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmail sets the Email field's value.
+func (s *DescribeEntityInput) SetEmail(v string) *DescribeEntityInput {
+	s.Email = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DescribeEntityInput) SetOrganizationId(v string) *DescribeEntityInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DescribeEntityOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entity ID under which the entity exists.
+	EntityId *string `min:"12" type:"string"`
+
+	// Username, GroupName, or ResourceName based on entity type.
+	Name *string `type:"string"`
+
+	// Entity type.
+	Type *string `type:"string" enum:"EntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntityOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntityOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *DescribeEntityOutput) SetEntityId(v string) *DescribeEntityOutput {
+	s.EntityId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeEntityOutput) SetName(v string) *DescribeEntityOutput {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeEntityOutput) SetType(v string) *DescribeEntityOutput {
+	s.Type = &v
+	return s
+}
+
 type DescribeGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the group to be described.
 	//
+	// The identifier can accept GroupId, Groupname, or email. The following identity
+	// formats are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: group@domain.tld
+	//
+	//    * Group name: group
+	//
 	// GroupId is a required field
-	GroupId *string `min:"12" type:"string" required:"true"`
+	GroupId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier for the organization under which the group exists.
 	//
@@ -11686,8 +12461,8 @@ func (s *DescribeGroupInput) Validate() error {
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
-	if s.GroupId != nil && len(*s.GroupId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupId", 12))
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -11730,6 +12505,9 @@ type DescribeGroupOutput struct {
 
 	// The identifier of the described group.
 	GroupId *string `min:"12" type:"string"`
+
+	// If the value is set to true, the group is hidden from the address book.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
 
 	// The name of the described group.
 	Name *string `min:"1" type:"string"`
@@ -11778,6 +12556,12 @@ func (s *DescribeGroupOutput) SetEnabledDate(v time.Time) *DescribeGroupOutput {
 // SetGroupId sets the GroupId field's value.
 func (s *DescribeGroupOutput) SetGroupId(v string) *DescribeGroupOutput {
 	s.GroupId = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *DescribeGroupOutput) SetHiddenFromGlobalAddressList(v bool) *DescribeGroupOutput {
+	s.HiddenFromGlobalAddressList = &v
 	return s
 }
 
@@ -12147,6 +12931,12 @@ type DescribeOrganizationOutput struct {
 	// with regards to the organization.
 	ErrorMessage *string `type:"string"`
 
+	// Indicates if interoperability is enabled for this organization.
+	InteroperabilityEnabled *bool `type:"boolean"`
+
+	// The user ID of the migration admin if migration is enabled for the organization.
+	MigrationAdmin *string `min:"12" type:"string"`
+
 	// The identifier of an organization.
 	OrganizationId *string `min:"34" type:"string"`
 
@@ -12214,6 +13004,18 @@ func (s *DescribeOrganizationOutput) SetErrorMessage(v string) *DescribeOrganiza
 	return s
 }
 
+// SetInteroperabilityEnabled sets the InteroperabilityEnabled field's value.
+func (s *DescribeOrganizationOutput) SetInteroperabilityEnabled(v bool) *DescribeOrganizationOutput {
+	s.InteroperabilityEnabled = &v
+	return s
+}
+
+// SetMigrationAdmin sets the MigrationAdmin field's value.
+func (s *DescribeOrganizationOutput) SetMigrationAdmin(v string) *DescribeOrganizationOutput {
+	s.MigrationAdmin = &v
+	return s
+}
+
 // SetOrganizationId sets the OrganizationId field's value.
 func (s *DescribeOrganizationOutput) SetOrganizationId(v string) *DescribeOrganizationOutput {
 	s.OrganizationId = &v
@@ -12237,8 +13039,17 @@ type DescribeResourceInput struct {
 
 	// The identifier of the resource to be described.
 	//
+	// The identifier can accept ResourceId, Resourcename, or email. The following
+	// identity formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: resource@domain.tld
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"34" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -12271,8 +13082,8 @@ func (s *DescribeResourceInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 34 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 34))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12299,6 +13110,9 @@ type DescribeResourceOutput struct {
 	// The booking options for the described resource.
 	BookingOptions *BookingOptions `type:"structure"`
 
+	// Description of the resource.
+	Description *string `min:"1" type:"string"`
+
 	// The date and time when a resource was disabled from WorkMail, in UNIX epoch
 	// time format.
 	DisabledDate *time.Time `type:"timestamp"`
@@ -12309,6 +13123,9 @@ type DescribeResourceOutput struct {
 	// The date and time when a resource was enabled for WorkMail, in UNIX epoch
 	// time format.
 	EnabledDate *time.Time `type:"timestamp"`
+
+	// If enabled, the resource is hidden from the global address list.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
 
 	// The name of the described resource.
 	Name *string `min:"1" type:"string"`
@@ -12348,6 +13165,12 @@ func (s *DescribeResourceOutput) SetBookingOptions(v *BookingOptions) *DescribeR
 	return s
 }
 
+// SetDescription sets the Description field's value.
+func (s *DescribeResourceOutput) SetDescription(v string) *DescribeResourceOutput {
+	s.Description = &v
+	return s
+}
+
 // SetDisabledDate sets the DisabledDate field's value.
 func (s *DescribeResourceOutput) SetDisabledDate(v time.Time) *DescribeResourceOutput {
 	s.DisabledDate = &v
@@ -12363,6 +13186,12 @@ func (s *DescribeResourceOutput) SetEmail(v string) *DescribeResourceOutput {
 // SetEnabledDate sets the EnabledDate field's value.
 func (s *DescribeResourceOutput) SetEnabledDate(v time.Time) *DescribeResourceOutput {
 	s.EnabledDate = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *DescribeResourceOutput) SetHiddenFromGlobalAddressList(v bool) *DescribeResourceOutput {
+	s.HiddenFromGlobalAddressList = &v
 	return s
 }
 
@@ -12400,8 +13229,17 @@ type DescribeUserInput struct {
 
 	// The identifier for the user to be described.
 	//
+	// The identifier can be the UserId, Username, or email. The following identity
+	// formats are available:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
 	// UserId is a required field
-	UserId *string `min:"12" type:"string" required:"true"`
+	UserId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -12434,8 +13272,8 @@ func (s *DescribeUserInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
-	if s.UserId != nil && len(*s.UserId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12459,12 +13297,44 @@ func (s *DescribeUserInput) SetUserId(v string) *DescribeUserInput {
 type DescribeUserOutput struct {
 	_ struct{} `type:"structure"`
 
+	// City where the user is located.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	City *string `type:"string" sensitive:"true"`
+
+	// Company of the user.
+	//
+	// Company is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Company *string `type:"string" sensitive:"true"`
+
+	// Country where the user is located.
+	//
+	// Country is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Country *string `type:"string" sensitive:"true"`
+
+	// Department of the user.
+	//
+	// Department is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Department *string `type:"string" sensitive:"true"`
+
 	// The date and time at which the user was disabled for WorkMail usage, in UNIX
 	// epoch time format.
 	DisabledDate *time.Time `type:"timestamp"`
 
 	// The display name of the user.
-	DisplayName *string `type:"string"`
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	DisplayName *string `type:"string" sensitive:"true"`
 
 	// The email of the user.
 	Email *string `min:"1" type:"string"`
@@ -12473,12 +13343,70 @@ type DescribeUserOutput struct {
 	// epoch time format.
 	EnabledDate *time.Time `type:"timestamp"`
 
+	// First name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	FirstName *string `type:"string" sensitive:"true"`
+
+	// If enabled, the user is hidden from the global address list.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
+	// Initials of the user.
+	//
+	// Initials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Initials *string `type:"string" sensitive:"true"`
+
+	// Job title of the user.
+	//
+	// JobTitle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	JobTitle *string `type:"string" sensitive:"true"`
+
+	// Last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	LastName *string `type:"string" sensitive:"true"`
+
+	// The date when the mailbox was removed for the user.
+	MailboxDeprovisionedDate *time.Time `type:"timestamp"`
+
+	// The date when the mailbox was created for the user.
+	MailboxProvisionedDate *time.Time `type:"timestamp"`
+
 	// The name for the user.
 	Name *string `min:"1" type:"string"`
+
+	// Office where the user is located.
+	//
+	// Office is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Office *string `type:"string" sensitive:"true"`
 
 	// The state of a user: enabled (registered to WorkMail) or disabled (deregistered
 	// or never registered to WorkMail).
 	State *string `type:"string" enum:"EntityState"`
+
+	// Street where the user is located.
+	//
+	// Street is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Street *string `type:"string" sensitive:"true"`
+
+	// User's contact number.
+	//
+	// Telephone is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	Telephone *string `type:"string" sensitive:"true"`
 
 	// The identifier for the described user.
 	UserId *string `min:"12" type:"string"`
@@ -12488,8 +13416,15 @@ type DescribeUserOutput struct {
 	// WorkMail organizations rely on different directory types, administrators
 	// can distinguish between an unregistered user (account is disabled and has
 	// a user role) and the directory administrators. The values are USER, RESOURCE,
-	// and SYSTEM_USER.
+	// SYSTEM_USER, and REMOTE_USER.
 	UserRole *string `type:"string" enum:"UserRole"`
+
+	// Zip code of the user.
+	//
+	// ZipCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserOutput's
+	// String and GoString methods.
+	ZipCode *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12508,6 +13443,30 @@ func (s DescribeUserOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeUserOutput) GoString() string {
 	return s.String()
+}
+
+// SetCity sets the City field's value.
+func (s *DescribeUserOutput) SetCity(v string) *DescribeUserOutput {
+	s.City = &v
+	return s
+}
+
+// SetCompany sets the Company field's value.
+func (s *DescribeUserOutput) SetCompany(v string) *DescribeUserOutput {
+	s.Company = &v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *DescribeUserOutput) SetCountry(v string) *DescribeUserOutput {
+	s.Country = &v
+	return s
+}
+
+// SetDepartment sets the Department field's value.
+func (s *DescribeUserOutput) SetDepartment(v string) *DescribeUserOutput {
+	s.Department = &v
+	return s
 }
 
 // SetDisabledDate sets the DisabledDate field's value.
@@ -12534,15 +13493,75 @@ func (s *DescribeUserOutput) SetEnabledDate(v time.Time) *DescribeUserOutput {
 	return s
 }
 
+// SetFirstName sets the FirstName field's value.
+func (s *DescribeUserOutput) SetFirstName(v string) *DescribeUserOutput {
+	s.FirstName = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *DescribeUserOutput) SetHiddenFromGlobalAddressList(v bool) *DescribeUserOutput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
+}
+
+// SetInitials sets the Initials field's value.
+func (s *DescribeUserOutput) SetInitials(v string) *DescribeUserOutput {
+	s.Initials = &v
+	return s
+}
+
+// SetJobTitle sets the JobTitle field's value.
+func (s *DescribeUserOutput) SetJobTitle(v string) *DescribeUserOutput {
+	s.JobTitle = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *DescribeUserOutput) SetLastName(v string) *DescribeUserOutput {
+	s.LastName = &v
+	return s
+}
+
+// SetMailboxDeprovisionedDate sets the MailboxDeprovisionedDate field's value.
+func (s *DescribeUserOutput) SetMailboxDeprovisionedDate(v time.Time) *DescribeUserOutput {
+	s.MailboxDeprovisionedDate = &v
+	return s
+}
+
+// SetMailboxProvisionedDate sets the MailboxProvisionedDate field's value.
+func (s *DescribeUserOutput) SetMailboxProvisionedDate(v time.Time) *DescribeUserOutput {
+	s.MailboxProvisionedDate = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DescribeUserOutput) SetName(v string) *DescribeUserOutput {
 	s.Name = &v
 	return s
 }
 
+// SetOffice sets the Office field's value.
+func (s *DescribeUserOutput) SetOffice(v string) *DescribeUserOutput {
+	s.Office = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *DescribeUserOutput) SetState(v string) *DescribeUserOutput {
 	s.State = &v
+	return s
+}
+
+// SetStreet sets the Street field's value.
+func (s *DescribeUserOutput) SetStreet(v string) *DescribeUserOutput {
+	s.Street = &v
+	return s
+}
+
+// SetTelephone sets the Telephone field's value.
+func (s *DescribeUserOutput) SetTelephone(v string) *DescribeUserOutput {
+	s.Telephone = &v
 	return s
 }
 
@@ -12555,6 +13574,12 @@ func (s *DescribeUserOutput) SetUserId(v string) *DescribeUserOutput {
 // SetUserRole sets the UserRole field's value.
 func (s *DescribeUserOutput) SetUserRole(v string) *DescribeUserOutput {
 	s.UserRole = &v
+	return s
+}
+
+// SetZipCode sets the ZipCode field's value.
+func (s *DescribeUserOutput) SetZipCode(v string) *DescribeUserOutput {
+	s.ZipCode = &v
 	return s
 }
 
@@ -12757,8 +13782,16 @@ type DisassociateDelegateFromResourceInput struct {
 	// The identifier for the member (user, group) to be removed from the resource's
 	// delegates.
 	//
+	// The entity ID can accept UserId or GroupID, Username or Groupname, or email.
+	//
+	//    * Entity: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity: entity
+	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier for the organization under which the resource exists.
 	//
@@ -12767,8 +13800,17 @@ type DisassociateDelegateFromResourceInput struct {
 
 	// The identifier of the resource from which delegates' set members are removed.
 	//
+	// The identifier can accept ResourceId, Resourcename, or email. The following
+	// identity formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: resource@domain.tld
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"34" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -12795,8 +13837,8 @@ func (s *DisassociateDelegateFromResourceInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -12807,8 +13849,8 @@ func (s *DisassociateDelegateFromResourceInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 34 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 34))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12862,13 +13904,30 @@ type DisassociateMemberFromGroupInput struct {
 
 	// The identifier for the group from which members are removed.
 	//
+	// The identifier can accept GroupId, Groupname, or email. The following identity
+	// formats are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: group@domain.tld
+	//
+	//    * Group name: group
+	//
 	// GroupId is a required field
-	GroupId *string `min:"12" type:"string" required:"true"`
+	GroupId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier for the member to be removed to the group.
+	// The identifier for the member to be removed from the group.
+	//
+	// The member ID can accept UserID or GroupId, Username or Groupname, or email.
+	//
+	//    * Member ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: member@domain.tld
+	//
+	//    * Member name: member
 	//
 	// MemberId is a required field
-	MemberId *string `min:"12" type:"string" required:"true"`
+	MemberId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier for the organization under which the group exists.
 	//
@@ -12900,14 +13959,14 @@ func (s *DisassociateMemberFromGroupInput) Validate() error {
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
-	if s.GroupId != nil && len(*s.GroupId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupId", 12))
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
 	}
 	if s.MemberId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberId"))
 	}
-	if s.MemberId != nil && len(*s.MemberId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("MemberId", 12))
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -13022,7 +14081,9 @@ type Domain struct {
 	_ struct{} `type:"structure"`
 
 	// The fully qualified domain name.
-	DomainName *string `min:"3" type:"string"`
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The hosted zone ID for a domain hosted in Route 53. Required when configuring
 	// a domain hosted in Route 53.
@@ -13050,6 +14111,9 @@ func (s Domain) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Domain) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Domain"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
 	if s.DomainName != nil && len(*s.DomainName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
 	}
@@ -14182,8 +15246,17 @@ type GetMailboxDetailsInput struct {
 
 	// The identifier for the user whose mailbox details are being requested.
 	//
+	// The identifier can be the UserId, Username, or email. The following identity
+	// formats are available:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
 	// UserId is a required field
-	UserId *string `min:"12" type:"string" required:"true"`
+	UserId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -14216,8 +15289,8 @@ func (s *GetMailboxDetailsInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
-	if s.UserId != nil && len(*s.UserId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -14657,6 +15730,47 @@ func (s *Group) SetName(v string) *Group {
 // SetState sets the State field's value.
 func (s *Group) SetState(v string) *Group {
 	s.State = &v
+	return s
+}
+
+// The identifier that contains the Group ID and name of a group.
+type GroupIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// Group ID that matched the group.
+	GroupId *string `min:"12" type:"string"`
+
+	// Group name that matched the group.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *GroupIdentifier) SetGroupId(v string) *GroupIdentifier {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GroupIdentifier) SetGroupName(v string) *GroupIdentifier {
+	s.GroupName = &v
 	return s
 }
 
@@ -15592,8 +16706,17 @@ type ListGroupMembersInput struct {
 
 	// The identifier for the group to which the members (users or groups) are associated.
 	//
+	// The identifier can accept GroupId, Groupname, or email. The following identity
+	// formats are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: group@domain.tld
+	//
+	//    * Group name: group
+	//
 	// GroupId is a required field
-	GroupId *string `min:"12" type:"string" required:"true"`
+	GroupId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -15632,8 +16755,8 @@ func (s *ListGroupMembersInput) Validate() error {
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
-	if s.GroupId != nil && len(*s.GroupId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GroupId", 12))
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -15719,8 +16842,245 @@ func (s *ListGroupMembersOutput) SetNextToken(v string) *ListGroupMembersOutput 
 	return s
 }
 
+// Filtering options for ListGroups operation. This is only used as input to
+// Operation.
+type ListGroupsFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filters only groups with the provided name prefix.
+	NamePrefix *string `type:"string"`
+
+	// Filters only groups with the provided primary email prefix.
+	PrimaryEmailPrefix *string `type:"string"`
+
+	// Filters only groups with the provided state.
+	State *string `type:"string" enum:"EntityState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsFilters) GoString() string {
+	return s.String()
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListGroupsFilters) SetNamePrefix(v string) *ListGroupsFilters {
+	s.NamePrefix = &v
+	return s
+}
+
+// SetPrimaryEmailPrefix sets the PrimaryEmailPrefix field's value.
+func (s *ListGroupsFilters) SetPrimaryEmailPrefix(v string) *ListGroupsFilters {
+	s.PrimaryEmailPrefix = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListGroupsFilters) SetState(v string) *ListGroupsFilters {
+	s.State = &v
+	return s
+}
+
+// Filtering options for ListGroupsForEntity operation. This is only used as
+// input to Operation.
+type ListGroupsForEntityFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filters only group names that start with the provided name prefix.
+	GroupNamePrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityFilters) GoString() string {
+	return s.String()
+}
+
+// SetGroupNamePrefix sets the GroupNamePrefix field's value.
+func (s *ListGroupsForEntityFilters) SetGroupNamePrefix(v string) *ListGroupsForEntityFilters {
+	s.GroupNamePrefix = &v
+	return s
+}
+
+type ListGroupsForEntityInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the entity.
+	//
+	// The entity ID can accept UserId or GroupID, Username or Groupname, or email.
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
+	//
+	// EntityId is a required field
+	EntityId *string `min:"1" type:"string" required:"true"`
+
+	// Limit the search results based on the filter criteria.
+	Filters *ListGroupsForEntityFilters `type:"structure"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. The first call does
+	// not contain any tokens.
+	NextToken *string `min:"1" type:"string"`
+
+	// The identifier for the organization under which the entity exists.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGroupsForEntityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGroupsForEntityInput"}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *ListGroupsForEntityInput) SetEntityId(v string) *ListGroupsForEntityInput {
+	s.EntityId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListGroupsForEntityInput) SetFilters(v *ListGroupsForEntityFilters) *ListGroupsForEntityInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListGroupsForEntityInput) SetMaxResults(v int64) *ListGroupsForEntityInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsForEntityInput) SetNextToken(v string) *ListGroupsForEntityInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListGroupsForEntityInput) SetOrganizationId(v string) *ListGroupsForEntityInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type ListGroupsForEntityOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The overview of groups in an organization.
+	Groups []*GroupIdentifier `type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is `null`
+	// when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupsForEntityOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ListGroupsForEntityOutput) SetGroups(v []*GroupIdentifier) *ListGroupsForEntityOutput {
+	s.Groups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsForEntityOutput) SetNextToken(v string) *ListGroupsForEntityOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Limit the search results based on the filter criteria. Only one filter per
+	// request is supported.
+	Filters *ListGroupsFilters `type:"structure"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -15773,6 +17133,12 @@ func (s *ListGroupsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListGroupsInput) SetFilters(v *ListGroupsFilters) *ListGroupsInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -16182,11 +17548,19 @@ func (s *ListMailboxExportJobsOutput) SetNextToken(v string) *ListMailboxExportJ
 type ListMailboxPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the user, group, or resource for which to list mailbox
-	// permissions.
+	// The identifier of the user, or resource for which to list mailbox permissions.
+	//
+	// The entity ID can accept UserId or ResourceId, Username or Resourcename,
+	// or email.
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, or r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
 	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -16226,8 +17600,8 @@ func (s *ListMailboxPermissionsInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -16656,8 +18030,17 @@ type ListResourceDelegatesInput struct {
 
 	// The identifier for the resource whose delegates are listed.
 	//
+	// The identifier can accept ResourceId, Resourcename, or email. The following
+	// identity formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: resource@domain.tld
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"12" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -16696,8 +18079,8 @@ func (s *ListResourceDelegatesInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 12))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16772,8 +18155,63 @@ func (s *ListResourceDelegatesOutput) SetNextToken(v string) *ListResourceDelega
 	return s
 }
 
+// Filtering options for ListResources operation. This is only used as input
+// to Operation.
+type ListResourcesFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filters only resource that start with the entered name prefix .
+	NamePrefix *string `type:"string"`
+
+	// Filters only resource with the provided primary email prefix.
+	PrimaryEmailPrefix *string `type:"string"`
+
+	// Filters only resource with the provided state.
+	State *string `type:"string" enum:"EntityState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourcesFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourcesFilters) GoString() string {
+	return s.String()
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListResourcesFilters) SetNamePrefix(v string) *ListResourcesFilters {
+	s.NamePrefix = &v
+	return s
+}
+
+// SetPrimaryEmailPrefix sets the PrimaryEmailPrefix field's value.
+func (s *ListResourcesFilters) SetPrimaryEmailPrefix(v string) *ListResourcesFilters {
+	s.PrimaryEmailPrefix = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListResourcesFilters) SetState(v string) *ListResourcesFilters {
+	s.State = &v
+	return s
+}
+
 type ListResourcesInput struct {
 	_ struct{} `type:"structure"`
+
+	// Limit the resource search results based on the filter criteria. You can only
+	// use one filter per request.
+	Filters *ListResourcesFilters `type:"structure"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -16826,6 +18264,12 @@ func (s *ListResourcesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListResourcesInput) SetFilters(v *ListResourcesFilters) *ListResourcesInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -16968,8 +18412,76 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// Filtering options for ListUsers operation. This is only used as input to
+// Operation.
+type ListUsersFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filters only users with the provided display name prefix.
+	//
+	// DisplayNamePrefix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListUsersFilters's
+	// String and GoString methods.
+	DisplayNamePrefix *string `type:"string" sensitive:"true"`
+
+	// Filters only users with the provided email prefix.
+	PrimaryEmailPrefix *string `type:"string"`
+
+	// Filters only users with the provided state.
+	State *string `type:"string" enum:"EntityState"`
+
+	// Filters only users with the provided username prefix.
+	UsernamePrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersFilters) GoString() string {
+	return s.String()
+}
+
+// SetDisplayNamePrefix sets the DisplayNamePrefix field's value.
+func (s *ListUsersFilters) SetDisplayNamePrefix(v string) *ListUsersFilters {
+	s.DisplayNamePrefix = &v
+	return s
+}
+
+// SetPrimaryEmailPrefix sets the PrimaryEmailPrefix field's value.
+func (s *ListUsersFilters) SetPrimaryEmailPrefix(v string) *ListUsersFilters {
+	s.PrimaryEmailPrefix = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListUsersFilters) SetState(v string) *ListUsersFilters {
+	s.State = &v
+	return s
+}
+
+// SetUsernamePrefix sets the UsernamePrefix field's value.
+func (s *ListUsersFilters) SetUsernamePrefix(v string) *ListUsersFilters {
+	s.UsernamePrefix = &v
+	return s
+}
+
 type ListUsersInput struct {
 	_ struct{} `type:"structure"`
+
+	// Limit the user search results based on the filter criteria. You can only
+	// use one filter per request.
+	Filters *ListUsersFilters `type:"structure"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -17022,6 +18534,12 @@ func (s *ListUsersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListUsersInput) SetFilters(v *ListUsersFilters) *ListUsersInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -18483,16 +20001,35 @@ func (s PutInboundDmarcSettingsOutput) GoString() string {
 type PutMailboxPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the user, group, or resource for which to update mailbox
-	// permissions.
+	// The identifier of the user or resource for which to update mailbox permissions.
+	//
+	// The identifier can be UserId, ResourceID, or Group Id, Username, Resourcename,
+	// or Groupname, or email.
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
 	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the user, group, or resource to which to grant the permissions.
 	//
+	// The identifier can be UserId, ResourceID, or Group Id, Username, Resourcename,
+	// or Groupname, or email.
+	//
+	//    * Grantee ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: grantee@domain.tld
+	//
+	//    * Grantee name: grantee
+	//
 	// GranteeId is a required field
-	GranteeId *string `min:"12" type:"string" required:"true"`
+	GranteeId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the organization under which the user, group, or resource
 	// exists.
@@ -18535,14 +20072,14 @@ func (s *PutMailboxPermissionsInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.GranteeId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GranteeId"))
 	}
-	if s.GranteeId != nil && len(*s.GranteeId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("GranteeId", 12))
+	if s.GranteeId != nil && len(*s.GranteeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GranteeId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -19033,8 +20570,16 @@ type RegisterToWorkMailInput struct {
 
 	// The identifier for the user, group, or resource to be updated.
 	//
+	// The identifier can accept UserId, ResourceId, or GroupId, or Username, Resourcename,
+	// or Groupname. The following identity formats are available:
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Entity name: entity
+	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The identifier for the organization under which the user, group, or resource
 	// exists.
@@ -19073,8 +20618,8 @@ func (s *RegisterToWorkMailInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -19304,6 +20849,9 @@ func (s ResetPasswordOutput) GoString() string {
 type Resource struct {
 	_ struct{} `type:"structure"`
 
+	// Resource description.
+	Description *string `min:"1" type:"string"`
+
 	// The date indicating when the resource was disabled from WorkMail use.
 	DisabledDate *time.Time `type:"timestamp"`
 
@@ -19342,6 +20890,12 @@ func (s Resource) String() string {
 // value will be replaced with "sensitive".
 func (s Resource) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Resource) SetDescription(v string) *Resource {
+	s.Description = &v
+	return s
 }
 
 // SetDisabledDate sets the DisabledDate field's value.
@@ -19461,8 +21015,18 @@ type StartMailboxExportJobInput struct {
 
 	// The identifier of the user or resource associated with the mailbox.
 	//
+	// The identifier can accept UserId or ResourceId, Username or Resourcename,
+	// or email. The following identity formats are available:
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789
+	//    , or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
+	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the symmetric AWS Key Management Service
 	// (AWS KMS) key that encrypts the exported mailbox content.
@@ -19519,8 +21083,8 @@ func (s *StartMailboxExportJobInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.KmsKeyArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("KmsKeyArn"))
@@ -20350,6 +21914,112 @@ func (s UpdateDefaultMailDomainOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the group to be updated.
+	//
+	// The identifier can accept GroupId, Groupname, or email. The following identity
+	// formats are available:
+	//
+	//    * Group ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: group@domain.tld
+	//
+	//    * Group name: group
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+
+	// If enabled, the group is hidden from the global address list.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
+	// The identifier for the organization under which the group exists.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupInput"}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *UpdateGroupInput) SetGroupId(v string) *UpdateGroupInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *UpdateGroupInput) SetHiddenFromGlobalAddressList(v bool) *UpdateGroupInput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateGroupInput) SetOrganizationId(v string) *UpdateGroupInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type UpdateGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGroupOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateImpersonationRoleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20521,8 +22191,17 @@ type UpdateMailboxQuotaInput struct {
 
 	// The identifer for the user for whom to update the mailbox quota.
 	//
+	// The identifier can be the UserId, Username, or email. The following identity
+	// formats are available:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
 	// UserId is a required field
-	UserId *string `min:"12" type:"string" required:"true"`
+	UserId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -20561,8 +22240,8 @@ func (s *UpdateMailboxQuotaInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
-	if s.UserId != nil && len(*s.UserId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -20852,8 +22531,18 @@ type UpdatePrimaryEmailAddressInput struct {
 
 	// The user, group, or resource to update.
 	//
+	// The identifier can accept UseriD, ResourceId, or GroupId, Username, Resourcename,
+	// or Groupname, or email. The following identity formats are available:
+	//
+	//    * Entity ID: 12345678-1234-1234-1234-123456789012, r-0123456789a0123456789b0123456789,
+	//    or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: entity@domain.tld
+	//
+	//    * Entity name: entity
+	//
 	// EntityId is a required field
-	EntityId *string `min:"12" type:"string" required:"true"`
+	EntityId *string `min:"1" type:"string" required:"true"`
 
 	// The organization that contains the user, group, or resource to update.
 	//
@@ -20891,8 +22580,8 @@ func (s *UpdatePrimaryEmailAddressInput) Validate() error {
 	if s.EntityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityId"))
 	}
-	if s.EntityId != nil && len(*s.EntityId) < 12 {
-		invalidParams.Add(request.NewErrParamMinLen("EntityId", 12))
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
 	if s.OrganizationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
@@ -20953,6 +22642,12 @@ type UpdateResourceInput struct {
 	// The resource's booking options to be updated.
 	BookingOptions *BookingOptions `type:"structure"`
 
+	// Updates the resource description.
+	Description *string `type:"string"`
+
+	// If enabled, the resource is hidden from the global address list.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
 	// The name of the resource to be updated.
 	Name *string `min:"1" type:"string"`
 
@@ -20964,8 +22659,20 @@ type UpdateResourceInput struct {
 
 	// The identifier of the resource to be updated.
 	//
+	// The identifier can accept ResourceId, Resourcename, or email. The following
+	// identity formats are available:
+	//
+	//    * Resource ID: r-0123456789a0123456789b0123456789
+	//
+	//    * Email address: resource@domain.tld
+	//
+	//    * Resource name: resource
+	//
 	// ResourceId is a required field
-	ResourceId *string `min:"34" type:"string" required:"true"`
+	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// Updates the resource type.
+	Type *string `type:"string" enum:"ResourceType"`
 }
 
 // String returns the string representation.
@@ -21001,8 +22708,8 @@ func (s *UpdateResourceInput) Validate() error {
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
-	if s.ResourceId != nil && len(*s.ResourceId) < 34 {
-		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 34))
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -21014,6 +22721,18 @@ func (s *UpdateResourceInput) Validate() error {
 // SetBookingOptions sets the BookingOptions field's value.
 func (s *UpdateResourceInput) SetBookingOptions(v *BookingOptions) *UpdateResourceInput {
 	s.BookingOptions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateResourceInput) SetDescription(v string) *UpdateResourceInput {
+	s.Description = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *UpdateResourceInput) SetHiddenFromGlobalAddressList(v bool) *UpdateResourceInput {
+	s.HiddenFromGlobalAddressList = &v
 	return s
 }
 
@@ -21032,6 +22751,12 @@ func (s *UpdateResourceInput) SetOrganizationId(v string) *UpdateResourceInput {
 // SetResourceId sets the ResourceId field's value.
 func (s *UpdateResourceInput) SetResourceId(v string) *UpdateResourceInput {
 	s.ResourceId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateResourceInput) SetType(v string) *UpdateResourceInput {
+	s.Type = &v
 	return s
 }
 
@@ -21054,6 +22779,292 @@ func (s UpdateResourceOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updates the user's city.
+	//
+	// City is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	City *string `type:"string" sensitive:"true"`
+
+	// Updates the user's company.
+	//
+	// Company is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Company *string `type:"string" sensitive:"true"`
+
+	// Updates the user's country.
+	//
+	// Country is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Country *string `type:"string" sensitive:"true"`
+
+	// Updates the user's department.
+	//
+	// Department is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Department *string `type:"string" sensitive:"true"`
+
+	// Updates the display name of the user.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	DisplayName *string `type:"string" sensitive:"true"`
+
+	// Updates the user's first name.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	FirstName *string `type:"string" sensitive:"true"`
+
+	// If enabled, the user is hidden from the global address list.
+	HiddenFromGlobalAddressList *bool `type:"boolean"`
+
+	// Updates the user's initials.
+	//
+	// Initials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Initials *string `type:"string" sensitive:"true"`
+
+	// Updates the user's job title.
+	//
+	// JobTitle is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	JobTitle *string `type:"string" sensitive:"true"`
+
+	// Updates the user's last name.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	LastName *string `type:"string" sensitive:"true"`
+
+	// Updates the user's office.
+	//
+	// Office is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Office *string `type:"string" sensitive:"true"`
+
+	// The identifier for the organization under which the user exists.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// Updates the user role.
+	//
+	// You cannot pass SYSTEM_USER or RESOURCE.
+	Role *string `type:"string" enum:"UserRole"`
+
+	// Updates the user's street address.
+	//
+	// Street is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Street *string `type:"string" sensitive:"true"`
+
+	// Updates the user's contact details.
+	//
+	// Telephone is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	Telephone *string `type:"string" sensitive:"true"`
+
+	// The identifier for the user to be updated.
+	//
+	// The identifier can be the UserId, Username, or email. The following identity
+	// formats are available:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+
+	// Updates the user's zipcode.
+	//
+	// ZipCode is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	ZipCode *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCity sets the City field's value.
+func (s *UpdateUserInput) SetCity(v string) *UpdateUserInput {
+	s.City = &v
+	return s
+}
+
+// SetCompany sets the Company field's value.
+func (s *UpdateUserInput) SetCompany(v string) *UpdateUserInput {
+	s.Company = &v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *UpdateUserInput) SetCountry(v string) *UpdateUserInput {
+	s.Country = &v
+	return s
+}
+
+// SetDepartment sets the Department field's value.
+func (s *UpdateUserInput) SetDepartment(v string) *UpdateUserInput {
+	s.Department = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateUserInput) SetDisplayName(v string) *UpdateUserInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *UpdateUserInput) SetFirstName(v string) *UpdateUserInput {
+	s.FirstName = &v
+	return s
+}
+
+// SetHiddenFromGlobalAddressList sets the HiddenFromGlobalAddressList field's value.
+func (s *UpdateUserInput) SetHiddenFromGlobalAddressList(v bool) *UpdateUserInput {
+	s.HiddenFromGlobalAddressList = &v
+	return s
+}
+
+// SetInitials sets the Initials field's value.
+func (s *UpdateUserInput) SetInitials(v string) *UpdateUserInput {
+	s.Initials = &v
+	return s
+}
+
+// SetJobTitle sets the JobTitle field's value.
+func (s *UpdateUserInput) SetJobTitle(v string) *UpdateUserInput {
+	s.JobTitle = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *UpdateUserInput) SetLastName(v string) *UpdateUserInput {
+	s.LastName = &v
+	return s
+}
+
+// SetOffice sets the Office field's value.
+func (s *UpdateUserInput) SetOffice(v string) *UpdateUserInput {
+	s.Office = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateUserInput) SetOrganizationId(v string) *UpdateUserInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *UpdateUserInput) SetRole(v string) *UpdateUserInput {
+	s.Role = &v
+	return s
+}
+
+// SetStreet sets the Street field's value.
+func (s *UpdateUserInput) SetStreet(v string) *UpdateUserInput {
+	s.Street = &v
+	return s
+}
+
+// SetTelephone sets the Telephone field's value.
+func (s *UpdateUserInput) SetTelephone(v string) *UpdateUserInput {
+	s.Telephone = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
+	s.UserId = &v
+	return s
+}
+
+// SetZipCode sets the ZipCode field's value.
+func (s *UpdateUserInput) SetZipCode(v string) *UpdateUserInput {
+	s.ZipCode = &v
+	return s
+}
+
+type UpdateUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserOutput) GoString() string {
 	return s.String()
 }
 
@@ -21241,6 +23252,26 @@ func EntityState_Values() []string {
 }
 
 const (
+	// EntityTypeGroup is a EntityType enum value
+	EntityTypeGroup = "GROUP"
+
+	// EntityTypeUser is a EntityType enum value
+	EntityTypeUser = "USER"
+
+	// EntityTypeResource is a EntityType enum value
+	EntityTypeResource = "RESOURCE"
+)
+
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypeGroup,
+		EntityTypeUser,
+		EntityTypeResource,
+	}
+}
+
+const (
 	// FolderNameInbox is a FolderName enum value
 	FolderNameInbox = "INBOX"
 
@@ -21405,6 +23436,9 @@ const (
 
 	// UserRoleSystemUser is a UserRole enum value
 	UserRoleSystemUser = "SYSTEM_USER"
+
+	// UserRoleRemoteUser is a UserRole enum value
+	UserRoleRemoteUser = "REMOTE_USER"
 )
 
 // UserRole_Values returns all elements of the UserRole enum
@@ -21413,5 +23447,6 @@ func UserRole_Values() []string {
 		UserRoleUser,
 		UserRoleResource,
 		UserRoleSystemUser,
+		UserRoleRemoteUser,
 	}
 }

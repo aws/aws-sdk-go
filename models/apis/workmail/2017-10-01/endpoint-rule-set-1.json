@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://discovery-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://workmail-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -225,7 +225,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://discovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://workmail-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -277,7 +277,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://discovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://workmail.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -295,7 +295,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://discovery.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://workmail.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

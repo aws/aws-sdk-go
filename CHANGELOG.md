@@ -1,3 +1,13 @@
+Release v1.45.12 (2023-09-18)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API
+  * Add sensitive protection for customer information
+* `service/macie2`: Updates service documentation
+* `service/workmail`: Updates service API, documentation, and paginators
+  * This release includes four new APIs UpdateUser, UpdateGroup, ListGroupsForEntity and DescribeEntity, along with RemoteUsers and some enhancements to existing APIs.
+
 Release v1.45.11 (2023-09-15)
 ===
 
