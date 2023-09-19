@@ -628,7 +628,8 @@
       "type":"structure",
       "members":{
         "HostId":{"shape":"HostId"},
-        "State":{"shape":"ComputeAssetState"}
+        "State":{"shape":"ComputeAssetState"},
+        "InstanceFamilies":{"shape":"InstanceFamilies"}
       }
     },
     "ConflictException":{
@@ -974,6 +975,16 @@
       "member":{"shape":"HostId"}
     },
     "ISO8601Timestamp":{"type":"timestamp"},
+    "InstanceFamilies":{
+      "type":"list",
+      "member":{"shape":"InstanceFamilyName"}
+    },
+    "InstanceFamilyName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^(?:.{1,200}/)?(?:[a-z0-9-_A-Z])+$"
+    },
     "InstanceType":{"type":"string"},
     "InstanceTypeItem":{
       "type":"structure",

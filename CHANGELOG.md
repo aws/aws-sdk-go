@@ -1,3 +1,13 @@
+Release v1.45.13 (2023-09-19)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release adds support for C7i, and R7a instance types.
+* `service/outposts`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for one-time model monitoring schedules that are executed immediately without delay, explicit data analysis windows for model monitoring schedules and exclude features attributes to remove features from model monitor analysis.
+
 Release v1.45.12 (2023-09-18)
 ===
 

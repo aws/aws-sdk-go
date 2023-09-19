@@ -487,6 +487,18 @@
         "OrderSummary$OrderFulfilledDate": "<p> The fulfilment date for the order. </p>"
       }
     },
+    "InstanceFamilies": {
+      "base": null,
+      "refs": {
+        "ComputeAttributes$InstanceFamilies": "<p>A list of the names of instance families that are currently associated with a given asset.</p>"
+      }
+    },
+    "InstanceFamilyName": {
+      "base": null,
+      "refs": {
+        "InstanceFamilies$member": null
+      }
+    },
     "InstanceType": {
       "base": "<p>The instance type.</p>",
       "refs": {
@@ -719,7 +731,7 @@
       "refs": {
         "CancelOrderInput$OrderId": "<p> The ID of the order. </p>",
         "GetOrderInput$OrderId": "<p>The ID of the order.</p>",
-        "LineItem$PreviousOrderId": "<p>The ID of the previous order item.</p>",
+        "LineItem$PreviousOrderId": "<p>The ID of the previous order.</p>",
         "Order$OrderId": "<p>The ID of the order.</p>",
         "OrderSummary$OrderId": "<p> The ID of the order. </p>"
       }
@@ -746,8 +758,8 @@
     "OrderType": {
       "base": null,
       "refs": {
-        "Order$OrderType": "<p>Type of order.</p>",
-        "OrderSummary$OrderType": "<p> The type of order. </p>"
+        "Order$OrderType": "<p>The type of order.</p>",
+        "OrderSummary$OrderType": "<p>The type of order.</p>"
       }
     },
     "Outpost": {
@@ -977,7 +989,7 @@
       "refs": {
         "CatalogItem$CatalogItemId": "<p> The ID of the catalog item. </p>",
         "GetCatalogItemInput$CatalogItemId": "<p>The ID of the catalog item.</p>",
-        "LineItem$CatalogItemId": "<p> The ID of the catalog item. </p>",
+        "LineItem$CatalogItemId": "<p> The ID of the catalog item.</p>",
         "LineItemRequest$CatalogItemId": "<p>The ID of the catalog item.</p>"
       }
     },

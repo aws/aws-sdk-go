@@ -4680,7 +4680,8 @@
         "ProbabilityAttribute":{"shape":"String"},
         "ProbabilityThresholdAttribute":{"shape":"ProbabilityThresholdAttribute"},
         "StartTimeOffset":{"shape":"MonitoringTimeOffsetString"},
-        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"}
+        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"},
+        "ExcludeFeaturesAttribute":{"shape":"ExcludeFeaturesAttribute"}
       }
     },
     "BestObjectiveNotImproving":{
@@ -10221,7 +10222,8 @@
         "ProbabilityAttribute":{"shape":"String"},
         "ProbabilityThresholdAttribute":{"shape":"ProbabilityThresholdAttribute"},
         "StartTimeOffset":{"shape":"MonitoringTimeOffsetString"},
-        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"}
+        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"},
+        "ExcludeFeaturesAttribute":{"shape":"ExcludeFeaturesAttribute"}
       }
     },
     "EndpointInputConfiguration":{
@@ -10388,6 +10390,10 @@
       "type":"string",
       "max":1024,
       "pattern":"[\\S\\s]*"
+    },
+    "ExcludeFeaturesAttribute":{
+      "type":"string",
+      "max":100
     },
     "ExecutionRoleIdentityConfig":{
       "type":"string",
@@ -18591,7 +18597,9 @@
       "type":"structure",
       "required":["ScheduleExpression"],
       "members":{
-        "ScheduleExpression":{"shape":"ScheduleExpression"}
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "DataAnalysisStartTime":{"shape":"String"},
+        "DataAnalysisEndTime":{"shape":"String"}
       }
     },
     "ScheduleExpression":{
