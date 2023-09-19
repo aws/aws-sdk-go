@@ -3222,6 +3222,10 @@ type ComputeAttributes struct {
 	// The host ID of the Dedicated Host on the asset.
 	HostId *string `min:"1" type:"string"`
 
+	// A list of the names of instance families that are currently associated with
+	// a given asset.
+	InstanceFamilies []*string `type:"list"`
+
 	// The state.
 	//
 	//    * ACTIVE - The asset is available and can provide capacity for new compute
@@ -3258,6 +3262,12 @@ func (s ComputeAttributes) GoString() string {
 // SetHostId sets the HostId field's value.
 func (s *ComputeAttributes) SetHostId(v string) *ComputeAttributes {
 	s.HostId = &v
+	return s
+}
+
+// SetInstanceFamilies sets the InstanceFamilies field's value.
+func (s *ComputeAttributes) SetInstanceFamilies(v []*string) *ComputeAttributes {
+	s.InstanceFamilies = v
 	return s
 }
 
@@ -4811,7 +4821,7 @@ type LineItem struct {
 	// The ID of the previous line item.
 	PreviousLineItemId *string `type:"string"`
 
-	// The ID of the previous order item.
+	// The ID of the previous order.
 	PreviousOrderId *string `min:"1" type:"string"`
 
 	// The quantity of the line item.
@@ -5768,7 +5778,7 @@ type Order struct {
 	// The submission date for the order.
 	OrderSubmissionDate *time.Time `type:"timestamp"`
 
-	// Type of order.
+	// The type of order.
 	OrderType *string `type:"string" enum:"OrderType"`
 
 	// The ID of the Outpost in the order.
