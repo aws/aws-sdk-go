@@ -24,6 +24,7 @@
       "output":{"shape":"Application"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -39,7 +40,8 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateDeploymentStrategy":{
@@ -53,6 +55,7 @@
       "output":{"shape":"DeploymentStrategy"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"BadRequestException"}
       ]
     },
@@ -68,7 +71,8 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateExtension":{
@@ -1127,7 +1131,8 @@
         "CompletedAt":{"shape":"Iso8601DateTime"},
         "AppliedExtensions":{"shape":"AppliedExtensions"},
         "KmsKeyArn":{"shape":"Arn"},
-        "KmsKeyIdentifier":{"shape":"Identifier"}
+        "KmsKeyIdentifier":{"shape":"Identifier"},
+        "VersionLabel":{"shape":"VersionLabel"}
       }
     },
     "DeploymentEvent":{
@@ -1211,7 +1216,8 @@
         "State":{"shape":"DeploymentState"},
         "PercentageComplete":{"shape":"Percentage"},
         "StartedAt":{"shape":"Iso8601DateTime"},
-        "CompletedAt":{"shape":"Iso8601DateTime"}
+        "CompletedAt":{"shape":"Iso8601DateTime"},
+        "VersionLabel":{"shape":"VersionLabel"}
       }
     },
     "Deployments":{

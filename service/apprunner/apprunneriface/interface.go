@@ -178,6 +178,13 @@ type AppRunnerAPI interface {
 	ListServicesPages(*apprunner.ListServicesInput, func(*apprunner.ListServicesOutput, bool) bool) error
 	ListServicesPagesWithContext(aws.Context, *apprunner.ListServicesInput, func(*apprunner.ListServicesOutput, bool) bool, ...request.Option) error
 
+	ListServicesForAutoScalingConfiguration(*apprunner.ListServicesForAutoScalingConfigurationInput) (*apprunner.ListServicesForAutoScalingConfigurationOutput, error)
+	ListServicesForAutoScalingConfigurationWithContext(aws.Context, *apprunner.ListServicesForAutoScalingConfigurationInput, ...request.Option) (*apprunner.ListServicesForAutoScalingConfigurationOutput, error)
+	ListServicesForAutoScalingConfigurationRequest(*apprunner.ListServicesForAutoScalingConfigurationInput) (*request.Request, *apprunner.ListServicesForAutoScalingConfigurationOutput)
+
+	ListServicesForAutoScalingConfigurationPages(*apprunner.ListServicesForAutoScalingConfigurationInput, func(*apprunner.ListServicesForAutoScalingConfigurationOutput, bool) bool) error
+	ListServicesForAutoScalingConfigurationPagesWithContext(aws.Context, *apprunner.ListServicesForAutoScalingConfigurationInput, func(*apprunner.ListServicesForAutoScalingConfigurationOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*apprunner.ListTagsForResourceInput) (*apprunner.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *apprunner.ListTagsForResourceInput, ...request.Option) (*apprunner.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*apprunner.ListTagsForResourceInput) (*request.Request, *apprunner.ListTagsForResourceOutput)
@@ -215,6 +222,10 @@ type AppRunnerAPI interface {
 	UntagResource(*apprunner.UntagResourceInput) (*apprunner.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *apprunner.UntagResourceInput, ...request.Option) (*apprunner.UntagResourceOutput, error)
 	UntagResourceRequest(*apprunner.UntagResourceInput) (*request.Request, *apprunner.UntagResourceOutput)
+
+	UpdateDefaultAutoScalingConfiguration(*apprunner.UpdateDefaultAutoScalingConfigurationInput) (*apprunner.UpdateDefaultAutoScalingConfigurationOutput, error)
+	UpdateDefaultAutoScalingConfigurationWithContext(aws.Context, *apprunner.UpdateDefaultAutoScalingConfigurationInput, ...request.Option) (*apprunner.UpdateDefaultAutoScalingConfigurationOutput, error)
+	UpdateDefaultAutoScalingConfigurationRequest(*apprunner.UpdateDefaultAutoScalingConfigurationInput) (*request.Request, *apprunner.UpdateDefaultAutoScalingConfigurationOutput)
 
 	UpdateService(*apprunner.UpdateServiceInput) (*apprunner.UpdateServiceOutput, error)
 	UpdateServiceWithContext(aws.Context, *apprunner.UpdateServiceInput, ...request.Option) (*apprunner.UpdateServiceOutput, error)

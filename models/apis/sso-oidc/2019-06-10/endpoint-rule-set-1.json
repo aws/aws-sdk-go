@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://servicediscovery-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://oidc-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -223,9 +223,34 @@
                                     "type": "tree",
                                     "rules": [
                                         {
+                                            "conditions": [
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        "aws-us-gov",
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "name"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://oidc.{Region}.amazonaws.com",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://oidc-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -275,84 +300,9 @@
                                     "type": "tree",
                                     "rules": [
                                         {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://servicediscovery.{Region}.amazonaws.com",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws-cn",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://servicediscovery.{Region}.amazonaws.com.cn",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws-us-gov",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://servicediscovery.{Region}.amazonaws.com",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://oidc.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -370,7 +320,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://servicediscovery.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://oidc.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

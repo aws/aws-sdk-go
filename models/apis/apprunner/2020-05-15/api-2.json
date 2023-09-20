@@ -363,6 +363,20 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "ListServicesForAutoScalingConfiguration":{
+      "name":"ListServicesForAutoScalingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListServicesForAutoScalingConfigurationRequest"},
+      "output":{"shape":"ListServicesForAutoScalingConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -478,6 +492,20 @@
         {"shape":"InvalidStateException"}
       ]
     },
+    "UpdateDefaultAutoScalingConfiguration":{
+      "name":"UpdateDefaultAutoScalingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDefaultAutoScalingConfigurationRequest"},
+      "output":{"shape":"UpdateDefaultAutoScalingConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateService":{
       "name":"UpdateService",
       "http":{
@@ -569,14 +597,16 @@
       "members":{
         "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
         "AutoScalingConfigurationName":{"shape":"AutoScalingConfigurationName"},
-        "AutoScalingConfigurationRevision":{"shape":"Integer"},
-        "Latest":{"shape":"Boolean"},
+        "AutoScalingConfigurationRevision":{"shape":"AutoScalingConfigurationRevision"},
+        "Latest":{"shape":"Latest"},
         "Status":{"shape":"AutoScalingConfigurationStatus"},
-        "MaxConcurrency":{"shape":"Integer"},
-        "MinSize":{"shape":"Integer"},
-        "MaxSize":{"shape":"Integer"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "MinSize":{"shape":"MinSize"},
+        "MaxSize":{"shape":"MaxSize"},
         "CreatedAt":{"shape":"Timestamp"},
-        "DeletedAt":{"shape":"Timestamp"}
+        "DeletedAt":{"shape":"Timestamp"},
+        "HasAssociatedService":{"shape":"HasAssociatedService"},
+        "IsDefault":{"shape":"IsDefault"}
       }
     },
     "AutoScalingConfigurationName":{
@@ -585,6 +615,7 @@
       "min":4,
       "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{3,31}"
     },
+    "AutoScalingConfigurationRevision":{"type":"integer"},
     "AutoScalingConfigurationStatus":{
       "type":"string",
       "enum":[
@@ -597,7 +628,11 @@
       "members":{
         "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
         "AutoScalingConfigurationName":{"shape":"AutoScalingConfigurationName"},
-        "AutoScalingConfigurationRevision":{"shape":"Integer"}
+        "AutoScalingConfigurationRevision":{"shape":"Integer"},
+        "Status":{"shape":"AutoScalingConfigurationStatus"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "HasAssociatedService":{"shape":"HasAssociatedService"},
+        "IsDefault":{"shape":"IsDefault"}
       }
     },
     "AutoScalingConfigurationSummaryList":{
@@ -878,7 +913,8 @@
       "type":"structure",
       "required":["AutoScalingConfigurationArn"],
       "members":{
-        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"}
+        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
+        "DeleteAllRevisions":{"shape":"Boolean"}
       }
     },
     "DeleteAutoScalingConfigurationResponse":{
@@ -1118,6 +1154,7 @@
       "type":"string",
       "max":600
     },
+    "HasAssociatedService":{"type":"boolean"},
     "HealthCheckConfiguration":{
       "type":"structure",
       "members":{
@@ -1238,12 +1275,14 @@
       },
       "exception":true
     },
+    "IsDefault":{"type":"boolean"},
     "KmsKeyArn":{
       "type":"string",
       "max":256,
       "min":0,
       "pattern":"arn:aws(-[\\w]+)*:kms:[a-z\\-]+-[0-9]{1}:[0-9]{12}:key\\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
+    "Latest":{"type":"boolean"},
     "ListAutoScalingConfigurationsRequest":{
       "type":"structure",
       "members":{
@@ -1315,6 +1354,23 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListServicesForAutoScalingConfigurationRequest":{
+      "type":"structure",
+      "required":["AutoScalingConfigurationArn"],
+      "members":{
+        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListServicesForAutoScalingConfigurationResponse":{
+      "type":"structure",
+      "required":["ServiceArnList"],
+      "members":{
+        "ServiceArnList":{"shape":"ServiceArnList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListServicesRequest":{
       "type":"structure",
       "members":{
@@ -1381,17 +1437,20 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "MaxConcurrency":{"type":"integer"},
     "MaxResults":{
       "type":"integer",
       "max":100,
       "min":1
     },
+    "MaxSize":{"type":"integer"},
     "Memory":{
       "type":"string",
       "max":6,
       "min":3,
       "pattern":"512|1024|2048|3072|4096|6144|8192|10240|12288|(0.5|1|2|3|4|6|8|10|12) GB"
     },
+    "MinSize":{"type":"integer"},
     "NetworkConfiguration":{
       "type":"structure",
       "members":{
@@ -1616,6 +1675,10 @@
         "ObservabilityConfiguration":{"shape":"ServiceObservabilityConfiguration"}
       }
     },
+    "ServiceArnList":{
+      "type":"list",
+      "member":{"shape":"AppRunnerResourceArn"}
+    },
     "ServiceId":{
       "type":"string",
       "max":32,
@@ -1803,6 +1866,20 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateDefaultAutoScalingConfigurationRequest":{
+      "type":"structure",
+      "required":["AutoScalingConfigurationArn"],
+      "members":{
+        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "UpdateDefaultAutoScalingConfigurationResponse":{
+      "type":"structure",
+      "required":["AutoScalingConfiguration"],
+      "members":{
+        "AutoScalingConfiguration":{"shape":"AutoScalingConfiguration"}
       }
     },
     "UpdateServiceRequest":{

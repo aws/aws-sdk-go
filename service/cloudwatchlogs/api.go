@@ -396,8 +396,8 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 
 // CreateLogGroup API operation for Amazon CloudWatch Logs.
 //
-// Creates a log group with the specified name. You can create up to 20,000
-// log groups per account.
+// Creates a log group with the specified name. You can create up to 1,000,000
+// log groups per Region per account.
 //
 // You must use the following guidelines when naming a log group:
 //
@@ -4279,9 +4279,8 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 // or requestID as dimensions. Each different value found for a dimension is
 // treated as a separate metric and accrues charges as a separate custom metric.
 //
-// CloudWatch Logs disables a metric filter if it generates 1,000 different
-// name/value pairs for your specified dimensions within a certain amount of
-// time. This helps to prevent accidental high charges.
+// CloudWatch Logs might disable a metric filter if it generates 1,000 different
+// name/value pairs for your specified dimensions within one hour.
 //
 // You can also set up a billing alarm to alert you if your charges are higher
 // than expected. For more information, see Creating a Billing Alarm to Monitor
@@ -4579,6 +4578,12 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 // permanently, keep a log group at its lower retention setting until 72 hours
 // after the previous retention period ends. Alternatively, wait to change the
 // retention setting until you confirm that the earlier log events are deleted.
+//
+// When log events reach their retention setting they are marked for deletion.
+// After they are marked for deletion, they do not add to your archival storage
+// costs anymore, even if they are not actually deleted until later. These log
+// events marked for deletion are also not included when you use an API to retrieve
+// the storedBytes value to see how many bytes a log group is storing.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11480,6 +11485,10 @@ func (s PutMetricFilterOutput) GoString() string {
 type PutQueryDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Used as an idempotency token, to avoid returning an exception if the service
+	// receives the same request twice because of a network error.
+	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
 	// Use this parameter to include specific log groups as part of your query definition.
 	//
 	// If you are updating a query definition and you omit this parameter, then
@@ -11532,6 +11541,9 @@ func (s PutQueryDefinitionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutQueryDefinitionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutQueryDefinitionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -11549,6 +11561,12 @@ func (s *PutQueryDefinitionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutQueryDefinitionInput) SetClientToken(v string) *PutQueryDefinitionInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetLogGroupNames sets the LogGroupNames field's value.

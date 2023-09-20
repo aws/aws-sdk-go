@@ -954,6 +954,9 @@ func (c *KinesisVideo) DescribeMediaStorageConfigurationRequest(input *DescribeM
 
 // DescribeMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
 //
+// This API is related to WebRTC Ingestion (https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html)
+// and is only available in the us-west-2 region.
+//
 // Returns the most current information about the channel. Specify the ChannelName
 // or ChannelARN in the input.
 //
@@ -2158,6 +2161,10 @@ func (c *KinesisVideo) StartEdgeConfigurationUpdateRequest(input *StartEdgeConfi
 // will be retried for 15 minutes. After 15 minutes, the status will transition
 // into the SYNC_FAILED state.
 //
+// To move an edge configuration from one device to another, use DeleteEdgeConfiguration
+// to delete the current edge configuration. You can then invoke StartEdgeConfigurationUpdate
+// with an updated Hub Device ARN.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2894,6 +2901,9 @@ func (c *KinesisVideo) UpdateMediaStorageConfigurationRequest(input *UpdateMedia
 }
 
 // UpdateMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// This API is related to WebRTC Ingestion (https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html)
+// and is only available in the us-west-2 region.
 //
 // Associates a SignalingChannel to a stream to store the media. There are two
 // signaling modes that can specified :
@@ -5510,10 +5520,9 @@ type ImageGenerationConfiguration struct {
 	ImageSelectorType *string `type:"string" required:"true" enum:"ImageSelectorType"`
 
 	// The time interval in milliseconds (ms) at which the images need to be generated
-	// from the stream. The minimum value that can be provided is 33 ms, because
-	// a camera that generates content at 30 FPS would create a frame every 33.3
-	// ms. If the timestamp range is less than the sampling interval, the Image
-	// from the StartTimestamp will be returned if available.
+	// from the stream. The minimum value that can be provided is 200 ms. If the
+	// timestamp range is less than the sampling interval, the Image from the StartTimestamp
+	// will be returned if available.
 	//
 	// SamplingInterval is a required field
 	SamplingInterval *int64 `type:"integer" required:"true"`

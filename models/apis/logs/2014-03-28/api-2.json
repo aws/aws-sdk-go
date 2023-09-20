@@ -793,6 +793,12 @@
         "taskId":{"shape":"ExportTaskId"}
       }
     },
+    "ClientToken":{
+      "type":"string",
+      "max":128,
+      "min":36,
+      "pattern":"\\S{36,128}"
+    },
     "CreateExportTaskRequest":{
       "type":"structure",
       "required":[
@@ -1804,7 +1810,11 @@
         "name":{"shape":"QueryDefinitionName"},
         "queryDefinitionId":{"shape":"QueryId"},
         "logGroupNames":{"shape":"LogGroupNames"},
-        "queryString":{"shape":"QueryDefinitionString"}
+        "queryString":{"shape":"QueryDefinitionString"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "PutQueryDefinitionResponse":{

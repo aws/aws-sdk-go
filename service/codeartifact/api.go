@@ -12249,6 +12249,9 @@ const (
 
 	// PackageFormatGeneric is a PackageFormat enum value
 	PackageFormatGeneric = "generic"
+
+	// PackageFormatSwift is a PackageFormat enum value
+	PackageFormatSwift = "swift"
 )
 
 // PackageFormat_Values returns all elements of the PackageFormat enum
@@ -12259,6 +12262,7 @@ func PackageFormat_Values() []string {
 		PackageFormatMaven,
 		PackageFormatNuget,
 		PackageFormatGeneric,
+		PackageFormatSwift,
 	}
 }
 
