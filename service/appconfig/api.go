@@ -75,6 +75,23 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 //     The input fails to satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
 //   - InternalServerException
 //     There was an internal failure in the AppConfig service.
 //
@@ -196,6 +213,23 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 //   - InternalServerException
 //     There was an internal failure in the AppConfig service.
 //
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateConfigurationProfile
 func (c *AppConfig) CreateConfigurationProfile(input *CreateConfigurationProfileInput) (*CreateConfigurationProfileOutput, error) {
 	req, out := c.CreateConfigurationProfileRequest(input)
@@ -278,6 +312,23 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 //
 //   - InternalServerException
 //     There was an internal failure in the AppConfig service.
+//
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 //   - BadRequestException
 //     The input fails to satisfy the constraints specified by an Amazon Web Services
@@ -375,6 +426,23 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 //     The input fails to satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - ServiceQuotaExceededException
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateEnvironment
 func (c *AppConfig) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
 	req, out := c.CreateEnvironmentRequest(input)
@@ -445,10 +513,23 @@ func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *re
 // or deploying a configuration.
 //
 // You can create your own extensions or use the Amazon Web Services authored
-// extensions provided by AppConfig. For most use cases, to create your own
-// extension, you must create an Lambda function to perform any computation
-// and processing defined in the extension. For more information about extensions,
-// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// extensions provided by AppConfig. For an AppConfig extension that uses Lambda,
+// you must create a Lambda function to perform any computation and processing
+// defined in the extension. If you plan to create custom versions of the Amazon
+// Web Services authored notification extensions, you only need to specify an
+// Amazon Resource Name (ARN) in the Uri field for the new extension version.
+//
+//   - For a custom EventBridge notification extension, enter the ARN of the
+//     EventBridge default events in the Uri field.
+//
+//   - For a custom Amazon SNS notification extension, enter the ARN of an
+//     Amazon SNS topic in the Uri field.
+//
+//   - For a custom Amazon SQS notification extension, enter the ARN of an
+//     Amazon SQS message queue in the Uri field.
+//
+// For more information about extensions, see Working with AppConfig extensions
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -469,8 +550,21 @@ func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *re
 //     of the resource.
 //
 //   - ServiceQuotaExceededException
-//     The number of hosted configuration versions exceeds the limit for the AppConfig
-//     hosted configuration store. Delete one or more versions and try again.
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 //   - InternalServerException
 //     There was an internal failure in the AppConfig service.
@@ -573,8 +667,21 @@ func (c *AppConfig) CreateExtensionAssociationRequest(input *CreateExtensionAsso
 //     There was an internal failure in the AppConfig service.
 //
 //   - ServiceQuotaExceededException
-//     The number of hosted configuration versions exceeds the limit for the AppConfig
-//     hosted configuration store. Delete one or more versions and try again.
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateExtensionAssociation
 func (c *AppConfig) CreateExtensionAssociation(input *CreateExtensionAssociationInput) (*CreateExtensionAssociationOutput, error) {
@@ -657,8 +764,21 @@ func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedC
 //     service.
 //
 //   - ServiceQuotaExceededException
-//     The number of hosted configuration versions exceeds the limit for the AppConfig
-//     hosted configuration store. Delete one or more versions and try again.
+//     The number of one more AppConfig resources exceeds the maximum allowed. Verify
+//     that your environment doesn't exceed the following service quotas:
+//
+//     Applications: 100 max
+//
+//     Deployment strategies: 20 max
+//
+//     Configuration profiles: 100 max per application
+//
+//     Environments: 20 max per application
+//
+//     To resolve this issue, you can delete one or more resources and try again.
+//     Or, you can request a quota increase. For more information about quotas and
+//     to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+//     in the Amazon Web Services General Reference.
 //
 //   - ResourceNotFoundException
 //     The requested resource could not be found.
@@ -4987,8 +5107,11 @@ type CreateConfigurationProfileInput struct {
 	//    specify either the parameter name in the format ssm-parameter://<parameter
 	//    name> or the ARN.
 	//
+	//    * For an Amazon Web Services CodePipeline pipeline, specify the URI in
+	//    the following format: codepipeline://<pipeline name>.
+	//
 	//    * For an Secrets Manager secret, specify the URI in the following format:
-	//    secrets-manager://<secret name>.
+	//    secretsmanager://<secret name>.
 	//
 	//    * For an Amazon S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
 	//    . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
@@ -6865,9 +6988,15 @@ type DeploymentEvent struct {
 	ActionInvocations []*ActionInvocation `type:"list"`
 
 	// A description of the deployment event. Descriptions include, but are not
-	// limited to, the user account or the Amazon CloudWatch alarm ARN that initiated
-	// a rollback, the percentage of hosts that received the deployment, or in the
-	// case of an internal error, a recommendation to attempt a new deployment.
+	// limited to, the following:
+	//
+	//    * The Amazon Web Services account or the Amazon CloudWatch alarm ARN that
+	//    initiated a rollback.
+	//
+	//    * The percentage of hosts that received the deployment.
+	//
+	//    * A recommendation to attempt a new deployment (in the case of an internal
+	//    error).
 	Description *string `type:"string"`
 
 	// The type of deployment event. Deployment event types include the start, stop,
@@ -7065,6 +7194,9 @@ type DeploymentSummary struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -7148,6 +7280,12 @@ func (s *DeploymentSummary) SetStartedAt(v time.Time) *DeploymentSummary {
 // SetState sets the State field's value.
 func (s *DeploymentSummary) SetState(v string) *DeploymentSummary {
 	s.State = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *DeploymentSummary) SetVersionLabel(v string) *DeploymentSummary {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -7969,6 +8107,9 @@ type GetDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8112,6 +8253,12 @@ func (s *GetDeploymentOutput) SetStartedAt(v time.Time) *GetDeploymentOutput {
 // SetState sets the State field's value.
 func (s *GetDeploymentOutput) SetState(v string) *GetDeploymentOutput {
 	s.State = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *GetDeploymentOutput) SetVersionLabel(v string) *GetDeploymentOutput {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -10360,8 +10507,21 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The number of hosted configuration versions exceeds the limit for the AppConfig
-// hosted configuration store. Delete one or more versions and try again.
+// The number of one more AppConfig resources exceeds the maximum allowed. Verify
+// that your environment doesn't exceed the following service quotas:
+//
+// Applications: 100 max
+//
+// Deployment strategies: 20 max
+//
+// Configuration profiles: 100 max per application
+//
+// Environments: 20 max per application
+//
+// To resolve this issue, you can delete one or more resources and try again.
+// Or, you can request a quota increase. For more information about quotas and
+// to request an increase, see Service quotas for AppConfig (https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig)
+// in the Amazon Web Services General Reference.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10439,7 +10599,8 @@ type StartDeploymentInput struct {
 	ConfigurationProfileId *string `type:"string" required:"true"`
 
 	// The configuration version to deploy. If deploying an AppConfig hosted configuration
-	// version, you can specify either the version number or version label.
+	// version, you can specify either the version number or version label. For
+	// all other configurations, you must specify the version number.
 	//
 	// ConfigurationVersion is a required field
 	ConfigurationVersion *string `min:"1" type:"string" required:"true"`
@@ -10645,6 +10806,9 @@ type StartDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10788,6 +10952,12 @@ func (s *StartDeploymentOutput) SetStartedAt(v time.Time) *StartDeploymentOutput
 // SetState sets the State field's value.
 func (s *StartDeploymentOutput) SetState(v string) *StartDeploymentOutput {
 	s.State = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *StartDeploymentOutput) SetVersionLabel(v string) *StartDeploymentOutput {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -10946,6 +11116,9 @@ type StopDeploymentOutput struct {
 
 	// The state of the deployment.
 	State *string `type:"string" enum:"DeploymentState"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -11089,6 +11262,12 @@ func (s *StopDeploymentOutput) SetStartedAt(v time.Time) *StopDeploymentOutput {
 // SetState sets the State field's value.
 func (s *StopDeploymentOutput) SetState(v string) *StopDeploymentOutput {
 	s.State = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *StopDeploymentOutput) SetVersionLabel(v string) *StopDeploymentOutput {
+	s.VersionLabel = &v
 	return s
 }
 

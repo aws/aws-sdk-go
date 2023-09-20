@@ -1,3 +1,19 @@
+Release v1.45.14 (2023-09-20)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API, documentation, and paginators
+* `service/apprunner`: Updates service API, documentation, and paginators
+* `service/codeartifact`: Updates service API
+* `service/kinesisvideo`: Updates service documentation
+  * Updated DescribeMediaStorageConfiguration, StartEdgeConfigurationUpdate, ImageGenerationConfiguration$SamplingInterval, and UpdateMediaStorageConfiguration to match AWS Docs.
+* `service/logs`: Updates service API and documentation
+  * Add ClientToken to QueryDefinition CFN Handler in CWL
+* `service/s3`: Updates service API, documentation, and examples
+  * Fix an issue where the SDK can fail to unmarshall response due to NumberFormatException
+* `service/servicediscovery`: Updates service API and documentation
+* `service/sso-oidc`: Adds new service
+
 Release v1.45.13 (2023-09-19)
 ===
 

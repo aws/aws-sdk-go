@@ -744,8 +744,10 @@ func (c *AppRunner) DeleteAutoScalingConfigurationRequest(input *DeleteAutoScali
 // DeleteAutoScalingConfiguration API operation for AWS App Runner.
 //
 // Delete an App Runner automatic scaling configuration resource. You can delete
-// a specific revision or the latest active revision. You can't delete a configuration
-// that's used by one or more App Runner services.
+// a top level auto scaling configuration, a specific revision of one, or all
+// revisions associated with the top level configuration. You can't delete the
+// default auto scaling configuration or a configuration that's used by one
+// or more App Runner services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2650,6 +2652,151 @@ func (c *AppRunner) ListServicesPagesWithContext(ctx aws.Context, input *ListSer
 	return p.Err()
 }
 
+const opListServicesForAutoScalingConfiguration = "ListServicesForAutoScalingConfiguration"
+
+// ListServicesForAutoScalingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the ListServicesForAutoScalingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServicesForAutoScalingConfiguration for more information on using the ListServicesForAutoScalingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListServicesForAutoScalingConfigurationRequest method.
+//	req, resp := client.ListServicesForAutoScalingConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListServicesForAutoScalingConfiguration
+func (c *AppRunner) ListServicesForAutoScalingConfigurationRequest(input *ListServicesForAutoScalingConfigurationInput) (req *request.Request, output *ListServicesForAutoScalingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opListServicesForAutoScalingConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServicesForAutoScalingConfigurationInput{}
+	}
+
+	output = &ListServicesForAutoScalingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServicesForAutoScalingConfiguration API operation for AWS App Runner.
+//
+// Returns a list of the associated App Runner services using an auto scaling
+// configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation ListServicesForAutoScalingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+//   - ResourceNotFoundException
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//     your Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListServicesForAutoScalingConfiguration
+func (c *AppRunner) ListServicesForAutoScalingConfiguration(input *ListServicesForAutoScalingConfigurationInput) (*ListServicesForAutoScalingConfigurationOutput, error) {
+	req, out := c.ListServicesForAutoScalingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// ListServicesForAutoScalingConfigurationWithContext is the same as ListServicesForAutoScalingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServicesForAutoScalingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListServicesForAutoScalingConfigurationWithContext(ctx aws.Context, input *ListServicesForAutoScalingConfigurationInput, opts ...request.Option) (*ListServicesForAutoScalingConfigurationOutput, error) {
+	req, out := c.ListServicesForAutoScalingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServicesForAutoScalingConfigurationPages iterates over the pages of a ListServicesForAutoScalingConfiguration operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServicesForAutoScalingConfiguration method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListServicesForAutoScalingConfiguration operation.
+//	pageNum := 0
+//	err := client.ListServicesForAutoScalingConfigurationPages(params,
+//	    func(page *apprunner.ListServicesForAutoScalingConfigurationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppRunner) ListServicesForAutoScalingConfigurationPages(input *ListServicesForAutoScalingConfigurationInput, fn func(*ListServicesForAutoScalingConfigurationOutput, bool) bool) error {
+	return c.ListServicesForAutoScalingConfigurationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServicesForAutoScalingConfigurationPagesWithContext same as ListServicesForAutoScalingConfigurationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListServicesForAutoScalingConfigurationPagesWithContext(ctx aws.Context, input *ListServicesForAutoScalingConfigurationInput, fn func(*ListServicesForAutoScalingConfigurationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServicesForAutoScalingConfigurationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServicesForAutoScalingConfigurationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServicesForAutoScalingConfigurationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -3492,6 +3639,94 @@ func (c *AppRunner) UntagResourceWithContext(ctx aws.Context, input *UntagResour
 	return out, req.Send()
 }
 
+const opUpdateDefaultAutoScalingConfiguration = "UpdateDefaultAutoScalingConfiguration"
+
+// UpdateDefaultAutoScalingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDefaultAutoScalingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDefaultAutoScalingConfiguration for more information on using the UpdateDefaultAutoScalingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDefaultAutoScalingConfigurationRequest method.
+//	req, resp := client.UpdateDefaultAutoScalingConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/UpdateDefaultAutoScalingConfiguration
+func (c *AppRunner) UpdateDefaultAutoScalingConfigurationRequest(input *UpdateDefaultAutoScalingConfigurationInput) (req *request.Request, output *UpdateDefaultAutoScalingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDefaultAutoScalingConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDefaultAutoScalingConfigurationInput{}
+	}
+
+	output = &UpdateDefaultAutoScalingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDefaultAutoScalingConfiguration API operation for AWS App Runner.
+//
+// Update an auto scaling configuration to be the default. The existing default
+// auto scaling configuration will be set to non-default automatically.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation UpdateDefaultAutoScalingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+//   - ResourceNotFoundException
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//     your Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/UpdateDefaultAutoScalingConfiguration
+func (c *AppRunner) UpdateDefaultAutoScalingConfiguration(input *UpdateDefaultAutoScalingConfigurationInput) (*UpdateDefaultAutoScalingConfigurationOutput, error) {
+	req, out := c.UpdateDefaultAutoScalingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDefaultAutoScalingConfigurationWithContext is the same as UpdateDefaultAutoScalingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDefaultAutoScalingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) UpdateDefaultAutoScalingConfigurationWithContext(ctx aws.Context, input *UpdateDefaultAutoScalingConfigurationInput, opts ...request.Option) (*UpdateDefaultAutoScalingConfigurationOutput, error) {
+	req, out := c.UpdateDefaultAutoScalingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateService = "UpdateService"
 
 // UpdateServiceRequest generates a "aws/request.Request" representing the
@@ -3934,6 +4169,18 @@ type AutoScalingConfiguration struct {
 	// stamp format.
 	DeletedAt *time.Time `type:"timestamp"`
 
+	// Indicates if this auto scaling configuration has an App Runner service associated
+	// with it. A value of true indicates one or more services are associated. A
+	// value of false indicates no services are associated.
+	HasAssociatedService *bool `type:"boolean"`
+
+	// Indicates if this auto scaling configuration should be used as the default
+	// for a new App Runner service that does not have an auto scaling configuration
+	// ARN specified during creation. Each account can have only one default AutoScalingConfiguration
+	// per region. The default AutoScalingConfiguration can be any revision under
+	// the same AutoScalingConfigurationName.
+	IsDefault *bool `type:"boolean"`
+
 	// It's set to true for the configuration with the highest Revision among all
 	// configurations that share the same AutoScalingConfigurationName. It's set
 	// to false otherwise.
@@ -4013,6 +4260,18 @@ func (s *AutoScalingConfiguration) SetDeletedAt(v time.Time) *AutoScalingConfigu
 	return s
 }
 
+// SetHasAssociatedService sets the HasAssociatedService field's value.
+func (s *AutoScalingConfiguration) SetHasAssociatedService(v bool) *AutoScalingConfiguration {
+	s.HasAssociatedService = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *AutoScalingConfiguration) SetIsDefault(v bool) *AutoScalingConfiguration {
+	s.IsDefault = &v
+	return s
+}
+
 // SetLatest sets the Latest field's value.
 func (s *AutoScalingConfiguration) SetLatest(v bool) *AutoScalingConfiguration {
 	s.Latest = &v
@@ -4065,6 +4324,27 @@ type AutoScalingConfigurationSummary struct {
 	// The revision of this auto scaling configuration. It's unique among all the
 	// active configurations ("Status": "ACTIVE") with the same AutoScalingConfigurationName.
 	AutoScalingConfigurationRevision *int64 `type:"integer"`
+
+	// The time when the auto scaling configuration was created. It's in Unix time
+	// stamp format.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Indicates if this auto scaling configuration has an App Runner service associated
+	// with it. A value of true indicates one or more services are associated. A
+	// value of false indicates no services are associated.
+	HasAssociatedService *bool `type:"boolean"`
+
+	// Indicates if this auto scaling configuration should be used as the default
+	// for a new App Runner service that does not have an auto scaling configuration
+	// ARN specified during creation. Each account can have only one default AutoScalingConfiguration
+	// per region. The default AutoScalingConfiguration can be any revision under
+	// the same AutoScalingConfigurationName.
+	IsDefault *bool `type:"boolean"`
+
+	// The current state of the auto scaling configuration. If the status of a configuration
+	// revision is INACTIVE, it was deleted and can't be used. Inactive configuration
+	// revisions are permanently removed some time after they are deleted.
+	Status *string `type:"string" enum:"AutoScalingConfigurationStatus"`
 }
 
 // String returns the string representation.
@@ -4100,6 +4380,30 @@ func (s *AutoScalingConfigurationSummary) SetAutoScalingConfigurationName(v stri
 // SetAutoScalingConfigurationRevision sets the AutoScalingConfigurationRevision field's value.
 func (s *AutoScalingConfigurationSummary) SetAutoScalingConfigurationRevision(v int64) *AutoScalingConfigurationSummary {
 	s.AutoScalingConfigurationRevision = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AutoScalingConfigurationSummary) SetCreatedAt(v time.Time) *AutoScalingConfigurationSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetHasAssociatedService sets the HasAssociatedService field's value.
+func (s *AutoScalingConfigurationSummary) SetHasAssociatedService(v bool) *AutoScalingConfigurationSummary {
+	s.HasAssociatedService = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *AutoScalingConfigurationSummary) SetIsDefault(v bool) *AutoScalingConfigurationSummary {
+	s.IsDefault = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AutoScalingConfigurationSummary) SetStatus(v string) *AutoScalingConfigurationSummary {
+	s.Status = &v
 	return s
 }
 
@@ -4581,13 +4885,24 @@ type CreateAutoScalingConfigurationInput struct {
 	// 1 of this name. When you use the same name in subsequent calls, App Runner
 	// creates incremental revisions of the configuration.
 	//
-	// The name DefaultConfiguration is reserved (it's the configuration that App
-	// Runner uses if you don't provide a custome one). You can't use it to create
-	// a new auto scaling configuration, and you can't create a revision of it.
+	// Prior to the release of Managing auto scaling (https://docs.aws.amazon.com/apprunner/latest/relnotes/release-yyyy-mm-dd-asc-improvements.html),
+	// the name DefaultConfiguration was reserved.
 	//
-	// When you want to use your own auto scaling configuration for your App Runner
-	// service, create a configuration with a different name, and then provide it
-	// when you create or update your service.
+	// This restriction is no longer in place. You can now manage DefaultConfiguration
+	// the same way you manage your custom auto scaling configurations. This means
+	// you can do the following with the DefaultConfiguration that App Runner provides:
+	//
+	//    * Create new revisions of the DefaultConfiguration.
+	//
+	//    * Delete the revisions of the DefaultConfiguration.
+	//
+	//    * Delete the auto scaling configuration for which the App Runner DefaultConfiguration
+	//    was created.
+	//
+	//    * If you delete the auto scaling configuration you can create another
+	//    custom auto scaling configuration with the same DefaultConfiguration name.
+	//    The original DefaultConfiguration resource provided by App Runner remains
+	//    in your account unless you make changes to it.
 	//
 	// AutoScalingConfigurationName is a required field
 	AutoScalingConfigurationName *string `min:"4" type:"string" required:"true"`
@@ -5566,6 +5881,13 @@ type DeleteAutoScalingConfigurationInput struct {
 	//
 	// AutoScalingConfigurationArn is a required field
 	AutoScalingConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// Set to true to delete all of the revisions associated with the AutoScalingConfigurationArn
+	// parameter value.
+	//
+	// When DeleteAllRevisions is set to true, the only valid value for the Amazon
+	// Resource Name (ARN) is a partial ARN ending with: .../name.
+	DeleteAllRevisions *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -5605,6 +5927,12 @@ func (s *DeleteAutoScalingConfigurationInput) Validate() error {
 // SetAutoScalingConfigurationArn sets the AutoScalingConfigurationArn field's value.
 func (s *DeleteAutoScalingConfigurationInput) SetAutoScalingConfigurationArn(v string) *DeleteAutoScalingConfigurationInput {
 	s.AutoScalingConfigurationArn = &v
+	return s
+}
+
+// SetDeleteAllRevisions sets the DeleteAllRevisions field's value.
+func (s *DeleteAutoScalingConfigurationInput) SetDeleteAllRevisions(v bool) *DeleteAutoScalingConfigurationInput {
+	s.DeleteAllRevisions = &v
 	return s
 }
 
@@ -8052,6 +8380,136 @@ func (s *ListOperationsOutput) SetOperationSummaryList(v []*OperationSummary) *L
 	return s
 }
 
+type ListServicesForAutoScalingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner auto scaling configuration
+	// that you want to list the services for.
+	//
+	// The ARN can be a full auto scaling configuration ARN, or a partial ARN ending
+	// with either .../name or .../name/revision . If a revision isn't specified,
+	// the latest active revision is used.
+	//
+	// AutoScalingConfigurationArn is a required field
+	AutoScalingConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to include in each response (result page).
+	// It's used for a paginated request.
+	//
+	// If you don't specify MaxResults, the request retrieves all available results
+	// in a single response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token from a previous result page. It's used for a paginated request. The
+	// request retrieves the next result page. All other parameter values must be
+	// identical to the ones specified in the initial request.
+	//
+	// If you don't specify NextToken, the request retrieves the first result page.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesForAutoScalingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesForAutoScalingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServicesForAutoScalingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServicesForAutoScalingConfigurationInput"}
+	if s.AutoScalingConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoScalingConfigurationArn"))
+	}
+	if s.AutoScalingConfigurationArn != nil && len(*s.AutoScalingConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AutoScalingConfigurationArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoScalingConfigurationArn sets the AutoScalingConfigurationArn field's value.
+func (s *ListServicesForAutoScalingConfigurationInput) SetAutoScalingConfigurationArn(v string) *ListServicesForAutoScalingConfigurationInput {
+	s.AutoScalingConfigurationArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListServicesForAutoScalingConfigurationInput) SetMaxResults(v int64) *ListServicesForAutoScalingConfigurationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesForAutoScalingConfigurationInput) SetNextToken(v string) *ListServicesForAutoScalingConfigurationInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListServicesForAutoScalingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that you can pass in a subsequent request to get the next result
+	// page. It's returned in a paginated request.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of service ARN records. In a paginated request, the request returns
+	// up to MaxResults records for each call.
+	//
+	// ServiceArnList is a required field
+	ServiceArnList []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesForAutoScalingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesForAutoScalingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesForAutoScalingConfigurationOutput) SetNextToken(v string) *ListServicesForAutoScalingConfigurationOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceArnList sets the ServiceArnList field's value.
+func (s *ListServicesForAutoScalingConfigurationOutput) SetServiceArnList(v []*string) *ListServicesForAutoScalingConfigurationOutput {
+	s.ServiceArnList = v
+	return s
+}
+
 type ListServicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10091,6 +10549,94 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateDefaultAutoScalingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner auto scaling configuration
+	// that you want to set as the default.
+	//
+	// The ARN can be a full auto scaling configuration ARN, or a partial ARN ending
+	// with either .../name or .../name/revision . If a revision isn't specified,
+	// the latest active revision is set as the default.
+	//
+	// AutoScalingConfigurationArn is a required field
+	AutoScalingConfigurationArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultAutoScalingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultAutoScalingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDefaultAutoScalingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDefaultAutoScalingConfigurationInput"}
+	if s.AutoScalingConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoScalingConfigurationArn"))
+	}
+	if s.AutoScalingConfigurationArn != nil && len(*s.AutoScalingConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AutoScalingConfigurationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoScalingConfigurationArn sets the AutoScalingConfigurationArn field's value.
+func (s *UpdateDefaultAutoScalingConfigurationInput) SetAutoScalingConfigurationArn(v string) *UpdateDefaultAutoScalingConfigurationInput {
+	s.AutoScalingConfigurationArn = &v
+	return s
+}
+
+type UpdateDefaultAutoScalingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner auto scaling configuration that was set as
+	// default.
+	//
+	// AutoScalingConfiguration is a required field
+	AutoScalingConfiguration *AutoScalingConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultAutoScalingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultAutoScalingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoScalingConfiguration sets the AutoScalingConfiguration field's value.
+func (s *UpdateDefaultAutoScalingConfigurationOutput) SetAutoScalingConfiguration(v *AutoScalingConfiguration) *UpdateDefaultAutoScalingConfigurationOutput {
+	s.AutoScalingConfiguration = v
+	return s
 }
 
 type UpdateServiceInput struct {

@@ -758,8 +758,9 @@ func (c *ServiceDiscovery) DiscoverInstancesRequest(input *DiscoverInstancesInpu
 //
 // Discovers registered instances for a specified namespace and service. You
 // can use DiscoverInstances to discover instances for any type of namespace.
-// For public and private DNS namespaces, you can also use DNS queries to discover
-// instances.
+// DiscoverInstances returns a randomized list of instances allowing customers
+// to distribute traffic evenly across instances. For public and private DNS
+// namespaces, you can also use DNS queries to discover instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -804,6 +805,101 @@ func (c *ServiceDiscovery) DiscoverInstances(input *DiscoverInstancesInput) (*Di
 // for more information on using Contexts.
 func (c *ServiceDiscovery) DiscoverInstancesWithContext(ctx aws.Context, input *DiscoverInstancesInput, opts ...request.Option) (*DiscoverInstancesOutput, error) {
 	req, out := c.DiscoverInstancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDiscoverInstancesRevision = "DiscoverInstancesRevision"
+
+// DiscoverInstancesRevisionRequest generates a "aws/request.Request" representing the
+// client's request for the DiscoverInstancesRevision operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DiscoverInstancesRevision for more information on using the DiscoverInstancesRevision
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DiscoverInstancesRevisionRequest method.
+//	req, resp := client.DiscoverInstancesRevisionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DiscoverInstancesRevision
+func (c *ServiceDiscovery) DiscoverInstancesRevisionRequest(input *DiscoverInstancesRevisionInput) (req *request.Request, output *DiscoverInstancesRevisionOutput) {
+	op := &request.Operation{
+		Name:       opDiscoverInstancesRevision,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DiscoverInstancesRevisionInput{}
+	}
+
+	output = &DiscoverInstancesRevisionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DiscoverInstancesRevision API operation for AWS Cloud Map.
+//
+// Discovers the increasing revision associated with an instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cloud Map's
+// API operation DiscoverInstancesRevision for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceNotFound
+//     No service exists with the specified ID.
+//
+//   - NamespaceNotFound
+//     No namespace exists with the specified ID.
+//
+//   - InvalidInput
+//     One or more specified values aren't valid. For example, a required value
+//     might be missing, a numeric value might be outside the allowed range, or
+//     a string value might exceed length constraints.
+//
+//   - RequestLimitExceeded
+//     The operation can't be completed because you've reached the quota for the
+//     number of requests. For more information, see Cloud Map API request throttling
+//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
+//     the Cloud Map Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DiscoverInstancesRevision
+func (c *ServiceDiscovery) DiscoverInstancesRevision(input *DiscoverInstancesRevisionInput) (*DiscoverInstancesRevisionOutput, error) {
+	req, out := c.DiscoverInstancesRevisionRequest(input)
+	return out, req.Send()
+}
+
+// DiscoverInstancesRevisionWithContext is the same as DiscoverInstancesRevision with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DiscoverInstancesRevision for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceDiscovery) DiscoverInstancesRevisionWithContext(ctx aws.Context, input *DiscoverInstancesRevisionInput, opts ...request.Option) (*DiscoverInstancesRevisionOutput, error) {
+	req, out := c.DiscoverInstancesRevisionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1174,7 +1270,7 @@ func (c *ServiceDiscovery) GetOperationRequest(input *GetOperationInput) (req *r
 // GetOperation API operation for AWS Cloud Map.
 //
 // Gets information about any operation that returns an operation ID in the
-// response, such as a CreateService request.
+// response, such as a CreateHttpNamespace request.
 //
 // To get a list of operations that match specified criteria, see ListOperations
 // (https://docs.aws.amazon.com/cloud-map/latest/api/API_ListOperations.html).
@@ -3784,6 +3880,11 @@ type DiscoverInstancesOutput struct {
 	// A complex type that contains one HttpInstanceSummary for each registered
 	// instance.
 	Instances []*HttpInstanceSummary `type:"list"`
+
+	// The increasing revision associated to the response Instances list. If a new
+	// instance is registered or deregistered, the InstancesRevision updates. The
+	// health status updates don't update InstancesRevision.
+	InstancesRevision *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -3807,6 +3908,106 @@ func (s DiscoverInstancesOutput) GoString() string {
 // SetInstances sets the Instances field's value.
 func (s *DiscoverInstancesOutput) SetInstances(v []*HttpInstanceSummary) *DiscoverInstancesOutput {
 	s.Instances = v
+	return s
+}
+
+// SetInstancesRevision sets the InstancesRevision field's value.
+func (s *DiscoverInstancesOutput) SetInstancesRevision(v int64) *DiscoverInstancesOutput {
+	s.InstancesRevision = &v
+	return s
+}
+
+type DiscoverInstancesRevisionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The HttpName name of the namespace. It's found in the HttpProperties member
+	// of the Properties member of the namespace.
+	//
+	// NamespaceName is a required field
+	NamespaceName *string `type:"string" required:"true"`
+
+	// The name of the service that you specified when you registered the instance.
+	//
+	// ServiceName is a required field
+	ServiceName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoverInstancesRevisionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoverInstancesRevisionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DiscoverInstancesRevisionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DiscoverInstancesRevisionInput"}
+	if s.NamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NamespaceName"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNamespaceName sets the NamespaceName field's value.
+func (s *DiscoverInstancesRevisionInput) SetNamespaceName(v string) *DiscoverInstancesRevisionInput {
+	s.NamespaceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DiscoverInstancesRevisionInput) SetServiceName(v string) *DiscoverInstancesRevisionInput {
+	s.ServiceName = &v
+	return s
+}
+
+type DiscoverInstancesRevisionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The increasing revision associated to the response Instances list. If a new
+	// instance is registered or deregistered, the InstancesRevision updates. The
+	// health status updates don't update InstancesRevision.
+	InstancesRevision *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoverInstancesRevisionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoverInstancesRevisionOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstancesRevision sets the InstancesRevision field's value.
+func (s *DiscoverInstancesRevisionOutput) SetInstancesRevision(v int64) *DiscoverInstancesRevisionOutput {
+	s.InstancesRevision = &v
 	return s
 }
 
@@ -7532,7 +7733,7 @@ type RegisterInstanceInput struct {
 	//    settings, Cloud Map will create the Route 53 health check, but it doesn't
 	//    associate the health check with the alias record.
 	//
-	//    * Auto naming currently doesn't support creating alias records that route
+	//    * Cloud Map currently doesn't support creating alias records that route
 	//    traffic to Amazon Web Services resources other than Elastic Load Balancing
 	//    load balancers.
 	//

@@ -7843,7 +7843,7 @@
       "flattened":true
     },
     "Setting":{"type":"boolean"},
-    "Size":{"type":"integer"},
+    "Size":{"type":"long"},
     "SkipValidation":{"type":"boolean"},
     "SourceSelectionCriteria":{
       "type":"structure",

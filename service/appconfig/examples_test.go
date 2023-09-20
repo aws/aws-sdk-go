@@ -40,6 +40,8 @@ func ExampleAppConfig_CreateApplication_shared00() {
 			switch aerr.Code() {
 			case appconfig.ErrCodeBadRequestException:
 				fmt.Println(appconfig.ErrCodeBadRequestException, aerr.Error())
+			case appconfig.ErrCodeServiceQuotaExceededException:
+				fmt.Println(appconfig.ErrCodeServiceQuotaExceededException, aerr.Error())
 			case appconfig.ErrCodeInternalServerException:
 				fmt.Println(appconfig.ErrCodeInternalServerException, aerr.Error())
 			default:
@@ -78,6 +80,8 @@ func ExampleAppConfig_CreateConfigurationProfile_shared00() {
 				fmt.Println(appconfig.ErrCodeResourceNotFoundException, aerr.Error())
 			case appconfig.ErrCodeInternalServerException:
 				fmt.Println(appconfig.ErrCodeInternalServerException, aerr.Error())
+			case appconfig.ErrCodeServiceQuotaExceededException:
+				fmt.Println(appconfig.ErrCodeServiceQuotaExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -111,6 +115,8 @@ func ExampleAppConfig_CreateDeploymentStrategy_shared00() {
 			switch aerr.Code() {
 			case appconfig.ErrCodeInternalServerException:
 				fmt.Println(appconfig.ErrCodeInternalServerException, aerr.Error())
+			case appconfig.ErrCodeServiceQuotaExceededException:
+				fmt.Println(appconfig.ErrCodeServiceQuotaExceededException, aerr.Error())
 			case appconfig.ErrCodeBadRequestException:
 				fmt.Println(appconfig.ErrCodeBadRequestException, aerr.Error())
 			default:
@@ -147,6 +153,8 @@ func ExampleAppConfig_CreateEnvironment_shared00() {
 				fmt.Println(appconfig.ErrCodeResourceNotFoundException, aerr.Error())
 			case appconfig.ErrCodeBadRequestException:
 				fmt.Println(appconfig.ErrCodeBadRequestException, aerr.Error())
+			case appconfig.ErrCodeServiceQuotaExceededException:
+				fmt.Println(appconfig.ErrCodeServiceQuotaExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
