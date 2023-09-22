@@ -27496,7 +27496,8 @@
         "c7i.12xlarge",
         "c7i.16xlarge",
         "c7i.24xlarge",
-        "c7i.48xlarge"
+        "c7i.48xlarge",
+        "mac2-m2pro.metal"
       ]
     },
     "InstanceTypeHypervisor":{

@@ -3763,9 +3763,9 @@ func (c *GuardDuty) InviteMembersRequest(input *InviteMembersInput) (req *reques
 //
 // Invites Amazon Web Services accounts to become members of an organization
 // administered by the Amazon Web Services account that invokes this API. If
-// you are using organizations to manager your GuardDuty environment, this step
-// is not needed. For more information, see Managing accounts with organizations
-// (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
+// you are using Amazon Web Services Organizations to manage your GuardDuty
+// environment, this step is not needed. For more information, see Managing
+// accounts with organizations (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
 //
 // To invite Amazon Web Services accounts, the first step is to ensure that
 // GuardDuty has been enabled in the potential member accounts. You can now
@@ -4853,7 +4853,7 @@ func (c *GuardDuty) ListOrganizationAdminAccountsRequest(input *ListOrganization
 
 // ListOrganizationAdminAccounts API operation for Amazon GuardDuty.
 //
-// Lists the accounts configured as GuardDuty delegated administrators. Only
+// Lists the accounts designated as GuardDuty delegated administrators. Only
 // the organization's management account can run this API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8336,6 +8336,9 @@ type CoverageFilterCriterion struct {
 	_ struct{} `type:"structure"`
 
 	// An enum value representing possible filter fields.
+	//
+	// Replace the enum value CLUSTER_NAME with EKS_CLUSTER_NAME. CLUSTER_NAME has
+	// been deprecated.
 	CriterionKey *string `locationName:"criterionKey" type:"string" enum:"CoverageFilterCriterionKey"`
 
 	// Contains information about the condition.
@@ -8505,6 +8508,9 @@ type CoverageSortCriteria struct {
 	_ struct{} `type:"structure"`
 
 	// Represents the field name used to sort the coverage details.
+	//
+	// Replace the enum value CLUSTER_NAME with EKS_CLUSTER_NAME. CLUSTER_NAME has
+	// been deprecated.
 	AttributeName *string `locationName:"attributeName" type:"string" enum:"CoverageSortKey"`
 
 	// The order in which the sorted findings are to be displayed.
@@ -12409,7 +12415,7 @@ func (s *EksClusterDetails) SetVpcId(v string) *EksClusterDetails {
 type EnableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services Account ID for the organization account to be enabled
+	// The Amazon Web Services account ID for the organization account to be enabled
 	// as a GuardDuty delegated administrator.
 	//
 	// AdminAccountId is a required field
@@ -12635,6 +12641,9 @@ type FilterCriterion struct {
 
 	// An enum value representing possible scan properties to match with given scan
 	// entries.
+	//
+	// Replace the enum value CLUSTER_NAME with EKS_CLUSTER_NAME. CLUSTER_NAME has
+	// been deprecated.
 	CriterionKey *string `locationName:"criterionKey" type:"string" enum:"CriterionKey"`
 
 	// Contains information about the condition.
@@ -12686,8 +12695,8 @@ func (s *FilterCriterion) SetFilterCondition(v *FilterCondition) *FilterCriterio
 	return s
 }
 
-// Contains information about the finding, which is generated when abnormal
-// or suspicious activity is detected.
+// Contains information about the finding that is generated when abnormal or
+// suspicious activity is detected.
 type Finding struct {
 	_ struct{} `type:"structure"`
 
@@ -18521,9 +18530,9 @@ type OrganizationFeatureConfiguration struct {
 	// The additional information that will be configured for the organization.
 	AdditionalConfiguration []*OrganizationAdditionalConfiguration `locationName:"additionalConfiguration" type:"list"`
 
-	// The status of the feature that will be configured for the organization. Use
-	// one of the following values to configure the feature status for the entire
-	// organization:
+	// Describes the status of the feature that is configured for the member accounts
+	// within the organization. One of the following values is the status for the
+	// entire organization:
 	//
 	//    * NEW: Indicates that when a new account joins the organization, they
 	//    will have the feature enabled automatically.
@@ -20626,17 +20635,17 @@ func (s *ScanCondition) SetMapEquals(v []*ScanConditionPair) *ScanCondition {
 	return s
 }
 
-// Represents key, value pair to be matched against given resource property.
+// Represents the key:value pair to be matched against given resource property.
 type ScanConditionPair struct {
 	_ struct{} `type:"structure"`
 
-	// Represents key in the map condition.
+	// Represents the key in the map condition.
 	//
 	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
-	// Represents optional value in the map condition. If not specified, only key
-	// will be matched.
+	// Represents optional value in the map condition. If not specified, only the
+	// key will be matched.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -22996,10 +23005,11 @@ func (s *UpdateMemberDetectorsOutput) SetUnprocessedAccounts(v []*UnprocessedAcc
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether to automatically enable member accounts in the organization.
+	// Represents whether or not to automatically enable member accounts in the
+	// organization.
 	//
 	// Even though this is still supported, we recommend using AutoEnableOrganizationMembers
-	// to achieve the similar results. You must provide the value for either autoEnableOrganizationMembers
+	// to achieve the similar results. You must provide a value for either autoEnableOrganizationMembers
 	// or autoEnable.
 	//
 	// Deprecated: This field is deprecated, use AutoEnableOrganizationMembers instead
@@ -23935,6 +23945,9 @@ const (
 
 	// CoverageFilterCriterionKeyManagementType is a CoverageFilterCriterionKey enum value
 	CoverageFilterCriterionKeyManagementType = "MANAGEMENT_TYPE"
+
+	// CoverageFilterCriterionKeyEksClusterName is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyEksClusterName = "EKS_CLUSTER_NAME"
 )
 
 // CoverageFilterCriterionKey_Values returns all elements of the CoverageFilterCriterionKey enum
@@ -23946,6 +23959,7 @@ func CoverageFilterCriterionKey_Values() []string {
 		CoverageFilterCriterionKeyCoverageStatus,
 		CoverageFilterCriterionKeyAddonVersion,
 		CoverageFilterCriterionKeyManagementType,
+		CoverageFilterCriterionKeyEksClusterName,
 	}
 }
 
@@ -23967,6 +23981,9 @@ const (
 
 	// CoverageSortKeyUpdatedAt is a CoverageSortKey enum value
 	CoverageSortKeyUpdatedAt = "UPDATED_AT"
+
+	// CoverageSortKeyEksClusterName is a CoverageSortKey enum value
+	CoverageSortKeyEksClusterName = "EKS_CLUSTER_NAME"
 )
 
 // CoverageSortKey_Values returns all elements of the CoverageSortKey enum
@@ -23978,6 +23995,7 @@ func CoverageSortKey_Values() []string {
 		CoverageSortKeyIssue,
 		CoverageSortKeyAddonVersion,
 		CoverageSortKeyUpdatedAt,
+		CoverageSortKeyEksClusterName,
 	}
 }
 

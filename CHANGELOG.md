@@ -1,3 +1,25 @@
+Release v1.45.15 (2023-09-22)
+===
+
+### Service Client Updates
+* `service/braket`: Updates service API and documentation
+* `service/dms`: Updates service API, documentation, and examples
+  * new vendors for DMS CSF: MongoDB, MariaDB, DocumentDb and Redshift
+* `service/ec2`: Updates service API
+  * EC2 M2 Pro Mac instances are powered by Apple M2 Pro Mac Mini computers featuring 12 core CPU, 19 core GPU, 32 GiB of memory, and 16 core Apple Neural Engine and uniquely enabled by the AWS Nitro System through high-speed Thunderbolt connections.
+* `service/elasticfilesystem`: Updates service documentation
+  * Documentation updates for Elastic File System
+* `service/events`: Updates service API and documentation
+  * Adds sensitive trait to various shapes in Jetstream Connections API model.
+* `service/guardduty`: Updates service API and documentation
+  * Add `EKS_CLUSTER_NAME` to filter and sort key.
+* `service/mediaconvert`: Updates service API and documentation
+  * This release supports the creation of of audio-only tracks in CMAF output groups.
+
+### SDK Bugs
+* `aws/session`: Removed typed literal parsing for config, everything is now treated as a string until a numeric value is needed.
+  * This resolves an issue where the contents of a profile would silently be dropped with certain values.
+
 Release v1.45.14 (2023-09-20)
 ===
 

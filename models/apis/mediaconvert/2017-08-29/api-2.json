@@ -2785,7 +2785,8 @@
       "enum": [
         "ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT",
         "ALTERNATE_AUDIO_AUTO_SELECT",
-        "ALTERNATE_AUDIO_NOT_AUTO_SELECT"
+        "ALTERNATE_AUDIO_NOT_AUTO_SELECT",
+        "AUDIO_ONLY_VARIANT_STREAM"
       ]
     },
     "CmfcDescriptiveVideoServiceFlag": {
@@ -6679,6 +6680,10 @@
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
         },
+        "FollowInputIndex": {
+          "shape": "__integerMin0Max149",
+          "locationName": "followInputIndex"
+        },
         "Inputs": {
           "shape": "__listOfInput",
           "locationName": "inputs"
@@ -6810,6 +6815,10 @@
         "ExtendedDataServices": {
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
+        },
+        "FollowInputIndex": {
+          "shape": "__integerMin0Max149",
+          "locationName": "followInputIndex"
         },
         "Inputs": {
           "shape": "__listOfInputTemplate",
@@ -9489,7 +9498,7 @@
           "locationName": "systemIds"
         },
         "Url": {
-          "shape": "__stringPatternHttps",
+          "shape": "__stringPatternHttpsD",
           "locationName": "url"
         }
       }
@@ -9514,7 +9523,7 @@
           "locationName": "resourceId"
         },
         "Url": {
-          "shape": "__stringPatternHttps",
+          "shape": "__stringPatternHttpsD",
           "locationName": "url"
         }
       }
@@ -10971,6 +10980,11 @@
       "min": 0,
       "max": 1466400000
     },
+    "__integerMin0Max149": {
+      "type": "integer",
+      "min": 0,
+      "max": 149
+    },
     "__integerMin0Max15": {
       "type": "integer",
       "min": 0,
@@ -11874,6 +11888,10 @@
     "__stringPatternHttps": {
       "type": "string",
       "pattern": "^https:\\/\\/"
+    },
+    "__stringPatternHttpsD": {
+      "type": "string",
+      "pattern": "^https:\\/\\/[^:@\\/]*(:\\d*)?(\\/.*)?$"
     },
     "__stringPatternHttpsKantarmedia": {
       "type": "string",
