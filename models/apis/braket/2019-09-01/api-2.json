@@ -472,6 +472,22 @@
       },
       "exception":true
     },
+    "DeviceQueueInfo":{
+      "type":"structure",
+      "required":[
+        "queue",
+        "queueSize"
+      ],
+      "members":{
+        "queue":{"shape":"QueueName"},
+        "queuePriority":{"shape":"QueuePriority"},
+        "queueSize":{"shape":"String"}
+      }
+    },
+    "DeviceQueueInfoList":{
+      "type":"list",
+      "member":{"shape":"DeviceQueueInfo"}
+    },
     "DeviceRetiredException":{
       "type":"structure",
       "members":{
@@ -547,6 +563,7 @@
           "jsonvalue":true
         },
         "deviceName":{"shape":"String"},
+        "deviceQueueInfo":{"shape":"DeviceQueueInfoList"},
         "deviceStatus":{"shape":"DeviceStatus"},
         "deviceType":{"shape":"DeviceType"},
         "providerName":{"shape":"String"}
@@ -556,6 +573,11 @@
       "type":"structure",
       "required":["jobArn"],
       "members":{
+        "additionalAttributeNames":{
+          "shape":"HybridJobAdditionalAttributeNamesList",
+          "location":"querystring",
+          "locationName":"additionalAttributeNames"
+        },
         "jobArn":{
           "shape":"JobArn",
           "location":"uri",
@@ -590,6 +612,7 @@
         "jobArn":{"shape":"JobArn"},
         "jobName":{"shape":"GetJobResponseJobNameString"},
         "outputDataConfig":{"shape":"JobOutputDataConfig"},
+        "queueInfo":{"shape":"HybridJobQueueInfo"},
         "roleArn":{"shape":"RoleArn"},
         "startedAt":{"shape":"SyntheticTimestamp_date_time"},
         "status":{"shape":"JobPrimaryStatus"},
@@ -607,6 +630,11 @@
       "type":"structure",
       "required":["quantumTaskArn"],
       "members":{
+        "additionalAttributeNames":{
+          "shape":"QuantumTaskAdditionalAttributeNamesList",
+          "location":"querystring",
+          "locationName":"additionalAttributeNames"
+        },
         "quantumTaskArn":{
           "shape":"QuantumTaskArn",
           "location":"uri",
@@ -639,9 +667,30 @@
         "outputS3Bucket":{"shape":"String"},
         "outputS3Directory":{"shape":"String"},
         "quantumTaskArn":{"shape":"QuantumTaskArn"},
+        "queueInfo":{"shape":"QuantumTaskQueueInfo"},
         "shots":{"shape":"Long"},
         "status":{"shape":"QuantumTaskStatus"},
         "tags":{"shape":"TagsMap"}
+      }
+    },
+    "HybridJobAdditionalAttributeName":{
+      "type":"string",
+      "enum":["QueueInfo"]
+    },
+    "HybridJobAdditionalAttributeNamesList":{
+      "type":"list",
+      "member":{"shape":"HybridJobAdditionalAttributeName"}
+    },
+    "HybridJobQueueInfo":{
+      "type":"structure",
+      "required":[
+        "position",
+        "queue"
+      ],
+      "members":{
+        "message":{"shape":"String"},
+        "position":{"shape":"String"},
+        "queue":{"shape":"QueueName"}
       }
     },
     "HyperParameters":{
@@ -886,10 +935,31 @@
       "type":"long",
       "box":true
     },
+    "QuantumTaskAdditionalAttributeName":{
+      "type":"string",
+      "enum":["QueueInfo"]
+    },
+    "QuantumTaskAdditionalAttributeNamesList":{
+      "type":"list",
+      "member":{"shape":"QuantumTaskAdditionalAttributeName"}
+    },
     "QuantumTaskArn":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":0
+    },
+    "QuantumTaskQueueInfo":{
+      "type":"structure",
+      "required":[
+        "position",
+        "queue"
+      ],
+      "members":{
+        "message":{"shape":"String"},
+        "position":{"shape":"String"},
+        "queue":{"shape":"QueueName"},
+        "queuePriority":{"shape":"QueuePriority"}
+      }
     },
     "QuantumTaskStatus":{
       "type":"string",
@@ -929,6 +999,20 @@
     "QuantumTaskSummaryList":{
       "type":"list",
       "member":{"shape":"QuantumTaskSummary"}
+    },
+    "QueueName":{
+      "type":"string",
+      "enum":[
+        "QUANTUM_TASKS_QUEUE",
+        "JOBS_QUEUE"
+      ]
+    },
+    "QueuePriority":{
+      "type":"string",
+      "enum":[
+        "Normal",
+        "Priority"
+      ]
     },
     "ResourceNotFoundException":{
       "type":"structure",

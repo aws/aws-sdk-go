@@ -158,6 +158,18 @@
       "refs": {
       }
     },
+    "DeviceQueueInfo": {
+      "base": "<p>Information about tasks and jobs queued on a device.</p>",
+      "refs": {
+        "DeviceQueueInfoList$member": null
+      }
+    },
+    "DeviceQueueInfoList": {
+      "base": null,
+      "refs": {
+        "GetDeviceResponse$deviceQueueInfo": "<p>List of information about tasks and jobs queued on a device.</p>"
+      }
+    },
     "DeviceRetiredException": {
       "base": "<p>The specified device has been retired.</p>",
       "refs": {
@@ -223,6 +235,24 @@
     "GetQuantumTaskResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "HybridJobAdditionalAttributeName": {
+      "base": null,
+      "refs": {
+        "HybridJobAdditionalAttributeNamesList$member": null
+      }
+    },
+    "HybridJobAdditionalAttributeNamesList": {
+      "base": null,
+      "refs": {
+        "GetJobRequest$additionalAttributeNames": "<p>A list of attributes to return information for.</p>"
+      }
+    },
+    "HybridJobQueueInfo": {
+      "base": "<p>Information about the queue for a specified job.</p>",
+      "refs": {
+        "GetJobResponse$queueInfo": "<p>Queue information for the requested job. Only returned if <code>QueueInfo</code> is specified in the <code>additionalAttributeNames\"</code> field in the <code>GetJob</code> API request.</p>"
       }
     },
     "HyperParameters": {
@@ -406,6 +436,18 @@
         "QuantumTaskSummary$shots": "<p>The shots used for the task.</p>"
       }
     },
+    "QuantumTaskAdditionalAttributeName": {
+      "base": null,
+      "refs": {
+        "QuantumTaskAdditionalAttributeNamesList$member": null
+      }
+    },
+    "QuantumTaskAdditionalAttributeNamesList": {
+      "base": null,
+      "refs": {
+        "GetQuantumTaskRequest$additionalAttributeNames": "<p>A list of attributes to return information for.</p>"
+      }
+    },
     "QuantumTaskArn": {
       "base": null,
       "refs": {
@@ -415,6 +457,12 @@
         "GetQuantumTaskRequest$quantumTaskArn": "<p>the ARN of the task to retrieve.</p>",
         "GetQuantumTaskResponse$quantumTaskArn": "<p>The ARN of the task.</p>",
         "QuantumTaskSummary$quantumTaskArn": "<p>The ARN of the task.</p>"
+      }
+    },
+    "QuantumTaskQueueInfo": {
+      "base": "<p>Information about the queue for the specified quantum task.</p>",
+      "refs": {
+        "GetQuantumTaskResponse$queueInfo": "<p>Queue information for the requested quantum task. Only returned if <code>QueueInfo</code> is specified in the <code>additionalAttributeNames\"</code> field in the <code>GetQuantumTask</code> API request.</p>"
       }
     },
     "QuantumTaskStatus": {
@@ -434,6 +482,21 @@
       "base": null,
       "refs": {
         "SearchQuantumTasksResponse$quantumTasks": "<p>An array of <code>QuantumTaskSummary</code> objects for tasks that match the specified filters.</p>"
+      }
+    },
+    "QueueName": {
+      "base": null,
+      "refs": {
+        "DeviceQueueInfo$queue": "<p>The name of the queue. </p>",
+        "HybridJobQueueInfo$queue": "<p>The name of the queue.</p>",
+        "QuantumTaskQueueInfo$queue": "<p>The name of the queue. </p>"
+      }
+    },
+    "QueuePriority": {
+      "base": null,
+      "refs": {
+        "DeviceQueueInfo$queuePriority": "<p>Optional. Specifies the priority of the queue. Tasks in a priority queue are processed before the tasks in a normal queue.</p>",
+        "QuantumTaskQueueInfo$queuePriority": "<p>Optional. Specifies the priority of the queue. Quantum tasks in a priority queue are processed before the tasks in a normal queue.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -600,6 +663,7 @@
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
         "DeviceOfflineException$message": null,
+        "DeviceQueueInfo$queueSize": "<p>The number of jobs or tasks in the queue for a given device. </p>",
         "DeviceRetiredException$message": null,
         "DeviceSummary$deviceName": "<p>The name of the device.</p>",
         "DeviceSummary$providerName": "<p>The provider of the device.</p>",
@@ -608,9 +672,13 @@
         "GetQuantumTaskResponse$failureReason": "<p>The reason that a task failed.</p>",
         "GetQuantumTaskResponse$outputS3Bucket": "<p>The S3 bucket where task results are stored.</p>",
         "GetQuantumTaskResponse$outputS3Directory": "<p>The folder in the S3 bucket where task results are stored.</p>",
+        "HybridJobQueueInfo$message": "<p>Optional. Provides more information about the queue position. For example, if the job is complete and no longer in the queue, the message field contains that information.</p>",
+        "HybridJobQueueInfo$position": "<p>Current position of the job in the jobs queue.</p>",
         "InternalServiceException$message": null,
         "JobSummary$jobName": "<p>The name of the Amazon Braket job.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>Specify the <code>resourceArn</code> for the resource whose tags to display.</p>",
+        "QuantumTaskQueueInfo$message": "<p>Optional. Provides more information about the queue position. For example, if the task is complete and no longer in the queue, the message field contains that information.</p>",
+        "QuantumTaskQueueInfo$position": "<p>Current position of the task in the quantum tasks queue.</p>",
         "QuantumTaskSummary$outputS3Bucket": "<p>The S3 bucket where the task result file is stored..</p>",
         "QuantumTaskSummary$outputS3Directory": "<p>The folder in the S3 bucket where the task result file is stored.</p>",
         "ResourceNotFoundException$message": null,

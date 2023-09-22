@@ -233,16 +233,21 @@
         "ConnectionBasicAuthResponseParameters$Username": "<p>The user name to use for Basic authorization.</p>",
         "ConnectionOAuthClientResponseParameters$ClientID": "<p>The client ID associated with the response to the connection request.</p>",
         "CreateConnectionApiKeyAuthRequestParameters$ApiKeyName": "<p>The name of the API key to use for authorization.</p>",
-        "CreateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value for the API key to use for authorization.</p>",
         "CreateConnectionBasicAuthRequestParameters$Username": "<p>The user name to use for Basic authorization.</p>",
-        "CreateConnectionBasicAuthRequestParameters$Password": "<p>The password associated with the user name to use for Basic authorization.</p>",
         "CreateConnectionOAuthClientRequestParameters$ClientID": "<p>The client ID to use for OAuth authorization for the connection.</p>",
-        "CreateConnectionOAuthClientRequestParameters$ClientSecret": "<p>The client secret associated with the client ID to use for OAuth authorization for the connection.</p>",
         "UpdateConnectionApiKeyAuthRequestParameters$ApiKeyName": "<p>The name of the API key to use for authorization.</p>",
-        "UpdateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value associated with teh API key to use for authorization.</p>",
         "UpdateConnectionBasicAuthRequestParameters$Username": "<p>The user name to use for Basic authorization.</p>",
+        "UpdateConnectionOAuthClientRequestParameters$ClientID": "<p>The client ID to use for OAuth authorization.</p>"
+      }
+    },
+    "AuthHeaderParametersSensitive": {
+      "base": null,
+      "refs": {
+        "CreateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value for the API key to use for authorization.</p>",
+        "CreateConnectionBasicAuthRequestParameters$Password": "<p>The password associated with the user name to use for Basic authorization.</p>",
+        "CreateConnectionOAuthClientRequestParameters$ClientSecret": "<p>The client secret associated with the client ID to use for OAuth authorization for the connection.</p>",
+        "UpdateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value associated with teh API key to use for authorization.</p>",
         "UpdateConnectionBasicAuthRequestParameters$Password": "<p>The password associated with the user name to use for Basic authorization.</p>",
-        "UpdateConnectionOAuthClientRequestParameters$ClientID": "<p>The client ID to use for OAuth authorization.</p>",
         "UpdateConnectionOAuthClientRequestParameters$ClientSecret": "<p>The client secret assciated with the client ID to use for OAuth authorization.</p>"
       }
     },
@@ -909,8 +914,13 @@
     "HeaderValue": {
       "base": null,
       "refs": {
-        "ConnectionHeaderParameter$Value": "<p>The value associated with the key.</p>",
         "HeaderParametersMap$value": null
+      }
+    },
+    "HeaderValueSensitive": {
+      "base": null,
+      "refs": {
+        "ConnectionHeaderParameter$Value": "<p>The value associated with the key.</p>"
       }
     },
     "HttpParameters": {
@@ -1451,8 +1461,13 @@
     "QueryStringValue": {
       "base": null,
       "refs": {
-        "ConnectionQueryStringParameter$Value": "<p>The value associated with the key for the query string parameter.</p>",
         "QueryStringParametersMap$value": null
+      }
+    },
+    "QueryStringValueSensitive": {
+      "base": null,
+      "refs": {
+        "ConnectionQueryStringParameter$Value": "<p>The value associated with the key for the query string parameter.</p>"
       }
     },
     "RedshiftDataParameters": {
@@ -1749,6 +1764,12 @@
         "DescribeConnectionResponse$SecretArn": "<p>The ARN of the secret created from the authorization parameters specified for the connection.</p>"
       }
     },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "ConnectionBodyParameter$Value": "<p>The value associated with the key.</p>"
+      }
+    },
     "Sql": {
       "base": null,
       "refs": {
@@ -1793,7 +1814,6 @@
         "Condition$Key": "<p>Specifies the key for the condition. Currently the only supported key is <code>aws:PrincipalOrgID</code>.</p>",
         "Condition$Value": "<p>Specifies the value for the key. Currently, this must be the ID of the organization.</p>",
         "ConnectionBodyParameter$Key": "<p>The key for the parameter.</p>",
-        "ConnectionBodyParameter$Value": "<p>The value associated with the key.</p>",
         "CreateEventBusResponse$EventBusArn": "<p>The ARN of the new event bus.</p>",
         "CreatePartnerEventSourceResponse$EventSourceArn": "<p>The ARN of the partner event source.</p>",
         "DescribeEventBusResponse$Name": "<p>The name of the event bus. Currently, this is always <code>default</code>.</p>",

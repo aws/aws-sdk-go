@@ -593,11 +593,13 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //     The destination file system configuration consists of the following properties:
 //     Amazon Web Services Region - The Amazon Web Services Region in which the
 //     destination file system is created. Amazon EFS replication is available
-//     in all Amazon Web Services Regions that Amazon EFS is available in, except
-//     Africa (Cape Town), Asia Pacific (Hong Kong), Asia Pacific (Jakarta),
-//     Europe (Milan), and Middle East (Bahrain). Availability Zone - If you
-//     want the destination file system to use EFS One Zone availability and
-//     durability, you must specify the Availability Zone to create the file
+//     in all Amazon Web Services Regions in which EFS is available. To use EFS
+//     replication in a Region that is disabled by default, you must first opt
+//     in to the Region. For more information, see Managing Amazon Web Services
+//     Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
+//     in the Amazon Web Services General Reference Reference Guide Availability
+//     Zone - If you want the destination file system to use EFS One Zone availability
+//     and durability, you must specify the Availability Zone to create the file
 //     system in. For more information about EFS storage classes, see Amazon
 //     EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 //     in the Amazon EFS User Guide. Encryption - All destination file systems
@@ -625,7 +627,7 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //     file system is created, you can enable EFS lifecycle management and EFS
 //     Intelligent-Tiering.
 //
-//   - Automatic backups - Automatic daily backups not enabled on the destination
+//   - Automatic backups - Automatic daily backups are enabled on the destination
 //     file system. After the file system is created, you can change this setting.
 //
 // For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
@@ -1273,9 +1275,7 @@ func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConf
 
 // DeleteReplicationConfiguration API operation for Amazon Elastic File System.
 //
-// Deletes an existing replication configuration. To delete a replication configuration,
-// you must make the request from the Amazon Web Services Region in which the
-// destination file system is located. Deleting a replication configuration
+// Deletes an existing replication configuration. Deleting a replication configuration
 // ends the replication process. After a replication configuration is deleted,
 // the destination file system is no longer read-only. You can write to the
 // destination file system after its status becomes Writeable.
@@ -1631,7 +1631,7 @@ func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreference
 //
 // Returns the account preferences settings for the Amazon Web Services account
 // associated with the user making the request, in the current Amazon Web Services
-// Region. For more information, see Managing Amazon EFS resource IDs (efs/latest/ug/manage-efs-resource-ids.html).
+// Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4443,14 +4443,17 @@ type CreateFileSystemInput struct {
 	// performance mode can't be changed after the file system has been created.
 	//
 	// The maxIO mode is not supported on file systems using One Zone storage classes.
+	//
+	// Default is generalPurpose.
 	PerformanceMode *string `type:"string" enum:"PerformanceMode"`
 
-	// The throughput, measured in MiB/s, that you want to provision for a file
-	// system that you're creating. Valid values are 1-1024. Required if ThroughputMode
-	// is set to provisioned. The upper limit for throughput is 1024 MiB/s. To increase
-	// this limit, contact Amazon Web Services Support. For more information, see
-	// Amazon EFS quotas that you can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
-	// in the Amazon EFS User Guide.
+	// The throughput, measured in mebibytes per second (MiBps), that you want to
+	// provision for a file system that you're creating. Required if ThroughputMode
+	// is set to provisioned. Valid values are 1-3414 MiBps, with the upper limit
+	// depending on Region. To increase this limit, contact Amazon Web Services
+	// Support. For more information, see Amazon EFS quotas that you can increase
+	// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the
+	// Amazon EFS User Guide.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
 	// Use to create one or more tags associated with the file system. Each tag
@@ -4736,6 +4739,7 @@ func (s *CreateReplicationConfigurationInput) SetSourceFileSystemId(v string) *C
 	return s
 }
 
+// Describes the replication configuration for a specific file system.
 type CreateReplicationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6929,7 +6933,7 @@ type FileSystemDescription struct {
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
 
-	// The amount of provisioned throughput, measured in MiB/s, for the file system.
+	// The amount of provisioned throughput, measured in MiBps, for the file system.
 	// Valid for file systems using ThroughputMode set to provisioned.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
@@ -9114,6 +9118,7 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+// Describes the replication configuration for a specific file system.
 type ReplicationConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -10198,10 +10203,13 @@ type UpdateFileSystemInput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
-	// (Optional) Sets the amount of provisioned throughput, in MiB/s, for the file
-	// system. Valid values are 1-1024. If you are changing the throughput mode
-	// to provisioned, you must also provide the amount of provisioned throughput.
-	// Required if ThroughputMode is changed to provisioned on update.
+	// (Optional) The throughput, measured in mebibytes per second (MiBps), that
+	// you want to provision for a file system that you're creating. Required if
+	// ThroughputMode is set to provisioned. Valid values are 1-3414 MiBps, with
+	// the upper limit depending on Region. To increase this limit, contact Amazon
+	// Web Services Support. For more information, see Amazon EFS quotas that you
+	// can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
+	// in the Amazon EFS User Guide.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
 	// (Optional) Updates the file system's throughput mode. If you're not updating
@@ -10333,7 +10341,7 @@ type UpdateFileSystemOutput struct {
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
 
-	// The amount of provisioned throughput, measured in MiB/s, for the file system.
+	// The amount of provisioned throughput, measured in MiBps, for the file system.
 	// Valid for file systems using ThroughputMode set to provisioned.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 

@@ -795,9 +795,9 @@
       }
     },
     "CmfcAudioTrackType": {
-      "base": "Use this setting to control the values that MediaConvert puts in your HLS parent playlist to control how the client player selects which audio track to play. The other options for this setting determine the values that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry for the audio variant. For more information about these attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist. Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES. Choose this value for only one variant in your output group. Choose Alternate audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose Alternate Audio, Not Auto Select to set DEFAULT=NO and AUTOSELECT=NO. When you don't specify a value for this setting, MediaConvert defaults to Alternate audio, auto select, default. When there is more than one variant in your output group, you must explicitly choose a value for this setting.",
+      "base": "Use this setting to control the values that MediaConvert puts in your HLS parent playlist to control how the client player selects which audio track to play. Choose Audio-only variant stream (AUDIO_ONLY_VARIANT_STREAM) for any variant that you want to prohibit the client from playing with video. This causes MediaConvert to represent the variant as an EXT-X-STREAM-INF in the HLS manifest. The other options for this setting determine the values that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry for the audio variant. For more information about these attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist. Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES. Choose this value for only one variant in your output group. Choose Alternate audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose Alternate Audio, Not Auto Select to set DEFAULT=NO and AUTOSELECT=NO. When you don't specify a value for this setting, MediaConvert defaults to Alternate audio, auto select, default. When there is more than one variant in your output group, you must explicitly choose a value for this setting.",
       "refs": {
-        "CmfcSettings$AudioTrackType": "Use this setting to control the values that MediaConvert puts in your HLS parent playlist to control how the client player selects which audio track to play. The other options for this setting determine the values that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry for the audio variant. For more information about these attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist. Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES. Choose this value for only one variant in your output group. Choose Alternate audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose Alternate Audio, Not Auto Select to set DEFAULT=NO and AUTOSELECT=NO. When you don't specify a value for this setting, MediaConvert defaults to Alternate audio, auto select, default. When there is more than one variant in your output group, you must explicitly choose a value for this setting."
+        "CmfcSettings$AudioTrackType": "Use this setting to control the values that MediaConvert puts in your HLS parent playlist to control how the client player selects which audio track to play. Choose Audio-only variant stream (AUDIO_ONLY_VARIANT_STREAM) for any variant that you want to prohibit the client from playing with video. This causes MediaConvert to represent the variant as an EXT-X-STREAM-INF in the HLS manifest. The other options for this setting determine the values that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry for the audio variant. For more information about these attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist. Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES. Choose this value for only one variant in your output group. Choose Alternate audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose Alternate Audio, Not Auto Select to set DEFAULT=NO and AUTOSELECT=NO. When you don't specify a value for this setting, MediaConvert defaults to Alternate audio, auto select, default. When there is more than one variant in your output group, you must explicitly choose a value for this setting."
       }
     },
     "CmfcDescriptiveVideoServiceFlag": {
@@ -3351,9 +3351,9 @@
       }
     },
     "S3StorageClass": {
-      "base": "Specify the S3 storage class to use for this destination.",
+      "base": "Specify the S3 storage class to use for this output. To use your destination's default storage class: Keep the default value, Not set. For more information about S3 storage classes, see https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html",
       "refs": {
-        "S3DestinationSettings$StorageClass": "Specify the S3 storage class to use for this destination."
+        "S3DestinationSettings$StorageClass": "Specify the S3 storage class to use for this output. To use your destination's default storage class: Keep the default value, Not set. For more information about S3 storage classes, see https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"
       }
     },
     "SampleRangeConversion": {
@@ -4125,6 +4125,13 @@
       "base": null,
       "refs": {
         "H265Settings$HrdBufferSize": "Size of buffer (HRD buffer model) in bits. For example, enter five megabits as 5000000."
+      }
+    },
+    "__integerMin0Max149": {
+      "base": null,
+      "refs": {
+        "JobSettings$FollowInputIndex": "Specifies which input metadata to use for the default \"Follow input\" option for the following settings: resolution, frame rate, and pixel aspect ratio. In the simplest case, specify which input is used based on its index in the job. For example if you specify 3, then the fourth input will be used from each input. If the job does not have a fourth input, then the first input will be used. If no followInputIndex is specified, then 0 will be chosen automatically.",
+        "JobTemplateSettings$FollowInputIndex": "Specifies which input metadata to use for the default \"Follow input\" option for the following settings: resolution, frame rate, and pixel aspect ratio. In the simplest case, specify which input is used based on its index in the job. For example if you specify 3, then the fourth input will be used from each input. If the job does not have a fourth input, then the first input will be used. If no followInputIndex is specified, then 0 will be chosen automatically."
       }
     },
     "__integerMin0Max15": {
@@ -5509,7 +5516,12 @@
     "__stringPatternHttps": {
       "base": null,
       "refs": {
-        "NielsenNonLinearWatermarkSettings$TicServerUrl": "Specify the endpoint for the TIC server that you have deployed and configured in the AWS Cloud. Required for all Nielsen non-linear watermarking. MediaConvert can't connect directly to a TIC server. Instead, you must use API Gateway to provide a RESTful interface between MediaConvert and a TIC server that you deploy in your AWS account. For more information on deploying a TIC server in your AWS account and the required API Gateway, contact Nielsen support.",
+        "NielsenNonLinearWatermarkSettings$TicServerUrl": "Specify the endpoint for the TIC server that you have deployed and configured in the AWS Cloud. Required for all Nielsen non-linear watermarking. MediaConvert can't connect directly to a TIC server. Instead, you must use API Gateway to provide a RESTful interface between MediaConvert and a TIC server that you deploy in your AWS account. For more information on deploying a TIC server in your AWS account and the required API Gateway, contact Nielsen support."
+      }
+    },
+    "__stringPatternHttpsD": {
+      "base": null,
+      "refs": {
         "SpekeKeyProvider$Url": "Specify the URL to the key server that your SPEKE-compliant DRM key provider uses to provide keys for encrypting your content.",
         "SpekeKeyProviderCmaf$Url": "Specify the URL to the key server that your SPEKE-compliant DRM key provider uses to provide keys for encrypting your content."
       }

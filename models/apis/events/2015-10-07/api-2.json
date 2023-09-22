@@ -874,6 +874,13 @@
       "min":1,
       "pattern":"^[ \\t]*[^\\x00-\\x1F:\\x7F]+([ \\t]+[^\\x00-\\x1F:\\x7F]+)*[ \\t]*$"
     },
+    "AuthHeaderParametersSensitive":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^[ \\t]*[^\\x00-\\x1F:\\x7F]+([ \\t]+[^\\x00-\\x1F:\\x7F]+)*[ \\t]*$",
+      "sensitive":true
+    },
     "AwsVpcConfiguration":{
       "type":"structure",
       "required":["Subnets"],
@@ -1024,7 +1031,7 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"String"},
-        "Value":{"shape":"String"},
+        "Value":{"shape":"SensitiveString"},
         "IsValueSecret":{"shape":"Boolean"}
       }
     },
@@ -1043,7 +1050,7 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"HeaderKey"},
-        "Value":{"shape":"HeaderValue"},
+        "Value":{"shape":"HeaderValueSensitive"},
         "IsValueSecret":{"shape":"Boolean"}
       }
     },
@@ -1094,7 +1101,7 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"QueryStringKey"},
-        "Value":{"shape":"QueryStringValue"},
+        "Value":{"shape":"QueryStringValueSensitive"},
         "IsValueSecret":{"shape":"Boolean"}
       }
     },
@@ -1182,7 +1189,7 @@
       ],
       "members":{
         "ApiKeyName":{"shape":"AuthHeaderParameters"},
-        "ApiKeyValue":{"shape":"AuthHeaderParameters"}
+        "ApiKeyValue":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "CreateConnectionAuthRequestParameters":{
@@ -1202,7 +1209,7 @@
       ],
       "members":{
         "Username":{"shape":"AuthHeaderParameters"},
-        "Password":{"shape":"AuthHeaderParameters"}
+        "Password":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "CreateConnectionOAuthClientRequestParameters":{
@@ -1213,7 +1220,7 @@
       ],
       "members":{
         "ClientID":{"shape":"AuthHeaderParameters"},
-        "ClientSecret":{"shape":"AuthHeaderParameters"}
+        "ClientSecret":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "CreateConnectionOAuthRequestParameters":{
@@ -1678,6 +1685,12 @@
       "type":"string",
       "max":512,
       "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*$"
+    },
+    "HeaderValueSensitive":{
+      "type":"string",
+      "max":512,
+      "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*$",
+      "sensitive":true
     },
     "HttpParameters":{
       "type":"structure",
@@ -2270,6 +2283,12 @@
       "max":512,
       "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+"
     },
+    "QueryStringValueSensitive":{
+      "type":"string",
+      "max":512,
+      "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+",
+      "sensitive":true
+    },
     "RedshiftDataParameters":{
       "type":"structure",
       "required":[
@@ -2559,6 +2578,10 @@
       "min":20,
       "pattern":"^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]|\\d|\\-)*:([0-9]{12})?:secret:[\\/_+=\\.@\\-A-Za-z0-9]+$"
     },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
+    },
     "Sql":{
       "type":"string",
       "max":100000,
@@ -2812,7 +2835,7 @@
       "type":"structure",
       "members":{
         "ApiKeyName":{"shape":"AuthHeaderParameters"},
-        "ApiKeyValue":{"shape":"AuthHeaderParameters"}
+        "ApiKeyValue":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "UpdateConnectionAuthRequestParameters":{
@@ -2828,14 +2851,14 @@
       "type":"structure",
       "members":{
         "Username":{"shape":"AuthHeaderParameters"},
-        "Password":{"shape":"AuthHeaderParameters"}
+        "Password":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "UpdateConnectionOAuthClientRequestParameters":{
       "type":"structure",
       "members":{
         "ClientID":{"shape":"AuthHeaderParameters"},
-        "ClientSecret":{"shape":"AuthHeaderParameters"}
+        "ClientSecret":{"shape":"AuthHeaderParametersSensitive"}
       }
     },
     "UpdateConnectionOAuthRequestParameters":{

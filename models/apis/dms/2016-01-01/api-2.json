@@ -2073,10 +2073,14 @@
     "DataProviderSettings":{
       "type":"structure",
       "members":{
+        "RedshiftSettings":{"shape":"RedshiftDataProviderSettings"},
         "PostgreSqlSettings":{"shape":"PostgreSqlDataProviderSettings"},
         "MySqlSettings":{"shape":"MySqlDataProviderSettings"},
         "OracleSettings":{"shape":"OracleDataProviderSettings"},
-        "MicrosoftSqlServerSettings":{"shape":"MicrosoftSqlServerDataProviderSettings"}
+        "MicrosoftSqlServerSettings":{"shape":"MicrosoftSqlServerDataProviderSettings"},
+        "DocDbSettings":{"shape":"DocDbDataProviderSettings"},
+        "MariaDbSettings":{"shape":"MariaDbDataProviderSettings"},
+        "MongoDbSettings":{"shape":"MongoDbDataProviderSettings"}
       },
       "union":true
     },
@@ -3014,6 +3018,16 @@
         "BucketName":{"shape":"String"}
       }
     },
+    "DocDbDataProviderSettings":{
+      "type":"structure",
+      "members":{
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "DatabaseName":{"shape":"String"},
+        "SslMode":{"shape":"DmsSslModeValue"},
+        "CertificateArn":{"shape":"String"}
+      }
+    },
     "DocDbSettings":{
       "type":"structure",
       "members":{
@@ -3586,6 +3600,15 @@
         "nclob"
       ]
     },
+    "MariaDbDataProviderSettings":{
+      "type":"structure",
+      "members":{
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "SslMode":{"shape":"DmsSslModeValue"},
+        "CertificateArn":{"shape":"String"}
+      }
+    },
     "MessageFormatValue":{
       "type":"string",
       "enum":[
@@ -3873,6 +3896,19 @@
       "type":"structure",
       "members":{
         "ReplicationTask":{"shape":"ReplicationTask"}
+      }
+    },
+    "MongoDbDataProviderSettings":{
+      "type":"structure",
+      "members":{
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "DatabaseName":{"shape":"String"},
+        "SslMode":{"shape":"DmsSslModeValue"},
+        "CertificateArn":{"shape":"String"},
+        "AuthType":{"shape":"AuthTypeValue"},
+        "AuthSource":{"shape":"String"},
+        "AuthMechanism":{"shape":"AuthMechanismValue"}
       }
     },
     "MongoDbSettings":{
@@ -4239,6 +4275,14 @@
         "AuthUserName":{"shape":"String"},
         "AuthPassword":{"shape":"SecretString"},
         "SslCaCertificateArn":{"shape":"String"}
+      }
+    },
+    "RedshiftDataProviderSettings":{
+      "type":"structure",
+      "members":{
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "DatabaseName":{"shape":"String"}
       }
     },
     "RedshiftSettings":{

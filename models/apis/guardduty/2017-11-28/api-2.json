@@ -1621,7 +1621,8 @@
         "RESOURCE_TYPE",
         "COVERAGE_STATUS",
         "ADDON_VERSION",
-        "MANAGEMENT_TYPE"
+        "MANAGEMENT_TYPE",
+        "EKS_CLUSTER_NAME"
       ]
     },
     "CoverageFilterCriterionList":{
@@ -1701,7 +1702,8 @@
         "COVERAGE_STATUS",
         "ISSUE",
         "ADDON_VERSION",
-        "UPDATED_AT"
+        "UPDATED_AT",
+        "EKS_CLUSTER_NAME"
       ]
     },
     "CoverageStatistics":{

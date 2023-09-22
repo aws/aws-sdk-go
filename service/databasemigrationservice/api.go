@@ -1118,6 +1118,10 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 // For information on the required permissions, see IAM Permissions Needed to
 // Use DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.IAMPermissions).
 //
+// If you don't specify a version when creating a replication instance, DMS
+// will create the instance using the default engine version. For information
+// about the default engine version, see Release Notes (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReleaseNotes.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11497,11 +11501,11 @@ func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeRequest(input
 // Migrates 10 active and enabled Amazon SNS subscriptions at a time and converts
 // them to corresponding Amazon EventBridge rules. By default, this operation
 // migrates subscriptions only when all your replication instance versions are
-// 3.4.6 or higher. If any replication instances are from versions earlier than
-// 3.4.6, the operation raises an error and tells you to upgrade these instances
-// to version 3.4.6 or higher. To enable migration regardless of version, set
+// 3.4.5 or higher. If any replication instances are from versions earlier than
+// 3.4.5, the operation raises an error and tells you to upgrade these instances
+// to version 3.4.5 or higher. To enable migration regardless of version, set
 // the Force option to true. However, if you don't upgrade instances earlier
-// than version 3.4.6, some types of events might not be available when you
+// than version 3.4.5, some types of events might not be available when you
 // use Amazon EventBridge.
 //
 // To call this operation, make sure that you have certain permissions added
@@ -12572,22 +12576,22 @@ type ComputeConfig struct {
 
 	// Specifies the maximum value of the DMS capacity units (DCUs) for which a
 	// given DMS Serverless replication can be provisioned. A single DCU is 2GB
-	// of RAM, with 2 DCUs as the minimum value allowed. The list of valid DCU values
-	// includes 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the maximum value
-	// that you can specify for DMS Serverless is 384. The MaxCapacityUnits parameter
-	// is the only DCU parameter you are required to specify.
+	// of RAM, with 1 DCU as the minimum value allowed. The list of valid DCU values
+	// includes 1, 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the maximum
+	// value that you can specify for DMS Serverless is 384. The MaxCapacityUnits
+	// parameter is the only DCU parameter you are required to specify.
 	MaxCapacityUnits *int64 `type:"integer"`
 
 	// Specifies the minimum value of the DMS capacity units (DCUs) for which a
 	// given DMS Serverless replication can be provisioned. A single DCU is 2GB
-	// of RAM, with 2 DCUs as the minimum value allowed. The list of valid DCU values
-	// includes 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the minimum DCU
-	// value that you can specify for DMS Serverless is 2. You don't have to specify
-	// a value for the MinCapacityUnits parameter. If you don't set this value,
-	// DMS scans the current activity of available source tables to identify an
-	// optimum setting for this parameter. If there is no current source activity
+	// of RAM, with 1 DCU as the minimum value allowed. The list of valid DCU values
+	// includes 1, 2, 4, 8, 16, 32, 64, 128, 192, 256, and 384. So, the minimum
+	// DCU value that you can specify for DMS Serverless is 1. You don't have to
+	// specify a value for the MinCapacityUnits parameter. If you don't set this
+	// value, DMS scans the current activity of available source tables to identify
+	// an optimum setting for this parameter. If there is no current source activity
 	// or DMS can't otherwise identify a more appropriate value, it sets this parameter
-	// to the minimum DCU value allowed, 2.
+	// to the minimum DCU value allowed, 1.
 	MinCapacityUnits *int64 `type:"integer"`
 
 	// Specifies whether the DMS Serverless replication is a Multi-AZ deployment.
@@ -14267,14 +14271,6 @@ type CreateReplicationInstanceInput struct {
 	// defaults to true.
 	//
 	// Default: true
-	//
-	// When AutoMinorVersionUpgrade is enabled, DMS uses the current default engine
-	// version when you create a replication instance. For example, if you set EngineVersion
-	// to a lower version number than the current default version, DMS uses the
-	// default version.
-	//
-	// If AutoMinorVersionUpgrade isn’t enabled when you create a replication
-	// instance, DMS uses the engine version specified by the EngineVersion parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone where the replication instance will be created. The
@@ -14698,7 +14694,7 @@ type CreateReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
+	// Commit time example: --cdc-stop-position “commit_time:2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The migration type. Valid values: full-load | cdc | full-load-and-cdc
@@ -15133,8 +15129,17 @@ func (s *DataProviderDescriptorDefinition) SetSecretsManagerSecretId(v string) *
 type DataProviderSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Provides information that defines a DocumentDB data provider.
+	DocDbSettings *DocDbDataProviderSettings `type:"structure"`
+
+	// Provides information that defines a MariaDB data provider.
+	MariaDbSettings *MariaDbDataProviderSettings `type:"structure"`
+
 	// Provides information that defines a Microsoft SQL Server data provider.
 	MicrosoftSqlServerSettings *MicrosoftSqlServerDataProviderSettings `type:"structure"`
+
+	// Provides information that defines a MongoDB data provider.
+	MongoDbSettings *MongoDbDataProviderSettings `type:"structure"`
 
 	// Provides information that defines a MySQL data provider.
 	MySqlSettings *MySqlDataProviderSettings `type:"structure"`
@@ -15144,6 +15149,9 @@ type DataProviderSettings struct {
 
 	// Provides information that defines a PostgreSQL data provider.
 	PostgreSqlSettings *PostgreSqlDataProviderSettings `type:"structure"`
+
+	// Provides information that defines an Amazon Redshift data provider.
+	RedshiftSettings *RedshiftDataProviderSettings `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15164,9 +15172,27 @@ func (s DataProviderSettings) GoString() string {
 	return s.String()
 }
 
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *DataProviderSettings) SetDocDbSettings(v *DocDbDataProviderSettings) *DataProviderSettings {
+	s.DocDbSettings = v
+	return s
+}
+
+// SetMariaDbSettings sets the MariaDbSettings field's value.
+func (s *DataProviderSettings) SetMariaDbSettings(v *MariaDbDataProviderSettings) *DataProviderSettings {
+	s.MariaDbSettings = v
+	return s
+}
+
 // SetMicrosoftSqlServerSettings sets the MicrosoftSqlServerSettings field's value.
 func (s *DataProviderSettings) SetMicrosoftSqlServerSettings(v *MicrosoftSqlServerDataProviderSettings) *DataProviderSettings {
 	s.MicrosoftSqlServerSettings = v
+	return s
+}
+
+// SetMongoDbSettings sets the MongoDbSettings field's value.
+func (s *DataProviderSettings) SetMongoDbSettings(v *MongoDbDataProviderSettings) *DataProviderSettings {
+	s.MongoDbSettings = v
 	return s
 }
 
@@ -15185,6 +15211,12 @@ func (s *DataProviderSettings) SetOracleSettings(v *OracleDataProviderSettings) 
 // SetPostgreSqlSettings sets the PostgreSqlSettings field's value.
 func (s *DataProviderSettings) SetPostgreSqlSettings(v *PostgreSqlDataProviderSettings) *DataProviderSettings {
 	s.PostgreSqlSettings = v
+	return s
+}
+
+// SetRedshiftSettings sets the RedshiftSettings field's value.
+func (s *DataProviderSettings) SetRedshiftSettings(v *RedshiftDataProviderSettings) *DataProviderSettings {
+	s.RedshiftSettings = v
 	return s
 }
 
@@ -21785,6 +21817,75 @@ func (s *DmsTransferSettings) SetServiceAccessRoleArn(v string) *DmsTransferSett
 	return s
 }
 
+// Provides information that defines a DocumentDB data provider.
+type DocDbDataProviderSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the certificate used for SSL connection.
+	CertificateArn *string `type:"string"`
+
+	// The database name on the DocumentDB data provider.
+	DatabaseName *string `type:"string"`
+
+	// The port value for the DocumentDB data provider.
+	Port *int64 `type:"integer"`
+
+	// The name of the source DocumentDB server.
+	ServerName *string `type:"string"`
+
+	// The SSL mode used to connect to the DocumentDB data provider. The default
+	// value is none.
+	SslMode *string `type:"string" enum:"DmsSslModeValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocDbDataProviderSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocDbDataProviderSettings) GoString() string {
+	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *DocDbDataProviderSettings) SetCertificateArn(v string) *DocDbDataProviderSettings {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DocDbDataProviderSettings) SetDatabaseName(v string) *DocDbDataProviderSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DocDbDataProviderSettings) SetPort(v int64) *DocDbDataProviderSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *DocDbDataProviderSettings) SetServerName(v string) *DocDbDataProviderSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *DocDbDataProviderSettings) SetSslMode(v string) *DocDbDataProviderSettings {
+	s.SslMode = &v
+	return s
+}
+
 // Provides information that defines a DocumentDB endpoint.
 type DocDbSettings struct {
 	_ struct{} `type:"structure"`
@@ -25312,6 +25413,66 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
+// Provides information that defines a MariaDB data provider.
+type MariaDbDataProviderSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the certificate used for SSL connection.
+	CertificateArn *string `type:"string"`
+
+	// The port value for the MariaDB data provider
+	Port *int64 `type:"integer"`
+
+	// The name of the MariaDB server.
+	ServerName *string `type:"string"`
+
+	// The SSL mode used to connect to the MariaDB data provider. The default value
+	// is none.
+	SslMode *string `type:"string" enum:"DmsSslModeValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MariaDbDataProviderSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MariaDbDataProviderSettings) GoString() string {
+	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *MariaDbDataProviderSettings) SetCertificateArn(v string) *MariaDbDataProviderSettings {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *MariaDbDataProviderSettings) SetPort(v int64) *MariaDbDataProviderSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *MariaDbDataProviderSettings) SetServerName(v string) *MariaDbDataProviderSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *MariaDbDataProviderSettings) SetSslMode(v string) *MariaDbDataProviderSettings {
+	s.SslMode = &v
+	return s
+}
+
 // Provides information that defines a Microsoft SQL Server endpoint.
 type MicrosoftSQLServerSettings struct {
 	_ struct{} `type:"structure"`
@@ -25400,8 +25561,9 @@ type MicrosoftSQLServerSettings struct {
 	// Indicates the mode used to fetch CDC data.
 	TlogAccessMode *string `type:"string" enum:"TlogAccessMode"`
 
-	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
-	// NCHAR data types during migration. The default value is true.
+	// Use the TrimSpaceInChar source endpoint setting to right-trim data on CHAR
+	// and NCHAR data types during migration. Setting TrimSpaceInChar does not left-trim
+	// data. The default value is true.
 	TrimSpaceInChar *bool `type:"boolean"`
 
 	// Use this to attribute to transfer data for full-load operations using BCP.
@@ -27083,14 +27245,6 @@ type ModifyReplicationInstanceInput struct {
 	//    * A newer minor version is available.
 	//
 	//    * DMS has enabled automatic patching for the given engine version.
-	//
-	// When AutoMinorVersionUpgrade is enabled, DMS uses the current default engine
-	// version when you modify a replication instance. For example, if you set EngineVersion
-	// to a lower version number than the current default version, DMS uses the
-	// default version.
-	//
-	// If AutoMinorVersionUpgrade isn’t enabled when you modify a replication
-	// instance, DMS uses the engine version specified by the EngineVersion parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The engine version number of the replication instance.
@@ -27417,7 +27571,7 @@ type ModifyReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
+	// Commit time example: --cdc-stop-position “commit_time:2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The migration type. Valid values: full-load | cdc | full-load-and-cdc
@@ -27571,6 +27725,107 @@ func (s *ModifyReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Mo
 	return s
 }
 
+// Provides information that defines a MongoDB data provider.
+type MongoDbDataProviderSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication method for connecting to the data provider. Valid values
+	// are DEFAULT, MONGODB_CR, or SCRAM_SHA_1.
+	AuthMechanism *string `type:"string" enum:"AuthMechanismValue"`
+
+	// The MongoDB database name. This setting isn't used when AuthType is set to
+	// "no".
+	//
+	// The default is "admin".
+	AuthSource *string `type:"string"`
+
+	// The authentication type for the database connection. Valid values are PASSWORD
+	// or NO.
+	AuthType *string `type:"string" enum:"AuthTypeValue"`
+
+	// The Amazon Resource Name (ARN) of the certificate used for SSL connection.
+	CertificateArn *string `type:"string"`
+
+	// The database name on the MongoDB data provider.
+	DatabaseName *string `type:"string"`
+
+	// The port value for the MongoDB data provider.
+	Port *int64 `type:"integer"`
+
+	// The name of the MongoDB server.
+	ServerName *string `type:"string"`
+
+	// The SSL mode used to connect to the MongoDB data provider. The default value
+	// is none.
+	SslMode *string `type:"string" enum:"DmsSslModeValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbDataProviderSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbDataProviderSettings) GoString() string {
+	return s.String()
+}
+
+// SetAuthMechanism sets the AuthMechanism field's value.
+func (s *MongoDbDataProviderSettings) SetAuthMechanism(v string) *MongoDbDataProviderSettings {
+	s.AuthMechanism = &v
+	return s
+}
+
+// SetAuthSource sets the AuthSource field's value.
+func (s *MongoDbDataProviderSettings) SetAuthSource(v string) *MongoDbDataProviderSettings {
+	s.AuthSource = &v
+	return s
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *MongoDbDataProviderSettings) SetAuthType(v string) *MongoDbDataProviderSettings {
+	s.AuthType = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *MongoDbDataProviderSettings) SetCertificateArn(v string) *MongoDbDataProviderSettings {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *MongoDbDataProviderSettings) SetDatabaseName(v string) *MongoDbDataProviderSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *MongoDbDataProviderSettings) SetPort(v int64) *MongoDbDataProviderSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *MongoDbDataProviderSettings) SetServerName(v string) *MongoDbDataProviderSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *MongoDbDataProviderSettings) SetSslMode(v string) *MongoDbDataProviderSettings {
+	s.SslMode = &v
+	return s
+}
+
 // Provides information that defines a MongoDB endpoint.
 type MongoDbSettings struct {
 	_ struct{} `type:"structure"`
@@ -27661,7 +27916,8 @@ type MongoDbSettings struct {
 	// contains the MongoDB endpoint connection details.
 	SecretsManagerSecretId *string `type:"string"`
 
-	// The name of the server on the MongoDB source endpoint.
+	// The name of the server on the MongoDB source endpoint. For MongoDB Atlas,
+	// provide the server name for any of the servers in the replication set.
 	ServerName *string `type:"string"`
 
 	// If true, DMS retrieves the entire document from the MongoDB source during
@@ -28607,7 +28863,7 @@ type OracleSettings struct {
 	//
 	// You can specify one of two sets of values for these permissions. You can
 	// specify the values for this setting and SecretsManagerOracleAsmSecretId.
-	// Or you can specify clear-text values for AsmUserName, AsmPassword, and AsmServerName.
+	// Or you can specify clear-text values for AsmUser, AsmPassword, and AsmServerName.
 	// You can't specify both. For more information on creating this SecretsManagerOracleAsmSecret
 	// and the SecretsManagerOracleAsmAccessRoleArn and SecretsManagerOracleAsmSecretId
 	// required to access it, see Using secrets to access Database Migration Service
@@ -29255,7 +29511,8 @@ type PostgreSQLSettings struct {
 	HeartbeatSchema *string `type:"string"`
 
 	// When true, lets PostgreSQL migrate the boolean type as boolean. By default,
-	// PostgreSQL migrates booleans as varchar(5).
+	// PostgreSQL migrates booleans as varchar(5). You must set this setting on
+	// both the source and target endpoints for it to take effect.
 	MapBooleanAsBoolean *bool `type:"boolean"`
 
 	// When true, DMS migrates JSONB values as CLOB.
@@ -30325,6 +30582,56 @@ func (s *RedisSettings) SetSslSecurityProtocol(v string) *RedisSettings {
 	return s
 }
 
+// Provides information that defines an Amazon Redshift data provider.
+type RedshiftDataProviderSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The database name on the Amazon Redshift data provider.
+	DatabaseName *string `type:"string"`
+
+	// The port value for the Amazon Redshift data provider.
+	Port *int64 `type:"integer"`
+
+	// The name of the Amazon Redshift server.
+	ServerName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataProviderSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataProviderSettings) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RedshiftDataProviderSettings) SetDatabaseName(v string) *RedshiftDataProviderSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RedshiftDataProviderSettings) SetPort(v int64) *RedshiftDataProviderSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *RedshiftDataProviderSettings) SetServerName(v string) *RedshiftDataProviderSettings {
+	s.ServerName = &v
+	return s
+}
+
 // Provides information that defines an Amazon Redshift endpoint.
 type RedshiftSettings struct {
 	_ struct{} `type:"structure"`
@@ -30430,7 +30737,8 @@ type RedshiftSettings struct {
 	LoadTimeout *int64 `type:"integer"`
 
 	// When true, lets Redshift migrate the boolean type as boolean. By default,
-	// Redshift migrates booleans as varchar(1).
+	// Redshift migrates booleans as varchar(1). You must set this setting on both
+	// the source and target endpoints for it to take effect.
 	MapBooleanAsBoolean *bool `type:"boolean"`
 
 	// The maximum size (in KB) of any .csv file used to load data on an S3 bucket
@@ -32291,7 +32599,7 @@ type ReplicationTask struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
+	// Commit time example: --cdc-stop-position “commit_time:2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The last error (failure) message generated for the replication task.
@@ -33682,9 +33990,9 @@ type S3Settings struct {
 	// An optional parameter that specifies how DMS treats null values. While handling
 	// the null value, you can use this parameter to pass a user-defined string
 	// as null when writing to the target. For example, when target columns are
-	// not nullable, you can use this option to differentiate between the empty
-	// string value and the null value. So, if you set this parameter value to the
-	// empty string ("" or ''), DMS treats the empty string as the null value instead
+	// nullable, you can use this option to differentiate between the empty string
+	// value and the null value. So, if you set this parameter value to the empty
+	// string ("" or ''), DMS treats the empty string as the null value instead
 	// of NULL.
 	//
 	// The default value is NULL. Valid values include any valid string.
@@ -35869,7 +36177,7 @@ type StartReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
+	// Commit time example: --cdc-stop-position “commit_time:2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the replication task to be started.
@@ -37109,7 +37417,7 @@ type UpdateSubscriptionsToEventBridgeInput struct {
 	// When set to true, this operation migrates DMS subscriptions for Amazon SNS
 	// notifications no matter what your replication instance version is. If not
 	// set or set to false, this operation runs only when all your replication instances
-	// are from DMS version 3.4.6 or higher.
+	// are from DMS version 3.4.5 or higher.
 	ForceMove *bool `type:"boolean"`
 }
 

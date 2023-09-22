@@ -27,6 +27,54 @@
         "title": "Add tags to resource"
       }
     ],
+    "CreateDataProvider": [
+      {
+        "input": {
+          "DataProviderName": "sqlServer-dev",
+          "Description": "description",
+          "Engine": "sqlserver",
+          "Settings": {
+            "MicrosoftSqlServerSettings": {
+              "DatabaseName": "DatabaseName",
+              "Port": 11112,
+              "ServerName": "ServerName2",
+              "SslMode": "none"
+            }
+          },
+          "Tags": [
+            {
+              "Key": "access",
+              "Value": "authorizedusers"
+            }
+          ]
+        },
+        "output": {
+          "DataProvider": {
+            "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:my-target-dataprovider",
+            "DataProviderCreationTime": "2023-05-12T10:50:41.988561Z",
+            "DataProviderName": "my-target-dataprovider",
+            "Engine": "postgres",
+            "Settings": {
+              "PostgreSqlSettings": {
+                "DatabaseName": "target",
+                "Port": 5432,
+                "ServerName": "postrgesql.a1b2c3d4e5f6.us-east-1.rds.amazonaws.com",
+                "SslMode": "none"
+              }
+            }
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates the data provider with the specified parameters.",
+        "id": "create-data-provider-1689726511871",
+        "title": "Create Data Provider"
+      }
+    ],
     "CreateEndpoint": [
       {
         "input": {
@@ -71,6 +119,119 @@
         "description": "Creates an endpoint using the provided settings.",
         "id": "create-endpoint-1481746254348",
         "title": "Create endpoint"
+      }
+    ],
+    "CreateInstanceProfile": [
+      {
+        "input": {
+          "Description": "Description",
+          "InstanceProfileName": "my-instance-profile",
+          "KmsKeyArn": "arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef",
+          "NetworkType": "DUAL",
+          "PubliclyAccessible": true,
+          "SubnetGroupIdentifier": "my-subnet-group",
+          "Tags": [
+            {
+              "Key": "access",
+              "Value": "authorizedusers"
+            }
+          ]
+        },
+        "output": {
+          "InstanceProfile": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:my-instance-profile",
+            "InstanceProfileCreationTime": "2022-12-16T09:44:43.543246Z",
+            "InstanceProfileName": "my-instance-profile",
+            "KmsKeyArn": "arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef",
+            "PubliclyAccessible": true,
+            "SubnetGroupIdentifier": "public-subnets",
+            "VpcIdentifier": "vpc-0a1b2c3d4e5f6g7h8",
+            "VpcSecurityGroups": [
+              "sg-0123456"
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates the instance profile using the specified parameters.",
+        "id": "create-instance-profile-1689716070633",
+        "title": "Create Instance Profile"
+      }
+    ],
+    "CreateMigrationProject": [
+      {
+        "input": {
+          "Description": "description",
+          "InstanceProfileIdentifier": "ip-au-17",
+          "MigrationProjectName": "my-migration-project",
+          "SchemaConversionApplicationAttributes": {
+            "S3BucketPath": "arn:aws:s3:::mylogin-bucket",
+            "S3BucketRoleArn": "arn:aws:iam::012345678901:role/Admin"
+          },
+          "SourceDataProviderDescriptors": [
+            {
+              "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+              "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/myuser-admin-access",
+              "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/ALL.SOURCE.ORACLE_12-A1B2C3"
+            }
+          ],
+          "Tags": [
+            {
+              "Key": "access",
+              "Value": "authorizedusers"
+            }
+          ],
+          "TargetDataProviderDescriptors": [
+            {
+              "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+              "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/myuser-admin-access",
+              "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/TARGET.postgresql-A1B2C3"
+            }
+          ],
+          "TransformationRules": "{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}"
+        },
+        "output": {
+          "MigrationProject": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "InstanceProfileName": "my-instance-profile",
+            "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "MigrationProjectCreationTime": "2023-04-19T11:45:15.805253Z",
+            "MigrationProjectName": "my-migration-project",
+            "SchemaConversionApplicationAttributes": {
+              "S3BucketPath": "my-s3-bucket/my_folder",
+              "S3BucketRoleArn": "arn:aws:iam::012345678901:role/my-s3role"
+            },
+            "SourceDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "source-oracle-12",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/my-access-role",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myuser/ALL.SOURCE.ORACLE_12-0123456"
+              }
+            ],
+            "TargetDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "target-dataprovider-3",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/dmytbon-admin-access",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myuser/TARGET.postgresql-0123456"
+              }
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates the migration project with the specified parameters.",
+        "id": "create-migration-project-1689716672685",
+        "title": "Create Migration Project"
       }
     ],
     "CreateReplicationInstance": [
@@ -271,6 +432,38 @@
         "title": "Delete Connection"
       }
     ],
+    "DeleteDataProvider": [
+      {
+        "input": {
+          "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "output": {
+          "DataProvider": {
+            "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:my-target-data-provider",
+            "DataProviderCreationTime": "2023-05-12T10:50:41.988561Z",
+            "DataProviderName": "my-target-data-provider",
+            "Engine": "postgres",
+            "Settings": {
+              "PostgreSqlSettings": {
+                "DatabaseName": "target",
+                "Port": 5432,
+                "ServerName": "postrgesql.0a1b2c3d4e5f.us-east-1.rds.amazonaws.com",
+                "SslMode": "none"
+              }
+            }
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes the specified data provider.",
+        "id": "delete-data-provider-1689724476356",
+        "title": "Delete Data Provider"
+      }
+    ],
     "DeleteEndpoint": [
       {
         "input": {
@@ -298,6 +491,81 @@
         "description": "Deletes the specified endpoint. All tasks associated with the endpoint must be deleted before you can delete the endpoint.\n",
         "id": "delete-endpoint-1481752425530",
         "title": "Delete Endpoint"
+      }
+    ],
+    "DeleteInstanceProfile": [
+      {
+        "input": {
+          "InstanceProfileIdentifier": "arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "output": {
+          "InstanceProfile": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:my-instance-profile",
+            "InstanceProfileCreationTime": "2022-12-16T09:44:43.543246Z",
+            "InstanceProfileName": "my-instance-profile",
+            "KmsKeyArn": "arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef",
+            "PubliclyAccessible": true,
+            "SubnetGroupIdentifier": "public-subnets",
+            "VpcIdentifier": "vpc-0a1b2c3d4e5f6g7h8",
+            "VpcSecurityGroups": [
+              "sg-0123456"
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes the specified instance profile.",
+        "id": "delete-instance-profile-1689716924105",
+        "title": "Delete Instance Profile"
+      }
+    ],
+    "DeleteMigrationProject": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "output": {
+          "MigrationProject": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "InstanceProfileName": "my-instance-profile",
+            "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "MigrationProjectCreationTime": "2023-04-19T11:45:15.805253Z",
+            "MigrationProjectName": "my-migration-project",
+            "SchemaConversionApplicationAttributes": {
+              "S3BucketPath": "my-s3-bucket/my_folder",
+              "S3BucketRoleArn": "arn:aws:iam::012345678901:role/my-s3role"
+            },
+            "SourceDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "all-source-oracle-12",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/my-access-role",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myuser/ALL.SOURCE.ORACLE_12-0123456"
+              }
+            ],
+            "TargetDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "sde-obilyns-dataprovider-3",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::437223687239:role/dmytbon-admin-access",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myuser/TARGET.postgresql-0123456"
+              }
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Deletes the specified migration project.",
+        "id": "delete-migration-project-1689717217454",
+        "title": "Delete Migration Project"
       }
     ],
     "DeleteReplicationInstance": [
@@ -518,6 +786,70 @@
         "title": "Describe connections"
       }
     ],
+    "DescribeConversionConfiguration": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "output": {
+          "ConversionConfiguration": "{\"Common project settings\":{\"ShowSeverityLevelInSql\":\"CRITICAL\"},\"ORACLE_TO_POSTGRESQL\" : {\"ToTimeZone\":false,\"LastDayBuiltinFunctionOracle\":false,   \"NextDayBuiltinFunctionOracle\":false,\"ConvertProceduresToFunction\":false,\"NvlBuiltinFunctionOracle\":false,\"DbmsAssertBuiltinFunctionOracle\":false}}",
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns configuration parameters for a schema conversion project.",
+        "id": "describe-conversion-configuration-1689717690907",
+        "title": "Describe Conversion Configuration"
+      }
+    ],
+    "DescribeDataProviders": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "data-provider-identifier",
+              "Values": [
+                "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+              ]
+            }
+          ],
+          "Marker": "EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+          "MaxRecords": 20
+        },
+        "output": {
+          "DataProviders": [
+            {
+              "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:my-target-data-provider",
+              "DataProviderCreationTime": "2023-05-12T10:50:41.988561Z",
+              "DataProviderName": "my-target-data-provider",
+              "Engine": "postgres",
+              "Settings": {
+                "PostgreSqlSettings": {
+                  "DatabaseName": "target",
+                  "Port": 5432,
+                  "ServerName": "postrgesql.0a1b2c3d4e5f.us-east-1.rds.amazonaws.com",
+                  "SslMode": "none"
+                }
+              }
+            }
+          ],
+          "Marker": "EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "",
+        "id": "describe-data-providers-1689725897156",
+        "title": "Describe Data Providers"
+      }
+    ],
     "DescribeEndpointTypes": [
       {
         "input": {
@@ -580,6 +912,318 @@
         "description": "Returns information about the endpoints for your account in the current region.",
         "id": "describe-endpoints-1481754926060",
         "title": "Describe endpoints"
+      }
+    ],
+    "DescribeExtensionPackAssociations": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "instance-profile-identifier",
+              "Values": [
+                "arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20,
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of extension pack associations for the specified migration project.",
+        "id": "describe-extension-pack-associations-1689718322580",
+        "title": "Describe Extension Pack Associations"
+      }
+    ],
+    "DescribeInstanceProfiles": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "instance-profile-identifier",
+              "Values": [
+                "arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20
+        },
+        "output": {
+          "InstanceProfiles": [
+            {
+              "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:my-instance-profile",
+              "InstanceProfileCreationTime": "2022-12-16T09:44:43.543246Z",
+              "InstanceProfileName": "my-instance-profile",
+              "KmsKeyArn": "arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef",
+              "PubliclyAccessible": true,
+              "SubnetGroupIdentifier": "public-subnets",
+              "VpcIdentifier": "vpc-0a1b2c3d4e5f6g7h8"
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of instance profiles for your account in the current region.",
+        "id": "describe-instance-profiles-1689718406840",
+        "title": "Describe Instance Profiles"
+      }
+    ],
+    "DescribeMetadataModelAssessments": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "my-migration-project",
+              "Values": [
+                "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20,
+          "MigrationProjectIdentifier": ""
+        },
+        "output": {
+          "Marker": "ASDLKJASDJKHDFHGDNBGDASKJHGFK",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of metadata model assessments for your account in the current region.",
+        "id": "describe-metadata-model-assessments-1689718702303",
+        "title": "Describe Metadata Model Assessments"
+      }
+    ],
+    "DescribeMetadataModelConversions": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "request-id",
+              "Values": [
+                "01234567-89ab-cdef-0123-456789abcdef"
+              ]
+            }
+          ],
+          "Marker": "EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456",
+          "MaxRecords": 123,
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of metadata model conversions for a migration project.",
+        "id": "describe-metadata-model-conversions-1689719021495",
+        "title": "Describe Metadata Model Conversions"
+      }
+    ],
+    "DescribeMetadataModelExportsAsScript": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "request-id",
+              "Values": [
+                "01234567-89ab-cdef-0123-456789abcdef"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20,
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of metadata model exports.",
+        "id": "describe-metadata-model-exports-as-script-1689719253938",
+        "title": "Describe Metadata Model Exports As Script"
+      }
+    ],
+    "DescribeMetadataModelExportsToTarget": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "request-id",
+              "Values": [
+                "01234567-89ab-cdef-0123-456789abcdef"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20,
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of metadata model exports.",
+        "id": "describe-metadata-model-exports-to-target-1689719484750",
+        "title": "Describe Metadata Model Exports To Target"
+      }
+    ],
+    "DescribeMetadataModelImports": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "request-id",
+              "Values": [
+                "01234567-89ab-cdef-0123-456789abcdef"
+              ]
+            }
+          ],
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MaxRecords": 20,
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "Requests": [
+            {
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef",
+              "Status": "SUCCESS"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of metadata model imports.",
+        "id": "describe-metadata-model-imports-1689719771322",
+        "title": "Describe Metadata Model Imports"
+      }
+    ],
+    "DescribeMigrationProjects": [
+      {
+        "input": {
+          "Filters": [
+            {
+              "Name": "migration-project-identifier",
+              "Values": [
+                "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901"
+              ]
+            }
+          ],
+          "Marker": "EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456",
+          "MaxRecords": 20
+        },
+        "output": {
+          "Marker": "0123456789abcdefghijklmnopqrs",
+          "MigrationProjects": [
+            {
+              "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "InstanceProfileName": "my-instance-profile",
+              "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+              "MigrationProjectCreationTime": "2023-04-19T11:45:15.805253Z",
+              "MigrationProjectName": "my-migration-project",
+              "SchemaConversionApplicationAttributes": {
+                "S3BucketPath": "my-s3-bucket/my_folder",
+                "S3BucketRoleArn": "arn:aws:iam::012345678901:role/my-s3role"
+              },
+              "SourceDataProviderDescriptors": [
+                {
+                  "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                  "DataProviderName": "all-source-oracle-12",
+                  "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/my-access-role",
+                  "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:mygroup/myalias/ALL.SOURCE.ORACLE_12-012345"
+                }
+              ],
+              "TargetDataProviderDescriptors": [
+                {
+                  "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                  "DataProviderName": "my-data-provider",
+                  "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/dmytbon-admin-access",
+                  "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:mygroup/myalias/TARGET.postgresql-012345"
+                }
+              ]
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a paginated list of migration projects for your account in the current region.",
+        "id": "describe-migration-projects-1689719912075",
+        "title": "Describe Migration Projects"
       }
     ],
     "DescribeOrderableReplicationInstances": [
@@ -770,6 +1414,37 @@
         "title": "Describe table statistics"
       }
     ],
+    "ExportMetadataModelAssessment": [
+      {
+        "input": {
+          "AssessmentReportTypes": [
+            "pdf"
+          ],
+          "FileName": "file",
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "CsvReport": {
+            "ObjectURL": "url",
+            "S3ObjectKey": "object-name"
+          },
+          "PdfReport": {
+            "ObjectURL": "url",
+            "S3ObjectKey": "object-name"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Saves a copy of a database migration assessment report to your S3 bucket. DMS can save your assessment report as a comma-separated value (CSV) or a PDF file.",
+        "id": "export-metadata-model-assessment-1689720309558",
+        "title": "Export Metadata Model Assessment"
+      }
+    ],
     "ImportCertificate": [
       {
         "input": {
@@ -812,6 +1487,69 @@
         "title": "List tags for resource"
       }
     ],
+    "ModifyConversionConfiguration": [
+      {
+        "input": {
+          "ConversionConfiguration": "{\"Common project settings\":{\"ShowSeverityLevelInSql\":\"CRITICAL\"},\"ORACLE_TO_POSTGRESQL\" : {\"ToTimeZone\":false,\"LastDayBuiltinFunctionOracle\":false,   \"NextDayBuiltinFunctionOracle\":false,\"ConvertProceduresToFunction\":false,\"NvlBuiltinFunctionOracle\":false,\"DbmsAssertBuiltinFunctionOracle\":false}}",
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Modifies the specified schema conversion configuration using the provided parameters.",
+        "id": "modify-conversion-configuration-1689720529855",
+        "title": "Modify Conversion Configuration"
+      }
+    ],
+    "ModifyDataProvider": [
+      {
+        "input": {
+          "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+          "DataProviderName": "new-name",
+          "Description": "description",
+          "Engine": "sqlserver",
+          "Settings": {
+            "MicrosoftSqlServerSettings": {
+              "DatabaseName": "DatabaseName",
+              "Port": 11112,
+              "ServerName": "ServerName2",
+              "SslMode": "none"
+            }
+          }
+        },
+        "output": {
+          "DataProvider": {
+            "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:my-target-data-provider",
+            "DataProviderCreationTime": "2023-05-12T10:50:41.988561Z",
+            "DataProviderName": "my-target-data-provider",
+            "Engine": "postgres",
+            "Settings": {
+              "PostgreSqlSettings": {
+                "DatabaseName": "target",
+                "Port": 5432,
+                "ServerName": "postrgesql.0a1b2c3d4e5f.us-east-1.rds.amazonaws.com",
+                "SslMode": "none"
+              }
+            }
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Modifies the specified data provider using the provided settings.",
+        "id": "modify-data-provider-1689720700567",
+        "title": "Modify Data Provider"
+      }
+    ],
     "ModifyEndpoint": [
       {
         "input": {
@@ -841,6 +1579,112 @@
         "description": "Modifies the specified endpoint.",
         "id": "modify-endpoint-1481761649937",
         "title": "Modify endpoint"
+      }
+    ],
+    "ModifyInstanceProfile": [
+      {
+        "input": {
+          "AvailabilityZone": "",
+          "Description": "",
+          "InstanceProfileIdentifier": "",
+          "InstanceProfileName": "",
+          "KmsKeyArn": "",
+          "NetworkType": "",
+          "PubliclyAccessible": true,
+          "SubnetGroupIdentifier": "",
+          "VpcSecurityGroups": [
+
+          ]
+        },
+        "output": {
+          "InstanceProfile": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:my-instance-profile",
+            "InstanceProfileCreationTime": "2022-12-16T09:44:43.543246Z",
+            "InstanceProfileName": "my-instance-profile",
+            "KmsKeyArn": "arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef",
+            "PubliclyAccessible": true,
+            "SubnetGroupIdentifier": "public-subnets",
+            "VpcIdentifier": "vpc-0a1b2c3d4e5f6g7h8",
+            "VpcSecurityGroups": [
+              "sg-0123456"
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Modifies the specified instance profile using the provided parameters.",
+        "id": "modify-instance-profile-1689724223329",
+        "title": "Modify Instance Profile"
+      }
+    ],
+    "ModifyMigrationProject": [
+      {
+        "input": {
+          "Description": "description",
+          "InstanceProfileIdentifier": "my-instance-profile",
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+          "MigrationProjectName": "new-name",
+          "SchemaConversionApplicationAttributes": {
+            "S3BucketPath": "arn:aws:s3:::myuser-bucket",
+            "S3BucketRoleArn": "arn:aws:iam::012345678901:role/Admin"
+          },
+          "SourceDataProviderDescriptors": [
+            {
+              "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+              "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/myuser-admin-access",
+              "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/ALL.SOURCE.ORACLE_12-A1B2C3"
+            }
+          ],
+          "TargetDataProviderDescriptors": [
+            {
+              "DataProviderIdentifier": "arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+              "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/myuser-admin-access",
+              "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/TARGET.postgresql-A1B2C3"
+            }
+          ]
+        },
+        "output": {
+          "MigrationProject": {
+            "InstanceProfileArn": "arn:aws:dms:us-east-1:012345678901:instance-profile:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "InstanceProfileName": "my-instance-profile",
+            "MigrationProjectArn": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+            "MigrationProjectCreationTime": "2023-04-19T11:45:15.805253Z",
+            "MigrationProjectName": "my-migration-project",
+            "SchemaConversionApplicationAttributes": {
+              "S3BucketPath": "my-s3-bucket/my_folder",
+              "S3BucketRoleArn": "arn:aws:iam::012345678901:role/my-s3role"
+            },
+            "SourceDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "all-source-oracle-12",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/my-access-role",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:mygroup/myalias/ALL.SOURCE.ORACLE_12-TP5rA9"
+              }
+            ],
+            "TargetDataProviderDescriptors": [
+              {
+                "DataProviderArn": "arn:aws:dms:us-east-1:012345678901:data-provider:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+                "DataProviderName": "my-dataprovider",
+                "SecretsManagerAccessRoleArn": "arn:aws:iam::012345678901:role/my-access-role",
+                "SecretsManagerSecretId": "arn:aws:secretsmanager:us-east-1:012345678901:secret:mygroup/myalias/TARGET.postgresql-mysecret"
+              }
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Modifies the specified migration project using the provided parameters.",
+        "id": "modify-migration-project-1689721117475",
+        "title": "Modify Migration Project"
       }
     ],
     "ModifyReplicationInstance": [
@@ -985,6 +1829,130 @@
         "description": "Removes metadata tags from an AWS DMS resource.",
         "id": "remove-tags-from-resource-1481762571330",
         "title": "Remove tags from resource"
+      }
+    ],
+    "StartExtensionPackAssociation": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Applies the extension pack to your target database.",
+        "id": "start-extension-pack-association-1689721897266",
+        "title": "Start Extension Pack Association"
+      }
+    ],
+    "StartMetadataModelAssessment": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Creates a database migration assessment report by assessing the migration complexity for \n         your source database.",
+        "id": "start-metadata-model-assessment-1689722322596",
+        "title": "Start Metadata Model Assessment"
+      }
+    ],
+    "StartMetadataModelConversion": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Converts your source database objects to a format compatible with the target database. ",
+        "id": "start-metadata-model-conversion-1689722427798",
+        "title": "Start Metadata Model Conversion"
+      }
+    ],
+    "StartMetadataModelExportAsScript": [
+      {
+        "input": {
+          "FileName": "FILE",
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+          "Origin": "SOURCE",
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Saves your converted code to a file as a SQL script, and stores this file on your S3 bucket.",
+        "id": "start-metadata-model-export-as-script-1689722681469",
+        "title": "Start Metadata Model Export As Script"
+      }
+    ],
+    "StartMetadataModelExportToTarget": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345",
+          "OverwriteExtensionPack": true,
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Applies converted database objects to your target database.",
+        "id": "start-metadata-model-export-to-target-1689783666835",
+        "title": "Start Metadata Model Export To Target"
+      }
+    ],
+    "StartMetadataModelImport": [
+      {
+        "input": {
+          "MigrationProjectIdentifier": "arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012",
+          "Origin": "SOURCE",
+          "Refresh": false,
+          "SelectionRules": "{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"
+        },
+        "output": {
+          "RequestIdentifier": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Loads the metadata for all the dependent database objects of the parent object.",
+        "id": "start-metadata-model-import-1689723124259",
+        "title": "Start Metadata Model Import"
       }
     ],
     "StartReplicationTask": [

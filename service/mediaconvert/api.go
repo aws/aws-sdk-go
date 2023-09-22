@@ -7213,10 +7213,13 @@ type CmfcSettings struct {
 
 	// Use this setting to control the values that MediaConvert puts in your HLS
 	// parent playlist to control how the client player selects which audio track
-	// to play. The other options for this setting determine the values that MediaConvert
-	// writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry
-	// for the audio variant. For more information about these attributes, see the
-	// Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist.
+	// to play. Choose Audio-only variant stream (AUDIO_ONLY_VARIANT_STREAM) for
+	// any variant that you want to prohibit the client from playing with video.
+	// This causes MediaConvert to represent the variant as an EXT-X-STREAM-INF
+	// in the HLS manifest. The other options for this setting determine the values
+	// that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the
+	// EXT-X-MEDIA entry for the audio variant. For more information about these
+	// attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist.
 	// Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES.
 	// Choose this value for only one variant in your output group. Choose Alternate
 	// audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose
@@ -16638,6 +16641,15 @@ type JobSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
+	// Specifies which input metadata to use for the default "Follow input" option
+	// for the following settings: resolution, frame rate, and pixel aspect ratio.
+	// In the simplest case, specify which input is used based on its index in the
+	// job. For example if you specify 3, then the fourth input will be used from
+	// each input. If the job does not have a fourth input, then the first input
+	// will be used. If no followInputIndex is specified, then 0 will be chosen
+	// automatically.
+	FollowInputIndex *int64 `locationName:"followInputIndex" type:"integer"`
+
 	// Use Inputs to define source file used in the transcode job. There can be
 	// multiple inputs add in a job. These inputs will be concantenated together
 	// to create the output.
@@ -16781,6 +16793,12 @@ func (s *JobSettings) SetEsam(v *EsamSettings) *JobSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobSettings {
 	s.ExtendedDataServices = v
+	return s
+}
+
+// SetFollowInputIndex sets the FollowInputIndex field's value.
+func (s *JobSettings) SetFollowInputIndex(v int64) *JobSettings {
+	s.FollowInputIndex = &v
 	return s
 }
 
@@ -17009,6 +17027,15 @@ type JobTemplateSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
+	// Specifies which input metadata to use for the default "Follow input" option
+	// for the following settings: resolution, frame rate, and pixel aspect ratio.
+	// In the simplest case, specify which input is used based on its index in the
+	// job. For example if you specify 3, then the fourth input will be used from
+	// each input. If the job does not have a fourth input, then the first input
+	// will be used. If no followInputIndex is specified, then 0 will be chosen
+	// automatically.
+	FollowInputIndex *int64 `locationName:"followInputIndex" type:"integer"`
+
 	// Use Inputs to define the source file used in the transcode job. There can
 	// only be one input in a job template. Using the API, you can include multiple
 	// inputs when referencing a job template.
@@ -17152,6 +17179,12 @@ func (s *JobTemplateSettings) SetEsam(v *EsamSettings) *JobTemplateSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobTemplateSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobTemplateSettings {
 	s.ExtendedDataServices = v
+	return s
+}
+
+// SetFollowInputIndex sets the FollowInputIndex field's value.
+func (s *JobTemplateSettings) SetFollowInputIndex(v int64) *JobTemplateSettings {
+	s.FollowInputIndex = &v
 	return s
 }
 
@@ -23100,7 +23133,9 @@ type S3DestinationSettings struct {
 	// S3.
 	Encryption *S3EncryptionSettings `locationName:"encryption" type:"structure"`
 
-	// Specify the S3 storage class to use for this destination.
+	// Specify the S3 storage class to use for this output. To use your destination's
+	// default storage class: Keep the default value, Not set. For more information
+	// about S3 storage classes, see https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html
 	StorageClass *string `locationName:"storageClass" type:"string" enum:"S3StorageClass"`
 }
 
@@ -29368,10 +29403,13 @@ func CmfcAudioDuration_Values() []string {
 
 // Use this setting to control the values that MediaConvert puts in your HLS
 // parent playlist to control how the client player selects which audio track
-// to play. The other options for this setting determine the values that MediaConvert
-// writes for the DEFAULT and AUTOSELECT attributes of the EXT-X-MEDIA entry
-// for the audio variant. For more information about these attributes, see the
-// Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist.
+// to play. Choose Audio-only variant stream (AUDIO_ONLY_VARIANT_STREAM) for
+// any variant that you want to prohibit the client from playing with video.
+// This causes MediaConvert to represent the variant as an EXT-X-STREAM-INF
+// in the HLS manifest. The other options for this setting determine the values
+// that MediaConvert writes for the DEFAULT and AUTOSELECT attributes of the
+// EXT-X-MEDIA entry for the audio variant. For more information about these
+// attributes, see the Apple documentation article https://developer.apple.com/documentation/http_live_streaming/example_playlists_for_http_live_streaming/adding_alternate_media_to_a_playlist.
 // Choose Alternate audio, auto select, default to set DEFAULT=YES and AUTOSELECT=YES.
 // Choose this value for only one variant in your output group. Choose Alternate
 // audio, auto select, not default to set DEFAULT=NO and AUTOSELECT=YES. Choose
@@ -29388,6 +29426,9 @@ const (
 
 	// CmfcAudioTrackTypeAlternateAudioNotAutoSelect is a CmfcAudioTrackType enum value
 	CmfcAudioTrackTypeAlternateAudioNotAutoSelect = "ALTERNATE_AUDIO_NOT_AUTO_SELECT"
+
+	// CmfcAudioTrackTypeAudioOnlyVariantStream is a CmfcAudioTrackType enum value
+	CmfcAudioTrackTypeAudioOnlyVariantStream = "AUDIO_ONLY_VARIANT_STREAM"
 )
 
 // CmfcAudioTrackType_Values returns all elements of the CmfcAudioTrackType enum
@@ -29396,6 +29437,7 @@ func CmfcAudioTrackType_Values() []string {
 		CmfcAudioTrackTypeAlternateAudioAutoSelectDefault,
 		CmfcAudioTrackTypeAlternateAudioAutoSelect,
 		CmfcAudioTrackTypeAlternateAudioNotAutoSelect,
+		CmfcAudioTrackTypeAudioOnlyVariantStream,
 	}
 }
 
@@ -36663,7 +36705,9 @@ func S3ServerSideEncryptionType_Values() []string {
 	}
 }
 
-// Specify the S3 storage class to use for this destination.
+// Specify the S3 storage class to use for this output. To use your destination's
+// default storage class: Keep the default value, Not set. For more information
+// about S3 storage classes, see https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html
 const (
 	// S3StorageClassStandard is a S3StorageClass enum value
 	S3StorageClassStandard = "STANDARD"

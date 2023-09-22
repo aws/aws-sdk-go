@@ -62,6 +62,54 @@ func ExampleDatabaseMigrationService_AddTagsToResource_shared00() {
 	fmt.Println(result)
 }
 
+// Create Data Provider
+// Creates the data provider with the specified parameters.
+func ExampleDatabaseMigrationService_CreateDataProvider_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.CreateDataProviderInput{
+		DataProviderName: aws.String("sqlServer-dev"),
+		Description:      aws.String("description"),
+		Engine:           aws.String("sqlserver"),
+		Settings: &databasemigrationservice.DataProviderSettings{
+			MicrosoftSqlServerSettings: &databasemigrationservice.MicrosoftSqlServerDataProviderSettings{
+				DatabaseName: aws.String("DatabaseName"),
+				Port:         aws.Int64(11112),
+				ServerName:   aws.String("ServerName2"),
+				SslMode:      aws.String("none"),
+			},
+		},
+		Tags: []*databasemigrationservice.Tag{
+			{
+				Key:   aws.String("access"),
+				Value: aws.String("authorizedusers"),
+			},
+		},
+	}
+
+	result, err := svc.CreateDataProvider(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // Create endpoint
 // Creates an endpoint using the provided settings.
 func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
@@ -103,6 +151,124 @@ func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
 				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
 			case databasemigrationservice.ErrCodeAccessDeniedFault:
 				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Create Instance Profile
+// Creates the instance profile using the specified parameters.
+func ExampleDatabaseMigrationService_CreateInstanceProfile_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.CreateInstanceProfileInput{
+		Description:           aws.String("Description"),
+		InstanceProfileName:   aws.String("my-instance-profile"),
+		KmsKeyArn:             aws.String("arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef"),
+		NetworkType:           aws.String("DUAL"),
+		PubliclyAccessible:    aws.Bool(true),
+		SubnetGroupIdentifier: aws.String("my-subnet-group"),
+		Tags: []*databasemigrationservice.Tag{
+			{
+				Key:   aws.String("access"),
+				Value: aws.String("authorizedusers"),
+			},
+		},
+	}
+
+	result, err := svc.CreateInstanceProfile(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Create Migration Project
+// Creates the migration project with the specified parameters.
+func ExampleDatabaseMigrationService_CreateMigrationProject_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.CreateMigrationProjectInput{
+		Description:               aws.String("description"),
+		InstanceProfileIdentifier: aws.String("ip-au-17"),
+		MigrationProjectName:      aws.String("my-migration-project"),
+		SchemaConversionApplicationAttributes: &databasemigrationservice.SCApplicationAttributes{
+			S3BucketPath:    aws.String("arn:aws:s3:::mylogin-bucket"),
+			S3BucketRoleArn: aws.String("arn:aws:iam::012345678901:role/Admin"),
+		},
+		SourceDataProviderDescriptors: []*databasemigrationservice.DataProviderDescriptorDefinition{
+			{
+				DataProviderIdentifier:      aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				SecretsManagerAccessRoleArn: aws.String("arn:aws:iam::012345678901:role/myuser-admin-access"),
+				SecretsManagerSecretId:      aws.String("arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/ALL.SOURCE.ORACLE_12-A1B2C3"),
+			},
+		},
+		Tags: []*databasemigrationservice.Tag{
+			{
+				Key:   aws.String("access"),
+				Value: aws.String("authorizedusers"),
+			},
+		},
+		TargetDataProviderDescriptors: []*databasemigrationservice.DataProviderDescriptorDefinition{
+			{
+				DataProviderIdentifier:      aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				SecretsManagerAccessRoleArn: aws.String("arn:aws:iam::012345678901:role/myuser-admin-access"),
+				SecretsManagerSecretId:      aws.String("arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/TARGET.postgresql-A1B2C3"),
+			},
+		},
+		TransformationRules: aws.String("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}"),
+	}
+
+	result, err := svc.CreateMigrationProject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
 			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
 				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
 			default:
@@ -344,6 +510,38 @@ func ExampleDatabaseMigrationService_DeleteConnection_shared00() {
 	fmt.Println(result)
 }
 
+// Delete Data Provider
+// Deletes the specified data provider.
+func ExampleDatabaseMigrationService_DeleteDataProvider_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DeleteDataProviderInput{
+		DataProviderIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+	}
+
+	result, err := svc.DeleteDataProvider(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // Delete Endpoint
 // Deletes the specified endpoint. All tasks associated with the endpoint must be deleted
 // before you can delete the endpoint.
@@ -357,6 +555,70 @@ func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Delete Instance Profile
+// Deletes the specified instance profile.
+func ExampleDatabaseMigrationService_DeleteInstanceProfile_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DeleteInstanceProfileInput{
+		InstanceProfileIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+	}
+
+	result, err := svc.DeleteInstanceProfile(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Delete Migration Project
+// Deletes the specified migration project.
+func ExampleDatabaseMigrationService_DeleteMigrationProject_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DeleteMigrationProjectInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+	}
+
+	result, err := svc.DeleteMigrationProject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
 			case databasemigrationservice.ErrCodeResourceNotFoundFault:
 				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
 			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
@@ -570,6 +832,74 @@ func ExampleDatabaseMigrationService_DescribeConnections_shared00() {
 	fmt.Println(result)
 }
 
+// Describe Conversion Configuration
+// Returns configuration parameters for a schema conversion project.
+func ExampleDatabaseMigrationService_DescribeConversionConfiguration_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeConversionConfigurationInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+	}
+
+	result, err := svc.DescribeConversionConfiguration(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Data Providers
+//
+
+func ExampleDatabaseMigrationService_DescribeDataProviders_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeDataProvidersInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("data-provider-identifier"),
+				Values: []*string{
+					aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				},
+			},
+		},
+		Marker:     aws.String("EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+		MaxRecords: aws.Int64(20),
+	}
+
+	result, err := svc.DescribeDataProviders(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // Describe endpoint types
 // Returns information about the type of endpoints available.
 func ExampleDatabaseMigrationService_DescribeEndpointTypes_shared00() {
@@ -630,6 +960,312 @@ func ExampleDatabaseMigrationService_DescribeEndpoints_shared00() {
 			switch aerr.Code() {
 			case databasemigrationservice.ErrCodeResourceNotFoundFault:
 				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Extension Pack Associations
+// Returns a paginated list of extension pack associations for the specified migration
+// project.
+func ExampleDatabaseMigrationService_DescribeExtensionPackAssociations_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeExtensionPackAssociationsInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("instance-profile-identifier"),
+				Values: []*string{
+					aws.String("arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				},
+			},
+		},
+		Marker:                     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords:                 aws.Int64(20),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.DescribeExtensionPackAssociations(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Instance Profiles
+// Returns a paginated list of instance profiles for your account in the current region.
+func ExampleDatabaseMigrationService_DescribeInstanceProfiles_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeInstanceProfilesInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("instance-profile-identifier"),
+				Values: []*string{
+					aws.String("arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				},
+			},
+		},
+		Marker:     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords: aws.Int64(20),
+	}
+
+	result, err := svc.DescribeInstanceProfiles(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Metadata Model Assessments
+// Returns a paginated list of metadata model assessments for your account in the current
+// region.
+func ExampleDatabaseMigrationService_DescribeMetadataModelAssessments_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMetadataModelAssessmentsInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("my-migration-project"),
+				Values: []*string{
+					aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+				},
+			},
+		},
+		Marker:                     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords:                 aws.Int64(20),
+		MigrationProjectIdentifier: aws.String(""),
+	}
+
+	result, err := svc.DescribeMetadataModelAssessments(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Metadata Model Conversions
+// Returns a paginated list of metadata model conversions for a migration project.
+func ExampleDatabaseMigrationService_DescribeMetadataModelConversions_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMetadataModelConversionsInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("request-id"),
+				Values: []*string{
+					aws.String("01234567-89ab-cdef-0123-456789abcdef"),
+				},
+			},
+		},
+		Marker:                     aws.String("EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456"),
+		MaxRecords:                 aws.Int64(123),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+	}
+
+	result, err := svc.DescribeMetadataModelConversions(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Metadata Model Exports As Script
+// Returns a paginated list of metadata model exports.
+func ExampleDatabaseMigrationService_DescribeMetadataModelExportsAsScript_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMetadataModelExportsAsScriptInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("request-id"),
+				Values: []*string{
+					aws.String("01234567-89ab-cdef-0123-456789abcdef"),
+				},
+			},
+		},
+		Marker:                     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords:                 aws.Int64(20),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.DescribeMetadataModelExportsAsScript(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Metadata Model Exports To Target
+// Returns a paginated list of metadata model exports.
+func ExampleDatabaseMigrationService_DescribeMetadataModelExportsToTarget_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMetadataModelExportsToTargetInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("request-id"),
+				Values: []*string{
+					aws.String("01234567-89ab-cdef-0123-456789abcdef"),
+				},
+			},
+		},
+		Marker:                     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords:                 aws.Int64(20),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.DescribeMetadataModelExportsToTarget(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Metadata Model Imports
+// Returns a paginated list of metadata model imports.
+func ExampleDatabaseMigrationService_DescribeMetadataModelImports_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMetadataModelImportsInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("request-id"),
+				Values: []*string{
+					aws.String("01234567-89ab-cdef-0123-456789abcdef"),
+				},
+			},
+		},
+		Marker:                     aws.String("0123456789abcdefghijklmnopqrs"),
+		MaxRecords:                 aws.Int64(20),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.DescribeMetadataModelImports(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe Migration Projects
+// Returns a paginated list of migration projects for your account in the current region.
+func ExampleDatabaseMigrationService_DescribeMigrationProjects_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.DescribeMigrationProjectsInput{
+		Filters: []*databasemigrationservice.Filter{
+			{
+				Name: aws.String("migration-project-identifier"),
+				Values: []*string{
+					aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901"),
+				},
+			},
+		},
+		Marker:     aws.String("EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456"),
+		MaxRecords: aws.Int64(20),
+	}
+
+	result, err := svc.DescribeMigrationProjects(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -881,6 +1517,40 @@ func ExampleDatabaseMigrationService_DescribeTableStatistics_shared00() {
 	fmt.Println(result)
 }
 
+// Export Metadata Model Assessment
+// Saves a copy of a database migration assessment report to your S3 bucket. DMS can
+// save your assessment report as a comma-separated value (CSV) or a PDF file.
+func ExampleDatabaseMigrationService_ExportMetadataModelAssessment_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.ExportMetadataModelAssessmentInput{
+		AssessmentReportTypes: []*string{
+			aws.String("pdf"),
+		},
+		FileName:                   aws.String("file"),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.ExportMetadataModelAssessment(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // Import certificate
 // Uploads the specified certificate.
 func ExampleDatabaseMigrationService_ImportCertificate_shared00() {
@@ -942,6 +1612,80 @@ func ExampleDatabaseMigrationService_ListTagsForResource_shared00() {
 	fmt.Println(result)
 }
 
+// Modify Conversion Configuration
+// Modifies the specified schema conversion configuration using the provided parameters.
+func ExampleDatabaseMigrationService_ModifyConversionConfiguration_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.ModifyConversionConfigurationInput{
+		ConversionConfiguration:    aws.String("{\"Common project settings\":{\"ShowSeverityLevelInSql\":\"CRITICAL\"},\"ORACLE_TO_POSTGRESQL\" : {\"ToTimeZone\":false,\"LastDayBuiltinFunctionOracle\":false,   \"NextDayBuiltinFunctionOracle\":false,\"ConvertProceduresToFunction\":false,\"NvlBuiltinFunctionOracle\":false,\"DbmsAssertBuiltinFunctionOracle\":false}}"),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.ModifyConversionConfiguration(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Modify Data Provider
+// Modifies the specified data provider using the provided settings.
+func ExampleDatabaseMigrationService_ModifyDataProvider_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.ModifyDataProviderInput{
+		DataProviderIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+		DataProviderName:       aws.String("new-name"),
+		Description:            aws.String("description"),
+		Engine:                 aws.String("sqlserver"),
+		Settings: &databasemigrationservice.DataProviderSettings{
+			MicrosoftSqlServerSettings: &databasemigrationservice.MicrosoftSqlServerDataProviderSettings{
+				DatabaseName: aws.String("DatabaseName"),
+				Port:         aws.Int64(11112),
+				ServerName:   aws.String("ServerName2"),
+				SslMode:      aws.String("none"),
+			},
+		},
+	}
+
+	result, err := svc.ModifyDataProvider(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // Modify endpoint
 // Modifies the specified endpoint.
 func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
@@ -975,6 +1719,108 @@ func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
 				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
 			case databasemigrationservice.ErrCodeAccessDeniedFault:
 				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Modify Instance Profile
+// Modifies the specified instance profile using the provided parameters.
+func ExampleDatabaseMigrationService_ModifyInstanceProfile_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.ModifyInstanceProfileInput{
+		AvailabilityZone:          aws.String(""),
+		Description:               aws.String(""),
+		InstanceProfileIdentifier: aws.String(""),
+		InstanceProfileName:       aws.String(""),
+		KmsKeyArn:                 aws.String(""),
+		NetworkType:               aws.String(""),
+		PubliclyAccessible:        aws.Bool(true),
+		SubnetGroupIdentifier:     aws.String(""),
+	}
+
+	result, err := svc.ModifyInstanceProfile(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Modify Migration Project
+// Modifies the specified migration project using the provided parameters.
+func ExampleDatabaseMigrationService_ModifyMigrationProject_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.ModifyMigrationProjectInput{
+		Description:                aws.String("description"),
+		InstanceProfileIdentifier:  aws.String("my-instance-profile"),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+		MigrationProjectName:       aws.String("new-name"),
+		SchemaConversionApplicationAttributes: &databasemigrationservice.SCApplicationAttributes{
+			S3BucketPath:    aws.String("arn:aws:s3:::myuser-bucket"),
+			S3BucketRoleArn: aws.String("arn:aws:iam::012345678901:role/Admin"),
+		},
+		SourceDataProviderDescriptors: []*databasemigrationservice.DataProviderDescriptorDefinition{
+			{
+				DataProviderIdentifier:      aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				SecretsManagerAccessRoleArn: aws.String("arn:aws:iam::012345678901:role/myuser-admin-access"),
+				SecretsManagerSecretId:      aws.String("arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/ALL.SOURCE.ORACLE_12-A1B2C3"),
+			},
+		},
+		TargetDataProviderDescriptors: []*databasemigrationservice.DataProviderDescriptorDefinition{
+			{
+				DataProviderIdentifier:      aws.String("arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+				SecretsManagerAccessRoleArn: aws.String("arn:aws:iam::012345678901:role/myuser-admin-access"),
+				SecretsManagerSecretId:      aws.String("arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/TARGET.postgresql-A1B2C3"),
+			},
+		},
+	}
+
+	result, err := svc.ModifyMigrationProject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1130,6 +1976,272 @@ func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
 			switch aerr.Code() {
 			case databasemigrationservice.ErrCodeResourceNotFoundFault:
 				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Extension Pack Association
+// Applies the extension pack to your target database.
+func ExampleDatabaseMigrationService_StartExtensionPackAssociation_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartExtensionPackAssociationInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+	}
+
+	result, err := svc.StartExtensionPackAssociation(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Metadata Model Assessment
+// Creates a database migration assessment report by assessing the migration complexity
+// for
+//
+//	your source database.
+func ExampleDatabaseMigrationService_StartMetadataModelAssessment_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartMetadataModelAssessmentInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.StartMetadataModelAssessment(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Metadata Model Conversion
+// Converts your source database objects to a format compatible with the target database.
+func ExampleDatabaseMigrationService_StartMetadataModelConversion_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartMetadataModelConversionInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.StartMetadataModelConversion(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Metadata Model Export As Script
+// Saves your converted code to a file as a SQL script, and stores this file on your
+// S3 bucket.
+func ExampleDatabaseMigrationService_StartMetadataModelExportAsScript_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartMetadataModelExportAsScriptInput{
+		FileName:                   aws.String("FILE"),
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+		Origin:                     aws.String("SOURCE"),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.StartMetadataModelExportAsScript(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Metadata Model Export To Target
+// Applies converted database objects to your target database.
+func ExampleDatabaseMigrationService_StartMetadataModelExportToTarget_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartMetadataModelExportToTargetInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345"),
+		OverwriteExtensionPack:     aws.Bool(true),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.StartMetadataModelExportToTarget(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Start Metadata Model Import
+// Loads the metadata for all the dependent database objects of the parent object.
+func ExampleDatabaseMigrationService_StartMetadataModelImport_shared00() {
+	svc := databasemigrationservice.New(session.New())
+	input := &databasemigrationservice.StartMetadataModelImportInput{
+		MigrationProjectIdentifier: aws.String("arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012"),
+		Origin:                     aws.String("SOURCE"),
+		Refresh:                    aws.Bool(false),
+		SelectionRules:             aws.String("{\"rules\": [{\"rule-type\": \"selection\",\"rule-id\": \"1\",\"rule-name\": \"1\",\"object-locator\": {\"server-name\": \"aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com\", \"schema-name\": \"schema1\", \"table-name\": \"Cities\"},\"rule-action\": \"explicit\"} ]}"),
+	}
+
+	result, err := svc.StartMetadataModelImport(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
+			case databasemigrationservice.ErrCodeInvalidResourceStateFault:
+				fmt.Println(databasemigrationservice.ErrCodeInvalidResourceStateFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceAlreadyExistsFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceAlreadyExistsFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault:
+				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
+				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3ResourceNotFoundFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3ResourceNotFoundFault, aerr.Error())
+			case databasemigrationservice.ErrCodeS3AccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeS3AccessDeniedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
