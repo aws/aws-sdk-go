@@ -584,7 +584,9 @@ func (c *AmplifyUIBuilder) ExchangeCodeForTokenRequest(input *ExchangeCodeForTok
 
 // ExchangeCodeForToken API operation for AWS Amplify UI Builder.
 //
-// Exchanges an access code for a token.
+// This is for internal use.
+//
+// Amplify uses this action to exchange an access code for a token.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2150,7 +2152,10 @@ func (c *AmplifyUIBuilder) RefreshTokenRequest(input *RefreshTokenInput) (req *r
 
 // RefreshToken API operation for AWS Amplify UI Builder.
 //
-// Refreshes a previously issued access token that might have expired.
+// This is for internal use.
+//
+// Amplify uses this action to refresh a previously issued access token that
+// might have expired.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2758,6 +2763,66 @@ func (s *ApiConfiguration) SetNoApiConfig(v *NoApiRenderConfig) *ApiConfiguratio
 	return s
 }
 
+// Dependency package that may be required for the project code to run.
+type CodegenDependency struct {
+	_ struct{} `type:"structure"`
+
+	// Determines if the dependency package is using Semantic versioning. If set
+	// to true, it indicates that the dependency package uses Semantic versioning.
+	IsSemVer *bool `locationName:"isSemVer" type:"boolean"`
+
+	// Name of the dependency package.
+	Name *string `locationName:"name" type:"string"`
+
+	// Indicates the reason to include the dependency package in your project code.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// Indicates the version of the supported dependency package.
+	SupportedVersion *string `locationName:"supportedVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenDependency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodegenDependency) GoString() string {
+	return s.String()
+}
+
+// SetIsSemVer sets the IsSemVer field's value.
+func (s *CodegenDependency) SetIsSemVer(v bool) *CodegenDependency {
+	s.IsSemVer = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CodegenDependency) SetName(v string) *CodegenDependency {
+	s.Name = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *CodegenDependency) SetReason(v string) *CodegenDependency {
+	s.Reason = &v
+	return s
+}
+
+// SetSupportedVersion sets the SupportedVersion field's value.
+func (s *CodegenDependency) SetSupportedVersion(v string) *CodegenDependency {
+	s.SupportedVersion = &v
+	return s
+}
+
 // Describes the feature flags that you can specify for a code generation job.
 type CodegenFeatureFlags struct {
 	_ struct{} `type:"structure"`
@@ -3243,6 +3308,10 @@ type CodegenJob struct {
 	// The time that the code generation job was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// Lists the dependency packages that may be required for the project code to
+	// run.
+	Dependencies []*CodegenDependency `locationName:"dependencies" type:"list"`
+
 	// The name of the backend environment associated with the code generation job.
 	//
 	// EnvironmentName is a required field
@@ -3315,6 +3384,12 @@ func (s *CodegenJob) SetAutoGenerateForms(v bool) *CodegenJob {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *CodegenJob) SetCreatedAt(v time.Time) *CodegenJob {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetDependencies sets the Dependencies field's value.
+func (s *CodegenJob) SetDependencies(v []*CodegenDependency) *CodegenJob {
+	s.Dependencies = v
 	return s
 }
 
@@ -9536,6 +9611,10 @@ type ReactStartCodegenJobData struct {
 	// The API configuration for the code generation job.
 	ApiConfiguration *ApiConfiguration `locationName:"apiConfiguration" type:"structure"`
 
+	// Lists the dependency packages that may be required for the project code to
+	// run.
+	Dependencies map[string]*string `locationName:"dependencies" type:"map"`
+
 	// Specifies whether the code generation job should render inline source maps.
 	InlineSourceMap *bool `locationName:"inlineSourceMap" type:"boolean"`
 
@@ -9589,6 +9668,12 @@ func (s *ReactStartCodegenJobData) Validate() error {
 // SetApiConfiguration sets the ApiConfiguration field's value.
 func (s *ReactStartCodegenJobData) SetApiConfiguration(v *ApiConfiguration) *ReactStartCodegenJobData {
 	s.ApiConfiguration = v
+	return s
+}
+
+// SetDependencies sets the Dependencies field's value.
+func (s *ReactStartCodegenJobData) SetDependencies(v map[string]*string) *ReactStartCodegenJobData {
+	s.Dependencies = v
 	return s
 }
 

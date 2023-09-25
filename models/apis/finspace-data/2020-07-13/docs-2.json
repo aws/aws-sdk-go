@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p> The FinSpace APIs let you take actions inside the FinSpace.</p>",
   "operations": {
-    "AssociateUserToPermissionGroup": "<p>Adds a user account to a permission group to grant permissions for actions a user can perform in FinSpace.</p>",
+    "AssociateUserToPermissionGroup": "<p>Adds a user to a permission group to grant permissions for actions a user can perform in FinSpace.</p>",
     "CreateChangeset": "<p>Creates a new Changeset in a FinSpace Dataset.</p>",
     "CreateDataView": "<p>Creates a Dataview for a Dataset.</p>",
     "CreateDataset": "<p>Creates a new FinSpace Dataset.</p>",
@@ -11,28 +11,28 @@
     "DeleteDataset": "<p>Deletes a FinSpace Dataset.</p>",
     "DeletePermissionGroup": "<p>Deletes a permission group. This action is irreversible.</p>",
     "DisableUser": "<p>Denies access to the FinSpace web application and API for the specified user.</p>",
-    "DisassociateUserFromPermissionGroup": "<p>Removes a user account from a permission group.</p>",
+    "DisassociateUserFromPermissionGroup": "<p>Removes a user from a permission group.</p>",
     "EnableUser": "<p> Allows the specified user to access the FinSpace web application and API.</p>",
     "GetChangeset": "<p>Get information about a Changeset.</p>",
     "GetDataView": "<p>Gets information about a Dataview.</p>",
     "GetDataset": "<p>Returns information about a Dataset.</p>",
     "GetExternalDataViewAccessDetails": "<p>Returns the credentials to access the external Dataview from an S3 location. To call this API:</p> <ul> <li> <p>You must retrieve the programmatic credentials.</p> </li> <li> <p>You must be a member of a FinSpace user group, where the dataset that you want to access has <code>Read Dataset Data</code> permissions.</p> </li> </ul>",
     "GetPermissionGroup": "<p>Retrieves the details of a specific permission group.</p>",
-    "GetProgrammaticAccessCredentials": "<p>Request programmatic credentials to use with FinSpace SDK.</p>",
+    "GetProgrammaticAccessCredentials": "<p>Request programmatic credentials to use with FinSpace SDK. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#accessing-credentials\">Step 2. Access credentials programmatically using IAM access key id and secret access key</a>.</p>",
     "GetUser": "<p>Retrieves details for a specific user.</p>",
     "GetWorkingLocation": "<p>A temporary Amazon S3 location, where you can copy your files from a source location to stage or use as a scratch space in FinSpace notebook.</p>",
     "ListChangesets": "<p>Lists the FinSpace Changesets for a Dataset.</p>",
     "ListDataViews": "<p>Lists all available Dataviews for a Dataset.</p>",
     "ListDatasets": "<p>Lists all of the active Datasets that a user has access to.</p>",
     "ListPermissionGroups": "<p>Lists all available permission groups in FinSpace.</p>",
-    "ListPermissionGroupsByUser": "<p>Lists all the permission groups that are associated with a specific user account.</p>",
-    "ListUsers": "<p>Lists all available user accounts in FinSpace.</p>",
+    "ListPermissionGroupsByUser": "<p>Lists all the permission groups that are associated with a specific user.</p>",
+    "ListUsers": "<p>Lists all available users in FinSpace.</p>",
     "ListUsersByPermissionGroup": "<p>Lists details of all the users in a specific permission group.</p>",
     "ResetUserPassword": "<p>Resets the password for a specified user ID and generates a temporary one. Only a superuser can reset password for other users. Resetting the password immediately invalidates the previous password associated with the user.</p>",
     "UpdateChangeset": "<p>Updates a FinSpace Changeset.</p>",
     "UpdateDataset": "<p>Updates a FinSpace Dataset.</p>",
     "UpdatePermissionGroup": "<p>Modifies the details of a permission group. You cannot modify a <code>permissionGroupID</code>.</p>",
-    "UpdateUser": "<p>Modifies the details of the specified user account. You cannot update the <code>userId</code> for a user.</p>"
+    "UpdateUser": "<p>Modifies the details of the specified user. You cannot update the <code>userId</code> for a user.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -58,7 +58,7 @@
     "ApiAccess": {
       "base": null,
       "refs": {
-        "CreateUserRequest$ApiAccess": "<p>The option to indicate whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
+        "CreateUserRequest$apiAccess": "<p>The option to indicate whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
         "GetUserResponse$apiAccess": "<p>Indicates whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations. </p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
         "UpdateUserRequest$apiAccess": "<p>The option to indicate whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
         "User$apiAccess": "<p>Indicates whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
@@ -732,7 +732,7 @@
     "Password": {
       "base": null,
       "refs": {
-        "ResetUserPasswordResponse$temporaryPassword": "<p>A randomly generated temporary password for the requested user account. This password expires in 7 days.</p>"
+        "ResetUserPasswordResponse$temporaryPassword": "<p>A randomly generated temporary password for the requested user. This password expires in 7 days.</p>"
       }
     },
     "PermissionGroup": {
@@ -743,7 +743,7 @@
       }
     },
     "PermissionGroupByUser": {
-      "base": "<p>The structure of a permission group associated with a user account.</p>",
+      "base": "<p>The structure of a permission group associated with a user.</p>",
       "refs": {
         "PermissionGroupByUserList$member": null
       }
@@ -788,9 +788,9 @@
     "PermissionGroupMembershipStatus": {
       "base": null,
       "refs": {
-        "PermissionGroup$membershipStatus": "<p>Indicates the status of the user account within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user account is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user account is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>",
-        "PermissionGroupByUser$membershipStatus": "<p>Indicates the status of the user account within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user account is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user account is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>",
-        "UserByPermissionGroup$membershipStatus": "<p>Indicates the status of the user account within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user account is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user account is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>"
+        "PermissionGroup$membershipStatus": "<p>Indicates the status of the user within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>",
+        "PermissionGroupByUser$membershipStatus": "<p>Indicates the status of the user within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>",
+        "UserByPermissionGroup$membershipStatus": "<p>Indicates the status of the user within a permission group.</p> <ul> <li> <p> <code>ADDITION_IN_PROGRESS</code> – The user is currently being added to the permission group.</p> </li> <li> <p> <code>ADDITION_SUCCESS</code> – The user is successfully added to the permission group.</p> </li> <li> <p> <code>REMOVAL_IN_PROGRESS</code> – The user is currently being removed from the permission group.</p> </li> </ul>"
       }
     },
     "PermissionGroupName": {
@@ -1001,17 +1001,17 @@
         "GetDataViewResponse$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDatasetResponse$createTime": "<p>The timestamp at which the Dataset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDatasetResponse$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetUserResponse$createTime": "<p>The timestamp at which the user account was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
-        "GetUserResponse$lastEnabledTime": "<p>Describes the last time the user account was enabled. The value is determined as epoch time in milliseconds.</p>",
-        "GetUserResponse$lastDisabledTime": "<p>Describes the last time the user account was disabled. The value is determined as epoch time in milliseconds.</p>",
-        "GetUserResponse$lastModifiedTime": "<p>Describes the last time the user account was updated. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$createTime": "<p>The timestamp at which the user was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
+        "GetUserResponse$lastEnabledTime": "<p>Describes the last time the user was activated. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$lastDisabledTime": "<p>Describes the last time the user was deactivated. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$lastModifiedTime": "<p>Describes the last time the user details were updated. The value is determined as epoch time in milliseconds.</p>",
         "GetUserResponse$lastLoginTime": "<p>Describes the last time that the user logged into their account. The value is determined as epoch time in milliseconds.</p>",
         "PermissionGroup$createTime": "<p>The timestamp at which the group was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
         "PermissionGroup$lastModifiedTime": "<p>Describes the last time the permission group was updated. The value is determined as epoch time in milliseconds. </p>",
-        "User$createTime": "<p>The timestamp at which the user account was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
-        "User$lastEnabledTime": "<p> Describes the last time the user account was enabled. The value is determined as epoch time in milliseconds. </p>",
-        "User$lastDisabledTime": "<p>Describes the last time the user account was disabled. The value is determined as epoch time in milliseconds.</p>",
-        "User$lastModifiedTime": "<p>Describes the last time the user account was updated. The value is determined as epoch time in milliseconds. </p>",
+        "User$createTime": "<p>The timestamp at which the user was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
+        "User$lastEnabledTime": "<p> Describes the last time the user was activated. The value is determined as epoch time in milliseconds. </p>",
+        "User$lastDisabledTime": "<p>Describes the last time the user was deactivated. The value is determined as epoch time in milliseconds.</p>",
+        "User$lastModifiedTime": "<p>Describes the last time the user was updated. The value is determined as epoch time in milliseconds. </p>",
         "User$lastLoginTime": "<p>Describes the last time that the user logged into their account. The value is determined as epoch time in milliseconds. </p>"
       }
     },
@@ -1056,13 +1056,13 @@
       }
     },
     "User": {
-      "base": "<p>The details of the user account.</p>",
+      "base": "<p>The details of the user.</p>",
       "refs": {
         "UserList$member": null
       }
     },
     "UserByPermissionGroup": {
-      "base": "<p>The structure of a user account associated with a permission group.</p>",
+      "base": "<p>The structure of a user associated with a permission group.</p>",
       "refs": {
         "UserByPermissionGroupList$member": null
       }
@@ -1078,18 +1078,18 @@
       "refs": {
         "AssociateUserToPermissionGroupRequest$userId": "<p>The unique identifier for the user.</p>",
         "CreateUserResponse$userId": "<p>The unique identifier for the user.</p>",
-        "DisableUserRequest$userId": "<p>The unique identifier for the user account that you want to disable.</p>",
-        "DisableUserResponse$userId": "<p>The unique identifier for the disabled user account.</p>",
+        "DisableUserRequest$userId": "<p>The unique identifier for the user that you want to deactivate.</p>",
+        "DisableUserResponse$userId": "<p>The unique identifier for the deactivated user.</p>",
         "DisassociateUserFromPermissionGroupRequest$userId": "<p>The unique identifier for the user.</p>",
-        "EnableUserRequest$userId": "<p>The unique identifier for the user account that you want to enable.</p>",
-        "EnableUserResponse$userId": "<p>The unique identifier for the enabled user account.</p>",
+        "EnableUserRequest$userId": "<p>The unique identifier for the user that you want to activate.</p>",
+        "EnableUserResponse$userId": "<p>The unique identifier for the active user.</p>",
         "GetUserRequest$userId": "<p>The unique identifier of the user to get data for.</p>",
-        "GetUserResponse$userId": "<p>The unique identifier for the user account that is retrieved.</p>",
+        "GetUserResponse$userId": "<p>The unique identifier for the user that is retrieved.</p>",
         "ListPermissionGroupsByUserRequest$userId": "<p>The unique identifier for the user.</p>",
         "ResetUserPasswordRequest$userId": "<p>The unique identifier of the user that a temporary password is requested for.</p>",
         "ResetUserPasswordResponse$userId": "<p>The unique identifier of the user that a new password is generated for.</p>",
-        "UpdateUserRequest$userId": "<p>The unique identifier for the user account to update.</p>",
-        "UpdateUserResponse$userId": "<p>The unique identifier of the updated user account.</p>",
+        "UpdateUserRequest$userId": "<p>The unique identifier for the user that you want to update.</p>",
+        "UpdateUserResponse$userId": "<p>The unique identifier of the updated user.</p>",
         "User$userId": "<p>The unique identifier for the user.</p>",
         "UserByPermissionGroup$userId": "<p>The unique identifier for the user.</p>"
       }
@@ -1097,15 +1097,15 @@
     "UserList": {
       "base": null,
       "refs": {
-        "ListUsersResponse$users": "<p>A list of all the user accounts.</p>"
+        "ListUsersResponse$users": "<p>A list of all the users.</p>"
       }
     },
     "UserStatus": {
       "base": null,
       "refs": {
-        "GetUserResponse$status": "<p>The current status of the user account. </p> <ul> <li> <p> <code>CREATING</code> – The user account creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user account is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user account is currently inactive.</p> </li> </ul>",
-        "User$status": "<p>The current status of the user account. </p> <ul> <li> <p> <code>CREATING</code> – The user account creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user account is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user account is currently inactive.</p> </li> </ul>",
-        "UserByPermissionGroup$status": "<p>The current status of the user account. </p> <ul> <li> <p> <code>CREATING</code> – The user account creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user account is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user account is currently inactive.</p> </li> </ul>"
+        "GetUserResponse$status": "<p>The current status of the user. </p> <ul> <li> <p> <code>CREATING</code> – The creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user is currently inactive.</p> </li> </ul>",
+        "User$status": "<p>The current status of the user. </p> <ul> <li> <p> <code>CREATING</code> – The user creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user is currently inactive.</p> </li> </ul>",
+        "UserByPermissionGroup$status": "<p>The current status of the user. </p> <ul> <li> <p> <code>CREATING</code> – The user creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user is currently inactive.</p> </li> </ul>"
       }
     },
     "UserType": {

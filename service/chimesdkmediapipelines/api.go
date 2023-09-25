@@ -505,6 +505,207 @@ func (c *ChimeSDKMediaPipelines) CreateMediaLiveConnectorPipelineWithContext(ctx
 	return out, req.Send()
 }
 
+const opCreateMediaPipelineKinesisVideoStreamPool = "CreateMediaPipelineKinesisVideoStreamPool"
+
+// CreateMediaPipelineKinesisVideoStreamPoolRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMediaPipelineKinesisVideoStreamPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMediaPipelineKinesisVideoStreamPool for more information on using the CreateMediaPipelineKinesisVideoStreamPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMediaPipelineKinesisVideoStreamPoolRequest method.
+//	req, resp := client.CreateMediaPipelineKinesisVideoStreamPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) CreateMediaPipelineKinesisVideoStreamPoolRequest(input *CreateMediaPipelineKinesisVideoStreamPoolInput) (req *request.Request, output *CreateMediaPipelineKinesisVideoStreamPoolOutput) {
+	op := &request.Operation{
+		Name:       opCreateMediaPipelineKinesisVideoStreamPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-pipeline-kinesis-video-stream-pools",
+	}
+
+	if input == nil {
+		input = &CreateMediaPipelineKinesisVideoStreamPoolInput{}
+	}
+
+	output = &CreateMediaPipelineKinesisVideoStreamPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
+//
+// Creates an Kinesis video stream pool for the media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation CreateMediaPipelineKinesisVideoStreamPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) CreateMediaPipelineKinesisVideoStreamPool(input *CreateMediaPipelineKinesisVideoStreamPoolInput) (*CreateMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.CreateMediaPipelineKinesisVideoStreamPoolRequest(input)
+	return out, req.Send()
+}
+
+// CreateMediaPipelineKinesisVideoStreamPoolWithContext is the same as CreateMediaPipelineKinesisVideoStreamPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMediaPipelineKinesisVideoStreamPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) CreateMediaPipelineKinesisVideoStreamPoolWithContext(ctx aws.Context, input *CreateMediaPipelineKinesisVideoStreamPoolInput, opts ...request.Option) (*CreateMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.CreateMediaPipelineKinesisVideoStreamPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMediaStreamPipeline = "CreateMediaStreamPipeline"
+
+// CreateMediaStreamPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMediaStreamPipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMediaStreamPipeline for more information on using the CreateMediaStreamPipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMediaStreamPipelineRequest method.
+//	req, resp := client.CreateMediaStreamPipelineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaStreamPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaStreamPipelineRequest(input *CreateMediaStreamPipelineInput) (req *request.Request, output *CreateMediaStreamPipelineOutput) {
+	op := &request.Operation{
+		Name:       opCreateMediaStreamPipeline,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sdk-media-stream-pipelines",
+	}
+
+	if input == nil {
+		input = &CreateMediaStreamPipelineInput{}
+	}
+
+	output = &CreateMediaStreamPipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMediaStreamPipeline API operation for Amazon Chime SDK Media Pipelines.
+//
+// Creates a streaming media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation CreateMediaStreamPipeline for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/CreateMediaStreamPipeline
+func (c *ChimeSDKMediaPipelines) CreateMediaStreamPipeline(input *CreateMediaStreamPipelineInput) (*CreateMediaStreamPipelineOutput, error) {
+	req, out := c.CreateMediaStreamPipelineRequest(input)
+	return out, req.Send()
+}
+
+// CreateMediaStreamPipelineWithContext is the same as CreateMediaStreamPipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMediaStreamPipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) CreateMediaStreamPipelineWithContext(ctx aws.Context, input *CreateMediaStreamPipelineInput, opts ...request.Option) (*CreateMediaStreamPipelineOutput, error) {
+	req, out := c.CreateMediaStreamPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteMediaCapturePipeline = "DeleteMediaCapturePipeline"
 
 // DeleteMediaCapturePipelineRequest generates a "aws/request.Request" representing the
@@ -807,6 +1008,108 @@ func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opDeleteMediaPipelineKinesisVideoStreamPool = "DeleteMediaPipelineKinesisVideoStreamPool"
+
+// DeleteMediaPipelineKinesisVideoStreamPoolRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMediaPipelineKinesisVideoStreamPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMediaPipelineKinesisVideoStreamPool for more information on using the DeleteMediaPipelineKinesisVideoStreamPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteMediaPipelineKinesisVideoStreamPoolRequest method.
+//	req, resp := client.DeleteMediaPipelineKinesisVideoStreamPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/DeleteMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineKinesisVideoStreamPoolRequest(input *DeleteMediaPipelineKinesisVideoStreamPoolInput) (req *request.Request, output *DeleteMediaPipelineKinesisVideoStreamPoolOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMediaPipelineKinesisVideoStreamPool,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/media-pipeline-kinesis-video-stream-pools/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteMediaPipelineKinesisVideoStreamPoolInput{}
+	}
+
+	output = &DeleteMediaPipelineKinesisVideoStreamPoolOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
+//
+// Deletes an Kinesis video stream pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation DeleteMediaPipelineKinesisVideoStreamPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/DeleteMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineKinesisVideoStreamPool(input *DeleteMediaPipelineKinesisVideoStreamPoolInput) (*DeleteMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.DeleteMediaPipelineKinesisVideoStreamPoolRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMediaPipelineKinesisVideoStreamPoolWithContext is the same as DeleteMediaPipelineKinesisVideoStreamPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMediaPipelineKinesisVideoStreamPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineKinesisVideoStreamPoolWithContext(ctx aws.Context, input *DeleteMediaPipelineKinesisVideoStreamPoolInput, opts ...request.Option) (*DeleteMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.DeleteMediaPipelineKinesisVideoStreamPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMediaCapturePipeline = "GetMediaCapturePipeline"
 
 // GetMediaCapturePipelineRequest generates a "aws/request.Request" representing the
@@ -1093,6 +1396,103 @@ func (c *ChimeSDKMediaPipelines) GetMediaPipeline(input *GetMediaPipelineInput) 
 // for more information on using Contexts.
 func (c *ChimeSDKMediaPipelines) GetMediaPipelineWithContext(ctx aws.Context, input *GetMediaPipelineInput, opts ...request.Option) (*GetMediaPipelineOutput, error) {
 	req, out := c.GetMediaPipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMediaPipelineKinesisVideoStreamPool = "GetMediaPipelineKinesisVideoStreamPool"
+
+// GetMediaPipelineKinesisVideoStreamPoolRequest generates a "aws/request.Request" representing the
+// client's request for the GetMediaPipelineKinesisVideoStreamPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMediaPipelineKinesisVideoStreamPool for more information on using the GetMediaPipelineKinesisVideoStreamPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMediaPipelineKinesisVideoStreamPoolRequest method.
+//	req, resp := client.GetMediaPipelineKinesisVideoStreamPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) GetMediaPipelineKinesisVideoStreamPoolRequest(input *GetMediaPipelineKinesisVideoStreamPoolInput) (req *request.Request, output *GetMediaPipelineKinesisVideoStreamPoolOutput) {
+	op := &request.Operation{
+		Name:       opGetMediaPipelineKinesisVideoStreamPool,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-pipeline-kinesis-video-stream-pools/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetMediaPipelineKinesisVideoStreamPoolInput{}
+	}
+
+	output = &GetMediaPipelineKinesisVideoStreamPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
+//
+// Gets an Kinesis video stream pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation GetMediaPipelineKinesisVideoStreamPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/GetMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) GetMediaPipelineKinesisVideoStreamPool(input *GetMediaPipelineKinesisVideoStreamPoolInput) (*GetMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.GetMediaPipelineKinesisVideoStreamPoolRequest(input)
+	return out, req.Send()
+}
+
+// GetMediaPipelineKinesisVideoStreamPoolWithContext is the same as GetMediaPipelineKinesisVideoStreamPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMediaPipelineKinesisVideoStreamPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) GetMediaPipelineKinesisVideoStreamPoolWithContext(ctx aws.Context, input *GetMediaPipelineKinesisVideoStreamPoolInput, opts ...request.Option) (*GetMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.GetMediaPipelineKinesisVideoStreamPoolRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1593,6 +1993,160 @@ func (c *ChimeSDKMediaPipelines) ListMediaInsightsPipelineConfigurationsPagesWit
 
 	for p.Next() {
 		if !fn(p.Page().(*ListMediaInsightsPipelineConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMediaPipelineKinesisVideoStreamPools = "ListMediaPipelineKinesisVideoStreamPools"
+
+// ListMediaPipelineKinesisVideoStreamPoolsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMediaPipelineKinesisVideoStreamPools operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMediaPipelineKinesisVideoStreamPools for more information on using the ListMediaPipelineKinesisVideoStreamPools
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMediaPipelineKinesisVideoStreamPoolsRequest method.
+//	req, resp := client.ListMediaPipelineKinesisVideoStreamPoolsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/ListMediaPipelineKinesisVideoStreamPools
+func (c *ChimeSDKMediaPipelines) ListMediaPipelineKinesisVideoStreamPoolsRequest(input *ListMediaPipelineKinesisVideoStreamPoolsInput) (req *request.Request, output *ListMediaPipelineKinesisVideoStreamPoolsOutput) {
+	op := &request.Operation{
+		Name:       opListMediaPipelineKinesisVideoStreamPools,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-pipeline-kinesis-video-stream-pools",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMediaPipelineKinesisVideoStreamPoolsInput{}
+	}
+
+	output = &ListMediaPipelineKinesisVideoStreamPoolsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMediaPipelineKinesisVideoStreamPools API operation for Amazon Chime SDK Media Pipelines.
+//
+// Lists the video stream pools in the media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation ListMediaPipelineKinesisVideoStreamPools for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/ListMediaPipelineKinesisVideoStreamPools
+func (c *ChimeSDKMediaPipelines) ListMediaPipelineKinesisVideoStreamPools(input *ListMediaPipelineKinesisVideoStreamPoolsInput) (*ListMediaPipelineKinesisVideoStreamPoolsOutput, error) {
+	req, out := c.ListMediaPipelineKinesisVideoStreamPoolsRequest(input)
+	return out, req.Send()
+}
+
+// ListMediaPipelineKinesisVideoStreamPoolsWithContext is the same as ListMediaPipelineKinesisVideoStreamPools with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMediaPipelineKinesisVideoStreamPools for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) ListMediaPipelineKinesisVideoStreamPoolsWithContext(ctx aws.Context, input *ListMediaPipelineKinesisVideoStreamPoolsInput, opts ...request.Option) (*ListMediaPipelineKinesisVideoStreamPoolsOutput, error) {
+	req, out := c.ListMediaPipelineKinesisVideoStreamPoolsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMediaPipelineKinesisVideoStreamPoolsPages iterates over the pages of a ListMediaPipelineKinesisVideoStreamPools operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMediaPipelineKinesisVideoStreamPools method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMediaPipelineKinesisVideoStreamPools operation.
+//	pageNum := 0
+//	err := client.ListMediaPipelineKinesisVideoStreamPoolsPages(params,
+//	    func(page *chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ChimeSDKMediaPipelines) ListMediaPipelineKinesisVideoStreamPoolsPages(input *ListMediaPipelineKinesisVideoStreamPoolsInput, fn func(*ListMediaPipelineKinesisVideoStreamPoolsOutput, bool) bool) error {
+	return c.ListMediaPipelineKinesisVideoStreamPoolsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMediaPipelineKinesisVideoStreamPoolsPagesWithContext same as ListMediaPipelineKinesisVideoStreamPoolsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) ListMediaPipelineKinesisVideoStreamPoolsPagesWithContext(ctx aws.Context, input *ListMediaPipelineKinesisVideoStreamPoolsInput, fn func(*ListMediaPipelineKinesisVideoStreamPoolsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMediaPipelineKinesisVideoStreamPoolsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMediaPipelineKinesisVideoStreamPoolsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMediaPipelineKinesisVideoStreamPoolsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2664,6 +3218,107 @@ func (c *ChimeSDKMediaPipelines) UpdateMediaInsightsPipelineStatus(input *Update
 // for more information on using Contexts.
 func (c *ChimeSDKMediaPipelines) UpdateMediaInsightsPipelineStatusWithContext(ctx aws.Context, input *UpdateMediaInsightsPipelineStatusInput, opts ...request.Option) (*UpdateMediaInsightsPipelineStatusOutput, error) {
 	req, out := c.UpdateMediaInsightsPipelineStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMediaPipelineKinesisVideoStreamPool = "UpdateMediaPipelineKinesisVideoStreamPool"
+
+// UpdateMediaPipelineKinesisVideoStreamPoolRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMediaPipelineKinesisVideoStreamPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMediaPipelineKinesisVideoStreamPool for more information on using the UpdateMediaPipelineKinesisVideoStreamPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMediaPipelineKinesisVideoStreamPoolRequest method.
+//	req, resp := client.UpdateMediaPipelineKinesisVideoStreamPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/UpdateMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) UpdateMediaPipelineKinesisVideoStreamPoolRequest(input *UpdateMediaPipelineKinesisVideoStreamPoolInput) (req *request.Request, output *UpdateMediaPipelineKinesisVideoStreamPoolOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMediaPipelineKinesisVideoStreamPool,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/media-pipeline-kinesis-video-stream-pools/{identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateMediaPipelineKinesisVideoStreamPoolInput{}
+	}
+
+	output = &UpdateMediaPipelineKinesisVideoStreamPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
+//
+// Updates an Kinesis video stream pool in a media pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Media Pipelines's
+// API operation UpdateMediaPipelineKinesisVideoStreamPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15/UpdateMediaPipelineKinesisVideoStreamPool
+func (c *ChimeSDKMediaPipelines) UpdateMediaPipelineKinesisVideoStreamPool(input *UpdateMediaPipelineKinesisVideoStreamPoolInput) (*UpdateMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.UpdateMediaPipelineKinesisVideoStreamPoolRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMediaPipelineKinesisVideoStreamPoolWithContext is the same as UpdateMediaPipelineKinesisVideoStreamPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMediaPipelineKinesisVideoStreamPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMediaPipelines) UpdateMediaPipelineKinesisVideoStreamPoolWithContext(ctx aws.Context, input *UpdateMediaPipelineKinesisVideoStreamPoolInput, opts ...request.Option) (*UpdateMediaPipelineKinesisVideoStreamPoolOutput, error) {
+	req, out := c.UpdateMediaPipelineKinesisVideoStreamPoolRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5225,6 +5880,298 @@ func (s *CreateMediaLiveConnectorPipelineOutput) SetMediaLiveConnectorPipeline(v
 	return s
 }
 
+type CreateMediaPipelineKinesisVideoStreamPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token assigned to the client making the request.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateMediaPipelineKinesisVideoStreamPoolInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The name of the video stream pool.
+	//
+	// PoolName is a required field
+	PoolName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration settings for the video stream.
+	//
+	// StreamConfiguration is a required field
+	StreamConfiguration *KinesisVideoStreamConfiguration `type:"structure" required:"true"`
+
+	// The tags assigned to the video stream pool.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaPipelineKinesisVideoStreamPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaPipelineKinesisVideoStreamPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMediaPipelineKinesisVideoStreamPoolInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
+	}
+	if s.StreamConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamConfiguration"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.StreamConfiguration != nil {
+		if err := s.StreamConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StreamConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) SetClientRequestToken(v string) *CreateMediaPipelineKinesisVideoStreamPoolInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) SetPoolName(v string) *CreateMediaPipelineKinesisVideoStreamPoolInput {
+	s.PoolName = &v
+	return s
+}
+
+// SetStreamConfiguration sets the StreamConfiguration field's value.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) SetStreamConfiguration(v *KinesisVideoStreamConfiguration) *CreateMediaPipelineKinesisVideoStreamPoolInput {
+	s.StreamConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) SetTags(v []*Tag) *CreateMediaPipelineKinesisVideoStreamPoolInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMediaPipelineKinesisVideoStreamPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the Kinesis video stream pool.
+	KinesisVideoStreamPoolConfiguration *KinesisVideoStreamPoolConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaPipelineKinesisVideoStreamPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaPipelineKinesisVideoStreamPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetKinesisVideoStreamPoolConfiguration sets the KinesisVideoStreamPoolConfiguration field's value.
+func (s *CreateMediaPipelineKinesisVideoStreamPoolOutput) SetKinesisVideoStreamPoolConfiguration(v *KinesisVideoStreamPoolConfiguration) *CreateMediaPipelineKinesisVideoStreamPoolOutput {
+	s.KinesisVideoStreamPoolConfiguration = v
+	return s
+}
+
+type CreateMediaStreamPipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token assigned to the client making the request.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateMediaStreamPipelineInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The data sink for the media pipeline.
+	//
+	// Sinks is a required field
+	Sinks []*MediaStreamSink `min:"1" type:"list" required:"true"`
+
+	// The data sources for the media pipeline.
+	//
+	// Sources is a required field
+	Sources []*MediaStreamSource `min:"1" type:"list" required:"true"`
+
+	// The tags assigned to the media pipeline.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaStreamPipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaStreamPipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMediaStreamPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMediaStreamPipelineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Sinks == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sinks"))
+	}
+	if s.Sinks != nil && len(s.Sinks) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sinks", 1))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil && len(s.Sources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sources", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Sinks != nil {
+		for i, v := range s.Sinks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sinks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMediaStreamPipelineInput) SetClientRequestToken(v string) *CreateMediaStreamPipelineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *CreateMediaStreamPipelineInput) SetSinks(v []*MediaStreamSink) *CreateMediaStreamPipelineInput {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreateMediaStreamPipelineInput) SetSources(v []*MediaStreamSource) *CreateMediaStreamPipelineInput {
+	s.Sources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMediaStreamPipelineInput) SetTags(v []*Tag) *CreateMediaStreamPipelineInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMediaStreamPipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested media pipeline.
+	MediaStreamPipeline *MediaStreamPipeline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaStreamPipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMediaStreamPipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaStreamPipeline sets the MediaStreamPipeline field's value.
+func (s *CreateMediaStreamPipelineOutput) SetMediaStreamPipeline(v *MediaStreamPipeline) *CreateMediaStreamPipelineOutput {
+	s.MediaStreamPipeline = v
+	return s
+}
+
 // The content configuration object's data channel.
 type DataChannelConcatenationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5462,6 +6409,77 @@ func (s *DeleteMediaPipelineInput) Validate() error {
 func (s *DeleteMediaPipelineInput) SetMediaPipelineId(v string) *DeleteMediaPipelineInput {
 	s.MediaPipelineId = &v
 	return s
+}
+
+type DeleteMediaPipelineKinesisVideoStreamPoolInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the pool being deleted.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineKinesisVideoStreamPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineKinesisVideoStreamPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMediaPipelineKinesisVideoStreamPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMediaPipelineKinesisVideoStreamPoolInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteMediaPipelineKinesisVideoStreamPoolInput) SetIdentifier(v string) *DeleteMediaPipelineKinesisVideoStreamPoolInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteMediaPipelineKinesisVideoStreamPoolOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineKinesisVideoStreamPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaPipelineKinesisVideoStreamPoolOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteMediaPipelineOutput struct {
@@ -5848,6 +6866,86 @@ func (s *GetMediaPipelineInput) SetMediaPipelineId(v string) *GetMediaPipelineIn
 	return s
 }
 
+type GetMediaPipelineKinesisVideoStreamPoolInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the video stream pool.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineKinesisVideoStreamPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineKinesisVideoStreamPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMediaPipelineKinesisVideoStreamPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMediaPipelineKinesisVideoStreamPoolInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetMediaPipelineKinesisVideoStreamPoolInput) SetIdentifier(v string) *GetMediaPipelineKinesisVideoStreamPoolInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetMediaPipelineKinesisVideoStreamPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The video stream pool configuration object.
+	KinesisVideoStreamPoolConfiguration *KinesisVideoStreamPoolConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineKinesisVideoStreamPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaPipelineKinesisVideoStreamPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetKinesisVideoStreamPoolConfiguration sets the KinesisVideoStreamPoolConfiguration field's value.
+func (s *GetMediaPipelineKinesisVideoStreamPoolOutput) SetKinesisVideoStreamPoolConfiguration(v *KinesisVideoStreamPoolConfiguration) *GetMediaPipelineKinesisVideoStreamPoolOutput {
+	s.KinesisVideoStreamPoolConfiguration = v
+	return s
+}
+
 type GetMediaPipelineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5986,7 +7084,7 @@ type GetVoiceToneAnalysisTaskInput struct {
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
-	// The ID of the voice tone anlysis task.
+	// The ID of the voice tone analysis task.
 	//
 	// VoiceToneAnalysisTaskId is a required field
 	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"voiceToneAnalysisTaskId" min:"36" type:"string" required:"true"`
@@ -6195,7 +7293,7 @@ func (s *GridViewConfiguration) SetVideoAttribute(v *VideoAttribute) *GridViewCo
 type HorizontalLayoutConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Sets the aspect ratio of the video tiles, such as 16:9.
+	// Specifies the aspect ratio of all video tiles.
 	TileAspectRatio *string `type:"string"`
 
 	// The maximum number of video tiles to display.
@@ -6439,6 +7537,263 @@ func (s *KinesisDataStreamSinkConfiguration) Validate() error {
 // SetInsightsTarget sets the InsightsTarget field's value.
 func (s *KinesisDataStreamSinkConfiguration) SetInsightsTarget(v string) *KinesisDataStreamSinkConfiguration {
 	s.InsightsTarget = &v
+	return s
+}
+
+// The configuration of an Kinesis video stream.
+type KinesisVideoStreamConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time that data is retained.
+	DataRetentionInHours *int64 `type:"integer"`
+
+	// The Amazon Web Services Region of the video stream.
+	//
+	// Region is a required field
+	Region *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisVideoStreamConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisVideoStreamConfiguration"}
+	if s.Region == nil {
+		invalidParams.Add(request.NewErrParamRequired("Region"))
+	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataRetentionInHours sets the DataRetentionInHours field's value.
+func (s *KinesisVideoStreamConfiguration) SetDataRetentionInHours(v int64) *KinesisVideoStreamConfiguration {
+	s.DataRetentionInHours = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *KinesisVideoStreamConfiguration) SetRegion(v string) *KinesisVideoStreamConfiguration {
+	s.Region = &v
+	return s
+}
+
+// The updated Kinesis video stream configuration object.
+type KinesisVideoStreamConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The updated time that data is retained.
+	DataRetentionInHours *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisVideoStreamConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisVideoStreamConfigurationUpdate"}
+	if s.DataRetentionInHours != nil && *s.DataRetentionInHours < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DataRetentionInHours", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataRetentionInHours sets the DataRetentionInHours field's value.
+func (s *KinesisVideoStreamConfigurationUpdate) SetDataRetentionInHours(v int64) *KinesisVideoStreamConfigurationUpdate {
+	s.DataRetentionInHours = &v
+	return s
+}
+
+// The video stream pool configuration object.
+type KinesisVideoStreamPoolConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the configuration was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ARN of the video stream pool configuration.
+	//
+	// PoolArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KinesisVideoStreamPoolConfiguration's
+	// String and GoString methods.
+	PoolArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// The ID of the video stream pool in the configuration.
+	PoolId *string `min:"1" type:"string"`
+
+	// The name of the video stream pool configuration.
+	PoolName *string `min:"1" type:"string"`
+
+	// The size of the video stream pool in the configuration.
+	PoolSize *int64 `type:"integer"`
+
+	// The status of the video stream pool in the configuration.
+	PoolStatus *string `type:"string" enum:"KinesisVideoStreamPoolStatus"`
+
+	// The Kinesis video stream pool configuration object.
+	StreamConfiguration *KinesisVideoStreamConfiguration `type:"structure"`
+
+	// The time at which the configuration was updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamPoolConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamPoolConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetCreatedTimestamp(v time.Time) *KinesisVideoStreamPoolConfiguration {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetPoolArn sets the PoolArn field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetPoolArn(v string) *KinesisVideoStreamPoolConfiguration {
+	s.PoolArn = &v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetPoolId(v string) *KinesisVideoStreamPoolConfiguration {
+	s.PoolId = &v
+	return s
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetPoolName(v string) *KinesisVideoStreamPoolConfiguration {
+	s.PoolName = &v
+	return s
+}
+
+// SetPoolSize sets the PoolSize field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetPoolSize(v int64) *KinesisVideoStreamPoolConfiguration {
+	s.PoolSize = &v
+	return s
+}
+
+// SetPoolStatus sets the PoolStatus field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetPoolStatus(v string) *KinesisVideoStreamPoolConfiguration {
+	s.PoolStatus = &v
+	return s
+}
+
+// SetStreamConfiguration sets the StreamConfiguration field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetStreamConfiguration(v *KinesisVideoStreamConfiguration) *KinesisVideoStreamPoolConfiguration {
+	s.StreamConfiguration = v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *KinesisVideoStreamPoolConfiguration) SetUpdatedTimestamp(v time.Time) *KinesisVideoStreamPoolConfiguration {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// A summary of the Kinesis video stream pool.
+type KinesisVideoStreamPoolSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the video stream pool.
+	//
+	// PoolArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KinesisVideoStreamPoolSummary's
+	// String and GoString methods.
+	PoolArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// The ID of the video stream pool.
+	PoolId *string `min:"1" type:"string"`
+
+	// The name of the video stream pool.
+	PoolName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamPoolSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamPoolSummary) GoString() string {
+	return s.String()
+}
+
+// SetPoolArn sets the PoolArn field's value.
+func (s *KinesisVideoStreamPoolSummary) SetPoolArn(v string) *KinesisVideoStreamPoolSummary {
+	s.PoolArn = &v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *KinesisVideoStreamPoolSummary) SetPoolId(v string) *KinesisVideoStreamPoolSummary {
+	s.PoolId = &v
+	return s
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *KinesisVideoStreamPoolSummary) SetPoolName(v string) *KinesisVideoStreamPoolSummary {
+	s.PoolName = &v
 	return s
 }
 
@@ -6932,6 +8287,99 @@ func (s *ListMediaInsightsPipelineConfigurationsOutput) SetMediaInsightsPipeline
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListMediaInsightsPipelineConfigurationsOutput) SetNextToken(v string) *ListMediaInsightsPipelineConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMediaPipelineKinesisVideoStreamPoolsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token used to return the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelineKinesisVideoStreamPoolsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelineKinesisVideoStreamPoolsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMediaPipelineKinesisVideoStreamPoolsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMediaPipelineKinesisVideoStreamPoolsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMediaPipelineKinesisVideoStreamPoolsInput) SetMaxResults(v int64) *ListMediaPipelineKinesisVideoStreamPoolsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaPipelineKinesisVideoStreamPoolsInput) SetNextToken(v string) *ListMediaPipelineKinesisVideoStreamPoolsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMediaPipelineKinesisVideoStreamPoolsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of video stream pools.
+	KinesisVideoStreamPools []*KinesisVideoStreamPoolSummary `type:"list"`
+
+	// The token used to return the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelineKinesisVideoStreamPoolsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaPipelineKinesisVideoStreamPoolsOutput) GoString() string {
+	return s.String()
+}
+
+// SetKinesisVideoStreamPools sets the KinesisVideoStreamPools field's value.
+func (s *ListMediaPipelineKinesisVideoStreamPoolsOutput) SetKinesisVideoStreamPools(v []*KinesisVideoStreamPoolSummary) *ListMediaPipelineKinesisVideoStreamPoolsOutput {
+	s.KinesisVideoStreamPools = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaPipelineKinesisVideoStreamPoolsOutput) SetNextToken(v string) *ListMediaPipelineKinesisVideoStreamPoolsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -8242,6 +9690,9 @@ type MediaPipeline struct {
 
 	// The connector pipeline of the media pipeline.
 	MediaLiveConnectorPipeline *MediaLiveConnectorPipeline `type:"structure"`
+
+	// Designates a media pipeline as a media stream pipeline.
+	MediaStreamPipeline *MediaStreamPipeline `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8286,6 +9737,12 @@ func (s *MediaPipeline) SetMediaLiveConnectorPipeline(v *MediaLiveConnectorPipel
 	return s
 }
 
+// SetMediaStreamPipeline sets the MediaStreamPipeline field's value.
+func (s *MediaPipeline) SetMediaStreamPipeline(v *MediaStreamPipeline) *MediaPipeline {
+	s.MediaStreamPipeline = v
+	return s
+}
+
 // The summary of the media pipeline.
 type MediaPipelineSummary struct {
 	_ struct{} `type:"structure"`
@@ -8324,6 +9781,259 @@ func (s *MediaPipelineSummary) SetMediaPipelineArn(v string) *MediaPipelineSumma
 // SetMediaPipelineId sets the MediaPipelineId field's value.
 func (s *MediaPipelineSummary) SetMediaPipelineId(v string) *MediaPipelineSummary {
 	s.MediaPipelineId = &v
+	return s
+}
+
+// Structure that contains the settings for a media stream pipeline.
+type MediaStreamPipeline struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the media stream pipeline was created.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ARN of the media stream pipeline.
+	MediaPipelineArn *string `min:"1" type:"string"`
+
+	// The ID of the media stream pipeline
+	MediaPipelineId *string `min:"36" type:"string"`
+
+	// The media stream pipeline's data sinks.
+	Sinks []*MediaStreamSink `min:"1" type:"list"`
+
+	// The media stream pipeline's data sources.
+	Sources []*MediaStreamSource `min:"1" type:"list"`
+
+	// The status of the media stream pipeline.
+	Status *string `type:"string" enum:"MediaPipelineStatus"`
+
+	// The time at which the media stream pipeline was updated.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamPipeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamPipeline) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *MediaStreamPipeline) SetCreatedTimestamp(v time.Time) *MediaStreamPipeline {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetMediaPipelineArn sets the MediaPipelineArn field's value.
+func (s *MediaStreamPipeline) SetMediaPipelineArn(v string) *MediaStreamPipeline {
+	s.MediaPipelineArn = &v
+	return s
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *MediaStreamPipeline) SetMediaPipelineId(v string) *MediaStreamPipeline {
+	s.MediaPipelineId = &v
+	return s
+}
+
+// SetSinks sets the Sinks field's value.
+func (s *MediaStreamPipeline) SetSinks(v []*MediaStreamSink) *MediaStreamPipeline {
+	s.Sinks = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *MediaStreamPipeline) SetSources(v []*MediaStreamSource) *MediaStreamPipeline {
+	s.Sources = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaStreamPipeline) SetStatus(v string) *MediaStreamPipeline {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *MediaStreamPipeline) SetUpdatedTimestamp(v time.Time) *MediaStreamPipeline {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// Structure that contains the settings for a media stream sink.
+type MediaStreamSink struct {
+	_ struct{} `type:"structure"`
+
+	// The media stream sink's media stream type.
+	//
+	// MediaStreamType is a required field
+	MediaStreamType *string `type:"string" required:"true" enum:"MediaStreamType"`
+
+	// Specifies the number of streams that the sink can accept.
+	//
+	// ReservedStreamCapacity is a required field
+	ReservedStreamCapacity *int64 `min:"1" type:"integer" required:"true"`
+
+	// The ARN of the media stream sink.
+	//
+	// SinkArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MediaStreamSink's
+	// String and GoString methods.
+	//
+	// SinkArn is a required field
+	SinkArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The media stream sink's type.
+	//
+	// SinkType is a required field
+	SinkType *string `type:"string" required:"true" enum:"MediaStreamPipelineSinkType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamSink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamSink) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStreamSink) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStreamSink"}
+	if s.MediaStreamType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamType"))
+	}
+	if s.ReservedStreamCapacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReservedStreamCapacity"))
+	}
+	if s.ReservedStreamCapacity != nil && *s.ReservedStreamCapacity < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReservedStreamCapacity", 1))
+	}
+	if s.SinkArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinkArn"))
+	}
+	if s.SinkArn != nil && len(*s.SinkArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SinkArn", 1))
+	}
+	if s.SinkType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinkType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaStreamType sets the MediaStreamType field's value.
+func (s *MediaStreamSink) SetMediaStreamType(v string) *MediaStreamSink {
+	s.MediaStreamType = &v
+	return s
+}
+
+// SetReservedStreamCapacity sets the ReservedStreamCapacity field's value.
+func (s *MediaStreamSink) SetReservedStreamCapacity(v int64) *MediaStreamSink {
+	s.ReservedStreamCapacity = &v
+	return s
+}
+
+// SetSinkArn sets the SinkArn field's value.
+func (s *MediaStreamSink) SetSinkArn(v string) *MediaStreamSink {
+	s.SinkArn = &v
+	return s
+}
+
+// SetSinkType sets the SinkType field's value.
+func (s *MediaStreamSink) SetSinkType(v string) *MediaStreamSink {
+	s.SinkType = &v
+	return s
+}
+
+// Structure that contains the settings for media stream sources.
+type MediaStreamSource struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the media stream source.
+	//
+	// SourceArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MediaStreamSource's
+	// String and GoString methods.
+	//
+	// SourceArn is a required field
+	SourceArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The type of media stream source.
+	//
+	// SourceType is a required field
+	SourceType *string `type:"string" required:"true" enum:"MediaPipelineSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStreamSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStreamSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStreamSource"}
+	if s.SourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceArn"))
+	}
+	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
+	}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *MediaStreamSource) SetSourceArn(v string) *MediaStreamSource {
+	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *MediaStreamSource) SetSourceType(v string) *MediaStreamSource {
+	s.SourceType = &v
 	return s
 }
 
@@ -10818,6 +12528,100 @@ func (s UpdateMediaInsightsPipelineStatusOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateMediaPipelineKinesisVideoStreamPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the video stream pool.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// The configuration settings for the video stream.
+	StreamConfiguration *KinesisVideoStreamConfigurationUpdate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaPipelineKinesisVideoStreamPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaPipelineKinesisVideoStreamPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMediaPipelineKinesisVideoStreamPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMediaPipelineKinesisVideoStreamPoolInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.StreamConfiguration != nil {
+		if err := s.StreamConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StreamConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateMediaPipelineKinesisVideoStreamPoolInput) SetIdentifier(v string) *UpdateMediaPipelineKinesisVideoStreamPoolInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetStreamConfiguration sets the StreamConfiguration field's value.
+func (s *UpdateMediaPipelineKinesisVideoStreamPoolInput) SetStreamConfiguration(v *KinesisVideoStreamConfigurationUpdate) *UpdateMediaPipelineKinesisVideoStreamPoolInput {
+	s.StreamConfiguration = v
+	return s
+}
+
+type UpdateMediaPipelineKinesisVideoStreamPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The video stream pool configuration object.
+	KinesisVideoStreamPoolConfiguration *KinesisVideoStreamPoolConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaPipelineKinesisVideoStreamPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaPipelineKinesisVideoStreamPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetKinesisVideoStreamPoolConfiguration sets the KinesisVideoStreamPoolConfiguration field's value.
+func (s *UpdateMediaPipelineKinesisVideoStreamPoolOutput) SetKinesisVideoStreamPoolConfiguration(v *KinesisVideoStreamPoolConfiguration) *UpdateMediaPipelineKinesisVideoStreamPoolOutput {
+	s.KinesisVideoStreamPoolConfiguration = v
+	return s
+}
+
 // Defines the configuration settings for a vertical layout.
 type VerticalLayoutConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -11587,6 +13391,34 @@ func HorizontalTilePosition_Values() []string {
 }
 
 const (
+	// KinesisVideoStreamPoolStatusCreating is a KinesisVideoStreamPoolStatus enum value
+	KinesisVideoStreamPoolStatusCreating = "CREATING"
+
+	// KinesisVideoStreamPoolStatusActive is a KinesisVideoStreamPoolStatus enum value
+	KinesisVideoStreamPoolStatusActive = "ACTIVE"
+
+	// KinesisVideoStreamPoolStatusUpdating is a KinesisVideoStreamPoolStatus enum value
+	KinesisVideoStreamPoolStatusUpdating = "UPDATING"
+
+	// KinesisVideoStreamPoolStatusDeleting is a KinesisVideoStreamPoolStatus enum value
+	KinesisVideoStreamPoolStatusDeleting = "DELETING"
+
+	// KinesisVideoStreamPoolStatusFailed is a KinesisVideoStreamPoolStatus enum value
+	KinesisVideoStreamPoolStatusFailed = "FAILED"
+)
+
+// KinesisVideoStreamPoolStatus_Values returns all elements of the KinesisVideoStreamPoolStatus enum
+func KinesisVideoStreamPoolStatus_Values() []string {
+	return []string{
+		KinesisVideoStreamPoolStatusCreating,
+		KinesisVideoStreamPoolStatusActive,
+		KinesisVideoStreamPoolStatusUpdating,
+		KinesisVideoStreamPoolStatusDeleting,
+		KinesisVideoStreamPoolStatusFailed,
+	}
+}
+
+const (
 	// LayoutOptionGridView is a LayoutOption enum value
 	LayoutOptionGridView = "GridView"
 )
@@ -11839,6 +13671,34 @@ func MediaPipelineTaskStatus_Values() []string {
 		MediaPipelineTaskStatusFailed,
 		MediaPipelineTaskStatusStopping,
 		MediaPipelineTaskStatusStopped,
+	}
+}
+
+const (
+	// MediaStreamPipelineSinkTypeKinesisVideoStreamPool is a MediaStreamPipelineSinkType enum value
+	MediaStreamPipelineSinkTypeKinesisVideoStreamPool = "KinesisVideoStreamPool"
+)
+
+// MediaStreamPipelineSinkType_Values returns all elements of the MediaStreamPipelineSinkType enum
+func MediaStreamPipelineSinkType_Values() []string {
+	return []string{
+		MediaStreamPipelineSinkTypeKinesisVideoStreamPool,
+	}
+}
+
+const (
+	// MediaStreamTypeMixedAudio is a MediaStreamType enum value
+	MediaStreamTypeMixedAudio = "MixedAudio"
+
+	// MediaStreamTypeIndividualAudio is a MediaStreamType enum value
+	MediaStreamTypeIndividualAudio = "IndividualAudio"
+)
+
+// MediaStreamType_Values returns all elements of the MediaStreamType enum
+func MediaStreamType_Values() []string {
+	return []string{
+		MediaStreamTypeMixedAudio,
+		MediaStreamTypeIndividualAudio,
 	}
 }
 

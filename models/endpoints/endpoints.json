@@ -23077,6 +23077,12 @@
           "us-gov-west-1" : { }
         }
       },
+      "rolesanywhere" : {
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
       "route53" : {
         "endpoints" : {
           "aws-us-gov-global" : {

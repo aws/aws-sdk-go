@@ -54,8 +54,8 @@ func (c *FinSpaceData) AssociateUserToPermissionGroupRequest(input *AssociateUse
 
 // AssociateUserToPermissionGroup API operation for FinSpace Public API.
 //
-// Adds a user account to a permission group to grant permissions for actions
-// a user can perform in FinSpace.
+// Adds a user to a permission group to grant permissions for actions a user
+// can perform in FinSpace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -923,7 +923,7 @@ func (c *FinSpaceData) DisassociateUserFromPermissionGroupRequest(input *Disasso
 
 // DisassociateUserFromPermissionGroup API operation for FinSpace Public API.
 //
-// Removes a user account from a permission group.
+// Removes a user from a permission group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1588,7 +1588,9 @@ func (c *FinSpaceData) GetProgrammaticAccessCredentialsRequest(input *GetProgram
 
 // GetProgrammaticAccessCredentials API operation for FinSpace Public API.
 //
-// Request programmatic credentials to use with FinSpace SDK.
+// Request programmatic credentials to use with FinSpace SDK. For more information,
+// see Step 2. Access credentials programmatically using IAM access key id and
+// secret access key (https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#accessing-credentials).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2455,8 +2457,7 @@ func (c *FinSpaceData) ListPermissionGroupsByUserRequest(input *ListPermissionGr
 
 // ListPermissionGroupsByUser API operation for FinSpace Public API.
 //
-// Lists all the permission groups that are associated with a specific user
-// account.
+// Lists all the permission groups that are associated with a specific user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2554,7 +2555,7 @@ func (c *FinSpaceData) ListUsersRequest(input *ListUsersInput) (req *request.Req
 
 // ListUsers API operation for FinSpace Public API.
 //
-// Lists all available user accounts in FinSpace.
+// Lists all available users in FinSpace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3168,8 +3169,8 @@ func (c *FinSpaceData) UpdateUserRequest(input *UpdateUserInput) (req *request.R
 
 // UpdateUser API operation for FinSpace Public API.
 //
-// Modifies the details of the specified user account. You cannot update the
-// userId for a user.
+// Modifies the details of the specified user. You cannot update the userId
+// for a user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3396,7 +3397,7 @@ func (s *AssociateUserToPermissionGroupOutput) SetStatusCode(v int64) *Associate
 
 // The credentials required to access the external Dataview from the S3 location.
 type AwsCredentials struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The unique identifier for the security credentials.
 	AccessKeyId *string `locationName:"accessKeyId" min:"1" type:"string"`
@@ -4498,7 +4499,7 @@ type CreateUserInput struct {
 	//    * ENABLED – The user has permissions to use the APIs.
 	//
 	//    * DISABLED – The user does not have permissions to use any APIs.
-	ApiAccess *string `type:"string" enum:"ApiAccess"`
+	ApiAccess *string `locationName:"apiAccess" type:"string" enum:"ApiAccess"`
 
 	// The ARN identifier of an AWS user or role that is allowed to call the GetProgrammaticAccessCredentials
 	// API to obtain a credentials token for a specific FinSpace user. This must
@@ -4670,7 +4671,7 @@ func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
 
 // Short term API credentials.
 type Credentials struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The access key identifier.
 	AccessKeyId *string `locationName:"accessKeyId" min:"1" type:"string"`
@@ -5394,7 +5395,7 @@ type DisableUserInput struct {
 	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The unique identifier for the user account that you want to disable.
+	// The unique identifier for the user that you want to deactivate.
 	//
 	// UserId is a required field
 	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
@@ -5452,7 +5453,7 @@ func (s *DisableUserInput) SetUserId(v string) *DisableUserInput {
 type DisableUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the disabled user account.
+	// The unique identifier for the deactivated user.
 	UserId *string `locationName:"userId" min:"1" type:"string"`
 }
 
@@ -5595,7 +5596,7 @@ type EnableUserInput struct {
 	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The unique identifier for the user account that you want to enable.
+	// The unique identifier for the user that you want to activate.
 	//
 	// UserId is a required field
 	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
@@ -5653,7 +5654,7 @@ func (s *EnableUserInput) SetUserId(v string) *EnableUserInput {
 type EnableUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the enabled user account.
+	// The unique identifier for the active user.
 	UserId *string `locationName:"userId" min:"1" type:"string"`
 }
 
@@ -6375,7 +6376,11 @@ type GetExternalDataViewAccessDetailsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The credentials required to access the external Dataview from the S3 location.
-	Credentials *AwsCredentials `locationName:"credentials" type:"structure"`
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetExternalDataViewAccessDetailsOutput's
+	// String and GoString methods.
+	Credentials *AwsCredentials `locationName:"credentials" type:"structure" sensitive:"true"`
 
 	// The location where the external Dataview is stored.
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
@@ -6496,7 +6501,7 @@ type GetProgrammaticAccessCredentialsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The time duration in which the credentials remain valid.
-	DurationInMinutes *int64 `location:"querystring" locationName:"durationInMinutes" min:"60" type:"long"`
+	DurationInMinutes *int64 `location:"querystring" locationName:"durationInMinutes" min:"1" type:"long"`
 
 	// The FinSpace environment identifier.
 	//
@@ -6525,8 +6530,8 @@ func (s GetProgrammaticAccessCredentialsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetProgrammaticAccessCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetProgrammaticAccessCredentialsInput"}
-	if s.DurationInMinutes != nil && *s.DurationInMinutes < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("DurationInMinutes", 60))
+	if s.DurationInMinutes != nil && *s.DurationInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInMinutes", 1))
 	}
 	if s.EnvironmentId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EnvironmentId"))
@@ -6558,10 +6563,14 @@ type GetProgrammaticAccessCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Returns the programmatic credentials.
-	Credentials *Credentials `locationName:"credentials" type:"structure"`
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetProgrammaticAccessCredentialsOutput's
+	// String and GoString methods.
+	Credentials *Credentials `locationName:"credentials" type:"structure" sensitive:"true"`
 
 	// Returns the duration in which the credentials will remain valid.
-	DurationInMinutes *int64 `locationName:"durationInMinutes" min:"60" type:"long"`
+	DurationInMinutes *int64 `locationName:"durationInMinutes" min:"1" type:"long"`
 }
 
 // String returns the string representation.
@@ -6660,8 +6669,8 @@ type GetUserOutput struct {
 	// be an IAM role within your FinSpace account.
 	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
 
-	// The timestamp at which the user account was created in FinSpace. The value
-	// is determined as epoch time in milliseconds.
+	// The timestamp at which the user was created in FinSpace. The value is determined
+	// as epoch time in milliseconds.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
 	// The email address that is associated with the user.
@@ -6678,19 +6687,19 @@ type GetUserOutput struct {
 	// String and GoString methods.
 	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
 
-	// Describes the last time the user account was disabled. The value is determined
+	// Describes the last time the user was deactivated. The value is determined
 	// as epoch time in milliseconds.
 	LastDisabledTime *int64 `locationName:"lastDisabledTime" type:"long"`
 
-	// Describes the last time the user account was enabled. The value is determined
-	// as epoch time in milliseconds.
+	// Describes the last time the user was activated. The value is determined as
+	// epoch time in milliseconds.
 	LastEnabledTime *int64 `locationName:"lastEnabledTime" type:"long"`
 
 	// Describes the last time that the user logged into their account. The value
 	// is determined as epoch time in milliseconds.
 	LastLoginTime *int64 `locationName:"lastLoginTime" type:"long"`
 
-	// Describes the last time the user account was updated. The value is determined
+	// Describes the last time the user details were updated. The value is determined
 	// as epoch time in milliseconds.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
 
@@ -6701,13 +6710,13 @@ type GetUserOutput struct {
 	// String and GoString methods.
 	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
 
-	// The current status of the user account.
+	// The current status of the user.
 	//
-	//    * CREATING – The user account creation is in progress.
+	//    * CREATING – The creation is in progress.
 	//
-	//    * ENABLED – The user account is created and is currently active.
+	//    * ENABLED – The user is created and is currently active.
 	//
-	//    * DISABLED – The user account is currently inactive.
+	//    * DISABLED – The user is currently inactive.
 	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
 
 	// Indicates the type of user.
@@ -6719,7 +6728,7 @@ type GetUserOutput struct {
 	//    are assigned permissions by adding them to a permission group.
 	Type *string `locationName:"type" type:"string" enum:"UserType"`
 
-	// The unique identifier for the user account that is retrieved.
+	// The unique identifier for the user that is retrieved.
 	UserId *string `locationName:"userId" min:"1" type:"string"`
 }
 
@@ -7747,7 +7756,7 @@ type ListUsersOutput struct {
 	// A token that indicates where a results page should begin.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A list of all the user accounts.
+	// A list of all the users.
 	Users []*User `locationName:"users" type:"list"`
 }
 
@@ -7827,12 +7836,12 @@ type PermissionGroup struct {
 	// as epoch time in milliseconds.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
 
-	// Indicates the status of the user account within a permission group.
+	// Indicates the status of the user within a permission group.
 	//
-	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
-	//    the permission group.
+	//    * ADDITION_IN_PROGRESS – The user is currently being added to the permission
+	//    group.
 	//
-	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    * ADDITION_SUCCESS – The user is successfully added to the permission
 	//    group.
 	//
 	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
@@ -7910,16 +7919,16 @@ func (s *PermissionGroup) SetPermissionGroupId(v string) *PermissionGroup {
 	return s
 }
 
-// The structure of a permission group associated with a user account.
+// The structure of a permission group associated with a user.
 type PermissionGroupByUser struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates the status of the user account within a permission group.
+	// Indicates the status of the user within a permission group.
 	//
-	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
-	//    the permission group.
+	//    * ADDITION_IN_PROGRESS – The user is currently being added to the permission
+	//    group.
 	//
-	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    * ADDITION_SUCCESS – The user is successfully added to the permission
 	//    group.
 	//
 	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
@@ -8108,8 +8117,8 @@ func (s *ResetUserPasswordInput) SetUserId(v string) *ResetUserPasswordInput {
 type ResetUserPasswordOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A randomly generated temporary password for the requested user account. This
-	// password expires in 7 days.
+	// A randomly generated temporary password for the requested user. This password
+	// expires in 7 days.
 	//
 	// TemporaryPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ResetUserPasswordOutput's
@@ -9011,7 +9020,7 @@ type UpdateUserInput struct {
 	//    are assigned permissions by adding them to a permission group.
 	Type *string `locationName:"type" type:"string" enum:"UserType"`
 
-	// The unique identifier for the user account to update.
+	// The unique identifier for the user that you want to update.
 	//
 	// UserId is a required field
 	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
@@ -9108,7 +9117,7 @@ func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the updated user account.
+	// The unique identifier of the updated user.
 	UserId *string `locationName:"userId" min:"1" type:"string"`
 }
 
@@ -9136,7 +9145,7 @@ func (s *UpdateUserOutput) SetUserId(v string) *UpdateUserOutput {
 	return s
 }
 
-// The details of the user account.
+// The details of the user.
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -9154,8 +9163,8 @@ type User struct {
 	// be an IAM role within your FinSpace account.
 	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
 
-	// The timestamp at which the user account was created in FinSpace. The value
-	// is determined as epoch time in milliseconds.
+	// The timestamp at which the user was created in FinSpace. The value is determined
+	// as epoch time in milliseconds.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
 	// The email address of the user. The email address serves as a uniquer identifier
@@ -9173,20 +9182,20 @@ type User struct {
 	// String and GoString methods.
 	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
 
-	// Describes the last time the user account was disabled. The value is determined
+	// Describes the last time the user was deactivated. The value is determined
 	// as epoch time in milliseconds.
 	LastDisabledTime *int64 `locationName:"lastDisabledTime" type:"long"`
 
-	// Describes the last time the user account was enabled. The value is determined
-	// as epoch time in milliseconds.
+	// Describes the last time the user was activated. The value is determined as
+	// epoch time in milliseconds.
 	LastEnabledTime *int64 `locationName:"lastEnabledTime" type:"long"`
 
 	// Describes the last time that the user logged into their account. The value
 	// is determined as epoch time in milliseconds.
 	LastLoginTime *int64 `locationName:"lastLoginTime" type:"long"`
 
-	// Describes the last time the user account was updated. The value is determined
-	// as epoch time in milliseconds.
+	// Describes the last time the user was updated. The value is determined as
+	// epoch time in milliseconds.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
 
 	// The last name of the user.
@@ -9196,13 +9205,13 @@ type User struct {
 	// String and GoString methods.
 	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
 
-	// The current status of the user account.
+	// The current status of the user.
 	//
-	//    * CREATING – The user account creation is in progress.
+	//    * CREATING – The user creation is in progress.
 	//
-	//    * ENABLED – The user account is created and is currently active.
+	//    * ENABLED – The user is created and is currently active.
 	//
-	//    * DISABLED – The user account is currently inactive.
+	//    * DISABLED – The user is currently inactive.
 	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
 
 	// Indicates the type of user.
@@ -9314,7 +9323,7 @@ func (s *User) SetUserId(v string) *User {
 	return s
 }
 
-// The structure of a user account associated with a permission group.
+// The structure of a user associated with a permission group.
 type UserByPermissionGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -9350,25 +9359,25 @@ type UserByPermissionGroup struct {
 	// String and GoString methods.
 	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
 
-	// Indicates the status of the user account within a permission group.
+	// Indicates the status of the user within a permission group.
 	//
-	//    * ADDITION_IN_PROGRESS – The user account is currently being added to
-	//    the permission group.
+	//    * ADDITION_IN_PROGRESS – The user is currently being added to the permission
+	//    group.
 	//
-	//    * ADDITION_SUCCESS – The user account is successfully added to the permission
+	//    * ADDITION_SUCCESS – The user is successfully added to the permission
 	//    group.
 	//
 	//    * REMOVAL_IN_PROGRESS – The user is currently being removed from the
 	//    permission group.
 	MembershipStatus *string `locationName:"membershipStatus" type:"string" enum:"PermissionGroupMembershipStatus"`
 
-	// The current status of the user account.
+	// The current status of the user.
 	//
-	//    * CREATING – The user account creation is in progress.
+	//    * CREATING – The user creation is in progress.
 	//
-	//    * ENABLED – The user account is created and is currently active.
+	//    * ENABLED – The user is created and is currently active.
 	//
-	//    * DISABLED – The user account is currently inactive.
+	//    * DISABLED – The user is currently inactive.
 	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
 
 	// Indicates the type of user.

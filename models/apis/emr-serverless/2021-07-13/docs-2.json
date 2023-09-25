@@ -164,8 +164,11 @@
     "ConfigurationList": {
       "base": null,
       "refs": {
+        "Application$runtimeConfiguration": "<p>The <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html\">Configuration</a> specifications of an application. Each configuration consists of a classification and properties. You use this parameter when creating or updating an application. To see the runtimeConfiguration object of an application, run the <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_GetApplication.html\">GetApplication</a> API operation.</p>",
         "Configuration$configurations": "<p>A list of additional configurations to apply within a configuration object.</p>",
-        "ConfigurationOverrides$applicationConfiguration": "<p>The override configurations for the application.</p>"
+        "ConfigurationOverrides$applicationConfiguration": "<p>The override configurations for the application.</p>",
+        "CreateApplicationRequest$runtimeConfiguration": "<p>The <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html\">Configuration</a> specifications to use when creating an application. Each configuration consists of a classification and properties. This configuration is applied to all the job runs submitted under the application.</p>",
+        "UpdateApplicationRequest$runtimeConfiguration": "<p>The <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html\">Configuration</a> specifications to use when updating an application. Each configuration consists of a classification and properties. This configuration is applied across all the job runs submitted under the application.</p>"
       }
     },
     "ConfigurationOverrides": {
@@ -551,7 +554,10 @@
     "MonitoringConfiguration": {
       "base": "<p>The configuration setting for monitoring.</p>",
       "refs": {
-        "ConfigurationOverrides$monitoringConfiguration": "<p>The override configurations for monitoring.</p>"
+        "Application$monitoringConfiguration": null,
+        "ConfigurationOverrides$monitoringConfiguration": "<p>The override configurations for monitoring.</p>",
+        "CreateApplicationRequest$monitoringConfiguration": "<p>The configuration setting for monitoring.</p>",
+        "UpdateApplicationRequest$monitoringConfiguration": "<p>The configuration setting for monitoring.</p>"
       }
     },
     "NetworkConfiguration": {

@@ -3374,8 +3374,8 @@
     "ConnectionStatus":{
       "type":"string",
       "enum":[
-        "Connected",
-        "NotConnected"
+        "connected",
+        "notconnected"
       ]
     },
     "ContentLength":{"type":"long"},
@@ -9521,7 +9521,6 @@
       "type":"string",
       "enum":[
         "ManagedInstance",
-        "Document",
         "EC2Instance"
       ]
     },

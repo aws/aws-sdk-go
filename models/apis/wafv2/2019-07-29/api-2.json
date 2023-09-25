@@ -1904,7 +1904,8 @@
         "JsonBody":{"shape":"JsonBody"},
         "Headers":{"shape":"Headers"},
         "Cookies":{"shape":"Cookies"},
-        "HeaderOrder":{"shape":"HeaderOrder"}
+        "HeaderOrder":{"shape":"HeaderOrder"},
+        "JA3Fingerprint":{"shape":"JA3Fingerprint"}
       }
     },
     "FieldToMatchData":{
@@ -2385,6 +2386,13 @@
         "COMMON",
         "TARGETED"
       ]
+    },
+    "JA3Fingerprint":{
+      "type":"structure",
+      "required":["FallbackBehavior"],
+      "members":{
+        "FallbackBehavior":{"shape":"FallbackBehavior"}
+      }
     },
     "JsonBody":{
       "type":"structure",

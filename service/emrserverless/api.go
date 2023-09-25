@@ -1487,6 +1487,9 @@ type Application struct {
 	// No new resources will be created once any one of the defined limits is hit.
 	MaximumCapacity *MaximumAllowedResources `locationName:"maximumCapacity" type:"structure"`
 
+	// The configuration setting for monitoring.
+	MonitoringConfiguration *MonitoringConfiguration `locationName:"monitoringConfiguration" type:"structure"`
+
 	// The name of the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -1497,6 +1500,14 @@ type Application struct {
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+
+	// The Configuration (https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html)
+	// specifications of an application. Each configuration consists of a classification
+	// and properties. You use this parameter when creating or updating an application.
+	// To see the runtimeConfiguration object of an application, run the GetApplication
+	// (https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_GetApplication.html)
+	// API operation.
+	RuntimeConfiguration []*Configuration `locationName:"runtimeConfiguration" type:"list"`
 
 	// The state of the application.
 	//
@@ -1595,6 +1606,12 @@ func (s *Application) SetMaximumCapacity(v *MaximumAllowedResources) *Applicatio
 	return s
 }
 
+// SetMonitoringConfiguration sets the MonitoringConfiguration field's value.
+func (s *Application) SetMonitoringConfiguration(v *MonitoringConfiguration) *Application {
+	s.MonitoringConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Application) SetName(v string) *Application {
 	s.Name = &v
@@ -1610,6 +1627,12 @@ func (s *Application) SetNetworkConfiguration(v *NetworkConfiguration) *Applicat
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *Application) SetReleaseLabel(v string) *Application {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *Application) SetRuntimeConfiguration(v []*Configuration) *Application {
+	s.RuntimeConfiguration = v
 	return s
 }
 
@@ -2327,6 +2350,9 @@ type CreateApplicationInput struct {
 	// the defined limits is hit.
 	MaximumCapacity *MaximumAllowedResources `locationName:"maximumCapacity" type:"structure"`
 
+	// The configuration setting for monitoring.
+	MonitoringConfiguration *MonitoringConfiguration `locationName:"monitoringConfiguration" type:"structure"`
+
 	// The name of the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -2337,6 +2363,12 @@ type CreateApplicationInput struct {
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+
+	// The Configuration (https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html)
+	// specifications to use when creating an application. Each configuration consists
+	// of a classification and properties. This configuration is applied to all
+	// the job runs submitted under the application.
+	RuntimeConfiguration []*Configuration `locationName:"runtimeConfiguration" type:"list"`
 
 	// The tags assigned to the application.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2419,6 +2451,21 @@ func (s *CreateApplicationInput) Validate() error {
 			invalidParams.AddNested("MaximumCapacity", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MonitoringConfiguration != nil {
+		if err := s.MonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RuntimeConfiguration != nil {
+		for i, v := range s.RuntimeConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuntimeConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.WorkerTypeSpecifications != nil {
 		for i, v := range s.WorkerTypeSpecifications {
 			if v == nil {
@@ -2478,6 +2525,12 @@ func (s *CreateApplicationInput) SetMaximumCapacity(v *MaximumAllowedResources) 
 	return s
 }
 
+// SetMonitoringConfiguration sets the MonitoringConfiguration field's value.
+func (s *CreateApplicationInput) SetMonitoringConfiguration(v *MonitoringConfiguration) *CreateApplicationInput {
+	s.MonitoringConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateApplicationInput) SetName(v string) *CreateApplicationInput {
 	s.Name = &v
@@ -2493,6 +2546,12 @@ func (s *CreateApplicationInput) SetNetworkConfiguration(v *NetworkConfiguration
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *CreateApplicationInput) SetReleaseLabel(v string) *CreateApplicationInput {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *CreateApplicationInput) SetRuntimeConfiguration(v []*Configuration) *CreateApplicationInput {
+	s.RuntimeConfiguration = v
 	return s
 }
 
@@ -5172,12 +5231,21 @@ type UpdateApplicationInput struct {
 	// defined limits is hit.
 	MaximumCapacity *MaximumAllowedResources `locationName:"maximumCapacity" type:"structure"`
 
+	// The configuration setting for monitoring.
+	MonitoringConfiguration *MonitoringConfiguration `locationName:"monitoringConfiguration" type:"structure"`
+
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
 	// The Amazon EMR release label for the application. You can change the release
 	// label to use a different release of Amazon EMR.
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string"`
+
+	// The Configuration (https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_Configuration.html)
+	// specifications to use when updating an application. Each configuration consists
+	// of a classification and properties. This configuration is applied across
+	// all the job runs submitted under the application.
+	RuntimeConfiguration []*Configuration `locationName:"runtimeConfiguration" type:"list"`
 
 	// The key-value pairs that specify worker type to WorkerTypeSpecificationInput.
 	// This parameter must contain all valid worker types for a Spark or Hive application.
@@ -5246,6 +5314,21 @@ func (s *UpdateApplicationInput) Validate() error {
 			invalidParams.AddNested("MaximumCapacity", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MonitoringConfiguration != nil {
+		if err := s.MonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RuntimeConfiguration != nil {
+		for i, v := range s.RuntimeConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuntimeConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.WorkerTypeSpecifications != nil {
 		for i, v := range s.WorkerTypeSpecifications {
 			if v == nil {
@@ -5311,6 +5394,12 @@ func (s *UpdateApplicationInput) SetMaximumCapacity(v *MaximumAllowedResources) 
 	return s
 }
 
+// SetMonitoringConfiguration sets the MonitoringConfiguration field's value.
+func (s *UpdateApplicationInput) SetMonitoringConfiguration(v *MonitoringConfiguration) *UpdateApplicationInput {
+	s.MonitoringConfiguration = v
+	return s
+}
+
 // SetNetworkConfiguration sets the NetworkConfiguration field's value.
 func (s *UpdateApplicationInput) SetNetworkConfiguration(v *NetworkConfiguration) *UpdateApplicationInput {
 	s.NetworkConfiguration = v
@@ -5320,6 +5409,12 @@ func (s *UpdateApplicationInput) SetNetworkConfiguration(v *NetworkConfiguration
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *UpdateApplicationInput) SetReleaseLabel(v string) *UpdateApplicationInput {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *UpdateApplicationInput) SetRuntimeConfiguration(v []*Configuration) *UpdateApplicationInput {
+	s.RuntimeConfiguration = v
 	return s
 }
 
