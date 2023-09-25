@@ -80,6 +80,14 @@ type ChimeSDKMediaPipelinesAPI interface {
 	CreateMediaLiveConnectorPipelineWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaLiveConnectorPipelineInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineOutput, error)
 	CreateMediaLiveConnectorPipelineRequest(*chimesdkmediapipelines.CreateMediaLiveConnectorPipelineInput) (*request.Request, *chimesdkmediapipelines.CreateMediaLiveConnectorPipelineOutput)
 
+	CreateMediaPipelineKinesisVideoStreamPool(*chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolInput) (*chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolOutput, error)
+	CreateMediaPipelineKinesisVideoStreamPoolWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolOutput, error)
+	CreateMediaPipelineKinesisVideoStreamPoolRequest(*chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolInput) (*request.Request, *chimesdkmediapipelines.CreateMediaPipelineKinesisVideoStreamPoolOutput)
+
+	CreateMediaStreamPipeline(*chimesdkmediapipelines.CreateMediaStreamPipelineInput) (*chimesdkmediapipelines.CreateMediaStreamPipelineOutput, error)
+	CreateMediaStreamPipelineWithContext(aws.Context, *chimesdkmediapipelines.CreateMediaStreamPipelineInput, ...request.Option) (*chimesdkmediapipelines.CreateMediaStreamPipelineOutput, error)
+	CreateMediaStreamPipelineRequest(*chimesdkmediapipelines.CreateMediaStreamPipelineInput) (*request.Request, *chimesdkmediapipelines.CreateMediaStreamPipelineOutput)
+
 	DeleteMediaCapturePipeline(*chimesdkmediapipelines.DeleteMediaCapturePipelineInput) (*chimesdkmediapipelines.DeleteMediaCapturePipelineOutput, error)
 	DeleteMediaCapturePipelineWithContext(aws.Context, *chimesdkmediapipelines.DeleteMediaCapturePipelineInput, ...request.Option) (*chimesdkmediapipelines.DeleteMediaCapturePipelineOutput, error)
 	DeleteMediaCapturePipelineRequest(*chimesdkmediapipelines.DeleteMediaCapturePipelineInput) (*request.Request, *chimesdkmediapipelines.DeleteMediaCapturePipelineOutput)
@@ -92,6 +100,10 @@ type ChimeSDKMediaPipelinesAPI interface {
 	DeleteMediaPipelineWithContext(aws.Context, *chimesdkmediapipelines.DeleteMediaPipelineInput, ...request.Option) (*chimesdkmediapipelines.DeleteMediaPipelineOutput, error)
 	DeleteMediaPipelineRequest(*chimesdkmediapipelines.DeleteMediaPipelineInput) (*request.Request, *chimesdkmediapipelines.DeleteMediaPipelineOutput)
 
+	DeleteMediaPipelineKinesisVideoStreamPool(*chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolInput) (*chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolOutput, error)
+	DeleteMediaPipelineKinesisVideoStreamPoolWithContext(aws.Context, *chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolInput, ...request.Option) (*chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolOutput, error)
+	DeleteMediaPipelineKinesisVideoStreamPoolRequest(*chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolInput) (*request.Request, *chimesdkmediapipelines.DeleteMediaPipelineKinesisVideoStreamPoolOutput)
+
 	GetMediaCapturePipeline(*chimesdkmediapipelines.GetMediaCapturePipelineInput) (*chimesdkmediapipelines.GetMediaCapturePipelineOutput, error)
 	GetMediaCapturePipelineWithContext(aws.Context, *chimesdkmediapipelines.GetMediaCapturePipelineInput, ...request.Option) (*chimesdkmediapipelines.GetMediaCapturePipelineOutput, error)
 	GetMediaCapturePipelineRequest(*chimesdkmediapipelines.GetMediaCapturePipelineInput) (*request.Request, *chimesdkmediapipelines.GetMediaCapturePipelineOutput)
@@ -103,6 +115,10 @@ type ChimeSDKMediaPipelinesAPI interface {
 	GetMediaPipeline(*chimesdkmediapipelines.GetMediaPipelineInput) (*chimesdkmediapipelines.GetMediaPipelineOutput, error)
 	GetMediaPipelineWithContext(aws.Context, *chimesdkmediapipelines.GetMediaPipelineInput, ...request.Option) (*chimesdkmediapipelines.GetMediaPipelineOutput, error)
 	GetMediaPipelineRequest(*chimesdkmediapipelines.GetMediaPipelineInput) (*request.Request, *chimesdkmediapipelines.GetMediaPipelineOutput)
+
+	GetMediaPipelineKinesisVideoStreamPool(*chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolInput) (*chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolOutput, error)
+	GetMediaPipelineKinesisVideoStreamPoolWithContext(aws.Context, *chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolInput, ...request.Option) (*chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolOutput, error)
+	GetMediaPipelineKinesisVideoStreamPoolRequest(*chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolInput) (*request.Request, *chimesdkmediapipelines.GetMediaPipelineKinesisVideoStreamPoolOutput)
 
 	GetSpeakerSearchTask(*chimesdkmediapipelines.GetSpeakerSearchTaskInput) (*chimesdkmediapipelines.GetSpeakerSearchTaskOutput, error)
 	GetSpeakerSearchTaskWithContext(aws.Context, *chimesdkmediapipelines.GetSpeakerSearchTaskInput, ...request.Option) (*chimesdkmediapipelines.GetSpeakerSearchTaskOutput, error)
@@ -125,6 +141,13 @@ type ChimeSDKMediaPipelinesAPI interface {
 
 	ListMediaInsightsPipelineConfigurationsPages(*chimesdkmediapipelines.ListMediaInsightsPipelineConfigurationsInput, func(*chimesdkmediapipelines.ListMediaInsightsPipelineConfigurationsOutput, bool) bool) error
 	ListMediaInsightsPipelineConfigurationsPagesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaInsightsPipelineConfigurationsInput, func(*chimesdkmediapipelines.ListMediaInsightsPipelineConfigurationsOutput, bool) bool, ...request.Option) error
+
+	ListMediaPipelineKinesisVideoStreamPools(*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsInput) (*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput, error)
+	ListMediaPipelineKinesisVideoStreamPoolsWithContext(aws.Context, *chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsInput, ...request.Option) (*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput, error)
+	ListMediaPipelineKinesisVideoStreamPoolsRequest(*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsInput) (*request.Request, *chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput)
+
+	ListMediaPipelineKinesisVideoStreamPoolsPages(*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsInput, func(*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput, bool) bool) error
+	ListMediaPipelineKinesisVideoStreamPoolsPagesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsInput, func(*chimesdkmediapipelines.ListMediaPipelineKinesisVideoStreamPoolsOutput, bool) bool, ...request.Option) error
 
 	ListMediaPipelines(*chimesdkmediapipelines.ListMediaPipelinesInput) (*chimesdkmediapipelines.ListMediaPipelinesOutput, error)
 	ListMediaPipelinesWithContext(aws.Context, *chimesdkmediapipelines.ListMediaPipelinesInput, ...request.Option) (*chimesdkmediapipelines.ListMediaPipelinesOutput, error)
@@ -168,6 +191,10 @@ type ChimeSDKMediaPipelinesAPI interface {
 	UpdateMediaInsightsPipelineStatus(*chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusInput) (*chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusOutput, error)
 	UpdateMediaInsightsPipelineStatusWithContext(aws.Context, *chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusInput, ...request.Option) (*chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusOutput, error)
 	UpdateMediaInsightsPipelineStatusRequest(*chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusInput) (*request.Request, *chimesdkmediapipelines.UpdateMediaInsightsPipelineStatusOutput)
+
+	UpdateMediaPipelineKinesisVideoStreamPool(*chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolInput) (*chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolOutput, error)
+	UpdateMediaPipelineKinesisVideoStreamPoolWithContext(aws.Context, *chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolInput, ...request.Option) (*chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolOutput, error)
+	UpdateMediaPipelineKinesisVideoStreamPoolRequest(*chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolInput) (*request.Request, *chimesdkmediapipelines.UpdateMediaPipelineKinesisVideoStreamPoolOutput)
 }
 
 var _ ChimeSDKMediaPipelinesAPI = (*chimesdkmediapipelines.ChimeSDKMediaPipelines)(nil)

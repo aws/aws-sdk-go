@@ -1,3 +1,17 @@
+Release v1.45.16 (2023-09-25)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API and documentation
+* `service/chime-sdk-media-pipelines`: Updates service API, documentation, and paginators
+* `service/emr-serverless`: Updates service API and documentation
+* `service/finspace-data`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Added ability to tag users upon creation.
+* `service/ssm`: Updates service API and documentation
+  * This release updates the enum values for ResourceType in SSM DescribeInstanceInformation input and ConnectionStatus in GetConnectionStatus output.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.45.15 (2023-09-22)
 ===
 

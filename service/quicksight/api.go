@@ -15436,15 +15436,15 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 // for that tag.
 //
 // You can associate as many as 50 tags with a resource. Amazon QuickSight supports
-// tagging on data set, data source, dashboard, template, and topic.
+// tagging on data set, data source, dashboard, template, topic, and user.
 //
 // Tagging for Amazon QuickSight works in a similar way to tagging for other
 // Amazon Web Services services, except for the following:
 //
-//   - You can't use tags to track costs for Amazon QuickSight. This isn't
-//     possible because you can't tag the resources that Amazon QuickSight costs
-//     are based on, for example Amazon QuickSight storage capacity (SPICE),
-//     number of users, type of users, and usage metrics.
+//   - Tags are used to track costs for users in Amazon QuickSight. You can't
+//     tag other resources that Amazon QuickSight costs are based on, such as
+//     storage capacoty (SPICE), session usage, alert consumption, or reporting
+//     units.
 //
 //   - Amazon QuickSight doesn't currently support the tag editor for Resource
 //     Groups.
@@ -75788,6 +75788,9 @@ type RegisterUserInput struct {
 	// in the CLI Reference.
 	SessionName *string `min:"2" type:"string"`
 
+	// The tags to associate with the user.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The Amazon QuickSight user name that you want to create for the user you
 	// are registering.
 	UserName *string `min:"1" type:"string"`
@@ -75856,11 +75859,24 @@ func (s *RegisterUserInput) Validate() error {
 	if s.SessionName != nil && len(*s.SessionName) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("SessionName", 2))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.UserName != nil && len(*s.UserName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
 	}
 	if s.UserRole == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserRole"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -75926,6 +75942,12 @@ func (s *RegisterUserInput) SetNamespace(v string) *RegisterUserInput {
 // SetSessionName sets the SessionName field's value.
 func (s *RegisterUserInput) SetSessionName(v string) *RegisterUserInput {
 	s.SessionName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RegisterUserInput) SetTags(v []*Tag) *RegisterUserInput {
+	s.Tags = v
 	return s
 }
 
@@ -103114,6 +103136,9 @@ const (
 
 	// MemberTypeDataset is a MemberType enum value
 	MemberTypeDataset = "DATASET"
+
+	// MemberTypeTopic is a MemberType enum value
+	MemberTypeTopic = "TOPIC"
 )
 
 // MemberType_Values returns all elements of the MemberType enum
@@ -103122,6 +103147,7 @@ func MemberType_Values() []string {
 		MemberTypeDashboard,
 		MemberTypeAnalysis,
 		MemberTypeDataset,
+		MemberTypeTopic,
 	}
 }
 

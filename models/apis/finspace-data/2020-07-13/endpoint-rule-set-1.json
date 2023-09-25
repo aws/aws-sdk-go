@@ -173,7 +173,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://finspace-api-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -223,34 +223,9 @@
                                     "type": "tree",
                                     "rules": [
                                         {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws-us-gov",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://ssm.{Region}.amazonaws.com",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://finspace-api-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -302,7 +277,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://finspace-api.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -320,7 +295,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://ssm.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://finspace-api.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

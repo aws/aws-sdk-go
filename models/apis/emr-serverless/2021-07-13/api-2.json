@@ -276,7 +276,9 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "architecture":{"shape":"Architecture"},
         "imageConfiguration":{"shape":"ImageConfiguration"},
-        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationMap"}
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationMap"},
+        "runtimeConfiguration":{"shape":"ConfigurationList"},
+        "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
       }
     },
     "ApplicationArn":{
@@ -483,7 +485,9 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "architecture":{"shape":"Architecture"},
         "imageConfiguration":{"shape":"ImageConfigurationInput"},
-        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"}
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"},
+        "runtimeConfiguration":{"shape":"ConfigurationList"},
+        "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
       }
     },
     "CreateApplicationResponse":{
@@ -1299,7 +1303,9 @@
         "architecture":{"shape":"Architecture"},
         "imageConfiguration":{"shape":"ImageConfigurationInput"},
         "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"},
-        "releaseLabel":{"shape":"ReleaseLabel"}
+        "releaseLabel":{"shape":"ReleaseLabel"},
+        "runtimeConfiguration":{"shape":"ConfigurationList"},
+        "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
       }
     },
     "UpdateApplicationResponse":{

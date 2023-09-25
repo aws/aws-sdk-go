@@ -613,7 +613,8 @@
         "secretAccessKey":{"shape":"SecretAccessKey"},
         "sessionToken":{"shape":"SessionToken"},
         "expiration":{"shape":"TimestampEpoch"}
-      }
+      },
+      "sensitive":true
     },
     "Boolean":{"type":"boolean"},
     "ChangeType":{
@@ -846,7 +847,7 @@
         "type":{"shape":"UserType"},
         "firstName":{"shape":"FirstName"},
         "lastName":{"shape":"LastName"},
-        "ApiAccess":{"shape":"ApiAccess"},
+        "apiAccess":{"shape":"ApiAccess"},
         "apiAccessPrincipalArn":{"shape":"RoleArn"},
         "clientToken":{
           "shape":"ClientToken",
@@ -866,7 +867,8 @@
         "accessKeyId":{"shape":"stringValueLength1to255"},
         "secretAccessKey":{"shape":"stringValueMaxLength1000"},
         "sessionToken":{"shape":"stringValueMaxLength1000"}
-      }
+      },
+      "sensitive":true
     },
     "DataViewArn":{"type":"string"},
     "DataViewDestinationType":{"type":"string"},
@@ -1786,8 +1788,8 @@
     },
     "SessionDuration":{
       "type":"long",
-      "max":720,
-      "min":60
+      "max":60,
+      "min":1
     },
     "SessionToken":{
       "type":"string",

@@ -13145,7 +13145,8 @@
       "enum":[
         "DASHBOARD",
         "ANALYSIS",
-        "DATASET"
+        "DATASET",
+        "TOPIC"
       ]
     },
     "MetricComparisonComputation":{
@@ -14790,7 +14791,8 @@
         "CustomPermissionsName":{"shape":"RoleName"},
         "ExternalLoginFederationProviderType":{"shape":"String"},
         "CustomFederationProviderUrl":{"shape":"String"},
-        "ExternalLoginId":{"shape":"String"}
+        "ExternalLoginId":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "RegisterUserResponse":{

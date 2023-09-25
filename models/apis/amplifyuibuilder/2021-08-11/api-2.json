@@ -423,6 +423,19 @@
       "type":"boolean",
       "box":true
     },
+    "CodegenDependencies":{
+      "type":"list",
+      "member":{"shape":"CodegenDependency"}
+    },
+    "CodegenDependency":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "supportedVersion":{"shape":"String"},
+        "isSemVer":{"shape":"Boolean"},
+        "reason":{"shape":"String"}
+      }
+    },
     "CodegenFeatureFlags":{
       "type":"structure",
       "members":{
@@ -563,7 +576,8 @@
         "asset":{"shape":"CodegenJobAsset"},
         "tags":{"shape":"Tags"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
-        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"}
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "dependencies":{"shape":"CodegenDependencies"}
       }
     },
     "CodegenJobAsset":{
@@ -1979,6 +1993,11 @@
       },
       "payload":"body"
     },
+    "ReactCodegenDependencies":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "ReactStartCodegenJobData":{
       "type":"structure",
       "members":{
@@ -1987,7 +2006,8 @@
         "script":{"shape":"JSScript"},
         "renderTypeDeclarations":{"shape":"Boolean"},
         "inlineSourceMap":{"shape":"Boolean"},
-        "apiConfiguration":{"shape":"ApiConfiguration"}
+        "apiConfiguration":{"shape":"ApiConfiguration"},
+        "dependencies":{"shape":"ReactCodegenDependencies"}
       }
     },
     "RefreshTokenRequest":{
