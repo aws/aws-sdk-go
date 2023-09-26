@@ -141,6 +141,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateLakeFormationOptIn":{
+      "name":"CreateLakeFormationOptIn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateLakeFormationOptIn"
+      },
+      "input":{"shape":"CreateLakeFormationOptInRequest"},
+      "output":{"shape":"CreateLakeFormationOptInResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "DeleteDataCellsFilter":{
       "name":"DeleteDataCellsFilter",
       "http":{
@@ -171,6 +188,23 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteLakeFormationOptIn":{
+      "name":"DeleteLakeFormationOptIn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteLakeFormationOptIn"
+      },
+      "input":{"shape":"DeleteLakeFormationOptInRequest"},
+      "output":{"shape":"DeleteLakeFormationOptInResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteObjectsOnCancel":{
@@ -495,6 +529,21 @@
       "output":{"shape":"ListLFTagsResponse"},
       "errors":[
         {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListLakeFormationOptIns":{
+      "name":"ListLakeFormationOptIns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLakeFormationOptIns"
+      },
+      "input":{"shape":"ListLakeFormationOptInsRequest"},
+      "output":{"shape":"ListLakeFormationOptInsResponse"},
+      "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
@@ -1030,6 +1079,22 @@
       "members":{
       }
     },
+    "CreateLakeFormationOptInRequest":{
+      "type":"structure",
+      "required":[
+        "Principal",
+        "Resource"
+      ],
+      "members":{
+        "Principal":{"shape":"DataLakePrincipal"},
+        "Resource":{"shape":"Resource"}
+      }
+    },
+    "CreateLakeFormationOptInResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CredentialTimeoutDurationSecondInteger":{
       "type":"integer",
       "box":true,
@@ -1160,6 +1225,22 @@
       }
     },
     "DeleteLFTagResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteLakeFormationOptInRequest":{
+      "type":"structure",
+      "required":[
+        "Principal",
+        "Resource"
+      ],
+      "members":{
+        "Principal":{"shape":"DataLakePrincipal"},
+        "Resource":{"shape":"Resource"}
+      }
+    },
+    "DeleteLakeFormationOptInResponse":{
       "type":"structure",
       "members":{
       }
@@ -1714,6 +1795,19 @@
       "max":50,
       "min":1
     },
+    "LakeFormationOptInsInfo":{
+      "type":"structure",
+      "members":{
+        "Resource":{"shape":"Resource"},
+        "Principal":{"shape":"DataLakePrincipal"},
+        "LastModified":{"shape":"LastModifiedTimestamp"},
+        "LastUpdatedBy":{"shape":"NameString"}
+      }
+    },
+    "LakeFormationOptInsInfoList":{
+      "type":"list",
+      "member":{"shape":"LakeFormationOptInsInfo"}
+    },
     "LastModifiedTimestamp":{"type":"timestamp"},
     "ListDataCellsFilterRequest":{
       "type":"structure",
@@ -1743,6 +1837,22 @@
       "type":"structure",
       "members":{
         "LFTags":{"shape":"LFTagsList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListLakeFormationOptInsRequest":{
+      "type":"structure",
+      "members":{
+        "Principal":{"shape":"DataLakePrincipal"},
+        "Resource":{"shape":"Resource"},
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListLakeFormationOptInsResponse":{
+      "type":"structure",
+      "members":{
+        "LakeFormationOptInsInfoList":{"shape":"LakeFormationOptInsInfoList"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1968,7 +2078,9 @@
         "Resource":{"shape":"Resource"},
         "Permissions":{"shape":"PermissionList"},
         "PermissionsWithGrantOption":{"shape":"PermissionList"},
-        "AdditionalDetails":{"shape":"DetailsMap"}
+        "AdditionalDetails":{"shape":"DetailsMap"},
+        "LastUpdated":{"shape":"LastModifiedTimestamp"},
+        "LastUpdatedBy":{"shape":"NameString"}
       }
     },
     "PrincipalResourcePermissionsList":{
@@ -2028,7 +2140,8 @@
         "ResourceArn":{"shape":"ResourceArnString"},
         "UseServiceLinkedRole":{"shape":"NullableBoolean"},
         "RoleArn":{"shape":"IAMRoleArn"},
-        "WithFederation":{"shape":"NullableBoolean"}
+        "WithFederation":{"shape":"NullableBoolean"},
+        "HybridAccessEnabled":{"shape":"NullableBoolean"}
       }
     },
     "RegisterResourceResponse":{
@@ -2074,7 +2187,8 @@
         "ResourceArn":{"shape":"ResourceArnString"},
         "RoleArn":{"shape":"IAMRoleArn"},
         "LastModified":{"shape":"LastModifiedTimestamp"},
-        "WithFederation":{"shape":"NullableBoolean"}
+        "WithFederation":{"shape":"NullableBoolean"},
+        "HybridAccessEnabled":{"shape":"NullableBoolean"}
       }
     },
     "ResourceInfoList":{
@@ -2482,7 +2596,8 @@
       "members":{
         "RoleArn":{"shape":"IAMRoleArn"},
         "ResourceArn":{"shape":"ResourceArnString"},
-        "WithFederation":{"shape":"NullableBoolean"}
+        "WithFederation":{"shape":"NullableBoolean"},
+        "HybridAccessEnabled":{"shape":"NullableBoolean"}
       }
     },
     "UpdateResourceResponse":{

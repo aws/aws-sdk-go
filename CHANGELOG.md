@@ -1,3 +1,22 @@
+Release v1.45.17 (2023-09-26)
+===
+
+### Service Client Updates
+* `service/appintegrations`: Updates service API, documentation, paginators, and examples
+* `service/apprunner`: Updates service API and documentation
+* `service/codedeploy`: Updates service documentation
+  * CodeDeploy now supports In-place and Blue/Green EC2 deployments with multiple Classic Load Balancers and multiple Target Groups.
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Amazon DynamoDB now supports Incremental Export as an enhancement to the existing Export Table
+* `service/ec2`: Updates service API and documentation
+  * The release includes AWS verified access to support FIPs compliance in North America regions
+* `service/lakeformation`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service documentation
+  * Update documentation for RemoveAttributes to more accurately reflect its behavior when attributes are deleted.
+* `service/s3`: Updates service API and examples
+  * This release adds a new field COMPLETED to the ReplicationStatus Enum. You can now use this field to validate the replication status of S3 objects using the AWS SDK.
+
 Release v1.45.16 (2023-09-25)
 ===
 

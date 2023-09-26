@@ -92,6 +92,10 @@ type LakeFormationAPI interface {
 	CreateLFTagWithContext(aws.Context, *lakeformation.CreateLFTagInput, ...request.Option) (*lakeformation.CreateLFTagOutput, error)
 	CreateLFTagRequest(*lakeformation.CreateLFTagInput) (*request.Request, *lakeformation.CreateLFTagOutput)
 
+	CreateLakeFormationOptIn(*lakeformation.CreateLakeFormationOptInInput) (*lakeformation.CreateLakeFormationOptInOutput, error)
+	CreateLakeFormationOptInWithContext(aws.Context, *lakeformation.CreateLakeFormationOptInInput, ...request.Option) (*lakeformation.CreateLakeFormationOptInOutput, error)
+	CreateLakeFormationOptInRequest(*lakeformation.CreateLakeFormationOptInInput) (*request.Request, *lakeformation.CreateLakeFormationOptInOutput)
+
 	DeleteDataCellsFilter(*lakeformation.DeleteDataCellsFilterInput) (*lakeformation.DeleteDataCellsFilterOutput, error)
 	DeleteDataCellsFilterWithContext(aws.Context, *lakeformation.DeleteDataCellsFilterInput, ...request.Option) (*lakeformation.DeleteDataCellsFilterOutput, error)
 	DeleteDataCellsFilterRequest(*lakeformation.DeleteDataCellsFilterInput) (*request.Request, *lakeformation.DeleteDataCellsFilterOutput)
@@ -99,6 +103,10 @@ type LakeFormationAPI interface {
 	DeleteLFTag(*lakeformation.DeleteLFTagInput) (*lakeformation.DeleteLFTagOutput, error)
 	DeleteLFTagWithContext(aws.Context, *lakeformation.DeleteLFTagInput, ...request.Option) (*lakeformation.DeleteLFTagOutput, error)
 	DeleteLFTagRequest(*lakeformation.DeleteLFTagInput) (*request.Request, *lakeformation.DeleteLFTagOutput)
+
+	DeleteLakeFormationOptIn(*lakeformation.DeleteLakeFormationOptInInput) (*lakeformation.DeleteLakeFormationOptInOutput, error)
+	DeleteLakeFormationOptInWithContext(aws.Context, *lakeformation.DeleteLakeFormationOptInInput, ...request.Option) (*lakeformation.DeleteLakeFormationOptInOutput, error)
+	DeleteLakeFormationOptInRequest(*lakeformation.DeleteLakeFormationOptInInput) (*request.Request, *lakeformation.DeleteLakeFormationOptInOutput)
 
 	DeleteObjectsOnCancel(*lakeformation.DeleteObjectsOnCancelInput) (*lakeformation.DeleteObjectsOnCancelOutput, error)
 	DeleteObjectsOnCancelWithContext(aws.Context, *lakeformation.DeleteObjectsOnCancelInput, ...request.Option) (*lakeformation.DeleteObjectsOnCancelOutput, error)
@@ -194,6 +202,13 @@ type LakeFormationAPI interface {
 
 	ListLFTagsPages(*lakeformation.ListLFTagsInput, func(*lakeformation.ListLFTagsOutput, bool) bool) error
 	ListLFTagsPagesWithContext(aws.Context, *lakeformation.ListLFTagsInput, func(*lakeformation.ListLFTagsOutput, bool) bool, ...request.Option) error
+
+	ListLakeFormationOptIns(*lakeformation.ListLakeFormationOptInsInput) (*lakeformation.ListLakeFormationOptInsOutput, error)
+	ListLakeFormationOptInsWithContext(aws.Context, *lakeformation.ListLakeFormationOptInsInput, ...request.Option) (*lakeformation.ListLakeFormationOptInsOutput, error)
+	ListLakeFormationOptInsRequest(*lakeformation.ListLakeFormationOptInsInput) (*request.Request, *lakeformation.ListLakeFormationOptInsOutput)
+
+	ListLakeFormationOptInsPages(*lakeformation.ListLakeFormationOptInsInput, func(*lakeformation.ListLakeFormationOptInsOutput, bool) bool) error
+	ListLakeFormationOptInsPagesWithContext(aws.Context, *lakeformation.ListLakeFormationOptInsInput, func(*lakeformation.ListLakeFormationOptInsOutput, bool) bool, ...request.Option) error
 
 	ListPermissions(*lakeformation.ListPermissionsInput) (*lakeformation.ListPermissionsOutput, error)
 	ListPermissionsWithContext(aws.Context, *lakeformation.ListPermissionsInput, ...request.Option) (*lakeformation.ListPermissionsOutput, error)

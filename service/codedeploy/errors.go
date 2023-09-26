@@ -17,14 +17,14 @@ const (
 	// ErrCodeApplicationAlreadyExistsException for service response error code
 	// "ApplicationAlreadyExistsException".
 	//
-	// An application with the specified name with the IAM user or Amazon Web Services
+	// An application with the specified name with the user or Amazon Web Services
 	// account already exists.
 	ErrCodeApplicationAlreadyExistsException = "ApplicationAlreadyExistsException"
 
 	// ErrCodeApplicationDoesNotExistException for service response error code
 	// "ApplicationDoesNotExistException".
 	//
-	// The application does not exist with the IAM user or Amazon Web Services account.
+	// The application does not exist with the user or Amazon Web Services account.
 	ErrCodeApplicationDoesNotExistException = "ApplicationDoesNotExistException"
 
 	// ErrCodeApplicationLimitExceededException for service response error code
@@ -67,15 +67,15 @@ const (
 	// ErrCodeDeploymentConfigAlreadyExistsException for service response error code
 	// "DeploymentConfigAlreadyExistsException".
 	//
-	// A deployment configuration with the specified name with the IAM user or Amazon
+	// A deployment configuration with the specified name with the user or Amazon
 	// Web Services account already exists.
 	ErrCodeDeploymentConfigAlreadyExistsException = "DeploymentConfigAlreadyExistsException"
 
 	// ErrCodeDeploymentConfigDoesNotExistException for service response error code
 	// "DeploymentConfigDoesNotExistException".
 	//
-	// The deployment configuration does not exist with the IAM user or Amazon Web
-	// Services account.
+	// The deployment configuration does not exist with the user or Amazon Web Services
+	// account.
 	ErrCodeDeploymentConfigDoesNotExistException = "DeploymentConfigDoesNotExistException"
 
 	// ErrCodeDeploymentConfigInUseException for service response error code
@@ -99,22 +99,21 @@ const (
 	// ErrCodeDeploymentDoesNotExistException for service response error code
 	// "DeploymentDoesNotExistException".
 	//
-	// The deployment with the IAM user or Amazon Web Services account does not
-	// exist.
+	// The deployment with the user or Amazon Web Services account does not exist.
 	ErrCodeDeploymentDoesNotExistException = "DeploymentDoesNotExistException"
 
 	// ErrCodeDeploymentGroupAlreadyExistsException for service response error code
 	// "DeploymentGroupAlreadyExistsException".
 	//
-	// A deployment group with the specified name with the IAM user or Amazon Web
-	// Services account already exists.
+	// A deployment group with the specified name with the user or Amazon Web Services
+	// account already exists.
 	ErrCodeDeploymentGroupAlreadyExistsException = "DeploymentGroupAlreadyExistsException"
 
 	// ErrCodeDeploymentGroupDoesNotExistException for service response error code
 	// "DeploymentGroupDoesNotExistException".
 	//
-	// The named deployment group with the IAM user or Amazon Web Services account
-	// does not exist.
+	// The named deployment group with the user or Amazon Web Services account does
+	// not exist.
 	ErrCodeDeploymentGroupDoesNotExistException = "DeploymentGroupDoesNotExistException"
 
 	// ErrCodeDeploymentGroupLimitExceededException for service response error code
@@ -203,7 +202,7 @@ const (
 	// "IamArnRequiredException".
 	//
 	// No IAM ARN was included in the request. You must use an IAM session ARN or
-	// IAM user ARN in the request.
+	// user ARN in the request.
 	ErrCodeIamArnRequiredException = "IamArnRequiredException"
 
 	// ErrCodeIamSessionArnAlreadyRegisteredException for service response error code
@@ -216,13 +215,13 @@ const (
 	// ErrCodeIamUserArnAlreadyRegisteredException for service response error code
 	// "IamUserArnAlreadyRegisteredException".
 	//
-	// The specified IAM user ARN is already registered with an on-premises instance.
+	// The specified user ARN is already registered with an on-premises instance.
 	ErrCodeIamUserArnAlreadyRegisteredException = "IamUserArnAlreadyRegisteredException"
 
 	// ErrCodeIamUserArnRequiredException for service response error code
 	// "IamUserArnRequiredException".
 	//
-	// An IAM user ARN was not specified.
+	// An user ARN was not specified.
 	ErrCodeIamUserArnRequiredException = "IamUserArnRequiredException"
 
 	// ErrCodeInstanceDoesNotExistException for service response error code
@@ -437,7 +436,7 @@ const (
 	// ErrCodeInvalidIamUserArnException for service response error code
 	// "InvalidIamUserArnException".
 	//
-	// The IAM user ARN was specified in an invalid format.
+	// The user ARN was specified in an invalid format.
 	ErrCodeInvalidIamUserArnException = "InvalidIamUserArnException"
 
 	// ErrCodeInvalidIgnoreApplicationStopFailuresValueException for service response error code
@@ -643,8 +642,8 @@ const (
 	// ErrCodeMultipleIamArnsProvidedException for service response error code
 	// "MultipleIamArnsProvidedException".
 	//
-	// Both an IAM user ARN and an IAM session ARN were included in the request.
-	// Use only one ARN type.
+	// Both an user ARN and an IAM session ARN were included in the request. Use
+	// only one ARN type.
 	ErrCodeMultipleIamArnsProvidedException = "MultipleIamArnsProvidedException"
 
 	// ErrCodeOperationNotSupportedException for service response error code
@@ -668,8 +667,7 @@ const (
 	// ErrCodeRevisionDoesNotExistException for service response error code
 	// "RevisionDoesNotExistException".
 	//
-	// The named revision does not exist with the IAM user or Amazon Web Services
-	// account.
+	// The named revision does not exist with the user or Amazon Web Services account.
 	ErrCodeRevisionDoesNotExistException = "RevisionDoesNotExistException"
 
 	// ErrCodeRevisionRequiredException for service response error code

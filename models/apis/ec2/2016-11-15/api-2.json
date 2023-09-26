@@ -10032,7 +10032,7 @@
       "type":"structure",
       "required":["AvailabilityZone"],
       "members":{
-        "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZone":{"shape":"AvailabilityZoneName"},
         "DryRun":{"shape":"Boolean"},
         "Ipv6Native":{"shape":"Boolean"}
       }
@@ -12052,7 +12052,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "FIPSEnabled":{"shape":"Boolean"}
       }
     },
     "CreateVerifiedAccessInstanceResult":{
@@ -43678,6 +43679,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "FipsEnabled":{
+          "shape":"Boolean",
+          "locationName":"fipsEnabled"
         }
       }
     },

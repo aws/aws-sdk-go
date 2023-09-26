@@ -28,6 +28,11 @@
       "output_token": "NextToken",
       "result_key": "LFTags"
     },
+    "ListLakeFormationOptIns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListPermissions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

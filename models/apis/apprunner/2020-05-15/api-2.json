@@ -695,7 +695,8 @@
       "members":{
         "RepositoryUrl":{"shape":"String"},
         "SourceCodeVersion":{"shape":"SourceCodeVersion"},
-        "CodeConfiguration":{"shape":"CodeConfiguration"}
+        "CodeConfiguration":{"shape":"CodeConfiguration"},
+        "SourceDirectory":{"shape":"SourceDirectory"}
       }
     },
     "ConfigurationSource":{
@@ -1761,6 +1762,12 @@
         "AutoDeploymentsEnabled":{"shape":"NullableBoolean"},
         "AuthenticationConfiguration":{"shape":"AuthenticationConfiguration"}
       }
+    },
+    "SourceDirectory":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"[^\\x00]+"
     },
     "StartCommand":{
       "type":"string",

@@ -661,6 +661,13 @@ type ConnectAPI interface {
 	ListSecurityKeysPages(*connect.ListSecurityKeysInput, func(*connect.ListSecurityKeysOutput, bool) bool) error
 	ListSecurityKeysPagesWithContext(aws.Context, *connect.ListSecurityKeysInput, func(*connect.ListSecurityKeysOutput, bool) bool, ...request.Option) error
 
+	ListSecurityProfileApplications(*connect.ListSecurityProfileApplicationsInput) (*connect.ListSecurityProfileApplicationsOutput, error)
+	ListSecurityProfileApplicationsWithContext(aws.Context, *connect.ListSecurityProfileApplicationsInput, ...request.Option) (*connect.ListSecurityProfileApplicationsOutput, error)
+	ListSecurityProfileApplicationsRequest(*connect.ListSecurityProfileApplicationsInput) (*request.Request, *connect.ListSecurityProfileApplicationsOutput)
+
+	ListSecurityProfileApplicationsPages(*connect.ListSecurityProfileApplicationsInput, func(*connect.ListSecurityProfileApplicationsOutput, bool) bool) error
+	ListSecurityProfileApplicationsPagesWithContext(aws.Context, *connect.ListSecurityProfileApplicationsInput, func(*connect.ListSecurityProfileApplicationsOutput, bool) bool, ...request.Option) error
+
 	ListSecurityProfilePermissions(*connect.ListSecurityProfilePermissionsInput) (*connect.ListSecurityProfilePermissionsOutput, error)
 	ListSecurityProfilePermissionsWithContext(aws.Context, *connect.ListSecurityProfilePermissionsInput, ...request.Option) (*connect.ListSecurityProfilePermissionsOutput, error)
 	ListSecurityProfilePermissionsRequest(*connect.ListSecurityProfilePermissionsInput) (*request.Request, *connect.ListSecurityProfilePermissionsOutput)

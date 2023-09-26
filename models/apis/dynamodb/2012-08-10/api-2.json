@@ -1947,7 +1947,9 @@
         "FailureMessage":{"shape":"FailureMessage"},
         "ExportFormat":{"shape":"ExportFormat"},
         "BilledSizeBytes":{"shape":"BilledSizeBytes"},
-        "ItemCount":{"shape":"ItemCount"}
+        "ItemCount":{"shape":"ItemCount"},
+        "ExportType":{"shape":"ExportType"},
+        "IncrementalExportSpecification":{"shape":"IncrementalExportSpecification"}
       }
     },
     "ExportEndTime":{"type":"timestamp"},
@@ -1958,6 +1960,7 @@
         "ION"
       ]
     },
+    "ExportFromTime":{"type":"timestamp"},
     "ExportManifest":{"type":"string"},
     "ExportNextToken":{"type":"string"},
     "ExportNotFoundException":{
@@ -1984,7 +1987,8 @@
       "type":"structure",
       "members":{
         "ExportArn":{"shape":"ExportArn"},
-        "ExportStatus":{"shape":"ExportStatus"}
+        "ExportStatus":{"shape":"ExportStatus"},
+        "ExportType":{"shape":"ExportType"}
       }
     },
     "ExportTableToPointInTimeInput":{
@@ -2005,7 +2009,9 @@
         "S3Prefix":{"shape":"S3Prefix"},
         "S3SseAlgorithm":{"shape":"S3SseAlgorithm"},
         "S3SseKmsKeyId":{"shape":"S3SseKmsKeyId"},
-        "ExportFormat":{"shape":"ExportFormat"}
+        "ExportFormat":{"shape":"ExportFormat"},
+        "ExportType":{"shape":"ExportType"},
+        "IncrementalExportSpecification":{"shape":"IncrementalExportSpecification"}
       }
     },
     "ExportTableToPointInTimeOutput":{
@@ -2015,6 +2021,21 @@
       }
     },
     "ExportTime":{"type":"timestamp"},
+    "ExportToTime":{"type":"timestamp"},
+    "ExportType":{
+      "type":"string",
+      "enum":[
+        "FULL_EXPORT",
+        "INCREMENTAL_EXPORT"
+      ]
+    },
+    "ExportViewType":{
+      "type":"string",
+      "enum":[
+        "NEW_IMAGE",
+        "NEW_AND_OLD_IMAGES"
+      ]
+    },
     "ExpressionAttributeNameMap":{
       "type":"map",
       "key":{"shape":"ExpressionAttributeNameVariable"},
@@ -2324,6 +2345,14 @@
     "ImportedItemCount":{
       "type":"long",
       "min":0
+    },
+    "IncrementalExportSpecification":{
+      "type":"structure",
+      "members":{
+        "ExportFromTime":{"shape":"ExportFromTime"},
+        "ExportToTime":{"shape":"ExportToTime"},
+        "ExportViewType":{"shape":"ExportViewType"}
+      }
     },
     "IndexName":{
       "type":"string",
