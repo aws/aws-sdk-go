@@ -180,6 +180,12 @@
       "output_token": "NextToken",
       "result_key": "SecurityKeys"
     },
+    "ListSecurityProfileApplications": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Applications"
+    },
     "ListSecurityProfilePermissions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -129,6 +129,7 @@
     "ListRoutingProfiles": "<p>Provides summary information about the routing profiles for the specified Amazon Connect instance.</p> <p>For more information about routing profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html\">Routing Profiles</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html\">Create a Routing Profile</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListRules": "<p>List all rules for the specified Amazon Connect instance.</p>",
     "ListSecurityKeys": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all security keys associated with the instance.</p>",
+    "ListSecurityProfileApplications": "<p>Returns a list of third party applications in a specific security profile.</p>",
     "ListSecurityProfilePermissions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the permissions granted to a security profile.</p>",
     "ListSecurityProfiles": "<p>Provides summary information about the security profiles for the specified Amazon Connect instance.</p> <p>For more information about security profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html\">Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -549,6 +550,26 @@
         "StartOutboundVoiceContactRequest$AnswerMachineDetectionConfig": "<p>Configuration of the answering machine detection for this outbound call. </p>"
       }
     },
+    "Application": {
+      "base": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A third party application's metadata.</p>",
+      "refs": {
+        "Applications$member": null
+      }
+    },
+    "ApplicationPermissions": {
+      "base": null,
+      "refs": {
+        "Application$ApplicationPermissions": "<p>The permissions that the agent is granted on the application. Only the <code>ACCESS</code> permission is supported.</p>"
+      }
+    },
+    "Applications": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$Applications": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A list of third party applications that the security profile will give access to.</p>",
+        "ListSecurityProfileApplicationsResponse$Applications": "<p>A list of the third party application's metadata.</p>",
+        "UpdateSecurityProfileRequest$Applications": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A list of the third party application's metadata.</p>"
+      }
+    },
     "ApproximateTotalCount": {
       "base": null,
       "refs": {
@@ -566,7 +587,7 @@
     "AssignContactCategoryActionDefinition": {
       "base": "<p>This action must be set if <code>TriggerEventSource</code> is one of the following values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code>. Contact is categorized using the rule name.</p> <p> <code>RuleName</code> is used as <code>ContactCategory</code>.</p>",
       "refs": {
-        "RuleAction$AssignContactCategoryAction": "<p>Information about the contact category action.</p>"
+        "RuleAction$AssignContactCategoryAction": "<p>Information about the contact category action.</p> <p>Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code> | <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> </p>"
       }
     },
     "AssociateApprovedOriginRequest": {
@@ -2431,7 +2452,7 @@
     "EventBridgeActionDefinition": {
       "base": "<p>The EventBridge action definition.</p>",
       "refs": {
-        "RuleAction$EventBridgeAction": "<p>Information about the EventBridge action.</p>"
+        "RuleAction$EventBridgeAction": "<p>Information about the EventBridge action.</p> <p>Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code> | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code> </p>"
       }
     },
     "EventBridgeActionName": {
@@ -3054,6 +3075,7 @@
         "ListRoutingProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListRulesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListSecurityKeysRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "ListSecurityProfileApplicationsRequest$InstanceId": "<p>The instance identifier.</p>",
         "ListSecurityProfilePermissionsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListTaskTemplatesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3640,6 +3662,16 @@
       "refs": {
       }
     },
+    "ListSecurityProfileApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSecurityProfileApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSecurityProfilePermissionsRequest": {
       "base": null,
       "refs": {
@@ -3806,6 +3838,7 @@
         "ListQueuesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListRoutingProfilesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
+        "ListSecurityProfileApplicationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListSecurityProfilePermissionsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListSecurityProfilesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListUserHierarchyGroupsRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
@@ -3991,6 +4024,12 @@
         "TrafficDistributionGroupSummary$Name": "<p>The name of the traffic distribution group.</p>"
       }
     },
+    "Namespace": {
+      "base": null,
+      "refs": {
+        "Application$Namespace": "<p>Namespace of the application that you want to give access to.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -4050,6 +4089,8 @@
         "ListRulesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListSecurityKeysRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListSecurityKeysResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListSecurityProfileApplicationsRequest$NextToken": "<p>The token for the next set of results. The next set of results can be retrieved by using the token value returned in the previous response when making the next request.</p>",
+        "ListSecurityProfileApplicationsResponse$NextToken": "<p>The token for the next set of results. The next set of results can be retrieved by using the token value returned in the previous response when making the next request.</p>",
         "ListSecurityProfilePermissionsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListSecurityProfilePermissionsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListSecurityProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -4261,6 +4302,12 @@
         "Distribution$Percentage": "<p>The percentage of the traffic that is distributed, in increments of 10.</p>"
       }
     },
+    "Permission": {
+      "base": null,
+      "refs": {
+        "ApplicationPermissions$member": null
+      }
+    },
     "PermissionsList": {
       "base": null,
       "refs": {
@@ -4376,7 +4423,7 @@
     "PhoneNumberTypes": {
       "base": null,
       "refs": {
-        "ListPhoneNumbersRequest$PhoneNumberTypes": "<p>The type of phone number.</p>",
+        "ListPhoneNumbersRequest$PhoneNumberTypes": "<p>The type of phone number.</p> <note> <p>We recommend using <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html\">ListPhoneNumbersV2</a> to return phone number types. While ListPhoneNumbers returns number types <code>UIFN</code>, <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>, it incorrectly lists them as <code>TOLL_FREE</code> or <code>DID</code>. </p> </note>",
         "ListPhoneNumbersV2Request$PhoneNumberTypes": "<p>The type of phone number.</p>"
       }
     },
@@ -4724,7 +4771,7 @@
     "QuickConnectName": {
       "base": null,
       "refs": {
-        "CreateQuickConnectRequest$Name": "<p>The name of the quick connect.</p>",
+        "CreateQuickConnectRequest$Name": "<p>A unique name of the quick connect.</p>",
         "QuickConnect$Name": "<p>The name of the quick connect.</p>",
         "QuickConnectSummary$Name": "<p>The name of the quick connect.</p>",
         "UpdateQuickConnectNameRequest$Name": "<p>The name of the quick connect.</p>"
@@ -5208,7 +5255,7 @@
       }
     },
     "RuleTriggerEventSource": {
-      "base": "<p>The name of the event source. This field is required if <code>TriggerEventSource</code> is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> </p>",
+      "base": "<p>The name of the event source. This field is required if <code>TriggerEventSource</code> is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>.</p>",
       "refs": {
         "CreateRuleRequest$TriggerEventSource": "<p>The event source to trigger the rule.</p>",
         "Rule$TriggerEventSource": "<p>The event source to trigger the rule.</p>"
@@ -5366,6 +5413,7 @@
         "CreateSecurityProfileResponse$SecurityProfileId": "<p>The identifier for the security profle.</p>",
         "DeleteSecurityProfileRequest$SecurityProfileId": "<p>The identifier for the security profle.</p>",
         "DescribeSecurityProfileRequest$SecurityProfileId": "<p>The identifier for the security profle.</p>",
+        "ListSecurityProfileApplicationsRequest$SecurityProfileId": "<p>The security profile identifier.</p>",
         "ListSecurityProfilePermissionsRequest$SecurityProfileId": "<p>The identifier for the security profle.</p>",
         "SecurityProfile$Id": "<p>The identifier for the security profile.</p>",
         "SecurityProfileIds$member": null,
@@ -5463,7 +5511,7 @@
     "SendNotificationActionDefinition": {
       "base": "<p>Information about the send notification action.</p>",
       "refs": {
-        "RuleAction$SendNotificationAction": "<p>Information about the send notification action.</p>"
+        "RuleAction$SendNotificationAction": "<p>Information about the send notification action.</p> <p>Supported only for <code>TriggerEventSource</code> values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code> | <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code> </p>"
       }
     },
     "ServiceQuotaExceededException": {

@@ -8887,8 +8887,9 @@ func (c *Pinpoint) RemoveAttributesRequest(input *RemoveAttributesInput) (req *r
 
 // RemoveAttributes API operation for Amazon Pinpoint.
 //
-// Removes one or more attributes, of the same attribute type, from all the
-// endpoints that are associated with an application.
+// Removes one or more custom attributes, of the same attribute type, from the
+// application. Existing endpoints still have the attributes but Amazon Pinpoint
+// will stop capturing new or changed values for these attributes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

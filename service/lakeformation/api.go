@@ -766,6 +766,101 @@ func (c *LakeFormation) CreateLFTagWithContext(ctx aws.Context, input *CreateLFT
 	return out, req.Send()
 }
 
+const opCreateLakeFormationOptIn = "CreateLakeFormationOptIn"
+
+// CreateLakeFormationOptInRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLakeFormationOptIn operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLakeFormationOptIn for more information on using the CreateLakeFormationOptIn
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLakeFormationOptInRequest method.
+//	req, resp := client.CreateLakeFormationOptInRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationOptIn
+func (c *LakeFormation) CreateLakeFormationOptInRequest(input *CreateLakeFormationOptInInput) (req *request.Request, output *CreateLakeFormationOptInOutput) {
+	op := &request.Operation{
+		Name:       opCreateLakeFormationOptIn,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateLakeFormationOptIn",
+	}
+
+	if input == nil {
+		input = &CreateLakeFormationOptInInput{}
+	}
+
+	output = &CreateLakeFormationOptInOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateLakeFormationOptIn API operation for AWS Lake Formation.
+//
+// Enforce Lake Formation permissions for the given databases, tables, and principals.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CreateLakeFormationOptIn for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - ConcurrentModificationException
+//     Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationOptIn
+func (c *LakeFormation) CreateLakeFormationOptIn(input *CreateLakeFormationOptInInput) (*CreateLakeFormationOptInOutput, error) {
+	req, out := c.CreateLakeFormationOptInRequest(input)
+	return out, req.Send()
+}
+
+// CreateLakeFormationOptInWithContext is the same as CreateLakeFormationOptIn with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLakeFormationOptIn for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CreateLakeFormationOptInWithContext(ctx aws.Context, input *CreateLakeFormationOptInInput, opts ...request.Option) (*CreateLakeFormationOptInOutput, error) {
+	req, out := c.CreateLakeFormationOptInRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDataCellsFilter = "DeleteDataCellsFilter"
 
 // DeleteDataCellsFilterRequest generates a "aws/request.Request" representing the
@@ -949,6 +1044,102 @@ func (c *LakeFormation) DeleteLFTag(input *DeleteLFTagInput) (*DeleteLFTagOutput
 // for more information on using Contexts.
 func (c *LakeFormation) DeleteLFTagWithContext(ctx aws.Context, input *DeleteLFTagInput, opts ...request.Option) (*DeleteLFTagOutput, error) {
 	req, out := c.DeleteLFTagRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLakeFormationOptIn = "DeleteLakeFormationOptIn"
+
+// DeleteLakeFormationOptInRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLakeFormationOptIn operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLakeFormationOptIn for more information on using the DeleteLakeFormationOptIn
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLakeFormationOptInRequest method.
+//	req, resp := client.DeleteLakeFormationOptInRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationOptIn
+func (c *LakeFormation) DeleteLakeFormationOptInRequest(input *DeleteLakeFormationOptInInput) (req *request.Request, output *DeleteLakeFormationOptInOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLakeFormationOptIn,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteLakeFormationOptIn",
+	}
+
+	if input == nil {
+		input = &DeleteLakeFormationOptInInput{}
+	}
+
+	output = &DeleteLakeFormationOptInOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLakeFormationOptIn API operation for AWS Lake Formation.
+//
+// Remove the Lake Formation permissions enforcement of the given databases,
+// tables, and principals.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DeleteLakeFormationOptIn for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - ConcurrentModificationException
+//     Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationOptIn
+func (c *LakeFormation) DeleteLakeFormationOptIn(input *DeleteLakeFormationOptInInput) (*DeleteLakeFormationOptInOutput, error) {
+	req, out := c.DeleteLakeFormationOptInRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLakeFormationOptInWithContext is the same as DeleteLakeFormationOptIn with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLakeFormationOptIn for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DeleteLakeFormationOptInWithContext(ctx aws.Context, input *DeleteLakeFormationOptInInput, opts ...request.Option) (*DeleteLakeFormationOptInOutput, error) {
+	req, out := c.DeleteLakeFormationOptInRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3109,6 +3300,152 @@ func (c *LakeFormation) ListLFTagsPagesWithContext(ctx aws.Context, input *ListL
 
 	for p.Next() {
 		if !fn(p.Page().(*ListLFTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLakeFormationOptIns = "ListLakeFormationOptIns"
+
+// ListLakeFormationOptInsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLakeFormationOptIns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLakeFormationOptIns for more information on using the ListLakeFormationOptIns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLakeFormationOptInsRequest method.
+//	req, resp := client.ListLakeFormationOptInsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLakeFormationOptIns
+func (c *LakeFormation) ListLakeFormationOptInsRequest(input *ListLakeFormationOptInsInput) (req *request.Request, output *ListLakeFormationOptInsOutput) {
+	op := &request.Operation{
+		Name:       opListLakeFormationOptIns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListLakeFormationOptIns",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLakeFormationOptInsInput{}
+	}
+
+	output = &ListLakeFormationOptInsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLakeFormationOptIns API operation for AWS Lake Formation.
+//
+// Retrieve the current list of resources and principals that are opt in to
+// enforce Lake Formation permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ListLakeFormationOptIns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLakeFormationOptIns
+func (c *LakeFormation) ListLakeFormationOptIns(input *ListLakeFormationOptInsInput) (*ListLakeFormationOptInsOutput, error) {
+	req, out := c.ListLakeFormationOptInsRequest(input)
+	return out, req.Send()
+}
+
+// ListLakeFormationOptInsWithContext is the same as ListLakeFormationOptIns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLakeFormationOptIns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListLakeFormationOptInsWithContext(ctx aws.Context, input *ListLakeFormationOptInsInput, opts ...request.Option) (*ListLakeFormationOptInsOutput, error) {
+	req, out := c.ListLakeFormationOptInsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLakeFormationOptInsPages iterates over the pages of a ListLakeFormationOptIns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLakeFormationOptIns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLakeFormationOptIns operation.
+//	pageNum := 0
+//	err := client.ListLakeFormationOptInsPages(params,
+//	    func(page *lakeformation.ListLakeFormationOptInsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LakeFormation) ListLakeFormationOptInsPages(input *ListLakeFormationOptInsInput, fn func(*ListLakeFormationOptInsOutput, bool) bool) error {
+	return c.ListLakeFormationOptInsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLakeFormationOptInsPagesWithContext same as ListLakeFormationOptInsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListLakeFormationOptInsPagesWithContext(ctx aws.Context, input *ListLakeFormationOptInsInput, fn func(*ListLakeFormationOptInsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLakeFormationOptInsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLakeFormationOptInsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLakeFormationOptInsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6455,6 +6792,98 @@ func (s CreateLFTagOutput) GoString() string {
 	return s.String()
 }
 
+type CreateLakeFormationOptInInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Lake Formation principal. Supported principals are IAM users or IAM roles.
+	//
+	// Principal is a required field
+	Principal *DataLakePrincipal `type:"structure" required:"true"`
+
+	// A structure for the resource.
+	//
+	// Resource is a required field
+	Resource *Resource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationOptInInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationOptInInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLakeFormationOptInInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLakeFormationOptInInput"}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Principal != nil {
+		if err := s.Principal.Validate(); err != nil {
+			invalidParams.AddNested("Principal", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *CreateLakeFormationOptInInput) SetPrincipal(v *DataLakePrincipal) *CreateLakeFormationOptInInput {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *CreateLakeFormationOptInInput) SetResource(v *Resource) *CreateLakeFormationOptInInput {
+	s.Resource = v
+	return s
+}
+
+type CreateLakeFormationOptInOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationOptInOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationOptInOutput) GoString() string {
+	return s.String()
+}
+
 // A structure that describes certain columns on certain rows.
 type DataCellsFilter struct {
 	_ struct{} `type:"structure"`
@@ -7260,6 +7689,98 @@ func (s DeleteLFTagOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteLFTagOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLakeFormationOptInInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Lake Formation principal. Supported principals are IAM users or IAM roles.
+	//
+	// Principal is a required field
+	Principal *DataLakePrincipal `type:"structure" required:"true"`
+
+	// A structure for the resource.
+	//
+	// Resource is a required field
+	Resource *Resource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationOptInInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationOptInInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLakeFormationOptInInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLakeFormationOptInInput"}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Principal != nil {
+		if err := s.Principal.Validate(); err != nil {
+			invalidParams.AddNested("Principal", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *DeleteLakeFormationOptInInput) SetPrincipal(v *DataLakePrincipal) *DeleteLakeFormationOptInInput {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *DeleteLakeFormationOptInInput) SetResource(v *Resource) *DeleteLakeFormationOptInInput {
+	s.Resource = v
+	return s
+}
+
+type DeleteLakeFormationOptInOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationOptInOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationOptInOutput) GoString() string {
 	return s.String()
 }
 
@@ -9957,6 +10478,10 @@ type LFTag struct {
 
 	// A list of possible values an attribute can take.
 	//
+	// The maximum number of values that can be defined for a LF-Tag is 1000. A
+	// single API call supports 50 values. You can use multiple API calls to add
+	// more values.
+	//
 	// TagValues is a required field
 	TagValues []*string `min:"1" type:"list" required:"true"`
 }
@@ -10306,6 +10831,65 @@ func (s *LFTagPolicyResource) SetResourceType(v string) *LFTagPolicyResource {
 	return s
 }
 
+// A single principal-resource pair that has Lake Formation permissins enforced.
+type LakeFormationOptInsInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The last modified date and time of the record.
+	LastModified *time.Time `type:"timestamp"`
+
+	// The user who updated the record.
+	LastUpdatedBy *string `min:"1" type:"string"`
+
+	// The Lake Formation principal. Supported principals are IAM users or IAM roles.
+	Principal *DataLakePrincipal `type:"structure"`
+
+	// A structure for the resource.
+	Resource *Resource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationOptInsInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationOptInsInfo) GoString() string {
+	return s.String()
+}
+
+// SetLastModified sets the LastModified field's value.
+func (s *LakeFormationOptInsInfo) SetLastModified(v time.Time) *LakeFormationOptInsInfo {
+	s.LastModified = &v
+	return s
+}
+
+// SetLastUpdatedBy sets the LastUpdatedBy field's value.
+func (s *LakeFormationOptInsInfo) SetLastUpdatedBy(v string) *LakeFormationOptInsInfo {
+	s.LastUpdatedBy = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *LakeFormationOptInsInfo) SetPrincipal(v *DataLakePrincipal) *LakeFormationOptInsInfo {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *LakeFormationOptInsInfo) SetResource(v *Resource) *LakeFormationOptInsInfo {
+	s.Resource = v
+	return s
+}
+
 type ListDataCellsFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10530,6 +11114,127 @@ func (s *ListLFTagsOutput) SetLFTags(v []*LFTagPair) *ListLFTagsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListLFTagsOutput) SetNextToken(v string) *ListLFTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLakeFormationOptInsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is not the first call to retrieve this list.
+	NextToken *string `type:"string"`
+
+	// The Lake Formation principal. Supported principals are IAM users or IAM roles.
+	Principal *DataLakePrincipal `type:"structure"`
+
+	// A structure for the resource.
+	Resource *Resource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLakeFormationOptInsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLakeFormationOptInsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLakeFormationOptInsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLakeFormationOptInsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Principal != nil {
+		if err := s.Principal.Validate(); err != nil {
+			invalidParams.AddNested("Principal", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLakeFormationOptInsInput) SetMaxResults(v int64) *ListLakeFormationOptInsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLakeFormationOptInsInput) SetNextToken(v string) *ListLakeFormationOptInsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *ListLakeFormationOptInsInput) SetPrincipal(v *DataLakePrincipal) *ListLakeFormationOptInsInput {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *ListLakeFormationOptInsInput) SetResource(v *Resource) *ListLakeFormationOptInsInput {
+	s.Resource = v
+	return s
+}
+
+type ListLakeFormationOptInsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of principal-resource pairs that have Lake Formation permissins enforced.
+	LakeFormationOptInsInfoList []*LakeFormationOptInsInfo `type:"list"`
+
+	// A continuation token, if this is not the first call to retrieve this list.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLakeFormationOptInsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLakeFormationOptInsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLakeFormationOptInsInfoList sets the LakeFormationOptInsInfoList field's value.
+func (s *ListLakeFormationOptInsOutput) SetLakeFormationOptInsInfoList(v []*LakeFormationOptInsInfo) *ListLakeFormationOptInsOutput {
+	s.LakeFormationOptInsInfoList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLakeFormationOptInsOutput) SetNextToken(v string) *ListLakeFormationOptInsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -11415,6 +12120,12 @@ type PrincipalResourcePermissions struct {
 	// Currently returns only as a RAM resource share ARN.
 	AdditionalDetails *DetailsMap `type:"structure"`
 
+	// The date and time when the resource was last updated.
+	LastUpdated *time.Time `type:"timestamp"`
+
+	// The user who updated the record.
+	LastUpdatedBy *string `min:"1" type:"string"`
+
 	// The permissions to be granted or revoked on the resource.
 	Permissions []*string `type:"list" enum:"Permission"`
 
@@ -11450,6 +12161,18 @@ func (s PrincipalResourcePermissions) GoString() string {
 // SetAdditionalDetails sets the AdditionalDetails field's value.
 func (s *PrincipalResourcePermissions) SetAdditionalDetails(v *DetailsMap) *PrincipalResourcePermissions {
 	s.AdditionalDetails = v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *PrincipalResourcePermissions) SetLastUpdated(v time.Time) *PrincipalResourcePermissions {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetLastUpdatedBy sets the LastUpdatedBy field's value.
+func (s *PrincipalResourcePermissions) SetLastUpdatedBy(v string) *PrincipalResourcePermissions {
+	s.LastUpdatedBy = &v
 	return s
 }
 
@@ -11667,6 +12390,11 @@ func (s *QueryPlanningContext) SetTransactionId(v string) *QueryPlanningContext 
 type RegisterResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether the data access of tables pointing to the location can
+	// be managed by both Lake Formation permissions as well as Amazon S3 bucket
+	// policies.
+	HybridAccessEnabled *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the resource that you want to register.
 	//
 	// ResourceArn is a required field
@@ -11715,6 +12443,12 @@ func (s *RegisterResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHybridAccessEnabled sets the HybridAccessEnabled field's value.
+func (s *RegisterResourceInput) SetHybridAccessEnabled(v bool) *RegisterResourceInput {
+	s.HybridAccessEnabled = &v
+	return s
 }
 
 // SetResourceArn sets the ResourceArn field's value.
@@ -12039,6 +12773,11 @@ func (s *Resource) SetTableWithColumns(v *TableWithColumnsResource) *Resource {
 type ResourceInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether the data access of tables pointing to the location can
+	// be managed by both Lake Formation permissions as well as Amazon S3 bucket
+	// policies.
+	HybridAccessEnabled *bool `type:"boolean"`
+
 	// The date and time the resource was last modified.
 	LastModified *time.Time `type:"timestamp"`
 
@@ -12068,6 +12807,12 @@ func (s ResourceInfo) String() string {
 // value will be replaced with "sensitive".
 func (s ResourceInfo) GoString() string {
 	return s.String()
+}
+
+// SetHybridAccessEnabled sets the HybridAccessEnabled field's value.
+func (s *ResourceInfo) SetHybridAccessEnabled(v bool) *ResourceInfo {
+	s.HybridAccessEnabled = &v
+	return s
 }
 
 // SetLastModified sets the LastModified field's value.
@@ -13852,6 +14597,11 @@ func (s UpdateLFTagOutput) GoString() string {
 type UpdateResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether the data access of tables pointing to the location can
+	// be managed by both Lake Formation permissions as well as Amazon S3 bucket
+	// policies.
+	HybridAccessEnabled *bool `type:"boolean"`
+
 	// The resource ARN.
 	//
 	// ResourceArn is a required field
@@ -13898,6 +14648,12 @@ func (s *UpdateResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHybridAccessEnabled sets the HybridAccessEnabled field's value.
+func (s *UpdateResourceInput) SetHybridAccessEnabled(v bool) *UpdateResourceInput {
+	s.HybridAccessEnabled = &v
+	return s
 }
 
 // SetResourceArn sets the ResourceArn field's value.

@@ -2076,6 +2076,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListSecurityProfileApplications":{
+      "name":"ListSecurityProfileApplications",
+      "http":{
+        "method":"GET",
+        "requestUri":"/security-profiles-applications/{InstanceId}/{SecurityProfileId}"
+      },
+      "input":{"shape":"ListSecurityProfileApplicationsRequest"},
+      "output":{"shape":"ListSecurityProfileApplicationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListSecurityProfilePermissions":{
       "name":"ListSecurityProfilePermissions",
       "http":{
@@ -3617,6 +3633,24 @@
         "AwaitAnswerMachinePrompt":{"shape":"Boolean"}
       }
     },
+    "Application":{
+      "type":"structure",
+      "members":{
+        "Namespace":{"shape":"Namespace"},
+        "ApplicationPermissions":{"shape":"ApplicationPermissions"}
+      }
+    },
+    "ApplicationPermissions":{
+      "type":"list",
+      "member":{"shape":"Permission"},
+      "max":10,
+      "min":1
+    },
+    "Applications":{
+      "type":"list",
+      "member":{"shape":"Application"},
+      "max":10
+    },
     "ApproximateTotalCount":{"type":"long"},
     "AssignContactCategoryActionDefinition":{
       "type":"structure",
@@ -4659,7 +4693,8 @@
         },
         "Tags":{"shape":"TagMap"},
         "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
-        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"},
+        "Applications":{"shape":"Applications"}
       }
     },
     "CreateSecurityProfileResponse":{
@@ -7682,7 +7717,8 @@
         "PINPOINT_APP",
         "WISDOM_ASSISTANT",
         "WISDOM_KNOWLEDGE_BASE",
-        "CASES_DOMAIN"
+        "CASES_DOMAIN",
+        "APPLICATION"
       ]
     },
     "InternalServiceException":{
@@ -8700,6 +8736,42 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListSecurityProfileApplicationsRequest":{
+      "type":"structure",
+      "required":[
+        "SecurityProfileId",
+        "InstanceId"
+      ],
+      "members":{
+        "SecurityProfileId":{
+          "shape":"SecurityProfileId",
+          "location":"uri",
+          "locationName":"SecurityProfileId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult1000",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListSecurityProfileApplicationsResponse":{
+      "type":"structure",
+      "members":{
+        "Applications":{"shape":"Applications"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSecurityProfilePermissionsRequest":{
       "type":"structure",
       "required":[
@@ -9214,6 +9286,11 @@
       "min":1,
       "pattern":"(^[\\S].*[\\S]$)|(^[\\S]$)"
     },
+    "Namespace":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "NextToken":{"type":"string"},
     "NextToken2500":{
       "type":"string",
@@ -9388,6 +9465,11 @@
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "Permission":{
+      "type":"string",
+      "max":128,
+      "min":1
     },
     "PermissionsList":{
       "type":"list",
@@ -12514,7 +12596,8 @@
           "locationName":"InstanceId"
         },
         "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
-        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"},
+        "Applications":{"shape":"Applications"}
       }
     },
     "UpdateTaskTemplateRequest":{

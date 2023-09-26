@@ -10,8 +10,10 @@
     "CommitTransaction": "<p>Attempts to commit the specified transaction. Returns an exception if the transaction was previously aborted. This API action is idempotent if called multiple times for the same transaction.</p>",
     "CreateDataCellsFilter": "<p>Creates a data cell filter to allow one to grant access to certain columns on certain rows.</p>",
     "CreateLFTag": "<p>Creates an LF-tag with the specified name and values.</p>",
+    "CreateLakeFormationOptIn": "<p>Enforce Lake Formation permissions for the given databases, tables, and principals.</p>",
     "DeleteDataCellsFilter": "<p>Deletes a data cell filter.</p>",
     "DeleteLFTag": "<p>Deletes the specified LF-tag given a key name. If the input parameter tag key was not found, then the operation will throw an exception. When you delete an LF-tag, the <code>LFTagPolicy</code> attached to the LF-tag becomes invalid. If the deleted LF-tag was still assigned to any resource, the tag policy attach to the deleted LF-tag will no longer be applied to the resource.</p>",
+    "DeleteLakeFormationOptIn": "<p>Remove the Lake Formation permissions enforcement of the given databases, tables, and principals.</p>",
     "DeleteObjectsOnCancel": "<p>For a specific governed table, provides a list of Amazon S3 objects that will be written during the current transaction and that can be automatically deleted if the transaction is canceled. Without this call, no Amazon S3 objects are automatically deleted when a transaction cancels. </p> <p> The Glue ETL library function <code>write_dynamic_frame.from_catalog()</code> includes an option to automatically call <code>DeleteObjectsOnCancel</code> before writes. For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/transactions-data-operations.html#rolling-back-writes\">Rolling Back Amazon S3 Writes</a>. </p>",
     "DeregisterResource": "<p>Deregisters the resource as managed by the Data Catalog.</p> <p>When you deregister a path, Lake Formation removes the path from the inline policy attached to your service-linked role.</p>",
     "DescribeResource": "<p>Retrieves the current data access role for the given resource registered in Lake Formation.</p>",
@@ -32,6 +34,7 @@
     "GrantPermissions": "<p>Grants permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.</p> <p>For information about permissions, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
     "ListDataCellsFilter": "<p>Lists all the data cell filters on a table.</p>",
     "ListLFTags": "<p>Lists LF-tags that the requester has permission to view. </p>",
+    "ListLakeFormationOptIns": "<p>Retrieve the current list of resources and principals that are opt in to enforce Lake Formation permissions.</p>",
     "ListPermissions": "<p>Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.</p> <p>This operation returns only those permissions that have been explicitly granted.</p> <p>For information about permissions, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
     "ListResources": "<p>Lists the resources registered to be managed by the Data Catalog.</p>",
     "ListTableStorageOptimizers": "<p>Returns the configuration of all storage optimizers associated with a specified table.</p>",
@@ -301,6 +304,16 @@
       "refs": {
       }
     },
+    "CreateLakeFormationOptInRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLakeFormationOptInResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CredentialTimeoutDurationSecondInteger": {
       "base": null,
       "refs": {
@@ -334,8 +347,12 @@
       "base": "<p>The Lake Formation principal. Supported principals are IAM users or IAM roles.</p>",
       "refs": {
         "BatchPermissionsRequestEntry$Principal": "<p>The principal to be granted a permission.</p>",
+        "CreateLakeFormationOptInRequest$Principal": null,
         "DataLakePrincipalList$member": null,
+        "DeleteLakeFormationOptInRequest$Principal": null,
         "GrantPermissionsRequest$Principal": "<p>The principal to be granted the permissions on the resource. Supported principals are IAM users or IAM roles, and they are defined by their principal type and their ARN.</p> <p>Note that if you define a resource with a particular ARN, then later delete, and recreate a resource with that same ARN, the resource maintains the permissions already granted. </p>",
+        "LakeFormationOptInsInfo$Principal": null,
+        "ListLakeFormationOptInsRequest$Principal": null,
         "ListPermissionsRequest$Principal": "<p>Specifies a principal to filter the permissions returned.</p>",
         "PrincipalPermissions$Principal": "<p>The principal who is granted permissions.</p>",
         "PrincipalResourcePermissions$Principal": "<p>The Data Lake principal to be granted or revoked permissions.</p>",
@@ -410,6 +427,16 @@
       }
     },
     "DeleteLFTagResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLakeFormationOptInRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLakeFormationOptInResponse": {
       "base": null,
       "refs": {
       }
@@ -832,9 +859,23 @@
         "TaggedTable$LFTagsOnTable": "<p>A list of LF-tags attached to the table.</p>"
       }
     },
+    "LakeFormationOptInsInfo": {
+      "base": "<p>A single principal-resource pair that has Lake Formation permissins enforced.</p>",
+      "refs": {
+        "LakeFormationOptInsInfoList$member": null
+      }
+    },
+    "LakeFormationOptInsInfoList": {
+      "base": null,
+      "refs": {
+        "ListLakeFormationOptInsResponse$LakeFormationOptInsInfoList": "<p>A list of principal-resource pairs that have Lake Formation permissins enforced.</p>"
+      }
+    },
     "LastModifiedTimestamp": {
       "base": null,
       "refs": {
+        "LakeFormationOptInsInfo$LastModified": "<p>The last modified date and time of the record.</p>",
+        "PrincipalResourcePermissions$LastUpdated": "<p>The date and time when the resource was last updated.</p>",
         "ResourceInfo$LastModified": "<p>The date and time the resource was last modified.</p>"
       }
     },
@@ -854,6 +895,16 @@
       }
     },
     "ListLFTagsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLakeFormationOptInsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLakeFormationOptInsResponse": {
       "base": null,
       "refs": {
       }
@@ -949,8 +1000,10 @@
         "GetTableObjectsRequest$DatabaseName": "<p>The database containing the governed table.</p>",
         "GetTableObjectsRequest$TableName": "<p>The governed table for which to retrieve objects.</p>",
         "LFTagKeyResource$TagKey": "<p>The key-name for the LF-tag.</p>",
+        "LakeFormationOptInsInfo$LastUpdatedBy": "<p>The user who updated the record.</p>",
         "ListTableStorageOptimizersRequest$DatabaseName": "<p>Name of the database where the table is present.</p>",
         "ListTableStorageOptimizersRequest$TableName": "<p>Name of the table.</p>",
+        "PrincipalResourcePermissions$LastUpdatedBy": "<p>The user who updated the record.</p>",
         "TableResource$DatabaseName": "<p>The name of the database for the table. Unique to a Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database privileges to a principal. </p>",
         "TableResource$Name": "<p>The name of the table.</p>",
         "TableWithColumnsResource$DatabaseName": "<p>The name of the database for the table with columns resource. Unique to the Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database privileges to a principal. </p>",
@@ -968,8 +1021,11 @@
         "DataLakeSettings$AllowFullTableExternalDataAccess": "<p>Whether to allow a third-party query engine to get data access credentials without session tags when a caller has full data access permissions.</p>",
         "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>",
         "RegisterResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
+        "RegisterResourceRequest$HybridAccessEnabled": "<p> Specifies whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies. </p>",
         "ResourceInfo$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
-        "UpdateResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>"
+        "ResourceInfo$HybridAccessEnabled": "<p> Indicates whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies. </p>",
+        "UpdateResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
+        "UpdateResourceRequest$HybridAccessEnabled": "<p> Specifies whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies. </p>"
       }
     },
     "NumberOfBytes": {
@@ -1021,6 +1077,7 @@
         "GetTableObjectsRequest$MaxResults": "<p>Specifies how many values to return in a page.</p>",
         "ListDataCellsFilterRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "ListLFTagsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListLakeFormationOptInsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListPermissionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListResourcesRequest$MaxResults": "<p>The maximum number of resource results.</p>",
         "ListTableStorageOptimizersRequest$MaxResults": "<p>The number of storage optimizers to return on each call.</p>",
@@ -1222,8 +1279,12 @@
       "refs": {
         "AddLFTagsToResourceRequest$Resource": "<p>The database, table, or column resource to which to attach an LF-tag.</p>",
         "BatchPermissionsRequestEntry$Resource": "<p>The resource to which the principal is to be granted a permission.</p>",
+        "CreateLakeFormationOptInRequest$Resource": null,
+        "DeleteLakeFormationOptInRequest$Resource": null,
         "GetResourceLFTagsRequest$Resource": "<p>The database, table, or column resource for which you want to return LF-tags.</p>",
         "GrantPermissionsRequest$Resource": "<p>The resource to which permissions are to be granted. Resources in Lake Formation are the Data Catalog, databases, and tables.</p>",
+        "LakeFormationOptInsInfo$Resource": null,
+        "ListLakeFormationOptInsRequest$Resource": "<p>A structure for the resource.</p>",
         "ListPermissionsRequest$Resource": "<p>A resource where you will get a list of the principal permissions.</p> <p>This operation does not support getting privileges on a table with columns. Instead, call this operation on the table, and the operation returns the table and the table w columns.</p>",
         "PrincipalResourcePermissions$Resource": "<p>The resource where permissions are to be granted or revoked.</p>",
         "RemoveLFTagsFromResourceRequest$Resource": "<p>The database, table, or column resource where you want to remove an LF-tag.</p>",
@@ -1498,7 +1559,7 @@
       "refs": {
         "CreateLFTagRequest$TagValues": "<p>A list of possible values an attribute can take.</p>",
         "GetLFTagResponse$TagValues": "<p>A list of possible values an attribute can take.</p>",
-        "LFTag$TagValues": "<p>A list of possible values an attribute can take.</p>",
+        "LFTag$TagValues": "<p>A list of possible values an attribute can take.</p> <p>The maximum number of values that can be defined for a LF-Tag is 1000. A single API call supports 50 values. You can use multiple API calls to add more values.</p>",
         "LFTagKeyResource$TagValues": "<p>A list of possible values an attribute can take.</p>",
         "LFTagPair$TagValues": "<p>A list of possible values an attribute can take.</p>",
         "UpdateLFTagRequest$TagValuesToDelete": "<p>A list of LF-tag values to delete from the LF-tag.</p>",
@@ -1542,6 +1603,8 @@
         "ListDataCellsFilterResponse$NextToken": "<p>A continuation token, if not all requested data cell filters have been returned.</p>",
         "ListLFTagsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
         "ListLFTagsResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>",
+        "ListLakeFormationOptInsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
+        "ListLakeFormationOptInsResponse$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
         "ListPermissionsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
         "ListPermissionsResponse$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
         "ListResourcesRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve these resources.</p>",

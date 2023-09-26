@@ -93,7 +93,7 @@
     "PhoneNumberValidate": "<p>Retrieves information about a phone number.</p>",
     "PutEventStream": "<p>Creates a new event stream for an application or updates the settings of an existing event stream for an application.</p>",
     "PutEvents": "<p>Creates a new event to record for endpoints, or creates or updates endpoint data that existing events are associated with.</p>",
-    "RemoveAttributes": "<p>Removes one or more attributes, of the same attribute type, from all the endpoints that are associated with an application.</p>",
+    "RemoveAttributes": "<p>Removes one or more custom attributes, of the same attribute type, from the application. Existing endpoints still have the attributes but Amazon Pinpoint will stop capturing new or changed values for these attributes.</p>",
     "SendMessages": "<p>Creates and sends a direct message.</p>",
     "SendOTPMessage": "<p>Send an OTP message</p>",
     "SendUsersMessages": "<p>Creates and sends a message to a list of users.</p>",

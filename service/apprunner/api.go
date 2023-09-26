@@ -4675,6 +4675,11 @@ type CodeRepository struct {
 	//
 	// SourceCodeVersion is a required field
 	SourceCodeVersion *SourceCodeVersion `type:"structure" required:"true"`
+
+	// The path of the directory that stores source code and configuration files.
+	// The build and start commands also execute from here. The path is absolute
+	// from root and, if not specified, defaults to the repository root.
+	SourceDirectory *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -4703,6 +4708,9 @@ func (s *CodeRepository) Validate() error {
 	}
 	if s.SourceCodeVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceCodeVersion"))
+	}
+	if s.SourceDirectory != nil && len(*s.SourceDirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceDirectory", 1))
 	}
 	if s.CodeConfiguration != nil {
 		if err := s.CodeConfiguration.Validate(); err != nil {
@@ -4736,6 +4744,12 @@ func (s *CodeRepository) SetRepositoryUrl(v string) *CodeRepository {
 // SetSourceCodeVersion sets the SourceCodeVersion field's value.
 func (s *CodeRepository) SetSourceCodeVersion(v *SourceCodeVersion) *CodeRepository {
 	s.SourceCodeVersion = v
+	return s
+}
+
+// SetSourceDirectory sets the SourceDirectory field's value.
+func (s *CodeRepository) SetSourceDirectory(v string) *CodeRepository {
+	s.SourceDirectory = &v
 	return s
 }
 
@@ -4885,7 +4899,7 @@ type CreateAutoScalingConfigurationInput struct {
 	// 1 of this name. When you use the same name in subsequent calls, App Runner
 	// creates incremental revisions of the configuration.
 	//
-	// Prior to the release of Managing auto scaling (https://docs.aws.amazon.com/apprunner/latest/relnotes/release-yyyy-mm-dd-asc-improvements.html),
+	// Prior to the release of Auto scale configuration enhancements (https://docs.aws.amazon.com/apprunner/latest/relnotes/release-2023-09-22-auto-scale-config.html),
 	// the name DefaultConfiguration was reserved.
 	//
 	// This restriction is no longer in place. You can now manage DefaultConfiguration

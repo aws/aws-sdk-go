@@ -168,7 +168,7 @@ func (c *CodeDeploy) BatchGetApplicationRevisionsRequest(input *BatchGetApplicat
 // Returned Error Types:
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - ApplicationNameRequiredException
 //     The minimum number of required application names was not specified.
@@ -269,7 +269,7 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - BatchLimitExceededException
 //     The maximum number of names or IDs allowed for this request (100) was exceeded.
@@ -357,7 +357,7 @@ func (c *CodeDeploy) BatchGetDeploymentGroupsRequest(input *BatchGetDeploymentGr
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
@@ -369,8 +369,8 @@ func (c *CodeDeploy) BatchGetDeploymentGroupsRequest(input *BatchGetDeploymentGr
 //     The maximum number of names or IDs allowed for this request (100) was exceeded.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/BatchGetDeploymentGroups
 func (c *CodeDeploy) BatchGetDeploymentGroups(input *BatchGetDeploymentGroupsInput) (*BatchGetDeploymentGroupsOutput, error) {
@@ -462,8 +462,7 @@ func (c *CodeDeploy) BatchGetDeploymentInstancesRequest(input *BatchGetDeploymen
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - InstanceIdRequiredException
 //     The instance ID was not specified.
@@ -583,8 +582,7 @@ func (c *CodeDeploy) BatchGetDeploymentTargetsRequest(input *BatchGetDeploymentT
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentNotStartedException
 //     The specified deployment has not started.
@@ -865,8 +863,7 @@ func (c *CodeDeploy) ContinueDeploymentRequest(input *ContinueDeploymentInput) (
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentAlreadyCompletedException
 //     The deployment is already complete.
@@ -969,7 +966,7 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationAlreadyExistsException
-//     An application with the specified name with the IAM user or Amazon Web Services
+//     An application with the specified name with the user or Amazon Web Services
 //     account already exists.
 //
 //   - ApplicationLimitExceededException
@@ -1065,7 +1062,7 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
@@ -1074,15 +1071,14 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 //     The deployment group name was specified in an invalid format.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - RevisionRequiredException
 //     The revision ID was not specified.
 //
 //   - RevisionDoesNotExistException
-//     The named revision does not exist with the IAM user or Amazon Web Services
-//     account.
+//     The named revision does not exist with the user or Amazon Web Services account.
 //
 //   - InvalidRevisionException
 //     The revision was specified in an invalid format.
@@ -1091,8 +1087,8 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 //     The deployment configuration name was specified in an invalid format.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - DescriptionTooLongException
 //     The description is too long.
@@ -1251,7 +1247,7 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 //     The deployment configuration name was not specified.
 //
 //   - DeploymentConfigAlreadyExistsException
-//     A deployment configuration with the specified name with the IAM user or Amazon
+//     A deployment configuration with the specified name with the user or Amazon
 //     Web Services account already exists.
 //
 //   - InvalidMinimumHealthyHostValueException
@@ -1351,7 +1347,7 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
@@ -1360,8 +1356,8 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 //     The deployment group name was specified in an invalid format.
 //
 //   - DeploymentGroupAlreadyExistsException
-//     A deployment group with the specified name with the IAM user or Amazon Web
-//     Services account already exists.
+//     A deployment group with the specified name with the user or Amazon Web Services
+//     account already exists.
 //
 //   - InvalidEC2TagException
 //     The tag was specified in an invalid format.
@@ -1376,8 +1372,8 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 //     The deployment configuration name was specified in an invalid format.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - RoleRequiredException
 //     The role ID was not specified.
@@ -1898,7 +1894,13 @@ func (c *CodeDeploy) DeleteResourcesByExternalIdRequest(input *DeleteResourcesBy
 
 // DeleteResourcesByExternalId API operation for AWS CodeDeploy.
 //
-// Deletes resources linked to an external ID.
+// Deletes resources linked to an external ID. This action only applies if you
+// have configured blue/green deployments through CloudFormation.
+//
+// It is not necessary to call this action directly. CloudFormation calls it
+// on your behalf when it needs to delete stack resources. This action is offered
+// publicly in case you need to delete resources to comply with General Data
+// Protection Regulation (GDPR) requirements.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2072,7 +2074,7 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *req
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetApplication
 func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -2151,7 +2153,7 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 // Returned Error Types:
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - ApplicationNameRequiredException
 //     The minimum number of required application names was not specified.
@@ -2160,8 +2162,7 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 //     The application name was specified in an invalid format.
 //
 //   - RevisionDoesNotExistException
-//     The named revision does not exist with the IAM user or Amazon Web Services
-//     account.
+//     The named revision does not exist with the user or Amazon Web Services account.
 //
 //   - RevisionRequiredException
 //     The revision ID was not specified.
@@ -2257,8 +2258,7 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *reque
 //     At least one of the deployment IDs was specified in an invalid format.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetDeployment
 func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
@@ -2343,8 +2343,8 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 //     The deployment configuration name was not specified.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - InvalidComputePlatformException
 //     The computePlatform is invalid. The computePlatform should be Lambda, Server,
@@ -2433,7 +2433,7 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
@@ -2442,12 +2442,12 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 //     The deployment group name was specified in an invalid format.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetDeploymentGroup
 func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDeploymentGroupOutput, error) {
@@ -2534,8 +2534,7 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - InstanceIdRequiredException
 //     The instance ID was not specified.
@@ -2640,8 +2639,7 @@ func (c *CodeDeploy) GetDeploymentTargetRequest(input *GetDeploymentTargetInput)
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentNotStartedException
 //     The specified deployment has not started.
@@ -2826,7 +2824,7 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 // Returned Error Types:
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - ApplicationNameRequiredException
 //     The minimum number of required application names was not specified.
@@ -2978,8 +2976,7 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 
 // ListApplications API operation for AWS CodeDeploy.
 //
-// Lists the applications registered with the IAM user or Amazon Web Services
-// account.
+// Lists the applications registered with the user or Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3114,7 +3111,7 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 
 // ListDeploymentConfigs API operation for AWS CodeDeploy.
 //
-// Lists the deployment configurations with the IAM user or Amazon Web Services
+// Lists the deployment configurations with the user or Amazon Web Services
 // account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3250,8 +3247,8 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 
 // ListDeploymentGroups API operation for AWS CodeDeploy.
 //
-// Lists the deployment groups for an application registered with the IAM user
-// or Amazon Web Services account.
+// Lists the deployment groups for an application registered with the Amazon
+// Web Services user or Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3269,7 +3266,7 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - InvalidNextTokenException
 //     The next token was specified in an invalid format.
@@ -3405,8 +3402,8 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 // with all compute types. ListDeploymentInstances throws an exception if it
 // is used with a compute platform other than EC2/On-premises or Lambda.
 //
-// Lists the instance for a deployment associated with the IAM user or Amazon
-// Web Services account.
+// Lists the instance for a deployment associated with the user or Amazon Web
+// Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3421,8 +3418,7 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentNotStartedException
 //     The specified deployment has not started.
@@ -3591,8 +3587,7 @@ func (c *CodeDeploy) ListDeploymentTargetsRequest(input *ListDeploymentTargetsIn
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentNotStartedException
 //     The specified deployment has not started.
@@ -3687,7 +3682,7 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *r
 // ListDeployments API operation for AWS CodeDeploy.
 //
 // Lists the deployments in a deployment group for an application registered
-// with the IAM user or Amazon Web Services account.
+// with the user or Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3705,14 +3700,14 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *r
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - InvalidDeploymentGroupNameException
 //     The deployment group name was specified in an invalid format.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
@@ -4144,8 +4139,7 @@ func (c *CodeDeploy) PutLifecycleEventHookExecutionStatusRequest(input *PutLifec
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - InvalidDeploymentIdException
 //     At least one of the deployment IDs was specified in an invalid format.
@@ -4231,7 +4225,7 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 // Returned Error Types:
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - ApplicationNameRequiredException
 //     The minimum number of required application names was not specified.
@@ -4333,20 +4327,20 @@ func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremises
 //
 //   - IamArnRequiredException
 //     No IAM ARN was included in the request. You must use an IAM session ARN or
-//     IAM user ARN in the request.
+//     user ARN in the request.
 //
 //   - IamSessionArnAlreadyRegisteredException
 //     The request included an IAM session ARN that has already been used to register
 //     a different instance.
 //
 //   - IamUserArnAlreadyRegisteredException
-//     The specified IAM user ARN is already registered with an on-premises instance.
+//     The specified user ARN is already registered with an on-premises instance.
 //
 //   - InstanceNameRequiredException
 //     An on-premises instance name was not specified.
 //
 //   - IamUserArnRequiredException
-//     An IAM user ARN was not specified.
+//     An user ARN was not specified.
 //
 //   - InvalidInstanceNameException
 //     The on-premises instance name was specified in an invalid format.
@@ -4355,11 +4349,11 @@ func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremises
 //     The IAM session ARN was specified in an invalid format.
 //
 //   - InvalidIamUserArnException
-//     The IAM user ARN was specified in an invalid format.
+//     The user ARN was specified in an invalid format.
 //
 //   - MultipleIamArnsProvidedException
-//     Both an IAM user ARN and an IAM session ARN were included in the request.
-//     Use only one ARN type.
+//     Both an user ARN and an IAM session ARN were included in the request. Use
+//     only one ARN type.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/RegisterOnPremisesInstance
 func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanceInput) (*RegisterOnPremisesInstanceOutput, error) {
@@ -4547,8 +4541,7 @@ func (c *CodeDeploy) SkipWaitTimeForInstanceTerminationRequest(input *SkipWaitTi
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentAlreadyCompletedException
 //     The deployment is already complete.
@@ -4646,12 +4639,11 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *req
 //     At least one deployment ID must be specified.
 //
 //   - DeploymentDoesNotExistException
-//     The deployment with the IAM user or Amazon Web Services account does not
-//     exist.
+//     The deployment with the user or Amazon Web Services account does not exist.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - DeploymentAlreadyCompletedException
 //     The deployment is already complete.
@@ -4744,15 +4736,15 @@ func (c *CodeDeploy) TagResourceRequest(input *TagResourceInput) (req *request.R
 //     The ARN of a resource is required, but was not found.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - TagRequiredException
 //     A tag was not specified.
@@ -4850,15 +4842,15 @@ func (c *CodeDeploy) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //     The ARN of a resource is required, but was not found.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - TagRequiredException
 //     A tag was not specified.
@@ -4957,11 +4949,11 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationAlreadyExistsException
-//     An application with the specified name with the IAM user or Amazon Web Services
+//     An application with the specified name with the user or Amazon Web Services
 //     account already exists.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/UpdateApplication
 func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -5046,21 +5038,21 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 //     The application name was specified in an invalid format.
 //
 //   - ApplicationDoesNotExistException
-//     The application does not exist with the IAM user or Amazon Web Services account.
+//     The application does not exist with the user or Amazon Web Services account.
 //
 //   - InvalidDeploymentGroupNameException
 //     The deployment group name was specified in an invalid format.
 //
 //   - DeploymentGroupAlreadyExistsException
-//     A deployment group with the specified name with the IAM user or Amazon Web
-//     Services account already exists.
+//     A deployment group with the specified name with the user or Amazon Web Services
+//     account already exists.
 //
 //   - DeploymentGroupNameRequiredException
 //     The deployment group name was not specified.
 //
 //   - DeploymentGroupDoesNotExistException
-//     The named deployment group with the IAM user or Amazon Web Services account
-//     does not exist.
+//     The named deployment group with the user or Amazon Web Services account does
+//     not exist.
 //
 //   - InvalidEC2TagException
 //     The tag was specified in an invalid format.
@@ -5075,8 +5067,8 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 //     The deployment configuration name was specified in an invalid format.
 //
 //   - DeploymentConfigDoesNotExistException
-//     The deployment configuration does not exist with the IAM user or Amazon Web
-//     Services account.
+//     The deployment configuration does not exist with the user or Amazon Web Services
+//     account.
 //
 //   - InvalidRoleException
 //     The service role ARN was specified in an invalid format. Or, if an Auto Scaling
@@ -5477,7 +5469,7 @@ func (s *AppSpecContent) SetSha256(v string) *AppSpecContent {
 	return s
 }
 
-// An application with the specified name with the IAM user or Amazon Web Services
+// An application with the specified name with the user or Amazon Web Services
 // account already exists.
 type ApplicationAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -5542,7 +5534,7 @@ func (s *ApplicationAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The application does not exist with the IAM user or Amazon Web Services account.
+// The application does not exist with the user or Amazon Web Services account.
 type ApplicationDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6162,7 +6154,7 @@ func (s *BatchGetApplicationsOutput) SetApplicationsInfo(v []*ApplicationInfo) *
 type BatchGetDeploymentGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the applicable IAM
+	// The name of an CodeDeploy application associated with the applicable user
 	// or Amazon Web Services account.
 	//
 	// ApplicationName is a required field
@@ -7023,7 +7015,7 @@ type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application. This name must be unique with the applicable
-	// IAM or Amazon Web Services account.
+	// user or Amazon Web Services account.
 	//
 	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -7256,7 +7248,7 @@ type CreateDeploymentGroupInput struct {
 	// is created.
 	AlarmConfiguration *AlarmConfiguration `locationName:"alarmConfiguration" type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -7543,7 +7535,7 @@ func (s *CreateDeploymentGroupOutput) SetDeploymentGroupId(v string) *CreateDepl
 type CreateDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -7553,7 +7545,7 @@ type CreateDeploymentInput struct {
 	// deployment is created.
 	AutoRollbackConfiguration *AutoRollbackConfiguration `locationName:"autoRollbackConfiguration" type:"structure"`
 
-	// The name of a deployment configuration associated with the IAM user or Amazon
+	// The name of a deployment configuration associated with the user or Amazon
 	// Web Services account.
 	//
 	// If not specified, the value configured in the deployment group is used as
@@ -7775,7 +7767,7 @@ func (s *CreateDeploymentOutput) SetDeploymentId(v string) *CreateDeploymentOutp
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -7848,7 +7840,7 @@ func (s DeleteApplicationOutput) GoString() string {
 type DeleteDeploymentConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a deployment configuration associated with the IAM user or Amazon
+	// The name of a deployment configuration associated with the user or Amazon
 	// Web Services account.
 	//
 	// DeploymentConfigName is a required field
@@ -7921,7 +7913,7 @@ func (s DeleteDeploymentConfigOutput) GoString() string {
 type DeleteDeploymentGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -8204,7 +8196,7 @@ func (s *DeploymentAlreadyCompletedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A deployment configuration with the specified name with the IAM user or Amazon
+// A deployment configuration with the specified name with the user or Amazon
 // Web Services account already exists.
 type DeploymentConfigAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -8269,8 +8261,8 @@ func (s *DeploymentConfigAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The deployment configuration does not exist with the IAM user or Amazon Web
-// Services account.
+// The deployment configuration does not exist with the user or Amazon Web Services
+// account.
 type DeploymentConfigDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8604,8 +8596,7 @@ func (s *DeploymentConfigNameRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The deployment with the IAM user or Amazon Web Services account does not
-// exist.
+// The deployment with the user or Amazon Web Services account does not exist.
 type DeploymentDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8669,8 +8660,8 @@ func (s *DeploymentDoesNotExistException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A deployment group with the specified name with the IAM user or Amazon Web
-// Services account already exists.
+// A deployment group with the specified name with the user or Amazon Web Services
+// account already exists.
 type DeploymentGroupAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8734,8 +8725,8 @@ func (s *DeploymentGroupAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The named deployment group with the IAM user or Amazon Web Services account
-// does not exist.
+// The named deployment group with the user or Amazon Web Services account does
+// not exist.
 type DeploymentGroupDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10832,17 +10823,18 @@ func (s *ECSTaskSet) SetTrafficWeight(v float64) *ECSTaskSet {
 	return s
 }
 
-// Information about a load balancer in Elastic Load Balancing to use in a deployment.
-// Instances are registered directly with a load balancer, and traffic is routed
-// to the load balancer.
+// Information about a Classic Load Balancer in Elastic Load Balancing to use
+// in a deployment. Instances are registered directly with a load balancer,
+// and traffic is routed to the load balancer.
 type ELBInfo struct {
 	_ struct{} `type:"structure"`
 
-	// For blue/green deployments, the name of the load balancer that is used to
-	// route traffic from original instances to replacement instances in a blue/green
-	// deployment. For in-place deployments, the name of the load balancer that
-	// instances are deregistered from so they are not serving traffic during a
-	// deployment, and then re-registered with after the deployment is complete.
+	// For blue/green deployments, the name of the Classic Load Balancer that is
+	// used to route traffic from original instances to replacement instances in
+	// a blue/green deployment. For in-place deployments, the name of the Classic
+	// Load Balancer that instances are deregistered from so they are not serving
+	// traffic during a deployment, and then re-registered with after the deployment
+	// is complete.
 	Name *string `locationName:"name" type:"string"`
 }
 
@@ -11022,7 +11014,7 @@ func (s *GenericRevisionInfo) SetRegisterTime(v time.Time) *GenericRevisionInfo 
 type GetApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -11219,7 +11211,7 @@ func (s *GetApplicationRevisionOutput) SetRevisionInfo(v *GenericRevisionInfo) *
 type GetDeploymentConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a deployment configuration associated with the IAM user or Amazon
+	// The name of a deployment configuration associated with the user or Amazon
 	// Web Services account.
 	//
 	// DeploymentConfigName is a required field
@@ -11302,7 +11294,7 @@ func (s *GetDeploymentConfigOutput) SetDeploymentConfigInfo(v *DeploymentConfigI
 type GetDeploymentGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -11402,8 +11394,8 @@ func (s *GetDeploymentGroupOutput) SetDeploymentGroupInfo(v *DeploymentGroupInfo
 type GetDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ID of a deployment associated with the IAM user or Amazon Web
-	// Services account.
+	// The unique ID of a deployment associated with the user or Amazon Web Services
+	// account.
 	//
 	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
@@ -11937,7 +11929,7 @@ func (s *GreenFleetProvisioningOption) SetAction(v string) *GreenFleetProvisioni
 }
 
 // No IAM ARN was included in the request. You must use an IAM session ARN or
-// IAM user ARN in the request.
+// user ARN in the request.
 type IamArnRequiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12066,7 +12058,7 @@ func (s *IamSessionArnAlreadyRegisteredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified IAM user ARN is already registered with an on-premises instance.
+// The specified user ARN is already registered with an on-premises instance.
 type IamUserArnAlreadyRegisteredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12130,7 +12122,7 @@ func (s *IamUserArnAlreadyRegisteredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An IAM user ARN was not specified.
+// An user ARN was not specified.
 type IamUserArnRequiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12337,7 +12329,7 @@ type InstanceInfo struct {
 	// The ARN of the IAM session associated with the on-premises instance.
 	IamSessionArn *string `locationName:"iamSessionArn" type:"string"`
 
-	// The IAM user ARN associated with the on-premises instance.
+	// The user ARN associated with the on-premises instance.
 	IamUserArn *string `locationName:"iamUserArn" type:"string"`
 
 	// The ARN of the on-premises instance.
@@ -14476,7 +14468,7 @@ func (s *InvalidIamSessionArnException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The IAM user ARN was specified in an invalid format.
+// The user ARN was specified in an invalid format.
 type InvalidIamUserArnException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16785,7 +16777,7 @@ func (s *LifecycleHookLimitExceededException) RequestID() string {
 type ListApplicationRevisionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -17114,7 +17106,7 @@ func (s *ListDeploymentConfigsOutput) SetNextToken(v string) *ListDeploymentConf
 type ListDeploymentGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -17457,7 +17449,7 @@ func (s *ListDeploymentTargetsOutput) SetTargetIds(v []*string) *ListDeploymentT
 type ListDeploymentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// If applicationName is specified, then deploymentGroupName must be specified.
@@ -17892,21 +17884,32 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 
 // Information about the Elastic Load Balancing load balancer or target group
 // used in a deployment.
+//
+// You can use load balancers and target groups in combination. For example,
+// if you have two Classic Load Balancers, and five target groups tied to an
+// Application Load Balancer, you can specify the two Classic Load Balancers
+// in elbInfoList, and the five target groups in targetGroupInfoList.
 type LoadBalancerInfo struct {
 	_ struct{} `type:"structure"`
 
-	// An array that contains information about the load balancer to use for load
-	// balancing in a deployment. In Elastic Load Balancing, load balancers are
-	// used with Classic Load Balancers.
+	// An array that contains information about the load balancers to use for load
+	// balancing in a deployment. If you're using Classic Load Balancers, specify
+	// those load balancers in this array.
 	//
-	// Adding more than one load balancer to the array is not supported.
+	// You can add up to 10 load balancers to the array.
+	//
+	// If you're using Application Load Balancers or Network Load Balancers, use
+	// the targetGroupInfoList array instead of this one.
 	ElbInfoList []*ELBInfo `locationName:"elbInfoList" type:"list"`
 
-	// An array that contains information about the target group to use for load
-	// balancing in a deployment. In Elastic Load Balancing, target groups are used
-	// with Application Load Balancers.
+	// An array that contains information about the target groups to use for load
+	// balancing in a deployment. If you're using Application Load Balancers and
+	// Network Load Balancers, specify their associated target groups in this array.
 	//
-	// Adding more than one target group to the array is not supported.
+	// You can add up to 10 target groups to the array.
+	//
+	// If you're using Classic Load Balancers, use the elbInfoList array instead
+	// of this one.
 	TargetGroupInfoList []*TargetGroupInfo `locationName:"targetGroupInfoList" type:"list"`
 
 	// The target group pair information. This is an array of TargeGroupPairInfo
@@ -18016,8 +18019,8 @@ func (s *MinimumHealthyHosts) SetValue(v int64) *MinimumHealthyHosts {
 	return s
 }
 
-// Both an IAM user ARN and an IAM session ARN were included in the request.
-// Use only one ARN type.
+// Both an user ARN and an IAM session ARN were included in the request. Use
+// only one ARN type.
 type MultipleIamArnsProvidedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18315,7 +18318,7 @@ func (s *RawString) SetSha256(v string) *RawString {
 type RegisterApplicationRevisionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an CodeDeploy application associated with the IAM user or Amazon
+	// The name of an CodeDeploy application associated with the user or Amazon
 	// Web Services account.
 	//
 	// ApplicationName is a required field
@@ -18415,7 +18418,7 @@ type RegisterOnPremisesInstanceInput struct {
 	// The ARN of the IAM session to associate with the on-premises instance.
 	IamSessionArn *string `locationName:"iamSessionArn" type:"string"`
 
-	// The ARN of the IAM user to associate with the on-premises instance.
+	// The ARN of the user to associate with the on-premises instance.
 	IamUserArn *string `locationName:"iamUserArn" type:"string"`
 
 	// The name of the on-premises instance to register.
@@ -18748,8 +18751,7 @@ func (s *ResourceValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The named revision does not exist with the IAM user or Amazon Web Services
-// account.
+// The named revision does not exist with the user or Amazon Web Services account.
 type RevisionDoesNotExistException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19132,6 +19134,10 @@ type S3Location struct {
 	//    * tgz: A compressed tar archive file.
 	//
 	//    * zip: A zip archive file.
+	//
+	//    * YAML: A YAML-formatted file.
+	//
+	//    * JSON: A JSON-formatted file.
 	BundleType *string `locationName:"bundleType" type:"string" enum:"BundleType"`
 
 	// The ETag of the Amazon S3 object that represents the bundled artifacts for
@@ -20553,7 +20559,7 @@ type UpdateDeploymentGroupInput struct {
 	//    * To remove Auto Scaling groups, specify a non-null empty list of Auto
 	//    Scaling group names to detach all CodeDeploy-managed Auto Scaling lifecycle
 	//    hooks. For examples, see Amazon EC2 instances in an Amazon EC2 Auto Scaling
-	//    group fail to launch and receive the error "Heartbeat Timeout" (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-auto-scaling.html#troubleshooting-auto-scaling-heartbeat)
+	//    group fail to launch and receive the error "Heartbeat Timeout" (https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-auto-scaling.html#troubleshooting-auto-scaling-heartbeat)
 	//    in the CodeDeploy User Guide.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
 

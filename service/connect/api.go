@@ -13922,6 +13922,154 @@ func (c *Connect) ListSecurityKeysPagesWithContext(ctx aws.Context, input *ListS
 	return p.Err()
 }
 
+const opListSecurityProfileApplications = "ListSecurityProfileApplications"
+
+// ListSecurityProfileApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityProfileApplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityProfileApplications for more information on using the ListSecurityProfileApplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSecurityProfileApplicationsRequest method.
+//	req, resp := client.ListSecurityProfileApplicationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfileApplications
+func (c *Connect) ListSecurityProfileApplicationsRequest(input *ListSecurityProfileApplicationsInput) (req *request.Request, output *ListSecurityProfileApplicationsOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityProfileApplications,
+		HTTPMethod: "GET",
+		HTTPPath:   "/security-profiles-applications/{InstanceId}/{SecurityProfileId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityProfileApplicationsInput{}
+	}
+
+	output = &ListSecurityProfileApplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityProfileApplications API operation for Amazon Connect Service.
+//
+// Returns a list of third party applications in a specific security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListSecurityProfileApplications for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfileApplications
+func (c *Connect) ListSecurityProfileApplications(input *ListSecurityProfileApplicationsInput) (*ListSecurityProfileApplicationsOutput, error) {
+	req, out := c.ListSecurityProfileApplicationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityProfileApplicationsWithContext is the same as ListSecurityProfileApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityProfileApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfileApplicationsWithContext(ctx aws.Context, input *ListSecurityProfileApplicationsInput, opts ...request.Option) (*ListSecurityProfileApplicationsOutput, error) {
+	req, out := c.ListSecurityProfileApplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityProfileApplicationsPages iterates over the pages of a ListSecurityProfileApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityProfileApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSecurityProfileApplications operation.
+//	pageNum := 0
+//	err := client.ListSecurityProfileApplicationsPages(params,
+//	    func(page *connect.ListSecurityProfileApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListSecurityProfileApplicationsPages(input *ListSecurityProfileApplicationsInput, fn func(*ListSecurityProfileApplicationsOutput, bool) bool) error {
+	return c.ListSecurityProfileApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityProfileApplicationsPagesWithContext same as ListSecurityProfileApplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfileApplicationsPagesWithContext(ctx aws.Context, input *ListSecurityProfileApplicationsInput, fn func(*ListSecurityProfileApplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityProfileApplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityProfileApplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityProfileApplicationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityProfilePermissions = "ListSecurityProfilePermissions"
 
 // ListSecurityProfilePermissionsRequest generates a "aws/request.Request" representing the
@@ -23672,6 +23820,66 @@ func (s *AnswerMachineDetectionConfig) SetEnableAnswerMachineDetection(v bool) *
 	return s
 }
 
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// A third party application's metadata.
+type Application struct {
+	_ struct{} `type:"structure"`
+
+	// The permissions that the agent is granted on the application. Only the ACCESS
+	// permission is supported.
+	ApplicationPermissions []*string `min:"1" type:"list"`
+
+	// Namespace of the application that you want to give access to.
+	Namespace *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Application) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Application) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Application) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Application"}
+	if s.ApplicationPermissions != nil && len(s.ApplicationPermissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationPermissions", 1))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationPermissions sets the ApplicationPermissions field's value.
+func (s *Application) SetApplicationPermissions(v []*string) *Application {
+	s.ApplicationPermissions = v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *Application) SetNamespace(v string) *Application {
+	s.Namespace = &v
+	return s
+}
+
 // This action must be set if TriggerEventSource is one of the following values:
 // OnPostCallAnalysisAvailable | OnRealTimeCallAnalysisAvailable | OnPostChatAnalysisAvailable.
 // Contact is categorized using the rule name.
@@ -27785,7 +27993,7 @@ type CreateQuickConnectInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the quick connect.
+	// A unique name of the quick connect.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -28341,6 +28549,12 @@ type CreateSecurityProfileInput struct {
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
 
+	// This API is in preview release for Amazon Connect and is subject to change.
+	//
+	// A list of third party applications that the security profile will give access
+	// to.
+	Applications []*Application `type:"list"`
+
 	// The description of the security profile.
 	Description *string `type:"string"`
 
@@ -28406,6 +28620,16 @@ func (s *CreateSecurityProfileInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.Applications != nil {
+		for i, v := range s.Applications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Applications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28416,6 +28640,12 @@ func (s *CreateSecurityProfileInput) Validate() error {
 // SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
 func (s *CreateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *CreateSecurityProfileInput {
 	s.AllowedAccessControlTags = v
+	return s
+}
+
+// SetApplications sets the Applications field's value.
+func (s *CreateSecurityProfileInput) SetApplications(v []*Application) *CreateSecurityProfileInput {
+	s.Applications = v
 	return s
 }
 
@@ -44770,6 +45000,11 @@ type ListPhoneNumbersInput struct {
 	PhoneNumberCountryCodes []*string `location:"querystring" locationName:"phoneNumberCountryCodes" type:"list" enum:"PhoneNumberCountryCode"`
 
 	// The type of phone number.
+	//
+	// We recommend using ListPhoneNumbersV2 (https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html)
+	// to return phone number types. While ListPhoneNumbers returns number types
+	// UIFN, SHARED, THIRD_PARTY_TF, and THIRD_PARTY_DID, it incorrectly lists them
+	// as TOLL_FREE or DID.
 	PhoneNumberTypes []*string `location:"querystring" locationName:"phoneNumberTypes" type:"list" enum:"PhoneNumberType"`
 }
 
@@ -46077,6 +46312,137 @@ func (s *ListSecurityKeysOutput) SetNextToken(v string) *ListSecurityKeysOutput 
 // SetSecurityKeys sets the SecurityKeys field's value.
 func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurityKeysOutput {
 	s.SecurityKeys = v
+	return s
+}
+
+type ListSecurityProfileApplicationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The instance identifier.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. The next set of results can be retrieved
+	// by using the token value returned in the previous response when making the
+	// next request.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The security profile identifier.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfileApplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfileApplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityProfileApplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityProfileApplicationsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListSecurityProfileApplicationsInput) SetInstanceId(v string) *ListSecurityProfileApplicationsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityProfileApplicationsInput) SetMaxResults(v int64) *ListSecurityProfileApplicationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfileApplicationsInput) SetNextToken(v string) *ListSecurityProfileApplicationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *ListSecurityProfileApplicationsInput) SetSecurityProfileId(v string) *ListSecurityProfileApplicationsInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type ListSecurityProfileApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the third party application's metadata.
+	Applications []*Application `type:"list"`
+
+	// The token for the next set of results. The next set of results can be retrieved
+	// by using the token value returned in the previous response when making the
+	// next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfileApplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfileApplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplications sets the Applications field's value.
+func (s *ListSecurityProfileApplicationsOutput) SetApplications(v []*Application) *ListSecurityProfileApplicationsOutput {
+	s.Applications = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfileApplicationsOutput) SetNextToken(v string) *ListSecurityProfileApplicationsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -51515,12 +51881,24 @@ type RuleAction struct {
 	ActionType *string `type:"string" required:"true" enum:"ActionType"`
 
 	// Information about the contact category action.
+	//
+	// Supported only for TriggerEventSource values: OnPostCallAnalysisAvailable
+	// | OnRealTimeCallAnalysisAvailable | OnPostChatAnalysisAvailable | OnZendeskTicketCreate
+	// | OnZendeskTicketStatusUpdate | OnSalesforceCaseCreate
 	AssignContactCategoryAction *AssignContactCategoryActionDefinition `type:"structure"`
 
 	// Information about the EventBridge action.
+	//
+	// Supported only for TriggerEventSource values: OnPostCallAnalysisAvailable
+	// | OnRealTimeCallAnalysisAvailable | OnPostChatAnalysisAvailable | OnContactEvaluationSubmit
+	// | OnMetricDataUpdate
 	EventBridgeAction *EventBridgeActionDefinition `type:"structure"`
 
 	// Information about the send notification action.
+	//
+	// Supported only for TriggerEventSource values: OnPostCallAnalysisAvailable
+	// | OnRealTimeCallAnalysisAvailable | OnPostChatAnalysisAvailable | OnContactEvaluationSubmit
+	// | OnMetricDataUpdate
 	SendNotificationAction *SendNotificationActionDefinition `type:"structure"`
 
 	// Information about the task action. This field is required if TriggerEventSource
@@ -51718,7 +52096,7 @@ func (s *RuleSummary) SetRuleId(v string) *RuleSummary {
 
 // The name of the event source. This field is required if TriggerEventSource
 // is one of the following values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate
-// | OnSalesforceCaseCreate
+// | OnSalesforceCaseCreate | OnContactEvaluationSubmit | OnMetricDataUpdate.
 type RuleTriggerEventSource struct {
 	_ struct{} `type:"structure"`
 
@@ -60961,6 +61339,11 @@ type UpdateSecurityProfileInput struct {
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
 
+	// This API is in preview release for Amazon Connect and is subject to change.
+	//
+	// A list of the third party application's metadata.
+	Applications []*Application `type:"list"`
+
 	// The description of the security profile.
 	Description *string `type:"string"`
 
@@ -61018,6 +61401,16 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
 	}
+	if s.Applications != nil {
+		for i, v := range s.Applications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Applications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -61028,6 +61421,12 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 // SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
 func (s *UpdateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *UpdateSecurityProfileInput {
 	s.AllowedAccessControlTags = v
+	return s
+}
+
+// SetApplications sets the Applications field's value.
+func (s *UpdateSecurityProfileInput) SetApplications(v []*Application) *UpdateSecurityProfileInput {
+	s.Applications = v
 	return s
 }
 
@@ -65075,6 +65474,9 @@ const (
 
 	// IntegrationTypeCasesDomain is a IntegrationType enum value
 	IntegrationTypeCasesDomain = "CASES_DOMAIN"
+
+	// IntegrationTypeApplication is a IntegrationType enum value
+	IntegrationTypeApplication = "APPLICATION"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
@@ -65086,6 +65488,7 @@ func IntegrationType_Values() []string {
 		IntegrationTypeWisdomAssistant,
 		IntegrationTypeWisdomKnowledgeBase,
 		IntegrationTypeCasesDomain,
+		IntegrationTypeApplication,
 	}
 }
 
