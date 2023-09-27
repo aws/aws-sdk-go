@@ -572,6 +572,12 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 // for each delivery stream. For more information about limits and how to request
 // an increase, see Amazon Kinesis Data Firehose Limits (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 //
+// Kinesis Data Firehose accumulates and publishes a particular metric for a
+// customer account in one minute intervals. It is possible that the bursts
+// of incoming bytes/records ingested to a delivery stream last only for a few
+// seconds. Due to this, the actual spikes in the traffic might not be fully
+// visible in the customer's 1 minute CloudWatch metrics.
+//
 // You must specify the name of the delivery stream and the data record when
 // using PutRecord. The data record consists of a data blob that can be up to
 // 1,000 KiB in size, and any kind of data. For example, it can be a segment
@@ -588,9 +594,14 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 // to each record. Producer applications can use this ID for purposes such as
 // auditability and investigation.
 //
-// If the PutRecord operation throws a ServiceUnavailableException, back off
-// and retry. If the exception persists, it is possible that the throughput
-// limits have been exceeded for the delivery stream.
+// If the PutRecord operation throws a ServiceUnavailableException, the API
+// is automatically reinvoked (retried) 3 times. If the exception persists,
+// it is possible that the throughput limits have been exceeded for the delivery
+// stream.
+//
+// Re-invoking the Put API operations (for example, PutRecord and PutRecordBatch)
+// can result in data duplicates. For larger data assets, allow for a longer
+// time out before retrying Put API operations.
 //
 // Data records sent to Kinesis Data Firehose are stored for 24 hours from the
 // time they are added to a delivery stream as it tries to send the records
@@ -697,6 +708,12 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 // To write single data records into a delivery stream, use PutRecord. Applications
 // using these operations are referred to as producers.
 //
+// Kinesis Data Firehose accumulates and publishes a particular metric for a
+// customer account in one minute intervals. It is possible that the bursts
+// of incoming bytes/records ingested to a delivery stream last only for a few
+// seconds. Due to this, the actual spikes in the traffic might not be fully
+// visible in the customer's 1 minute CloudWatch metrics.
+//
 // For information about service quota, see Amazon Kinesis Data Firehose Quota
 // (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 //
@@ -741,9 +758,13 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 // corresponding charges). We recommend that you handle any duplicates at the
 // destination.
 //
-// If PutRecordBatch throws ServiceUnavailableException, back off and retry.
-// If the exception persists, it is possible that the throughput limits have
-// been exceeded for the delivery stream.
+// If PutRecordBatch throws ServiceUnavailableException, the API is automatically
+// reinvoked (retried) 3 times. If the exception persists, it is possible that
+// the throughput limits have been exceeded for the delivery stream.
+//
+// Re-invoking the Put API operations (for example, PutRecord and PutRecordBatch)
+// can result in data duplicates. For larger data assets, allow for a longer
+// time out before retrying Put API operations.
 //
 // Data records sent to Kinesis Data Firehose are stored for 24 hours from the
 // time they are added to a delivery stream as it attempts to send the records
@@ -869,6 +890,10 @@ func (c *Firehose) StartDeliveryStreamEncryptionRequest(input *StartDeliveryStre
 // had on the old CMK for retirement. If the new CMK is of type CUSTOMER_MANAGED_CMK,
 // Kinesis Data Firehose creates a grant that enables it to use the new CMK
 // to encrypt and decrypt data and to manage the grant.
+//
+// For the KMS grant creation to be successful, Kinesis Data Firehose APIs StartDeliveryStreamEncryption
+// and CreateDeliveryStream should not be called with session credentials that
+// are more than 6 hours old.
 //
 // If a delivery stream already has encryption enabled and then you invoke this
 // operation to change the ARN of the CMK or both its type and ARN and you get
@@ -2572,6 +2597,70 @@ func (s *AmazonopensearchserviceRetryOptions) SetDurationInSeconds(v int64) *Ama
 	return s
 }
 
+// The authentication configuration of the Amazon MSK cluster.
+type AuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of connectivity used to access the Amazon MSK cluster.
+	//
+	// Connectivity is a required field
+	Connectivity *string `type:"string" required:"true" enum:"Connectivity"`
+
+	// The ARN of the role used to access the Amazon MSK cluster.
+	//
+	// RoleARN is a required field
+	RoleARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthenticationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthenticationConfiguration"}
+	if s.Connectivity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Connectivity"))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectivity sets the Connectivity field's value.
+func (s *AuthenticationConfiguration) SetConnectivity(v string) *AuthenticationConfiguration {
+	s.Connectivity = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *AuthenticationConfiguration) SetRoleARN(v string) *AuthenticationConfiguration {
+	s.RoleARN = &v
+	return s
+}
+
 // Describes hints for the buffering to perform before delivering data to the
 // destination. These options are treated as hints, and therefore Kinesis Data
 // Firehose might choose to use different values when it is optimal. The SizeInMBs
@@ -2894,6 +2983,10 @@ type CreateDeliveryStreamInput struct {
 	// Resource Name (ARN) and the role ARN for the source stream.
 	KinesisStreamSourceConfiguration *KinesisStreamSourceConfiguration `type:"structure"`
 
+	// The configuration for the Amazon MSK cluster to be used as the source for
+	// a delivery stream.
+	MSKSourceConfiguration *MSKSourceConfiguration `type:"structure"`
+
 	// The destination in Amazon Redshift. You can specify only one destination.
 	RedshiftDestinationConfiguration *RedshiftDestinationConfiguration `type:"structure"`
 
@@ -2981,6 +3074,11 @@ func (s *CreateDeliveryStreamInput) Validate() error {
 			invalidParams.AddNested("KinesisStreamSourceConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MSKSourceConfiguration != nil {
+		if err := s.MSKSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MSKSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RedshiftDestinationConfiguration != nil {
 		if err := s.RedshiftDestinationConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("RedshiftDestinationConfiguration", err.(request.ErrInvalidParams))
@@ -3064,6 +3162,12 @@ func (s *CreateDeliveryStreamInput) SetHttpEndpointDestinationConfiguration(v *H
 // SetKinesisStreamSourceConfiguration sets the KinesisStreamSourceConfiguration field's value.
 func (s *CreateDeliveryStreamInput) SetKinesisStreamSourceConfiguration(v *KinesisStreamSourceConfiguration) *CreateDeliveryStreamInput {
 	s.KinesisStreamSourceConfiguration = v
+	return s
+}
+
+// SetMSKSourceConfiguration sets the MSKSourceConfiguration field's value.
+func (s *CreateDeliveryStreamInput) SetMSKSourceConfiguration(v *MSKSourceConfiguration) *CreateDeliveryStreamInput {
+	s.MSKSourceConfiguration = v
 	return s
 }
 
@@ -6858,6 +6962,154 @@ func (s *ListTagsForDeliveryStreamOutput) SetTags(v []*Tag) *ListTagsForDelivery
 	return s
 }
 
+// The configuration for the Amazon MSK cluster to be used as the source for
+// a delivery stream.
+type MSKSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication configuration of the Amazon MSK cluster.
+	//
+	// AuthenticationConfiguration is a required field
+	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure" required:"true"`
+
+	// The ARN of the Amazon MSK cluster.
+	//
+	// MSKClusterARN is a required field
+	MSKClusterARN *string `min:"1" type:"string" required:"true"`
+
+	// The topic name within the Amazon MSK cluster.
+	//
+	// TopicName is a required field
+	TopicName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MSKSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MSKSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MSKSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MSKSourceConfiguration"}
+	if s.AuthenticationConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationConfiguration"))
+	}
+	if s.MSKClusterARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("MSKClusterARN"))
+	}
+	if s.MSKClusterARN != nil && len(*s.MSKClusterARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MSKClusterARN", 1))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+	if s.TopicName != nil && len(*s.TopicName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicName", 1))
+	}
+	if s.AuthenticationConfiguration != nil {
+		if err := s.AuthenticationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *MSKSourceConfiguration) SetAuthenticationConfiguration(v *AuthenticationConfiguration) *MSKSourceConfiguration {
+	s.AuthenticationConfiguration = v
+	return s
+}
+
+// SetMSKClusterARN sets the MSKClusterARN field's value.
+func (s *MSKSourceConfiguration) SetMSKClusterARN(v string) *MSKSourceConfiguration {
+	s.MSKClusterARN = &v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *MSKSourceConfiguration) SetTopicName(v string) *MSKSourceConfiguration {
+	s.TopicName = &v
+	return s
+}
+
+// Details about the Amazon MSK cluster used as the source for a Kinesis Data
+// Firehose delivery stream.
+type MSKSourceDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication configuration of the Amazon MSK cluster.
+	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
+
+	// Kinesis Data Firehose starts retrieving records from the topic within the
+	// Amazon MSK cluster starting with this timestamp.
+	DeliveryStartTimestamp *time.Time `type:"timestamp"`
+
+	// The ARN of the Amazon MSK cluster.
+	MSKClusterARN *string `min:"1" type:"string"`
+
+	// The topic name within the Amazon MSK cluster.
+	TopicName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MSKSourceDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MSKSourceDescription) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *MSKSourceDescription) SetAuthenticationConfiguration(v *AuthenticationConfiguration) *MSKSourceDescription {
+	s.AuthenticationConfiguration = v
+	return s
+}
+
+// SetDeliveryStartTimestamp sets the DeliveryStartTimestamp field's value.
+func (s *MSKSourceDescription) SetDeliveryStartTimestamp(v time.Time) *MSKSourceDescription {
+	s.DeliveryStartTimestamp = &v
+	return s
+}
+
+// SetMSKClusterARN sets the MSKClusterARN field's value.
+func (s *MSKSourceDescription) SetMSKClusterARN(v string) *MSKSourceDescription {
+	s.MSKClusterARN = &v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *MSKSourceDescription) SetTopicName(v string) *MSKSourceDescription {
+	s.TopicName = &v
+	return s
+}
+
 // The OpenX SerDe. Used by Kinesis Data Firehose for deserializing data, which
 // means converting it from the JSON format in preparation for serializing it
 // to the Parquet or ORC format. This is one of two deserializers you can choose,
@@ -9160,6 +9412,10 @@ type SourceDescription struct {
 
 	// The KinesisStreamSourceDescription value for the source Kinesis data stream.
 	KinesisStreamSourceDescription *KinesisStreamSourceDescription `type:"structure"`
+
+	// The configuration description for the Amazon MSK cluster to be used as the
+	// source for a delivery stream.
+	MSKSourceDescription *MSKSourceDescription `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9183,6 +9439,12 @@ func (s SourceDescription) GoString() string {
 // SetKinesisStreamSourceDescription sets the KinesisStreamSourceDescription field's value.
 func (s *SourceDescription) SetKinesisStreamSourceDescription(v *KinesisStreamSourceDescription) *SourceDescription {
 	s.KinesisStreamSourceDescription = v
+	return s
+}
+
+// SetMSKSourceDescription sets the MSKSourceDescription field's value.
+func (s *SourceDescription) SetMSKSourceDescription(v *MSKSourceDescription) *SourceDescription {
+	s.MSKSourceDescription = v
 	return s
 }
 
@@ -10605,6 +10867,22 @@ func CompressionFormat_Values() []string {
 }
 
 const (
+	// ConnectivityPublic is a Connectivity enum value
+	ConnectivityPublic = "PUBLIC"
+
+	// ConnectivityPrivate is a Connectivity enum value
+	ConnectivityPrivate = "PRIVATE"
+)
+
+// Connectivity_Values returns all elements of the Connectivity enum
+func Connectivity_Values() []string {
+	return []string{
+		ConnectivityPublic,
+		ConnectivityPrivate,
+	}
+}
+
+const (
 	// ContentEncodingNone is a ContentEncoding enum value
 	ContentEncodingNone = "NONE"
 
@@ -10770,6 +11048,9 @@ const (
 
 	// DeliveryStreamTypeKinesisStreamAsSource is a DeliveryStreamType enum value
 	DeliveryStreamTypeKinesisStreamAsSource = "KinesisStreamAsSource"
+
+	// DeliveryStreamTypeMskasSource is a DeliveryStreamType enum value
+	DeliveryStreamTypeMskasSource = "MSKAsSource"
 )
 
 // DeliveryStreamType_Values returns all elements of the DeliveryStreamType enum
@@ -10777,6 +11058,7 @@ func DeliveryStreamType_Values() []string {
 	return []string{
 		DeliveryStreamTypeDirectPut,
 		DeliveryStreamTypeKinesisStreamAsSource,
+		DeliveryStreamTypeMskasSource,
 	}
 }
 
@@ -10983,6 +11265,9 @@ const (
 
 	// ProcessorParameterNameDelimiter is a ProcessorParameterName enum value
 	ProcessorParameterNameDelimiter = "Delimiter"
+
+	// ProcessorParameterNameCompressionFormat is a ProcessorParameterName enum value
+	ProcessorParameterNameCompressionFormat = "CompressionFormat"
 )
 
 // ProcessorParameterName_Values returns all elements of the ProcessorParameterName enum
@@ -10997,12 +11282,16 @@ func ProcessorParameterName_Values() []string {
 		ProcessorParameterNameBufferIntervalInSeconds,
 		ProcessorParameterNameSubRecordType,
 		ProcessorParameterNameDelimiter,
+		ProcessorParameterNameCompressionFormat,
 	}
 }
 
 const (
 	// ProcessorTypeRecordDeAggregation is a ProcessorType enum value
 	ProcessorTypeRecordDeAggregation = "RecordDeAggregation"
+
+	// ProcessorTypeDecompression is a ProcessorType enum value
+	ProcessorTypeDecompression = "Decompression"
 
 	// ProcessorTypeLambda is a ProcessorType enum value
 	ProcessorTypeLambda = "Lambda"
@@ -11018,6 +11307,7 @@ const (
 func ProcessorType_Values() []string {
 	return []string{
 		ProcessorTypeRecordDeAggregation,
+		ProcessorTypeDecompression,
 		ProcessorTypeLambda,
 		ProcessorTypeMetadataExtraction,
 		ProcessorTypeAppendDelimiterToRecord,

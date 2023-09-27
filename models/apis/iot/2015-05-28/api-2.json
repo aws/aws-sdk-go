@@ -9190,8 +9190,36 @@
         "topic":{"shape":"String"},
         "key":{"shape":"String"},
         "partition":{"shape":"String"},
-        "clientProperties":{"shape":"ClientProperties"}
+        "clientProperties":{"shape":"ClientProperties"},
+        "headers":{"shape":"KafkaHeaders"}
       }
+    },
+    "KafkaActionHeader":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"KafkaHeaderKey"},
+        "value":{"shape":"KafkaHeaderValue"}
+      }
+    },
+    "KafkaHeaderKey":{
+      "type":"string",
+      "max":16384,
+      "min":0
+    },
+    "KafkaHeaderValue":{
+      "type":"string",
+      "max":16384,
+      "min":0
+    },
+    "KafkaHeaders":{
+      "type":"list",
+      "member":{"shape":"KafkaActionHeader"},
+      "max":100,
+      "min":1
     },
     "Key":{"type":"string"},
     "KeyName":{
@@ -11147,7 +11175,9 @@
         "THING_GROUP",
         "CLIENT_ID",
         "SOURCE_IP",
-        "PRINCIPAL_ID"
+        "PRINCIPAL_ID",
+        "EVENT_TYPE",
+        "DEVICE_DEFENDER"
       ]
     },
     "LoggingOptionsPayload":{

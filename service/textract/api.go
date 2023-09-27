@@ -1888,11 +1888,12 @@ type AnalyzeDocumentInput struct {
 	// A list of the types of analysis to perform. Add TABLES to the list to return
 	// information about the tables that are detected in the input document. Add
 	// FORMS to return detected form data. Add SIGNATURES to return the locations
-	// of detected signatures. To perform both forms and table analysis, add TABLES
-	// and FORMS to FeatureTypes. To detect signatures within form data and table
-	// data, add SIGNATURES to either TABLES or FORMS. All lines and words detected
-	// in the document are included in the response (including text that isn't related
-	// to the value of FeatureTypes).
+	// of detected signatures. Add LAYOUT to the list to return information about
+	// the layout of the document. To perform both forms and table analysis, add
+	// TABLES and FORMS to FeatureTypes. To detect signatures within the document
+	// and within form data and table data, add SIGNATURES to either TABLES or FORMS.
+	// All lines and words detected in the document are included in the response
+	// (including text that isn't related to the value of FeatureTypes).
 	//
 	// FeatureTypes is a required field
 	FeatureTypes []*string `type:"list" required:"true" enum:"FeatureType"`
@@ -2440,7 +2441,7 @@ type Block struct {
 	//    button) or a check box that's detected on a document page. Use the value
 	//    of SelectionStatus to determine the status of the selection element.
 	//
-	//    * SIGNATURE - The location and confidene score of a signature detected
+	//    * SIGNATURE - The location and confidence score of a signature detected
 	//    on a document page. Can be returned as part of a Key-Value pair or a detected
 	//    cell.
 	//
@@ -2510,9 +2511,7 @@ type Block struct {
 	// multipage documents that are in PDF or TIFF format. A scanned image (JPEG/PNG)
 	// provided to an asynchronous operation, even if it contains multiple document
 	// pages, is considered a single-page document. This means that for scanned
-	// images the value of Page is always 1. Synchronous operations will also return
-	// a Page value of 1 because every input document is considered to be a single-page
-	// document.
+	// images the value of Page is always 1.
 	Page *int64 `type:"integer"`
 
 	// Each query contains the question you want to ask in the Text and the alias
@@ -7236,6 +7235,36 @@ const (
 
 	// BlockTypeTableFooter is a BlockType enum value
 	BlockTypeTableFooter = "TABLE_FOOTER"
+
+	// BlockTypeLayoutText is a BlockType enum value
+	BlockTypeLayoutText = "LAYOUT_TEXT"
+
+	// BlockTypeLayoutTitle is a BlockType enum value
+	BlockTypeLayoutTitle = "LAYOUT_TITLE"
+
+	// BlockTypeLayoutHeader is a BlockType enum value
+	BlockTypeLayoutHeader = "LAYOUT_HEADER"
+
+	// BlockTypeLayoutFooter is a BlockType enum value
+	BlockTypeLayoutFooter = "LAYOUT_FOOTER"
+
+	// BlockTypeLayoutSectionHeader is a BlockType enum value
+	BlockTypeLayoutSectionHeader = "LAYOUT_SECTION_HEADER"
+
+	// BlockTypeLayoutPageNumber is a BlockType enum value
+	BlockTypeLayoutPageNumber = "LAYOUT_PAGE_NUMBER"
+
+	// BlockTypeLayoutList is a BlockType enum value
+	BlockTypeLayoutList = "LAYOUT_LIST"
+
+	// BlockTypeLayoutFigure is a BlockType enum value
+	BlockTypeLayoutFigure = "LAYOUT_FIGURE"
+
+	// BlockTypeLayoutTable is a BlockType enum value
+	BlockTypeLayoutTable = "LAYOUT_TABLE"
+
+	// BlockTypeLayoutKeyValue is a BlockType enum value
+	BlockTypeLayoutKeyValue = "LAYOUT_KEY_VALUE"
 )
 
 // BlockType_Values returns all elements of the BlockType enum
@@ -7255,6 +7284,16 @@ func BlockType_Values() []string {
 		BlockTypeSignature,
 		BlockTypeTableTitle,
 		BlockTypeTableFooter,
+		BlockTypeLayoutText,
+		BlockTypeLayoutTitle,
+		BlockTypeLayoutHeader,
+		BlockTypeLayoutFooter,
+		BlockTypeLayoutSectionHeader,
+		BlockTypeLayoutPageNumber,
+		BlockTypeLayoutList,
+		BlockTypeLayoutFigure,
+		BlockTypeLayoutTable,
+		BlockTypeLayoutKeyValue,
 	}
 }
 
@@ -7330,6 +7369,9 @@ const (
 
 	// FeatureTypeSignatures is a FeatureType enum value
 	FeatureTypeSignatures = "SIGNATURES"
+
+	// FeatureTypeLayout is a FeatureType enum value
+	FeatureTypeLayout = "LAYOUT"
 )
 
 // FeatureType_Values returns all elements of the FeatureType enum
@@ -7339,6 +7381,7 @@ func FeatureType_Values() []string {
 		FeatureTypeForms,
 		FeatureTypeQueries,
 		FeatureTypeSignatures,
+		FeatureTypeLayout,
 	}
 }
 

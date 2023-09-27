@@ -1,3 +1,14 @@
+Release v1.45.18 (2023-09-27)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API, documentation, and examples
+* `service/firehose`: Updates service API and documentation
+  * Features : Adding support for new data ingestion source to Kinesis Firehose - AWS Managed Services Kafka.
+* `service/iot`: Updates service API and documentation
+  * Added support for IoT Rules Engine Kafka Action Headers
+* `service/textract`: Updates service API and documentation
+
 Release v1.45.17 (2023-09-26)
 ===
 
