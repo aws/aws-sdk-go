@@ -79,7 +79,7 @@ func Parse(arn string) (ARN, error) {
 // whether the string starts with "arn:" and contains the correct number
 // of sections delimited by colons(:).
 func IsARN(arn string) bool {
-	return strings.HasPrefix(arn, arnPrefix) && strings.Count(arn, ":") >= arnSections-1
+	return strings.HasPrefix(arn, arnPrefix) && strings.Count(arn, arnDelimiter) >= arnSections-1
 }
 
 // String returns the canonical representation of the ARN
