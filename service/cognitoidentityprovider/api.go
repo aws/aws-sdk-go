@@ -13450,9 +13450,19 @@ type AdminCreateUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The username for the user. Must be unique within the user pool. Must be a
-	// UTF-8 string between 1 and 128 characters. After the user is created, the
-	// username can't be changed.
+	// The value that you want to set as the username sign-in attribute. The following
+	// conditions apply to the username parameter.
+	//
+	//    * The username can't be a duplicate of another username in the same user
+	//    pool.
+	//
+	//    * You can't change the value of a username after you create it.
+	//
+	//    * You can only provide a value if usernames are a valid sign-in attribute
+	//    for your user pool. If your user pool only supports phone numbers or email
+	//    addresses as sign-in attributes, Amazon Cognito automatically generates
+	//    a username value. For more information, see Customizing sign-in attributes
+	//    (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases).
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminCreateUserInput's
@@ -34160,7 +34170,9 @@ type UserPoolDescriptionType struct {
 	Name *string `min:"1" type:"string"`
 
 	// The user pool status in a user pool description.
-	Status *string `type:"string" enum:"StatusType"`
+	//
+	// Deprecated: This property is no longer available.
+	Status *string `deprecated:"true" type:"string" enum:"StatusType"`
 }
 
 // String returns the string representation.
@@ -34476,7 +34488,9 @@ type UserPoolType struct {
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
 	// The status of a user pool.
-	Status *string `type:"string" enum:"StatusType"`
+	//
+	// Deprecated: This property is no longer available.
+	Status *string `deprecated:"true" type:"string" enum:"StatusType"`
 
 	// The settings for updates to user attributes. These settings include the property
 	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells

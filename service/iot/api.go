@@ -1859,9 +1859,9 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // action.
 //
 // The CSR must include a public key that is either an RSA key with a length
-// of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
-// For supported certificates, consult Certificate signing algorithms supported
-// by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
+// of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST
+// P-521 curves. For supported certificates, consult Certificate signing algorithms
+// supported by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
 //
 // Reusing the same certificate signing request (CSR) results in a distinct
 // certificate.
@@ -6040,7 +6040,7 @@ func (c *IoT) DeletePackageVersionRequest(input *DeletePackageVersionInput) (req
 // Deletes a specific version from a software package.
 //
 // Note: If a package version is designated as default, you must remove the
-// designation from the package using the UpdatePackage action.
+// designation from the software package using the UpdatePackage action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25280,7 +25280,7 @@ func (c *IoT) UpdatePackageRequest(input *UpdatePackageInput) (req *request.Requ
 
 // UpdatePackage API operation for AWS IoT.
 //
-// Updates the supported fields for a specific package.
+// Updates the supported fields for a specific software package.
 //
 // Requires permission to access the UpdatePackage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // and GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
@@ -25370,7 +25370,7 @@ func (c *IoT) UpdatePackageConfigurationRequest(input *UpdatePackageConfiguratio
 
 // UpdatePackageConfiguration API operation for AWS IoT.
 //
-// Updates the package configuration.
+// Updates the software package configuration.
 //
 // Requires permission to access the UpdatePackageConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // and iam:PassRole (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
@@ -29753,6 +29753,9 @@ type Behavior struct {
 
 	// The criteria that determine if a device is behaving normally in regard to
 	// the metric.
+	//
+	// In the IoT console, you can choose to be sent an alert through Amazon SNS
+	// when IoT Device Defender detects that a device is behaving anomalously.
 	Criteria *BehaviorCriteria `locationName:"criteria" type:"structure"`
 
 	// What is measured by the behavior.
@@ -33942,18 +33945,12 @@ type CreateJobTemplateInput struct {
 	// The job document. Required if you don't specify a value for documentSource.
 	Document *string `locationName:"document" type:"string"`
 
-	// An S3 link to the job document to use in the template. Required if you don't
-	// specify a value for document.
+	// An S3 link, or S3 object URL, to the job document. The link is an Amazon
+	// S3 object URL and is required if you don't specify a value for document.
 	//
-	// If the job document resides in an S3 bucket, you must use a placeholder link
-	// when specifying the document.
+	// For example, --document-source https://s3.region-code.amazonaws.com/example-firmware/device-firmware.1.0
 	//
-	// The placeholder link is of the following form:
-	//
-	// ${aws:iot:s3-presigned-url:https://s3.amazonaws.com/bucket/key}
-	//
-	// where bucket is your bucket name and key is the object in the bucket to which
-	// you are linking.
+	// For more information, see Methods for accessing a bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html).
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
 
 	// The ARN of the job to use as the basis for the job template.
@@ -34429,7 +34426,8 @@ func (s *CreateMitigationActionOutput) SetActionId(v string) *CreateMitigationAc
 type CreateOTAUpdateInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of additional OTA update parameters which are name-value pairs.
+	// A list of additional OTA update parameters, which are name-value pairs. They
+	// won't be sent to devices as a part of the Job document.
 	AdditionalParameters map[string]*string `locationName:"additionalParameters" type:"map"`
 
 	// The criteria that determine when and how a job abort takes place.
@@ -34735,7 +34733,7 @@ type CreatePackageInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The name of the new package.
+	// The name of the new software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -34821,7 +34819,7 @@ type CreatePackageOutput struct {
 	// The Amazon Resource Name (ARN) for the package.
 	PackageArn *string `locationName:"packageArn" type:"string"`
 
-	// The name of the package.
+	// The name of the software package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 }
 
@@ -34889,7 +34887,7 @@ type CreatePackageVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The name of the associated package.
+	// The name of the associated software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -35006,7 +35004,7 @@ type CreatePackageVersionOutput struct {
 	// Error reason for a package version failure during creation or update.
 	ErrorReason *string `locationName:"errorReason" type:"string"`
 
-	// The name of the associated package.
+	// The name of the associated software package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the package.
@@ -38522,7 +38520,7 @@ type DeletePackageInput struct {
 	// is required.
 	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
-	// The name of the target package.
+	// The name of the target software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -38607,7 +38605,7 @@ type DeletePackageVersionInput struct {
 	// is required.
 	ClientToken *string `location:"querystring" locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
-	// The name of the associated package.
+	// The name of the associated software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -41451,7 +41449,8 @@ type DescribeEndpointInput struct {
 	//
 	// We strongly recommend that customers use the newer iot:Data-ATS endpoint
 	// type to avoid issues related to the widespread distrust of Symantec certificate
-	// authorities.
+	// authorities. ATS Signed Certificates are more secure and are trusted by most
+	// popular browsers.
 	EndpointType *string `location:"querystring" locationName:"endpointType" type:"string"`
 }
 
@@ -46625,7 +46624,7 @@ func (s *GetPackageConfigurationOutput) SetVersionUpdateByJobsConfig(v *VersionU
 type GetPackageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the target package.
+	// The name of the target software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -46693,7 +46692,7 @@ type GetPackageOutput struct {
 	// The ARN for the package.
 	PackageArn *string `locationName:"packageArn" type:"string"`
 
-	// The name of the package.
+	// The name of the software package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 }
 
@@ -46844,7 +46843,7 @@ type GetPackageVersionOutput struct {
 	// The date when the package version was last updated.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
-	// The name of the package.
+	// The name of the software package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 
 	// The ARN for the package version.
@@ -50155,6 +50154,9 @@ type KafkaAction struct {
 	// DestinationArn is a required field
 	DestinationArn *string `locationName:"destinationArn" type:"string" required:"true"`
 
+	// The list of Kafka headers that you specify.
+	Headers []*KafkaActionHeader `locationName:"headers" min:"1" type:"list"`
+
 	// The Kafka message key.
 	Key *string `locationName:"key" type:"string"`
 
@@ -50194,8 +50196,21 @@ func (s *KafkaAction) Validate() error {
 	if s.DestinationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("DestinationArn"))
 	}
+	if s.Headers != nil && len(s.Headers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Headers", 1))
+	}
 	if s.Topic == nil {
 		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+	if s.Headers != nil {
+		for i, v := range s.Headers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Headers", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -50216,6 +50231,12 @@ func (s *KafkaAction) SetDestinationArn(v string) *KafkaAction {
 	return s
 }
 
+// SetHeaders sets the Headers field's value.
+func (s *KafkaAction) SetHeaders(v []*KafkaActionHeader) *KafkaAction {
+	s.Headers = v
+	return s
+}
+
 // SetKey sets the Key field's value.
 func (s *KafkaAction) SetKey(v string) *KafkaAction {
 	s.Key = &v
@@ -50231,6 +50252,71 @@ func (s *KafkaAction) SetPartition(v string) *KafkaAction {
 // SetTopic sets the Topic field's value.
 func (s *KafkaAction) SetTopic(v string) *KafkaAction {
 	s.Topic = &v
+	return s
+}
+
+// Specifies a Kafka header using key-value pairs when you create a Rule’s
+// Kafka Action. You can use these headers to route data from IoT clients to
+// downstream Kafka clusters without modifying your message payload.
+//
+// For more information about Rule's Kafka action, see Apache Kafka (https://docs.aws.amazon.com/iot/latest/developerguide/apache-kafka-rule-action.html).
+type KafkaActionHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the Kafka header.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The value of the Kafka header.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaActionHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaActionHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KafkaActionHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KafkaActionHeader"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *KafkaActionHeader) SetKey(v string) *KafkaActionHeader {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *KafkaActionHeader) SetValue(v string) *KafkaActionHeader {
+	s.Value = &v
 	return s
 }
 
@@ -53907,7 +53993,7 @@ type ListPackageVersionsInput struct {
 	// The token for the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The name of the target package.
+	// The name of the target software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -58784,7 +58870,8 @@ func (s *NotConfiguredException) RequestID() string {
 type OTAUpdateFile struct {
 	_ struct{} `type:"structure"`
 
-	// A list of name/attribute pairs.
+	// A list of name-attribute pairs. They won't be sent to devices as a part of
+	// the Job document.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The code signing method of the file.
@@ -59296,7 +59383,7 @@ type PackageSummary struct {
 	// The date that the package was last updated.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
-	// The name for the target package.
+	// The name for the target software package.
 	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 }
 
@@ -62292,6 +62379,9 @@ type SchedulingConfig struct {
 	// minutes. The maximum duration between startTime and endTime is two years.
 	// The date and time format for the endTime is YYYY-MM-DD for the date and HH:MM
 	// for the time.
+	//
+	// For more information on the syntax for endTime when using an API command
+	// or the Command Line Interface, see Timestamp (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp).
 	EndTime *string `locationName:"endTime" min:"1" type:"string"`
 
 	// An optional configuration within the SchedulingConfig to setup a recurring
@@ -62304,6 +62394,9 @@ type SchedulingConfig struct {
 	// and must be scheduled a minimum of thirty minutes from the current time.
 	// The date and time format for the startTime is YYYY-MM-DD for the date and
 	// HH:MM for the time.
+	//
+	// For more information on the syntax for startTime when using an API command
+	// or the Command Line Interface, see Timestamp (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp).
 	StartTime *string `locationName:"startTime" min:"1" type:"string"`
 }
 
@@ -69667,7 +69760,7 @@ type UpdatePackageInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The name of the target package.
+	// The name of the target software package.
 	//
 	// PackageName is a required field
 	PackageName *string `location:"uri" locationName:"packageName" min:"1" type:"string" required:"true"`
@@ -69780,8 +69873,8 @@ type UpdatePackageVersionInput struct {
 	Action *string `locationName:"action" type:"string" enum:"PackageVersionAction"`
 
 	// Metadata that can be used to define a package version’s configuration.
-	// For example, the S3 file location, configuration options that are being sent
-	// to the device or fleet.
+	// For example, the Amazon S3 file location, configuration options that are
+	// being sent to the device or fleet.
 	//
 	// Note: Attributes can be updated only when the package version is in a draft
 	// state.
@@ -73181,6 +73274,12 @@ const (
 
 	// LogTargetTypePrincipalId is a LogTargetType enum value
 	LogTargetTypePrincipalId = "PRINCIPAL_ID"
+
+	// LogTargetTypeEventType is a LogTargetType enum value
+	LogTargetTypeEventType = "EVENT_TYPE"
+
+	// LogTargetTypeDeviceDefender is a LogTargetType enum value
+	LogTargetTypeDeviceDefender = "DEVICE_DEFENDER"
 )
 
 // LogTargetType_Values returns all elements of the LogTargetType enum
@@ -73191,6 +73290,8 @@ func LogTargetType_Values() []string {
 		LogTargetTypeClientId,
 		LogTargetTypeSourceIp,
 		LogTargetTypePrincipalId,
+		LogTargetTypeEventType,
+		LogTargetTypeDeviceDefender,
 	}
 }
 

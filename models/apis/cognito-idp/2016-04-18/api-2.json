@@ -5571,7 +5571,11 @@
         "Id":{"shape":"UserPoolIdType"},
         "Name":{"shape":"UserPoolNameType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
-        "Status":{"shape":"StatusType"},
+        "Status":{
+          "shape":"StatusType",
+          "deprecated":true,
+          "deprecatedMessage":"This property is no longer available."
+        },
         "LastModifiedDate":{"shape":"DateType"},
         "CreationDate":{"shape":"DateType"}
       }
@@ -5630,7 +5634,11 @@
         "Policies":{"shape":"UserPoolPolicyType"},
         "DeletionProtection":{"shape":"DeletionProtectionType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
-        "Status":{"shape":"StatusType"},
+        "Status":{
+          "shape":"StatusType",
+          "deprecated":true,
+          "deprecatedMessage":"This property is no longer available."
+        },
         "LastModifiedDate":{"shape":"DateType"},
         "CreationDate":{"shape":"DateType"},
         "SchemaAttributes":{"shape":"SchemaAttributesListType"},

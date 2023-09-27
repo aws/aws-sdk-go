@@ -394,7 +394,17 @@
         "QUERY_RESULT",
         "SIGNATURE",
         "TABLE_TITLE",
-        "TABLE_FOOTER"
+        "TABLE_FOOTER",
+        "LAYOUT_TEXT",
+        "LAYOUT_TITLE",
+        "LAYOUT_HEADER",
+        "LAYOUT_FOOTER",
+        "LAYOUT_SECTION_HEADER",
+        "LAYOUT_PAGE_NUMBER",
+        "LAYOUT_LIST",
+        "LAYOUT_FIGURE",
+        "LAYOUT_TABLE",
+        "LAYOUT_KEY_VALUE"
       ]
     },
     "BoundingBox":{
@@ -591,7 +601,8 @@
         "TABLES",
         "FORMS",
         "QUERIES",
-        "SIGNATURES"
+        "SIGNATURES",
+        "LAYOUT"
       ]
     },
     "FeatureTypes":{
