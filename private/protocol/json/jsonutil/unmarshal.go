@@ -9,6 +9,7 @@ import (
 	"math"
 	"math/big"
 	"reflect"
+	"strconv"	
 	"strings"
 	"time"
 
@@ -259,6 +260,16 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 				return err
 			}
 			value.Set(reflect.ValueOf(v))
+		case *int64:
+			v, err := strconv.ParseInt(d, 10, 64)
+			if err != nil {
+				fp, err := strconv.ParseFloat(d, 64)
+				if err != nil {
+					return fmt.Errorf("failed converting string that should contain a number to int64 %s: %w", d, err)
+				}
+				v = int64(fp)
+			}
+			value.Set(reflect.ValueOf(aws.Int64(v)))			
 		case *float64:
 			// These are regular strings when parsed by encoding/json's unmarshaler.
 			switch {

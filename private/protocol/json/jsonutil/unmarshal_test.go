@@ -102,6 +102,18 @@ func TestUnmarshalJSON_JSONNumber(t *testing.T) {
 				IntField: aws.Int64(123456789),
 			},
 		},
+		"integer field as string": {
+			JSON: `{"intField":"123456789"}`,
+			Expected: input{
+				IntField: aws.Int64(123456789),
+			},
+		},
+		"integer field as string truncated": {
+			JSON: `{"intField":"123456789.123"}`,
+			Expected: input{
+				IntField: aws.Int64(123456789),
+			},
+		},
 		"float64 field": {
 			JSON: `{"floatField":123456789.123}`,
 			Expected: input{
