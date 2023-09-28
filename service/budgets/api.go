@@ -5610,7 +5610,8 @@ type DescribeBudgetNotificationsForAccountInput struct {
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// An integer that shows how many budget name entries a paginated response contains.
+	// An integer that represents how many budgets a paginated response contains.
+	// The default is 50.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// A generic string.
@@ -5892,14 +5893,13 @@ func (s *DescribeBudgetPerformanceHistoryOutput) SetNextToken(v string) *Describ
 type DescribeBudgetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The accountId that is associated with the budgets that you want descriptions
-	// of.
+	// The accountId that is associated with the budgets that you want to describe.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// An optional integer that represents how many entries a paginated response
-	// contains. The maximum is 100.
+	// An integer that represents how many budgets a paginated response contains.
+	// The default is 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The pagination token that you include in your request to indicate the next
@@ -6020,7 +6020,7 @@ type DescribeNotificationsForBudgetInput struct {
 	BudgetName *string `min:"1" type:"string" required:"true"`
 
 	// An optional integer that represents how many entries a paginated response
-	// contains. The maximum is 100.
+	// contains.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The pagination token that you include in your request to indicate the next
@@ -6153,7 +6153,7 @@ type DescribeSubscribersForNotificationInput struct {
 	BudgetName *string `min:"1" type:"string" required:"true"`
 
 	// An optional integer that represents how many entries a paginated response
-	// contains. The maximum is 100.
+	// contains.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The pagination token that you include in your request to indicate the next
@@ -7351,11 +7351,17 @@ func (s *ScpActionDefinition) SetTargetIds(v []*string) *ScpActionDefinition {
 
 // The amount of cost or usage that's measured for a budget.
 //
-// For example, a Spend for 3 GB of S3 usage has the following parameters:
+// Cost example: A Spend for 3 USD of costs has the following parameters:
 //
 //   - An Amount of 3
 //
-//   - A unit of GB
+//   - A Unit of USD
+//
+// Usage example: A Spend for 3 GB of S3 usage has the following parameters:
+//
+//   - An Amount of 3
+//
+//   - A Unit of GB
 type Spend struct {
 	_ struct{} `type:"structure"`
 
@@ -7366,7 +7372,7 @@ type Spend struct {
 	Amount *string `min:"1" type:"string" required:"true"`
 
 	// The unit of measurement that's used for the budget forecast, actual spend,
-	// or budget threshold, such as USD or GBP.
+	// or budget threshold.
 	//
 	// Unit is a required field
 	Unit *string `min:"1" type:"string" required:"true"`

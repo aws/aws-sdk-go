@@ -2059,7 +2059,7 @@
         "CreateVerifiedAccessEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVerifiedAccessGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVerifiedAccessInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "CreateVerifiedAccessInstanceRequest$FIPSEnabled": "<p> Choose to enable or disable support for Federal Information Processing Standards (FIPS) on the instance. </p>",
+        "CreateVerifiedAccessInstanceRequest$FIPSEnabled": "<p>Enable or disable support for Federal Information Processing Standards (FIPS) on the instance.</p>",
         "CreateVerifiedAccessTrustProviderRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVolumeRequest$Encrypted": "<p>Indicates whether the volume should be encrypted. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default\">Encryption by default</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
         "CreateVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2776,7 +2776,7 @@
         "UpdateSecurityGroupRuleDescriptionsEgressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "UpdateSecurityGroupRuleDescriptionsIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsIngressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
-        "VerifiedAccessInstance$FipsEnabled": "<p> Describes if support for Federal Information Processing Standards (FIPS) is enabled on the instance. </p>",
+        "VerifiedAccessInstance$FipsEnabled": "<p>Describes whether support for Federal Information Processing Standards (FIPS) is enabled on the instance.</p>",
         "VerifiedAccessLogCloudWatchLogsDestination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogCloudWatchLogsDestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestination$Enabled": "<p>Indicates whether logging is enabled.</p>",
@@ -2785,6 +2785,8 @@
         "VerifiedAccessLogS3Destination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogS3DestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogs$IncludeTrustContext": "<p> Describes current setting for including trust data into the logs. </p>",
+        "VerifiedAccessSseSpecificationRequest$CustomerManagedKeyEnabled": "<p> Enable or disable the use of customer managed KMS keys for server side encryption. </p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
+        "VerifiedAccessSseSpecificationResponse$CustomerManagedKeyEnabled": "<p> Describes the use of customer managed KMS keys for server side encryption. </p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
         "Volume$Encrypted": "<p>Indicates whether the volume is encrypted.</p>",
         "Volume$FastRestored": "<p>Indicates whether the volume was created using fast snapshot restore.</p>",
         "Volume$MultiAttachEnabled": "<p>Indicates whether Amazon EBS Multi-Attach is enabled.</p>",
@@ -12820,6 +12822,13 @@
         "KeyPairInfo$KeyType": "<p>The type of key pair.</p>"
       }
     },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "VerifiedAccessSseSpecificationRequest$KmsKeyArn": "<p> The ARN of the KMS key. </p>",
+        "VerifiedAccessSseSpecificationResponse$KmsKeyArn": "<p> Describes the ARN of the KMS key. </p>"
+      }
+    },
     "KmsKeyId": {
       "base": null,
       "refs": {
@@ -22665,6 +22674,27 @@
       "base": "<p>Describes the options for Verified Access logs.</p>",
       "refs": {
         "VerifiedAccessInstanceLoggingConfiguration$AccessLogs": "<p>Details about the logging options.</p>"
+      }
+    },
+    "VerifiedAccessSseSpecificationRequest": {
+      "base": "<p> Verified Access provides server side encryption by default to data at rest using Amazon Web Services-owned KMS keys. You also have the option of using customer managed KMS keys, which can be specified using the options below. </p>",
+      "refs": {
+        "CreateVerifiedAccessEndpointRequest$SseSpecification": "<p> Options for server side encryption. </p>",
+        "CreateVerifiedAccessGroupRequest$SseSpecification": "<p> Options for server side encryption. </p>",
+        "CreateVerifiedAccessTrustProviderRequest$SseSpecification": "<p> Options for server side encryption. </p>",
+        "ModifyVerifiedAccessEndpointPolicyRequest$SseSpecification": "<p> Options for server side encryption. </p>",
+        "ModifyVerifiedAccessGroupPolicyRequest$SseSpecification": "<p> Options for server side encryption. </p>",
+        "ModifyVerifiedAccessTrustProviderRequest$SseSpecification": "<p> Options for server side encryption. </p>"
+      }
+    },
+    "VerifiedAccessSseSpecificationResponse": {
+      "base": "<p> Describes the options in use for server side encryption. </p>",
+      "refs": {
+        "ModifyVerifiedAccessEndpointPolicyResult$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
+        "ModifyVerifiedAccessGroupPolicyResult$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
+        "VerifiedAccessEndpoint$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
+        "VerifiedAccessGroup$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
+        "VerifiedAccessTrustProvider$SseSpecification": "<p> Describes the options in use for server side encryption. </p>"
       }
     },
     "VerifiedAccessTrustProvider": {

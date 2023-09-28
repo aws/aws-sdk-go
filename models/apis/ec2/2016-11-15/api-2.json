@@ -11994,7 +11994,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "CreateVerifiedAccessEndpointResult":{
@@ -12028,7 +12029,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "CreateVerifiedAccessGroupResult":{
@@ -12105,7 +12107,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "CreateVerifiedAccessTrustProviderResult":{
@@ -29095,6 +29098,7 @@
         "ed25519"
       ]
     },
+    "KmsKeyArn":{"type":"string"},
     "KmsKeyId":{"type":"string"},
     "LastError":{
       "type":"structure",
@@ -31998,10 +32002,7 @@
     },
     "ModifyVerifiedAccessEndpointPolicyRequest":{
       "type":"structure",
-      "required":[
-        "VerifiedAccessEndpointId",
-        "PolicyEnabled"
-      ],
+      "required":["VerifiedAccessEndpointId"],
       "members":{
         "VerifiedAccessEndpointId":{"shape":"VerifiedAccessEndpointId"},
         "PolicyEnabled":{"shape":"Boolean"},
@@ -32010,7 +32011,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "ModifyVerifiedAccessEndpointPolicyResult":{
@@ -32023,6 +32025,10 @@
         "PolicyDocument":{
           "shape":"String",
           "locationName":"policyDocument"
+        },
+        "SseSpecification":{
+          "shape":"VerifiedAccessSseSpecificationResponse",
+          "locationName":"sseSpecification"
         }
       }
     },
@@ -32060,10 +32066,7 @@
     },
     "ModifyVerifiedAccessGroupPolicyRequest":{
       "type":"structure",
-      "required":[
-        "VerifiedAccessGroupId",
-        "PolicyEnabled"
-      ],
+      "required":["VerifiedAccessGroupId"],
       "members":{
         "VerifiedAccessGroupId":{"shape":"VerifiedAccessGroupId"},
         "PolicyEnabled":{"shape":"Boolean"},
@@ -32072,7 +32075,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "ModifyVerifiedAccessGroupPolicyResult":{
@@ -32085,6 +32089,10 @@
         "PolicyDocument":{
           "shape":"String",
           "locationName":"policyDocument"
+        },
+        "SseSpecification":{
+          "shape":"VerifiedAccessSseSpecificationResponse",
+          "locationName":"sseSpecification"
         }
       }
     },
@@ -32181,7 +32189,8 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "SseSpecification":{"shape":"VerifiedAccessSseSpecificationRequest"}
       }
     },
     "ModifyVerifiedAccessTrustProviderResult":{
@@ -43488,6 +43497,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "SseSpecification":{
+          "shape":"VerifiedAccessSseSpecificationResponse",
+          "locationName":"sseSpecification"
         }
       }
     },
@@ -43635,6 +43648,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "SseSpecification":{
+          "shape":"VerifiedAccessSseSpecificationResponse",
+          "locationName":"sseSpecification"
         }
       }
     },
@@ -43861,6 +43878,26 @@
         }
       }
     },
+    "VerifiedAccessSseSpecificationRequest":{
+      "type":"structure",
+      "members":{
+        "CustomerManagedKeyEnabled":{"shape":"Boolean"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "VerifiedAccessSseSpecificationResponse":{
+      "type":"structure",
+      "members":{
+        "CustomerManagedKeyEnabled":{
+          "shape":"Boolean",
+          "locationName":"customerManagedKeyEnabled"
+        },
+        "KmsKeyArn":{
+          "shape":"KmsKeyArn",
+          "locationName":"kmsKeyArn"
+        }
+      }
+    },
     "VerifiedAccessTrustProvider":{
       "type":"structure",
       "members":{
@@ -43907,6 +43944,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "SseSpecification":{
+          "shape":"VerifiedAccessSseSpecificationResponse",
+          "locationName":"sseSpecification"
         }
       }
     },

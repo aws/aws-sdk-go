@@ -5374,6 +5374,13 @@
       "min":1,
       "pattern":"[\\w-]+_[0-9a-zA-Z]+"
     },
+    "CollectionConfig":{
+      "type":"structure",
+      "members":{
+        "VectorConfig":{"shape":"VectorConfig"}
+      },
+      "union":true
+    },
     "CollectionConfiguration":{
       "type":"structure",
       "members":{
@@ -5399,6 +5406,14 @@
       "value":{"shape":"ConfigValue"},
       "max":20,
       "min":0
+    },
+    "CollectionType":{
+      "type":"string",
+      "enum":[
+        "List",
+        "Set",
+        "Vector"
+      ]
     },
     "CompilationJobArn":{
       "type":"string",
@@ -9707,6 +9722,11 @@
       "type":"list",
       "member":{"shape":"Device"}
     },
+    "Dimension":{
+      "type":"integer",
+      "max":8192,
+      "min":1
+    },
     "DirectInternetAccess":{
       "type":"string",
       "enum":[
@@ -10541,7 +10561,9 @@
       "type":"structure",
       "members":{
         "FeatureName":{"shape":"FeatureName"},
-        "FeatureType":{"shape":"FeatureType"}
+        "FeatureType":{"shape":"FeatureType"},
+        "CollectionType":{"shape":"CollectionType"},
+        "CollectionConfig":{"shape":"CollectionConfig"}
       }
     },
     "FeatureDefinitions":{
@@ -16386,7 +16408,8 @@
       "members":{
         "SecurityConfig":{"shape":"OnlineStoreSecurityConfig"},
         "EnableOnlineStore":{"shape":"Boolean"},
-        "TtlDuration":{"shape":"TtlDuration"}
+        "TtlDuration":{"shape":"TtlDuration"},
+        "StorageType":{"shape":"StorageType"}
       }
     },
     "OnlineStoreConfigUpdate":{
@@ -19373,6 +19396,13 @@
         "MaxWaitTimeInSeconds":{"shape":"MaxWaitTimeInSeconds"}
       }
     },
+    "StorageType":{
+      "type":"string",
+      "enum":[
+        "Standard",
+        "InMemory"
+      ]
+    },
     "String":{"type":"string"},
     "String1024":{
       "type":"string",
@@ -21351,6 +21381,13 @@
     "VariantWeight":{
       "type":"float",
       "min":0
+    },
+    "VectorConfig":{
+      "type":"structure",
+      "required":["Dimension"],
+      "members":{
+        "Dimension":{"shape":"Dimension"}
+      }
     },
     "VendorGuidance":{
       "type":"string",

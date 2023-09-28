@@ -1791,6 +1791,99 @@ func (c *IoTFleetWise) GetDecoderManifestWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
+const opGetEncryptionConfiguration = "GetEncryptionConfiguration"
+
+// GetEncryptionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetEncryptionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEncryptionConfiguration for more information on using the GetEncryptionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEncryptionConfigurationRequest method.
+//	req, resp := client.GetEncryptionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/GetEncryptionConfiguration
+func (c *IoTFleetWise) GetEncryptionConfigurationRequest(input *GetEncryptionConfigurationInput) (req *request.Request, output *GetEncryptionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetEncryptionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetEncryptionConfigurationInput{}
+	}
+
+	output = &GetEncryptionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEncryptionConfiguration API operation for AWS IoT FleetWise.
+//
+// Retrieves the encryption configuration for resources and data in Amazon Web
+// Services IoT FleetWise.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT FleetWise's
+// API operation GetEncryptionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource wasn't found.
+//
+//   - InternalServerException
+//     The request couldn't be completed because the server temporarily failed.
+//
+//   - ThrottlingException
+//     The request couldn't be completed due to throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/GetEncryptionConfiguration
+func (c *IoTFleetWise) GetEncryptionConfiguration(input *GetEncryptionConfigurationInput) (*GetEncryptionConfigurationOutput, error) {
+	req, out := c.GetEncryptionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetEncryptionConfigurationWithContext is the same as GetEncryptionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEncryptionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTFleetWise) GetEncryptionConfigurationWithContext(ctx aws.Context, input *GetEncryptionConfigurationInput, opts ...request.Option) (*GetEncryptionConfigurationOutput, error) {
+	req, out := c.GetEncryptionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetFleet = "GetFleet"
 
 // GetFleetRequest generates a "aws/request.Request" representing the
@@ -4611,6 +4704,106 @@ func (c *IoTFleetWise) ListVehiclesInFleetPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opPutEncryptionConfiguration = "PutEncryptionConfiguration"
+
+// PutEncryptionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutEncryptionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEncryptionConfiguration for more information on using the PutEncryptionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutEncryptionConfigurationRequest method.
+//	req, resp := client.PutEncryptionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/PutEncryptionConfiguration
+func (c *IoTFleetWise) PutEncryptionConfigurationRequest(input *PutEncryptionConfigurationInput) (req *request.Request, output *PutEncryptionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutEncryptionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutEncryptionConfigurationInput{}
+	}
+
+	output = &PutEncryptionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutEncryptionConfiguration API operation for AWS IoT FleetWise.
+//
+// Creates or updates the encryption configuration. Amazon Web Services IoT
+// FleetWise can encrypt your data and resources using an Amazon Web Services
+// managed key. Or, you can use a KMS key that you own and manage. For more
+// information, see Data encryption (https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/data-encryption.html)
+// in the Amazon Web Services IoT FleetWise Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT FleetWise's
+// API operation PutEncryptionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource wasn't found.
+//
+//   - InternalServerException
+//     The request couldn't be completed because the server temporarily failed.
+//
+//   - ConflictException
+//     The request has conflicting operations. This can occur if you're trying to
+//     perform more than one operation on the same resource at the same time.
+//
+//   - ThrottlingException
+//     The request couldn't be completed due to throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/PutEncryptionConfiguration
+func (c *IoTFleetWise) PutEncryptionConfiguration(input *PutEncryptionConfigurationInput) (*PutEncryptionConfigurationOutput, error) {
+	req, out := c.PutEncryptionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutEncryptionConfigurationWithContext is the same as PutEncryptionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEncryptionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTFleetWise) PutEncryptionConfigurationWithContext(ctx aws.Context, input *PutEncryptionConfigurationInput, opts ...request.Option) (*PutEncryptionConfigurationOutput, error) {
+	req, out := c.PutEncryptionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutLoggingOptions = "PutLoggingOptions"
 
 // PutLoggingOptionsRequest generates a "aws/request.Request" representing the
@@ -7093,7 +7286,9 @@ type CreateCampaignInput struct {
 	//
 	// Amazon S3 optimizes the cost of data storage and provides additional mechanisms
 	// to use vehicle data, such as data lakes, centralized data storage, data processing
-	// pipelines, and analytics.
+	// pipelines, and analytics. Amazon Web Services IoT FleetWise supports at-least-once
+	// file delivery to S3. Your vehicle data is stored on multiple Amazon Web Services
+	// IoT FleetWise servers for redundancy and high availability.
 	//
 	// You can use Amazon Timestream to access and analyze time series data, and
 	// Timestream to query vehicle data so that you can identify trends and patterns.
@@ -9799,6 +9994,114 @@ func (s *GetDecoderManifestOutput) SetName(v string) *GetDecoderManifestOutput {
 // SetStatus sets the Status field's value.
 func (s *GetDecoderManifestOutput) SetStatus(v string) *GetDecoderManifestOutput {
 	s.Status = &v
+	return s
+}
+
+type GetEncryptionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncryptionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncryptionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetEncryptionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when encryption was configured in seconds since epoch (January 1,
+	// 1970 at midnight UTC time).
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
+
+	// The encryption status.
+	//
+	// EncryptionStatus is a required field
+	EncryptionStatus *string `locationName:"encryptionStatus" type:"string" required:"true" enum:"EncryptionStatus"`
+
+	// The type of encryption. Set to KMS_BASED_ENCRYPTION to use an KMS key that
+	// you own and manage. Set to FLEETWISE_DEFAULT_ENCRYPTION to use an Amazon
+	// Web Services managed key that is owned by the Amazon Web Services IoT FleetWise
+	// service account.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The error message that describes why encryption settings couldn't be configured,
+	// if applicable.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The ID of the KMS key that is used for encryption.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The time when encryption was last updated in seconds since epoch (January
+	// 1, 1970 at midnight UTC time).
+	LastModificationTime *time.Time `locationName:"lastModificationTime" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncryptionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncryptionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetEncryptionConfigurationOutput) SetCreationTime(v time.Time) *GetEncryptionConfigurationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEncryptionStatus sets the EncryptionStatus field's value.
+func (s *GetEncryptionConfigurationOutput) SetEncryptionStatus(v string) *GetEncryptionConfigurationOutput {
+	s.EncryptionStatus = &v
+	return s
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *GetEncryptionConfigurationOutput) SetEncryptionType(v string) *GetEncryptionConfigurationOutput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *GetEncryptionConfigurationOutput) SetErrorMessage(v string) *GetEncryptionConfigurationOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetEncryptionConfigurationOutput) SetKmsKeyId(v string) *GetEncryptionConfigurationOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLastModificationTime sets the LastModificationTime field's value.
+func (s *GetEncryptionConfigurationOutput) SetLastModificationTime(v time.Time) *GetEncryptionConfigurationOutput {
+	s.LastModificationTime = &v
 	return s
 }
 
@@ -13561,6 +13864,118 @@ func (s *ObdSignal) SetStartByte(v int64) *ObdSignal {
 	return s
 }
 
+type PutEncryptionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of encryption. Choose KMS_BASED_ENCRYPTION to use a KMS key or FLEETWISE_DEFAULT_ENCRYPTION
+	// to use an Amazon Web Services managed key.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The ID of the KMS key that is used for encryption.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEncryptionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEncryptionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEncryptionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEncryptionConfigurationInput"}
+	if s.EncryptionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncryptionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *PutEncryptionConfigurationInput) SetEncryptionType(v string) *PutEncryptionConfigurationInput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *PutEncryptionConfigurationInput) SetKmsKeyId(v string) *PutEncryptionConfigurationInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+type PutEncryptionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption status.
+	//
+	// EncryptionStatus is a required field
+	EncryptionStatus *string `locationName:"encryptionStatus" type:"string" required:"true" enum:"EncryptionStatus"`
+
+	// The type of encryption. Set to KMS_BASED_ENCRYPTION to use an KMS key that
+	// you own and manage. Set to FLEETWISE_DEFAULT_ENCRYPTION to use an Amazon
+	// Web Services managed key that is owned by the Amazon Web Services IoT FleetWise
+	// service account.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The ID of the KMS key that is used for encryption.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEncryptionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEncryptionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionStatus sets the EncryptionStatus field's value.
+func (s *PutEncryptionConfigurationOutput) SetEncryptionStatus(v string) *PutEncryptionConfigurationOutput {
+	s.EncryptionStatus = &v
+	return s
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *PutEncryptionConfigurationOutput) SetEncryptionType(v string) *PutEncryptionConfigurationOutput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *PutEncryptionConfigurationOutput) SetKmsKeyId(v string) *PutEncryptionConfigurationOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
 type PutLoggingOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16385,6 +16800,42 @@ func DiagnosticsMode_Values() []string {
 	return []string{
 		DiagnosticsModeOff,
 		DiagnosticsModeSendActiveDtcs,
+	}
+}
+
+const (
+	// EncryptionStatusPending is a EncryptionStatus enum value
+	EncryptionStatusPending = "PENDING"
+
+	// EncryptionStatusSuccess is a EncryptionStatus enum value
+	EncryptionStatusSuccess = "SUCCESS"
+
+	// EncryptionStatusFailure is a EncryptionStatus enum value
+	EncryptionStatusFailure = "FAILURE"
+)
+
+// EncryptionStatus_Values returns all elements of the EncryptionStatus enum
+func EncryptionStatus_Values() []string {
+	return []string{
+		EncryptionStatusPending,
+		EncryptionStatusSuccess,
+		EncryptionStatusFailure,
+	}
+}
+
+const (
+	// EncryptionTypeKmsBasedEncryption is a EncryptionType enum value
+	EncryptionTypeKmsBasedEncryption = "KMS_BASED_ENCRYPTION"
+
+	// EncryptionTypeFleetwiseDefaultEncryption is a EncryptionType enum value
+	EncryptionTypeFleetwiseDefaultEncryption = "FLEETWISE_DEFAULT_ENCRYPTION"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeKmsBasedEncryption,
+		EncryptionTypeFleetwiseDefaultEncryption,
 	}
 }
 

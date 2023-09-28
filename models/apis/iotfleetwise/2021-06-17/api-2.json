@@ -325,6 +325,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetEncryptionConfiguration":{
+      "name":"GetEncryptionConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEncryptionConfigurationRequest"},
+      "output":{"shape":"GetEncryptionConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetFleet":{
       "name":"GetFleet",
       "http":{
@@ -674,6 +690,23 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "PutEncryptionConfiguration":{
+      "name":"PutEncryptionConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutEncryptionConfigurationRequest"},
+      "output":{"shape":"PutEncryptionConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -1469,6 +1502,21 @@
       "members":{
       }
     },
+    "EncryptionStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SUCCESS",
+        "FAILURE"
+      ]
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":[
+        "KMS_BASED_ENCRYPTION",
+        "FLEETWISE_DEFAULT_ENCRYPTION"
+      ]
+    },
     "FleetSummary":{
       "type":"structure",
       "required":[
@@ -1556,6 +1604,26 @@
         "description":{"shape":"description"},
         "modelManifestArn":{"shape":"arn"},
         "status":{"shape":"ManifestStatus"},
+        "creationTime":{"shape":"timestamp"},
+        "lastModificationTime":{"shape":"timestamp"}
+      }
+    },
+    "GetEncryptionConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetEncryptionConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "encryptionStatus",
+        "encryptionType"
+      ],
+      "members":{
+        "kmsKeyId":{"shape":"String"},
+        "encryptionStatus":{"shape":"EncryptionStatus"},
+        "encryptionType":{"shape":"EncryptionType"},
+        "errorMessage":{"shape":"errorMessage"},
         "creationTime":{"shape":"timestamp"},
         "lastModificationTime":{"shape":"timestamp"}
       }
@@ -2290,6 +2358,26 @@
       "type":"string",
       "max":50,
       "min":1
+    },
+    "PutEncryptionConfigurationRequest":{
+      "type":"structure",
+      "required":["encryptionType"],
+      "members":{
+        "kmsKeyId":{"shape":"String"},
+        "encryptionType":{"shape":"EncryptionType"}
+      }
+    },
+    "PutEncryptionConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "encryptionStatus",
+        "encryptionType"
+      ],
+      "members":{
+        "kmsKeyId":{"shape":"String"},
+        "encryptionStatus":{"shape":"EncryptionStatus"},
+        "encryptionType":{"shape":"EncryptionType"}
+      }
     },
     "PutLoggingOptionsRequest":{
       "type":"structure",

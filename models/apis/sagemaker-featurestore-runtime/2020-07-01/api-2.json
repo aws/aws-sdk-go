@@ -229,13 +229,11 @@
     },
     "FeatureValue":{
       "type":"structure",
-      "required":[
-        "FeatureName",
-        "ValueAsString"
-      ],
+      "required":["FeatureName"],
       "members":{
         "FeatureName":{"shape":"FeatureName"},
-        "ValueAsString":{"shape":"ValueAsString"}
+        "ValueAsString":{"shape":"ValueAsString"},
+        "ValueAsStringList":{"shape":"ValueAsStringList"}
       }
     },
     "GetRecordRequest":{
@@ -390,6 +388,12 @@
       "type":"string",
       "max":358400,
       "pattern":".*"
+    },
+    "ValueAsStringList":{
+      "type":"list",
+      "member":{"shape":"ValueAsString"},
+      "max":358400,
+      "min":0
     }
   }
 }

@@ -20,6 +20,7 @@
     "DisassociateVehicleFleet": "<p>Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a fleet doesn't delete the vehicle.</p> <note> <p>If the vehicle is successfully dissociated from a fleet, Amazon Web Services IoT FleetWise sends back an HTTP 200 response with an empty body.</p> </note>",
     "GetCampaign": "<p> Retrieves information about a campaign. </p>",
     "GetDecoderManifest": "<p> Retrieves information about a created decoder manifest. </p>",
+    "GetEncryptionConfiguration": "<p>Retrieves the encryption configuration for resources and data in Amazon Web Services IoT FleetWise.</p>",
     "GetFleet": "<p> Retrieves information about a fleet. </p>",
     "GetLoggingOptions": "<p>Retrieves the logging options.</p>",
     "GetModelManifest": "<p> Retrieves information about a vehicle model (model manifest). </p>",
@@ -42,6 +43,7 @@
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "ListVehicles": "<p> Retrieves a list of summaries of created vehicles. </p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the request to return more results.</p> </note>",
     "ListVehiclesInFleet": "<p> Retrieves a list of summaries of all vehicles associated with a fleet. </p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the request to return more results.</p> </note>",
+    "PutEncryptionConfiguration": "<p>Creates or updates the encryption configuration. Amazon Web Services IoT FleetWise can encrypt your data and resources using an Amazon Web Services managed key. Or, you can use a KMS key that you own and manage. For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/data-encryption.html\">Data encryption</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
     "PutLoggingOptions": "<p>Creates or updates the logging option.</p>",
     "RegisterAccount": "<important> <p>This API operation contains deprecated parameters. Register your account again without the Timestream resources parameter so that Amazon Web Services IoT FleetWise can remove the Timestream metadata stored. You should then pass the data destination into the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CreateCampaign.html\">CreateCampaign</a> API operation.</p> <p>You must delete any existing campaigns that include an empty data destination before you register your account again. For more information, see the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_DeleteCampaign.html\">DeleteCampaign</a> API operation.</p> <p>If you want to delete the Timestream inline policy from the service-linked role, such as to mitigate an overly permissive policy, you must first delete any existing campaigns. Then delete the service-linked role and register your account again to enable CloudWatch metrics. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html\">DeleteServiceLinkedRole</a> in the <i>Identity and Access Management API Reference</i>.</p> </important> <pre><code> &lt;p&gt;Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services Cloud. For more information, including step-by-step procedures, see &lt;a href=&quot;https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html&quot;&gt;Setting up Amazon Web Services IoT FleetWise&lt;/a&gt;. &lt;/p&gt; &lt;note&gt; &lt;p&gt;An Amazon Web Services account is &lt;b&gt;not&lt;/b&gt; the same thing as a &quot;user.&quot; An &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users&quot;&gt;Amazon Web Services user&lt;/a&gt; is an identity that you create using Identity and Access Management (IAM) and takes the form of either an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html&quot;&gt;IAM user&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM role, both with credentials&lt;/a&gt;. A single Amazon Web Services account can, and typically does, contain many users and roles.&lt;/p&gt; &lt;/note&gt; </code></pre>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
@@ -284,7 +286,7 @@
     "DataDestinationConfigs": {
       "base": null,
       "refs": {
-        "CreateCampaignRequest$dataDestinationConfigs": "<p>The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream.</p> <p>Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. </p> <p>You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns.</p>",
+        "CreateCampaignRequest$dataDestinationConfigs": "<p>The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream.</p> <p>Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. Amazon Web Services IoT FleetWise supports at-least-once file delivery to S3. Your vehicle data is stored on multiple Amazon Web Services IoT FleetWise servers for redundancy and high availability.</p> <p>You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns.</p>",
         "GetCampaignResponse$dataDestinationConfigs": "<p>The destination where the campaign sends data. You can choose to send data to be stored in Amazon S3 or Amazon Timestream.</p> <p>Amazon S3 optimizes the cost of data storage and provides additional mechanisms to use vehicle data, such as data lakes, centralized data storage, data processing pipelines, and analytics. </p> <p>You can use Amazon Timestream to access and analyze time series data, and Timestream to query vehicle data so that you can identify trends and patterns.</p>"
       }
     },
@@ -390,6 +392,21 @@
       "refs": {
       }
     },
+    "EncryptionStatus": {
+      "base": null,
+      "refs": {
+        "GetEncryptionConfigurationResponse$encryptionStatus": "<p>The encryption status.</p>",
+        "PutEncryptionConfigurationResponse$encryptionStatus": "<p>The encryption status.</p>"
+      }
+    },
+    "EncryptionType": {
+      "base": null,
+      "refs": {
+        "GetEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption. Set to <code>KMS_BASED_ENCRYPTION</code> to use an KMS key that you own and manage. Set to <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key that is owned by the Amazon Web Services IoT FleetWise service account.</p>",
+        "PutEncryptionConfigurationRequest$encryptionType": "<p>The type of encryption. Choose <code>KMS_BASED_ENCRYPTION</code> to use a KMS key or <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key.</p>",
+        "PutEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption. Set to <code>KMS_BASED_ENCRYPTION</code> to use an KMS key that you own and manage. Set to <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key that is owned by the Amazon Web Services IoT FleetWise service account.</p>"
+      }
+    },
     "FleetSummary": {
       "base": "<p>Information about a fleet.</p> <p>You can use the API operation to return this information about multiple fleets.</p>",
       "refs": {
@@ -433,6 +450,16 @@
       }
     },
     "GetDecoderManifestResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEncryptionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEncryptionConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -929,6 +956,16 @@
         "CanInterface$protocolVersion": "<p>The version of the communication protocol for the interface.</p>"
       }
     },
+    "PutEncryptionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutEncryptionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutLoggingOptionsRequest": {
       "base": null,
       "refs": {
@@ -1051,6 +1088,9 @@
       "base": null,
       "refs": {
         "FormattedVss$vssJson": "<p>Provides the VSS in JSON format.</p>",
+        "GetEncryptionConfigurationResponse$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
+        "PutEncryptionConfigurationRequest$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
+        "PutEncryptionConfigurationResponse$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
         "ValidationExceptionField$name": "<p>The name of the parameter field with the validation error.</p>",
         "ValidationExceptionField$message": "<p>A message about the validation error.</p>"
       }
@@ -1524,6 +1564,7 @@
     "errorMessage": {
       "base": null,
       "refs": {
+        "GetEncryptionConfigurationResponse$errorMessage": "<p>The error message that describes why encryption settings couldn't be configured, if applicable.</p>",
         "IamRegistrationResponse$errorMessage": "<p>A message associated with a registration error.</p>",
         "TimestreamRegistrationResponse$errorMessage": "<p>A message associated with a registration error.</p>"
       }
@@ -1808,6 +1849,8 @@
         "GetCampaignResponse$lastModificationTime": "<p>The last time the campaign was modified.</p>",
         "GetDecoderManifestResponse$creationTime": "<p> The time the decoder manifest was created in seconds since epoch (January 1, 1970 at midnight UTC time). </p>",
         "GetDecoderManifestResponse$lastModificationTime": "<p> The time the decoder manifest was last updated in seconds since epoch (January 1, 1970 at midnight UTC time). </p>",
+        "GetEncryptionConfigurationResponse$creationTime": "<p>The time when encryption was configured in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
+        "GetEncryptionConfigurationResponse$lastModificationTime": "<p>The time when encryption was last updated in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
         "GetFleetResponse$creationTime": "<p> The time the fleet was created in seconds since epoch (January 1, 1970 at midnight UTC time). </p>",
         "GetFleetResponse$lastModificationTime": "<p> The time the fleet was last updated, in seconds since epoch (January 1, 1970 at midnight UTC time). </p>",
         "GetModelManifestResponse$creationTime": "<p>The time the vehicle model was created, in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",

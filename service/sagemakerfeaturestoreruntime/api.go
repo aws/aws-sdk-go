@@ -951,12 +951,16 @@ type FeatureValue struct {
 	// FeatureName is a required field
 	FeatureName *string `min:"1" type:"string" required:"true"`
 
-	// The value associated with a feature, in string format. Note that features
-	// types can be String, Integral, or Fractional. This value represents all three
-	// types as a string.
-	//
-	// ValueAsString is a required field
-	ValueAsString *string `type:"string" required:"true"`
+	// The value in string format associated with a feature. Used when your CollectionType
+	// is None. Note that features types can be String, Integral, or Fractional.
+	// This value represents all three types as a string.
+	ValueAsString *string `type:"string"`
+
+	// The list of values in string format associated with a feature. Used when
+	// your CollectionType is a List, Set, or Vector. Note that features types can
+	// be String, Integral, or Fractional. These values represents all three types
+	// as a string.
+	ValueAsStringList []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -986,9 +990,6 @@ func (s *FeatureValue) Validate() error {
 	if s.FeatureName != nil && len(*s.FeatureName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FeatureName", 1))
 	}
-	if s.ValueAsString == nil {
-		invalidParams.Add(request.NewErrParamRequired("ValueAsString"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1005,6 +1006,12 @@ func (s *FeatureValue) SetFeatureName(v string) *FeatureValue {
 // SetValueAsString sets the ValueAsString field's value.
 func (s *FeatureValue) SetValueAsString(v string) *FeatureValue {
 	s.ValueAsString = &v
+	return s
+}
+
+// SetValueAsStringList sets the ValueAsStringList field's value.
+func (s *FeatureValue) SetValueAsStringList(v []*string) *FeatureValue {
+	s.ValueAsStringList = v
 	return s
 }
 
