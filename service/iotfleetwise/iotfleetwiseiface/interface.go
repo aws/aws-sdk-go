@@ -132,6 +132,10 @@ type IoTFleetWiseAPI interface {
 	GetDecoderManifestWithContext(aws.Context, *iotfleetwise.GetDecoderManifestInput, ...request.Option) (*iotfleetwise.GetDecoderManifestOutput, error)
 	GetDecoderManifestRequest(*iotfleetwise.GetDecoderManifestInput) (*request.Request, *iotfleetwise.GetDecoderManifestOutput)
 
+	GetEncryptionConfiguration(*iotfleetwise.GetEncryptionConfigurationInput) (*iotfleetwise.GetEncryptionConfigurationOutput, error)
+	GetEncryptionConfigurationWithContext(aws.Context, *iotfleetwise.GetEncryptionConfigurationInput, ...request.Option) (*iotfleetwise.GetEncryptionConfigurationOutput, error)
+	GetEncryptionConfigurationRequest(*iotfleetwise.GetEncryptionConfigurationInput) (*request.Request, *iotfleetwise.GetEncryptionConfigurationOutput)
+
 	GetFleet(*iotfleetwise.GetFleetInput) (*iotfleetwise.GetFleetOutput, error)
 	GetFleetWithContext(aws.Context, *iotfleetwise.GetFleetInput, ...request.Option) (*iotfleetwise.GetFleetOutput, error)
 	GetFleetRequest(*iotfleetwise.GetFleetInput) (*request.Request, *iotfleetwise.GetFleetOutput)
@@ -258,6 +262,10 @@ type IoTFleetWiseAPI interface {
 
 	ListVehiclesInFleetPages(*iotfleetwise.ListVehiclesInFleetInput, func(*iotfleetwise.ListVehiclesInFleetOutput, bool) bool) error
 	ListVehiclesInFleetPagesWithContext(aws.Context, *iotfleetwise.ListVehiclesInFleetInput, func(*iotfleetwise.ListVehiclesInFleetOutput, bool) bool, ...request.Option) error
+
+	PutEncryptionConfiguration(*iotfleetwise.PutEncryptionConfigurationInput) (*iotfleetwise.PutEncryptionConfigurationOutput, error)
+	PutEncryptionConfigurationWithContext(aws.Context, *iotfleetwise.PutEncryptionConfigurationInput, ...request.Option) (*iotfleetwise.PutEncryptionConfigurationOutput, error)
+	PutEncryptionConfigurationRequest(*iotfleetwise.PutEncryptionConfigurationInput) (*request.Request, *iotfleetwise.PutEncryptionConfigurationOutput)
 
 	PutLoggingOptions(*iotfleetwise.PutLoggingOptionsInput) (*iotfleetwise.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsWithContext(aws.Context, *iotfleetwise.PutLoggingOptionsInput, ...request.Option) (*iotfleetwise.PutLoggingOptionsOutput, error)

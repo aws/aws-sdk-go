@@ -598,7 +598,7 @@
     "BudgetNotificationsForAccountList":{
       "type":"list",
       "member":{"shape":"BudgetNotificationsForAccount"},
-      "max":50
+      "max":1000
     },
     "BudgetPerformanceHistory":{
       "type":"structure",
@@ -1012,7 +1012,7 @@
       "required":["AccountId"],
       "members":{
         "AccountId":{"shape":"AccountId"},
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"MaxResultsDescribeBudgets"},
         "NextToken":{"shape":"GenericString"}
       }
     },
@@ -1217,7 +1217,13 @@
     "MaxResultsBudgetNotifications":{
       "type":"integer",
       "box":true,
-      "max":50,
+      "max":1000,
+      "min":1
+    },
+    "MaxResultsDescribeBudgets":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
       "min":1
     },
     "NotFoundException":{

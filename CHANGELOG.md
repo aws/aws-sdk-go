@@ -1,3 +1,19 @@
+Release v1.45.19 (2023-09-28)
+===
+
+### Service Client Updates
+* `service/bedrock`: Updates service API, documentation, paginators, and examples
+* `service/bedrock-runtime`: Adds new service
+* `service/budgets`: Updates service API and documentation
+  * Update DescribeBudgets and DescribeBudgetNotificationsForAccount MaxResults limit to 1000.
+* `service/ec2`: Updates service API and documentation
+  * Adds support for Customer Managed Key encryption for Amazon Verified Access resources
+* `service/iotfleetwise`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Online store feature groups supports Standard and InMemory tier storage types for low latency storage for real-time data retrieval. The InMemory tier supports collection types List, Set, and Vector.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/wafv2`: Updates service documentation
+
 Release v1.45.18 (2023-09-27)
 ===
 

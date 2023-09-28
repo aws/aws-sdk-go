@@ -221,9 +221,16 @@
         "BatchGetRecordResultDetail$RecordIdentifierValueAsString": "<p>The value of the record identifier in string format.</p>",
         "DeleteRecordRequest$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> that uniquely identifies the record, in string format. </p>",
         "DeleteRecordRequest$EventTime": "<p>Timestamp indicating when the deletion event occurred. <code>EventTime</code> can be used to query data at a certain point in time.</p>",
-        "FeatureValue$ValueAsString": "<p>The value associated with a feature, in string format. Note that features types can be String, Integral, or Fractional. This value represents all three types as a string.</p>",
+        "FeatureValue$ValueAsString": "<p>The value in string format associated with a feature. Used when your <code>CollectionType</code> is <code>None</code>. Note that features types can be <code>String</code>, <code>Integral</code>, or <code>Fractional</code>. This value represents all three types as a string.</p>",
         "GetRecordRequest$RecordIdentifierValueAsString": "<p>The value that corresponds to <code>RecordIdentifier</code> type and uniquely identifies the record in the <code>FeatureGroup</code>. </p>",
-        "RecordIdentifiers$member": null
+        "RecordIdentifiers$member": null,
+        "ValueAsStringList$member": null
+      }
+    },
+    "ValueAsStringList": {
+      "base": null,
+      "refs": {
+        "FeatureValue$ValueAsStringList": "<p>The list of values in string format associated with a feature. Used when your <code>CollectionType</code> is a <code>List</code>, <code>Set</code>, or <code>Vector</code>. Note that features types can be <code>String</code>, <code>Integral</code>, or <code>Fractional</code>. These values represents all three types as a string.</p>"
       }
     }
   }
