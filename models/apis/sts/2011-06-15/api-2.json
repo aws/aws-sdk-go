@@ -155,7 +155,7 @@
         "RoleArn":{"shape":"arnType"},
         "RoleSessionName":{"shape":"roleSessionNameType"},
         "PolicyArns":{"shape":"policyDescriptorListType"},
-        "Policy":{"shape":"sessionPolicyDocumentType"},
+        "Policy":{"shape":"unrestrictedSessionPolicyDocumentType"},
         "DurationSeconds":{"shape":"roleDurationSecondsType"},
         "Tags":{"shape":"tagListType"},
         "TransitiveTagKeys":{"shape":"tagKeyListType"},
@@ -611,6 +611,11 @@
       "pattern":"[\\d]*"
     },
     "tokenType":{"type":"string"},
+    "unrestrictedSessionPolicyDocumentType":{
+      "type":"string",
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
     "urlType":{
       "type":"string",
       "max":2048,

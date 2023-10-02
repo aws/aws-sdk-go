@@ -1,3 +1,21 @@
+Release v1.45.20 (2023-10-02)
+===
+
+### Service Client Updates
+* `service/bedrock`: Updates service API, documentation, waiters, and paginators
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Introducing Amazon EC2 R7iz instances with 3.9 GHz sustained all-core turbo frequency and deliver up to 20% better performance than previous generation z1d instances.
+* `service/managedblockchain`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds DefaultCertificateForNewLaunches field in the DescribeCertificates API response.
+* `service/sso`: Adds new service
+  * Fix FIPS Endpoints in aws-us-gov.
+* `service/sts`: Updates service API and documentation
+  * STS API updates for assumeRole
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family
+
 Release v1.45.19 (2023-09-28)
 ===
 

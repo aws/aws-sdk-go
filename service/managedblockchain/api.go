@@ -3967,8 +3967,6 @@ type CreateNodeInput struct {
 	//
 	//    * n-ethereum-goerli
 	//
-	//    * n-ethereum-rinkeby
-	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
 
@@ -4437,8 +4435,6 @@ type DeleteNodeInput struct {
 	//    * n-ethereum-mainnet
 	//
 	//    * n-ethereum-goerli
-	//
-	//    * n-ethereum-rinkeby
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -7156,8 +7152,6 @@ type NetworkEthereumAttributes struct {
 	//    * mainnet = 1
 	//
 	//    * goerli = 5
-	//
-	//    * rinkeby = 4
 	ChainId *string `type:"string"`
 }
 

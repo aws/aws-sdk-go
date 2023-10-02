@@ -2944,6 +2944,7 @@
     "CertificateMessage":{
       "type":"structure",
       "members":{
+        "DefaultCertificateForNewLaunches":{"shape":"String"},
         "Certificates":{"shape":"CertificateList"},
         "Marker":{"shape":"String"}
       }

@@ -68,8 +68,8 @@ func (c *BedrockRuntime) InvokeModelRequest(input *InvokeModelInput) (req *reque
 // in the request body. You use InvokeModel to run inference for text models,
 // image models, and embedding models.
 //
-// For more information about invoking models, see Using the API in the Bedrock
-// User Guide (https://d2eo22ngex1n9g.cloudfront.net/Documentation/BedrockUserGuide.pdf).
+// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+// in the Bedrock User Guide.
 //
 // For example requests, see Examples (after the Errors section).
 //
@@ -187,8 +187,8 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 // Invoke the specified Bedrock model to run inference using the input provided.
 // Return the response in a stream.
 //
-// For more information about invoking models, see Using the API in the Bedrock
-// User Guide (https://d2eo22ngex1n9g.cloudfront.net/Documentation/BedrockUserGuide.pdf).
+// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+// in the Bedrock User Guide.
 //
 // For an example request and response, see Examples (after the Errors section).
 //
@@ -1086,6 +1086,35 @@ func (s ModelTimeoutException) GoString() string {
 	return s.String()
 }
 
+// The ModelTimeoutException is and event in the ResponseStream group of events.
+func (s *ModelTimeoutException) eventResponseStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ModelTimeoutException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ModelTimeoutException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ModelTimeoutException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 func newErrorModelTimeoutException(v protocol.ResponseMetadata) error {
 	return &ModelTimeoutException{
 		RespMetadata: v,
@@ -1378,6 +1407,8 @@ func (u unmarshalerForResponseStreamEvent) UnmarshalerForEventName(eventType str
 		return newErrorInternalServerException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "modelStreamErrorException":
 		return newErrorModelStreamErrorException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "modelTimeoutException":
+		return newErrorModelTimeoutException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "throttlingException":
 		return newErrorThrottlingException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "validationException":
