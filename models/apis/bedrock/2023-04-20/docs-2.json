@@ -3,20 +3,25 @@
   "service": "<p>Describes the API operations for creating and managing Bedrock models.</p>",
   "operations": {
     "CreateModelCustomizationJob": "<p>Creates a fine-tuning job to customize a base model.</p> <p>You specify the base foundation model and the location of the training data. After the model-customization job completes successfully, your custom model resource will be ready to use. Training data contains input and output text for each record in a JSONL format. Optionally, you can specify validation data in the same format as the training data. Bedrock returns validation loss metrics and output generations after the job completes. </p> <p> Model-customization jobs are asynchronous and the completion time depends on the base model and the training/validation data size. To monitor a job, use the <code>GetModelCustomizationJob</code> operation to retrieve the job status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
+    "CreateProvisionedModelThroughput": "<p>Creates a provisioned throughput with dedicated capacity for a foundation model or a fine-tuned model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "DeleteCustomModel": "<p>Deletes a custom model that you created earlier. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "DeleteModelInvocationLoggingConfiguration": "<p>Delete the invocation logging. </p>",
+    "DeleteProvisionedModelThroughput": "<p>Deletes a provisioned throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "GetCustomModel": "<p>Get the properties associated with a Bedrock custom model that you have created.For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "GetFoundationModel": "<p>Get details about a Bedrock foundation model.</p>",
     "GetModelCustomizationJob": "<p>Retrieves the properties associated with a model-customization job, including the status of the job. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "GetModelInvocationLoggingConfiguration": "<p>Get the current configuration values for model invocation logging.</p>",
+    "GetProvisionedModelThroughput": "<p>Get details for a provisioned throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "ListCustomModels": "<p>Returns a list of the custom models that you have created with the <code>CreateModelCustomizationJob</code> operation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "ListFoundationModels": "<p>List of Bedrock foundation models that you can use. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html\">Foundation models</a> in the Bedrock User Guide.</p>",
     "ListModelCustomizationJobs": "<p>Returns a list of model customization jobs that you have submitted. You can filter the jobs to return based on one or more criteria.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
+    "ListProvisionedModelThroughputs": "<p>List the provisioned capacities. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "ListTagsForResource": "<p>List the tags associated with the specified resource.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Bedrock User Guide.</p>",
     "PutModelInvocationLoggingConfiguration": "<p>Set the configuration values for model invocation logging.</p>",
     "StopModelCustomizationJob": "<p>Stops an active model customization job. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "TagResource": "<p>Associate tags with a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Bedrock User Guide.</p>",
-    "UntagResource": "<p>Remove one or more tags from a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Bedrock User Guide.</p>"
+    "UntagResource": "<p>Remove one or more tags from a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Bedrock User Guide.</p>",
+    "UpdateProvisionedModelThroughput": "<p>Update a provisioned throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -42,9 +47,9 @@
       "refs": {
         "FoundationModelDetails$responseStreamingSupported": "<p>Indicates whether the model supports streaming.</p>",
         "FoundationModelSummary$responseStreamingSupported": "<p>Indicates whether the model supports streaming.</p>",
-        "LoggingConfig$embeddingDataDeliveryEnabled": "<p>Set to include embeddings data in the log delivery.</p>",
+        "LoggingConfig$textDataDeliveryEnabled": "<p>Set to include text data in the log delivery.</p>",
         "LoggingConfig$imageDataDeliveryEnabled": "<p>Set to include image data in the log delivery.</p>",
-        "LoggingConfig$textDataDeliveryEnabled": "<p>Set to include text data in the log delivery.</p>"
+        "LoggingConfig$embeddingDataDeliveryEnabled": "<p>Set to include embeddings data in the log delivery.</p>"
       }
     },
     "BrandedName": {
@@ -68,6 +73,14 @@
         "LoggingConfig$cloudWatchConfig": "<p>CloudWatch logging configuration.</p>"
       }
     },
+    "CommitmentDuration": {
+      "base": null,
+      "refs": {
+        "CreateProvisionedModelThroughputRequest$commitmentDuration": "<p>Commitment duration requested for the provisioned throughput.</p>",
+        "GetProvisionedModelThroughputResponse$commitmentDuration": "<p>Commitment duration of the provisioned throughput.</p>",
+        "ProvisionedModelSummary$commitmentDuration": "<p>Commitment duration for the provisioned throughput.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>Error occurred because of a conflict while performing an operation.</p>",
       "refs": {
@@ -79,6 +92,16 @@
       }
     },
     "CreateModelCustomizationJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisionedModelThroughputRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisionedModelThroughputResponse": {
       "base": null,
       "refs": {
       }
@@ -134,10 +157,21 @@
       "refs": {
       }
     },
+    "DeleteProvisionedModelThroughputRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProvisionedModelThroughputResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "GetModelCustomizationJobResponse$failureMessage": "<p>Information about why the job failed.</p>"
+        "GetModelCustomizationJobResponse$failureMessage": "<p>Information about why the job failed.</p>",
+        "GetProvisionedModelThroughputResponse$failureMessage": "<p>Failure message for any issues that the create operation encounters.</p>"
       }
     },
     "FineTuningJobStatus": {
@@ -152,7 +186,9 @@
         "FoundationModelDetails$modelArn": "<p>The model ARN.</p>",
         "FoundationModelSummary$modelArn": "<p>The ARN of the foundation model.</p>",
         "GetModelCustomizationJobResponse$baseModelArn": "<p>ARN of the base model.</p>",
-        "ListCustomModelsRequest$foundationModelArnEquals": "<p>Return custom models only if the foundation model ARN matches this parameter.</p>"
+        "GetProvisionedModelThroughputResponse$foundationModelArn": "<p>ARN of the foundation model.</p>",
+        "ListCustomModelsRequest$foundationModelArnEquals": "<p>Return custom models only if the foundation model ARN matches this parameter.</p>",
+        "ProvisionedModelSummary$foundationModelArn": "<p>Foundation model ARN.</p>"
       }
     },
     "FoundationModelDetails": {
@@ -213,10 +249,21 @@
       "refs": {
       }
     },
+    "GetProvisionedModelThroughputRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProvisionedModelThroughputResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "IdempotencyToken": {
       "base": null,
       "refs": {
         "CreateModelCustomizationJobRequest$clientRequestToken": "<p>Unique token value that you can provide. The GetModelCustomizationJob response includes the same token value.</p>",
+        "CreateProvisionedModelThroughputRequest$clientRequestToken": "<p>Unique token value that you can provide. If this token matches a previous request, Bedrock ignores the request, but does not return an error.</p>",
         "GetModelCustomizationJobResponse$clientRequestToken": "<p>The token that you specified in the CreateCustomizationJob request.</p>"
       }
     },
@@ -298,6 +345,16 @@
       "refs": {
       }
     },
+    "ListProvisionedModelThroughputsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProvisionedModelThroughputsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -325,7 +382,8 @@
       "base": null,
       "refs": {
         "ListCustomModelsRequest$maxResults": "<p>Maximum number of results to return in the response.</p>",
-        "ListModelCustomizationJobsRequest$maxResults": "<p>Maximum number of results to return in the response.</p>"
+        "ListModelCustomizationJobsRequest$maxResults": "<p>Maximum number of results to return in the response.</p>",
+        "ListProvisionedModelThroughputsRequest$maxResults": "<p>THe maximum number of results to return in the response.</p>"
       }
     },
     "MetricFloat": {
@@ -339,10 +397,15 @@
       "base": null,
       "refs": {
         "CustomModelSummary$baseModelArn": "<p>The base model ARN.</p>",
-        "GetCustomModelResponse$baseModelArn": "<p>ARN of the base model.</p>",
         "GetCustomModelResponse$modelArn": "<p>ARN associated with this model.</p>",
+        "GetCustomModelResponse$baseModelArn": "<p>ARN of the base model.</p>",
+        "GetProvisionedModelThroughputResponse$modelArn": "<p>The ARN or name of the model associated with this provisioned throughput.</p>",
+        "GetProvisionedModelThroughputResponse$desiredModelArn": "<p>The ARN of the new model to asssociate with this provisioned throughput.</p>",
         "ListCustomModelsRequest$baseModelArnEquals": "<p>Return custom models only if the base model ARN matches this parameter.</p>",
-        "ModelCustomizationJobSummary$baseModelArn": "<p>ARN of the base model.</p>"
+        "ListProvisionedModelThroughputsRequest$modelArnEquals": "<p>Return the list of provisioned capacities where their model ARN is equal to this parameter.</p>",
+        "ModelCustomizationJobSummary$baseModelArn": "<p>ARN of the base model.</p>",
+        "ProvisionedModelSummary$modelArn": "<p>The ARN of the model associated with this provisioned throughput.</p>",
+        "ProvisionedModelSummary$desiredModelArn": "<p>Desired model ARN.</p>"
       }
     },
     "ModelCustomization": {
@@ -405,9 +468,11 @@
     "ModelIdentifier": {
       "base": null,
       "refs": {
+        "CreateProvisionedModelThroughputRequest$modelId": "<p>Name or ARN of the model to associate with this provisioned throughput.</p>",
         "DeleteCustomModelRequest$modelIdentifier": "<p>Name of the model to delete.</p>",
         "GetCustomModelRequest$modelIdentifier": "<p>Name or ARN of the custom model.</p>",
-        "GetFoundationModelRequest$modelIdentifier": "<p>The model identifier. </p>"
+        "GetFoundationModelRequest$modelIdentifier": "<p>The model identifier. </p>",
+        "UpdateProvisionedModelThroughputRequest$desiredModelId": "<p>The ARN of the new model to associate with this provisioned throughput.</p>"
       }
     },
     "ModelModality": {
@@ -459,13 +524,71 @@
         "ListCustomModelsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
         "ListCustomModelsResponse$nextToken": "<p>Continuation token for the next request to list the next set of results.</p>",
         "ListModelCustomizationJobsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
-        "ListModelCustomizationJobsResponse$nextToken": "<p>Page continuation token to use in the next request.</p>"
+        "ListModelCustomizationJobsResponse$nextToken": "<p>Page continuation token to use in the next request.</p>",
+        "ListProvisionedModelThroughputsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
+        "ListProvisionedModelThroughputsResponse$nextToken": "<p>Continuation token for the next request to list the next set of results.</p>"
+      }
+    },
+    "PositiveInteger": {
+      "base": null,
+      "refs": {
+        "CreateProvisionedModelThroughputRequest$modelUnits": "<p>Number of model units to allocate.</p>",
+        "GetProvisionedModelThroughputResponse$modelUnits": "<p>The current number of model units requested to be available for this provisioned throughput.</p>",
+        "GetProvisionedModelThroughputResponse$desiredModelUnits": "<p>The desired number of model units that was requested to be available for this provisioned throughput.</p>",
+        "ProvisionedModelSummary$modelUnits": "<p>The number of model units allocated.</p>",
+        "ProvisionedModelSummary$desiredModelUnits": "<p>Desired model units.</p>"
       }
     },
     "Provider": {
       "base": null,
       "refs": {
         "ListFoundationModelsRequest$byProvider": "<p>A Bedrock model provider.</p>"
+      }
+    },
+    "ProvisionedModelArn": {
+      "base": null,
+      "refs": {
+        "CreateProvisionedModelThroughputResponse$provisionedModelArn": "<p>The ARN for this provisioned throughput.</p>",
+        "GetProvisionedModelThroughputResponse$provisionedModelArn": "<p>The ARN of the provisioned throughput.</p>",
+        "ProvisionedModelSummary$provisionedModelArn": "<p>The ARN of the provisioned throughput.</p>"
+      }
+    },
+    "ProvisionedModelId": {
+      "base": null,
+      "refs": {
+        "DeleteProvisionedModelThroughputRequest$provisionedModelId": "<p>The ARN or name of the provisioned throughput.</p>",
+        "GetProvisionedModelThroughputRequest$provisionedModelId": "<p>The ARN or name of the provisioned throughput.</p>",
+        "UpdateProvisionedModelThroughputRequest$provisionedModelId": "<p>The ARN or name of the provisioned throughput to update.</p>"
+      }
+    },
+    "ProvisionedModelName": {
+      "base": null,
+      "refs": {
+        "CreateProvisionedModelThroughputRequest$provisionedModelName": "<p>Unique name for this provisioned throughput.</p>",
+        "GetProvisionedModelThroughputResponse$provisionedModelName": "<p>The name of the provisioned throughput.</p>",
+        "ListProvisionedModelThroughputsRequest$nameContains": "<p>Return the list of provisioned capacities if their name contains these characters.</p>",
+        "ProvisionedModelSummary$provisionedModelName": "<p>The name of the provisioned throughput.</p>",
+        "UpdateProvisionedModelThroughputRequest$desiredProvisionedModelName": "<p>The new name for this provisioned throughput.</p>"
+      }
+    },
+    "ProvisionedModelStatus": {
+      "base": null,
+      "refs": {
+        "GetProvisionedModelThroughputResponse$status": "<p>Status of the provisioned throughput. </p>",
+        "ListProvisionedModelThroughputsRequest$statusEquals": "<p>Return the list of provisioned capacities that match the specified status.</p>",
+        "ProvisionedModelSummary$status": "<p>Status of the provisioned throughput.</p>"
+      }
+    },
+    "ProvisionedModelSummaries": {
+      "base": null,
+      "refs": {
+        "ListProvisionedModelThroughputsResponse$provisionedModelSummaries": "<p>List of summaries, one for each provisioned throughput in the response.</p>"
+      }
+    },
+    "ProvisionedModelSummary": {
+      "base": "<p>Set of fields associated with a provisioned throughput.</p>",
+      "refs": {
+        "ProvisionedModelSummaries$member": null
       }
     },
     "PutModelInvocationLoggingConfigurationRequest": {
@@ -523,6 +646,12 @@
       "refs": {
       }
     },
+    "SortByProvisionedModels": {
+      "base": null,
+      "refs": {
+        "ListProvisionedModelThroughputsRequest$sortBy": "<p>The field to sort by in the returned list of provisioned capacities.</p>"
+      }
+    },
     "SortJobsBy": {
       "base": null,
       "refs": {
@@ -539,7 +668,8 @@
       "base": null,
       "refs": {
         "ListCustomModelsRequest$sortOrder": "<p>The sort order of the results.</p>",
-        "ListModelCustomizationJobsRequest$sortOrder": "<p>The sort order of the results.</p>"
+        "ListModelCustomizationJobsRequest$sortOrder": "<p>The sort order of the results.</p>",
+        "ListProvisionedModelThroughputsRequest$sortOrder": "<p>The sort order of the results.</p>"
       }
     },
     "StopModelCustomizationJobRequest": {
@@ -593,8 +723,9 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateModelCustomizationJobRequest$customModelTags": "<p>Assign tags to the custom model.</p>",
         "CreateModelCustomizationJobRequest$jobTags": "<p>Assign tags to the job.</p>",
+        "CreateModelCustomizationJobRequest$customModelTags": "<p>Assign tags to the custom model.</p>",
+        "CreateProvisionedModelThroughputRequest$tags": "<p>Tags to associate with this provisioned throughput.</p>",
         "ListTagsForResourceResponse$tags": "<p>An array of the tags associated with this resource.</p>",
         "TagResourceRequest$tags": "<p>Tags to associate with the resource.</p>"
       }
@@ -635,15 +766,23 @@
         "CustomModelSummary$creationTime": "<p>Creation time of the model.</p>",
         "GetCustomModelResponse$creationTime": "<p>Creation time of the model.</p>",
         "GetModelCustomizationJobResponse$creationTime": "<p>Time that the resource was created.</p>",
-        "GetModelCustomizationJobResponse$endTime": "<p>Time that the resource transitioned to terminal state.</p>",
         "GetModelCustomizationJobResponse$lastModifiedTime": "<p>Time that the resource was last modified.</p>",
-        "ListCustomModelsRequest$creationTimeAfter": "<p>Return custom models created after the specified time. </p>",
+        "GetModelCustomizationJobResponse$endTime": "<p>Time that the resource transitioned to terminal state.</p>",
+        "GetProvisionedModelThroughputResponse$creationTime": "<p>The timestamp of the creation time for this provisioned throughput. </p>",
+        "GetProvisionedModelThroughputResponse$lastModifiedTime": "<p>The timestamp of the last modified time of this provisioned throughput. </p>",
+        "GetProvisionedModelThroughputResponse$commitmentExpirationTime": "<p>Commitment expiration time for the provisioned throughput.</p>",
         "ListCustomModelsRequest$creationTimeBefore": "<p>Return custom models created before the specified time. </p>",
+        "ListCustomModelsRequest$creationTimeAfter": "<p>Return custom models created after the specified time. </p>",
         "ListModelCustomizationJobsRequest$creationTimeAfter": "<p>Return customization jobs created after the specified time. </p>",
         "ListModelCustomizationJobsRequest$creationTimeBefore": "<p>Return customization jobs created before the specified time. </p>",
+        "ListProvisionedModelThroughputsRequest$creationTimeAfter": "<p>Return provisioned capacities created after the specified time. </p>",
+        "ListProvisionedModelThroughputsRequest$creationTimeBefore": "<p>Return provisioned capacities created before the specified time. </p>",
+        "ModelCustomizationJobSummary$lastModifiedTime": "<p>Time that the customization job was last modified.</p>",
         "ModelCustomizationJobSummary$creationTime": "<p>Creation time of the custom model. </p>",
         "ModelCustomizationJobSummary$endTime": "<p>Time that the customization job ended.</p>",
-        "ModelCustomizationJobSummary$lastModifiedTime": "<p>Time that the customization job was last modified.</p>"
+        "ProvisionedModelSummary$commitmentExpirationTime": "<p>Commitment expiration time for the provisioned throughput.</p>",
+        "ProvisionedModelSummary$creationTime": "<p>The time that this provisioned throughput was created. </p>",
+        "ProvisionedModelSummary$lastModifiedTime": "<p>The time that this provisioned throughput was last modified. </p>"
       }
     },
     "TooManyTagsException": {
@@ -672,6 +811,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisionedModelThroughputRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisionedModelThroughputResponse": {
       "base": null,
       "refs": {
       }

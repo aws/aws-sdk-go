@@ -702,9 +702,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -734,9 +734,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -766,9 +766,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -798,9 +798,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -830,9 +830,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -862,9 +862,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -894,9 +894,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -926,9 +926,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -958,9 +958,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -990,9 +990,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1022,9 +1022,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1054,9 +1054,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1086,9 +1086,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1118,9 +1118,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1150,9 +1150,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1182,9 +1182,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-1",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1214,9 +1214,9 @@
                     "properties": {
                         "authSchemes": [
                             {
+                                "signingRegion": "us-east-3",
                                 "signingName": "sts",
-                                "name": "sigv4",
-                                "signingRegion": "us-east-3"
+                                "name": "sigv4"
                             }
                         ]
                     },
@@ -1272,10 +1272,10 @@
                 }
             },
             "params": {
-                "Endpoint": "https://example.com",
                 "UseGlobalEndpoint": false,
                 "UseDualStack": false,
-                "UseFIPS": false
+                "UseFIPS": false,
+                "Endpoint": "https://example.com"
             }
         }
     ],

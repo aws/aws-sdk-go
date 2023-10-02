@@ -64,6 +64,10 @@ type BedrockAPI interface {
 	CreateModelCustomizationJobWithContext(aws.Context, *bedrock.CreateModelCustomizationJobInput, ...request.Option) (*bedrock.CreateModelCustomizationJobOutput, error)
 	CreateModelCustomizationJobRequest(*bedrock.CreateModelCustomizationJobInput) (*request.Request, *bedrock.CreateModelCustomizationJobOutput)
 
+	CreateProvisionedModelThroughput(*bedrock.CreateProvisionedModelThroughputInput) (*bedrock.CreateProvisionedModelThroughputOutput, error)
+	CreateProvisionedModelThroughputWithContext(aws.Context, *bedrock.CreateProvisionedModelThroughputInput, ...request.Option) (*bedrock.CreateProvisionedModelThroughputOutput, error)
+	CreateProvisionedModelThroughputRequest(*bedrock.CreateProvisionedModelThroughputInput) (*request.Request, *bedrock.CreateProvisionedModelThroughputOutput)
+
 	DeleteCustomModel(*bedrock.DeleteCustomModelInput) (*bedrock.DeleteCustomModelOutput, error)
 	DeleteCustomModelWithContext(aws.Context, *bedrock.DeleteCustomModelInput, ...request.Option) (*bedrock.DeleteCustomModelOutput, error)
 	DeleteCustomModelRequest(*bedrock.DeleteCustomModelInput) (*request.Request, *bedrock.DeleteCustomModelOutput)
@@ -71,6 +75,10 @@ type BedrockAPI interface {
 	DeleteModelInvocationLoggingConfiguration(*bedrock.DeleteModelInvocationLoggingConfigurationInput) (*bedrock.DeleteModelInvocationLoggingConfigurationOutput, error)
 	DeleteModelInvocationLoggingConfigurationWithContext(aws.Context, *bedrock.DeleteModelInvocationLoggingConfigurationInput, ...request.Option) (*bedrock.DeleteModelInvocationLoggingConfigurationOutput, error)
 	DeleteModelInvocationLoggingConfigurationRequest(*bedrock.DeleteModelInvocationLoggingConfigurationInput) (*request.Request, *bedrock.DeleteModelInvocationLoggingConfigurationOutput)
+
+	DeleteProvisionedModelThroughput(*bedrock.DeleteProvisionedModelThroughputInput) (*bedrock.DeleteProvisionedModelThroughputOutput, error)
+	DeleteProvisionedModelThroughputWithContext(aws.Context, *bedrock.DeleteProvisionedModelThroughputInput, ...request.Option) (*bedrock.DeleteProvisionedModelThroughputOutput, error)
+	DeleteProvisionedModelThroughputRequest(*bedrock.DeleteProvisionedModelThroughputInput) (*request.Request, *bedrock.DeleteProvisionedModelThroughputOutput)
 
 	GetCustomModel(*bedrock.GetCustomModelInput) (*bedrock.GetCustomModelOutput, error)
 	GetCustomModelWithContext(aws.Context, *bedrock.GetCustomModelInput, ...request.Option) (*bedrock.GetCustomModelOutput, error)
@@ -87,6 +95,10 @@ type BedrockAPI interface {
 	GetModelInvocationLoggingConfiguration(*bedrock.GetModelInvocationLoggingConfigurationInput) (*bedrock.GetModelInvocationLoggingConfigurationOutput, error)
 	GetModelInvocationLoggingConfigurationWithContext(aws.Context, *bedrock.GetModelInvocationLoggingConfigurationInput, ...request.Option) (*bedrock.GetModelInvocationLoggingConfigurationOutput, error)
 	GetModelInvocationLoggingConfigurationRequest(*bedrock.GetModelInvocationLoggingConfigurationInput) (*request.Request, *bedrock.GetModelInvocationLoggingConfigurationOutput)
+
+	GetProvisionedModelThroughput(*bedrock.GetProvisionedModelThroughputInput) (*bedrock.GetProvisionedModelThroughputOutput, error)
+	GetProvisionedModelThroughputWithContext(aws.Context, *bedrock.GetProvisionedModelThroughputInput, ...request.Option) (*bedrock.GetProvisionedModelThroughputOutput, error)
+	GetProvisionedModelThroughputRequest(*bedrock.GetProvisionedModelThroughputInput) (*request.Request, *bedrock.GetProvisionedModelThroughputOutput)
 
 	ListCustomModels(*bedrock.ListCustomModelsInput) (*bedrock.ListCustomModelsOutput, error)
 	ListCustomModelsWithContext(aws.Context, *bedrock.ListCustomModelsInput, ...request.Option) (*bedrock.ListCustomModelsOutput, error)
@@ -105,6 +117,13 @@ type BedrockAPI interface {
 
 	ListModelCustomizationJobsPages(*bedrock.ListModelCustomizationJobsInput, func(*bedrock.ListModelCustomizationJobsOutput, bool) bool) error
 	ListModelCustomizationJobsPagesWithContext(aws.Context, *bedrock.ListModelCustomizationJobsInput, func(*bedrock.ListModelCustomizationJobsOutput, bool) bool, ...request.Option) error
+
+	ListProvisionedModelThroughputs(*bedrock.ListProvisionedModelThroughputsInput) (*bedrock.ListProvisionedModelThroughputsOutput, error)
+	ListProvisionedModelThroughputsWithContext(aws.Context, *bedrock.ListProvisionedModelThroughputsInput, ...request.Option) (*bedrock.ListProvisionedModelThroughputsOutput, error)
+	ListProvisionedModelThroughputsRequest(*bedrock.ListProvisionedModelThroughputsInput) (*request.Request, *bedrock.ListProvisionedModelThroughputsOutput)
+
+	ListProvisionedModelThroughputsPages(*bedrock.ListProvisionedModelThroughputsInput, func(*bedrock.ListProvisionedModelThroughputsOutput, bool) bool) error
+	ListProvisionedModelThroughputsPagesWithContext(aws.Context, *bedrock.ListProvisionedModelThroughputsInput, func(*bedrock.ListProvisionedModelThroughputsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*bedrock.ListTagsForResourceInput) (*bedrock.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *bedrock.ListTagsForResourceInput, ...request.Option) (*bedrock.ListTagsForResourceOutput, error)
@@ -125,6 +144,10 @@ type BedrockAPI interface {
 	UntagResource(*bedrock.UntagResourceInput) (*bedrock.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *bedrock.UntagResourceInput, ...request.Option) (*bedrock.UntagResourceOutput, error)
 	UntagResourceRequest(*bedrock.UntagResourceInput) (*request.Request, *bedrock.UntagResourceOutput)
+
+	UpdateProvisionedModelThroughput(*bedrock.UpdateProvisionedModelThroughputInput) (*bedrock.UpdateProvisionedModelThroughputOutput, error)
+	UpdateProvisionedModelThroughputWithContext(aws.Context, *bedrock.UpdateProvisionedModelThroughputInput, ...request.Option) (*bedrock.UpdateProvisionedModelThroughputOutput, error)
+	UpdateProvisionedModelThroughputRequest(*bedrock.UpdateProvisionedModelThroughputInput) (*request.Request, *bedrock.UpdateProvisionedModelThroughputOutput)
 }
 
 var _ BedrockAPI = (*bedrock.Bedrock)(nil)

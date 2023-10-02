@@ -130,6 +130,110 @@ func (c *Bedrock) CreateModelCustomizationJobWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opCreateProvisionedModelThroughput = "CreateProvisionedModelThroughput"
+
+// CreateProvisionedModelThroughputRequest generates a "aws/request.Request" representing the
+// client's request for the CreateProvisionedModelThroughput operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateProvisionedModelThroughput for more information on using the CreateProvisionedModelThroughput
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateProvisionedModelThroughputRequest method.
+//	req, resp := client.CreateProvisionedModelThroughputRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateProvisionedModelThroughput
+func (c *Bedrock) CreateProvisionedModelThroughputRequest(input *CreateProvisionedModelThroughputInput) (req *request.Request, output *CreateProvisionedModelThroughputOutput) {
+	op := &request.Operation{
+		Name:       opCreateProvisionedModelThroughput,
+		HTTPMethod: "POST",
+		HTTPPath:   "/provisioned-model-throughput",
+	}
+
+	if input == nil {
+		input = &CreateProvisionedModelThroughputInput{}
+	}
+
+	output = &CreateProvisionedModelThroughputOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateProvisionedModelThroughput API operation for Amazon Bedrock.
+//
+// Creates a provisioned throughput with dedicated capacity for a foundation
+// model or a fine-tuned model.
+//
+// For more information, see Provisioned throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation CreateProvisionedModelThroughput for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - TooManyTagsException
+//     The request contains more tags than can be associated with a resource (50
+//     tags per resource). The maximum number of tags includes both existing tags
+//     and those included in your current request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateProvisionedModelThroughput
+func (c *Bedrock) CreateProvisionedModelThroughput(input *CreateProvisionedModelThroughputInput) (*CreateProvisionedModelThroughputOutput, error) {
+	req, out := c.CreateProvisionedModelThroughputRequest(input)
+	return out, req.Send()
+}
+
+// CreateProvisionedModelThroughputWithContext is the same as CreateProvisionedModelThroughput with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProvisionedModelThroughput for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) CreateProvisionedModelThroughputWithContext(ctx aws.Context, input *CreateProvisionedModelThroughputInput, opts ...request.Option) (*CreateProvisionedModelThroughputOutput, error) {
+	req, out := c.CreateProvisionedModelThroughputRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCustomModel = "DeleteCustomModel"
 
 // DeleteCustomModelRequest generates a "aws/request.Request" representing the
@@ -309,6 +413,104 @@ func (c *Bedrock) DeleteModelInvocationLoggingConfiguration(input *DeleteModelIn
 // for more information on using Contexts.
 func (c *Bedrock) DeleteModelInvocationLoggingConfigurationWithContext(ctx aws.Context, input *DeleteModelInvocationLoggingConfigurationInput, opts ...request.Option) (*DeleteModelInvocationLoggingConfigurationOutput, error) {
 	req, out := c.DeleteModelInvocationLoggingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProvisionedModelThroughput = "DeleteProvisionedModelThroughput"
+
+// DeleteProvisionedModelThroughputRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProvisionedModelThroughput operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProvisionedModelThroughput for more information on using the DeleteProvisionedModelThroughput
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteProvisionedModelThroughputRequest method.
+//	req, resp := client.DeleteProvisionedModelThroughputRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/DeleteProvisionedModelThroughput
+func (c *Bedrock) DeleteProvisionedModelThroughputRequest(input *DeleteProvisionedModelThroughputInput) (req *request.Request, output *DeleteProvisionedModelThroughputOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProvisionedModelThroughput,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/provisioned-model-throughput/{provisionedModelId}",
+	}
+
+	if input == nil {
+		input = &DeleteProvisionedModelThroughputInput{}
+	}
+
+	output = &DeleteProvisionedModelThroughputOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteProvisionedModelThroughput API operation for Amazon Bedrock.
+//
+// Deletes a provisioned throughput. For more information, see Provisioned throughput
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation DeleteProvisionedModelThroughput for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/DeleteProvisionedModelThroughput
+func (c *Bedrock) DeleteProvisionedModelThroughput(input *DeleteProvisionedModelThroughputInput) (*DeleteProvisionedModelThroughputOutput, error) {
+	req, out := c.DeleteProvisionedModelThroughputRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProvisionedModelThroughputWithContext is the same as DeleteProvisionedModelThroughput with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProvisionedModelThroughput for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) DeleteProvisionedModelThroughputWithContext(ctx aws.Context, input *DeleteProvisionedModelThroughputInput, opts ...request.Option) (*DeleteProvisionedModelThroughputOutput, error) {
+	req, out := c.DeleteProvisionedModelThroughputRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -674,6 +876,100 @@ func (c *Bedrock) GetModelInvocationLoggingConfiguration(input *GetModelInvocati
 // for more information on using Contexts.
 func (c *Bedrock) GetModelInvocationLoggingConfigurationWithContext(ctx aws.Context, input *GetModelInvocationLoggingConfigurationInput, opts ...request.Option) (*GetModelInvocationLoggingConfigurationOutput, error) {
 	req, out := c.GetModelInvocationLoggingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetProvisionedModelThroughput = "GetProvisionedModelThroughput"
+
+// GetProvisionedModelThroughputRequest generates a "aws/request.Request" representing the
+// client's request for the GetProvisionedModelThroughput operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetProvisionedModelThroughput for more information on using the GetProvisionedModelThroughput
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetProvisionedModelThroughputRequest method.
+//	req, resp := client.GetProvisionedModelThroughputRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetProvisionedModelThroughput
+func (c *Bedrock) GetProvisionedModelThroughputRequest(input *GetProvisionedModelThroughputInput) (req *request.Request, output *GetProvisionedModelThroughputOutput) {
+	op := &request.Operation{
+		Name:       opGetProvisionedModelThroughput,
+		HTTPMethod: "GET",
+		HTTPPath:   "/provisioned-model-throughput/{provisionedModelId}",
+	}
+
+	if input == nil {
+		input = &GetProvisionedModelThroughputInput{}
+	}
+
+	output = &GetProvisionedModelThroughputOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetProvisionedModelThroughput API operation for Amazon Bedrock.
+//
+// Get details for a provisioned throughput. For more information, see Provisioned
+// throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation GetProvisionedModelThroughput for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetProvisionedModelThroughput
+func (c *Bedrock) GetProvisionedModelThroughput(input *GetProvisionedModelThroughputInput) (*GetProvisionedModelThroughputOutput, error) {
+	req, out := c.GetProvisionedModelThroughputRequest(input)
+	return out, req.Send()
+}
+
+// GetProvisionedModelThroughputWithContext is the same as GetProvisionedModelThroughput with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetProvisionedModelThroughput for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) GetProvisionedModelThroughputWithContext(ctx aws.Context, input *GetProvisionedModelThroughputInput, opts ...request.Option) (*GetProvisionedModelThroughputOutput, error) {
+	req, out := c.GetProvisionedModelThroughputRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1060,6 +1356,153 @@ func (c *Bedrock) ListModelCustomizationJobsPagesWithContext(ctx aws.Context, in
 
 	for p.Next() {
 		if !fn(p.Page().(*ListModelCustomizationJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListProvisionedModelThroughputs = "ListProvisionedModelThroughputs"
+
+// ListProvisionedModelThroughputsRequest generates a "aws/request.Request" representing the
+// client's request for the ListProvisionedModelThroughputs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProvisionedModelThroughputs for more information on using the ListProvisionedModelThroughputs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListProvisionedModelThroughputsRequest method.
+//	req, resp := client.ListProvisionedModelThroughputsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListProvisionedModelThroughputs
+func (c *Bedrock) ListProvisionedModelThroughputsRequest(input *ListProvisionedModelThroughputsInput) (req *request.Request, output *ListProvisionedModelThroughputsOutput) {
+	op := &request.Operation{
+		Name:       opListProvisionedModelThroughputs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/provisioned-model-throughputs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProvisionedModelThroughputsInput{}
+	}
+
+	output = &ListProvisionedModelThroughputsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProvisionedModelThroughputs API operation for Amazon Bedrock.
+//
+// List the provisioned capacities. For more information, see Provisioned throughput
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation ListProvisionedModelThroughputs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListProvisionedModelThroughputs
+func (c *Bedrock) ListProvisionedModelThroughputs(input *ListProvisionedModelThroughputsInput) (*ListProvisionedModelThroughputsOutput, error) {
+	req, out := c.ListProvisionedModelThroughputsRequest(input)
+	return out, req.Send()
+}
+
+// ListProvisionedModelThroughputsWithContext is the same as ListProvisionedModelThroughputs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProvisionedModelThroughputs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListProvisionedModelThroughputsWithContext(ctx aws.Context, input *ListProvisionedModelThroughputsInput, opts ...request.Option) (*ListProvisionedModelThroughputsOutput, error) {
+	req, out := c.ListProvisionedModelThroughputsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProvisionedModelThroughputsPages iterates over the pages of a ListProvisionedModelThroughputs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProvisionedModelThroughputs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListProvisionedModelThroughputs operation.
+//	pageNum := 0
+//	err := client.ListProvisionedModelThroughputsPages(params,
+//	    func(page *bedrock.ListProvisionedModelThroughputsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Bedrock) ListProvisionedModelThroughputsPages(input *ListProvisionedModelThroughputsInput, fn func(*ListProvisionedModelThroughputsOutput, bool) bool) error {
+	return c.ListProvisionedModelThroughputsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProvisionedModelThroughputsPagesWithContext same as ListProvisionedModelThroughputsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListProvisionedModelThroughputsPagesWithContext(ctx aws.Context, input *ListProvisionedModelThroughputsInput, fn func(*ListProvisionedModelThroughputsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProvisionedModelThroughputsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProvisionedModelThroughputsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProvisionedModelThroughputsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1539,6 +1982,101 @@ func (c *Bedrock) UntagResource(input *UntagResourceInput) (*UntagResourceOutput
 // for more information on using Contexts.
 func (c *Bedrock) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateProvisionedModelThroughput = "UpdateProvisionedModelThroughput"
+
+// UpdateProvisionedModelThroughputRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProvisionedModelThroughput operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProvisionedModelThroughput for more information on using the UpdateProvisionedModelThroughput
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProvisionedModelThroughputRequest method.
+//	req, resp := client.UpdateProvisionedModelThroughputRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/UpdateProvisionedModelThroughput
+func (c *Bedrock) UpdateProvisionedModelThroughputRequest(input *UpdateProvisionedModelThroughputInput) (req *request.Request, output *UpdateProvisionedModelThroughputOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProvisionedModelThroughput,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/provisioned-model-throughput/{provisionedModelId}",
+	}
+
+	if input == nil {
+		input = &UpdateProvisionedModelThroughputInput{}
+	}
+
+	output = &UpdateProvisionedModelThroughputOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateProvisionedModelThroughput API operation for Amazon Bedrock.
+//
+// Update a provisioned throughput. For more information, see Provisioned throughput
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation UpdateProvisionedModelThroughput for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/UpdateProvisionedModelThroughput
+func (c *Bedrock) UpdateProvisionedModelThroughput(input *UpdateProvisionedModelThroughputInput) (*UpdateProvisionedModelThroughputOutput, error) {
+	req, out := c.UpdateProvisionedModelThroughputRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProvisionedModelThroughputWithContext is the same as UpdateProvisionedModelThroughput with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProvisionedModelThroughput for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) UpdateProvisionedModelThroughputWithContext(ctx aws.Context, input *UpdateProvisionedModelThroughputInput, opts ...request.Option) (*UpdateProvisionedModelThroughputOutput, error) {
+	req, out := c.UpdateProvisionedModelThroughputRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2028,6 +2566,163 @@ func (s *CreateModelCustomizationJobOutput) SetJobArn(v string) *CreateModelCust
 	return s
 }
 
+type CreateProvisionedModelThroughputInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique token value that you can provide. If this token matches a previous
+	// request, Bedrock ignores the request, but does not return an error.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Commitment duration requested for the provisioned throughput.
+	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
+
+	// Name or ARN of the model to associate with this provisioned throughput.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// Number of model units to allocate.
+	//
+	// ModelUnits is a required field
+	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
+
+	// Unique name for this provisioned throughput.
+	//
+	// ProvisionedModelName is a required field
+	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
+
+	// Tags to associate with this provisioned throughput.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProvisionedModelThroughputInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProvisionedModelThroughputInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateProvisionedModelThroughputInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateProvisionedModelThroughputInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelUnits == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelUnits"))
+	}
+	if s.ModelUnits != nil && *s.ModelUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ModelUnits", 1))
+	}
+	if s.ProvisionedModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisionedModelName"))
+	}
+	if s.ProvisionedModelName != nil && len(*s.ProvisionedModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedModelName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateProvisionedModelThroughputInput) SetClientRequestToken(v string) *CreateProvisionedModelThroughputInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCommitmentDuration sets the CommitmentDuration field's value.
+func (s *CreateProvisionedModelThroughputInput) SetCommitmentDuration(v string) *CreateProvisionedModelThroughputInput {
+	s.CommitmentDuration = &v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *CreateProvisionedModelThroughputInput) SetModelId(v string) *CreateProvisionedModelThroughputInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelUnits sets the ModelUnits field's value.
+func (s *CreateProvisionedModelThroughputInput) SetModelUnits(v int64) *CreateProvisionedModelThroughputInput {
+	s.ModelUnits = &v
+	return s
+}
+
+// SetProvisionedModelName sets the ProvisionedModelName field's value.
+func (s *CreateProvisionedModelThroughputInput) SetProvisionedModelName(v string) *CreateProvisionedModelThroughputInput {
+	s.ProvisionedModelName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProvisionedModelThroughputInput) SetTags(v []*Tag) *CreateProvisionedModelThroughputInput {
+	s.Tags = v
+	return s
+}
+
+type CreateProvisionedModelThroughputOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN for this provisioned throughput.
+	//
+	// ProvisionedModelArn is a required field
+	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProvisionedModelThroughputOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProvisionedModelThroughputOutput) GoString() string {
+	return s.String()
+}
+
+// SetProvisionedModelArn sets the ProvisionedModelArn field's value.
+func (s *CreateProvisionedModelThroughputOutput) SetProvisionedModelArn(v string) *CreateProvisionedModelThroughputOutput {
+	s.ProvisionedModelArn = &v
+	return s
+}
+
 // Summary information for a custom model.
 type CustomModelSummary struct {
 	_ struct{} `type:"structure"`
@@ -2218,6 +2913,77 @@ func (s DeleteModelInvocationLoggingConfigurationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteModelInvocationLoggingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteProvisionedModelThroughputInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN or name of the provisioned throughput.
+	//
+	// ProvisionedModelId is a required field
+	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProvisionedModelThroughputInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProvisionedModelThroughputInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProvisionedModelThroughputInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProvisionedModelThroughputInput"}
+	if s.ProvisionedModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisionedModelId"))
+	}
+	if s.ProvisionedModelId != nil && len(*s.ProvisionedModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProvisionedModelId sets the ProvisionedModelId field's value.
+func (s *DeleteProvisionedModelThroughputInput) SetProvisionedModelId(v string) *DeleteProvisionedModelThroughputInput {
+	s.ProvisionedModelId = &v
+	return s
+}
+
+type DeleteProvisionedModelThroughputOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProvisionedModelThroughputOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProvisionedModelThroughputOutput) GoString() string {
 	return s.String()
 }
 
@@ -3045,6 +3811,216 @@ func (s *GetModelInvocationLoggingConfigurationOutput) SetLoggingConfig(v *Loggi
 	return s
 }
 
+type GetProvisionedModelThroughputInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN or name of the provisioned throughput.
+	//
+	// ProvisionedModelId is a required field
+	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProvisionedModelThroughputInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProvisionedModelThroughputInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetProvisionedModelThroughputInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetProvisionedModelThroughputInput"}
+	if s.ProvisionedModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisionedModelId"))
+	}
+	if s.ProvisionedModelId != nil && len(*s.ProvisionedModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProvisionedModelId sets the ProvisionedModelId field's value.
+func (s *GetProvisionedModelThroughputInput) SetProvisionedModelId(v string) *GetProvisionedModelThroughputInput {
+	s.ProvisionedModelId = &v
+	return s
+}
+
+type GetProvisionedModelThroughputOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Commitment duration of the provisioned throughput.
+	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
+
+	// Commitment expiration time for the provisioned throughput.
+	CommitmentExpirationTime *time.Time `locationName:"commitmentExpirationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The timestamp of the creation time for this provisioned throughput.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The ARN of the new model to asssociate with this provisioned throughput.
+	//
+	// DesiredModelArn is a required field
+	DesiredModelArn *string `locationName:"desiredModelArn" min:"20" type:"string" required:"true"`
+
+	// The desired number of model units that was requested to be available for
+	// this provisioned throughput.
+	//
+	// DesiredModelUnits is a required field
+	DesiredModelUnits *int64 `locationName:"desiredModelUnits" min:"1" type:"integer" required:"true"`
+
+	// Failure message for any issues that the create operation encounters.
+	FailureMessage *string `locationName:"failureMessage" type:"string"`
+
+	// ARN of the foundation model.
+	//
+	// FoundationModelArn is a required field
+	FoundationModelArn *string `locationName:"foundationModelArn" type:"string" required:"true"`
+
+	// The timestamp of the last modified time of this provisioned throughput.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The ARN or name of the model associated with this provisioned throughput.
+	//
+	// ModelArn is a required field
+	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
+
+	// The current number of model units requested to be available for this provisioned
+	// throughput.
+	//
+	// ModelUnits is a required field
+	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
+
+	// The ARN of the provisioned throughput.
+	//
+	// ProvisionedModelArn is a required field
+	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
+
+	// The name of the provisioned throughput.
+	//
+	// ProvisionedModelName is a required field
+	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
+
+	// Status of the provisioned throughput.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ProvisionedModelStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProvisionedModelThroughputOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProvisionedModelThroughputOutput) GoString() string {
+	return s.String()
+}
+
+// SetCommitmentDuration sets the CommitmentDuration field's value.
+func (s *GetProvisionedModelThroughputOutput) SetCommitmentDuration(v string) *GetProvisionedModelThroughputOutput {
+	s.CommitmentDuration = &v
+	return s
+}
+
+// SetCommitmentExpirationTime sets the CommitmentExpirationTime field's value.
+func (s *GetProvisionedModelThroughputOutput) SetCommitmentExpirationTime(v time.Time) *GetProvisionedModelThroughputOutput {
+	s.CommitmentExpirationTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetProvisionedModelThroughputOutput) SetCreationTime(v time.Time) *GetProvisionedModelThroughputOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDesiredModelArn sets the DesiredModelArn field's value.
+func (s *GetProvisionedModelThroughputOutput) SetDesiredModelArn(v string) *GetProvisionedModelThroughputOutput {
+	s.DesiredModelArn = &v
+	return s
+}
+
+// SetDesiredModelUnits sets the DesiredModelUnits field's value.
+func (s *GetProvisionedModelThroughputOutput) SetDesiredModelUnits(v int64) *GetProvisionedModelThroughputOutput {
+	s.DesiredModelUnits = &v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *GetProvisionedModelThroughputOutput) SetFailureMessage(v string) *GetProvisionedModelThroughputOutput {
+	s.FailureMessage = &v
+	return s
+}
+
+// SetFoundationModelArn sets the FoundationModelArn field's value.
+func (s *GetProvisionedModelThroughputOutput) SetFoundationModelArn(v string) *GetProvisionedModelThroughputOutput {
+	s.FoundationModelArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetProvisionedModelThroughputOutput) SetLastModifiedTime(v time.Time) *GetProvisionedModelThroughputOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *GetProvisionedModelThroughputOutput) SetModelArn(v string) *GetProvisionedModelThroughputOutput {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelUnits sets the ModelUnits field's value.
+func (s *GetProvisionedModelThroughputOutput) SetModelUnits(v int64) *GetProvisionedModelThroughputOutput {
+	s.ModelUnits = &v
+	return s
+}
+
+// SetProvisionedModelArn sets the ProvisionedModelArn field's value.
+func (s *GetProvisionedModelThroughputOutput) SetProvisionedModelArn(v string) *GetProvisionedModelThroughputOutput {
+	s.ProvisionedModelArn = &v
+	return s
+}
+
+// SetProvisionedModelName sets the ProvisionedModelName field's value.
+func (s *GetProvisionedModelThroughputOutput) SetProvisionedModelName(v string) *GetProvisionedModelThroughputOutput {
+	s.ProvisionedModelName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetProvisionedModelThroughputOutput) SetStatus(v string) *GetProvisionedModelThroughputOutput {
+	s.Status = &v
+	return s
+}
+
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -3518,6 +4494,173 @@ func (s *ListModelCustomizationJobsOutput) SetNextToken(v string) *ListModelCust
 	return s
 }
 
+type ListProvisionedModelThroughputsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Return provisioned capacities created after the specified time.
+	CreationTimeAfter *time.Time `location:"querystring" locationName:"creationTimeAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Return provisioned capacities created before the specified time.
+	CreationTimeBefore *time.Time `location:"querystring" locationName:"creationTimeBefore" type:"timestamp" timestampFormat:"iso8601"`
+
+	// THe maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Return the list of provisioned capacities where their model ARN is equal
+	// to this parameter.
+	ModelArnEquals *string `location:"querystring" locationName:"modelArnEquals" min:"20" type:"string"`
+
+	// Return the list of provisioned capacities if their name contains these characters.
+	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
+
+	// Continuation token from the previous response, for Bedrock to list the next
+	// set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The field to sort by in the returned list of provisioned capacities.
+	SortBy *string `location:"querystring" locationName:"sortBy" type:"string" enum:"SortByProvisionedModels"`
+
+	// The sort order of the results.
+	SortOrder *string `location:"querystring" locationName:"sortOrder" type:"string" enum:"SortOrder"`
+
+	// Return the list of provisioned capacities that match the specified status.
+	StatusEquals *string `location:"querystring" locationName:"statusEquals" type:"string" enum:"ProvisionedModelStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProvisionedModelThroughputsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProvisionedModelThroughputsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProvisionedModelThroughputsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProvisionedModelThroughputsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ModelArnEquals != nil && len(*s.ModelArnEquals) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelArnEquals", 20))
+	}
+	if s.NameContains != nil && len(*s.NameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameContains", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListProvisionedModelThroughputsInput) SetCreationTimeAfter(v time.Time) *ListProvisionedModelThroughputsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListProvisionedModelThroughputsInput) SetCreationTimeBefore(v time.Time) *ListProvisionedModelThroughputsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProvisionedModelThroughputsInput) SetMaxResults(v int64) *ListProvisionedModelThroughputsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetModelArnEquals sets the ModelArnEquals field's value.
+func (s *ListProvisionedModelThroughputsInput) SetModelArnEquals(v string) *ListProvisionedModelThroughputsInput {
+	s.ModelArnEquals = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListProvisionedModelThroughputsInput) SetNameContains(v string) *ListProvisionedModelThroughputsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProvisionedModelThroughputsInput) SetNextToken(v string) *ListProvisionedModelThroughputsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListProvisionedModelThroughputsInput) SetSortBy(v string) *ListProvisionedModelThroughputsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListProvisionedModelThroughputsInput) SetSortOrder(v string) *ListProvisionedModelThroughputsInput {
+	s.SortOrder = &v
+	return s
+}
+
+// SetStatusEquals sets the StatusEquals field's value.
+func (s *ListProvisionedModelThroughputsInput) SetStatusEquals(v string) *ListProvisionedModelThroughputsInput {
+	s.StatusEquals = &v
+	return s
+}
+
+type ListProvisionedModelThroughputsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Continuation token for the next request to list the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// List of summaries, one for each provisioned throughput in the response.
+	ProvisionedModelSummaries []*ProvisionedModelSummary `locationName:"provisionedModelSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProvisionedModelThroughputsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProvisionedModelThroughputsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProvisionedModelThroughputsOutput) SetNextToken(v string) *ListProvisionedModelThroughputsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProvisionedModelSummaries sets the ProvisionedModelSummaries field's value.
+func (s *ListProvisionedModelThroughputsOutput) SetProvisionedModelSummaries(v []*ProvisionedModelSummary) *ListProvisionedModelThroughputsOutput {
+	s.ProvisionedModelSummaries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3847,6 +4990,157 @@ func (s *OutputDataConfig) Validate() error {
 // SetS3Uri sets the S3Uri field's value.
 func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	s.S3Uri = &v
+	return s
+}
+
+// Set of fields associated with a provisioned throughput.
+type ProvisionedModelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Commitment duration for the provisioned throughput.
+	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
+
+	// Commitment expiration time for the provisioned throughput.
+	CommitmentExpirationTime *time.Time `locationName:"commitmentExpirationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time that this provisioned throughput was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// Desired model ARN.
+	//
+	// DesiredModelArn is a required field
+	DesiredModelArn *string `locationName:"desiredModelArn" min:"20" type:"string" required:"true"`
+
+	// Desired model units.
+	//
+	// DesiredModelUnits is a required field
+	DesiredModelUnits *int64 `locationName:"desiredModelUnits" min:"1" type:"integer" required:"true"`
+
+	// Foundation model ARN.
+	//
+	// FoundationModelArn is a required field
+	FoundationModelArn *string `locationName:"foundationModelArn" type:"string" required:"true"`
+
+	// The time that this provisioned throughput was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The ARN of the model associated with this provisioned throughput.
+	//
+	// ModelArn is a required field
+	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
+
+	// The number of model units allocated.
+	//
+	// ModelUnits is a required field
+	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
+
+	// The ARN of the provisioned throughput.
+	//
+	// ProvisionedModelArn is a required field
+	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
+
+	// The name of the provisioned throughput.
+	//
+	// ProvisionedModelName is a required field
+	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
+
+	// Status of the provisioned throughput.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ProvisionedModelStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedModelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedModelSummary) GoString() string {
+	return s.String()
+}
+
+// SetCommitmentDuration sets the CommitmentDuration field's value.
+func (s *ProvisionedModelSummary) SetCommitmentDuration(v string) *ProvisionedModelSummary {
+	s.CommitmentDuration = &v
+	return s
+}
+
+// SetCommitmentExpirationTime sets the CommitmentExpirationTime field's value.
+func (s *ProvisionedModelSummary) SetCommitmentExpirationTime(v time.Time) *ProvisionedModelSummary {
+	s.CommitmentExpirationTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ProvisionedModelSummary) SetCreationTime(v time.Time) *ProvisionedModelSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDesiredModelArn sets the DesiredModelArn field's value.
+func (s *ProvisionedModelSummary) SetDesiredModelArn(v string) *ProvisionedModelSummary {
+	s.DesiredModelArn = &v
+	return s
+}
+
+// SetDesiredModelUnits sets the DesiredModelUnits field's value.
+func (s *ProvisionedModelSummary) SetDesiredModelUnits(v int64) *ProvisionedModelSummary {
+	s.DesiredModelUnits = &v
+	return s
+}
+
+// SetFoundationModelArn sets the FoundationModelArn field's value.
+func (s *ProvisionedModelSummary) SetFoundationModelArn(v string) *ProvisionedModelSummary {
+	s.FoundationModelArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ProvisionedModelSummary) SetLastModifiedTime(v time.Time) *ProvisionedModelSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *ProvisionedModelSummary) SetModelArn(v string) *ProvisionedModelSummary {
+	s.ModelArn = &v
+	return s
+}
+
+// SetModelUnits sets the ModelUnits field's value.
+func (s *ProvisionedModelSummary) SetModelUnits(v int64) *ProvisionedModelSummary {
+	s.ModelUnits = &v
+	return s
+}
+
+// SetProvisionedModelArn sets the ProvisionedModelArn field's value.
+func (s *ProvisionedModelSummary) SetProvisionedModelArn(v string) *ProvisionedModelSummary {
+	s.ProvisionedModelArn = &v
+	return s
+}
+
+// SetProvisionedModelName sets the ProvisionedModelName field's value.
+func (s *ProvisionedModelSummary) SetProvisionedModelName(v string) *ProvisionedModelSummary {
+	s.ProvisionedModelName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ProvisionedModelSummary) SetStatus(v string) *ProvisionedModelSummary {
+	s.Status = &v
 	return s
 }
 
@@ -4641,6 +5935,101 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateProvisionedModelThroughputInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the new model to associate with this provisioned throughput.
+	DesiredModelId *string `locationName:"desiredModelId" min:"1" type:"string"`
+
+	// The new name for this provisioned throughput.
+	DesiredProvisionedModelName *string `locationName:"desiredProvisionedModelName" min:"1" type:"string"`
+
+	// The ARN or name of the provisioned throughput to update.
+	//
+	// ProvisionedModelId is a required field
+	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProvisionedModelThroughputInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProvisionedModelThroughputInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProvisionedModelThroughputInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProvisionedModelThroughputInput"}
+	if s.DesiredModelId != nil && len(*s.DesiredModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DesiredModelId", 1))
+	}
+	if s.DesiredProvisionedModelName != nil && len(*s.DesiredProvisionedModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DesiredProvisionedModelName", 1))
+	}
+	if s.ProvisionedModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisionedModelId"))
+	}
+	if s.ProvisionedModelId != nil && len(*s.ProvisionedModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDesiredModelId sets the DesiredModelId field's value.
+func (s *UpdateProvisionedModelThroughputInput) SetDesiredModelId(v string) *UpdateProvisionedModelThroughputInput {
+	s.DesiredModelId = &v
+	return s
+}
+
+// SetDesiredProvisionedModelName sets the DesiredProvisionedModelName field's value.
+func (s *UpdateProvisionedModelThroughputInput) SetDesiredProvisionedModelName(v string) *UpdateProvisionedModelThroughputInput {
+	s.DesiredProvisionedModelName = &v
+	return s
+}
+
+// SetProvisionedModelId sets the ProvisionedModelId field's value.
+func (s *UpdateProvisionedModelThroughputInput) SetProvisionedModelId(v string) *UpdateProvisionedModelThroughputInput {
+	s.ProvisionedModelId = &v
+	return s
+}
+
+type UpdateProvisionedModelThroughputOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProvisionedModelThroughputOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProvisionedModelThroughputOutput) GoString() string {
+	return s.String()
+}
+
 // Array of up to 10 validators.
 type ValidationDataConfig struct {
 	_ struct{} `type:"structure"`
@@ -4912,6 +6301,22 @@ func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
 }
 
 const (
+	// CommitmentDurationOneMonth is a CommitmentDuration enum value
+	CommitmentDurationOneMonth = "OneMonth"
+
+	// CommitmentDurationSixMonths is a CommitmentDuration enum value
+	CommitmentDurationSixMonths = "SixMonths"
+)
+
+// CommitmentDuration_Values returns all elements of the CommitmentDuration enum
+func CommitmentDuration_Values() []string {
+	return []string{
+		CommitmentDurationOneMonth,
+		CommitmentDurationSixMonths,
+	}
+}
+
+const (
 	// FineTuningJobStatusInProgress is a FineTuningJobStatus enum value
 	FineTuningJobStatusInProgress = "InProgress"
 
@@ -5012,6 +6417,42 @@ func ModelModality_Values() []string {
 		ModelModalityText,
 		ModelModalityImage,
 		ModelModalityEmbedding,
+	}
+}
+
+const (
+	// ProvisionedModelStatusCreating is a ProvisionedModelStatus enum value
+	ProvisionedModelStatusCreating = "Creating"
+
+	// ProvisionedModelStatusInService is a ProvisionedModelStatus enum value
+	ProvisionedModelStatusInService = "InService"
+
+	// ProvisionedModelStatusUpdating is a ProvisionedModelStatus enum value
+	ProvisionedModelStatusUpdating = "Updating"
+
+	// ProvisionedModelStatusFailed is a ProvisionedModelStatus enum value
+	ProvisionedModelStatusFailed = "Failed"
+)
+
+// ProvisionedModelStatus_Values returns all elements of the ProvisionedModelStatus enum
+func ProvisionedModelStatus_Values() []string {
+	return []string{
+		ProvisionedModelStatusCreating,
+		ProvisionedModelStatusInService,
+		ProvisionedModelStatusUpdating,
+		ProvisionedModelStatusFailed,
+	}
+}
+
+const (
+	// SortByProvisionedModelsCreationTime is a SortByProvisionedModels enum value
+	SortByProvisionedModelsCreationTime = "CreationTime"
+)
+
+// SortByProvisionedModels_Values returns all elements of the SortByProvisionedModels enum
+func SortByProvisionedModels_Values() []string {
+	return []string{
+		SortByProvisionedModelsCreationTime,
 	}
 }
 
