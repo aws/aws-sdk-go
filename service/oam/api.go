@@ -1252,6 +1252,8 @@ func (c *OAM) PutSinkPolicyRequest(input *PutSinkPolicyInput) (req *request.Requ
 //
 //   - Traces - Specify with AWS::XRay::Trace
 //
+//   - Application Insights - Applications - Specify with AWS::ApplicationInsights::Application
+//
 // See the examples in this section to see how to specify permitted source accounts
 // and data types.
 //
@@ -3937,6 +3939,9 @@ const (
 
 	// ResourceTypeAwsXrayTrace is a ResourceType enum value
 	ResourceTypeAwsXrayTrace = "AWS::XRay::Trace"
+
+	// ResourceTypeAwsApplicationInsightsApplication is a ResourceType enum value
+	ResourceTypeAwsApplicationInsightsApplication = "AWS::ApplicationInsights::Application"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -3945,5 +3950,6 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsCloudWatchMetric,
 		ResourceTypeAwsLogsLogGroup,
 		ResourceTypeAwsXrayTrace,
+		ResourceTypeAwsApplicationInsightsApplication,
 	}
 }

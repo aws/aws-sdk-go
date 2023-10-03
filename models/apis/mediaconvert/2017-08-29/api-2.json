@@ -4808,6 +4808,13 @@
         "STATIC"
       ]
     },
+    "H264EndOfStreamMarkers": {
+      "type": "string",
+      "enum": [
+        "INCLUDE",
+        "SUPPRESS"
+      ]
+    },
     "H264EntropyEncoding": {
       "type": "string",
       "enum": [
@@ -4958,6 +4965,10 @@
         "DynamicSubGop": {
           "shape": "H264DynamicSubGop",
           "locationName": "dynamicSubGop"
+        },
+        "EndOfStreamMarkers": {
+          "shape": "H264EndOfStreamMarkers",
+          "locationName": "endOfStreamMarkers"
         },
         "EntropyEncoding": {
           "shape": "H264EntropyEncoding",
@@ -5206,6 +5217,13 @@
         "STATIC"
       ]
     },
+    "H265EndOfStreamMarkers": {
+      "type": "string",
+      "enum": [
+        "INCLUDE",
+        "SUPPRESS"
+      ]
+    },
     "H265FlickerAdaptiveQuantization": {
       "type": "string",
       "enum": [
@@ -5346,6 +5364,10 @@
         "DynamicSubGop": {
           "shape": "H265DynamicSubGop",
           "locationName": "dynamicSubGop"
+        },
+        "EndOfStreamMarkers": {
+          "shape": "H265EndOfStreamMarkers",
+          "locationName": "endOfStreamMarkers"
         },
         "FlickerAdaptiveQuantization": {
           "shape": "H265FlickerAdaptiveQuantization",
@@ -6258,6 +6280,10 @@
           "shape": "InputVideoGenerator",
           "locationName": "videoGenerator"
         },
+        "VideoOverlays": {
+          "shape": "__listOfVideoOverlay",
+          "locationName": "videoOverlays"
+        },
         "VideoSelector": {
           "shape": "VideoSelector",
           "locationName": "videoSelector"
@@ -6437,6 +6463,10 @@
         "TimecodeStart": {
           "shape": "__stringMin11Max11Pattern01D20305D205D",
           "locationName": "timecodeStart"
+        },
+        "VideoOverlays": {
+          "shape": "__listOfVideoOverlay",
+          "locationName": "videoOverlays"
         },
         "VideoSelector": {
           "shape": "VideoSelector",
@@ -6680,10 +6710,6 @@
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
         },
-        "FollowInputIndex": {
-          "shape": "__integerMin0Max149",
-          "locationName": "followInputIndex"
-        },
         "Inputs": {
           "shape": "__listOfInput",
           "locationName": "inputs"
@@ -6815,10 +6841,6 @@
         "ExtendedDataServices": {
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
-        },
-        "FollowInputIndex": {
-          "shape": "__integerMin0Max149",
-          "locationName": "followInputIndex"
         },
         "Inputs": {
           "shape": "__listOfInputTemplate",
@@ -10175,6 +10197,57 @@
         }
       }
     },
+    "VideoOverlay": {
+      "type": "structure",
+      "members": {
+        "EndTimecode": {
+          "shape": "__stringPattern010920405090509092",
+          "locationName": "endTimecode"
+        },
+        "Input": {
+          "shape": "VideoOverlayInput",
+          "locationName": "input"
+        },
+        "StartTimecode": {
+          "shape": "__stringPattern010920405090509092",
+          "locationName": "startTimecode"
+        }
+      }
+    },
+    "VideoOverlayInput": {
+      "type": "structure",
+      "members": {
+        "FileInput": {
+          "shape": "__stringPatternS3Https",
+          "locationName": "fileInput"
+        },
+        "InputClippings": {
+          "shape": "__listOfVideoOverlayInputClipping",
+          "locationName": "inputClippings"
+        },
+        "TimecodeSource": {
+          "shape": "InputTimecodeSource",
+          "locationName": "timecodeSource"
+        },
+        "TimecodeStart": {
+          "shape": "__stringMin11Max11Pattern01D20305D205D",
+          "locationName": "timecodeStart"
+        }
+      }
+    },
+    "VideoOverlayInputClipping": {
+      "type": "structure",
+      "members": {
+        "EndTimecode": {
+          "shape": "__stringPattern010920405090509092",
+          "locationName": "endTimecode"
+        },
+        "StartTimecode": {
+          "shape": "__stringPattern010920405090509092",
+          "locationName": "startTimecode"
+        }
+      }
+    },
     "VideoPreprocessor": {
       "type": "structure",
       "members": {
@@ -10980,11 +11053,6 @@
       "min": 0,
       "max": 1466400000
     },
-    "__integerMin0Max149": {
-      "type": "integer",
-      "min": 0,
-      "max": 149
-    },
     "__integerMin0Max15": {
       "type": "integer",
       "min": 0,
@@ -11613,6 +11681,18 @@
       "type": "list",
       "member": {
         "shape": "TeletextPageType"
+      }
+    },
+    "__listOfVideoOverlay": {
+      "type": "list",
+      "member": {
+        "shape": "VideoOverlay"
+      }
+    },
+    "__listOfVideoOverlayInputClipping": {
+      "type": "list",
+      "member": {
+        "shape": "VideoOverlayInputClipping"
       }
     },
     "__listOfWarningGroup": {

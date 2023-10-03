@@ -9883,6 +9883,22 @@ type CreateTrackerInput struct {
 	// with this tracker. Those events are always sent to EventBridge.
 	EventBridgeEnabled *bool `type:"boolean"`
 
+	// Enables GeospatialQueries for a tracker that uses a Amazon Web Services KMS
+	// customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
+	//
+	// This parameter is only used if you are using a KMS customer managed key.
+	//
+	// If you wish to encrypt your data using your own KMS customer managed key,
+	// then the Bounding Polygon Queries feature will be disabled by default. This
+	// is because by using this feature, a representation of your device positions
+	// will not be encrypted using the your KMS managed key. The exact device position,
+	// however; is still encrypted using your managed key.
+	//
+	// You can choose to opt-in to the Bounding Polygon Quseries feature. This is
+	// done by setting the KmsKeyEnableGeospatialQueries parameter to true when
+	// creating or updating a Tracker.
+	KmsKeyEnableGeospatialQueries *bool `type:"boolean"`
+
 	// A key identifier for an Amazon Web Services KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
 	// Enter a key ID, key ARN, alias name, or alias ARN.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -10007,6 +10023,12 @@ func (s *CreateTrackerInput) SetDescription(v string) *CreateTrackerInput {
 // SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
 func (s *CreateTrackerInput) SetEventBridgeEnabled(v bool) *CreateTrackerInput {
 	s.EventBridgeEnabled = &v
+	return s
+}
+
+// SetKmsKeyEnableGeospatialQueries sets the KmsKeyEnableGeospatialQueries field's value.
+func (s *CreateTrackerInput) SetKmsKeyEnableGeospatialQueries(v bool) *CreateTrackerInput {
+	s.KmsKeyEnableGeospatialQueries = &v
 	return s
 }
 
@@ -10659,6 +10681,9 @@ type DescribeGeofenceCollectionOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// The number of geofences in the geofence collection.
+	GeofenceCount *int64 `type:"integer"`
+
 	// A key identifier for an Amazon Web Services KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)
 	// assigned to the Amazon Location resource
 	KmsKeyId *string `min:"1" type:"string"`
@@ -10722,6 +10747,12 @@ func (s *DescribeGeofenceCollectionOutput) SetCreateTime(v time.Time) *DescribeG
 // SetDescription sets the Description field's value.
 func (s *DescribeGeofenceCollectionOutput) SetDescription(v string) *DescribeGeofenceCollectionOutput {
 	s.Description = &v
+	return s
+}
+
+// SetGeofenceCount sets the GeofenceCount field's value.
+func (s *DescribeGeofenceCollectionOutput) SetGeofenceCount(v int64) *DescribeGeofenceCollectionOutput {
+	s.GeofenceCount = &v
 	return s
 }
 
@@ -11530,6 +11561,22 @@ type DescribeTrackerOutput struct {
 	// to true these events will be sent to EventBridge.
 	EventBridgeEnabled *bool `type:"boolean"`
 
+	// Enables GeospatialQueries for a tracker that uses a Amazon Web Services KMS
+	// customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
+	//
+	// This parameter is only used if you are using a KMS customer managed key.
+	//
+	// If you wish to encrypt your data using your own KMS customer managed key,
+	// then the Bounding Polygon Queries feature will be disabled by default. This
+	// is because by using this feature, a representation of your device positions
+	// will not be encrypted using the your KMS managed key. The exact device position,
+	// however; is still encrypted using your managed key.
+	//
+	// You can choose to opt-in to the Bounding Polygon Quseries feature. This is
+	// done by setting the KmsKeyEnableGeospatialQueries parameter to true when
+	// creating or updating a Tracker.
+	KmsKeyEnableGeospatialQueries *bool `type:"boolean"`
+
 	// A key identifier for an Amazon Web Services KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)
 	// assigned to the Amazon Location resource.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -11603,6 +11650,12 @@ func (s *DescribeTrackerOutput) SetDescription(v string) *DescribeTrackerOutput 
 // SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
 func (s *DescribeTrackerOutput) SetEventBridgeEnabled(v bool) *DescribeTrackerOutput {
 	s.EventBridgeEnabled = &v
+	return s
+}
+
+// SetKmsKeyEnableGeospatialQueries sets the KmsKeyEnableGeospatialQueries field's value.
+func (s *DescribeTrackerOutput) SetKmsKeyEnableGeospatialQueries(v bool) *DescribeTrackerOutput {
+	s.KmsKeyEnableGeospatialQueries = &v
 	return s
 }
 
@@ -12548,7 +12601,7 @@ type GetMapGlyphsInput struct {
 	// A comma-separated list of fonts to load glyphs from in order of preference.
 	// For example, Noto Sans Regular, Arial Unicode.
 	//
-	// Valid fonts stacks for Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)
+	// Valid font stacks for Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)
 	// styles:
 	//
 	//    * VectorEsriDarkGrayCanvas – Ubuntu Medium Italic | Ubuntu Medium |
@@ -13531,6 +13584,9 @@ func (s *LegGeometry) SetLineString(v [][]*float64) *LegGeometry {
 type ListDevicePositionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The geomerty used to filter device positions.
+	FilterGeometry *TrackingFilterGeometry `type:"structure"`
+
 	// An optional limit for the number of entries returned in a single call.
 	//
 	// Default value: 100
@@ -13581,11 +13637,22 @@ func (s *ListDevicePositionsInput) Validate() error {
 	if s.TrackerName != nil && len(*s.TrackerName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TrackerName", 1))
 	}
+	if s.FilterGeometry != nil {
+		if err := s.FilterGeometry.Validate(); err != nil {
+			invalidParams.AddNested("FilterGeometry", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilterGeometry sets the FilterGeometry field's value.
+func (s *ListDevicePositionsInput) SetFilterGeometry(v *TrackingFilterGeometry) *ListDevicePositionsInput {
+	s.FilterGeometry = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -13609,9 +13676,7 @@ func (s *ListDevicePositionsInput) SetTrackerName(v string) *ListDevicePositions
 type ListDevicePositionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains details about each device's last known position. These details includes
-	// the device ID, the time when the position was sampled on the device, the
-	// time that the service received the update, and the most recent coordinates.
+	// Contains details about each device's last known position.
 	//
 	// Entries is a required field
 	Entries []*ListDevicePositionsResponseEntry `type:"list" required:"true"`
@@ -17865,6 +17930,52 @@ func (s *TimeZone) SetOffset(v int64) *TimeZone {
 	return s
 }
 
+// The geomerty used to filter device positions.
+type TrackingFilterGeometry struct {
+	_ struct{} `type:"structure"`
+
+	// The set of arrays which define the polygon. A polygon can have between 4
+	// and 1000 vertices.
+	Polygon [][][]*float64 `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrackingFilterGeometry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrackingFilterGeometry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TrackingFilterGeometry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrackingFilterGeometry"}
+	if s.Polygon != nil && len(s.Polygon) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Polygon", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolygon sets the Polygon field's value.
+func (s *TrackingFilterGeometry) SetPolygon(v [][][]*float64) *TrackingFilterGeometry {
+	s.Polygon = v
+	return s
+}
+
 // Contains details about the truck dimensions in the unit of measurement that
 // you specify. Used to filter out roads that can't support or allow the specified
 // dimensions for requests that specify TravelMode as Truck.
@@ -18803,6 +18914,12 @@ type UpdateTrackerInput struct {
 	// with this tracker. Those events are always sent to EventBridge.
 	EventBridgeEnabled *bool `type:"boolean"`
 
+	// Enables GeospatialQueries for a tracker that uses a Amazon Web Services KMS
+	// customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
+	//
+	// This parameter is only used if you are using a KMS customer managed key.
+	KmsKeyEnableGeospatialQueries *bool `type:"boolean"`
+
 	// Updates the position filtering for the tracker resource.
 	//
 	// Valid values:
@@ -18889,6 +19006,12 @@ func (s *UpdateTrackerInput) SetDescription(v string) *UpdateTrackerInput {
 // SetEventBridgeEnabled sets the EventBridgeEnabled field's value.
 func (s *UpdateTrackerInput) SetEventBridgeEnabled(v bool) *UpdateTrackerInput {
 	s.EventBridgeEnabled = &v
+	return s
+}
+
+// SetKmsKeyEnableGeospatialQueries sets the KmsKeyEnableGeospatialQueries field's value.
+func (s *UpdateTrackerInput) SetKmsKeyEnableGeospatialQueries(v bool) *UpdateTrackerInput {
+	s.KmsKeyEnableGeospatialQueries = &v
 	return s
 }
 

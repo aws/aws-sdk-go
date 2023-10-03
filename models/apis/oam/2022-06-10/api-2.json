@@ -603,7 +603,8 @@
       "enum":[
         "AWS::CloudWatch::Metric",
         "AWS::Logs::LogGroup",
-        "AWS::XRay::Trace"
+        "AWS::XRay::Trace",
+        "AWS::ApplicationInsights::Application"
       ]
     },
     "ResourceTypesInput":{

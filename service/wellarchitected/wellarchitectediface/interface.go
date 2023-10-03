@@ -88,6 +88,14 @@ type WellArchitectedAPI interface {
 	CreateProfileShareWithContext(aws.Context, *wellarchitected.CreateProfileShareInput, ...request.Option) (*wellarchitected.CreateProfileShareOutput, error)
 	CreateProfileShareRequest(*wellarchitected.CreateProfileShareInput) (*request.Request, *wellarchitected.CreateProfileShareOutput)
 
+	CreateReviewTemplate(*wellarchitected.CreateReviewTemplateInput) (*wellarchitected.CreateReviewTemplateOutput, error)
+	CreateReviewTemplateWithContext(aws.Context, *wellarchitected.CreateReviewTemplateInput, ...request.Option) (*wellarchitected.CreateReviewTemplateOutput, error)
+	CreateReviewTemplateRequest(*wellarchitected.CreateReviewTemplateInput) (*request.Request, *wellarchitected.CreateReviewTemplateOutput)
+
+	CreateTemplateShare(*wellarchitected.CreateTemplateShareInput) (*wellarchitected.CreateTemplateShareOutput, error)
+	CreateTemplateShareWithContext(aws.Context, *wellarchitected.CreateTemplateShareInput, ...request.Option) (*wellarchitected.CreateTemplateShareOutput, error)
+	CreateTemplateShareRequest(*wellarchitected.CreateTemplateShareInput) (*request.Request, *wellarchitected.CreateTemplateShareOutput)
+
 	CreateWorkload(*wellarchitected.CreateWorkloadInput) (*wellarchitected.CreateWorkloadOutput, error)
 	CreateWorkloadWithContext(aws.Context, *wellarchitected.CreateWorkloadInput, ...request.Option) (*wellarchitected.CreateWorkloadOutput, error)
 	CreateWorkloadRequest(*wellarchitected.CreateWorkloadInput) (*request.Request, *wellarchitected.CreateWorkloadOutput)
@@ -111,6 +119,14 @@ type WellArchitectedAPI interface {
 	DeleteProfileShare(*wellarchitected.DeleteProfileShareInput) (*wellarchitected.DeleteProfileShareOutput, error)
 	DeleteProfileShareWithContext(aws.Context, *wellarchitected.DeleteProfileShareInput, ...request.Option) (*wellarchitected.DeleteProfileShareOutput, error)
 	DeleteProfileShareRequest(*wellarchitected.DeleteProfileShareInput) (*request.Request, *wellarchitected.DeleteProfileShareOutput)
+
+	DeleteReviewTemplate(*wellarchitected.DeleteReviewTemplateInput) (*wellarchitected.DeleteReviewTemplateOutput, error)
+	DeleteReviewTemplateWithContext(aws.Context, *wellarchitected.DeleteReviewTemplateInput, ...request.Option) (*wellarchitected.DeleteReviewTemplateOutput, error)
+	DeleteReviewTemplateRequest(*wellarchitected.DeleteReviewTemplateInput) (*request.Request, *wellarchitected.DeleteReviewTemplateOutput)
+
+	DeleteTemplateShare(*wellarchitected.DeleteTemplateShareInput) (*wellarchitected.DeleteTemplateShareOutput, error)
+	DeleteTemplateShareWithContext(aws.Context, *wellarchitected.DeleteTemplateShareInput, ...request.Option) (*wellarchitected.DeleteTemplateShareOutput, error)
+	DeleteTemplateShareRequest(*wellarchitected.DeleteTemplateShareInput) (*request.Request, *wellarchitected.DeleteTemplateShareOutput)
 
 	DeleteWorkload(*wellarchitected.DeleteWorkloadInput) (*wellarchitected.DeleteWorkloadOutput, error)
 	DeleteWorkloadWithContext(aws.Context, *wellarchitected.DeleteWorkloadInput, ...request.Option) (*wellarchitected.DeleteWorkloadOutput, error)
@@ -170,6 +186,18 @@ type WellArchitectedAPI interface {
 	GetProfileTemplate(*wellarchitected.GetProfileTemplateInput) (*wellarchitected.GetProfileTemplateOutput, error)
 	GetProfileTemplateWithContext(aws.Context, *wellarchitected.GetProfileTemplateInput, ...request.Option) (*wellarchitected.GetProfileTemplateOutput, error)
 	GetProfileTemplateRequest(*wellarchitected.GetProfileTemplateInput) (*request.Request, *wellarchitected.GetProfileTemplateOutput)
+
+	GetReviewTemplate(*wellarchitected.GetReviewTemplateInput) (*wellarchitected.GetReviewTemplateOutput, error)
+	GetReviewTemplateWithContext(aws.Context, *wellarchitected.GetReviewTemplateInput, ...request.Option) (*wellarchitected.GetReviewTemplateOutput, error)
+	GetReviewTemplateRequest(*wellarchitected.GetReviewTemplateInput) (*request.Request, *wellarchitected.GetReviewTemplateOutput)
+
+	GetReviewTemplateAnswer(*wellarchitected.GetReviewTemplateAnswerInput) (*wellarchitected.GetReviewTemplateAnswerOutput, error)
+	GetReviewTemplateAnswerWithContext(aws.Context, *wellarchitected.GetReviewTemplateAnswerInput, ...request.Option) (*wellarchitected.GetReviewTemplateAnswerOutput, error)
+	GetReviewTemplateAnswerRequest(*wellarchitected.GetReviewTemplateAnswerInput) (*request.Request, *wellarchitected.GetReviewTemplateAnswerOutput)
+
+	GetReviewTemplateLensReview(*wellarchitected.GetReviewTemplateLensReviewInput) (*wellarchitected.GetReviewTemplateLensReviewOutput, error)
+	GetReviewTemplateLensReviewWithContext(aws.Context, *wellarchitected.GetReviewTemplateLensReviewInput, ...request.Option) (*wellarchitected.GetReviewTemplateLensReviewOutput, error)
+	GetReviewTemplateLensReviewRequest(*wellarchitected.GetReviewTemplateLensReviewInput) (*request.Request, *wellarchitected.GetReviewTemplateLensReviewOutput)
 
 	GetWorkload(*wellarchitected.GetWorkloadInput) (*wellarchitected.GetWorkloadOutput, error)
 	GetWorkloadWithContext(aws.Context, *wellarchitected.GetWorkloadInput, ...request.Option) (*wellarchitected.GetWorkloadOutput, error)
@@ -263,6 +291,20 @@ type WellArchitectedAPI interface {
 	ListProfilesPages(*wellarchitected.ListProfilesInput, func(*wellarchitected.ListProfilesOutput, bool) bool) error
 	ListProfilesPagesWithContext(aws.Context, *wellarchitected.ListProfilesInput, func(*wellarchitected.ListProfilesOutput, bool) bool, ...request.Option) error
 
+	ListReviewTemplateAnswers(*wellarchitected.ListReviewTemplateAnswersInput) (*wellarchitected.ListReviewTemplateAnswersOutput, error)
+	ListReviewTemplateAnswersWithContext(aws.Context, *wellarchitected.ListReviewTemplateAnswersInput, ...request.Option) (*wellarchitected.ListReviewTemplateAnswersOutput, error)
+	ListReviewTemplateAnswersRequest(*wellarchitected.ListReviewTemplateAnswersInput) (*request.Request, *wellarchitected.ListReviewTemplateAnswersOutput)
+
+	ListReviewTemplateAnswersPages(*wellarchitected.ListReviewTemplateAnswersInput, func(*wellarchitected.ListReviewTemplateAnswersOutput, bool) bool) error
+	ListReviewTemplateAnswersPagesWithContext(aws.Context, *wellarchitected.ListReviewTemplateAnswersInput, func(*wellarchitected.ListReviewTemplateAnswersOutput, bool) bool, ...request.Option) error
+
+	ListReviewTemplates(*wellarchitected.ListReviewTemplatesInput) (*wellarchitected.ListReviewTemplatesOutput, error)
+	ListReviewTemplatesWithContext(aws.Context, *wellarchitected.ListReviewTemplatesInput, ...request.Option) (*wellarchitected.ListReviewTemplatesOutput, error)
+	ListReviewTemplatesRequest(*wellarchitected.ListReviewTemplatesInput) (*request.Request, *wellarchitected.ListReviewTemplatesOutput)
+
+	ListReviewTemplatesPages(*wellarchitected.ListReviewTemplatesInput, func(*wellarchitected.ListReviewTemplatesOutput, bool) bool) error
+	ListReviewTemplatesPagesWithContext(aws.Context, *wellarchitected.ListReviewTemplatesInput, func(*wellarchitected.ListReviewTemplatesOutput, bool) bool, ...request.Option) error
+
 	ListShareInvitations(*wellarchitected.ListShareInvitationsInput) (*wellarchitected.ListShareInvitationsOutput, error)
 	ListShareInvitationsWithContext(aws.Context, *wellarchitected.ListShareInvitationsInput, ...request.Option) (*wellarchitected.ListShareInvitationsOutput, error)
 	ListShareInvitationsRequest(*wellarchitected.ListShareInvitationsInput) (*request.Request, *wellarchitected.ListShareInvitationsOutput)
@@ -273,6 +315,13 @@ type WellArchitectedAPI interface {
 	ListTagsForResource(*wellarchitected.ListTagsForResourceInput) (*wellarchitected.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *wellarchitected.ListTagsForResourceInput, ...request.Option) (*wellarchitected.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*wellarchitected.ListTagsForResourceInput) (*request.Request, *wellarchitected.ListTagsForResourceOutput)
+
+	ListTemplateShares(*wellarchitected.ListTemplateSharesInput) (*wellarchitected.ListTemplateSharesOutput, error)
+	ListTemplateSharesWithContext(aws.Context, *wellarchitected.ListTemplateSharesInput, ...request.Option) (*wellarchitected.ListTemplateSharesOutput, error)
+	ListTemplateSharesRequest(*wellarchitected.ListTemplateSharesInput) (*request.Request, *wellarchitected.ListTemplateSharesOutput)
+
+	ListTemplateSharesPages(*wellarchitected.ListTemplateSharesInput, func(*wellarchitected.ListTemplateSharesOutput, bool) bool) error
+	ListTemplateSharesPagesWithContext(aws.Context, *wellarchitected.ListTemplateSharesInput, func(*wellarchitected.ListTemplateSharesOutput, bool) bool, ...request.Option) error
 
 	ListWorkloadShares(*wellarchitected.ListWorkloadSharesInput) (*wellarchitected.ListWorkloadSharesOutput, error)
 	ListWorkloadSharesWithContext(aws.Context, *wellarchitected.ListWorkloadSharesInput, ...request.Option) (*wellarchitected.ListWorkloadSharesOutput, error)
@@ -312,6 +361,18 @@ type WellArchitectedAPI interface {
 	UpdateProfileWithContext(aws.Context, *wellarchitected.UpdateProfileInput, ...request.Option) (*wellarchitected.UpdateProfileOutput, error)
 	UpdateProfileRequest(*wellarchitected.UpdateProfileInput) (*request.Request, *wellarchitected.UpdateProfileOutput)
 
+	UpdateReviewTemplate(*wellarchitected.UpdateReviewTemplateInput) (*wellarchitected.UpdateReviewTemplateOutput, error)
+	UpdateReviewTemplateWithContext(aws.Context, *wellarchitected.UpdateReviewTemplateInput, ...request.Option) (*wellarchitected.UpdateReviewTemplateOutput, error)
+	UpdateReviewTemplateRequest(*wellarchitected.UpdateReviewTemplateInput) (*request.Request, *wellarchitected.UpdateReviewTemplateOutput)
+
+	UpdateReviewTemplateAnswer(*wellarchitected.UpdateReviewTemplateAnswerInput) (*wellarchitected.UpdateReviewTemplateAnswerOutput, error)
+	UpdateReviewTemplateAnswerWithContext(aws.Context, *wellarchitected.UpdateReviewTemplateAnswerInput, ...request.Option) (*wellarchitected.UpdateReviewTemplateAnswerOutput, error)
+	UpdateReviewTemplateAnswerRequest(*wellarchitected.UpdateReviewTemplateAnswerInput) (*request.Request, *wellarchitected.UpdateReviewTemplateAnswerOutput)
+
+	UpdateReviewTemplateLensReview(*wellarchitected.UpdateReviewTemplateLensReviewInput) (*wellarchitected.UpdateReviewTemplateLensReviewOutput, error)
+	UpdateReviewTemplateLensReviewWithContext(aws.Context, *wellarchitected.UpdateReviewTemplateLensReviewInput, ...request.Option) (*wellarchitected.UpdateReviewTemplateLensReviewOutput, error)
+	UpdateReviewTemplateLensReviewRequest(*wellarchitected.UpdateReviewTemplateLensReviewInput) (*request.Request, *wellarchitected.UpdateReviewTemplateLensReviewOutput)
+
 	UpdateShareInvitation(*wellarchitected.UpdateShareInvitationInput) (*wellarchitected.UpdateShareInvitationOutput, error)
 	UpdateShareInvitationWithContext(aws.Context, *wellarchitected.UpdateShareInvitationInput, ...request.Option) (*wellarchitected.UpdateShareInvitationOutput, error)
 	UpdateShareInvitationRequest(*wellarchitected.UpdateShareInvitationInput) (*request.Request, *wellarchitected.UpdateShareInvitationOutput)
@@ -331,6 +392,10 @@ type WellArchitectedAPI interface {
 	UpgradeProfileVersion(*wellarchitected.UpgradeProfileVersionInput) (*wellarchitected.UpgradeProfileVersionOutput, error)
 	UpgradeProfileVersionWithContext(aws.Context, *wellarchitected.UpgradeProfileVersionInput, ...request.Option) (*wellarchitected.UpgradeProfileVersionOutput, error)
 	UpgradeProfileVersionRequest(*wellarchitected.UpgradeProfileVersionInput) (*request.Request, *wellarchitected.UpgradeProfileVersionOutput)
+
+	UpgradeReviewTemplateLensReview(*wellarchitected.UpgradeReviewTemplateLensReviewInput) (*wellarchitected.UpgradeReviewTemplateLensReviewOutput, error)
+	UpgradeReviewTemplateLensReviewWithContext(aws.Context, *wellarchitected.UpgradeReviewTemplateLensReviewInput, ...request.Option) (*wellarchitected.UpgradeReviewTemplateLensReviewOutput, error)
+	UpgradeReviewTemplateLensReviewRequest(*wellarchitected.UpgradeReviewTemplateLensReviewInput) (*request.Request, *wellarchitected.UpgradeReviewTemplateLensReviewOutput)
 }
 
 var _ WellArchitectedAPI = (*wellarchitected.WellArchitected)(nil)

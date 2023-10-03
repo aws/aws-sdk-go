@@ -35566,6 +35566,13 @@ var awsusgovPartition = partition{
 				},
 			},
 		},
+		"codestar-connections": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "us-gov-east-1",
+				}: endpoint{},
+			},
+		},
 		"cognito-identity": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{

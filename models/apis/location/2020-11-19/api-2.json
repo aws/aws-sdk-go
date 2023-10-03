@@ -1900,6 +1900,7 @@
       "members":{
         "Description":{"shape":"ResourceDescription"},
         "EventBridgeEnabled":{"shape":"Boolean"},
+        "KmsKeyEnableGeospatialQueries":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
@@ -2056,6 +2057,7 @@
         "CollectionName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "GeofenceCount":{"shape":"DescribeGeofenceCollectionResponseGeofenceCountInteger"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "PricingPlan":{
           "shape":"PricingPlan",
@@ -2070,6 +2072,11 @@
         "Tags":{"shape":"TagMap"},
         "UpdateTime":{"shape":"Timestamp"}
       }
+    },
+    "DescribeGeofenceCollectionResponseGeofenceCountInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
     },
     "DescribeKeyRequest":{
       "type":"structure",
@@ -2241,6 +2248,7 @@
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "EventBridgeEnabled":{"shape":"Boolean"},
+        "KmsKeyEnableGeospatialQueries":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
@@ -2792,6 +2800,7 @@
       "type":"structure",
       "required":["TrackerName"],
       "members":{
+        "FilterGeometry":{"shape":"TrackingFilterGeometry"},
         "MaxResults":{"shape":"ListDevicePositionsRequestMaxResultsInteger"},
         "NextToken":{"shape":"Token"},
         "TrackerName":{
@@ -3827,6 +3836,12 @@
       "max":2000,
       "min":1
     },
+    "TrackingFilterGeometry":{
+      "type":"structure",
+      "members":{
+        "Polygon":{"shape":"LinearRings"}
+      }
+    },
     "TravelMode":{
       "type":"string",
       "enum":[
@@ -4059,6 +4074,7 @@
       "members":{
         "Description":{"shape":"ResourceDescription"},
         "EventBridgeEnabled":{"shape":"Boolean"},
+        "KmsKeyEnableGeospatialQueries":{"shape":"Boolean"},
         "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{
           "shape":"PricingPlan",
