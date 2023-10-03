@@ -9,12 +9,16 @@
     "CreateMilestone": "<p>Create a milestone for an existing workload.</p>",
     "CreateProfile": "<p>Create a profile.</p>",
     "CreateProfileShare": "<p>Create a profile share.</p>",
-    "CreateWorkload": "<p>Create a new workload.</p> <p>The owner of a workload can share the workload with other Amazon Web Services accounts, users, an organization, and organizational units (OUs) in the same Amazon Web Services Region. Only the owner of a workload can delete it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html\">Defining a Workload</a> in the <i>Well-Architected Tool User Guide</i>.</p> <important> <p>Either <code>AwsRegions</code>, <code>NonAwsRegions</code>, or both must be specified when creating a workload.</p> <p>You also must specify <code>ReviewOwner</code>, even though the parameter is listed as not being required in the following section. </p> </important>",
+    "CreateReviewTemplate": "<p>Create a review template.</p> <note> <p> <b>Disclaimer</b> </p> <p>Do not include or gather personal identifiable information (PII) of end users or other identifiable individuals in or via your review templates. If your review template or those shared with you and used in your account do include or collect PII you are responsible for: ensuring that the included PII is processed in accordance with applicable law, providing adequate privacy notices, and obtaining necessary consents for processing such data.</p> </note>",
+    "CreateTemplateShare": "<p>Create a review template share.</p> <p>The owner of a review template can share it with other Amazon Web Services accounts, users, an organization, and organizational units (OUs) in the same Amazon Web Services Region. </p> <p> Shared access to a review template is not removed until the review template share invitation is deleted.</p> <p>If you share a review template with an organization or OU, all accounts in the organization or OU are granted access to the review template.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your review template with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your review template available to those other accounts.</p> </note>",
+    "CreateWorkload": "<p>Create a new workload.</p> <p>The owner of a workload can share the workload with other Amazon Web Services accounts, users, an organization, and organizational units (OUs) in the same Amazon Web Services Region. Only the owner of a workload can delete it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html\">Defining a Workload</a> in the <i>Well-Architected Tool User Guide</i>.</p> <important> <p>Either <code>AwsRegions</code>, <code>NonAwsRegions</code>, or both must be specified when creating a workload.</p> <p>You also must specify <code>ReviewOwner</code>, even though the parameter is listed as not being required in the following section. </p> </important> <p>When creating a workload using a review template, you must have the following IAM permissions:</p> <ul> <li> <p> <code>wellarchitected:GetReviewTemplate</code> </p> </li> <li> <p> <code>wellarchitected:GetReviewTemplateAnswer</code> </p> </li> <li> <p> <code>wellarchitected:ListReviewTemplateAnswers</code> </p> </li> <li> <p> <code>wellarchitected:GetReviewTemplateLensReview</code> </p> </li> </ul>",
     "CreateWorkloadShare": "<p>Create a workload share.</p> <p>The owner of a workload can share it with other Amazon Web Services accounts and users in the same Amazon Web Services Region. Shared access to a workload is not removed until the workload invitation is deleted.</p> <p>If you share a workload with an organization or OU, all accounts in the organization or OU are granted access to the workload.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/workloads-sharing.html\">Sharing a workload</a> in the <i>Well-Architected Tool User Guide</i>.</p>",
     "DeleteLens": "<p>Delete an existing lens.</p> <p>Only the owner of a lens can delete it. After the lens is deleted, Amazon Web Services accounts and users that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads. </p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
     "DeleteLensShare": "<p>Delete a lens share.</p> <p>After the lens share is deleted, Amazon Web Services accounts, users, organizations, and organizational units (OUs) that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
     "DeleteProfile": "<p>Delete a profile.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your profile with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your profile available to those other accounts. Those other accounts may continue to access and use your shared profile even if you delete the profile from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
     "DeleteProfileShare": "<p>Delete a profile share.</p>",
+    "DeleteReviewTemplate": "<p>Delete a review template.</p> <p>Only the owner of a review template can delete it.</p> <p>After the review template is deleted, Amazon Web Services accounts, users, organizations, and organizational units (OUs) that you shared the review template with will no longer be able to apply it to new workloads.</p>",
+    "DeleteTemplateShare": "<p>Delete a review template share.</p> <p>After the review template share is deleted, Amazon Web Services accounts, users, organizations, and organizational units (OUs) that you shared the review template with will no longer be able to apply it to new workloads.</p>",
     "DeleteWorkload": "<p>Delete an existing workload.</p>",
     "DeleteWorkloadShare": "<p>Delete a workload share.</p>",
     "DisassociateLenses": "<p>Disassociate a lens from a workload.</p> <p>Up to 10 lenses can be disassociated from a workload in a single API operation.</p> <note> <p>The Amazon Web Services Well-Architected Framework lens (<code>wellarchitected</code>) cannot be removed from a workload.</p> </note>",
@@ -29,6 +33,9 @@
     "GetMilestone": "<p>Get a milestone for an existing workload.</p>",
     "GetProfile": "<p>Get profile information.</p>",
     "GetProfileTemplate": "<p>Get profile template.</p>",
+    "GetReviewTemplate": "<p>Get review template.</p>",
+    "GetReviewTemplateAnswer": "<p>Get review template answer.</p>",
+    "GetReviewTemplateLensReview": "<p>Get a lens review associated with a review template.</p>",
     "GetWorkload": "<p>Get an existing workload.</p>",
     "ImportLens": "<p>Import a new custom lens or update an existing custom lens.</p> <p>To update an existing custom lens, specify its ARN as the <code>LensAlias</code>. If no ARN is specified, a new custom lens is created.</p> <p>The new or updated lens will have a status of <code>DRAFT</code>. The lens cannot be applied to workloads or shared with other Amazon Web Services accounts until it's published with <a>CreateLensVersion</a>.</p> <p>Lenses are defined in JSON. For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/lenses-format-specification.html\">JSON format specification</a> in the <i>Well-Architected Tool User Guide</i>.</p> <p>A custom lens cannot exceed 500 KB in size.</p> <note> <p> <b>Disclaimer</b> </p> <p>Do not include or gather personal identifiable information (PII) of end users or other identifiable individuals in or via your custom lenses. If your custom lens or those shared with you and used in your account do include or collect PII you are responsible for: ensuring that the included PII is processed in accordance with applicable law, providing adequate privacy notices, and obtaining necessary consents for processing such data.</p> </note>",
     "ListAnswers": "<p>List of answers for a particular workload and lens.</p>",
@@ -43,21 +50,28 @@
     "ListProfileNotifications": "<p>List profile notifications.</p>",
     "ListProfileShares": "<p>List profile shares.</p>",
     "ListProfiles": "<p>List profiles.</p>",
-    "ListShareInvitations": "<p>List the workload invitations.</p>",
-    "ListTagsForResource": "<p>List the tags for a resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, or a profile ARN.</p> </note>",
+    "ListReviewTemplateAnswers": "<p>List the answers of a review template.</p>",
+    "ListReviewTemplates": "<p>List review templates.</p>",
+    "ListShareInvitations": "<p>List the share invitations.</p> <p> <code>WorkloadNamePrefix</code>, <code>LensNamePrefix</code>, <code>ProfileNamePrefix</code>, and <code>TemplateNamePrefix</code> are mutually exclusive. Use the parameter that matches your <code>ShareResourceType</code>.</p>",
+    "ListTagsForResource": "<p>List the tags for a resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.</p> </note>",
+    "ListTemplateShares": "<p>List review template shares.</p>",
     "ListWorkloadShares": "<p>List the workload shares associated with the workload.</p>",
     "ListWorkloads": "<p>Paginated list of workloads.</p>",
-    "TagResource": "<p>Adds one or more tags to the specified resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, or a profile ARN.</p> </note>",
-    "UntagResource": "<p>Deletes specified tags from a resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, or a profile ARN.</p> </note> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
+    "TagResource": "<p>Adds one or more tags to the specified resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.</p> </note>",
+    "UntagResource": "<p>Deletes specified tags from a resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.</p> </note> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
     "UpdateGlobalSettings": "<p>Updates whether the Amazon Web Services account is opted into organization sharing and discovery integration features.</p>",
     "UpdateLensReview": "<p>Update lens review for a particular workload.</p>",
     "UpdateProfile": "<p>Update a profile.</p>",
+    "UpdateReviewTemplate": "<p>Update a review template.</p>",
+    "UpdateReviewTemplateAnswer": "<p>Update a review template answer.</p>",
+    "UpdateReviewTemplateLensReview": "<p>Update a lens review associated with a review template.</p>",
     "UpdateShareInvitation": "<p>Update a workload or custom lens share invitation.</p> <note> <p>This API operation can be called independently of any resource. Previous documentation implied that a workload ARN must be specified.</p> </note>",
     "UpdateWorkload": "<p>Update an existing workload.</p>",
     "UpdateWorkloadShare": "<p>Update a workload share.</p>",
     "UpgradeLensReview": "<p>Upgrade lens review for a particular workload.</p>",
-    "UpgradeProfileVersion": "<p>Upgrade a profile.</p>"
+    "UpgradeProfileVersion": "<p>Upgrade a profile.</p>",
+    "UpgradeReviewTemplateLensReview": "<p>Upgrade the lens review of a review template.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -101,7 +115,10 @@
       "refs": {
         "Answer$Reason": "<p>The reason why the question is not applicable to your workload.</p>",
         "AnswerSummary$Reason": "<p>The reason why a choice is non-applicable to a question in your workload.</p>",
-        "UpdateAnswerInput$Reason": "<p>The reason why a question is not applicable to your workload.</p>"
+        "ReviewTemplateAnswer$Reason": "<p>The reason why the question is not applicable to your review template.</p>",
+        "ReviewTemplateAnswerSummary$Reason": "<p>The reason why a choice is not-applicable to a question in the review template.</p>",
+        "UpdateAnswerInput$Reason": "<p>The reason why a question is not applicable to your workload.</p>",
+        "UpdateReviewTemplateAnswerInput$Reason": "<p>The update reason.</p>"
       }
     },
     "AnswerSummaries": {
@@ -139,6 +156,8 @@
         "LensSummary$Owner": null,
         "Profile$Owner": null,
         "ProfileSummary$Owner": null,
+        "ReviewTemplate$Owner": null,
+        "ReviewTemplateSummary$Owner": null,
         "ShareInvitationSummary$SharedBy": null,
         "Workload$Owner": null,
         "WorkloadAccountIds$member": null,
@@ -258,7 +277,8 @@
     "ChoiceAnswerSummaries": {
       "base": null,
       "refs": {
-        "AnswerSummary$ChoiceAnswerSummaries": "<p>A list of selected choices to a question in your workload.</p>"
+        "AnswerSummary$ChoiceAnswerSummaries": "<p>A list of selected choices to a question in your workload.</p>",
+        "ReviewTemplateAnswerSummary$ChoiceAnswerSummaries": "<p>A list of selected choices to a question in the review template.</p>"
       }
     },
     "ChoiceAnswerSummary": {
@@ -270,7 +290,8 @@
     "ChoiceAnswers": {
       "base": null,
       "refs": {
-        "Answer$ChoiceAnswers": "<p>A list of selected choices to a question in your workload.</p>"
+        "Answer$ChoiceAnswers": "<p>A list of selected choices to a question in your workload.</p>",
+        "ReviewTemplateAnswer$ChoiceAnswers": "<p>A list of selected choices to a question in your review template.</p>"
       }
     },
     "ChoiceContent": {
@@ -374,14 +395,17 @@
     "ChoiceUpdates": {
       "base": null,
       "refs": {
-        "UpdateAnswerInput$ChoiceUpdates": "<p>A list of choices to update on a question in your workload. The String key corresponds to the choice ID to be updated.</p>"
+        "UpdateAnswerInput$ChoiceUpdates": "<p>A list of choices to update on a question in your workload. The String key corresponds to the choice ID to be updated.</p>",
+        "UpdateReviewTemplateAnswerInput$ChoiceUpdates": "<p>A list of choices to be updated.</p>"
       }
     },
     "Choices": {
       "base": "<p>List of choices available for a question.</p>",
       "refs": {
         "Answer$Choices": null,
-        "AnswerSummary$Choices": null
+        "AnswerSummary$Choices": null,
+        "ReviewTemplateAnswer$Choices": null,
+        "ReviewTemplateAnswerSummary$Choices": null
       }
     },
     "ClientRequestToken": {
@@ -392,17 +416,22 @@
         "CreateMilestoneInput$ClientRequestToken": null,
         "CreateProfileInput$ClientRequestToken": null,
         "CreateProfileShareInput$ClientRequestToken": null,
+        "CreateReviewTemplateInput$ClientRequestToken": null,
+        "CreateTemplateShareInput$ClientRequestToken": null,
         "CreateWorkloadInput$ClientRequestToken": null,
         "CreateWorkloadShareInput$ClientRequestToken": null,
         "DeleteLensInput$ClientRequestToken": null,
         "DeleteLensShareInput$ClientRequestToken": null,
         "DeleteProfileInput$ClientRequestToken": null,
         "DeleteProfileShareInput$ClientRequestToken": null,
+        "DeleteReviewTemplateInput$ClientRequestToken": null,
+        "DeleteTemplateShareInput$ClientRequestToken": null,
         "DeleteWorkloadInput$ClientRequestToken": null,
         "DeleteWorkloadShareInput$ClientRequestToken": null,
         "ImportLensInput$ClientRequestToken": null,
         "UpgradeLensReviewInput$ClientRequestToken": null,
-        "UpgradeProfileVersionInput$ClientRequestToken": null
+        "UpgradeProfileVersionInput$ClientRequestToken": null,
+        "UpgradeReviewTemplateLensReviewInput$ClientRequestToken": null
       }
     },
     "ConflictException": {
@@ -425,6 +454,7 @@
     "Count": {
       "base": "<p>A non-negative integer that denotes how many.</p>",
       "refs": {
+        "QuestionCounts$value": null,
         "RiskCounts$value": null
       }
     },
@@ -478,6 +508,26 @@
       "refs": {
       }
     },
+    "CreateReviewTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateReviewTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateShareInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateShareOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateWorkloadInput": {
       "base": "<p>Input for workload creation.</p>",
       "refs": {
@@ -524,6 +574,16 @@
       "refs": {
       }
     },
+    "DeleteReviewTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTemplateShareInput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteWorkloadInput": {
       "base": "<p>Input for workload deletion.</p>",
       "refs": {
@@ -561,7 +621,8 @@
       "base": null,
       "refs": {
         "Answer$HelpfulResourceDisplayText": "<p>The helpful resource text to be displayed for a custom lens.</p> <p>This field does not apply to Amazon Web Services official lenses.</p>",
-        "ChoiceImprovementPlan$DisplayText": "<p>The display text for the improvement plan.</p>"
+        "ChoiceImprovementPlan$DisplayText": "<p>The display text for the improvement plan.</p>",
+        "ReviewTemplateAnswer$HelpfulResourceDisplayText": "<p>The helpful resource text to be displayed for a custom lens.</p> <note> <p>This field does not apply to Amazon Web Services official lenses.</p> </note>"
       }
     },
     "ExceptionMessage": {
@@ -705,6 +766,36 @@
       "refs": {
       }
     },
+    "GetReviewTemplateAnswerInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReviewTemplateAnswerOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReviewTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReviewTemplateLensReviewInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReviewTemplateLensReviewOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReviewTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetWorkloadInput": {
       "base": "<p>Input to get a workload.</p>",
       "refs": {
@@ -718,7 +809,8 @@
     "HelpfulResourceUrl": {
       "base": "<p>The helpful resource URL.</p> <p>For Amazon Web Services official lenses, this is the helpful resource URL for a question or choice.</p> <p>For custom lenses, this is the helpful resource URL for a question and is only provided if <code>HelpfulResourceDisplayText</code> was specified for the question.</p>",
       "refs": {
-        "Answer$HelpfulResourceUrl": null
+        "Answer$HelpfulResourceUrl": null,
+        "ReviewTemplateAnswer$HelpfulResourceUrl": null
       }
     },
     "ImportLensInput": {
@@ -742,7 +834,8 @@
       "refs": {
         "Answer$ImprovementPlanUrl": null,
         "ChoiceImprovementPlan$ImprovementPlanUrl": null,
-        "ImprovementSummary$ImprovementPlanUrl": null
+        "ImprovementSummary$ImprovementPlanUrl": null,
+        "ReviewTemplateAnswer$ImprovementPlanUrl": null
       }
     },
     "ImprovementSummaries": {
@@ -773,7 +866,10 @@
       "refs": {
         "Answer$IsApplicable": null,
         "AnswerSummary$IsApplicable": null,
-        "UpdateAnswerInput$IsApplicable": null
+        "ReviewTemplateAnswer$IsApplicable": null,
+        "ReviewTemplateAnswerSummary$IsApplicable": null,
+        "UpdateAnswerInput$IsApplicable": null,
+        "UpdateReviewTemplateAnswerInput$IsApplicable": null
       }
     },
     "IsMajorVersion": {
@@ -810,6 +906,9 @@
         "GetLensReviewReportInput$LensAlias": null,
         "GetLensVersionDifferenceInput$LensAlias": null,
         "GetLensVersionDifferenceOutput$LensAlias": null,
+        "GetReviewTemplateAnswerInput$LensAlias": null,
+        "GetReviewTemplateAnswerOutput$LensAlias": null,
+        "GetReviewTemplateLensReviewInput$LensAlias": null,
         "ImportLensInput$LensAlias": null,
         "LensAliases$member": null,
         "LensReview$LensAlias": null,
@@ -822,11 +921,20 @@
         "ListLensReviewImprovementsInput$LensAlias": null,
         "ListLensReviewImprovementsOutput$LensAlias": null,
         "ListLensSharesInput$LensAlias": null,
+        "ListReviewTemplateAnswersInput$LensAlias": null,
+        "ListReviewTemplateAnswersOutput$LensAlias": null,
+        "ReviewTemplateLensAliases$member": null,
+        "ReviewTemplateLensReview$LensAlias": null,
+        "ReviewTemplateLenses$member": null,
         "ShareInvitation$LensAlias": null,
         "UpdateAnswerInput$LensAlias": null,
         "UpdateAnswerOutput$LensAlias": null,
         "UpdateLensReviewInput$LensAlias": null,
+        "UpdateReviewTemplateAnswerInput$LensAlias": null,
+        "UpdateReviewTemplateAnswerOutput$LensAlias": null,
+        "UpdateReviewTemplateLensReviewInput$LensAlias": null,
         "UpgradeLensReviewInput$LensAlias": null,
+        "UpgradeReviewTemplateLensReviewInput$LensAlias": null,
         "WorkloadLenses$member": null
       }
     },
@@ -857,6 +965,7 @@
         "ListCheckDetailsInput$LensArn": "<p>Well-Architected Lens ARN.</p>",
         "ListCheckSummariesInput$LensArn": "<p>Well-Architected Lens ARN.</p>",
         "ListLensReviewImprovementsOutput$LensArn": "<p>The ARN for the lens.</p>",
+        "ReviewTemplateLensReview$LensArn": "<p>The lens ARN.</p>",
         "ShareInvitation$LensArn": "<p>The ARN for the lens.</p>",
         "ShareInvitationSummary$LensArn": "<p>The ARN for the lens.</p>",
         "UpdateAnswerOutput$LensArn": "<p>The ARN for the lens.</p>"
@@ -896,6 +1005,7 @@
         "LensReviewSummary$LensName": null,
         "LensSummary$LensName": null,
         "ListLensesInput$LensName": null,
+        "ReviewTemplateLensReview$LensName": null,
         "ShareInvitationSummary$LensName": null
       }
     },
@@ -953,7 +1063,8 @@
       "refs": {
         "LensReview$LensStatus": "<p>The status of the lens.</p>",
         "LensReviewSummary$LensStatus": "<p>The status of the lens.</p>",
-        "LensSummary$LensStatus": "<p>The status of the lens.</p>"
+        "LensSummary$LensStatus": "<p>The status of the lens.</p>",
+        "ReviewTemplateLensReview$LensStatus": "<p>The status of the lens.</p>"
       }
     },
     "LensStatusType": {
@@ -1005,7 +1116,8 @@
         "LensReviewSummary$LensVersion": "<p>The version of the lens.</p>",
         "LensSummary$LensVersion": "<p>The version of the lens.</p>",
         "LensUpgradeSummary$CurrentLensVersion": "<p>The current version of the lens.</p>",
-        "LensUpgradeSummary$LatestLensVersion": "<p>The latest version of the lens.</p>"
+        "LensUpgradeSummary$LatestLensVersion": "<p>The latest version of the lens.</p>",
+        "ReviewTemplateLensReview$LensVersion": "<p>The version of the lens.</p>"
       }
     },
     "LensesAppliedCount": {
@@ -1158,6 +1270,32 @@
       "refs": {
       }
     },
+    "ListReviewTemplateAnswersInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReviewTemplateAnswersMaxResults": {
+      "base": null,
+      "refs": {
+        "ListReviewTemplateAnswersInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListReviewTemplateAnswersOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReviewTemplatesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReviewTemplatesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListShareInvitationsInput": {
       "base": "<p>Input for List Share Invitations</p>",
       "refs": {
@@ -1180,6 +1318,22 @@
       }
     },
     "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplateSharesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplateSharesMaxResults": {
+      "base": null,
+      "refs": {
+        "ListTemplateSharesInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListTemplateSharesOutput": {
       "base": null,
       "refs": {
       }
@@ -1226,7 +1380,8 @@
         "ListLensesInput$MaxResults": null,
         "ListMilestonesInput$MaxResults": null,
         "ListProfileNotificationsInput$MaxResults": null,
-        "ListProfilesInput$MaxResults": null
+        "ListProfilesInput$MaxResults": null,
+        "ListReviewTemplatesInput$MaxResults": null
       }
     },
     "MaxSelectedProfileChoices": {
@@ -1328,24 +1483,39 @@
         "ListProfileSharesOutput$NextToken": null,
         "ListProfilesInput$NextToken": null,
         "ListProfilesOutput$NextToken": null,
+        "ListReviewTemplateAnswersInput$NextToken": null,
+        "ListReviewTemplateAnswersOutput$NextToken": null,
+        "ListReviewTemplatesInput$NextToken": null,
+        "ListReviewTemplatesOutput$NextToken": null,
         "ListShareInvitationsInput$NextToken": null,
         "ListShareInvitationsOutput$NextToken": null,
+        "ListTemplateSharesInput$NextToken": null,
+        "ListTemplateSharesOutput$NextToken": null,
         "ListWorkloadSharesInput$NextToken": null,
         "ListWorkloadSharesOutput$NextToken": null,
         "ListWorkloadsInput$NextToken": null,
-        "ListWorkloadsOutput$NextToken": null
+        "ListWorkloadsOutput$NextToken": null,
+        "ReviewTemplateLensReview$NextToken": null
       }
     },
     "Notes": {
-      "base": "<p>The notes associated with the workload.</p>",
+      "base": "<p>The notes associated with the workload.</p> <p>For a review template, these are the notes that will be associated with the workload when the template is applied.</p>",
       "refs": {
         "Answer$Notes": null,
+        "CreateReviewTemplateInput$Notes": null,
         "CreateWorkloadInput$Notes": null,
         "LensReview$Notes": null,
         "PillarNotes$value": null,
         "PillarReviewSummary$Notes": null,
+        "ReviewTemplate$Notes": null,
+        "ReviewTemplateAnswer$Notes": null,
+        "ReviewTemplateLensReview$Notes": null,
+        "ReviewTemplatePillarReviewSummary$Notes": null,
         "UpdateAnswerInput$Notes": null,
         "UpdateLensReviewInput$LensNotes": null,
+        "UpdateReviewTemplateAnswerInput$Notes": null,
+        "UpdateReviewTemplateInput$Notes": null,
+        "UpdateReviewTemplateLensReviewInput$LensNotes": null,
         "UpdateWorkloadInput$Notes": null,
         "Workload$Notes": null
       }
@@ -1408,10 +1578,14 @@
         "ListCheckDetailsInput$PillarId": null,
         "ListCheckSummariesInput$PillarId": null,
         "ListLensReviewImprovementsInput$PillarId": null,
+        "ListReviewTemplateAnswersInput$PillarId": null,
         "PillarDifference$PillarId": null,
         "PillarMetric$PillarId": null,
         "PillarNotes$key": null,
         "PillarReviewSummary$PillarId": null,
+        "ReviewTemplateAnswer$PillarId": null,
+        "ReviewTemplateAnswerSummary$PillarId": null,
+        "ReviewTemplatePillarReviewSummary$PillarId": null,
         "WorkloadPillarPriorities$member": null
       }
     },
@@ -1431,13 +1605,15 @@
       "base": "<p>The name of the pillar.</p>",
       "refs": {
         "PillarDifference$PillarName": null,
-        "PillarReviewSummary$PillarName": null
+        "PillarReviewSummary$PillarName": null,
+        "ReviewTemplatePillarReviewSummary$PillarName": null
       }
     },
     "PillarNotes": {
-      "base": "<p>List of pillar notes of a lens review in a workload.</p>",
+      "base": "<p>List of pillar notes of a lens review in a workload.</p> <p>For a review template, these are the notes that will be associated with the workload when the template is applied.</p>",
       "refs": {
-        "UpdateLensReviewInput$PillarNotes": null
+        "UpdateLensReviewInput$PillarNotes": null,
+        "UpdateReviewTemplateLensReviewInput$PillarNotes": null
       }
     },
     "PillarReviewSummaries": {
@@ -1517,8 +1693,8 @@
     "ProfileNamePrefix": {
       "base": null,
       "refs": {
-        "ListProfilesInput$ProfileNamePrefix": "<p>Prefix for profile name.</p>",
-        "ListShareInvitationsInput$ProfileNamePrefix": "<p>Profile name prefix.</p>"
+        "ListProfilesInput$ProfileNamePrefix": "<p>An optional string added to the beginning of each profile name returned in the results.</p>",
+        "ListShareInvitationsInput$ProfileNamePrefix": "<p>An optional string added to the beginning of each profile name returned in the results.</p>"
       }
     },
     "ProfileNotificationSummaries": {
@@ -1636,12 +1812,27 @@
         "WorkloadProfile$ProfileVersion": "<p>The profile version.</p>"
       }
     },
+    "Question": {
+      "base": null,
+      "refs": {
+        "QuestionCounts$key": null
+      }
+    },
+    "QuestionCounts": {
+      "base": null,
+      "refs": {
+        "ReviewTemplate$QuestionCounts": "<p>A count of how many total questions are answered and unanswered in the review template.</p>",
+        "ReviewTemplateLensReview$QuestionCounts": "<p>A count of how many questions are answered and unanswered in the lens review.</p>",
+        "ReviewTemplatePillarReviewSummary$QuestionCounts": "<p>A count of how many questions are answered and unanswered in the requested pillar of the lens review.</p>"
+      }
+    },
     "QuestionDescription": {
       "base": "<p>The description of the question.</p>",
       "refs": {
         "Answer$QuestionDescription": null,
         "ProfileQuestion$QuestionDescription": null,
-        "ProfileTemplateQuestion$QuestionDescription": null
+        "ProfileTemplateQuestion$QuestionDescription": null,
+        "ReviewTemplateAnswer$QuestionDescription": null
       }
     },
     "QuestionDifference": {
@@ -1664,6 +1855,7 @@
         "CheckDetail$QuestionId": null,
         "CheckSummary$QuestionId": null,
         "GetAnswerInput$QuestionId": null,
+        "GetReviewTemplateAnswerInput$QuestionId": null,
         "ImprovementSummary$QuestionId": null,
         "ListCheckDetailsInput$QuestionId": null,
         "ListCheckSummariesInput$QuestionId": null,
@@ -1672,7 +1864,10 @@
         "ProfileTemplateQuestion$QuestionId": null,
         "QuestionDifference$QuestionId": null,
         "QuestionMetric$QuestionId": null,
-        "UpdateAnswerInput$QuestionId": null
+        "ReviewTemplateAnswer$QuestionId": null,
+        "ReviewTemplateAnswerSummary$QuestionId": null,
+        "UpdateAnswerInput$QuestionId": null,
+        "UpdateReviewTemplateAnswerInput$QuestionId": null
       }
     },
     "QuestionMetric": {
@@ -1702,13 +1897,16 @@
         "ImprovementSummary$QuestionTitle": null,
         "ProfileQuestion$QuestionTitle": null,
         "ProfileTemplateQuestion$QuestionTitle": null,
-        "QuestionDifference$QuestionTitle": null
+        "QuestionDifference$QuestionTitle": null,
+        "ReviewTemplateAnswer$QuestionTitle": null,
+        "ReviewTemplateAnswerSummary$QuestionTitle": null
       }
     },
     "QuestionType": {
       "base": null,
       "refs": {
-        "AnswerSummary$QuestionType": "<p>The type of the question.</p>"
+        "AnswerSummary$QuestionType": "<p>The type of the question.</p>",
+        "ReviewTemplateAnswerSummary$QuestionType": "<p>The type of question.</p>"
       }
     },
     "QuotaCode": {
@@ -1724,9 +1922,108 @@
         "GetConsolidatedReportInput$Format": "<p>The format of the consolidated report.</p> <p>For <code>PDF</code>, <code>Base64String</code> is returned. For <code>JSON</code>, <code>Metrics</code> is returned.</p>"
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "LensUpgradeSummary$ResourceArn": "<p> <code>ResourceArn</code> of the lens being upgraded</p>",
+        "ListNotificationsInput$ResourceArn": "<p>The ARN for the related resource for the notification.</p> <note> <p>Only one of <code>WorkloadID</code> or <code>ResourceARN</code> should be specified.</p> </note>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The requested resource was not found.</p>",
       "refs": {
+      }
+    },
+    "ReviewTemplate": {
+      "base": "<p>A review template.</p>",
+      "refs": {
+        "GetReviewTemplateOutput$ReviewTemplate": "<p>The review template.</p>",
+        "UpdateReviewTemplateOutput$ReviewTemplate": "<p>A review template.</p>"
+      }
+    },
+    "ReviewTemplateAnswer": {
+      "base": "<p>An answer of the question.</p>",
+      "refs": {
+        "GetReviewTemplateAnswerOutput$Answer": "<p>An answer of the question.</p>",
+        "UpdateReviewTemplateAnswerOutput$Answer": "<p>An answer of the question.</p>"
+      }
+    },
+    "ReviewTemplateAnswerStatus": {
+      "base": null,
+      "refs": {
+        "ReviewTemplateAnswer$AnswerStatus": "<p>The status of whether or not this question has been answered.</p>",
+        "ReviewTemplateAnswerSummary$AnswerStatus": "<p>The status of whether or not this question has been answered.</p>"
+      }
+    },
+    "ReviewTemplateAnswerSummaries": {
+      "base": null,
+      "refs": {
+        "ListReviewTemplateAnswersOutput$AnswerSummaries": "<p>List of answer summaries of a lens review in a review template.</p>"
+      }
+    },
+    "ReviewTemplateAnswerSummary": {
+      "base": "<p>The summary of review template answers.</p>",
+      "refs": {
+        "ReviewTemplateAnswerSummaries$member": null
+      }
+    },
+    "ReviewTemplateArns": {
+      "base": null,
+      "refs": {
+        "CreateWorkloadInput$ReviewTemplateArns": "<p>The list of review template ARNs to associate with the workload.</p>"
+      }
+    },
+    "ReviewTemplateLensAliases": {
+      "base": null,
+      "refs": {
+        "UpdateReviewTemplateInput$LensesToAssociate": "<p>A list of lens aliases or ARNs to apply to the review template.</p>",
+        "UpdateReviewTemplateInput$LensesToDisassociate": "<p>A list of lens aliases or ARNs to unapply to the review template. The <code>wellarchitected</code> lens cannot be unapplied.</p>"
+      }
+    },
+    "ReviewTemplateLensReview": {
+      "base": "<p>The lens review of a review template.</p>",
+      "refs": {
+        "GetReviewTemplateLensReviewOutput$LensReview": "<p>A lens review of a question.</p>",
+        "UpdateReviewTemplateLensReviewOutput$LensReview": "<p>A lens review of a question.</p>"
+      }
+    },
+    "ReviewTemplateLenses": {
+      "base": null,
+      "refs": {
+        "CreateReviewTemplateInput$Lenses": "<p>Lenses applied to the review template.</p>",
+        "ReviewTemplate$Lenses": "<p>The lenses applied to the review template.</p>",
+        "ReviewTemplateSummary$Lenses": "<p>Lenses associated with the review template.</p>"
+      }
+    },
+    "ReviewTemplatePillarReviewSummaries": {
+      "base": null,
+      "refs": {
+        "ReviewTemplateLensReview$PillarReviewSummaries": "<p>Pillar review summaries of a lens review.</p>"
+      }
+    },
+    "ReviewTemplatePillarReviewSummary": {
+      "base": "<p>Summary of a review template.</p>",
+      "refs": {
+        "ReviewTemplatePillarReviewSummaries$member": null
+      }
+    },
+    "ReviewTemplateSummary": {
+      "base": "<p>Summary of a review template.</p>",
+      "refs": {
+        "ReviewTemplates$member": null
+      }
+    },
+    "ReviewTemplateUpdateStatus": {
+      "base": null,
+      "refs": {
+        "ReviewTemplate$UpdateStatus": "<p>The latest status of a review template.</p>",
+        "ReviewTemplateSummary$UpdateStatus": "<p>The latest status of a review template.</p>"
+      }
+    },
+    "ReviewTemplates": {
+      "base": null,
+      "refs": {
+        "ListReviewTemplatesOutput$ReviewTemplates": "<p>List of review templates.</p>"
       }
     },
     "Risk": {
@@ -1768,7 +2065,10 @@
       "refs": {
         "Answer$SelectedChoices": null,
         "AnswerSummary$SelectedChoices": null,
-        "UpdateAnswerInput$SelectedChoices": null
+        "ReviewTemplateAnswer$SelectedChoices": null,
+        "ReviewTemplateAnswerSummary$SelectedChoices": null,
+        "UpdateAnswerInput$SelectedChoices": null,
+        "UpdateReviewTemplateAnswerInput$SelectedChoices": null
       }
     },
     "SelectedProfileChoiceIds": {
@@ -1794,12 +2094,15 @@
       "refs": {
         "CreateLensShareOutput$ShareId": null,
         "CreateProfileShareOutput$ShareId": null,
+        "CreateTemplateShareOutput$ShareId": null,
         "CreateWorkloadShareOutput$ShareId": null,
         "DeleteLensShareInput$ShareId": null,
         "DeleteProfileShareInput$ShareId": null,
+        "DeleteTemplateShareInput$ShareId": null,
         "DeleteWorkloadShareInput$ShareId": null,
         "LensShareSummary$ShareId": null,
         "ProfileShareSummary$ShareId": null,
+        "TemplateShareSummary$ShareId": null,
         "UpdateWorkloadShareInput$ShareId": null,
         "WorkloadShare$ShareId": null,
         "WorkloadShareSummary$ShareId": null
@@ -1822,6 +2125,7 @@
       "refs": {
         "Lens$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
         "Profile$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
+        "ReviewTemplate$ShareInvitationId": "<p>The ID assigned to the template share invitation.</p>",
         "ShareInvitation$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
         "ShareInvitationSummary$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
         "UpdateShareInvitationInput$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
@@ -1854,21 +2158,25 @@
         "LensShareSummary$Status": null,
         "ListLensSharesInput$Status": null,
         "ListProfileSharesInput$Status": null,
+        "ListTemplateSharesInput$Status": null,
         "ListWorkloadSharesInput$Status": null,
         "ProfileShareSummary$Status": null,
+        "TemplateShareSummary$Status": null,
         "WorkloadShare$Status": null,
         "WorkloadShareSummary$Status": null
       }
     },
     "SharedWith": {
-      "base": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the workload, lens, or profile is shared.</p>",
+      "base": "<p>The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the workload, lens, profile, or review template is shared.</p>",
       "refs": {
         "CreateLensShareInput$SharedWith": null,
         "CreateProfileShareInput$SharedWith": null,
+        "CreateTemplateShareInput$SharedWith": null,
         "CreateWorkloadShareInput$SharedWith": null,
         "LensShareSummary$SharedWith": null,
         "ProfileShareSummary$SharedWith": null,
         "ShareInvitationSummary$SharedWith": null,
+        "TemplateShareSummary$SharedWith": null,
         "WorkloadShare$SharedWith": null,
         "WorkloadShareSummary$SharedWith": null
       }
@@ -1876,9 +2184,10 @@
     "SharedWithPrefix": {
       "base": null,
       "refs": {
-        "ListLensSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the lens is shared.</p>",
-        "ListProfileSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the profile is shared.</p>",
-        "ListWorkloadSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the workload is shared.</p>"
+        "ListLensSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the lens is shared.</p>",
+        "ListProfileSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the profile is shared.</p>",
+        "ListTemplateSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the profile is shared.</p>",
+        "ListWorkloadSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the workload is shared.</p>"
       }
     },
     "StatusMessage": {
@@ -1886,6 +2195,7 @@
       "refs": {
         "LensShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>",
         "ProfileShareSummary$StatusMessage": "<p>Profile share invitation status message.</p>",
+        "TemplateShareSummary$StatusMessage": "<p>Review template share invitation status message. </p>",
         "WorkloadShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>"
       }
     },
@@ -1906,11 +2216,13 @@
       "base": null,
       "refs": {
         "CreateProfileInput$Tags": "<p>The tags assigned to the profile.</p>",
+        "CreateReviewTemplateInput$Tags": "<p>The tags assigned to the review template.</p>",
         "CreateWorkloadInput$Tags": "<p>The tags to be associated with the workload.</p>",
         "ImportLensInput$Tags": "<p>Tags to associate to a lens.</p>",
         "Lens$Tags": "<p>The tags assigned to the lens.</p>",
         "ListTagsForResourceOutput$Tags": "<p>The tags for the resource.</p>",
         "Profile$Tags": "<p>The tags assigned to the profile.</p>",
+        "ReviewTemplate$Tags": "<p>The tags assigned to the review template.</p>",
         "TagResourceInput$Tags": "<p>The tags for the resource.</p>",
         "Workload$Tags": "<p>The tags associated with the workload.</p>"
       }
@@ -1931,10 +2243,77 @@
         "TagMap$value": null
       }
     },
+    "TemplateArn": {
+      "base": null,
+      "refs": {
+        "CreateReviewTemplateOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "CreateTemplateShareInput$TemplateArn": "<p>The review template ARN.</p>",
+        "CreateTemplateShareOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "DeleteReviewTemplateInput$TemplateArn": "<p>The review template ARN.</p>",
+        "DeleteTemplateShareInput$TemplateArn": "<p>The review template ARN.</p>",
+        "GetReviewTemplateAnswerInput$TemplateArn": "<p>The review template ARN.</p>",
+        "GetReviewTemplateAnswerOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "GetReviewTemplateInput$TemplateArn": "<p>The review template ARN.</p>",
+        "GetReviewTemplateLensReviewInput$TemplateArn": "<p>The review template ARN.</p>",
+        "GetReviewTemplateLensReviewOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "ListReviewTemplateAnswersInput$TemplateArn": "<p>The ARN of the review template.</p>",
+        "ListReviewTemplateAnswersOutput$TemplateArn": "<p>The ARN of the review template.</p>",
+        "ListTemplateSharesInput$TemplateArn": "<p>The review template ARN.</p>",
+        "ListTemplateSharesOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "ReviewTemplate$TemplateArn": "<p>The review template ARN.</p>",
+        "ReviewTemplateArns$member": null,
+        "ReviewTemplateSummary$TemplateArn": "<p>The review template ARN.</p>",
+        "ShareInvitation$TemplateArn": "<p>The review template ARN.</p>",
+        "ShareInvitationSummary$TemplateArn": "<p>The review template ARN.</p>",
+        "UpdateReviewTemplateAnswerInput$TemplateArn": "<p>The review template ARN.</p>",
+        "UpdateReviewTemplateAnswerOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "UpdateReviewTemplateInput$TemplateArn": "<p>The review template ARN.</p>",
+        "UpdateReviewTemplateLensReviewInput$TemplateArn": "<p>The review template ARN.</p>",
+        "UpdateReviewTemplateLensReviewOutput$TemplateArn": "<p>The review template ARN.</p>",
+        "UpgradeReviewTemplateLensReviewInput$TemplateArn": "<p>The ARN of the review template.</p>"
+      }
+    },
+    "TemplateDescription": {
+      "base": null,
+      "refs": {
+        "CreateReviewTemplateInput$Description": "<p>The review template description.</p>",
+        "ReviewTemplate$Description": "<p>The review template description.</p>",
+        "ReviewTemplateSummary$Description": "<p>Description of the review template.</p>",
+        "UpdateReviewTemplateInput$Description": "<p>The review template description.</p>"
+      }
+    },
+    "TemplateName": {
+      "base": null,
+      "refs": {
+        "CreateReviewTemplateInput$TemplateName": "<p>Name of the review template.</p>",
+        "ReviewTemplate$TemplateName": "<p>The name of the review template.</p>",
+        "ReviewTemplateSummary$TemplateName": "<p>The name of the review template.</p>",
+        "ShareInvitationSummary$TemplateName": "<p>The name of the review template.</p>",
+        "UpdateReviewTemplateInput$TemplateName": "<p>The review template name.</p>"
+      }
+    },
+    "TemplateNamePrefix": {
+      "base": null,
+      "refs": {
+        "ListShareInvitationsInput$TemplateNamePrefix": "<p>An optional string added to the beginning of each review template name returned in the results.</p>"
+      }
+    },
     "TemplateQuestions": {
       "base": null,
       "refs": {
         "ProfileTemplate$TemplateQuestions": "<p>Profile template questions.</p>"
+      }
+    },
+    "TemplateShareSummaries": {
+      "base": null,
+      "refs": {
+        "ListTemplateSharesOutput$TemplateShareSummaries": "<p>A review template share summary return object.</p>"
+      }
+    },
+    "TemplateShareSummary": {
+      "base": "<p>Summary of a review template share.</p>",
+      "refs": {
+        "TemplateShareSummaries$member": null
       }
     },
     "ThrottlingException": {
@@ -1960,6 +2339,9 @@
         "ProfileSummary$UpdatedAt": null,
         "ProfileTemplate$CreatedAt": null,
         "ProfileTemplate$UpdatedAt": null,
+        "ReviewTemplate$UpdatedAt": null,
+        "ReviewTemplateLensReview$UpdatedAt": null,
+        "ReviewTemplateSummary$UpdatedAt": null,
         "Workload$UpdatedAt": null,
         "Workload$ReviewRestrictionDate": null,
         "WorkloadSummary$UpdatedAt": null
@@ -2016,6 +2398,36 @@
       "refs": {
       }
     },
+    "UpdateReviewTemplateAnswerInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReviewTemplateAnswerOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReviewTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReviewTemplateLensReviewInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReviewTemplateLensReviewOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReviewTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateShareInvitationInput": {
       "base": "<p>Input for Update Share Invitation</p>",
       "refs": {
@@ -2052,6 +2464,11 @@
       }
     },
     "UpgradeProfileVersionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpgradeReviewTemplateLensReviewInput": {
       "base": null,
       "refs": {
       }
@@ -2254,7 +2671,7 @@
       }
     },
     "WorkloadLenses": {
-      "base": "<p>The list of lenses associated with the workload. Each lens is identified by its <a>LensSummary$LensAlias</a>.</p>",
+      "base": "<p>The list of lenses associated with the workload. Each lens is identified by its <a>LensSummary$LensAlias</a>.</p> <p>If a review template that specifies lenses is applied to the workload, those lenses are applied to the workload in addition to these lenses.</p>",
       "refs": {
         "CreateWorkloadInput$Lenses": null,
         "Workload$Lenses": null,
@@ -2267,6 +2684,7 @@
         "ConsolidatedReportMetric$WorkloadName": null,
         "CreateWorkloadInput$WorkloadName": null,
         "LensUpgradeSummary$WorkloadName": null,
+        "LensUpgradeSummary$ResourceName": null,
         "ProfileNotificationSummary$WorkloadName": null,
         "ShareInvitationSummary$WorkloadName": null,
         "UpdateWorkloadInput$WorkloadName": null,

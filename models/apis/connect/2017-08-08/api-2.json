@@ -7143,6 +7143,7 @@
         "ResourceArn":{"shape":"ARN"},
         "StartTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
+        "Interval":{"shape":"IntervalDetails"},
         "Filters":{"shape":"FiltersV2List"},
         "Groupings":{"shape":"GroupingsV2"},
         "Metrics":{"shape":"MetricsV2"},
@@ -7728,6 +7729,24 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true
+    },
+    "IntervalDetails":{
+      "type":"structure",
+      "members":{
+        "TimeZone":{"shape":"String"},
+        "IntervalPeriod":{"shape":"IntervalPeriod"}
+      }
+    },
+    "IntervalPeriod":{
+      "type":"string",
+      "enum":[
+        "FIFTEEN_MIN",
+        "THIRTY_MIN",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "TOTAL"
+      ]
     },
     "InvalidContactFlowException":{
       "type":"structure",
@@ -9200,7 +9219,8 @@
       "type":"structure",
       "members":{
         "MetricFilterKey":{"shape":"String"},
-        "MetricFilterValues":{"shape":"MetricFilterValueList"}
+        "MetricFilterValues":{"shape":"MetricFilterValueList"},
+        "Negate":{"shape":"Boolean"}
       }
     },
     "MetricFilterValueList":{
@@ -9214,11 +9234,20 @@
       "member":{"shape":"MetricFilterV2"},
       "max":2
     },
+    "MetricInterval":{
+      "type":"structure",
+      "members":{
+        "Interval":{"shape":"IntervalPeriod"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"}
+      }
+    },
     "MetricNameV2":{"type":"string"},
     "MetricResultV2":{
       "type":"structure",
       "members":{
         "Dimensions":{"shape":"DimensionsV2Map"},
+        "MetricInterval":{"shape":"MetricInterval"},
         "Collections":{"shape":"MetricDataCollectionsV2"}
       }
     },

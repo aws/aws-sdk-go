@@ -2657,8 +2657,6 @@ func (c *Connect) CreateSecurityProfileRequest(input *CreateSecurityProfileInput
 
 // CreateSecurityProfile API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Creates a security profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4783,8 +4781,6 @@ func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput
 }
 
 // DeleteSecurityProfile API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes a security profile.
 //
@@ -7133,8 +7129,6 @@ func (c *Connect) DescribeSecurityProfileRequest(input *DescribeSecurityProfileI
 
 // DescribeSecurityProfile API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Gets basic information about the security profle.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9482,7 +9476,7 @@ func (c *Connect) GetMetricDataV2Request(input *GetMetricDataV2Input) (req *requ
 // the previous version of this API. It has new metrics, offers filtering at
 // a metric level, and offers the ability to filter and group data by channels,
 // queues, routing profiles, agents, and agent hierarchy levels. It can retrieve
-// historical data for the last 35 days, in 24-hour intervals.
+// historical data for the last 3 months, at varying intervals.
 //
 // For a description of the historical metrics that are supported by GetMetricDataV2
 // and GetMetricData, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
@@ -14118,8 +14112,6 @@ func (c *Connect) ListSecurityProfilePermissionsRequest(input *ListSecurityProfi
 }
 
 // ListSecurityProfilePermissions API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Lists the permissions granted to a security profile.
 //
@@ -22035,8 +22027,6 @@ func (c *Connect) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput
 
 // UpdateSecurityProfile API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Updates a security profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -25852,7 +25842,8 @@ type ContactFlow struct {
 	// The Amazon Resource Name (ARN) of the flow.
 	Arn *string `type:"string"`
 
-	// The content of the flow.
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	Content *string `type:"string"`
 
 	// The description of the flow.
@@ -25950,7 +25941,10 @@ type ContactFlowModule struct {
 	// The Amazon Resource Name (ARN).
 	Arn *string `type:"string"`
 
-	// The content of the flow module.
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	//
+	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	Content *string `min:"1" type:"string"`
 
 	// The description of the flow module.
@@ -26517,7 +26511,10 @@ func (s *CreateAgentStatusOutput) SetAgentStatusId(v string) *CreateAgentStatusO
 type CreateContactFlowInput struct {
 	_ struct{} `type:"structure"`
 
-	// The content of the flow.
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	//
+	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true"`
@@ -39452,8 +39449,6 @@ type GetMetricDataV2Input struct {
 	// for the retrieval of historical metrics data. The time must be later than
 	// the start time timestamp. It cannot be later than the current timestamp.
 	//
-	// The time range between the start and end time must be less than 24 hours.
-	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
@@ -39509,6 +39504,26 @@ type GetMetricDataV2Input struct {
 	// | AGENT_HIERARCHY_LEVEL_FIVE
 	Groupings []*string `type:"list"`
 
+	// The interval period and timezone to apply to returned metrics.
+	//
+	//    * IntervalPeriod: An aggregated grouping applied to request metrics. Valid
+	//    IntervalPeriod values are: FIFTEEN_MIN | THIRTY_MIN | HOUR | DAY | WEEK
+	//    | TOTAL. For example, if IntervalPeriod is selected THIRTY_MIN, StartTime
+	//    and EndTime differs by 1 day, then Amazon Connect returns 48 results in
+	//    the response. Each result is aggregated by the THIRTY_MIN period. By default
+	//    Amazon Connect aggregates results based on the TOTAL interval period.
+	//    The following list describes restrictions on StartTime and EndTime based
+	//    on which IntervalPeriod is requested. FIFTEEN_MIN: The difference between
+	//    StartTime and EndTime must be less than 3 days. THIRTY_MIN: The difference
+	//    between StartTime and EndTime must be less than 3 days. HOUR: The difference
+	//    between StartTime and EndTime must be less than 3 days. DAY: The difference
+	//    between StartTime and EndTime must be less than 35 days. WEEK: The difference
+	//    between StartTime and EndTime must be less than 35 days. TOTAL: The difference
+	//    between StartTime and EndTime must be less than 35 days.
+	//
+	//    * TimeZone: The timezone applied to requested metrics.
+	Interval *IntervalDetails `type:"structure"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -39516,6 +39531,13 @@ type GetMetricDataV2Input struct {
 	// metric. The following historical metrics are available. For a description
 	// of each metric, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 	// in the Amazon Connect Administrator's Guide.
+	//
+	// ABANDONMENT_RATE
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
 	//
 	// AGENT_ADHERENT_TIME
 	//
@@ -39534,6 +39556,15 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
+	//
+	// AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// Data for this metric is available starting from October 1, 2023 0:00:00 GMT.
 	//
 	// AGENT_OCCUPANCY
 	//
@@ -39589,15 +39620,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
 	//
-	// AVG_AGENT_CONNECTING_TIME
-	//
-	// Unit: Seconds
-	//
-	// Valid metric filter key: INITIATION_METHOD. For now, this metric only supports
-	// the following as INITIATION_METHOD: INBOUND | OUTBOUND | CALLBACK | API
-	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// The Negate key in Metric Level Filters is not applicable for this metric.
 	//
 	// AVG_CONTACT_DURATION
 	//
@@ -39642,6 +39665,13 @@ type GetMetricDataV2Input struct {
 	// Hierarchy, Feature
 	//
 	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_HOLD_TIME_ALL_CONTACTS
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
 	//
 	// AVG_HOLDS
 	//
@@ -39704,6 +39734,12 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature
 	//
 	// Feature is a valid filter but not a valid grouping.
+	//
+	// AVG_RESOLUTION_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
 	//
 	// AVG_TALK_TIME
 	//
@@ -39776,6 +39812,15 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
+	//
+	// CONTACTS_RESOLVED_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// Threshold: For ThresholdValue enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
 	//
 	// CONTACTS_TRANSFERRED_OUT
 	//
@@ -39865,9 +39910,9 @@ type GetMetricDataV2Input struct {
 
 	// The timestamp, in UNIX Epoch time format, at which to start the reporting
 	// interval for the retrieval of historical metrics data. The time must be before
-	// the end time timestamp. The time range between the start and end time must
-	// be less than 24 hours. The start time cannot be earlier than 35 days before
-	// the time of the request. Historical metrics are available for 35 days.
+	// the end time timestamp. The start and end time depends on the IntervalPeriod
+	// selected. By default the time range between start and end time is 35 days.
+	// Historical metrics are available for 3 months.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -39960,6 +40005,12 @@ func (s *GetMetricDataV2Input) SetFilters(v []*FilterV2) *GetMetricDataV2Input {
 // SetGroupings sets the Groupings field's value.
 func (s *GetMetricDataV2Input) SetGroupings(v []*string) *GetMetricDataV2Input {
 	s.Groupings = v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *GetMetricDataV2Input) SetInterval(v *IntervalDetails) *GetMetricDataV2Input {
+	s.Interval = v
 	return s
 }
 
@@ -42231,6 +42282,75 @@ func (s *InternalServiceException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about the interval period to use for returning results.
+type IntervalDetails struct {
+	_ struct{} `type:"structure"`
+
+	// IntervalPeriod: An aggregated grouping applied to request metrics. Valid
+	// IntervalPeriod values are: FIFTEEN_MIN | THIRTY_MIN | HOUR | DAY | WEEK |
+	// TOTAL.
+	//
+	// For example, if IntervalPeriod is selected THIRTY_MIN, StartTime and EndTime
+	// differs by 1 day, then Amazon Connect returns 48 results in the response.
+	// Each result is aggregated by the THIRTY_MIN period. By default Amazon Connect
+	// aggregates results based on the TOTAL interval period.
+	//
+	// The following list describes restrictions on StartTime and EndTime based
+	// on what IntervalPeriod is requested.
+	//
+	//    * FIFTEEN_MIN: The difference between StartTime and EndTime must be less
+	//    than 3 days.
+	//
+	//    * THIRTY_MIN: The difference between StartTime and EndTime must be less
+	//    than 3 days.
+	//
+	//    * HOUR: The difference between StartTime and EndTime must be less than
+	//    3 days.
+	//
+	//    * DAY: The difference between StartTime and EndTime must be less than
+	//    35 days.
+	//
+	//    * WEEK: The difference between StartTime and EndTime must be less than
+	//    35 days.
+	//
+	//    * TOTAL: The difference between StartTime and EndTime must be less than
+	//    35 days.
+	IntervalPeriod *string `type:"string" enum:"IntervalPeriod"`
+
+	// The timezone applied to requested metrics.
+	TimeZone *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntervalDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntervalDetails) GoString() string {
+	return s.String()
+}
+
+// SetIntervalPeriod sets the IntervalPeriod field's value.
+func (s *IntervalDetails) SetIntervalPeriod(v string) *IntervalDetails {
+	s.IntervalPeriod = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *IntervalDetails) SetTimeZone(v string) *IntervalDetails {
+	s.TimeZone = &v
+	return s
 }
 
 // The flow is not valid.
@@ -46407,6 +46527,8 @@ func (s *ListSecurityProfileApplicationsInput) SetSecurityProfileId(v string) *L
 type ListSecurityProfileApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// This API is in preview release for Amazon Connect and is subject to change.
+	//
 	// A list of the third party application's metadata.
 	Applications []*Application `type:"list"`
 
@@ -47976,6 +48098,11 @@ type MetricFilterV2 struct {
 	// | THIRD_PARTY_DISCONNECT | TELECOM_PROBLEM | BARGED | CONTACT_FLOW_DISCONNECT
 	// | OTHER | EXPIRED | API
 	MetricFilterValues []*string `min:"1" type:"list"`
+
+	// The flag to use to filter on requested metric filter values or to not filter
+	// on requested metric filter values. By default the negate is false, which
+	// indicates to filter on the requested metric filter.
+	Negate *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -48021,6 +48148,67 @@ func (s *MetricFilterV2) SetMetricFilterValues(v []*string) *MetricFilterV2 {
 	return s
 }
 
+// SetNegate sets the Negate field's value.
+func (s *MetricFilterV2) SetNegate(v bool) *MetricFilterV2 {
+	s.Negate = &v
+	return s
+}
+
+// The interval period with the start and end time for the metrics.
+type MetricInterval struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp, in UNIX Epoch time format. End time is based on the interval
+	// period selected. For example, If IntervalPeriod is selected THIRTY_MIN, StartTime
+	// and EndTime in the API request differs by 1 day, then 48 results are returned
+	// in the response. Each result is aggregated by the 30 minutes period, with
+	// each StartTime and EndTime differing by 30 minutes.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The interval period provided in the API request.
+	Interval *string `type:"string" enum:"IntervalPeriod"`
+
+	// The timestamp, in UNIX Epoch time format. Start time is based on the interval
+	// period selected.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricInterval) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricInterval) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *MetricInterval) SetEndTime(v time.Time) *MetricInterval {
+	s.EndTime = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *MetricInterval) SetInterval(v string) *MetricInterval {
+	s.Interval = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MetricInterval) SetStartTime(v time.Time) *MetricInterval {
+	s.StartTime = &v
+	return s
+}
+
 // Contains information about the metric results.
 type MetricResultV2 struct {
 	_ struct{} `type:"structure"`
@@ -48030,6 +48218,9 @@ type MetricResultV2 struct {
 
 	// The dimension for the metrics.
 	Dimensions map[string]*string `type:"map"`
+
+	// The interval period with the start and end time for the metrics.
+	MetricInterval *MetricInterval `type:"structure"`
 }
 
 // String returns the string representation.
@@ -48059,6 +48250,12 @@ func (s *MetricResultV2) SetCollections(v []*MetricDataV2) *MetricResultV2 {
 // SetDimensions sets the Dimensions field's value.
 func (s *MetricResultV2) SetDimensions(v map[string]*string) *MetricResultV2 {
 	s.Dimensions = v
+	return s
+}
+
+// SetMetricInterval sets the MetricInterval field's value.
+func (s *MetricResultV2) SetMetricInterval(v *MetricInterval) *MetricResultV2 {
+	s.MetricInterval = v
 	return s
 }
 
@@ -58061,8 +58258,10 @@ type UpdateContactFlowContentInput struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The JSON string that represents flow's content. For an example, see Example
-	// contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	//
+	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true"`
@@ -58284,7 +58483,8 @@ type UpdateContactFlowModuleContentInput struct {
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
-	// The content of the flow module.
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
@@ -65489,6 +65689,38 @@ func IntegrationType_Values() []string {
 		IntegrationTypeWisdomKnowledgeBase,
 		IntegrationTypeCasesDomain,
 		IntegrationTypeApplication,
+	}
+}
+
+const (
+	// IntervalPeriodFifteenMin is a IntervalPeriod enum value
+	IntervalPeriodFifteenMin = "FIFTEEN_MIN"
+
+	// IntervalPeriodThirtyMin is a IntervalPeriod enum value
+	IntervalPeriodThirtyMin = "THIRTY_MIN"
+
+	// IntervalPeriodHour is a IntervalPeriod enum value
+	IntervalPeriodHour = "HOUR"
+
+	// IntervalPeriodDay is a IntervalPeriod enum value
+	IntervalPeriodDay = "DAY"
+
+	// IntervalPeriodWeek is a IntervalPeriod enum value
+	IntervalPeriodWeek = "WEEK"
+
+	// IntervalPeriodTotal is a IntervalPeriod enum value
+	IntervalPeriodTotal = "TOTAL"
+)
+
+// IntervalPeriod_Values returns all elements of the IntervalPeriod enum
+func IntervalPeriod_Values() []string {
+	return []string{
+		IntervalPeriodFifteenMin,
+		IntervalPeriodThirtyMin,
+		IntervalPeriodHour,
+		IntervalPeriodDay,
+		IntervalPeriodWeek,
+		IntervalPeriodTotal,
 	}
 }
 

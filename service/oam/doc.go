@@ -7,18 +7,19 @@
 // between source accounts and monitoring accounts by using CloudWatch cross-account
 // observability. With CloudWatch cross-account observability, you can monitor
 // and troubleshoot applications that span multiple accounts within a Region.
-// Seamlessly search, visualize, and analyze your metrics, logs, and traces
-// in any of the linked accounts without account boundaries.
+// Seamlessly search, visualize, and analyze your metrics, logs, traces, and
+// Application Insights applications in any of the linked accounts without account
+// boundaries.
 //
-//	<p>Set up one or more Amazon Web Services accounts as <i>monitoring accounts</i>
-//	and link them with multiple <i>source accounts</i>. A monitoring account
-//	is a central Amazon Web Services account that can view and interact with
-//	observability data generated from source accounts. A source account is
-//	an individual Amazon Web Services account that generates observability
-//	data for the resources that reside in it. Source accounts share their
-//	observability data with the monitoring account. The shared observability
-//	data can include metrics in Amazon CloudWatch, logs in Amazon CloudWatch
-//	Logs, and traces in X-Ray.</p>
+// Set up one or more Amazon Web Services accounts as monitoring accounts and
+// link them with multiple source accounts. A monitoring account is a central
+// Amazon Web Services account that can view and interact with observability
+// data generated from source accounts. A source account is an individual Amazon
+// Web Services account that generates observability data for the resources
+// that reside in it. Source accounts share their observability data with the
+// monitoring account. The shared observability data can include metrics in
+// Amazon CloudWatch, logs in Amazon CloudWatch Logs, traces in X-Ray, and applications
+// in Amazon CloudWatch Application Insights.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/oam-2022-06-10 for more information on this service.
 //

@@ -12336,6 +12336,13 @@ type H264Settings struct {
 	// Static.
 	DynamicSubGop *string `locationName:"dynamicSubGop" type:"string" enum:"H264DynamicSubGop"`
 
+	// Optionally include or suppress markers at the end of your output that signal
+	// the end of the video stream. To include end of stream markers: Leave blank
+	// or keep the default value, Include. To not include end of stream markers:
+	// Choose Suppress. This is useful when your output will be inserted into another
+	// stream.
+	EndOfStreamMarkers *string `locationName:"endOfStreamMarkers" type:"string" enum:"H264EndOfStreamMarkers"`
+
 	// Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.
 	EntropyEncoding *string `locationName:"entropyEncoding" type:"string" enum:"H264EntropyEncoding"`
 
@@ -12735,6 +12742,12 @@ func (s *H264Settings) SetDynamicSubGop(v string) *H264Settings {
 	return s
 }
 
+// SetEndOfStreamMarkers sets the EndOfStreamMarkers field's value.
+func (s *H264Settings) SetEndOfStreamMarkers(v string) *H264Settings {
+	s.EndOfStreamMarkers = &v
+	return s
+}
+
 // SetEntropyEncoding sets the EntropyEncoding field's value.
 func (s *H264Settings) SetEntropyEncoding(v string) *H264Settings {
 	s.EntropyEncoding = &v
@@ -13088,6 +13101,13 @@ type H265Settings struct {
 	// frames. To use the same number B-frames for all types of content: Choose
 	// Static.
 	DynamicSubGop *string `locationName:"dynamicSubGop" type:"string" enum:"H265DynamicSubGop"`
+
+	// Optionally include or suppress markers at the end of your output that signal
+	// the end of the video stream. To include end of stream markers: Leave blank
+	// or keep the default value, Include. To not include end of stream markers:
+	// Choose Suppress. This is useful when your output will be inserted into another
+	// stream.
+	EndOfStreamMarkers *string `locationName:"endOfStreamMarkers" type:"string" enum:"H265EndOfStreamMarkers"`
 
 	// Enable this setting to have the encoder reduce I-frame pop. I-frame pop appears
 	// as a visual flicker that can arise when the encoder saves bits by copying
@@ -13467,6 +13487,12 @@ func (s *H265Settings) SetCodecProfile(v string) *H265Settings {
 // SetDynamicSubGop sets the DynamicSubGop field's value.
 func (s *H265Settings) SetDynamicSubGop(v string) *H265Settings {
 	s.DynamicSubGop = &v
+	return s
+}
+
+// SetEndOfStreamMarkers sets the EndOfStreamMarkers field's value.
+func (s *H265Settings) SetEndOfStreamMarkers(v string) *H265Settings {
+	s.EndOfStreamMarkers = &v
 	return s
 }
 
@@ -15273,6 +15299,9 @@ type Input struct {
 	// both. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-generator.html
 	VideoGenerator *InputVideoGenerator `locationName:"videoGenerator" type:"structure"`
 
+	// Contains an array of video overlays.
+	VideoOverlays []*VideoOverlay `locationName:"videoOverlays" type:"list"`
+
 	// Input video selectors contain the video settings for the input. Each of your
 	// inputs can have up to one video selector.
 	VideoSelector *VideoSelector `locationName:"videoSelector" type:"structure"`
@@ -15351,6 +15380,16 @@ func (s *Input) Validate() error {
 	if s.VideoGenerator != nil {
 		if err := s.VideoGenerator.Validate(); err != nil {
 			invalidParams.AddNested("VideoGenerator", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VideoOverlays != nil {
+		for i, v := range s.VideoOverlays {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VideoOverlays", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.VideoSelector != nil {
@@ -15500,6 +15539,12 @@ func (s *Input) SetTimecodeStart(v string) *Input {
 // SetVideoGenerator sets the VideoGenerator field's value.
 func (s *Input) SetVideoGenerator(v *InputVideoGenerator) *Input {
 	s.VideoGenerator = v
+	return s
+}
+
+// SetVideoOverlays sets the VideoOverlays field's value.
+func (s *Input) SetVideoOverlays(v []*VideoOverlay) *Input {
+	s.VideoOverlays = v
 	return s
 }
 
@@ -15791,6 +15836,9 @@ type InputTemplate struct {
 	// timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.
 	TimecodeStart *string `locationName:"timecodeStart" min:"11" type:"string"`
 
+	// Contains an array of video overlays.
+	VideoOverlays []*VideoOverlay `locationName:"videoOverlays" type:"list"`
+
 	// Input video selectors contain the video settings for the input. Each of your
 	// inputs can have up to one video selector.
 	VideoSelector *VideoSelector `locationName:"videoSelector" type:"structure"`
@@ -15859,6 +15907,16 @@ func (s *InputTemplate) Validate() error {
 	if s.Position != nil {
 		if err := s.Position.Validate(); err != nil {
 			invalidParams.AddNested("Position", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VideoOverlays != nil {
+		for i, v := range s.VideoOverlays {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VideoOverlays", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.VideoSelector != nil {
@@ -15984,6 +16042,12 @@ func (s *InputTemplate) SetTimecodeSource(v string) *InputTemplate {
 // SetTimecodeStart sets the TimecodeStart field's value.
 func (s *InputTemplate) SetTimecodeStart(v string) *InputTemplate {
 	s.TimecodeStart = &v
+	return s
+}
+
+// SetVideoOverlays sets the VideoOverlays field's value.
+func (s *InputTemplate) SetVideoOverlays(v []*VideoOverlay) *InputTemplate {
+	s.VideoOverlays = v
 	return s
 }
 
@@ -16641,15 +16705,6 @@ type JobSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
-	// Specifies which input metadata to use for the default "Follow input" option
-	// for the following settings: resolution, frame rate, and pixel aspect ratio.
-	// In the simplest case, specify which input is used based on its index in the
-	// job. For example if you specify 3, then the fourth input will be used from
-	// each input. If the job does not have a fourth input, then the first input
-	// will be used. If no followInputIndex is specified, then 0 will be chosen
-	// automatically.
-	FollowInputIndex *int64 `locationName:"followInputIndex" type:"integer"`
-
 	// Use Inputs to define source file used in the transcode job. There can be
 	// multiple inputs add in a job. These inputs will be concantenated together
 	// to create the output.
@@ -16793,12 +16848,6 @@ func (s *JobSettings) SetEsam(v *EsamSettings) *JobSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobSettings {
 	s.ExtendedDataServices = v
-	return s
-}
-
-// SetFollowInputIndex sets the FollowInputIndex field's value.
-func (s *JobSettings) SetFollowInputIndex(v int64) *JobSettings {
-	s.FollowInputIndex = &v
 	return s
 }
 
@@ -17027,15 +17076,6 @@ type JobTemplateSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
-	// Specifies which input metadata to use for the default "Follow input" option
-	// for the following settings: resolution, frame rate, and pixel aspect ratio.
-	// In the simplest case, specify which input is used based on its index in the
-	// job. For example if you specify 3, then the fourth input will be used from
-	// each input. If the job does not have a fourth input, then the first input
-	// will be used. If no followInputIndex is specified, then 0 will be chosen
-	// automatically.
-	FollowInputIndex *int64 `locationName:"followInputIndex" type:"integer"`
-
 	// Use Inputs to define the source file used in the transcode job. There can
 	// only be one input in a job template. Using the API, you can include multiple
 	// inputs when referencing a job template.
@@ -17179,12 +17219,6 @@ func (s *JobTemplateSettings) SetEsam(v *EsamSettings) *JobTemplateSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobTemplateSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobTemplateSettings {
 	s.ExtendedDataServices = v
-	return s
-}
-
-// SetFollowInputIndex sets the FollowInputIndex field's value.
-func (s *JobTemplateSettings) SetFollowInputIndex(v int64) *JobTemplateSettings {
-	s.FollowInputIndex = &v
 	return s
 }
 
@@ -25310,6 +25344,217 @@ func (s *VideoDetail) SetWidthInPx(v int64) *VideoDetail {
 	return s
 }
 
+// Overlay one or more videos on top of your input video.
+type VideoOverlay struct {
+	_ struct{} `type:"structure"`
+
+	// Enter the end timecode in the underlying input video for this overlay. Your
+	// overlay will be active through this frame. To display your video overlay
+	// for the duration of the underlying video: Leave blank. Use the format HH:MM:SS:FF
+	// or HH:MM:SS;FF, where HH is the hour, MM is the minute, SS is the second,
+	// and FF is the frame number. When entering this value, take into account your
+	// choice for the underlying Input timecode source. For example, if you have
+	// embedded timecodes that start at 01:00:00:00 and you want your overlay to
+	// end ten minutes into the video, enter 01:10:00:00.
+	EndTimecode *string `locationName:"endTimecode" type:"string"`
+
+	// Input settings for Video overlay. You can include one or more video overlays
+	// in sequence at different times that you specify.
+	Input *VideoOverlayInput_ `locationName:"input" type:"structure"`
+
+	// Enter the start timecode in the underlying input video for this overlay.
+	// Your overlay will be active starting with this frame. To display your video
+	// overlay starting at the beginning of the underlying video: Leave blank. Use
+	// the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM is the minute,
+	// SS is the second, and FF is the frame number. When entering this value, take
+	// into account your choice for the underlying Input timecode source. For example,
+	// if you have embedded timecodes that start at 01:00:00:00 and you want your
+	// overlay to begin five minutes into the video, enter 01:05:00:00.
+	StartTimecode *string `locationName:"startTimecode" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlay) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlay) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoOverlay) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoOverlay"}
+	if s.Input != nil {
+		if err := s.Input.Validate(); err != nil {
+			invalidParams.AddNested("Input", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTimecode sets the EndTimecode field's value.
+func (s *VideoOverlay) SetEndTimecode(v string) *VideoOverlay {
+	s.EndTimecode = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *VideoOverlay) SetInput(v *VideoOverlayInput_) *VideoOverlay {
+	s.Input = v
+	return s
+}
+
+// SetStartTimecode sets the StartTimecode field's value.
+func (s *VideoOverlay) SetStartTimecode(v string) *VideoOverlay {
+	s.StartTimecode = &v
+	return s
+}
+
+// To transcode only portions of your video overlay, include one input clip
+// for each part of your video overlay that you want in your output.
+type VideoOverlayInputClipping struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the timecode of the last frame to include in your video overlay's
+	// clip. Use the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM
+	// is the minute, SS is the second, and FF is the frame number. When entering
+	// this value, take into account your choice for Timecode source.
+	EndTimecode *string `locationName:"endTimecode" type:"string"`
+
+	// Specify the timecode of the first frame to include in your video overlay's
+	// clip. Use the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM
+	// is the minute, SS is the second, and FF is the frame number. When entering
+	// this value, take into account your choice for Timecode source.
+	StartTimecode *string `locationName:"startTimecode" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlayInputClipping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlayInputClipping) GoString() string {
+	return s.String()
+}
+
+// SetEndTimecode sets the EndTimecode field's value.
+func (s *VideoOverlayInputClipping) SetEndTimecode(v string) *VideoOverlayInputClipping {
+	s.EndTimecode = &v
+	return s
+}
+
+// SetStartTimecode sets the StartTimecode field's value.
+func (s *VideoOverlayInputClipping) SetStartTimecode(v string) *VideoOverlayInputClipping {
+	s.StartTimecode = &v
+	return s
+}
+
+// Input settings for Video overlay. You can include one or more video overlays
+// in sequence at different times that you specify.
+type VideoOverlayInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the input file S3, HTTP, or HTTPS URI for your video overlay. For
+	// consistency in color and formatting in your output video image, we recommend
+	// that you specify a video with similar characteristics as the underlying input
+	// video.
+	FileInput *string `locationName:"fileInput" type:"string"`
+
+	// Specify one or more clips to use from your video overlay. When you include
+	// an input clip, you must also specify its start timecode, end timecode, or
+	// both start and end timecode.
+	InputClippings []*VideoOverlayInputClipping `locationName:"inputClippings" type:"list"`
+
+	// Specify the starting timecode for your video overlay. To use the timecode
+	// present in your video overlay: Choose Embedded. To use a zerobased timecode:
+	// Choose Start at 0. To choose a timecode: Choose Specified start. When you
+	// do, enter the starting timecode in Start timecode. If you don't specify a
+	// value for Timecode source, MediaConvert uses Embedded by default.
+	TimecodeSource *string `locationName:"timecodeSource" type:"string" enum:"InputTimecodeSource"`
+
+	// Specify the starting timecode for this video overlay. To use this setting,
+	// you must set Timecode source to Specified start.
+	TimecodeStart *string `locationName:"timecodeStart" min:"11" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlayInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoOverlayInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoOverlayInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoOverlayInput_"}
+	if s.TimecodeStart != nil && len(*s.TimecodeStart) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("TimecodeStart", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileInput sets the FileInput field's value.
+func (s *VideoOverlayInput_) SetFileInput(v string) *VideoOverlayInput_ {
+	s.FileInput = &v
+	return s
+}
+
+// SetInputClippings sets the InputClippings field's value.
+func (s *VideoOverlayInput_) SetInputClippings(v []*VideoOverlayInputClipping) *VideoOverlayInput_ {
+	s.InputClippings = v
+	return s
+}
+
+// SetTimecodeSource sets the TimecodeSource field's value.
+func (s *VideoOverlayInput_) SetTimecodeSource(v string) *VideoOverlayInput_ {
+	s.TimecodeSource = &v
+	return s
+}
+
+// SetTimecodeStart sets the TimecodeStart field's value.
+func (s *VideoOverlayInput_) SetTimecodeStart(v string) *VideoOverlayInput_ {
+	s.TimecodeStart = &v
+	return s
+}
+
 // Find additional transcoding features under Preprocessors. Enable the features
 // at each output individually. These features are disabled by default.
 type VideoPreprocessor struct {
@@ -31586,6 +31831,27 @@ func H264DynamicSubGop_Values() []string {
 	}
 }
 
+// Optionally include or suppress markers at the end of your output that signal
+// the end of the video stream. To include end of stream markers: Leave blank
+// or keep the default value, Include. To not include end of stream markers:
+// Choose Suppress. This is useful when your output will be inserted into another
+// stream.
+const (
+	// H264EndOfStreamMarkersInclude is a H264EndOfStreamMarkers enum value
+	H264EndOfStreamMarkersInclude = "INCLUDE"
+
+	// H264EndOfStreamMarkersSuppress is a H264EndOfStreamMarkers enum value
+	H264EndOfStreamMarkersSuppress = "SUPPRESS"
+)
+
+// H264EndOfStreamMarkers_Values returns all elements of the H264EndOfStreamMarkers enum
+func H264EndOfStreamMarkers_Values() []string {
+	return []string{
+		H264EndOfStreamMarkersInclude,
+		H264EndOfStreamMarkersSuppress,
+	}
+}
+
 // Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.
 const (
 	// H264EntropyEncodingCabac is a H264EntropyEncoding enum value
@@ -32283,6 +32549,27 @@ func H265DynamicSubGop_Values() []string {
 	return []string{
 		H265DynamicSubGopAdaptive,
 		H265DynamicSubGopStatic,
+	}
+}
+
+// Optionally include or suppress markers at the end of your output that signal
+// the end of the video stream. To include end of stream markers: Leave blank
+// or keep the default value, Include. To not include end of stream markers:
+// Choose Suppress. This is useful when your output will be inserted into another
+// stream.
+const (
+	// H265EndOfStreamMarkersInclude is a H265EndOfStreamMarkers enum value
+	H265EndOfStreamMarkersInclude = "INCLUDE"
+
+	// H265EndOfStreamMarkersSuppress is a H265EndOfStreamMarkers enum value
+	H265EndOfStreamMarkersSuppress = "SUPPRESS"
+)
+
+// H265EndOfStreamMarkers_Values returns all elements of the H265EndOfStreamMarkers enum
+func H265EndOfStreamMarkers_Values() []string {
+	return []string{
+		H265EndOfStreamMarkersInclude,
+		H265EndOfStreamMarkersSuppress,
 	}
 }
 

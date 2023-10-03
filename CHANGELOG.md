@@ -1,3 +1,16 @@
+Release v1.45.21 (2023-10-03)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/location`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds the ability to replace video frames without modifying the audio essence.
+* `service/oam`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release allows users to run Selective Execution in SageMaker Pipelines without SourcePipelineExecutionArn if selected steps do not have any dependent steps.
+* `service/wellarchitected`: Updates service API, documentation, and paginators
+
 Release v1.45.20 (2023-10-02)
 ===
 
