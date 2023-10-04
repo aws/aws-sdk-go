@@ -3513,6 +3513,22 @@
       "max":15,
       "min":1
     },
+    "AdditionalS3DataSource":{
+      "type":"structure",
+      "required":[
+        "S3DataType",
+        "S3Uri"
+      ],
+      "members":{
+        "S3DataType":{"shape":"AdditionalS3DataSourceDataType"},
+        "S3Uri":{"shape":"S3Uri"},
+        "CompressionType":{"shape":"CompressionType"}
+      }
+    },
+    "AdditionalS3DataSourceDataType":{
+      "type":"string",
+      "enum":["S3Object"]
+    },
     "AgentVersion":{
       "type":"structure",
       "required":[
@@ -15296,7 +15312,8 @@
         "ModelInput":{"shape":"ModelInput"},
         "Framework":{"shape":"String"},
         "FrameworkVersion":{"shape":"ModelPackageFrameworkVersion"},
-        "NearestModelName":{"shape":"String"}
+        "NearestModelName":{"shape":"String"},
+        "AdditionalS3DataSource":{"shape":"AdditionalS3DataSource"}
       }
     },
     "ModelPackageContainerDefinitionList":{
@@ -20169,7 +20186,8 @@
         "SupportsDistributedTraining":{"shape":"Boolean"},
         "MetricDefinitions":{"shape":"MetricDefinitionList"},
         "TrainingChannels":{"shape":"ChannelSpecifications"},
-        "SupportedTuningJobObjectiveMetrics":{"shape":"HyperParameterTuningJobObjectives"}
+        "SupportedTuningJobObjectiveMetrics":{"shape":"HyperParameterTuningJobObjectives"},
+        "AdditionalS3DataSource":{"shape":"AdditionalS3DataSource"}
       }
     },
     "TrainingTimeInSeconds":{

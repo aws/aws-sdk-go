@@ -8,10 +8,12 @@
     "AssociateSourceServers": "<p>Associate source servers to application.</p>",
     "ChangeServerLifeCycleState": "<p>Allows the user to set the SourceServer.LifeCycle.state property for specific Source Server IDs to one of the following: READY_FOR_TEST or READY_FOR_CUTOVER. This command only works if the Source Server is already launchable (dataReplicationInfo.lagDuration is not null.)</p>",
     "CreateApplication": "<p>Create application.</p>",
+    "CreateConnector": "<p>Create Connector.</p>",
     "CreateLaunchConfigurationTemplate": "<p>Creates a new Launch Configuration Template.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "CreateWave": "<p>Create wave.</p>",
     "DeleteApplication": "<p>Delete application.</p>",
+    "DeleteConnector": "<p>Delete Connector.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
     "DeleteLaunchConfigurationTemplate": "<p>Deletes a single Launch Configuration Template by ID.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
@@ -32,6 +34,7 @@
     "GetReplicationConfiguration": "<p>Lists all ReplicationConfigurations, filtered by Source Server ID.</p>",
     "InitializeService": "<p>Initialize Application Migration Service.</p>",
     "ListApplications": "<p>Retrieves all applications or multiple applications by ID.</p>",
+    "ListConnectors": "<p>List Connectors.</p>",
     "ListExportErrors": "<p>List export errors.</p>",
     "ListExports": "<p>List exports.</p>",
     "ListImportErrors": "<p>List import errors.</p>",
@@ -61,10 +64,12 @@
     "UnarchiveWave": "<p>Unarchive wave.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
     "UpdateApplication": "<p>Update application.</p>",
+    "UpdateConnector": "<p>Update Connector.</p>",
     "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
     "UpdateLaunchConfigurationTemplate": "<p>Updates an existing Launch Configuration Template by ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
+    "UpdateSourceServer": "<p>Update Source Server.</p>",
     "UpdateSourceServerReplicationType": "<p>Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type.</p>",
     "UpdateWave": "<p>Update wave.</p>"
   },
@@ -73,6 +78,7 @@
       "base": null,
       "refs": {
         "Application$arn": "<p>Application ARN.</p>",
+        "Connector$arn": "<p>Connector arn.</p>",
         "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Request to configure an EBS encryption key during Replication Settings template creation.</p>",
         "Job$arn": "<p>the ARN of the specific Job.</p>",
         "LaunchConfigurationTemplate$arn": "<p>ARN of the Launch Configuration Template.</p>",
@@ -143,6 +149,7 @@
         "UpdateLaunchConfigurationRequest$accountID": "<p>Update Launch configuration Account ID.</p>",
         "UpdateReplicationConfigurationRequest$accountID": "<p>Update replication configuration Account ID request.</p>",
         "UpdateSourceServerReplicationTypeRequest$accountID": "<p>Account ID on which to update replication type.</p>",
+        "UpdateSourceServerRequest$accountID": "<p>Update Source Server request account ID.</p>",
         "UpdateWaveRequest$accountID": "<p>Account ID.</p>"
       }
     },
@@ -316,6 +323,8 @@
       "base": null,
       "refs": {
         "Application$isArchived": "<p>Application archival status.</p>",
+        "ConnectorSsmCommandConfig$cloudWatchOutputEnabled": "<p>Connector SSM command config CloudWatch output enabled.</p>",
+        "ConnectorSsmCommandConfig$s3OutputEnabled": "<p>Connector SSM command config S3 output enabled.</p>",
         "CreateLaunchConfigurationTemplateRequest$associatePublicIpAddress": "<p>Associate public Ip address.</p>",
         "CreateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private Ip.</p>",
         "CreateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
@@ -449,6 +458,7 @@
     "CloudWatchLogGroupName": {
       "base": null,
       "refs": {
+        "ConnectorSsmCommandConfig$cloudWatchLogGroupName": "<p>Connector SSM command config CloudWatch log group name.</p>",
         "PostLaunchActions$cloudWatchLogGroupName": "<p>AWS Systems Manager Command's CloudWatch log group name.</p>"
       }
     },
@@ -463,6 +473,55 @@
         "ConflictException$errors": "<p>Conflict Exception specific errors.</p>"
       }
     },
+    "Connector": {
+      "base": null,
+      "refs": {
+        "ConnectorsList$member": null
+      }
+    },
+    "ConnectorArn": {
+      "base": null,
+      "refs": {
+        "SourceServerConnectorAction$connectorArn": "<p>Source Server connector action connector arn.</p>"
+      }
+    },
+    "ConnectorID": {
+      "base": null,
+      "refs": {
+        "Connector$connectorID": "<p>Connector ID.</p>",
+        "ConnectorIDsFilter$member": null,
+        "DeleteConnectorRequest$connectorID": "<p>Delete Connector request connector ID.</p>",
+        "UpdateConnectorRequest$connectorID": "<p>Update Connector request connector ID.</p>"
+      }
+    },
+    "ConnectorIDsFilter": {
+      "base": null,
+      "refs": {
+        "ListConnectorsRequestFilters$connectorIDs": "<p>List Connectors Request Filters connector IDs.</p>"
+      }
+    },
+    "ConnectorName": {
+      "base": null,
+      "refs": {
+        "Connector$name": "<p>Connector name.</p>",
+        "CreateConnectorRequest$name": "<p>Create Connector request name.</p>",
+        "UpdateConnectorRequest$name": "<p>Update Connector request name.</p>"
+      }
+    },
+    "ConnectorSsmCommandConfig": {
+      "base": "<p>Connector SSM command config.</p>",
+      "refs": {
+        "Connector$ssmCommandConfig": "<p>Connector SSM command config.</p>",
+        "CreateConnectorRequest$ssmCommandConfig": "<p>Create Connector request SSM command config.</p>",
+        "UpdateConnectorRequest$ssmCommandConfig": "<p>Update Connector request SSM command config.</p>"
+      }
+    },
+    "ConnectorsList": {
+      "base": null,
+      "refs": {
+        "ListConnectorsResponse$items": "<p>List connectors response items.</p>"
+      }
+    },
     "Cpus": {
       "base": null,
       "refs": {
@@ -470,6 +529,11 @@
       }
     },
     "CreateApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectorRequest": {
       "base": null,
       "refs": {
       }
@@ -561,6 +625,11 @@
       }
     },
     "DeleteApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectorRequest": {
       "base": null,
       "refs": {
       }
@@ -1315,6 +1384,22 @@
       "refs": {
       }
     },
+    "ListConnectorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConnectorsRequestFilters": {
+      "base": "<p>List Connectors Request Filters.</p>",
+      "refs": {
+        "ListConnectorsRequest$filters": "<p>List Connectors Request filters.</p>"
+      }
+    },
+    "ListConnectorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListExportErrorsRequest": {
       "base": "<p>List export errors request.</p>",
       "refs": {
@@ -1456,6 +1541,7 @@
         "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
         "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>",
         "ListApplicationsRequest$maxResults": "<p>Maximum results to return when listing applications.</p>",
+        "ListConnectorsRequest$maxResults": "<p>List Connectors Request max results.</p>",
         "ListExportErrorsRequest$maxResults": "<p>List export errors request max results.</p>",
         "ListExportsRequest$maxResults": "<p>List export request max results.</p>",
         "ListImportErrorsRequest$maxResults": "<p>List import errors request max results.</p>",
@@ -1517,6 +1603,8 @@
         "DescribeVcenterClientsResponse$nextToken": "<p>Next pagination token returned from DescribeVcenterClients.</p>",
         "ListApplicationsRequest$nextToken": "<p>Request next token.</p>",
         "ListApplicationsResponse$nextToken": "<p>Response next token.</p>",
+        "ListConnectorsRequest$nextToken": "<p>List Connectors Request next token.</p>",
+        "ListConnectorsResponse$nextToken": "<p>List connectors response next token.</p>",
         "ListExportErrorsRequest$nextToken": "<p>List export errors request next token.</p>",
         "ListExportErrorsResponse$nextToken": "<p>List export errors response next token.</p>",
         "ListExportsRequest$nextToken": "<p>List export request next token.</p>",
@@ -1769,6 +1857,7 @@
     "S3BucketName": {
       "base": null,
       "refs": {
+        "ConnectorSsmCommandConfig$outputS3BucketName": "<p>Connector SSM command config output S3 bucket name.</p>",
         "ExportTask$s3Bucket": "<p>Export task s3 bucket.</p>",
         "S3BucketSource$s3Bucket": "<p>S3 bucket source s3 bucket.</p>",
         "StartExportRequest$s3Bucket": "<p>Start export request s3 bucket.</p>"
@@ -1793,6 +1882,12 @@
       "base": null,
       "refs": {
         "PostLaunchActions$s3LogBucket": "<p>AWS Systems Manager Command's logs S3 log bucket.</p>"
+      }
+    },
+    "SecretArn": {
+      "base": null,
+      "refs": {
+        "SourceServerConnectorAction$credentialsSecretArn": "<p>Source Server connector action credentials secret arn.</p>"
       }
     },
     "SecurityGroupID": {
@@ -1845,6 +1940,13 @@
         "ListSourceServerActionsRequest$filters": "<p>Filters to apply when listing source server post migration custom actions.</p>"
       }
     },
+    "SourceServerConnectorAction": {
+      "base": "<p>Source Server connector action.</p>",
+      "refs": {
+        "SourceServer$connectorAction": "<p>Source Server connector action.</p>",
+        "UpdateSourceServerRequest$connectorAction": "<p>Update Source Server request connector action.</p>"
+      }
+    },
     "SourceServerID": {
       "base": null,
       "refs": {
@@ -1877,7 +1979,8 @@
         "TerminateTargetInstancesRequestSourceServerIDs$member": null,
         "UpdateLaunchConfigurationRequest$sourceServerID": "<p>Update Launch configuration by Source Server ID request.</p>",
         "UpdateReplicationConfigurationRequest$sourceServerID": "<p>Update replication configuration Source Server ID request.</p>",
-        "UpdateSourceServerReplicationTypeRequest$sourceServerID": "<p>ID of source server on which to update replication type.</p>"
+        "UpdateSourceServerReplicationTypeRequest$sourceServerID": "<p>ID of source server on which to update replication type.</p>",
+        "UpdateSourceServerRequest$sourceServerID": "<p>Update Source Server request source server ID.</p>"
       }
     },
     "SourceServersList": {
@@ -1942,6 +2045,13 @@
       "base": "<p>AWS Systems Manager Document external parameter.</p>",
       "refs": {
         "SsmDocumentExternalParameters$value": null
+      }
+    },
+    "SsmInstanceID": {
+      "base": null,
+      "refs": {
+        "Connector$ssmInstanceID": "<p>Connector SSM instance ID.</p>",
+        "CreateConnectorRequest$ssmInstanceID": "<p>Create Connector request SSM instance ID.</p>"
       }
     },
     "SsmParameterStoreParameter": {
@@ -2084,7 +2194,9 @@
       "base": null,
       "refs": {
         "Application$tags": "<p>Application tags.</p>",
+        "Connector$tags": "<p>Connector tags.</p>",
         "CreateApplicationRequest$tags": "<p>Application tags.</p>",
+        "CreateConnectorRequest$tags": "<p>Create Connector request tags.</p>",
         "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate tags during creation of a Launch Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Request to configure Staging Area tags during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>Request to configure tags during Replication Settings template creation.</p>",
@@ -2187,6 +2299,11 @@
       "refs": {
       }
     },
+    "UpdateConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateLaunchConfigurationRequest": {
       "base": null,
       "refs": {
@@ -2208,6 +2325,11 @@
       }
     },
     "UpdateSourceServerReplicationTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSourceServerRequest": {
       "base": null,
       "refs": {
       }

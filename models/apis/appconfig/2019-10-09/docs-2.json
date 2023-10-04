@@ -119,6 +119,7 @@
       "refs": {
         "Action$RoleArn": "<p>An Amazon Resource Name (ARN) for an Identity and Access Management assume role.</p>",
         "ActionInvocation$RoleArn": "<p>An Amazon Resource Name (ARN) for an Identity and Access Management assume role.</p>",
+        "ConfigurationProfile$KmsKeyArn": "<p>The Amazon Resource Name of the Key Management Service key to encrypt new configuration data versions in the AppConfig hosted configuration store. This attribute is only used for <code>hosted</code> configuration types. To encrypt data managed in other configuration stores, see the documentation for how to specify an KMS key for that particular service.</p>",
         "Deployment$KmsKeyArn": "<p>The Amazon Resource Name of the Key Management Service key used to encrypt configuration data. You can encrypt secrets stored in Secrets Manager, Amazon Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure string parameters stored in Amazon Web Services Systems Manager Parameter Store. </p>",
         "Extension$Arn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
         "ExtensionAssociation$ExtensionArn": "<p>The ARN of the extension defined in the association.</p>",
@@ -127,6 +128,8 @@
         "ExtensionAssociationSummary$ExtensionArn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
         "ExtensionAssociationSummary$ResourceArn": "<p>The ARNs of applications, configuration profiles, or environments defined in the association.</p>",
         "ExtensionSummary$Arn": "<p>The system-generated Amazon Resource Name (ARN) for the extension.</p>",
+        "HostedConfigurationVersion$KmsKeyArn": "<p>The Amazon Resource Name of the Key Management Service key that was used to encrypt this specific version of the configuration data in the AppConfig hosted configuration store.</p>",
+        "HostedConfigurationVersionSummary$KmsKeyArn": "<p>The Amazon Resource Name of the Key Management Service key that was used to encrypt this specific version of the configuration data in the AppConfig hosted configuration store.</p>",
         "ListExtensionAssociationsRequest$ResourceIdentifier": "<p>The ARN of an application, configuration profile, or environment.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The resource ARN.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to retrieve tags.</p>",
@@ -433,6 +436,14 @@
       "refs": {
       }
     },
+    "ExtensionOrParameterName": {
+      "base": null,
+      "refs": {
+        "CreateExtensionRequest$Name": "<p>A name for the extension. Each extension name in your account must be unique. Extension versions use the same name.</p>",
+        "ParameterMap$key": null,
+        "ParameterValueMap$key": null
+      }
+    },
     "ExtensionSummaries": {
       "base": null,
       "refs": {
@@ -615,12 +626,10 @@
         "CreateExtensionAssociationRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
         "CreateExtensionAssociationRequest$ResourceIdentifier": "<p>The ARN of an application, configuration profile, or environment.</p>",
         "DeleteExtensionRequest$ExtensionIdentifier": "<p>The name, ID, or Amazon Resource Name (ARN) of the extension you want to delete.</p>",
-        "Deployment$KmsKeyIdentifier": "<p>The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this ID to encrypt the configuration data using a customer managed key. </p>",
         "ExtensionAssociation$Id": "<p>The system-generated ID for the association.</p>",
         "ExtensionAssociationSummary$Id": "<p>The extension association ID. This ID is used to call other <code>ExtensionAssociation</code> API actions such as <code>GetExtensionAssociation</code> or <code>DeleteExtensionAssociation</code>.</p>",
         "GetExtensionRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
         "ListExtensionAssociationsRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>",
-        "StartDeploymentRequest$KmsKeyIdentifier": "<p>The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this ID to encrypt the configuration data using a customer managed key. </p>",
         "UpdateExtensionRequest$ExtensionIdentifier": "<p>The name, the ID, or the Amazon Resource Name (ARN) of the extension.</p>"
       }
     },
@@ -673,6 +682,21 @@
         "DeploymentEvent$OccurredAt": "<p>The date and time the event occurred.</p>",
         "DeploymentSummary$StartedAt": "<p>Time the deployment started.</p>",
         "DeploymentSummary$CompletedAt": "<p>Time the deployment completed.</p>"
+      }
+    },
+    "KmsKeyIdentifier": {
+      "base": null,
+      "refs": {
+        "ConfigurationProfile$KmsKeyIdentifier": "<p>The Key Management Service key identifier (key ID, key alias, or key ARN) provided when the resource was created or updated.</p>",
+        "CreateConfigurationProfileRequest$KmsKeyIdentifier": "<p>The identifier for an Key Management Service key to encrypt new configuration data versions in the AppConfig hosted configuration store. This attribute is only used for <code>hosted</code> configuration types. The identifier can be an KMS key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed in other configuration stores, see the documentation for how to specify an KMS key for that particular service.</p>",
+        "Deployment$KmsKeyIdentifier": "<p>The Key Management Service key identifier (key ID, key alias, or key ARN) provided when the resource was created or updated.</p>",
+        "StartDeploymentRequest$KmsKeyIdentifier": "<p>The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this ID to encrypt the configuration data using a customer managed key. </p>"
+      }
+    },
+    "KmsKeyIdentifierOrEmpty": {
+      "base": null,
+      "refs": {
+        "UpdateConfigurationProfileRequest$KmsKeyIdentifier": "<p>The identifier for a Key Management Service key to encrypt new configuration data versions in the AppConfig hosted configuration store. This attribute is only used for <code>hosted</code> configuration types. The identifier can be an KMS key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed in other configuration stores, see the documentation for how to specify an KMS key for that particular service.</p>"
       }
     },
     "ListApplicationsRequest": {
@@ -779,15 +803,12 @@
         "CreateApplicationRequest$Name": "<p>A name for the application.</p>",
         "CreateDeploymentStrategyRequest$Name": "<p>A name for the deployment strategy.</p>",
         "CreateEnvironmentRequest$Name": "<p>A name for the environment.</p>",
-        "CreateExtensionRequest$Name": "<p>A name for the extension. Each extension name in your account must be unique. Extension versions use the same name.</p>",
         "Deployment$ConfigurationName": "<p>The name of the configuration.</p>",
         "DeploymentStrategy$Name": "<p>The name of the deployment strategy.</p>",
         "DeploymentSummary$ConfigurationName": "<p>The name of the configuration.</p>",
         "Environment$Name": "<p>The name of the environment.</p>",
         "Extension$Name": "<p>The extension name.</p>",
         "ExtensionSummary$Name": "<p>The extension name.</p>",
-        "ParameterMap$key": null,
-        "ParameterValueMap$key": null,
         "UpdateApplicationRequest$Name": "<p>The name of the application.</p>",
         "UpdateConfigurationProfileRequest$Name": "<p>The name of the configuration profile.</p>",
         "UpdateEnvironmentRequest$Name": "<p>The name of the environment.</p>"

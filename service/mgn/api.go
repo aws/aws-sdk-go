@@ -548,6 +548,88 @@ func (c *Mgn) CreateApplicationWithContext(ctx aws.Context, input *CreateApplica
 	return out, req.Send()
 }
 
+const opCreateConnector = "CreateConnector"
+
+// CreateConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConnector for more information on using the CreateConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateConnectorRequest method.
+//	req, resp := client.CreateConnectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/CreateConnector
+func (c *Mgn) CreateConnectorRequest(input *CreateConnectorInput) (req *request.Request, output *CreateConnectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateConnector",
+	}
+
+	if input == nil {
+		input = &CreateConnectorInput{}
+	}
+
+	output = &CreateConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConnector API operation for Application Migration Service.
+//
+// Create Connector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation CreateConnector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/CreateConnector
+func (c *Mgn) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
+	req, out := c.CreateConnectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateConnectorWithContext is the same as CreateConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) CreateConnectorWithContext(ctx aws.Context, input *CreateConnectorInput, opts ...request.Option) (*CreateConnectorOutput, error) {
+	req, out := c.CreateConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLaunchConfigurationTemplate = "CreateLaunchConfigurationTemplate"
 
 // CreateLaunchConfigurationTemplateRequest generates a "aws/request.Request" representing the
@@ -886,6 +968,92 @@ func (c *Mgn) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicati
 // for more information on using Contexts.
 func (c *Mgn) DeleteApplicationWithContext(ctx aws.Context, input *DeleteApplicationInput, opts ...request.Option) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConnector = "DeleteConnector"
+
+// DeleteConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConnector for more information on using the DeleteConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteConnectorRequest method.
+//	req, resp := client.DeleteConnectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteConnector
+func (c *Mgn) DeleteConnectorRequest(input *DeleteConnectorInput) (req *request.Request, output *DeleteConnectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteConnector",
+	}
+
+	if input == nil {
+		input = &DeleteConnectorInput{}
+	}
+
+	output = &DeleteConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConnector API operation for Application Migration Service.
+//
+// Delete Connector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation DeleteConnector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteConnector
+func (c *Mgn) DeleteConnector(input *DeleteConnectorInput) (*DeleteConnectorOutput, error) {
+	req, out := c.DeleteConnectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConnectorWithContext is the same as DeleteConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DeleteConnectorWithContext(ctx aws.Context, input *DeleteConnectorInput, opts ...request.Option) (*DeleteConnectorOutput, error) {
+	req, out := c.DeleteConnectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3005,6 +3173,145 @@ func (c *Mgn) ListApplicationsPagesWithContext(ctx aws.Context, input *ListAppli
 
 	for p.Next() {
 		if !fn(p.Page().(*ListApplicationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListConnectors = "ListConnectors"
+
+// ListConnectorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConnectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConnectors for more information on using the ListConnectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListConnectorsRequest method.
+//	req, resp := client.ListConnectorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListConnectors
+func (c *Mgn) ListConnectorsRequest(input *ListConnectorsInput) (req *request.Request, output *ListConnectorsOutput) {
+	op := &request.Operation{
+		Name:       opListConnectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListConnectors",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConnectorsInput{}
+	}
+
+	output = &ListConnectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConnectors API operation for Application Migration Service.
+//
+// List Connectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListConnectors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListConnectors
+func (c *Mgn) ListConnectors(input *ListConnectorsInput) (*ListConnectorsOutput, error) {
+	req, out := c.ListConnectorsRequest(input)
+	return out, req.Send()
+}
+
+// ListConnectorsWithContext is the same as ListConnectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConnectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListConnectorsWithContext(ctx aws.Context, input *ListConnectorsInput, opts ...request.Option) (*ListConnectorsOutput, error) {
+	req, out := c.ListConnectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConnectorsPages iterates over the pages of a ListConnectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConnectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListConnectors operation.
+//	pageNum := 0
+//	err := client.ListConnectorsPages(params,
+//	    func(page *mgn.ListConnectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListConnectorsPages(input *ListConnectorsInput, fn func(*ListConnectorsOutput, bool) bool) error {
+	return c.ListConnectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConnectorsPagesWithContext same as ListConnectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListConnectorsPagesWithContext(ctx aws.Context, input *ListConnectorsInput, fn func(*ListConnectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConnectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConnectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConnectorsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5989,6 +6296,91 @@ func (c *Mgn) UpdateApplicationWithContext(ctx aws.Context, input *UpdateApplica
 	return out, req.Send()
 }
 
+const opUpdateConnector = "UpdateConnector"
+
+// UpdateConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnector for more information on using the UpdateConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConnectorRequest method.
+//	req, resp := client.UpdateConnectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateConnector
+func (c *Mgn) UpdateConnectorRequest(input *UpdateConnectorInput) (req *request.Request, output *UpdateConnectorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateConnector",
+	}
+
+	if input == nil {
+		input = &UpdateConnectorInput{}
+	}
+
+	output = &UpdateConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnector API operation for Application Migration Service.
+//
+// Update Connector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation UpdateConnector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateConnector
+func (c *Mgn) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
+	req, out := c.UpdateConnectorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectorWithContext is the same as UpdateConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) UpdateConnectorWithContext(ctx aws.Context, input *UpdateConnectorInput, opts ...request.Option) (*UpdateConnectorOutput, error) {
+	req, out := c.UpdateConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLaunchConfiguration = "UpdateLaunchConfiguration"
 
 // UpdateLaunchConfigurationRequest generates a "aws/request.Request" representing the
@@ -6342,6 +6734,92 @@ func (c *Mgn) UpdateReplicationConfigurationTemplate(input *UpdateReplicationCon
 // for more information on using Contexts.
 func (c *Mgn) UpdateReplicationConfigurationTemplateWithContext(ctx aws.Context, input *UpdateReplicationConfigurationTemplateInput, opts ...request.Option) (*UpdateReplicationConfigurationTemplateOutput, error) {
 	req, out := c.UpdateReplicationConfigurationTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSourceServer = "UpdateSourceServer"
+
+// UpdateSourceServerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSourceServer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSourceServer for more information on using the UpdateSourceServer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSourceServerRequest method.
+//	req, resp := client.UpdateSourceServerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateSourceServer
+func (c *Mgn) UpdateSourceServerRequest(input *UpdateSourceServerInput) (req *request.Request, output *UpdateSourceServerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSourceServer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateSourceServer",
+	}
+
+	if input == nil {
+		input = &UpdateSourceServerInput{}
+	}
+
+	output = &UpdateSourceServerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSourceServer API operation for Application Migration Service.
+//
+// Update Source Server.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation UpdateSourceServer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateSourceServer
+func (c *Mgn) UpdateSourceServer(input *UpdateSourceServerInput) (*UpdateSourceServerOutput, error) {
+	req, out := c.UpdateSourceServerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSourceServerWithContext is the same as UpdateSourceServer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSourceServer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) UpdateSourceServerWithContext(ctx aws.Context, input *UpdateSourceServerInput, opts ...request.Option) (*UpdateSourceServerOutput, error) {
+	req, out := c.UpdateSourceServerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7440,6 +7918,9 @@ type ChangeServerLifeCycleStateOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -7505,6 +7986,12 @@ func (s *ChangeServerLifeCycleStateOutput) SetApplicationID(v string) *ChangeSer
 // SetArn sets the Arn field's value.
 func (s *ChangeServerLifeCycleStateOutput) SetArn(v string) *ChangeServerLifeCycleStateOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *ChangeServerLifeCycleStateOutput) SetConnectorAction(v *SourceServerConnectorAction) *ChangeServerLifeCycleStateOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -7695,6 +8182,168 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type Connector struct {
+	_ struct{} `type:"structure"`
+
+	// Connector arn.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Connector ID.
+	ConnectorID *string `locationName:"connectorID" min:"27" type:"string"`
+
+	// Connector name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Connector SSM command config.
+	SsmCommandConfig *ConnectorSsmCommandConfig `locationName:"ssmCommandConfig" type:"structure"`
+
+	// Connector SSM instance ID.
+	SsmInstanceID *string `locationName:"ssmInstanceID" min:"19" type:"string"`
+
+	// Connector tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Connector's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Connector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Connector) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Connector) SetArn(v string) *Connector {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectorID sets the ConnectorID field's value.
+func (s *Connector) SetConnectorID(v string) *Connector {
+	s.ConnectorID = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Connector) SetName(v string) *Connector {
+	s.Name = &v
+	return s
+}
+
+// SetSsmCommandConfig sets the SsmCommandConfig field's value.
+func (s *Connector) SetSsmCommandConfig(v *ConnectorSsmCommandConfig) *Connector {
+	s.SsmCommandConfig = v
+	return s
+}
+
+// SetSsmInstanceID sets the SsmInstanceID field's value.
+func (s *Connector) SetSsmInstanceID(v string) *Connector {
+	s.SsmInstanceID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Connector) SetTags(v map[string]*string) *Connector {
+	s.Tags = v
+	return s
+}
+
+// Connector SSM command config.
+type ConnectorSsmCommandConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Connector SSM command config CloudWatch log group name.
+	CloudWatchLogGroupName *string `locationName:"cloudWatchLogGroupName" min:"1" type:"string"`
+
+	// Connector SSM command config CloudWatch output enabled.
+	//
+	// CloudWatchOutputEnabled is a required field
+	CloudWatchOutputEnabled *bool `locationName:"cloudWatchOutputEnabled" type:"boolean" required:"true"`
+
+	// Connector SSM command config output S3 bucket name.
+	OutputS3BucketName *string `locationName:"outputS3BucketName" type:"string"`
+
+	// Connector SSM command config S3 output enabled.
+	//
+	// S3OutputEnabled is a required field
+	S3OutputEnabled *bool `locationName:"s3OutputEnabled" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorSsmCommandConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorSsmCommandConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectorSsmCommandConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectorSsmCommandConfig"}
+	if s.CloudWatchLogGroupName != nil && len(*s.CloudWatchLogGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CloudWatchLogGroupName", 1))
+	}
+	if s.CloudWatchOutputEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("CloudWatchOutputEnabled"))
+	}
+	if s.S3OutputEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchLogGroupName sets the CloudWatchLogGroupName field's value.
+func (s *ConnectorSsmCommandConfig) SetCloudWatchLogGroupName(v string) *ConnectorSsmCommandConfig {
+	s.CloudWatchLogGroupName = &v
+	return s
+}
+
+// SetCloudWatchOutputEnabled sets the CloudWatchOutputEnabled field's value.
+func (s *ConnectorSsmCommandConfig) SetCloudWatchOutputEnabled(v bool) *ConnectorSsmCommandConfig {
+	s.CloudWatchOutputEnabled = &v
+	return s
+}
+
+// SetOutputS3BucketName sets the OutputS3BucketName field's value.
+func (s *ConnectorSsmCommandConfig) SetOutputS3BucketName(v string) *ConnectorSsmCommandConfig {
+	s.OutputS3BucketName = &v
+	return s
+}
+
+// SetS3OutputEnabled sets the S3OutputEnabled field's value.
+func (s *ConnectorSsmCommandConfig) SetS3OutputEnabled(v bool) *ConnectorSsmCommandConfig {
+	s.S3OutputEnabled = &v
+	return s
 }
 
 type CreateApplicationInput struct {
@@ -7893,6 +8542,179 @@ func (s *CreateApplicationOutput) SetTags(v map[string]*string) *CreateApplicati
 // SetWaveID sets the WaveID field's value.
 func (s *CreateApplicationOutput) SetWaveID(v string) *CreateApplicationOutput {
 	s.WaveID = &v
+	return s
+}
+
+type CreateConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Create Connector request name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Create Connector request SSM command config.
+	SsmCommandConfig *ConnectorSsmCommandConfig `locationName:"ssmCommandConfig" type:"structure"`
+
+	// Create Connector request SSM instance ID.
+	//
+	// SsmInstanceID is a required field
+	SsmInstanceID *string `locationName:"ssmInstanceID" min:"19" type:"string" required:"true"`
+
+	// Create Connector request tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateConnectorInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectorInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SsmInstanceID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SsmInstanceID"))
+	}
+	if s.SsmInstanceID != nil && len(*s.SsmInstanceID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SsmInstanceID", 19))
+	}
+	if s.SsmCommandConfig != nil {
+		if err := s.SsmCommandConfig.Validate(); err != nil {
+			invalidParams.AddNested("SsmCommandConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConnectorInput) SetName(v string) *CreateConnectorInput {
+	s.Name = &v
+	return s
+}
+
+// SetSsmCommandConfig sets the SsmCommandConfig field's value.
+func (s *CreateConnectorInput) SetSsmCommandConfig(v *ConnectorSsmCommandConfig) *CreateConnectorInput {
+	s.SsmCommandConfig = v
+	return s
+}
+
+// SetSsmInstanceID sets the SsmInstanceID field's value.
+func (s *CreateConnectorInput) SetSsmInstanceID(v string) *CreateConnectorInput {
+	s.SsmInstanceID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConnectorInput) SetTags(v map[string]*string) *CreateConnectorInput {
+	s.Tags = v
+	return s
+}
+
+type CreateConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Connector arn.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Connector ID.
+	ConnectorID *string `locationName:"connectorID" min:"27" type:"string"`
+
+	// Connector name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Connector SSM command config.
+	SsmCommandConfig *ConnectorSsmCommandConfig `locationName:"ssmCommandConfig" type:"structure"`
+
+	// Connector SSM instance ID.
+	SsmInstanceID *string `locationName:"ssmInstanceID" min:"19" type:"string"`
+
+	// Connector tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateConnectorOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateConnectorOutput) SetArn(v string) *CreateConnectorOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectorID sets the ConnectorID field's value.
+func (s *CreateConnectorOutput) SetConnectorID(v string) *CreateConnectorOutput {
+	s.ConnectorID = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConnectorOutput) SetName(v string) *CreateConnectorOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSsmCommandConfig sets the SsmCommandConfig field's value.
+func (s *CreateConnectorOutput) SetSsmCommandConfig(v *ConnectorSsmCommandConfig) *CreateConnectorOutput {
+	s.SsmCommandConfig = v
+	return s
+}
+
+// SetSsmInstanceID sets the SsmInstanceID field's value.
+func (s *CreateConnectorOutput) SetSsmInstanceID(v string) *CreateConnectorOutput {
+	s.SsmInstanceID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConnectorOutput) SetTags(v map[string]*string) *CreateConnectorOutput {
+	s.Tags = v
 	return s
 }
 
@@ -9222,6 +10044,77 @@ func (s DeleteApplicationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Delete Connector request connector ID.
+	//
+	// ConnectorID is a required field
+	ConnectorID *string `locationName:"connectorID" min:"27" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConnectorInput"}
+	if s.ConnectorID == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorID"))
+	}
+	if s.ConnectorID != nil && len(*s.ConnectorID) < 27 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorID", 27))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorID sets the ConnectorID field's value.
+func (s *DeleteConnectorInput) SetConnectorID(v string) *DeleteConnectorInput {
+	s.ConnectorID = &v
+	return s
+}
+
+type DeleteConnectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectorOutput) GoString() string {
 	return s.String()
 }
 
@@ -10745,6 +11638,9 @@ type DisconnectFromServiceOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -10810,6 +11706,12 @@ func (s *DisconnectFromServiceOutput) SetApplicationID(v string) *DisconnectFrom
 // SetArn sets the Arn field's value.
 func (s *DisconnectFromServiceOutput) SetArn(v string) *DisconnectFromServiceOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *DisconnectFromServiceOutput) SetConnectorAction(v *SourceServerConnectorAction) *DisconnectFromServiceOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -11276,6 +12178,9 @@ type FinalizeCutoverOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -11341,6 +12246,12 @@ func (s *FinalizeCutoverOutput) SetApplicationID(v string) *FinalizeCutoverOutpu
 // SetArn sets the Arn field's value.
 func (s *FinalizeCutoverOutput) SetArn(v string) *FinalizeCutoverOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *FinalizeCutoverOutput) SetConnectorAction(v *SourceServerConnectorAction) *FinalizeCutoverOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -13585,6 +14496,140 @@ func (s *ListApplicationsRequestFilters) SetWaveIDs(v []*string) *ListApplicatio
 	return s
 }
 
+type ListConnectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List Connectors Request filters.
+	Filters *ListConnectorsRequestFilters `locationName:"filters" type:"structure"`
+
+	// List Connectors Request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List Connectors Request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConnectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConnectorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListConnectorsInput) SetFilters(v *ListConnectorsRequestFilters) *ListConnectorsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConnectorsInput) SetMaxResults(v int64) *ListConnectorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorsInput) SetNextToken(v string) *ListConnectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List connectors response items.
+	Items []*Connector `locationName:"items" type:"list"`
+
+	// List connectors response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListConnectorsOutput) SetItems(v []*Connector) *ListConnectorsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorsOutput) SetNextToken(v string) *ListConnectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// List Connectors Request Filters.
+type ListConnectorsRequestFilters struct {
+	_ struct{} `type:"structure"`
+
+	// List Connectors Request Filters connector IDs.
+	ConnectorIDs []*string `locationName:"connectorIDs" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsRequestFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConnectorsRequestFilters) GoString() string {
+	return s.String()
+}
+
+// SetConnectorIDs sets the ConnectorIDs field's value.
+func (s *ListConnectorsRequestFilters) SetConnectorIDs(v []*string) *ListConnectorsRequestFilters {
+	s.ConnectorIDs = v
+	return s
+}
+
 // List export errors request.
 type ListExportErrorsInput struct {
 	_ struct{} `type:"structure"`
@@ -14771,6 +15816,9 @@ type MarkAsArchivedOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -14836,6 +15884,12 @@ func (s *MarkAsArchivedOutput) SetApplicationID(v string) *MarkAsArchivedOutput 
 // SetArn sets the Arn field's value.
 func (s *MarkAsArchivedOutput) SetArn(v string) *MarkAsArchivedOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *MarkAsArchivedOutput) SetConnectorAction(v *SourceServerConnectorAction) *MarkAsArchivedOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -15118,6 +16172,9 @@ type PauseReplicationOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -15183,6 +16240,12 @@ func (s *PauseReplicationOutput) SetApplicationID(v string) *PauseReplicationOut
 // SetArn sets the Arn field's value.
 func (s *PauseReplicationOutput) SetArn(v string) *PauseReplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *PauseReplicationOutput) SetConnectorAction(v *SourceServerConnectorAction) *PauseReplicationOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -16648,6 +17711,9 @@ type ResumeReplicationOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -16713,6 +17779,12 @@ func (s *ResumeReplicationOutput) SetApplicationID(v string) *ResumeReplicationO
 // SetArn sets the Arn field's value.
 func (s *ResumeReplicationOutput) SetArn(v string) *ResumeReplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *ResumeReplicationOutput) SetConnectorAction(v *SourceServerConnectorAction) *ResumeReplicationOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -16852,6 +17924,9 @@ type RetryDataReplicationOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -16917,6 +17992,12 @@ func (s *RetryDataReplicationOutput) SetApplicationID(v string) *RetryDataReplic
 // SetArn sets the Arn field's value.
 func (s *RetryDataReplicationOutput) SetArn(v string) *RetryDataReplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *RetryDataReplicationOutput) SetConnectorAction(v *SourceServerConnectorAction) *RetryDataReplicationOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -17244,6 +18325,9 @@ type SourceServer struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -17309,6 +18393,12 @@ func (s *SourceServer) SetApplicationID(v string) *SourceServer {
 // SetArn sets the Arn field's value.
 func (s *SourceServer) SetArn(v string) *SourceServer {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *SourceServer) SetConnectorAction(v *SourceServerConnectorAction) *SourceServer {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -17537,6 +18627,63 @@ func (s SourceServerActionsRequestFilters) GoString() string {
 // SetActionIDs sets the ActionIDs field's value.
 func (s *SourceServerActionsRequestFilters) SetActionIDs(v []*string) *SourceServerActionsRequestFilters {
 	s.ActionIDs = v
+	return s
+}
+
+// Source Server connector action.
+type SourceServerConnectorAction struct {
+	_ struct{} `type:"structure"`
+
+	// Source Server connector action connector arn.
+	ConnectorArn *string `locationName:"connectorArn" min:"27" type:"string"`
+
+	// Source Server connector action credentials secret arn.
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceServerConnectorAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceServerConnectorAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceServerConnectorAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceServerConnectorAction"}
+	if s.ConnectorArn != nil && len(*s.ConnectorArn) < 27 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorArn", 27))
+	}
+	if s.CredentialsSecretArn != nil && len(*s.CredentialsSecretArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CredentialsSecretArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorArn sets the ConnectorArn field's value.
+func (s *SourceServerConnectorAction) SetConnectorArn(v string) *SourceServerConnectorAction {
+	s.ConnectorArn = &v
+	return s
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *SourceServerConnectorAction) SetCredentialsSecretArn(v string) *SourceServerConnectorAction {
+	s.CredentialsSecretArn = &v
 	return s
 }
 
@@ -18116,6 +19263,9 @@ type StartReplicationOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -18181,6 +19331,12 @@ func (s *StartReplicationOutput) SetApplicationID(v string) *StartReplicationOut
 // SetArn sets the Arn field's value.
 func (s *StartReplicationOutput) SetArn(v string) *StartReplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *StartReplicationOutput) SetConnectorAction(v *SourceServerConnectorAction) *StartReplicationOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -18425,6 +19581,9 @@ type StopReplicationOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -18490,6 +19649,12 @@ func (s *StopReplicationOutput) SetApplicationID(v string) *StopReplicationOutpu
 // SetArn sets the Arn field's value.
 func (s *StopReplicationOutput) SetArn(v string) *StopReplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *StopReplicationOutput) SetConnectorAction(v *SourceServerConnectorAction) *StopReplicationOutput {
+	s.ConnectorAction = v
 	return s
 }
 
@@ -19692,6 +20857,161 @@ func (s *UpdateApplicationOutput) SetTags(v map[string]*string) *UpdateApplicati
 // SetWaveID sets the WaveID field's value.
 func (s *UpdateApplicationOutput) SetWaveID(v string) *UpdateApplicationOutput {
 	s.WaveID = &v
+	return s
+}
+
+type UpdateConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Update Connector request connector ID.
+	//
+	// ConnectorID is a required field
+	ConnectorID *string `locationName:"connectorID" min:"27" type:"string" required:"true"`
+
+	// Update Connector request name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Update Connector request SSM command config.
+	SsmCommandConfig *ConnectorSsmCommandConfig `locationName:"ssmCommandConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorInput"}
+	if s.ConnectorID == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorID"))
+	}
+	if s.ConnectorID != nil && len(*s.ConnectorID) < 27 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorID", 27))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SsmCommandConfig != nil {
+		if err := s.SsmCommandConfig.Validate(); err != nil {
+			invalidParams.AddNested("SsmCommandConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorID sets the ConnectorID field's value.
+func (s *UpdateConnectorInput) SetConnectorID(v string) *UpdateConnectorInput {
+	s.ConnectorID = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConnectorInput) SetName(v string) *UpdateConnectorInput {
+	s.Name = &v
+	return s
+}
+
+// SetSsmCommandConfig sets the SsmCommandConfig field's value.
+func (s *UpdateConnectorInput) SetSsmCommandConfig(v *ConnectorSsmCommandConfig) *UpdateConnectorInput {
+	s.SsmCommandConfig = v
+	return s
+}
+
+type UpdateConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Connector arn.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Connector ID.
+	ConnectorID *string `locationName:"connectorID" min:"27" type:"string"`
+
+	// Connector name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Connector SSM command config.
+	SsmCommandConfig *ConnectorSsmCommandConfig `locationName:"ssmCommandConfig" type:"structure"`
+
+	// Connector SSM instance ID.
+	SsmInstanceID *string `locationName:"ssmInstanceID" min:"19" type:"string"`
+
+	// Connector tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateConnectorOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateConnectorOutput) SetArn(v string) *UpdateConnectorOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectorID sets the ConnectorID field's value.
+func (s *UpdateConnectorOutput) SetConnectorID(v string) *UpdateConnectorOutput {
+	s.ConnectorID = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConnectorOutput) SetName(v string) *UpdateConnectorOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSsmCommandConfig sets the SsmCommandConfig field's value.
+func (s *UpdateConnectorOutput) SetSsmCommandConfig(v *ConnectorSsmCommandConfig) *UpdateConnectorOutput {
+	s.SsmCommandConfig = v
+	return s
+}
+
+// SetSsmInstanceID sets the SsmInstanceID field's value.
+func (s *UpdateConnectorOutput) SetSsmInstanceID(v string) *UpdateConnectorOutput {
+	s.SsmInstanceID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateConnectorOutput) SetTags(v map[string]*string) *UpdateConnectorOutput {
+	s.Tags = v
 	return s
 }
 
@@ -21085,6 +22405,233 @@ func (s *UpdateReplicationConfigurationTemplateOutput) SetUseFipsEndpoint(v bool
 	return s
 }
 
+type UpdateSourceServerInput struct {
+	_ struct{} `type:"structure"`
+
+	// Update Source Server request account ID.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+
+	// Update Source Server request connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
+	// Update Source Server request source server ID.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSourceServerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceServerInput"}
+	if s.AccountID != nil && len(*s.AccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountID", 12))
+	}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+	if s.ConnectorAction != nil {
+		if err := s.ConnectorAction.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorAction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *UpdateSourceServerInput) SetAccountID(v string) *UpdateSourceServerInput {
+	s.AccountID = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *UpdateSourceServerInput) SetConnectorAction(v *SourceServerConnectorAction) *UpdateSourceServerInput {
+	s.ConnectorAction = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *UpdateSourceServerInput) SetSourceServerID(v string) *UpdateSourceServerInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type UpdateSourceServerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server application ID.
+	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSourceServerOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationID sets the ApplicationID field's value.
+func (s *UpdateSourceServerOutput) SetApplicationID(v string) *UpdateSourceServerOutput {
+	s.ApplicationID = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateSourceServerOutput) SetArn(v string) *UpdateSourceServerOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *UpdateSourceServerOutput) SetConnectorAction(v *SourceServerConnectorAction) *UpdateSourceServerOutput {
+	s.ConnectorAction = v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *UpdateSourceServerOutput) SetDataReplicationInfo(v *DataReplicationInfo) *UpdateSourceServerOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *UpdateSourceServerOutput) SetFqdnForActionFramework(v string) *UpdateSourceServerOutput {
+	s.FqdnForActionFramework = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *UpdateSourceServerOutput) SetIsArchived(v bool) *UpdateSourceServerOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *UpdateSourceServerOutput) SetLaunchedInstance(v *LaunchedInstance) *UpdateSourceServerOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *UpdateSourceServerOutput) SetLifeCycle(v *LifeCycle) *UpdateSourceServerOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *UpdateSourceServerOutput) SetReplicationType(v string) *UpdateSourceServerOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *UpdateSourceServerOutput) SetSourceProperties(v *SourceProperties) *UpdateSourceServerOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *UpdateSourceServerOutput) SetSourceServerID(v string) *UpdateSourceServerOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateSourceServerOutput) SetTags(v map[string]*string) *UpdateSourceServerOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *UpdateSourceServerOutput) SetUserProvidedID(v string) *UpdateSourceServerOutput {
+	s.UserProvidedID = &v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *UpdateSourceServerOutput) SetVcenterClientID(v string) *UpdateSourceServerOutput {
+	s.VcenterClientID = &v
+	return s
+}
+
 type UpdateSourceServerReplicationTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21169,6 +22716,9 @@ type UpdateSourceServerReplicationTypeOutput struct {
 	// Source server ARN.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
+	// Source Server connector action.
+	ConnectorAction *SourceServerConnectorAction `locationName:"connectorAction" type:"structure"`
+
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
@@ -21234,6 +22784,12 @@ func (s *UpdateSourceServerReplicationTypeOutput) SetApplicationID(v string) *Up
 // SetArn sets the Arn field's value.
 func (s *UpdateSourceServerReplicationTypeOutput) SetArn(v string) *UpdateSourceServerReplicationTypeOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectorAction sets the ConnectorAction field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetConnectorAction(v *SourceServerConnectorAction) *UpdateSourceServerReplicationTypeOutput {
+	s.ConnectorAction = v
 	return s
 }
 

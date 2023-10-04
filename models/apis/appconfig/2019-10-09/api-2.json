@@ -804,7 +804,9 @@
         "LocationUri":{"shape":"Uri"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"},
-        "Type":{"shape":"ConfigurationProfileType"}
+        "Type":{"shape":"ConfigurationProfileType"},
+        "KmsKeyArn":{"shape":"Arn"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "ConfigurationProfileSummary":{
@@ -869,7 +871,8 @@
         "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"},
         "Tags":{"shape":"TagMap"},
-        "Type":{"shape":"ConfigurationProfileType"}
+        "Type":{"shape":"ConfigurationProfileType"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "CreateDeploymentStrategyRequest":{
@@ -938,7 +941,7 @@
         "Actions"
       ],
       "members":{
-        "Name":{"shape":"Name"},
+        "Name":{"shape":"ExtensionOrParameterName"},
         "Description":{"shape":"Description"},
         "Actions":{"shape":"ActionsMap"},
         "Parameters":{"shape":"ParameterMap"},
@@ -1131,7 +1134,7 @@
         "CompletedAt":{"shape":"Iso8601DateTime"},
         "AppliedExtensions":{"shape":"AppliedExtensions"},
         "KmsKeyArn":{"shape":"Arn"},
-        "KmsKeyIdentifier":{"shape":"Identifier"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"},
         "VersionLabel":{"shape":"VersionLabel"}
       }
     },
@@ -1304,6 +1307,10 @@
         "Items":{"shape":"ExtensionAssociationSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ExtensionOrParameterName":{
+      "type":"string",
+      "pattern":"^[^\\/#:\\n]{1,64}$"
     },
     "ExtensionSummaries":{
       "type":"list",
@@ -1547,6 +1554,11 @@
           "shape":"VersionLabel",
           "location":"header",
           "locationName":"VersionLabel"
+        },
+        "KmsKeyArn":{
+          "shape":"Arn",
+          "location":"header",
+          "locationName":"KmsKeyArn"
         }
       },
       "payload":"Content"
@@ -1559,7 +1571,8 @@
         "VersionNumber":{"shape":"Integer"},
         "Description":{"shape":"Description"},
         "ContentType":{"shape":"StringWithLengthBetween1And255"},
-        "VersionLabel":{"shape":"VersionLabel"}
+        "VersionLabel":{"shape":"VersionLabel"},
+        "KmsKeyArn":{"shape":"Arn"}
       }
     },
     "HostedConfigurationVersionSummaryList":{
@@ -1609,6 +1622,14 @@
     "Iso8601DateTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "KmsKeyIdentifier":{
+      "type":"string",
+      "pattern":"^[\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12}|alias/[a-zA-Z0-9/_-]{1,250}|arn:aws[a-zA-Z-]*:kms:[a-z]{2}(-gov|-iso(b?))?-[a-z]+-\\d{1}:\\d{12}:(key/[0-9a-f-]{36}|alias/[a-zA-Z0-9/_-]{1,250})$"
+    },
+    "KmsKeyIdentifierOrEmpty":{
+      "type":"string",
+      "pattern":"^\\s{0,1}|[\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12}|alias/[a-zA-Z0-9/_-]{1,250}|arn:aws[a-zA-Z-]*:kms:[a-z]{2}(-gov|-iso(b?))?-[a-z]+-\\d{1}:\\d{12}:(key/[0-9a-f-]{36}|alias/[a-zA-Z0-9/_-]{1,250})$"
     },
     "ListApplicationsRequest":{
       "type":"structure",
@@ -1868,14 +1889,14 @@
     },
     "ParameterMap":{
       "type":"map",
-      "key":{"shape":"Name"},
+      "key":{"shape":"ExtensionOrParameterName"},
       "value":{"shape":"Parameter"},
       "max":5,
       "min":1
     },
     "ParameterValueMap":{
       "type":"map",
-      "key":{"shape":"Name"},
+      "key":{"shape":"ExtensionOrParameterName"},
       "value":{"shape":"StringWithLengthBetween1And2048"},
       "max":5,
       "min":0
@@ -1962,7 +1983,7 @@
         "ConfigurationVersion":{"shape":"Version"},
         "Description":{"shape":"Description"},
         "Tags":{"shape":"TagMap"},
-        "KmsKeyIdentifier":{"shape":"Identifier"}
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
       }
     },
     "StopDeploymentRequest":{
@@ -2111,7 +2132,8 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
-        "Validators":{"shape":"ValidatorList"}
+        "Validators":{"shape":"ValidatorList"},
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifierOrEmpty"}
       }
     },
     "UpdateDeploymentStrategyRequest":{

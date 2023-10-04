@@ -1,3 +1,14 @@
+Release v1.45.22 (2023-10-04)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/datazone`: Updates service API, documentation, paginators, and examples
+* `service/mediatailor`: Updates service API and documentation
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * Adding support for AdditionalS3DataSource, a data source used for training or inference that is in addition to the input dataset or model data.
+
 Release v1.45.21 (2023-10-03)
 ===
 

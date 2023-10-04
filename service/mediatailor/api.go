@@ -3973,6 +3973,42 @@ func (s *AdBreak) SetTimeSignalMessage(v *TimeSignalMessage) *AdBreak {
 	return s
 }
 
+// A location at which a zero-duration ad marker was detected in a VOD source
+// manifest.
+type AdBreakOpportunity struct {
+	_ struct{} `type:"structure"`
+
+	// The offset in milliseconds from the start of the VOD source at which an ad
+	// marker was detected.
+	//
+	// OffsetMillis is a required field
+	OffsetMillis *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdBreakOpportunity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdBreakOpportunity) GoString() string {
+	return s.String()
+}
+
+// SetOffsetMillis sets the OffsetMillis field's value.
+func (s *AdBreakOpportunity) SetOffsetMillis(v int64) *AdBreakOpportunity {
+	s.OffsetMillis = &v
+	return s
+}
+
 // For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT,
 // and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor
 // personalized manifest.
@@ -7710,6 +7746,9 @@ func (s *DescribeVodSourceInput) SetVodSourceName(v string) *DescribeVodSourceIn
 type DescribeVodSourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ad break opportunities within the VOD source.
+	AdBreakOpportunities []*AdBreakOpportunity `type:"list"`
+
 	// The ARN of the VOD source.
 	Arn *string `type:"string"`
 
@@ -7751,6 +7790,12 @@ func (s DescribeVodSourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeVodSourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdBreakOpportunities sets the AdBreakOpportunities field's value.
+func (s *DescribeVodSourceOutput) SetAdBreakOpportunities(v []*AdBreakOpportunity) *DescribeVodSourceOutput {
+	s.AdBreakOpportunities = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
