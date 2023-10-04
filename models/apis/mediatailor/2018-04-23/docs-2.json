@@ -77,6 +77,18 @@
         "AdBreak$AdBreakMetadata": "<p>Defines a list of key/value pairs that MediaTailor generates within the <code>EXT-X-ASSET</code>tag for <code>SCTE35_ENHANCED</code> output.</p>"
       }
     },
+    "AdBreakOpportunities": {
+      "base": "<p>The list of ad break opportunities detected within the VOD source.</p>",
+      "refs": {
+        "DescribeVodSourceResponse$AdBreakOpportunities": "<p>The ad break opportunities within the VOD source.</p>"
+      }
+    },
+    "AdBreakOpportunity": {
+      "base": "<p>A location at which a zero-duration ad marker was detected in a VOD source manifest.</p>",
+      "refs": {
+        "AdBreakOpportunities$member": null
+      }
+    },
     "AdMarkerPassthrough": {
       "base": "<p>For HLS, when set to <code>true</code>, MediaTailor passes through <code>EXT-X-CUE-IN</code>, <code>EXT-X-CUE-OUT</code>, and <code>EXT-X-SPLICEPOINT-SCTE35</code> ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if <code>EXT-X-CUE-OUT</code> has a value of <code>60</code>, but no ads are filled for that ad break, MediaTailor will not set the value to <code>0</code>.</p>",
       "refs": {
@@ -1131,6 +1143,7 @@
       "base": null,
       "refs": {
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
+        "AdBreakOpportunity$OffsetMillis": "<p>The offset in milliseconds from the start of the VOD source at which an ad marker was detected.</p>",
         "ClipRange$EndOffsetMillis": "<p>The end offset of the clip range, in milliseconds, starting from the beginning of the VOD source associated with the program.</p>",
         "CreateProgramResponse$DurationMillis": "<p>The duration of the live program in milliseconds.</p>",
         "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",

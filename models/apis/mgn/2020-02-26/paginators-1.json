@@ -42,6 +42,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListConnectors": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "items"
+    },
     "ListExportErrors": {
       "input_token": "nextToken",
       "output_token": "nextToken",

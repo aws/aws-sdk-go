@@ -403,6 +403,19 @@
         "UpdateModelPackageInput$AdditionalInferenceSpecificationsToAdd": "<p>An array of additional Inference Specification objects to be added to the existing array additional Inference Specification. Total number of additional Inference Specifications can not exceed 15. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts.</p>"
       }
     },
+    "AdditionalS3DataSource": {
+      "base": "<p>A data source used for training or inference that is in addition to the input dataset or model data.</p>",
+      "refs": {
+        "ModelPackageContainerDefinition$AdditionalS3DataSource": "<p>The additional data source that is used during inference in the Docker container for your model package.</p>",
+        "TrainingSpecification$AdditionalS3DataSource": "<p>The additional data source used during the training job.</p>"
+      }
+    },
+    "AdditionalS3DataSourceDataType": {
+      "base": null,
+      "refs": {
+        "AdditionalS3DataSource$S3DataType": "<p>The data type of the additional data source that you specify for use in inference or training. </p>"
+      }
+    },
     "AgentVersion": {
       "base": "<p>Edge Manager agent version.</p>",
       "refs": {
@@ -2067,6 +2080,7 @@
     "CompressionType": {
       "base": null,
       "refs": {
+        "AdditionalS3DataSource$CompressionType": "<p>The type of compression used for an additional data source used in inference or training. Specify <code>None</code> if your additional data source is not compressed.</p>",
         "AutoMLChannel$CompressionType": "<p>You can use <code>Gzip</code> or <code>None</code>. The default value is <code>None</code>.</p>",
         "AutoMLJobChannel$CompressionType": "<p>The allowed compression types depend on the input format and problem type. We allow the compression type <code>Gzip</code> for <code>S3Prefix</code> inputs on tabular data only. For all other inputs, the compression type should be <code>None</code>. If no compression type is provided, we default to <code>None</code>.</p>",
         "Channel$CompressionType": "<p>If training data is compressed, the compression type. The default value is <code>None</code>. <code>CompressionType</code> is used only in Pipe input mode. In File mode, leave this field unset or set it to None.</p>",
@@ -10691,7 +10705,7 @@
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "RetryPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
-        "SelectiveExecutionConfig$SourcePipelineExecutionArn": "<p>The ARN from a reference execution of the current pipeline. Used to copy input collaterals needed for the selected steps to run. The execution status of the pipeline can be either <code>Failed</code> or <code>Success</code>.</p> <p>This field is required if the steps you specify for <code>SelectedSteps</code> depend on output collaterals from any non-specified pipeline steps. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-selective-ex.html\">Selective Execution for Pipeline Steps</a>.</p>",
+        "SelectiveExecutionConfig$SourcePipelineExecutionArn": "<p>The ARN from a reference execution of the current pipeline. Used to copy input collaterals needed for the selected steps to run. The execution status of the pipeline can be either <code>Failed</code> or <code>Success</code>.</p>",
         "SelectiveExecutionResult$SourcePipelineExecutionArn": "<p>The ARN from an execution of the current pipeline.</p>",
         "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -12224,6 +12238,7 @@
     "S3Uri": {
       "base": null,
       "refs": {
+        "AdditionalS3DataSource$S3Uri": "<p>The uniform resource identifier (URI) used to identify an additional data source used in inference or training.</p>",
         "AthenaDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where Athena query results are stored.</p>",
         "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job. You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <note> <p>These column keys may not include the target column.</p> </note> <p>In ensembling mode, Autopilot only supports the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code>, and <code>datetime</code>. In HPO mode, Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>, <code>datetime</code>, and <code>sequence</code>.</p> <p>If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>, <code>col2</code>,..) should be a subset of the column names in the input data. </p> <p>If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided, then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>. </p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> are case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
         "AutoMLOutputDataConfig$S3OutputPath": "<p>The Amazon S3 output path. Must be 128 characters or less.</p>",

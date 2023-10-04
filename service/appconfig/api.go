@@ -5098,6 +5098,14 @@ type CreateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
+	// The identifier for an Key Management Service key to encrypt new configuration
+	// data versions in the AppConfig hosted configuration store. This attribute
+	// is only used for hosted configuration types. The identifier can be an KMS
+	// key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias.
+	// To encrypt data managed in other configuration stores, see the documentation
+	// for how to specify an KMS key for that particular service.
+	KmsKeyIdentifier *string `type:"string"`
+
 	// A URI to locate the configuration. You can specify the following:
 	//
 	//    * For the AppConfig hosted configuration store and for feature flags,
@@ -5226,6 +5234,12 @@ func (s *CreateConfigurationProfileInput) SetDescription(v string) *CreateConfig
 	return s
 }
 
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateConfigurationProfileInput) SetKmsKeyIdentifier(v string) *CreateConfigurationProfileInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetLocationUri sets the LocationUri field's value.
 func (s *CreateConfigurationProfileInput) SetLocationUri(v string) *CreateConfigurationProfileInput {
 	s.LocationUri = &v
@@ -5273,6 +5287,17 @@ type CreateConfigurationProfileOutput struct {
 
 	// The configuration profile ID.
 	Id *string `type:"string"`
+
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
@@ -5332,6 +5357,18 @@ func (s *CreateConfigurationProfileOutput) SetDescription(v string) *CreateConfi
 // SetId sets the Id field's value.
 func (s *CreateConfigurationProfileOutput) SetId(v string) *CreateConfigurationProfileOutput {
 	s.Id = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateConfigurationProfileOutput) SetKmsKeyArn(v string) *CreateConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *CreateConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -5997,7 +6034,7 @@ type CreateExtensionInput struct {
 	// Extension versions use the same name.
 	//
 	// Name is a required field
-	Name *string `min:"1" type:"string" required:"true"`
+	Name *string `type:"string" required:"true"`
 
 	// The parameters accepted by the extension. You specify parameter values when
 	// you associate the extension to an AppConfig resource by using the CreateExtensionAssociation
@@ -6041,9 +6078,6 @@ func (s *CreateExtensionInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-	if s.Name != nil && len(*s.Name) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.Parameters != nil && len(s.Parameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
@@ -6340,6 +6374,11 @@ type CreateHostedConfigurationVersionOutput struct {
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `location:"header" locationName:"KmsKeyArn" min:"20" type:"string"`
+
 	// A user-defined label for an AppConfig hosted configuration version.
 	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
 
@@ -6392,6 +6431,12 @@ func (s *CreateHostedConfigurationVersionOutput) SetContentType(v string) *Creat
 // SetDescription sets the Description field's value.
 func (s *CreateHostedConfigurationVersionOutput) SetDescription(v string) *CreateHostedConfigurationVersionOutput {
 	s.Description = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetKmsKeyArn(v string) *CreateHostedConfigurationVersionOutput {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -7861,6 +7906,17 @@ type GetConfigurationProfileOutput struct {
 	// The configuration profile ID.
 	Id *string `type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
+
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
 
@@ -7919,6 +7975,18 @@ func (s *GetConfigurationProfileOutput) SetDescription(v string) *GetConfigurati
 // SetId sets the Id field's value.
 func (s *GetConfigurationProfileOutput) SetId(v string) *GetConfigurationProfileOutput {
 	s.Id = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetConfigurationProfileOutput) SetKmsKeyArn(v string) *GetConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *GetConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *GetConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -8095,9 +8163,9 @@ type GetDeploymentOutput struct {
 	// Store.
 	KmsKeyArn *string `min:"20" type:"string"`
 
-	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
-	// ID to encrypt the configuration data using a customer managed key.
-	KmsKeyIdentifier *string `min:"1" type:"string"`
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -8926,6 +8994,11 @@ type GetHostedConfigurationVersionOutput struct {
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
 
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `location:"header" locationName:"KmsKeyArn" min:"20" type:"string"`
+
 	// A user-defined label for an AppConfig hosted configuration version.
 	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
 
@@ -8981,6 +9054,12 @@ func (s *GetHostedConfigurationVersionOutput) SetDescription(v string) *GetHoste
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetHostedConfigurationVersionOutput) SetKmsKeyArn(v string) *GetHostedConfigurationVersionOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
 // SetVersionLabel sets the VersionLabel field's value.
 func (s *GetHostedConfigurationVersionOutput) SetVersionLabel(v string) *GetHostedConfigurationVersionOutput {
 	s.VersionLabel = &v
@@ -9009,6 +9088,11 @@ type HostedConfigurationVersionSummary struct {
 
 	// A description of the configuration.
 	Description *string `type:"string"`
+
+	// The Amazon Resource Name of the Key Management Service key that was used
+	// to encrypt this specific version of the configuration data in the AppConfig
+	// hosted configuration store.
+	KmsKeyArn *string `min:"20" type:"string"`
 
 	// A user-defined label for an AppConfig hosted configuration version.
 	VersionLabel *string `min:"1" type:"string"`
@@ -9056,6 +9140,12 @@ func (s *HostedConfigurationVersionSummary) SetContentType(v string) *HostedConf
 // SetDescription sets the Description field's value.
 func (s *HostedConfigurationVersionSummary) SetDescription(v string) *HostedConfigurationVersionSummary {
 	s.Description = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *HostedConfigurationVersionSummary) SetKmsKeyArn(v string) *HostedConfigurationVersionSummary {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -10620,7 +10710,7 @@ type StartDeploymentInput struct {
 
 	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
 	// ID to encrypt the configuration data using a customer managed key.
-	KmsKeyIdentifier *string `min:"1" type:"string"`
+	KmsKeyIdentifier *string `type:"string"`
 
 	// Metadata to assign to the deployment. Tags help organize and categorize your
 	// AppConfig resources. Each tag consists of a key and an optional value, both
@@ -10672,9 +10762,6 @@ func (s *StartDeploymentInput) Validate() error {
 	}
 	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
-	}
-	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10794,9 +10881,9 @@ type StartDeploymentOutput struct {
 	// Store.
 	KmsKeyArn *string `min:"20" type:"string"`
 
-	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
-	// ID to encrypt the configuration data using a customer managed key.
-	KmsKeyIdentifier *string `min:"1" type:"string"`
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -11104,9 +11191,9 @@ type StopDeploymentOutput struct {
 	// Store.
 	KmsKeyArn *string `min:"20" type:"string"`
 
-	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
-	// ID to encrypt the configuration data using a customer managed key.
-	KmsKeyIdentifier *string `min:"1" type:"string"`
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -11578,6 +11665,14 @@ type UpdateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
+	// The identifier for a Key Management Service key to encrypt new configuration
+	// data versions in the AppConfig hosted configuration store. This attribute
+	// is only used for hosted configuration types. The identifier can be an KMS
+	// key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias.
+	// To encrypt data managed in other configuration stores, see the documentation
+	// for how to specify an KMS key for that particular service.
+	KmsKeyIdentifier *string `type:"string"`
+
 	// The name of the configuration profile.
 	Name *string `min:"1" type:"string"`
 
@@ -11663,6 +11758,12 @@ func (s *UpdateConfigurationProfileInput) SetDescription(v string) *UpdateConfig
 	return s
 }
 
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateConfigurationProfileInput) SetKmsKeyIdentifier(v string) *UpdateConfigurationProfileInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateConfigurationProfileInput) SetName(v string) *UpdateConfigurationProfileInput {
 	s.Name = &v
@@ -11692,6 +11793,17 @@ type UpdateConfigurationProfileOutput struct {
 
 	// The configuration profile ID.
 	Id *string `type:"string"`
+
+	// The Amazon Resource Name of the Key Management Service key to encrypt new
+	// configuration data versions in the AppConfig hosted configuration store.
+	// This attribute is only used for hosted configuration types. To encrypt data
+	// managed in other configuration stores, see the documentation for how to specify
+	// an KMS key for that particular service.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The Key Management Service key identifier (key ID, key alias, or key ARN)
+	// provided when the resource was created or updated.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
@@ -11751,6 +11863,18 @@ func (s *UpdateConfigurationProfileOutput) SetDescription(v string) *UpdateConfi
 // SetId sets the Id field's value.
 func (s *UpdateConfigurationProfileOutput) SetId(v string) *UpdateConfigurationProfileOutput {
 	s.Id = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *UpdateConfigurationProfileOutput) SetKmsKeyArn(v string) *UpdateConfigurationProfileOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateConfigurationProfileOutput) SetKmsKeyIdentifier(v string) *UpdateConfigurationProfileOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 

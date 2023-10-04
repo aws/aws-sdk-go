@@ -517,6 +517,17 @@
       "type":"list",
       "member":{"shape":"KeyValuePair"}
     },
+    "AdBreakOpportunities":{
+      "type":"list",
+      "member":{"shape":"AdBreakOpportunity"}
+    },
+    "AdBreakOpportunity":{
+      "type":"structure",
+      "required":["OffsetMillis"],
+      "members":{
+        "OffsetMillis":{"shape":"__long"}
+      }
+    },
     "AdMarkerPassthrough":{
       "type":"structure",
       "members":{
@@ -1266,6 +1277,7 @@
     "DescribeVodSourceResponse":{
       "type":"structure",
       "members":{
+        "AdBreakOpportunities":{"shape":"AdBreakOpportunities"},
         "Arn":{"shape":"__string"},
         "CreationTime":{"shape":"__timestampUnix"},
         "HttpPackageConfigurations":{"shape":"HttpPackageConfigurations"},

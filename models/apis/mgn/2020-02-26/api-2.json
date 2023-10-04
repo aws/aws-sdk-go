@@ -111,6 +111,21 @@
       ],
       "idempotent":true
     },
+    "CreateConnector":{
+      "name":"CreateConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateConnector",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateConnectorRequest"},
+      "output":{"shape":"Connector"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
     "CreateLaunchConfigurationTemplate":{
       "name":"CreateLaunchConfigurationTemplate",
       "http":{
@@ -170,6 +185,21 @@
         {"shape":"UninitializedAccountException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteConnector":{
+      "name":"DeleteConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteConnector",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteConnectorRequest"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ],
       "idempotent":true
     },
@@ -471,6 +501,20 @@
       "output":{"shape":"ListApplicationsResponse"},
       "errors":[
         {"shape":"UninitializedAccountException"}
+      ]
+    },
+    "ListConnectors":{
+      "name":"ListConnectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListConnectors",
+        "responseCode":200
+      },
+      "input":{"shape":"ListConnectorsRequest"},
+      "output":{"shape":"ListConnectorsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListExportErrors":{
@@ -917,6 +961,22 @@
       ],
       "idempotent":true
     },
+    "UpdateConnector":{
+      "name":"UpdateConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateConnector",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateConnectorRequest"},
+      "output":{"shape":"Connector"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
     "UpdateLaunchConfiguration":{
       "name":"UpdateLaunchConfiguration",
       "http":{
@@ -983,6 +1043,22 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateSourceServer":{
+      "name":"UpdateSourceServer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateSourceServer",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateSourceServerRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
     },
     "UpdateSourceServerReplicationType":{
       "name":"UpdateSourceServerReplicationType",
@@ -1295,6 +1371,58 @@
       "type":"list",
       "member":{"shape":"ErrorDetails"}
     },
+    "Connector":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"ARN"},
+        "connectorID":{"shape":"ConnectorID"},
+        "name":{"shape":"ConnectorName"},
+        "ssmCommandConfig":{"shape":"ConnectorSsmCommandConfig"},
+        "ssmInstanceID":{"shape":"SsmInstanceID"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "ConnectorArn":{
+      "type":"string",
+      "max":100,
+      "min":27,
+      "pattern":"^arn:[\\w-]+:mgn:([a-z]{2}-(gov-)?[a-z]+-\\d{1})?:(\\d{12})?:connector\\/(connector-[0-9a-zA-Z]{17})$"
+    },
+    "ConnectorID":{
+      "type":"string",
+      "max":27,
+      "min":27,
+      "pattern":"^connector-[0-9a-zA-Z]{17}$"
+    },
+    "ConnectorIDsFilter":{
+      "type":"list",
+      "member":{"shape":"ConnectorID"},
+      "max":20,
+      "min":0
+    },
+    "ConnectorName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[A-Za-z0-9_-]+$"
+    },
+    "ConnectorSsmCommandConfig":{
+      "type":"structure",
+      "required":[
+        "cloudWatchOutputEnabled",
+        "s3OutputEnabled"
+      ],
+      "members":{
+        "cloudWatchLogGroupName":{"shape":"CloudWatchLogGroupName"},
+        "cloudWatchOutputEnabled":{"shape":"Boolean"},
+        "outputS3BucketName":{"shape":"S3BucketName"},
+        "s3OutputEnabled":{"shape":"Boolean"}
+      }
+    },
+    "ConnectorsList":{
+      "type":"list",
+      "member":{"shape":"Connector"}
+    },
     "Cpus":{
       "type":"list",
       "member":{"shape":"CPU"},
@@ -1308,6 +1436,19 @@
         "accountID":{"shape":"AccountID"},
         "description":{"shape":"ApplicationDescription"},
         "name":{"shape":"ApplicationName"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateConnectorRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "ssmInstanceID"
+      ],
+      "members":{
+        "name":{"shape":"ConnectorName"},
+        "ssmCommandConfig":{"shape":"ConnectorSsmCommandConfig"},
+        "ssmInstanceID":{"shape":"SsmInstanceID"},
         "tags":{"shape":"TagsMap"}
       }
     },
@@ -1501,6 +1642,13 @@
     "DeleteApplicationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteConnectorRequest":{
+      "type":"structure",
+      "required":["connectorID"],
+      "members":{
+        "connectorID":{"shape":"ConnectorID"}
       }
     },
     "DeleteJobRequest":{
@@ -2368,6 +2516,27 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListConnectorsRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"ListConnectorsRequestFilters"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListConnectorsRequestFilters":{
+      "type":"structure",
+      "members":{
+        "connectorIDs":{"shape":"ConnectorIDsFilter"}
+      }
+    },
+    "ListConnectorsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ConnectorsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListExportErrorsRequest":{
       "type":"structure",
       "required":["exportID"],
@@ -2929,6 +3098,12 @@
       "max":63,
       "min":3
     },
+    "SecretArn":{
+      "type":"string",
+      "max":100,
+      "min":20,
+      "pattern":"^arn:[\\w-]+:secretsmanager:([a-z]{2}-(gov-)?[a-z]+-\\d{1})?:(\\d{12})?:secret:(.+)$"
+    },
     "SecurityGroupID":{
       "type":"string",
       "max":255,
@@ -2975,6 +3150,7 @@
       "members":{
         "applicationID":{"shape":"ApplicationID"},
         "arn":{"shape":"ARN"},
+        "connectorAction":{"shape":"SourceServerConnectorAction"},
         "dataReplicationInfo":{"shape":"DataReplicationInfo"},
         "fqdnForActionFramework":{"shape":"BoundedString"},
         "isArchived":{"shape":"Boolean"},
@@ -3015,6 +3191,13 @@
       "type":"structure",
       "members":{
         "actionIDs":{"shape":"ActionIDs"}
+      }
+    },
+    "SourceServerConnectorAction":{
+      "type":"structure",
+      "members":{
+        "connectorArn":{"shape":"ConnectorArn"},
+        "credentialsSecretArn":{"shape":"SecretArn"}
       }
     },
     "SourceServerID":{
@@ -3087,6 +3270,12 @@
         "dynamicPath":{"shape":"JmesPathString"}
       },
       "union":true
+    },
+    "SsmInstanceID":{
+      "type":"string",
+      "max":20,
+      "min":19,
+      "pattern":"(^i-[0-9a-zA-Z]{17}$)|(^mi-[0-9a-zA-Z]{17}$)"
     },
     "SsmParameterStoreParameter":{
       "type":"structure",
@@ -3395,6 +3584,15 @@
         "name":{"shape":"ApplicationName"}
       }
     },
+    "UpdateConnectorRequest":{
+      "type":"structure",
+      "required":["connectorID"],
+      "members":{
+        "connectorID":{"shape":"ConnectorID"},
+        "name":{"shape":"ConnectorName"},
+        "ssmCommandConfig":{"shape":"ConnectorSsmCommandConfig"}
+      }
+    },
     "UpdateLaunchConfigurationRequest":{
       "type":"structure",
       "required":["sourceServerID"],
@@ -3486,6 +3684,15 @@
       "members":{
         "accountID":{"shape":"AccountID"},
         "replicationType":{"shape":"ReplicationType"},
+        "sourceServerID":{"shape":"SourceServerID"}
+      }
+    },
+    "UpdateSourceServerRequest":{
+      "type":"structure",
+      "required":["sourceServerID"],
+      "members":{
+        "accountID":{"shape":"AccountID"},
+        "connectorAction":{"shape":"SourceServerConnectorAction"},
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
