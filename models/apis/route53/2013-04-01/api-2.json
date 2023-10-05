@@ -2935,6 +2935,10 @@
         "Owner":{"shape":"HostedZoneOwner"}
       }
     },
+    "HostedZoneType":{
+      "type":"string",
+      "enum":["PrivateHostedZone"]
+    },
     "HostedZones":{
       "type":"list",
       "member":{
@@ -3390,6 +3394,11 @@
           "shape":"ResourceId",
           "location":"querystring",
           "locationName":"delegationsetid"
+        },
+        "HostedZoneType":{
+          "shape":"HostedZoneType",
+          "location":"querystring",
+          "locationName":"hostedzonetype"
         }
       }
     },

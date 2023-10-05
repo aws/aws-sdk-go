@@ -4,6 +4,7 @@
   "operations": {
     "AssociateConnectionAlias": "<p>Associates the specified connection alias with the specified directory to enable cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "AssociateIpGroups": "<p>Associates the specified IP access control group with the specified directory.</p>",
+    "AssociateWorkspaceApplication": "<p>Associates the specified application to the specified WorkSpace.</p>",
     "AuthorizeIpRules": "<p>Adds one or more rules to the specified IP access control group.</p> <p>This action gives users permission to access their WorkSpaces from the CIDR address ranges specified in the rules.</p>",
     "CopyWorkspaceImage": "<p>Copies the specified image from the specified Region to the current Region. For more information about copying images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/copy-custom-image.html\"> Copy a Custom WorkSpaces Image</a>.</p> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In Amazon Web Services GovCloud (US), to copy images to and from other Regions, contact Amazon Web Services Support.</p> <important> <p>Before copying a shared image, be sure to verify that it has been shared from the correct Amazon Web Services account. To determine if an image has been shared and to see the ID of the Amazon Web Services account that owns an image, use the <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\">DescribeWorkSpaceImages</a> and <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImagePermissions.html\">DescribeWorkspaceImagePermissions</a> API operations. </p> </important>",
     "CreateConnectClientAddIn": "<p>Creates a client-add-in for Amazon Connect within a directory. You can create only one Amazon Connect client add-in within a directory.</p> <p>This client add-in allows WorkSpaces users to seamlessly connect to Amazon Connect.</p>",
@@ -22,16 +23,22 @@
     "DeleteTags": "<p>Deletes the specified tags from the specified WorkSpaces resource.</p>",
     "DeleteWorkspaceBundle": "<p>Deletes the specified WorkSpace bundle. For more information about deleting WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete_bundle.html\"> Delete a Custom WorkSpaces Bundle or Image</a>.</p>",
     "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image and unshare the image if it is shared with other accounts. </p>",
+    "DeployWorkspaceApplications": "<p>Deploys associated applications to the specified WorkSpace</p>",
     "DeregisterWorkspaceDirectory": "<p>Deregisters the specified directory. This operation is asynchronous and returns before the WorkSpace directory is deregistered. If any WorkSpaces are registered to this directory, you must remove them before you can deregister the directory.</p> <note> <p>Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the <a href=\"http://aws.amazon.com/directoryservice/pricing/\">Directory Service pricing terms</a>.</p> <p>To delete empty directories, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html\"> Delete the Directory for Your WorkSpaces</a>. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again.</p> </note>",
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeAccountModifications": "<p>Retrieves a list that describes modifications to the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
+    "DescribeApplicationAssociations": "<p>Describes the associations between the application and the specified associated resources.</p>",
+    "DescribeApplications": "<p>Describes the specified applications by filtering based on their compute types, license availability, operating systems, and owners.</p>",
+    "DescribeBundleAssociations": "<p>Describes the associations between the applications and the specified bundle.</p>",
     "DescribeClientBranding": "<p>Describes the specified client branding. Client branding allows you to customize the log in page of various device types for your users. You can add your company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <note> <p>Only device types that have branding information configured will be shown in the response.</p> </note>",
     "DescribeClientProperties": "<p>Retrieves a list that describes one or more specified Amazon WorkSpaces clients.</p>",
     "DescribeConnectClientAddIns": "<p>Retrieves a list of Amazon Connect client add-ins that have been created.</p>",
     "DescribeConnectionAliasPermissions": "<p>Describes the permissions that the owner of a connection alias has granted to another Amazon Web Services account for the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "DescribeConnectionAliases": "<p>Retrieves a list that describes the connection aliases used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
+    "DescribeImageAssociations": "<p>Describes the associations between the applications and the specified image.</p>",
     "DescribeIpGroups": "<p>Describes one or more of your IP access control groups.</p>",
     "DescribeTags": "<p>Describes the specified tags for the specified WorkSpaces resource.</p>",
+    "DescribeWorkspaceAssociations": "<p>Describes the associations betweens applications and the specified WorkSpace.</p>",
     "DescribeWorkspaceBundles": "<p>Retrieves a list that describes the available WorkSpace bundles.</p> <p>You can filter the results using either bundle ID or owner, but not both.</p>",
     "DescribeWorkspaceDirectories": "<p>Describes the available directories that are registered with Amazon WorkSpaces.</p>",
     "DescribeWorkspaceImagePermissions": "<p>Describes the permissions that the owner of an image has granted to other Amazon Web Services accounts for an image.</p>",
@@ -41,6 +48,7 @@
     "DescribeWorkspacesConnectionStatus": "<p>Describes the connection status of the specified WorkSpaces.</p>",
     "DisassociateConnectionAlias": "<p>Disassociates a connection alias from a directory. Disassociating a connection alias disables cross-Region redirection between two directories in different Regions. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
+    "DisassociateWorkspaceApplication": "<p>Disassociates the specified application from a WorkSpace.</p>",
     "ImportClientBranding": "<p>Imports client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you import client branding, the default branding experience for the specified platform type is replaced with the imported experience</p> <note> <ul> <li> <p>You must specify at least one platform type when importing client branding.</p> </li> <li> <p>You can import up to 6 MB of data with each request. If your request exceeds this limit, you can import client branding for different platform types using separate requests.</p> </li> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify only one parameter for each platform type, but not both.</p> </li> <li> <p>Imported data can take up to a minute to appear in the WorkSpaces client.</p> </li> </ul> </note>",
     "ImportWorkspaceImage": "<p>Imports the specified Windows 10 or 11 Bring Your Own License (BYOL) image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is in your Amazon Web Services account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
     "ListAvailableManagementCidrRanges": "<p>Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use for the network management interface when you enable Bring Your Own License (BYOL). </p> <p>This operation can be run only by Amazon Web Services accounts that are enabled for BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code> error.</p> <p>The management network interface is connected to a secure Amazon WorkSpaces management network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage the WorkSpace.</p>",
@@ -142,10 +150,40 @@
         "ApplicationList$member": null
       }
     },
+    "ApplicationAssociatedResourceType": {
+      "base": null,
+      "refs": {
+        "ApplicationAssociatedResourceTypeList$member": null,
+        "ApplicationResourceAssociation$AssociatedResourceType": "<p>The resource type of the associated resource.</p>"
+      }
+    },
+    "ApplicationAssociatedResourceTypeList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationAssociationsRequest$AssociatedResourceTypes": "<p>The resource type of the associated resources.</p>"
+      }
+    },
     "ApplicationList": {
       "base": null,
       "refs": {
         "ImportWorkspaceImageRequest$Applications": "<p>If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 and 11 BYOL images. For more information about subscribing to Office for BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p> <note> <ul> <li> <p>Although this parameter is an array, only one item is allowed at this time.</p> </li> <li> <p>Windows 11 only supports <code>Microsoft_Office_2019</code>.</p> </li> </ul> </note>"
+      }
+    },
+    "ApplicationNotSupportedException": {
+      "base": "<p>The specified application is not supported.</p>",
+      "refs": {
+      }
+    },
+    "ApplicationResourceAssociation": {
+      "base": "<p>Describes the association between an application and an application resource.</p>",
+      "refs": {
+        "ApplicationResourceAssociationList$member": null
+      }
+    },
+    "ApplicationResourceAssociationList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationAssociationsResult$Associations": "<p>List of associations and information about them.</p>"
       }
     },
     "AssociateConnectionAliasRequest": {
@@ -166,6 +204,40 @@
     "AssociateIpGroupsResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "AssociateWorkspaceApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateWorkspaceApplicationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociationErrorCode": {
+      "base": null,
+      "refs": {
+        "AssociationStateReason$ErrorCode": "<p>The error code of the association deployment failure.</p>"
+      }
+    },
+    "AssociationState": {
+      "base": null,
+      "refs": {
+        "ApplicationResourceAssociation$State": "<p>The status of the application resource association.</p>",
+        "BundleResourceAssociation$State": "<p>The status of the bundle resource association.</p>",
+        "ImageResourceAssociation$State": "<p>The status of the image resource association.</p>",
+        "WorkspaceResourceAssociation$State": "<p>The status of the WorkSpace resource association.</p>"
+      }
+    },
+    "AssociationStateReason": {
+      "base": "<p>Indicates the reason that the association deployment failed, including the error code and error message.</p>",
+      "refs": {
+        "ApplicationResourceAssociation$StateReason": "<p>The reason the association deployment failed.</p>",
+        "BundleResourceAssociation$StateReason": "<p>The reason the association deployment failed.</p>",
+        "ImageResourceAssociation$StateReason": "<p>The reason the association deployment failed.</p>",
+        "WorkspaceResourceAssociation$StateReason": "<p>The reason the association deployment failed.</p>"
       }
     },
     "AssociationStatus": {
@@ -204,6 +276,7 @@
         "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>Specifies whether to automatically assign an Elastic public IP address to WorkSpaces in this directory by default. If enabled, the Elastic public IP address allows outbound internet access from your WorkSpaces when you’re using an internet gateway in the Amazon VPC in which your WorkSpaces are located. If you're using a Network Address Translation (NAT) gateway for outbound internet access from your VPC, or if your WorkSpaces are in public subnets and you manually assign them Elastic IP addresses, you should disable this setting. This setting applies to new WorkSpaces that you launch or to existing WorkSpaces that you rebuild. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html\"> Configure a VPC for Amazon WorkSpaces</a>.</p>",
         "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>Specifies whether WorkSpace users are local administrators on their WorkSpaces.</p>",
         "DefaultWorkspaceCreationProperties$EnableMaintenanceMode": "<p>Specifies whether maintenance mode is enabled for WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspace-maintenance.html\">WorkSpace Maintenance</a>.</p>",
+        "DeployWorkspaceApplicationsRequest$Force": "<p>Indicates whether the force flag is applied for the specified WorkSpace. When the force flag is enabled, it allows previously failed deployments to be retried.</p>",
         "RegisterWorkspaceDirectoryRequest$EnableWorkDocs": "<p>Indicates whether Amazon WorkDocs is enabled or disabled. If you have enabled this parameter and WorkDocs is not available in the Region, you will receive an OperationNotSupportedException error. Set <code>EnableWorkDocs</code> to disabled, and try again.</p>",
         "RegisterWorkspaceDirectoryRequest$EnableSelfService": "<p>Indicates whether self-service capabilities are enabled or disabled.</p>",
         "UpdateResult$UpdateAvailable": "<p>Indicates whether updated drivers or other components are available for the specified WorkSpace image.</p>",
@@ -218,11 +291,26 @@
         "WorkspaceRequest$RootVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the root volume is encrypted.</p>"
       }
     },
+    "BundleAssociatedResourceType": {
+      "base": null,
+      "refs": {
+        "BundleAssociatedResourceTypeList$member": null,
+        "BundleResourceAssociation$AssociatedResourceType": "<p>The resource type of the associated resources.</p>"
+      }
+    },
+    "BundleAssociatedResourceTypeList": {
+      "base": null,
+      "refs": {
+        "DescribeBundleAssociationsRequest$AssociatedResourceTypes": "<p>The resource types of the associated resource.</p>"
+      }
+    },
     "BundleId": {
       "base": null,
       "refs": {
         "BundleIdList$member": null,
+        "BundleResourceAssociation$BundleId": "<p>The identifier of the bundle.</p>",
         "DeleteWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
+        "DescribeBundleAssociationsRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "DescribeWorkspacesRequest$BundleId": "<p>The identifier of the bundle. All WorkSpaces that are created from this bundle are retrieved. You cannot combine this parameter with any other filter.</p>",
         "MigrateWorkspaceRequest$BundleId": "<p>The identifier of the target bundle type to migrate the WorkSpace to.</p>",
         "UpdateWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
@@ -248,6 +336,18 @@
       "refs": {
         "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles. You cannot combine this parameter with any other filter.</p> <p>To describe the bundles provided by Amazon Web Services, specify <code>AMAZON</code>. To describe the bundles that belong to your account, don't specify a value.</p>",
         "WorkspaceBundle$Owner": "<p>The owner of the bundle. This is the account identifier of the owner, or <code>AMAZON</code> if the bundle is provided by Amazon Web Services.</p>"
+      }
+    },
+    "BundleResourceAssociation": {
+      "base": "<p>Describes the association between an application and a bundle resource.</p>",
+      "refs": {
+        "BundleResourceAssociationList$member": null
+      }
+    },
+    "BundleResourceAssociationList": {
+      "base": null,
+      "refs": {
+        "DescribeBundleAssociationsResult$Associations": "<p>List of information about the specified associations.</p>"
       }
     },
     "BundleType": {
@@ -347,8 +447,21 @@
     "Compute": {
       "base": null,
       "refs": {
+        "ComputeList$member": null,
         "ComputeType$Name": "<p>The compute type.</p>",
         "WorkspaceProperties$ComputeTypeName": "<p>The compute type. For more information, see <a href=\"http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles\">Amazon WorkSpaces Bundles</a>.</p>"
+      }
+    },
+    "ComputeList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsRequest$ComputeTypeNames": "<p>The compute types supported by the applications.</p>",
+        "WorkSpaceApplication$SupportedComputeTypeNames": "<p>The supported compute types of the WorkSpace application.</p>"
+      }
+    },
+    "ComputeNotCompatibleException": {
+      "base": "<p>The compute type of the WorkSpace is not compatible with the application.</p>",
+      "refs": {
       }
     },
     "ComputeType": {
@@ -731,6 +844,16 @@
       "refs": {
       }
     },
+    "DeployWorkspaceApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeployWorkspaceApplicationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeregisterWorkspaceDirectoryRequest": {
       "base": null,
       "refs": {
@@ -757,6 +880,36 @@
       }
     },
     "DescribeAccountResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationAssociationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBundleAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBundleAssociationsResult": {
       "base": null,
       "refs": {
       }
@@ -811,6 +964,16 @@
       "refs": {
       }
     },
+    "DescribeImageAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImageAssociationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeIpGroupsRequest": {
       "base": null,
       "refs": {
@@ -827,6 +990,16 @@
       }
     },
     "DescribeTagsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceAssociationsResult": {
       "base": null,
       "refs": {
       }
@@ -981,6 +1154,16 @@
       "refs": {
       }
     },
+    "DisassociateWorkspaceApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateWorkspaceApplicationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DnsIpAddresses": {
       "base": null,
       "refs": {
@@ -994,7 +1177,7 @@
       }
     },
     "ErrorDetails": {
-      "base": "<p>Provides in-depth details about the error. These details include the possible causes of the errors and troubleshooting information.</p>",
+      "base": "<p>Describes in-depth details about the error. These details include the possible causes of the error and troubleshooting information.</p>",
       "refs": {
         "ErrorDetailsList$member": null
       }
@@ -1002,7 +1185,7 @@
     "ErrorDetailsList": {
       "base": null,
       "refs": {
-        "WorkspaceImage$ErrorDetails": "<p>The details of the error returned for the image.</p>"
+        "WorkspaceImage$ErrorDetails": "<p>Additional details of the error returned for the image, including the possible causes of the errors and troubleshooting information.</p>"
       }
     },
     "ErrorType": {
@@ -1029,6 +1212,7 @@
         "ResourceAlreadyExistsException$message": null,
         "ResourceAssociatedException$message": null,
         "ResourceCreationFailedException$message": null,
+        "ResourceInUseException$message": null,
         "ResourceLimitExceededException$message": "<p>The exception error message.</p>",
         "ResourceNotFoundException$message": "<p>The resource could not be found.</p>",
         "ResourceUnavailableException$message": "<p>The exception error message.</p>",
@@ -1101,6 +1285,19 @@
         "FailedTerminateWorkspaceRequests$member": null
       }
     },
+    "ImageAssociatedResourceType": {
+      "base": null,
+      "refs": {
+        "ImageAssociatedResourceTypeList$member": null,
+        "ImageResourceAssociation$AssociatedResourceType": "<p>The resource type of the associated resources.</p>"
+      }
+    },
+    "ImageAssociatedResourceTypeList": {
+      "base": null,
+      "refs": {
+        "DescribeImageAssociationsRequest$AssociatedResourceTypes": "<p>The resource types of the associated resource.</p>"
+      }
+    },
     "ImagePermission": {
       "base": "<p>Describes the Amazon Web Services accounts that have been granted permission to use a shared image. For more information about sharing images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html\"> Share or Unshare a Custom WorkSpaces Image</a>.</p>",
       "refs": {
@@ -1111,6 +1308,18 @@
       "base": null,
       "refs": {
         "DescribeWorkspaceImagePermissionsResult$ImagePermissions": "<p>The identifiers of the Amazon Web Services accounts that the image has been shared with.</p>"
+      }
+    },
+    "ImageResourceAssociation": {
+      "base": "<p>Describes the association between an application and an image resource.</p>",
+      "refs": {
+        "ImageResourceAssociationList$member": null
+      }
+    },
+    "ImageResourceAssociationList": {
+      "base": null,
+      "refs": {
+        "DescribeImageAssociationsResult$Associations": "<p>List of information about the specified associations.</p>"
       }
     },
     "ImageType": {
@@ -1136,6 +1345,11 @@
     },
     "ImportWorkspaceImageResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "IncompatibleApplicationsException": {
+      "base": "<p>The specified application is not compatible with the resource.</p>",
       "refs": {
       }
     },
@@ -1259,6 +1473,8 @@
     "Limit": {
       "base": null,
       "refs": {
+        "DescribeApplicationAssociationsRequest$MaxResults": "<p>The maximum number of associations to return.</p>",
+        "DescribeApplicationsRequest$MaxResults": "<p>The maximum number of applications to return.</p>",
         "DescribeConnectClientAddInsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeConnectionAliasPermissionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "DescribeConnectionAliasesRequest$Limit": "<p>The maximum number of connection aliases to return.</p>",
@@ -1433,22 +1649,28 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "ApplicationResourceAssociation$AssociatedResourceId": "<p>The identifier of the associated resource.</p>",
         "AssociateConnectionAliasRequest$ResourceId": "<p>The identifier of the directory to associate the connection alias with.</p>",
+        "BundleResourceAssociation$AssociatedResourceId": "<p>The identifier of the associated resource.</p>",
         "ClientPropertiesResult$ResourceId": "<p>The resource identifier, in the form of a directory ID.</p>",
         "ConnectionAliasAssociation$ResourceId": "<p>The identifier of the directory associated with a connection alias.</p>",
         "CreateTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
         "DeleteTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
         "DescribeConnectionAliasesRequest$ResourceId": "<p>The identifier of the directory associated with the connection alias.</p>",
         "DescribeTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
+        "ImageResourceAssociation$AssociatedResourceId": "<p>The identifier of the associated resource.</p>",
         "ModifyClientPropertiesRequest$ResourceId": "<p>The resource identifiers, in the form of directory IDs.</p>",
         "ResourceIdList$member": null,
+        "ResourceInUseException$ResourceId": "<p>The ID of the resource that is in use.</p>",
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource that could not be found.</p>",
         "ResourceUnavailableException$ResourceId": "<p>The identifier of the resource that is not available.</p>",
         "RootStorage$Capacity": "<p>The size of the root volume.</p>",
         "SamlProperties$RelayStateParameterName": "<p>The relay state parameter name supported by the SAML 2.0 identity provider (IdP). When the end user is redirected to the user access URL from the WorkSpaces client application, this relay state parameter name is appended as a query parameter to the URL along with the relay state endpoint to return the user to the client application session.</p> <p>To use SAML 2.0 authentication with WorkSpaces, the IdP must support IdP-initiated deep linking for the relay state URL. Consult your IdP documentation for more information.</p>",
         "TagKeyList$member": null,
         "UserStorage$Capacity": "<p>The size of the user volume.</p>",
-        "WorkspaceBundle$Name": "<p>The name of the bundle.</p>"
+        "WorkSpaceApplication$Name": "<p>The name of the WorkSpace application.</p>",
+        "WorkspaceBundle$Name": "<p>The name of the bundle.</p>",
+        "WorkspaceResourceAssociation$AssociatedResourceId": "<p>The identifier of the associated resource.</p>"
       }
     },
     "OperatingSystem": {
@@ -1456,6 +1678,25 @@
       "refs": {
         "CreateWorkspaceImageResult$OperatingSystem": "<p>The operating system that the image is running.</p>",
         "WorkspaceImage$OperatingSystem": "<p>The operating system that the image is running. </p>"
+      }
+    },
+    "OperatingSystemName": {
+      "base": null,
+      "refs": {
+        "OperatingSystemNameList$member": null,
+        "WorkspaceProperties$OperatingSystemName": "<p>The name of the operating system.</p>"
+      }
+    },
+    "OperatingSystemNameList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsRequest$OperatingSystemNames": "<p>The operating systems supported by the applications.</p>",
+        "WorkSpaceApplication$SupportedOperatingSystemNames": "<p>The supported operating systems of the WorkSpace application.</p>"
+      }
+    },
+    "OperatingSystemNotCompatibleException": {
+      "base": "<p>The operating system of the WorkSpace is not compatible with the application.</p>",
+      "refs": {
       }
     },
     "OperatingSystemType": {
@@ -1479,6 +1720,10 @@
       "refs": {
         "DescribeAccountModificationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeAccountModificationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
+        "DescribeApplicationAssociationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeApplicationAssociationsResult$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeApplicationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeApplicationsResult$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeConnectClientAddInsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeConnectClientAddInsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeConnectionAliasPermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
@@ -1637,6 +1882,11 @@
       "base": null,
       "refs": {
         "DescribeClientPropertiesRequest$ResourceIds": "<p>The resource identifier, in the form of directory IDs.</p>"
+      }
+    },
+    "ResourceInUseException": {
+      "base": "<p>The specified resource is currently in use.</p>",
+      "refs": {
       }
     },
     "ResourceLimitExceededException": {
@@ -1809,6 +2059,13 @@
       "refs": {
       }
     },
+    "String2048": {
+      "base": null,
+      "refs": {
+        "AssociationStateReason$ErrorMessage": "<p>The error message of the association deployment failure.</p>",
+        "WorkSpaceApplication$Description": "<p>The description of the WorkSpace application.</p>"
+      }
+    },
     "SubnetId": {
       "base": null,
       "refs": {
@@ -1903,13 +2160,22 @@
       "base": null,
       "refs": {
         "AccountModification$StartTime": "<p>The timestamp when the modification of the BYOL configuration was started.</p>",
+        "ApplicationResourceAssociation$Created": "<p>The time the association was created.</p>",
+        "ApplicationResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
+        "BundleResourceAssociation$Created": "<p>The time the association is created.</p>",
+        "BundleResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
         "CreateWorkspaceImageResult$Created": "<p>The date when the image was created.</p>",
+        "ImageResourceAssociation$Created": "<p>The time the association is created.</p>",
+        "ImageResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
         "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
+        "WorkSpaceApplication$Created": "<p>The time the application is created.</p>",
         "WorkspaceBundle$LastUpdatedTime": "<p>The last time that the bundle was updated.</p>",
         "WorkspaceBundle$CreationTime": "<p>The time when the bundle was created.</p>",
         "WorkspaceConnectionStatus$ConnectionStateCheckTimestamp": "<p>The timestamp of the connection status check.</p>",
         "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>",
-        "WorkspaceImage$Created": "<p>The date when the image was created. If the image has been shared, the Amazon Web Services account that the image has been shared with sees the original creation date of the image.</p>"
+        "WorkspaceImage$Created": "<p>The date when the image was created. If the image has been shared, the Amazon Web Services account that the image has been shared with sees the original creation date of the image.</p>",
+        "WorkspaceResourceAssociation$Created": "<p>The time the association is created.</p>",
+        "WorkspaceResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>"
       }
     },
     "UnsupportedNetworkConfigurationException": {
@@ -2015,6 +2281,74 @@
         "WorkspaceRequest$VolumeEncryptionKey": "<p>The ARN of the symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>"
       }
     },
+    "WorkSpaceApplication": {
+      "base": "<p>Describes the WorkSpace application.</p>",
+      "refs": {
+        "WorkSpaceApplicationList$member": null
+      }
+    },
+    "WorkSpaceApplicationDeployment": {
+      "base": "<p>Describes the WorkSpace application deployment.</p>",
+      "refs": {
+        "DeployWorkspaceApplicationsResult$Deployment": "<p>The list of deployed associations and information about them.</p>"
+      }
+    },
+    "WorkSpaceApplicationId": {
+      "base": null,
+      "refs": {
+        "ApplicationResourceAssociation$ApplicationId": "<p>The identifier of the application.</p>",
+        "AssociateWorkspaceApplicationRequest$ApplicationId": "<p>The identifier of the application.</p>",
+        "DescribeApplicationAssociationsRequest$ApplicationId": "<p>The identifier of the specified application.</p>",
+        "DisassociateWorkspaceApplicationRequest$ApplicationId": "<p>The identifier of the application.</p>",
+        "WorkSpaceApplication$ApplicationId": "<p>The identifier of the application.</p>",
+        "WorkSpaceApplicationIdList$member": null
+      }
+    },
+    "WorkSpaceApplicationIdList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsRequest$ApplicationIds": "<p>The identifiers of one or more applications.</p>"
+      }
+    },
+    "WorkSpaceApplicationLicenseType": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsRequest$LicenseType": "<p>The license availability for the applications.</p>",
+        "WorkSpaceApplication$LicenseType": "<p>The license availability for the applications.</p>"
+      }
+    },
+    "WorkSpaceApplicationList": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsResult$Applications": "<p>List of information about the specified applications.</p>"
+      }
+    },
+    "WorkSpaceApplicationOwner": {
+      "base": null,
+      "refs": {
+        "DescribeApplicationsRequest$Owner": "<p>The owner of the applications.</p>",
+        "WorkSpaceApplication$Owner": "<p>The owner of the WorkSpace application.</p>"
+      }
+    },
+    "WorkSpaceApplicationState": {
+      "base": null,
+      "refs": {
+        "WorkSpaceApplication$State": "<p>The status of WorkSpace application.</p>"
+      }
+    },
+    "WorkSpaceAssociatedResourceType": {
+      "base": null,
+      "refs": {
+        "WorkSpaceAssociatedResourceTypeList$member": null,
+        "WorkspaceResourceAssociation$AssociatedResourceType": "<p>The resource types of the associated resource.</p>"
+      }
+    },
+    "WorkSpaceAssociatedResourceTypeList": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspaceAssociationsRequest$AssociatedResourceTypes": "<p>The resource types of the associated resources.</p>"
+      }
+    },
     "Workspace": {
       "base": "<p>Describes a WorkSpace.</p>",
       "refs": {
@@ -2100,8 +2434,12 @@
     "WorkspaceId": {
       "base": null,
       "refs": {
+        "AssociateWorkspaceApplicationRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "CreateWorkspaceImageRequest$WorkspaceId": "<p>The identifier of the source WorkSpace</p>",
+        "DeployWorkspaceApplicationsRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
+        "DescribeWorkspaceAssociationsRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "DescribeWorkspaceSnapshotsRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
+        "DisassociateWorkspaceApplicationRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "FailedWorkspaceChangeRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "MigrateWorkspaceRequest$SourceWorkspaceId": "<p>The identifier of the WorkSpace to migrate from.</p>",
         "MigrateWorkspaceResult$SourceWorkspaceId": "<p>The original identifier of the WorkSpace that is being migrated.</p>",
@@ -2119,7 +2457,8 @@
         "TerminateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "Workspace$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "WorkspaceConnectionStatus$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
-        "WorkspaceIdList$member": null
+        "WorkspaceIdList$member": null,
+        "WorkspaceResourceAssociation$WorkspaceId": "<p>The identifier of the WorkSpace.</p>"
       }
     },
     "WorkspaceIdList": {
@@ -2168,8 +2507,10 @@
         "CreateWorkspaceBundleRequest$ImageId": "<p>The identifier of the image that is used to create the bundle.</p>",
         "CreateWorkspaceImageResult$ImageId": "<p>The identifier of the new WorkSpace image.</p>",
         "DeleteWorkspaceImageRequest$ImageId": "<p>The identifier of the image.</p>",
+        "DescribeImageAssociationsRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsResult$ImageId": "<p>The identifier of the image.</p>",
+        "ImageResourceAssociation$ImageId": "<p>The identifier of the image.</p>",
         "ImportWorkspaceImageResult$ImageId": "<p>The identifier of the WorkSpace image.</p>",
         "UpdateWorkspaceBundleRequest$ImageId": "<p>The identifier of the image.</p>",
         "UpdateWorkspaceImagePermissionRequest$ImageId": "<p>The identifier of the image.</p>",
@@ -2247,6 +2588,21 @@
       "base": null,
       "refs": {
         "CreateWorkspacesRequest$Workspaces": "<p>The WorkSpaces to create. You can specify up to 25 WorkSpaces.</p>"
+      }
+    },
+    "WorkspaceResourceAssociation": {
+      "base": "<p>Describes the association between an application and a WorkSpace resource.</p>",
+      "refs": {
+        "AssociateWorkspaceApplicationResult$Association": "<p>Information about the association between the specified WorkSpace and the specified application.</p>",
+        "DisassociateWorkspaceApplicationResult$Association": "<p>Information about the targeted association.</p>",
+        "WorkspaceResourceAssociationList$member": null
+      }
+    },
+    "WorkspaceResourceAssociationList": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspaceAssociationsResult$Associations": "<p>List of information about the specified associations.</p>",
+        "WorkSpaceApplicationDeployment$Associations": "<p>The associations between the applications and the associated resources.</p>"
       }
     },
     "WorkspaceState": {

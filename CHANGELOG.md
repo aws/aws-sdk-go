@@ -1,3 +1,18 @@
+Release v1.45.23 (2023-10-05)
+===
+
+### Service Client Updates
+* `service/omics`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for corrections and minor improvements.
+* `service/route53`: Updates service API and documentation
+  * Add hostedzonetype filter to ListHostedZones API.
+* `service/securityhub`: Updates service API and documentation
+* `service/storagegateway`: Updates service API and documentation
+  * Add SoftwareVersion to response of DescribeGatewayInformation.
+* `service/workspaces`: Updates service API, documentation, and paginators
+  * This release introduces Manage applications. This feature allows users to manage their WorkSpaces applications by associating or disassociating their WorkSpaces with applications. The DescribeWorkspaces API will now additionally return OperatingSystemName in its responses.
+
 Release v1.45.22 (2023-10-04)
 ===
 

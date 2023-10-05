@@ -2424,6 +2424,12 @@
         "endpoints" : {
           "ap-northeast-1" : { },
           "ap-southeast-1" : { },
+          "bedrock-ap-northeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-1"
+            },
+            "hostname" : "bedrock.ap-northeast-1.amazonaws.com"
+          },
           "bedrock-ap-southeast-1" : {
             "credentialScope" : {
               "region" : "ap-southeast-1"
@@ -2441,6 +2447,12 @@
               "region" : "us-west-2"
             },
             "hostname" : "bedrock-fips.us-west-2.amazonaws.com"
+          },
+          "bedrock-runtime-ap-northeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-1"
+            },
+            "hostname" : "bedrock-runtime.ap-northeast-1.amazonaws.com"
           },
           "bedrock-runtime-ap-southeast-1" : {
             "credentialScope" : {
@@ -4590,6 +4602,9 @@
           "ap-east-1" : {
             "hostname" : "datazone.ap-east-1.api.aws"
           },
+          "ap-northeast-1" : {
+            "hostname" : "datazone.ap-northeast-1.api.aws"
+          },
           "ap-northeast-2" : {
             "hostname" : "datazone.ap-northeast-2.api.aws"
           },
@@ -4602,20 +4617,42 @@
           "ap-south-2" : {
             "hostname" : "datazone.ap-south-2.api.aws"
           },
+          "ap-southeast-1" : {
+            "hostname" : "datazone.ap-southeast-1.api.aws"
+          },
+          "ap-southeast-2" : {
+            "hostname" : "datazone.ap-southeast-2.api.aws"
+          },
           "ap-southeast-3" : {
             "hostname" : "datazone.ap-southeast-3.api.aws"
           },
           "ap-southeast-4" : {
             "hostname" : "datazone.ap-southeast-4.api.aws"
           },
+          "ca-central-1" : {
+            "hostname" : "datazone.ca-central-1.api.aws",
+            "variants" : [ {
+              "hostname" : "datazone-fips.ca-central-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "eu-central-1" : {
+            "hostname" : "datazone.eu-central-1.api.aws"
+          },
           "eu-central-2" : {
             "hostname" : "datazone.eu-central-2.api.aws"
+          },
+          "eu-north-1" : {
+            "hostname" : "datazone.eu-north-1.api.aws"
           },
           "eu-south-1" : {
             "hostname" : "datazone.eu-south-1.api.aws"
           },
           "eu-south-2" : {
             "hostname" : "datazone.eu-south-2.api.aws"
+          },
+          "eu-west-1" : {
+            "hostname" : "datazone.eu-west-1.api.aws"
           },
           "eu-west-2" : {
             "hostname" : "datazone.eu-west-2.api.aws"
@@ -4632,8 +4669,32 @@
           "me-south-1" : {
             "hostname" : "datazone.me-south-1.api.aws"
           },
+          "sa-east-1" : {
+            "hostname" : "datazone.sa-east-1.api.aws"
+          },
+          "us-east-1" : {
+            "hostname" : "datazone.us-east-1.api.aws",
+            "variants" : [ {
+              "hostname" : "datazone-fips.us-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-east-2" : {
+            "hostname" : "datazone.us-east-2.api.aws",
+            "variants" : [ {
+              "hostname" : "datazone-fips.us-east-2.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
           "us-west-1" : {
             "hostname" : "datazone.us-west-1.api.aws"
+          },
+          "us-west-2" : {
+            "hostname" : "datazone.us-west-2.api.aws",
+            "variants" : [ {
+              "hostname" : "datazone-fips.us-west-2.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
           }
         }
       },
@@ -22729,6 +22790,26 @@
           "us-gov-west-1" : {
             "variants" : [ {
               "hostname" : "logs.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          }
+        }
+      },
+      "m2" : {
+        "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "deprecated" : true
+          },
+          "fips-us-gov-west-1" : {
+            "deprecated" : true
+          },
+          "us-gov-east-1" : {
+            "variants" : [ {
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-west-1" : {
+            "variants" : [ {
               "tags" : [ "fips" ]
             } ]
           }

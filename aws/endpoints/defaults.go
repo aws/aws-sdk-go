@@ -4477,6 +4477,14 @@ var awsPartition = partition{
 					Region: "ap-southeast-1",
 				}: endpoint{},
 				endpointKey{
+					Region: "bedrock-ap-northeast-1",
+				}: endpoint{
+					Hostname: "bedrock.ap-northeast-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-1",
+					},
+				},
+				endpointKey{
 					Region: "bedrock-ap-southeast-1",
 				}: endpoint{
 					Hostname: "bedrock.ap-southeast-1.amazonaws.com",
@@ -4498,6 +4506,14 @@ var awsPartition = partition{
 					Hostname: "bedrock-fips.us-west-2.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-west-2",
+					},
+				},
+				endpointKey{
+					Region: "bedrock-runtime-ap-northeast-1",
+				}: endpoint{
+					Hostname: "bedrock-runtime.ap-northeast-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-1",
 					},
 				},
 				endpointKey{
@@ -8187,6 +8203,11 @@ var awsPartition = partition{
 					Hostname: "datazone.ap-east-1.api.aws",
 				},
 				endpointKey{
+					Region: "ap-northeast-1",
+				}: endpoint{
+					Hostname: "datazone.ap-northeast-1.api.aws",
+				},
+				endpointKey{
 					Region: "ap-northeast-2",
 				}: endpoint{
 					Hostname: "datazone.ap-northeast-2.api.aws",
@@ -8207,6 +8228,16 @@ var awsPartition = partition{
 					Hostname: "datazone.ap-south-2.api.aws",
 				},
 				endpointKey{
+					Region: "ap-southeast-1",
+				}: endpoint{
+					Hostname: "datazone.ap-southeast-1.api.aws",
+				},
+				endpointKey{
+					Region: "ap-southeast-2",
+				}: endpoint{
+					Hostname: "datazone.ap-southeast-2.api.aws",
+				},
+				endpointKey{
 					Region: "ap-southeast-3",
 				}: endpoint{
 					Hostname: "datazone.ap-southeast-3.api.aws",
@@ -8217,9 +8248,30 @@ var awsPartition = partition{
 					Hostname: "datazone.ap-southeast-4.api.aws",
 				},
 				endpointKey{
+					Region: "ca-central-1",
+				}: endpoint{
+					Hostname: "datazone.ca-central-1.api.aws",
+				},
+				endpointKey{
+					Region:  "ca-central-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "datazone-fips.ca-central-1.amazonaws.com",
+				},
+				endpointKey{
+					Region: "eu-central-1",
+				}: endpoint{
+					Hostname: "datazone.eu-central-1.api.aws",
+				},
+				endpointKey{
 					Region: "eu-central-2",
 				}: endpoint{
 					Hostname: "datazone.eu-central-2.api.aws",
+				},
+				endpointKey{
+					Region: "eu-north-1",
+				}: endpoint{
+					Hostname: "datazone.eu-north-1.api.aws",
 				},
 				endpointKey{
 					Region: "eu-south-1",
@@ -8230,6 +8282,11 @@ var awsPartition = partition{
 					Region: "eu-south-2",
 				}: endpoint{
 					Hostname: "datazone.eu-south-2.api.aws",
+				},
+				endpointKey{
+					Region: "eu-west-1",
+				}: endpoint{
+					Hostname: "datazone.eu-west-1.api.aws",
 				},
 				endpointKey{
 					Region: "eu-west-2",
@@ -8257,9 +8314,47 @@ var awsPartition = partition{
 					Hostname: "datazone.me-south-1.api.aws",
 				},
 				endpointKey{
+					Region: "sa-east-1",
+				}: endpoint{
+					Hostname: "datazone.sa-east-1.api.aws",
+				},
+				endpointKey{
+					Region: "us-east-1",
+				}: endpoint{
+					Hostname: "datazone.us-east-1.api.aws",
+				},
+				endpointKey{
+					Region:  "us-east-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "datazone-fips.us-east-1.amazonaws.com",
+				},
+				endpointKey{
+					Region: "us-east-2",
+				}: endpoint{
+					Hostname: "datazone.us-east-2.api.aws",
+				},
+				endpointKey{
+					Region:  "us-east-2",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "datazone-fips.us-east-2.amazonaws.com",
+				},
+				endpointKey{
 					Region: "us-west-1",
 				}: endpoint{
 					Hostname: "datazone.us-west-1.api.aws",
+				},
+				endpointKey{
+					Region: "us-west-2",
+				}: endpoint{
+					Hostname: "datazone.us-west-2.api.aws",
+				},
+				endpointKey{
+					Region:  "us-west-2",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "datazone-fips.us-west-2.amazonaws.com",
 				},
 			},
 		},
@@ -38109,6 +38204,36 @@ var awsusgovPartition = partition{
 				}: endpoint{
 					Hostname: "logs.us-gov-west-1.amazonaws.com",
 				},
+			},
+		},
+		"m2": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "fips-us-gov-east-1",
+				}: endpoint{
+
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "fips-us-gov-west-1",
+				}: endpoint{
+
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "us-gov-east-1",
+				}: endpoint{},
+				endpointKey{
+					Region:  "us-gov-east-1",
+					Variant: fipsVariant,
+				}: endpoint{},
+				endpointKey{
+					Region: "us-gov-west-1",
+				}: endpoint{},
+				endpointKey{
+					Region:  "us-gov-west-1",
+					Variant: fipsVariant,
+				}: endpoint{},
 			},
 		},
 		"managedblockchain": service{

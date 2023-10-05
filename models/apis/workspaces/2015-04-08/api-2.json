@@ -46,6 +46,27 @@
         {"shape":"OperationNotSupportedException"}
       ]
     },
+    "AssociateWorkspaceApplication":{
+      "name":"AssociateWorkspaceApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateWorkspaceApplicationRequest"},
+      "output":{"shape":"AssociateWorkspaceApplicationResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ComputeNotCompatibleException"},
+        {"shape":"OperatingSystemNotCompatibleException"},
+        {"shape":"ApplicationNotSupportedException"},
+        {"shape":"IncompatibleApplicationsException"}
+      ]
+    },
     "AuthorizeIpRules":{
       "name":"AuthorizeIpRules",
       "http":{
@@ -327,6 +348,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DeployWorkspaceApplications":{
+      "name":"DeployWorkspaceApplications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeployWorkspaceApplicationsRequest"},
+      "output":{"shape":"DeployWorkspaceApplicationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"IncompatibleApplicationsException"}
+      ]
+    },
     "DeregisterWorkspaceDirectory":{
       "name":"DeregisterWorkspaceDirectory",
       "http":{
@@ -365,6 +403,51 @@
       "output":{"shape":"DescribeAccountModificationsResult"},
       "errors":[
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeApplicationAssociations":{
+      "name":"DescribeApplicationAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationAssociationsRequest"},
+      "output":{"shape":"DescribeApplicationAssociationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeApplications":{
+      "name":"DescribeApplications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationsRequest"},
+      "output":{"shape":"DescribeApplicationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeBundleAssociations":{
+      "name":"DescribeBundleAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBundleAssociationsRequest"},
+      "output":{"shape":"DescribeBundleAssociationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeClientBranding":{
@@ -438,6 +521,21 @@
         {"shape":"OperationNotSupportedException"}
       ]
     },
+    "DescribeImageAssociations":{
+      "name":"DescribeImageAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageAssociationsRequest"},
+      "output":{"shape":"DescribeImageAssociationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeIpGroups":{
       "name":"DescribeIpGroups",
       "http":{
@@ -460,6 +558,21 @@
       "input":{"shape":"DescribeTagsRequest"},
       "output":{"shape":"DescribeTagsResult"},
       "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeWorkspaceAssociations":{
+      "name":"DescribeWorkspaceAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWorkspaceAssociationsRequest"},
+      "output":{"shape":"DescribeWorkspaceAssociationsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -581,6 +694,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidResourceStateException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DisassociateWorkspaceApplication":{
+      "name":"DisassociateWorkspaceApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateWorkspaceApplicationRequest"},
+      "output":{"shape":"DisassociateWorkspaceApplicationResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ImportClientBranding":{
@@ -1021,11 +1150,45 @@
         "Microsoft_Office_2019"
       ]
     },
+    "ApplicationAssociatedResourceType":{
+      "type":"string",
+      "enum":[
+        "WORKSPACE",
+        "BUNDLE",
+        "IMAGE"
+      ]
+    },
+    "ApplicationAssociatedResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"ApplicationAssociatedResourceType"}
+    },
     "ApplicationList":{
       "type":"list",
       "member":{"shape":"Application"},
       "max":5,
       "min":1
+    },
+    "ApplicationNotSupportedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ApplicationResourceAssociation":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{"shape":"WorkSpaceApplicationId"},
+        "AssociatedResourceId":{"shape":"NonEmptyString"},
+        "AssociatedResourceType":{"shape":"ApplicationAssociatedResourceType"},
+        "Created":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "State":{"shape":"AssociationState"},
+        "StateReason":{"shape":"AssociationStateReason"}
+      }
+    },
+    "ApplicationResourceAssociationList":{
+      "type":"list",
+      "member":{"shape":"ApplicationResourceAssociation"}
     },
     "AssociateConnectionAliasRequest":{
       "type":"structure",
@@ -1060,6 +1223,54 @@
       "members":{
       }
     },
+    "AssociateWorkspaceApplicationRequest":{
+      "type":"structure",
+      "required":[
+        "WorkspaceId",
+        "ApplicationId"
+      ],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "ApplicationId":{"shape":"WorkSpaceApplicationId"}
+      }
+    },
+    "AssociateWorkspaceApplicationResult":{
+      "type":"structure",
+      "members":{
+        "Association":{"shape":"WorkspaceResourceAssociation"}
+      }
+    },
+    "AssociationErrorCode":{
+      "type":"string",
+      "enum":[
+        "ValidationError.InsufficientDiskSpace",
+        "ValidationError.InsufficientMemory",
+        "ValidationError.UnsupportedOperatingSystem",
+        "DeploymentError.InternalServerError",
+        "DeploymentError.WorkspaceUnreachable"
+      ]
+    },
+    "AssociationState":{
+      "type":"string",
+      "enum":[
+        "PENDING_INSTALL",
+        "PENDING_INSTALL_DEPLOYMENT",
+        "PENDING_UNINSTALL",
+        "PENDING_UNINSTALL_DEPLOYMENT",
+        "INSTALLING",
+        "UNINSTALLING",
+        "ERROR",
+        "COMPLETED",
+        "REMOVED"
+      ]
+    },
+    "AssociationStateReason":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"AssociationErrorCode"},
+        "ErrorMessage":{"shape":"String2048"}
+      }
+    },
     "AssociationStatus":{
       "type":"string",
       "enum":[
@@ -1091,6 +1302,14 @@
       "pattern":"^\\d{12}$"
     },
     "BooleanObject":{"type":"boolean"},
+    "BundleAssociatedResourceType":{
+      "type":"string",
+      "enum":["APPLICATION"]
+    },
+    "BundleAssociatedResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"BundleAssociatedResourceType"}
+    },
     "BundleId":{
       "type":"string",
       "pattern":"^wsb-[0-9a-z]{8,63}$"
@@ -1106,6 +1325,22 @@
       "member":{"shape":"WorkspaceBundle"}
     },
     "BundleOwner":{"type":"string"},
+    "BundleResourceAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociatedResourceId":{"shape":"NonEmptyString"},
+        "AssociatedResourceType":{"shape":"BundleAssociatedResourceType"},
+        "BundleId":{"shape":"BundleId"},
+        "Created":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "State":{"shape":"AssociationState"},
+        "StateReason":{"shape":"AssociationStateReason"}
+      }
+    },
+    "BundleResourceAssociationList":{
+      "type":"list",
+      "member":{"shape":"BundleResourceAssociation"}
+    },
     "BundleType":{
       "type":"string",
       "enum":[
@@ -1205,6 +1440,16 @@
         "GRAPHICS_G4DN",
         "GRAPHICSPRO_G4DN"
       ]
+    },
+    "ComputeList":{
+      "type":"list",
+      "member":{"shape":"Compute"}
+    },
+    "ComputeNotCompatibleException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "ComputeType":{
       "type":"structure",
@@ -1682,6 +1927,20 @@
       "members":{
       }
     },
+    "DeployWorkspaceApplicationsRequest":{
+      "type":"structure",
+      "required":["WorkspaceId"],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "Force":{"shape":"BooleanObject"}
+      }
+    },
+    "DeployWorkspaceApplicationsResult":{
+      "type":"structure",
+      "members":{
+        "Deployment":{"shape":"WorkSpaceApplicationDeployment"}
+      }
+    },
     "DeregisterWorkspaceDirectoryRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -1717,6 +1976,62 @@
       "members":{
         "DedicatedTenancySupport":{"shape":"DedicatedTenancySupportResultEnum"},
         "DedicatedTenancyManagementCidrRange":{"shape":"DedicatedTenancyManagementCidrRange"}
+      }
+    },
+    "DescribeApplicationAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationId",
+        "AssociatedResourceTypes"
+      ],
+      "members":{
+        "MaxResults":{"shape":"Limit"},
+        "NextToken":{"shape":"PaginationToken"},
+        "ApplicationId":{"shape":"WorkSpaceApplicationId"},
+        "AssociatedResourceTypes":{"shape":"ApplicationAssociatedResourceTypeList"}
+      }
+    },
+    "DescribeApplicationAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{"shape":"ApplicationResourceAssociationList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeApplicationsRequest":{
+      "type":"structure",
+      "members":{
+        "ApplicationIds":{"shape":"WorkSpaceApplicationIdList"},
+        "ComputeTypeNames":{"shape":"ComputeList"},
+        "LicenseType":{"shape":"WorkSpaceApplicationLicenseType"},
+        "OperatingSystemNames":{"shape":"OperatingSystemNameList"},
+        "Owner":{"shape":"WorkSpaceApplicationOwner"},
+        "MaxResults":{"shape":"Limit"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeApplicationsResult":{
+      "type":"structure",
+      "members":{
+        "Applications":{"shape":"WorkSpaceApplicationList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeBundleAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "BundleId",
+        "AssociatedResourceTypes"
+      ],
+      "members":{
+        "BundleId":{"shape":"BundleId"},
+        "AssociatedResourceTypes":{"shape":"BundleAssociatedResourceTypeList"}
+      }
+    },
+    "DescribeBundleAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{"shape":"BundleResourceAssociationList"}
       }
     },
     "DescribeClientBrandingRequest":{
@@ -1799,6 +2114,23 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "DescribeImageAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "ImageId",
+        "AssociatedResourceTypes"
+      ],
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "AssociatedResourceTypes":{"shape":"ImageAssociatedResourceTypeList"}
+      }
+    },
+    "DescribeImageAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{"shape":"ImageResourceAssociationList"}
+      }
+    },
     "DescribeIpGroupsRequest":{
       "type":"structure",
       "members":{
@@ -1825,6 +2157,23 @@
       "type":"structure",
       "members":{
         "TagList":{"shape":"TagList"}
+      }
+    },
+    "DescribeWorkspaceAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "WorkspaceId",
+        "AssociatedResourceTypes"
+      ],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "AssociatedResourceTypes":{"shape":"WorkSpaceAssociatedResourceTypeList"}
+      }
+    },
+    "DescribeWorkspaceAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{"shape":"WorkspaceResourceAssociationList"}
       }
     },
     "DescribeWorkspaceBundlesRequest":{
@@ -1982,6 +2331,23 @@
       "members":{
       }
     },
+    "DisassociateWorkspaceApplicationRequest":{
+      "type":"structure",
+      "required":[
+        "WorkspaceId",
+        "ApplicationId"
+      ],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "ApplicationId":{"shape":"WorkSpaceApplicationId"}
+      }
+    },
+    "DisassociateWorkspaceApplicationResult":{
+      "type":"structure",
+      "members":{
+        "Association":{"shape":"WorkspaceResourceAssociation"}
+      }
+    },
     "DnsIpAddresses":{
       "type":"list",
       "member":{"shape":"IpAddress"}
@@ -2056,6 +2422,14 @@
         "ErrorMessage":{"shape":"Description"}
       }
     },
+    "ImageAssociatedResourceType":{
+      "type":"string",
+      "enum":["APPLICATION"]
+    },
+    "ImageAssociatedResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"ImageAssociatedResourceType"}
+    },
     "ImagePermission":{
       "type":"structure",
       "members":{
@@ -2065,6 +2439,22 @@
     "ImagePermissions":{
       "type":"list",
       "member":{"shape":"ImagePermission"}
+    },
+    "ImageResourceAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociatedResourceId":{"shape":"NonEmptyString"},
+        "AssociatedResourceType":{"shape":"ImageAssociatedResourceType"},
+        "Created":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "State":{"shape":"AssociationState"},
+        "StateReason":{"shape":"AssociationStateReason"}
+      }
+    },
+    "ImageResourceAssociationList":{
+      "type":"list",
+      "member":{"shape":"ImageResourceAssociation"}
     },
     "ImageType":{
       "type":"string",
@@ -2119,6 +2509,12 @@
       "members":{
         "ImageId":{"shape":"WorkspaceImageId"}
       }
+    },
+    "IncompatibleApplicationsException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "InvalidParameterValuesException":{
       "type":"structure",
@@ -2433,6 +2829,32 @@
         "Type":{"shape":"OperatingSystemType"}
       }
     },
+    "OperatingSystemName":{
+      "type":"string",
+      "enum":[
+        "AMAZON_LINUX_2",
+        "UBUNTU_18_04",
+        "UBUNTU_20_04",
+        "UBUNTU_22_04",
+        "UNKNOWN",
+        "WINDOWS_10",
+        "WINDOWS_11",
+        "WINDOWS_7",
+        "WINDOWS_SERVER_2016",
+        "WINDOWS_SERVER_2019",
+        "WINDOWS_SERVER_2022"
+      ]
+    },
+    "OperatingSystemNameList":{
+      "type":"list",
+      "member":{"shape":"OperatingSystemName"}
+    },
+    "OperatingSystemNotCompatibleException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "OperatingSystemType":{
       "type":"string",
       "enum":[
@@ -2613,6 +3035,14 @@
       "member":{"shape":"NonEmptyString"},
       "max":25,
       "min":1
+    },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "ResourceId":{"shape":"NonEmptyString"}
+      },
+      "exception":true
     },
     "ResourceLimitExceededException":{
       "type":"structure",
@@ -2802,6 +3232,11 @@
       "members":{
         "FailedRequests":{"shape":"FailedStopWorkspaceRequests"}
       }
+    },
+    "String2048":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "SubnetId":{
       "type":"string",
@@ -3000,6 +3435,68 @@
     },
     "UserVolumeSizeGib":{"type":"integer"},
     "VolumeEncryptionKey":{"type":"string"},
+    "WorkSpaceApplication":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{"shape":"WorkSpaceApplicationId"},
+        "Created":{"shape":"Timestamp"},
+        "Description":{"shape":"String2048"},
+        "LicenseType":{"shape":"WorkSpaceApplicationLicenseType"},
+        "Name":{"shape":"NonEmptyString"},
+        "Owner":{"shape":"WorkSpaceApplicationOwner"},
+        "State":{"shape":"WorkSpaceApplicationState"},
+        "SupportedComputeTypeNames":{"shape":"ComputeList"},
+        "SupportedOperatingSystemNames":{"shape":"OperatingSystemNameList"}
+      }
+    },
+    "WorkSpaceApplicationDeployment":{
+      "type":"structure",
+      "members":{
+        "Associations":{"shape":"WorkspaceResourceAssociationList"}
+      }
+    },
+    "WorkSpaceApplicationId":{
+      "type":"string",
+      "pattern":"^wsa-[0-9a-z]{8,63}$"
+    },
+    "WorkSpaceApplicationIdList":{
+      "type":"list",
+      "member":{"shape":"WorkSpaceApplicationId"},
+      "max":25,
+      "min":1
+    },
+    "WorkSpaceApplicationLicenseType":{
+      "type":"string",
+      "enum":[
+        "LICENSED",
+        "UNLICENSED"
+      ]
+    },
+    "WorkSpaceApplicationList":{
+      "type":"list",
+      "member":{"shape":"WorkSpaceApplication"}
+    },
+    "WorkSpaceApplicationOwner":{
+      "type":"string",
+      "pattern":"^\\d{12}|AMAZON$"
+    },
+    "WorkSpaceApplicationState":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "ERROR",
+        "AVAILABLE",
+        "UNINSTALL_ONLY"
+      ]
+    },
+    "WorkSpaceAssociatedResourceType":{
+      "type":"string",
+      "enum":["APPLICATION"]
+    },
+    "WorkSpaceAssociatedResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"WorkSpaceAssociatedResourceType"}
+    },
     "Workspace":{
       "type":"structure",
       "members":{
@@ -3260,7 +3757,8 @@
         "RootVolumeSizeGib":{"shape":"RootVolumeSizeGib"},
         "UserVolumeSizeGib":{"shape":"UserVolumeSizeGib"},
         "ComputeTypeName":{"shape":"Compute"},
-        "Protocols":{"shape":"ProtocolList"}
+        "Protocols":{"shape":"ProtocolList"},
+        "OperatingSystemName":{"shape":"OperatingSystemName"}
       }
     },
     "WorkspaceRequest":{
@@ -3286,6 +3784,22 @@
       "member":{"shape":"WorkspaceRequest"},
       "max":25,
       "min":1
+    },
+    "WorkspaceResourceAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociatedResourceId":{"shape":"NonEmptyString"},
+        "AssociatedResourceType":{"shape":"WorkSpaceAssociatedResourceType"},
+        "Created":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "State":{"shape":"AssociationState"},
+        "StateReason":{"shape":"AssociationStateReason"},
+        "WorkspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "WorkspaceResourceAssociationList":{
+      "type":"list",
+      "member":{"shape":"WorkspaceResourceAssociation"}
     },
     "WorkspaceState":{
       "type":"string",

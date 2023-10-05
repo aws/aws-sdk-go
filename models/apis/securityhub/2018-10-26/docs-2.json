@@ -1020,6 +1020,42 @@
         "AwsApiGatewayV2ApiDetails$CorsConfiguration": "<p>A cross-origin resource sharing (CORS) configuration. Supported only for HTTP APIs.</p>"
       }
     },
+    "AwsDmsEndpointDetails": {
+      "base": "<p> Provides details about an Database Migration Service (DMS) endpoint. An endpoint provides connection, data store type, and location information about your data store. </p>",
+      "refs": {
+        "ResourceDetails$AwsDmsEndpoint": "<p> Provides details about an Database Migration Service (DMS) endpoint. An endpoint provides connection, data store type, and location information about your data store.</p>"
+      }
+    },
+    "AwsDmsReplicationInstanceDetails": {
+      "base": "<p> Provides details about an Database Migration Service (DMS) replication instance. DMS uses a replication instance to connect to your source data store, read the source data, and format the data for consumption by the target data store. </p>",
+      "refs": {
+        "ResourceDetails$AwsDmsReplicationInstance": "<p> Provides details about an DMS replication instance. DMS uses a replication instance to connect to your source data store, read the source data, and format the data for consumption by the target data store.</p>"
+      }
+    },
+    "AwsDmsReplicationInstanceReplicationSubnetGroupDetails": {
+      "base": "<p> Provides details about the replication subnet group.</p>",
+      "refs": {
+        "AwsDmsReplicationInstanceDetails$ReplicationSubnetGroup": "<p> The subnet group for the replication instance.</p>"
+      }
+    },
+    "AwsDmsReplicationInstanceVpcSecurityGroupsDetails": {
+      "base": "<p> Provides details about the virtual private cloud (VPC) security group that’s associated with the replication instance.</p>",
+      "refs": {
+        "AwsDmsReplicationInstanceVpcSecurityGroupsList$member": null
+      }
+    },
+    "AwsDmsReplicationInstanceVpcSecurityGroupsList": {
+      "base": null,
+      "refs": {
+        "AwsDmsReplicationInstanceDetails$VpcSecurityGroups": "<p> The virtual private cloud (VPC) security group for the replication instance.</p>"
+      }
+    },
+    "AwsDmsReplicationTaskDetails": {
+      "base": "<p> Provides details about an Database Migration Service (DMS) replication task. A replication task moves a set of data from the source endpoint to the target endpoint.</p>",
+      "refs": {
+        "ResourceDetails$AwsDmsReplicationTask": "<p> Provides details about an DMS replication task. A replication task moves a set of data from the source endpoint to the target endpoint.</p>"
+      }
+    },
     "AwsDynamoDbTableAttributeDefinition": {
       "base": "<p>Contains a definition of an attribute for the table.</p>",
       "refs": {
@@ -2530,6 +2566,60 @@
         "ResourceDetails$AwsEventSchemasRegistry": "<p> A schema defines the structure of events that are sent to Amazon EventBridge. Schema registries are containers for schemas. They collect and organize schemas so that your schemas are in logical groups. </p>"
       }
     },
+    "AwsEventsEndpointDetails": {
+      "base": "<p> Provides details about an Amazon EventBridge global endpoint. The endpoint can improve your application’s availability by making it Regional-fault tolerant. </p>",
+      "refs": {
+        "ResourceDetails$AwsEventsEndpoint": "<p> Provides details about an Amazon EventBridge global endpoint. The endpoint can improve your application’s availability by making it Regional-fault tolerant.</p>"
+      }
+    },
+    "AwsEventsEndpointEventBusesDetails": {
+      "base": "<p> Provides details about the Amazon EventBridge event buses that the endpoint is associated with.</p>",
+      "refs": {
+        "AwsEventsEndpointEventBusesList$member": null
+      }
+    },
+    "AwsEventsEndpointEventBusesList": {
+      "base": null,
+      "refs": {
+        "AwsEventsEndpointDetails$EventBuses": "<p> The event buses being used by the endpoint.</p>"
+      }
+    },
+    "AwsEventsEndpointReplicationConfigDetails": {
+      "base": "<p> Indicates whether replication is enabled or disabled for the endpoint. If enabled, the endpoint can replicate all events to a secondary Amazon Web Services Region.</p>",
+      "refs": {
+        "AwsEventsEndpointDetails$ReplicationConfig": "<p> Whether event replication was enabled or disabled for this endpoint. The default state is <code>ENABLED</code>, which means you must supply a <code>RoleArn</code>. If you don't have a <code>RoleArn</code> or you don't want event replication enabled, set the state to <code>DISABLED</code>.</p>"
+      }
+    },
+    "AwsEventsEndpointRoutingConfigDetails": {
+      "base": "<p> Provides details about the routing configuration of the endpoint.</p>",
+      "refs": {
+        "AwsEventsEndpointDetails$RoutingConfig": "<p> The routing configuration of the endpoint.</p>"
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigDetails": {
+      "base": "<p> The failover configuration for an endpoint. This includes what triggers failover and what happens when it's triggered.</p>",
+      "refs": {
+        "AwsEventsEndpointRoutingConfigDetails$FailoverConfig": "<p> The failover configuration for an endpoint. This includes what triggers failover and what happens when it's triggered.</p>"
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails": {
+      "base": "<p> Provides details about the primary Amazon Web Services Region of the endpoint.</p>",
+      "refs": {
+        "AwsEventsEndpointRoutingConfigFailoverConfigDetails$Primary": "<p> The main Region of the endpoint.</p>"
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails": {
+      "base": "<p> The Amazon Web Services Region that events are routed to when failover is triggered or event replication is enabled.</p>",
+      "refs": {
+        "AwsEventsEndpointRoutingConfigFailoverConfigDetails$Secondary": "<p> The Region that events are routed to when failover is triggered or event replication is enabled.</p>"
+      }
+    },
+    "AwsEventsEventbusDetails": {
+      "base": "<p> Provides details about Amazon EventBridge event bus. An event bus is a router that receives events and delivers them to zero or more destinations, or targets. This can be a custom event bus which you can use to receive events from your custom applications and services, or it can be a partner event bus which can be matched to a partner event source.</p>",
+      "refs": {
+        "ResourceDetails$AwsEventsEventbus": "<p> Provides details about Amazon EventBridge event bus for an endpoint. An event bus is a router that receives events and delivers them to zero or more destinations, or targets.</p>"
+      }
+    },
     "AwsGuardDutyDetectorDataSourcesCloudTrailDetails": {
       "base": "<p> An object that contains information on the status of CloudTrail as a data source for the detector. </p>",
       "refs": {
@@ -2856,6 +2946,72 @@
       "base": null,
       "refs": {
         "AwsEcsContainerDetails$MountPoints": "<p>The mount points for data volumes in your container. </p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationDetails": {
+      "base": "<p> Provides details about different modes of client authentication.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoDetails$ClientAuthentication": "<p> Provides information for different modes of client authentication.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslDetails": {
+      "base": "<p> Provides details for client authentication using SASL.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoClientAuthenticationDetails$Sasl": "<p> Provides details for client authentication using SASL.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails": {
+      "base": "<p> Details for SASL/IAM client authentication.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoClientAuthenticationSaslDetails$Iam": "<p> Provides details for SASL client authentication using IAM. </p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails": {
+      "base": "<p> Details for SASL/SCRAM client authentication.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoClientAuthenticationSaslDetails$Scram": "<p> Details for SASL client authentication using SCRAM.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationTlsDetails": {
+      "base": "<p> Provides details for client authentication using TLS.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoClientAuthenticationDetails$Tls": "<p> Provides details for client authentication using TLS.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails": {
+      "base": "<p> Provides details for allowing no client authentication. </p>",
+      "refs": {
+        "AwsMskClusterClusterInfoClientAuthenticationDetails$Unauthenticated": "<p> Provides details for allowing no client authentication.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoDetails": {
+      "base": "<p> Provide details about an Amazon MSK cluster.</p>",
+      "refs": {
+        "AwsMskClusterDetails$ClusterInfo": "<p> Provides information about a cluster.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoDetails": {
+      "base": "<p> Includes encryption-related information, such as the KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoDetails$EncryptionInfo": "<p> Includes encryption-related information, such as the KMS key used for encrypting data at rest and whether you want Amazon MSK to encrypt your data in transit.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails": {
+      "base": "<p> The data-volume encryption details. You can't update encryption at rest settings for existing clusters.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoEncryptionInfoDetails$EncryptionAtRest": "<p> The data-volume encryption details. You can't update encryption at rest settings for existing clusters.</p>"
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails": {
+      "base": "<p> The settings for encrypting data in transit.</p>",
+      "refs": {
+        "AwsMskClusterClusterInfoEncryptionInfoDetails$EncryptionInTransit": "<p> The settings for encrypting data in transit.</p>"
+      }
+    },
+    "AwsMskClusterDetails": {
+      "base": "<p> Provides details about an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster. </p>",
+      "refs": {
+        "ResourceDetails$AwsMskCluster": "<p> Provides details about an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster.</p>"
       }
     },
     "AwsNetworkFirewallFirewallDetails": {
@@ -3337,6 +3493,48 @@
       "base": null,
       "refs": {
         "AwsRedshiftClusterDetails$VpcSecurityGroups": "<p>The list of VPC security groups that the cluster belongs to, if the cluster is in a VPC.</p>"
+      }
+    },
+    "AwsRoute53HostedZoneConfigDetails": {
+      "base": "<p> An object that contains an optional comment about your Amazon Route 53 hosted zone.</p>",
+      "refs": {
+        "AwsRoute53HostedZoneObjectDetails$Config": "<p> An object that includes the <code>Comment</code> element.</p>"
+      }
+    },
+    "AwsRoute53HostedZoneDetails": {
+      "base": "<p> Provides details about a specified Amazon Route 53 hosted zone, including the four name servers assigned to the hosted zone. A hosted zone represents a collection of records that can be managed together, belonging to a single parent domain name.</p>",
+      "refs": {
+        "ResourceDetails$AwsRoute53HostedZone": "<p> Provides details about an Amazon Route 53 hosted zone, including the four name servers assigned to the hosted zone. A hosted zone represents a collection of records that can be managed together, belonging to a single parent domain name.</p>"
+      }
+    },
+    "AwsRoute53HostedZoneNameServersList": {
+      "base": null,
+      "refs": {
+        "AwsRoute53HostedZoneDetails$NameServers": "<p> An object that contains a list of the authoritative name servers for a hosted zone or for a reusable delegation set.</p>"
+      }
+    },
+    "AwsRoute53HostedZoneObjectDetails": {
+      "base": "<p> An object that contains information about an Amazon Route 53 hosted zone. </p>",
+      "refs": {
+        "AwsRoute53HostedZoneDetails$HostedZone": "<p> An object that contains information about the specified hosted zone.</p>"
+      }
+    },
+    "AwsRoute53HostedZoneVpcDetails": {
+      "base": "<p> For private hosted zones, this is a complex type that contains information about an Amazon VPC.</p>",
+      "refs": {
+        "AwsRoute53HostedZoneVpcsList$member": null
+      }
+    },
+    "AwsRoute53HostedZoneVpcsList": {
+      "base": null,
+      "refs": {
+        "AwsRoute53HostedZoneDetails$Vpcs": "<p> An object that contains information about the Amazon Virtual Private Clouds (Amazon VPCs) that are associated with the specified hosted zone.</p>"
+      }
+    },
+    "AwsRoute53QueryLoggingConfigDetails": {
+      "base": "<p> Provides details about a specified Amazon Route 53 configuration for DNS query logging.</p>",
+      "refs": {
+        "AwsRoute53HostedZoneDetails$QueryLoggingConfig": "<p> An array that contains one <code>QueryLoggingConfig</code> element for each DNS query logging configuration that is associated with the current Amazon Web Services account.</p>"
       }
     },
     "AwsS3AccountPublicAccessBlockDetails": {
@@ -4184,6 +4382,9 @@
         "AwsCodeBuildProjectLogsConfigS3LogsDetails$EncryptionDisabled": "<p>Whether to disable encryption of the S3 build log output.</p>",
         "AwsCodeBuildProjectSource$InsecureSsl": "<p>Whether to ignore SSL warnings while connecting to the project source code.</p>",
         "AwsCorsConfiguration$AllowCredentials": "<p>Indicates whether the CORS request includes credentials.</p>",
+        "AwsDmsReplicationInstanceDetails$AutoMinorVersionUpgrade": "<p> Indicates whether minor engine upgrades are applied automatically to the replication instance during the maintenance window. </p>",
+        "AwsDmsReplicationInstanceDetails$MultiAZ": "<p> Specifies whether the replication instance is deployed across multiple Availability Zones (AZs). You can't set the <code>AvailabilityZone</code> parameter if the <code>MultiAZ</code> parameter is set to <code>true</code>.</p>",
+        "AwsDmsReplicationInstanceDetails$PubliclyAccessible": "<p> Specifies the accessibility options for the replication instance. A value of <code>true</code> represents an instance with a public IP address. A value of <code>false</code> represents an instance with a private IP address. The default value is <code>true</code>.</p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
         "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
@@ -4249,6 +4450,11 @@
         "AwsIamPolicyDetails$IsAttachable": "<p>Whether the policy can be attached to a user, group, or role.</p>",
         "AwsIamPolicyVersion$IsDefaultVersion": "<p>Whether the version is the default version.</p>",
         "AwsKmsKeyDetails$KeyRotationStatus": "<p>Whether the key has key rotation enabled.</p>",
+        "AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails$Enabled": "<p> Indicates whether SASL/IAM authentication is enabled or not.</p>",
+        "AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails$Enabled": "<p> Indicates whether SASL/SCRAM authentication is enabled or not.</p>",
+        "AwsMskClusterClusterInfoClientAuthenticationTlsDetails$Enabled": "<p> Indicates whether TLS authentication is enabled or not.</p>",
+        "AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails$Enabled": "<p> Indicates whether unauthenticated is allowed or not.</p>",
+        "AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails$InCluster": "<p> When set to <code>true</code>, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to <code>false</code>, the communication happens in plain text. The default value is <code>true</code>.</p>",
         "AwsNetworkFirewallFirewallDetails$DeleteProtection": "<p>Whether the firewall is protected from deletion. If set to <code>true</code>, then the firewall cannot be deleted.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallPolicyChangeProtection": "<p>Whether the firewall is protected from a change to the firewall policy. If set to <code>true</code>, you cannot associate a different policy with the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$SubnetChangeProtection": "<p>Whether the firewall is protected from a change to the subnet associations. If set to <code>true</code>, you cannot map different subnets to the firewall.</p>",
@@ -4272,6 +4478,7 @@
         "AwsRdsDbClusterDetails$CopyTagsToSnapshot": "<p>Whether tags are copied from the DB cluster to snapshots of the DB cluster.</p>",
         "AwsRdsDbClusterDetails$CrossAccountClone": "<p>Whether the DB cluster is a clone of a DB cluster owned by a different Amazon Web Services account.</p>",
         "AwsRdsDbClusterDetails$IamDatabaseAuthenticationEnabled": "<p>Whether the mapping of IAM accounts to database accounts is enabled.</p>",
+        "AwsRdsDbClusterDetails$AutoMinorVersionUpgrade": "<p> Indicates if minor version upgrades are automatically applied to the cluster.</p>",
         "AwsRdsDbClusterMember$IsClusterWriter": "<p>Whether the cluster member is the primary instance for the DB cluster.</p>",
         "AwsRdsDbClusterSnapshotDetails$StorageEncrypted": "<p>Whether the DB cluster is encrypted.</p>",
         "AwsRdsDbClusterSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p>Whether mapping of IAM accounts to database accounts is enabled.</p>",
@@ -4395,6 +4602,12 @@
       "base": "<p>Provides details about the current status of the sensitive data detection.</p>",
       "refs": {
         "ClassificationResult$Status": "<p>The current status of the sensitive data detection.</p>"
+      }
+    },
+    "CloudWatchLogsLogGroupArnConfigDetails": {
+      "base": "<p> The Amazon Resource Name (ARN) and other details of the Amazon CloudWatch Logs log group that Amazon Route 53 is publishing logs to.</p>",
+      "refs": {
+        "AwsRoute53QueryLoggingConfigDetails$CloudWatchLogsLogGroupArn": "<p> The Amazon Resource Name (ARN) of the Amazon CloudWatch Logs log group that Route 53 is publishing logs to.</p>"
       }
     },
     "CodeVulnerabilitiesFilePath": {
@@ -5143,6 +5356,8 @@
         "AwsCloudWatchAlarmDetails$Period": "<p>The period, in seconds, over which the statistic is applied. This is required for an alarm based on a metric. </p>",
         "AwsCodeBuildProjectSource$GitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
         "AwsCorsConfiguration$MaxAge": "<p>The number of seconds for which the browser caches preflight request results.</p>",
+        "AwsDmsEndpointDetails$Port": "<p> The port used to access the endpoint. </p>",
+        "AwsDmsReplicationInstanceDetails$AllocatedStorage": "<p> The amount of storage (in gigabytes) that is allocated for the replication instance. </p>",
         "AwsDynamoDbTableDetails$ItemCount": "<p>The number of items in the table.</p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$ItemCount": "<p>The number of items in the index.</p>",
         "AwsDynamoDbTableProvisionedThroughput$NumberOfDecreasesToday": "<p>The number of times during the current UTC calendar day that the provisioned throughput was decreased.</p>",
@@ -5246,6 +5461,7 @@
         "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that is allocated to the function.</p>",
         "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
         "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
+        "AwsMskClusterClusterInfoDetails$NumberOfBrokerNodes": "<p> The number of broker nodes in the cluster.</p>",
         "AwsNetworkFirewallRuleGroupDetails$Capacity": "<p>The maximum number of operating resources that this rule group can use.</p>",
         "AwsOpenSearchServiceDomainClusterConfigDetails$InstanceCount": "<p>The number of data nodes to use in the OpenSearch domain.</p>",
         "AwsOpenSearchServiceDomainClusterConfigDetails$WarmCount": "<p>The number of UltraWarm instances.</p>",
@@ -6069,6 +6285,39 @@
         "AwsCodeBuildProjectSource$Type": "<p>The type of repository that contains the source code to be built. Valid values are:</p> <ul> <li> <p> <code>BITBUCKET</code> - The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code> - The source code is in an CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code> - The source code settings are specified in the source action of a pipeline in CodePipeline.</p> </li> <li> <p> <code>GITHUB</code> - The source code is in a GitHub repository.</p> </li> <li> <p> <code>GITHUB_ENTERPRISE</code> - The source code is in a GitHub Enterprise repository.</p> </li> <li> <p> <code>NO_SOURCE</code> - The project does not have input source code.</p> </li> <li> <p> <code>S3</code> - The source code is in an S3 input bucket. </p> </li> </ul>",
         "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in CodePipeline, location should not be specified. If it is specified, CodePipeline ignores it. This is because CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec file. </p> </li> </ul>",
         "AwsCodeBuildProjectVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
+        "AwsDmsEndpointDetails$CertificateArn": "<p> The Amazon Resource Name (ARN) for the SSL certificate that encrypts connections between the DMS endpoint and the replication instance. </p>",
+        "AwsDmsEndpointDetails$DatabaseName": "<p> The name of the endpoint database.</p>",
+        "AwsDmsEndpointDetails$EndpointArn": "<p> The Amazon Resource Name (ARN) of the endpoint. </p>",
+        "AwsDmsEndpointDetails$EndpointIdentifier": "<p> The database endpoint identifier. </p>",
+        "AwsDmsEndpointDetails$EndpointType": "<p> The type of endpoint. Valid values are source and target. </p>",
+        "AwsDmsEndpointDetails$EngineName": "<p> The type of engine for the endpoint, depending on the <code>EndpointType</code> value. </p>",
+        "AwsDmsEndpointDetails$ExternalId": "<p> A value that can be used for cross-account validation. </p>",
+        "AwsDmsEndpointDetails$ExtraConnectionAttributes": "<p> Additional attributes associated with the connection. </p>",
+        "AwsDmsEndpointDetails$KmsKeyId": "<p> An DMS key identifier that is used to encrypt the connection parameters for the endpoint. If you don't specify a value for the <code>KmsKeyId</code> parameter, then DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region.</p>",
+        "AwsDmsEndpointDetails$ServerName": "<p> The name of the server where the endpoint database resides.</p>",
+        "AwsDmsEndpointDetails$SslMode": "<p> The SSL mode used to connect to the endpoint. The default is none.</p>",
+        "AwsDmsEndpointDetails$Username": "<p> The user name to be used to log in to the endpoint database. </p>",
+        "AwsDmsReplicationInstanceDetails$AvailabilityZone": "<p> The Availability Zone that the replication instance is created in. The default value is a random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region, such as <code>us-east-1d</code>.</p>",
+        "AwsDmsReplicationInstanceDetails$EngineVersion": "<p> The engine version number of the replication instance. If an engine version number is not specified when a replication instance is created, the default is the latest engine version available. </p>",
+        "AwsDmsReplicationInstanceDetails$KmsKeyId": "<p> An KMS key identifier that is used to encrypt the data on the replication instance. If you don't specify a value for the <code>KmsKeyId</code> parameter, DMS uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region.</p>",
+        "AwsDmsReplicationInstanceDetails$PreferredMaintenanceWindow": "<p> The maintenance window times for the replication instance. Upgrades to the replication instance are performed during this time.</p>",
+        "AwsDmsReplicationInstanceDetails$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance as defined for the specified replication instance class. </p>",
+        "AwsDmsReplicationInstanceDetails$ReplicationInstanceIdentifier": "<p> The replication instance identifier.</p>",
+        "AwsDmsReplicationInstanceReplicationSubnetGroupDetails$ReplicationSubnetGroupIdentifier": "<p> The identifier of the replication subnet group. </p>",
+        "AwsDmsReplicationInstanceVpcSecurityGroupsDetails$VpcSecurityGroupId": "<p> The identifier of the VPC security group that’s associated with the replication instance. </p>",
+        "AwsDmsReplicationTaskDetails$CdcStartPosition": "<p> Indicates when you want a change data capture (CDC) operation to start. <code>CCdcStartPosition</code> or <code>CCdcStartTime</code> specifies when you want a CDC operation to start. Only a value for one of these fields is included.</p>",
+        "AwsDmsReplicationTaskDetails$CdcStartTime": "<p> Indicates the start time for a CDC operation. <code>CdcStartPosition</code> or <code>CCdcStartTime</code> specifies when you want a CDC operation to start. Only a value for one of these fields is included.</p>",
+        "AwsDmsReplicationTaskDetails$CdcStopPosition": "<p> Indicates when you want a CDC operation to stop. The value can be either server time or commit time.</p>",
+        "AwsDmsReplicationTaskDetails$MigrationType": "<p> The migration type. </p>",
+        "AwsDmsReplicationTaskDetails$Id": "<p> The identifier of the replication task.</p>",
+        "AwsDmsReplicationTaskDetails$ResourceIdentifier": "<p> A display name for the resource identifier at the end of the <code>EndpointArn</code> response parameter. If you don't specify a <code>ResourceIdentifier</code> value, DMS generates a default identifier value for the end of <code>EndpointArn</code>.</p>",
+        "AwsDmsReplicationTaskDetails$ReplicationInstanceArn": "<p> The Amazon Resource Name (ARN) of a replication instance. </p>",
+        "AwsDmsReplicationTaskDetails$ReplicationTaskIdentifier": "<p> The user-defined replication task identifier or name.</p>",
+        "AwsDmsReplicationTaskDetails$ReplicationTaskSettings": "<p> The settings for the replication task.</p>",
+        "AwsDmsReplicationTaskDetails$SourceEndpointArn": "<p> The ARN of the source endpoint.</p>",
+        "AwsDmsReplicationTaskDetails$TableMappings": "<p> The table mappings for the replication task, in JSON format.</p>",
+        "AwsDmsReplicationTaskDetails$TargetEndpointArn": "<p> The ARN of the target endpoint.</p>",
+        "AwsDmsReplicationTaskDetails$TaskData": "<p> Supplemental information that the task requires to migrate the data for certain source and target endpoints.</p>",
         "AwsDynamoDbTableAttributeDefinition$AttributeName": "<p>The name of the attribute.</p>",
         "AwsDynamoDbTableAttributeDefinition$AttributeType": "<p>The type of the attribute.</p>",
         "AwsDynamoDbTableBillingModeSummary$BillingMode": "<p>The method used to charge for read and write throughput and to manage capacity.</p>",
@@ -6369,6 +6618,7 @@
         "AwsEcsTaskDefinitionDetails$NetworkMode": "<p>The Docker networking mode to use for the containers in the task. Valid values are as follows:</p> <ul> <li> <p> <code>awsvpc</code> </p> </li> <li> <p> <code>bridge</code> </p> </li> <li> <p> <code>host</code> </p> </li> <li> <p> <code>none</code> </p> </li> </ul>",
         "AwsEcsTaskDefinitionDetails$PidMode": "<p>The process namespace to use for the containers in the task. Valid values are <code>host</code> or <code>task</code>.</p>",
         "AwsEcsTaskDefinitionDetails$TaskRoleArn": "<p>The short name or ARN of the IAM role that grants containers in the task permission to call Amazon Web Services API operations on your behalf.</p>",
+        "AwsEcsTaskDefinitionDetails$Status": "<p> The status of the task definition. </p>",
         "AwsEcsTaskDefinitionInferenceAcceleratorsDetails$DeviceName": "<p>The Elastic Inference accelerator device name.</p>",
         "AwsEcsTaskDefinitionInferenceAcceleratorsDetails$DeviceType": "<p>The Elastic Inference accelerator type to use.</p>",
         "AwsEcsTaskDefinitionPlacementConstraintsDetails$Expression": "<p>A cluster query language expression to apply to the constraint.</p>",
@@ -6483,6 +6733,21 @@
         "AwsEventSchemasRegistryDetails$Description": "<p> A description of the registry to be created. </p>",
         "AwsEventSchemasRegistryDetails$RegistryArn": "<p> The Amazon Resource Name (ARN) of the registry. </p>",
         "AwsEventSchemasRegistryDetails$RegistryName": "<p> The name of the schema registry. </p>",
+        "AwsEventsEndpointDetails$Arn": "<p> The Amazon Resource Name (ARN) of the endpoint. </p>",
+        "AwsEventsEndpointDetails$Description": "<p> A description of the endpoint. </p>",
+        "AwsEventsEndpointDetails$EndpointId": "<p> The URL subdomain of the endpoint. For example, if <code>EndpointUrl</code> is <code>https://abcde.veo.endpoints.event.amazonaws.com</code>, then the <code>EndpointId</code> is <code>abcde.veo</code>.</p>",
+        "AwsEventsEndpointDetails$EndpointUrl": "<p> The URL of the endpoint.</p>",
+        "AwsEventsEndpointDetails$Name": "<p> The name of the endpoint.</p>",
+        "AwsEventsEndpointDetails$RoleArn": "<p> The ARN of the role used by event replication for the endpoint.</p>",
+        "AwsEventsEndpointDetails$State": "<p> The current state of the endpoint.</p>",
+        "AwsEventsEndpointDetails$StateReason": "<p> The reason the endpoint is in its current state.</p>",
+        "AwsEventsEndpointEventBusesDetails$EventBusArn": "<p> The Amazon Resource Name (ARN) of the event bus that the endpoint is associated with.</p>",
+        "AwsEventsEndpointReplicationConfigDetails$State": "<p> The state of event replication.</p>",
+        "AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails$HealthCheck": "<p> The Amazon Resource Name (ARN) of the health check used by the endpoint to determine whether failover is triggered.</p>",
+        "AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails$Route": "<p> Defines the secondary Region.</p>",
+        "AwsEventsEventbusDetails$Arn": "<p> The Amazon Resource Name (ARN) of the account permitted to write events to the current account.</p>",
+        "AwsEventsEventbusDetails$Name": "<p> The name of the event bus.</p>",
+        "AwsEventsEventbusDetails$Policy": "<p> The policy that enables the external account to send events to your account.</p>",
         "AwsGuardDutyDetectorDataSourcesCloudTrailDetails$Status": "<p> Specifies whether CloudTrail is activated as a data source for the detector. </p>",
         "AwsGuardDutyDetectorDataSourcesDnsLogsDetails$Status": "<p> Describes whether DNS logs is enabled as a data source for the detector. </p>",
         "AwsGuardDutyDetectorDataSourcesFlowLogsDetails$Status": "<p> Describes whether VPC Flow Logs are activated as a data source for the detector. </p>",
@@ -6581,6 +6846,10 @@
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsMountPoint$SourceVolume": "<p>The name of the volume to mount. Must be a volume name referenced in the <code>name</code> parameter of task definition <code>volume</code>. </p>",
         "AwsMountPoint$ContainerPath": "<p>The path on the container to mount the host volume at. </p>",
+        "AwsMskClusterClusterInfoDetails$CurrentVersion": "<p> The current version of the MSK cluster.</p>",
+        "AwsMskClusterClusterInfoDetails$ClusterName": "<p> The name of the cluster.</p>",
+        "AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails$DataVolumeKMSKeyId": "<p> The Amazon Resource Name (ARN) of the KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>",
+        "AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails$ClientBroker": "<p> Indicates the encryption setting for data in transit between clients and brokers.</p>",
         "AwsNetworkFirewallFirewallDetails$Description": "<p>A description of the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallArn": "<p>The ARN of the firewall.</p>",
         "AwsNetworkFirewallFirewallDetails$FirewallId": "<p>The identifier of the firewall.</p>",
@@ -6817,6 +7086,12 @@
         "AwsRedshiftClusterRestoreStatus$Status": "<p>The status of the restore action.</p> <p>Valid values: <code>starting</code> | <code>restoring</code> | <code>completed</code> | <code>failed</code> </p>",
         "AwsRedshiftClusterVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
         "AwsRedshiftClusterVpcSecurityGroup$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
+        "AwsRoute53HostedZoneConfigDetails$Comment": "<p> Any comments that you include about the hosted zone. </p>",
+        "AwsRoute53HostedZoneNameServersList$member": null,
+        "AwsRoute53HostedZoneObjectDetails$Id": "<p> The ID that Route 53 assigns to the hosted zone when you create it. </p>",
+        "AwsRoute53HostedZoneObjectDetails$Name": "<p> The name of the domain. For public hosted zones, this is the name that you have registered with your DNS registrar.</p>",
+        "AwsRoute53HostedZoneVpcDetails$Id": "<p> The identifier of an Amazon VPC. </p>",
+        "AwsRoute53HostedZoneVpcDetails$Region": "<p> The Amazon Web Services Region that an Amazon VPC was created in.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ExpirationDate": "<p>The date when objects are moved or deleted.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ID": "<p>The unique identifier of the rule.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Prefix": "<p>A prefix that identifies one or more objects that the rule applies to.</p>",
@@ -7008,6 +7283,9 @@
         "ClassificationResult$MimeType": "<p>The type of content that the finding applies to.</p>",
         "ClassificationStatus$Code": "<p>The code that represents the status of the sensitive data detection.</p>",
         "ClassificationStatus$Reason": "<p>A longer description of the current status of the sensitive data detection.</p>",
+        "CloudWatchLogsLogGroupArnConfigDetails$CloudWatchLogsLogGroupArn": "<p> The ARN of the CloudWatch Logs log group that Route 53 is publishing logs to.</p>",
+        "CloudWatchLogsLogGroupArnConfigDetails$HostedZoneId": "<p> The ID of the hosted zone that CloudWatch Logs is logging queries for. </p>",
+        "CloudWatchLogsLogGroupArnConfigDetails$Id": "<p> The ID for a DNS query logging configuration. </p>",
         "CodeVulnerabilitiesFilePath$FileName": "<p> The name of the file in which the code vulnerability is located. </p>",
         "CodeVulnerabilitiesFilePath$FilePath": "<p> The file path to the code in which the vulnerability is located. </p>",
         "Compliance$SecurityControlId": "<p> The unique identifier of a control across standards. Values for this field typically consist of an Amazon Web Service and a number, such as APIGateway.5. </p>",
@@ -8317,6 +8595,7 @@
         "AwsElbLoadBalancerListenerDescription$PolicyNames": "<p>The policies enabled for the listener.</p>",
         "AwsElbLoadBalancerPolicies$OtherPolicies": "<p>The policies other than the stickiness policies.</p>",
         "AwsIamUserDetails$GroupList": "<p>A list of IAM groups that the user belongs to.</p>",
+        "AwsMskClusterClusterInfoClientAuthenticationTlsDetails$CertificateAuthorityArnList": "<p> List of Amazon Web Services Private CA Amazon Resource Names (ARNs). Amazon Web Services Private CA enables creation of private certificate authority (CA) hierarchies, including root and subordinate CAs, without the investment and maintenance costs of operating an on-premises CA.</p>",
         "AwsRdsDbClusterDetails$AvailabilityZones": "<p>A list of Availability Zones (AZs) where instances in the DB cluster can be created.</p>",
         "AwsRdsDbClusterDetails$CustomEndpoints": "<p>A list of custom endpoints for the DB cluster.</p>",
         "AwsRdsDbClusterDetails$ReadReplicaIdentifiers": "<p>The identifiers of the read replicas that are associated with this DB cluster.</p>",
