@@ -635,6 +635,19 @@
         "VariantStoreItem$description": "<p>The store's description.</p>"
       }
     },
+    "ETag": {
+      "base": "<p> The entity tag (ETag) is a hash of the object representing its semantic content. </p>",
+      "refs": {
+        "GetReadSetMetadataResponse$etag": "<p> The entity tag (ETag) is a hash of the object meant to represent its semantic content. </p>",
+        "ReadSetListItem$etag": "<p> The entity tag (ETag) is a hash of the object representing its semantic content. </p>"
+      }
+    },
+    "ETagAlgorithm": {
+      "base": null,
+      "refs": {
+        "ETag$algorithm": "<p> The algorithm used to calculate the read set’s ETag(s). </p>"
+      }
+    },
     "Encoding": {
       "base": null,
       "refs": {
@@ -2864,6 +2877,8 @@
         "DeleteAnnotationStoreVersionsRequest$name": "<p> The name of the annotation store from which versions are being deleted. </p>",
         "DeleteShareRequest$shareId": "<p> The ID for the share request to be deleted. </p>",
         "DeleteVariantStoreRequest$name": "<p>The store's name.</p>",
+        "ETag$source1": "<p> The ETag hash calculated on Source1 of the read set. </p>",
+        "ETag$source2": "<p> The ETag hash calculated on Source2 of the read set. </p>",
         "GetAnnotationStoreRequest$name": "<p>The store's name.</p>",
         "GetAnnotationStoreResponse$name": "<p>The store's name.</p>",
         "GetAnnotationStoreVersionRequest$name": "<p> The name given to an annotation store version to distinguish it from others. </p>",

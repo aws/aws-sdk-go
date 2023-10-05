@@ -12,7 +12,6 @@
   },
   "operations": {
     "AbortMultipartReadSetUpload": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -56,7 +55,6 @@
       }
     },
     "AcceptShare": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -97,7 +95,6 @@
       }
     },
     "BatchDeleteReadSet": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -136,7 +133,6 @@
       }
     },
     "CancelAnnotationImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -172,7 +168,6 @@
       }
     },
     "CancelRun": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -213,7 +208,6 @@
       "name": "CancelRun"
     },
     "CancelVariantImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -249,7 +243,6 @@
       }
     },
     "CompleteMultipartReadSetUpload": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "storage-"
       },
@@ -293,7 +286,6 @@
       }
     },
     "CreateAnnotationStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -334,7 +326,6 @@
       }
     },
     "CreateAnnotationStoreVersion": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -375,7 +366,6 @@
       }
     },
     "CreateMultipartReadSetUpload": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -419,7 +409,6 @@
       }
     },
     "CreateReferenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -457,7 +446,6 @@
       }
     },
     "CreateRunGroup": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -501,7 +489,6 @@
       }
     },
     "CreateSequenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -539,7 +526,6 @@
       }
     },
     "CreateShare": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -580,7 +566,6 @@
       }
     },
     "CreateVariantStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -621,7 +606,6 @@
       }
     },
     "CreateWorkflow": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -665,7 +649,6 @@
       }
     },
     "DeleteAnnotationStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -704,7 +687,6 @@
       }
     },
     "DeleteAnnotationStoreVersions": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -743,7 +725,6 @@
       }
     },
     "DeleteReference": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -785,7 +766,6 @@
       }
     },
     "DeleteReferenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -827,7 +807,6 @@
       }
     },
     "DeleteRun": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -869,7 +848,6 @@
       "name": "DeleteRun"
     },
     "DeleteRunGroup": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -911,7 +889,6 @@
       "name": "DeleteRunGroup"
     },
     "DeleteSequenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -953,7 +930,6 @@
       }
     },
     "DeleteShare": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -995,7 +971,6 @@
       }
     },
     "DeleteVariantStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1034,7 +1009,6 @@
       }
     },
     "DeleteWorkflow": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1076,7 +1050,6 @@
       "name": "DeleteWorkflow"
     },
     "GetAnnotationImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1111,7 +1084,6 @@
       }
     },
     "GetAnnotationStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1146,7 +1118,6 @@
       }
     },
     "GetAnnotationStoreVersion": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1181,7 +1152,6 @@
       }
     },
     "GetReadSet": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "storage-"
       },
@@ -1225,7 +1195,6 @@
       }
     },
     "GetReadSetActivationJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1263,7 +1232,6 @@
       }
     },
     "GetReadSetExportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1301,7 +1269,6 @@
       }
     },
     "GetReadSetImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1339,7 +1306,6 @@
       }
     },
     "GetReadSetMetadata": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1377,7 +1343,6 @@
       }
     },
     "GetReference": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "storage-"
       },
@@ -1418,7 +1383,6 @@
       }
     },
     "GetReferenceImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1456,7 +1420,6 @@
       }
     },
     "GetReferenceMetadata": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1494,7 +1457,6 @@
       }
     },
     "GetReferenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1532,7 +1494,6 @@
       }
     },
     "GetRun": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1576,7 +1537,6 @@
       }
     },
     "GetRunGroup": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1620,7 +1580,6 @@
       }
     },
     "GetRunTask": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1664,7 +1623,6 @@
       }
     },
     "GetSequenceStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -1702,7 +1660,6 @@
       }
     },
     "GetShare": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1743,7 +1700,6 @@
       }
     },
     "GetVariantImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1778,7 +1734,6 @@
       }
     },
     "GetVariantStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1813,7 +1768,6 @@
       }
     },
     "GetWorkflow": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -1857,7 +1811,6 @@
       }
     },
     "ListAnnotationImportJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1892,7 +1845,6 @@
       }
     },
     "ListAnnotationStoreVersions": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1927,7 +1879,6 @@
       }
     },
     "ListAnnotationStores": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -1962,7 +1913,6 @@
       }
     },
     "ListMultipartReadSetUploads": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2006,7 +1956,6 @@
       }
     },
     "ListReadSetActivationJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2044,7 +1993,6 @@
       }
     },
     "ListReadSetExportJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2082,7 +2030,6 @@
       }
     },
     "ListReadSetImportJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2120,7 +2067,6 @@
       }
     },
     "ListReadSetUploadParts": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2164,7 +2110,6 @@
       }
     },
     "ListReadSets": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2202,7 +2147,6 @@
       }
     },
     "ListReferenceImportJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2240,7 +2184,6 @@
       }
     },
     "ListReferenceStores": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2275,7 +2218,6 @@
       }
     },
     "ListReferences": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2313,7 +2255,6 @@
       }
     },
     "ListRunGroups": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2357,7 +2298,6 @@
       }
     },
     "ListRunTasks": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2401,7 +2341,6 @@
       }
     },
     "ListRuns": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2445,7 +2384,6 @@
       }
     },
     "ListSequenceStores": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2480,7 +2418,6 @@
       }
     },
     "ListShares": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2521,7 +2458,6 @@
       }
     },
     "ListTagsForResource": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -2565,7 +2501,6 @@
       }
     },
     "ListVariantImportJobs": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2600,7 +2535,6 @@
       }
     },
     "ListVariantStores": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2635,7 +2569,6 @@
       }
     },
     "ListWorkflows": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2679,7 +2612,6 @@
       }
     },
     "StartAnnotationImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2717,7 +2649,6 @@
       }
     },
     "StartReadSetActivationJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2758,7 +2689,6 @@
       }
     },
     "StartReadSetExportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2799,7 +2729,6 @@
       }
     },
     "StartReadSetImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2840,7 +2769,6 @@
       }
     },
     "StartReferenceImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "control-storage-"
       },
@@ -2881,7 +2809,6 @@
       }
     },
     "StartRun": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -2925,7 +2852,6 @@
       }
     },
     "StartVariantImportJob": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -2963,7 +2889,6 @@
       }
     },
     "TagResource": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -3007,7 +2932,6 @@
       }
     },
     "UntagResource": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "tags-"
       },
@@ -3052,7 +2976,6 @@
       }
     },
     "UpdateAnnotationStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -3087,7 +3010,6 @@
       }
     },
     "UpdateAnnotationStoreVersion": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -3122,7 +3044,6 @@
       }
     },
     "UpdateRunGroup": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -3163,7 +3084,6 @@
       "name": "UpdateRunGroup"
     },
     "UpdateVariantStore": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "analytics-"
       },
@@ -3198,7 +3118,6 @@
       }
     },
     "UpdateWorkflow": {
-      "authtype": "v4",
       "endpoint": {
         "hostPrefix": "workflows-"
       },
@@ -4620,6 +4539,28 @@
       "min": 0,
       "type": "string"
     },
+    "ETag": {
+      "members": {
+        "algorithm": {
+          "shape": "ETagAlgorithm"
+        },
+        "source1": {
+          "shape": "String"
+        },
+        "source2": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ETagAlgorithm": {
+      "enum": [
+        "FASTQ_MD5up",
+        "BAM_MD5up",
+        "CRAM_MD5up"
+      ],
+      "type": "string"
+    },
     "Encoding": {
       "max": 20,
       "min": 1,
@@ -5244,6 +5185,9 @@
         },
         "description": {
           "shape": "ReadSetDescription"
+        },
+        "etag": {
+          "shape": "ETag"
         },
         "fileType": {
           "shape": "FileType"
@@ -7619,6 +7563,9 @@
         },
         "description": {
           "shape": "ReadSetDescription"
+        },
+        "etag": {
+          "shape": "ETag"
         },
         "fileType": {
           "shape": "FileType"

@@ -1,5 +1,15 @@
 {
   "pagination": {
+    "DescribeApplicationAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "DescribeApplications": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "DescribeWorkspaceBundles": {
       "input_token": "NextToken",
       "output_token": "NextToken",

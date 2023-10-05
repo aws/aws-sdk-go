@@ -53,7 +53,6 @@ func (c *Omics) AbortMultipartReadSetUploadRequest(input *AbortMultipartReadSetU
 
 	output = &AbortMultipartReadSetUploadOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -157,7 +156,6 @@ func (c *Omics) AcceptShareRequest(input *AcceptShareInput) (req *request.Reques
 
 	output = &AcceptShareOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -257,7 +255,6 @@ func (c *Omics) BatchDeleteReadSetRequest(input *BatchDeleteReadSetInput) (req *
 
 	output = &BatchDeleteReadSetOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -354,7 +351,6 @@ func (c *Omics) CancelAnnotationImportJobRequest(input *CancelAnnotationImportJo
 
 	output = &CancelAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -449,7 +445,6 @@ func (c *Omics) CancelRunRequest(input *CancelRunInput) (req *request.Request, o
 
 	output = &CancelRunOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -553,7 +548,6 @@ func (c *Omics) CancelVariantImportJobRequest(input *CancelVariantImportJobInput
 
 	output = &CancelVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -648,7 +642,6 @@ func (c *Omics) CompleteMultipartReadSetUploadRequest(input *CompleteMultipartRe
 
 	output = &CompleteMultipartReadSetUploadOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -751,7 +744,6 @@ func (c *Omics) CreateAnnotationStoreRequest(input *CreateAnnotationStoreInput) 
 
 	output = &CreateAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -851,7 +843,6 @@ func (c *Omics) CreateAnnotationStoreVersionRequest(input *CreateAnnotationStore
 
 	output = &CreateAnnotationStoreVersionOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -951,7 +942,6 @@ func (c *Omics) CreateMultipartReadSetUploadRequest(input *CreateMultipartReadSe
 
 	output = &CreateMultipartReadSetUploadOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1054,7 +1044,6 @@ func (c *Omics) CreateReferenceStoreRequest(input *CreateReferenceStoreInput) (r
 
 	output = &CreateReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1151,7 +1140,6 @@ func (c *Omics) CreateRunGroupRequest(input *CreateRunGroupInput) (req *request.
 
 	output = &CreateRunGroupOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1254,7 +1242,6 @@ func (c *Omics) CreateSequenceStoreRequest(input *CreateSequenceStoreInput) (req
 
 	output = &CreateSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1351,7 +1338,6 @@ func (c *Omics) CreateShareRequest(input *CreateShareInput) (req *request.Reques
 
 	output = &CreateShareOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1452,7 +1438,6 @@ func (c *Omics) CreateVariantStoreRequest(input *CreateVariantStoreInput) (req *
 
 	output = &CreateVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1552,7 +1537,6 @@ func (c *Omics) CreateWorkflowRequest(input *CreateWorkflowInput) (req *request.
 
 	output = &CreateWorkflowOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1655,7 +1639,6 @@ func (c *Omics) DeleteAnnotationStoreRequest(input *DeleteAnnotationStoreInput) 
 
 	output = &DeleteAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1752,7 +1735,6 @@ func (c *Omics) DeleteAnnotationStoreVersionsRequest(input *DeleteAnnotationStor
 
 	output = &DeleteAnnotationStoreVersionsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1849,7 +1831,6 @@ func (c *Omics) DeleteReferenceRequest(input *DeleteReferenceInput) (req *reques
 
 	output = &DeleteReferenceOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1950,7 +1931,6 @@ func (c *Omics) DeleteReferenceStoreRequest(input *DeleteReferenceStoreInput) (r
 
 	output = &DeleteReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -2051,7 +2031,6 @@ func (c *Omics) DeleteRunRequest(input *DeleteRunInput) (req *request.Request, o
 
 	output = &DeleteRunOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -2155,7 +2134,6 @@ func (c *Omics) DeleteRunGroupRequest(input *DeleteRunGroupInput) (req *request.
 
 	output = &DeleteRunGroupOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -2259,7 +2237,6 @@ func (c *Omics) DeleteSequenceStoreRequest(input *DeleteSequenceStoreInput) (req
 
 	output = &DeleteSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -2360,7 +2337,6 @@ func (c *Omics) DeleteShareRequest(input *DeleteShareInput) (req *request.Reques
 
 	output = &DeleteShareOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2460,7 +2436,6 @@ func (c *Omics) DeleteVariantStoreRequest(input *DeleteVariantStoreInput) (req *
 
 	output = &DeleteVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2557,7 +2532,6 @@ func (c *Omics) DeleteWorkflowRequest(input *DeleteWorkflowInput) (req *request.
 
 	output = &DeleteWorkflowOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -2661,7 +2635,6 @@ func (c *Omics) GetAnnotationImportJobRequest(input *GetAnnotationImportJobInput
 
 	output = &GetAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2755,7 +2728,6 @@ func (c *Omics) GetAnnotationStoreRequest(input *GetAnnotationStoreInput) (req *
 
 	output = &GetAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2849,7 +2821,6 @@ func (c *Omics) GetAnnotationStoreVersionRequest(input *GetAnnotationStoreVersio
 
 	output = &GetAnnotationStoreVersionOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2943,7 +2914,6 @@ func (c *Omics) GetReadSetRequest(input *GetReadSetInput) (req *request.Request,
 
 	output = &GetReadSetOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3046,7 +3016,6 @@ func (c *Omics) GetReadSetActivationJobRequest(input *GetReadSetActivationJobInp
 
 	output = &GetReadSetActivationJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3143,7 +3112,6 @@ func (c *Omics) GetReadSetExportJobRequest(input *GetReadSetExportJobInput) (req
 
 	output = &GetReadSetExportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3240,7 +3208,6 @@ func (c *Omics) GetReadSetImportJobRequest(input *GetReadSetImportJobInput) (req
 
 	output = &GetReadSetImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3337,7 +3304,6 @@ func (c *Omics) GetReadSetMetadataRequest(input *GetReadSetMetadataInput) (req *
 
 	output = &GetReadSetMetadataOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3434,7 +3400,6 @@ func (c *Omics) GetReferenceRequest(input *GetReferenceInput) (req *request.Requ
 
 	output = &GetReferenceOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3534,7 +3499,6 @@ func (c *Omics) GetReferenceImportJobRequest(input *GetReferenceImportJobInput) 
 
 	output = &GetReferenceImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3631,7 +3595,6 @@ func (c *Omics) GetReferenceMetadataRequest(input *GetReferenceMetadataInput) (r
 
 	output = &GetReferenceMetadataOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3728,7 +3691,6 @@ func (c *Omics) GetReferenceStoreRequest(input *GetReferenceStoreInput) (req *re
 
 	output = &GetReferenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3825,7 +3787,6 @@ func (c *Omics) GetRunRequest(input *GetRunInput) (req *request.Request, output 
 
 	output = &GetRunOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -3928,7 +3889,6 @@ func (c *Omics) GetRunGroupRequest(input *GetRunGroupInput) (req *request.Reques
 
 	output = &GetRunGroupOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4031,7 +3991,6 @@ func (c *Omics) GetRunTaskRequest(input *GetRunTaskInput) (req *request.Request,
 
 	output = &GetRunTaskOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4134,7 +4093,6 @@ func (c *Omics) GetSequenceStoreRequest(input *GetSequenceStoreInput) (req *requ
 
 	output = &GetSequenceStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4231,7 +4189,6 @@ func (c *Omics) GetShareRequest(input *GetShareInput) (req *request.Request, out
 
 	output = &GetShareOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4331,7 +4288,6 @@ func (c *Omics) GetVariantImportJobRequest(input *GetVariantImportJobInput) (req
 
 	output = &GetVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4425,7 +4381,6 @@ func (c *Omics) GetVariantStoreRequest(input *GetVariantStoreInput) (req *reques
 
 	output = &GetVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4519,7 +4474,6 @@ func (c *Omics) GetWorkflowRequest(input *GetWorkflowInput) (req *request.Reques
 
 	output = &GetWorkflowOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4628,7 +4582,6 @@ func (c *Omics) ListAnnotationImportJobsRequest(input *ListAnnotationImportJobsI
 
 	output = &ListAnnotationImportJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4779,7 +4732,6 @@ func (c *Omics) ListAnnotationStoreVersionsRequest(input *ListAnnotationStoreVer
 
 	output = &ListAnnotationStoreVersionsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -4930,7 +4882,6 @@ func (c *Omics) ListAnnotationStoresRequest(input *ListAnnotationStoresInput) (r
 
 	output = &ListAnnotationStoresOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5081,7 +5032,6 @@ func (c *Omics) ListMultipartReadSetUploadsRequest(input *ListMultipartReadSetUp
 
 	output = &ListMultipartReadSetUploadsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5241,7 +5191,6 @@ func (c *Omics) ListReadSetActivationJobsRequest(input *ListReadSetActivationJob
 
 	output = &ListReadSetActivationJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5395,7 +5344,6 @@ func (c *Omics) ListReadSetExportJobsRequest(input *ListReadSetExportJobsInput) 
 
 	output = &ListReadSetExportJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5549,7 +5497,6 @@ func (c *Omics) ListReadSetImportJobsRequest(input *ListReadSetImportJobsInput) 
 
 	output = &ListReadSetImportJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5703,7 +5650,6 @@ func (c *Omics) ListReadSetUploadPartsRequest(input *ListReadSetUploadPartsInput
 
 	output = &ListReadSetUploadPartsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5864,7 +5810,6 @@ func (c *Omics) ListReadSetsRequest(input *ListReadSetsInput) (req *request.Requ
 
 	output = &ListReadSetsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6018,7 +5963,6 @@ func (c *Omics) ListReferenceImportJobsRequest(input *ListReferenceImportJobsInp
 
 	output = &ListReferenceImportJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6172,7 +6116,6 @@ func (c *Omics) ListReferenceStoresRequest(input *ListReferenceStoresInput) (req
 
 	output = &ListReferenceStoresOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6323,7 +6266,6 @@ func (c *Omics) ListReferencesRequest(input *ListReferencesInput) (req *request.
 
 	output = &ListReferencesOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6477,7 +6419,6 @@ func (c *Omics) ListRunGroupsRequest(input *ListRunGroupsInput) (req *request.Re
 
 	output = &ListRunGroupsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6637,7 +6578,6 @@ func (c *Omics) ListRunTasksRequest(input *ListRunTasksInput) (req *request.Requ
 
 	output = &ListRunTasksOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6797,7 +6737,6 @@ func (c *Omics) ListRunsRequest(input *ListRunsInput) (req *request.Request, out
 
 	output = &ListRunsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -6957,7 +6896,6 @@ func (c *Omics) ListSequenceStoresRequest(input *ListSequenceStoresInput) (req *
 
 	output = &ListSequenceStoresOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7108,7 +7046,6 @@ func (c *Omics) ListSharesRequest(input *ListSharesInput) (req *request.Request,
 
 	output = &ListSharesOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7259,7 +7196,6 @@ func (c *Omics) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 
 	output = &ListTagsForResourceOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7368,7 +7304,6 @@ func (c *Omics) ListVariantImportJobsRequest(input *ListVariantImportJobsInput) 
 
 	output = &ListVariantImportJobsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7519,7 +7454,6 @@ func (c *Omics) ListVariantStoresRequest(input *ListVariantStoresInput) (req *re
 
 	output = &ListVariantStoresOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7670,7 +7604,6 @@ func (c *Omics) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request.Re
 
 	output = &ListWorkflowsOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7824,7 +7757,6 @@ func (c *Omics) StartAnnotationImportJobRequest(input *StartAnnotationImportJobI
 
 	output = &StartAnnotationImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -7921,7 +7853,6 @@ func (c *Omics) StartReadSetActivationJobRequest(input *StartReadSetActivationJo
 
 	output = &StartReadSetActivationJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8022,7 +7953,6 @@ func (c *Omics) StartReadSetExportJobRequest(input *StartReadSetExportJobInput) 
 
 	output = &StartReadSetExportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8122,7 +8052,6 @@ func (c *Omics) StartReadSetImportJobRequest(input *StartReadSetImportJobInput) 
 
 	output = &StartReadSetImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8222,7 +8151,6 @@ func (c *Omics) StartReferenceImportJobRequest(input *StartReferenceImportJobInp
 
 	output = &StartReferenceImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("control-storage-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8322,7 +8250,6 @@ func (c *Omics) StartRunRequest(input *StartRunInput) (req *request.Request, out
 
 	output = &StartRunOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8431,7 +8358,6 @@ func (c *Omics) StartVariantImportJobRequest(input *StartVariantImportJobInput) 
 
 	output = &StartVariantImportJobOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8528,7 +8454,6 @@ func (c *Omics) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -8632,7 +8557,6 @@ func (c *Omics) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tags-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -8736,7 +8660,6 @@ func (c *Omics) UpdateAnnotationStoreRequest(input *UpdateAnnotationStoreInput) 
 
 	output = &UpdateAnnotationStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8830,7 +8753,6 @@ func (c *Omics) UpdateAnnotationStoreVersionRequest(input *UpdateAnnotationStore
 
 	output = &UpdateAnnotationStoreVersionOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -8924,7 +8846,6 @@ func (c *Omics) UpdateRunGroupRequest(input *UpdateRunGroupInput) (req *request.
 
 	output = &UpdateRunGroupOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -9028,7 +8949,6 @@ func (c *Omics) UpdateVariantStoreRequest(input *UpdateVariantStoreInput) (req *
 
 	output = &UpdateVariantStoreOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("analytics-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -9122,7 +9042,6 @@ func (c *Omics) UpdateWorkflowRequest(input *UpdateWorkflowInput) (req *request.
 
 	output = &UpdateWorkflowOutput{}
 	req = c.newRequest(op, input, output)
-
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("workflows-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -13406,6 +13325,56 @@ func (s DeleteWorkflowOutput) GoString() string {
 	return s.String()
 }
 
+// The entity tag (ETag) is a hash of the object representing its semantic content.
+type ETag struct {
+	_ struct{} `type:"structure"`
+
+	// The algorithm used to calculate the read set’s ETag(s).
+	Algorithm *string `locationName:"algorithm" type:"string" enum:"ETagAlgorithm"`
+
+	// The ETag hash calculated on Source1 of the read set.
+	Source1 *string `locationName:"source1" type:"string"`
+
+	// The ETag hash calculated on Source2 of the read set.
+	Source2 *string `locationName:"source2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ETag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ETag) GoString() string {
+	return s.String()
+}
+
+// SetAlgorithm sets the Algorithm field's value.
+func (s *ETag) SetAlgorithm(v string) *ETag {
+	s.Algorithm = &v
+	return s
+}
+
+// SetSource1 sets the Source1 field's value.
+func (s *ETag) SetSource1(v string) *ETag {
+	s.Source1 = &v
+	return s
+}
+
+// SetSource2 sets the Source2 field's value.
+func (s *ETag) SetSource2(v string) *ETag {
+	s.Source2 = &v
+	return s
+}
+
 // A read set.
 type ExportReadSet struct {
 	_ struct{} `type:"structure"`
@@ -15159,6 +15128,10 @@ type GetReadSetMetadataOutput struct {
 	// The read set's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The entity tag (ETag) is a hash of the object meant to represent its semantic
+	// content.
+	Etag *ETag `locationName:"etag" type:"structure"`
+
 	// The read set's file type.
 	//
 	// FileType is a required field
@@ -15241,6 +15214,12 @@ func (s *GetReadSetMetadataOutput) SetCreationType(v string) *GetReadSetMetadata
 // SetDescription sets the Description field's value.
 func (s *GetReadSetMetadataOutput) SetDescription(v string) *GetReadSetMetadataOutput {
 	s.Description = &v
+	return s
+}
+
+// SetEtag sets the Etag field's value.
+func (s *GetReadSetMetadataOutput) SetEtag(v *ETag) *GetReadSetMetadataOutput {
+	s.Etag = v
 	return s
 }
 
@@ -21391,6 +21370,9 @@ type ReadSetListItem struct {
 	// The read set's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The entity tag (ETag) is a hash of the object representing its semantic content.
+	Etag *ETag `locationName:"etag" type:"structure"`
+
 	// The read set's file type.
 	//
 	// FileType is a required field
@@ -21470,6 +21452,12 @@ func (s *ReadSetListItem) SetCreationType(v string) *ReadSetListItem {
 // SetDescription sets the Description field's value.
 func (s *ReadSetListItem) SetDescription(v string) *ReadSetListItem {
 	s.Description = &v
+	return s
+}
+
+// SetEtag sets the Etag field's value.
+func (s *ReadSetListItem) SetEtag(v *ETag) *ReadSetListItem {
+	s.Etag = v
 	return s
 }
 
@@ -26708,6 +26696,26 @@ func CreationType_Values() []string {
 	return []string{
 		CreationTypeImport,
 		CreationTypeUpload,
+	}
+}
+
+const (
+	// ETagAlgorithmFastqMd5up is a ETagAlgorithm enum value
+	ETagAlgorithmFastqMd5up = "FASTQ_MD5up"
+
+	// ETagAlgorithmBamMd5up is a ETagAlgorithm enum value
+	ETagAlgorithmBamMd5up = "BAM_MD5up"
+
+	// ETagAlgorithmCramMd5up is a ETagAlgorithm enum value
+	ETagAlgorithmCramMd5up = "CRAM_MD5up"
+)
+
+// ETagAlgorithm_Values returns all elements of the ETagAlgorithm enum
+func ETagAlgorithm_Values() []string {
+	return []string{
+		ETagAlgorithmFastqMd5up,
+		ETagAlgorithmBamMd5up,
+		ETagAlgorithmCramMd5up,
 	}
 }
 

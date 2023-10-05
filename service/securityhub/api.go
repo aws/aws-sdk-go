@@ -16281,6 +16281,518 @@ func (s *AwsCorsConfiguration) SetMaxAge(v int64) *AwsCorsConfiguration {
 	return s
 }
 
+// Provides details about an Database Migration Service (DMS) endpoint. An endpoint
+// provides connection, data store type, and location information about your
+// data store.
+type AwsDmsEndpointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the SSL certificate that encrypts connections
+	// between the DMS endpoint and the replication instance.
+	CertificateArn *string `type:"string"`
+
+	// The name of the endpoint database.
+	DatabaseName *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the endpoint.
+	EndpointArn *string `type:"string"`
+
+	// The database endpoint identifier.
+	EndpointIdentifier *string `type:"string"`
+
+	// The type of endpoint. Valid values are source and target.
+	EndpointType *string `type:"string"`
+
+	// The type of engine for the endpoint, depending on the EndpointType value.
+	EngineName *string `type:"string"`
+
+	// A value that can be used for cross-account validation.
+	ExternalId *string `type:"string"`
+
+	// Additional attributes associated with the connection.
+	ExtraConnectionAttributes *string `type:"string"`
+
+	// An DMS key identifier that is used to encrypt the connection parameters for
+	// the endpoint. If you don't specify a value for the KmsKeyId parameter, then
+	// DMS uses your default encryption key. KMS creates the default encryption
+	// key for your Amazon Web Services account. Your Amazon Web Services account
+	// has a different default encryption key for each Amazon Web Services Region.
+	KmsKeyId *string `type:"string"`
+
+	// The port used to access the endpoint.
+	Port *int64 `type:"integer"`
+
+	// The name of the server where the endpoint database resides.
+	ServerName *string `type:"string"`
+
+	// The SSL mode used to connect to the endpoint. The default is none.
+	SslMode *string `type:"string"`
+
+	// The user name to be used to log in to the endpoint database.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsEndpointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsEndpointDetails) GoString() string {
+	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *AwsDmsEndpointDetails) SetCertificateArn(v string) *AwsDmsEndpointDetails {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *AwsDmsEndpointDetails) SetDatabaseName(v string) *AwsDmsEndpointDetails {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *AwsDmsEndpointDetails) SetEndpointArn(v string) *AwsDmsEndpointDetails {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *AwsDmsEndpointDetails) SetEndpointIdentifier(v string) *AwsDmsEndpointDetails {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *AwsDmsEndpointDetails) SetEndpointType(v string) *AwsDmsEndpointDetails {
+	s.EndpointType = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *AwsDmsEndpointDetails) SetEngineName(v string) *AwsDmsEndpointDetails {
+	s.EngineName = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *AwsDmsEndpointDetails) SetExternalId(v string) *AwsDmsEndpointDetails {
+	s.ExternalId = &v
+	return s
+}
+
+// SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
+func (s *AwsDmsEndpointDetails) SetExtraConnectionAttributes(v string) *AwsDmsEndpointDetails {
+	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsDmsEndpointDetails) SetKmsKeyId(v string) *AwsDmsEndpointDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *AwsDmsEndpointDetails) SetPort(v int64) *AwsDmsEndpointDetails {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *AwsDmsEndpointDetails) SetServerName(v string) *AwsDmsEndpointDetails {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *AwsDmsEndpointDetails) SetSslMode(v string) *AwsDmsEndpointDetails {
+	s.SslMode = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AwsDmsEndpointDetails) SetUsername(v string) *AwsDmsEndpointDetails {
+	s.Username = &v
+	return s
+}
+
+// Provides details about an Database Migration Service (DMS) replication instance.
+// DMS uses a replication instance to connect to your source data store, read
+// the source data, and format the data for consumption by the target data store.
+type AwsDmsReplicationInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of storage (in gigabytes) that is allocated for the replication
+	// instance.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Indicates whether minor engine upgrades are applied automatically to the
+	// replication instance during the maintenance window.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The Availability Zone that the replication instance is created in. The default
+	// value is a random, system-chosen Availability Zone in the endpoint's Amazon
+	// Web Services Region, such as us-east-1d.
+	AvailabilityZone *string `type:"string"`
+
+	// The engine version number of the replication instance. If an engine version
+	// number is not specified when a replication instance is created, the default
+	// is the latest engine version available.
+	EngineVersion *string `type:"string"`
+
+	// An KMS key identifier that is used to encrypt the data on the replication
+	// instance. If you don't specify a value for the KmsKeyId parameter, DMS uses
+	// your default encryption key. KMS creates the default encryption key for your
+	// Amazon Web Services account. Your Amazon Web Services account has a different
+	// default encryption key for each Amazon Web Services Region.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies whether the replication instance is deployed across multiple Availability
+	// Zones (AZs). You can't set the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
+	MultiAZ *bool `type:"boolean"`
+
+	// The maintenance window times for the replication instance. Upgrades to the
+	// replication instance are performed during this time.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the accessibility options for the replication instance. A value
+	// of true represents an instance with a public IP address. A value of false
+	// represents an instance with a private IP address. The default value is true.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class.
+	ReplicationInstanceClass *string `type:"string"`
+
+	// The replication instance identifier.
+	ReplicationInstanceIdentifier *string `type:"string"`
+
+	// The subnet group for the replication instance.
+	ReplicationSubnetGroup *AwsDmsReplicationInstanceReplicationSubnetGroupDetails `type:"structure"`
+
+	// The virtual private cloud (VPC) security group for the replication instance.
+	VpcSecurityGroups []*AwsDmsReplicationInstanceVpcSecurityGroupsDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetAllocatedStorage(v int64) *AwsDmsReplicationInstanceDetails {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetAutoMinorVersionUpgrade(v bool) *AwsDmsReplicationInstanceDetails {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetAvailabilityZone(v string) *AwsDmsReplicationInstanceDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetEngineVersion(v string) *AwsDmsReplicationInstanceDetails {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetKmsKeyId(v string) *AwsDmsReplicationInstanceDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetMultiAZ(v bool) *AwsDmsReplicationInstanceDetails {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetPreferredMaintenanceWindow(v string) *AwsDmsReplicationInstanceDetails {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetPubliclyAccessible(v bool) *AwsDmsReplicationInstanceDetails {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetReplicationInstanceClass(v string) *AwsDmsReplicationInstanceDetails {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetReplicationInstanceIdentifier(v string) *AwsDmsReplicationInstanceDetails {
+	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetReplicationSubnetGroup sets the ReplicationSubnetGroup field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetReplicationSubnetGroup(v *AwsDmsReplicationInstanceReplicationSubnetGroupDetails) *AwsDmsReplicationInstanceDetails {
+	s.ReplicationSubnetGroup = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *AwsDmsReplicationInstanceDetails) SetVpcSecurityGroups(v []*AwsDmsReplicationInstanceVpcSecurityGroupsDetails) *AwsDmsReplicationInstanceDetails {
+	s.VpcSecurityGroups = v
+	return s
+}
+
+// Provides details about the replication subnet group.
+type AwsDmsReplicationInstanceReplicationSubnetGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the replication subnet group.
+	ReplicationSubnetGroupIdentifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceReplicationSubnetGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceReplicationSubnetGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *AwsDmsReplicationInstanceReplicationSubnetGroupDetails) SetReplicationSubnetGroupIdentifier(v string) *AwsDmsReplicationInstanceReplicationSubnetGroupDetails {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// Provides details about the virtual private cloud (VPC) security group that’s
+// associated with the replication instance.
+type AwsDmsReplicationInstanceVpcSecurityGroupsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the VPC security group that’s associated with the replication
+	// instance.
+	VpcSecurityGroupId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceVpcSecurityGroupsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationInstanceVpcSecurityGroupsDetails) GoString() string {
+	return s.String()
+}
+
+// SetVpcSecurityGroupId sets the VpcSecurityGroupId field's value.
+func (s *AwsDmsReplicationInstanceVpcSecurityGroupsDetails) SetVpcSecurityGroupId(v string) *AwsDmsReplicationInstanceVpcSecurityGroupsDetails {
+	s.VpcSecurityGroupId = &v
+	return s
+}
+
+// Provides details about an Database Migration Service (DMS) replication task.
+// A replication task moves a set of data from the source endpoint to the target
+// endpoint.
+type AwsDmsReplicationTaskDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates when you want a change data capture (CDC) operation to start. CCdcStartPosition
+	// or CCdcStartTime specifies when you want a CDC operation to start. Only a
+	// value for one of these fields is included.
+	CdcStartPosition *string `type:"string"`
+
+	// Indicates the start time for a CDC operation. CdcStartPosition or CCdcStartTime
+	// specifies when you want a CDC operation to start. Only a value for one of
+	// these fields is included.
+	CdcStartTime *string `type:"string"`
+
+	// Indicates when you want a CDC operation to stop. The value can be either
+	// server time or commit time.
+	CdcStopPosition *string `type:"string"`
+
+	// The identifier of the replication task.
+	Id *string `type:"string"`
+
+	// The migration type.
+	MigrationType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of a replication instance.
+	ReplicationInstanceArn *string `type:"string"`
+
+	// The user-defined replication task identifier or name.
+	ReplicationTaskIdentifier *string `type:"string"`
+
+	// The settings for the replication task.
+	ReplicationTaskSettings *string `type:"string"`
+
+	// A display name for the resource identifier at the end of the EndpointArn
+	// response parameter. If you don't specify a ResourceIdentifier value, DMS
+	// generates a default identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
+	// The ARN of the source endpoint.
+	SourceEndpointArn *string `type:"string"`
+
+	// The table mappings for the replication task, in JSON format.
+	TableMappings *string `type:"string"`
+
+	// The ARN of the target endpoint.
+	TargetEndpointArn *string `type:"string"`
+
+	// Supplemental information that the task requires to migrate the data for certain
+	// source and target endpoints.
+	TaskData *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationTaskDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsDmsReplicationTaskDetails) GoString() string {
+	return s.String()
+}
+
+// SetCdcStartPosition sets the CdcStartPosition field's value.
+func (s *AwsDmsReplicationTaskDetails) SetCdcStartPosition(v string) *AwsDmsReplicationTaskDetails {
+	s.CdcStartPosition = &v
+	return s
+}
+
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *AwsDmsReplicationTaskDetails) SetCdcStartTime(v string) *AwsDmsReplicationTaskDetails {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetCdcStopPosition sets the CdcStopPosition field's value.
+func (s *AwsDmsReplicationTaskDetails) SetCdcStopPosition(v string) *AwsDmsReplicationTaskDetails {
+	s.CdcStopPosition = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsDmsReplicationTaskDetails) SetId(v string) *AwsDmsReplicationTaskDetails {
+	s.Id = &v
+	return s
+}
+
+// SetMigrationType sets the MigrationType field's value.
+func (s *AwsDmsReplicationTaskDetails) SetMigrationType(v string) *AwsDmsReplicationTaskDetails {
+	s.MigrationType = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *AwsDmsReplicationTaskDetails) SetReplicationInstanceArn(v string) *AwsDmsReplicationTaskDetails {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationTaskIdentifier sets the ReplicationTaskIdentifier field's value.
+func (s *AwsDmsReplicationTaskDetails) SetReplicationTaskIdentifier(v string) *AwsDmsReplicationTaskDetails {
+	s.ReplicationTaskIdentifier = &v
+	return s
+}
+
+// SetReplicationTaskSettings sets the ReplicationTaskSettings field's value.
+func (s *AwsDmsReplicationTaskDetails) SetReplicationTaskSettings(v string) *AwsDmsReplicationTaskDetails {
+	s.ReplicationTaskSettings = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *AwsDmsReplicationTaskDetails) SetResourceIdentifier(v string) *AwsDmsReplicationTaskDetails {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *AwsDmsReplicationTaskDetails) SetSourceEndpointArn(v string) *AwsDmsReplicationTaskDetails {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *AwsDmsReplicationTaskDetails) SetTableMappings(v string) *AwsDmsReplicationTaskDetails {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *AwsDmsReplicationTaskDetails) SetTargetEndpointArn(v string) *AwsDmsReplicationTaskDetails {
+	s.TargetEndpointArn = &v
+	return s
+}
+
+// SetTaskData sets the TaskData field's value.
+func (s *AwsDmsReplicationTaskDetails) SetTaskData(v string) *AwsDmsReplicationTaskDetails {
+	s.TaskData = &v
+	return s
+}
+
 // Contains a definition of an attribute for the table.
 type AwsDynamoDbTableAttributeDefinition struct {
 	_ struct{} `type:"structure"`
@@ -25296,6 +25808,9 @@ type AwsEcsTaskDefinitionDetails struct {
 	// The task launch types that the task definition was validated against.
 	RequiresCompatibilities []*string `type:"list"`
 
+	// The status of the task definition.
+	Status *string `type:"string"`
+
 	// The short name or ARN of the IAM role that grants containers in the task
 	// permission to call Amazon Web Services API operations on your behalf.
 	TaskRoleArn *string `type:"string"`
@@ -25391,6 +25906,12 @@ func (s *AwsEcsTaskDefinitionDetails) SetProxyConfiguration(v *AwsEcsTaskDefinit
 // SetRequiresCompatibilities sets the RequiresCompatibilities field's value.
 func (s *AwsEcsTaskDefinitionDetails) SetRequiresCompatibilities(v []*string) *AwsEcsTaskDefinitionDetails {
 	s.RequiresCompatibilities = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetStatus(v string) *AwsEcsTaskDefinitionDetails {
+	s.Status = &v
 	return s
 }
 
@@ -28683,6 +29204,399 @@ func (s *AwsEventSchemasRegistryDetails) SetRegistryName(v string) *AwsEventSche
 	return s
 }
 
+// Provides details about an Amazon EventBridge global endpoint. The endpoint
+// can improve your application’s availability by making it Regional-fault
+// tolerant.
+type AwsEventsEndpointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the endpoint.
+	Arn *string `type:"string"`
+
+	// A description of the endpoint.
+	Description *string `type:"string"`
+
+	// The URL subdomain of the endpoint. For example, if EndpointUrl is https://abcde.veo.endpoints.event.amazonaws.com,
+	// then the EndpointId is abcde.veo.
+	EndpointId *string `type:"string"`
+
+	// The URL of the endpoint.
+	EndpointUrl *string `type:"string"`
+
+	// The event buses being used by the endpoint.
+	EventBuses []*AwsEventsEndpointEventBusesDetails `type:"list"`
+
+	// The name of the endpoint.
+	Name *string `type:"string"`
+
+	// Whether event replication was enabled or disabled for this endpoint. The
+	// default state is ENABLED, which means you must supply a RoleArn. If you don't
+	// have a RoleArn or you don't want event replication enabled, set the state
+	// to DISABLED.
+	ReplicationConfig *AwsEventsEndpointReplicationConfigDetails `type:"structure"`
+
+	// The ARN of the role used by event replication for the endpoint.
+	RoleArn *string `type:"string"`
+
+	// The routing configuration of the endpoint.
+	RoutingConfig *AwsEventsEndpointRoutingConfigDetails `type:"structure"`
+
+	// The current state of the endpoint.
+	State *string `type:"string"`
+
+	// The reason the endpoint is in its current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEventsEndpointDetails) SetArn(v string) *AwsEventsEndpointDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsEventsEndpointDetails) SetDescription(v string) *AwsEventsEndpointDetails {
+	s.Description = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *AwsEventsEndpointDetails) SetEndpointId(v string) *AwsEventsEndpointDetails {
+	s.EndpointId = &v
+	return s
+}
+
+// SetEndpointUrl sets the EndpointUrl field's value.
+func (s *AwsEventsEndpointDetails) SetEndpointUrl(v string) *AwsEventsEndpointDetails {
+	s.EndpointUrl = &v
+	return s
+}
+
+// SetEventBuses sets the EventBuses field's value.
+func (s *AwsEventsEndpointDetails) SetEventBuses(v []*AwsEventsEndpointEventBusesDetails) *AwsEventsEndpointDetails {
+	s.EventBuses = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEventsEndpointDetails) SetName(v string) *AwsEventsEndpointDetails {
+	s.Name = &v
+	return s
+}
+
+// SetReplicationConfig sets the ReplicationConfig field's value.
+func (s *AwsEventsEndpointDetails) SetReplicationConfig(v *AwsEventsEndpointReplicationConfigDetails) *AwsEventsEndpointDetails {
+	s.ReplicationConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AwsEventsEndpointDetails) SetRoleArn(v string) *AwsEventsEndpointDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRoutingConfig sets the RoutingConfig field's value.
+func (s *AwsEventsEndpointDetails) SetRoutingConfig(v *AwsEventsEndpointRoutingConfigDetails) *AwsEventsEndpointDetails {
+	s.RoutingConfig = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AwsEventsEndpointDetails) SetState(v string) *AwsEventsEndpointDetails {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *AwsEventsEndpointDetails) SetStateReason(v string) *AwsEventsEndpointDetails {
+	s.StateReason = &v
+	return s
+}
+
+// Provides details about the Amazon EventBridge event buses that the endpoint
+// is associated with.
+type AwsEventsEndpointEventBusesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the event bus that the endpoint is associated
+	// with.
+	EventBusArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointEventBusesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointEventBusesDetails) GoString() string {
+	return s.String()
+}
+
+// SetEventBusArn sets the EventBusArn field's value.
+func (s *AwsEventsEndpointEventBusesDetails) SetEventBusArn(v string) *AwsEventsEndpointEventBusesDetails {
+	s.EventBusArn = &v
+	return s
+}
+
+// Indicates whether replication is enabled or disabled for the endpoint. If
+// enabled, the endpoint can replicate all events to a secondary Amazon Web
+// Services Region.
+type AwsEventsEndpointReplicationConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The state of event replication.
+	State *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointReplicationConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointReplicationConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *AwsEventsEndpointReplicationConfigDetails) SetState(v string) *AwsEventsEndpointReplicationConfigDetails {
+	s.State = &v
+	return s
+}
+
+// Provides details about the routing configuration of the endpoint.
+type AwsEventsEndpointRoutingConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The failover configuration for an endpoint. This includes what triggers failover
+	// and what happens when it's triggered.
+	FailoverConfig *AwsEventsEndpointRoutingConfigFailoverConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetFailoverConfig sets the FailoverConfig field's value.
+func (s *AwsEventsEndpointRoutingConfigDetails) SetFailoverConfig(v *AwsEventsEndpointRoutingConfigFailoverConfigDetails) *AwsEventsEndpointRoutingConfigDetails {
+	s.FailoverConfig = v
+	return s
+}
+
+// The failover configuration for an endpoint. This includes what triggers failover
+// and what happens when it's triggered.
+type AwsEventsEndpointRoutingConfigFailoverConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The main Region of the endpoint.
+	Primary *AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails `type:"structure"`
+
+	// The Region that events are routed to when failover is triggered or event
+	// replication is enabled.
+	Secondary *AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *AwsEventsEndpointRoutingConfigFailoverConfigDetails) SetPrimary(v *AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails) *AwsEventsEndpointRoutingConfigFailoverConfigDetails {
+	s.Primary = v
+	return s
+}
+
+// SetSecondary sets the Secondary field's value.
+func (s *AwsEventsEndpointRoutingConfigFailoverConfigDetails) SetSecondary(v *AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails) *AwsEventsEndpointRoutingConfigFailoverConfigDetails {
+	s.Secondary = v
+	return s
+}
+
+// Provides details about the primary Amazon Web Services Region of the endpoint.
+type AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the health check used by the endpoint to
+	// determine whether failover is triggered.
+	HealthCheck *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails) GoString() string {
+	return s.String()
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails) SetHealthCheck(v string) *AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails {
+	s.HealthCheck = &v
+	return s
+}
+
+// The Amazon Web Services Region that events are routed to when failover is
+// triggered or event replication is enabled.
+type AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the secondary Region.
+	Route *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails) GoString() string {
+	return s.String()
+}
+
+// SetRoute sets the Route field's value.
+func (s *AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails) SetRoute(v string) *AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails {
+	s.Route = &v
+	return s
+}
+
+// Provides details about Amazon EventBridge event bus. An event bus is a router
+// that receives events and delivers them to zero or more destinations, or targets.
+// This can be a custom event bus which you can use to receive events from your
+// custom applications and services, or it can be a partner event bus which
+// can be matched to a partner event source.
+type AwsEventsEventbusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the account permitted to write events to
+	// the current account.
+	Arn *string `type:"string"`
+
+	// The name of the event bus.
+	Name *string `type:"string"`
+
+	// The policy that enables the external account to send events to your account.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEventbusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEventsEventbusDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEventsEventbusDetails) SetArn(v string) *AwsEventsEventbusDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEventsEventbusDetails) SetName(v string) *AwsEventsEventbusDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *AwsEventsEventbusDetails) SetPolicy(v string) *AwsEventsEventbusDetails {
+	s.Policy = &v
+	return s
+}
+
 // An object that contains information on the status of CloudTrail as a data
 // source for the detector.
 type AwsGuardDutyDetectorDataSourcesCloudTrailDetails struct {
@@ -31204,6 +32118,460 @@ func (s *AwsMountPoint) SetSourceVolume(v string) *AwsMountPoint {
 	return s
 }
 
+// Provides details about different modes of client authentication.
+type AwsMskClusterClusterInfoClientAuthenticationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details for client authentication using SASL.
+	Sasl *AwsMskClusterClusterInfoClientAuthenticationSaslDetails `type:"structure"`
+
+	// Provides details for client authentication using TLS.
+	Tls *AwsMskClusterClusterInfoClientAuthenticationTlsDetails `type:"structure"`
+
+	// Provides details for allowing no client authentication.
+	Unauthenticated *AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationDetails) GoString() string {
+	return s.String()
+}
+
+// SetSasl sets the Sasl field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationDetails) SetSasl(v *AwsMskClusterClusterInfoClientAuthenticationSaslDetails) *AwsMskClusterClusterInfoClientAuthenticationDetails {
+	s.Sasl = v
+	return s
+}
+
+// SetTls sets the Tls field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationDetails) SetTls(v *AwsMskClusterClusterInfoClientAuthenticationTlsDetails) *AwsMskClusterClusterInfoClientAuthenticationDetails {
+	s.Tls = v
+	return s
+}
+
+// SetUnauthenticated sets the Unauthenticated field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationDetails) SetUnauthenticated(v *AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails) *AwsMskClusterClusterInfoClientAuthenticationDetails {
+	s.Unauthenticated = v
+	return s
+}
+
+// Provides details for client authentication using SASL.
+type AwsMskClusterClusterInfoClientAuthenticationSaslDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details for SASL client authentication using IAM.
+	Iam *AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails `type:"structure"`
+
+	// Details for SASL client authentication using SCRAM.
+	Scram *AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslDetails) GoString() string {
+	return s.String()
+}
+
+// SetIam sets the Iam field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationSaslDetails) SetIam(v *AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails) *AwsMskClusterClusterInfoClientAuthenticationSaslDetails {
+	s.Iam = v
+	return s
+}
+
+// SetScram sets the Scram field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationSaslDetails) SetScram(v *AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails) *AwsMskClusterClusterInfoClientAuthenticationSaslDetails {
+	s.Scram = v
+	return s
+}
+
+// Details for SASL/IAM client authentication.
+type AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether SASL/IAM authentication is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails) SetEnabled(v bool) *AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Details for SASL/SCRAM client authentication.
+type AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether SASL/SCRAM authentication is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails) SetEnabled(v bool) *AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Provides details for client authentication using TLS.
+type AwsMskClusterClusterInfoClientAuthenticationTlsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// List of Amazon Web Services Private CA Amazon Resource Names (ARNs). Amazon
+	// Web Services Private CA enables creation of private certificate authority
+	// (CA) hierarchies, including root and subordinate CAs, without the investment
+	// and maintenance costs of operating an on-premises CA.
+	CertificateAuthorityArnList []*string `type:"list"`
+
+	// Indicates whether TLS authentication is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationTlsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationTlsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAuthorityArnList sets the CertificateAuthorityArnList field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationTlsDetails) SetCertificateAuthorityArnList(v []*string) *AwsMskClusterClusterInfoClientAuthenticationTlsDetails {
+	s.CertificateAuthorityArnList = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationTlsDetails) SetEnabled(v bool) *AwsMskClusterClusterInfoClientAuthenticationTlsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Provides details for allowing no client authentication.
+type AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether unauthenticated is allowed or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails) SetEnabled(v bool) *AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Provide details about an Amazon MSK cluster.
+type AwsMskClusterClusterInfoDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information for different modes of client authentication.
+	ClientAuthentication *AwsMskClusterClusterInfoClientAuthenticationDetails `type:"structure"`
+
+	// The name of the cluster.
+	ClusterName *string `type:"string"`
+
+	// The current version of the MSK cluster.
+	CurrentVersion *string `type:"string"`
+
+	// Includes encryption-related information, such as the KMS key used for encrypting
+	// data at rest and whether you want Amazon MSK to encrypt your data in transit.
+	EncryptionInfo *AwsMskClusterClusterInfoEncryptionInfoDetails `type:"structure"`
+
+	// The number of broker nodes in the cluster.
+	NumberOfBrokerNodes *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoDetails) GoString() string {
+	return s.String()
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetClientAuthentication(v *AwsMskClusterClusterInfoClientAuthenticationDetails) *AwsMskClusterClusterInfoDetails {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetClusterName(v string) *AwsMskClusterClusterInfoDetails {
+	s.ClusterName = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetCurrentVersion(v string) *AwsMskClusterClusterInfoDetails {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetEncryptionInfo sets the EncryptionInfo field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetEncryptionInfo(v *AwsMskClusterClusterInfoEncryptionInfoDetails) *AwsMskClusterClusterInfoDetails {
+	s.EncryptionInfo = v
+	return s
+}
+
+// SetNumberOfBrokerNodes sets the NumberOfBrokerNodes field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetNumberOfBrokerNodes(v int64) *AwsMskClusterClusterInfoDetails {
+	s.NumberOfBrokerNodes = &v
+	return s
+}
+
+// Includes encryption-related information, such as the KMS key used for encrypting
+// data at rest and whether you want MSK to encrypt your data in transit.
+type AwsMskClusterClusterInfoEncryptionInfoDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The data-volume encryption details. You can't update encryption at rest settings
+	// for existing clusters.
+	EncryptionAtRest *AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails `type:"structure"`
+
+	// The settings for encrypting data in transit.
+	EncryptionInTransit *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoDetails) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionAtRest sets the EncryptionAtRest field's value.
+func (s *AwsMskClusterClusterInfoEncryptionInfoDetails) SetEncryptionAtRest(v *AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails) *AwsMskClusterClusterInfoEncryptionInfoDetails {
+	s.EncryptionAtRest = v
+	return s
+}
+
+// SetEncryptionInTransit sets the EncryptionInTransit field's value.
+func (s *AwsMskClusterClusterInfoEncryptionInfoDetails) SetEncryptionInTransit(v *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails) *AwsMskClusterClusterInfoEncryptionInfoDetails {
+	s.EncryptionInTransit = v
+	return s
+}
+
+// The data-volume encryption details. You can't update encryption at rest settings
+// for existing clusters.
+type AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the KMS key for encrypting data at rest.
+	// If you don't specify a KMS key, MSK creates one for you and uses it.
+	DataVolumeKMSKeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataVolumeKMSKeyId sets the DataVolumeKMSKeyId field's value.
+func (s *AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails) SetDataVolumeKMSKeyId(v string) *AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails {
+	s.DataVolumeKMSKeyId = &v
+	return s
+}
+
+// The settings for encrypting data in transit.
+type AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the encryption setting for data in transit between clients and
+	// brokers.
+	ClientBroker *string `type:"string"`
+
+	// When set to true, it indicates that data communication among the broker nodes
+	// of the cluster is encrypted. When set to false, the communication happens
+	// in plain text. The default value is true.
+	InCluster *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails) GoString() string {
+	return s.String()
+}
+
+// SetClientBroker sets the ClientBroker field's value.
+func (s *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails) SetClientBroker(v string) *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails {
+	s.ClientBroker = &v
+	return s
+}
+
+// SetInCluster sets the InCluster field's value.
+func (s *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails) SetInCluster(v bool) *AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails {
+	s.InCluster = &v
+	return s
+}
+
+// Provides details about an Amazon Managed Streaming for Apache Kafka (Amazon
+// MSK) cluster.
+type AwsMskClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about a cluster.
+	ClusterInfo *AwsMskClusterClusterInfoDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsMskClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetClusterInfo sets the ClusterInfo field's value.
+func (s *AwsMskClusterDetails) SetClusterInfo(v *AwsMskClusterClusterInfoDetails) *AwsMskClusterDetails {
+	s.ClusterInfo = v
+	return s
+}
+
 // Details about an Network Firewall firewall.
 type AwsNetworkFirewallFirewallDetails struct {
 	_ struct{} `type:"structure"`
@@ -32388,6 +33756,9 @@ type AwsRdsDbClusterDetails struct {
 	// A list of the IAM roles that are associated with the DB cluster.
 	AssociatedRoles []*AwsRdsDbClusterAssociatedRole `type:"list"`
 
+	// Indicates if minor version upgrades are automatically applied to the cluster.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
 	// A list of Availability Zones (AZs) where instances in the DB cluster can
 	// be created.
 	AvailabilityZones []*string `type:"list"`
@@ -32566,6 +33937,12 @@ func (s *AwsRdsDbClusterDetails) SetAllocatedStorage(v int64) *AwsRdsDbClusterDe
 // SetAssociatedRoles sets the AssociatedRoles field's value.
 func (s *AwsRdsDbClusterDetails) SetAssociatedRoles(v []*AwsRdsDbClusterAssociatedRole) *AwsRdsDbClusterDetails {
 	s.AssociatedRoles = v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *AwsRdsDbClusterDetails) SetAutoMinorVersionUpgrade(v bool) *AwsRdsDbClusterDetails {
+	s.AutoMinorVersionUpgrade = &v
 	return s
 }
 
@@ -36487,6 +37864,232 @@ func (s *AwsRedshiftClusterVpcSecurityGroup) SetStatus(v string) *AwsRedshiftClu
 // SetVpcSecurityGroupId sets the VpcSecurityGroupId field's value.
 func (s *AwsRedshiftClusterVpcSecurityGroup) SetVpcSecurityGroupId(v string) *AwsRedshiftClusterVpcSecurityGroup {
 	s.VpcSecurityGroupId = &v
+	return s
+}
+
+// An object that contains an optional comment about your Amazon Route 53 hosted
+// zone.
+type AwsRoute53HostedZoneConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Any comments that you include about the hosted zone.
+	Comment *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *AwsRoute53HostedZoneConfigDetails) SetComment(v string) *AwsRoute53HostedZoneConfigDetails {
+	s.Comment = &v
+	return s
+}
+
+// Provides details about a specified Amazon Route 53 hosted zone, including
+// the four name servers assigned to the hosted zone. A hosted zone represents
+// a collection of records that can be managed together, belonging to a single
+// parent domain name.
+type AwsRoute53HostedZoneDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about the specified hosted zone.
+	HostedZone *AwsRoute53HostedZoneObjectDetails `type:"structure"`
+
+	// An object that contains a list of the authoritative name servers for a hosted
+	// zone or for a reusable delegation set.
+	NameServers []*string `type:"list"`
+
+	// An array that contains one QueryLoggingConfig element for each DNS query
+	// logging configuration that is associated with the current Amazon Web Services
+	// account.
+	QueryLoggingConfig *AwsRoute53QueryLoggingConfigDetails `type:"structure"`
+
+	// An object that contains information about the Amazon Virtual Private Clouds
+	// (Amazon VPCs) that are associated with the specified hosted zone.
+	Vpcs []*AwsRoute53HostedZoneVpcDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneDetails) GoString() string {
+	return s.String()
+}
+
+// SetHostedZone sets the HostedZone field's value.
+func (s *AwsRoute53HostedZoneDetails) SetHostedZone(v *AwsRoute53HostedZoneObjectDetails) *AwsRoute53HostedZoneDetails {
+	s.HostedZone = v
+	return s
+}
+
+// SetNameServers sets the NameServers field's value.
+func (s *AwsRoute53HostedZoneDetails) SetNameServers(v []*string) *AwsRoute53HostedZoneDetails {
+	s.NameServers = v
+	return s
+}
+
+// SetQueryLoggingConfig sets the QueryLoggingConfig field's value.
+func (s *AwsRoute53HostedZoneDetails) SetQueryLoggingConfig(v *AwsRoute53QueryLoggingConfigDetails) *AwsRoute53HostedZoneDetails {
+	s.QueryLoggingConfig = v
+	return s
+}
+
+// SetVpcs sets the Vpcs field's value.
+func (s *AwsRoute53HostedZoneDetails) SetVpcs(v []*AwsRoute53HostedZoneVpcDetails) *AwsRoute53HostedZoneDetails {
+	s.Vpcs = v
+	return s
+}
+
+// An object that contains information about an Amazon Route 53 hosted zone.
+type AwsRoute53HostedZoneObjectDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An object that includes the Comment element.
+	Config *AwsRoute53HostedZoneConfigDetails `type:"structure"`
+
+	// The ID that Route 53 assigns to the hosted zone when you create it.
+	Id *string `type:"string"`
+
+	// The name of the domain. For public hosted zones, this is the name that you
+	// have registered with your DNS registrar.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneObjectDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneObjectDetails) GoString() string {
+	return s.String()
+}
+
+// SetConfig sets the Config field's value.
+func (s *AwsRoute53HostedZoneObjectDetails) SetConfig(v *AwsRoute53HostedZoneConfigDetails) *AwsRoute53HostedZoneObjectDetails {
+	s.Config = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsRoute53HostedZoneObjectDetails) SetId(v string) *AwsRoute53HostedZoneObjectDetails {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsRoute53HostedZoneObjectDetails) SetName(v string) *AwsRoute53HostedZoneObjectDetails {
+	s.Name = &v
+	return s
+}
+
+// For private hosted zones, this is a complex type that contains information
+// about an Amazon VPC.
+type AwsRoute53HostedZoneVpcDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of an Amazon VPC.
+	Id *string `type:"string"`
+
+	// The Amazon Web Services Region that an Amazon VPC was created in.
+	Region *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneVpcDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53HostedZoneVpcDetails) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *AwsRoute53HostedZoneVpcDetails) SetId(v string) *AwsRoute53HostedZoneVpcDetails {
+	s.Id = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *AwsRoute53HostedZoneVpcDetails) SetRegion(v string) *AwsRoute53HostedZoneVpcDetails {
+	s.Region = &v
+	return s
+}
+
+// Provides details about a specified Amazon Route 53 configuration for DNS
+// query logging.
+type AwsRoute53QueryLoggingConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon CloudWatch Logs log group that
+	// Route 53 is publishing logs to.
+	CloudWatchLogsLogGroupArn *CloudWatchLogsLogGroupArnConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53QueryLoggingConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRoute53QueryLoggingConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *AwsRoute53QueryLoggingConfigDetails) SetCloudWatchLogsLogGroupArn(v *CloudWatchLogsLogGroupArnConfigDetails) *AwsRoute53QueryLoggingConfigDetails {
+	s.CloudWatchLogsLogGroupArn = v
 	return s
 }
 
@@ -44497,6 +46100,58 @@ func (s *ClassificationStatus) SetCode(v string) *ClassificationStatus {
 // SetReason sets the Reason field's value.
 func (s *ClassificationStatus) SetReason(v string) *ClassificationStatus {
 	s.Reason = &v
+	return s
+}
+
+// The Amazon Resource Name (ARN) and other details of the Amazon CloudWatch
+// Logs log group that Amazon Route 53 is publishing logs to.
+type CloudWatchLogsLogGroupArnConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CloudWatch Logs log group that Route 53 is publishing logs
+	// to.
+	CloudWatchLogsLogGroupArn *string `type:"string"`
+
+	// The ID of the hosted zone that CloudWatch Logs is logging queries for.
+	HostedZoneId *string `type:"string"`
+
+	// The ID for a DNS query logging configuration.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchLogsLogGroupArnConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchLogsLogGroupArnConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *CloudWatchLogsLogGroupArnConfigDetails) SetCloudWatchLogsLogGroupArn(v string) *CloudWatchLogsLogGroupArnConfigDetails {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *CloudWatchLogsLogGroupArnConfigDetails) SetHostedZoneId(v string) *CloudWatchLogsLogGroupArnConfigDetails {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CloudWatchLogsLogGroupArnConfigDetails) SetId(v string) *CloudWatchLogsLogGroupArnConfigDetails {
+	s.Id = &v
 	return s
 }
 
@@ -53027,6 +54682,20 @@ type ResourceDetails struct {
 	// Details for an CodeBuild project.
 	AwsCodeBuildProject *AwsCodeBuildProjectDetails `type:"structure"`
 
+	// Provides details about an Database Migration Service (DMS) endpoint. An endpoint
+	// provides connection, data store type, and location information about your
+	// data store.
+	AwsDmsEndpoint *AwsDmsEndpointDetails `type:"structure"`
+
+	// Provides details about an DMS replication instance. DMS uses a replication
+	// instance to connect to your source data store, read the source data, and
+	// format the data for consumption by the target data store.
+	AwsDmsReplicationInstance *AwsDmsReplicationInstanceDetails `type:"structure"`
+
+	// Provides details about an DMS replication task. A replication task moves
+	// a set of data from the source endpoint to the target endpoint.
+	AwsDmsReplicationTask *AwsDmsReplicationTaskDetails `type:"structure"`
+
 	// Details about a DynamoDB table.
 	AwsDynamoDbTable *AwsDynamoDbTableDetails `type:"structure"`
 
@@ -53126,6 +54795,16 @@ type ResourceDetails struct {
 	// so that your schemas are in logical groups.
 	AwsEventSchemasRegistry *AwsEventSchemasRegistryDetails `type:"structure"`
 
+	// Provides details about an Amazon EventBridge global endpoint. The endpoint
+	// can improve your application’s availability by making it Regional-fault
+	// tolerant.
+	AwsEventsEndpoint *AwsEventsEndpointDetails `type:"structure"`
+
+	// Provides details about Amazon EventBridge event bus for an endpoint. An event
+	// bus is a router that receives events and delivers them to zero or more destinations,
+	// or targets.
+	AwsEventsEventbus *AwsEventsEventbusDetails `type:"structure"`
+
 	// Provides details about an Amazon GuardDuty detector. A detector is an object
 	// that represents the GuardDuty service. A detector is required for GuardDuty
 	// to become operational.
@@ -53157,6 +54836,10 @@ type ResourceDetails struct {
 
 	// Details for a Lambda layer version.
 	AwsLambdaLayerVersion *AwsLambdaLayerVersionDetails `type:"structure"`
+
+	// Provides details about an Amazon Managed Streaming for Apache Kafka (Amazon
+	// MSK) cluster.
+	AwsMskCluster *AwsMskClusterDetails `type:"structure"`
 
 	// Details about an Network Firewall firewall.
 	AwsNetworkFirewallFirewall *AwsNetworkFirewallFirewallDetails `type:"structure"`
@@ -53190,6 +54873,12 @@ type ResourceDetails struct {
 
 	// Contains details about an Amazon Redshift cluster.
 	AwsRedshiftCluster *AwsRedshiftClusterDetails `type:"structure"`
+
+	// Provides details about an Amazon Route 53 hosted zone, including the four
+	// name servers assigned to the hosted zone. A hosted zone represents a collection
+	// of records that can be managed together, belonging to a single parent domain
+	// name.
+	AwsRoute53HostedZone *AwsRoute53HostedZoneDetails `type:"structure"`
 
 	// Details about the Amazon S3 Public Access Block configuration for an account.
 	AwsS3AccountPublicAccessBlock *AwsS3AccountPublicAccessBlockDetails `type:"structure"`
@@ -53410,6 +55099,24 @@ func (s *ResourceDetails) SetAwsCodeBuildProject(v *AwsCodeBuildProjectDetails) 
 	return s
 }
 
+// SetAwsDmsEndpoint sets the AwsDmsEndpoint field's value.
+func (s *ResourceDetails) SetAwsDmsEndpoint(v *AwsDmsEndpointDetails) *ResourceDetails {
+	s.AwsDmsEndpoint = v
+	return s
+}
+
+// SetAwsDmsReplicationInstance sets the AwsDmsReplicationInstance field's value.
+func (s *ResourceDetails) SetAwsDmsReplicationInstance(v *AwsDmsReplicationInstanceDetails) *ResourceDetails {
+	s.AwsDmsReplicationInstance = v
+	return s
+}
+
+// SetAwsDmsReplicationTask sets the AwsDmsReplicationTask field's value.
+func (s *ResourceDetails) SetAwsDmsReplicationTask(v *AwsDmsReplicationTaskDetails) *ResourceDetails {
+	s.AwsDmsReplicationTask = v
+	return s
+}
+
 // SetAwsDynamoDbTable sets the AwsDynamoDbTable field's value.
 func (s *ResourceDetails) SetAwsDynamoDbTable(v *AwsDynamoDbTableDetails) *ResourceDetails {
 	s.AwsDynamoDbTable = v
@@ -53584,6 +55291,18 @@ func (s *ResourceDetails) SetAwsEventSchemasRegistry(v *AwsEventSchemasRegistryD
 	return s
 }
 
+// SetAwsEventsEndpoint sets the AwsEventsEndpoint field's value.
+func (s *ResourceDetails) SetAwsEventsEndpoint(v *AwsEventsEndpointDetails) *ResourceDetails {
+	s.AwsEventsEndpoint = v
+	return s
+}
+
+// SetAwsEventsEventbus sets the AwsEventsEventbus field's value.
+func (s *ResourceDetails) SetAwsEventsEventbus(v *AwsEventsEventbusDetails) *ResourceDetails {
+	s.AwsEventsEventbus = v
+	return s
+}
+
 // SetAwsGuardDutyDetector sets the AwsGuardDutyDetector field's value.
 func (s *ResourceDetails) SetAwsGuardDutyDetector(v *AwsGuardDutyDetectorDetails) *ResourceDetails {
 	s.AwsGuardDutyDetector = v
@@ -53641,6 +55360,12 @@ func (s *ResourceDetails) SetAwsLambdaFunction(v *AwsLambdaFunctionDetails) *Res
 // SetAwsLambdaLayerVersion sets the AwsLambdaLayerVersion field's value.
 func (s *ResourceDetails) SetAwsLambdaLayerVersion(v *AwsLambdaLayerVersionDetails) *ResourceDetails {
 	s.AwsLambdaLayerVersion = v
+	return s
+}
+
+// SetAwsMskCluster sets the AwsMskCluster field's value.
+func (s *ResourceDetails) SetAwsMskCluster(v *AwsMskClusterDetails) *ResourceDetails {
+	s.AwsMskCluster = v
 	return s
 }
 
@@ -53707,6 +55432,12 @@ func (s *ResourceDetails) SetAwsRdsEventSubscription(v *AwsRdsEventSubscriptionD
 // SetAwsRedshiftCluster sets the AwsRedshiftCluster field's value.
 func (s *ResourceDetails) SetAwsRedshiftCluster(v *AwsRedshiftClusterDetails) *ResourceDetails {
 	s.AwsRedshiftCluster = v
+	return s
+}
+
+// SetAwsRoute53HostedZone sets the AwsRoute53HostedZone field's value.
+func (s *ResourceDetails) SetAwsRoute53HostedZone(v *AwsRoute53HostedZoneDetails) *ResourceDetails {
+	s.AwsRoute53HostedZone = v
 	return s
 }
 

@@ -2153,8 +2153,8 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html#multi-az-db-clusters-migrating-to-instance-with-read-replica)
 // in the Amazon RDS User Guide.
 //
-// Amazon Aurora doesn't support this operation. Call the CreateDBInstance operation
-// to create a DB instance for an Aurora DB cluster.
+// Amazon Aurora doesn't support this operation. To create a DB instance for
+// an Aurora DB cluster, use the CreateDBInstance operation.
 //
 // All read replica DB instances are created with backups disabled. All other
 // attributes (including DB security groups and DB parameter groups) are inherited
@@ -3850,15 +3850,14 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 
 // DeleteDBInstance API operation for Amazon Relational Database Service.
 //
-// The DeleteDBInstance action deletes a previously provisioned DB instance.
-// When you delete a DB instance, all automated backups for that instance are
-// deleted and can't be recovered. Manual DB snapshots of the DB instance to
-// be deleted by DeleteDBInstance are not deleted.
+// Deletes a previously provisioned DB instance. When you delete a DB instance,
+// all automated backups for that instance are deleted and can't be recovered.
+// However, manual DB snapshots of the DB instance aren't deleted.
 //
-// If you request a final DB snapshot the status of the Amazon RDS DB instance
-// is deleting until the DB snapshot is created. The API action DescribeDBInstance
-// is used to monitor the status of this operation. The action can't be canceled
-// or reverted once submitted.
+// If you request a final DB snapshot, the status of the Amazon RDS DB instance
+// is deleting until the DB snapshot is created. This operation can't be canceled
+// or reverted after it begins. To monitor the status of this operation, use
+// DescribeDBInstance.
 //
 // When a DB instance is in a failure state and has a status of failed, incompatible-restore,
 // or incompatible-network, you can only delete it when you skip creation of
@@ -3871,10 +3870,15 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 //
 //   - The DB instance is the only instance in the DB cluster.
 //
-// To delete a DB instance in this case, first call the PromoteReadReplicaDBCluster
-// API action to promote the DB cluster so it's no longer a read replica. After
-// the promotion completes, then call the DeleteDBInstance API action to delete
+// To delete a DB instance in this case, first use the PromoteReadReplicaDBCluster
+// operation to promote the DB cluster so that it's no longer a read replica.
+// After the promotion completes, use the DeleteDBInstance operation to delete
 // the final instance in the DB cluster.
+//
+// For RDS Custom DB instances, deleting the DB instance permanently deletes
+// the EC2 instance and the associated EBS volumes. Make sure that you don't
+// terminate or delete these resources before you delete the DB instance. Otherwise,
+// deleting the DB instance and creation of the final snapshot might fail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6378,7 +6382,7 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 
 // DescribeDBEngineVersions API operation for Amazon Relational Database Service.
 //
-// Returns a list of the available DB engines.
+// Describes the properties of specific versions of DB engines.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16498,7 +16502,7 @@ type ApplyPendingMaintenanceActionInput struct {
 
 	// The pending maintenance action to apply to this resource.
 	//
-	// Valid values: system-update, db-upgrade, hardware-maintenance, ca-certificate-rotation
+	// Valid Values: system-update, db-upgrade, hardware-maintenance, ca-certificate-rotation
 	//
 	// ApplyAction is a required field
 	ApplyAction *string `type:"string" required:"true"`
@@ -16506,7 +16510,7 @@ type ApplyPendingMaintenanceActionInput struct {
 	// A value that specifies the type of opt-in request, or undoes an opt-in request.
 	// An opt-in request of type immediate can't be undone.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * immediate - Apply the maintenance action immediately.
 	//
@@ -16863,16 +16867,14 @@ type BacktrackDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
-	// A value that indicates whether to force the DB cluster to backtrack when
-	// binary logging is enabled. Otherwise, an error occurs when binary logging
-	// is enabled.
+	// Specifies whether to force the DB cluster to backtrack when binary logging
+	// is enabled. Otherwise, an error occurs when binary logging is enabled.
 	Force *bool `type:"boolean"`
 
-	// A value that indicates whether to backtrack the DB cluster to the earliest
-	// possible backtrack time when BacktrackTo is set to a timestamp earlier than
-	// the earliest backtrack time. When this parameter is disabled and BacktrackTo
-	// is set to a timestamp earlier than the earliest backtrack time, an error
-	// occurs.
+	// Specifies whether to backtrack the DB cluster to the earliest possible backtrack
+	// time when BacktrackTo is set to a timestamp earlier than the earliest backtrack
+	// time. When this parameter is disabled and BacktrackTo is set to a timestamp
+	// earlier than the earliest backtrack time, an error occurs.
 	UseEarliestTimeOnPointInTimeUnavailable *bool `type:"boolean"`
 }
 
@@ -17287,11 +17289,13 @@ func (s *CancelExportTaskInput) SetExportTaskIdentifier(v string) *CancelExportT
 
 // Contains the details of a snapshot or cluster export to Amazon S3.
 //
-// This data type is used as a response element in the DescribeExportTasks action.
+// This data type is used as a response element in the DescribeExportTasks operation.
 type CancelExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot or cluster. Valid values are the following:
+	// The data exported from the snapshot or cluster.
+	//
+	// Valid Values:
 	//
 	//    * database - Export all the data from a specified database.
 	//
@@ -17327,14 +17331,14 @@ type CancelExportTaskOutput struct {
 	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot or cluster is exported to.
+	// The Amazon S3 bucket where the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
 	// data.
 	S3Prefix *string `type:"string"`
 
-	// The time that the snapshot was created.
+	// The time when the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
@@ -17359,10 +17363,10 @@ type CancelExportTaskOutput struct {
 	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot or cluster export task ended.
+	// The time when the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot or cluster export task started.
+	// The time when the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
@@ -17505,7 +17509,7 @@ type Certificate struct {
 	// The type of the certificate.
 	CertificateType *string `type:"string"`
 
-	// Whether there is an override for the default certificate identifier.
+	// Indicates whether there is an override for the default certificate identifier.
 	CustomerOverride *bool `type:"boolean"`
 
 	// If there is an override for the default certificate identifier, when the
@@ -17751,8 +17755,8 @@ type ClusterPendingModifiedValues struct {
 	// The database engine version.
 	EngineVersion *string `type:"string"`
 
-	// A value that indicates whether mapping of Amazon Web Services Identity and
-	// Access Management (IAM) accounts to database accounts is enabled.
+	// Indicates whether mapping of Amazon Web Services Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// The Provisioned IOPS (I/O operations per second) value. This setting is only
@@ -17848,12 +17852,15 @@ type ConnectionPoolConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The number of seconds for a proxy to wait for a connection to become available
-	// in the connection pool. Only applies when the proxy has opened its maximum
-	// number of connections and all connections are busy with client sessions.
+	// in the connection pool. This setting only applies when the proxy has opened
+	// its maximum number of connections and all connections are busy with client
+	// sessions. For an unlimited wait time, specify 0.
 	//
 	// Default: 120
 	//
-	// Constraints: between 1 and 3600, or 0 representing unlimited
+	// Constraints:
+	//
+	//    * Must be between 0 and 3600.
 	ConnectionBorrowTimeout *int64 `type:"integer"`
 
 	// One or more SQL statements for the proxy to run when opening each new database
@@ -17874,13 +17881,15 @@ type ConnectionPoolConfiguration struct {
 	//
 	// Default: 10 for RDS for Microsoft SQL Server, and 100 for all other engines
 	//
-	// Constraints: Must be between 1 and 100.
+	// Constraints:
+	//
+	//    * Must be between 1 and 100.
 	MaxConnectionsPercent *int64 `type:"integer"`
 
-	// Controls how actively the proxy closes idle database connections in the connection
-	// pool. The value is expressed as a percentage of the max_connections setting
-	// for the RDS DB instance or Aurora DB cluster used by the target group. With
-	// a high value, the proxy leaves a high percentage of idle database connections
+	// A value that controls how actively the proxy closes idle database connections
+	// in the connection pool. The value is expressed as a percentage of the max_connections
+	// setting for the RDS DB instance or Aurora DB cluster used by the target group.
+	// With a high value, the proxy leaves a high percentage of idle database connections
 	// open. A low value causes the proxy to close more idle connections and return
 	// them to the database.
 	//
@@ -17892,7 +17901,9 @@ type ConnectionPoolConfiguration struct {
 	// Server, MaxIdleConnectionsPercent is 5, and for all other engines, the default
 	// is 50.
 	//
-	// Constraints: Must be between 0 and the value of MaxConnectionsPercent.
+	// Constraints:
+	//
+	//    * Must be between 0 and the value of MaxConnectionsPercent.
 	MaxIdleConnectionsPercent *int64 `type:"integer"`
 
 	// Each item in the list represents a class of SQL operations that normally
@@ -18180,8 +18191,8 @@ func (s *CopyDBClusterParameterGroupOutput) SetDBClusterParameterGroup(v *DBClus
 type CopyDBClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to copy all tags from the source DB cluster
-	// snapshot to the target DB cluster snapshot. By default, tags are not copied.
+	// Specifies whether to copy all tags from the source DB cluster snapshot to
+	// the target DB cluster snapshot. By default, tags are not copied.
 	CopyTags *bool `type:"boolean"`
 
 	// DestinationRegion is used for presigning the request to a given region.
@@ -18558,14 +18569,14 @@ func (s *CopyDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) *C
 type CopyDBSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to copy the DB option group associated with
-	// the source DB snapshot to the target Amazon Web Services account and associate
-	// with the target DB snapshot. The associated option group can be copied only
-	// with cross-account snapshot copy calls.
+	// Specifies whether to copy the DB option group associated with the source
+	// DB snapshot to the target Amazon Web Services account and associate with
+	// the target DB snapshot. The associated option group can be copied only with
+	// cross-account snapshot copy calls.
 	CopyOptionGroup *bool `type:"boolean"`
 
-	// A value that indicates whether to copy all tags from the source DB snapshot
-	// to the target DB snapshot. By default, tags aren't copied.
+	// Specifies whether to copy all tags from the source DB snapshot to the target
+	// DB snapshot. By default, tags aren't copied.
 	CopyTags *bool `type:"boolean"`
 
 	// DestinationRegion is used for presigning the request to a given region.
@@ -19475,31 +19486,30 @@ type CreateCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
-	// A value that indicates whether the engine version supports Babelfish for
-	// Aurora PostgreSQL.
+	// Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.
 	SupportsBabelfish *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports rotating the server
-	// certificate without rebooting the DB instance.
+	// Indicates whether the engine version supports rotating the server certificate
+	// without rebooting the DB instance.
 	SupportsCertificateRotationWithoutRestart *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with a
-	// specific DB engine version.
+	// Indicates whether you can use Aurora global databases with a specific DB
+	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// A value that indicates whether the DB engine version supports forwarding
-	// write operations from reader DB instances to the writer DB instance in the
-	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	// Indicates whether the DB engine version supports forwarding write operations
+	// from reader DB instances to the writer DB instance in the DB cluster. By
+	// default, write operations aren't allowed on reader DB instances.
 	//
 	// Valid for: Aurora DB clusters only
 	SupportsLocalWriteForwarding *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports exporting the
-	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	// Indicates whether the engine version supports exporting the log types specified
+	// by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora parallel query with a specific
-	// DB engine version.
+	// Indicates whether you can use Aurora parallel query with a specific DB engine
+	// version.
 	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
@@ -22025,7 +22035,9 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be specified if ManageMasterUserPassword is turned on.
 	//
-	//    * Can include any printable ASCII character except "/", """, or "@".
+	//    * Can include any printable ASCII character except "/", """, or "@". For
+	//    RDS for Oracle, can't include the "&" (ampersand) or the "'" (single quotes)
+	//    character.
 	//
 	// Length Constraints:
 	//
@@ -22805,12 +22817,12 @@ type CreateDBInstanceReadReplicaInput struct {
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
-	// A value that indicates whether minor engine upgrades are applied automatically
-	// to the read replica during the maintenance window.
+	// Specifies whether to automatically apply minor engine upgrades to the read
+	// replica during the maintenance window.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	//
-	// Default: Inherits from the source DB instance
+	// Default: Inherits the value from the source DB instance.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone (AZ) where the read replica will be created.
@@ -22821,8 +22833,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
-	// A value that indicates whether to copy all tags from the read replica to
-	// snapshots of the read replica. By default, tags are not copied.
+	// Specifies whether to copy all tags from the read replica to snapshots of
+	// the read replica. By default, tags aren't copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The instance profile associated with the underlying Amazon EC2 instance of
@@ -22840,7 +22852,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
 	// in the Amazon RDS User Guide.
 	//
-	// This setting is required for RDS Custom.
+	// This setting is required for RDS Custom DB instances.
 	CustomIamInstanceProfile *string `type:"string"`
 
 	// The compute and memory capacity of the read replica, for example db.m4.large.
@@ -22849,7 +22861,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
 	// in the Amazon RDS User Guide.
 	//
-	// Default: Inherits from the source DB instance.
+	// Default: Inherits the value from the source DB instance.
 	DBInstanceClass *string `type:"string"`
 
 	// The DB instance identifier of the read replica. This identifier is the unique
@@ -22861,36 +22873,38 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The name of the DB parameter group to associate with this DB instance.
 	//
-	// If you do not specify a value for DBParameterGroupName, then Amazon RDS uses
-	// the DBParameterGroup of source DB instance for a same Region read replica,
+	// If you don't specify a value for DBParameterGroupName, then Amazon RDS uses
+	// the DBParameterGroup of the source DB instance for a same Region read replica,
 	// or the default DBParameterGroup for the specified DB engine for a cross-Region
 	// read replica.
 	//
 	// Specifying a parameter group for this operation is only supported for MySQL
-	// and Oracle DB instances. It isn't supported for RDS Custom.
+	// DB instances for cross-Region read replicas and for Oracle DB instances.
+	// It isn't supported for MySQL DB instances for same Region read replicas or
+	// for RDS Custom.
 	//
 	// Constraints:
 	//
 	//    * Must be 1 to 255 letters, numbers, or hyphens.
 	//
-	//    * First character must be a letter
+	//    * First character must be a letter.
 	//
-	//    * Can't end with a hyphen or contain two consecutive hyphens
+	//    * Can't end with a hyphen or contain two consecutive hyphens.
 	DBParameterGroupName *string `type:"string"`
 
-	// Specifies a DB subnet group for the DB instance. The new DB instance is created
-	// in the VPC associated with the DB subnet group. If no DB subnet group is
-	// specified, then the new DB instance isn't created in a VPC.
+	// A DB subnet group for the DB instance. The new DB instance is created in
+	// the VPC associated with the DB subnet group. If no DB subnet group is specified,
+	// then the new DB instance isn't created in a VPC.
 	//
 	// Constraints:
 	//
-	//    * If supplied, must match the name of an existing DBSubnetGroup.
+	//    * If supplied, must match the name of an existing DB subnet group.
 	//
 	//    * The specified DB subnet group must be in the same Amazon Web Services
 	//    Region in which the operation is running.
 	//
 	//    * All read replicas in one Amazon Web Services Region that are created
-	//    from the same source DB instance must either:> Specify DB subnet groups
+	//    from the same source DB instance must either: Specify DB subnet groups
 	//    from the same VPC. All these read replicas are created in the same VPC.
 	//    Not specify a DB subnet group. All these read replicas are created outside
 	//    of any VPC.
@@ -22898,8 +22912,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
-	// A value that indicates whether the DB instance has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
+	// Specifies whether to enable deletion protection for the DB instance. The
+	// database can't be deleted when deletion protection is enabled. By default,
 	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
@@ -22914,7 +22928,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	Domain *string `type:"string"`
 
 	// The ARN for the Secrets Manager secret with the credentials for the user
@@ -22944,10 +22958,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Example: mymanagedADtest.mymanagedAD.mydomain
 	DomainFqdn *string `type:"string"`
 
-	// The name of the IAM role to be used when making API calls to the Directory
-	// Service.
+	// The name of the IAM role to use when making API calls to the Directory Service.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The Active Directory organizational unit for your DB instance to join.
@@ -22966,11 +22979,11 @@ type CreateDBInstanceReadReplicaInput struct {
 	// see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable a customer-owned IP address (CoIP)
-	// for an RDS on Outposts read replica.
+	// Specifies whether to enable a customer-owned IP address (CoIP) for an RDS
+	// on Outposts read replica.
 	//
 	// A CoIP provides local or external connectivity to resources in your Outpost
 	// subnets through your on-premises network. For some use cases, a CoIP can
@@ -22985,28 +22998,27 @@ type CreateDBInstanceReadReplicaInput struct {
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// isn't enabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping isn't
+	// enabled.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
-	// A value that indicates whether to enable Performance Insights for the read
-	// replica.
+	// Specifies whether to enable Performance Insights for the read replica.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
 	// in the Amazon RDS User Guide.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	EnablePerformanceInsights *bool `type:"boolean"`
 
-	// The amount of Provisioned IOPS (input/output operations per second) to be
-	// initially allocated for the DB instance.
+	// The amount of Provisioned IOPS (input/output operations per second) to initially
+	// allocate for the DB instance.
 	Iops *int64 `type:"integer"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted read replica.
@@ -23042,15 +23054,17 @@ type CreateDBInstanceReadReplicaInput struct {
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
-	// are collected for the read replica. To disable collecting Enhanced Monitoring
+	// are collected for the read replica. To disable collection of Enhanced Monitoring
 	// metrics, specify 0. The default is 0.
 	//
-	// If MonitoringRoleArn is specified, then you must also set MonitoringInterval
-	// to a value other than 0.
+	// If MonitoringRoleArn is specified, then you must set MonitoringInterval to
+	// a value other than 0.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	//
 	// Valid Values: 0, 1, 5, 10, 15, 30, 60
+	//
+	// Default: 0
 	MonitoringInterval *int64 `type:"integer"`
 
 	// The ARN for the IAM role that permits RDS to send enhanced monitoring metrics
@@ -23062,22 +23076,22 @@ type CreateDBInstanceReadReplicaInput struct {
 	// If MonitoringInterval is set to a value other than 0, then you must supply
 	// a MonitoringRoleArn value.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	MonitoringRoleArn *string `type:"string"`
 
-	// A value that indicates whether the read replica is in a Multi-AZ deployment.
+	// Specifies whether the read replica is in a Multi-AZ deployment.
 	//
 	// You can create a read replica as a Multi-AZ DB instance. RDS creates a standby
 	// of your replica in another Availability Zone for failover support for the
 	// replica. Creating your read replica as a Multi-AZ DB instance is independent
 	// of whether the source is a Multi-AZ DB instance or a Multi-AZ DB cluster.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	MultiAZ *bool `type:"boolean"`
 
 	// The network type of the DB instance.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -23091,12 +23105,12 @@ type CreateDBInstanceReadReplicaInput struct {
 	// in the Amazon RDS User Guide.
 	NetworkType *string `type:"string"`
 
-	// The option group the DB instance is associated with. If omitted, the option
-	// group associated with the source instance or cluster is used.
+	// The option group to associate the DB instance with. If not specified, RDS
+	// uses the option group associated with the source DB instance or cluster.
 	//
 	// For SQL Server, you must use the option group associated with the source.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	OptionGroupName *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for encryption of Performance
@@ -23110,39 +23124,33 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Web Services account. Your Amazon Web Services account has a different default
 	// KMS key for each Amazon Web Services Region.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
-	// The number of days to retain Performance Insights data. The default is 7
-	// days. The following values are valid:
+	// The number of days to retain Performance Insights data.
+	//
+	// This setting doesn't apply to RDS Custom DB instances.
+	//
+	// Valid Values:
 	//
 	//    * 7
 	//
-	//    * month * 31, where month is a number of months from 1-23
+	//    * month * 31, where month is a number of months from 1-23. Examples: 93
+	//    (3 months * 31), 341 (11 months * 31), 589 (19 months * 31)
 	//
 	//    * 731
 	//
-	// For example, the following values are valid:
+	// Default: 7 days
 	//
-	//    * 93 (3 months * 31)
-	//
-	//    * 341 (11 months * 31)
-	//
-	//    * 589 (19 months * 31)
-	//
-	//    * 731
-	//
-	// If you specify a retention period such as 94, which isn't a valid value,
-	// RDS issues an error.
-	//
-	// This setting doesn't apply to RDS Custom.
+	// If you specify a retention period that isn't valid, such as 94, Amazon RDS
+	// returns an error.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number that the DB instance uses for connections.
 	//
-	// Default: Inherits from the source DB instance
-	//
 	// Valid Values: 1150-65535
+	//
+	// Default: Inherits the value from the source DB instance.
 	Port *int64 `type:"integer"`
 
 	// When you are creating a read replica from one Amazon Web Services GovCloud
@@ -23208,16 +23216,16 @@ type CreateDBInstanceReadReplicaInput struct {
 	// SourceRegion isn't supported for SQL Server, because Amazon RDS for SQL Server
 	// doesn't support cross-Region read replicas.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	PreSignedUrl *string `type:"string"`
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible.
+	// Specifies whether the DB instance is publicly accessible.
 	//
 	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
 	// endpoint resolves to the private IP address from within the DB cluster's
@@ -23309,31 +23317,31 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// Specifies the storage throughput value for the read replica.
 	//
-	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	// This setting doesn't apply to RDS Custom or Amazon Aurora DB instances.
 	StorageThroughput *int64 `type:"integer"`
 
-	// Specifies the storage type to be associated with the read replica.
-	//
-	// Valid values: gp2 | gp3 | io1 | standard
+	// The storage type to associate with the read replica.
 	//
 	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
-	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	// Valid Values: gp2 | gp3 | io1 | standard
+	//
+	// Default: io1 if the Iops parameter is specified. Otherwise, gp2.
 	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// A value that indicates whether the DB instance class of the DB instance uses
-	// its default processor features.
+	// Specifies whether the DB instance class of the DB instance uses its default
+	// processor features.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
 	// A list of Amazon EC2 VPC security groups to associate with the read replica.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	//
 	// Default: The default EC2 VPC security group for the DB subnet group's VPC.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
@@ -23859,9 +23867,9 @@ type CreateDBProxyEndpointInput struct {
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// A value that indicates whether the DB proxy endpoint can be used for read/write
-	// or read-only operations. The default is READ_WRITE. The only role that proxies
-	// for RDS for Microsoft SQL Server support is READ_WRITE.
+	// The role of the DB proxy endpoint. The role determines whether the endpoint
+	// can be used for read/write or only read operations. The default is READ_WRITE.
+	// The only role that proxies for RDS for Microsoft SQL Server support is READ_WRITE.
 	TargetRole *string `type:"string" enum:"DBProxyEndpointTargetRole"`
 
 	// The VPC security group IDs for the DB proxy endpoint that you create. You
@@ -24005,9 +24013,9 @@ type CreateDBProxyInput struct {
 	// DBProxyName is a required field
 	DBProxyName *string `type:"string" required:"true"`
 
-	// Whether the proxy includes detailed information about SQL statements in its
-	// logs. This information helps you to debug issues involving SQL behavior or
-	// the performance and scalability of the proxy connections. The debug information
+	// Specifies whether the proxy includes detailed information about SQL statements
+	// in its logs. This information helps you to debug issues involving SQL behavior
+	// or the performance and scalability of the proxy connections. The debug information
 	// includes the text of SQL statements that you submit through the proxy. Thus,
 	// only enable this setting when needed for debugging, and only when you have
 	// security measures in place to safeguard any sensitive information that appears
@@ -24029,9 +24037,9 @@ type CreateDBProxyInput struct {
 	// connection timeout limit for the associated database.
 	IdleClientTimeout *int64 `type:"integer"`
 
-	// A Boolean parameter that specifies whether Transport Layer Security (TLS)
-	// encryption is required for connections to the proxy. By enabling this setting,
-	// you can enforce encrypted TLS connections to the proxy.
+	// Specifies whether Transport Layer Security (TLS) encryption is required for
+	// connections to the proxy. By enabling this setting, you can enforce encrypted
+	// TLS connections to the proxy.
 	RequireTLS *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access
@@ -24552,9 +24560,8 @@ func (s *CreateDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *CreateDB
 type CreateEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to activate the subscription. If the event
-	// notification subscription isn't activated, the subscription is created but
-	// not active.
+	// Specifies whether to activate the subscription. If the event notification
+	// subscription isn't activated, the subscription is created but not active.
 	Enabled *bool `type:"boolean"`
 
 	// A list of event categories for a particular source type (SourceType) that
@@ -24607,7 +24614,7 @@ type CreateEventSubscriptionInput struct {
 	// to db-instance. For RDS Proxy events, specify db-proxy. If this value isn't
 	// specified, all events are returned.
 	//
-	// Valid values: db-instance | db-cluster | db-parameter-group | db-security-group
+	// Valid Values: db-instance | db-cluster | db-parameter-group | db-security-group
 	// | db-snapshot | db-cluster-snapshot | db-proxy
 	SourceType *string `type:"string"`
 
@@ -25273,7 +25280,7 @@ type DBCluster struct {
 	// The version of the database engine.
 	EngineVersion *string `type:"string"`
 
-	// Specifies whether write forwarding is enabled for a secondary cluster in
+	// Indicates whether write forwarding is enabled for a secondary cluster in
 	// an Aurora global database. Because write forwarding takes time to enable,
 	// check the value of GlobalWriteForwardingStatus to confirm that the request
 	// has completed before using the write forwarding feature for this cluster.
@@ -25322,7 +25329,7 @@ type DBCluster struct {
 	// The latest time to which a database can be restored with point-in-time restore.
 	LatestRestorableTime *time.Time `type:"timestamp"`
 
-	// Specifies whether an Aurora DB cluster has in-cluster write forwarding enabled,
+	// Indicates whether an Aurora DB cluster has in-cluster write forwarding enabled,
 	// not enabled, requested, or is in the process of enabling it.
 	LocalWriteForwardingStatus *string `type:"string" enum:"LocalWriteForwardingStatus"`
 
@@ -25996,8 +26003,8 @@ type DBClusterAutomatedBackup struct {
 	// The version of the database engine for the automated backup.
 	EngineVersion *string `type:"string"`
 
-	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
-	// accounts to database accounts is enabled, and otherwise false.
+	// Indicates whether mapping of Amazon Web Services Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// The IOPS (I/O operations per second) value for the automated backup.
@@ -26035,7 +26042,7 @@ type DBClusterAutomatedBackup struct {
 	//    * retained - Automated backups for deleted clusters.
 	Status *string `type:"string"`
 
-	// Specifies whether the source DB cluster is encrypted.
+	// Indicates whether the source DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
 	// The storage type associated with the DB cluster.
@@ -26354,8 +26361,8 @@ type DBClusterMember struct {
 	// Specifies the instance identifier for this member of the DB cluster.
 	DBInstanceIdentifier *string `type:"string"`
 
-	// Value that is true if the cluster member is the primary instance for the
-	// DB cluster and false otherwise.
+	// Indicates whether the cluster member is the primary DB instance for the DB
+	// cluster.
 	IsClusterWriter *bool `type:"boolean"`
 
 	// A value that specifies the order in which an Aurora Replica is promoted to
@@ -26624,45 +26631,44 @@ func (s *DBClusterRole) SetStatus(v string) *DBClusterRole {
 type DBClusterSnapshot struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the allocated storage size in gibibytes (GiB).
+	// The allocated storage size of the DB cluster snapshot in gibibytes (GiB).
 	AllocatedStorage *int64 `type:"integer"`
 
-	// Provides the list of Availability Zones (AZs) where instances in the DB cluster
-	// snapshot can be restored.
+	// The list of Availability Zones (AZs) where instances in the DB cluster snapshot
+	// can be restored.
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
-	// Specifies the time when the DB cluster was created, in Universal Coordinated
-	// Time (UTC).
+	// The time when the DB cluster was created, in Universal Coordinated Time (UTC).
 	ClusterCreateTime *time.Time `type:"timestamp"`
 
-	// Specifies the DB cluster identifier of the DB cluster that this DB cluster
-	// snapshot was created from.
+	// The DB cluster identifier of the DB cluster that this DB cluster snapshot
+	// was created from.
 	DBClusterIdentifier *string `type:"string"`
 
-	// Specifies the Amazon Resource Name (ARN) for the DB cluster snapshot.
+	// The Amazon Resource Name (ARN) for the DB cluster snapshot.
 	DBClusterSnapshotArn *string `type:"string"`
 
-	// Specifies the identifier for the DB cluster snapshot.
+	// The identifier for the DB cluster snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
 	// Reserved for future use.
 	DBSystemId *string `type:"string"`
 
-	// Specifies the resource ID of the DB cluster that this DB cluster snapshot
-	// was created from.
+	// The resource ID of the DB cluster that this DB cluster snapshot was created
+	// from.
 	DbClusterResourceId *string `type:"string"`
 
-	// Specifies the name of the database engine for this DB cluster snapshot.
+	// The name of the database engine for this DB cluster snapshot.
 	Engine *string `type:"string"`
 
-	// Provides the engine mode of the database engine for this DB cluster snapshot.
+	// The engine mode of the database engine for this DB cluster snapshot.
 	EngineMode *string `type:"string"`
 
-	// Provides the version of the database engine for this DB cluster snapshot.
+	// The version of the database engine for this DB cluster snapshot.
 	EngineVersion *string `type:"string"`
 
-	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
-	// accounts to database accounts is enabled, and otherwise false.
+	// Indicates whether mapping of Amazon Web Services Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// If StorageEncrypted is true, the Amazon Web Services KMS key identifier for
@@ -26672,24 +26678,22 @@ type DBClusterSnapshot struct {
 	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
-	// Provides the license model information for this DB cluster snapshot.
+	// The license model information for this DB cluster snapshot.
 	LicenseModel *string `type:"string"`
 
-	// Provides the master username for this DB cluster snapshot.
+	// The master username for this DB cluster snapshot.
 	MasterUsername *string `type:"string"`
 
-	// Specifies the percentage of the estimated data that has been transferred.
+	// The percentage of the estimated data that has been transferred.
 	PercentProgress *int64 `type:"integer"`
 
-	// Specifies the port that the DB cluster was listening on at the time of the
-	// snapshot.
+	// The port that the DB cluster was listening on at the time of the snapshot.
 	Port *int64 `type:"integer"`
 
-	// Provides the time when the snapshot was taken, in Universal Coordinated Time
-	// (UTC).
+	// The time when the snapshot was taken, in Universal Coordinated Time (UTC).
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
-	// Provides the type of the DB cluster snapshot.
+	// The type of the DB cluster snapshot.
 	SnapshotType *string `type:"string"`
 
 	// If the DB cluster snapshot was copied from a source DB cluster snapshot,
@@ -26697,8 +26701,7 @@ type DBClusterSnapshot struct {
 	// a null value.
 	SourceDBClusterSnapshotArn *string `type:"string"`
 
-	// Specifies the status of this DB cluster snapshot. Valid statuses are the
-	// following:
+	// The status of this DB cluster snapshot. Valid statuses are the following:
 	//
 	//    * available
 	//
@@ -26707,7 +26710,7 @@ type DBClusterSnapshot struct {
 	//    * creating
 	Status *string `type:"string"`
 
-	// Specifies whether the DB cluster snapshot is encrypted.
+	// Indicates whether the DB cluster snapshot is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
 	// The storage type associated with the DB cluster snapshot.
@@ -26719,7 +26722,7 @@ type DBClusterSnapshot struct {
 	// in the Amazon RDS User Guide.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
-	// Provides the VPC ID associated with the DB cluster snapshot.
+	// The VPC ID associated with the DB cluster snapshot.
 	VpcId *string `type:"string"`
 }
 
@@ -27101,31 +27104,30 @@ type DBEngineVersion struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
-	// A value that indicates whether the engine version supports Babelfish for
-	// Aurora PostgreSQL.
+	// Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.
 	SupportsBabelfish *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports rotating the server
-	// certificate without rebooting the DB instance.
+	// Indicates whether the engine version supports rotating the server certificate
+	// without rebooting the DB instance.
 	SupportsCertificateRotationWithoutRestart *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with a
-	// specific DB engine version.
+	// Indicates whether you can use Aurora global databases with a specific DB
+	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// A value that indicates whether the DB engine version supports forwarding
-	// write operations from reader DB instances to the writer DB instance in the
-	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	// Indicates whether the DB engine version supports forwarding write operations
+	// from reader DB instances to the writer DB instance in the DB cluster. By
+	// default, write operations aren't allowed on reader DB instances.
 	//
 	// Valid for: Aurora DB clusters only
 	SupportsLocalWriteForwarding *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports exporting the
-	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	// Indicates whether the engine version supports exporting the log types specified
+	// by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora parallel query with a specific
-	// DB engine version.
+	// Indicates whether you can use Aurora parallel query with a specific DB engine
+	// version.
 	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
@@ -28286,7 +28288,7 @@ func (s *DBInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBIn
 type DBInstanceAutomatedBackup struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the allocated storage size in gibibytes (GiB).
+	// The allocated storage size for the the automated backup in gibibytes (GiB).
 	AllocatedStorage *int64 `type:"integer"`
 
 	// The Availability Zone that the automated backup was created in. For information
@@ -28301,7 +28303,7 @@ type DBInstanceAutomatedBackup struct {
 	// The retention period for the automated backups.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// Specifies where automated backups are stored: Amazon Web Services Outposts
+	// The location where automated backups are stored: Amazon Web Services Outposts
 	// or the Amazon Web Services Region.
 	BackupTarget *string `type:"string"`
 
@@ -28323,7 +28325,7 @@ type DBInstanceAutomatedBackup struct {
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
 
-	// Specifies whether the automated backup is encrypted.
+	// Indicates whether the automated backup is encrypted.
 	Encrypted *bool `type:"boolean"`
 
 	// The name of the database engine for this automated backup.
@@ -28336,7 +28338,7 @@ type DBInstanceAutomatedBackup struct {
 	// accounts to database accounts is enabled, and otherwise false.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
-	// Provides the date and time that the DB instance was created.
+	// The date and time when the DB instance was created.
 	InstanceCreateTime *time.Time `type:"timestamp"`
 
 	// The IOPS (I/O operations per second) value for the automated backup.
@@ -28348,7 +28350,7 @@ type DBInstanceAutomatedBackup struct {
 	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
-	// License model information for the automated backup.
+	// The license model information for the automated backup.
 	LicenseModel *string `type:"string"`
 
 	// The master user name of an automated backup.
@@ -28368,10 +28370,10 @@ type DBInstanceAutomatedBackup struct {
 	// The Amazon Web Services Region associated with the automated backup.
 	Region *string `type:"string"`
 
-	// Earliest and latest time an instance can be restored to.
+	// The earliest and latest time a DB instance can be restored to.
 	RestoreWindow *RestoreWindow `type:"structure"`
 
-	// Provides a list of status information for an automated backup:
+	// A list of status information for an automated backup:
 	//
 	//    * active - Automated backups for current instances.
 	//
@@ -28381,10 +28383,10 @@ type DBInstanceAutomatedBackup struct {
 	//    snapshot to be available.
 	Status *string `type:"string"`
 
-	// Specifies the storage throughput for the automated backup.
+	// The storage throughput for the automated backup.
 	StorageThroughput *int64 `type:"integer"`
 
-	// Specifies the storage type associated with the automated backup.
+	// The storage type associated with the automated backup.
 	StorageType *string `type:"string"`
 
 	// The ARN from the key store with which the automated backup is associated
@@ -28396,7 +28398,7 @@ type DBInstanceAutomatedBackup struct {
 	// that were created with a time zone specified.
 	Timezone *string `type:"string"`
 
-	// Provides the VPC ID associated with the DB instance.
+	// The VPC ID associated with the DB instance.
 	VpcId *string `type:"string"`
 }
 
@@ -28626,8 +28628,8 @@ func (s *DBInstanceAutomatedBackupsReplication) SetDBInstanceAutomatedBackupsArn
 	return s
 }
 
-// Describes an Amazon Web Services Identity and Access Management (IAM) role
-// that is associated with a DB instance.
+// Information about an Amazon Web Services Identity and Access Management (IAM)
+// role that is associated with a DB instance.
 type DBInstanceRole struct {
 	_ struct{} `type:"structure"`
 
@@ -28640,8 +28642,8 @@ type DBInstanceRole struct {
 	// DB instance.
 	RoleArn *string `type:"string"`
 
-	// Describes the state of association between the IAM role and the DB instance.
-	// The Status property returns one of the following values:
+	// Information about the state of association between the IAM role and the DB
+	// instance. The Status property returns one of the following values:
 	//
 	//    * ACTIVE - the IAM role ARN is associated with the DB instance and can
 	//    be used to access other Amazon Web Services services on your behalf.
@@ -28698,12 +28700,12 @@ type DBInstanceStatusInfo struct {
 	// isn't in an error state, this value is blank.
 	Message *string `type:"string"`
 
-	// Boolean value that is true if the instance is operating normally, or false
+	// A Boolean value that is true if the instance is operating normally, or false
 	// if the instance is in an error state.
 	Normal *bool `type:"boolean"`
 
-	// Status of the DB instance. For a StatusType of read replica, the values can
-	// be replicating, replication stop point set, replication stop point reached,
+	// The status of the DB instance. For a StatusType of read replica, the values
+	// can be replicating, replication stop point set, replication stop point reached,
 	// error, stopped, or terminated.
 	Status *string `type:"string"`
 
@@ -28925,9 +28927,9 @@ type DBProxy struct {
 	// Region.
 	DBProxyName *string `type:"string"`
 
-	// Whether the proxy includes detailed information about SQL statements in its
-	// logs. This information helps you to debug issues involving SQL behavior or
-	// the performance and scalability of the proxy connections. The debug information
+	// Indicates whether the proxy includes detailed information about SQL statements
+	// in its logs. This information helps you to debug issues involving SQL behavior
+	// or the performance and scalability of the proxy connections. The debug information
 	// includes the text of SQL statements that you submit through the proxy. Thus,
 	// only enable this setting when needed for debugging, and only when you have
 	// security measures in place to safeguard any sensitive information that appears
@@ -29119,10 +29121,10 @@ type DBProxyEndpoint struct {
 	// endpoint value in the connection string for a database client application.
 	Endpoint *string `type:"string"`
 
-	// A value that indicates whether this endpoint is the default endpoint for
-	// the associated DB proxy. Default DB proxy endpoints always have read/write
-	// capability. Other endpoints that you associate with the DB proxy can be either
-	// read/write or read-only.
+	// Indicates whether this endpoint is the default endpoint for the associated
+	// DB proxy. Default DB proxy endpoints always have read/write capability. Other
+	// endpoints that you associate with the DB proxy can be either read/write or
+	// read-only.
 	IsDefault *bool `type:"boolean"`
 
 	// The current status of this DB proxy endpoint. A status of available means
@@ -29354,9 +29356,9 @@ type DBProxyTargetGroup struct {
 	// The identifier for the RDS proxy associated with this target group.
 	DBProxyName *string `type:"string"`
 
-	// Whether this target group is the first one used for connection requests by
-	// the associated proxy. Because each proxy is currently associated with a single
-	// target group, currently this setting is always true.
+	// Indicates whether this target group is the first one used for connection
+	// requests by the associated proxy. Because each proxy is currently associated
+	// with a single target group, currently this setting is always true.
 	IsDefault *bool `type:"boolean"`
 
 	// The current status of this target group. A status of available means the
@@ -29614,7 +29616,7 @@ type DBSnapshot struct {
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
 
-	// Specifies whether the DB snapshot is encrypted.
+	// Indicates whether the DB snapshot is encrypted.
 	Encrypted *bool `type:"boolean"`
 
 	// Specifies the name of the database engine.
@@ -29623,8 +29625,8 @@ type DBSnapshot struct {
 	// Specifies the version of the database engine.
 	EngineVersion *string `type:"string"`
 
-	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
-	// accounts to database accounts is enabled, and otherwise false.
+	// Indicates whether mapping of Amazon Web Services Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// Specifies the time in Coordinated Universal Time (UTC) when the DB instance,
@@ -30425,31 +30427,30 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
-	// A value that indicates whether the engine version supports Babelfish for
-	// Aurora PostgreSQL.
+	// Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.
 	SupportsBabelfish *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports rotating the server
-	// certificate without rebooting the DB instance.
+	// Indicates whether the engine version supports rotating the server certificate
+	// without rebooting the DB instance.
 	SupportsCertificateRotationWithoutRestart *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with a
-	// specific DB engine version.
+	// Indicates whether you can use Aurora global databases with a specific DB
+	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// A value that indicates whether the DB engine version supports forwarding
-	// write operations from reader DB instances to the writer DB instance in the
-	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	// Indicates whether the DB engine version supports forwarding write operations
+	// from reader DB instances to the writer DB instance in the DB cluster. By
+	// default, write operations aren't allowed on reader DB instances.
 	//
 	// Valid for: Aurora DB clusters only
 	SupportsLocalWriteForwarding *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports exporting the
-	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	// Indicates whether the engine version supports exporting the log types specified
+	// by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora parallel query with a specific
-	// DB engine version.
+	// Indicates whether you can use Aurora parallel query with a specific DB engine
+	// version.
 	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
@@ -30948,9 +30949,9 @@ type DeleteDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
-	// A value that indicates whether to remove automated backups immediately after
-	// the DB cluster is deleted. This parameter isn't case-sensitive. The default
-	// is to remove automated backups immediately after the DB cluster is deleted.
+	// Specifies whether to remove automated backups immediately after the DB cluster
+	// is deleted. This parameter isn't case-sensitive. The default is to remove
+	// automated backups immediately after the DB cluster is deleted.
 	DeleteAutomatedBackups *bool `type:"boolean"`
 
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
@@ -30968,11 +30969,11 @@ type DeleteDBClusterInput struct {
 	//    * Can't end with a hyphen or contain two consecutive hyphens
 	FinalDBSnapshotIdentifier *string `type:"string"`
 
-	// A value that indicates whether to skip the creation of a final DB cluster
-	// snapshot before the DB cluster is deleted. If skip is specified, no DB cluster
-	// snapshot is created. If skip isn't specified, a DB cluster snapshot is created
-	// before the DB cluster is deleted. By default, skip isn't specified, and the
-	// DB cluster snapshot is created. By default, this parameter is disabled.
+	// Specifies whether to skip the creation of a final DB cluster snapshot before
+	// the DB cluster is deleted. If skip is specified, no DB cluster snapshot is
+	// created. If skip isn't specified, a DB cluster snapshot is created before
+	// the DB cluster is deleted. By default, skip isn't specified, and the DB cluster
+	// snapshot is created. By default, this parameter is disabled.
 	//
 	// You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot
 	// is disabled.
@@ -31332,9 +31333,9 @@ type DeleteDBInstanceInput struct {
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
-	// A value that indicates whether to remove automated backups immediately after
-	// the DB instance is deleted. This parameter isn't case-sensitive. The default
-	// is to remove automated backups immediately after the DB instance is deleted.
+	// Specifies whether to remove automated backups immediately after the DB instance
+	// is deleted. This parameter isn't case-sensitive. The default is to remove
+	// automated backups immediately after the DB instance is deleted.
 	DeleteAutomatedBackups *bool `type:"boolean"`
 
 	// The DBSnapshotIdentifier of the new DBSnapshot created when the SkipFinalSnapshot
@@ -31356,11 +31357,11 @@ type DeleteDBInstanceInput struct {
 	//    * Can't be specified when deleting a read replica.
 	FinalDBSnapshotIdentifier *string `type:"string"`
 
-	// A value that indicates whether to skip the creation of a final DB snapshot
-	// before deleting the instance. If you enable this parameter, RDS doesn't create
-	// a DB snapshot. If you don't enable this parameter, RDS creates a DB snapshot
-	// before the DB instance is deleted. By default, skip isn't enabled, and the
-	// DB snapshot is created.
+	// Specifies whether to skip the creation of a final DB snapshot before deleting
+	// the instance. If you enable this parameter, RDS doesn't create a DB snapshot.
+	// If you don't enable this parameter, RDS creates a DB snapshot before the
+	// DB instance is deleted. By default, skip isn't enabled, and the DB snapshot
+	// is created.
 	//
 	// If you don't enable this parameter, you must specify the FinalDBSnapshotIdentifier
 	// parameter.
@@ -33254,8 +33255,15 @@ type DescribeDBClusterParametersInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// A value that indicates to return only parameters for a specific source. Parameter
-	// sources can be engine, service, or customer.
+	// A specific source to return parameters for.
+	//
+	// Valid Values:
+	//
+	//    * customer
+	//
+	//    * engine
+	//
+	//    * service
 	Source *string `type:"string"`
 }
 
@@ -33497,18 +33505,18 @@ type DescribeDBClusterSnapshotsInput struct {
 	//    * engine - Accepts names of database engines.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
-	// A value that indicates whether to include manual DB cluster snapshots that
-	// are public and can be copied or restored by any Amazon Web Services account.
-	// By default, the public snapshots are not included.
+	// Specifies whether to include manual DB cluster snapshots that are public
+	// and can be copied or restored by any Amazon Web Services account. By default,
+	// the public snapshots are not included.
 	//
 	// You can share a manual DB cluster snapshot as public by using the ModifyDBClusterSnapshotAttribute
 	// API action.
 	IncludePublic *bool `type:"boolean"`
 
-	// A value that indicates whether to include shared manual DB cluster snapshots
-	// from other Amazon Web Services accounts that this Amazon Web Services account
-	// has been given permission to copy or restore. By default, these snapshots
-	// are not included.
+	// Specifies whether to include shared manual DB cluster snapshots from other
+	// Amazon Web Services accounts that this Amazon Web Services account has been
+	// given permission to copy or restore. By default, these snapshots are not
+	// included.
 	//
 	// You can give an Amazon Web Services account permission to restore a manual
 	// DB cluster snapshot from another Amazon Web Services account by the ModifyDBClusterSnapshotAttribute
@@ -33863,14 +33871,14 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	// Constraints:
 	//
-	//    * If supplied, must match an existing DBParameterGroupFamily.
+	//    * If supplied, must match an existing DB parameter group family.
 	DBParameterGroupFamily *string `type:"string"`
 
-	// A value that indicates whether only the default version of the specified
-	// engine or engine and major version combination is returned.
+	// Specifies whether to return only the default version of the specified engine
+	// or the engine and major version combination.
 	DefaultOnly *bool `type:"boolean"`
 
-	// The database engine to return.
+	// The database engine to return version details for.
 	//
 	// Valid Values:
 	//
@@ -33903,7 +33911,7 @@ type DescribeDBEngineVersionsInput struct {
 	//    * sqlserver-web
 	Engine *string `type:"string"`
 
-	// The database engine version to return.
+	// A specific database engine version to return details for.
 	//
 	// Example: 5.1.49
 	EngineVersion *string `type:"string"`
@@ -33932,30 +33940,28 @@ type DescribeDBEngineVersionsInput struct {
 	//    are the following: available deprecated
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
-	// A value that indicates whether to include engine versions that aren't available
-	// in the list. The default is to list only available engine versions.
+	// Specifies whether to also list the engine versions that aren't available.
+	// The default is to list only available engine versions.
 	IncludeAll *bool `type:"boolean"`
 
-	// A value that indicates whether to list the supported character sets for each
-	// engine version.
+	// Specifies whether to list the supported character sets for each engine version.
 	//
 	// If this parameter is enabled and the requested engine supports the CharacterSetName
 	// parameter for CreateDBInstance, the response includes a list of supported
 	// character sets for each engine version.
 	//
 	// For RDS Custom, the default is not to list supported character sets. If you
-	// set ListSupportedCharacterSets to true, RDS Custom returns no results.
+	// enable this parameter, RDS Custom returns no results.
 	ListSupportedCharacterSets *bool `type:"boolean"`
 
-	// A value that indicates whether to list the supported time zones for each
-	// engine version.
+	// Specifies whether to list the supported time zones for each engine version.
 	//
 	// If this parameter is enabled and the requested engine supports the TimeZone
 	// parameter for CreateDBInstance, the response includes a list of supported
 	// time zones for each engine version.
 	//
-	// For RDS Custom, the default is not to list supported time zones. If you set
-	// ListSupportedTimezones to true, RDS Custom returns no results.
+	// For RDS Custom, the default is not to list supported time zones. If you enable
+	// this parameter, RDS Custom returns no results.
 	ListSupportedTimezones *bool `type:"boolean"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -35766,9 +35772,9 @@ type DescribeDBSnapshotsInput struct {
 	//    * engine - Accepts names of database engines.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
-	// A value that indicates whether to include manual DB cluster snapshots that
-	// are public and can be copied or restored by any Amazon Web Services account.
-	// By default, the public snapshots are not included.
+	// Specifies whether to include manual DB cluster snapshots that are public
+	// and can be copied or restored by any Amazon Web Services account. By default,
+	// the public snapshots are not included.
 	//
 	// You can share a manual DB snapshot as public by using the ModifyDBSnapshotAttribute
 	// API.
@@ -35776,10 +35782,10 @@ type DescribeDBSnapshotsInput struct {
 	// This setting doesn't apply to RDS Custom.
 	IncludePublic *bool `type:"boolean"`
 
-	// A value that indicates whether to include shared manual DB cluster snapshots
-	// from other Amazon Web Services accounts that this Amazon Web Services account
-	// has been given permission to copy or restore. By default, these snapshots
-	// are not included.
+	// Specifies whether to include shared manual DB cluster snapshots from other
+	// Amazon Web Services accounts that this Amazon Web Services account has been
+	// given permission to copy or restore. By default, these snapshots are not
+	// included.
 	//
 	// You can give an Amazon Web Services account permission to restore a manual
 	// DB snapshot from another Amazon Web Services account by using the ModifyDBSnapshotAttribute
@@ -36450,7 +36456,7 @@ type DescribeEventCategoriesInput struct {
 	// The type of source that is generating the events. For RDS Proxy events, specify
 	// db-proxy.
 	//
-	// Valid values: db-instance | db-cluster | db-parameter-group | db-security-group
+	// Valid Values: db-instance | db-cluster | db-parameter-group | db-security-group
 	// | db-snapshot | db-cluster-snapshot | db-proxy
 	SourceType *string `type:"string"`
 }
@@ -37599,8 +37605,8 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	// Constraints: Minimum 20, maximum 10000.
 	MaxRecords *int64 `type:"integer"`
 
-	// A value that indicates whether to show only VPC or non-VPC offerings. RDS
-	// Custom supports only VPC offerings.
+	// Specifies whether to show only VPC or non-VPC offerings. RDS Custom supports
+	// only VPC offerings.
 	//
 	// RDS Custom supports only VPC offerings. If you describe non-VPC offerings
 	// for RDS Custom, the output shows VPC offerings.
@@ -37924,8 +37930,7 @@ type DescribeReservedDBInstancesInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// A value that indicates whether to show only those reservations that support
-	// Multi-AZ.
+	// Specifies whether to show only those reservations that support Multi-AZ.
 	MultiAZ *bool `type:"boolean"`
 
 	// The offering type filter value. Specify this parameter to show only the available
@@ -38081,8 +38086,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// A value that indicates whether to show only those reservations that support
-	// Multi-AZ.
+	// Specifies whether to show only those reservations that support Multi-AZ.
 	MultiAZ *bool `type:"boolean"`
 
 	// The offering type filter value. Specify this parameter to show only the available
@@ -38740,7 +38744,7 @@ func (s *DownloadDBLogFilePortionInput) SetNumberOfLines(v int64) *DownloadDBLog
 type DownloadDBLogFilePortionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Boolean value that if true, indicates there is more data to be downloaded.
+	// A Boolean value that, if true, indicates there is more data to be downloaded.
 	AdditionalDataPending *bool `type:"boolean"`
 
 	// Entries from the specified log file.
@@ -39216,11 +39220,13 @@ func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscrip
 
 // Contains the details of a snapshot or cluster export to Amazon S3.
 //
-// This data type is used as a response element in the DescribeExportTasks action.
+// This data type is used as a response element in the DescribeExportTasks operation.
 type ExportTask struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot or cluster. Valid values are the following:
+	// The data exported from the snapshot or cluster.
+	//
+	// Valid Values:
 	//
 	//    * database - Export all the data from a specified database.
 	//
@@ -39256,14 +39262,14 @@ type ExportTask struct {
 	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot or cluster is exported to.
+	// The Amazon S3 bucket where the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
 	// data.
 	S3Prefix *string `type:"string"`
 
-	// The time that the snapshot was created.
+	// The time when the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
@@ -39288,10 +39294,10 @@ type ExportTask struct {
 	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot or cluster export task ended.
+	// The time when the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot or cluster export task started.
+	// The time when the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
@@ -39418,11 +39424,12 @@ func (s *ExportTask) SetWarningMessage(v string) *ExportTask {
 type FailoverDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// A DB cluster identifier to force a failover for. This parameter isn't case-sensitive.
+	// The identifier of the DB cluster to force a failover for. This parameter
+	// isn't case-sensitive.
 	//
 	// Constraints:
 	//
-	//    * Must match the identifier of an existing DBCluster.
+	//    * Must match the identifier of an existing DB cluster.
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -39957,11 +39964,10 @@ type GlobalClusterMember struct {
 	// The Amazon Resource Name (ARN) for each Aurora DB cluster in the global cluster.
 	DBClusterArn *string `type:"string"`
 
-	// Specifies whether a secondary cluster in the global cluster has write forwarding
-	// enabled, not enabled, or is in the process of enabling it.
+	// The status of write forwarding for a secondary cluster in the global cluster.
 	GlobalWriteForwardingStatus *string `type:"string" enum:"WriteForwardingStatus"`
 
-	// Specifies whether the Aurora DB cluster is the primary cluster (that is,
+	// Indicates whether the Aurora DB cluster is the primary cluster (that is,
 	// has read-write capability) for the global cluster with which it is associated.
 	IsWriter *bool `type:"boolean"`
 
@@ -40026,11 +40032,11 @@ func (s *GlobalClusterMember) SetSynchronizationStatus(v string) *GlobalClusterM
 type IPRange struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the IP range.
+	// The IP range.
 	CIDRIP *string `type:"string"`
 
-	// Specifies the status of the IP range. Status can be "authorizing", "authorized",
-	// "revoking", and "revoked".
+	// The status of the IP range. Status can be "authorizing", "authorized", "revoking",
+	// and "revoked".
 	Status *string `type:"string"`
 }
 
@@ -40411,8 +40417,8 @@ type ModifyCertificatesInput struct {
 	// or the DescribeCertificates API operation.
 	CertificateIdentifier *string `type:"string"`
 
-	// A value that indicates whether to remove the override for the default certificate.
-	// If the override is removed, the default certificate is the system default.
+	// Specifies whether to remove the override for the default certificate. If
+	// the override is removed, the default certificate is the system default.
 	RemoveCustomerOverride *bool `type:"boolean"`
 }
 
@@ -40866,31 +40872,30 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
-	// A value that indicates whether the engine version supports Babelfish for
-	// Aurora PostgreSQL.
+	// Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.
 	SupportsBabelfish *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports rotating the server
-	// certificate without rebooting the DB instance.
+	// Indicates whether the engine version supports rotating the server certificate
+	// without rebooting the DB instance.
 	SupportsCertificateRotationWithoutRestart *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with a
-	// specific DB engine version.
+	// Indicates whether you can use Aurora global databases with a specific DB
+	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// A value that indicates whether the DB engine version supports forwarding
-	// write operations from reader DB instances to the writer DB instance in the
-	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	// Indicates whether the DB engine version supports forwarding write operations
+	// from reader DB instances to the writer DB instance in the DB cluster. By
+	// default, write operations aren't allowed on reader DB instances.
 	//
 	// Valid for: Aurora DB clusters only
 	SupportsLocalWriteForwarding *bool `type:"boolean"`
 
-	// A value that indicates whether the engine version supports exporting the
-	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	// Indicates whether the engine version supports exporting the log types specified
+	// by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora parallel query with a specific
-	// DB engine version.
+	// Indicates whether you can use Aurora parallel query with a specific DB engine
+	// version.
 	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
@@ -44563,7 +44568,7 @@ func (s *ModifyDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *ModifyDB
 type ModifyEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to activate the subscription.
+	// Specifies whether to activate the subscription.
 	Enabled *bool `type:"boolean"`
 
 	// A list of event categories for a source type (SourceType) that you want to
@@ -44582,7 +44587,7 @@ type ModifyEventSubscriptionInput struct {
 	// to db-instance. For RDS Proxy events, specify db-proxy. If this value isn't
 	// specified, all events are returned.
 	//
-	// Valid values: db-instance | db-cluster | db-parameter-group | db-security-group
+	// Valid Values: db-instance | db-cluster | db-parameter-group | db-security-group
 	// | db-snapshot | db-cluster-snapshot | db-proxy
 	SourceType *string `type:"string"`
 
@@ -44824,9 +44829,8 @@ func (s *ModifyGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *ModifyGl
 type ModifyOptionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to apply the change immediately or during
-	// the next maintenance window for each instance associated with the option
-	// group.
+	// Specifies whether to apply the change immediately or during the next maintenance
+	// window for each instance associated with the option group.
 	ApplyImmediately *bool `type:"boolean"`
 
 	// The name of the option group to be modified.
@@ -44941,7 +44945,7 @@ func (s *ModifyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *ModifyOptionGr
 	return s
 }
 
-// Option details.
+// The details of an option.
 type Option struct {
 	_ struct{} `type:"structure"`
 
@@ -44961,10 +44965,10 @@ type Option struct {
 	// The version of the option.
 	OptionVersion *string `type:"string"`
 
-	// Indicate if this option is permanent.
+	// Indicates whether this option is permanent.
 	Permanent *bool `type:"boolean"`
 
-	// Indicate if this option is persistent.
+	// Indicates whether this option is persistent.
 	Persistent *bool `type:"boolean"`
 
 	// If required, the port configured for this option to use.
@@ -45314,7 +45318,7 @@ func (s *OptionGroupMembership) SetStatus(v string) *OptionGroupMembership {
 type OptionGroupOption struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the option can be copied across Amazon Web Services accounts.
+	// Indicates whether the option can be copied across Amazon Web Services accounts.
 	CopyableCrossAccount *bool `type:"boolean"`
 
 	// If the option requires a port, specifies the default port for the option.
@@ -45358,7 +45362,7 @@ type OptionGroupOption struct {
 	// group.
 	Persistent *bool `type:"boolean"`
 
-	// Specifies whether the option requires a port.
+	// Indicates whether the option requires a port.
 	PortRequired *bool `type:"boolean"`
 
 	// If true, you must enable the Auto Minor Version Upgrade setting for your
@@ -45510,12 +45514,12 @@ type OptionGroupOptionSetting struct {
 	// The default value for the option group option.
 	DefaultValue *string `type:"string"`
 
-	// Boolean value where true indicates that this option group option can be changed
-	// from the default value.
+	// Indicates whether this option group option can be changed from the default
+	// value.
 	IsModifiable *bool `type:"boolean"`
 
-	// Boolean value where true indicates that a value must be specified for this
-	// option setting of the option group option.
+	// Indicates whether a value must be specified for this option setting of the
+	// option group option.
 	IsRequired *bool `type:"boolean"`
 
 	// The minimum DB engine version required for the corresponding allowed value
@@ -45617,11 +45621,10 @@ type OptionSetting struct {
 	// The description of the option setting.
 	Description *string `type:"string"`
 
-	// Indicates if the option setting is part of a collection.
+	// Indicates whether the option setting is part of a collection.
 	IsCollection *bool `type:"boolean"`
 
-	// A Boolean value that, when true, indicates the option setting can be modified
-	// from the default.
+	// Indicates whether the option setting can be modified from the default.
 	IsModifiable *bool `type:"boolean"`
 
 	// The name of the option that has settings that you can set.
@@ -45708,7 +45711,7 @@ func (s *OptionSetting) SetValue(v string) *OptionSetting {
 type OptionVersion struct {
 	_ struct{} `type:"structure"`
 
-	// True if the version is the default version of the option, and otherwise false.
+	// Indicates whether the version is the default version of the option.
 	IsDefault *bool `type:"boolean"`
 
 	// The version of the option.
@@ -45807,7 +45810,7 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether a DB instance is Multi-AZ capable.
 	MultiAZCapable *bool `type:"boolean"`
 
-	// Whether a DB instance supports RDS on Outposts.
+	// Indicates whether a DB instance supports RDS on Outposts.
 	//
 	// For more information about RDS on Outposts, see Amazon RDS on Amazon Web
 	// Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
@@ -45817,7 +45820,7 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether a DB instance can have a read replica.
 	ReadReplicaCapable *bool `type:"boolean"`
 
-	// Indicates the storage type for a DB instance.
+	// The storage type for a DB instance.
 	StorageType *string `type:"string"`
 
 	// The list of supported modes for Database Activity Streams. Aurora PostgreSQL
@@ -45838,7 +45841,7 @@ type OrderableDBInstanceOption struct {
 	// in the Amazon RDS User Guide.
 	SupportedNetworkTypes []*string `type:"list"`
 
-	// Whether DB instances can be configured as a Multi-AZ DB cluster.
+	// Indicates whether DB instances can be configured as a Multi-AZ DB cluster.
 	//
 	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
 	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
@@ -45849,8 +45852,8 @@ type OrderableDBInstanceOption struct {
 	// from 1 to 60 seconds.
 	SupportsEnhancedMonitoring *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with a
-	// specific combination of other DB engine attributes.
+	// Indicates whether you can use Aurora global databases with a specific combination
+	// of other DB engine attributes.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
 	// Indicates whether a DB instance supports IAM database authentication.
@@ -45859,14 +45862,14 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether a DB instance supports provisioned IOPS.
 	SupportsIops *bool `type:"boolean"`
 
-	// Whether a DB instance supports Kerberos Authentication.
+	// Indicates whether a DB instance supports Kerberos Authentication.
 	SupportsKerberosAuthentication *bool `type:"boolean"`
 
-	// True if a DB instance supports Performance Insights, otherwise false.
+	// Indicates whether a DB instance supports Performance Insights.
 	SupportsPerformanceInsights *bool `type:"boolean"`
 
-	// Whether Amazon RDS can automatically scale storage for DB instances that
-	// use the specified DB instance class.
+	// Indicates whether Amazon RDS can automatically scale storage for DB instances
+	// that use the specified DB instance class.
 	SupportsStorageAutoscaling *bool `type:"boolean"`
 
 	// Indicates whether a DB instance supports encrypted storage.
@@ -46174,13 +46177,13 @@ type Parameter struct {
 	// The earliest engine version to which the parameter can apply.
 	MinimumEngineVersion *string `type:"string"`
 
-	// Specifies the name of the parameter.
+	// The name of the parameter.
 	ParameterName *string `type:"string"`
 
-	// Specifies the value of the parameter.
+	// The value of the parameter.
 	ParameterValue *string `type:"string"`
 
-	// Indicates the source of the parameter value.
+	// The source of the parameter value.
 	Source *string `type:"string"`
 
 	// The valid DB engine modes.
@@ -46444,8 +46447,8 @@ type PendingModifiedValues struct {
 	// The database engine version.
 	EngineVersion *string `type:"string"`
 
-	// Whether mapping of Amazon Web Services Identity and Access Management (IAM)
-	// accounts to database accounts is enabled.
+	// Indicates whether mapping of Amazon Web Services Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// The Provisioned IOPS value for the DB instance.
@@ -46459,8 +46462,7 @@ type PendingModifiedValues struct {
 	// The master credentials for the DB instance.
 	MasterUserPassword *string `type:"string"`
 
-	// A value that indicates that the Single-AZ DB instance will change to a Multi-AZ
-	// deployment.
+	// Indicates whether the Single-AZ DB instance will change to a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
 
 	// A list of the log types whose configuration is still pending. In other words,
@@ -47217,8 +47219,7 @@ type RebootDBInstanceInput struct {
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
-	// A value that indicates whether the reboot is conducted through a Multi-AZ
-	// failover.
+	// Specifies whether the reboot is conducted through a Multi-AZ failover.
 	//
 	// Constraint: You can't enable force failover if the instance isn't configured
 	// for Multi-AZ.
@@ -47919,7 +47920,7 @@ type ReservedDBInstance struct {
 	// to a reserved DB instance.
 	LeaseId *string `type:"string"`
 
-	// Indicates if the reservation applies to Multi-AZ deployments.
+	// Indicates whether the reservation applies to Multi-AZ deployments.
 	MultiAZ *bool `type:"boolean"`
 
 	// The offering type of this reserved DB instance.
@@ -48081,7 +48082,7 @@ type ReservedDBInstancesOffering struct {
 	// The fixed price charged for this offering.
 	FixedPrice *float64 `type:"double"`
 
-	// Indicates if the offering applies to Multi-AZ deployments.
+	// Indicates whether the offering applies to Multi-AZ deployments.
 	MultiAZ *bool `type:"boolean"`
 
 	// The offering type.
@@ -48191,9 +48192,9 @@ type ResetDBClusterParameterGroupInput struct {
 	// is enabled.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	// A value that indicates whether to reset all parameters in the DB cluster
-	// parameter group to their default values. You can't use this parameter if
-	// there is a list of parameter names specified for the Parameters parameter.
+	// Specifies whether to reset all parameters in the DB cluster parameter group
+	// to their default values. You can't use this parameter if there is a list
+	// of parameter names specified for the Parameters parameter.
 	ResetAllParameters *bool `type:"boolean"`
 }
 
@@ -48284,9 +48285,9 @@ type ResetDBParameterGroupInput struct {
 	// Valid Values (for Apply method): pending-reboot
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	// A value that indicates whether to reset all parameters in the DB parameter
-	// group to default values. By default, all parameters in the DB parameter group
-	// are reset to default values.
+	// Specifies whether to reset all parameters in the DB parameter group to default
+	// values. By default, all parameters in the DB parameter group are reset to
+	// default values.
 	ResetAllParameters *bool `type:"boolean"`
 }
 
@@ -48415,8 +48416,8 @@ type RestoreDBClusterFromS3Input struct {
 	// with the specified CharacterSet.
 	CharacterSetName *string `type:"string"`
 
-	// A value that indicates whether to copy all tags from the restored DB cluster
-	// to snapshots of the restored DB cluster. The default is not to copy them.
+	// Specifies whether to copy all tags from the restored DB cluster to snapshots
+	// of the restored DB cluster. The default is not to copy them.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The name of the DB cluster to create from the source data in the Amazon S3
@@ -48454,9 +48455,9 @@ type RestoreDBClusterFromS3Input struct {
 	// The database name for the restored DB cluster.
 	DatabaseName *string `type:"string"`
 
-	// A value that indicates whether the DB cluster has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection isn't enabled.
+	// Specifies whether to enable deletion protection for the DB cluster. The database
+	// can't be deleted when deletion protection is enabled. By default, deletion
+	// protection isn't enabled.
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB cluster in. The
@@ -48484,9 +48485,9 @@ type RestoreDBClusterFromS3Input struct {
 	// in the Amazon Aurora User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// isn't enabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping isn't
+	// enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
@@ -48524,8 +48525,8 @@ type RestoreDBClusterFromS3Input struct {
 	// Services Region.
 	KmsKeyId *string `type:"string"`
 
-	// A value that indicates whether to manage the master user password with Amazon
-	// Web Services Secrets Manager.
+	// Specifies whether to manage the master user password with Amazon Web Services
+	// Secrets Manager.
 	//
 	// For more information, see Password management with Amazon Web Services Secrets
 	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
@@ -48584,7 +48585,7 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The network type of the DB cluster.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -48674,7 +48675,7 @@ type RestoreDBClusterFromS3Input struct {
 	// The identifier for the database engine that was backed up to create the files
 	// stored in the Amazon S3 bucket.
 	//
-	// Valid values: mysql
+	// Valid Values: mysql
 	//
 	// SourceEngine is a required field
 	SourceEngine *string `type:"string" required:"true"`
@@ -48688,12 +48689,12 @@ type RestoreDBClusterFromS3Input struct {
 	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`
 
-	// A value that indicates whether the restored DB cluster is encrypted.
+	// Specifies whether the restored DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
 	// Specifies the storage type to be associated with the DB cluster.
 	//
-	// Valid values: aurora, aurora-iopt1
+	// Valid Values: aurora, aurora-iopt1
 	//
 	// Default: aurora
 	//
@@ -49045,8 +49046,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
-	// A value that indicates whether to copy all tags from the restored DB cluster
-	// to snapshots of the restored DB cluster. The default is not to copy them.
+	// Specifies whether to copy all tags from the restored DB cluster to snapshots
+	// of the restored DB cluster. The default is not to copy them.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -49112,15 +49113,15 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DatabaseName *string `type:"string"`
 
-	// A value that indicates whether the DB cluster has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection isn't enabled.
+	// Specifies whether to enable deletion protection for the DB cluster. The database
+	// can't be deleted when deletion protection is enabled. By default, deletion
+	// protection isn't enabled.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
-	// Specify the Active Directory directory ID to restore the DB cluster in. The
-	// domain must be created prior to this operation. Currently, only MySQL, Microsoft
+	// The Active Directory directory ID to restore the DB cluster in. The domain
+	// must be created prior to this operation. Currently, only MySQL, Microsoft
 	// SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active
 	// Directory Domain.
 	//
@@ -49130,8 +49131,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
-	// Specify the name of the IAM role to be used when making API calls to the
-	// Directory Service.
+	// The name of the IAM role to be used when making API calls to the Directory
+	// Service.
 	//
 	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
@@ -49166,9 +49167,9 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// isn't enabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping isn't
+	// enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
@@ -49276,7 +49277,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 
 	// The network type of the DB cluster.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -49306,7 +49307,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
 
-	// A value that indicates whether the DB cluster is publicly accessible.
+	// Specifies whether the DB cluster is publicly accessible.
 	//
 	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
 	// endpoint resolves to the private IP address from within the DB cluster's
@@ -49374,7 +49375,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
 	// is required.
 	//
-	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// Valid Values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
 	// clusters)
 	//
 	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
@@ -49662,8 +49663,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora MySQL DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
-	// A value that indicates whether to copy all tags from the restored DB cluster
-	// to snapshots of the restored DB cluster. The default is not to copy them.
+	// Specifies whether to copy all tags from the restored DB cluster to snapshots
+	// of the restored DB cluster. The default is not to copy them.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -49723,15 +49724,15 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
 
-	// A value that indicates whether the DB cluster has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection isn't enabled.
+	// Specifies whether to enable deletion protection for the DB cluster. The database
+	// can't be deleted when deletion protection is enabled. By default, deletion
+	// protection isn't enabled.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
-	// Specify the Active Directory directory ID to restore the DB cluster in. The
-	// domain must be created prior to this operation.
+	// The Active Directory directory ID to restore the DB cluster in. The domain
+	// must be created prior to this operation.
 	//
 	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos Authentication
 	// to authenticate users that connect to the DB cluster. For more information,
@@ -49741,8 +49742,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
-	// Specify the name of the IAM role to be used when making API calls to the
-	// Directory Service.
+	// The name of the IAM role to be used when making API calls to the Directory
+	// Service.
 	//
 	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
@@ -49777,9 +49778,9 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// isn't enabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping isn't
+	// enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
@@ -49839,7 +49840,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 
 	// The network type of the DB cluster.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -49869,7 +49870,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
 
-	// A value that indicates whether the DB cluster is publicly accessible.
+	// Specifies whether the DB cluster is publicly accessible.
 	//
 	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
 	// endpoint resolves to the private IP address from within the DB cluster's
@@ -49968,7 +49969,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// When specified for a Multi-AZ DB cluster, a value for the Iops parameter
 	// is required.
 	//
-	// Valid values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
+	// Valid Values: aurora, aurora-iopt1 (Aurora DB clusters); io1 (Multi-AZ DB
 	// clusters)
 	//
 	// Default: aurora (Aurora DB clusters); io1 (Multi-AZ DB clusters)
@@ -49980,8 +49981,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// A value that indicates whether to restore the DB cluster to the latest restorable
-	// backup time. By default, the DB cluster isn't restored to the latest restorable
+	// Specifies whether to restore the DB cluster to the latest restorable backup
+	// time. By default, the DB cluster isn't restored to the latest restorable
 	// backup time.
 	//
 	// Constraints: Can't be specified if RestoreToTime parameter is provided.
@@ -50253,8 +50254,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
-	// A value that indicates whether minor version upgrades are applied automatically
-	// to the DB instance during the maintenance window.
+	// Specifies whether to automatically apply minor version upgrades to the DB
+	// instance during the maintenance window.
 	//
 	// If you restore an RDS Custom DB instance, you must disable this parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
@@ -50280,8 +50281,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// in the Amazon RDS User Guide.
 	BackupTarget *string `type:"string"`
 
-	// A value that indicates whether to copy all tags from the restored DB instance
-	// to snapshots of the DB instance.
+	// Specifies whether to copy all tags from the restored DB instance to snapshots
+	// of the DB instance.
 	//
 	// In most cases, tags aren't copied by default. However, when you restore a
 	// DB instance from a DB snapshot, RDS checks whether you specify new tags.
@@ -50405,8 +50406,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
-	// A value that indicates whether the DB instance has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
+	// Specifies whether to enable deletion protection for the DB instance. The
+	// database can't be deleted when deletion protection is enabled. By default,
 	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
@@ -50426,6 +50427,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// joining the domain.
 	//
 	// Constraints:
+	//
+	//    * Can't be longer than 64 characters.
 	//
 	// Example: arn:aws:secretsmanager:region:account-number:secret:myselfmanagedADtestsecret-123456
 	DomainAuthSecretArn *string `type:"string"`
@@ -50475,8 +50478,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting doesn't apply to RDS Custom.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable a customer-owned IP address (CoIP)
-	// for an RDS on Outposts DB instance.
+	// Specifies whether to enable a customer-owned IP address (CoIP) for an RDS
+	// on Outposts DB instance.
 	//
 	// A CoIP provides local or external connectivity to resources in your Outpost
 	// subnets through your on-premises network. For some use cases, a CoIP can
@@ -50493,9 +50496,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -50558,10 +50560,10 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Default: Same as source.
 	//
-	// Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid Values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
-	// A value that indicates whether the DB instance is a Multi-AZ deployment.
+	// Specifies whether the DB instance is a Multi-AZ deployment.
 	//
 	// This setting doesn't apply to RDS Custom.
 	//
@@ -50571,7 +50573,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// The network type of the DB instance.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -50607,7 +50609,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible.
+	// Specifies whether the DB instance is publicly accessible.
 	//
 	// When the DB instance is publicly accessible, its Domain Name System (DNS)
 	// endpoint resolves to the private IP address from within the DB instance's
@@ -50629,7 +50631,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | standard
 	//
 	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
@@ -50651,8 +50653,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
-	// A value that indicates whether the DB instance class of the DB instance uses
-	// its default processor features.
+	// Specifies whether the DB instance class of the DB instance uses its default
+	// processor features.
 	//
 	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
@@ -50975,9 +50977,9 @@ type RestoreDBInstanceFromS3Input struct {
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
-	// A value that indicates whether minor engine upgrades are applied automatically
-	// to the DB instance during the maintenance window. By default, minor engine
-	// upgrades are not applied automatically.
+	// Specifies whether to automatically apply minor engine upgrades to the DB
+	// instance during the maintenance window. By default, minor engine upgrades
+	// are not applied automatically.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone that the DB instance is created in. For information
@@ -51000,8 +51002,8 @@ type RestoreDBInstanceFromS3Input struct {
 	// CreateDBInstance.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// A value that indicates whether to copy all tags from the DB instance to snapshots
-	// of the DB instance. By default, tags are not copied.
+	// Specifies whether to copy all tags from the DB instance to snapshots of the
+	// DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The compute and memory capacity of the DB instance, for example db.m4.large.
@@ -51052,8 +51054,8 @@ type RestoreDBInstanceFromS3Input struct {
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
-	// A value that indicates whether the DB instance has deletion protection enabled.
-	// The database can't be deleted when deletion protection is enabled. By default,
+	// Specifies whether to enable deletion protection for the DB instance. The
+	// database can't be deleted when deletion protection is enabled. By default,
 	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
@@ -51064,17 +51066,16 @@ type RestoreDBInstanceFromS3Input struct {
 	// in the Amazon RDS User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable mapping of Amazon Web Services Identity
-	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// isn't enabled.
+	// Specifies whether to enable mapping of Amazon Web Services Identity and Access
+	// Management (IAM) accounts to database accounts. By default, mapping isn't
+	// enabled.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
-	// A value that indicates whether to enable Performance Insights for the DB
-	// instance.
+	// Specifies whether to enable Performance Insights for the DB instance.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
 	// in the Amazon RDS User Guide.
@@ -51114,8 +51115,8 @@ type RestoreDBInstanceFromS3Input struct {
 	// The license model for this DB instance. Use general-public-license.
 	LicenseModel *string `type:"string"`
 
-	// A value that indicates whether to manage the master user password with Amazon
-	// Web Services Secrets Manager.
+	// Specifies whether to manage the master user password with Amazon Web Services
+	// Secrets Manager.
 	//
 	// For more information, see Password management with Amazon Web Services Secrets
 	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
@@ -51215,14 +51216,13 @@ type RestoreDBInstanceFromS3Input struct {
 	// a MonitoringRoleArn value.
 	MonitoringRoleArn *string `type:"string"`
 
-	// A value that indicates whether the DB instance is a Multi-AZ deployment.
-	// If the DB instance is a Multi-AZ deployment, you can't set the AvailabilityZone
-	// parameter.
+	// Specifies whether the DB instance is a Multi-AZ deployment. If the DB instance
+	// is a Multi-AZ deployment, you can't set the AvailabilityZone parameter.
 	MultiAZ *bool `type:"boolean"`
 
 	// The network type of the DB instance.
 	//
-	// Valid values:
+	// Valid Values:
 	//
 	//    * IPV4
 	//
@@ -51322,7 +51322,7 @@ type RestoreDBInstanceFromS3Input struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible.
+	// Specifies whether the DB instance is publicly accessible.
 	//
 	// When the DB instance is publicly accessible, its Domain Name System (DNS)
 	// endpoint resolves to the private IP address from within the DB instance's
@@ -51367,7 +51367,7 @@ type RestoreDBInstanceFromS3Input struct {
 	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`
 
-	// A value that indicates whether the new DB instance is encrypted or not.
+	// Specifies whether the new DB instance is encrypted or not.
 	StorageEncrypted *bool `type:"boolean"`
 
 	// Specifies the storage throughput value for the DB instance.
@@ -51377,7 +51377,7 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | standard
 	//
 	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
@@ -51389,8 +51389,8 @@ type RestoreDBInstanceFromS3Input struct {
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// A value that indicates whether the DB instance class of the DB instance uses
-	// its default processor features.
+	// Specifies whether the DB instance class of the DB instance uses its default
+	// processor features.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
 	// A list of VPC security groups to associate with this DB instance.
@@ -52179,8 +52179,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
-	// A value that indicates whether the DB instance class of the DB instance uses
-	// its default processor features.
+	// Specifies whether the DB instance class of the DB instance uses its default
+	// processor features.
 	//
 	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
@@ -52698,9 +52698,9 @@ func (s *RevokeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGro
 type ScalingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether to allow or disallow automatic pause for an
-	// Aurora DB cluster in serverless DB engine mode. A DB cluster can be paused
-	// only when it's idle (it has no connections).
+	// Indicates whether to allow or disallow automatic pause for an Aurora DB cluster
+	// in serverless DB engine mode. A DB cluster can be paused only when it's idle
+	// (it has no connections).
 	//
 	// If a DB cluster is paused for more than seven days, the DB cluster might
 	// be backed up with a snapshot. In this case, the DB cluster is restored when
@@ -52820,8 +52820,8 @@ func (s *ScalingConfiguration) SetTimeoutAction(v string) *ScalingConfiguration 
 type ScalingConfigurationInfo struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether automatic pause is allowed for the Aurora
-	// DB cluster in serverless DB engine mode.
+	// Indicates whether automatic pause is allowed for the Aurora DB cluster in
+	// serverless DB engine mode.
 	//
 	// When the value is set to false for an Aurora Serverless v1 DB cluster, the
 	// DB cluster automatically resumes.
@@ -53018,8 +53018,8 @@ type SourceRegion struct {
 	// The status of the source Amazon Web Services Region.
 	Status *string `type:"string"`
 
-	// Whether the source Amazon Web Services Region supports replicating automated
-	// backups to the current Amazon Web Services Region.
+	// Indicates whether the source Amazon Web Services Region supports replicating
+	// automated backups to the current Amazon Web Services Region.
 	SupportsDBInstanceAutomatedBackupsReplication *bool `type:"boolean"`
 }
 
@@ -53573,8 +53573,10 @@ func (s *StartDBInstanceOutput) SetDBInstance(v *DBInstance) *StartDBInstanceOut
 type StartExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data to be exported from the snapshot or cluster. If this parameter is
-	// not provided, all of the data is exported. Valid values are the following:
+	// The data to be exported from the snapshot or cluster. If this parameter isn't
+	// provided, all of the data is exported.
+	//
+	// Valid Values:
 	//
 	//    * database - Export all the data from a specified database.
 	//
@@ -53754,11 +53756,13 @@ func (s *StartExportTaskInput) SetSourceArn(v string) *StartExportTaskInput {
 
 // Contains the details of a snapshot or cluster export to Amazon S3.
 //
-// This data type is used as a response element in the DescribeExportTasks action.
+// This data type is used as a response element in the DescribeExportTasks operation.
 type StartExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot or cluster. Valid values are the following:
+	// The data exported from the snapshot or cluster.
+	//
+	// Valid Values:
 	//
 	//    * database - Export all the data from a specified database.
 	//
@@ -53794,14 +53798,14 @@ type StartExportTaskOutput struct {
 	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot or cluster is exported to.
+	// The Amazon S3 bucket where the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
 	// data.
 	S3Prefix *string `type:"string"`
 
-	// The time that the snapshot was created.
+	// The time when the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
@@ -53826,10 +53830,10 @@ type StartExportTaskOutput struct {
 	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot or cluster export task ended.
+	// The time when the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot or cluster export task started.
+	// The time when the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
@@ -54913,8 +54917,8 @@ func (s *Timezone) SetTimezoneName(v string) *Timezone {
 type UpgradeTarget struct {
 	_ struct{} `type:"structure"`
 
-	// A value that indicates whether the target version is applied to any source
-	// DB instances that have AutoMinorVersionUpgrade set to true.
+	// Indicates whether the target version is applied to any source DB instances
+	// that have AutoMinorVersionUpgrade set to true.
 	AutoUpgrade *bool `type:"boolean"`
 
 	// The version of the database engine that a DB instance can be upgraded to.
@@ -54926,30 +54930,30 @@ type UpgradeTarget struct {
 	// The version number of the upgrade target database engine.
 	EngineVersion *string `type:"string"`
 
-	// A value that indicates whether upgrading to the target version requires upgrading
-	// the major version of the database engine.
+	// Indicates whether upgrading to the target version requires upgrading the
+	// major version of the database engine.
 	IsMajorVersionUpgrade *bool `type:"boolean"`
 
 	// A list of the supported DB engine modes for the target engine version.
 	SupportedEngineModes []*string `type:"list"`
 
-	// A value that indicates whether you can use Babelfish for Aurora PostgreSQL
-	// with the target engine version.
+	// Indicates whether you can use Babelfish for Aurora PostgreSQL with the target
+	// engine version.
 	SupportsBabelfish *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora global databases with the
-	// target engine version.
+	// Indicates whether you can use Aurora global databases with the target engine
+	// version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// A value that indicates whether the target engine version supports forwarding
-	// write operations from reader DB instances to the writer DB instance in the
-	// DB cluster. By default, write operations aren't allowed on reader DB instances.
+	// Indicates whether the target engine version supports forwarding write operations
+	// from reader DB instances to the writer DB instance in the DB cluster. By
+	// default, write operations aren't allowed on reader DB instances.
 	//
 	// Valid for: Aurora DB clusters only
 	SupportsLocalWriteForwarding *bool `type:"boolean"`
 
-	// A value that indicates whether you can use Aurora parallel query with the
-	// target engine version.
+	// Indicates whether you can use Aurora parallel query with the target engine
+	// version.
 	SupportsParallelQuery *bool `type:"boolean"`
 }
 
@@ -55047,9 +55051,10 @@ type UserAuthConfig struct {
 	// log in as a specific database user.
 	Description *string `type:"string"`
 
-	// Whether to require or disallow Amazon Web Services Identity and Access Management
-	// (IAM) authentication for connections to the proxy. The ENABLED value is valid
-	// only for proxies with RDS for Microsoft SQL Server.
+	// A value that indicates whether to require or disallow Amazon Web Services
+	// Identity and Access Management (IAM) authentication for connections to the
+	// proxy. The ENABLED value is valid only for proxies with RDS for Microsoft
+	// SQL Server.
 	IAMAuth *string `type:"string" enum:"IAMAuthMode"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses
@@ -55270,8 +55275,8 @@ type ValidStorageOptions struct {
 	// The valid storage types for your DB instance. For example: gp2, gp3, io1.
 	StorageType *string `type:"string"`
 
-	// Whether or not Amazon RDS can automatically scale storage for DB instances
-	// that use the new instance class.
+	// Indicates whether or not Amazon RDS can automatically scale storage for DB
+	// instances that use the new instance class.
 	SupportsStorageAutoscaling *bool `type:"boolean"`
 }
 

@@ -2106,7 +2106,8 @@
         "DeprecationDate":{"shape":"DeprecationDate"},
         "GatewayCapacity":{"shape":"GatewayCapacity"},
         "SupportedGatewayCapacities":{"shape":"SupportedGatewayCapacities"},
-        "HostEnvironmentId":{"shape":"HostEnvironmentId"}
+        "HostEnvironmentId":{"shape":"HostEnvironmentId"},
+        "SoftwareVersion":{"shape":"SoftwareVersion"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2809,7 +2810,7 @@
       "type":"string",
       "max":2048,
       "min":7,
-      "pattern":"(^arn:(aws|aws-cn|aws-us-gov):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)"
+      "pattern":"(^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*)):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)"
     },
     "LastSoftwareUpdate":{
       "type":"string",
@@ -3058,7 +3059,8 @@
         "Ipv4Address":{"shape":"string"},
         "MacAddress":{"shape":"string"},
         "Ipv6Address":{"shape":"string"}
-      }
+      },
+      "sensitive":true
     },
     "NetworkInterfaceId":{
       "type":"string",
@@ -3286,7 +3288,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov):iam::([0-9]+):role/(\\S+)$"
+      "pattern":"^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*)):iam::([0-9]+):role/(\\S+)$"
     },
     "SMBFileShareInfo":{
       "type":"structure",
@@ -3416,6 +3418,7 @@
       "max":25,
       "min":1
     },
+    "SoftwareVersion":{"type":"string"},
     "Squash":{
       "type":"string",
       "max":15,
@@ -3538,7 +3541,7 @@
       "type":"string",
       "max":500,
       "min":50,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{5,16}$"
+      "pattern":"arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*)):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{5,16}$"
     },
     "TapeARNs":{
       "type":"list",

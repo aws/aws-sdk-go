@@ -2396,6 +2396,75 @@
         "AllowHeaders":{"shape":"NonEmptyStringList"}
       }
     },
+    "AwsDmsEndpointDetails":{
+      "type":"structure",
+      "members":{
+        "CertificateArn":{"shape":"NonEmptyString"},
+        "DatabaseName":{"shape":"NonEmptyString"},
+        "EndpointArn":{"shape":"NonEmptyString"},
+        "EndpointIdentifier":{"shape":"NonEmptyString"},
+        "EndpointType":{"shape":"NonEmptyString"},
+        "EngineName":{"shape":"NonEmptyString"},
+        "ExternalId":{"shape":"NonEmptyString"},
+        "ExtraConnectionAttributes":{"shape":"NonEmptyString"},
+        "KmsKeyId":{"shape":"NonEmptyString"},
+        "Port":{"shape":"Integer"},
+        "ServerName":{"shape":"NonEmptyString"},
+        "SslMode":{"shape":"NonEmptyString"},
+        "Username":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsDmsReplicationInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "AllocatedStorage":{"shape":"Integer"},
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"},
+        "AvailabilityZone":{"shape":"NonEmptyString"},
+        "EngineVersion":{"shape":"NonEmptyString"},
+        "KmsKeyId":{"shape":"NonEmptyString"},
+        "MultiAZ":{"shape":"Boolean"},
+        "PreferredMaintenanceWindow":{"shape":"NonEmptyString"},
+        "PubliclyAccessible":{"shape":"Boolean"},
+        "ReplicationInstanceClass":{"shape":"NonEmptyString"},
+        "ReplicationInstanceIdentifier":{"shape":"NonEmptyString"},
+        "ReplicationSubnetGroup":{"shape":"AwsDmsReplicationInstanceReplicationSubnetGroupDetails"},
+        "VpcSecurityGroups":{"shape":"AwsDmsReplicationInstanceVpcSecurityGroupsList"}
+      }
+    },
+    "AwsDmsReplicationInstanceReplicationSubnetGroupDetails":{
+      "type":"structure",
+      "members":{
+        "ReplicationSubnetGroupIdentifier":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsDmsReplicationInstanceVpcSecurityGroupsDetails":{
+      "type":"structure",
+      "members":{
+        "VpcSecurityGroupId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsDmsReplicationInstanceVpcSecurityGroupsList":{
+      "type":"list",
+      "member":{"shape":"AwsDmsReplicationInstanceVpcSecurityGroupsDetails"}
+    },
+    "AwsDmsReplicationTaskDetails":{
+      "type":"structure",
+      "members":{
+        "CdcStartPosition":{"shape":"NonEmptyString"},
+        "CdcStartTime":{"shape":"NonEmptyString"},
+        "CdcStopPosition":{"shape":"NonEmptyString"},
+        "MigrationType":{"shape":"NonEmptyString"},
+        "Id":{"shape":"NonEmptyString"},
+        "ResourceIdentifier":{"shape":"NonEmptyString"},
+        "ReplicationInstanceArn":{"shape":"NonEmptyString"},
+        "ReplicationTaskIdentifier":{"shape":"NonEmptyString"},
+        "ReplicationTaskSettings":{"shape":"NonEmptyString"},
+        "SourceEndpointArn":{"shape":"NonEmptyString"},
+        "TableMappings":{"shape":"NonEmptyString"},
+        "TargetEndpointArn":{"shape":"NonEmptyString"},
+        "TaskData":{"shape":"NonEmptyString"}
+      }
+    },
     "AwsDynamoDbTableAttributeDefinition":{
       "type":"structure",
       "members":{
@@ -3859,7 +3928,8 @@
         "ProxyConfiguration":{"shape":"AwsEcsTaskDefinitionProxyConfigurationDetails"},
         "RequiresCompatibilities":{"shape":"NonEmptyStringList"},
         "TaskRoleArn":{"shape":"NonEmptyString"},
-        "Volumes":{"shape":"AwsEcsTaskDefinitionVolumesList"}
+        "Volumes":{"shape":"AwsEcsTaskDefinitionVolumesList"},
+        "Status":{"shape":"NonEmptyString"}
       }
     },
     "AwsEcsTaskDefinitionInferenceAcceleratorsDetails":{
@@ -4393,6 +4463,71 @@
         "RegistryName":{"shape":"NonEmptyString"}
       }
     },
+    "AwsEventsEndpointDetails":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "EndpointId":{"shape":"NonEmptyString"},
+        "EndpointUrl":{"shape":"NonEmptyString"},
+        "EventBuses":{"shape":"AwsEventsEndpointEventBusesList"},
+        "Name":{"shape":"NonEmptyString"},
+        "ReplicationConfig":{"shape":"AwsEventsEndpointReplicationConfigDetails"},
+        "RoleArn":{"shape":"NonEmptyString"},
+        "RoutingConfig":{"shape":"AwsEventsEndpointRoutingConfigDetails"},
+        "State":{"shape":"NonEmptyString"},
+        "StateReason":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEventsEndpointEventBusesDetails":{
+      "type":"structure",
+      "members":{
+        "EventBusArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEventsEndpointEventBusesList":{
+      "type":"list",
+      "member":{"shape":"AwsEventsEndpointEventBusesDetails"}
+    },
+    "AwsEventsEndpointReplicationConfigDetails":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEventsEndpointRoutingConfigDetails":{
+      "type":"structure",
+      "members":{
+        "FailoverConfig":{"shape":"AwsEventsEndpointRoutingConfigFailoverConfigDetails"}
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigDetails":{
+      "type":"structure",
+      "members":{
+        "Primary":{"shape":"AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails"},
+        "Secondary":{"shape":"AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails"}
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails":{
+      "type":"structure",
+      "members":{
+        "HealthCheck":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails":{
+      "type":"structure",
+      "members":{
+        "Route":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEventsEventbusDetails":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"NonEmptyString"},
+        "Name":{"shape":"NonEmptyString"},
+        "Policy":{"shape":"NonEmptyString"}
+      }
+    },
     "AwsGuardDutyDetectorDataSourcesCloudTrailDetails":{
       "type":"structure",
       "members":{
@@ -4810,6 +4945,82 @@
       "type":"list",
       "member":{"shape":"AwsMountPoint"}
     },
+    "AwsMskClusterClusterInfoClientAuthenticationDetails":{
+      "type":"structure",
+      "members":{
+        "Sasl":{"shape":"AwsMskClusterClusterInfoClientAuthenticationSaslDetails"},
+        "Unauthenticated":{"shape":"AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails"},
+        "Tls":{"shape":"AwsMskClusterClusterInfoClientAuthenticationTlsDetails"}
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslDetails":{
+      "type":"structure",
+      "members":{
+        "Iam":{"shape":"AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails"},
+        "Scram":{"shape":"AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails"}
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationTlsDetails":{
+      "type":"structure",
+      "members":{
+        "CertificateAuthorityArnList":{"shape":"StringList"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "AwsMskClusterClusterInfoDetails":{
+      "type":"structure",
+      "members":{
+        "EncryptionInfo":{"shape":"AwsMskClusterClusterInfoEncryptionInfoDetails"},
+        "CurrentVersion":{"shape":"NonEmptyString"},
+        "NumberOfBrokerNodes":{"shape":"Integer"},
+        "ClusterName":{"shape":"NonEmptyString"},
+        "ClientAuthentication":{"shape":"AwsMskClusterClusterInfoClientAuthenticationDetails"}
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoDetails":{
+      "type":"structure",
+      "members":{
+        "EncryptionInTransit":{"shape":"AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails"},
+        "EncryptionAtRest":{"shape":"AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails"}
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails":{
+      "type":"structure",
+      "members":{
+        "DataVolumeKMSKeyId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails":{
+      "type":"structure",
+      "members":{
+        "InCluster":{"shape":"Boolean"},
+        "ClientBroker":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsMskClusterDetails":{
+      "type":"structure",
+      "members":{
+        "ClusterInfo":{"shape":"AwsMskClusterClusterInfoDetails"}
+      }
+    },
     "AwsNetworkFirewallFirewallDetails":{
       "type":"structure",
       "members":{
@@ -5022,7 +5233,8 @@
         "DbClusterOptionGroupMemberships":{"shape":"AwsRdsDbClusterOptionGroupMemberships"},
         "DbClusterIdentifier":{"shape":"NonEmptyString"},
         "DbClusterMembers":{"shape":"AwsRdsDbClusterMembers"},
-        "IamDatabaseAuthenticationEnabled":{"shape":"Boolean"}
+        "IamDatabaseAuthenticationEnabled":{"shape":"Boolean"},
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"}
       }
     },
     "AwsRdsDbClusterMember":{
@@ -5580,6 +5792,50 @@
     "AwsRedshiftClusterVpcSecurityGroups":{
       "type":"list",
       "member":{"shape":"AwsRedshiftClusterVpcSecurityGroup"}
+    },
+    "AwsRoute53HostedZoneConfigDetails":{
+      "type":"structure",
+      "members":{
+        "Comment":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsRoute53HostedZoneDetails":{
+      "type":"structure",
+      "members":{
+        "HostedZone":{"shape":"AwsRoute53HostedZoneObjectDetails"},
+        "Vpcs":{"shape":"AwsRoute53HostedZoneVpcsList"},
+        "NameServers":{"shape":"AwsRoute53HostedZoneNameServersList"},
+        "QueryLoggingConfig":{"shape":"AwsRoute53QueryLoggingConfigDetails"}
+      }
+    },
+    "AwsRoute53HostedZoneNameServersList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
+    "AwsRoute53HostedZoneObjectDetails":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"NonEmptyString"},
+        "Name":{"shape":"NonEmptyString"},
+        "Config":{"shape":"AwsRoute53HostedZoneConfigDetails"}
+      }
+    },
+    "AwsRoute53HostedZoneVpcDetails":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"NonEmptyString"},
+        "Region":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsRoute53HostedZoneVpcsList":{
+      "type":"list",
+      "member":{"shape":"AwsRoute53HostedZoneVpcDetails"}
+    },
+    "AwsRoute53QueryLoggingConfigDetails":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsLogGroupArn":{"shape":"CloudWatchLogsLogGroupArnConfigDetails"}
+      }
     },
     "AwsS3AccountPublicAccessBlockDetails":{
       "type":"structure",
@@ -6811,6 +7067,14 @@
       "members":{
         "Code":{"shape":"NonEmptyString"},
         "Reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "CloudWatchLogsLogGroupArnConfigDetails":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsLogGroupArn":{"shape":"NonEmptyString"},
+        "HostedZoneId":{"shape":"NonEmptyString"},
+        "Id":{"shape":"NonEmptyString"}
       }
     },
     "CodeVulnerabilitiesFilePath":{
@@ -8597,7 +8861,14 @@
         "AwsEventSchemasRegistry":{"shape":"AwsEventSchemasRegistryDetails"},
         "AwsGuardDutyDetector":{"shape":"AwsGuardDutyDetectorDetails"},
         "AwsStepFunctionStateMachine":{"shape":"AwsStepFunctionStateMachineDetails"},
-        "AwsAthenaWorkGroup":{"shape":"AwsAthenaWorkGroupDetails"}
+        "AwsAthenaWorkGroup":{"shape":"AwsAthenaWorkGroupDetails"},
+        "AwsEventsEventbus":{"shape":"AwsEventsEventbusDetails"},
+        "AwsDmsEndpoint":{"shape":"AwsDmsEndpointDetails"},
+        "AwsEventsEndpoint":{"shape":"AwsEventsEndpointDetails"},
+        "AwsDmsReplicationTask":{"shape":"AwsDmsReplicationTaskDetails"},
+        "AwsDmsReplicationInstance":{"shape":"AwsDmsReplicationInstanceDetails"},
+        "AwsRoute53HostedZone":{"shape":"AwsRoute53HostedZoneDetails"},
+        "AwsMskCluster":{"shape":"AwsMskClusterDetails"}
       }
     },
     "ResourceList":{
