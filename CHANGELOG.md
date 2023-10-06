@@ -1,3 +1,16 @@
+Release v1.45.24 (2023-10-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/fsx`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * NullOption in FilterListConfiguration; Dataset schema/table max length increased; Support total placement for pivot table visual; Lenient mode relaxes the validation to create resources with definition; Data sources can be added to folders; Redshift data sources support IAM Role-based authentication
+* `service/transfer`: Updates service API and documentation
+  * This release updates the max character limit of PreAuthenticationLoginBanner and PostAuthenticationLoginBanner to 4096 characters
+
 Release v1.45.23 (2023-10-05)
 ===
 

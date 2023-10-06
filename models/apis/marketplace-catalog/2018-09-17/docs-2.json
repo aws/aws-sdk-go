@@ -3,15 +3,15 @@
   "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace. </p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
-    "DeleteResourcePolicy": "<p>Deletes a resource-based policy on an Entity that is identified by its resource ARN.</p>",
+    "DeleteResourcePolicy": "<p>Deletes a resource-based policy on an entity that is identified by its resource ARN.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
     "DescribeEntity": "<p>Returns the metadata and content of the entity.</p>",
-    "GetResourcePolicy": "<p>Gets a resource-based policy of an Entity that is identified by its resource ARN.</p>",
+    "GetResourcePolicy": "<p>Gets a resource-based policy of an entity that is identified by its resource ARN.</p>",
     "ListChangeSets": "<p>Returns the list of change sets owned by the account being used to make the call. You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>, and status. If you provide more than one filter, the API operation applies a logical AND between the filters.</p> <p>You can describe a change during the 60-day request history retention period for API calls.</p>",
     "ListEntities": "<p>Provides the list of entities of a given type.</p>",
     "ListTagsForResource": "<p>Lists all tags that have been added to a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
-    "PutResourcePolicy": "<p>Attaches a resource-based policy to an Entity. Examples of an entity include: <code>AmiProduct</code> and <code>ContainerProduct</code>.</p>",
-    "StartChangeSet": "<p>Allows you to request changes for your entities. Within a single <code>ChangeSet</code>, you can't start the same change type against the same entity multiple times. Additionally, when a <code>ChangeSet</code> is running, all the entities targeted by the different changes are locked until the change set has completed (either succeeded, cancelled, or failed). If you try to start a change set containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code> error.</p> <p>For example, you can't start the <code>ChangeSet</code> described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1</code>).</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>. For information on change types for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Als, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
+    "PutResourcePolicy": "<p>Attaches a resource-based policy to an entity. Examples of an entity include: <code>AmiProduct</code> and <code>ContainerProduct</code>.</p>",
+    "StartChangeSet": "<p>Allows you to request changes for your entities. Within a single <code>ChangeSet</code>, you can't start the same change type against the same entity multiple times. Additionally, when a <code>ChangeSet</code> is running, all the entities targeted by the different changes are locked until the change set has completed (either succeeded, cancelled, or failed). If you try to start a change set containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code> error.</p> <p>For example, you can't start the <code>ChangeSet</code> described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1</code>).</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>. For information about change types for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information about change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
     "TagResource": "<p>Tags a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
     "UntagResource": "<p>Removes a tag or list of tags from a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>"
   },
@@ -108,7 +108,7 @@
     "ChangeType": {
       "base": null,
       "refs": {
-        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
+        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information about change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
         "ChangeSummary$ChangeType": "<p>The type of the change.</p>"
       }
     },
@@ -283,9 +283,17 @@
     "Json": {
       "base": null,
       "refs": {
-        "Change$Details": "<p>This object contains details specific to the change type of the requested change. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
+        "Change$Details": "<p>This object contains details specific to the change type of the requested change. For more information about change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information about change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
         "ChangeSummary$Details": "<p>This object contains details specific to the change type of the requested change.</p>",
         "DescribeEntityResponse$Details": "<p>This stringified JSON object includes the details of the entity.</p>"
+      }
+    },
+    "JsonDocumentType": {
+      "base": null,
+      "refs": {
+        "Change$DetailsDocument": "<p>Alternative field that accepts a JSON value instead of a string for <code>ChangeType</code> details. You can use either <code>Details</code> or <code>DetailsDocument</code>, but not both.</p>",
+        "ChangeSummary$DetailsDocument": "<p>The JSON value of the details specific to the change type of the requested change.</p>",
+        "DescribeEntityResponse$DetailsDocument": "<p>The JSON value of the details specific to the entity.</p>"
       }
     },
     "ListChangeSetsMaxResultInteger": {
@@ -342,7 +350,7 @@
     "OwnershipType": {
       "base": null,
       "refs": {
-        "ListEntitiesRequest$OwnershipType": null
+        "ListEntitiesRequest$OwnershipType": "<p>Filters the returned set of entities based on their owner. The default is <code>SELF</code>. To list entities shared with you through AWS Resource Access Manager (AWS RAM), set to <code>SHARED</code>. Entities shared through the AWS Marketplace Catalog API <code>PutResourcePolicy</code> operation can't be discovered through the <code>SHARED</code> parameter.</p>"
       }
     },
     "PutResourcePolicyRequest": {
@@ -364,11 +372,11 @@
     "ResourceARN": {
       "base": null,
       "refs": {
-        "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource that is associated with the resource policy.</p>",
-        "GetResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource that is associated with the resource policy.</p>",
+        "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the entity resource that is associated with the resource policy.</p>",
+        "GetResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the entity resource that is associated with the resource policy.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to list tags on.</p>",
         "ListTagsForResourceResponse$ResourceArn": "<p>Required. The ARN associated with the resource you want to list tags on.</p>",
-        "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource you want to associate with a resource policy. </p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the entity resource you want to associate with a resource policy.</p>",
         "TagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to tag.</p>",
         "UntagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to remove the tag from.</p>"
       }
@@ -430,7 +438,7 @@
     "SortBy": {
       "base": null,
       "refs": {
-        "Sort$SortBy": "<p>For <code>ListEntities</code>, supported attributes include <code>LastModifiedDate</code> (default), <code>Visibility</code>, <code>EntityId</code>, and <code>Name</code>.</p> <p>For <code>ListChangeSets</code>, supported attributes include <code>StartTime</code> and <code>EndTime</code>.</p>"
+        "Sort$SortBy": "<p>For <code>ListEntities</code>, supported attributes include <code>LastModifiedDate</code> (default) and <code>EntityId</code>. In addition to <code>LastModifiedDate</code> and <code>EntityId</code>, each <code>EntityType</code> might support additional fields.</p> <p>For <code>ListChangeSets</code>, supported attributes include <code>StartTime</code> and <code>EndTime</code>.</p>"
       }
     },
     "SortOrder": {

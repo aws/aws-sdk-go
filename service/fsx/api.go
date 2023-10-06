@@ -4151,6 +4151,93 @@ func (c *FSx) RestoreVolumeFromSnapshotWithContext(ctx aws.Context, input *Resto
 	return out, req.Send()
 }
 
+const opStartMisconfiguredStateRecovery = "StartMisconfiguredStateRecovery"
+
+// StartMisconfiguredStateRecoveryRequest generates a "aws/request.Request" representing the
+// client's request for the StartMisconfiguredStateRecovery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMisconfiguredStateRecovery for more information on using the StartMisconfiguredStateRecovery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMisconfiguredStateRecoveryRequest method.
+//	req, resp := client.StartMisconfiguredStateRecoveryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/StartMisconfiguredStateRecovery
+func (c *FSx) StartMisconfiguredStateRecoveryRequest(input *StartMisconfiguredStateRecoveryInput) (req *request.Request, output *StartMisconfiguredStateRecoveryOutput) {
+	op := &request.Operation{
+		Name:       opStartMisconfiguredStateRecovery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartMisconfiguredStateRecoveryInput{}
+	}
+
+	output = &StartMisconfiguredStateRecoveryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMisconfiguredStateRecovery API operation for Amazon FSx.
+//
+// After performing steps to repair the Active Directory configuration of an
+// FSx for Windows File Server file system, use this action to initiate the
+// process of Amazon FSx attempting to reconnect to the file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation StartMisconfiguredStateRecovery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - FileSystemNotFound
+//     No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/StartMisconfiguredStateRecovery
+func (c *FSx) StartMisconfiguredStateRecovery(input *StartMisconfiguredStateRecoveryInput) (*StartMisconfiguredStateRecoveryOutput, error) {
+	req, out := c.StartMisconfiguredStateRecoveryRequest(input)
+	return out, req.Send()
+}
+
+// StartMisconfiguredStateRecoveryWithContext is the same as StartMisconfiguredStateRecovery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMisconfiguredStateRecovery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) StartMisconfiguredStateRecoveryWithContext(ctx aws.Context, input *StartMisconfiguredStateRecoveryInput, opts ...request.Option) (*StartMisconfiguredStateRecoveryOutput, error) {
+	req, out := c.StartMisconfiguredStateRecoveryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -7610,7 +7697,7 @@ type CreateFileSystemFromBackupInput struct {
 	//
 	//    * ExportPath
 	//
-	//    * ImportedChunkSize
+	//    * ImportedFileChunkSize
 	//
 	//    * ImportPath
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
@@ -7910,7 +7997,7 @@ type CreateFileSystemInput struct {
 	//
 	//    * ExportPath
 	//
-	//    * ImportedChunkSize
+	//    * ImportedFileChunkSize
 	//
 	//    * ImportPath
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
@@ -8170,7 +8257,7 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 //
 //   - ExportPath
 //
-//   - ImportedChunkSize
+//   - ImportedFileChunkSize
 //
 //   - ImportPath
 type CreateFileSystemLustreConfiguration struct {
@@ -19893,6 +19980,100 @@ func (s *SourceBackupUnavailable) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type StartMisconfiguredStateRecoveryInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMisconfiguredStateRecoveryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMisconfiguredStateRecoveryInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartMisconfiguredStateRecoveryInput) SetClientRequestToken(v string) *StartMisconfiguredStateRecoveryInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *StartMisconfiguredStateRecoveryInput) SetFileSystemId(v string) *StartMisconfiguredStateRecoveryInput {
+	s.FileSystemId = &v
+	return s
+}
+
+type StartMisconfiguredStateRecoveryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a specific Amazon FSx file system.
+	FileSystem *FileSystem `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMisconfiguredStateRecoveryOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystem sets the FileSystem field's value.
+func (s *StartMisconfiguredStateRecoveryOutput) SetFileSystem(v *FileSystem) *StartMisconfiguredStateRecoveryOutput {
+	s.FileSystem = v
+	return s
+}
+
 // Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuration.
 type StorageVirtualMachine struct {
 	_ struct{} `type:"structure"`
@@ -23482,6 +23663,9 @@ const (
 
 	// AdministrativeActionTypeStorageTypeOptimization is a AdministrativeActionType enum value
 	AdministrativeActionTypeStorageTypeOptimization = "STORAGE_TYPE_OPTIMIZATION"
+
+	// AdministrativeActionTypeMisconfiguredStateRecovery is a AdministrativeActionType enum value
+	AdministrativeActionTypeMisconfiguredStateRecovery = "MISCONFIGURED_STATE_RECOVERY"
 )
 
 // AdministrativeActionType_Values returns all elements of the AdministrativeActionType enum
@@ -23498,6 +23682,7 @@ func AdministrativeActionType_Values() []string {
 		AdministrativeActionTypeThroughputOptimization,
 		AdministrativeActionTypeIopsOptimization,
 		AdministrativeActionTypeStorageTypeOptimization,
+		AdministrativeActionTypeMisconfiguredStateRecovery,
 	}
 }
 

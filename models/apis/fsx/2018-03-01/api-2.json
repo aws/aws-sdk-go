@@ -567,6 +567,20 @@
       ],
       "idempotent":true
     },
+    "StartMisconfiguredStateRecovery":{
+      "name":"StartMisconfiguredStateRecovery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMisconfiguredStateRecoveryRequest"},
+      "output":{"shape":"StartMisconfiguredStateRecoveryResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -783,7 +797,8 @@
         "VOLUME_RESTORE",
         "THROUGHPUT_OPTIMIZATION",
         "IOPS_OPTIMIZATION",
-        "STORAGE_TYPE_OPTIMIZATION"
+        "STORAGE_TYPE_OPTIMIZATION",
+        "MISCONFIGURED_STATE_RECOVERY"
       ]
     },
     "AdministrativeActions":{
@@ -3404,6 +3419,23 @@
         "BackupId":{"shape":"BackupId"}
       },
       "exception":true
+    },
+    "StartMisconfiguredStateRecoveryRequest":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "FileSystemId":{"shape":"FileSystemId"}
+      }
+    },
+    "StartMisconfiguredStateRecoveryResponse":{
+      "type":"structure",
+      "members":{
+        "FileSystem":{"shape":"FileSystem"}
+      }
     },
     "StartTime":{"type":"timestamp"},
     "Status":{

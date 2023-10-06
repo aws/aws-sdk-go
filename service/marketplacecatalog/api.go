@@ -163,7 +163,7 @@ func (c *MarketplaceCatalog) DeleteResourcePolicyRequest(input *DeleteResourcePo
 
 // DeleteResourcePolicy API operation for AWS Marketplace Catalog Service.
 //
-// Deletes a resource-based policy on an Entity that is identified by its resource
+// Deletes a resource-based policy on an entity that is identified by its resource
 // ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -470,7 +470,7 @@ func (c *MarketplaceCatalog) GetResourcePolicyRequest(input *GetResourcePolicyIn
 
 // GetResourcePolicy API operation for AWS Marketplace Catalog Service.
 //
-// Gets a resource-based policy of an Entity that is identified by its resource
+// Gets a resource-based policy of an entity that is identified by its resource
 // ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -992,7 +992,7 @@ func (c *MarketplaceCatalog) PutResourcePolicyRequest(input *PutResourcePolicyIn
 
 // PutResourcePolicy API operation for AWS Marketplace Catalog Service.
 //
-// Attaches a resource-based policy to an Entity. Examples of an entity include:
+// Attaches a resource-based policy to an entity. Examples of an entity include:
 // AmiProduct and ContainerProduct.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1108,10 +1108,10 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 //
 // For more information about working with change sets, see Working with change
 // sets (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets).
-// For information on change types for single-AMI products, see Working with
+// For information about change types for single-AMI products, see Working with
 // single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
-// Als, for more information on change types available for container-based products,
-// see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
+// Also, for more information about change types available for container-based
+// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1565,20 +1565,18 @@ type Change struct {
 	// change. Each change type is unique for each EntityType provided in the change's
 	// scope. For more information on change types available for single-AMI products,
 	// see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
-	// Also, for more information on change types available for container-based
+	// Also, for more information about change types available for container-based
 	// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
 	//
 	// ChangeType is a required field
 	ChangeType *string `min:"1" type:"string" required:"true"`
 
 	// This object contains details specific to the change type of the requested
-	// change. For more information on change types available for single-AMI products,
-	// see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
-	// Also, for more information on change types available for container-based
+	// change. For more information about change types available for single-AMI
+	// products, see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
+	// Also, for more information about change types available for container-based
 	// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
-	//
-	// Details is a required field
-	Details *string `min:"2" type:"string" required:"true"`
+	Details *string `min:"2" type:"string"`
 
 	// The entity to be changed.
 	//
@@ -1618,9 +1616,6 @@ func (s *Change) Validate() error {
 	}
 	if s.ChangeType != nil && len(*s.ChangeType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ChangeType", 1))
-	}
-	if s.Details == nil {
-		invalidParams.Add(request.NewErrParamRequired("Details"))
 	}
 	if s.Details != nil && len(*s.Details) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Details", 2))
@@ -1860,7 +1855,7 @@ func (s *ChangeSummary) SetErrorDetailList(v []*ErrorDetail) *ChangeSummary {
 type DeleteResourcePolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the Entity resource that is associated
+	// The Amazon Resource Name (ARN) of the entity resource that is associated
 	// with the resource policy.
 	//
 	// ResourceArn is a required field
@@ -2514,7 +2509,7 @@ func (s *Filter) SetValueList(v []*string) *Filter {
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the Entity resource that is associated
+	// The Amazon Resource Name (ARN) of the entity resource that is associated
 	// with the resource policy.
 	//
 	// ResourceArn is a required field
@@ -2834,6 +2829,10 @@ type ListEntitiesInput struct {
 	// The value of the next token, if it exists. Null if there are no more results.
 	NextToken *string `min:"1" type:"string"`
 
+	// Filters the returned set of entities based on their owner. The default is
+	// SELF. To list entities shared with you through AWS Resource Access Manager
+	// (AWS RAM), set to SHARED. Entities shared through the AWS Marketplace Catalog
+	// API PutResourcePolicy operation can't be discovered through the SHARED parameter.
 	OwnershipType *string `type:"string" enum:"OwnershipType"`
 
 	// An object that contains two attributes, SortBy and SortOrder.
@@ -3085,7 +3084,7 @@ type PutResourcePolicyInput struct {
 	// Policy is a required field
 	Policy *string `min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Entity resource you want to associate
+	// The Amazon Resource Name (ARN) of the entity resource you want to associate
 	// with a resource policy.
 	//
 	// ResourceArn is a required field
@@ -3428,8 +3427,9 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type Sort struct {
 	_ struct{} `type:"structure"`
 
-	// For ListEntities, supported attributes include LastModifiedDate (default),
-	// Visibility, EntityId, and Name.
+	// For ListEntities, supported attributes include LastModifiedDate (default)
+	// and EntityId. In addition to LastModifiedDate and EntityId, each EntityType
+	// might support additional fields.
 	//
 	// For ListChangeSets, supported attributes include StartTime and EndTime.
 	SortBy *string `min:"1" type:"string"`
