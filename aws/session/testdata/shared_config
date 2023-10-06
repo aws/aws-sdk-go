@@ -204,3 +204,12 @@ region = us-east-1
 sso_session = sso-session-lost
 sso_account_id = 123456789012
 sso_role_name = testRole
+
+[profile ec2-metadata-v1-disabled-false]
+ec2_metadata_v1_disabled=False
+
+[profile ec2-metadata-v1-disabled-true]
+ec2_metadata_v1_disabled=True
+
+[profile ec2-metadata-v1-disabled-invalid]
+ec2_metadata_v1_disabled=invalid
