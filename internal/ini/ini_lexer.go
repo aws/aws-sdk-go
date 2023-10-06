@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -75,6 +76,8 @@ func (l *iniLexer) tokenize(b []byte) ([]Token, error) {
 
 	for len(runes) > 0 && count < tokenAmount {
 		switch {
+		case isObject(runes):
+			tokens[count], n, err = newLitToken(runes)
 		case isWhitespace(runes[0]):
 			tokens[count], n, err = newWSToken(runes)
 		case isComma(runes[0]):
@@ -101,6 +104,41 @@ func (l *iniLexer) tokenize(b []byte) ([]Token, error) {
 	}
 
 	return tokens[:count], nil
+}
+
+func isObject(runes []rune) bool {
+	var count int
+	for line, n := takeLine(runes, 0); line != ""; line, n = takeLine(runes, n) {
+		if !isObjectProperty(line) {
+			break
+		}
+		count++
+	}
+
+	return count > 0
+}
+
+func isObjectProperty(line string) bool {
+	split := strings.SplitN(line, "=", 2)
+	if len(split) < 2 || len(split[0]) == 0 || !isWhitespace([]rune(split[0])[0]) {
+		return false
+	}
+
+	return strings.TrimSpace(split[0]) != "" && strings.TrimSpace(split[1]) != ""
+}
+
+func takeLine(runes []rune, offset int) (string, int) {
+	if offset >= len(runes) {
+		return "", 0
+	}
+
+	for i := offset; i < len(runes); i++ {
+		if runes[i] == '\n' {
+			return string(runes[offset:i]), i + 1
+		}
+	}
+
+	return string(runes[offset:]), len(runes)
 }
 
 func countTokens(runes []rune) int {

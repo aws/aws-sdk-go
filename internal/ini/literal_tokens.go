@@ -153,7 +153,7 @@ func (v ValueType) String() string {
 
 // ValueType enums
 const (
-	NoneType = ValueType(iota)
+	NoneType    = ValueType(iota)
 	DecimalType // deprecated
 	IntegerType // deprecated
 	StringType
@@ -166,9 +166,9 @@ type Value struct {
 	Type ValueType
 	raw  []rune
 
-	integer int64 // deprecated
+	integer int64   // deprecated
 	decimal float64 // deprecated
-	boolean bool // deprecated
+	boolean bool    // deprecated
 	str     string
 }
 
@@ -253,12 +253,33 @@ func newLitToken(b []rune) (Token, int, error) {
 		}
 
 		token = newToken(TokenLit, b[:n], QuotedStringType)
+	} else if isObject(b) {
+		n, err = getObjectValue(b)
+		token = newToken(TokenLit, b[:n], StringType)
 	} else {
 		n, err = getValue(b)
 		token = newToken(TokenLit, b[:n], StringType)
 	}
 
 	return token, n, err
+}
+
+func getObjectValue(runes []rune) (int, error) {
+	var offset int
+	for line, n := takeLine(runes, 0); line != ""; line, n = takeLine(runes, n) {
+		if !isObjectProperty(line) {
+			break
+		}
+		offset = n
+	}
+	if offset == 0 {
+		return 0, fmt.Errorf("first line in alleged object value wasn't a property?")
+	}
+
+	if runes[offset-1] == '\n' { // leave off trailing newline to be tokenized
+		offset--
+	}
+	return offset, nil
 }
 
 // IntValue returns an integer value

@@ -10,6 +10,12 @@ import (
 	"testing"
 )
 
+const nested = `[default]
+foo = ;comment
+  bar = baz
+  qux = wux
+i=j`
+
 func TestTokenize(t *testing.T) {
 	cases := []struct {
 		r              io.Reader
@@ -17,23 +23,23 @@ func TestTokenize(t *testing.T) {
 		expectedError  bool
 	}{
 		{
-			r: bytes.NewBuffer([]byte(`x = 123`)),
+			r: bytes.NewBuffer([]byte(nested)),
 			expectedTokens: []Token{
-				newToken(TokenLit, []rune("x"), StringType),
+				newToken(TokenSep, []rune("["), NoneType),
+				newToken(TokenLit, []rune("default"), StringType),
+				newToken(TokenSep, []rune("]"), NoneType),
+				newToken(TokenNL, []rune("\n"), NoneType),
+				newToken(TokenLit, []rune("foo"), StringType),
 				newToken(TokenWS, []rune(" "), NoneType),
 				newToken(TokenOp, []rune("="), NoneType),
 				newToken(TokenWS, []rune(" "), NoneType),
-				newToken(TokenLit, []rune("123"), StringType),
-			},
-		},
-		{
-			r: bytes.NewBuffer([]byte(`[ foo ]`)),
-			expectedTokens: []Token{
-				newToken(TokenSep, []rune("["), NoneType),
-				newToken(TokenWS, []rune(" "), NoneType),
-				newToken(TokenLit, []rune("foo"), StringType),
-				newToken(TokenWS, []rune(" "), NoneType),
-				newToken(TokenSep, []rune("]"), NoneType),
+				newToken(TokenComment, []rune(";comment"), NoneType),
+				newToken(TokenNL, []rune("\n"), NoneType),
+				newToken(TokenLit, []rune("  bar = baz\n  qux = wux"), StringType),
+				newToken(TokenNL, []rune("\n"), NoneType),
+				newToken(TokenLit, []rune("i"), StringType),
+				newToken(TokenOp, []rune("="), NoneType),
+				newToken(TokenLit, []rune("j"), StringType),
 			},
 		},
 	}
