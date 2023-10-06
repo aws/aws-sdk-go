@@ -2556,12 +2556,12 @@
     },
     "PostAuthenticationLoginBanner":{
       "type":"string",
-      "max":512,
+      "max":4096,
       "pattern":"[\\x09-\\x0D\\x20-\\x7E]*"
     },
     "PreAuthenticationLoginBanner":{
       "type":"string",
-      "max":512,
+      "max":4096,
       "pattern":"[\\x09-\\x0D\\x20-\\x7E]*"
     },
     "PrivateKeyType":{

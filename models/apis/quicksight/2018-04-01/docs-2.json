@@ -1522,6 +1522,7 @@
         "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>",
         "NumericRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
+        "RedshiftIAMParameters$AutoCreateDatabaseUser": "<p>Automatically creates a database user. If your database doesn't have a <code>DatabaseUser</code>, set this parameter to <code>True</code>. If there is no <code>DatabaseUser</code>, Amazon QuickSight can't connect to your cluster. The <code>RoleArn</code> that you use for this operation must grant access to <code>redshift:CreateClusterUser</code> to successfully create the user.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and data source resource that is a dependency of the dashboard is also exported.</p>",
@@ -3203,6 +3204,24 @@
         "TeradataParameters$Database": "<p>Database.</p>"
       }
     },
+    "DatabaseGroup": {
+      "base": null,
+      "refs": {
+        "DatabaseGroupList$member": null
+      }
+    },
+    "DatabaseGroupList": {
+      "base": null,
+      "refs": {
+        "RedshiftIAMParameters$DatabaseGroups": "<p>A list of groups whose permissions will be granted to Amazon QuickSight to access the cluster. These permissions are combined with the permissions granted to Amazon QuickSight by the <code>DatabaseUser</code>. If you choose to include this parameter, the <code>RoleArn</code> must grant access to <code>redshift:JoinGroup</code>.</p>"
+      }
+    },
+    "DatabaseUser": {
+      "base": null,
+      "refs": {
+        "RedshiftIAMParameters$DatabaseUser": "<p>The user whose permissions and group memberships will be used by Amazon QuickSight to access the cluster. If this user already exists in your database, Amazon QuickSight is granted the same permissions that the user has. If the user doesn't exist, set the value of <code>AutoCreateDatabaseUser</code> to <code>True</code> to create a new user with PUBLIC permissions.</p>"
+      }
+    },
     "DatabricksParameters": {
       "base": "<p>The required parameters that are needed to connect to a Databricks data source.</p>",
       "refs": {
@@ -4746,6 +4765,7 @@
       "refs": {
         "CustomFilterConfiguration$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
         "CustomFilterListConfiguration$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
+        "FilterListConfiguration$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
         "NumericEqualityFilter$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
         "NumericRangeFilter$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
         "RelativeDatesFilter$NullOption": "<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>",
@@ -8112,6 +8132,12 @@
         "DeleteAnalysisRequest$RecoveryWindowInDays": "<p>A value that specifies the number of days that Amazon QuickSight waits before it deletes the analysis. You can't use this parameter with the <code>ForceDeleteWithoutRecovery</code> option in the same API call. The default value is 30.</p>"
       }
     },
+    "RedshiftIAMParameters": {
+      "base": "<p>A structure that grants Amazon QuickSight access to your cluster and make a call to the <code>redshift:GetClusterCredentials</code> API. For more information on the <code>redshift:GetClusterCredentials</code> API, see <a href=\"https://docs.aws.amazon.com/redshift/latest/APIReference/API_GetClusterCredentials.html\"> <code>GetClusterCredentials</code> </a>.</p>",
+      "refs": {
+        "RedshiftParameters$IAMParameters": "<p>An optional parameter that uses IAM authentication to grant Amazon QuickSight access to your cluster. This parameter can be used instead of <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DataSourceCredentials.html\">DataSourceCredentials</a>.</p>"
+      }
+    },
     "RedshiftParameters": {
       "base": "<p>The parameters for Amazon Redshift. The <code>ClusterId</code> field can be blank if <code>Host</code> and <code>Port</code> are both set. The <code>Host</code> and <code>Port</code> fields can be blank if the <code>ClusterId</code> field is set.</p>",
       "refs": {
@@ -8547,6 +8573,7 @@
         "AssetBundleImportJobVPCConnectionOverrideParameters$RoleArn": "<p>An optional override of the role ARN to be used by the VPC connection.</p>",
         "AthenaParameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.</p>",
         "CreateVPCConnectionRequest$RoleArn": "<p>The IAM role to associate with the VPC connection.</p>",
+        "RedshiftIAMParameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to allow Amazon QuickSight to call <code>redshift:GetClusterCredentials</code> on your cluster. The calling principal must have <code>iam:PassRole</code> access to pass the role to Amazon QuickSight. The role's trust policy must allow the Amazon QuickSight service principal to assume the role.</p>",
         "S3Parameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>",
         "UpdateVPCConnectionRequest$RoleArn": "<p>An IAM role associated with the VPC connection.</p>"
       }
@@ -12159,6 +12186,23 @@
       "base": null,
       "refs": {
         "ListVPCConnectionsResponse$VPCConnectionSummaries": "<p>A <code>VPCConnectionSummaries</code> object that returns a summary of VPC connection objects.</p>"
+      }
+    },
+    "ValidationStrategy": {
+      "base": "<p>The option to relax the validation that is required to create and update analyses, dashboards, and templates with definition objects. When you set this value to <code>LENIENT</code>, validation is skipped for specific errors.</p>",
+      "refs": {
+        "CreateAnalysisRequest$ValidationStrategy": "<p>The option to relax the validation needed to create an analysis with definition objects. This skips the validation step for specific errors.</p>",
+        "CreateDashboardRequest$ValidationStrategy": "<p>The option to relax the validation needed to create a dashboard with definition objects. This option skips the validation step for specific errors.</p>",
+        "CreateTemplateRequest$ValidationStrategy": "<p>TThe option to relax the validation needed to create a template with definition objects. This skips the validation step for specific errors.</p>",
+        "UpdateAnalysisRequest$ValidationStrategy": "<p>The option to relax the validation needed to update an analysis with definition objects. This skips the validation step for specific errors.</p>",
+        "UpdateDashboardRequest$ValidationStrategy": "<p>The option to relax the validation needed to update a dashboard with definition objects. This skips the validation step for specific errors.</p>",
+        "UpdateTemplateRequest$ValidationStrategy": "<p>The option to relax the validation needed to update a template with definition objects. This skips the validation step for specific errors.</p>"
+      }
+    },
+    "ValidationStrategyMode": {
+      "base": null,
+      "refs": {
+        "ValidationStrategy$Mode": "<p>The mode of validation for the asset to be creaed or updated. When you set this value to <code>STRICT</code>, strict validation for every error is enforced. When you set this value to <code>LENIENT</code>, validation is skipped for specific UI errors.</p>"
       }
     },
     "ValueWhenUnsetOption": {

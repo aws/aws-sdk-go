@@ -16411,10 +16411,9 @@ func (s *ServiceUnavailableException) RequestID() string {
 type SftpConnectorConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The public portion of the host key, or keys, that are used to authenticate
-	// the user to the external server to which you are connecting. You can use
-	// the ssh-keyscan command against the SFTP server to retrieve the necessary
-	// key.
+	// The public portion of the host key, or keys, that are used to identify the
+	// external server to which you are connecting. You can use the ssh-keyscan
+	// command against the SFTP server to retrieve the necessary key.
 	//
 	// The three standard SSH public key format elements are <key type>, <body base64>,
 	// and an optional <comment>, with spaces between each element. Specify only
@@ -16423,10 +16422,11 @@ type SftpConnectorConfig struct {
 	//
 	// For the trusted host key, Transfer Family accepts RSA and ECDSA keys.
 	//
-	//    * For RSA keys, the key type is ssh-rsa.
+	//    * For RSA keys, the <key type> string is ssh-rsa.
 	//
-	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
-	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
+	//    * For ECDSA keys, the <key type> string is either ecdsa-sha2-nistp256,
+	//    ecdsa-sha2-nistp384, or ecdsa-sha2-nistp521, depending on the size of
+	//    the key you generated.
 	TrustedHostKeys []*string `min:"1" type:"list"`
 
 	// The identifier for the secret (in Amazon Web Services Secrets Manager) that

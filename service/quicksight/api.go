@@ -29007,6 +29007,10 @@ type CreateAnalysisInput struct {
 	// the theme in the Amazon QuickSight console, make sure that you have access
 	// to it.
 	ThemeArn *string `type:"string"`
+
+	// The option to relax the validation needed to create an analysis with definition
+	// objects. This skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29089,6 +29093,11 @@ func (s *CreateAnalysisInput) Validate() error {
 			}
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -29147,6 +29156,12 @@ func (s *CreateAnalysisInput) SetTags(v []*Tag) *CreateAnalysisInput {
 // SetThemeArn sets the ThemeArn field's value.
 func (s *CreateAnalysisInput) SetThemeArn(v string) *CreateAnalysisInput {
 	s.ThemeArn = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *CreateAnalysisInput) SetValidationStrategy(v *ValidationStrategy) *CreateAnalysisInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -29360,6 +29375,10 @@ type CreateDashboardInput struct {
 	// account where you create the dashboard.
 	ThemeArn *string `type:"string"`
 
+	// The option to relax the validation needed to create a dashboard with definition
+	// objects. This option skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
+
 	// A description for the first version of the dashboard being created.
 	VersionDescription *string `min:"1" type:"string"`
 }
@@ -29447,6 +29466,11 @@ func (s *CreateDashboardInput) Validate() error {
 			}
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -29511,6 +29535,12 @@ func (s *CreateDashboardInput) SetTags(v []*Tag) *CreateDashboardInput {
 // SetThemeArn sets the ThemeArn field's value.
 func (s *CreateDashboardInput) SetThemeArn(v string) *CreateDashboardInput {
 	s.ThemeArn = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *CreateDashboardInput) SetValidationStrategy(v *ValidationStrategy) *CreateDashboardInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -31829,6 +31859,10 @@ type CreateTemplateInput struct {
 	// TemplateId is a required field
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 
+	// TThe option to relax the validation needed to create a template with definition
+	// objects. This skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
+
 	// A description of the current template version being created. This API operation
 	// creates the first version of the template. Every time UpdateTemplate is called,
 	// a new version is created. Each version of the template maintains a description
@@ -31911,6 +31945,11 @@ func (s *CreateTemplateInput) Validate() error {
 			}
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -31957,6 +31996,12 @@ func (s *CreateTemplateInput) SetTags(v []*Tag) *CreateTemplateInput {
 // SetTemplateId sets the TemplateId field's value.
 func (s *CreateTemplateInput) SetTemplateId(v string) *CreateTemplateInput {
 	s.TemplateId = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *CreateTemplateInput) SetValidationStrategy(v *ValidationStrategy) *CreateTemplateInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -51725,6 +51770,15 @@ type FilterListConfiguration struct {
 	// MatchOperator is a required field
 	MatchOperator *string `type:"string" required:"true" enum:"CategoryFilterMatchOperator"`
 
+	// This option determines how null values should be treated when filtering data.
+	//
+	//    * ALL_VALUES: Include null values in filtered results.
+	//
+	//    * NULLS_ONLY: Only include null values in filtered results.
+	//
+	//    * NON_NULLS_ONLY: Exclude null values from filtered results.
+	NullOption *string `type:"string" enum:"FilterNullOption"`
+
 	// Select all of the values. Null is not the assigned value of select all.
 	//
 	//    * FILTER_ALL_VALUES
@@ -51771,6 +51825,12 @@ func (s *FilterListConfiguration) SetCategoryValues(v []*string) *FilterListConf
 // SetMatchOperator sets the MatchOperator field's value.
 func (s *FilterListConfiguration) SetMatchOperator(v string) *FilterListConfiguration {
 	s.MatchOperator = &v
+	return s
+}
+
+// SetNullOption sets the NullOption field's value.
+func (s *FilterListConfiguration) SetNullOption(v string) *FilterListConfiguration {
+	s.NullOption = &v
 	return s
 }
 
@@ -74798,6 +74858,110 @@ func (s *RdsParameters) SetInstanceId(v string) *RdsParameters {
 	return s
 }
 
+// A structure that grants Amazon QuickSight access to your cluster and make
+// a call to the redshift:GetClusterCredentials API. For more information on
+// the redshift:GetClusterCredentials API, see GetClusterCredentials (https://docs.aws.amazon.com/redshift/latest/APIReference/API_GetClusterCredentials.html).
+type RedshiftIAMParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Automatically creates a database user. If your database doesn't have a DatabaseUser,
+	// set this parameter to True. If there is no DatabaseUser, Amazon QuickSight
+	// can't connect to your cluster. The RoleArn that you use for this operation
+	// must grant access to redshift:CreateClusterUser to successfully create the
+	// user.
+	AutoCreateDatabaseUser *bool `type:"boolean"`
+
+	// A list of groups whose permissions will be granted to Amazon QuickSight to
+	// access the cluster. These permissions are combined with the permissions granted
+	// to Amazon QuickSight by the DatabaseUser. If you choose to include this parameter,
+	// the RoleArn must grant access to redshift:JoinGroup.
+	DatabaseGroups []*string `min:"1" type:"list"`
+
+	// The user whose permissions and group memberships will be used by Amazon QuickSight
+	// to access the cluster. If this user already exists in your database, Amazon
+	// QuickSight is granted the same permissions that the user has. If the user
+	// doesn't exist, set the value of AutoCreateDatabaseUser to True to create
+	// a new user with PUBLIC permissions.
+	//
+	// DatabaseUser is a required field
+	DatabaseUser *string `min:"1" type:"string" required:"true"`
+
+	// Use the RoleArn structure to allow Amazon QuickSight to call redshift:GetClusterCredentials
+	// on your cluster. The calling principal must have iam:PassRole access to pass
+	// the role to Amazon QuickSight. The role's trust policy must allow the Amazon
+	// QuickSight service principal to assume the role.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftIAMParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftIAMParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftIAMParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftIAMParameters"}
+	if s.DatabaseGroups != nil && len(s.DatabaseGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseGroups", 1))
+	}
+	if s.DatabaseUser == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseUser"))
+	}
+	if s.DatabaseUser != nil && len(*s.DatabaseUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseUser", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoCreateDatabaseUser sets the AutoCreateDatabaseUser field's value.
+func (s *RedshiftIAMParameters) SetAutoCreateDatabaseUser(v bool) *RedshiftIAMParameters {
+	s.AutoCreateDatabaseUser = &v
+	return s
+}
+
+// SetDatabaseGroups sets the DatabaseGroups field's value.
+func (s *RedshiftIAMParameters) SetDatabaseGroups(v []*string) *RedshiftIAMParameters {
+	s.DatabaseGroups = v
+	return s
+}
+
+// SetDatabaseUser sets the DatabaseUser field's value.
+func (s *RedshiftIAMParameters) SetDatabaseUser(v string) *RedshiftIAMParameters {
+	s.DatabaseUser = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *RedshiftIAMParameters) SetRoleArn(v string) *RedshiftIAMParameters {
+	s.RoleArn = &v
+	return s
+}
+
 // The parameters for Amazon Redshift. The ClusterId field can be blank if Host
 // and Port are both set. The Host and Port fields can be blank if the ClusterId
 // field is set.
@@ -74814,6 +74978,11 @@ type RedshiftParameters struct {
 
 	// Host. This field can be blank if ClusterId is provided.
 	Host *string `min:"1" type:"string"`
+
+	// An optional parameter that uses IAM authentication to grant Amazon QuickSight
+	// access to your cluster. This parameter can be used instead of DataSourceCredentials
+	// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DataSourceCredentials.html).
+	IAMParameters *RedshiftIAMParameters `type:"structure"`
 
 	// Port. This field can be blank if the ClusterId is provided.
 	Port *int64 `type:"integer"`
@@ -74852,6 +75021,11 @@ func (s *RedshiftParameters) Validate() error {
 	if s.Host != nil && len(*s.Host) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
 	}
+	if s.IAMParameters != nil {
+		if err := s.IAMParameters.Validate(); err != nil {
+			invalidParams.AddNested("IAMParameters", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -74874,6 +75048,12 @@ func (s *RedshiftParameters) SetDatabase(v string) *RedshiftParameters {
 // SetHost sets the Host field's value.
 func (s *RedshiftParameters) SetHost(v string) *RedshiftParameters {
 	s.Host = &v
+	return s
+}
+
+// SetIAMParameters sets the IAMParameters field's value.
+func (s *RedshiftParameters) SetIAMParameters(v *RedshiftIAMParameters) *RedshiftParameters {
+	s.IAMParameters = v
 	return s
 }
 
@@ -92827,6 +93007,10 @@ type UpdateAnalysisInput struct {
 	// you're creating. To see the theme in the Amazon QuickSight console, make
 	// sure that you have access to it.
 	ThemeArn *string `type:"string"`
+
+	// The option to relax the validation needed to update an analysis with definition
+	// objects. This skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
 }
 
 // String returns the string representation.
@@ -92883,6 +93067,11 @@ func (s *UpdateAnalysisInput) Validate() error {
 			invalidParams.AddNested("SourceEntity", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -92929,6 +93118,12 @@ func (s *UpdateAnalysisInput) SetSourceEntity(v *AnalysisSourceEntity) *UpdateAn
 // SetThemeArn sets the ThemeArn field's value.
 func (s *UpdateAnalysisInput) SetThemeArn(v string) *UpdateAnalysisInput {
 	s.ThemeArn = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *UpdateAnalysisInput) SetValidationStrategy(v *ValidationStrategy) *UpdateAnalysisInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -93242,6 +93437,10 @@ type UpdateDashboardInput struct {
 	// Services account where you create the dashboard.
 	ThemeArn *string `type:"string"`
 
+	// The option to relax the validation needed to update a dashboard with definition
+	// objects. This skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
+
 	// A description for the first version of the dashboard being created.
 	VersionDescription *string `min:"1" type:"string"`
 }
@@ -93303,6 +93502,11 @@ func (s *UpdateDashboardInput) Validate() error {
 			invalidParams.AddNested("SourceEntity", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -93355,6 +93559,12 @@ func (s *UpdateDashboardInput) SetSourceEntity(v *DashboardSourceEntity) *Update
 // SetThemeArn sets the ThemeArn field's value.
 func (s *UpdateDashboardInput) SetThemeArn(v string) *UpdateDashboardInput {
 	s.ThemeArn = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *UpdateDashboardInput) SetValidationStrategy(v *ValidationStrategy) *UpdateDashboardInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -95919,6 +96129,10 @@ type UpdateTemplateInput struct {
 	// TemplateId is a required field
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 
+	// The option to relax the validation needed to update a template with definition
+	// objects. This skips the validation step for specific errors.
+	ValidationStrategy *ValidationStrategy `type:"structure"`
+
 	// A description of the current template version that is being updated. Every
 	// time you call UpdateTemplate, you create a new version of the template. Each
 	// version of the template maintains a description of the version in the VersionDescription
@@ -95975,6 +96189,11 @@ func (s *UpdateTemplateInput) Validate() error {
 			invalidParams.AddNested("SourceEntity", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ValidationStrategy != nil {
+		if err := s.ValidationStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ValidationStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -96009,6 +96228,12 @@ func (s *UpdateTemplateInput) SetSourceEntity(v *TemplateSourceEntity) *UpdateTe
 // SetTemplateId sets the TemplateId field's value.
 func (s *UpdateTemplateInput) SetTemplateId(v string) *UpdateTemplateInput {
 	s.TemplateId = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *UpdateTemplateInput) SetValidationStrategy(v *ValidationStrategy) *UpdateTemplateInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -98331,6 +98556,57 @@ func (s *VPCConnectionSummary) SetVPCConnectionId(v string) *VPCConnectionSummar
 // SetVPCId sets the VPCId field's value.
 func (s *VPCConnectionSummary) SetVPCId(v string) *VPCConnectionSummary {
 	s.VPCId = &v
+	return s
+}
+
+// The option to relax the validation that is required to create and update
+// analyses, dashboards, and templates with definition objects. When you set
+// this value to LENIENT, validation is skipped for specific errors.
+type ValidationStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// The mode of validation for the asset to be creaed or updated. When you set
+	// this value to STRICT, strict validation for every error is enforced. When
+	// you set this value to LENIENT, validation is skipped for specific UI errors.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"ValidationStrategyMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationStrategy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidationStrategy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidationStrategy"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMode sets the Mode field's value.
+func (s *ValidationStrategy) SetMode(v string) *ValidationStrategy {
+	s.Mode = &v
 	return s
 }
 
@@ -103137,6 +103413,9 @@ const (
 	// MemberTypeDataset is a MemberType enum value
 	MemberTypeDataset = "DATASET"
 
+	// MemberTypeDatasource is a MemberType enum value
+	MemberTypeDatasource = "DATASOURCE"
+
 	// MemberTypeTopic is a MemberType enum value
 	MemberTypeTopic = "TOPIC"
 )
@@ -103147,6 +103426,7 @@ func MemberType_Values() []string {
 		MemberTypeDashboard,
 		MemberTypeAnalysis,
 		MemberTypeDataset,
+		MemberTypeDatasource,
 		MemberTypeTopic,
 	}
 }
@@ -104481,6 +104761,9 @@ const (
 
 	// TableTotalsPlacementEnd is a TableTotalsPlacement enum value
 	TableTotalsPlacementEnd = "END"
+
+	// TableTotalsPlacementAuto is a TableTotalsPlacement enum value
+	TableTotalsPlacementAuto = "AUTO"
 )
 
 // TableTotalsPlacement_Values returns all elements of the TableTotalsPlacement enum
@@ -104488,6 +104771,7 @@ func TableTotalsPlacement_Values() []string {
 	return []string{
 		TableTotalsPlacementStart,
 		TableTotalsPlacementEnd,
+		TableTotalsPlacementAuto,
 	}
 }
 
@@ -104960,6 +105244,22 @@ func VPCConnectionResourceStatus_Values() []string {
 		VPCConnectionResourceStatusDeletionInProgress,
 		VPCConnectionResourceStatusDeletionFailed,
 		VPCConnectionResourceStatusDeleted,
+	}
+}
+
+const (
+	// ValidationStrategyModeStrict is a ValidationStrategyMode enum value
+	ValidationStrategyModeStrict = "STRICT"
+
+	// ValidationStrategyModeLenient is a ValidationStrategyMode enum value
+	ValidationStrategyModeLenient = "LENIENT"
+)
+
+// ValidationStrategyMode_Values returns all elements of the ValidationStrategyMode enum
+func ValidationStrategyMode_Values() []string {
+	return []string{
+		ValidationStrategyModeStrict,
+		ValidationStrategyModeLenient,
 	}
 }
 

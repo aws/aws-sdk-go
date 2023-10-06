@@ -222,6 +222,10 @@ type FSxAPI interface {
 	RestoreVolumeFromSnapshotWithContext(aws.Context, *fsx.RestoreVolumeFromSnapshotInput, ...request.Option) (*fsx.RestoreVolumeFromSnapshotOutput, error)
 	RestoreVolumeFromSnapshotRequest(*fsx.RestoreVolumeFromSnapshotInput) (*request.Request, *fsx.RestoreVolumeFromSnapshotOutput)
 
+	StartMisconfiguredStateRecovery(*fsx.StartMisconfiguredStateRecoveryInput) (*fsx.StartMisconfiguredStateRecoveryOutput, error)
+	StartMisconfiguredStateRecoveryWithContext(aws.Context, *fsx.StartMisconfiguredStateRecoveryInput, ...request.Option) (*fsx.StartMisconfiguredStateRecoveryOutput, error)
+	StartMisconfiguredStateRecoveryRequest(*fsx.StartMisconfiguredStateRecoveryInput) (*request.Request, *fsx.StartMisconfiguredStateRecoveryOutput)
+
 	TagResource(*fsx.TagResourceInput) (*fsx.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *fsx.TagResourceInput, ...request.Option) (*fsx.TagResourceOutput, error)
 	TagResourceRequest(*fsx.TagResourceInput) (*request.Request, *fsx.TagResourceOutput)

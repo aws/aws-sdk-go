@@ -35,6 +35,7 @@
     "ListTagsForResource": "<p>Lists tags for Amazon FSx resources.</p> <p>When retrieving all tags, you can optionally specify the <code>MaxResults</code> parameter to limit the number of tags in a response. If more tags remain, Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send a later request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code> from the last response.</p> <p>This action is used in an iterative process to retrieve a list of your tags. <code>ListTagsForResource</code> is called first without a <code>NextToken</code>value. Then the action continues to be called with the <code>NextToken</code> parameter set to the value of the last <code>NextToken</code> value until a response has no <code>NextToken</code>.</p> <p>When using this action, keep the following in mind:</p> <ul> <li> <p>The implementation might return fewer than <code>MaxResults</code> file system descriptions while still including a <code>NextToken</code> value.</p> </li> <li> <p>The order of tags returned in the response of one <code>ListTagsForResource</code> call and the order of tags returned across the responses of a multi-call iteration is unspecified.</p> </li> </ul>",
     "ReleaseFileSystemNfsV3Locks": "<p>Releases the file system lock from an Amazon FSx for OpenZFS file system.</p>",
     "RestoreVolumeFromSnapshot": "<p>Returns an Amazon FSx for OpenZFS volume to the state saved by the specified snapshot.</p>",
+    "StartMisconfiguredStateRecovery": "<p>After performing steps to repair the Active Directory configuration of an FSx for Windows File Server file system, use this action to initiate the process of Amazon FSx attempting to reconnect to the file system.</p>",
     "TagResource": "<p>Tags an Amazon FSx resource.</p>",
     "UntagResource": "<p>This action removes a tag from an Amazon FSx resource.</p>",
     "UpdateDataRepositoryAssociation": "<p>Updates the configuration of an existing data repository association on an Amazon FSx for Lustre file system. Data repository associations are supported on all FSx for Lustre 2.12 and 2.15 file systems, excluding <code>scratch_1</code> deployment type.</p>",
@@ -366,6 +367,7 @@
         "DisassociateFileSystemAliasesRequest$ClientRequestToken": null,
         "ReleaseFileSystemNfsV3LocksRequest$ClientRequestToken": null,
         "RestoreVolumeFromSnapshotRequest$ClientRequestToken": null,
+        "StartMisconfiguredStateRecoveryRequest$ClientRequestToken": null,
         "UpdateDataRepositoryAssociationRequest$ClientRequestToken": null,
         "UpdateFileCacheRequest$ClientRequestToken": null,
         "UpdateFileSystemRequest$ClientRequestToken": "<p>A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent updates. This string is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.</p>",
@@ -467,7 +469,7 @@
       }
     },
     "CreateFileSystemLustreConfiguration": {
-      "base": "<p>The Lustre configuration for the file system being created.</p> <note> <p>The following parameters are not supported for file systems with a data repository association created with .</p> <ul> <li> <p> <code>AutoImportPolicy</code> </p> </li> <li> <p> <code>ExportPath</code> </p> </li> <li> <p> <code>ImportedChunkSize</code> </p> </li> <li> <p> <code>ImportPath</code> </p> </li> </ul> </note>",
+      "base": "<p>The Lustre configuration for the file system being created.</p> <note> <p>The following parameters are not supported for file systems with a data repository association created with .</p> <ul> <li> <p> <code>AutoImportPolicy</code> </p> </li> <li> <p> <code>ExportPath</code> </p> </li> <li> <p> <code>ImportedFileChunkSize</code> </p> </li> <li> <p> <code>ImportPath</code> </p> </li> </ul> </note>",
       "refs": {
         "CreateFileSystemFromBackupRequest$LustreConfiguration": null,
         "CreateFileSystemRequest$LustreConfiguration": null
@@ -1279,6 +1281,7 @@
         "CreateFileSystemResponse$FileSystem": "<p>The configuration of the file system that was created.</p>",
         "FileSystems$member": null,
         "ReleaseFileSystemNfsV3LocksResponse$FileSystem": null,
+        "StartMisconfiguredStateRecoveryResponse$FileSystem": null,
         "UpdateFileSystemResponse$FileSystem": "<p>A description of the file system that was updated.</p>"
       }
     },
@@ -1327,6 +1330,7 @@
         "FileSystem$FileSystemId": "<p>The system-generated, unique 17-digit ID of the file system.</p>",
         "FileSystemIds$member": null,
         "ReleaseFileSystemNfsV3LocksRequest$FileSystemId": null,
+        "StartMisconfiguredStateRecoveryRequest$FileSystemId": null,
         "StorageVirtualMachine$FileSystemId": null,
         "UpdateFileSystemRequest$FileSystemId": "<p>The ID of the file system that you are updating.</p>",
         "Volume$FileSystemId": null
@@ -2368,6 +2372,16 @@
     },
     "SourceBackupUnavailable": {
       "base": "<p>The request was rejected because the lifecycle status of the source backup isn't <code>AVAILABLE</code>.</p>",
+      "refs": {
+      }
+    },
+    "StartMisconfiguredStateRecoveryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMisconfiguredStateRecoveryResponse": {
+      "base": null,
       "refs": {
       }
     },

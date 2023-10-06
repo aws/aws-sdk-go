@@ -5018,7 +5018,8 @@
         "SourceEntity":{"shape":"AnalysisSourceEntity"},
         "ThemeArn":{"shape":"Arn"},
         "Tags":{"shape":"TagList"},
-        "Definition":{"shape":"AnalysisDefinition"}
+        "Definition":{"shape":"AnalysisDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "CreateAnalysisResponse":{
@@ -5067,7 +5068,8 @@
         "VersionDescription":{"shape":"VersionDescription"},
         "DashboardPublishOptions":{"shape":"DashboardPublishOptions"},
         "ThemeArn":{"shape":"Arn"},
-        "Definition":{"shape":"DashboardVersionDefinition"}
+        "Definition":{"shape":"DashboardVersionDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "CreateDashboardResponse":{
@@ -5523,7 +5525,8 @@
         "SourceEntity":{"shape":"TemplateSourceEntity"},
         "Tags":{"shape":"TagList"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "Definition":{"shape":"TemplateVersionDefinition"}
+        "Definition":{"shape":"TemplateVersionDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "CreateTemplateResponse":{
@@ -6627,6 +6630,22 @@
     "Database":{
       "type":"string",
       "max":128,
+      "min":1
+    },
+    "DatabaseGroup":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "DatabaseGroupList":{
+      "type":"list",
+      "member":{"shape":"DatabaseGroup"},
+      "max":50,
+      "min":1
+    },
+    "DatabaseUser":{
+      "type":"string",
+      "max":64,
       "min":1
     },
     "DatabricksParameters":{
@@ -9792,7 +9811,8 @@
       "members":{
         "MatchOperator":{"shape":"CategoryFilterMatchOperator"},
         "CategoryValues":{"shape":"CategoryValueList"},
-        "SelectAllOptions":{"shape":"CategoryFilterSelectAllOptions"}
+        "SelectAllOptions":{"shape":"CategoryFilterSelectAllOptions"},
+        "NullOption":{"shape":"FilterNullOption"}
       }
     },
     "FilterListControl":{
@@ -13146,6 +13166,7 @@
         "DASHBOARD",
         "ANALYSIS",
         "DATASET",
+        "DATASOURCE",
         "TOPIC"
       ]
     },
@@ -14601,6 +14622,19 @@
       "max":30,
       "min":7
     },
+    "RedshiftIAMParameters":{
+      "type":"structure",
+      "required":[
+        "RoleArn",
+        "DatabaseUser"
+      ],
+      "members":{
+        "RoleArn":{"shape":"RoleArn"},
+        "DatabaseUser":{"shape":"DatabaseUser"},
+        "DatabaseGroups":{"shape":"DatabaseGroupList"},
+        "AutoCreateDatabaseUser":{"shape":"Boolean"}
+      }
+    },
     "RedshiftParameters":{
       "type":"structure",
       "required":["Database"],
@@ -14608,7 +14642,8 @@
         "Host":{"shape":"Host"},
         "Port":{"shape":"OptionalPort"},
         "Database":{"shape":"Database"},
-        "ClusterId":{"shape":"ClusterId"}
+        "ClusterId":{"shape":"ClusterId"},
+        "IAMParameters":{"shape":"RedshiftIAMParameters"}
       }
     },
     "ReferenceLine":{
@@ -14878,12 +14913,12 @@
     },
     "RelationalTableName":{
       "type":"string",
-      "max":64,
+      "max":256,
       "min":1
     },
     "RelationalTableSchema":{
       "type":"string",
-      "max":64
+      "max":256
     },
     "RelativeDateTimeControlDisplayOptions":{
       "type":"structure",
@@ -16915,7 +16950,8 @@
       "type":"string",
       "enum":[
         "START",
-        "END"
+        "END",
+        "AUTO"
       ]
     },
     "TableTotalsScrollStatus":{
@@ -18206,7 +18242,8 @@
         "Parameters":{"shape":"Parameters"},
         "SourceEntity":{"shape":"AnalysisSourceEntity"},
         "ThemeArn":{"shape":"Arn"},
-        "Definition":{"shape":"AnalysisDefinition"}
+        "Definition":{"shape":"AnalysisDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "UpdateAnalysisResponse":{
@@ -18320,7 +18357,8 @@
         "VersionDescription":{"shape":"VersionDescription"},
         "DashboardPublishOptions":{"shape":"DashboardPublishOptions"},
         "ThemeArn":{"shape":"Arn"},
-        "Definition":{"shape":"DashboardVersionDefinition"}
+        "Definition":{"shape":"DashboardVersionDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "UpdateDashboardResponse":{
@@ -18810,7 +18848,8 @@
         "SourceEntity":{"shape":"TemplateSourceEntity"},
         "VersionDescription":{"shape":"VersionDescription"},
         "Name":{"shape":"TemplateName"},
-        "Definition":{"shape":"TemplateVersionDefinition"}
+        "Definition":{"shape":"TemplateVersionDefinition"},
+        "ValidationStrategy":{"shape":"ValidationStrategy"}
       }
     },
     "UpdateTemplateResponse":{
@@ -19253,6 +19292,20 @@
     "VPCConnectionSummaryList":{
       "type":"list",
       "member":{"shape":"VPCConnectionSummary"}
+    },
+    "ValidationStrategy":{
+      "type":"structure",
+      "required":["Mode"],
+      "members":{
+        "Mode":{"shape":"ValidationStrategyMode"}
+      }
+    },
+    "ValidationStrategyMode":{
+      "type":"string",
+      "enum":[
+        "STRICT",
+        "LENIENT"
+      ]
     },
     "ValueWhenUnsetOption":{
       "type":"string",
