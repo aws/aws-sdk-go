@@ -1,3 +1,37 @@
+Release v1.45.25 (2023-10-12)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API
+* `service/autoscaling`: Updates service API, documentation, paginators, and examples
+  * Update the NotificationMetadata field to only allow visible ascii characters. Add paginators to DescribeInstanceRefreshes, DescribeLoadBalancers, and DescribeLoadBalancerTargetGroups
+* `service/config`: Updates service API and documentation
+* `service/controltower`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds Ubuntu Pro as a supported platform for On-Demand Capacity Reservations and adds support for setting an Amazon Machine Image (AMI) to disabled state. Disabling the AMI makes it private if it was previously shared, and prevents new EC2 instance launches from it.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/glue`: Updates service API and documentation
+  * Extending version control support to GitLab and Bitbucket from AWSGlue
+* `service/inspector2`: Updates service API and documentation
+* `service/ivs-realtime`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Adds support for Lambda functions to access Dual-Stack subnets over IPv6, via an opt-in flag in CreateFunction and UpdateFunctionConfiguration APIs
+* `service/location`: Updates service API
+* `service/machinelearning`: Updates service API
+  * This release marks Password field as sensitive
+* `service/pricing`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for adding a dedicated log volume to open-source RDS instances.
+* `service/rekognition`: Updates service API and documentation
+  * Amazon Rekognition introduces support for Custom Moderation. This allows the enhancement of accuracy for detect moderation labels operations by creating custom adapters tuned on customer data.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Canvas adds KendraSettings and DirectDeploySettings support for CanvasAppSettings
+* `service/textract`: Updates service API, documentation, and paginators
+* `service/transcribe`: Updates service API
+* `service/workspaces`: Updates service documentation
+  * Updated the CreateWorkspaces action documentation to clarify that the PCoIP protocol is only available for Windows bundles.
+
 Release v1.45.24 (2023-10-06)
 ===
 

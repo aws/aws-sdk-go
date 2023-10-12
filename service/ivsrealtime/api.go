@@ -3081,15 +3081,33 @@ type Participant struct {
 	// information.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
+	// The participant’s browser.
+	BrowserName *string `locationName:"browserName" type:"string"`
+
+	// The participant’s browser version.
+	BrowserVersion *string `locationName:"browserVersion" type:"string"`
+
 	// ISO 8601 timestamp (returned as a string) when the participant first joined
 	// the stage session.
 	FirstJoinTime *time.Time `locationName:"firstJoinTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The participant’s Internet Service Provider.
+	IspName *string `locationName:"ispName" type:"string"`
+
+	// The participant’s operating system.
+	OsName *string `locationName:"osName" type:"string"`
+
+	// The participant’s operating system version.
+	OsVersion *string `locationName:"osVersion" type:"string"`
 
 	// Unique identifier for this participant, assigned by IVS.
 	ParticipantId *string `locationName:"participantId" type:"string"`
 
 	// Whether the participant ever published to the stage session.
 	Published *bool `locationName:"published" type:"boolean"`
+
+	// The participant’s SDK version.
+	SdkVersion *string `locationName:"sdkVersion" type:"string"`
 
 	// Whether the participant is connected to or disconnected from the stage.
 	State *string `locationName:"state" type:"string" enum:"ParticipantState"`
@@ -3125,9 +3143,39 @@ func (s *Participant) SetAttributes(v map[string]*string) *Participant {
 	return s
 }
 
+// SetBrowserName sets the BrowserName field's value.
+func (s *Participant) SetBrowserName(v string) *Participant {
+	s.BrowserName = &v
+	return s
+}
+
+// SetBrowserVersion sets the BrowserVersion field's value.
+func (s *Participant) SetBrowserVersion(v string) *Participant {
+	s.BrowserVersion = &v
+	return s
+}
+
 // SetFirstJoinTime sets the FirstJoinTime field's value.
 func (s *Participant) SetFirstJoinTime(v time.Time) *Participant {
 	s.FirstJoinTime = &v
+	return s
+}
+
+// SetIspName sets the IspName field's value.
+func (s *Participant) SetIspName(v string) *Participant {
+	s.IspName = &v
+	return s
+}
+
+// SetOsName sets the OsName field's value.
+func (s *Participant) SetOsName(v string) *Participant {
+	s.OsName = &v
+	return s
+}
+
+// SetOsVersion sets the OsVersion field's value.
+func (s *Participant) SetOsVersion(v string) *Participant {
+	s.OsVersion = &v
 	return s
 }
 
@@ -3140,6 +3188,12 @@ func (s *Participant) SetParticipantId(v string) *Participant {
 // SetPublished sets the Published field's value.
 func (s *Participant) SetPublished(v bool) *Participant {
 	s.Published = &v
+	return s
+}
+
+// SetSdkVersion sets the SdkVersion field's value.
+func (s *Participant) SetSdkVersion(v string) *Participant {
+	s.SdkVersion = &v
 	return s
 }
 

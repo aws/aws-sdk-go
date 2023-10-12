@@ -71396,10 +71396,12 @@ type UpdateJobFromSourceControlInput struct {
 	// The name of the Glue job to be synchronized to or from the remote repository.
 	JobName *string `min:"1" type:"string"`
 
-	// The provider for the remote repository.
+	// The provider for the remote repository. Possible values: GITHUB, AWS_CODE_COMMIT,
+	// GITLAB, BITBUCKET.
 	Provider *string `type:"string" enum:"SourceControlProvider"`
 
-	// The name of the remote repository that contains the job artifacts.
+	// The name of the remote repository that contains the job artifacts. For BitBucket
+	// providers, RepositoryName should include WorkspaceName. Use the format <WorkspaceName>/<RepositoryName>.
 	RepositoryName *string `min:"1" type:"string"`
 
 	// The owner of the remote repository that contains the job artifacts.
@@ -72318,10 +72320,12 @@ type UpdateSourceControlFromJobInput struct {
 	// The name of the Glue job to be synchronized to or from the remote repository.
 	JobName *string `min:"1" type:"string"`
 
-	// The provider for the remote repository.
+	// The provider for the remote repository. Possible values: GITHUB, AWS_CODE_COMMIT,
+	// GITLAB, BITBUCKET.
 	Provider *string `type:"string" enum:"SourceControlProvider"`
 
-	// The name of the remote repository that contains the job artifacts.
+	// The name of the remote repository that contains the job artifacts. For BitBucket
+	// providers, RepositoryName should include WorkspaceName. Use the format <WorkspaceName>/<RepositoryName>.
 	RepositoryName *string `min:"1" type:"string"`
 
 	// The owner of the remote repository that contains the job artifacts.
@@ -75784,6 +75788,12 @@ const (
 	// SourceControlProviderGithub is a SourceControlProvider enum value
 	SourceControlProviderGithub = "GITHUB"
 
+	// SourceControlProviderGitlab is a SourceControlProvider enum value
+	SourceControlProviderGitlab = "GITLAB"
+
+	// SourceControlProviderBitbucket is a SourceControlProvider enum value
+	SourceControlProviderBitbucket = "BITBUCKET"
+
 	// SourceControlProviderAwsCodeCommit is a SourceControlProvider enum value
 	SourceControlProviderAwsCodeCommit = "AWS_CODE_COMMIT"
 )
@@ -75792,6 +75802,8 @@ const (
 func SourceControlProvider_Values() []string {
 	return []string{
 		SourceControlProviderGithub,
+		SourceControlProviderGitlab,
+		SourceControlProviderBitbucket,
 		SourceControlProviderAwsCodeCommit,
 	}
 }

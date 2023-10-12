@@ -3401,6 +3401,7 @@
       "type":"integer",
       "min":0
     },
+    "NullableBoolean":{"type":"boolean"},
     "OnFailure":{
       "type":"structure",
       "members":{
@@ -4420,7 +4421,8 @@
       "type":"structure",
       "members":{
         "SubnetIds":{"shape":"SubnetIds"},
-        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"},
+        "Ipv6AllowedForDualStack":{"shape":"NullableBoolean"}
       }
     },
     "VpcConfigResponse":{
@@ -4428,7 +4430,8 @@
       "members":{
         "SubnetIds":{"shape":"SubnetIds"},
         "SecurityGroupIds":{"shape":"SecurityGroupIds"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "Ipv6AllowedForDualStack":{"shape":"NullableBoolean"}
       }
     },
     "VpcId":{"type":"string"},

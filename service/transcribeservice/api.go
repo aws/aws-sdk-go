@@ -14205,6 +14205,9 @@ const (
 
 	// MediaFormatWebm is a MediaFormat enum value
 	MediaFormatWebm = "webm"
+
+	// MediaFormatM4a is a MediaFormat enum value
+	MediaFormatM4a = "m4a"
 )
 
 // MediaFormat_Values returns all elements of the MediaFormat enum
@@ -14217,6 +14220,7 @@ func MediaFormat_Values() []string {
 		MediaFormatOgg,
 		MediaFormatAmr,
 		MediaFormatWebm,
+		MediaFormatM4a,
 	}
 }
 

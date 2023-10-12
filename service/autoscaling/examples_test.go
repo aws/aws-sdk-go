@@ -389,6 +389,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared03() {
 	input := &autoscaling.CreateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-asg"),
 		DesiredCapacity:      aws.Int64(4),
+		DesiredCapacityType:  aws.String("units"),
 		MaxSize:              aws.Int64(100),
 		MinSize:              aws.Int64(0),
 		MixedInstancesPolicy: &autoscaling.MixedInstancesPolicy{

@@ -555,9 +555,15 @@
       "type":"structure",
       "members":{
         "attributes":{"shape":"ParticipantAttributes"},
+        "browserName":{"shape":"ParticipantClientAttribute"},
+        "browserVersion":{"shape":"ParticipantClientAttribute"},
         "firstJoinTime":{"shape":"Time"},
+        "ispName":{"shape":"ParticipantClientAttribute"},
+        "osName":{"shape":"ParticipantClientAttribute"},
+        "osVersion":{"shape":"ParticipantClientAttribute"},
         "participantId":{"shape":"ParticipantId"},
         "published":{"shape":"Published"},
+        "sdkVersion":{"shape":"ParticipantClientAttribute"},
         "state":{"shape":"ParticipantState"},
         "userId":{"shape":"UserId"}
       }
@@ -566,6 +572,12 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
+    },
+    "ParticipantClientAttribute":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-_.,:;\\s]*$"
     },
     "ParticipantId":{"type":"string"},
     "ParticipantList":{

@@ -3339,6 +3339,15 @@
       "input":{"shape":"DisableFastSnapshotRestoresRequest"},
       "output":{"shape":"DisableFastSnapshotRestoresResult"}
     },
+    "DisableImage":{
+      "name":"DisableImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableImageRequest"},
+      "output":{"shape":"DisableImageResult"}
+    },
     "DisableImageBlockPublicAccess":{
       "name":"DisableImageBlockPublicAccess",
       "http":{
@@ -3578,6 +3587,15 @@
       },
       "input":{"shape":"EnableFastSnapshotRestoresRequest"},
       "output":{"shape":"EnableFastSnapshotRestoresResult"}
+    },
+    "EnableImage":{
+      "name":"EnableImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableImageRequest"},
+      "output":{"shape":"EnableImageResult"}
     },
     "EnableImageBlockPublicAccess":{
       "name":"EnableImageBlockPublicAccess",
@@ -8562,7 +8580,8 @@
         "RHEL with SQL Server Web",
         "RHEL with HA",
         "RHEL with HA and SQL Server Standard",
-        "RHEL with HA and SQL Server Enterprise"
+        "RHEL with HA and SQL Server Enterprise",
+        "Ubuntu Pro"
       ]
     },
     "CapacityReservationOptions":{
@@ -15580,6 +15599,7 @@
           "locationName":"Owner"
         },
         "IncludeDeprecated":{"shape":"Boolean"},
+        "IncludeDisabled":{"shape":"Boolean"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -19382,6 +19402,23 @@
         }
       }
     },
+    "DisableImageRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableImageResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "DisableIpamOrganizationAdminAccountRequest":{
       "type":"structure",
       "required":["DelegatedAdminAccountId"],
@@ -20737,6 +20774,23 @@
       }
     },
     "EnableImageDeprecationResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
+    "EnableImageRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableImageResult":{
       "type":"structure",
       "members":{
         "Return":{
@@ -24393,6 +24447,10 @@
         "ImdsSupport":{
           "shape":"ImdsSupportValues",
           "locationName":"imdsSupport"
+        },
+        "SourceInstanceId":{
+          "shape":"String",
+          "locationName":"sourceInstanceId"
         }
       }
     },
@@ -24559,7 +24617,8 @@
         "deregistered",
         "transient",
         "failed",
-        "error"
+        "error",
+        "disabled"
       ]
     },
     "ImageTypeValues":{

@@ -1053,7 +1053,8 @@
     },
     "CalculatedAttributeDefinitionsList":{
       "type":"list",
-      "member":{"shape":"ListCalculatedAttributeDefinitionItem"}
+      "member":{"shape":"ListCalculatedAttributeDefinitionItem"},
+      "sensitive":true
     },
     "CalculatedAttributesForProfileList":{
       "type":"list",
@@ -1125,7 +1126,7 @@
           "locationName":"CalculatedAttributeName"
         },
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "AttributeDetails":{"shape":"AttributeDetails"},
         "Conditions":{"shape":"Conditions"},
         "Statistic":{"shape":"Statistic"},
@@ -1137,7 +1138,7 @@
       "members":{
         "CalculatedAttributeName":{"shape":"typeName"},
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "AttributeDetails":{"shape":"AttributeDetails"},
         "Conditions":{"shape":"Conditions"},
         "Statistic":{"shape":"Statistic"},
@@ -1759,7 +1760,7 @@
       "members":{
         "CalculatedAttributeName":{"shape":"typeName"},
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Statistic":{"shape":"Statistic"},
@@ -2281,7 +2282,7 @@
       "members":{
         "CalculatedAttributeName":{"shape":"typeName"},
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -3629,7 +3630,7 @@
           "locationName":"CalculatedAttributeName"
         },
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "Conditions":{"shape":"Conditions"}
       }
     },
@@ -3638,7 +3639,7 @@
       "members":{
         "CalculatedAttributeName":{"shape":"typeName"},
         "DisplayName":{"shape":"displayName"},
-        "Description":{"shape":"text"},
+        "Description":{"shape":"sensitiveText"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Statistic":{"shape":"Statistic"},

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Inspector is a vulnerability discovery service that automates continuous scanning for security vulnerabilities within your Amazon EC2 and Amazon ECR environments.</p>",
+  "service": "<p>Amazon Inspector is a vulnerability discovery service that automates continuous scanning for security vulnerabilities within your Amazon EC2, Amazon ECR, and Amazon Web Services Lambda environments.</p>",
   "operations": {
     "AssociateMember": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was successfully started, but doesn’t indicate whether it was completed. You can check if the association completed by using <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_ListMembers.html\">ListMembers</a> for multiple accounts or <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_GetMember.html\">GetMembers</a> for a single account.</p>",
     "BatchGetAccountStatus": "<p>Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.</p>",
@@ -11,7 +11,7 @@
     "BatchUpdateMemberEc2DeepInspectionStatus": "<p>Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "CancelFindingsReport": "<p>Cancels the given findings report.</p>",
     "CancelSbomExport": "<p>Cancels a software bill of materials (SBOM) report.</p>",
-    "CreateFilter": "<p>Creates a filter resource using specified filter criteria.</p>",
+    "CreateFilter": "<p>Creates a filter resource using specified filter criteria. When the filter action is set to <code>SUPPRESS</code> this action creates a suppression rule.</p>",
     "CreateFindingsReport": "<p>Creates a finding report. By default only <code>ACTIVE</code> findings are returned in the report. To see <code>SUPRESSED</code> or <code>CLOSED</code> findings you must specify a value for the <code>findingStatus</code> filter criteria. </p>",
     "CreateSbomExport": "<p>Creates a software bill of materials (SBOM) report.</p>",
     "DeleteFilter": "<p>Deletes a filter resource.</p>",
@@ -594,7 +594,7 @@
         "CoverageFilterCriteria$lambdaFunctionRuntime": "<p>Returns coverage statistics for AWS Lambda functions filtered by runtime.</p>",
         "CoverageFilterCriteria$resourceId": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
         "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code>, <code>AWS_LAMBDA_FUNCTION</code> or <code>AWS_ECR_REPOSITORY</code>.</p>",
-        "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on.</p>",
+        "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on. Valid values are: <code>ValidationException</code>, <code>InternalServerException</code>, <code>ResourceNotFoundException</code>, <code>BadRequestException</code>, and <code>ThrottlingException</code>.</p>",
         "CoverageFilterCriteria$scanStatusReason": "<p>The scan status reason to filter on.</p>",
         "CoverageFilterCriteria$scanType": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>"
       }
@@ -1287,7 +1287,7 @@
     "FindingType": {
       "base": null,
       "refs": {
-        "Finding$type": "<p>The type of the finding.</p>"
+        "Finding$type": "<p>The type of the finding. The <code>type</code> value determines the valid values for <code>resource</code> in your request. For more information, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-types.html\">Finding types</a> in the Amazon Inspector user guide.</p>"
       }
     },
     "FindingTypeAggregation": {
@@ -1620,7 +1620,7 @@
     "ListAccountPermissionsMaxResults": {
       "base": null,
       "refs": {
-        "ListAccountPermissionsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListAccountPermissionsRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListAccountPermissionsRequest": {
@@ -1636,7 +1636,7 @@
     "ListCoverageMaxResults": {
       "base": null,
       "refs": {
-        "ListCoverageRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListCoverageRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListCoverageRequest": {
@@ -1672,13 +1672,13 @@
     "ListDelegatedAdminMaxResults": {
       "base": null,
       "refs": {
-        "ListDelegatedAdminAccountsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListDelegatedAdminAccountsRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListFilterMaxResults": {
       "base": null,
       "refs": {
-        "ListFiltersRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListFiltersRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListFiltersRequest": {
@@ -1694,7 +1694,7 @@
     "ListFindingAggregationsMaxResults": {
       "base": null,
       "refs": {
-        "ListFindingAggregationsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListFindingAggregationsRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListFindingAggregationsRequest": {
@@ -1710,7 +1710,7 @@
     "ListFindingsMaxResults": {
       "base": null,
       "refs": {
-        "ListFindingsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListFindingsRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListFindingsRequest": {
@@ -1726,7 +1726,7 @@
     "ListMembersMaxResults": {
       "base": null,
       "refs": {
-        "ListMembersRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListMembersRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListMembersRequest": {
@@ -1752,13 +1752,13 @@
     "ListUsageTotalsMaxResults": {
       "base": null,
       "refs": {
-        "ListUsageTotalsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
+        "ListUsageTotalsRequest$maxResults": "<p>The maximum number of results the response can return. If your request would return more than the maximum the response will return a <code>nextToken</code> value, use this value when you call the action again to get the remaining results.</p>"
       }
     },
     "ListUsageTotalsNextToken": {
       "base": null,
       "refs": {
-        "ListUsageTotalsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListUsageTotalsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListUsageTotalsResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>"
       }
     },
@@ -1893,21 +1893,21 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListAccountPermissionsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListAccountPermissionsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.</p>",
         "ListAccountPermissionsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListCoverageRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListCoverageRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListCoverageResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListCoverageStatisticsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListCoverageStatisticsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListDelegatedAdminAccountsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListDelegatedAdminAccountsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListDelegatedAdminAccountsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListFiltersRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListFiltersRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListFiltersResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListFindingAggregationsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListFindingAggregationsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListFindingAggregationsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListFindingsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListFindingsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListFindingsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
-        "ListMembersRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListMembersRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListMembersResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "SearchVulnerabilitiesRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "SearchVulnerabilitiesResponse$nextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>"
@@ -2278,7 +2278,7 @@
     "ResourceList": {
       "base": null,
       "refs": {
-        "Finding$resources": "<p>Contains information on the resources involved in a finding.</p>"
+        "Finding$resources": "<p>Contains information on the resources involved in a finding. The <code>resource</code> value determines the valid values for <code>type</code> in your request. For more information, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-types.html\">Finding types</a> in the Amazon Inspector user guide.</p>"
       }
     },
     "ResourceMapComparison": {
@@ -2404,7 +2404,7 @@
     "ScanStatusReason": {
       "base": null,
       "refs": {
-        "ScanStatus$reason": "<p>The reason for the scan.</p>"
+        "ScanStatus$reason": "<p>The scan status. Possible return values and descriptions are: </p> <p> <code>PENDING_INITIAL_SCAN</code> - This resource has been identified for scanning, results will be available soon.</p> <p> <code>ACCESS_DENIED</code> - Resource access policy restricting Amazon Inspector access. Please update the IAM policy.</p> <p> <code>INTERNAL_ERROR</code> - Amazon Inspector has encountered an internal error for this resource. Amazon Inspector service will automatically resolve the issue and resume the scanning. No action required from the user.</p> <p> <code>UNMANAGED_EC2_INSTANCE</code> - The EC2 instance is not managed by SSM, please use the following SSM automation to remediate the issue: <a href=\"https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html\">https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html</a>. Once the instance becomes managed by SSM, Inspector will automatically begin scanning this instance. </p> <p> <code>UNSUPPORTED_OS</code> - Amazon Inspector does not support this OS, architecture, or image manifest type at this time. To see a complete list of supported operating systems see: <a href=\" https://docs.aws.amazon.com/inspector/latest/user/supported.html\">https://docs.aws.amazon.com/inspector/latest/user/supported.html</a>.</p> <p> <code>SCAN_ELIGIBILITY_EXPIRED</code> - The configured scan duration has lapsed for this image.</p> <p> <code>RESOURCE_TERMINATED</code> - This resource has been terminated. The findings and coverage associated with this resource are in the process of being cleaned up.</p> <p> <code>SUCCESSFUL</code> - The scan was successful.</p> <p> <code>NO_RESOURCES_FOUND</code> - Reserved for future use.</p> <p> <code>IMAGE_SIZE_EXCEEDED</code> - Reserved for future use.</p> <p> <code>SCAN_FREQUENCY_MANUAL</code> - This image will not be covered by Amazon Inspector due to the repository scan frequency configuration.</p> <p> <code>SCAN_FREQUENCY_SCAN_ON_PUSH </code>- This image will be scanned one time and will not new findings because of the scan frequency configuration.</p> <p> <code>EC2_INSTANCE_STOPPED</code> - This EC2 instance is in a stopped state, therefore, Amazon Inspector will pause scanning. The existing findings will continue to exist until the instance is terminated. Once the instance is re-started, Inspector will automatically start scanning the instance again. Please note that you will not be charged for this instance while it’s in a stopped state.</p> <p> <code>PENDING_DISABLE</code> - This resource is pending cleanup during disablement. The customer will not be billed while a resource is in the pending disable status.</p> <p> <code>NO INVENTORY</code> - Amazon Inspector couldn’t find software application inventory to scan for vulnerabilities. This might be caused due to required Amazon Inspector associations being deleted or failing to run on your resource. Please verify the status of <code>InspectorInventoryCollection-do-not-delete</code> association in the SSM console for the resource. Additionally, you can verify the instance’s inventory in the SSM Fleet Manager console.</p> <p> <code>STALE_INVENTORY</code> - Amazon Inspector wasn’t able to collect an updated software application inventory in the last 7 days. Please confirm the required Amazon Inspector associations still exist and you can still see an updated inventory in the SSM console.</p> <p> <code>EXCLUDED_BY_TAG</code> - This resource was not scanned because it has been excluded by a tag.</p> <p> <code>UNSUPPORTED_RUNTIME</code> - The function was not scanned because it has an unsupported runtime. To see a complete list of supported runtimes see: <a href=\" https://docs.aws.amazon.com/inspector/latest/user/supported.html\">https://docs.aws.amazon.com/inspector/latest/user/supported.html</a>.</p> <p> <code>UNSUPPORTED_MEDIA_TYPE </code>- The ECR image has an unsupported media type.</p> <p> <code>UNSUPPORTED_CONFIG_FILE</code> - Reserved for future use.</p> <p> <code>DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED</code> - The instance has exceeded the 5000 package limit for Amazon Inspector Deep inspection. To resume Deep inspection for this instance you can try to adjust the custom paths associated with the account.</p> <p> <code>DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED</code> - The SSM agent couldn't send inventory to Amazon Inspector because the SSM quota for Inventory data collected per instance per day has already been reached for this instance.</p> <p> <code>DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED</code> - Amazon Inspector failed to extract the package inventory because the package collection time exceeding the maximum threshold of 15 minutes.</p> <p> <code>DEEP_INSPECTION_NO_INVENTORY</code> The Amazon Inspector plugin hasn't yet been able to collect an inventory of packages for this instance. This is usually the result of a pending scan, however, if this status persists after 6 hours, use SSM to ensure that the required Amazon Inspector associations exist and are running for the instance.</p> <p/>"
       }
     },
     "ScanType": {
@@ -2459,7 +2459,7 @@
     "Severity": {
       "base": null,
       "refs": {
-        "Finding$severity": "<p>The severity of the finding.</p>"
+        "Finding$severity": "<p>The severity of the finding. <code>UNTRIAGED</code> applies to <code>PACKAGE_VULNERABILITY</code> type findings that the vendor has not assigned a severity yet. For more information, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html\">Severity levels for findings</a> in the Amazon Inspector user guide.</p>"
       }
     },
     "SeverityCounts": {
@@ -3051,7 +3051,7 @@
     "VulnerabilitySource": {
       "base": null,
       "refs": {
-        "Vulnerability$source": "<p>The source of the vulnerability information.</p>"
+        "Vulnerability$source": "<p>The source of the vulnerability information. Possible results are <code>RHEL</code>, <code>AMAZON_CVE</code>, <code>DEBIAN</code> or <code>NVD</code>.</p>"
       }
     },
     "VulnerabilitySourceUrl": {

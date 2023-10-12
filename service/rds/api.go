@@ -21728,6 +21728,9 @@ type CreateDBInstanceInput struct {
 	// to RDSCDB. The Oracle SID is also the name of your CDB.
 	DBSystemId *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Specifies whether the DB instance has deletion protection enabled. The database
 	// can't be deleted when deletion protection is enabled. By default, deletion
 	// protection isn't enabled. For more information, see Deleting a DB Instance
@@ -22512,6 +22515,12 @@ func (s *CreateDBInstanceInput) SetDBSystemId(v string) *CreateDBInstanceInput {
 	return s
 }
 
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *CreateDBInstanceInput) SetDedicatedLogVolume(v bool) *CreateDBInstanceInput {
+	s.DedicatedLogVolume = &v
+	return s
+}
+
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *CreateDBInstanceInput) SetDeletionProtection(v bool) *CreateDBInstanceInput {
 	s.DeletionProtection = &v
@@ -22911,6 +22920,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
+
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
 
 	// Specifies whether to enable deletion protection for the DB instance. The
 	// database can't be deleted when deletion protection is enabled. By default,
@@ -23429,6 +23441,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetDBParameterGroupName(v string) *Cr
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetDBSubnetGroupName(v string) *CreateDBInstanceReadReplicaInput {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDedicatedLogVolume(v bool) *CreateDBInstanceReadReplicaInput {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -27529,6 +27547,9 @@ type DBInstance struct {
 	// the Amazon Web Services KMS key for the DB instance is accessed.
 	DbiResourceId *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Indicates whether the DB instance has deletion protection enabled. The database
 	// can't be deleted when deletion protection is enabled. For more information,
 	// see Deleting a DB Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
@@ -27994,6 +28015,12 @@ func (s *DBInstance) SetDbiResourceId(v string) *DBInstance {
 	return s
 }
 
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *DBInstance) SetDedicatedLogVolume(v bool) *DBInstance {
+	s.DedicatedLogVolume = &v
+	return s
+}
+
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *DBInstance) SetDeletionProtection(v bool) *DBInstance {
 	s.DeletionProtection = &v
@@ -28325,6 +28352,9 @@ type DBInstanceAutomatedBackup struct {
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Indicates whether the automated backup is encrypted.
 	Encrypted *bool `type:"boolean"`
 
@@ -28477,6 +28507,12 @@ func (s *DBInstanceAutomatedBackup) SetDBInstanceIdentifier(v string) *DBInstanc
 // SetDbiResourceId sets the DbiResourceId field's value.
 func (s *DBInstanceAutomatedBackup) SetDbiResourceId(v string) *DBInstanceAutomatedBackup {
 	s.DbiResourceId = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *DBInstanceAutomatedBackup) SetDedicatedLogVolume(v bool) *DBInstanceAutomatedBackup {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -29616,6 +29652,9 @@ type DBSnapshot struct {
 	// is unique to an Amazon Web Services Region.
 	DbiResourceId *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Indicates whether the DB snapshot is encrypted.
 	Encrypted *bool `type:"boolean"`
 
@@ -29781,6 +29820,12 @@ func (s *DBSnapshot) SetDBSystemId(v string) *DBSnapshot {
 // SetDbiResourceId sets the DbiResourceId field's value.
 func (s *DBSnapshot) SetDbiResourceId(v string) *DBSnapshot {
 	s.DbiResourceId = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *DBSnapshot) SetDedicatedLogVolume(v bool) *DBSnapshot {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -42702,6 +42747,9 @@ type ModifyDBInstanceInput struct {
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Specifies whether the DB instance has deletion protection enabled. The database
 	// can't be deleted when deletion protection is enabled. By default, deletion
 	// protection isn't enabled. For more information, see Deleting a DB Instance
@@ -43451,6 +43499,12 @@ func (s *ModifyDBInstanceInput) SetDBSecurityGroups(v []*string) *ModifyDBInstan
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *ModifyDBInstanceInput) SetDBSubnetGroupName(v string) *ModifyDBInstanceInput {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *ModifyDBInstanceInput) SetDedicatedLogVolume(v bool) *ModifyDBInstanceInput {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -45848,6 +45902,9 @@ type OrderableDBInstanceOption struct {
 	// in the Amazon RDS User Guide.
 	SupportsClusters *bool `type:"boolean"`
 
+	// Indicates whether a DB instance supports using a dedicated log volume (DLV).
+	SupportsDedicatedLogVolume *bool `type:"boolean"`
+
 	// Indicates whether a DB instance supports Enhanced Monitoring at intervals
 	// from 1 to 60 seconds.
 	SupportsEnhancedMonitoring *bool `type:"boolean"`
@@ -46047,6 +46104,12 @@ func (s *OrderableDBInstanceOption) SetSupportedNetworkTypes(v []*string) *Order
 // SetSupportsClusters sets the SupportsClusters field's value.
 func (s *OrderableDBInstanceOption) SetSupportsClusters(v bool) *OrderableDBInstanceOption {
 	s.SupportsClusters = &v
+	return s
+}
+
+// SetSupportsDedicatedLogVolume sets the SupportsDedicatedLogVolume field's value.
+func (s *OrderableDBInstanceOption) SetSupportsDedicatedLogVolume(v bool) *OrderableDBInstanceOption {
+	s.SupportsDedicatedLogVolume = &v
 	return s
 }
 
@@ -46441,6 +46504,9 @@ type PendingModifiedValues struct {
 	// The DB subnet group for the DB instance.
 	DBSubnetGroupName *string `type:"string"`
 
+	// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.>
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// The database engine of the DB instance.
 	Engine *string `type:"string"`
 
@@ -46545,6 +46611,12 @@ func (s *PendingModifiedValues) SetDBInstanceIdentifier(v string) *PendingModifi
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *PendingModifiedValues) SetDBSubnetGroupName(v string) *PendingModifiedValues {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *PendingModifiedValues) SetDedicatedLogVolume(v bool) *PendingModifiedValues {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -50406,6 +50478,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
+	// Specifies whether to enable a dedicated log volume (DLV) for the DB instance.
+	DedicatedLogVolume *bool `type:"boolean"`
+
 	// Specifies whether to enable deletion protection for the DB instance. The
 	// database can't be deleted when deletion protection is enabled. By default,
 	// deletion protection isn't enabled. For more information, see Deleting a DB
@@ -50774,6 +50849,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBSubnetGroupName(v string) *R
 	return s
 }
 
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDedicatedLogVolume(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DedicatedLogVolume = &v
+	return s
+}
+
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetDeletionProtection(v bool) *RestoreDBInstanceFromDBSnapshotInput {
 	s.DeletionProtection = &v
@@ -51053,6 +51134,9 @@ type RestoreDBInstanceFromS3Input struct {
 	//
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
+
+	// Specifies whether to enable a dedicated log volume (DLV) for the DB instance.
+	DedicatedLogVolume *bool `type:"boolean"`
 
 	// Specifies whether to enable deletion protection for the DB instance. The
 	// database can't be deleted when deletion protection is enabled. By default,
@@ -51512,6 +51596,12 @@ func (s *RestoreDBInstanceFromS3Input) SetDBSubnetGroupName(v string) *RestoreDB
 	return s
 }
 
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *RestoreDBInstanceFromS3Input) SetDedicatedLogVolume(v bool) *RestoreDBInstanceFromS3Input {
+	s.DedicatedLogVolume = &v
+	return s
+}
+
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *RestoreDBInstanceFromS3Input) SetDeletionProtection(v bool) *RestoreDBInstanceFromS3Input {
 	s.DeletionProtection = &v
@@ -51873,6 +51963,9 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
+
+	// Specifies whether to enable a dedicated log volume (DLV) for the DB instance.
+	DedicatedLogVolume *bool `type:"boolean"`
 
 	// Specifies whether the DB instance has deletion protection enabled. The database
 	// can't be deleted when deletion protection is enabled. By default, deletion
@@ -52287,6 +52380,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetDBParameterGroupName(v string) 
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetDBSubnetGroupName(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDedicatedLogVolume sets the DedicatedLogVolume field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDedicatedLogVolume(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.DedicatedLogVolume = &v
 	return s
 }
 
@@ -55213,6 +55312,9 @@ type ValidDBInstanceModificationsMessage struct {
 	// Valid storage options for your DB instance.
 	Storage []*ValidStorageOptions `locationNameList:"ValidStorageOptions" type:"list"`
 
+	// Indicates whether a DB instance supports using a dedicated log volume (DLV).
+	SupportsDedicatedLogVolume *bool `type:"boolean"`
+
 	// Valid processor features for your DB instance.
 	ValidProcessorFeatures []*AvailableProcessorFeature `locationNameList:"AvailableProcessorFeature" type:"list"`
 }
@@ -55238,6 +55340,12 @@ func (s ValidDBInstanceModificationsMessage) GoString() string {
 // SetStorage sets the Storage field's value.
 func (s *ValidDBInstanceModificationsMessage) SetStorage(v []*ValidStorageOptions) *ValidDBInstanceModificationsMessage {
 	s.Storage = v
+	return s
+}
+
+// SetSupportsDedicatedLogVolume sets the SupportsDedicatedLogVolume field's value.
+func (s *ValidDBInstanceModificationsMessage) SetSupportsDedicatedLogVolume(v bool) *ValidDBInstanceModificationsMessage {
+	s.SupportsDedicatedLogVolume = &v
 	return s
 }
 

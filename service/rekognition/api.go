@@ -347,6 +347,8 @@ func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) 
 
 // CopyProjectVersion API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Copies a version of an Amazon Rekognition Custom Labels model from a source
 // project to a destination project. The source and destination projects can
 // be in different AWS accounts but must be in the same AWS Region. You can't
@@ -364,6 +366,8 @@ func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) 
 //
 // If you are copying a model version to a project in the same AWS account,
 // you don't need to create a project policy.
+//
+// Copying project versions is supported only for Custom Labels models.
 //
 // To copy a model, the destination project, source project, and source model
 // version must already exist.
@@ -396,10 +400,10 @@ func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) 
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ResourceNotFoundException
 //     The resource specified in the request cannot be found.
@@ -594,6 +598,8 @@ func (c *Rekognition) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 
 // CreateDataset API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Creates a new Amazon Rekognition Custom Labels dataset. You can create a
 // dataset by using an Amazon Sagemaker format manifest file or by copying an
 // existing Amazon Rekognition Custom Labels dataset.
@@ -649,10 +655,10 @@ func (c *Rekognition) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - InvalidS3ObjectException
 //     Amazon Rekognition is unable to access the S3 object specified in the request.
@@ -825,12 +831,13 @@ func (c *Rekognition) CreateProjectRequest(input *CreateProjectInput) (req *requ
 
 // CreateProject API operation for Amazon Rekognition.
 //
-// Creates a new Amazon Rekognition Custom Labels project. A project is a group
-// of resources (datasets, model versions) that you use to create and manage
-// Amazon Rekognition Custom Labels models.
-//
-// This operation requires permissions to perform the rekognition:CreateProject
-// action.
+// Creates a new Amazon Rekognition project. A project is a group of resources
+// (datasets, model versions) that you use to create and manage a Amazon Rekognition
+// Custom Labels Model or custom adapter. You can specify a feature to create
+// the project with, if no feature is specified then Custom Labels is used by
+// default. For adapters, you can also choose whether or not to have the project
+// auto update by using the AutoUpdate argument. This operation requires permissions
+// to perform the rekognition:CreateProject action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -846,10 +853,10 @@ func (c *Rekognition) CreateProjectRequest(input *CreateProjectInput) (req *requ
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - InvalidParameterException
 //     Input parameter violated a constraint. Validate your parameter before calling
@@ -930,14 +937,24 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 
 // CreateProjectVersion API operation for Amazon Rekognition.
 //
-// Creates a new version of a model and begins training. Models are managed
-// as part of an Amazon Rekognition Custom Labels project. The response from
-// CreateProjectVersion is an Amazon Resource Name (ARN) for the version of
-// the model.
+// Creates a new version of Amazon Rekognition project (like a Custom Labels
+// model or a custom adapter) and begins training. Models and adapters are managed
+// as part of a Rekognition project. The response from CreateProjectVersion
+// is an Amazon Resource Name (ARN) for the project version.
 //
-// Training uses the training and test datasets associated with the project.
-// For more information, see Creating training and test dataset in the Amazon
-// Rekognition Custom Labels Developer Guide.
+// The FeatureConfig operation argument allows you to configure specific model
+// or adapter settings. You can provide a description to the project version
+// by using the VersionDescription argment. Training can take a while to complete.
+// You can get the current status by calling DescribeProjectVersions. Training
+// completed successfully if the value of the Status field is TRAINING_COMPLETED.
+// Once training has successfully completed, call DescribeProjectVersions to
+// get the training results and evaluate the model.
+//
+// This operation requires permissions to perform the rekognition:CreateProjectVersion
+// action.
+//
+// The following applies only to projects with Amazon Rekognition Custom Labels
+// as the chosen feature:
 //
 // You can train a model in a project that doesn't have associated datasets
 // by specifying manifest files in the TrainingData and TestingData fields.
@@ -950,23 +967,6 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 // Instead of training with a project without associated datasets, we recommend
 // that you use the manifest files to create training and test datasets for
 // the project.
-//
-// Training takes a while to complete. You can get the current status by calling
-// DescribeProjectVersions. Training completed successfully if the value of
-// the Status field is TRAINING_COMPLETED.
-//
-// If training fails, see Debugging a failed model training in the Amazon Rekognition
-// Custom Labels developer guide.
-//
-// Once training has successfully completed, call DescribeProjectVersions to
-// get the training results and evaluate the model. For more information, see
-// Improving a trained Amazon Rekognition Custom Labels model in the Amazon
-// Rekognition Custom Labels developers guide.
-//
-// After evaluating the model, you start the model by calling StartProjectVersion.
-//
-// This operation requires permissions to perform the rekognition:CreateProjectVersion
-// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -985,10 +985,10 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - InvalidParameterException
 //     Input parameter violated a constraint. Validate your parameter before calling
@@ -1132,10 +1132,10 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ResourceInUseException
 //     The specified resource is already being used.
@@ -1424,6 +1424,8 @@ func (c *Rekognition) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 
 // DeleteDataset API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a
 // dataset might take while. Use DescribeDataset to check the current status.
 // The dataset is still deleting if the value of Status is DELETE_IN_PROGRESS.
@@ -1465,10 +1467,10 @@ func (c *Rekognition) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ResourceInUseException
 //     The specified resource is already being used.
@@ -1634,9 +1636,9 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 
 // DeleteProject API operation for Amazon Rekognition.
 //
-// Deletes an Amazon Rekognition Custom Labels project. To delete a project
-// you must first delete all models associated with the project. To delete a
-// model, see DeleteProjectVersion.
+// Deletes a Amazon Rekognition project. To delete a project you must first
+// delete all models or adapters associated with the project. To delete a model
+// or adapter, see DeleteProjectVersion.
 //
 // DeleteProject is an asynchronous operation. To check if the project is deleted,
 // call DescribeProjects. The project is deleted when the project no longer
@@ -1741,6 +1743,8 @@ func (c *Rekognition) DeleteProjectPolicyRequest(input *DeleteProjectPolicyInput
 
 // DeleteProjectPolicy API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Deletes an existing project policy.
 //
 // To get a list of project policies attached to a project, call ListProjectPolicies.
@@ -1843,12 +1847,13 @@ func (c *Rekognition) DeleteProjectVersionRequest(input *DeleteProjectVersionInp
 
 // DeleteProjectVersion API operation for Amazon Rekognition.
 //
-// Deletes an Amazon Rekognition Custom Labels model.
+// Deletes a Rekognition project model or project version, like a Amazon Rekognition
+// Custom Labels model or a custom adapter.
 //
-// You can't delete a model if it is running or if it is training. To check
-// the status of a model, use the Status field returned from DescribeProjectVersions.
-// To stop a running model call StopProjectVersion. If the model is training,
-// wait until it finishes.
+// You can't delete a project version if it is running or if it is training.
+// To check the status of a project version, use the Status field returned from
+// DescribeProjectVersions. To stop a project version call StopProjectVersion.
+// If the project version is training, wait until it finishes.
 //
 // This operation requires permissions to perform the rekognition:DeleteProjectVersion
 // action.
@@ -2252,6 +2257,8 @@ func (c *Rekognition) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 
 // DescribeDataset API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Describes an Amazon Rekognition Custom Labels dataset. You can get information
 // such as the current status of a dataset and statistics about the images and
 // labels in a dataset.
@@ -2356,9 +2363,9 @@ func (c *Rekognition) DescribeProjectVersionsRequest(input *DescribeProjectVersi
 
 // DescribeProjectVersions API operation for Amazon Rekognition.
 //
-// Lists and describes the versions of a model in an Amazon Rekognition Custom
-// Labels project. You can specify up to 10 model versions in ProjectVersionArns.
-// If you don't specify a value, descriptions for all model versions in the
+// Lists and describes the versions of an Amazon Rekognition project. You can
+// specify up to 10 model or adapter versions in ProjectVersionArns. If you
+// don't specify a value, descriptions for all model/adapter versions in the
 // project are returned.
 //
 // This operation requires permissions to perform the rekognition:DescribeProjectVersions
@@ -2515,7 +2522,7 @@ func (c *Rekognition) DescribeProjectsRequest(input *DescribeProjectsInput) (req
 
 // DescribeProjects API operation for Amazon Rekognition.
 //
-// Gets information about your Amazon Rekognition Custom Labels projects.
+// Gets information about your Rekognition projects.
 //
 // This operation requires permissions to perform the rekognition:DescribeProjects
 // action.
@@ -2758,6 +2765,8 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 
 // DetectCustomLabels API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Detects custom labels in a supplied image by using an Amazon Rekognition
 // Custom Labels model.
 //
@@ -2830,10 +2839,10 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - AccessDeniedException
 //     You are not authorized to perform the action.
@@ -3261,6 +3270,9 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
+// You can specify an adapter to use when retrieving label predictions by providing
+// a ProjectVersionArn to the ProjectVersion argument.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3303,6 +3315,13 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 //   - HumanLoopQuotaExceededException
 //     The number of in-progress human reviews you have has exceeded the number
 //     allowed.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ResourceNotReadyException
+//     The requested resource isn't ready. For example, this exception occurs when
+//     you call DetectCustomLabels with a model version that isn't deployed.
 func (c *Rekognition) DetectModerationLabels(input *DetectModerationLabelsInput) (*DetectModerationLabelsOutput, error) {
 	req, out := c.DetectModerationLabelsRequest(input)
 	return out, req.Send()
@@ -3745,6 +3764,8 @@ func (c *Rekognition) DistributeDatasetEntriesRequest(input *DistributeDatasetEn
 }
 
 // DistributeDatasetEntries API operation for Amazon Rekognition.
+//
+// This operation applies only to Amazon Rekognition Custom Labels.
 //
 // Distributes the entries (images) in a training dataset across the training
 // dataset and the test dataset for a project. DistributeDatasetEntries moves
@@ -5948,6 +5969,8 @@ func (c *Rekognition) ListDatasetEntriesRequest(input *ListDatasetEntriesInput) 
 
 // ListDatasetEntries API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Lists the entries (images) within a dataset. An entry is a JSON Line that
 // contains the information for a single image, including the image location,
 // assigned labels, and object location bounding boxes. For more information,
@@ -6122,6 +6145,8 @@ func (c *Rekognition) ListDatasetLabelsRequest(input *ListDatasetLabelsInput) (r
 }
 
 // ListDatasetLabels API operation for Amazon Rekognition.
+//
+// This operation applies only to Amazon Rekognition Custom Labels.
 //
 // Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels
 // to describe images. For more information, see Labeling images (https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html).
@@ -6446,6 +6471,8 @@ func (c *Rekognition) ListProjectPoliciesRequest(input *ListProjectPoliciesInput
 }
 
 // ListProjectPolicies API operation for Amazon Rekognition.
+//
+// This operation applies only to Amazon Rekognition Custom Labels.
 //
 // Gets a list of the project policies attached to a project.
 //
@@ -7004,11 +7031,13 @@ func (c *Rekognition) PutProjectPolicyRequest(input *PutProjectPolicyInput) (req
 
 // PutProjectPolicy API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Attaches a project policy to a Amazon Rekognition Custom Labels project in
 // a trusting AWS account. A project policy specifies that a trusted AWS account
 // can copy a model version from a trusting AWS account to a project in the
 // trusted AWS account. To copy a model version you use the CopyProjectVersion
-// operation.
+// operation. Only applies to Custom Labels projects.
 //
 // For more information about the format of a project policy document, see Attaching
 // a project policy (SDK) in the Amazon Rekognition Custom Labels Developer
@@ -7074,10 +7103,10 @@ func (c *Rekognition) PutProjectPolicyRequest(input *PutProjectPolicyInput) (req
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 func (c *Rekognition) PutProjectPolicy(input *PutProjectPolicyInput) (*PutProjectPolicyOutput, error) {
 	req, out := c.PutProjectPolicyRequest(input)
 	return out, req.Send()
@@ -7798,10 +7827,10 @@ func (c *Rekognition) StartCelebrityRecognitionRequest(input *StartCelebrityReco
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -7923,10 +7952,10 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8045,10 +8074,10 @@ func (c *Rekognition) StartFaceDetectionRequest(input *StartFaceDetectionInput) 
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8166,10 +8195,10 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ResourceNotFoundException
 //     The resource specified in the request cannot be found.
@@ -8308,10 +8337,10 @@ func (c *Rekognition) StartLabelDetectionRequest(input *StartLabelDetectionInput
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8429,10 +8458,10 @@ func (c *Rekognition) StartPersonTrackingRequest(input *StartPersonTrackingInput
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8499,6 +8528,8 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 
 // StartProjectVersion API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Starts the running of the version of a model. Starting a model takes a while
 // to complete. To check the current state of the model, use DescribeProjectVersions.
 //
@@ -8507,9 +8538,6 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 //
 // You are charged for the amount of time that the model is running. To stop
 // a running model, call StopProjectVersion.
-//
-// For more information, see Running a trained Amazon Rekognition Custom Labels
-// model in the Amazon Rekognition Custom Labels Guide.
 //
 // This operation requires permissions to perform the rekognition:StartProjectVersion
 // action.
@@ -8531,10 +8559,10 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - InvalidParameterException
 //     Input parameter violated a constraint. Validate your parameter before calling
@@ -8675,10 +8703,10 @@ func (c *Rekognition) StartSegmentDetectionRequest(input *StartSegmentDetectionI
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8898,10 +8926,10 @@ func (c *Rekognition) StartTextDetectionRequest(input *StartTextDetectionInput) 
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ThrottlingException
 //     Amazon Rekognition is temporarily unable to process the request. Try your
@@ -8968,8 +8996,11 @@ func (c *Rekognition) StopProjectVersionRequest(input *StopProjectVersionInput) 
 
 // StopProjectVersion API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Stops a running model. The operation might take a while to complete. To check
-// the current status, call DescribeProjectVersions.
+// the current status, call DescribeProjectVersions. Only applies to Custom
+// Labels projects.
 //
 // This operation requires permissions to perform the rekognition:StopProjectVersion
 // action.
@@ -9368,6 +9399,8 @@ func (c *Rekognition) UpdateDatasetEntriesRequest(input *UpdateDatasetEntriesInp
 
 // UpdateDatasetEntries API operation for Amazon Rekognition.
 //
+// This operation applies only to Amazon Rekognition Custom Labels.
+//
 // Adds or updates one or more entries (images) in a dataset. An entry is a
 // JSON Line which contains the information for a single image, including the
 // image location, assigned labels, and object location bounding boxes. For
@@ -9425,10 +9458,10 @@ func (c *Rekognition) UpdateDatasetEntriesRequest(input *UpdateDatasetEntriesInp
 //
 //   - LimitExceededException
 //     An Amazon Rekognition service limit was exceeded. For example, if you start
-//     too many Amazon Rekognition Video jobs concurrently, calls to start operations
-//     (StartLabelDetection, for example) will raise a LimitExceededException exception
-//     (HTTP status code: 400) until the number of concurrently running jobs is
-//     below the Amazon Rekognition service limit.
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
 //
 //   - ResourceInUseException
 //     The specified resource is already being used.
@@ -11732,6 +11765,15 @@ func (s *CreateFaceLivenessSessionRequestSettings) SetOutputConfig(v *LivenessOu
 type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether automatic retraining should be attempted for the versions
+	// of the project. Automatic retraining is done as a best effort. Required argument
+	// for Content Moderation. Applicable only to adapters.
+	AutoUpdate *string `type:"string" enum:"ProjectAutoUpdate"`
+
+	// Specifies feature that is being customized. If no value is provided CUSTOM_LABELS
+	// is used as a default.
+	Feature *string `type:"string" enum:"CustomizationFeature"`
+
 	// The name of the project to create.
 	//
 	// ProjectName is a required field
@@ -11770,6 +11812,18 @@ func (s *CreateProjectInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoUpdate sets the AutoUpdate field's value.
+func (s *CreateProjectInput) SetAutoUpdate(v string) *CreateProjectInput {
+	s.AutoUpdate = &v
+	return s
+}
+
+// SetFeature sets the Feature field's value.
+func (s *CreateProjectInput) SetFeature(v string) *CreateProjectInput {
+	s.Feature = &v
+	return s
 }
 
 // SetProjectName sets the ProjectName field's value.
@@ -11813,12 +11867,18 @@ func (s *CreateProjectOutput) SetProjectArn(v string) *CreateProjectOutput {
 type CreateProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Feature-specific configuration of the training job. If the job configuration
+	// does not match the feature type associated with the project, an InvalidParameterException
+	// is returned.
+	FeatureConfig *CustomizationFeatureConfig `type:"structure"`
+
 	// The identifier for your AWS Key Management Service key (AWS KMS key). You
 	// can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
 	// KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt
-	// training and test images copied into the service for model training. Your
-	// source images are unaffected. The key is also used to encrypt training results
-	// and manifest files written to the output Amazon S3 bucket (OutputConfig).
+	// training images, test images, and manifest files copied into the service
+	// for the project version. Your source images are unaffected. The key is also
+	// used to encrypt training results and manifest files written to the output
+	// Amazon S3 bucket (OutputConfig).
 	//
 	// If you choose to use your own KMS key, you need the following permissions
 	// on the KMS key.
@@ -11835,33 +11895,36 @@ type CreateProjectVersionInput struct {
 	// are encrypted using a key that AWS owns and manages.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The Amazon S3 bucket location to store the results of training. The S3 bucket
-	// can be in any AWS account as long as the caller has s3:PutObject permissions
-	// on the S3 bucket.
+	// The Amazon S3 bucket location to store the results of training. The bucket
+	// can be any S3 bucket in your AWS account. You need s3:PutObject permission
+	// on the bucket.
 	//
 	// OutputConfig is a required field
 	OutputConfig *OutputConfig `type:"structure" required:"true"`
 
-	// The ARN of the Amazon Rekognition Custom Labels project that manages the
-	// model that you want to train.
+	// The ARN of the Amazon Rekognition project that will manage the project version
+	// you want to train.
 	//
 	// ProjectArn is a required field
 	ProjectArn *string `min:"20" type:"string" required:"true"`
 
-	// A set of tags (key-value pairs) that you want to attach to the model.
+	// A set of tags (key-value pairs) that you want to attach to the project version.
 	Tags map[string]*string `type:"map"`
 
-	// Specifies an external manifest that the service uses to test the model. If
-	// you specify TestingData you must also specify TrainingData. The project must
-	// not have any associated datasets.
+	// Specifies an external manifest that the service uses to test the project
+	// version. If you specify TestingData you must also specify TrainingData. The
+	// project must not have any associated datasets.
 	TestingData *TestingData `type:"structure"`
 
-	// Specifies an external manifest that the services uses to train the model.
-	// If you specify TrainingData you must also specify TestingData. The project
-	// must not have any associated datasets.
+	// Specifies an external manifest that the services uses to train the project
+	// version. If you specify TrainingData you must also specify TestingData. The
+	// project must not have any associated datasets.
 	TrainingData *TrainingData `type:"structure"`
 
-	// A name for the version of the model. This value must be unique.
+	// A description applied to the project version being created.
+	VersionDescription *string `min:"1" type:"string"`
+
+	// A name for the version of the project version. This value must be unique.
 	//
 	// VersionName is a required field
 	VersionName *string `min:"1" type:"string" required:"true"`
@@ -11900,6 +11963,9 @@ func (s *CreateProjectVersionInput) Validate() error {
 	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
 	}
+	if s.VersionDescription != nil && len(*s.VersionDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionDescription", 1))
+	}
 	if s.VersionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionName"))
 	}
@@ -11926,6 +11992,12 @@ func (s *CreateProjectVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFeatureConfig sets the FeatureConfig field's value.
+func (s *CreateProjectVersionInput) SetFeatureConfig(v *CustomizationFeatureConfig) *CreateProjectVersionInput {
+	s.FeatureConfig = v
+	return s
 }
 
 // SetKmsKeyId sets the KmsKeyId field's value.
@@ -11964,6 +12036,12 @@ func (s *CreateProjectVersionInput) SetTrainingData(v *TrainingData) *CreateProj
 	return s
 }
 
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *CreateProjectVersionInput) SetVersionDescription(v string) *CreateProjectVersionInput {
+	s.VersionDescription = &v
+	return s
+}
+
 // SetVersionName sets the VersionName field's value.
 func (s *CreateProjectVersionInput) SetVersionName(v string) *CreateProjectVersionInput {
 	s.VersionName = &v
@@ -11973,7 +12051,7 @@ func (s *CreateProjectVersionInput) SetVersionName(v string) *CreateProjectVersi
 type CreateProjectVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the model version that was created. Use DescribeProjectVersion
+	// The ARN of the model or the project version that was created. Use DescribeProjectVersion
 	// to get the current status of the training operation.
 	ProjectVersionArn *string `min:"20" type:"string"`
 }
@@ -12399,6 +12477,74 @@ func (s *CustomLabel) SetGeometry(v *Geometry) *CustomLabel {
 // SetName sets the Name field's value.
 func (s *CustomLabel) SetName(v string) *CustomLabel {
 	s.Name = &v
+	return s
+}
+
+// Feature specific configuration for the training job. Configuration provided
+// for the job must match the feature type parameter associated with project.
+// If configuration and feature type do not match an InvalidParameterException
+// is returned.
+type CustomizationFeatureConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration options for Custom Moderation training.
+	ContentModeration *CustomizationFeatureContentModerationConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizationFeatureConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizationFeatureConfig) GoString() string {
+	return s.String()
+}
+
+// SetContentModeration sets the ContentModeration field's value.
+func (s *CustomizationFeatureConfig) SetContentModeration(v *CustomizationFeatureContentModerationConfig) *CustomizationFeatureConfig {
+	s.ContentModeration = v
+	return s
+}
+
+// Configuration options for Content Moderation training.
+type CustomizationFeatureContentModerationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence level you plan to use to identify if unsafe content is present
+	// during inference.
+	ConfidenceThreshold *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizationFeatureContentModerationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizationFeatureContentModerationConfig) GoString() string {
+	return s.String()
+}
+
+// SetConfidenceThreshold sets the ConfidenceThreshold field's value.
+func (s *CustomizationFeatureContentModerationConfig) SetConfidenceThreshold(v float64) *CustomizationFeatureContentModerationConfig {
+	s.ConfidenceThreshold = &v
 	return s
 }
 
@@ -13277,7 +13423,7 @@ func (s DeleteProjectPolicyOutput) GoString() string {
 type DeleteProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the model version that you want to delete.
+	// The Amazon Resource Name (ARN) of the project version that you want to delete.
 	//
 	// ProjectVersionArn is a required field
 	ProjectVersionArn *string `min:"20" type:"string" required:"true"`
@@ -13739,22 +13885,21 @@ type DescribeProjectVersionsInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous response was incomplete (because there is more results to
-	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-	// the response. You can use this pagination token to retrieve the next set
-	// of results.
+	// retrieve), Amazon Rekognition returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of results.
 	NextToken *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the project that contains the models you
-	// want to describe.
+	// The Amazon Resource Name (ARN) of the project that contains the model/adapter
+	// you want to describe.
 	//
 	// ProjectArn is a required field
 	ProjectArn *string `min:"20" type:"string" required:"true"`
 
-	// A list of model version names that you want to describe. You can add up to
-	// 10 model version names to the list. If you don't specify a value, all model
-	// descriptions are returned. A version name is part of a model (ProjectVersion)
-	// ARN. For example, my-model.2020-01-21T09.10.15 is the version name in the
-	// following ARN. arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/my-model.2020-01-21T09.10.15/1234567890123.
+	// A list of model or project version names that you want to describe. You can
+	// add up to 10 model or project version names to the list. If you don't specify
+	// a value, all project version descriptions are returned. A version name is
+	// part of a project version ARN. For example, my-model.2020-01-21T09.10.15
+	// is the version name in the following ARN. arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/my-model.2020-01-21T09.10.15/1234567890123.
 	VersionNames []*string `min:"1" type:"list"`
 }
 
@@ -13826,13 +13971,12 @@ type DescribeProjectVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If the previous response was incomplete (because there is more results to
-	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-	// the response. You can use this pagination token to retrieve the next set
-	// of results.
+	// retrieve), Amazon Rekognition returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of results.
 	NextToken *string `type:"string"`
 
-	// A list of model descriptions. The list is sorted by the creation date and
-	// time of the model versions, latest to earliest.
+	// A list of project version descriptions. The list is sorted by the creation
+	// date and time of the project versions, latest to earliest.
 	ProjectVersionDescriptions []*ProjectVersionDescription `type:"list"`
 }
 
@@ -13869,20 +14013,23 @@ func (s *DescribeProjectVersionsOutput) SetProjectVersionDescriptions(v []*Proje
 type DescribeProjectsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the type of customization to filter projects by. If no value is
+	// specified, CUSTOM_LABELS is used as a default.
+	Features []*string `min:"1" type:"list" enum:"CustomizationFeature"`
+
 	// The maximum number of results to return per paginated call. The largest value
 	// you can specify is 100. If you specify a value greater than 100, a ValidationException
 	// error occurs. The default value is 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous response was incomplete (because there is more results to
-	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-	// the response. You can use this pagination token to retrieve the next set
-	// of results.
+	// retrieve), Rekognition returns a pagination token in the response. You can
+	// use this pagination token to retrieve the next set of results.
 	NextToken *string `type:"string"`
 
-	// A list of the projects that you want Amazon Rekognition Custom Labels to
-	// describe. If you don't specify a value, the response includes descriptions
-	// for all the projects in your AWS account.
+	// A list of the projects that you want Rekognition to describe. If you don't
+	// specify a value, the response includes descriptions for all the projects
+	// in your AWS account.
 	ProjectNames []*string `min:"1" type:"list"`
 }
 
@@ -13907,6 +14054,9 @@ func (s DescribeProjectsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProjectsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProjectsInput"}
+	if s.Features != nil && len(s.Features) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Features", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13918,6 +14068,12 @@ func (s *DescribeProjectsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFeatures sets the Features field's value.
+func (s *DescribeProjectsInput) SetFeatures(v []*string) *DescribeProjectsInput {
+	s.Features = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -13942,9 +14098,8 @@ type DescribeProjectsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If the previous response was incomplete (because there is more results to
-	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-	// the response. You can use this pagination token to retrieve the next set
-	// of results.
+	// retrieve), Amazon Rekognition returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of results.
 	NextToken *string `type:"string"`
 
 	// A list of project descriptions. The list is sorted by the date and time the
@@ -14245,7 +14400,10 @@ type DetectCustomLabelsInput struct {
 	// based on the assumed threshold of each label.
 	MinConfidence *float64 `type:"float"`
 
-	// The ARN of the model version that you want to use.
+	// The ARN of the model version that you want to use. Only models associated
+	// with Custom Labels projects accepted by the operation. If a provided ARN
+	// refers to a model version associated with a project for a different feature
+	// type, then an InvalidParameterException is returned.
 	//
 	// ProjectVersionArn is a required field
 	ProjectVersionArn *string `min:"20" type:"string" required:"true"`
@@ -14964,6 +15122,10 @@ type DetectModerationLabelsInput struct {
 	// If you don't specify MinConfidence, the operation returns labels with confidence
 	// values greater than or equal to 50 percent.
 	MinConfidence *float64 `type:"float"`
+
+	// Identifier for the custom adapter. Expects the ProjectVersionArn as a value.
+	// Use the CreateProject or CreateProjectVersion APIs to create a custom adapter.
+	ProjectVersion *string `min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -14989,6 +15151,9 @@ func (s *DetectModerationLabelsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DetectModerationLabelsInput"}
 	if s.Image == nil {
 		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.ProjectVersion != nil && len(*s.ProjectVersion) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectVersion", 20))
 	}
 	if s.HumanLoopConfig != nil {
 		if err := s.HumanLoopConfig.Validate(); err != nil {
@@ -15025,6 +15190,12 @@ func (s *DetectModerationLabelsInput) SetMinConfidence(v float64) *DetectModerat
 	return s
 }
 
+// SetProjectVersion sets the ProjectVersion field's value.
+func (s *DetectModerationLabelsInput) SetProjectVersion(v string) *DetectModerationLabelsInput {
+	s.ProjectVersion = &v
+	return s
+}
+
 type DetectModerationLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15035,9 +15206,14 @@ type DetectModerationLabelsOutput struct {
 	// start of the video, they were detected.
 	ModerationLabels []*ModerationLabel `type:"list"`
 
-	// Version number of the moderation detection model that was used to detect
+	// Version number of the base moderation detection model that was used to detect
 	// unsafe content.
 	ModerationModelVersion *string `type:"string"`
+
+	// Identifier of the custom adapter that was used during inference. If during
+	// inference the adapter was EXPIRED, then the parameter will not be returned,
+	// indicating that a base moderation detection project version was used.
+	ProjectVersion *string `min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -15073,6 +15249,12 @@ func (s *DetectModerationLabelsOutput) SetModerationLabels(v []*ModerationLabel)
 // SetModerationModelVersion sets the ModerationModelVersion field's value.
 func (s *DetectModerationLabelsOutput) SetModerationModelVersion(v string) *DetectModerationLabelsOutput {
 	s.ModerationModelVersion = &v
+	return s
+}
+
+// SetProjectVersion sets the ProjectVersion field's value.
+func (s *DetectModerationLabelsOutput) SetProjectVersion(v string) *DetectModerationLabelsOutput {
+	s.ProjectVersion = &v
 	return s
 }
 
@@ -20396,10 +20578,10 @@ func (s *Landmark) SetY(v float64) *Landmark {
 }
 
 // An Amazon Rekognition service limit was exceeded. For example, if you start
-// too many Amazon Rekognition Video jobs concurrently, calls to start operations
-// (StartLabelDetection, for example) will raise a LimitExceededException exception
-// (HTTP status code: 400) until the number of concurrently running jobs is
-// below the Amazon Rekognition service limit.
+// too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+// will raise a LimitExceededException exception (HTTP status code: 400) until
+// the number of concurrently running jobs is below the Amazon Rekognition service
+// limit.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22122,11 +22304,18 @@ func (s *Pose) SetYaw(v float64) *Pose {
 type ProjectDescription struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether automatic retraining will be attempted for the versions
+	// of the project. Applies only to adapters.
+	AutoUpdate *string `type:"string" enum:"ProjectAutoUpdate"`
+
 	// The Unix timestamp for the date and time that the project was created.
 	CreationTimestamp *time.Time `type:"timestamp"`
 
 	// Information about the training and test datasets in the project.
 	Datasets []*DatasetMetadata `type:"list"`
+
+	// Specifies the project that is being customized.
+	Feature *string `type:"string" enum:"CustomizationFeature"`
 
 	// The Amazon Resource Name (ARN) of the project.
 	ProjectArn *string `min:"20" type:"string"`
@@ -22153,6 +22342,12 @@ func (s ProjectDescription) GoString() string {
 	return s.String()
 }
 
+// SetAutoUpdate sets the AutoUpdate field's value.
+func (s *ProjectDescription) SetAutoUpdate(v string) *ProjectDescription {
+	s.AutoUpdate = &v
+	return s
+}
+
 // SetCreationTimestamp sets the CreationTimestamp field's value.
 func (s *ProjectDescription) SetCreationTimestamp(v time.Time) *ProjectDescription {
 	s.CreationTimestamp = &v
@@ -22162,6 +22357,12 @@ func (s *ProjectDescription) SetCreationTimestamp(v time.Time) *ProjectDescripti
 // SetDatasets sets the Datasets field's value.
 func (s *ProjectDescription) SetDatasets(v []*DatasetMetadata) *ProjectDescription {
 	s.Datasets = v
+	return s
+}
+
+// SetFeature sets the Feature field's value.
+func (s *ProjectDescription) SetFeature(v string) *ProjectDescription {
+	s.Feature = &v
 	return s
 }
 
@@ -22255,9 +22456,12 @@ func (s *ProjectPolicy) SetProjectArn(v string) *ProjectPolicy {
 	return s
 }
 
-// A description of a version of an Amazon Rekognition Custom Labels model.
+// A description of a version of a Amazon Rekognition project version.
 type ProjectVersionDescription struct {
 	_ struct{} `type:"structure"`
+
+	// The base detection model version used to create the project version.
+	BaseModelVersion *string `type:"string"`
 
 	// The duration, in seconds, that you were billed for a successful training
 	// of the model version. This value is only returned if the model version has
@@ -22270,6 +22474,12 @@ type ProjectVersionDescription struct {
 	// The training results. EvaluationResult is only returned if training is successful.
 	EvaluationResult *EvaluationResult `type:"structure"`
 
+	// The feature that was customized.
+	Feature *string `type:"string" enum:"CustomizationFeature"`
+
+	// Feature specific configuration that was applied during training.
+	FeatureConfig *CustomizationFeatureConfig `type:"structure"`
+
 	// The identifer for the AWS Key Management Service key (AWS KMS key) that was
 	// used to encrypt the model during training.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -22278,18 +22488,19 @@ type ProjectVersionDescription struct {
 	// data validation results for the training and test datasets.
 	ManifestSummary *GroundTruthManifest `type:"structure"`
 
-	// The maximum number of inference units Amazon Rekognition Custom Labels uses
-	// to auto-scale the model. For more information, see StartProjectVersion.
+	// The maximum number of inference units Amazon Rekognition uses to auto-scale
+	// the model. Applies only to Custom Labels projects. For more information,
+	// see StartProjectVersion.
 	MaxInferenceUnits *int64 `min:"1" type:"integer"`
 
-	// The minimum number of inference units used by the model. For more information,
-	// see StartProjectVersion.
+	// The minimum number of inference units used by the model. Applies only to
+	// Custom Labels projects. For more information, see StartProjectVersion.
 	MinInferenceUnits *int64 `min:"1" type:"integer"`
 
 	// The location where training results are saved.
 	OutputConfig *OutputConfig `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the model version.
+	// The Amazon Resource Name (ARN) of the project version.
 	ProjectVersionArn *string `min:"20" type:"string"`
 
 	// If the model version was copied from a different project, SourceProjectVersionArn
@@ -22310,6 +22521,9 @@ type ProjectVersionDescription struct {
 
 	// The Unix date and time that training of the model ended.
 	TrainingEndTimestamp *time.Time `type:"timestamp"`
+
+	// A user-provided description of the project version.
+	VersionDescription *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -22330,6 +22544,12 @@ func (s ProjectVersionDescription) GoString() string {
 	return s.String()
 }
 
+// SetBaseModelVersion sets the BaseModelVersion field's value.
+func (s *ProjectVersionDescription) SetBaseModelVersion(v string) *ProjectVersionDescription {
+	s.BaseModelVersion = &v
+	return s
+}
+
 // SetBillableTrainingTimeInSeconds sets the BillableTrainingTimeInSeconds field's value.
 func (s *ProjectVersionDescription) SetBillableTrainingTimeInSeconds(v int64) *ProjectVersionDescription {
 	s.BillableTrainingTimeInSeconds = &v
@@ -22345,6 +22565,18 @@ func (s *ProjectVersionDescription) SetCreationTimestamp(v time.Time) *ProjectVe
 // SetEvaluationResult sets the EvaluationResult field's value.
 func (s *ProjectVersionDescription) SetEvaluationResult(v *EvaluationResult) *ProjectVersionDescription {
 	s.EvaluationResult = v
+	return s
+}
+
+// SetFeature sets the Feature field's value.
+func (s *ProjectVersionDescription) SetFeature(v string) *ProjectVersionDescription {
+	s.Feature = &v
+	return s
+}
+
+// SetFeatureConfig sets the FeatureConfig field's value.
+func (s *ProjectVersionDescription) SetFeatureConfig(v *CustomizationFeatureConfig) *ProjectVersionDescription {
+	s.FeatureConfig = v
 	return s
 }
 
@@ -22417,6 +22649,12 @@ func (s *ProjectVersionDescription) SetTrainingDataResult(v *TrainingDataResult)
 // SetTrainingEndTimestamp sets the TrainingEndTimestamp field's value.
 func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *ProjectVersionDescription {
 	s.TrainingEndTimestamp = &v
+	return s
+}
+
+// SetVersionDescription sets the VersionDescription field's value.
+func (s *ProjectVersionDescription) SetVersionDescription(v string) *ProjectVersionDescription {
+	s.VersionDescription = &v
 	return s
 }
 
@@ -25515,10 +25753,6 @@ type StartProjectVersionInput struct {
 	// The minimum number of inference units to use. A single inference unit represents
 	// 1 hour of processing.
 	//
-	// For information about the number of transactions per second (TPS) that an
-	// inference unit can support, see Running a trained Amazon Rekognition Custom
-	// Labels model in the Amazon Rekognition Custom Labels Guide.
-	//
 	// Use a higher number to increase the TPS throughput of your model. You are
 	// charged for the number of inference units that you use.
 	//
@@ -26278,7 +26512,7 @@ func (s *StartTextDetectionOutput) SetJobId(v string) *StartTextDetectionOutput 
 type StopProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the model version that you want to delete.
+	// The Amazon Resource Name (ARN) of the model version that you want to stop.
 	//
 	// This operation requires permissions to perform the rekognition:StopProjectVersion
 	// action.
@@ -27107,18 +27341,16 @@ func (s *TechnicalCueSegment) SetType(v string) *TechnicalCueSegment {
 }
 
 // The dataset used for testing. Optionally, if AutoCreate is set, Amazon Rekognition
-// Custom Labels uses the training dataset to create a test dataset with a temporary
-// split of the training dataset.
+// uses the training dataset to create a test dataset with a temporary split
+// of the training dataset.
 type TestingData struct {
 	_ struct{} `type:"structure"`
 
 	// The assets used for testing.
 	Assets []*Asset `type:"list"`
 
-	// If specified, Amazon Rekognition Custom Labels temporarily splits the training
-	// dataset (80%) to create a test dataset (20%) for the training job. After
-	// training completes, the test dataset is not stored and the training dataset
-	// reverts to its previous size.
+	// If specified, Rekognition splits training dataset to create a test dataset
+	// for the training job.
 	AutoCreate *bool `type:"boolean"`
 }
 
@@ -27432,7 +27664,8 @@ func (s *ThrottlingException) RequestID() string {
 type TrainingData struct {
 	_ struct{} `type:"structure"`
 
-	// A Sagemaker GroundTruth manifest file that contains the training images (assets).
+	// A manifest file that contains references to the training images and ground-truth
+	// annotations.
 	Assets []*Asset `type:"list"`
 }
 
@@ -27480,20 +27713,20 @@ func (s *TrainingData) SetAssets(v []*Asset) *TrainingData {
 	return s
 }
 
-// Sagemaker Groundtruth format manifest files for the input, output and validation
-// datasets that are used and created during testing.
+// The data validation manifest created for the training dataset during model
+// training.
 type TrainingDataResult struct {
 	_ struct{} `type:"structure"`
 
-	// The training assets that you supplied for training.
+	// The training data that you supplied.
 	Input *TrainingData `type:"structure"`
 
-	// The images (assets) that were actually trained by Amazon Rekognition Custom
-	// Labels.
+	// Reference to images (assets) that were actually used during training with
+	// trained model predictions.
 	Output *TrainingData `type:"structure"`
 
-	// The location of the data validation manifest. The data validation manifest
-	// is created for the training dataset during model training.
+	// A manifest that you supplied for training, with validation results for each
+	// line.
 	Validation *ValidationData `type:"structure"`
 }
 
@@ -28599,6 +28832,22 @@ func ContentModerationSortBy_Values() []string {
 }
 
 const (
+	// CustomizationFeatureContentModeration is a CustomizationFeature enum value
+	CustomizationFeatureContentModeration = "CONTENT_MODERATION"
+
+	// CustomizationFeatureCustomLabels is a CustomizationFeature enum value
+	CustomizationFeatureCustomLabels = "CUSTOM_LABELS"
+)
+
+// CustomizationFeature_Values returns all elements of the CustomizationFeature enum
+func CustomizationFeature_Values() []string {
+	return []string{
+		CustomizationFeatureContentModeration,
+		CustomizationFeatureCustomLabels,
+	}
+}
+
+const (
 	// DatasetStatusCreateInProgress is a DatasetStatus enum value
 	DatasetStatusCreateInProgress = "CREATE_IN_PROGRESS"
 
@@ -29044,6 +29293,22 @@ func PersonTrackingSortBy_Values() []string {
 }
 
 const (
+	// ProjectAutoUpdateEnabled is a ProjectAutoUpdate enum value
+	ProjectAutoUpdateEnabled = "ENABLED"
+
+	// ProjectAutoUpdateDisabled is a ProjectAutoUpdate enum value
+	ProjectAutoUpdateDisabled = "DISABLED"
+)
+
+// ProjectAutoUpdate_Values returns all elements of the ProjectAutoUpdate enum
+func ProjectAutoUpdate_Values() []string {
+	return []string{
+		ProjectAutoUpdateEnabled,
+		ProjectAutoUpdateDisabled,
+	}
+}
+
+const (
 	// ProjectStatusCreating is a ProjectStatus enum value
 	ProjectStatusCreating = "CREATING"
 
@@ -29099,6 +29364,12 @@ const (
 
 	// ProjectVersionStatusCopyingFailed is a ProjectVersionStatus enum value
 	ProjectVersionStatusCopyingFailed = "COPYING_FAILED"
+
+	// ProjectVersionStatusDeprecated is a ProjectVersionStatus enum value
+	ProjectVersionStatusDeprecated = "DEPRECATED"
+
+	// ProjectVersionStatusExpired is a ProjectVersionStatus enum value
+	ProjectVersionStatusExpired = "EXPIRED"
 )
 
 // ProjectVersionStatus_Values returns all elements of the ProjectVersionStatus enum
@@ -29116,6 +29387,8 @@ func ProjectVersionStatus_Values() []string {
 		ProjectVersionStatusCopyingInProgress,
 		ProjectVersionStatusCopyingCompleted,
 		ProjectVersionStatusCopyingFailed,
+		ProjectVersionStatusDeprecated,
+		ProjectVersionStatusExpired,
 	}
 }
 

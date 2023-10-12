@@ -58,6 +58,7 @@ func (c *ControlTower) DisableControlRequest(input *DisableControlInput) (req *r
 // This API call turns off a control. It starts an asynchronous operation that
 // deletes AWS resources on the specified organizational unit and the accounts
 // it contains. The resources will vary according to the control that you specify.
+// For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -158,7 +159,7 @@ func (c *ControlTower) EnableControlRequest(input *EnableControlInput) (req *req
 // This API call activates a control. It starts an asynchronous operation that
 // creates AWS resources on the specified organizational unit and the accounts
 // it contains. The resources created will vary according to the control that
-// you specify.
+// you specify. For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -258,7 +259,7 @@ func (c *ControlTower) GetControlOperationRequest(input *GetControlOperationInpu
 //
 // Returns the status of a particular EnableControl or DisableControl operation.
 // Displays a message in case of error. Details for an operation are available
-// for 90 days.
+// for 90 days. For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -301,6 +302,107 @@ func (c *ControlTower) GetControlOperation(input *GetControlOperationInput) (*Ge
 // for more information on using Contexts.
 func (c *ControlTower) GetControlOperationWithContext(ctx aws.Context, input *GetControlOperationInput, opts ...request.Option) (*GetControlOperationOutput, error) {
 	req, out := c.GetControlOperationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEnabledControl = "GetEnabledControl"
+
+// GetEnabledControlRequest generates a "aws/request.Request" representing the
+// client's request for the GetEnabledControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEnabledControl for more information on using the GetEnabledControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEnabledControlRequest method.
+//	req, resp := client.GetEnabledControlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetEnabledControl
+func (c *ControlTower) GetEnabledControlRequest(input *GetEnabledControlInput) (req *request.Request, output *GetEnabledControlOutput) {
+	op := &request.Operation{
+		Name:       opGetEnabledControl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-enabled-control",
+	}
+
+	if input == nil {
+		input = &GetEnabledControlInput{}
+	}
+
+	output = &GetEnabledControlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEnabledControl API operation for AWS Control Tower.
+//
+// Provides details about the enabled control. For usage examples, see the AWS
+// Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+//
+// Returned values
+//
+//   - TargetRegions: Shows target AWS Regions where the enabled control is
+//     available to be deployed.
+//
+//   - StatusSummary: Provides a detailed summary of the deployment status.
+//
+//   - DriftSummary: Provides a detailed summary of the drifted status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Control Tower's
+// API operation GetEnabledControl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - AccessDeniedException
+//     User does not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetEnabledControl
+func (c *ControlTower) GetEnabledControl(input *GetEnabledControlInput) (*GetEnabledControlOutput, error) {
+	req, out := c.GetEnabledControlRequest(input)
+	return out, req.Send()
+}
+
+// GetEnabledControlWithContext is the same as GetEnabledControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEnabledControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) GetEnabledControlWithContext(ctx aws.Context, input *GetEnabledControlInput, opts ...request.Option) (*GetEnabledControlOutput, error) {
+	req, out := c.GetEnabledControlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -356,7 +458,8 @@ func (c *ControlTower) ListEnabledControlsRequest(input *ListEnabledControlsInpu
 // ListEnabledControls API operation for AWS Control Tower.
 //
 // Lists the controls enabled by AWS Control Tower on the specified organizational
-// unit and the accounts it contains.
+// unit and the accounts it contains. For usage examples, see the AWS Control
+// Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -656,12 +759,14 @@ type DisableControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the control. Only Strongly recommended and Elective controls are
-	// permitted, with the exception of the Region deny guardrail.
+	// permitted, with the exception of the Region deny control. For information
+	// on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// ControlIdentifier is a required field
 	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string" required:"true"`
 
-	// The ARN of the organizational unit.
+	// The ARN of the organizational unit. For information on how to find the targetIdentifier,
+	// see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// TargetIdentifier is a required field
 	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string" required:"true"`
@@ -753,16 +858,69 @@ func (s *DisableControlOutput) SetOperationIdentifier(v string) *DisableControlO
 	return s
 }
 
+// The drift summary of the enabled control.
+//
+// AWS Control Tower expects the enabled control configuration to include all
+// supported and governed Regions. If the enabled control differs from the expected
+// configuration, it is defined to be in a state of drift. You can repair this
+// drift by resetting the enabled control.
+type DriftStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The drift status of the enabled control.
+	//
+	// Valid values:
+	//
+	//    * DRIFTED: The enabledControl deployed in this configuration doesn’t
+	//    match the configuration that AWS Control Tower expected.
+	//
+	//    * IN_SYNC: The enabledControl deployed in this configuration matches the
+	//    configuration that AWS Control Tower expected.
+	//
+	//    * NOT_CHECKING: AWS Control Tower does not check drift for this enabled
+	//    control. Drift is not supported for the control type.
+	//
+	//    * UNKNOWN: AWS Control Tower is not able to check the drift status for
+	//    the enabled control.
+	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"DriftStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetDriftStatus sets the DriftStatus field's value.
+func (s *DriftStatusSummary) SetDriftStatus(v string) *DriftStatusSummary {
+	s.DriftStatus = &v
+	return s
+}
+
 type EnableControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the control. Only Strongly recommended and Elective controls are
-	// permitted, with the exception of the Region deny guardrail.
+	// permitted, with the exception of the Region deny control. For information
+	// on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// ControlIdentifier is a required field
 	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string" required:"true"`
 
-	// The ARN of the organizational unit.
+	// The ARN of the organizational unit. For information on how to find the targetIdentifier,
+	// see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// TargetIdentifier is a required field
 	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string" required:"true"`
@@ -854,13 +1012,105 @@ func (s *EnableControlOutput) SetOperationIdentifier(v string) *EnableControlOut
 	return s
 }
 
+// Information about the enabled control.
+type EnabledControlDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the enabled control.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// The control identifier of the enabled control. For information on how to
+	// find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
+	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string"`
+
+	// The drift status of the enabled control.
+	DriftStatusSummary *DriftStatusSummary `locationName:"driftStatusSummary" type:"structure"`
+
+	// The deployment summary of the enabled control.
+	StatusSummary *EnablementStatusSummary `locationName:"statusSummary" type:"structure"`
+
+	// The ARN of the organizational unit. For information on how to find the targetIdentifier,
+	// see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
+	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string"`
+
+	// Target AWS Regions for the enabled control.
+	TargetRegions []*Region `locationName:"targetRegions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnabledControlDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnabledControlDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EnabledControlDetails) SetArn(v string) *EnabledControlDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetControlIdentifier sets the ControlIdentifier field's value.
+func (s *EnabledControlDetails) SetControlIdentifier(v string) *EnabledControlDetails {
+	s.ControlIdentifier = &v
+	return s
+}
+
+// SetDriftStatusSummary sets the DriftStatusSummary field's value.
+func (s *EnabledControlDetails) SetDriftStatusSummary(v *DriftStatusSummary) *EnabledControlDetails {
+	s.DriftStatusSummary = v
+	return s
+}
+
+// SetStatusSummary sets the StatusSummary field's value.
+func (s *EnabledControlDetails) SetStatusSummary(v *EnablementStatusSummary) *EnabledControlDetails {
+	s.StatusSummary = v
+	return s
+}
+
+// SetTargetIdentifier sets the TargetIdentifier field's value.
+func (s *EnabledControlDetails) SetTargetIdentifier(v string) *EnabledControlDetails {
+	s.TargetIdentifier = &v
+	return s
+}
+
+// SetTargetRegions sets the TargetRegions field's value.
+func (s *EnabledControlDetails) SetTargetRegions(v []*Region) *EnabledControlDetails {
+	s.TargetRegions = v
+	return s
+}
+
 // A summary of enabled controls.
 type EnabledControlSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the enabled control.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The ARN of the control. Only Strongly recommended and Elective controls are
-	// permitted, with the exception of the Region deny guardrail.
+	// permitted, with the exception of the Region deny control. For information
+	// on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string"`
+
+	// The drift status of the enabled control.
+	DriftStatusSummary *DriftStatusSummary `locationName:"driftStatusSummary" type:"structure"`
+
+	// The deployment summary of the enabled control.
+	StatusSummary *EnablementStatusSummary `locationName:"statusSummary" type:"structure"`
+
+	// The ARN of the organizational unit.
+	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -881,9 +1131,82 @@ func (s EnabledControlSummary) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *EnabledControlSummary) SetArn(v string) *EnabledControlSummary {
+	s.Arn = &v
+	return s
+}
+
 // SetControlIdentifier sets the ControlIdentifier field's value.
 func (s *EnabledControlSummary) SetControlIdentifier(v string) *EnabledControlSummary {
 	s.ControlIdentifier = &v
+	return s
+}
+
+// SetDriftStatusSummary sets the DriftStatusSummary field's value.
+func (s *EnabledControlSummary) SetDriftStatusSummary(v *DriftStatusSummary) *EnabledControlSummary {
+	s.DriftStatusSummary = v
+	return s
+}
+
+// SetStatusSummary sets the StatusSummary field's value.
+func (s *EnabledControlSummary) SetStatusSummary(v *EnablementStatusSummary) *EnabledControlSummary {
+	s.StatusSummary = v
+	return s
+}
+
+// SetTargetIdentifier sets the TargetIdentifier field's value.
+func (s *EnabledControlSummary) SetTargetIdentifier(v string) *EnabledControlSummary {
+	s.TargetIdentifier = &v
+	return s
+}
+
+// The deployment summary of the enabled control.
+type EnablementStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The last operation identifier for the enabled control.
+	LastOperationIdentifier *string `locationName:"lastOperationIdentifier" min:"36" type:"string"`
+
+	// The deployment status of the enabled control.
+	//
+	// Valid values:
+	//
+	//    * SUCCEEDED: The enabledControl configuration was deployed successfully.
+	//
+	//    * UNDER_CHANGE: The enabledControl configuration is changing.
+	//
+	//    * FAILED: The enabledControl configuration failed to deploy.
+	Status *string `locationName:"status" type:"string" enum:"EnablementStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnablementStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnablementStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetLastOperationIdentifier sets the LastOperationIdentifier field's value.
+func (s *EnablementStatusSummary) SetLastOperationIdentifier(v string) *EnablementStatusSummary {
+	s.LastOperationIdentifier = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EnablementStatusSummary) SetStatus(v string) *EnablementStatusSummary {
+	s.Status = &v
 	return s
 }
 
@@ -970,6 +1293,88 @@ func (s *GetControlOperationOutput) SetControlOperation(v *ControlOperation) *Ge
 	return s
 }
 
+type GetEnabledControlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the enabled control.
+	//
+	// EnabledControlIdentifier is a required field
+	EnabledControlIdentifier *string `locationName:"enabledControlIdentifier" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnabledControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnabledControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEnabledControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEnabledControlInput"}
+	if s.EnabledControlIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnabledControlIdentifier"))
+	}
+	if s.EnabledControlIdentifier != nil && len(*s.EnabledControlIdentifier) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EnabledControlIdentifier", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabledControlIdentifier sets the EnabledControlIdentifier field's value.
+func (s *GetEnabledControlInput) SetEnabledControlIdentifier(v string) *GetEnabledControlInput {
+	s.EnabledControlIdentifier = &v
+	return s
+}
+
+type GetEnabledControlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the enabled control.
+	//
+	// EnabledControlDetails is a required field
+	EnabledControlDetails *EnabledControlDetails `locationName:"enabledControlDetails" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnabledControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnabledControlOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnabledControlDetails sets the EnabledControlDetails field's value.
+func (s *GetEnabledControlOutput) SetEnabledControlDetails(v *EnabledControlDetails) *GetEnabledControlOutput {
+	s.EnabledControlDetails = v
+	return s
+}
+
 // Unexpected error during processing of request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -1043,7 +1448,8 @@ type ListEnabledControlsInput struct {
 	// The token to continue the list from a previous API call with the same parameters.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The ARN of the organizational unit.
+	// The ARN of the organizational unit. For information on how to find the targetIdentifier,
+	// see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// TargetIdentifier is a required field
 	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string" required:"true"`
@@ -1145,6 +1551,42 @@ func (s *ListEnabledControlsOutput) SetEnabledControls(v []*EnabledControlSummar
 // SetNextToken sets the NextToken field's value.
 func (s *ListEnabledControlsOutput) SetNextToken(v string) *ListEnabledControlsOutput {
 	s.NextToken = &v
+	return s
+}
+
+// An AWS Region in which AWS Control Tower expects to find the control deployed.
+//
+// The expected Regions are based on the Regions that are governed by the landing
+// zone. In certain cases, a control is not actually enabled in the Region as
+// expected, such as during drift, or mixed governance (https://docs.aws.amazon.com/controltower/latest/userguide/region-how.html#mixed-governance).
+type Region struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Region name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Region) SetName(v string) *Region {
+	s.Name = &v
 	return s
 }
 
@@ -1447,5 +1889,49 @@ func ControlOperationType_Values() []string {
 	return []string{
 		ControlOperationTypeEnableControl,
 		ControlOperationTypeDisableControl,
+	}
+}
+
+const (
+	// DriftStatusDrifted is a DriftStatus enum value
+	DriftStatusDrifted = "DRIFTED"
+
+	// DriftStatusInSync is a DriftStatus enum value
+	DriftStatusInSync = "IN_SYNC"
+
+	// DriftStatusNotChecking is a DriftStatus enum value
+	DriftStatusNotChecking = "NOT_CHECKING"
+
+	// DriftStatusUnknown is a DriftStatus enum value
+	DriftStatusUnknown = "UNKNOWN"
+)
+
+// DriftStatus_Values returns all elements of the DriftStatus enum
+func DriftStatus_Values() []string {
+	return []string{
+		DriftStatusDrifted,
+		DriftStatusInSync,
+		DriftStatusNotChecking,
+		DriftStatusUnknown,
+	}
+}
+
+const (
+	// EnablementStatusSucceeded is a EnablementStatus enum value
+	EnablementStatusSucceeded = "SUCCEEDED"
+
+	// EnablementStatusFailed is a EnablementStatus enum value
+	EnablementStatusFailed = "FAILED"
+
+	// EnablementStatusUnderChange is a EnablementStatus enum value
+	EnablementStatusUnderChange = "UNDER_CHANGE"
+)
+
+// EnablementStatus_Values returns all elements of the EnablementStatus enum
+func EnablementStatus_Values() []string {
+	return []string{
+		EnablementStatusSucceeded,
+		EnablementStatusFailed,
+		EnablementStatusUnderChange,
 	}
 }

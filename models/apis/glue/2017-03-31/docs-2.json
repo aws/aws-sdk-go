@@ -5621,7 +5621,7 @@
         "UpdateDatabaseRequest$Name": "<p>The name of the database to update in the catalog. For Hive compatibility, this is folded to lowercase.</p>",
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",
         "UpdateJobFromSourceControlRequest$JobName": "<p>The name of the Glue job to be synchronized to or from the remote repository.</p>",
-        "UpdateJobFromSourceControlRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts.</p>",
+        "UpdateJobFromSourceControlRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts. For BitBucket providers, <code>RepositoryName</code> should include <code>WorkspaceName</code>. Use the format <code>&lt;WorkspaceName&gt;/&lt;RepositoryName&gt;</code>. </p>",
         "UpdateJobFromSourceControlRequest$RepositoryOwner": "<p>The owner of the remote repository that contains the job artifacts.</p>",
         "UpdateJobFromSourceControlRequest$BranchName": "<p>An optional branch in the remote repository.</p>",
         "UpdateJobFromSourceControlRequest$Folder": "<p>An optional folder in the remote repository.</p>",
@@ -5633,7 +5633,7 @@
         "UpdatePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
         "UpdatePartitionRequest$TableName": "<p>The name of the table in which the partition to be updated is located.</p>",
         "UpdateSourceControlFromJobRequest$JobName": "<p>The name of the Glue job to be synchronized to or from the remote repository.</p>",
-        "UpdateSourceControlFromJobRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts.</p>",
+        "UpdateSourceControlFromJobRequest$RepositoryName": "<p>The name of the remote repository that contains the job artifacts. For BitBucket providers, <code>RepositoryName</code> should include <code>WorkspaceName</code>. Use the format <code>&lt;WorkspaceName&gt;/&lt;RepositoryName&gt;</code>. </p>",
         "UpdateSourceControlFromJobRequest$RepositoryOwner": "<p>The owner of the remote repository that contains the job artifacts.</p>",
         "UpdateSourceControlFromJobRequest$BranchName": "<p>An optional branch in the remote repository.</p>",
         "UpdateSourceControlFromJobRequest$Folder": "<p>An optional folder in the remote repository.</p>",
@@ -7372,8 +7372,8 @@
       "base": null,
       "refs": {
         "SourceControlDetails$Provider": "<p>The provider for the remote repository.</p>",
-        "UpdateJobFromSourceControlRequest$Provider": "<p>The provider for the remote repository.</p>",
-        "UpdateSourceControlFromJobRequest$Provider": "<p>The provider for the remote repository.</p>"
+        "UpdateJobFromSourceControlRequest$Provider": "<p> The provider for the remote repository. Possible values: GITHUB, AWS_CODE_COMMIT, GITLAB, BITBUCKET. </p>",
+        "UpdateSourceControlFromJobRequest$Provider": "<p> The provider for the remote repository. Possible values: GITHUB, AWS_CODE_COMMIT, GITLAB, BITBUCKET. </p>"
       }
     },
     "SparkConnectorSource": {

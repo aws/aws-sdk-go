@@ -16295,7 +16295,7 @@ type Scope struct {
 	// AwsAccounts is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Scope's
 	// String and GoString methods.
-	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list" sensitive:"true"`
+	AwsAccounts []*AWSAccount `locationName:"awsAccounts" min:"1" type:"list" sensitive:"true"`
 
 	// The Amazon Web Services services that are included in the scope of the assessment.
 	AwsServices []*AWSService `locationName:"awsServices" type:"list"`
@@ -16322,6 +16322,9 @@ func (s Scope) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Scope) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Scope"}
+	if s.AwsAccounts != nil && len(s.AwsAccounts) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccounts", 1))
+	}
 	if s.AwsAccounts != nil {
 		for i, v := range s.AwsAccounts {
 			if v == nil {

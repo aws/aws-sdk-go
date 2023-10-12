@@ -52,7 +52,7 @@ func (c *LocationService) AssociateTrackerConsumerRequest(input *AssociateTracke
 	output = &AssociateTrackerConsumerOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1020,7 +1020,7 @@ func (c *LocationService) CreateGeofenceCollectionRequest(input *CreateGeofenceC
 
 	output = &CreateGeofenceCollectionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.geofencing.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1120,7 +1120,7 @@ func (c *LocationService) CreateKeyRequest(input *CreateKeyInput) (req *request.
 
 	output = &CreateKeyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1223,7 +1223,7 @@ func (c *LocationService) CreateMapRequest(input *CreateMapInput) (req *request.
 
 	output = &CreateMapOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("maps.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.maps.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1329,7 +1329,7 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 
 	output = &CreatePlaceIndexOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.places.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1438,7 +1438,7 @@ func (c *LocationService) CreateRouteCalculatorRequest(input *CreateRouteCalcula
 
 	output = &CreateRouteCalculatorOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.routes.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1547,7 +1547,7 @@ func (c *LocationService) CreateTrackerRequest(input *CreateTrackerInput) (req *
 
 	output = &CreateTrackerOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1649,7 +1649,7 @@ func (c *LocationService) DeleteGeofenceCollectionRequest(input *DeleteGeofenceC
 	output = &DeleteGeofenceCollectionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.geofencing.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1748,7 +1748,7 @@ func (c *LocationService) DeleteKeyRequest(input *DeleteKeyInput) (req *request.
 	output = &DeleteKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1845,7 +1845,7 @@ func (c *LocationService) DeleteMapRequest(input *DeleteMapInput) (req *request.
 	output = &DeleteMapOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("maps.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.maps.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1944,7 +1944,7 @@ func (c *LocationService) DeletePlaceIndexRequest(input *DeletePlaceIndexInput) 
 	output = &DeletePlaceIndexOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.places.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2042,7 +2042,7 @@ func (c *LocationService) DeleteRouteCalculatorRequest(input *DeleteRouteCalcula
 	output = &DeleteRouteCalculatorOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.routes.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2140,7 +2140,7 @@ func (c *LocationService) DeleteTrackerRequest(input *DeleteTrackerInput) (req *
 	output = &DeleteTrackerOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2239,7 +2239,7 @@ func (c *LocationService) DescribeGeofenceCollectionRequest(input *DescribeGeofe
 
 	output = &DescribeGeofenceCollectionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.geofencing.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2334,7 +2334,7 @@ func (c *LocationService) DescribeKeyRequest(input *DescribeKeyInput) (req *requ
 
 	output = &DescribeKeyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2429,7 +2429,7 @@ func (c *LocationService) DescribeMapRequest(input *DescribeMapInput) (req *requ
 
 	output = &DescribeMapOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("maps.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.maps.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2524,7 +2524,7 @@ func (c *LocationService) DescribePlaceIndexRequest(input *DescribePlaceIndexInp
 
 	output = &DescribePlaceIndexOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.places.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2619,7 +2619,7 @@ func (c *LocationService) DescribeRouteCalculatorRequest(input *DescribeRouteCal
 
 	output = &DescribeRouteCalculatorOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.routes.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2714,7 +2714,7 @@ func (c *LocationService) DescribeTrackerRequest(input *DescribeTrackerInput) (r
 
 	output = &DescribeTrackerOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2810,7 +2810,7 @@ func (c *LocationService) DisassociateTrackerConsumerRequest(input *Disassociate
 	output = &DisassociateTrackerConsumerOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -3907,7 +3907,7 @@ func (c *LocationService) ListGeofenceCollectionsRequest(input *ListGeofenceColl
 
 	output = &ListGeofenceCollectionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.geofencing.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4208,7 +4208,7 @@ func (c *LocationService) ListKeysRequest(input *ListKeysInput) (req *request.Re
 
 	output = &ListKeysOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4357,7 +4357,7 @@ func (c *LocationService) ListMapsRequest(input *ListMapsInput) (req *request.Re
 
 	output = &ListMapsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("maps.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.maps.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4506,7 +4506,7 @@ func (c *LocationService) ListPlaceIndexesRequest(input *ListPlaceIndexesInput) 
 
 	output = &ListPlaceIndexesOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.places.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4655,7 +4655,7 @@ func (c *LocationService) ListRouteCalculatorsRequest(input *ListRouteCalculator
 
 	output = &ListRouteCalculatorsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.routes.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4798,7 +4798,7 @@ func (c *LocationService) ListTagsForResourceRequest(input *ListTagsForResourceI
 
 	output = &ListTagsForResourceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4900,7 +4900,7 @@ func (c *LocationService) ListTrackerConsumersRequest(input *ListTrackerConsumer
 
 	output = &ListTrackerConsumersOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5052,7 +5052,7 @@ func (c *LocationService) ListTrackersRequest(input *ListTrackersInput) (req *re
 
 	output = &ListTrackersOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5601,7 +5601,7 @@ func (c *LocationService) TagResourceRequest(input *TagResourceInput) (req *requ
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5710,7 +5710,7 @@ func (c *LocationService) UntagResourceRequest(input *UntagResourceInput) (req *
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5805,7 +5805,7 @@ func (c *LocationService) UpdateGeofenceCollectionRequest(input *UpdateGeofenceC
 
 	output = &UpdateGeofenceCollectionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.geofencing.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5900,7 +5900,7 @@ func (c *LocationService) UpdateKeyRequest(input *UpdateKeyInput) (req *request.
 
 	output = &UpdateKeyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.metadata.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5995,7 +5995,7 @@ func (c *LocationService) UpdateMapRequest(input *UpdateMapInput) (req *request.
 
 	output = &UpdateMapOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("maps.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.maps.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6090,7 +6090,7 @@ func (c *LocationService) UpdatePlaceIndexRequest(input *UpdatePlaceIndexInput) 
 
 	output = &UpdatePlaceIndexOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.places.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6185,7 +6185,7 @@ func (c *LocationService) UpdateRouteCalculatorRequest(input *UpdateRouteCalcula
 
 	output = &UpdateRouteCalculatorOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.routes.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6280,7 +6280,7 @@ func (c *LocationService) UpdateTrackerRequest(input *UpdateTrackerInput) (req *
 
 	output = &UpdateTrackerOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("cp.tracking.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }

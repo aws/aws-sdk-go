@@ -510,7 +510,9 @@
         {"shape":"ThrottlingException"},
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InvalidImageFormatException"},
-        {"shape":"HumanLoopQuotaExceededException"}
+        {"shape":"HumanLoopQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "DetectProtectiveEquipment":{
@@ -1808,7 +1810,9 @@
       "type":"structure",
       "required":["ProjectName"],
       "members":{
-        "ProjectName":{"shape":"ProjectName"}
+        "ProjectName":{"shape":"ProjectName"},
+        "Feature":{"shape":"CustomizationFeature"},
+        "AutoUpdate":{"shape":"ProjectAutoUpdate"}
       }
     },
     "CreateProjectResponse":{
@@ -1831,7 +1835,9 @@
         "TrainingData":{"shape":"TrainingData"},
         "TestingData":{"shape":"TestingData"},
         "Tags":{"shape":"TagMap"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "VersionDescription":{"shape":"VersionDescription"},
+        "FeatureConfig":{"shape":"CustomizationFeatureConfig"}
       }
     },
     "CreateProjectVersionResponse":{
@@ -1899,6 +1905,31 @@
     "CustomLabels":{
       "type":"list",
       "member":{"shape":"CustomLabel"}
+    },
+    "CustomizationFeature":{
+      "type":"string",
+      "enum":[
+        "CONTENT_MODERATION",
+        "CUSTOM_LABELS"
+      ]
+    },
+    "CustomizationFeatureConfig":{
+      "type":"structure",
+      "members":{
+        "ContentModeration":{"shape":"CustomizationFeatureContentModerationConfig"}
+      }
+    },
+    "CustomizationFeatureContentModerationConfig":{
+      "type":"structure",
+      "members":{
+        "ConfidenceThreshold":{"shape":"Percent"}
+      }
+    },
+    "CustomizationFeatures":{
+      "type":"list",
+      "member":{"shape":"CustomizationFeature"},
+      "max":2,
+      "min":1
     },
     "DatasetArn":{
       "type":"string",
@@ -2198,7 +2229,8 @@
       "members":{
         "NextToken":{"shape":"ExtendedPaginationToken"},
         "MaxResults":{"shape":"ProjectsPageSize"},
-        "ProjectNames":{"shape":"ProjectNames"}
+        "ProjectNames":{"shape":"ProjectNames"},
+        "Features":{"shape":"CustomizationFeatures"}
       }
     },
     "DescribeProjectsResponse":{
@@ -2356,7 +2388,8 @@
       "members":{
         "Image":{"shape":"Image"},
         "MinConfidence":{"shape":"Percent"},
-        "HumanLoopConfig":{"shape":"HumanLoopConfig"}
+        "HumanLoopConfig":{"shape":"HumanLoopConfig"},
+        "ProjectVersion":{"shape":"ProjectVersionId"}
       }
     },
     "DetectModerationLabelsResponse":{
@@ -2364,7 +2397,8 @@
       "members":{
         "ModerationLabels":{"shape":"ModerationLabels"},
         "ModerationModelVersion":{"shape":"String"},
-        "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"}
+        "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"},
+        "ProjectVersion":{"shape":"ProjectVersionId"}
       }
     },
     "DetectProtectiveEquipmentRequest":{
@@ -3723,13 +3757,22 @@
       "min":20,
       "pattern":"(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)"
     },
+    "ProjectAutoUpdate":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "ProjectDescription":{
       "type":"structure",
       "members":{
         "ProjectArn":{"shape":"ProjectArn"},
         "CreationTimestamp":{"shape":"DateTime"},
         "Status":{"shape":"ProjectStatus"},
-        "Datasets":{"shape":"DatasetMetadataList"}
+        "Datasets":{"shape":"DatasetMetadataList"},
+        "Feature":{"shape":"CustomizationFeature"},
+        "AutoUpdate":{"shape":"ProjectAutoUpdate"}
       }
     },
     "ProjectDescriptions":{
@@ -3811,12 +3854,22 @@
         "ManifestSummary":{"shape":"GroundTruthManifest"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "MaxInferenceUnits":{"shape":"InferenceUnits"},
-        "SourceProjectVersionArn":{"shape":"ProjectVersionArn"}
+        "SourceProjectVersionArn":{"shape":"ProjectVersionArn"},
+        "VersionDescription":{"shape":"VersionDescription"},
+        "Feature":{"shape":"CustomizationFeature"},
+        "BaseModelVersion":{"shape":"String"},
+        "FeatureConfig":{"shape":"CustomizationFeatureConfig"}
       }
     },
     "ProjectVersionDescriptions":{
       "type":"list",
       "member":{"shape":"ProjectVersionDescription"}
+    },
+    "ProjectVersionId":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/version\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)"
     },
     "ProjectVersionStatus":{
       "type":"string",
@@ -3832,7 +3885,9 @@
         "DELETING",
         "COPYING_IN_PROGRESS",
         "COPYING_COMPLETED",
-        "COPYING_FAILED"
+        "COPYING_FAILED",
+        "DEPRECATED",
+        "EXPIRED"
       ]
     },
     "ProjectVersionsPageSize":{
@@ -4943,6 +4998,12 @@
       "members":{
         "Assets":{"shape":"Assets"}
       }
+    },
+    "VersionDescription":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_. ()':,;?]+"
     },
     "VersionName":{
       "type":"string",

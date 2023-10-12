@@ -5,21 +5,179 @@
     "AnalyzeDocument": "<p>Analyzes an input document for relationships between detected items. </p> <p>The types of information returned are as follows: </p> <ul> <li> <p>Form data (key-value pairs). The related information is returned in two <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.</p> </li> <li> <p>Table and table cell data. A TABLE <code>Block</code> object contains information about a detected table. A CELL <code>Block</code> object is returned for each cell in a table.</p> </li> <li> <p>Lines and words of text. A LINE <code>Block</code> object contains one or more WORD <code>Block</code> objects. All lines and words that are detected in the document are returned (including text that doesn't have a relationship with the value of <code>FeatureTypes</code>). </p> </li> <li> <p>Signatures. A SIGNATURE <code>Block</code> object contains the location information of a signature in a document. If used in conjunction with forms or tables, a signature can be given a Key-Value pairing or be detected in the cell of a table.</p> </li> <li> <p>Query. A QUERY Block object contains the query text, alias and link to the associated Query results block object.</p> </li> <li> <p>Query Result. A QUERY_RESULT Block object contains the answer to the query and an ID that connects it to the query asked. This Block also contains a confidence score.</p> </li> </ul> <p>Selection elements such as check boxes and option buttons (radio buttons) can be detected in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains information about a selection element, including the selection status.</p> <p>You can choose which type of analysis to perform by specifying the <code>FeatureTypes</code> list. </p> <p>The output is returned in a list of <code>Block</code> objects.</p> <p> <code>AnalyzeDocument</code> is a synchronous operation. To analyze documents asynchronously, use <a>StartDocumentAnalysis</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
     "AnalyzeExpense": "<p> <code>AnalyzeExpense</code> synchronously analyzes an input document for financially related relationships between text.</p> <p>Information is returned as <code>ExpenseDocuments</code> and seperated as follows:</p> <ul> <li> <p> <code>LineItemGroups</code>- A data set containing <code>LineItems</code> which store information about the lines of text, such as an item purchased and its price on a receipt.</p> </li> <li> <p> <code>SummaryFields</code>- Contains all other information a receipt, such as header information or the vendors name.</p> </li> </ul>",
     "AnalyzeID": "<p>Analyzes identity documents for relevant information. This information is extracted and returned as <code>IdentityDocumentFields</code>, which records both the normalized field and value of the extracted text. Unlike other Amazon Textract operations, <code>AnalyzeID</code> doesn't return any Geometry data.</p>",
+    "CreateAdapter": "<p>Creates an adapter, which can be fine-tuned for enhanced performance on user provided documents. Takes an AdapterName and FeatureType. Currently the only supported feature type is <code>QUERIES</code>. You can also provide a Description, Tags, and a ClientRequestToken. You can choose whether or not the adapter should be AutoUpdated with the AutoUpdate argument. By default, AutoUpdate is set to DISABLED.</p>",
+    "CreateAdapterVersion": "<p>Creates a new version of an adapter. Operates on a provided AdapterId and a specified dataset provided via the DatasetConfig argument. Requires that you specify an Amazon S3 bucket with the OutputConfig argument. You can provide an optional KMSKeyId, an optional ClientRequestToken, and optional tags.</p>",
+    "DeleteAdapter": "<p>Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the adapter specified by the ID.</p>",
+    "DeleteAdapterVersion": "<p>Deletes an Amazon Textract adapter version. Requires that you specify both an AdapterId and a AdapterVersion. Deletes the adapter version specified by the AdapterId and the AdapterVersion.</p>",
     "DetectDocumentText": "<p>Detects text in the input document. Amazon Textract can detect lines of text and the words that make up a line of text. The input document must be in one of the following image formats: JPEG, PNG, PDF, or TIFF. <code>DetectDocumentText</code> returns the detected text in an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p> <code>DetectDocumentText</code> is a synchronous operation. To analyze documents asynchronously, use <a>StartDocumentTextDetection</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
+    "GetAdapter": "<p>Gets configuration information for an adapter specified by an AdapterId, returning information on AdapterName, Description, CreationTime, AutoUpdate status, and FeatureTypes.</p>",
+    "GetAdapterVersion": "<p>Gets configuration information for the specified adapter version, including: AdapterId, AdapterVersion, FeatureTypes, Status, StatusMessage, DatasetConfig, KMSKeyId, OutputConfig, Tags and EvaluationMetrics.</p>",
     "GetDocumentAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes text in a document.</p> <p>You start asynchronous text analysis by calling <a>StartDocumentAnalysis</a>, which returns a job identifier (<code>JobId</code>). When the text analysis operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentAnalysis</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentAnalysis</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p> <code>GetDocumentAnalysis</code> returns an array of <a>Block</a> objects. The following types of information are returned: </p> <ul> <li> <p>Form data (key-value pairs). The related information is returned in two <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.</p> </li> <li> <p>Table and table cell data. A TABLE <code>Block</code> object contains information about a detected table. A CELL <code>Block</code> object is returned for each cell in a table.</p> </li> <li> <p>Lines and words of text. A LINE <code>Block</code> object contains one or more WORD <code>Block</code> objects. All lines and words that are detected in the document are returned (including text that doesn't have a relationship with the value of the <code>StartDocumentAnalysis</code> <code>FeatureTypes</code> input parameter). </p> </li> <li> <p>Query. A QUERY Block object contains the query text, alias and link to the associated Query results block object.</p> </li> <li> <p>Query Results. A QUERY_RESULT Block object contains the answer to the query and an ID that connects it to the query asked. This Block also contains a confidence score.</p> </li> </ul> <note> <p>While processing a document with queries, look out for <code>INVALID_REQUEST_PARAMETERS</code> output. This indicates that either the per page query limit has been exceeded or that the operation is trying to query a page in the document which doesn’t exist. </p> </note> <p>Selection elements such as check boxes and option buttons (radio buttons) can be detected in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains information about a selection element, including the selection status.</p> <p>Use the <code>MaxResults</code> parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentAnalysis</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
     "GetDocumentTextDetection": "<p>Gets the results for an Amazon Textract asynchronous operation that detects text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p>You start asynchronous text detection by calling <a>StartDocumentTextDetection</a>, which returns a job identifier (<code>JobId</code>). When the text detection operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentTextDetection</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentTextDetection</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p> <code>GetDocumentTextDetection</code> returns an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p>Use the MaxResults parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentTextDetection</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
     "GetExpenseAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes invoices and receipts. Amazon Textract finds contact information, items purchased, and vendor name, from input invoices and receipts.</p> <p>You start asynchronous invoice/receipt analysis by calling <a>StartExpenseAnalysis</a>, which returns a job identifier (<code>JobId</code>). Upon completion of the invoice/receipt analysis, Amazon Textract publishes the completion status to the Amazon Simple Notification Service (Amazon SNS) topic. This topic must be registered in the initial call to <code>StartExpenseAnalysis</code>. To get the results of the invoice/receipt analysis operation, first ensure that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetExpenseAnalysis</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartExpenseAnalysis</code>.</p> <p>Use the MaxResults parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetExpenseAnalysis</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetExpenseAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html\">Analyzing Invoices and Receipts</a>.</p>",
     "GetLendingAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes text in a lending document. </p> <p>You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>, which returns a job identifier (<code>JobId</code>). When the text analysis operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>. </p> <p>To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysis, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.</p>",
     "GetLendingAnalysisSummary": "<p>Gets summarized results for the <code>StartLendingAnalysis</code> operation, which analyzes text in a lending document. The returned summary consists of information about documents grouped together by a common document type. Information like detected signatures, page numbers, and split documents is returned with respect to the type of grouped document. </p> <p>You start asynchronous text analysis by calling <code>StartLendingAnalysis</code>, which returns a job identifier (<code>JobId</code>). When the text analysis operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartLendingAnalysis</code>. </p> <p>To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is SUCCEEDED. If so, call <code>GetLendingAnalysisSummary</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLendingAnalysis</code>.</p>",
+    "ListAdapterVersions": "<p>List all version of an adapter that meet the specified filtration criteria.</p>",
+    "ListAdapters": "<p>Lists all adapters that match the specified filtration criteria.</p>",
+    "ListTagsForResource": "<p>Lists all tags for an Amazon Textract resource.</p>",
     "StartDocumentAnalysis": "<p>Starts the asynchronous analysis of an input document for relationships between detected items such as key-value pairs, tables, and selection elements.</p> <p> <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text analysis is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
     "StartDocumentTextDetection": "<p>Starts the asynchronous detection of text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p> <code>StartDocumentTextDetection</code> can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text detection is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentTextDetection</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
     "StartExpenseAnalysis": "<p>Starts the asynchronous analysis of invoices or receipts for data like contact information, items purchased, and vendor names.</p> <p> <code>StartExpenseAnalysis</code> can analyze text in documents that are in JPEG, PNG, and PDF format. The documents must be stored in an Amazon S3 bucket. Use the <a>DocumentLocation</a> parameter to specify the name of your S3 bucket and the name of the document in that bucket. </p> <p> <code>StartExpenseAnalysis</code> returns a job identifier (<code>JobId</code>) that you will provide to <code>GetExpenseAnalysis</code> to retrieve the results of the operation. When the analysis of the input invoices/receipts is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you provide to the <code>NotificationChannel</code>. To obtain the results of the invoice and receipt analysis operation, ensure that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetExpenseAnalysis</a>, and pass the job identifier (<code>JobId</code>) that was returned by your call to <code>StartExpenseAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html\">Analyzing Invoices and Receipts</a>.</p>",
-    "StartLendingAnalysis": "<p>Starts the classification and analysis of an input document. <code>StartLendingAnalysis</code> initiates the classification and analysis of a packet of lending documents. <code>StartLendingAnalysis</code> operates on a document file located in an Amazon S3 bucket.</p> <p> <code>StartLendingAnalysis</code> can analyze text in documents that are in one of the following formats: JPEG, PNG, TIFF, PDF. Use <code>DocumentLocation</code> to specify the bucket name and the file name of the document. </p> <p> <code>StartLendingAnalysis</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When the text analysis is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is SUCCEEDED. If the status is SUCCEEDED you can call either <code>GetLendingAnalysis</code> or <code>GetLendingAnalysisSummary</code> and provide the <code>JobId</code> to obtain the results of the analysis.</p> <p>If using <code>OutputConfig</code> to specify an Amazon S3 bucket, the output will be contained within the specified prefix in a directory labeled with the job-id. In the directory there are 3 sub-directories: </p> <ul> <li> <p>detailedResponse (contains the GetLendingAnalysis response)</p> </li> <li> <p>summaryResponse (for the GetLendingAnalysisSummary response)</p> </li> <li> <p>splitDocuments (documents split across logical boundaries)</p> </li> </ul>"
+    "StartLendingAnalysis": "<p>Starts the classification and analysis of an input document. <code>StartLendingAnalysis</code> initiates the classification and analysis of a packet of lending documents. <code>StartLendingAnalysis</code> operates on a document file located in an Amazon S3 bucket.</p> <p> <code>StartLendingAnalysis</code> can analyze text in documents that are in one of the following formats: JPEG, PNG, TIFF, PDF. Use <code>DocumentLocation</code> to specify the bucket name and the file name of the document. </p> <p> <code>StartLendingAnalysis</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When the text analysis is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is SUCCEEDED. If the status is SUCCEEDED you can call either <code>GetLendingAnalysis</code> or <code>GetLendingAnalysisSummary</code> and provide the <code>JobId</code> to obtain the results of the analysis.</p> <p>If using <code>OutputConfig</code> to specify an Amazon S3 bucket, the output will be contained within the specified prefix in a directory labeled with the job-id. In the directory there are 3 sub-directories: </p> <ul> <li> <p>detailedResponse (contains the GetLendingAnalysis response)</p> </li> <li> <p>summaryResponse (for the GetLendingAnalysisSummary response)</p> </li> <li> <p>splitDocuments (documents split across logical boundaries)</p> </li> </ul>",
+    "TagResource": "<p>Adds one or more tags to the specified resource.</p>",
+    "UntagResource": "<p>Removes any tags with the specified keys from the specified resource.</p>",
+    "UpdateAdapter": "<p>Update the configuration for an adapter. FeatureTypes configurations cannot be updated. At least one new parameter must be specified as an argument.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
       "base": "<p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>",
       "refs": {
+      }
+    },
+    "Adapter": {
+      "base": "<p>An adapter selected for use when analyzing documents. Contains an adapter ID and a version number. Contains information on pages selected for analysis when analyzing documents asychronously.</p>",
+      "refs": {
+        "Adapters$member": null
+      }
+    },
+    "AdapterDescription": {
+      "base": null,
+      "refs": {
+        "CreateAdapterRequest$Description": "<p>The description to be assigned to the adapter being created.</p>",
+        "GetAdapterResponse$Description": "<p>The description for the requested adapter.</p>",
+        "UpdateAdapterRequest$Description": "<p>The new description to be applied to the adapter.</p>",
+        "UpdateAdapterResponse$Description": "<p>A string containing the description of the adapter that has been updated.</p>"
+      }
+    },
+    "AdapterId": {
+      "base": null,
+      "refs": {
+        "Adapter$AdapterId": "<p>A unique identifier for the adapter resource.</p>",
+        "AdapterOverview$AdapterId": "<p>A unique identifier for the adapter resource.</p>",
+        "AdapterVersionOverview$AdapterId": "<p>A unique identifier for the adapter associated with a given adapter version.</p>",
+        "CreateAdapterResponse$AdapterId": "<p>A string containing the unique ID for the adapter that has been created.</p>",
+        "CreateAdapterVersionRequest$AdapterId": "<p>A string containing a unique ID for the adapter that will receive a new version.</p>",
+        "CreateAdapterVersionResponse$AdapterId": "<p>A string containing the unique ID for the adapter that has received a new version.</p>",
+        "DeleteAdapterRequest$AdapterId": "<p>A string containing a unique ID for the adapter to be deleted.</p>",
+        "DeleteAdapterVersionRequest$AdapterId": "<p>A string containing a unique ID for the adapter version that will be deleted.</p>",
+        "GetAdapterRequest$AdapterId": "<p>A string containing a unique ID for the adapter.</p>",
+        "GetAdapterResponse$AdapterId": "<p>A string identifying the adapter that information has been retrieved for.</p>",
+        "GetAdapterVersionRequest$AdapterId": "<p>A string specifying a unique ID for the adapter version you want to retrieve information for.</p>",
+        "GetAdapterVersionResponse$AdapterId": "<p>A string containing a unique ID for the adapter version being retrieved.</p>",
+        "ListAdapterVersionsRequest$AdapterId": "<p>A string containing a unique ID for the adapter to match for when listing adapter versions.</p>",
+        "UpdateAdapterRequest$AdapterId": "<p>A string containing a unique ID for the adapter that will be updated.</p>",
+        "UpdateAdapterResponse$AdapterId": "<p>A string containing a unique ID for the adapter that has been updated.</p>"
+      }
+    },
+    "AdapterList": {
+      "base": null,
+      "refs": {
+        "ListAdaptersResponse$Adapters": "<p>A list of adapters that matches the filtering criteria specified when calling ListAdapters.</p>"
+      }
+    },
+    "AdapterName": {
+      "base": null,
+      "refs": {
+        "AdapterOverview$AdapterName": "<p>A string naming the adapter resource.</p>",
+        "CreateAdapterRequest$AdapterName": "<p>The name to be assigned to the adapter being created.</p>",
+        "GetAdapterResponse$AdapterName": "<p>The name of the requested adapter.</p>",
+        "UpdateAdapterRequest$AdapterName": "<p>The new name to be applied to the adapter.</p>",
+        "UpdateAdapterResponse$AdapterName": "<p>A string containing the name of the adapter that has been updated.</p>"
+      }
+    },
+    "AdapterOverview": {
+      "base": "<p>Contains information on the adapter, including the adapter ID, Name, Creation time, and feature types.</p>",
+      "refs": {
+        "AdapterList$member": null
+      }
+    },
+    "AdapterPage": {
+      "base": null,
+      "refs": {
+        "AdapterPages$member": null
+      }
+    },
+    "AdapterPages": {
+      "base": null,
+      "refs": {
+        "Adapter$Pages": "<p>Pages is a parameter that the user inputs to specify which pages to apply an adapter to. The following is a list of rules for using this parameter.</p> <ul> <li> <p>If a page is not specified, it is set to <code>[\"1\"]</code> by default.</p> </li> <li> <p>The following characters are allowed in the parameter's string: <code>0 1 2 3 4 5 6 7 8 9 - *</code>. No whitespace is allowed.</p> </li> <li> <p>When using * to indicate all pages, it must be the only element in the list.</p> </li> <li> <p>You can use page intervals, such as <code>[\"1-3\", \"1-1\", \"4-*\"]</code>. Where <code>*</code> indicates last page of document.</p> </li> <li> <p>Specified pages must be greater than 0 and less than or equal to the number of pages in the document.</p> </li> </ul>"
+      }
+    },
+    "AdapterVersion": {
+      "base": null,
+      "refs": {
+        "Adapter$Version": "<p>A string that identifies the version of the adapter.</p>",
+        "AdapterVersionOverview$AdapterVersion": "<p>An identified for a given adapter version.</p>",
+        "CreateAdapterVersionResponse$AdapterVersion": "<p>A string describing the new version of the adapter.</p>",
+        "DeleteAdapterVersionRequest$AdapterVersion": "<p>Specifies the adapter version to be deleted.</p>",
+        "GetAdapterVersionRequest$AdapterVersion": "<p>A string specifying the adapter version you want to retrieve information for.</p>",
+        "GetAdapterVersionResponse$AdapterVersion": "<p>A string containing the adapter version that has been retrieved.</p>"
+      }
+    },
+    "AdapterVersionDatasetConfig": {
+      "base": "<p>The dataset configuration options for a given version of an adapter. Can include an Amazon S3 bucket if specified.</p>",
+      "refs": {
+        "CreateAdapterVersionRequest$DatasetConfig": "<p>Specifies a dataset used to train a new adapter version. Takes a ManifestS3Object as the value.</p>",
+        "GetAdapterVersionResponse$DatasetConfig": "<p>Specifies a dataset used to train a new adapter version. Takes a ManifestS3Objec as the value.</p>"
+      }
+    },
+    "AdapterVersionEvaluationMetric": {
+      "base": "<p>Contains information on the metrics used to evalute the peformance of a given adapter version. Includes data for baseline model performance and individual adapter version perfromance.</p>",
+      "refs": {
+        "AdapterVersionEvaluationMetrics$member": null
+      }
+    },
+    "AdapterVersionEvaluationMetrics": {
+      "base": null,
+      "refs": {
+        "GetAdapterVersionResponse$EvaluationMetrics": "<p>The evaluation metrics (F1 score, Precision, and Recall) for the requested version, grouped by baseline metrics and adapter version.</p>"
+      }
+    },
+    "AdapterVersionList": {
+      "base": null,
+      "refs": {
+        "ListAdapterVersionsResponse$AdapterVersions": "<p>Adapter versions that match the filtering criteria specified when calling ListAdapters.</p>"
+      }
+    },
+    "AdapterVersionOverview": {
+      "base": "<p>Summary info for an adapter version. Contains information on the AdapterId, AdapterVersion, CreationTime, FeatureTypes, and Status.</p>",
+      "refs": {
+        "AdapterVersionList$member": null
+      }
+    },
+    "AdapterVersionStatus": {
+      "base": null,
+      "refs": {
+        "AdapterVersionOverview$Status": "<p>Contains information on the status of a given adapter version.</p>",
+        "GetAdapterVersionResponse$Status": "<p>The status of the adapter version that has been requested.</p>"
+      }
+    },
+    "AdapterVersionStatusMessage": {
+      "base": null,
+      "refs": {
+        "AdapterVersionOverview$StatusMessage": "<p>A message explaining the status of a given adapter vesion.</p>",
+        "GetAdapterVersionResponse$StatusMessage": "<p>A message that describes the status of the requested adapter version.</p>"
+      }
+    },
+    "Adapters": {
+      "base": null,
+      "refs": {
+        "AdaptersConfig$Adapters": "<p>A list of adapters to be used when analyzing the specified document.</p>"
+      }
+    },
+    "AdaptersConfig": {
+      "base": "<p>Contains information about adapters used when analyzing a document, with each adapter specified using an AdapterId and version</p>",
+      "refs": {
+        "AnalyzeDocumentRequest$AdaptersConfig": "<p>Specifies the adapter to be used when analyzing a document.</p>",
+        "StartDocumentAnalysisRequest$AdaptersConfig": "<p>Specifies the adapter to be used when analyzing a document.</p>"
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) that specifies the resource to list tags for.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) that specifies the resource to be tagged.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) that specifies the resource to be untagged.</p>"
       }
     },
     "AnalyzeDocumentRequest": {
@@ -59,6 +217,15 @@
       "refs": {
       }
     },
+    "AutoUpdate": {
+      "base": null,
+      "refs": {
+        "CreateAdapterRequest$AutoUpdate": "<p>Controls whether or not the adapter should automatically update.</p>",
+        "GetAdapterResponse$AutoUpdate": "<p>Binary value indicating if the adapter is being automatically updated or not.</p>",
+        "UpdateAdapterRequest$AutoUpdate": "<p>The new auto-update status to be applied to the adapter.</p>",
+        "UpdateAdapterResponse$AutoUpdate": "<p>The auto-update status of the adapter that has been updated.</p>"
+      }
+    },
     "BadDocumentException": {
       "base": "<p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>",
       "refs": {
@@ -84,7 +251,7 @@
     "BlockType": {
       "base": null,
       "refs": {
-        "Block$BlockType": "<p>The type of text item that's recognized. In operations for text detection, the following types are returned:</p> <ul> <li> <p> <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that are detected on a document page.</p> </li> <li> <p> <i>WORD</i> - A word detected on a document page. A word is one or more ISO basic Latin script characters that aren't separated by spaces.</p> </li> <li> <p> <i>LINE</i> - A string of tab-delimited, contiguous words that are detected on a document page.</p> </li> </ul> <p>In text analysis operations, the following types are returned:</p> <ul> <li> <p> <i>PAGE</i> - Contains a list of child <code>Block</code> objects that are detected on a document page.</p> </li> <li> <p> <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code> objects for linked text that's detected on a document page. Use the <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a KEY <code>Block</code> object or a VALUE <code>Block</code> object. </p> </li> <li> <p> <i>WORD</i> - A word that's detected on a document page. A word is one or more ISO basic Latin script characters that aren't separated by spaces.</p> </li> <li> <p> <i>LINE</i> - A string of tab-delimited, contiguous words that are detected on a document page.</p> </li> <li> <p> <i>TABLE</i> - A table that's detected on a document page. A table is grid-based information with two or more rows or columns, with a cell span of one row and one column each. </p> </li> <li> <p> <i>TABLE_TITLE</i> - The title of a table. A title is typically a line of text above or below a table, or embedded as the first row of a table. </p> </li> <li> <p> <i>TABLE_FOOTER</i> - The footer associated with a table. A footer is typically a line or lines of text below a table or embedded as the last row of a table. </p> </li> <li> <p> <i>CELL</i> - A cell within a detected table. The cell is the parent of the block that contains the text in the cell.</p> </li> <li> <p> <i>MERGED_CELL</i> - A cell in a table whose content spans more than one row or column. The <code>Relationships</code> array for this cell contain data from individual cells.</p> </li> <li> <p> <i>SELECTION_ELEMENT</i> - A selection element such as an option button (radio button) or a check box that's detected on a document page. Use the value of <code>SelectionStatus</code> to determine the status of the selection element.</p> </li> <li> <p> <i>SIGNATURE</i> - The location and confidence score of a signature detected on a document page. Can be returned as part of a Key-Value pair or a detected cell.</p> </li> <li> <p> <i>QUERY</i> - A question asked during the call of AnalyzeDocument. Contains an alias and an ID that attaches it to its answer.</p> </li> <li> <p> <i>QUERY_RESULT</i> - A response to a question asked during the call of analyze document. Comes with an alias and ID for ease of locating in a response. Also contains location and confidence score.</p> </li> </ul>"
+        "Block$BlockType": "<p>The type of text item that's recognized. In operations for text detection, the following types are returned:</p> <ul> <li> <p> <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that are detected on a document page.</p> </li> <li> <p> <i>WORD</i> - A word detected on a document page. A word is one or more ISO basic Latin script characters that aren't separated by spaces.</p> </li> <li> <p> <i>LINE</i> - A string of tab-delimited, contiguous words that are detected on a document page.</p> </li> </ul> <p>In text analysis operations, the following types are returned:</p> <ul> <li> <p> <i>PAGE</i> - Contains a list of child <code>Block</code> objects that are detected on a document page.</p> </li> <li> <p> <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code> objects for linked text that's detected on a document page. Use the <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a KEY <code>Block</code> object or a VALUE <code>Block</code> object. </p> </li> <li> <p> <i>WORD</i> - A word that's detected on a document page. A word is one or more ISO basic Latin script characters that aren't separated by spaces.</p> </li> <li> <p> <i>LINE</i> - A string of tab-delimited, contiguous words that are detected on a document page.</p> </li> <li> <p> <i>TABLE</i> - A table that's detected on a document page. A table is grid-based information with two or more rows or columns, with a cell span of one row and one column each. </p> </li> <li> <p> <i>TABLE_TITLE</i> - The title of a table. A title is typically a line of text above or below a table, or embedded as the first row of a table. </p> </li> <li> <p> <i>TABLE_FOOTER</i> - The footer associated with a table. A footer is typically a line or lines of text below a table or embedded as the last row of a table. </p> </li> <li> <p> <i>CELL</i> - A cell within a detected table. The cell is the parent of the block that contains the text in the cell.</p> </li> <li> <p> <i>MERGED_CELL</i> - A cell in a table whose content spans more than one row or column. The <code>Relationships</code> array for this cell contain data from individual cells.</p> </li> <li> <p> <i>SELECTION_ELEMENT</i> - A selection element such as an option button (radio button) or a check box that's detected on a document page. Use the value of <code>SelectionStatus</code> to determine the status of the selection element.</p> </li> <li> <p> <i>SIGNATURE</i> - The location and confidence score of a signature detected on a document page. Can be returned as part of a Key-Value pair or a detected cell.</p> </li> <li> <p> <i>QUERY</i> - A question asked during the call of AnalyzeDocument. Contains an alias and an ID that attaches it to its answer.</p> </li> <li> <p> <i>QUERY_RESULT</i> - A response to a question asked during the call of analyze document. Comes with an alias and ID for ease of locating in a response. Also contains location and confidence score.</p> </li> </ul> <p>The following BlockTypes are only returned for Amazon Textract Layout.</p> <ul> <li> <p> <code>LAYOUT_TITLE</code> - The main title of the document.</p> </li> <li> <p> <code>LAYOUT_HEADER</code> - Text located in the top margin of the document.</p> </li> <li> <p> <code>LAYOUT_FOOTER</code> - Text located in the bottom margin of the document.</p> </li> <li> <p> <code>LAYOUT_SECTION_HEADER</code> - The titles of sections within a document.</p> </li> <li> <p> <code>LAYOUT_PAGE_NUMBER</code> - The page number of the documents.</p> </li> <li> <p> <code>LAYOUT_LIST</code> - Any information grouped together in list form. </p> </li> <li> <p> <code>LAYOUT_FIGURE</code> - Indicates the location of an image in a document.</p> </li> <li> <p> <code>LAYOUT_TABLE</code> - Indicates the location of a table in the document.</p> </li> <li> <p> <code>LAYOUT_KEY_VALUE</code> - Indicates the location of form key-values in a document.</p> </li> <li> <p> <code>LAYOUT_TEXT</code> - Text that is present typically as a part of paragraphs in documents.</p> </li> </ul>"
       }
     },
     "BoundingBox": {
@@ -96,10 +263,17 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
+        "CreateAdapterRequest$ClientRequestToken": "<p>Idempotent token is used to recognize the request. If the same token is used with multiple CreateAdapter requests, the same session is returned. This token is employed to avoid unintentionally creating the same session multiple times.</p>",
+        "CreateAdapterVersionRequest$ClientRequestToken": "<p>Idempotent token is used to recognize the request. If the same token is used with multiple CreateAdapterVersion requests, the same session is returned. This token is employed to avoid unintentionally creating the same session multiple times.</p>",
         "StartDocumentAnalysisRequest$ClientRequestToken": "<p>The idempotent token that you use to identify the start request. If you use the same token with multiple <code>StartDocumentAnalysis</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>",
         "StartDocumentTextDetectionRequest$ClientRequestToken": "<p>The idempotent token that's used to identify the start request. If you use the same token with multiple <code>StartDocumentTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>",
         "StartExpenseAnalysisRequest$ClientRequestToken": "<p>The idempotent token that's used to identify the start request. If you use the same token with multiple <code>StartDocumentTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a> </p>",
         "StartLendingAnalysisRequest$ClientRequestToken": "<p>The idempotent token that you use to identify the start request. If you use the same token with multiple <code>StartLendingAnalysis</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-sync.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
+      "refs": {
       }
     },
     "ContentClassifier": {
@@ -112,6 +286,60 @@
       "base": null,
       "refs": {
         "HumanLoopDataAttributes$ContentClassifiers": "<p>Sets whether the input image is free of personally identifiable information or adult content.</p>"
+      }
+    },
+    "CreateAdapterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAdapterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAdapterVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAdapterVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DateTime": {
+      "base": null,
+      "refs": {
+        "AdapterOverview$CreationTime": "<p>The date and time that the adapter was created.</p>",
+        "AdapterVersionOverview$CreationTime": "<p>The date and time that a given adapter version was created.</p>",
+        "GetAdapterResponse$CreationTime": "<p>The date and time the requested adapter was created at.</p>",
+        "GetAdapterVersionResponse$CreationTime": "<p>The time that the adapter version was created.</p>",
+        "ListAdapterVersionsRequest$AfterCreationTime": "<p>Specifies the lower bound for the ListAdapterVersions operation. Ensures ListAdapterVersions returns only adapter versions created after the specified creation time.</p>",
+        "ListAdapterVersionsRequest$BeforeCreationTime": "<p>Specifies the upper bound for the ListAdapterVersions operation. Ensures ListAdapterVersions returns only adapter versions created after the specified creation time.</p>",
+        "ListAdaptersRequest$AfterCreationTime": "<p>Specifies the lower bound for the ListAdapters operation. Ensures ListAdapters returns only adapters created after the specified creation time.</p>",
+        "ListAdaptersRequest$BeforeCreationTime": "<p>Specifies the upper bound for the ListAdapters operation. Ensures ListAdapters returns only adapters created before the specified creation time.</p>",
+        "UpdateAdapterResponse$CreationTime": "<p>An object specifying the creation time of the the adapter that has been updated.</p>"
+      }
+    },
+    "DeleteAdapterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAdapterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAdapterVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAdapterVersionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DetectDocumentTextRequest": {
@@ -209,6 +437,13 @@
         "Warning$ErrorCode": "<p>The error code for the warning.</p>"
       }
     },
+    "EvaluationMetric": {
+      "base": "<p>The evaluation metrics (F1 score, Precision, and Recall) for an adapter version.</p>",
+      "refs": {
+        "AdapterVersionEvaluationMetric$Baseline": "<p>The F1 score, precision, and recall metrics for the baseline model.</p>",
+        "AdapterVersionEvaluationMetric$AdapterVersion": "<p>The F1 score, precision, and recall metrics for the baseline model.</p>"
+      }
+    },
     "ExpenseCurrency": {
       "base": "<p>Returns the kind of currency detected.</p>",
       "refs": {
@@ -282,14 +517,21 @@
     "FeatureType": {
       "base": null,
       "refs": {
+        "AdapterVersionEvaluationMetric$FeatureType": "<p>Indicates the feature type being analyzed by a given adapter version.</p>",
         "FeatureTypes$member": null
       }
     },
     "FeatureTypes": {
       "base": null,
       "refs": {
-        "AnalyzeDocumentRequest$FeatureTypes": "<p>A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. Add SIGNATURES to return the locations of detected signatures. Add LAYOUT to the list to return information about the layout of the document. To perform both forms and table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To detect signatures within the document and within form data and table data, add SIGNATURES to either TABLES or FORMS. All lines and words detected in the document are included in the response (including text that isn't related to the value of <code>FeatureTypes</code>). </p>",
-        "StartDocumentAnalysisRequest$FeatureTypes": "<p>A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. To perform both types of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines and words detected in the document are included in the response (including text that isn't related to the value of <code>FeatureTypes</code>). </p>"
+        "AdapterOverview$FeatureTypes": "<p>The feature types that the adapter is operating on.</p>",
+        "AdapterVersionOverview$FeatureTypes": "<p>The feature types that the adapter version is operating on.</p>",
+        "AnalyzeDocumentRequest$FeatureTypes": "<p>A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. Add SIGNATURES to return the locations of detected signatures. Add LAYOUT to the list to return information about the layout of the document. All lines and words detected in the document are included in the response (including text that isn't related to the value of <code>FeatureTypes</code>). </p>",
+        "CreateAdapterRequest$FeatureTypes": "<p>The type of feature that the adapter is being trained on. Currrenly, supported feature types are: <code>QUERIES</code> </p>",
+        "GetAdapterResponse$FeatureTypes": "<p>List of the targeted feature types for the requested adapter.</p>",
+        "GetAdapterVersionResponse$FeatureTypes": "<p>List of the targeted feature types for the requested adapter version.</p>",
+        "StartDocumentAnalysisRequest$FeatureTypes": "<p>A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. To perform both types of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines and words detected in the document are included in the response (including text that isn't related to the value of <code>FeatureTypes</code>). </p>",
+        "UpdateAdapterResponse$FeatureTypes": "<p>List of the targeted feature types for the updated adapter.</p>"
       }
     },
     "Float": {
@@ -299,6 +541,9 @@
         "BoundingBox$Height": "<p>The height of the bounding box as a ratio of the overall document page height.</p>",
         "BoundingBox$Left": "<p>The left coordinate of the bounding box as a ratio of overall document page width.</p>",
         "BoundingBox$Top": "<p>The top coordinate of the bounding box as a ratio of overall document page height.</p>",
+        "EvaluationMetric$F1Score": "<p>The F1 score for an adapter version.</p>",
+        "EvaluationMetric$Precision": "<p>The Precision score for an adapter version.</p>",
+        "EvaluationMetric$Recall": "<p>The Recall score for an adapter version.</p>",
         "Point$X": "<p>The value of the X coordinate for a point on a <code>Polygon</code>.</p>",
         "Point$Y": "<p>The value of the Y coordinate for a point on a <code>Polygon</code>.</p>"
       }
@@ -316,6 +561,26 @@
         "ExpenseDetection$Geometry": null,
         "LendingDetection$Geometry": null,
         "SignatureDetection$Geometry": null
+      }
+    },
+    "GetAdapterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAdapterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAdapterVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAdapterVersionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetDocumentAnalysisRequest": {
@@ -524,6 +789,8 @@
     "KMSKeyId": {
       "base": null,
       "refs": {
+        "CreateAdapterVersionRequest$KMSKeyId": "<p>The identifier for your AWS Key Management Service key (AWS KMS key). Used to encrypt your documents.</p>",
+        "GetAdapterVersionResponse$KMSKeyId": "<p>The identifier for your AWS Key Management Service key (AWS KMS key). Used to encrypt your documents.</p>",
         "StartDocumentAnalysisRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
         "StartDocumentTextDetectionRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
         "StartExpenseAnalysisRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
@@ -608,13 +875,45 @@
         "LineItemGroup$LineItems": "<p>The breakdown of information on a particular line of a table. </p>"
       }
     },
+    "ListAdapterVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAdapterVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAdaptersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAdaptersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
         "GetDocumentAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value that you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.</p>",
         "GetDocumentTextDetectionRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.</p>",
         "GetExpenseAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value you can specify is 20. If you specify a value greater than 20, a maximum of 20 results is returned. The default value is 20.</p>",
-        "GetLendingAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value that you can specify is 30. If you specify a value greater than 30, a maximum of 30 results is returned. The default value is 30.</p>"
+        "GetLendingAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value that you can specify is 30. If you specify a value greater than 30, a maximum of 30 results is returned. The default value is 30.</p>",
+        "ListAdapterVersionsRequest$MaxResults": "<p>The maximum number of results to return when listing adapter versions.</p>",
+        "ListAdaptersRequest$MaxResults": "<p>The maximum number of results to return when listing adapters.</p>"
       }
     },
     "NonEmptyString": {
@@ -645,6 +944,8 @@
     "OutputConfig": {
       "base": "<p>Sets whether or not your output will go to a user created bucket. Used to set the name of the bucket, and the prefix on the output file.</p> <p> <code>OutputConfig</code> is an optional parameter which lets you adjust where your output will be placed. By default, Amazon Textract will store the results internally and can only be accessed by the Get API operations. With <code>OutputConfig</code> enabled, you can set the name of the bucket the output will be sent to the file prefix of the results where you can download your results. Additionally, you can set the <code>KMSKeyID</code> parameter to a customer master key (CMK) to encrypt your output. Without this parameter set Amazon Textract will encrypt server-side using the AWS managed CMK for Amazon S3.</p> <p>Decryption of Customer Content is necessary for processing of the documents by Amazon Textract. If your account is opted out under an AI services opt out policy then all unencrypted Customer Content is immediately and permanently deleted after the Customer Content has been processed by the service. No copy of of the output is retained by Amazon Textract. For information about how to opt out, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html\"> Managing AI services opt-out policy. </a> </p> <p>For more information on data privacy, see the <a href=\"https://aws.amazon.com/compliance/data-privacy-faq/\">Data Privacy FAQ</a>.</p>",
       "refs": {
+        "CreateAdapterVersionRequest$OutputConfig": null,
+        "GetAdapterVersionResponse$OutputConfig": null,
         "StartDocumentAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetDocumentAnalysis operation.</p>",
         "StartDocumentTextDetectionRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.</p>",
         "StartExpenseAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the <code>GetExpenseAnalysis</code> operation.</p>",
@@ -679,7 +980,11 @@
         "GetExpenseAnalysisRequest$NextToken": "<p>If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.</p>",
         "GetExpenseAnalysisResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of text-detection results.</p>",
         "GetLendingAnalysisRequest$NextToken": "<p>If the previous response was incomplete, Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of lending results.</p>",
-        "GetLendingAnalysisResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of lending results.</p>"
+        "GetLendingAnalysisResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of lending results.</p>",
+        "ListAdapterVersionsRequest$NextToken": "<p>Identifies the next page of results to return when listing adapter versions.</p>",
+        "ListAdapterVersionsResponse$NextToken": "<p>Identifies the next page of results to return when listing adapter versions.</p>",
+        "ListAdaptersRequest$NextToken": "<p>Identifies the next page of results to return when listing adapters.</p>",
+        "ListAdaptersResponse$NextToken": "<p>Identifies the next page of results to return when listing adapters.</p>"
       }
     },
     "Percent": {
@@ -782,6 +1087,11 @@
         "Relationship$Type": "<p>The type of relationship between the blocks in the IDs array and the current block. The following list describes the relationship types that can be returned. </p> <ul> <li> <p> <i>VALUE</i> - A list that contains the ID of the VALUE block that's associated with the KEY of a key-value pair.</p> </li> <li> <p> <i>CHILD</i> - A list of IDs that identify blocks found within the current block object. For example, WORD blocks have a CHILD relationship to the LINE block type.</p> </li> <li> <p> <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL block types in a table.</p> </li> <li> <p> <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block that’s associated with the corresponding QUERY block. </p> </li> <li> <p> <i>TABLE</i> - A list of IDs that identify associated TABLE block types. </p> </li> <li> <p> <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE block type in a table. </p> </li> <li> <p> <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block types in a table. </p> </li> </ul>"
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p> Returned when an operation tried to access a nonexistent resource. </p>",
+      "refs": {
+      }
+    },
     "RoleArn": {
       "base": null,
       "refs": {
@@ -798,6 +1108,7 @@
     "S3Object": {
       "base": "<p>The S3 bucket name and file name that identifies the document.</p> <p>The AWS Region for the S3 bucket that contains the document must match the Region that you use for Amazon Textract operations.</p> <p>For Amazon Textract to process a file in an S3 bucket, the user must have permission to access the S3 bucket and file. </p>",
       "refs": {
+        "AdapterVersionDatasetConfig$ManifestS3Object": null,
         "Document$S3Object": "<p>Identifies an S3 object as the document source. The maximum size of a document that's stored in an S3 bucket is 5 MB.</p>",
         "DocumentLocation$S3Object": "<p>The Amazon S3 bucket that contains the input document.</p>"
       }
@@ -826,6 +1137,11 @@
       "refs": {
         "Block$SelectionStatus": "<p>The selection status of a selection element, such as an option button or check box. </p>",
         "LendingDetection$SelectionStatus": "<p>The selection status of a selection element, such as an option button or check box.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Returned when a request cannot be completed as it would exceed a maximum service quota.</p>",
+      "refs": {
       }
     },
     "SignatureDetection": {
@@ -934,6 +1250,46 @@
         "ExpenseGroupProperty$Types": "<p>Informs you on whether the expense group is a name or an address.</p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>Specifies the tags to be removed from the resource specified by the ResourceARN.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateAdapterRequest$Tags": "<p>A list of tags to be added to the adapter.</p>",
+        "CreateAdapterVersionRequest$Tags": "<p>A set of tags (key-value pairs) that you want to attach to the adapter version. </p>",
+        "GetAdapterResponse$Tags": "<p>A set of tags (key-value pairs) associated with the adapter that has been retrieved.</p>",
+        "GetAdapterVersionResponse$Tags": "<p>A set of tags (key-value pairs) that are associated with the adapter version.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>A set of tags (key-value pairs) that are part of the requested resource.</p>",
+        "TagResourceRequest$Tags": "<p>A set of tags (key-value pairs) that you want to assign to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "TextType": {
       "base": null,
       "refs": {
@@ -986,6 +1342,31 @@
     },
     "UnsupportedDocumentException": {
       "base": "<p>The format of the input document isn't supported. Documents for operations can be in PNG, JPEG, PDF, or TIFF format.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAdapterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAdapterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p> Indicates that a request was not valid. Check request for proper formatting. </p>",
       "refs": {
       }
     },

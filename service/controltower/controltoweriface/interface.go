@@ -72,6 +72,10 @@ type ControlTowerAPI interface {
 	GetControlOperationWithContext(aws.Context, *controltower.GetControlOperationInput, ...request.Option) (*controltower.GetControlOperationOutput, error)
 	GetControlOperationRequest(*controltower.GetControlOperationInput) (*request.Request, *controltower.GetControlOperationOutput)
 
+	GetEnabledControl(*controltower.GetEnabledControlInput) (*controltower.GetEnabledControlOutput, error)
+	GetEnabledControlWithContext(aws.Context, *controltower.GetEnabledControlInput, ...request.Option) (*controltower.GetEnabledControlOutput, error)
+	GetEnabledControlRequest(*controltower.GetEnabledControlInput) (*request.Request, *controltower.GetEnabledControlOutput)
+
 	ListEnabledControls(*controltower.ListEnabledControlsInput) (*controltower.ListEnabledControlsOutput, error)
 	ListEnabledControlsWithContext(aws.Context, *controltower.ListEnabledControlsInput, ...request.Option) (*controltower.ListEnabledControlsOutput, error)
 	ListEnabledControlsRequest(*controltower.ListEnabledControlsInput) (*request.Request, *controltower.ListEnabledControlsOutput)

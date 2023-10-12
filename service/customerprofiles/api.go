@@ -6380,7 +6380,11 @@ type CreateCalculatedAttributeDefinitionInput struct {
 	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The description of the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
@@ -6541,7 +6545,11 @@ type CreateCalculatedAttributeDefinitionOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
@@ -9561,7 +9569,11 @@ type GetCalculatedAttributeDefinitionOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
@@ -12050,7 +12062,11 @@ type ListCalculatedAttributeDefinitionItem struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The threshold for the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListCalculatedAttributeDefinitionItem's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
@@ -12194,7 +12210,11 @@ type ListCalculatedAttributeDefinitionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of calculated attribute definitions.
-	Items []*ListCalculatedAttributeDefinitionItem `type:"list"`
+	//
+	// Items is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListCalculatedAttributeDefinitionsOutput's
+	// String and GoString methods.
+	Items []*ListCalculatedAttributeDefinitionItem `type:"list" sensitive:"true"`
 
 	// The pagination token from the previous call to ListCalculatedAttributeDefinitions.
 	NextToken *string `min:"1" type:"string"`
@@ -17560,7 +17580,11 @@ type UpdateCalculatedAttributeDefinitionInput struct {
 	Conditions *Conditions `type:"structure" sensitive:"true"`
 
 	// The description of the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionInput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
@@ -17678,7 +17702,11 @@ type UpdateCalculatedAttributeDefinitionOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the calculated attribute.
-	Description *string `min:"1" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCalculatedAttributeDefinitionOutput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// The display name of the calculated attribute.
 	DisplayName *string `min:"1" type:"string"`
