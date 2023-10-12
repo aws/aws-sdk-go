@@ -1985,9 +1985,15 @@
     "sensitiveText": {
       "base": null,
       "refs": {
+        "CreateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
+        "CreateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
+        "GetCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
         "GetProfileObjectTypeResponse$Description": "<p>The description of the profile object type.</p>",
+        "ListCalculatedAttributeDefinitionItem$Description": "<p>The threshold for the calculated attribute.</p>",
         "PutProfileObjectTypeRequest$Description": "<p>Description of the profile object type.</p>",
-        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>"
+        "PutProfileObjectTypeResponse$Description": "<p>Description of the profile object type.</p>",
+        "UpdateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
+        "UpdateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>"
       }
     },
     "sqsQueueUrl": {
@@ -2110,15 +2116,9 @@
     "text": {
       "base": null,
       "refs": {
-        "CreateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
-        "CreateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
-        "GetCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>",
-        "ListCalculatedAttributeDefinitionItem$Description": "<p>The threshold for the calculated attribute.</p>",
         "ListProfileObjectTypeItem$Description": "<p>Description of the profile object type.</p>",
         "ObjectTypeField$Source": "<p>A field of a ProfileObject. For example: _source.FirstName, where “_source” is a ProfileObjectType of a Zendesk user and “FirstName” is a field in that ObjectType.</p>",
-        "ObjectTypeField$Target": "<p>The location of the data in the standard ProfileObject model. For example: _profile.Address.PostalCode.</p>",
-        "UpdateCalculatedAttributeDefinitionRequest$Description": "<p>The description of the calculated attribute.</p>",
-        "UpdateCalculatedAttributeDefinitionResponse$Description": "<p>The description of the calculated attribute.</p>"
+        "ObjectTypeField$Target": "<p>The location of the data in the standard ProfileObject model. For example: _profile.Address.PostalCode.</p>"
       }
     },
     "timestamp": {

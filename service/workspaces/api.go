@@ -1340,9 +1340,11 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //
 // This operation is asynchronous and returns before the WorkSpaces are created.
 //
-// The MANUAL running mode value is only supported by Amazon WorkSpaces Core.
-// Contact your account team to be allow-listed to use this value. For more
-// information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
+//   - The MANUAL running mode value is only supported by Amazon WorkSpaces
+//     Core. Contact your account team to be allow-listed to use this value.
+//     For more information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
+//
+//   - PCoIP is only available for Windows bundles.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

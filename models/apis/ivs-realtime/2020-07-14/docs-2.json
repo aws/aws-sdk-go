@@ -233,6 +233,17 @@
         "Participant$attributes": "<p>Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>"
       }
     },
+    "ParticipantClientAttribute": {
+      "base": null,
+      "refs": {
+        "Participant$browserName": "<p>The participant’s browser.</p>",
+        "Participant$browserVersion": "<p>The participant’s browser version.</p>",
+        "Participant$ispName": "<p>The participant’s Internet Service Provider.</p>",
+        "Participant$osName": "<p>The participant’s operating system.</p>",
+        "Participant$osVersion": "<p>The participant’s operating system version.</p>",
+        "Participant$sdkVersion": "<p>The participant’s SDK version.</p>"
+      }
+    },
     "ParticipantId": {
       "base": null,
       "refs": {

@@ -889,7 +889,8 @@ func (c *Inspector2) CreateFilterRequest(input *CreateFilterInput) (req *request
 
 // CreateFilter API operation for Inspector2.
 //
-// Creates a filter resource using specified filter criteria.
+// Creates a filter resource using specified filter criteria. When the filter
+// action is set to SUPPRESS this action creates a suppression rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7718,7 +7719,9 @@ type CoverageFilterCriteria struct {
 	// for. The values can be AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION or AWS_ECR_REPOSITORY.
 	ResourceType []*CoverageStringFilter `locationName:"resourceType" min:"1" type:"list"`
 
-	// The scan status code to filter on.
+	// The scan status code to filter on. Valid values are: ValidationException,
+	// InternalServerException, ResourceNotFoundException, BadRequestException,
+	// and ThrottlingException.
 	ScanStatusCode []*CoverageStringFilter `locationName:"scanStatusCode" min:"1" type:"list"`
 
 	// The scan status reason to filter on.
@@ -11571,12 +11574,18 @@ type Finding struct {
 	// Remediation is a required field
 	Remediation *Remediation `locationName:"remediation" type:"structure" required:"true"`
 
-	// Contains information on the resources involved in a finding.
+	// Contains information on the resources involved in a finding. The resource
+	// value determines the valid values for type in your request. For more information,
+	// see Finding types (https://docs.aws.amazon.com/inspector/latest/user/findings-types.html)
+	// in the Amazon Inspector user guide.
 	//
 	// Resources is a required field
 	Resources []*Resource `locationName:"resources" min:"1" type:"list" required:"true"`
 
-	// The severity of the finding.
+	// The severity of the finding. UNTRIAGED applies to PACKAGE_VULNERABILITY type
+	// findings that the vendor has not assigned a severity yet. For more information,
+	// see Severity levels for findings (https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html)
+	// in the Amazon Inspector user guide.
 	//
 	// Severity is a required field
 	Severity *string `locationName:"severity" type:"string" required:"true" enum:"Severity"`
@@ -11589,7 +11598,9 @@ type Finding struct {
 	// The title of the finding.
 	Title *string `locationName:"title" min:"1" type:"string"`
 
-	// The type of the finding.
+	// The type of the finding. The type value determines the valid values for resource
+	// in your request. For more information, see Finding types (https://docs.aws.amazon.com/inspector/latest/user/findings-types.html)
+	// in the Amazon Inspector user guide.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FindingType"`
@@ -13618,13 +13629,16 @@ func (s *LambdaVpcConfig) SetVpcId(v string) *LambdaVpcConfig {
 type ListAccountPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the NextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The service scan type to check permissions for.
@@ -13732,13 +13746,16 @@ type ListCoverageInput struct {
 	// for your environment.
 	FilterCriteria *CoverageFilterCriteria `locationName:"filterCriteria" type:"structure"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13964,13 +13981,16 @@ func (s *ListCoverageStatisticsOutput) SetTotalCounts(v int64) *ListCoverageStat
 type ListDelegatedAdminAccountsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -14069,13 +14089,16 @@ type ListFiltersInput struct {
 	// The Amazon resource number (ARN) of the filter.
 	Arns []*string `locationName:"arns" type:"list"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -14195,13 +14218,16 @@ type ListFindingAggregationsInput struct {
 	// AggregationType is a required field
 	AggregationType *string `locationName:"aggregationType" type:"string" required:"true" enum:"AggregationType"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -14347,13 +14373,16 @@ type ListFindingsInput struct {
 	// Details on the filters to apply to your finding results.
 	FilterCriteria *FilterCriteria `locationName:"filterCriteria" type:"structure"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details on the sort criteria to apply to your finding results.
@@ -14471,13 +14500,16 @@ func (s *ListFindingsOutput) SetNextToken(v string) *ListFindingsOutput {
 type ListMembersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Specifies whether to list only currently associated members if True or to
@@ -14661,13 +14693,16 @@ type ListUsageTotalsInput struct {
 	// The Amazon Web Services account IDs to retrieve usage totals for.
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list"`
 
-	// The maximum number of results to return in the response.
+	// The maximum number of results the response can return. If your request would
+	// return more than the maximum the response will return a nextToken value,
+	// use this value when you call the action again to get the remaining results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
 	// Set the value of this parameter to null for the first request to a list action.
-	// For subsequent calls, use the NextToken value returned from the previous
-	// request to continue listing results after the first page.
+	// If your response returns more than the maxResults maximum value it will also
+	// return a nextToken value. For subsequent calls, use the nextToken value returned
+	// from the previous request to continue listing results after the first page.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -16689,7 +16724,99 @@ func (s *ResourceStringFilter) SetValue(v string) *ResourceStringFilter {
 type ScanStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The reason for the scan.
+	// The scan status. Possible return values and descriptions are:
+	//
+	// PENDING_INITIAL_SCAN - This resource has been identified for scanning, results
+	// will be available soon.
+	//
+	// ACCESS_DENIED - Resource access policy restricting Amazon Inspector access.
+	// Please update the IAM policy.
+	//
+	// INTERNAL_ERROR - Amazon Inspector has encountered an internal error for this
+	// resource. Amazon Inspector service will automatically resolve the issue and
+	// resume the scanning. No action required from the user.
+	//
+	// UNMANAGED_EC2_INSTANCE - The EC2 instance is not managed by SSM, please use
+	// the following SSM automation to remediate the issue: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html
+	// (https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html).
+	// Once the instance becomes managed by SSM, Inspector will automatically begin
+	// scanning this instance.
+	//
+	// UNSUPPORTED_OS - Amazon Inspector does not support this OS, architecture,
+	// or image manifest type at this time. To see a complete list of supported
+	// operating systems see: https://docs.aws.amazon.com/inspector/latest/user/supported.html
+	// (https://docs.aws.amazon.com/inspector/latest/user/supported.html).
+	//
+	// SCAN_ELIGIBILITY_EXPIRED - The configured scan duration has lapsed for this
+	// image.
+	//
+	// RESOURCE_TERMINATED - This resource has been terminated. The findings and
+	// coverage associated with this resource are in the process of being cleaned
+	// up.
+	//
+	// SUCCESSFUL - The scan was successful.
+	//
+	// NO_RESOURCES_FOUND - Reserved for future use.
+	//
+	// IMAGE_SIZE_EXCEEDED - Reserved for future use.
+	//
+	// SCAN_FREQUENCY_MANUAL - This image will not be covered by Amazon Inspector
+	// due to the repository scan frequency configuration.
+	//
+	// SCAN_FREQUENCY_SCAN_ON_PUSH - This image will be scanned one time and will
+	// not new findings because of the scan frequency configuration.
+	//
+	// EC2_INSTANCE_STOPPED - This EC2 instance is in a stopped state, therefore,
+	// Amazon Inspector will pause scanning. The existing findings will continue
+	// to exist until the instance is terminated. Once the instance is re-started,
+	// Inspector will automatically start scanning the instance again. Please note
+	// that you will not be charged for this instance while it’s in a stopped
+	// state.
+	//
+	// PENDING_DISABLE - This resource is pending cleanup during disablement. The
+	// customer will not be billed while a resource is in the pending disable status.
+	//
+	// NO INVENTORY - Amazon Inspector couldn’t find software application inventory
+	// to scan for vulnerabilities. This might be caused due to required Amazon
+	// Inspector associations being deleted or failing to run on your resource.
+	// Please verify the status of InspectorInventoryCollection-do-not-delete association
+	// in the SSM console for the resource. Additionally, you can verify the instance’s
+	// inventory in the SSM Fleet Manager console.
+	//
+	// STALE_INVENTORY - Amazon Inspector wasn’t able to collect an updated software
+	// application inventory in the last 7 days. Please confirm the required Amazon
+	// Inspector associations still exist and you can still see an updated inventory
+	// in the SSM console.
+	//
+	// EXCLUDED_BY_TAG - This resource was not scanned because it has been excluded
+	// by a tag.
+	//
+	// UNSUPPORTED_RUNTIME - The function was not scanned because it has an unsupported
+	// runtime. To see a complete list of supported runtimes see: https://docs.aws.amazon.com/inspector/latest/user/supported.html
+	// (https://docs.aws.amazon.com/inspector/latest/user/supported.html).
+	//
+	// UNSUPPORTED_MEDIA_TYPE - The ECR image has an unsupported media type.
+	//
+	// UNSUPPORTED_CONFIG_FILE - Reserved for future use.
+	//
+	// DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED - The instance has exceeded
+	// the 5000 package limit for Amazon Inspector Deep inspection. To resume Deep
+	// inspection for this instance you can try to adjust the custom paths associated
+	// with the account.
+	//
+	// DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED - The SSM agent couldn't
+	// send inventory to Amazon Inspector because the SSM quota for Inventory data
+	// collected per instance per day has already been reached for this instance.
+	//
+	// DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED - Amazon Inspector failed
+	// to extract the package inventory because the package collection time exceeding
+	// the maximum threshold of 15 minutes.
+	//
+	// DEEP_INSPECTION_NO_INVENTORY The Amazon Inspector plugin hasn't yet been
+	// able to collect an inventory of packages for this instance. This is usually
+	// the result of a pending scan, however, if this status persists after 6 hours,
+	// use SSM to ensure that the required Amazon Inspector associations exist and
+	// are running for the instance.
 	//
 	// Reason is a required field
 	Reason *string `locationName:"reason" type:"string" required:"true" enum:"ScanStatusReason"`
@@ -18530,7 +18657,8 @@ type Vulnerability struct {
 	// A list of related vulnerabilities.
 	RelatedVulnerabilities []*string `locationName:"relatedVulnerabilities" type:"list"`
 
-	// The source of the vulnerability information.
+	// The source of the vulnerability information. Possible results are RHEL, AMAZON_CVE,
+	// DEBIAN or NVD.
 	Source *string `locationName:"source" type:"string" enum:"VulnerabilitySource"`
 
 	// A link to the official source material for this vulnerability.
@@ -19126,6 +19254,9 @@ const (
 
 	// Ec2PlatformUnknown is a Ec2Platform enum value
 	Ec2PlatformUnknown = "UNKNOWN"
+
+	// Ec2PlatformMacos is a Ec2Platform enum value
+	Ec2PlatformMacos = "MACOS"
 )
 
 // Ec2Platform_Values returns all elements of the Ec2Platform enum
@@ -19134,6 +19265,7 @@ func Ec2Platform_Values() []string {
 		Ec2PlatformWindows,
 		Ec2PlatformLinux,
 		Ec2PlatformUnknown,
+		Ec2PlatformMacos,
 	}
 }
 

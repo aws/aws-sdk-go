@@ -30,7 +30,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."}
+      "endpoint":{"hostPrefix":"cp.tracking."}
     },
     "BatchDeleteDevicePositionHistory":{
       "name":"BatchDeleteDevicePositionHistory",
@@ -193,7 +193,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"geofencing."},
+      "endpoint":{"hostPrefix":"cp.geofencing."},
       "idempotent":true
     },
     "CreateKey":{
@@ -213,7 +213,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."},
+      "endpoint":{"hostPrefix":"cp.metadata."},
       "idempotent":true
     },
     "CreateMap":{
@@ -233,7 +233,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"maps."},
+      "endpoint":{"hostPrefix":"cp.maps."},
       "idempotent":true
     },
     "CreatePlaceIndex":{
@@ -253,7 +253,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"places."},
+      "endpoint":{"hostPrefix":"cp.places."},
       "idempotent":true
     },
     "CreateRouteCalculator":{
@@ -273,7 +273,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"routes."},
+      "endpoint":{"hostPrefix":"cp.routes."},
       "idempotent":true
     },
     "CreateTracker":{
@@ -293,7 +293,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."},
+      "endpoint":{"hostPrefix":"cp.tracking."},
       "idempotent":true
     },
     "DeleteGeofenceCollection":{
@@ -312,7 +312,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"geofencing."},
+      "endpoint":{"hostPrefix":"cp.geofencing."},
       "idempotent":true
     },
     "DeleteKey":{
@@ -331,7 +331,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."},
+      "endpoint":{"hostPrefix":"cp.metadata."},
       "idempotent":true
     },
     "DeleteMap":{
@@ -350,7 +350,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"maps."},
+      "endpoint":{"hostPrefix":"cp.maps."},
       "idempotent":true
     },
     "DeletePlaceIndex":{
@@ -369,7 +369,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"places."},
+      "endpoint":{"hostPrefix":"cp.places."},
       "idempotent":true
     },
     "DeleteRouteCalculator":{
@@ -388,7 +388,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"routes."},
+      "endpoint":{"hostPrefix":"cp.routes."},
       "idempotent":true
     },
     "DeleteTracker":{
@@ -407,7 +407,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."},
+      "endpoint":{"hostPrefix":"cp.tracking."},
       "idempotent":true
     },
     "DescribeGeofenceCollection":{
@@ -426,7 +426,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"geofencing."}
+      "endpoint":{"hostPrefix":"cp.geofencing."}
     },
     "DescribeKey":{
       "name":"DescribeKey",
@@ -444,7 +444,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."}
+      "endpoint":{"hostPrefix":"cp.metadata."}
     },
     "DescribeMap":{
       "name":"DescribeMap",
@@ -462,7 +462,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"maps."}
+      "endpoint":{"hostPrefix":"cp.maps."}
     },
     "DescribePlaceIndex":{
       "name":"DescribePlaceIndex",
@@ -480,7 +480,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"places."}
+      "endpoint":{"hostPrefix":"cp.places."}
     },
     "DescribeRouteCalculator":{
       "name":"DescribeRouteCalculator",
@@ -498,7 +498,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"routes."}
+      "endpoint":{"hostPrefix":"cp.routes."}
     },
     "DescribeTracker":{
       "name":"DescribeTracker",
@@ -516,7 +516,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."}
+      "endpoint":{"hostPrefix":"cp.tracking."}
     },
     "DisassociateTrackerConsumer":{
       "name":"DisassociateTrackerConsumer",
@@ -534,7 +534,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."}
+      "endpoint":{"hostPrefix":"cp.tracking."}
     },
     "GetDevicePosition":{
       "name":"GetDevicePosition",
@@ -712,7 +712,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"geofencing."}
+      "endpoint":{"hostPrefix":"cp.geofencing."}
     },
     "ListGeofences":{
       "name":"ListGeofences",
@@ -747,7 +747,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."}
+      "endpoint":{"hostPrefix":"cp.metadata."}
     },
     "ListMaps":{
       "name":"ListMaps",
@@ -764,7 +764,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"maps."}
+      "endpoint":{"hostPrefix":"cp.maps."}
     },
     "ListPlaceIndexes":{
       "name":"ListPlaceIndexes",
@@ -781,7 +781,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"places."}
+      "endpoint":{"hostPrefix":"cp.places."}
     },
     "ListRouteCalculators":{
       "name":"ListRouteCalculators",
@@ -798,7 +798,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"routes."}
+      "endpoint":{"hostPrefix":"cp.routes."}
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -816,7 +816,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."}
+      "endpoint":{"hostPrefix":"cp.metadata."}
     },
     "ListTrackerConsumers":{
       "name":"ListTrackerConsumers",
@@ -834,7 +834,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."}
+      "endpoint":{"hostPrefix":"cp.tracking."}
     },
     "ListTrackers":{
       "name":"ListTrackers",
@@ -851,7 +851,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."}
+      "endpoint":{"hostPrefix":"cp.tracking."}
     },
     "PutGeofence":{
       "name":"PutGeofence",
@@ -942,7 +942,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."}
+      "endpoint":{"hostPrefix":"cp.metadata."}
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -960,7 +960,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."},
+      "endpoint":{"hostPrefix":"cp.metadata."},
       "idempotent":true
     },
     "UpdateGeofenceCollection":{
@@ -979,7 +979,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"geofencing."},
+      "endpoint":{"hostPrefix":"cp.geofencing."},
       "idempotent":true
     },
     "UpdateKey":{
@@ -998,7 +998,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"metadata."},
+      "endpoint":{"hostPrefix":"cp.metadata."},
       "idempotent":true
     },
     "UpdateMap":{
@@ -1017,7 +1017,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"maps."},
+      "endpoint":{"hostPrefix":"cp.maps."},
       "idempotent":true
     },
     "UpdatePlaceIndex":{
@@ -1036,7 +1036,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"places."},
+      "endpoint":{"hostPrefix":"cp.places."},
       "idempotent":true
     },
     "UpdateRouteCalculator":{
@@ -1055,7 +1055,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"routes."},
+      "endpoint":{"hostPrefix":"cp.routes."},
       "idempotent":true
     },
     "UpdateTracker":{
@@ -1074,7 +1074,7 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"tracking."},
+      "endpoint":{"hostPrefix":"cp.tracking."},
       "idempotent":true
     }
   },

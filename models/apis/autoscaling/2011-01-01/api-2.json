@@ -1128,6 +1128,12 @@
       },
       "exception":true
     },
+    "AnyPrintableAsciiStringMaxLen4000":{
+      "type":"string",
+      "max":4000,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007e]+"
+    },
     "AsciiStringMaxLen255":{
       "type":"string",
       "max":255,
@@ -2402,7 +2408,7 @@
         "LifecycleTransition":{"shape":"LifecycleTransition"},
         "NotificationTargetARN":{"shape":"NotificationTargetResourceName"},
         "RoleARN":{"shape":"XmlStringMaxLen255"},
-        "NotificationMetadata":{"shape":"XmlStringMaxLen1023"},
+        "NotificationMetadata":{"shape":"AnyPrintableAsciiStringMaxLen4000"},
         "HeartbeatTimeout":{"shape":"HeartbeatTimeout"},
         "GlobalTimeout":{"shape":"GlobalTimeout"},
         "DefaultResult":{"shape":"LifecycleActionResult"}
@@ -2422,7 +2428,7 @@
       "members":{
         "LifecycleHookName":{"shape":"AsciiStringMaxLen255"},
         "LifecycleTransition":{"shape":"LifecycleTransition"},
-        "NotificationMetadata":{"shape":"XmlStringMaxLen1023"},
+        "NotificationMetadata":{"shape":"AnyPrintableAsciiStringMaxLen4000"},
         "HeartbeatTimeout":{"shape":"HeartbeatTimeout"},
         "DefaultResult":{"shape":"LifecycleActionResult"},
         "NotificationTargetARN":{"shape":"NotificationTargetResourceName"},
@@ -2942,7 +2948,7 @@
         "LifecycleTransition":{"shape":"LifecycleTransition"},
         "RoleARN":{"shape":"XmlStringMaxLen255"},
         "NotificationTargetARN":{"shape":"NotificationTargetResourceName"},
-        "NotificationMetadata":{"shape":"XmlStringMaxLen1023"},
+        "NotificationMetadata":{"shape":"AnyPrintableAsciiStringMaxLen4000"},
         "HeartbeatTimeout":{"shape":"HeartbeatTimeout"},
         "DefaultResult":{"shape":"LifecycleActionResult"}
       }

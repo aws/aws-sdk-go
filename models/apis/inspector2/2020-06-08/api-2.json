@@ -1858,7 +1858,8 @@
       "enum":[
         "WINDOWS",
         "LINUX",
-        "UNKNOWN"
+        "UNKNOWN",
+        "MACOS"
       ]
     },
     "EcrConfiguration":{

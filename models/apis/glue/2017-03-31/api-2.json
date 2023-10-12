@@ -11146,6 +11146,8 @@
       "type":"string",
       "enum":[
         "GITHUB",
+        "GITLAB",
+        "BITBUCKET",
         "AWS_CODE_COMMIT"
       ]
     },

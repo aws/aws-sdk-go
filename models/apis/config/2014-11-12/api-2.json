@@ -5020,7 +5020,26 @@
         "AWS::Pinpoint::EmailChannel",
         "AWS::S3::AccessPoint",
         "AWS::NetworkManager::CustomerGatewayAssociation",
-        "AWS::NetworkManager::LinkAssociation"
+        "AWS::NetworkManager::LinkAssociation",
+        "AWS::IoTWireless::MulticastGroup",
+        "AWS::Personalize::DatasetGroup",
+        "AWS::IoTTwinMaker::ComponentType",
+        "AWS::CodeBuild::ReportGroup",
+        "AWS::SageMaker::FeatureGroup",
+        "AWS::MSK::BatchScramSecret",
+        "AWS::AppStream::Stack",
+        "AWS::IoT::JobTemplate",
+        "AWS::IoTWireless::FuotaTask",
+        "AWS::IoT::ProvisioningTemplate",
+        "AWS::InspectorV2::Filter",
+        "AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation",
+        "AWS::ServiceDiscovery::Instance",
+        "AWS::Transfer::Certificate",
+        "AWS::MediaConnect::FlowSource",
+        "AWS::APS::RuleGroupsNamespace",
+        "AWS::CodeGuruProfiler::ProfilingGroup",
+        "AWS::Route53Resolver::ResolverQueryLoggingConfig",
+        "AWS::Batch::SchedulingPolicy"
       ]
     },
     "ResourceTypeList":{

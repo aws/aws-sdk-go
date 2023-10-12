@@ -67,6 +67,23 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetEnabledControl":{
+      "name":"GetEnabledControl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/get-enabled-control",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEnabledControlInput"},
+      "output":{"shape":"GetEnabledControlOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListEnabledControls":{
       "name":"ListEnabledControls",
       "http":{
@@ -97,6 +114,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Arn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[0-9a-zA-Z_\\-:\\/]+$"
     },
     "ConflictException":{
       "type":"structure",
@@ -159,6 +182,21 @@
         "operationIdentifier":{"shape":"OperationIdentifier"}
       }
     },
+    "DriftStatus":{
+      "type":"string",
+      "enum":[
+        "DRIFTED",
+        "IN_SYNC",
+        "NOT_CHECKING",
+        "UNKNOWN"
+      ]
+    },
+    "DriftStatusSummary":{
+      "type":"structure",
+      "members":{
+        "driftStatus":{"shape":"DriftStatus"}
+      }
+    },
     "EnableControlInput":{
       "type":"structure",
       "required":[
@@ -177,15 +215,45 @@
         "operationIdentifier":{"shape":"OperationIdentifier"}
       }
     },
+    "EnabledControlDetails":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"Arn"},
+        "controlIdentifier":{"shape":"ControlIdentifier"},
+        "driftStatusSummary":{"shape":"DriftStatusSummary"},
+        "statusSummary":{"shape":"EnablementStatusSummary"},
+        "targetIdentifier":{"shape":"TargetIdentifier"},
+        "targetRegions":{"shape":"TargetRegions"}
+      }
+    },
     "EnabledControlSummary":{
       "type":"structure",
       "members":{
-        "controlIdentifier":{"shape":"ControlIdentifier"}
+        "arn":{"shape":"Arn"},
+        "controlIdentifier":{"shape":"ControlIdentifier"},
+        "driftStatusSummary":{"shape":"DriftStatusSummary"},
+        "statusSummary":{"shape":"EnablementStatusSummary"},
+        "targetIdentifier":{"shape":"TargetIdentifier"}
       }
     },
     "EnabledControls":{
       "type":"list",
       "member":{"shape":"EnabledControlSummary"}
+    },
+    "EnablementStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "FAILED",
+        "UNDER_CHANGE"
+      ]
+    },
+    "EnablementStatusSummary":{
+      "type":"structure",
+      "members":{
+        "lastOperationIdentifier":{"shape":"OperationIdentifier"},
+        "status":{"shape":"EnablementStatus"}
+      }
     },
     "GetControlOperationInput":{
       "type":"structure",
@@ -199,6 +267,20 @@
       "required":["controlOperation"],
       "members":{
         "controlOperation":{"shape":"ControlOperation"}
+      }
+    },
+    "GetEnabledControlInput":{
+      "type":"structure",
+      "required":["enabledControlIdentifier"],
+      "members":{
+        "enabledControlIdentifier":{"shape":"Arn"}
+      }
+    },
+    "GetEnabledControlOutput":{
+      "type":"structure",
+      "required":["enabledControlDetails"],
+      "members":{
+        "enabledControlDetails":{"shape":"EnabledControlDetails"}
       }
     },
     "Integer":{
@@ -236,7 +318,7 @@
     "MaxResults":{
       "type":"integer",
       "box":true,
-      "max":100,
+      "max":200,
       "min":1
     },
     "OperationIdentifier":{
@@ -244,6 +326,17 @@
       "max":36,
       "min":36,
       "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "Region":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"RegionName"}
+      }
+    },
+    "RegionName":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -279,6 +372,10 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:aws[0-9a-zA-Z_\\-:\\/]+$"
+    },
+    "TargetRegions":{
+      "type":"list",
+      "member":{"shape":"Region"}
     },
     "ThrottlingException":{
       "type":"structure",

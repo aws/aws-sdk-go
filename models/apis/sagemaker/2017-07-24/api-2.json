@@ -4849,7 +4849,9 @@
         "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"},
         "ModelRegisterSettings":{"shape":"ModelRegisterSettings"},
         "WorkspaceSettings":{"shape":"WorkspaceSettings"},
-        "IdentityProviderOAuthSettings":{"shape":"IdentityProviderOAuthSettings"}
+        "IdentityProviderOAuthSettings":{"shape":"IdentityProviderOAuthSettings"},
+        "KendraSettings":{"shape":"KendraSettings"},
+        "DirectDeploySettings":{"shape":"DirectDeploySettings"}
       }
     },
     "CapacitySize":{
@@ -9743,6 +9745,12 @@
       "max":8192,
       "min":1
     },
+    "DirectDeploySettings":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"}
+      }
+    },
     "DirectInternetAccess":{
       "type":"string",
       "enum":[
@@ -12582,6 +12590,12 @@
       "type":"integer",
       "max":3600,
       "min":0
+    },
+    "KendraSettings":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"}
+      }
     },
     "KernelDisplayName":{
       "type":"string",
@@ -19907,7 +19921,7 @@
     "TrainingContainerEntrypoint":{
       "type":"list",
       "member":{"shape":"TrainingContainerEntrypointString"},
-      "max":10,
+      "max":100,
       "min":1
     },
     "TrainingContainerEntrypointString":{
@@ -19924,7 +19938,7 @@
       "type":"map",
       "key":{"shape":"TrainingEnvironmentKey"},
       "value":{"shape":"TrainingEnvironmentValue"},
-      "max":48
+      "max":100
     },
     "TrainingEnvironmentValue":{
       "type":"string",

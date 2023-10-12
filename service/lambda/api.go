@@ -22459,6 +22459,10 @@ func (s *UpdateFunctionUrlConfigOutput) SetLastModifiedTime(v string) *UpdateFun
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack
+	// subnets.
+	Ipv6AllowedForDualStack *bool `type:"boolean"`
+
 	// A list of VPC security group IDs.
 	SecurityGroupIds []*string `type:"list"`
 
@@ -22484,6 +22488,12 @@ func (s VpcConfig) GoString() string {
 	return s.String()
 }
 
+// SetIpv6AllowedForDualStack sets the Ipv6AllowedForDualStack field's value.
+func (s *VpcConfig) SetIpv6AllowedForDualStack(v bool) *VpcConfig {
+	s.Ipv6AllowedForDualStack = &v
+	return s
+}
+
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
 func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
 	s.SecurityGroupIds = v
@@ -22499,6 +22509,10 @@ func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
 // The VPC security groups and subnets that are attached to a Lambda function.
 type VpcConfigResponse struct {
 	_ struct{} `type:"structure"`
+
+	// Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack
+	// subnets.
+	Ipv6AllowedForDualStack *bool `type:"boolean"`
 
 	// A list of VPC security group IDs.
 	SecurityGroupIds []*string `type:"list"`
@@ -22526,6 +22540,12 @@ func (s VpcConfigResponse) String() string {
 // value will be replaced with "sensitive".
 func (s VpcConfigResponse) GoString() string {
 	return s.String()
+}
+
+// SetIpv6AllowedForDualStack sets the Ipv6AllowedForDualStack field's value.
+func (s *VpcConfigResponse) SetIpv6AllowedForDualStack(v bool) *VpcConfigResponse {
+	s.Ipv6AllowedForDualStack = &v
+	return s
 }
 
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
