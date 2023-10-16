@@ -5537,21 +5537,21 @@ type GetOriginEndpointPolicyOutput struct {
 	// for the channel group, and must be unique for your account in the AWS Region.
 	//
 	// ChannelGroupName is a required field
-	ChannelGroupName *string `type:"string" required:"true"`
+	ChannelGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name that describes the channel. The name is the primary identifier for
 	// the channel, and must be unique for your account in the AWS Region and channel
 	// group.
 	//
 	// ChannelName is a required field
-	ChannelName *string `type:"string" required:"true"`
+	ChannelName *string `min:"1" type:"string" required:"true"`
 
 	// The name that describes the origin endpoint. The name is the primary identifier
 	// for the origin endpoint, and and must be unique for your account in the AWS
 	// Region and channel.
 	//
 	// OriginEndpointName is a required field
-	OriginEndpointName *string `type:"string" required:"true"`
+	OriginEndpointName *string `min:"1" type:"string" required:"true"`
 
 	// The policy assigned to the origin endpoint.
 	//

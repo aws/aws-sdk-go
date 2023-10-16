@@ -13,6 +13,110 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateIdMappingWorkflow = "CreateIdMappingWorkflow"
+
+// CreateIdMappingWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIdMappingWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateIdMappingWorkflow for more information on using the CreateIdMappingWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateIdMappingWorkflowRequest method.
+//	req, resp := client.CreateIdMappingWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdMappingWorkflow
+func (c *EntityResolution) CreateIdMappingWorkflowRequest(input *CreateIdMappingWorkflowInput) (req *request.Request, output *CreateIdMappingWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opCreateIdMappingWorkflow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/idmappingworkflows",
+	}
+
+	if input == nil {
+		input = &CreateIdMappingWorkflowInput{}
+	}
+
+	output = &CreateIdMappingWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateIdMappingWorkflow API operation for AWS EntityResolution.
+//
+// Creates an IdMappingWorkflow object which stores the configuration of the
+// data processing job to be run. Each IdMappingWorkflow must have a unique
+// workflow name. To modify an existing workflow, use the UpdateIdMappingWorkflow
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation CreateIdMappingWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ExceedsLimitException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Entity Resolution account limits. The error message describes
+//     the limit exceeded. HTTP Status Code: 402
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdMappingWorkflow
+func (c *EntityResolution) CreateIdMappingWorkflow(input *CreateIdMappingWorkflowInput) (*CreateIdMappingWorkflowOutput, error) {
+	req, out := c.CreateIdMappingWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// CreateIdMappingWorkflowWithContext is the same as CreateIdMappingWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIdMappingWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) CreateIdMappingWorkflowWithContext(ctx aws.Context, input *CreateIdMappingWorkflowInput, opts ...request.Option) (*CreateIdMappingWorkflowOutput, error) {
+	req, out := c.CreateIdMappingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMatchingWorkflow = "CreateMatchingWorkflow"
 
 // CreateMatchingWorkflowRequest generates a "aws/request.Request" representing the
@@ -221,6 +325,98 @@ func (c *EntityResolution) CreateSchemaMappingWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteIdMappingWorkflow = "DeleteIdMappingWorkflow"
+
+// DeleteIdMappingWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdMappingWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIdMappingWorkflow for more information on using the DeleteIdMappingWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIdMappingWorkflowRequest method.
+//	req, resp := client.DeleteIdMappingWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdMappingWorkflow
+func (c *EntityResolution) DeleteIdMappingWorkflowRequest(input *DeleteIdMappingWorkflowInput) (req *request.Request, output *DeleteIdMappingWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIdMappingWorkflow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/idmappingworkflows/{workflowName}",
+	}
+
+	if input == nil {
+		input = &DeleteIdMappingWorkflowInput{}
+	}
+
+	output = &DeleteIdMappingWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteIdMappingWorkflow API operation for AWS EntityResolution.
+//
+// Deletes the IdMappingWorkflow with a given name. This operation will succeed
+// even if a workflow with the given name does not exist.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation DeleteIdMappingWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdMappingWorkflow
+func (c *EntityResolution) DeleteIdMappingWorkflow(input *DeleteIdMappingWorkflowInput) (*DeleteIdMappingWorkflowOutput, error) {
+	req, out := c.DeleteIdMappingWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIdMappingWorkflowWithContext is the same as DeleteIdMappingWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIdMappingWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) DeleteIdMappingWorkflowWithContext(ctx aws.Context, input *DeleteIdMappingWorkflowInput, opts ...request.Option) (*DeleteIdMappingWorkflowOutput, error) {
+	req, out := c.DeleteIdMappingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteMatchingWorkflow = "DeleteMatchingWorkflow"
 
 // DeleteMatchingWorkflowRequest generates a "aws/request.Request" representing the
@@ -358,7 +554,7 @@ func (c *EntityResolution) DeleteSchemaMappingRequest(input *DeleteSchemaMapping
 //
 // Deletes the SchemaMapping with a given name. This operation will succeed
 // even if a schema with the given name does not exist. This operation will
-// fail if there is a DataIntegrationWorkflow object that references the SchemaMapping
+// fail if there is a MatchingWorkflow object that references the SchemaMapping
 // in the workflow's InputSourceConfig.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -407,6 +603,195 @@ func (c *EntityResolution) DeleteSchemaMapping(input *DeleteSchemaMappingInput) 
 // for more information on using Contexts.
 func (c *EntityResolution) DeleteSchemaMappingWithContext(ctx aws.Context, input *DeleteSchemaMappingInput, opts ...request.Option) (*DeleteSchemaMappingOutput, error) {
 	req, out := c.DeleteSchemaMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetIdMappingJob = "GetIdMappingJob"
+
+// GetIdMappingJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdMappingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetIdMappingJob for more information on using the GetIdMappingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetIdMappingJobRequest method.
+//	req, resp := client.GetIdMappingJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingJob
+func (c *EntityResolution) GetIdMappingJobRequest(input *GetIdMappingJobInput) (req *request.Request, output *GetIdMappingJobOutput) {
+	op := &request.Operation{
+		Name:       opGetIdMappingJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idmappingworkflows/{workflowName}/jobs/{jobId}",
+	}
+
+	if input == nil {
+		input = &GetIdMappingJobInput{}
+	}
+
+	output = &GetIdMappingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetIdMappingJob API operation for AWS EntityResolution.
+//
+// Gets the status, metrics, and errors (if there are any) that are associated
+// with a job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation GetIdMappingJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingJob
+func (c *EntityResolution) GetIdMappingJob(input *GetIdMappingJobInput) (*GetIdMappingJobOutput, error) {
+	req, out := c.GetIdMappingJobRequest(input)
+	return out, req.Send()
+}
+
+// GetIdMappingJobWithContext is the same as GetIdMappingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetIdMappingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) GetIdMappingJobWithContext(ctx aws.Context, input *GetIdMappingJobInput, opts ...request.Option) (*GetIdMappingJobOutput, error) {
+	req, out := c.GetIdMappingJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetIdMappingWorkflow = "GetIdMappingWorkflow"
+
+// GetIdMappingWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdMappingWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetIdMappingWorkflow for more information on using the GetIdMappingWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetIdMappingWorkflowRequest method.
+//	req, resp := client.GetIdMappingWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingWorkflow
+func (c *EntityResolution) GetIdMappingWorkflowRequest(input *GetIdMappingWorkflowInput) (req *request.Request, output *GetIdMappingWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opGetIdMappingWorkflow,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idmappingworkflows/{workflowName}",
+	}
+
+	if input == nil {
+		input = &GetIdMappingWorkflowInput{}
+	}
+
+	output = &GetIdMappingWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetIdMappingWorkflow API operation for AWS EntityResolution.
+//
+// Returns the IdMappingWorkflow with a given name, if it exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation GetIdMappingWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingWorkflow
+func (c *EntityResolution) GetIdMappingWorkflow(input *GetIdMappingWorkflowInput) (*GetIdMappingWorkflowOutput, error) {
+	req, out := c.GetIdMappingWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// GetIdMappingWorkflowWithContext is the same as GetIdMappingWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetIdMappingWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) GetIdMappingWorkflowWithContext(ctx aws.Context, input *GetIdMappingWorkflowInput, opts ...request.Option) (*GetIdMappingWorkflowOutput, error) {
+	req, out := c.GetIdMappingWorkflowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -790,6 +1175,306 @@ func (c *EntityResolution) GetSchemaMappingWithContext(ctx aws.Context, input *G
 	return out, req.Send()
 }
 
+const opListIdMappingJobs = "ListIdMappingJobs"
+
+// ListIdMappingJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdMappingJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdMappingJobs for more information on using the ListIdMappingJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdMappingJobsRequest method.
+//	req, resp := client.ListIdMappingJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingJobs
+func (c *EntityResolution) ListIdMappingJobsRequest(input *ListIdMappingJobsInput) (req *request.Request, output *ListIdMappingJobsOutput) {
+	op := &request.Operation{
+		Name:       opListIdMappingJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idmappingworkflows/{workflowName}/jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIdMappingJobsInput{}
+	}
+
+	output = &ListIdMappingJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdMappingJobs API operation for AWS EntityResolution.
+//
+// Lists all ID mapping jobs for a given workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation ListIdMappingJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingJobs
+func (c *EntityResolution) ListIdMappingJobs(input *ListIdMappingJobsInput) (*ListIdMappingJobsOutput, error) {
+	req, out := c.ListIdMappingJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListIdMappingJobsWithContext is the same as ListIdMappingJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdMappingJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdMappingJobsWithContext(ctx aws.Context, input *ListIdMappingJobsInput, opts ...request.Option) (*ListIdMappingJobsOutput, error) {
+	req, out := c.ListIdMappingJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIdMappingJobsPages iterates over the pages of a ListIdMappingJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdMappingJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIdMappingJobs operation.
+//	pageNum := 0
+//	err := client.ListIdMappingJobsPages(params,
+//	    func(page *entityresolution.ListIdMappingJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EntityResolution) ListIdMappingJobsPages(input *ListIdMappingJobsInput, fn func(*ListIdMappingJobsOutput, bool) bool) error {
+	return c.ListIdMappingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdMappingJobsPagesWithContext same as ListIdMappingJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdMappingJobsPagesWithContext(ctx aws.Context, input *ListIdMappingJobsInput, fn func(*ListIdMappingJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdMappingJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdMappingJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdMappingJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIdMappingWorkflows = "ListIdMappingWorkflows"
+
+// ListIdMappingWorkflowsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdMappingWorkflows operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdMappingWorkflows for more information on using the ListIdMappingWorkflows
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdMappingWorkflowsRequest method.
+//	req, resp := client.ListIdMappingWorkflowsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingWorkflows
+func (c *EntityResolution) ListIdMappingWorkflowsRequest(input *ListIdMappingWorkflowsInput) (req *request.Request, output *ListIdMappingWorkflowsOutput) {
+	op := &request.Operation{
+		Name:       opListIdMappingWorkflows,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idmappingworkflows",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIdMappingWorkflowsInput{}
+	}
+
+	output = &ListIdMappingWorkflowsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdMappingWorkflows API operation for AWS EntityResolution.
+//
+// Returns a list of all the IdMappingWorkflows that have been created for an
+// Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation ListIdMappingWorkflows for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingWorkflows
+func (c *EntityResolution) ListIdMappingWorkflows(input *ListIdMappingWorkflowsInput) (*ListIdMappingWorkflowsOutput, error) {
+	req, out := c.ListIdMappingWorkflowsRequest(input)
+	return out, req.Send()
+}
+
+// ListIdMappingWorkflowsWithContext is the same as ListIdMappingWorkflows with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdMappingWorkflows for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdMappingWorkflowsWithContext(ctx aws.Context, input *ListIdMappingWorkflowsInput, opts ...request.Option) (*ListIdMappingWorkflowsOutput, error) {
+	req, out := c.ListIdMappingWorkflowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIdMappingWorkflowsPages iterates over the pages of a ListIdMappingWorkflows operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdMappingWorkflows method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIdMappingWorkflows operation.
+//	pageNum := 0
+//	err := client.ListIdMappingWorkflowsPages(params,
+//	    func(page *entityresolution.ListIdMappingWorkflowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EntityResolution) ListIdMappingWorkflowsPages(input *ListIdMappingWorkflowsInput, fn func(*ListIdMappingWorkflowsOutput, bool) bool) error {
+	return c.ListIdMappingWorkflowsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdMappingWorkflowsPagesWithContext same as ListIdMappingWorkflowsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdMappingWorkflowsPagesWithContext(ctx aws.Context, input *ListIdMappingWorkflowsInput, fn func(*ListIdMappingWorkflowsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdMappingWorkflowsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdMappingWorkflowsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdMappingWorkflowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMatchingJobs = "ListMatchingJobs"
 
 // ListMatchingJobsRequest generates a "aws/request.Request" representing the
@@ -1090,6 +1775,155 @@ func (c *EntityResolution) ListMatchingWorkflowsPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opListProviderServices = "ListProviderServices"
+
+// ListProviderServicesRequest generates a "aws/request.Request" representing the
+// client's request for the ListProviderServices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProviderServices for more information on using the ListProviderServices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListProviderServicesRequest method.
+//	req, resp := client.ListProviderServicesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListProviderServices
+func (c *EntityResolution) ListProviderServicesRequest(input *ListProviderServicesInput) (req *request.Request, output *ListProviderServicesOutput) {
+	op := &request.Operation{
+		Name:       opListProviderServices,
+		HTTPMethod: "GET",
+		HTTPPath:   "/providerservices",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProviderServicesInput{}
+	}
+
+	output = &ListProviderServicesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProviderServices API operation for AWS EntityResolution.
+//
+// Returns a list of all the ProviderServices that are available in this Amazon
+// Web Services Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation ListProviderServices for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListProviderServices
+func (c *EntityResolution) ListProviderServices(input *ListProviderServicesInput) (*ListProviderServicesOutput, error) {
+	req, out := c.ListProviderServicesRequest(input)
+	return out, req.Send()
+}
+
+// ListProviderServicesWithContext is the same as ListProviderServices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProviderServices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListProviderServicesWithContext(ctx aws.Context, input *ListProviderServicesInput, opts ...request.Option) (*ListProviderServicesOutput, error) {
+	req, out := c.ListProviderServicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProviderServicesPages iterates over the pages of a ListProviderServices operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProviderServices method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListProviderServices operation.
+//	pageNum := 0
+//	err := client.ListProviderServicesPages(params,
+//	    func(page *entityresolution.ListProviderServicesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EntityResolution) ListProviderServicesPages(input *ListProviderServicesInput, fn func(*ListProviderServicesOutput, bool) bool) error {
+	return c.ListProviderServicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProviderServicesPagesWithContext same as ListProviderServicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListProviderServicesPagesWithContext(ctx aws.Context, input *ListProviderServicesInput, fn func(*ListProviderServicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProviderServicesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProviderServicesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProviderServicesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSchemaMappings = "ListSchemaMappings"
 
 // ListSchemaMappingsRequest generates a "aws/request.Request" representing the
@@ -1322,6 +2156,111 @@ func (c *EntityResolution) ListTagsForResource(input *ListTagsForResourceInput) 
 // for more information on using Contexts.
 func (c *EntityResolution) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartIdMappingJob = "StartIdMappingJob"
+
+// StartIdMappingJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartIdMappingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartIdMappingJob for more information on using the StartIdMappingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartIdMappingJobRequest method.
+//	req, resp := client.StartIdMappingJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/StartIdMappingJob
+func (c *EntityResolution) StartIdMappingJobRequest(input *StartIdMappingJobInput) (req *request.Request, output *StartIdMappingJobOutput) {
+	op := &request.Operation{
+		Name:       opStartIdMappingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/idmappingworkflows/{workflowName}/jobs",
+	}
+
+	if input == nil {
+		input = &StartIdMappingJobInput{}
+	}
+
+	output = &StartIdMappingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartIdMappingJob API operation for AWS EntityResolution.
+//
+// Starts the IdMappingJob of a workflow. The workflow must have previously
+// been created using the CreateIdMappingWorkflow endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation StartIdMappingJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ExceedsLimitException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Entity Resolution account limits. The error message describes
+//     the limit exceeded. HTTP Status Code: 402
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/StartIdMappingJob
+func (c *EntityResolution) StartIdMappingJob(input *StartIdMappingJobInput) (*StartIdMappingJobOutput, error) {
+	req, out := c.StartIdMappingJobRequest(input)
+	return out, req.Send()
+}
+
+// StartIdMappingJobWithContext is the same as StartIdMappingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartIdMappingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) StartIdMappingJobWithContext(ctx aws.Context, input *StartIdMappingJobInput, opts ...request.Option) (*StartIdMappingJobOutput, error) {
+	req, out := c.StartIdMappingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1615,6 +2554,102 @@ func (c *EntityResolution) UntagResourceWithContext(ctx aws.Context, input *Unta
 	return out, req.Send()
 }
 
+const opUpdateIdMappingWorkflow = "UpdateIdMappingWorkflow"
+
+// UpdateIdMappingWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdMappingWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIdMappingWorkflow for more information on using the UpdateIdMappingWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIdMappingWorkflowRequest method.
+//	req, resp := client.UpdateIdMappingWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdMappingWorkflow
+func (c *EntityResolution) UpdateIdMappingWorkflowRequest(input *UpdateIdMappingWorkflowInput) (req *request.Request, output *UpdateIdMappingWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIdMappingWorkflow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/idmappingworkflows/{workflowName}",
+	}
+
+	if input == nil {
+		input = &UpdateIdMappingWorkflowInput{}
+	}
+
+	output = &UpdateIdMappingWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIdMappingWorkflow API operation for AWS EntityResolution.
+//
+// Updates an existing IdMappingWorkflow. This method is identical to CreateIdMappingWorkflow,
+// except it uses an HTTP PUT request instead of a POST request, and the IdMappingWorkflow
+// must already exist for the method to succeed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation UpdateIdMappingWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdMappingWorkflow
+func (c *EntityResolution) UpdateIdMappingWorkflow(input *UpdateIdMappingWorkflowInput) (*UpdateIdMappingWorkflowOutput, error) {
+	req, out := c.UpdateIdMappingWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIdMappingWorkflowWithContext is the same as UpdateIdMappingWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIdMappingWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) UpdateIdMappingWorkflowWithContext(ctx aws.Context, input *UpdateIdMappingWorkflowInput, opts ...request.Option) (*UpdateIdMappingWorkflowOutput, error) {
+	req, out := c.UpdateIdMappingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMatchingWorkflow = "UpdateMatchingWorkflow"
 
 // UpdateMatchingWorkflowRequest generates a "aws/request.Request" representing the
@@ -1706,6 +2741,108 @@ func (c *EntityResolution) UpdateMatchingWorkflow(input *UpdateMatchingWorkflowI
 // for more information on using Contexts.
 func (c *EntityResolution) UpdateMatchingWorkflowWithContext(ctx aws.Context, input *UpdateMatchingWorkflowInput, opts ...request.Option) (*UpdateMatchingWorkflowOutput, error) {
 	req, out := c.UpdateMatchingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSchemaMapping = "UpdateSchemaMapping"
+
+// UpdateSchemaMappingRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSchemaMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSchemaMapping for more information on using the UpdateSchemaMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSchemaMappingRequest method.
+//	req, resp := client.UpdateSchemaMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateSchemaMapping
+func (c *EntityResolution) UpdateSchemaMappingRequest(input *UpdateSchemaMappingInput) (req *request.Request, output *UpdateSchemaMappingOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSchemaMapping,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/schemas/{schemaName}",
+	}
+
+	if input == nil {
+		input = &UpdateSchemaMappingInput{}
+	}
+
+	output = &UpdateSchemaMappingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSchemaMapping API operation for AWS EntityResolution.
+//
+// Updates a schema mapping.
+//
+// A schema is immutable if it is being used by a workflow. Therefore, you can't
+// update a schema mapping if it's associated with a workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation UpdateSchemaMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateSchemaMapping
+func (c *EntityResolution) UpdateSchemaMapping(input *UpdateSchemaMappingInput) (*UpdateSchemaMappingOutput, error) {
+	req, out := c.UpdateSchemaMappingRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSchemaMappingWithContext is the same as UpdateSchemaMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSchemaMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) UpdateSchemaMappingWithContext(ctx aws.Context, input *UpdateSchemaMappingInput, opts ...request.Option) (*UpdateSchemaMappingOutput, error) {
+	req, out := c.UpdateSchemaMappingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1842,6 +2979,262 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateIdMappingWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the workflow.
+	Description *string `locationName:"description" type:"string"`
+
+	// An object which defines the idMappingType and the providerProperties.
+	//
+	// IdMappingTechniques is a required field
+	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	//
+	// InputSourceConfig is a required field
+	InputSourceConfig []*IdMappingWorkflowInputSource `locationName:"inputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// A list of IdMappingWorkflowOutputSource objects, each of which contains fields
+	// OutputS3Path and Output.
+	//
+	// OutputSourceConfig is a required field
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to create resources on your behalf as part of workflow execution.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The name of the workflow. There can't be multiple IdMappingWorkflows with
+	// the same name.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIdMappingWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIdMappingWorkflowInput"}
+	if s.IdMappingTechniques == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTechniques"))
+	}
+	if s.InputSourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSourceConfig"))
+	}
+	if s.InputSourceConfig != nil && len(s.InputSourceConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputSourceConfig", 1))
+	}
+	if s.OutputSourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputSourceConfig"))
+	}
+	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+	if s.IdMappingTechniques != nil {
+		if err := s.IdMappingTechniques.Validate(); err != nil {
+			invalidParams.AddNested("IdMappingTechniques", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InputSourceConfig != nil {
+		for i, v := range s.InputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OutputSourceConfig != nil {
+		for i, v := range s.OutputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIdMappingWorkflowInput) SetDescription(v string) *CreateIdMappingWorkflowInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTechniques sets the IdMappingTechniques field's value.
+func (s *CreateIdMappingWorkflowInput) SetIdMappingTechniques(v *IdMappingTechniques) *CreateIdMappingWorkflowInput {
+	s.IdMappingTechniques = v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *CreateIdMappingWorkflowInput) SetInputSourceConfig(v []*IdMappingWorkflowInputSource) *CreateIdMappingWorkflowInput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *CreateIdMappingWorkflowInput) SetOutputSourceConfig(v []*IdMappingWorkflowOutputSource) *CreateIdMappingWorkflowInput {
+	s.OutputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateIdMappingWorkflowInput) SetRoleArn(v string) *CreateIdMappingWorkflowInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIdMappingWorkflowInput) SetTags(v map[string]*string) *CreateIdMappingWorkflowInput {
+	s.Tags = v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *CreateIdMappingWorkflowInput) SetWorkflowName(v string) *CreateIdMappingWorkflowInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type CreateIdMappingWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the workflow.
+	Description *string `locationName:"description" type:"string"`
+
+	// An object which defines the idMappingType and the providerProperties.
+	//
+	// IdMappingTechniques is a required field
+	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	//
+	// InputSourceConfig is a required field
+	InputSourceConfig []*IdMappingWorkflowInputSource `locationName:"inputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// A list of IdMappingWorkflowOutputSource objects, each of which contains fields
+	// OutputS3Path and Output.
+	//
+	// OutputSourceConfig is a required field
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to create resources on your behalf as part of workflow execution.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The ARN (Amazon Resource Name) that Entity Resolution generated for the IDMappingWorkflow.
+	//
+	// WorkflowArn is a required field
+	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIdMappingWorkflowOutput) SetDescription(v string) *CreateIdMappingWorkflowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTechniques sets the IdMappingTechniques field's value.
+func (s *CreateIdMappingWorkflowOutput) SetIdMappingTechniques(v *IdMappingTechniques) *CreateIdMappingWorkflowOutput {
+	s.IdMappingTechniques = v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *CreateIdMappingWorkflowOutput) SetInputSourceConfig(v []*IdMappingWorkflowInputSource) *CreateIdMappingWorkflowOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *CreateIdMappingWorkflowOutput) SetOutputSourceConfig(v []*IdMappingWorkflowOutputSource) *CreateIdMappingWorkflowOutput {
+	s.OutputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateIdMappingWorkflowOutput) SetRoleArn(v string) *CreateIdMappingWorkflowOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetWorkflowArn sets the WorkflowArn field's value.
+func (s *CreateIdMappingWorkflowOutput) SetWorkflowArn(v string) *CreateIdMappingWorkflowOutput {
+	s.WorkflowArn = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *CreateIdMappingWorkflowOutput) SetWorkflowName(v string) *CreateIdMappingWorkflowOutput {
+	s.WorkflowName = &v
+	return s
+}
+
 type CreateMatchingWorkflowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1877,11 +3270,11 @@ type CreateMatchingWorkflowInput struct {
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The name of the workflow. There cannot be multiple DataIntegrationWorkflows
-	// with the same name.
+	// The name of the workflow. There can't be multiple MatchingWorkflows with
+	// the same name.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -1925,6 +3318,9 @@ func (s *CreateMatchingWorkflowInput) Validate() error {
 	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
 	}
 	if s.InputSourceConfig != nil {
 		for i, v := range s.InputSourceConfig {
@@ -2046,7 +3442,7 @@ type CreateMatchingWorkflowOutput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2128,11 +3524,11 @@ type CreateSchemaMappingInput struct {
 	// MappedInputFields is a required field
 	MappedInputFields []*SchemaInputAttribute `locationName:"mappedInputFields" min:"2" type:"list" required:"true"`
 
-	// The name of the schema. There cannot be multiple SchemaMappings with the
-	// same name.
+	// The name of the schema. There can't be multiple SchemaMappings with the same
+	// name.
 	//
 	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2167,6 +3563,9 @@ func (s *CreateSchemaMappingInput) Validate() error {
 	}
 	if s.SchemaName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
+	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
 	}
 	if s.MappedInputFields != nil {
 		for i, v := range s.MappedInputFields {
@@ -2232,7 +3631,7 @@ type CreateSchemaMappingOutput struct {
 	// The name of the schema.
 	//
 	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2277,13 +3676,95 @@ func (s *CreateSchemaMappingOutput) SetSchemaName(v string) *CreateSchemaMapping
 	return s
 }
 
+type DeleteIdMappingWorkflowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the workflow to be deleted.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdMappingWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdMappingWorkflowInput"}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *DeleteIdMappingWorkflowInput) SetWorkflowName(v string) *DeleteIdMappingWorkflowInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type DeleteIdMappingWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A successful operation message.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DeleteIdMappingWorkflowOutput) SetMessage(v string) *DeleteIdMappingWorkflowOutput {
+	s.Message = &v
+	return s
+}
+
 type DeleteMatchingWorkflowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the workflow to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2365,7 +3846,7 @@ type DeleteSchemaMappingInput struct {
 	// The name of the schema to delete.
 	//
 	// SchemaName is a required field
-	SchemaName *string `location:"uri" locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `location:"uri" locationName:"schemaName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2545,6 +4026,334 @@ func (s *ExceedsLimitException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type GetIdMappingJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdMappingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdMappingJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetIdMappingJobInput) SetJobId(v string) *GetIdMappingJobInput {
+	s.JobId = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *GetIdMappingJobInput) SetWorkflowName(v string) *GetIdMappingJobInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type GetIdMappingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the job has finished.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// An object containing an error message, if there was an error.
+	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
+
+	// Metrics associated with the execution, specifically total records processed,
+	// unique IDs generated, and records the execution skipped.
+	Metrics *IdMappingJobMetrics `locationName:"metrics" type:"structure"`
+
+	// The time at which the job was started.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+
+	// The current status of the job.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetIdMappingJobOutput) SetEndTime(v time.Time) *GetIdMappingJobOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *GetIdMappingJobOutput) SetErrorDetails(v *ErrorDetails) *GetIdMappingJobOutput {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetIdMappingJobOutput) SetJobId(v string) *GetIdMappingJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *GetIdMappingJobOutput) SetMetrics(v *IdMappingJobMetrics) *GetIdMappingJobOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetIdMappingJobOutput) SetStartTime(v time.Time) *GetIdMappingJobOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetIdMappingJobOutput) SetStatus(v string) *GetIdMappingJobOutput {
+	s.Status = &v
+	return s
+}
+
+type GetIdMappingWorkflowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdMappingWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdMappingWorkflowInput"}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *GetIdMappingWorkflowInput) SetWorkflowName(v string) *GetIdMappingWorkflowInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type GetIdMappingWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the workflow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// A description of the workflow.
+	Description *string `locationName:"description" type:"string"`
+
+	// An object which defines the idMappingType and the providerProperties.
+	//
+	// IdMappingTechniques is a required field
+	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	//
+	// InputSourceConfig is a required field
+	InputSourceConfig []*IdMappingWorkflowInputSource `locationName:"inputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// A list of OutputSource objects, each of which contains fields OutputS3Path
+	// and KMSArn.
+	//
+	// OutputSourceConfig is a required field
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access resources on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The timestamp of when the workflow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+
+	// The ARN (Amazon Resource Name) that Entity Resolution generated for the IdMappingWorkflow .
+	//
+	// WorkflowArn is a required field
+	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetIdMappingWorkflowOutput) SetCreatedAt(v time.Time) *GetIdMappingWorkflowOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetIdMappingWorkflowOutput) SetDescription(v string) *GetIdMappingWorkflowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTechniques sets the IdMappingTechniques field's value.
+func (s *GetIdMappingWorkflowOutput) SetIdMappingTechniques(v *IdMappingTechniques) *GetIdMappingWorkflowOutput {
+	s.IdMappingTechniques = v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *GetIdMappingWorkflowOutput) SetInputSourceConfig(v []*IdMappingWorkflowInputSource) *GetIdMappingWorkflowOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *GetIdMappingWorkflowOutput) SetOutputSourceConfig(v []*IdMappingWorkflowOutputSource) *GetIdMappingWorkflowOutput {
+	s.OutputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetIdMappingWorkflowOutput) SetRoleArn(v string) *GetIdMappingWorkflowOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetIdMappingWorkflowOutput) SetTags(v map[string]*string) *GetIdMappingWorkflowOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetIdMappingWorkflowOutput) SetUpdatedAt(v time.Time) *GetIdMappingWorkflowOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetWorkflowArn sets the WorkflowArn field's value.
+func (s *GetIdMappingWorkflowOutput) SetWorkflowArn(v string) *GetIdMappingWorkflowOutput {
+	s.WorkflowArn = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *GetIdMappingWorkflowOutput) SetWorkflowName(v string) *GetIdMappingWorkflowOutput {
+	s.WorkflowName = &v
+	return s
+}
+
 type GetMatchIdInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2560,7 +4369,7 @@ type GetMatchIdInput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2654,7 +4463,7 @@ type GetMatchingJobInput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2798,7 +4607,7 @@ type GetMatchingWorkflowInput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2894,7 +4703,7 @@ type GetMatchingWorkflowOutput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2987,7 +4796,7 @@ type GetSchemaMappingInput struct {
 	// The name of the schema to be retrieved.
 	//
 	// SchemaName is a required field
-	SchemaName *string `location:"uri" locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `location:"uri" locationName:"schemaName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3041,6 +4850,11 @@ type GetSchemaMappingOutput struct {
 	// A description of the schema.
 	Description *string `locationName:"description" type:"string"`
 
+	// Specifies whether the schema mapping has been applied to a workflow.
+	//
+	// HasWorkflows is a required field
+	HasWorkflows *bool `locationName:"hasWorkflows" type:"boolean" required:"true"`
+
 	// A list of MappedInputFields. Each MappedInputField corresponds to a column
 	// the source data table, and contains column name plus additional information
 	// Venice uses for matching.
@@ -3056,7 +4870,7 @@ type GetSchemaMappingOutput struct {
 	// The name of the schema.
 	//
 	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -3097,6 +4911,12 @@ func (s *GetSchemaMappingOutput) SetDescription(v string) *GetSchemaMappingOutpu
 	return s
 }
 
+// SetHasWorkflows sets the HasWorkflows field's value.
+func (s *GetSchemaMappingOutput) SetHasWorkflows(v bool) *GetSchemaMappingOutput {
+	s.HasWorkflows = &v
+	return s
+}
+
 // SetMappedInputFields sets the MappedInputFields field's value.
 func (s *GetSchemaMappingOutput) SetMappedInputFields(v []*SchemaInputAttribute) *GetSchemaMappingOutput {
 	s.MappedInputFields = v
@@ -3124,6 +4944,315 @@ func (s *GetSchemaMappingOutput) SetTags(v map[string]*string) *GetSchemaMapping
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *GetSchemaMappingOutput) SetUpdatedAt(v time.Time) *GetSchemaMappingOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+// An object containing InputRecords, TotalRecordsProcessed, MatchIDs, and RecordsNotProcessed.
+type IdMappingJobMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of input records.
+	InputRecords *int64 `locationName:"inputRecords" type:"integer"`
+
+	// The total number of records that did not get processed.
+	RecordsNotProcessed *int64 `locationName:"recordsNotProcessed" type:"integer"`
+
+	// The total number of records processed.
+	TotalRecordsProcessed *int64 `locationName:"totalRecordsProcessed" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingJobMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingJobMetrics) GoString() string {
+	return s.String()
+}
+
+// SetInputRecords sets the InputRecords field's value.
+func (s *IdMappingJobMetrics) SetInputRecords(v int64) *IdMappingJobMetrics {
+	s.InputRecords = &v
+	return s
+}
+
+// SetRecordsNotProcessed sets the RecordsNotProcessed field's value.
+func (s *IdMappingJobMetrics) SetRecordsNotProcessed(v int64) *IdMappingJobMetrics {
+	s.RecordsNotProcessed = &v
+	return s
+}
+
+// SetTotalRecordsProcessed sets the TotalRecordsProcessed field's value.
+func (s *IdMappingJobMetrics) SetTotalRecordsProcessed(v int64) *IdMappingJobMetrics {
+	s.TotalRecordsProcessed = &v
+	return s
+}
+
+// An object which defines the ID mapping techniques and provider configurations.
+type IdMappingTechniques struct {
+	_ struct{} `type:"structure"`
+
+	// The type of ID mapping.
+	//
+	// IdMappingType is a required field
+	IdMappingType *string `locationName:"idMappingType" type:"string" required:"true" enum:"IdMappingType"`
+
+	// An object which defines any additional configurations required by the provider
+	// service.
+	//
+	// ProviderProperties is a required field
+	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTechniques) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTechniques) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingTechniques) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingTechniques"}
+	if s.IdMappingType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingType"))
+	}
+	if s.ProviderProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderProperties"))
+	}
+	if s.ProviderProperties != nil {
+		if err := s.ProviderProperties.Validate(); err != nil {
+			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdMappingType sets the IdMappingType field's value.
+func (s *IdMappingTechniques) SetIdMappingType(v string) *IdMappingTechniques {
+	s.IdMappingType = &v
+	return s
+}
+
+// SetProviderProperties sets the ProviderProperties field's value.
+func (s *IdMappingTechniques) SetProviderProperties(v *ProviderProperties) *IdMappingTechniques {
+	s.ProviderProperties = v
+	return s
+}
+
+// An object containing InputSourceARN and SchemaName.
+type IdMappingWorkflowInputSource struct {
+	_ struct{} `type:"structure"`
+
+	// An Gluetable ARN for the input source table.
+	//
+	// InputSourceARN is a required field
+	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
+
+	// The name of the schema to be retrieved.
+	//
+	// SchemaName is a required field
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowInputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowInputSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingWorkflowInputSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingWorkflowInputSource"}
+	if s.InputSourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSourceARN"))
+	}
+	if s.SchemaName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
+	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputSourceARN sets the InputSourceARN field's value.
+func (s *IdMappingWorkflowInputSource) SetInputSourceARN(v string) *IdMappingWorkflowInputSource {
+	s.InputSourceARN = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *IdMappingWorkflowInputSource) SetSchemaName(v string) *IdMappingWorkflowInputSource {
+	s.SchemaName = &v
+	return s
+}
+
+// The output source for the ID mapping workflow.
+type IdMappingWorkflowOutputSource struct {
+	_ struct{} `type:"structure"`
+
+	// Customer KMS ARN for encryption at rest. If not provided, system will use
+	// an Entity Resolution managed KMS key.
+	KMSArn *string `type:"string"`
+
+	// The S3 path to which Entity Resolution will write the output table.
+	//
+	// OutputS3Path is a required field
+	OutputS3Path *string `locationName:"outputS3Path" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowOutputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowOutputSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingWorkflowOutputSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingWorkflowOutputSource"}
+	if s.OutputS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputS3Path"))
+	}
+	if s.OutputS3Path != nil && len(*s.OutputS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputS3Path", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSArn sets the KMSArn field's value.
+func (s *IdMappingWorkflowOutputSource) SetKMSArn(v string) *IdMappingWorkflowOutputSource {
+	s.KMSArn = &v
+	return s
+}
+
+// SetOutputS3Path sets the OutputS3Path field's value.
+func (s *IdMappingWorkflowOutputSource) SetOutputS3Path(v string) *IdMappingWorkflowOutputSource {
+	s.OutputS3Path = &v
+	return s
+}
+
+// A list of IdMappingWorkflowSummary objects, each of which contain the fields
+// WorkflowName, WorkflowArn, CreatedAt, and UpdatedAt.
+type IdMappingWorkflowSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the workflow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The timestamp of when the workflow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+
+	// The ARN (Amazon Resource Name) that Entity Resolution generated for the IdMappingWorkflow.
+	//
+	// WorkflowArn is a required field
+	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingWorkflowSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *IdMappingWorkflowSummary) SetCreatedAt(v time.Time) *IdMappingWorkflowSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *IdMappingWorkflowSummary) SetUpdatedAt(v time.Time) *IdMappingWorkflowSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetWorkflowArn sets the WorkflowArn field's value.
+func (s *IdMappingWorkflowSummary) SetWorkflowArn(v string) *IdMappingWorkflowSummary {
+	s.WorkflowArn = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *IdMappingWorkflowSummary) SetWorkflowName(v string) *IdMappingWorkflowSummary {
+	s.WorkflowName = &v
 	return s
 }
 
@@ -3178,7 +5307,7 @@ type InputSource struct {
 	// The name of the schema to be retrieved.
 	//
 	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3208,6 +5337,9 @@ func (s *InputSource) Validate() error {
 	if s.SchemaName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
 	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3230,6 +5362,57 @@ func (s *InputSource) SetInputSourceARN(v string) *InputSource {
 // SetSchemaName sets the SchemaName field's value.
 func (s *InputSource) SetSchemaName(v string) *InputSource {
 	s.SchemaName = &v
+	return s
+}
+
+// The Amazon S3 location that temporarily stores your data while it processes.
+// Your information won't be saved permanently.
+type IntermediateSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location (bucket and prefix). For example: s3://provider_bucket/DOC-EXAMPLE-BUCKET
+	//
+	// IntermediateS3Path is a required field
+	IntermediateS3Path *string `locationName:"intermediateS3Path" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntermediateSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntermediateSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntermediateSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntermediateSourceConfiguration"}
+	if s.IntermediateS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntermediateS3Path"))
+	}
+	if s.IntermediateS3Path != nil && len(*s.IntermediateS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntermediateS3Path", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntermediateS3Path sets the IntermediateS3Path field's value.
+func (s *IntermediateSourceConfiguration) SetIntermediateS3Path(v string) *IntermediateSourceConfiguration {
+	s.IntermediateS3Path = &v
 	return s
 }
 
@@ -3422,19 +5605,225 @@ func (s *JobSummary) SetStatus(v string) *JobSummary {
 	return s
 }
 
+type ListIdMappingJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The name of the workflow to be retrieved.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdMappingJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdMappingJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdMappingJobsInput) SetMaxResults(v int64) *ListIdMappingJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingJobsInput) SetNextToken(v string) *ListIdMappingJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *ListIdMappingJobsInput) SetWorkflowName(v string) *ListIdMappingJobsInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type ListIdMappingJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of JobSummary objects.
+	Jobs []*JobSummary `locationName:"jobs" type:"list"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *ListIdMappingJobsOutput) SetJobs(v []*JobSummary) *ListIdMappingJobsOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingJobsOutput) SetNextToken(v string) *ListIdMappingJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdMappingWorkflowsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingWorkflowsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingWorkflowsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdMappingWorkflowsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdMappingWorkflowsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdMappingWorkflowsInput) SetMaxResults(v int64) *ListIdMappingWorkflowsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingWorkflowsInput) SetNextToken(v string) *ListIdMappingWorkflowsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdMappingWorkflowsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of IdMappingWorkflowSummary objects.
+	WorkflowSummaries []*IdMappingWorkflowSummary `locationName:"workflowSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingWorkflowsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingWorkflowsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingWorkflowsOutput) SetNextToken(v string) *ListIdMappingWorkflowsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowSummaries sets the WorkflowSummaries field's value.
+func (s *ListIdMappingWorkflowsOutput) SetWorkflowSummaries(v []*IdMappingWorkflowSummary) *ListIdMappingWorkflowsOutput {
+	s.WorkflowSummaries = v
+	return s
+}
+
 type ListMatchingJobsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of objects returned per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token from the previous ListSchemaMappings API call.
+	// The pagination token from the previous API call.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The name of the workflow to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3502,7 +5891,7 @@ type ListMatchingJobsOutput struct {
 	// time, and end time of a job.
 	Jobs []*JobSummary `locationName:"jobs" type:"list"`
 
-	// The pagination token from the previous ListSchemaMappings API call.
+	// The pagination token from the previous API call.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -3542,7 +5931,7 @@ type ListMatchingWorkflowsInput struct {
 	// The maximum number of objects returned per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// The pagination token from the previous ListSchemaMappings API call.
+	// The pagination token from the previous API call.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -3592,7 +5981,7 @@ func (s *ListMatchingWorkflowsInput) SetNextToken(v string) *ListMatchingWorkflo
 type ListMatchingWorkflowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token from the previous ListSchemaMappings API call.
+	// The pagination token from the previous API call.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// A list of MatchingWorkflowSummary objects, each of which contain the fields
@@ -3630,13 +6019,121 @@ func (s *ListMatchingWorkflowsOutput) SetWorkflowSummaries(v []*MatchingWorkflow
 	return s
 }
 
+type ListProviderServicesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"15" type:"integer"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The name of the provider. This name is typically the company name.
+	ProviderName *string `location:"querystring" locationName:"providerName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProviderServicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProviderServicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProviderServicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProviderServicesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 15 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 15))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ProviderName != nil && len(*s.ProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProviderServicesInput) SetMaxResults(v int64) *ListProviderServicesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProviderServicesInput) SetNextToken(v string) *ListProviderServicesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *ListProviderServicesInput) SetProviderName(v string) *ListProviderServicesInput {
+	s.ProviderName = &v
+	return s
+}
+
+type ListProviderServicesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of ProviderServices objects.
+	ProviderServiceSummaries []*ProviderServiceSummary `locationName:"providerServiceSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProviderServicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListProviderServicesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProviderServicesOutput) SetNextToken(v string) *ListProviderServicesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProviderServiceSummaries sets the ProviderServiceSummaries field's value.
+func (s *ListProviderServicesOutput) SetProviderServiceSummaries(v []*ProviderServiceSummary) *ListProviderServicesOutput {
+	s.ProviderServiceSummaries = v
+	return s
+}
+
 type ListSchemaMappingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of objects returned per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// The pagination token from the previous ListSchemaMappings API call.
+	// The pagination token from the previous API call.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -3686,7 +6183,7 @@ func (s *ListSchemaMappingsInput) SetNextToken(v string) *ListSchemaMappingsInpu
 type ListSchemaMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token from the previous ListDomains API call.
+	// The pagination token from the previous API call.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// A list of SchemaMappingSummary objects, each of which contain the fields
@@ -3816,6 +6313,12 @@ type MatchingWorkflowSummary struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// The method that has been specified for data matching, either using matching
+	// provided by Entity Resolution or through a provider service.
+	//
+	// ResolutionType is a required field
+	ResolutionType *string `locationName:"resolutionType" type:"string" required:"true" enum:"ResolutionType"`
+
 	// The timestamp of when the workflow was last updated.
 	//
 	// UpdatedAt is a required field
@@ -3829,7 +6332,7 @@ type MatchingWorkflowSummary struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3853,6 +6356,12 @@ func (s MatchingWorkflowSummary) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *MatchingWorkflowSummary) SetCreatedAt(v time.Time) *MatchingWorkflowSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetResolutionType sets the ResolutionType field's value.
+func (s *MatchingWorkflowSummary) SetResolutionType(v string) *MatchingWorkflowSummary {
+	s.ResolutionType = &v
 	return s
 }
 
@@ -3959,7 +6468,7 @@ type OutputSource struct {
 	// The S3 path to which Entity Resolution will write the output table.
 	//
 	// OutputS3Path is a required field
-	OutputS3Path *string `locationName:"outputS3Path" type:"string" required:"true"`
+	OutputS3Path *string `locationName:"outputS3Path" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3988,6 +6497,9 @@ func (s *OutputSource) Validate() error {
 	}
 	if s.OutputS3Path == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputS3Path"))
+	}
+	if s.OutputS3Path != nil && len(*s.OutputS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputS3Path", 1))
 	}
 	if s.Output != nil {
 		for i, v := range s.Output {
@@ -4030,9 +6542,157 @@ func (s *OutputSource) SetOutputS3Path(v string) *OutputSource {
 	return s
 }
 
+// An object containing the providerServiceARN, intermediateSourceConfiguration,
+// and providerConfiguration.
+type ProviderProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location that temporarily stores your data while it processes.
+	// Your information won't be saved permanently.
+	IntermediateSourceConfiguration *IntermediateSourceConfiguration `locationName:"intermediateSourceConfiguration" type:"structure"`
+
+	// The ARN of the provider service.
+	//
+	// ProviderServiceArn is a required field
+	ProviderServiceArn *string `locationName:"providerServiceArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProviderProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProviderProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProviderProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProviderProperties"}
+	if s.ProviderServiceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderServiceArn"))
+	}
+	if s.ProviderServiceArn != nil && len(*s.ProviderServiceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderServiceArn", 20))
+	}
+	if s.IntermediateSourceConfiguration != nil {
+		if err := s.IntermediateSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("IntermediateSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntermediateSourceConfiguration sets the IntermediateSourceConfiguration field's value.
+func (s *ProviderProperties) SetIntermediateSourceConfiguration(v *IntermediateSourceConfiguration) *ProviderProperties {
+	s.IntermediateSourceConfiguration = v
+	return s
+}
+
+// SetProviderServiceArn sets the ProviderServiceArn field's value.
+func (s *ProviderProperties) SetProviderServiceArn(v string) *ProviderProperties {
+	s.ProviderServiceArn = &v
+	return s
+}
+
+// A list of ProviderService objects, each of which contain the fields providerName,
+// providerServiceArn, providerServiceName, and providerServiceType.
+type ProviderServiceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the provider. This name is typically the company name.
+	//
+	// ProviderName is a required field
+	ProviderName *string `locationName:"providerName" min:"1" type:"string" required:"true"`
+
+	// The ARN (Amazon Resource Name) that Entity Resolution generated for the providerService.
+	//
+	// ProviderServiceArn is a required field
+	ProviderServiceArn *string `locationName:"providerServiceArn" min:"20" type:"string" required:"true"`
+
+	// The display name of the provider service.
+	//
+	// ProviderServiceDisplayName is a required field
+	ProviderServiceDisplayName *string `locationName:"providerServiceDisplayName" type:"string" required:"true"`
+
+	// The name of the product that the provider service provides.
+	//
+	// ProviderServiceName is a required field
+	ProviderServiceName *string `locationName:"providerServiceName" min:"1" type:"string" required:"true"`
+
+	// The type of provider service.
+	//
+	// ProviderServiceType is a required field
+	ProviderServiceType *string `locationName:"providerServiceType" type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProviderServiceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProviderServiceSummary) GoString() string {
+	return s.String()
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *ProviderServiceSummary) SetProviderName(v string) *ProviderServiceSummary {
+	s.ProviderName = &v
+	return s
+}
+
+// SetProviderServiceArn sets the ProviderServiceArn field's value.
+func (s *ProviderServiceSummary) SetProviderServiceArn(v string) *ProviderServiceSummary {
+	s.ProviderServiceArn = &v
+	return s
+}
+
+// SetProviderServiceDisplayName sets the ProviderServiceDisplayName field's value.
+func (s *ProviderServiceSummary) SetProviderServiceDisplayName(v string) *ProviderServiceSummary {
+	s.ProviderServiceDisplayName = &v
+	return s
+}
+
+// SetProviderServiceName sets the ProviderServiceName field's value.
+func (s *ProviderServiceSummary) SetProviderServiceName(v string) *ProviderServiceSummary {
+	s.ProviderServiceName = &v
+	return s
+}
+
+// SetProviderServiceType sets the ProviderServiceType field's value.
+func (s *ProviderServiceSummary) SetProviderServiceType(v string) *ProviderServiceSummary {
+	s.ProviderServiceType = &v
+	return s
+}
+
 // An object which defines the resolutionType and the ruleBasedProperties.
 type ResolutionTechniques struct {
 	_ struct{} `type:"structure"`
+
+	// The properties of the provider service.
+	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure"`
 
 	// The type of matching. There are two types of matching: RULE_MATCHING and
 	// ML_MATCHING.
@@ -4069,6 +6729,11 @@ func (s *ResolutionTechniques) Validate() error {
 	if s.ResolutionType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResolutionType"))
 	}
+	if s.ProviderProperties != nil {
+		if err := s.ProviderProperties.Validate(); err != nil {
+			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RuleBasedProperties != nil {
 		if err := s.RuleBasedProperties.Validate(); err != nil {
 			invalidParams.AddNested("RuleBasedProperties", err.(request.ErrInvalidParams))
@@ -4079,6 +6744,12 @@ func (s *ResolutionTechniques) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetProviderProperties sets the ProviderProperties field's value.
+func (s *ResolutionTechniques) SetProviderProperties(v *ProviderProperties) *ResolutionTechniques {
+	s.ProviderProperties = v
+	return s
 }
 
 // SetResolutionType sets the ResolutionType field's value.
@@ -4306,7 +6977,7 @@ func (s *RuleBasedProperties) SetRules(v []*Rule) *RuleBasedProperties {
 	return s
 }
 
-// An object containing FieldField, Type, GroupName, and MatchKey.
+// An object containing FieldName, Type, GroupName, and MatchKey.
 type SchemaInputAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -4329,6 +7000,9 @@ type SchemaInputAttribute struct {
 	// is specified for a column, it won't be utilized for matching purposes but
 	// will still be included in the output table.
 	MatchKey *string `locationName:"matchKey" type:"string"`
+
+	// The subtype of the attribute, selected from a list of values.
+	SubType *string `locationName:"subType" type:"string"`
 
 	// The type of the attribute, selected from a list of values.
 	//
@@ -4388,6 +7062,12 @@ func (s *SchemaInputAttribute) SetMatchKey(v string) *SchemaInputAttribute {
 	return s
 }
 
+// SetSubType sets the SubType field's value.
+func (s *SchemaInputAttribute) SetSubType(v string) *SchemaInputAttribute {
+	s.SubType = &v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *SchemaInputAttribute) SetType(v string) *SchemaInputAttribute {
 	s.Type = &v
@@ -4403,6 +7083,11 @@ type SchemaMappingSummary struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// Specifies whether the schema mapping has been applied to a workflow.
+	//
+	// HasWorkflows is a required field
+	HasWorkflows *bool `locationName:"hasWorkflows" type:"boolean" required:"true"`
+
 	// The ARN (Amazon Resource Name) that Entity Resolution generated for the SchemaMapping.
 	//
 	// SchemaArn is a required field
@@ -4411,7 +7096,7 @@ type SchemaMappingSummary struct {
 	// The name of the schema.
 	//
 	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" type:"string" required:"true"`
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
 
 	// The timestamp of when the SchemaMapping was last updated.
 	//
@@ -4443,6 +7128,12 @@ func (s *SchemaMappingSummary) SetCreatedAt(v time.Time) *SchemaMappingSummary {
 	return s
 }
 
+// SetHasWorkflows sets the HasWorkflows field's value.
+func (s *SchemaMappingSummary) SetHasWorkflows(v bool) *SchemaMappingSummary {
+	s.HasWorkflows = &v
+	return s
+}
+
 // SetSchemaArn sets the SchemaArn field's value.
 func (s *SchemaMappingSummary) SetSchemaArn(v string) *SchemaMappingSummary {
 	s.SchemaArn = &v
@@ -4461,13 +7152,95 @@ func (s *SchemaMappingSummary) SetUpdatedAt(v time.Time) *SchemaMappingSummary {
 	return s
 }
 
+type StartIdMappingJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the ID mapping job to be retrieved.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartIdMappingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartIdMappingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartIdMappingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartIdMappingJobInput"}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *StartIdMappingJobInput) SetWorkflowName(v string) *StartIdMappingJobInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type StartIdMappingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the job.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartIdMappingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartIdMappingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartIdMappingJobOutput) SetJobId(v string) *StartIdMappingJobOutput {
+	s.JobId = &v
+	return s
+}
+
 type StartMatchingJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the matching job to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4777,6 +7550,253 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateIdMappingWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the workflow.
+	Description *string `locationName:"description" type:"string"`
+
+	// An object which defines the idMappingType and the providerProperties.
+	//
+	// IdMappingTechniques is a required field
+	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	//
+	// InputSourceConfig is a required field
+	InputSourceConfig []*IdMappingWorkflowInputSource `locationName:"inputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// A list of OutputSource objects, each of which contains fields OutputS3Path
+	// and KMSArn.
+	//
+	// OutputSourceConfig is a required field
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access resources on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIdMappingWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIdMappingWorkflowInput"}
+	if s.IdMappingTechniques == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTechniques"))
+	}
+	if s.InputSourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSourceConfig"))
+	}
+	if s.InputSourceConfig != nil && len(s.InputSourceConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputSourceConfig", 1))
+	}
+	if s.OutputSourceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputSourceConfig"))
+	}
+	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+	if s.IdMappingTechniques != nil {
+		if err := s.IdMappingTechniques.Validate(); err != nil {
+			invalidParams.AddNested("IdMappingTechniques", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InputSourceConfig != nil {
+		for i, v := range s.InputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OutputSourceConfig != nil {
+		for i, v := range s.OutputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIdMappingWorkflowInput) SetDescription(v string) *UpdateIdMappingWorkflowInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTechniques sets the IdMappingTechniques field's value.
+func (s *UpdateIdMappingWorkflowInput) SetIdMappingTechniques(v *IdMappingTechniques) *UpdateIdMappingWorkflowInput {
+	s.IdMappingTechniques = v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *UpdateIdMappingWorkflowInput) SetInputSourceConfig(v []*IdMappingWorkflowInputSource) *UpdateIdMappingWorkflowInput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *UpdateIdMappingWorkflowInput) SetOutputSourceConfig(v []*IdMappingWorkflowOutputSource) *UpdateIdMappingWorkflowInput {
+	s.OutputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateIdMappingWorkflowInput) SetRoleArn(v string) *UpdateIdMappingWorkflowInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *UpdateIdMappingWorkflowInput) SetWorkflowName(v string) *UpdateIdMappingWorkflowInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type UpdateIdMappingWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the workflow.
+	Description *string `locationName:"description" type:"string"`
+
+	// An object which defines the idMappingType and the providerProperties.
+	//
+	// IdMappingTechniques is a required field
+	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	//
+	// InputSourceConfig is a required field
+	InputSourceConfig []*IdMappingWorkflowInputSource `locationName:"inputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// A list of OutputSource objects, each of which contains fields OutputS3Path
+	// and KMSArn.
+	//
+	// OutputSourceConfig is a required field
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access resources on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the workflow role. Entity Resolution assumes
+	// this role to access resources on your behalf.
+	//
+	// WorkflowArn is a required field
+	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetDescription(v string) *UpdateIdMappingWorkflowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTechniques sets the IdMappingTechniques field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetIdMappingTechniques(v *IdMappingTechniques) *UpdateIdMappingWorkflowOutput {
+	s.IdMappingTechniques = v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetInputSourceConfig(v []*IdMappingWorkflowInputSource) *UpdateIdMappingWorkflowOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetOutputSourceConfig(v []*IdMappingWorkflowOutputSource) *UpdateIdMappingWorkflowOutput {
+	s.OutputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetRoleArn(v string) *UpdateIdMappingWorkflowOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetWorkflowArn sets the WorkflowArn field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetWorkflowArn(v string) *UpdateIdMappingWorkflowOutput {
+	s.WorkflowArn = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *UpdateIdMappingWorkflowOutput) SetWorkflowName(v string) *UpdateIdMappingWorkflowOutput {
+	s.WorkflowName = &v
+	return s
+}
+
 type UpdateMatchingWorkflowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4812,7 +7832,7 @@ type UpdateMatchingWorkflowInput struct {
 	// The name of the workflow to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4969,7 +7989,7 @@ type UpdateMatchingWorkflowOutput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `locationName:"workflowName" type:"string" required:"true"`
+	WorkflowName *string `locationName:"workflowName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5029,6 +8049,160 @@ func (s *UpdateMatchingWorkflowOutput) SetRoleArn(v string) *UpdateMatchingWorkf
 // SetWorkflowName sets the WorkflowName field's value.
 func (s *UpdateMatchingWorkflowOutput) SetWorkflowName(v string) *UpdateMatchingWorkflowOutput {
 	s.WorkflowName = &v
+	return s
+}
+
+type UpdateSchemaMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the schema.
+	Description *string `locationName:"description" type:"string"`
+
+	// A list of MappedInputFields. Each MappedInputField corresponds to a column
+	// the source data table, and contains column name plus additional information
+	// that Entity Resolution uses for matching.
+	//
+	// MappedInputFields is a required field
+	MappedInputFields []*SchemaInputAttribute `locationName:"mappedInputFields" min:"2" type:"list" required:"true"`
+
+	// The name of the schema. There can't be multiple SchemaMappings with the same
+	// name.
+	//
+	// SchemaName is a required field
+	SchemaName *string `location:"uri" locationName:"schemaName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchemaMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchemaMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSchemaMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSchemaMappingInput"}
+	if s.MappedInputFields == nil {
+		invalidParams.Add(request.NewErrParamRequired("MappedInputFields"))
+	}
+	if s.MappedInputFields != nil && len(s.MappedInputFields) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MappedInputFields", 2))
+	}
+	if s.SchemaName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
+	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
+	}
+	if s.MappedInputFields != nil {
+		for i, v := range s.MappedInputFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappedInputFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSchemaMappingInput) SetDescription(v string) *UpdateSchemaMappingInput {
+	s.Description = &v
+	return s
+}
+
+// SetMappedInputFields sets the MappedInputFields field's value.
+func (s *UpdateSchemaMappingInput) SetMappedInputFields(v []*SchemaInputAttribute) *UpdateSchemaMappingInput {
+	s.MappedInputFields = v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *UpdateSchemaMappingInput) SetSchemaName(v string) *UpdateSchemaMappingInput {
+	s.SchemaName = &v
+	return s
+}
+
+type UpdateSchemaMappingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the schema.
+	Description *string `locationName:"description" type:"string"`
+
+	// A list of MappedInputFields. Each MappedInputField corresponds to a column
+	// the source data table, and contains column name plus additional information
+	// that Entity Resolution uses for matching.
+	//
+	// MappedInputFields is a required field
+	MappedInputFields []*SchemaInputAttribute `locationName:"mappedInputFields" min:"2" type:"list" required:"true"`
+
+	// The ARN (Amazon Resource Name) that Entity Resolution generated for the SchemaMapping.
+	//
+	// SchemaArn is a required field
+	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
+
+	// The name of the schema.
+	//
+	// SchemaName is a required field
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchemaMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchemaMappingOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSchemaMappingOutput) SetDescription(v string) *UpdateSchemaMappingOutput {
+	s.Description = &v
+	return s
+}
+
+// SetMappedInputFields sets the MappedInputFields field's value.
+func (s *UpdateSchemaMappingOutput) SetMappedInputFields(v []*SchemaInputAttribute) *UpdateSchemaMappingOutput {
+	s.MappedInputFields = v
+	return s
+}
+
+// SetSchemaArn sets the SchemaArn field's value.
+func (s *UpdateSchemaMappingOutput) SetSchemaArn(v string) *UpdateSchemaMappingOutput {
+	s.SchemaArn = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *UpdateSchemaMappingOutput) SetSchemaName(v string) *UpdateSchemaMappingOutput {
+	s.SchemaName = &v
 	return s
 }
 
@@ -5114,6 +8288,18 @@ func AttributeMatchingModel_Values() []string {
 }
 
 const (
+	// IdMappingTypeProvider is a IdMappingType enum value
+	IdMappingTypeProvider = "PROVIDER"
+)
+
+// IdMappingType_Values returns all elements of the IdMappingType enum
+func IdMappingType_Values() []string {
+	return []string{
+		IdMappingTypeProvider,
+	}
+}
+
+const (
 	// IncrementalRunTypeImmediate is a IncrementalRunType enum value
 	IncrementalRunTypeImmediate = "IMMEDIATE"
 )
@@ -5155,6 +8341,9 @@ const (
 
 	// ResolutionTypeMlMatching is a ResolutionType enum value
 	ResolutionTypeMlMatching = "ML_MATCHING"
+
+	// ResolutionTypeProvider is a ResolutionType enum value
+	ResolutionTypeProvider = "PROVIDER"
 )
 
 // ResolutionType_Values returns all elements of the ResolutionType enum
@@ -5162,6 +8351,7 @@ func ResolutionType_Values() []string {
 	return []string{
 		ResolutionTypeRuleMatching,
 		ResolutionTypeMlMatching,
+		ResolutionTypeProvider,
 	}
 }
 
@@ -5222,6 +8412,9 @@ const (
 
 	// SchemaAttributeTypeString is a SchemaAttributeType enum value
 	SchemaAttributeTypeString = "STRING"
+
+	// SchemaAttributeTypeProviderId is a SchemaAttributeType enum value
+	SchemaAttributeTypeProviderId = "PROVIDER_ID"
 )
 
 // SchemaAttributeType_Values returns all elements of the SchemaAttributeType enum
@@ -5246,5 +8439,22 @@ func SchemaAttributeType_Values() []string {
 		SchemaAttributeTypeUniqueId,
 		SchemaAttributeTypeDate,
 		SchemaAttributeTypeString,
+		SchemaAttributeTypeProviderId,
+	}
+}
+
+const (
+	// ServiceTypeAssignment is a ServiceType enum value
+	ServiceTypeAssignment = "ASSIGNMENT"
+
+	// ServiceTypeIdMapping is a ServiceType enum value
+	ServiceTypeIdMapping = "ID_MAPPING"
+)
+
+// ServiceType_Values returns all elements of the ServiceType enum
+func ServiceType_Values() []string {
+	return []string{
+		ServiceTypeAssignment,
+		ServiceTypeIdMapping,
 	}
 }

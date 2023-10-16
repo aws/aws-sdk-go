@@ -5874,6 +5874,11 @@ type CreateLaunchConfigurationTemplateInput struct {
 	// Launch disposition.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
+	// DRS will set the 'launch into instance ID' of any source server when performing
+	// a drill, recovery or failback to the previous region or availability zone,
+	// using the instance ID of the source instance.
+	LaunchIntoSourceInstance *bool `locationName:"launchIntoSourceInstance" type:"boolean"`
+
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
@@ -5943,6 +5948,12 @@ func (s *CreateLaunchConfigurationTemplateInput) SetExportBucketArn(v string) *C
 // SetLaunchDisposition sets the LaunchDisposition field's value.
 func (s *CreateLaunchConfigurationTemplateInput) SetLaunchDisposition(v string) *CreateLaunchConfigurationTemplateInput {
 	s.LaunchDisposition = &v
+	return s
+}
+
+// SetLaunchIntoSourceInstance sets the LaunchIntoSourceInstance field's value.
+func (s *CreateLaunchConfigurationTemplateInput) SetLaunchIntoSourceInstance(v bool) *CreateLaunchConfigurationTemplateInput {
+	s.LaunchIntoSourceInstance = &v
 	return s
 }
 
@@ -9117,6 +9128,9 @@ type GetLaunchConfigurationOutput struct {
 	// The state of the Recovery Instance in EC2 after the recovery operation.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
+	// Launch into existing instance properties.
+	LaunchIntoInstanceProperties *LaunchIntoInstanceProperties `locationName:"launchIntoInstanceProperties" type:"structure"`
+
 	// The licensing configuration to be used for this launch configuration.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
@@ -9173,6 +9187,12 @@ func (s *GetLaunchConfigurationOutput) SetEc2LaunchTemplateID(v string) *GetLaun
 // SetLaunchDisposition sets the LaunchDisposition field's value.
 func (s *GetLaunchConfigurationOutput) SetLaunchDisposition(v string) *GetLaunchConfigurationOutput {
 	s.LaunchDisposition = &v
+	return s
+}
+
+// SetLaunchIntoInstanceProperties sets the LaunchIntoInstanceProperties field's value.
+func (s *GetLaunchConfigurationOutput) SetLaunchIntoInstanceProperties(v *LaunchIntoInstanceProperties) *GetLaunchConfigurationOutput {
+	s.LaunchIntoInstanceProperties = v
 	return s
 }
 
@@ -10187,6 +10207,11 @@ type LaunchConfigurationTemplate struct {
 	// Launch disposition.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
+	// DRS will set the 'launch into instance ID' of any source server when performing
+	// a drill, recovery or failback to the previous region or availability zone,
+	// using the instance ID of the source instance.
+	LaunchIntoSourceInstance *bool `locationName:"launchIntoSourceInstance" type:"boolean"`
+
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
@@ -10258,6 +10283,12 @@ func (s *LaunchConfigurationTemplate) SetLaunchDisposition(v string) *LaunchConf
 	return s
 }
 
+// SetLaunchIntoSourceInstance sets the LaunchIntoSourceInstance field's value.
+func (s *LaunchConfigurationTemplate) SetLaunchIntoSourceInstance(v bool) *LaunchConfigurationTemplate {
+	s.LaunchIntoSourceInstance = &v
+	return s
+}
+
 // SetLicensing sets the Licensing field's value.
 func (s *LaunchConfigurationTemplate) SetLicensing(v *Licensing) *LaunchConfigurationTemplate {
 	s.Licensing = v
@@ -10279,6 +10310,39 @@ func (s *LaunchConfigurationTemplate) SetTags(v map[string]*string) *LaunchConfi
 // SetTargetInstanceTypeRightSizingMethod sets the TargetInstanceTypeRightSizingMethod field's value.
 func (s *LaunchConfigurationTemplate) SetTargetInstanceTypeRightSizingMethod(v string) *LaunchConfigurationTemplate {
 	s.TargetInstanceTypeRightSizingMethod = &v
+	return s
+}
+
+// Launch into existing instance.
+type LaunchIntoInstanceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Optionally holds EC2 instance ID of an instance to launch into, instead of
+	// launching a new instance during drill, recovery or failback.
+	LaunchIntoEC2InstanceID *string `locationName:"launchIntoEC2InstanceID" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchIntoInstanceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LaunchIntoInstanceProperties) GoString() string {
+	return s.String()
+}
+
+// SetLaunchIntoEC2InstanceID sets the LaunchIntoEC2InstanceID field's value.
+func (s *LaunchIntoInstanceProperties) SetLaunchIntoEC2InstanceID(v string) *LaunchIntoInstanceProperties {
+	s.LaunchIntoEC2InstanceID = &v
 	return s
 }
 
@@ -11222,7 +11286,9 @@ type PutLaunchActionInput struct {
 	Category *string `locationName:"category" type:"string" required:"true" enum:"LaunchActionCategory"`
 
 	// Launch action description.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a required field
+	Description *string `locationName:"description" type:"string" required:"true"`
 
 	// Launch action name.
 	//
@@ -11292,6 +11358,9 @@ func (s *PutLaunchActionInput) Validate() error {
 	}
 	if s.Category == nil {
 		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -14996,6 +15065,9 @@ type UpdateLaunchConfigurationInput struct {
 	// The state of the Recovery Instance in EC2 after the recovery operation.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
+	// Launch into existing instance properties.
+	LaunchIntoInstanceProperties *LaunchIntoInstanceProperties `locationName:"launchIntoInstanceProperties" type:"structure"`
+
 	// The licensing configuration to be used for this launch configuration.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
@@ -15068,6 +15140,12 @@ func (s *UpdateLaunchConfigurationInput) SetLaunchDisposition(v string) *UpdateL
 	return s
 }
 
+// SetLaunchIntoInstanceProperties sets the LaunchIntoInstanceProperties field's value.
+func (s *UpdateLaunchConfigurationInput) SetLaunchIntoInstanceProperties(v *LaunchIntoInstanceProperties) *UpdateLaunchConfigurationInput {
+	s.LaunchIntoInstanceProperties = v
+	return s
+}
+
 // SetLicensing sets the Licensing field's value.
 func (s *UpdateLaunchConfigurationInput) SetLicensing(v *Licensing) *UpdateLaunchConfigurationInput {
 	s.Licensing = v
@@ -15114,6 +15192,9 @@ type UpdateLaunchConfigurationOutput struct {
 
 	// The state of the Recovery Instance in EC2 after the recovery operation.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
+
+	// Launch into existing instance properties.
+	LaunchIntoInstanceProperties *LaunchIntoInstanceProperties `locationName:"launchIntoInstanceProperties" type:"structure"`
 
 	// The licensing configuration to be used for this launch configuration.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
@@ -15174,6 +15255,12 @@ func (s *UpdateLaunchConfigurationOutput) SetLaunchDisposition(v string) *Update
 	return s
 }
 
+// SetLaunchIntoInstanceProperties sets the LaunchIntoInstanceProperties field's value.
+func (s *UpdateLaunchConfigurationOutput) SetLaunchIntoInstanceProperties(v *LaunchIntoInstanceProperties) *UpdateLaunchConfigurationOutput {
+	s.LaunchIntoInstanceProperties = v
+	return s
+}
+
 // SetLicensing sets the Licensing field's value.
 func (s *UpdateLaunchConfigurationOutput) SetLicensing(v *Licensing) *UpdateLaunchConfigurationOutput {
 	s.Licensing = v
@@ -15223,6 +15310,11 @@ type UpdateLaunchConfigurationTemplateInput struct {
 
 	// Launch disposition.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
+
+	// DRS will set the 'launch into instance ID' of any source server when performing
+	// a drill, recovery or failback to the previous region or availability zone,
+	// using the instance ID of the source instance.
+	LaunchIntoSourceInstance *bool `locationName:"launchIntoSourceInstance" type:"boolean"`
 
 	// Licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
@@ -15298,6 +15390,12 @@ func (s *UpdateLaunchConfigurationTemplateInput) SetLaunchConfigurationTemplateI
 // SetLaunchDisposition sets the LaunchDisposition field's value.
 func (s *UpdateLaunchConfigurationTemplateInput) SetLaunchDisposition(v string) *UpdateLaunchConfigurationTemplateInput {
 	s.LaunchDisposition = &v
+	return s
+}
+
+// SetLaunchIntoSourceInstance sets the LaunchIntoSourceInstance field's value.
+func (s *UpdateLaunchConfigurationTemplateInput) SetLaunchIntoSourceInstance(v bool) *UpdateLaunchConfigurationTemplateInput {
+	s.LaunchIntoSourceInstance = &v
 	return s
 }
 

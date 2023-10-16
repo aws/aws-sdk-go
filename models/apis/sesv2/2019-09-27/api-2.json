@@ -1372,6 +1372,7 @@
       "min":1,
       "sensitive":true
     },
+    "AdminEmail":{"type":"string"},
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -2906,7 +2907,8 @@
         "Policies":{"shape":"PolicyMap"},
         "Tags":{"shape":"TagList"},
         "ConfigurationSetName":{"shape":"ConfigurationSetName"},
-        "VerificationStatus":{"shape":"VerificationStatus"}
+        "VerificationStatus":{"shape":"VerificationStatus"},
+        "VerificationInfo":{"shape":"VerificationInfo"}
       }
     },
     "GetEmailTemplateRequest":{
@@ -3829,6 +3831,7 @@
       "min":1
     },
     "PoolName":{"type":"string"},
+    "PrimaryNameServer":{"type":"string"},
     "PrivateKey":{
       "type":"string",
       "max":20480,
@@ -4291,6 +4294,14 @@
       "type":"string",
       "pattern":"^s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?)$"
     },
+    "SOARecord":{
+      "type":"structure",
+      "members":{
+        "PrimaryNameServer":{"shape":"PrimaryNameServer"},
+        "AdminEmail":{"shape":"AdminEmail"},
+        "SerialNumber":{"shape":"SerialNumber"}
+      }
+    },
     "ScalingMode":{
       "type":"string",
       "enum":[
@@ -4392,6 +4403,7 @@
     },
     "SendingPoolName":{"type":"string"},
     "SentLast24Hours":{"type":"double"},
+    "SerialNumber":{"type":"long"},
     "SnsDestination":{
       "type":"structure",
       "required":["TopicArn"],
@@ -4809,6 +4821,25 @@
       "members":{
         "DashboardOptions":{"shape":"DashboardOptions"},
         "GuardianOptions":{"shape":"GuardianOptions"}
+      }
+    },
+    "VerificationError":{
+      "type":"string",
+      "enum":[
+        "SERVICE_ERROR",
+        "DNS_SERVER_ERROR",
+        "HOST_NOT_FOUND",
+        "TYPE_NOT_FOUND",
+        "INVALID_VALUE"
+      ]
+    },
+    "VerificationInfo":{
+      "type":"structure",
+      "members":{
+        "LastCheckedTimestamp":{"shape":"Timestamp"},
+        "LastSuccessTimestamp":{"shape":"Timestamp"},
+        "ErrorType":{"shape":"VerificationError"},
+        "SOARecord":{"shape":"SOARecord"}
       }
     },
     "VerificationStatus":{

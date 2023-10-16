@@ -14033,7 +14033,10 @@ type EmailContent struct {
 	//    * If you include attachments, they must be in a file format that the Amazon
 	//    SES API v2 supports.
 	//
-	//    * The entire message must be Base64 encoded.
+	//    * The raw data of the message needs to base64-encoded if you are accessing
+	//    Amazon SES directly through the HTTPS interface. If you are accessing
+	//    Amazon SES using an Amazon Web Services SDK, the SDK takes care of the
+	//    base 64-encoding for you.
 	//
 	//    * If any of the MIME parts in your message contain content that is outside
 	//    of the 7-bit ASCII character range, you should encode that content to
@@ -16632,6 +16635,10 @@ type GetEmailIdentityOutput struct {
 	// with the email identity.
 	Tags []*Tag `type:"list"`
 
+	// An object that contains additional information about the verification status
+	// for the identity.
+	VerificationInfo *VerificationInfo `type:"structure"`
+
 	// The verification status of the identity. The status can be one of the following:
 	//
 	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
@@ -16711,6 +16718,12 @@ func (s *GetEmailIdentityOutput) SetPolicies(v map[string]*string) *GetEmailIden
 // SetTags sets the Tags field's value.
 func (s *GetEmailIdentityOutput) SetTags(v []*Tag) *GetEmailIdentityOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVerificationInfo sets the VerificationInfo field's value.
+func (s *GetEmailIdentityOutput) SetVerificationInfo(v *VerificationInfo) *GetEmailIdentityOutput {
+	s.VerificationInfo = v
 	return s
 }
 
@@ -19104,7 +19117,7 @@ type ListEmailTemplatesInput struct {
 	// then the response includes a NextToken element, which you can use to obtain
 	// additional results.
 	//
-	// The value you specify has to be at least 1, and can be no more than 10.
+	// The value you specify has to be at least 1, and can be no more than 100.
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 }
 
@@ -22694,7 +22707,10 @@ type RawMessage struct {
 	//
 	//    * Attachments must be in a file format that the Amazon SES supports.
 	//
-	//    * The entire message must be Base64 encoded.
+	//    * The raw data of the message needs to base64-encoded if you are accessing
+	//    Amazon SES directly through the HTTPS interface. If you are accessing
+	//    Amazon SES using an Amazon Web Services SDK, the SDK takes care of the
+	//    base 64-encoding for you.
 	//
 	//    * If any of the MIME parts in your message contain content that is outside
 	//    of the 7-bit ASCII character range, you should encode that content to
@@ -22997,6 +23013,57 @@ func (s *ReviewDetails) SetCaseId(v string) *ReviewDetails {
 // SetStatus sets the Status field's value.
 func (s *ReviewDetails) SetStatus(v string) *ReviewDetails {
 	s.Status = &v
+	return s
+}
+
+// An object that contains information about the start of authority (SOA) record
+// associated with the identity.
+type SOARecord struct {
+	_ struct{} `type:"structure"`
+
+	// Administrative contact email from the SOA record.
+	AdminEmail *string `type:"string"`
+
+	// Primary name server specified in the SOA record.
+	PrimaryNameServer *string `type:"string"`
+
+	// Serial number from the SOA record.
+	SerialNumber *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SOARecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SOARecord) GoString() string {
+	return s.String()
+}
+
+// SetAdminEmail sets the AdminEmail field's value.
+func (s *SOARecord) SetAdminEmail(v string) *SOARecord {
+	s.AdminEmail = &v
+	return s
+}
+
+// SetPrimaryNameServer sets the PrimaryNameServer field's value.
+func (s *SOARecord) SetPrimaryNameServer(v string) *SOARecord {
+	s.PrimaryNameServer = &v
+	return s
+}
+
+// SetSerialNumber sets the SerialNumber field's value.
+func (s *SOARecord) SetSerialNumber(v int64) *SOARecord {
+	s.SerialNumber = &v
 	return s
 }
 
@@ -25616,6 +25683,86 @@ func (s *VdmOptions) SetGuardianOptions(v *GuardianOptions) *VdmOptions {
 	return s
 }
 
+// An object that contains additional information about the verification status
+// for the identity.
+type VerificationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the reason for the failure describing why Amazon SES was not able
+	// to successfully verify the identity. Below are the possible values:
+	//
+	//    * INVALID_VALUE – Amazon SES was able to find the record, but the value
+	//    contained within the record was invalid. Ensure you have published the
+	//    correct values for the record.
+	//
+	//    * TYPE_NOT_FOUND – The queried hostname exists but does not have the
+	//    requested type of DNS record. Ensure that you have published the correct
+	//    type of DNS record.
+	//
+	//    * HOST_NOT_FOUND – The queried hostname does not exist or was not reachable
+	//    at the time of the request. Ensure that you have published the required
+	//    DNS record(s).
+	//
+	//    * SERVICE_ERROR – A temporary issue is preventing Amazon SES from determining
+	//    the verification status of the domain.
+	//
+	//    * DNS_SERVER_ERROR – The DNS server encountered an issue and was unable
+	//    to complete the request.
+	ErrorType *string `type:"string" enum:"VerificationError"`
+
+	// The last time a verification attempt was made for this identity.
+	LastCheckedTimestamp *time.Time `type:"timestamp"`
+
+	// The last time a successful verification was made for this identity.
+	LastSuccessTimestamp *time.Time `type:"timestamp"`
+
+	// An object that contains information about the start of authority (SOA) record
+	// associated with the identity.
+	SOARecord *SOARecord `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerificationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerificationInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *VerificationInfo) SetErrorType(v string) *VerificationInfo {
+	s.ErrorType = &v
+	return s
+}
+
+// SetLastCheckedTimestamp sets the LastCheckedTimestamp field's value.
+func (s *VerificationInfo) SetLastCheckedTimestamp(v time.Time) *VerificationInfo {
+	s.LastCheckedTimestamp = &v
+	return s
+}
+
+// SetLastSuccessTimestamp sets the LastSuccessTimestamp field's value.
+func (s *VerificationInfo) SetLastSuccessTimestamp(v time.Time) *VerificationInfo {
+	s.LastSuccessTimestamp = &v
+	return s
+}
+
+// SetSOARecord sets the SOARecord field's value.
+func (s *VerificationInfo) SetSOARecord(v *SOARecord) *VerificationInfo {
+	s.SOARecord = v
+	return s
+}
+
 // An object that contains information about the amount of email that was delivered
 // to recipients.
 type VolumeStatistics struct {
@@ -26660,6 +26807,34 @@ func TlsPolicy_Values() []string {
 	return []string{
 		TlsPolicyRequire,
 		TlsPolicyOptional,
+	}
+}
+
+const (
+	// VerificationErrorServiceError is a VerificationError enum value
+	VerificationErrorServiceError = "SERVICE_ERROR"
+
+	// VerificationErrorDnsServerError is a VerificationError enum value
+	VerificationErrorDnsServerError = "DNS_SERVER_ERROR"
+
+	// VerificationErrorHostNotFound is a VerificationError enum value
+	VerificationErrorHostNotFound = "HOST_NOT_FOUND"
+
+	// VerificationErrorTypeNotFound is a VerificationError enum value
+	VerificationErrorTypeNotFound = "TYPE_NOT_FOUND"
+
+	// VerificationErrorInvalidValue is a VerificationError enum value
+	VerificationErrorInvalidValue = "INVALID_VALUE"
+)
+
+// VerificationError_Values returns all elements of the VerificationError enum
+func VerificationError_Values() []string {
+	return []string{
+		VerificationErrorServiceError,
+		VerificationErrorDnsServerError,
+		VerificationErrorHostNotFound,
+		VerificationErrorTypeNotFound,
+		VerificationErrorInvalidValue,
 	}
 }
 

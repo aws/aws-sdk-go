@@ -31,6 +31,24 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "GetAssetContract":{
+      "name":"GetAssetContract",
+      "http":{
+        "method":"POST",
+        "requestUri":"/get-asset-contract",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAssetContractInput"},
+      "output":{"shape":"GetAssetContractOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "GetTokenBalance":{
       "name":"GetTokenBalance",
       "http":{
@@ -62,6 +80,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "ListAssetContracts":{
+      "name":"ListAssetContracts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-asset-contracts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAssetContractsInput"},
+      "output":{"shape":"ListAssetContractsOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -131,6 +166,25 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AssetContract":{
+      "type":"structure",
+      "required":[
+        "contractIdentifier",
+        "tokenStandard",
+        "deployerAddress"
+      ],
+      "members":{
+        "contractIdentifier":{"shape":"ContractIdentifier"},
+        "tokenStandard":{"shape":"QueryTokenStandard"},
+        "deployerAddress":{"shape":"ChainAddress"}
+      }
+    },
+    "AssetContractList":{
+      "type":"list",
+      "member":{"shape":"AssetContract"},
+      "max":250,
+      "min":0
     },
     "BatchGetTokenBalanceErrorItem":{
       "type":"structure",
@@ -217,6 +271,38 @@
       "type":"string",
       "pattern":"[-A-Za-z0-9]{13,74}"
     },
+    "ContractFilter":{
+      "type":"structure",
+      "required":[
+        "network",
+        "tokenStandard",
+        "deployerAddress"
+      ],
+      "members":{
+        "network":{"shape":"QueryNetwork"},
+        "tokenStandard":{"shape":"QueryTokenStandard"},
+        "deployerAddress":{"shape":"ChainAddress"}
+      }
+    },
+    "ContractIdentifier":{
+      "type":"structure",
+      "required":[
+        "network",
+        "contractAddress"
+      ],
+      "members":{
+        "network":{"shape":"QueryNetwork"},
+        "contractAddress":{"shape":"ChainAddress"}
+      }
+    },
+    "ContractMetadata":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "symbol":{"shape":"String"},
+        "decimals":{"shape":"Integer"}
+      }
+    },
     "ErrorType":{
       "type":"string",
       "enum":[
@@ -227,6 +313,27 @@
     "ExceptionMessage":{
       "type":"string",
       "min":1
+    },
+    "GetAssetContractInput":{
+      "type":"structure",
+      "required":["contractIdentifier"],
+      "members":{
+        "contractIdentifier":{"shape":"ContractIdentifier"}
+      }
+    },
+    "GetAssetContractOutput":{
+      "type":"structure",
+      "required":[
+        "contractIdentifier",
+        "tokenStandard",
+        "deployerAddress"
+      ],
+      "members":{
+        "contractIdentifier":{"shape":"ContractIdentifier"},
+        "tokenStandard":{"shape":"QueryTokenStandard"},
+        "deployerAddress":{"shape":"ChainAddress"},
+        "metadata":{"shape":"ContractMetadata"}
+      }
     },
     "GetTokenBalanceInput":{
       "type":"structure",
@@ -297,6 +404,29 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "ListAssetContractsInput":{
+      "type":"structure",
+      "required":["contractFilter"],
+      "members":{
+        "contractFilter":{"shape":"ContractFilter"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"ListAssetContractsInputMaxResultsInteger"}
+      }
+    },
+    "ListAssetContractsInputMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":250,
+      "min":1
+    },
+    "ListAssetContractsOutput":{
+      "type":"structure",
+      "required":["contracts"],
+      "members":{
+        "contracts":{"shape":"AssetContractList"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListTokenBalancesInput":{
       "type":"structure",
@@ -417,12 +547,21 @@
       "type":"string",
       "enum":[
         "ETHEREUM_MAINNET",
-        "BITCOIN_MAINNET"
+        "BITCOIN_MAINNET",
+        "BITCOIN_TESTNET"
       ]
     },
     "QueryTokenId":{
       "type":"string",
       "pattern":"[a-zA-Z0-9]{1,66}"
+    },
+    "QueryTokenStandard":{
+      "type":"string",
+      "enum":[
+        "ERC20",
+        "ERC721",
+        "ERC1155"
+      ]
     },
     "QueryTransactionEventType":{
       "type":"string",

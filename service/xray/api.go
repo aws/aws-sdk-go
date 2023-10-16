@@ -6295,8 +6295,8 @@ type GetTraceSummariesInput struct {
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
 
-	// A parameter to indicate whether to query trace summaries by TraceId or Event
-	// time.
+	// A parameter to indicate whether to query trace summaries by TraceId, Event
+	// (trace update time), or Service (segment end time).
 	TimeRangeType *string `type:"string" enum:"TimeRangeType"`
 }
 
@@ -11052,6 +11052,9 @@ const (
 
 	// TimeRangeTypeEvent is a TimeRangeType enum value
 	TimeRangeTypeEvent = "Event"
+
+	// TimeRangeTypeService is a TimeRangeType enum value
+	TimeRangeTypeService = "Service"
 )
 
 // TimeRangeType_Values returns all elements of the TimeRangeType enum
@@ -11059,5 +11062,6 @@ func TimeRangeType_Values() []string {
 	return []string{
 		TimeRangeTypeTraceId,
 		TimeRangeTypeEvent,
+		TimeRangeTypeService,
 	}
 }

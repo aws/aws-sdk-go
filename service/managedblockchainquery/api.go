@@ -55,7 +55,7 @@ func (c *ManagedBlockchainQuery) BatchGetTokenBalanceRequest(input *BatchGetToke
 
 // BatchGetTokenBalance API operation for Amazon Managed Blockchain Query.
 //
-// Gets the token balance for a batch of tokens by using the GetTokenBalance
+// Gets the token balance for a batch of tokens by using the BatchGetTokenBalance
 // action for every token in the request.
 //
 // Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
@@ -108,6 +108,108 @@ func (c *ManagedBlockchainQuery) BatchGetTokenBalance(input *BatchGetTokenBalanc
 // for more information on using Contexts.
 func (c *ManagedBlockchainQuery) BatchGetTokenBalanceWithContext(ctx aws.Context, input *BatchGetTokenBalanceInput, opts ...request.Option) (*BatchGetTokenBalanceOutput, error) {
 	req, out := c.BatchGetTokenBalanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAssetContract = "GetAssetContract"
+
+// GetAssetContractRequest generates a "aws/request.Request" representing the
+// client's request for the GetAssetContract operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAssetContract for more information on using the GetAssetContract
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAssetContractRequest method.
+//	req, resp := client.GetAssetContractRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/GetAssetContract
+func (c *ManagedBlockchainQuery) GetAssetContractRequest(input *GetAssetContractInput) (req *request.Request, output *GetAssetContractOutput) {
+	op := &request.Operation{
+		Name:       opGetAssetContract,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-asset-contract",
+	}
+
+	if input == nil {
+		input = &GetAssetContractInput{}
+	}
+
+	output = &GetAssetContractOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAssetContract API operation for Amazon Managed Blockchain Query.
+//
+// Gets the information about a specific contract deployed on the blockchain.
+//
+//   - The Bitcoin blockchain networks do not support this operation.
+//
+//   - Metadata is currently only available for some ERC-20 contracts. Metadata
+//     will be available for additional contracts in the future.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain Query's
+// API operation GetAssetContract for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is when you create
+//     resources that exceed your service limit for this resource type. Request
+//     a limit increase or delete unused resources, if possible.
+//
+//   - ValidationException
+//     The resource passed is invalid.
+//
+//   - ResourceNotFoundException
+//     The resource was not found.
+//
+//   - AccessDeniedException
+//     The Amazon Web Services account doesn’t have access to this resource.
+//
+//   - InternalServerException
+//     The request processing has failed because of an internal error in the service.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded for this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/GetAssetContract
+func (c *ManagedBlockchainQuery) GetAssetContract(input *GetAssetContractInput) (*GetAssetContractOutput, error) {
+	req, out := c.GetAssetContractRequest(input)
+	return out, req.Send()
+}
+
+// GetAssetContractWithContext is the same as GetAssetContract with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAssetContract for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchainQuery) GetAssetContractWithContext(ctx aws.Context, input *GetAssetContractInput, opts ...request.Option) (*GetAssetContractOutput, error) {
+	req, out := c.GetAssetContractRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -311,6 +413,160 @@ func (c *ManagedBlockchainQuery) GetTransactionWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opListAssetContracts = "ListAssetContracts"
+
+// ListAssetContractsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssetContracts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssetContracts for more information on using the ListAssetContracts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAssetContractsRequest method.
+//	req, resp := client.ListAssetContractsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListAssetContracts
+func (c *ManagedBlockchainQuery) ListAssetContractsRequest(input *ListAssetContractsInput) (req *request.Request, output *ListAssetContractsOutput) {
+	op := &request.Operation{
+		Name:       opListAssetContracts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-asset-contracts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetContractsInput{}
+	}
+
+	output = &ListAssetContractsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssetContracts API operation for Amazon Managed Blockchain Query.
+//
+// Lists all the contracts for a given contract type deployed by an address
+// (either a contract address or a wallet address).
+//
+// The Bitcoin blockchain networks do not support this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain Query's
+// API operation ListAssetContracts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is when you create
+//     resources that exceed your service limit for this resource type. Request
+//     a limit increase or delete unused resources, if possible.
+//
+//   - ValidationException
+//     The resource passed is invalid.
+//
+//   - AccessDeniedException
+//     The Amazon Web Services account doesn’t have access to this resource.
+//
+//   - InternalServerException
+//     The request processing has failed because of an internal error in the service.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded for this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListAssetContracts
+func (c *ManagedBlockchainQuery) ListAssetContracts(input *ListAssetContractsInput) (*ListAssetContractsOutput, error) {
+	req, out := c.ListAssetContractsRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetContractsWithContext is the same as ListAssetContracts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssetContracts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchainQuery) ListAssetContractsWithContext(ctx aws.Context, input *ListAssetContractsInput, opts ...request.Option) (*ListAssetContractsOutput, error) {
+	req, out := c.ListAssetContractsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetContractsPages iterates over the pages of a ListAssetContracts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssetContracts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAssetContracts operation.
+//	pageNum := 0
+//	err := client.ListAssetContractsPages(params,
+//	    func(page *managedblockchainquery.ListAssetContractsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ManagedBlockchainQuery) ListAssetContractsPages(input *ListAssetContractsInput, fn func(*ListAssetContractsOutput, bool) bool) error {
+	return c.ListAssetContractsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetContractsPagesWithContext same as ListAssetContractsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchainQuery) ListAssetContractsPagesWithContext(ctx aws.Context, input *ListAssetContractsInput, fn func(*ListAssetContractsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetContractsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetContractsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetContractsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTokenBalances = "ListTokenBalances"
 
 // ListTokenBalancesRequest generates a "aws/request.Request" representing the
@@ -360,9 +616,9 @@ func (c *ManagedBlockchainQuery) ListTokenBalancesRequest(input *ListTokenBalanc
 
 // ListTokenBalances API operation for Amazon Managed Blockchain Query.
 //
-// This action returns the following for a given a blockchain network:
+// This action returns the following for a given blockchain network:
 //
-//   - Lists all token balances owned by an address (either a contact address
+//   - Lists all token balances owned by an address (either a contract address
 //     or a wallet address).
 //
 //   - Lists all token balances for all tokens created by a contract.
@@ -841,6 +1097,63 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This container contains information about an contract.
+type AssetContract struct {
+	_ struct{} `type:"structure"`
+
+	// The container for the contract identifier containing its blockchain network
+	// and address.
+	//
+	// ContractIdentifier is a required field
+	ContractIdentifier *ContractIdentifier `locationName:"contractIdentifier" type:"structure" required:"true"`
+
+	// The address of the contract deployer.
+	//
+	// DeployerAddress is a required field
+	DeployerAddress *string `locationName:"deployerAddress" type:"string" required:"true"`
+
+	// The token standard of the contract.
+	//
+	// TokenStandard is a required field
+	TokenStandard *string `locationName:"tokenStandard" type:"string" required:"true" enum:"QueryTokenStandard"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetContract) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetContract) GoString() string {
+	return s.String()
+}
+
+// SetContractIdentifier sets the ContractIdentifier field's value.
+func (s *AssetContract) SetContractIdentifier(v *ContractIdentifier) *AssetContract {
+	s.ContractIdentifier = v
+	return s
+}
+
+// SetDeployerAddress sets the DeployerAddress field's value.
+func (s *AssetContract) SetDeployerAddress(v string) *AssetContract {
+	s.DeployerAddress = &v
+	return s
+}
+
+// SetTokenStandard sets the TokenStandard field's value.
+func (s *AssetContract) SetTokenStandard(v string) *AssetContract {
+	s.TokenStandard = &v
+	return s
+}
+
 // Error generated from a failed BatchGetTokenBalance request.
 type BatchGetTokenBalanceErrorItem struct {
 	_ struct{} `type:"structure"`
@@ -931,7 +1244,8 @@ func (s *BatchGetTokenBalanceErrorItem) SetTokenIdentifier(v *TokenIdentifier) *
 type BatchGetTokenBalanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of GetTokenBalanceInput objects whose balance is being requested.
+	// An array of BatchGetTokenBalanceInputItem objects whose balance is being
+	// requested.
 	GetTokenBalanceInputs []*BatchGetTokenBalanceInputItem `locationName:"getTokenBalanceInputs" min:"1" type:"list"`
 }
 
@@ -1217,6 +1531,307 @@ func (s BlockchainInstant) GoString() string {
 // SetTime sets the Time field's value.
 func (s *BlockchainInstant) SetTime(v time.Time) *BlockchainInstant {
 	s.Time = &v
+	return s
+}
+
+// The contract or wallet address by which to filter the request.
+type ContractFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The network address of the deployer.
+	//
+	// DeployerAddress is a required field
+	DeployerAddress *string `locationName:"deployerAddress" type:"string" required:"true"`
+
+	// The blockchain network of the contract.
+	//
+	// Network is a required field
+	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
+
+	// The container for the token standard.
+	//
+	// TokenStandard is a required field
+	TokenStandard *string `locationName:"tokenStandard" type:"string" required:"true" enum:"QueryTokenStandard"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContractFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContractFilter"}
+	if s.DeployerAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeployerAddress"))
+	}
+	if s.Network == nil {
+		invalidParams.Add(request.NewErrParamRequired("Network"))
+	}
+	if s.TokenStandard == nil {
+		invalidParams.Add(request.NewErrParamRequired("TokenStandard"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeployerAddress sets the DeployerAddress field's value.
+func (s *ContractFilter) SetDeployerAddress(v string) *ContractFilter {
+	s.DeployerAddress = &v
+	return s
+}
+
+// SetNetwork sets the Network field's value.
+func (s *ContractFilter) SetNetwork(v string) *ContractFilter {
+	s.Network = &v
+	return s
+}
+
+// SetTokenStandard sets the TokenStandard field's value.
+func (s *ContractFilter) SetTokenStandard(v string) *ContractFilter {
+	s.TokenStandard = &v
+	return s
+}
+
+// Container for the blockchain address and network information about a contract.
+type ContractIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// Container for the blockchain address about a contract.
+	//
+	// ContractAddress is a required field
+	ContractAddress *string `locationName:"contractAddress" type:"string" required:"true"`
+
+	// The blockchain network of the contract.
+	//
+	// Network is a required field
+	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContractIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContractIdentifier"}
+	if s.ContractAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContractAddress"))
+	}
+	if s.Network == nil {
+		invalidParams.Add(request.NewErrParamRequired("Network"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContractAddress sets the ContractAddress field's value.
+func (s *ContractIdentifier) SetContractAddress(v string) *ContractIdentifier {
+	s.ContractAddress = &v
+	return s
+}
+
+// SetNetwork sets the Network field's value.
+func (s *ContractIdentifier) SetNetwork(v string) *ContractIdentifier {
+	s.Network = &v
+	return s
+}
+
+// The metadata of the contract.
+type ContractMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The decimals used by the token contract.
+	Decimals *int64 `locationName:"decimals" type:"integer"`
+
+	// The name of the token contract.
+	Name *string `locationName:"name" type:"string"`
+
+	// The symbol of the token contract.
+	Symbol *string `locationName:"symbol" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContractMetadata) GoString() string {
+	return s.String()
+}
+
+// SetDecimals sets the Decimals field's value.
+func (s *ContractMetadata) SetDecimals(v int64) *ContractMetadata {
+	s.Decimals = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContractMetadata) SetName(v string) *ContractMetadata {
+	s.Name = &v
+	return s
+}
+
+// SetSymbol sets the Symbol field's value.
+func (s *ContractMetadata) SetSymbol(v string) *ContractMetadata {
+	s.Symbol = &v
+	return s
+}
+
+type GetAssetContractInput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the blockchain address and network information about the contract.
+	//
+	// ContractIdentifier is a required field
+	ContractIdentifier *ContractIdentifier `locationName:"contractIdentifier" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAssetContractInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAssetContractInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAssetContractInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAssetContractInput"}
+	if s.ContractIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContractIdentifier"))
+	}
+	if s.ContractIdentifier != nil {
+		if err := s.ContractIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("ContractIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContractIdentifier sets the ContractIdentifier field's value.
+func (s *GetAssetContractInput) SetContractIdentifier(v *ContractIdentifier) *GetAssetContractInput {
+	s.ContractIdentifier = v
+	return s
+}
+
+type GetAssetContractOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the blockchain address and network information about the contract.
+	//
+	// ContractIdentifier is a required field
+	ContractIdentifier *ContractIdentifier `locationName:"contractIdentifier" type:"structure" required:"true"`
+
+	// The address of the deployer of contract.
+	//
+	// DeployerAddress is a required field
+	DeployerAddress *string `locationName:"deployerAddress" type:"string" required:"true"`
+
+	// The metadata of the contract.
+	Metadata *ContractMetadata `locationName:"metadata" type:"structure"`
+
+	// The token standard of the contract requested.
+	//
+	// TokenStandard is a required field
+	TokenStandard *string `locationName:"tokenStandard" type:"string" required:"true" enum:"QueryTokenStandard"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAssetContractOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAssetContractOutput) GoString() string {
+	return s.String()
+}
+
+// SetContractIdentifier sets the ContractIdentifier field's value.
+func (s *GetAssetContractOutput) SetContractIdentifier(v *ContractIdentifier) *GetAssetContractOutput {
+	s.ContractIdentifier = v
+	return s
+}
+
+// SetDeployerAddress sets the DeployerAddress field's value.
+func (s *GetAssetContractOutput) SetDeployerAddress(v string) *GetAssetContractOutput {
+	s.DeployerAddress = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetAssetContractOutput) SetMetadata(v *ContractMetadata) *GetAssetContractOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetTokenStandard sets the TokenStandard field's value.
+func (s *GetAssetContractOutput) SetTokenStandard(v string) *GetAssetContractOutput {
+	s.TokenStandard = &v
 	return s
 }
 
@@ -1538,6 +2153,120 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAssetContractsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the filter parameter for the request.
+	//
+	// ContractFilter is a required field
+	ContractFilter *ContractFilter `locationName:"contractFilter" type:"structure" required:"true"`
+
+	// The maximum number of contracts to list.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetContractsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetContractsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetContractsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetContractsInput"}
+	if s.ContractFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContractFilter"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ContractFilter != nil {
+		if err := s.ContractFilter.Validate(); err != nil {
+			invalidParams.AddNested("ContractFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContractFilter sets the ContractFilter field's value.
+func (s *ListAssetContractsInput) SetContractFilter(v *ContractFilter) *ListAssetContractsInput {
+	s.ContractFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetContractsInput) SetMaxResults(v int64) *ListAssetContractsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetContractsInput) SetNextToken(v string) *ListAssetContractsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetContractsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of contract objects that contain the properties for each contract.
+	//
+	// Contracts is a required field
+	Contracts []*AssetContract `locationName:"contracts" type:"list" required:"true"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetContractsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetContractsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContracts sets the Contracts field's value.
+func (s *ListAssetContractsOutput) SetContracts(v []*AssetContract) *ListAssetContractsOutput {
+	s.Contracts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetContractsOutput) SetNextToken(v string) *ListAssetContractsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListTokenBalancesInput struct {
@@ -2361,7 +3090,7 @@ type TokenBalance struct {
 	// Balance is a required field
 	Balance *string `locationName:"balance" type:"string" required:"true"`
 
-	// The timestamp of the last transaction at which the balance for the token
+	// The Timestamp of the last transaction at which the balance for the token
 	// in the wallet was updated.
 	LastUpdatedTime *BlockchainInstant `locationName:"lastUpdatedTime" type:"structure"`
 
@@ -2507,6 +3236,10 @@ type TokenIdentifier struct {
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
 
 	// The unique identifier of the token.
+	//
+	// You must specify this container with btc for the native BTC token, and eth
+	// for the native ETH token. For all other token types you must specify the
+	// tokenId in the 64 character hexadecimal tokenid format.
 	TokenId *string `locationName:"tokenId" type:"string"`
 }
 
@@ -2594,7 +3327,7 @@ type Transaction struct {
 	// The amount of gas used for the transaction.
 	GasUsed *string `locationName:"gasUsed" type:"string"`
 
-	// The blockchain network where the transaction occured.
+	// The blockchain network where the transaction occurred.
 	//
 	// Network is a required field
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
@@ -3112,6 +3845,9 @@ const (
 
 	// QueryNetworkBitcoinMainnet is a QueryNetwork enum value
 	QueryNetworkBitcoinMainnet = "BITCOIN_MAINNET"
+
+	// QueryNetworkBitcoinTestnet is a QueryNetwork enum value
+	QueryNetworkBitcoinTestnet = "BITCOIN_TESTNET"
 )
 
 // QueryNetwork_Values returns all elements of the QueryNetwork enum
@@ -3119,6 +3855,27 @@ func QueryNetwork_Values() []string {
 	return []string{
 		QueryNetworkEthereumMainnet,
 		QueryNetworkBitcoinMainnet,
+		QueryNetworkBitcoinTestnet,
+	}
+}
+
+const (
+	// QueryTokenStandardErc20 is a QueryTokenStandard enum value
+	QueryTokenStandardErc20 = "ERC20"
+
+	// QueryTokenStandardErc721 is a QueryTokenStandard enum value
+	QueryTokenStandardErc721 = "ERC721"
+
+	// QueryTokenStandardErc1155 is a QueryTokenStandard enum value
+	QueryTokenStandardErc1155 = "ERC1155"
+)
+
+// QueryTokenStandard_Values returns all elements of the QueryTokenStandard enum
+func QueryTokenStandard_Values() []string {
+	return []string{
+		QueryTokenStandardErc20,
+		QueryTokenStandardErc721,
+		QueryTokenStandardErc1155,
 	}
 }
 

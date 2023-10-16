@@ -64,6 +64,10 @@ type ManagedBlockchainQueryAPI interface {
 	BatchGetTokenBalanceWithContext(aws.Context, *managedblockchainquery.BatchGetTokenBalanceInput, ...request.Option) (*managedblockchainquery.BatchGetTokenBalanceOutput, error)
 	BatchGetTokenBalanceRequest(*managedblockchainquery.BatchGetTokenBalanceInput) (*request.Request, *managedblockchainquery.BatchGetTokenBalanceOutput)
 
+	GetAssetContract(*managedblockchainquery.GetAssetContractInput) (*managedblockchainquery.GetAssetContractOutput, error)
+	GetAssetContractWithContext(aws.Context, *managedblockchainquery.GetAssetContractInput, ...request.Option) (*managedblockchainquery.GetAssetContractOutput, error)
+	GetAssetContractRequest(*managedblockchainquery.GetAssetContractInput) (*request.Request, *managedblockchainquery.GetAssetContractOutput)
+
 	GetTokenBalance(*managedblockchainquery.GetTokenBalanceInput) (*managedblockchainquery.GetTokenBalanceOutput, error)
 	GetTokenBalanceWithContext(aws.Context, *managedblockchainquery.GetTokenBalanceInput, ...request.Option) (*managedblockchainquery.GetTokenBalanceOutput, error)
 	GetTokenBalanceRequest(*managedblockchainquery.GetTokenBalanceInput) (*request.Request, *managedblockchainquery.GetTokenBalanceOutput)
@@ -71,6 +75,13 @@ type ManagedBlockchainQueryAPI interface {
 	GetTransaction(*managedblockchainquery.GetTransactionInput) (*managedblockchainquery.GetTransactionOutput, error)
 	GetTransactionWithContext(aws.Context, *managedblockchainquery.GetTransactionInput, ...request.Option) (*managedblockchainquery.GetTransactionOutput, error)
 	GetTransactionRequest(*managedblockchainquery.GetTransactionInput) (*request.Request, *managedblockchainquery.GetTransactionOutput)
+
+	ListAssetContracts(*managedblockchainquery.ListAssetContractsInput) (*managedblockchainquery.ListAssetContractsOutput, error)
+	ListAssetContractsWithContext(aws.Context, *managedblockchainquery.ListAssetContractsInput, ...request.Option) (*managedblockchainquery.ListAssetContractsOutput, error)
+	ListAssetContractsRequest(*managedblockchainquery.ListAssetContractsInput) (*request.Request, *managedblockchainquery.ListAssetContractsOutput)
+
+	ListAssetContractsPages(*managedblockchainquery.ListAssetContractsInput, func(*managedblockchainquery.ListAssetContractsOutput, bool) bool) error
+	ListAssetContractsPagesWithContext(aws.Context, *managedblockchainquery.ListAssetContractsInput, func(*managedblockchainquery.ListAssetContractsOutput, bool) bool, ...request.Option) error
 
 	ListTokenBalances(*managedblockchainquery.ListTokenBalancesInput) (*managedblockchainquery.ListTokenBalancesOutput, error)
 	ListTokenBalancesWithContext(aws.Context, *managedblockchainquery.ListTokenBalancesInput, ...request.Option) (*managedblockchainquery.ListTokenBalancesOutput, error)

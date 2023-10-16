@@ -148,6 +148,7 @@
         "ConversionProperties$forceUefi": "<p>Whether the volume being converted uses UEFI or not</p>",
         "CreateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private IP.</p>",
         "CreateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
+        "CreateLaunchConfigurationTemplateRequest$launchIntoSourceInstance": "<p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>",
         "CreateLaunchConfigurationTemplateRequest$postLaunchEnabled": "<p>Whether we want to activate post-launch actions.</p>",
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
@@ -161,6 +162,7 @@
         "LaunchConfiguration$postLaunchEnabled": "<p>Whether we want to activate post-launch actions for the Source Server.</p>",
         "LaunchConfigurationTemplate$copyPrivateIp": "<p>Copy private IP.</p>",
         "LaunchConfigurationTemplate$copyTags": "<p>Copy tags.</p>",
+        "LaunchConfigurationTemplate$launchIntoSourceInstance": "<p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>",
         "LaunchConfigurationTemplate$postLaunchEnabled": "<p>Post-launch actions activated.</p>",
         "Licensing$osByol": "<p>Whether to enable \"Bring your own license\" or not.</p>",
         "NetworkInterface$isPrimary": "<p>Whether this is the primary network interface.</p>",
@@ -189,6 +191,7 @@
         "UpdateLaunchConfigurationRequest$postLaunchEnabled": "<p>Whether we want to enable post-launch actions for the Source Server.</p>",
         "UpdateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private IP.</p>",
         "UpdateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$launchIntoSourceInstance": "<p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>",
         "UpdateLaunchConfigurationTemplateRequest$postLaunchEnabled": "<p>Whether we want to activate post-launch actions.</p>",
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration.</p>",
         "UpdateReplicationConfigurationRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
@@ -589,6 +592,7 @@
         "IdentificationHints$awsInstanceID": "<p>AWS Instance ID identification hint.</p>",
         "JobLogEventData$conversionServerID": "<p>The ID of a conversion server.</p>",
         "JobLogEventData$targetInstanceID": "<p>The ID of a Recovery Instance.</p>",
+        "LaunchIntoInstanceProperties$launchIntoEC2InstanceID": "<p>Optionally holds EC2 instance ID of an instance to launch into, instead of launching a new instance during drill, recovery or failback.</p>",
         "RecoveryInstance$ec2InstanceID": "<p>The EC2 instance ID of the Recovery Instance.</p>"
       }
     },
@@ -1084,6 +1088,13 @@
         "LaunchConfigurationTemplate$launchDisposition": "<p>Launch disposition.</p>",
         "UpdateLaunchConfigurationRequest$launchDisposition": "<p>The state of the Recovery Instance in EC2 after the recovery operation.</p>",
         "UpdateLaunchConfigurationTemplateRequest$launchDisposition": "<p>Launch disposition.</p>"
+      }
+    },
+    "LaunchIntoInstanceProperties": {
+      "base": "<p>Launch into existing instance.</p>",
+      "refs": {
+        "LaunchConfiguration$launchIntoInstanceProperties": "<p>Launch into existing instance properties.</p>",
+        "UpdateLaunchConfigurationRequest$launchIntoInstanceProperties": "<p>Launch into existing instance properties.</p>"
       }
     },
     "LaunchStatus": {

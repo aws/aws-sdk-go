@@ -2603,7 +2603,9 @@
         "ReservedNodeExchangeStatus":{"shape":"ReservedNodeExchangeStatus"},
         "CustomDomainName":{"shape":"String"},
         "CustomDomainCertificateArn":{"shape":"String"},
-        "CustomDomainCertificateExpiryDate":{"shape":"TStamp"}
+        "CustomDomainCertificateExpiryDate":{"shape":"TStamp"},
+        "MasterPasswordSecretArn":{"shape":"String"},
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3095,8 +3097,7 @@
       "required":[
         "ClusterIdentifier",
         "NodeType",
-        "MasterUsername",
-        "MasterUserPassword"
+        "MasterUsername"
       ],
       "members":{
         "DBName":{"shape":"String"},
@@ -3104,7 +3105,7 @@
         "ClusterType":{"shape":"String"},
         "NodeType":{"shape":"String"},
         "MasterUsername":{"shape":"String"},
-        "MasterUserPassword":{"shape":"String"},
+        "MasterUserPassword":{"shape":"SensitiveString"},
         "ClusterSecurityGroups":{"shape":"ClusterSecurityGroupNameList"},
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "ClusterSubnetGroupName":{"shape":"String"},
@@ -3132,7 +3133,9 @@
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
         "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
         "DefaultIamRoleArn":{"shape":"String"},
-        "LoadSampleData":{"shape":"String"}
+        "LoadSampleData":{"shape":"String"},
+        "ManageMasterPassword":{"shape":"BooleanOptional"},
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -5205,7 +5208,7 @@
         "NumberOfNodes":{"shape":"IntegerOptional"},
         "ClusterSecurityGroups":{"shape":"ClusterSecurityGroupNameList"},
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "MasterUserPassword":{"shape":"String"},
+        "MasterUserPassword":{"shape":"SensitiveString"},
         "ClusterParameterGroupName":{"shape":"String"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
@@ -5223,7 +5226,9 @@
         "KmsKeyId":{"shape":"String"},
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
         "AvailabilityZone":{"shape":"String"},
-        "Port":{"shape":"IntegerOptional"}
+        "Port":{"shape":"IntegerOptional"},
+        "ManageMasterPassword":{"shape":"BooleanOptional"},
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -5647,7 +5652,7 @@
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
-        "MasterUserPassword":{"shape":"String"},
+        "MasterUserPassword":{"shape":"SensitiveString"},
         "NodeType":{"shape":"String"},
         "NumberOfNodes":{"shape":"IntegerOptional"},
         "ClusterType":{"shape":"String"},
@@ -6021,7 +6026,9 @@
         "DefaultIamRoleArn":{"shape":"String"},
         "ReservedNodeId":{"shape":"String"},
         "TargetReservedNodeOfferingId":{"shape":"String"},
-        "Encrypted":{"shape":"BooleanOptional"}
+        "Encrypted":{"shape":"BooleanOptional"},
+        "ManageMasterPassword":{"shape":"BooleanOptional"},
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
       }
     },
     "RestoreFromClusterSnapshotResult":{
@@ -6383,7 +6390,9 @@
         "MaintenanceTrackName":{"shape":"String"},
         "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "ManualSnapshotRemainingDays":{"shape":"IntegerOptional"},
-        "SnapshotRetentionStartTime":{"shape":"TStamp"}
+        "SnapshotRetentionStartTime":{"shape":"TStamp"},
+        "MasterPasswordSecretArn":{"shape":"String"},
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
       },
       "wrapper":true
     },

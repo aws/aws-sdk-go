@@ -69,9 +69,12 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CreateNamespaceRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>",
         "CreateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC instead of over the internet.</p>",
         "CreateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessed from a public network.</p>",
+        "RestoreFromSnapshotRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the restored snapshot's admin credentials. If <code>MmanageAdminPassword</code> is false or not set, Amazon Redshift uses the admin credentials that the namespace or cluster had at the time the snapshot was taken.</p>",
         "RestoreTableFromSnapshotRequest$activateCaseSensitiveIdentifier": "<p>Indicates whether name identifiers for database, schema, and table are case sensitive. If true, the names are case sensitive. If false, the names are not case sensitive. The default is false.</p>",
+        "UpdateNamespaceRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>",
         "UpdateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
         "UpdateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network.</p>",
         "Workgroup$enhancedVpcRouting": "<p>The value that specifies whether to enable enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
@@ -166,9 +169,9 @@
     "DbPassword": {
       "base": null,
       "refs": {
-        "CreateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p>",
+        "CreateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>",
         "GetCredentialsResponse$dbPassword": "<p>A temporary password that authorizes the user name returned by <code>DbUser</code> to log on to the database <code>DbName</code>.</p>",
-        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p>"
+        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>"
       }
     },
     "DbUser": {
@@ -414,7 +417,12 @@
     "KmsKeyId": {
       "base": null,
       "refs": {
-        "Snapshot$kmsKeyId": "<p>The unique identifier of the KMS key used to encrypt the snapshot.</p>"
+        "CreateNamespaceRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>",
+        "Namespace$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
+        "RestoreFromSnapshotRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
+        "Snapshot$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
+        "Snapshot$kmsKeyId": "<p>The unique identifier of the KMS key used to encrypt the snapshot.</p>",
+        "UpdateNamespaceRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>"
       }
     },
     "ListEndpointAccessRequest": {
@@ -802,6 +810,7 @@
         "ListUsageLimitsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) associated with the resource whose usage limits you want to list.</p>",
         "ListWorkgroupsRequest$nextToken": "<p>If your initial ListWorkgroups operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following ListNamespaces operations, which returns results in the next page.</p>",
         "ListWorkgroupsResponse$nextToken": "<p> If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token.</p>",
+        "Namespace$adminPasswordSecretArn": "<p>The Amazon Resource Name (ARN) for the namespace's admin user credentials secret.</p>",
         "Namespace$dbName": "<p>The name of the first database created in the namespace.</p>",
         "Namespace$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.</p>",
         "Namespace$kmsKeyId": "<p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>",
@@ -835,6 +844,7 @@
         "RestoreTableFromSnapshotRequest$targetSchemaName": "<p>The name of the schema to restore the table to.</p>",
         "RestoreTableFromSnapshotRequest$workgroupName": "<p>The workgroup to restore the table to.</p>",
         "ServiceQuotaExceededException$message": null,
+        "Snapshot$adminPasswordSecretArn": "<p>The Amazon Resource Name (ARN) for the namespace's admin user credentials secret.</p>",
         "Snapshot$adminUsername": "<p>The username of the database within a snapshot.</p>",
         "Snapshot$namespaceArn": "<p>The Amazon Resource Name (ARN) of the namespace the snapshot was created from.</p>",
         "Snapshot$namespaceName": "<p>The name of the namepsace.</p>",

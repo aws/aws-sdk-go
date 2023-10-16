@@ -120,6 +120,12 @@
         "PutAccountDetailsRequest$AdditionalContactEmailAddresses": "<p>Additional email addresses that you would like to be notified regarding Amazon SES matters.</p>"
       }
     },
+    "AdminEmail": {
+      "base": null,
+      "refs": {
+        "SOARecord$AdminEmail": "<p>Administrative contact email from the SOA record.</p>"
+      }
+    },
     "AlreadyExistsException": {
       "base": "<p>The resource specified in your request already exists.</p>",
       "refs": {
@@ -1992,7 +1998,7 @@
         "ListDeliverabilityTestReportsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDeliverabilityTestReports</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
         "ListDomainDeliverabilityCampaignsRequest$PageSize": "<p>The maximum number of results to include in response to a single call to the <code>ListDomainDeliverabilityCampaigns</code> operation. If the number of results is larger than the number that you specify in this parameter, the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListEmailIdentitiesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailIdentities</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
-        "ListEmailTemplatesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailTemplates</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 1, and can be no more than 10.</p>",
+        "ListEmailTemplatesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailTemplates</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 1, and can be no more than 100.</p>",
         "ListExportJobsRequest$PageSize": "<p>Maximum number of export jobs to return at once. Use this parameter to paginate results. If additional export jobs exist beyond the specified limit, the <code>NextToken</code> element is sent in the response. Use the <code>NextToken</code> value in subsequent calls to <code>ListExportJobs</code> to retrieve additional export jobs.</p>",
         "ListImportJobsRequest$PageSize": "<p>Maximum number of import jobs to return at once. Use this parameter to paginate results. If additional import jobs exist beyond the specified limit, the <code>NextToken</code> element is sent in the response. Use the <code>NextToken</code> value in subsequent requests to retrieve additional addresses.</p>",
         "ListRecommendationsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListRecommendations</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 1, and can be no more than 100.</p>",
@@ -2275,6 +2281,12 @@
         "PutDedicatedIpPoolScalingAttributesRequest$PoolName": "<p>The name of the dedicated IP pool.</p>"
       }
     },
+    "PrimaryNameServer": {
+      "base": null,
+      "refs": {
+        "SOARecord$PrimaryNameServer": "<p>Primary name server specified in the SOA record.</p>"
+      }
+    },
     "PrivateKey": {
       "base": null,
       "refs": {
@@ -2522,13 +2534,13 @@
     "RawMessage": {
       "base": "<p>Represents the raw content of an email message.</p>",
       "refs": {
-        "EmailContent$Raw": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>If you include attachments, they must be in a file format that the Amazon SES API v2 supports. </p> </li> <li> <p>The entire message must be Base64 encoded.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>"
+        "EmailContent$Raw": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>If you include attachments, they must be in a file format that the Amazon SES API v2 supports. </p> </li> <li> <p>The raw data of the message needs to base64-encoded if you are accessing Amazon SES directly through the HTTPS interface. If you are accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care of the base 64-encoding for you.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>"
       }
     },
     "RawMessageData": {
       "base": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>Attachments must be in a file format that the Amazon SES API v2 supports. </p> </li> <li> <p>The entire message must be Base64 encoded.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>",
       "refs": {
-        "RawMessage$Data": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>Attachments must be in a file format that the Amazon SES supports.</p> </li> <li> <p>The entire message must be Base64 encoded.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>"
+        "RawMessage$Data": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>Attachments must be in a file format that the Amazon SES supports.</p> </li> <li> <p>The raw data of the message needs to base64-encoded if you are accessing Amazon SES directly through the HTTPS interface. If you are accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care of the base 64-encoding for you.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>"
       }
     },
     "RblName": {
@@ -2632,6 +2644,12 @@
         "ImportDataSource$S3Url": "<p>An Amazon S3 URL in the format s3://<i>&lt;bucket_name&gt;</i>/<i>&lt;object&gt;</i>.</p>"
       }
     },
+    "SOARecord": {
+      "base": "<p>An object that contains information about the start of authority (SOA) record associated with the identity.</p>",
+      "refs": {
+        "VerificationInfo$SOARecord": "<p>An object that contains information about the start of authority (SOA) record associated with the identity.</p>"
+      }
+    },
     "ScalingMode": {
       "base": null,
       "refs": {
@@ -2704,6 +2722,12 @@
       "base": null,
       "refs": {
         "SendQuota$SentLast24Hours": "<p>The number of emails sent from your Amazon SES account in the current Amazon Web Services Region over the past 24 hours.</p>"
+      }
+    },
+    "SerialNumber": {
+      "base": null,
+      "refs": {
+        "SOARecord$SerialNumber": "<p>Serial number from the SOA record.</p>"
       }
     },
     "SnsDestination": {
@@ -2922,7 +2946,9 @@
         "Recommendation$LastUpdatedTimestamp": "<p>The last time the recommendation was updated.</p>",
         "SuppressedDestination$LastUpdateTime": "<p>The date and time when the suppressed destination was last updated, shown in Unix time format.</p>",
         "SuppressedDestinationSummary$LastUpdateTime": "<p>The date and time when the suppressed destination was last updated, shown in Unix time format.</p>",
-        "TimestampList$member": null
+        "TimestampList$member": null,
+        "VerificationInfo$LastCheckedTimestamp": "<p>The last time a verification attempt was made for this identity.</p>",
+        "VerificationInfo$LastSuccessTimestamp": "<p>The last time a successful verification was made for this identity.</p>"
       }
     },
     "TimestampList": {
@@ -3101,6 +3127,18 @@
         "CreateConfigurationSetRequest$VdmOptions": "<p>An object that defines the VDM options for emails that you send using the configuration set.</p>",
         "GetConfigurationSetResponse$VdmOptions": "<p>An object that contains information about the VDM preferences for your configuration set.</p>",
         "PutConfigurationSetVdmOptionsRequest$VdmOptions": "<p>The VDM options to apply to the configuration set.</p>"
+      }
+    },
+    "VerificationError": {
+      "base": null,
+      "refs": {
+        "VerificationInfo$ErrorType": "<p>Provides the reason for the failure describing why Amazon SES was not able to successfully verify the identity. Below are the possible values: </p> <ul> <li> <p> <code>INVALID_VALUE</code> – Amazon SES was able to find the record, but the value contained within the record was invalid. Ensure you have published the correct values for the record.</p> </li> <li> <p> <code>TYPE_NOT_FOUND</code> – The queried hostname exists but does not have the requested type of DNS record. Ensure that you have published the correct type of DNS record.</p> </li> <li> <p> <code>HOST_NOT_FOUND</code> – The queried hostname does not exist or was not reachable at the time of the request. Ensure that you have published the required DNS record(s). </p> </li> <li> <p> <code>SERVICE_ERROR</code> – A temporary issue is preventing Amazon SES from determining the verification status of the domain.</p> </li> <li> <p> <code>DNS_SERVER_ERROR</code> – The DNS server encountered an issue and was unable to complete the request.</p> </li> </ul>"
+      }
+    },
+    "VerificationInfo": {
+      "base": "<p>An object that contains additional information about the verification status for the identity.</p>",
+      "refs": {
+        "GetEmailIdentityResponse$VerificationInfo": "<p>An object that contains additional information about the verification status for the identity.</p>"
       }
     },
     "VerificationStatus": {

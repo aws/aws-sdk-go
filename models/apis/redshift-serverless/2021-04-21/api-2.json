@@ -708,6 +708,7 @@
       "type":"structure",
       "required":["namespaceName"],
       "members":{
+        "adminPasswordSecretKmsKeyId":{"shape":"KmsKeyId"},
         "adminUserPassword":{"shape":"DbPassword"},
         "adminUsername":{"shape":"DbUser"},
         "dbName":{"shape":"String"},
@@ -715,6 +716,7 @@
         "iamRoles":{"shape":"IamRoleArnList"},
         "kmsKeyId":{"shape":"String"},
         "logExports":{"shape":"LogExportList"},
+        "manageAdminPassword":{"shape":"Boolean"},
         "namespaceName":{"shape":"NamespaceName"},
         "tags":{"shape":"TagList"}
       }
@@ -1286,6 +1288,8 @@
     "Namespace":{
       "type":"structure",
       "members":{
+        "adminPasswordSecretArn":{"shape":"String"},
+        "adminPasswordSecretKmsKeyId":{"shape":"KmsKeyId"},
         "adminUsername":{"shape":"DbUser"},
         "creationDate":{"shape":"SyntheticTimestamp_date_time"},
         "dbName":{"shape":"String"},
@@ -1412,6 +1416,8 @@
         "workgroupName"
       ],
       "members":{
+        "adminPasswordSecretKmsKeyId":{"shape":"KmsKeyId"},
+        "manageAdminPassword":{"shape":"Boolean"},
         "namespaceName":{"shape":"NamespaceName"},
         "ownerAccount":{"shape":"String"},
         "snapshotArn":{"shape":"String"},
@@ -1475,6 +1481,8 @@
         "accountsWithProvisionedRestoreAccess":{"shape":"AccountIdList"},
         "accountsWithRestoreAccess":{"shape":"AccountIdList"},
         "actualIncrementalBackupSizeInMegaBytes":{"shape":"Double"},
+        "adminPasswordSecretArn":{"shape":"String"},
+        "adminPasswordSecretKmsKeyId":{"shape":"KmsKeyId"},
         "adminUsername":{"shape":"String"},
         "backupProgressInMegaBytes":{"shape":"Double"},
         "currentBackupRateInMegaBytesPerSecond":{"shape":"Double"},
@@ -1644,12 +1652,14 @@
       "type":"structure",
       "required":["namespaceName"],
       "members":{
+        "adminPasswordSecretKmsKeyId":{"shape":"KmsKeyId"},
         "adminUserPassword":{"shape":"DbPassword"},
         "adminUsername":{"shape":"DbUser"},
         "defaultIamRoleArn":{"shape":"String"},
         "iamRoles":{"shape":"IamRoleArnList"},
         "kmsKeyId":{"shape":"String"},
         "logExports":{"shape":"LogExportList"},
+        "manageAdminPassword":{"shape":"Boolean"},
         "namespaceName":{"shape":"NamespaceName"}
       }
     },

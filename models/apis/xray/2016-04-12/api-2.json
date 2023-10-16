@@ -1743,7 +1743,8 @@
       "type":"string",
       "enum":[
         "TraceId",
-        "Event"
+        "Event",
+        "Service"
       ]
     },
     "TimeSeriesServiceStatistics":{

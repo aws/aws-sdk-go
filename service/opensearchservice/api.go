@@ -5290,7 +5290,7 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 // UpdateDomainConfig API operation for Amazon OpenSearch Service.
 //
 // Modifies the cluster configuration of the specified Amazon OpenSearch Service
-// domain.sl
+// domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8865,11 +8865,14 @@ func (s *CreateVpcEndpointOutput) SetVpcEndpoint(v *VpcEndpoint) *CreateVpcEndpo
 	return s
 }
 
-// Cross cluster search specific connection properties.
+// Cross-cluster search specific connection properties.
 type CrossClusterSearchConnectionProperties struct {
 	_ struct{} `type:"structure"`
 
-	// Status of SkipUnavailable param for outbound connection.
+	// The status of the SkipUnavailable setting for the outbound connection. This
+	// feature allows you to specify some clusters as optional and ensure that your
+	// cross-cluster queries return partial results despite failures on one or more
+	// remote clusters.
 	SkipUnavailable *string `type:"string" enum:"SkipUnavailableStatus"`
 }
 
@@ -10065,8 +10068,7 @@ type DescribeDomainsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Array of OpenSearch Service domain names that you want information about.
-	// If you don't specify any domains, OpenSearch Service returns information
-	// about all domains owned by the account.
+	// You must specify at least one domain name.
 	//
 	// DomainNames is a required field
 	DomainNames []*string `type:"list" required:"true"`
@@ -15362,8 +15364,16 @@ type PackageDetails struct {
 	// The package version.
 	AvailablePackageVersion *string `type:"string"`
 
+	// If the package is a ZIP-PLUGIN package, additional information about plugin
+	// properties.
+	AvailablePluginProperties *PluginProperties `type:"structure"`
+
 	// The timestamp when the package was created.
 	CreatedAt *time.Time `type:"timestamp"`
+
+	// Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or
+	// OpenSearch_X.Y. Defaults to the latest version of OpenSearch.
+	EngineVersion *string `type:"string"`
 
 	// Additional information if the package is in an error state. Null otherwise.
 	ErrorDetails *ErrorDetails `type:"structure"`
@@ -15412,9 +15422,21 @@ func (s *PackageDetails) SetAvailablePackageVersion(v string) *PackageDetails {
 	return s
 }
 
+// SetAvailablePluginProperties sets the AvailablePluginProperties field's value.
+func (s *PackageDetails) SetAvailablePluginProperties(v *PluginProperties) *PackageDetails {
+	s.AvailablePluginProperties = v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *PackageDetails) SetCreatedAt(v time.Time) *PackageDetails {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *PackageDetails) SetEngineVersion(v string) *PackageDetails {
+	s.EngineVersion = &v
 	return s
 }
 
@@ -15529,6 +15551,10 @@ type PackageVersionHistory struct {
 
 	// The package version.
 	PackageVersion *string `type:"string"`
+
+	// Additional information about plugin properties if the package is a ZIP-PLUGIN
+	// package.
+	PluginProperties *PluginProperties `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15564,6 +15590,80 @@ func (s *PackageVersionHistory) SetCreatedAt(v time.Time) *PackageVersionHistory
 // SetPackageVersion sets the PackageVersion field's value.
 func (s *PackageVersionHistory) SetPackageVersion(v string) *PackageVersionHistory {
 	s.PackageVersion = &v
+	return s
+}
+
+// SetPluginProperties sets the PluginProperties field's value.
+func (s *PackageVersionHistory) SetPluginProperties(v *PluginProperties) *PackageVersionHistory {
+	s.PluginProperties = v
+	return s
+}
+
+// Basic information about the plugin.
+type PluginProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the class to load.
+	ClassName *string `type:"string"`
+
+	// The description of the plugin.
+	Description *string `type:"string"`
+
+	// The name of the plugin.
+	Name *string `type:"string"`
+
+	// The uncompressed size of the plugin.
+	UncompressedSizeInBytes *int64 `type:"long"`
+
+	// The version of the plugin.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PluginProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PluginProperties) GoString() string {
+	return s.String()
+}
+
+// SetClassName sets the ClassName field's value.
+func (s *PluginProperties) SetClassName(v string) *PluginProperties {
+	s.ClassName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PluginProperties) SetDescription(v string) *PluginProperties {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PluginProperties) SetName(v string) *PluginProperties {
+	s.Name = &v
+	return s
+}
+
+// SetUncompressedSizeInBytes sets the UncompressedSizeInBytes field's value.
+func (s *PluginProperties) SetUncompressedSizeInBytes(v int64) *PluginProperties {
+	s.UncompressedSizeInBytes = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *PluginProperties) SetVersion(v string) *PluginProperties {
+	s.Version = &v
 	return s
 }
 
@@ -19210,6 +19310,12 @@ const (
 
 	// DescribePackagesFilterNamePackageStatus is a DescribePackagesFilterName enum value
 	DescribePackagesFilterNamePackageStatus = "PackageStatus"
+
+	// DescribePackagesFilterNamePackageType is a DescribePackagesFilterName enum value
+	DescribePackagesFilterNamePackageType = "PackageType"
+
+	// DescribePackagesFilterNameEngineVersion is a DescribePackagesFilterName enum value
+	DescribePackagesFilterNameEngineVersion = "EngineVersion"
 )
 
 // DescribePackagesFilterName_Values returns all elements of the DescribePackagesFilterName enum
@@ -19218,6 +19324,8 @@ func DescribePackagesFilterName_Values() []string {
 		DescribePackagesFilterNamePackageId,
 		DescribePackagesFilterNamePackageName,
 		DescribePackagesFilterNamePackageStatus,
+		DescribePackagesFilterNamePackageType,
+		DescribePackagesFilterNameEngineVersion,
 	}
 }
 
@@ -20008,12 +20116,16 @@ func PackageStatus_Values() []string {
 const (
 	// PackageTypeTxtDictionary is a PackageType enum value
 	PackageTypeTxtDictionary = "TXT-DICTIONARY"
+
+	// PackageTypeZipPlugin is a PackageType enum value
+	PackageTypeZipPlugin = "ZIP-PLUGIN"
 )
 
 // PackageType_Values returns all elements of the PackageType enum
 func PackageType_Values() []string {
 	return []string{
 		PackageTypeTxtDictionary,
+		PackageTypeZipPlugin,
 	}
 }
 
@@ -20144,11 +20256,11 @@ func ScheduledBy_Values() []string {
 	}
 }
 
-// Status of SkipUnavailable param for outbound connection.
+// The status of SkipUnavailable setting for the outbound connection.
 //
-//   - ENABLED - The SkipUnavailable param is enabled for the connection.
+//   - ENABLED - The SkipUnavailable setting is enabled for the connection.
 //
-//   - DISABLED - The SkipUnavailable param is disabled for the connection.
+//   - DISABLED - The SkipUnavailable setting is disabled for the connection.
 const (
 	// SkipUnavailableStatusEnabled is a SkipUnavailableStatus enum value
 	SkipUnavailableStatusEnabled = "ENABLED"

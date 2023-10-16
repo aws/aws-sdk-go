@@ -1,3 +1,23 @@
+Release v1.45.26 (2023-10-16)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API
+  * SDK and documentation updates for UpdateReplacePolicy
+* `service/drs`: Updates service API and documentation
+* `service/entityresolution`: Updates service API, documentation, and paginators
+* `service/managedblockchain-query`: Updates service API, documentation, and paginators
+* `service/mediapackagev2`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/redshift`: Updates service API and documentation
+  * Added support for managing credentials of provisioned cluster admin using AWS Secrets Manager.
+* `service/redshift-serverless`: Updates service API and documentation
+* `service/sesv2`: Updates service API and documentation
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family
+* `service/xray`: Updates service API and documentation
+  * This releases enhances GetTraceSummaries API to support new TimeRangeType Service to query trace summaries by segment end time.
+
 Release v1.45.25 (2023-10-12)
 ===
 
