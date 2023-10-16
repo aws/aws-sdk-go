@@ -51,7 +51,7 @@
     "RemoveTags": "<p>Removes the specified set of tags from an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging\"> Tagging Amazon OpenSearch Service domains</a>.</p>",
     "RevokeVpcEndpointAccess": "<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>",
     "StartServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
-    "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.sl</p>",
+    "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.</p>",
     "UpdatePackage": "<p>Updates a package for use with Amazon OpenSearch Service domains. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "UpdateScheduledAction": "<p>Reschedules a planned domain configuration change for a later time. This change can be a scheduled <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">service software update</a> or a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types\">blue/green Auto-Tune enhancement</a>.</p>",
     "UpdateVpcEndpoint": "<p>Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
@@ -598,7 +598,7 @@
       }
     },
     "CrossClusterSearchConnectionProperties": {
-      "base": "<p>Cross cluster search specific connection properties.</p>",
+      "base": "<p>Cross-cluster search specific connection properties.</p>",
       "refs": {
         "ConnectionProperties$CrossClusterSearch": "<p>The connection properties for cross cluster search.</p>"
       }
@@ -997,7 +997,7 @@
     "DomainNameList": {
       "base": "<p>A list of OpenSearch Service domain names.</p>",
       "refs": {
-        "DescribeDomainsRequest$DomainNames": "<p>Array of OpenSearch Service domain names that you want information about. If you don't specify any domains, OpenSearch Service returns information about all domains owned by the account.</p>"
+        "DescribeDomainsRequest$DomainNames": "<p>Array of OpenSearch Service domain names that you want information about. You must specify at least one domain name.</p>"
       }
     },
     "DomainNodesStatus": {
@@ -1152,6 +1152,12 @@
       "refs": {
         "DomainInfo$EngineType": "<p>The type of search engine that the domain is running.<code>OpenSearch</code> for an OpenSearch engine, or <code>Elasticsearch</code> for a legacy Elasticsearch OSS engine.</p>",
         "ListDomainNamesRequest$EngineType": "<p>Filters the output by domain engine type.</p>"
+      }
+    },
+    "EngineVersion": {
+      "base": null,
+      "refs": {
+        "PackageDetails$EngineVersion": "<p>Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or OpenSearch_X.Y. Defaults to the latest version of OpenSearch.</p>"
       }
     },
     "EnvironmentInfo": {
@@ -1917,6 +1923,37 @@
         "MasterUserOptions$MasterUserPassword": "<p>Password for the master user. Only specify if <code>InternalUserDatabaseEnabled</code> is <code>true</code>.</p>"
       }
     },
+    "PluginClassName": {
+      "base": null,
+      "refs": {
+        "PluginProperties$ClassName": "<p>The name of the class to load.</p>"
+      }
+    },
+    "PluginDescription": {
+      "base": null,
+      "refs": {
+        "PluginProperties$Description": "<p>The description of the plugin.</p>"
+      }
+    },
+    "PluginName": {
+      "base": null,
+      "refs": {
+        "PluginProperties$Name": "<p>The name of the plugin.</p>"
+      }
+    },
+    "PluginProperties": {
+      "base": "<p>Basic information about the plugin.</p>",
+      "refs": {
+        "PackageDetails$AvailablePluginProperties": "<p>If the package is a <code>ZIP-PLUGIN</code> package, additional information about plugin properties.</p>",
+        "PackageVersionHistory$PluginProperties": "<p>Additional information about plugin properties if the package is a <code>ZIP-PLUGIN</code> package.</p>"
+      }
+    },
+    "PluginVersion": {
+      "base": null,
+      "refs": {
+        "PluginProperties$Version": "<p>The version of the plugin.</p>"
+      }
+    },
     "PolicyDocument": {
       "base": "<p>Access policy rules for an Amazon OpenSearch Service domain endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-access-policies\">Configuring access policies</a>. The maximum size of a policy document is 100 KB.</p>",
       "refs": {
@@ -2162,9 +2199,9 @@
       }
     },
     "SkipUnavailableStatus": {
-      "base": "<p>Status of SkipUnavailable param for outbound connection.</p> <ul> <li> <p> <b>ENABLED</b> - The SkipUnavailable param is enabled for the connection.</p> </li> <li> <p> <b>DISABLED</b> - The SkipUnavailable param is disabled for the connection.</p> </li> </ul>",
+      "base": "<p>The status of <code>SkipUnavailable</code> setting for the outbound connection.</p> <ul> <li> <p> <b>ENABLED</b> - The <code>SkipUnavailable</code> setting is enabled for the connection.</p> </li> <li> <p> <b>DISABLED</b> - The <code>SkipUnavailable</code> setting is disabled for the connection.</p> </li> </ul>",
       "refs": {
-        "CrossClusterSearchConnectionProperties$SkipUnavailable": "<p>Status of SkipUnavailable param for outbound connection.</p>"
+        "CrossClusterSearchConnectionProperties$SkipUnavailable": "<p>The status of the <code>SkipUnavailable</code> setting for the outbound connection. This feature allows you to specify some clusters as optional and ensure that your cross-cluster queries return partial results despite failures on one or more remote clusters.</p>"
       }
     },
     "SlotList": {
@@ -2384,6 +2421,12 @@
       "refs": {
         "AutoTuneStatus$UpdateVersion": "<p>The latest version of the Auto-Tune options.</p>",
         "OptionStatus$UpdateVersion": "<p>The latest version of the entity.</p>"
+      }
+    },
+    "UncompressedPluginSizeInBytes": {
+      "base": null,
+      "refs": {
+        "PluginProperties$UncompressedSizeInBytes": "<p>The uncompressed size of the plugin.</p>"
       }
     },
     "UpdateDomainConfigRequest": {

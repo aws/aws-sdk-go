@@ -464,7 +464,7 @@
         "Arn":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"ResourceDescription"}
       }
     },
     "ChannelGroupsList":{
@@ -490,7 +490,7 @@
         "ChannelGroupName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"ResourceDescription"}
       }
     },
     "CmafEncryptionMethod":{
@@ -561,7 +561,7 @@
         "EgressDomain":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -606,7 +606,7 @@
         "ChannelGroupName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
         "Tags":{"shape":"TagMap"}
       }
@@ -936,7 +936,7 @@
         "EgressDomain":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
@@ -972,7 +972,7 @@
       "members":{
         "ChannelGroupName":{"shape":"String"},
         "ChannelName":{"shape":"String"},
-        "Policy":{"shape":"String"}
+        "Policy":{"shape":"PolicyText"}
       }
     },
     "GetChannelRequest":{
@@ -1009,7 +1009,7 @@
         "ChannelGroupName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
         "Tags":{"shape":"TagMap"}
       }
@@ -1086,10 +1086,10 @@
         "Policy"
       ],
       "members":{
-        "ChannelGroupName":{"shape":"String"},
-        "ChannelName":{"shape":"String"},
-        "OriginEndpointName":{"shape":"String"},
-        "Policy":{"shape":"String"}
+        "ChannelGroupName":{"shape":"ResourceName"},
+        "ChannelName":{"shape":"ResourceName"},
+        "OriginEndpointName":{"shape":"ResourceName"},
+        "Policy":{"shape":"PolicyText"}
       }
     },
     "GetOriginEndpointRequest":{
@@ -1666,7 +1666,7 @@
         "EgressDomain":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
@@ -1708,7 +1708,7 @@
         "ChannelGroupName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
         "Tags":{
           "shape":"TagMap",

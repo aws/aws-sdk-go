@@ -6727,7 +6727,7 @@ type CreateAccessInput struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
@@ -7961,7 +7961,7 @@ type CreateUserInput struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
@@ -10559,7 +10559,7 @@ type DescribedAccess struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
@@ -11822,7 +11822,7 @@ type DescribedUser struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
@@ -14778,7 +14778,7 @@ type ListedAccess struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// The type of landing directory (folder) that you want your users' home directory
@@ -15444,7 +15444,7 @@ type ListedUser struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// The type of landing directory (folder) that you want your users' home directory
@@ -17545,7 +17545,7 @@ type UpdateAccessInput struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
@@ -18887,7 +18887,7 @@ type UpdateUserInput struct {
 	//
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	//
-	// The HomeDirectory parameter is only used if HomeDirectoryType is set to LOGICAL.
+	// The HomeDirectory parameter is only used if HomeDirectoryType is set to PATH.
 	HomeDirectory *string `type:"string"`
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths

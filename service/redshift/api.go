@@ -5827,7 +5827,7 @@ func (c *Redshift) DescribeCustomDomainAssociationsRequest(input *DescribeCustom
 
 // DescribeCustomDomainAssociations API operation for Amazon Redshift.
 //
-// Contains information for custom domain associations for a cluster.
+// Contains information about custom domain associations for a cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15228,6 +15228,13 @@ type Cluster struct {
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
+	// The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.
+	MasterPasswordSecretArn *string `type:"string"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the cluster's admin credentials secret.
+	MasterPasswordSecretKmsKeyId *string `type:"string"`
+
 	// The admin user name for the cluster. This name is used to connect to the
 	// database that is specified in the DBName parameter.
 	MasterUsername *string `type:"string"`
@@ -15533,6 +15540,18 @@ func (s *Cluster) SetMaintenanceTrackName(v string) *Cluster {
 // SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
 func (s *Cluster) SetManualSnapshotRetentionPeriod(v int64) *Cluster {
 	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterPasswordSecretArn sets the MasterPasswordSecretArn field's value.
+func (s *Cluster) SetMasterPasswordSecretArn(v string) *Cluster {
+	s.MasterPasswordSecretArn = &v
+	return s
+}
+
+// SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
+func (s *Cluster) SetMasterPasswordSecretKmsKeyId(v string) *Cluster {
+	s.MasterPasswordSecretKmsKeyId = &v
 	return s
 }
 
@@ -16816,6 +16835,12 @@ type CreateClusterInput struct {
 	// the current track.
 	MaintenanceTrackName *string `type:"string"`
 
+	// If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin
+	// credentials. You can't use MasterUserPassword if ManageMasterPassword is
+	// true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword
+	// for the admin user account's password.
+	ManageMasterPassword *bool `type:"boolean"`
+
 	// The default number of days to retain a manual snapshot. If the value is -1,
 	// the snapshot is retained indefinitely. This setting doesn't change the retention
 	// period of existing snapshots.
@@ -16823,8 +16848,15 @@ type CreateClusterInput struct {
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the cluster's admin credentials secret. You can only use this parameter if
+	// ManageMasterPassword is true.
+	MasterPasswordSecretKmsKeyId *string `type:"string"`
+
 	// The password associated with the admin user account for the cluster that
 	// is being created.
+	//
+	// You can't use MasterUserPassword if ManageMasterPassword is true.
 	//
 	// Constraints:
 	//
@@ -16839,8 +16871,10 @@ type CreateClusterInput struct {
 	//    * Can be any printable ASCII character (ASCII code 33-126) except ' (single
 	//    quote), " (double quote), \, /, or @.
 	//
-	// MasterUserPassword is a required field
-	MasterUserPassword *string `type:"string" required:"true"`
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateClusterInput's
+	// String and GoString methods.
+	MasterUserPassword *string `type:"string" sensitive:"true"`
 
 	// The user name associated with the admin user account for the cluster that
 	// is being created.
@@ -16955,9 +16989,6 @@ func (s *CreateClusterInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateClusterInput"}
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
-	if s.MasterUserPassword == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUserPassword"))
 	}
 	if s.MasterUsername == nil {
 		invalidParams.Add(request.NewErrParamRequired("MasterUsername"))
@@ -17110,9 +17141,21 @@ func (s *CreateClusterInput) SetMaintenanceTrackName(v string) *CreateClusterInp
 	return s
 }
 
+// SetManageMasterPassword sets the ManageMasterPassword field's value.
+func (s *CreateClusterInput) SetManageMasterPassword(v bool) *CreateClusterInput {
+	s.ManageMasterPassword = &v
+	return s
+}
+
 // SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
 func (s *CreateClusterInput) SetManualSnapshotRetentionPeriod(v int64) *CreateClusterInput {
 	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
+func (s *CreateClusterInput) SetMasterPasswordSecretKmsKeyId(v string) *CreateClusterInput {
+	s.MasterPasswordSecretKmsKeyId = &v
 	return s
 }
 
@@ -28797,6 +28840,12 @@ type ModifyClusterInput struct {
 	// for the maintenance track. At this point, the maintenance track name is applied.
 	MaintenanceTrackName *string `type:"string"`
 
+	// If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin
+	// credentials. You can't use MasterUserPassword if ManageMasterPassword is
+	// true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword
+	// for the admin user account's password.
+	ManageMasterPassword *bool `type:"boolean"`
+
 	// The default for number of days that a newly created manual snapshot is retained.
 	// If the value is -1, the manual snapshot is retained indefinitely. This value
 	// doesn't retroactively change the retention periods of existing manual snapshots.
@@ -28806,10 +28855,17 @@ type ModifyClusterInput struct {
 	// The default value is -1.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the cluster's admin credentials secret. You can only use this parameter if
+	// ManageMasterPassword is true.
+	MasterPasswordSecretKmsKeyId *string `type:"string"`
+
 	// The new password for the cluster admin user. This change is asynchronously
 	// applied as soon as possible. Between the time of the request and the completion
 	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
 	// element of the operation response.
+	//
+	// You can't use MasterUserPassword if ManageMasterPassword is true.
 	//
 	// Operations never return the password, so this operation provides a way to
 	// regain access to the admin user account for a cluster if the password is
@@ -28829,7 +28885,11 @@ type ModifyClusterInput struct {
 	//
 	//    * Can be any printable ASCII character (ASCII code 33-126) except ' (single
 	//    quote), " (double quote), \, /, or @.
-	MasterUserPassword *string `type:"string"`
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ModifyClusterInput's
+	// String and GoString methods.
+	MasterUserPassword *string `type:"string" sensitive:"true"`
 
 	// The new identifier for the cluster.
 	//
@@ -29026,9 +29086,21 @@ func (s *ModifyClusterInput) SetMaintenanceTrackName(v string) *ModifyClusterInp
 	return s
 }
 
+// SetManageMasterPassword sets the ManageMasterPassword field's value.
+func (s *ModifyClusterInput) SetManageMasterPassword(v bool) *ModifyClusterInput {
+	s.ManageMasterPassword = &v
+	return s
+}
+
 // SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
 func (s *ModifyClusterInput) SetManualSnapshotRetentionPeriod(v int64) *ModifyClusterInput {
 	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
+func (s *ModifyClusterInput) SetMasterPasswordSecretKmsKeyId(v string) *ModifyClusterInput {
+	s.MasterPasswordSecretKmsKeyId = &v
 	return s
 }
 
@@ -31325,7 +31397,11 @@ type PendingModifiedValues struct {
 	MaintenanceTrackName *string `type:"string"`
 
 	// The pending or in-progress change of the admin user password for the cluster.
-	MasterUserPassword *string `type:"string"`
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PendingModifiedValues's
+	// String and GoString methods.
+	MasterUserPassword *string `type:"string" sensitive:"true"`
 
 	// The pending or in-progress change of the cluster's node type.
 	NodeType *string `type:"string"`
@@ -32671,12 +32747,22 @@ type RestoreFromClusterSnapshotInput struct {
 	// are on different tracks.
 	MaintenanceTrackName *string `type:"string"`
 
+	// If true, Amazon Redshift uses Secrets Manager to manage the restored cluster's
+	// admin credentials. If ManageMasterPassword is false or not set, Amazon Redshift
+	// uses the admin credentials the cluster had at the time the snapshot was taken.
+	ManageMasterPassword *bool `type:"boolean"`
+
 	// The default number of days to retain a manual snapshot. If the value is -1,
 	// the snapshot is retained indefinitely. This setting doesn't change the retention
 	// period of existing snapshots.
 	//
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the cluster's admin credentials secret. You can only use this parameter if
+	// ManageMasterPassword is true.
+	MasterPasswordSecretKmsKeyId *string `type:"string"`
 
 	// The node type that the restored cluster will be provisioned with.
 	//
@@ -32905,9 +32991,21 @@ func (s *RestoreFromClusterSnapshotInput) SetMaintenanceTrackName(v string) *Res
 	return s
 }
 
+// SetManageMasterPassword sets the ManageMasterPassword field's value.
+func (s *RestoreFromClusterSnapshotInput) SetManageMasterPassword(v bool) *RestoreFromClusterSnapshotInput {
+	s.ManageMasterPassword = &v
+	return s
+}
+
 // SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
 func (s *RestoreFromClusterSnapshotInput) SetManualSnapshotRetentionPeriod(v int64) *RestoreFromClusterSnapshotInput {
 	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
+func (s *RestoreFromClusterSnapshotInput) SetMasterPasswordSecretKmsKeyId(v string) *RestoreFromClusterSnapshotInput {
+	s.MasterPasswordSecretKmsKeyId = &v
 	return s
 }
 
@@ -34269,6 +34367,13 @@ type Snapshot struct {
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
+	// The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.
+	MasterPasswordSecretArn *string `type:"string"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the cluster's admin credentials secret.
+	MasterPasswordSecretKmsKeyId *string `type:"string"`
+
 	// The admin user name for the cluster.
 	MasterUsername *string `type:"string"`
 
@@ -34458,6 +34563,18 @@ func (s *Snapshot) SetManualSnapshotRemainingDays(v int64) *Snapshot {
 // SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
 func (s *Snapshot) SetManualSnapshotRetentionPeriod(v int64) *Snapshot {
 	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterPasswordSecretArn sets the MasterPasswordSecretArn field's value.
+func (s *Snapshot) SetMasterPasswordSecretArn(v string) *Snapshot {
+	s.MasterPasswordSecretArn = &v
+	return s
+}
+
+// SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
+func (s *Snapshot) SetMasterPasswordSecretKmsKeyId(v string) *Snapshot {
+	s.MasterPasswordSecretKmsKeyId = &v
 	return s
 }
 

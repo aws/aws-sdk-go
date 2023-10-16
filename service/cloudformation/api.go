@@ -24696,6 +24696,9 @@ const (
 	// ResourceAttributeDeletionPolicy is a ResourceAttribute enum value
 	ResourceAttributeDeletionPolicy = "DeletionPolicy"
 
+	// ResourceAttributeUpdateReplacePolicy is a ResourceAttribute enum value
+	ResourceAttributeUpdateReplacePolicy = "UpdateReplacePolicy"
+
 	// ResourceAttributeTags is a ResourceAttribute enum value
 	ResourceAttributeTags = "Tags"
 )
@@ -24708,6 +24711,7 @@ func ResourceAttribute_Values() []string {
 		ResourceAttributeCreationPolicy,
 		ResourceAttributeUpdatePolicy,
 		ResourceAttributeDeletionPolicy,
+		ResourceAttributeUpdateReplacePolicy,
 		ResourceAttributeTags,
 	}
 }

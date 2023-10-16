@@ -3125,6 +3125,7 @@
         "CreationPolicy",
         "UpdatePolicy",
         "DeletionPolicy",
+        "UpdateReplacePolicy",
         "Tags"
       ]
     },

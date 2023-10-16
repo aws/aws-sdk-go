@@ -1822,12 +1822,14 @@
       "enum":[
         "PackageID",
         "PackageName",
-        "PackageStatus"
+        "PackageStatus",
+        "PackageType",
+        "EngineVersion"
       ]
     },
     "DescribePackagesFilterValue":{
       "type":"string",
-      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?-]*$"
+      "pattern":"^[0-9a-zA-Z\\*\\.\\_\\\\\\/\\?-]+$"
     },
     "DescribePackagesFilterValues":{
       "type":"list",
@@ -2243,6 +2245,10 @@
         "OpenSearch",
         "Elasticsearch"
       ]
+    },
+    "EngineVersion":{
+      "type":"string",
+      "pattern":"^Elasticsearch_[0-9]{1}\\.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}\\.[0-9]{1,2}$"
     },
     "EnvironmentInfo":{
       "type":"structure",
@@ -3106,17 +3112,22 @@
         "CreatedAt":{"shape":"CreatedAt"},
         "LastUpdatedAt":{"shape":"LastUpdated"},
         "AvailablePackageVersion":{"shape":"PackageVersion"},
-        "ErrorDetails":{"shape":"ErrorDetails"}
+        "ErrorDetails":{"shape":"ErrorDetails"},
+        "EngineVersion":{"shape":"EngineVersion"},
+        "AvailablePluginProperties":{"shape":"PluginProperties"}
       }
     },
     "PackageDetailsList":{
       "type":"list",
       "member":{"shape":"PackageDetails"}
     },
-    "PackageID":{"type":"string"},
+    "PackageID":{
+      "type":"string",
+      "pattern":"^([FG][0-9]+)$"
+    },
     "PackageName":{
       "type":"string",
-      "max":28,
+      "max":256,
       "min":3,
       "pattern":"[a-z][a-z0-9\\-]+"
     },
@@ -3142,7 +3153,10 @@
     },
     "PackageType":{
       "type":"string",
-      "enum":["TXT-DICTIONARY"]
+      "enum":[
+        "TXT-DICTIONARY",
+        "ZIP-PLUGIN"
+      ]
     },
     "PackageVersion":{"type":"string"},
     "PackageVersionHistory":{
@@ -3150,7 +3164,8 @@
       "members":{
         "PackageVersion":{"shape":"PackageVersion"},
         "CommitMessage":{"shape":"CommitMessage"},
-        "CreatedAt":{"shape":"CreatedAt"}
+        "CreatedAt":{"shape":"CreatedAt"},
+        "PluginProperties":{"shape":"PluginProperties"}
       }
     },
     "PackageVersionHistoryList":{
@@ -3163,6 +3178,32 @@
       "min":8,
       "pattern":".*",
       "sensitive":true
+    },
+    "PluginClassName":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginDescription":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginName":{
+      "type":"string",
+      "max":1024
+    },
+    "PluginProperties":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"PluginName"},
+        "Description":{"shape":"PluginDescription"},
+        "Version":{"shape":"PluginVersion"},
+        "ClassName":{"shape":"PluginClassName"},
+        "UncompressedSizeInBytes":{"shape":"UncompressedPluginSizeInBytes"}
+      }
+    },
+    "PluginVersion":{
+      "type":"string",
+      "max":1024
     },
     "PolicyDocument":{
       "type":"string",
@@ -3623,6 +3664,7 @@
       "type":"integer",
       "min":0
     },
+    "UncompressedPluginSizeInBytes":{"type":"long"},
     "UpdateDomainConfigRequest":{
       "type":"structure",
       "required":["DomainName"],

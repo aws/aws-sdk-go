@@ -4413,7 +4413,14 @@ func (s *CreateEndpointAccessOutput) SetEndpoint(v *EndpointAccess) *CreateEndpo
 type CreateNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the namespace's admin credentials secret. You can only use this parameter
+	// if manageAdminPassword is true.
+	AdminPasswordSecretKmsKeyId *string `locationName:"adminPasswordSecretKmsKeyId" type:"string"`
+
 	// The password of the administrator for the first database created in the namespace.
+	//
+	// You can't use adminUserPassword if manageAdminPassword is true.
 	//
 	// AdminUserPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateNamespaceInput's
@@ -4444,6 +4451,12 @@ type CreateNamespaceInput struct {
 	// The types of logs the namespace can export. Available export types are userlog,
 	// connectionlog, and useractivitylog.
 	LogExports []*string `locationName:"logExports" type:"list" enum:"LogExport"`
+
+	// If true, Amazon Redshift uses Secrets Manager to manage the namespace's admin
+	// credentials. You can't use adminUserPassword if manageAdminPassword is true.
+	// If manageAdminPassword is false or not set, Amazon Redshift uses adminUserPassword
+	// for the admin user account's password.
+	ManageAdminPassword *bool `locationName:"manageAdminPassword" type:"boolean"`
 
 	// The name of the namespace.
 	//
@@ -4498,6 +4511,12 @@ func (s *CreateNamespaceInput) Validate() error {
 	return nil
 }
 
+// SetAdminPasswordSecretKmsKeyId sets the AdminPasswordSecretKmsKeyId field's value.
+func (s *CreateNamespaceInput) SetAdminPasswordSecretKmsKeyId(v string) *CreateNamespaceInput {
+	s.AdminPasswordSecretKmsKeyId = &v
+	return s
+}
+
 // SetAdminUserPassword sets the AdminUserPassword field's value.
 func (s *CreateNamespaceInput) SetAdminUserPassword(v string) *CreateNamespaceInput {
 	s.AdminUserPassword = &v
@@ -4537,6 +4556,12 @@ func (s *CreateNamespaceInput) SetKmsKeyId(v string) *CreateNamespaceInput {
 // SetLogExports sets the LogExports field's value.
 func (s *CreateNamespaceInput) SetLogExports(v []*string) *CreateNamespaceInput {
 	s.LogExports = v
+	return s
+}
+
+// SetManageAdminPassword sets the ManageAdminPassword field's value.
+func (s *CreateNamespaceInput) SetManageAdminPassword(v bool) *CreateNamespaceInput {
+	s.ManageAdminPassword = &v
 	return s
 }
 
@@ -7567,6 +7592,14 @@ func (s *ListWorkgroupsOutput) SetWorkgroups(v []*Workgroup) *ListWorkgroupsOutp
 type Namespace struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) for the namespace's admin user credentials
+	// secret.
+	AdminPasswordSecretArn *string `locationName:"adminPasswordSecretArn" type:"string"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the namespace's admin credentials secret.
+	AdminPasswordSecretKmsKeyId *string `locationName:"adminPasswordSecretKmsKeyId" type:"string"`
+
 	// The username of the administrator for the first database created in the namespace.
 	//
 	// AdminUsername is a sensitive parameter and its value will be
@@ -7627,6 +7660,18 @@ func (s Namespace) String() string {
 // value will be replaced with "sensitive".
 func (s Namespace) GoString() string {
 	return s.String()
+}
+
+// SetAdminPasswordSecretArn sets the AdminPasswordSecretArn field's value.
+func (s *Namespace) SetAdminPasswordSecretArn(v string) *Namespace {
+	s.AdminPasswordSecretArn = &v
+	return s
+}
+
+// SetAdminPasswordSecretKmsKeyId sets the AdminPasswordSecretKmsKeyId field's value.
+func (s *Namespace) SetAdminPasswordSecretKmsKeyId(v string) *Namespace {
+	s.AdminPasswordSecretKmsKeyId = &v
+	return s
 }
 
 // SetAdminUsername sets the AdminUsername field's value.
@@ -8163,6 +8208,16 @@ func (s *RestoreFromRecoveryPointOutput) SetRecoveryPointId(v string) *RestoreFr
 type RestoreFromSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the namespace's admin credentials secret.
+	AdminPasswordSecretKmsKeyId *string `locationName:"adminPasswordSecretKmsKeyId" type:"string"`
+
+	// If true, Amazon Redshift uses Secrets Manager to manage the restored snapshot's
+	// admin credentials. If MmanageAdminPassword is false or not set, Amazon Redshift
+	// uses the admin credentials that the namespace or cluster had at the time
+	// the snapshot was taken.
+	ManageAdminPassword *bool `locationName:"manageAdminPassword" type:"boolean"`
+
 	// The name of the namespace to restore the snapshot to.
 	//
 	// NamespaceName is a required field
@@ -8226,6 +8281,18 @@ func (s *RestoreFromSnapshotInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdminPasswordSecretKmsKeyId sets the AdminPasswordSecretKmsKeyId field's value.
+func (s *RestoreFromSnapshotInput) SetAdminPasswordSecretKmsKeyId(v string) *RestoreFromSnapshotInput {
+	s.AdminPasswordSecretKmsKeyId = &v
+	return s
+}
+
+// SetManageAdminPassword sets the ManageAdminPassword field's value.
+func (s *RestoreFromSnapshotInput) SetManageAdminPassword(v bool) *RestoreFromSnapshotInput {
+	s.ManageAdminPassword = &v
+	return s
 }
 
 // SetNamespaceName sets the NamespaceName field's value.
@@ -8571,6 +8638,14 @@ type Snapshot struct {
 	// The size of the incremental backup in megabytes.
 	ActualIncrementalBackupSizeInMegaBytes *float64 `locationName:"actualIncrementalBackupSizeInMegaBytes" type:"double"`
 
+	// The Amazon Resource Name (ARN) for the namespace's admin user credentials
+	// secret.
+	AdminPasswordSecretArn *string `locationName:"adminPasswordSecretArn" type:"string"`
+
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the namespace's admin credentials secret.
+	AdminPasswordSecretKmsKeyId *string `locationName:"adminPasswordSecretKmsKeyId" type:"string"`
+
 	// The username of the database within a snapshot.
 	AdminUsername *string `locationName:"adminUsername" type:"string"`
 
@@ -8657,6 +8732,18 @@ func (s *Snapshot) SetAccountsWithRestoreAccess(v []*string) *Snapshot {
 // SetActualIncrementalBackupSizeInMegaBytes sets the ActualIncrementalBackupSizeInMegaBytes field's value.
 func (s *Snapshot) SetActualIncrementalBackupSizeInMegaBytes(v float64) *Snapshot {
 	s.ActualIncrementalBackupSizeInMegaBytes = &v
+	return s
+}
+
+// SetAdminPasswordSecretArn sets the AdminPasswordSecretArn field's value.
+func (s *Snapshot) SetAdminPasswordSecretArn(v string) *Snapshot {
+	s.AdminPasswordSecretArn = &v
+	return s
+}
+
+// SetAdminPasswordSecretKmsKeyId sets the AdminPasswordSecretKmsKeyId field's value.
+func (s *Snapshot) SetAdminPasswordSecretKmsKeyId(v string) *Snapshot {
+	s.AdminPasswordSecretKmsKeyId = &v
 	return s
 }
 
@@ -9390,8 +9477,15 @@ func (s *UpdateEndpointAccessOutput) SetEndpoint(v *EndpointAccess) *UpdateEndpo
 type UpdateNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Key Management Service (KMS) key used to encrypt and store
+	// the namespace's admin credentials secret. You can only use this parameter
+	// if manageAdminPassword is true.
+	AdminPasswordSecretKmsKeyId *string `locationName:"adminPasswordSecretKmsKeyId" type:"string"`
+
 	// The password of the administrator for the first database created in the namespace.
 	// This parameter must be updated together with adminUsername.
+	//
+	// You can't use adminUserPassword if manageAdminPassword is true.
 	//
 	// AdminUserPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateNamespaceInput's
@@ -9421,6 +9515,12 @@ type UpdateNamespaceInput struct {
 	// The types of logs the namespace can export. The export types are userlog,
 	// connectionlog, and useractivitylog.
 	LogExports []*string `locationName:"logExports" type:"list" enum:"LogExport"`
+
+	// If true, Amazon Redshift uses Secrets Manager to manage the namespace's admin
+	// credentials. You can't use adminUserPassword if manageAdminPassword is true.
+	// If manageAdminPassword is false or not set, Amazon Redshift uses adminUserPassword
+	// for the admin user account's password.
+	ManageAdminPassword *bool `locationName:"manageAdminPassword" type:"boolean"`
 
 	// The name of the namespace to update. You can't update the name of a namespace
 	// once it is created.
@@ -9463,6 +9563,12 @@ func (s *UpdateNamespaceInput) Validate() error {
 	return nil
 }
 
+// SetAdminPasswordSecretKmsKeyId sets the AdminPasswordSecretKmsKeyId field's value.
+func (s *UpdateNamespaceInput) SetAdminPasswordSecretKmsKeyId(v string) *UpdateNamespaceInput {
+	s.AdminPasswordSecretKmsKeyId = &v
+	return s
+}
+
 // SetAdminUserPassword sets the AdminUserPassword field's value.
 func (s *UpdateNamespaceInput) SetAdminUserPassword(v string) *UpdateNamespaceInput {
 	s.AdminUserPassword = &v
@@ -9496,6 +9602,12 @@ func (s *UpdateNamespaceInput) SetKmsKeyId(v string) *UpdateNamespaceInput {
 // SetLogExports sets the LogExports field's value.
 func (s *UpdateNamespaceInput) SetLogExports(v []*string) *UpdateNamespaceInput {
 	s.LogExports = v
+	return s
+}
+
+// SetManageAdminPassword sets the ManageAdminPassword field's value.
+func (s *UpdateNamespaceInput) SetManageAdminPassword(v bool) *UpdateNamespaceInput {
+	s.ManageAdminPassword = &v
 	return s
 }
 
