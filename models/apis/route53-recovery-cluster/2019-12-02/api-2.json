@@ -184,6 +184,12 @@
       "type":"integer",
       "min":1
     },
+    "Owner":{
+      "type":"string",
+      "max":1024,
+      "min":12,
+      "pattern":"^\\S+$"
+    },
     "PageToken":{
       "type":"string",
       "max":8096,
@@ -212,7 +218,8 @@
         "ControlPanelName":{"shape":"ControlPanelName"},
         "RoutingControlArn":{"shape":"Arn"},
         "RoutingControlName":{"shape":"RoutingControlName"},
-        "RoutingControlState":{"shape":"RoutingControlState"}
+        "RoutingControlState":{"shape":"RoutingControlState"},
+        "Owner":{"shape":"Owner"}
       }
     },
     "RoutingControlName":{

@@ -1973,6 +1973,7 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 // Returned Error Types:
 //
 //   - ConflictErrorException
+//     Conflict error.
 //
 //   - AuthorizationErrorException
 //     The user does not have permission to perform the action. Check the IAM policy
@@ -3224,6 +3225,7 @@ func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
 	return s
 }
 
+// Conflict error.
 type ConflictErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

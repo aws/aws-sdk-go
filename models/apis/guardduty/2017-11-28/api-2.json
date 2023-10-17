@@ -2775,6 +2775,10 @@
         "Blocked":{
           "shape":"Boolean",
           "locationName":"blocked"
+        },
+        "DomainWithSuffix":{
+          "shape":"String",
+          "locationName":"domainWithSuffix"
         }
       }
     },

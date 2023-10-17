@@ -395,6 +395,28 @@
         }
       ]
     },
+    "GetResourcePolicy": {
+      "name": "GetResourcePolicy",
+      "http": {
+        "method": "GET",
+        "requestUri": "/resourcePolicy/{ResourceArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetResourcePolicyRequest"
+      },
+      "output": {
+        "shape": "GetResourcePolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ]
+    },
     "ListAssociatedRoute53HealthChecks": {
       "name": "ListAssociatedRoute53HealthChecks",
       "http": {
@@ -753,6 +775,9 @@
         },
         "WaitPeriodMs": {
           "shape": "__integer"
+        },
+        "Owner": {
+          "shape": "__stringMin12Max12PatternD12"
         }
       },
       "required": [
@@ -798,6 +823,9 @@
         },
         "Status": {
           "shape": "Status"
+        },
+        "Owner": {
+          "shape": "__stringMin12Max12PatternD12"
         }
       }
     },
@@ -848,6 +876,9 @@
         },
         "Status": {
           "shape": "Status"
+        },
+        "Owner": {
+          "shape": "__stringMin12Max12PatternD12"
         }
       }
     },
@@ -1147,6 +1178,9 @@
         },
         "WaitPeriodMs": {
           "shape": "__integer"
+        },
+        "Owner": {
+          "shape": "__stringMin12Max12PatternD12"
         }
       },
       "required": [
@@ -1178,6 +1212,27 @@
         "WaitPeriodMs",
         "Name"
       ]
+    },
+    "GetResourcePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "ResourceArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "ResourceArn"
+        }
+      },
+      "required": [
+        "ResourceArn"
+      ]
+    },
+    "GetResourcePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__policy"
+        }
+      }
     },
     "InternalServerException": {
       "type": "structure",
@@ -1468,6 +1523,9 @@
         },
         "Status": {
           "shape": "Status"
+        },
+        "Owner": {
+          "shape": "__stringMin12Max12PatternD12"
         }
       }
     },
@@ -1760,6 +1818,12 @@
       "max": 256,
       "pattern": "^\\S+$"
     },
+    "__stringMin12Max12PatternD12": {
+      "type": "string",
+      "min": 12,
+      "max": 12,
+      "pattern": "^\\d{12}$"
+    },
     "__stringMin1Max128PatternAZaZ09": {
       "type": "string",
       "min": 1,
@@ -1789,6 +1853,12 @@
       "min": 1,
       "max": 8096,
       "pattern": "[\\S]*"
+    },
+    "__policy": {
+      "type": "string",
+      "min": 2,
+      "max": 10240,
+      "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]+"
     },
     "__timestampIso8601": {
       "type": "timestamp",

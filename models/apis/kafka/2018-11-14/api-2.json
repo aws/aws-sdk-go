@@ -152,6 +152,46 @@
         }
       ]
     },
+    "CreateReplicator": {
+      "name": "CreateReplicator",
+      "http": {
+        "method": "POST",
+        "requestUri": "/replication/v1/replicators",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateReplicatorRequest"
+      },
+      "output": {
+        "shape": "CreateReplicatorResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "CreateVpcConnection": {
       "name": "CreateVpcConnection",
       "http": {
@@ -242,6 +282,43 @@
         },
         {
           "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "DeleteReplicator": {
+      "name": "DeleteReplicator",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/replication/v1/replicators/{replicatorArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteReplicatorRequest"
+      },
+      "output": {
+        "shape": "DeleteReplicatorResponse"
+      },
+      "errors": [
+        {
+        "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -460,6 +537,43 @@
         },
         {
           "shape": "ServiceUnavailableException"
+        }
+      ]
+    },
+    "DescribeReplicator": {
+      "name": "DescribeReplicator",
+      "http": {
+        "method": "GET",
+        "requestUri": "/replication/v1/replicators/{replicatorArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeReplicatorRequest"
+      },
+      "output": {
+        "shape": "DescribeReplicatorResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -825,6 +939,43 @@
         },
         {
           "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "ListReplicators": {
+      "name": "ListReplicators",
+      "http": {
+        "method": "GET",
+        "requestUri": "/replication/v1/replicators",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListReplicatorsRequest"
+      },
+      "output": {
+        "shape": "ListReplicatorsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -1412,6 +1563,43 @@
         "shape" : "ForbiddenException"
       } ]
     },
+    "UpdateReplicationInfo": {
+      "name": "UpdateReplicationInfo",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/replication/v1/replicators/{replicatorArn}/replication-info",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateReplicationInfoRequest"
+      },
+      "output": {
+        "shape": "UpdateReplicationInfoResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateSecurity" : {
       "name" : "UpdateSecurity",
       "http" : {
@@ -1472,6 +1660,16 @@
     }
   },
   "shapes": {
+    "AmazonMskCluster": {
+      "type": "structure",
+      "members": {
+        "MskClusterArn": {
+          "shape": "__string",
+          "locationName": "mskClusterArn"
+        }
+      },
+      "required": ["MskClusterArn"]
+    },
     "BatchAssociateScramSecretRequest" : {
       "type" : "structure",
       "members" : {
@@ -2160,6 +2358,50 @@
         }
       }
     },
+    "ConsumerGroupReplication": {
+      "type": "structure",
+      "members": {
+        "ConsumerGroupsToExclude": {
+          "shape": "__listOf__stringMax256",
+          "locationName": "consumerGroupsToExclude"
+        },
+        "ConsumerGroupsToReplicate": {
+          "shape": "__listOf__stringMax256",
+          "locationName": "consumerGroupsToReplicate"
+        },
+        "DetectAndCopyNewConsumerGroups": {
+          "shape": "__boolean",
+          "locationName": "detectAndCopyNewConsumerGroups"
+        },
+        "SynchroniseConsumerGroupOffsets": {
+          "shape": "__boolean",
+          "locationName": "synchroniseConsumerGroupOffsets"
+        }
+      },
+      "required": ["ConsumerGroupsToReplicate"]
+    },
+    "ConsumerGroupReplicationUpdate": {
+      "type": "structure",
+      "members": {
+        "ConsumerGroupsToExclude": {
+          "shape": "__listOf__stringMax256",
+          "locationName": "consumerGroupsToExclude"
+        },
+        "ConsumerGroupsToReplicate": {
+          "shape": "__listOf__stringMax256",
+          "locationName": "consumerGroupsToReplicate"
+        },
+        "DetectAndCopyNewConsumerGroups": {
+          "shape": "__boolean",
+          "locationName": "detectAndCopyNewConsumerGroups"
+        },
+        "SynchroniseConsumerGroupOffsets": {
+          "shape": "__boolean",
+          "locationName": "synchroniseConsumerGroupOffsets"
+        }
+      },
+      "required": ["ConsumerGroupsToReplicate", "ConsumerGroupsToExclude", "SynchroniseConsumerGroupOffsets", "DetectAndCopyNewConsumerGroups"]
+    },
     "CreateClusterRequest": {
       "type": "structure",
       "members": {
@@ -2283,6 +2525,53 @@
         "State": {
           "shape": "ConfigurationState",
           "locationName": "state"
+        }
+      }
+    },
+    "CreateReplicatorRequest": {
+      "type": "structure",
+      "members": {
+        "Description": {
+          "shape": "__stringMax1024",
+          "locationName": "description"
+        },
+        "KafkaClusters": {
+          "shape": "__listOfKafkaCluster",
+          "locationName": "kafkaClusters"
+        },
+        "ReplicationInfoList": {
+          "shape": "__listOfReplicationInfo",
+          "locationName": "replicationInfoList"
+        },
+        "ReplicatorName": {
+          "shape": "__stringMin1Max128Pattern09AZaZ09AZaZ0",
+          "locationName": "replicatorName"
+        },
+        "ServiceExecutionRoleArn": {
+          "shape": "__string",
+          "locationName": "serviceExecutionRoleArn"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
+        }
+      },
+      "required": ["ServiceExecutionRoleArn", "ReplicatorName", "ReplicationInfoList", "KafkaClusters"]
+    },
+    "CreateReplicatorResponse": {
+      "type": "structure",
+      "members": {
+        "ReplicatorArn": {
+          "shape": "__string",
+          "locationName": "replicatorArn"
+        },
+        "ReplicatorName": {
+          "shape": "__string",
+          "locationName": "replicatorName"
+        },
+        "ReplicatorState": {
+          "shape": "ReplicatorState",
+          "locationName": "replicatorState"
         }
       }
     },
@@ -2415,6 +2704,35 @@
         "State": {
           "shape": "ConfigurationState",
           "locationName": "state"
+        }
+      }
+    },
+    "DeleteReplicatorRequest": {
+      "type": "structure",
+      "members": {
+        "CurrentVersion": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "currentVersion"
+        },
+        "ReplicatorArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "replicatorArn"
+        }
+      },
+      "required": ["ReplicatorArn"]
+    },
+    "DeleteReplicatorResponse": {
+      "type": "structure",
+      "members": {
+        "ReplicatorArn": {
+          "shape": "__string",
+          "locationName": "replicatorArn"
+        },
+        "ReplicatorState": {
+          "shape": "ReplicatorState",
+          "locationName": "replicatorState"
         }
       }
     },
@@ -2595,6 +2913,74 @@
         "ServerProperties": {
           "shape": "__blob",
           "locationName": "serverProperties"
+        }
+      }
+    },
+    "DescribeReplicatorRequest": {
+      "type": "structure",
+      "members": {
+        "ReplicatorArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "replicatorArn"
+        }
+      },
+      "required": ["ReplicatorArn"]
+    },
+    "DescribeReplicatorResponse": {
+      "type": "structure",
+      "members": {
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "IsReplicatorReference": {
+          "shape": "__boolean",
+          "locationName": "isReplicatorReference"
+        },
+        "KafkaClusters": {
+          "shape": "__listOfKafkaClusterDescription",
+          "locationName": "kafkaClusters"
+        },
+        "ReplicationInfoList": {
+          "shape": "__listOfReplicationInfoDescription",
+          "locationName": "replicationInfoList"
+        },
+        "ReplicatorArn": {
+          "shape": "__string",
+          "locationName": "replicatorArn"
+        },
+        "ReplicatorDescription": {
+          "shape": "__string",
+          "locationName": "replicatorDescription"
+        },
+        "ReplicatorName": {
+          "shape": "__string",
+          "locationName": "replicatorName"
+        },
+        "ReplicatorResourceArn": {
+          "shape": "__string",
+          "locationName": "replicatorResourceArn"
+        },
+        "ReplicatorState": {
+          "shape": "ReplicatorState",
+          "locationName": "replicatorState"
+        },
+        "ServiceExecutionRoleArn": {
+          "shape": "__string",
+          "locationName": "serviceExecutionRoleArn"
+        },
+        "StateInfo": {
+          "shape": "ReplicationStateInfo",
+          "locationName": "stateInfo"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
         }
       }
     },
@@ -2890,6 +3276,64 @@
       "exception": true,
       "error": {
         "httpStatusCode": 500
+      }
+    },
+    "KafkaCluster": {
+      "type": "structure",
+      "members": {
+        "AmazonMskCluster": {
+          "shape": "AmazonMskCluster",
+          "locationName": "amazonMskCluster"
+        },
+        "VpcConfig": {
+          "shape": "KafkaClusterClientVpcConfig",
+          "locationName": "vpcConfig"
+        }
+      },
+      "required": ["VpcConfig", "AmazonMskCluster"]
+    },
+    "KafkaClusterClientVpcConfig" : {
+      "type" : "structure",
+      "members" : {
+        "SecurityGroupIds" : {
+          "shape" : "__listOf__string",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "__listOf__string",
+          "locationName" : "subnetIds"
+        }
+      },
+      "required" : [ "SubnetIds" ]
+    },
+    "KafkaClusterDescription": {
+      "type": "structure",
+      "members": {
+        "AmazonMskCluster": {
+          "shape": "AmazonMskCluster",
+          "locationName": "amazonMskCluster"
+        },
+        "KafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "kafkaClusterAlias"
+        },
+        "VpcConfig": {
+          "shape": "KafkaClusterClientVpcConfig",
+          "locationName": "vpcConfig"
+        }
+      }
+    },
+    "KafkaClusterSummary": {
+      "type": "structure",
+      "members": {
+        "AmazonMskCluster": {
+          "shape": "AmazonMskCluster",
+          "locationName": "amazonMskCluster"
+        },
+        "KafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "kafkaClusterAlias"
+        }
       }
     },
     "KafkaVersion": {
@@ -3718,6 +4162,39 @@
         }
       }
     },
+    "ListReplicatorsRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "ReplicatorNameFilter": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "replicatorNameFilter"
+        }
+      }
+    },
+    "ListReplicatorsResponse": {
+      "type": "structure",
+      "members": {
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        },
+        "Replicators": {
+          "shape": "__listOfReplicatorSummary",
+          "locationName": "replicators"
+        }
+      }
+    },
     "ListVpcConnectionsRequest" : {
       "type" : "structure",
       "members" : {
@@ -3871,6 +4348,128 @@
         "httpStatusCode": 404
       }
     },
+    "ReplicationInfo": {
+      "type": "structure",
+      "members": {
+        "ConsumerGroupReplication": {
+          "shape": "ConsumerGroupReplication",
+          "locationName": "consumerGroupReplication"
+        },
+        "SourceKafkaClusterArn": {
+          "shape": "__string",
+          "locationName": "sourceKafkaClusterArn"
+        },
+        "TargetCompressionType": {
+          "shape": "TargetCompressionType",
+          "locationName": "targetCompressionType"
+        },
+        "TargetKafkaClusterArn": {
+          "shape": "__string",
+          "locationName": "targetKafkaClusterArn"
+        },
+        "TopicReplication": {
+          "shape": "TopicReplication",
+          "locationName": "topicReplication"
+        }
+      },
+      "required": ["TargetCompressionType", "TopicReplication", "ConsumerGroupReplication", "SourceKafkaClusterArn", "TargetKafkaClusterArn"]
+    },
+    "ReplicationInfoDescription": {
+      "type": "structure",
+      "members": {
+        "ConsumerGroupReplication": {
+          "shape": "ConsumerGroupReplication",
+          "locationName": "consumerGroupReplication"
+        },
+        "SourceKafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "sourceKafkaClusterAlias"
+        },
+        "TargetCompressionType": {
+          "shape": "TargetCompressionType",
+          "locationName": "targetCompressionType"
+        },
+        "TargetKafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "targetKafkaClusterAlias"
+        },
+        "TopicReplication": {
+          "shape": "TopicReplication",
+          "locationName": "topicReplication"
+        }
+      }
+    },
+    "ReplicationInfoSummary": {
+      "type": "structure",
+      "members": {
+        "SourceKafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "sourceKafkaClusterAlias"
+        },
+        "TargetKafkaClusterAlias": {
+          "shape": "__string",
+          "locationName": "targetKafkaClusterAlias"
+        }
+      }
+    },
+    "ReplicationStateInfo": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "__string",
+          "locationName": "code"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      }
+    },
+    "ReplicatorState": {
+      "type": "string",
+      "enum": ["RUNNING", "CREATING", "UPDATING", "DELETING", "FAILED"]
+    },
+    "ReplicatorSummary": {
+      "type": "structure",
+      "members": {
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "IsReplicatorReference": {
+          "shape": "__boolean",
+          "locationName": "isReplicatorReference"
+        },
+        "KafkaClustersSummary": {
+          "shape": "__listOfKafkaClusterSummary",
+          "locationName": "kafkaClustersSummary"
+        },
+        "ReplicationInfoSummaryList": {
+          "shape": "__listOfReplicationInfoSummary",
+          "locationName": "replicationInfoSummaryList"
+        },
+        "ReplicatorArn": {
+          "shape": "__string",
+          "locationName": "replicatorArn"
+        },
+        "ReplicatorName": {
+          "shape": "__string",
+          "locationName": "replicatorName"
+        },
+        "ReplicatorResourceArn": {
+          "shape": "__string",
+          "locationName": "replicatorResourceArn"
+        },
+        "ReplicatorState": {
+          "shape": "ReplicatorState",
+          "locationName": "replicatorState"
+        }
+      }
+    },
     "Sasl" : {
       "type" : "structure",
       "members" : {
@@ -3993,6 +4592,62 @@
         "ResourceArn",
         "Tags"
       ]
+    },
+    "TargetCompressionType": {
+      "type": "string",
+      "enum": ["NONE", "GZIP", "SNAPPY", "LZ4", "ZSTD"]
+    },
+    "TopicReplication": {
+      "type": "structure",
+      "members": {
+        "CopyAccessControlListsForTopics": {
+          "shape": "__boolean",
+          "locationName": "copyAccessControlListsForTopics"
+        },
+        "CopyTopicConfigurations": {
+          "shape": "__boolean",
+          "locationName": "copyTopicConfigurations"
+        },
+        "DetectAndCopyNewTopics": {
+          "shape": "__boolean",
+          "locationName": "detectAndCopyNewTopics"
+        },
+        "TopicsToExclude": {
+          "shape": "__listOf__stringMax249",
+          "locationName": "topicsToExclude"
+        },
+        "TopicsToReplicate": {
+          "shape": "__listOf__stringMax249",
+          "locationName": "topicsToReplicate"
+        }
+      },
+      "required": ["TopicsToReplicate"]
+    },
+    "TopicReplicationUpdate": {
+      "type": "structure",
+      "members": {
+        "CopyAccessControlListsForTopics": {
+          "shape": "__boolean",
+          "locationName": "copyAccessControlListsForTopics"
+        },
+        "CopyTopicConfigurations": {
+          "shape": "__boolean",
+          "locationName": "copyTopicConfigurations"
+        },
+        "DetectAndCopyNewTopics": {
+          "shape": "__boolean",
+          "locationName": "detectAndCopyNewTopics"
+        },
+        "TopicsToExclude": {
+          "shape": "__listOf__stringMax249",
+          "locationName": "topicsToExclude"
+        },
+        "TopicsToReplicate": {
+          "shape": "__listOf__stringMax249",
+          "locationName": "topicsToReplicate"
+        }
+      },
+      "required": ["TopicsToReplicate", "TopicsToExclude", "CopyTopicConfigurations", "DetectAndCopyNewTopics", "CopyAccessControlListsForTopics"]
     },
     "Tls" : {
       "type" : "structure",
@@ -4383,6 +5038,50 @@
         "ClusterOperationArn" : {
           "shape" : "__string",
           "locationName" : "clusterOperationArn"
+        }
+      }
+    },
+    "UpdateReplicationInfoRequest": {
+      "type": "structure",
+      "members": {
+        "ConsumerGroupReplication": {
+          "shape": "ConsumerGroupReplicationUpdate",
+          "locationName": "consumerGroupReplication"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "ReplicatorArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "replicatorArn"
+        },
+        "SourceKafkaClusterArn": {
+          "shape": "__string",
+          "locationName": "sourceKafkaClusterArn"
+        },
+        "TargetKafkaClusterArn": {
+          "shape": "__string",
+          "locationName": "targetKafkaClusterArn"
+        },
+        "TopicReplication": {
+          "shape": "TopicReplicationUpdate",
+          "locationName": "topicReplication"
+        }
+      },
+      "required": ["ReplicatorArn", "SourceKafkaClusterArn", "CurrentVersion", "TargetKafkaClusterArn"]
+    },
+    "UpdateReplicationInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ReplicatorArn": {
+          "shape": "__string",
+          "locationName": "replicatorArn"
+        },
+        "ReplicatorState": {
+          "shape": "ReplicatorState",
+          "locationName": "replicatorState"
         }
       }
     },
@@ -4807,6 +5506,24 @@
         "shape": "ConfigurationRevision"
       }
     },
+    "__listOfKafkaCluster" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "KafkaCluster"
+      }
+    },
+    "__listOfKafkaClusterDescription" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "KafkaClusterDescription"
+      }
+    },
+    "__listOfKafkaClusterSummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "KafkaClusterSummary"
+      }
+    },
     "__listOfKafkaVersion": {
       "type": "list",
       "member": {
@@ -4825,6 +5542,31 @@
         "shape": "ClientVpcConnection"
       }
     },
+    "__listOfReplicationInfo" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReplicationInfo"
+      }
+    },
+    "__listOfReplicationInfoDescription" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReplicationInfoDescription"
+      }
+    },
+    "__listOfReplicationInfoSummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReplicationInfoSummary"
+      }
+    },
+    "__listOfReplicatorSummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReplicatorSummary"
+      }
+    },
+
     "__listOfVpcConnection": {
       "type": "list",
       "member": {
@@ -4843,6 +5585,18 @@
         "shape": "__string"
       }
     },
+    "__listOf__stringMax249" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__stringMax249"
+      }
+    },
+    "__listOf__stringMax256" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__stringMax256"
+      }
+    },
     "__long": {
       "type": "long"
     },
@@ -4858,10 +5612,28 @@
     "__string": {
       "type": "string"
     },
+    "__stringMax1024" : {
+      "type" : "string",
+      "max" : 1024
+    },
+    "__stringMax249" : {
+      "type" : "string",
+      "max" : 249
+    },
+    "__stringMax256" : {
+      "type" : "string",
+      "max" : 256
+    },
     "__stringMin1Max128": {
       "type": "string",
       "min": 1,
       "max": 128
+    },
+    "__stringMin1Max128Pattern09AZaZ09AZaZ0" : {
+      "type" : "string",
+      "min" : 1,
+      "max" : 128,
+      "pattern" : "^[0-9A-Za-z][0-9A-Za-z-]{0,}$"
     },
     "__stringMin1Max64": {
       "type": "string",
@@ -4876,6 +5648,10 @@
     "__timestampIso8601": {
       "type": "timestamp",
       "timestampFormat": "iso8601"
+    },
+    "__timestampUnix": {
+      "type": "timestamp",
+      "timestampFormat": "unixTimestamp"
     }
   }
 }
