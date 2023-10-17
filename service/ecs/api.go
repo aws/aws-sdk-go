@@ -8117,7 +8117,7 @@ type ClusterServiceConnectDefaultsRequest struct {
 	// Command Line Interface. Other types of instance discovery aren't used by
 	// Service Connect.
 	//
-	// If you update the service with an empty string "" for the namespace name,
+	// If you update the cluster with an empty string "" for the namespace name,
 	// the cluster configuration for Service Connect is removed. Note that the namespace
 	// will remain in Cloud Map and must be deleted separately.
 	//
@@ -13899,8 +13899,7 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 // You can specify up to ten environment files. The file must have a .env file
 // extension. Each line in an environment file should contain an environment
 // variable in VARIABLE=VALUE format. Lines beginning with # are treated as
-// comments and are ignored. For more information about the environment variable
-// file syntax, see Declare default environment variables in file (https://docs.docker.com/compose/env-file/).
+// comments and are ignored.
 //
 // If there are environment variables specified using the environment parameter
 // in a container definition, they take precedence over the variables contained
@@ -13915,6 +13914,14 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 //   - Linux platform version 1.4.0 or later.
 //
 //   - Windows platform version 1.0.0 or later.
+//
+// Consider the following when using the Fargate launch type:
+//
+//   - The file is handled like a native Docker env-file.
+//
+//   - There is no support for shell escape handling.
+//
+//   - The container entry point interperts the VARIABLE values.
 type EnvironmentFile struct {
 	_ struct{} `type:"structure"`
 
@@ -14749,22 +14756,56 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //
 //   - UNHEALTHY-The container health check has failed.
 //
-//   - UNKNOWN-The container health check is being evaluated or there's no
-//     container health check defined.
+//   - UNKNOWN-The container health check is being evaluated, there's no container
+//     health check defined, or Amazon ECS doesn't have the health status of
+//     the container.
 //
-// The following describes the possible healthStatus values for a task. The
-// container health check status of non-essential containers don't have an effect
-// on the health status of a task.
-//
-//   - HEALTHY-All essential containers within the task have passed their health
-//     checks.
+// The following describes the possible healthStatus values based on the container
+// health checker status of essential containers in the task with the following
+// priority order (high to low):
 //
 //   - UNHEALTHY-One or more essential containers have failed their health
 //     check.
 //
-//   - UNKNOWN-The essential containers within the task are still having their
-//     health checks evaluated, there are only nonessential containers with health
-//     checks defined, or there are no container health checks defined.
+//   - UNKNOWN-Any essential container running within the task is in an UNKNOWN
+//     state and no other essential containers have an UNHEALTHY state.
+//
+//   - HEALTHY-All essential containers within the task have passed their health
+//     checks.
+//
+// Consider the following task health example with 2 containers.
+//
+//   - If Container1 is UNHEALTHY and Container2 is UNKNOWN, the task health
+//     is UNHEALTHY.
+//
+//   - If Container1 is UNHEALTHY and Container2 is HEALTHY, the task health
+//     is UNHEALTHY.
+//
+//   - If Container1 is HEALTHY and Container2 is UNKNOWN, the task health
+//     is UNKNOWN.
+//
+//   - If Container1 is HEALTHY and Container2 is HEALTHY, the task health
+//     is HEALTHY.
+//
+// Consider the following task health example with 3 containers.
+//
+//   - If Container1 is UNHEALTHY and Container2 is UNKNOWN, and Container3
+//     is UNKNOWN, the task health is UNHEALTHY.
+//
+//   - If Container1 is UNHEALTHY and Container2 is UNKNOWN, and Container3
+//     is HEALTHY, the task health is UNHEALTHY.
+//
+//   - If Container1 is UNHEALTHY and Container2 is HEALTHY, and Container3
+//     is HEALTHY, the task health is UNHEALTHY.
+//
+//   - If Container1 is HEALTHY and Container2 is UNKNOWN, and Container3 is
+//     HEALTHY, the task health is UNKNOWN.
+//
+//   - If Container1 is HEALTHY and Container2 is UNKNOWN, and Container3 is
+//     UNKNOWN, the task health is UNKNOWN.
+//
+//   - If Container1 is HEALTHY and Container2 is HEALTHY, and Container3 is
+//     HEALTHY, the task health is HEALTHY.
 //
 // If a task is run manually, and not as part of a service, the task will continue
 // its lifecycle regardless of its health status. For tasks that are part of
@@ -17582,10 +17623,11 @@ type NetworkBinding struct {
 	//
 	//    * You do not specify a hostPortRange. The value of the hostPortRange is
 	//    set as follows: For containers in a task with the awsvpc network mode,
-	//    the hostPort is set to the same value as the containerPort. This is a
-	//    static mapping strategy. For containers in a task with the bridge network
-	//    mode, the Amazon ECS agent finds open host ports from the default ephemeral
-	//    range and passes it to docker to bind them to the container ports.
+	//    the hostPortRange is set to the same value as the containerPortRange.
+	//    This is a static mapping strategy. For containers in a task with the bridge
+	//    network mode, the Amazon ECS agent finds open host ports from the default
+	//    ephemeral range and passes it to docker to bind them to the container
+	//    ports.
 	//
 	//    * The containerPortRange valid values are between 1 and 65535.
 	//
@@ -18213,10 +18255,11 @@ type PortMapping struct {
 	//
 	//    * You do not specify a hostPortRange. The value of the hostPortRange is
 	//    set as follows: For containers in a task with the awsvpc network mode,
-	//    the hostPort is set to the same value as the containerPort. This is a
-	//    static mapping strategy. For containers in a task with the bridge network
-	//    mode, the Amazon ECS agent finds open host ports from the default ephemeral
-	//    range and passes it to docker to bind them to the container ports.
+	//    the hostPortRange is set to the same value as the containerPortRange.
+	//    This is a static mapping strategy. For containers in a task with the bridge
+	//    network mode, the Amazon ECS agent finds open host ports from the default
+	//    ephemeral range and passes it to docker to bind them to the container
+	//    ports.
 	//
 	//    * The containerPortRange valid values are between 1 and 65535.
 	//

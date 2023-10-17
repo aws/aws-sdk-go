@@ -3246,10 +3246,14 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 
 // RetryStageExecution API operation for AWS CodePipeline.
 //
-// Resumes the pipeline execution by retrying the last failed actions in a stage.
-// You can retry a stage immediately if any of the actions in the stage fail.
-// When you retry, all actions that are still in progress continue working,
-// and failed actions are triggered again.
+// You can retry a stage that has failed without having to run a pipeline again
+// from the beginning. You do this by either retrying the failed actions in
+// a stage or by retrying all actions in the stage starting from the first action
+// in the stage. When you retry the failed actions in a stage, all actions that
+// are still in progress continue working, and failed actions are triggered
+// again. When you retry a failed stage from the first action in the stage,
+// the stage cannot have any actions in progress. Before a stage can be retried,
+// it must either have all actions failed or some actions failed and some succeeded.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13549,7 +13553,7 @@ type RetryStageExecutionInput struct {
 	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
-	// The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.
+	// The scope of the retry attempt.
 	//
 	// RetryMode is a required field
 	RetryMode *string `locationName:"retryMode" type:"string" required:"true" enum:"StageRetryMode"`
@@ -15893,12 +15897,16 @@ func StageExecutionStatus_Values() []string {
 const (
 	// StageRetryModeFailedActions is a StageRetryMode enum value
 	StageRetryModeFailedActions = "FAILED_ACTIONS"
+
+	// StageRetryModeAllActions is a StageRetryMode enum value
+	StageRetryModeAllActions = "ALL_ACTIONS"
 )
 
 // StageRetryMode_Values returns all elements of the StageRetryMode enum
 func StageRetryMode_Values() []string {
 	return []string{
 		StageRetryModeFailedActions,
+		StageRetryModeAllActions,
 	}
 }
 

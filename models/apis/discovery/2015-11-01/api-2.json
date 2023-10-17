@@ -1184,7 +1184,7 @@
     "ImportTaskIdentifier":{
       "type":"string",
       "max":200,
-      "pattern":"\\S*"
+      "pattern":"^import-task-[a-fA-F0-9]{32}$"
     },
     "ImportTaskList":{
       "type":"list",

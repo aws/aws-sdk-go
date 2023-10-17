@@ -1199,6 +1199,89 @@ func (c *Route53RecoveryControlConfig) DescribeSafetyRuleWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy
+func (c *Route53RecoveryControlConfig) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/resourcePolicy/{ResourceArn}",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for AWS Route53 Recovery Control Config.
+//
+// Get information about the resource policy for a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Route53 Recovery Control Config's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     404 response - MalformedQueryString. The query string contains a syntax error
+//     or resource not found.
+//
+//   - InternalServerException
+//     500 response - InternalServiceError. Temporary service error. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy
+func (c *Route53RecoveryControlConfig) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53RecoveryControlConfig) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAssociatedRoute53HealthChecks = "ListAssociatedRoute53HealthChecks"
 
 // ListAssociatedRoute53HealthChecksRequest generates a "aws/request.Request" representing the
@@ -2598,6 +2681,9 @@ type AssertionRule struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The Amazon Web Services account ID of the assertion rule owner.
+	Owner *string `min:"12" type:"string"`
+
 	// The criteria that you set for specific assertion routing controls (AssertedControls)
 	// that designate how many routing control states must be ON as the result of
 	// a transaction. For example, if you have three assertion routing controls,
@@ -2660,6 +2746,12 @@ func (s *AssertionRule) SetControlPanelArn(v string) *AssertionRule {
 // SetName sets the Name field's value.
 func (s *AssertionRule) SetName(v string) *AssertionRule {
 	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *AssertionRule) SetOwner(v string) *AssertionRule {
+	s.Owner = &v
 	return s
 }
 
@@ -2792,6 +2884,9 @@ type Cluster struct {
 	// The name of the cluster.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Web Services account ID of the cluster owner.
+	Owner *string `min:"12" type:"string"`
+
 	// Deployment status of a resource. Status can be one of the following: PENDING,
 	// DEPLOYED, PENDING_DELETION.
 	Status *string `type:"string" enum:"Status"`
@@ -2830,6 +2925,12 @@ func (s *Cluster) SetClusterEndpoints(v []*ClusterEndpoint) *Cluster {
 // SetName sets the Name field's value.
 func (s *Cluster) SetName(v string) *Cluster {
 	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *Cluster) SetOwner(v string) *Cluster {
+	s.Owner = &v
 	return s
 }
 
@@ -2971,6 +3072,9 @@ type ControlPanel struct {
 	// in the name.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Web Services account ID of the control panel owner.
+	Owner *string `min:"12" type:"string"`
+
 	// The number of routing controls in the control panel.
 	RoutingControlCount *int64 `type:"integer"`
 
@@ -3018,6 +3122,12 @@ func (s *ControlPanel) SetDefaultControlPanel(v bool) *ControlPanel {
 // SetName sets the Name field's value.
 func (s *ControlPanel) SetName(v string) *ControlPanel {
 	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ControlPanel) SetOwner(v string) *ControlPanel {
+	s.Owner = &v
 	return s
 }
 
@@ -4148,6 +4258,9 @@ type GatingRule struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The Amazon Web Services account ID of the gating rule owner.
+	Owner *string `min:"12" type:"string"`
+
 	// The criteria that you set for gating routing controls that designate how
 	// many of the routing control states must be ON to allow you to update target
 	// routing control states.
@@ -4217,6 +4330,12 @@ func (s *GatingRule) SetGatingControls(v []*string) *GatingRule {
 // SetName sets the Name field's value.
 func (s *GatingRule) SetName(v string) *GatingRule {
 	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *GatingRule) SetOwner(v string) *GatingRule {
+	s.Owner = &v
 	return s
 }
 
@@ -4333,6 +4452,86 @@ func (s *GatingRuleUpdate) SetSafetyRuleArn(v string) *GatingRuleUpdate {
 // SetWaitPeriodMs sets the WaitPeriodMs field's value.
 func (s *GatingRuleUpdate) SetWaitPeriodMs(v int64) *GatingRuleUpdate {
 	s.WaitPeriodMs = &v
+	return s
+}
+
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// Returns the current Amazon Resource Access Manager resource policy for a
+// cluster.
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource policy.
+	Policy *string `min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
+	s.Policy = &v
 	return s
 }
 
@@ -5337,6 +5536,9 @@ type RoutingControl struct {
 	// The name of the routing control.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Web Services account ID of the routing control owner.
+	Owner *string `min:"12" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the routing control.
 	RoutingControlArn *string `min:"1" type:"string"`
 
@@ -5372,6 +5574,12 @@ func (s *RoutingControl) SetControlPanelArn(v string) *RoutingControl {
 // SetName sets the Name field's value.
 func (s *RoutingControl) SetName(v string) *RoutingControl {
 	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *RoutingControl) SetOwner(v string) *RoutingControl {
+	s.Owner = &v
 	return s
 }
 

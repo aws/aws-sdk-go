@@ -5,11 +5,13 @@
     "BatchAssociateScramSecret" : "<p>Associates one or more Scram Secrets with an Amazon MSK cluster.</p>",
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
     "CreateClusterV2" : "<p>Creates a new Amazon MSK cluster of either the provisioned or the serverless type.</p>",
+    "CreateReplicator" : "<p>Creates a new Kafka Replicator.</p>",
     "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
     "CreateVpcConnection" : "<p>Creates a new Amazon MSK VPC connection.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
     "DeleteClusterPolicy" : "<p>Deletes the MSK cluster policy specified by the Amazon Resource Name (ARN) in your request.</p>",
     "DeleteConfiguration" : "<p>Deletes the specified MSK configuration. The configuration must be in the ACTIVE or DELETE_FAILED state.</p>",
+    "DeleteReplicator" : "<p>Deletes a replicator.</p>",
     "DeleteVpcConnection" : "<p>Deletes the Amazon MSK VPC connection specified in your request.</p>",
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterV2" : "<p>Returns a description of the MSK cluster of either the provisioned or the serverless type whose Amazon Resource Name (ARN) is specified in the request.</p>",
@@ -17,6 +19,7 @@
     "DescribeClusterOperationV2" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
+    "DescribeReplicator" : "<p>Returns a description of the Kafka Replicator whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeVpcConnection" : "<p>Displays information about the specified Amazon MSK VPC connection.</p>",
     "BatchDisassociateScramSecret" : "<p>Disassociates one or more Scram Secrets from an Amazon MSK cluster.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
@@ -31,6 +34,7 @@
     "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
     "ListKafkaVersions" : "<p>Returns a list of Apache Kafka versions.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
+    "ListReplicators" : "<p>Lists the replicators.</p>",
     "ListScramSecrets" : "<p>Returns a list of the Scram Secrets associated with an Amazon MSK cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
     "ListVpcConnections" : "<p>Displays a list of Amazon MSK VPC connections.</p>",
@@ -47,10 +51,19 @@
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>",
+    "UpdateReplicationInfo" : "<p>Updates replication info of a replicator.</p>",
     "UpdateSecurity" : "<p>You can use this operation to update the encrypting and authentication settings for an existing cluster.</p>",
     "UpdateStorage" : "<p>Updates cluster broker volume size (or) sets cluster storage mode to TIERED.</p>"
   },
   "shapes" : {
+    "AmazonMskCluster" : {
+      "base" : "<p>Details of an Amazon MSK Cluster.</p>",
+      "refs" : {
+        "KafkaCluster$AmazonMskCluster" : "<p>Details of an Amazon MSK Cluster.</p>",
+        "KafkaClusterDescription$AmazonMskCluster" : "<p>Details of an Amazon MSK Cluster.</p>",
+        "KafkaClusterSummary$AmazonMskCluster" : "<p>Details of an Amazon MSK Cluster</p>."
+      }
+    },
     "BatchAssociateScramSecretRequest" : {
       "base" : "<p>Request body for BatchAssociateScramSecret.</p>",
       "refs" : { }
@@ -281,6 +294,19 @@
         "UpdateConnectivityRequest$ConnectivityInfo" : "<p>Information about the broker access configuration.</p>"
       }
     },
+    "ConsumerGroupReplication" : {
+      "base" : "<p>Details about consumer group replication.</p>",
+      "refs" : {
+        "ReplicationInfo$ConsumerGroupReplication" : "<p>Configuration relating to consumer group replication.</p>",
+        "ReplicationInfoDescription$ConsumerGroupReplication" : "<p>Configuration relating to consumer group replication</p>."
+      }
+    },
+    "ConsumerGroupReplicationUpdate" : {
+      "base" : "<p>Details about consumer group replication.</p>",
+      "refs" : {
+        "UpdateReplicationInfoRequest$ConsumerGroupReplication" : "<p>Updated consumer group replication information.</p>"
+      }
+    },
     "CreateClusterRequest" : {
       "base" : "<p>Creates a cluster.</p>",
       "refs" : { }
@@ -303,6 +329,14 @@
     },
     "CreateConfigurationResponse" : {
       "base" : "<p>Response body for CreateConfiguration</p>",
+      "refs" : { }
+    },
+    "CreateReplicatorRequest" : {
+      "base" : "<p>Request body for replicator.</p>",
+      "refs" : { }
+    },
+    "CreateReplicatorResponse" : {
+      "base" : "<p>Returns information about the created replicator.</p>",
       "refs" : { }
     },
     "CreateVpcConnectionRequest" : {
@@ -331,6 +365,10 @@
     },
     "DeleteConfigurationResponse" : {
       "base" : "<p>Response body for DeleteConfiguration.</p>",
+      "refs" : { }
+    },
+    "DeleteReplicatorResponse" : {
+      "base" : "<p>Returns information about the deleted replicator.</p>",
       "refs" : { }
     },
     "DeleteVpcConnectionRequest" : {
@@ -363,6 +401,10 @@
     },
     "DescribeConfigurationRevisionResponse" : {
       "base" : "<p>Response body for DescribeConfigurationRevision.</p>",
+      "refs" : { }
+    },
+    "DescribeReplicatorResponse" : {
+      "base" : "<p>Response body for DescribeReplicator.</p>",
       "refs" : { }
     },
     "DescribeVpcConnectionResponse" : {
@@ -469,6 +511,31 @@
         "PrometheusInfo$JmxExporter" : "<p>JMX Exporter settings.</p>"
       }
     },
+    "KafkaCluster" : {
+      "base" : "<p>Information about Kafka Cluster to be used as source / target for replication.</p>",
+      "refs" : {
+        "__listOfKafkaCluster$member" : null
+      }
+    },
+    "KafkaClusterClientVpcConfig" : {
+      "base" : null,
+      "refs" : {
+        "KafkaCluster$VpcConfig" : "Details of an Amazon VPC which has network connectivity to the Apache Kafka cluster.",
+        "KafkaClusterDescription$VpcConfig" : "Details of an Amazon VPC which has network connectivity to the Apache Kafka cluster."
+      }
+    },
+    "KafkaClusterDescription" : {
+      "base" : "<p>Information about Kafka Cluster used as source / target for replication.</p>",
+      "refs" : {
+        "__listOfKafkaClusterDescription$member" : null
+      }
+    },
+    "KafkaClusterSummary" : {
+      "base" : "<p>Summarized information about Kafka Cluster used as source / target for replication.</p>",
+      "refs" : {
+        "__listOfKafkaClusterSummary$member" : null
+      }
+    },
     "KafkaVersion" : {
       "base" : "<p>Information about a Apache Kafka version.</p>",
       "refs" : {
@@ -511,6 +578,10 @@
     },
     "ListNodesResponse" : {
       "base" : "<p>Information about nodes in the cluster.</p>",
+      "refs" : { }
+    },
+    "ListReplicatorsResponse" : {
+      "base" : "<p>The response contains an array containing replicator information and a NextToken if the response is truncated.</p>",
       "refs" : { }
     },
     "ListScramSecretsResponse" : {
@@ -649,6 +720,46 @@
       "base" : "<p>Response body for RebootBrokers action.</p>",
       "refs" : { }
     },
+    "ReplicationInfo" : {
+      "base" : "<p>Specifies configuration for replication between a source and target Kafka cluster.</p>",
+      "refs" : {
+        "__listOfReplicationInfo$member" : null
+      }
+    },
+    "ReplicationInfoDescription" : {
+      "base" : "<p>Specifies configuration for replication between a source and target Kafka cluster (sourceKafkaClusterAlias -> targetKafkaClusterAlias)</p>",
+      "refs" : {
+        "__listOfReplicationInfoDescription$member" : null
+      }
+    },
+    "ReplicationInfoSummary" : {
+      "base" : "<p>Summarized information of replication between clusters.</p>",
+      "refs" : {
+        "__listOfReplicationInfoSummary$member" : null
+      }
+    },
+    "ReplicationStateInfo" : {
+      "base" : "Details about the state of a replicator",
+      "refs" : {
+        "DescribeReplicatorResponse$StateInfo" : "Details about the state of the replicator."
+      }
+    },
+    "ReplicatorState" : {
+      "base" : "<p>The state of a replicator.</p>",
+      "refs" : {
+        "CreateReplicatorResponse$ReplicatorState" : "<p>State of the replicator.</p>",
+        "DeleteReplicatorResponse$ReplicatorState" : "<p>The state of the replicator.</p>",
+        "DescribeReplicatorResponse$ReplicatorState" : "<p>State of the replicator.</p>",
+        "ReplicatorSummary$ReplicatorState" : "<p>State of the replicator.</p>",
+        "UpdateReplicationInfoResponse$ReplicatorState" : "<p>State of the replicator.</p>"
+      }
+    },
+    "ReplicatorSummary" : {
+      "base" : "<p>Information about a replicator.</p>",
+      "refs" : {
+        "__listOfReplicatorSummary$member" : null
+      }
+    },
     "S3" : {
       "base" : "<p>The details of the Amazon S3 destination for broker logs.</p>",
       "refs" : {
@@ -685,6 +796,26 @@
     "TagResourceRequest" : {
       "base" : "<p>Tag a resource.</p>",
       "refs" : { }
+    },
+    "TargetCompressionType" : {
+      "base" : "<p>The type of compression to use producing records to the target cluster.</p>",
+      "refs" : {
+        "ReplicationInfo$TargetCompressionType" : "<p>The compression type to use when producing records to target cluster.</p>",
+        "ReplicationInfoDescription$TargetCompressionType" : "<p>The compression type to use when producing records to target cluster.</p>"
+      }
+    },
+    "TopicReplication" : {
+      "base" : "<p>Details about topic replication.</p>",
+      "refs" : {
+        "ReplicationInfo$TopicReplication" : "<p>Configuration relating to topic replication.</p>",
+        "ReplicationInfoDescription$TopicReplication" : "<p>Configuration relating to topic replication.</p>"
+      }
+    },
+    "TopicReplicationUpdate" : {
+      "base" : "<p>Details for updating the topic replication of a replicator.</p>",
+      "refs" : {
+        "UpdateReplicationInfoRequest$TopicReplication" : "<p>Updated topic replication information.</p>"
+      }
     },
     "Tls" : {
       "base" : "<p>Details for client authentication using TLS.</p>",
@@ -770,6 +901,14 @@
       "base" : "<p>Response body for UpdateMonitoring.</p>",
       "refs" : { }
     },
+    "UpdateReplicationInfoRequest" : {
+      "base" : "<p>Parameters for updating replication information between source and target Kafka clusters of a replicator.</p>",
+      "refs" : { }
+    },
+    "UpdateReplicationInfoResponse" : {
+      "base" : "<p>Updated Replication information of a replicator.</p>",
+      "refs" : { }
+    },
     "UpdateSecurityRequest" : {
       "base" : "<p>Request body for UpdateSecurity.</p>",
       "refs" : { }
@@ -850,6 +989,11 @@
       "base" : null,
       "refs" : {
         "CloudWatchLogs$Enabled" : "<p>Specifies whether broker logs get sent to the specified CloudWatch Logs destination.</p>",
+        "ConsumerGroupReplication$DetectAndCopyNewConsumerGroups" : "<p>Enables synchronization of consumer groups to target cluster.</p>",
+        "ConsumerGroupReplication$SynchroniseConsumerGroupOffsets" : "<p>Enables synchronization of consumer group offsets to target cluster. The translated offsets will be written to topic __consumer_offsets.</p>",
+        "ConsumerGroupReplicationUpdate$DetectAndCopyNewConsumerGroups" : "<p>Enables synchronization of consumer groups to target cluster.</p>",
+        "ConsumerGroupReplicationUpdate$SynchroniseConsumerGroupOffsets" : "<p>Enables synchronization of consumer group offsets to target cluster. The translated offsets will be written to topic __consumer_offsets.</p>",
+        "DescribeReplicatorResponse$IsReplicatorReference" : "<p>Whether this resource is a replicator reference.</p>",
         "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>",
         "Firehose$Enabled" : "<p>Specifies whether broker logs get sent to the specified Kinesis Data Firehose delivery stream.</p>",
         "IAM$Enabled" : "<p>IAM authentication is enabled or not.</p>",
@@ -858,9 +1002,16 @@
         "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
         "NodeExporterInfo$EnabledInBroker" : "<p>Node Exporter being enabled in broker.</p>",
         "ProvisionedThroughput$Enabled" : "<p>Provisioned throughput is enabled or not.</p>",
+        "ReplicatorSummary$IsReplicatorReference" : "<p>Whether this resource is a replicator reference.</p>",
         "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>",
         "Scram$Enabled" : "<p>SASL/SCRAM authentication is enabled or not.</p>",
         "Tls$Enabled" : "<p>TLS authentication is enabled or not.</p>",
+        "TopicReplication$CopyAccessControlListsForTopics" : "<p>Whether to periodically configure remote topic ACLs to match their corresponding upstream topics.</p>",
+        "TopicReplication$CopyTopicConfigurations" : "<p>Whether to periodically configure remote topics to match their corresponding upstream topics.</p>",
+        "TopicReplication$DetectAndCopyNewTopics" : "<p>Whether to periodically check for new topics and partitions.</p>",
+        "TopicReplicationUpdate$CopyAccessControlListsForTopics" : "<p>Whether to periodically configure remote topic ACLs to match their corresponding upstream topics.</p>",
+        "TopicReplicationUpdate$CopyTopicConfigurations" : "<p>Whether to periodically configure remote topics to match their corresponding upstream topics.</p>",
+        "TopicReplicationUpdate$DetectAndCopyNewTopics" : "<p>Whether to periodically check for new topics and partitions.</p>",
         "Unauthenticated$Enabled" : "<p>Specifies whether you want to enable or disable unauthenticated traffic to your cluster.</p>",
         "VpcConnectivityIAM$Enabled" : "<p>SASL/IAM authentication for VPC connectivity is on or off.</p>",
         "VpcConnectivityScram$Enabled" : "<p>SASL/SCRAM authentication for VPC connectivity is on or off.</p>",
@@ -915,6 +1066,48 @@
       "base" : null,
       "refs" : {
         "ListClustersV2Response$ClusterInfoList" : "<p>Information on each of the MSK clusters in the response.</p>"
+      }
+    },
+    "__listOfKafkaCluster" : {
+      "base" : null,
+      "refs" : {
+        "CreateReplicatorRequest$KafkaClusters" : "<p>Kafka Clusters to use in setting up sources / targets for replication.</p>"
+      }
+    },
+    "__listOfKafkaClusterDescription" : {
+      "base" : null,
+      "refs" : {
+        "DescribeReplicatorResponse$KafkaClusters" : "<p>Kafka Clusters used in setting up sources / targets for replication.</p>"
+      }
+    },
+    "__listOfKafkaClusterSummary" : {
+      "base" : null,
+      "refs" : {
+        "ReplicatorSummary$KafkaClustersSummary" : "<p>Kafka Clusters used in setting up sources / targets for replication.</p>"
+      }
+    },
+    "__listOfReplicationInfo" : {
+      "base" : null,
+      "refs" : {
+        "CreateReplicatorRequest$ReplicationInfoList" : "<p>A list of replication configurations, where each configuration targets a given source cluster to target cluster replication flow.</p>"
+      }
+    },
+    "__listOfReplicationInfoDescription" : {
+      "base" : null,
+      "refs" : {
+        "DescribeReplicatorResponse$ReplicationInfoList" : "<p>A list of replication configurations, where each configuration targets a given source cluster to target cluster replication flow.</p>"
+      }
+    },
+    "__listOfReplicationInfoSummary" : {
+      "base" : null,
+      "refs" : {
+        "ReplicatorSummary$ReplicationInfoSummaryList" : "<p>A list of summarized information of replications between clusters.</p>"
+      }
+    },
+    "__listOfReplicatorSummary" : {
+      "base" : null,
+      "refs" : {
+        "ListReplicatorsResponse$Replicators" : "<p>List containing information of each of the replicators in the account.</p>"
       }
     },
     "__listOfVpcConfig" : {
@@ -1006,7 +1199,27 @@
         "ListScramSecretsResponse$SecretArnList" : "<p>The list of scram secrets associated with the cluster.</p>",
         "RebootBrokerRequest$BrokerIds" : "<p>The list of broker ids to be rebooted.</p>",
         "Tls$CertificateAuthorityArnList" : "<p>List of ACM Certificate Authority ARNs.</p>",
-        "ZookeeperNodeInfo$Endpoints" : "<p>Endpoints for accessing the ZooKeeper.</p>"
+        "ZookeeperNodeInfo$Endpoints" : "<p>Endpoints for accessing the ZooKeeper.</p>",
+        "KafkaClusterClientVpcConfig$SecurityGroupIds" : "<p>The security groups to attach to the ENIs for the broker nodes.</p>",
+        "KafkaClusterClientVpcConfig$SubnetIds" : "<p>The list of subnets in the client VPC to connect to.</p>"
+      }
+    },
+    "__listOf__stringMax249" : {
+      "base" : null,
+      "refs" : {
+        "TopicReplication$TopicsToExclude" : "<p>List of regular expression patterns indicating the topics that should not be replicated.</p>",
+        "TopicReplication$TopicsToReplicate" : "<p>List of regular expression patterns indicating the topics to copy.</p>",
+        "TopicReplicationUpdate$TopicsToExclude" : "<p>List of regular expression patterns indicating the topics that should not be replicated.</p>",
+        "TopicReplicationUpdate$TopicsToReplicate" : "<p>List of regular expression patterns indicating the topics to copy.</p>"
+      }
+    },
+    "__listOf__stringMax256" : {
+      "base" : null,
+      "refs" : {
+        "ConsumerGroupReplication$ConsumerGroupsToExclude" : "<p>List of regular expression patterns indicating the consumer groups that should not be replicated.</p>",
+        "ConsumerGroupReplication$ConsumerGroupsToReplicate" : "<p>List of regular expression patterns indicating the consumer groups to copy.</p>",
+        "ConsumerGroupReplicationUpdate$ConsumerGroupsToExclude" : "<p>List of regular expression patterns indicating the consumer groups that should not be replicated.</p>",
+        "ConsumerGroupReplicationUpdate$ConsumerGroupsToReplicate" : "<p>List of regular expression patterns indicating the consumer groups to copy.</p>"
       }
     },
     "__long" : {
@@ -1023,8 +1236,10 @@
       "refs" : {
         "ClusterInfo$Tags" : "<p>Tags attached to the cluster.</p>",
         "CreateClusterRequest$Tags" : "<p>Create tags when creating the cluster.</p>",
+        "CreateReplicatorRequest$Tags" : "<p>List of tags to attach to created Replicator.</p>",
         "CreateVpcConnectionRequest$Tags" : "<p>Create tags when creating the VPC connection.</p>",
         "CreateVpcConnectionResponse$Tags" : "<p>Tags attached to the VPC connection.</p>",
+        "DescribeReplicatorResponse$Tags" : "<p>List of tags attached to the Replicator.</p>",
         "DescribeVpcConnectionResponse$Tags" : "<p>Tags attached to the VPC connection.</p>",
         "ListTagsForResourceResponse$Tags" : "<p>The key-value pair for the resource tag.</p>",
         "TagResourceRequest$Tags" : "<p>The key-value pair for the resource tag.</p>",
@@ -1034,6 +1249,7 @@
     "__string" : {
       "base" : null,
       "refs" : {
+        "AmazonMskCluster$MskClusterArn" : "<p>The Amazon Resource Name (ARN) of an Amazon MSK cluster.</p>",
         "BatchAssociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "BatchDisassociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "BrokerEBSVolumeInfo$KafkaBrokerNodeId" : "<p>The ID of the broker to update.</p>",
@@ -1070,6 +1286,9 @@
         "CreateConfigurationRequest$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "CreateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "CreateConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "CreateReplicatorRequest$ServiceExecutionRoleArn" : "<p>The ARN of the IAM role used by the replicator to access resources in the customer's account (e.g source and target clusters)</p>",
+        "CreateReplicatorResponse$ReplicatorArn" : "<p>The Amazon Resource Name (ARN) of the replicator.</p>",
+        "CreateReplicatorResponse$ReplicatorName" : "<p>Name of the replicator provided by the customer.</p>",
         "CreateVpcConnectionRequest$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "CreateVpcConnectionRequest$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
         "CreateVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
@@ -1077,12 +1296,19 @@
         "DeleteClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "DeleteConfigurationRequest$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DeleteConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DeleteReplicatorResponse$ReplicatorArn" : "<p>The Amazon Resource Name (ARN) of the replicator.</p>",
         "DeleteVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "DescribeConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationResponse$Description" : "<p>The description of the configuration.</p>",
         "DescribeConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "DescribeConfigurationRevisionResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationRevisionResponse$Description" : "<p>The description of the configuration.</p>",
+        "DescribeReplicatorResponse$CurrentVersion" : "<p>The current version number of the replicator.</p>",
+        "DescribeReplicatorResponse$ReplicatorArn" : "<p>The Amazon Resource Name (ARN) of the replicator.</p>",
+        "DescribeReplicatorResponse$ReplicatorDescription" : "<p>The description of the replicator.</p>",
+        "DescribeReplicatorResponse$ReplicatorName" : "<p>The name of the replicator.</p>",
+        "DescribeReplicatorResponse$ReplicatorResourceArn" : "<p>The Amazon Resource Name (ARN) of the replicator resource in the region where the replicator was created.</p>",
+        "DescribeReplicatorResponse$ServiceExecutionRoleArn" : "<p>The Amazon Resource Name (ARN) of the IAM role used by the replicator to access resources in the customer's account (e.g source and target clusters)</p>",
         "DescribeVpcConnectionResponse$Authentication" : "<p>The authentication type of the VPC connection.</p>",
         "DescribeVpcConnectionResponse$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "DescribeVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
@@ -1106,6 +1332,8 @@
         "GetClusterPolicyResponse$CurrentVersion" : "<p>Cluster policy version.</p>",
         "GetClusterPolicyResponse$Policy" : "<p>Cluster policy attached to the MSK cluster.</p>",
         "KafkaVersion$Version" : "<p>The Apache Kafka version.</p>",
+        "KafkaClusterDescription$KafkaClusterAlias" : "<p>The alias of the Kafka cluster. Used to prefix names of replicated topics.</p> ",
+        "KafkaClusterSummary$KafkaClusterAlias" : "<p>The alias of the Kafka cluster. Used to prefix names of replicated topics.</p> ",
         "ListClientVpcConnectionsResponse$NextToken" : "<p>If the response of ListClientVpcConnections is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClientVpcConnections.</p>",
         "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
@@ -1113,6 +1341,7 @@
         "ListConfigurationsResponse$NextToken" : "<p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. To get another batch of configurations, provide this token in your next request.</p>",
         "ListKafkaVersionsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. To get another batch of nodes, provide this token in your next request.</p>",
+        "ListReplicatorsResponse$NextToken" : "<p>If the response of ListReplicators is truncated, it returns a NextToken in the response. This NextToken should be sent in the subsequent request to ListReplicators.</p>",
         "ListScramSecretsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListVpcConnectionsResponse$NextToken" : "<p>If the response of ListVpcConnections is truncated, it returns a NextToken in the response. This NextToken should be sent in the subsequent request to ListVpcConnections.</p>",
         "MutableClusterInfo$KafkaVersion" : "<p>The Apache Kafka version.</p>",
@@ -1123,6 +1352,18 @@
         "PutClusterPolicyResponse$CurrentVersion" : "<p>Cluster policy version.</p>",
         "RebootBrokerResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "RebootBrokerResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "ReplicationInfo$SourceKafkaClusterArn" : "<p>The ARN of the source Kafka cluster.</p>",
+        "ReplicationInfo$TargetKafkaClusterArn" : "<p>The ARN of the target Kafka cluster.</p>",
+        "ReplicationInfoDescription$SourceKafkaClusterAlias" : "<p>The alias of the source Kafka cluster.</p>",
+        "ReplicationInfoDescription$TargetKafkaClusterAlias" : "<p>The alias of the target Kafka cluster.</p>",
+        "ReplicationInfoSummary$SourceKafkaClusterAlias" : "<p>The alias of the source Kafka cluster.</p>",
+        "ReplicationInfoSummary$TargetKafkaClusterAlias" : "<p>The alias of the target Kafka cluster.</p>",
+        "ReplicationStateInfo$Code" : "<p>Code that describes the current state of the replicator.</p>",
+        "ReplicationStateInfo$Message" : "<p>Message that describes the state of the replicator.</p>",
+        "ReplicatorSummary$CurrentVersion" : "<p>The current version of the replicator.</p>",
+        "ReplicatorSummary$ReplicatorArn" : "<p>The Amazon Resource Name (ARN) of the replicator.</p>",
+        "ReplicatorSummary$ReplicatorName" : "<p>The name of the replicator.</p>",
+        "ReplicatorSummary$ReplicatorResourceArn" : "The Amazon Resource Name (ARN) of the replicator resource in the region where the replicator was created.</p>",
         "S3$Bucket" : "<p>The name of the S3 bucket that is the destination for broker logs.</p>",
         "S3$Prefix" : "<p>The S3 prefix that is the destination for broker logs.</p>",
         "StateInfo$Code" : "<p>If the cluster is in an unusable state, this field contains the code that describes the issue.</p>",
@@ -1153,6 +1394,10 @@
         "UpdateMonitoringRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
         "UpdateMonitoringResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateMonitoringResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateReplicationInfoRequest$CurrentVersion" : "<p>Current replicator version.</p>",
+        "UpdateReplicationInfoRequest$SourceKafkaClusterArn" : "<p>The ARN of the source Kafka cluster.</p>",
+        "UpdateReplicationInfoRequest$TargetKafkaClusterArn" : "<p>The ARN of the target Kafka cluster.</p>",
+        "UpdateReplicationInfoResponse$ReplicatorArn" : "<p>The Amazon Resource Name (ARN) of the replicator.</p>",
         "UpdateSecurityRequest$CurrentVersion" : "<p>You can use the DescribeCluster operation to get the current version of the cluster. After the security update is complete, the cluster will have a new version.</p>",
         "UpdateSecurityResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateSecurityResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
@@ -1168,6 +1413,24 @@
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
         "__listOf__string$member" : null,
         "__mapOf__string$member" : null
+      }
+    },
+    "__stringMax1024" : {
+      "base" : null,
+      "refs" : {
+        "CreateReplicatorRequest$Description" : "<p>A summary description of the replicator.</p>"
+      }
+    },
+    "__stringMax249" : {
+      "base" : null,
+      "refs" : {
+        "__listOf__stringMax249$member" : null
+      }
+    },
+    "__stringMax256" : {
+      "base" : null,
+      "refs" : {
+        "__listOf__stringMax256$member" : null
       }
     },
     "__stringMin1" : {
@@ -1209,6 +1472,12 @@
         "MutableClusterInfo$InstanceType": "<p>The Amazon MSK broker type that you want all of the brokers in this cluster to be.</p>"
       }
     },
+    "__stringMin1Max128Pattern09AZaZ09AZaZ0" : {
+      "base" : null,
+      "refs" : {
+        "CreateReplicatorRequest$ReplicatorName" : "<p>The name of the replicator. Alpha-numeric characters with '-' are allowed.</p>"
+      }
+    },
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
@@ -1223,6 +1492,8 @@
         "DescribeConfigurationResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
         "DescribeConfigurationRevisionResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
         "DescribeVpcConnectionResponse$CreationTime" : "<p>The creation time of the VPC connection.</p>",
+        "DescribeReplicatorResponse$CreationTime" : "<p>The time when the replicator was created.</p>",
+        "ReplicatorSummary$CreationTime" : "<p>The time the replicator was created.</p>",
         "VpcConnection$CreationTime" : "<p>The creation time of the VPC connection.</p>"
       }
     }

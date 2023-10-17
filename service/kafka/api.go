@@ -499,6 +499,106 @@ func (c *Kafka) CreateConfigurationWithContext(ctx aws.Context, input *CreateCon
 	return out, req.Send()
 }
 
+const opCreateReplicator = "CreateReplicator"
+
+// CreateReplicatorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateReplicator for more information on using the CreateReplicator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateReplicatorRequest method.
+//	req, resp := client.CreateReplicatorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateReplicator
+func (c *Kafka) CreateReplicatorRequest(input *CreateReplicatorInput) (req *request.Request, output *CreateReplicatorOutput) {
+	op := &request.Operation{
+		Name:       opCreateReplicator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/replication/v1/replicators",
+	}
+
+	if input == nil {
+		input = &CreateReplicatorInput{}
+	}
+
+	output = &CreateReplicatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateReplicator API operation for Managed Streaming for Kafka.
+//
+// Creates a new Kafka Replicator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation CreateReplicator for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+//   - ConflictException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateReplicator
+func (c *Kafka) CreateReplicator(input *CreateReplicatorInput) (*CreateReplicatorOutput, error) {
+	req, out := c.CreateReplicatorRequest(input)
+	return out, req.Send()
+}
+
+// CreateReplicatorWithContext is the same as CreateReplicator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateReplicator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) CreateReplicatorWithContext(ctx aws.Context, input *CreateReplicatorInput, opts ...request.Option) (*CreateReplicatorOutput, error) {
+	req, out := c.CreateReplicatorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateVpcConnection = "CreateVpcConnection"
 
 // CreateVpcConnectionRequest generates a "aws/request.Request" representing the
@@ -862,6 +962,103 @@ func (c *Kafka) DeleteConfiguration(input *DeleteConfigurationInput) (*DeleteCon
 // for more information on using Contexts.
 func (c *Kafka) DeleteConfigurationWithContext(ctx aws.Context, input *DeleteConfigurationInput, opts ...request.Option) (*DeleteConfigurationOutput, error) {
 	req, out := c.DeleteConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteReplicator = "DeleteReplicator"
+
+// DeleteReplicatorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReplicator for more information on using the DeleteReplicator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteReplicatorRequest method.
+//	req, resp := client.DeleteReplicatorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteReplicator
+func (c *Kafka) DeleteReplicatorRequest(input *DeleteReplicatorInput) (req *request.Request, output *DeleteReplicatorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReplicator,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/replication/v1/replicators/{replicatorArn}",
+	}
+
+	if input == nil {
+		input = &DeleteReplicatorInput{}
+	}
+
+	output = &DeleteReplicatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteReplicator API operation for Managed Streaming for Kafka.
+//
+// Deletes a replicator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DeleteReplicator for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteReplicator
+func (c *Kafka) DeleteReplicator(input *DeleteReplicatorInput) (*DeleteReplicatorOutput, error) {
+	req, out := c.DeleteReplicatorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReplicatorWithContext is the same as DeleteReplicator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReplicator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DeleteReplicatorWithContext(ctx aws.Context, input *DeleteReplicatorInput, opts ...request.Option) (*DeleteReplicatorOutput, error) {
+	req, out := c.DeleteReplicatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1510,6 +1707,104 @@ func (c *Kafka) DescribeConfigurationRevision(input *DescribeConfigurationRevisi
 // for more information on using Contexts.
 func (c *Kafka) DescribeConfigurationRevisionWithContext(ctx aws.Context, input *DescribeConfigurationRevisionInput, opts ...request.Option) (*DescribeConfigurationRevisionOutput, error) {
 	req, out := c.DescribeConfigurationRevisionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReplicator = "DescribeReplicator"
+
+// DescribeReplicatorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicator for more information on using the DescribeReplicator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicatorRequest method.
+//	req, resp := client.DescribeReplicatorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeReplicator
+func (c *Kafka) DescribeReplicatorRequest(input *DescribeReplicatorInput) (req *request.Request, output *DescribeReplicatorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicator,
+		HTTPMethod: "GET",
+		HTTPPath:   "/replication/v1/replicators/{replicatorArn}",
+	}
+
+	if input == nil {
+		input = &DescribeReplicatorInput{}
+	}
+
+	output = &DescribeReplicatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicator API operation for Managed Streaming for Kafka.
+//
+// Returns a description of the Kafka Replicator whose Amazon Resource Name
+// (ARN) is specified in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DescribeReplicator for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeReplicator
+func (c *Kafka) DescribeReplicator(input *DescribeReplicatorInput) (*DescribeReplicatorOutput, error) {
+	req, out := c.DescribeReplicatorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicatorWithContext is the same as DescribeReplicator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DescribeReplicatorWithContext(ctx aws.Context, input *DescribeReplicatorInput, opts ...request.Option) (*DescribeReplicatorOutput, error) {
+	req, out := c.DescribeReplicatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3216,6 +3511,160 @@ func (c *Kafka) ListNodesPagesWithContext(ctx aws.Context, input *ListNodesInput
 	return p.Err()
 }
 
+const opListReplicators = "ListReplicators"
+
+// ListReplicatorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReplicators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReplicators for more information on using the ListReplicators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListReplicatorsRequest method.
+//	req, resp := client.ListReplicatorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListReplicators
+func (c *Kafka) ListReplicatorsRequest(input *ListReplicatorsInput) (req *request.Request, output *ListReplicatorsOutput) {
+	op := &request.Operation{
+		Name:       opListReplicators,
+		HTTPMethod: "GET",
+		HTTPPath:   "/replication/v1/replicators",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReplicatorsInput{}
+	}
+
+	output = &ListReplicatorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReplicators API operation for Managed Streaming for Kafka.
+//
+// Lists the replicators.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation ListReplicators for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListReplicators
+func (c *Kafka) ListReplicators(input *ListReplicatorsInput) (*ListReplicatorsOutput, error) {
+	req, out := c.ListReplicatorsRequest(input)
+	return out, req.Send()
+}
+
+// ListReplicatorsWithContext is the same as ListReplicators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReplicators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListReplicatorsWithContext(ctx aws.Context, input *ListReplicatorsInput, opts ...request.Option) (*ListReplicatorsOutput, error) {
+	req, out := c.ListReplicatorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReplicatorsPages iterates over the pages of a ListReplicators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReplicators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListReplicators operation.
+//	pageNum := 0
+//	err := client.ListReplicatorsPages(params,
+//	    func(page *kafka.ListReplicatorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Kafka) ListReplicatorsPages(input *ListReplicatorsInput, fn func(*ListReplicatorsOutput, bool) bool) error {
+	return c.ListReplicatorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReplicatorsPagesWithContext same as ListReplicatorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListReplicatorsPagesWithContext(ctx aws.Context, input *ListReplicatorsInput, fn func(*ListReplicatorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReplicatorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReplicatorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReplicatorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListScramSecrets = "ListScramSecrets"
 
 // ListScramSecretsRequest generates a "aws/request.Request" representing the
@@ -4809,6 +5258,103 @@ func (c *Kafka) UpdateMonitoringWithContext(ctx aws.Context, input *UpdateMonito
 	return out, req.Send()
 }
 
+const opUpdateReplicationInfo = "UpdateReplicationInfo"
+
+// UpdateReplicationInfoRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateReplicationInfo operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateReplicationInfo for more information on using the UpdateReplicationInfo
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateReplicationInfoRequest method.
+//	req, resp := client.UpdateReplicationInfoRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateReplicationInfo
+func (c *Kafka) UpdateReplicationInfoRequest(input *UpdateReplicationInfoInput) (req *request.Request, output *UpdateReplicationInfoOutput) {
+	op := &request.Operation{
+		Name:       opUpdateReplicationInfo,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/replication/v1/replicators/{replicatorArn}/replication-info",
+	}
+
+	if input == nil {
+		input = &UpdateReplicationInfoInput{}
+	}
+
+	output = &UpdateReplicationInfoOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateReplicationInfo API operation for Managed Streaming for Kafka.
+//
+// Updates replication info of a replicator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation UpdateReplicationInfo for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateReplicationInfo
+func (c *Kafka) UpdateReplicationInfo(input *UpdateReplicationInfoInput) (*UpdateReplicationInfoOutput, error) {
+	req, out := c.UpdateReplicationInfoRequest(input)
+	return out, req.Send()
+}
+
+// UpdateReplicationInfoWithContext is the same as UpdateReplicationInfo with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateReplicationInfo for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) UpdateReplicationInfoWithContext(ctx aws.Context, input *UpdateReplicationInfoInput, opts ...request.Option) (*UpdateReplicationInfoOutput, error) {
+	req, out := c.UpdateReplicationInfoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSecurity = "UpdateSecurity"
 
 // UpdateSecurityRequest generates a "aws/request.Request" representing the
@@ -5002,6 +5548,53 @@ func (c *Kafka) UpdateStorageWithContext(ctx aws.Context, input *UpdateStorageIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Details of an Amazon MSK Cluster.
+type AmazonMskCluster struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an Amazon MSK cluster.
+	//
+	// MskClusterArn is a required field
+	MskClusterArn *string `locationName:"mskClusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonMskCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonMskCluster) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonMskCluster) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonMskCluster"}
+	if s.MskClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MskClusterArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMskClusterArn sets the MskClusterArn field's value.
+func (s *AmazonMskCluster) SetMskClusterArn(v string) *AmazonMskCluster {
+	s.MskClusterArn = &v
+	return s
 }
 
 // Returns information about an error.
@@ -7003,6 +7596,173 @@ func (s *ConnectivityInfo) SetVpcConnectivity(v *VpcConnectivity) *ConnectivityI
 	return s
 }
 
+// Details about consumer group replication.
+type ConsumerGroupReplication struct {
+	_ struct{} `type:"structure"`
+
+	// List of regular expression patterns indicating the consumer groups that should
+	// not be replicated.
+	ConsumerGroupsToExclude []*string `locationName:"consumerGroupsToExclude" type:"list"`
+
+	// List of regular expression patterns indicating the consumer groups to copy.
+	//
+	// ConsumerGroupsToReplicate is a required field
+	ConsumerGroupsToReplicate []*string `locationName:"consumerGroupsToReplicate" type:"list" required:"true"`
+
+	// Enables synchronization of consumer groups to target cluster.
+	DetectAndCopyNewConsumerGroups *bool `locationName:"detectAndCopyNewConsumerGroups" type:"boolean"`
+
+	// Enables synchronization of consumer group offsets to target cluster. The
+	// translated offsets will be written to topic __consumer_offsets.
+	SynchroniseConsumerGroupOffsets *bool `locationName:"synchroniseConsumerGroupOffsets" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConsumerGroupReplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConsumerGroupReplication) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConsumerGroupReplication) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConsumerGroupReplication"}
+	if s.ConsumerGroupsToReplicate == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerGroupsToReplicate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupsToExclude sets the ConsumerGroupsToExclude field's value.
+func (s *ConsumerGroupReplication) SetConsumerGroupsToExclude(v []*string) *ConsumerGroupReplication {
+	s.ConsumerGroupsToExclude = v
+	return s
+}
+
+// SetConsumerGroupsToReplicate sets the ConsumerGroupsToReplicate field's value.
+func (s *ConsumerGroupReplication) SetConsumerGroupsToReplicate(v []*string) *ConsumerGroupReplication {
+	s.ConsumerGroupsToReplicate = v
+	return s
+}
+
+// SetDetectAndCopyNewConsumerGroups sets the DetectAndCopyNewConsumerGroups field's value.
+func (s *ConsumerGroupReplication) SetDetectAndCopyNewConsumerGroups(v bool) *ConsumerGroupReplication {
+	s.DetectAndCopyNewConsumerGroups = &v
+	return s
+}
+
+// SetSynchroniseConsumerGroupOffsets sets the SynchroniseConsumerGroupOffsets field's value.
+func (s *ConsumerGroupReplication) SetSynchroniseConsumerGroupOffsets(v bool) *ConsumerGroupReplication {
+	s.SynchroniseConsumerGroupOffsets = &v
+	return s
+}
+
+// Details about consumer group replication.
+type ConsumerGroupReplicationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// List of regular expression patterns indicating the consumer groups that should
+	// not be replicated.
+	//
+	// ConsumerGroupsToExclude is a required field
+	ConsumerGroupsToExclude []*string `locationName:"consumerGroupsToExclude" type:"list" required:"true"`
+
+	// List of regular expression patterns indicating the consumer groups to copy.
+	//
+	// ConsumerGroupsToReplicate is a required field
+	ConsumerGroupsToReplicate []*string `locationName:"consumerGroupsToReplicate" type:"list" required:"true"`
+
+	// Enables synchronization of consumer groups to target cluster.
+	//
+	// DetectAndCopyNewConsumerGroups is a required field
+	DetectAndCopyNewConsumerGroups *bool `locationName:"detectAndCopyNewConsumerGroups" type:"boolean" required:"true"`
+
+	// Enables synchronization of consumer group offsets to target cluster. The
+	// translated offsets will be written to topic __consumer_offsets.
+	//
+	// SynchroniseConsumerGroupOffsets is a required field
+	SynchroniseConsumerGroupOffsets *bool `locationName:"synchroniseConsumerGroupOffsets" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConsumerGroupReplicationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConsumerGroupReplicationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConsumerGroupReplicationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConsumerGroupReplicationUpdate"}
+	if s.ConsumerGroupsToExclude == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerGroupsToExclude"))
+	}
+	if s.ConsumerGroupsToReplicate == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerGroupsToReplicate"))
+	}
+	if s.DetectAndCopyNewConsumerGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectAndCopyNewConsumerGroups"))
+	}
+	if s.SynchroniseConsumerGroupOffsets == nil {
+		invalidParams.Add(request.NewErrParamRequired("SynchroniseConsumerGroupOffsets"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupsToExclude sets the ConsumerGroupsToExclude field's value.
+func (s *ConsumerGroupReplicationUpdate) SetConsumerGroupsToExclude(v []*string) *ConsumerGroupReplicationUpdate {
+	s.ConsumerGroupsToExclude = v
+	return s
+}
+
+// SetConsumerGroupsToReplicate sets the ConsumerGroupsToReplicate field's value.
+func (s *ConsumerGroupReplicationUpdate) SetConsumerGroupsToReplicate(v []*string) *ConsumerGroupReplicationUpdate {
+	s.ConsumerGroupsToReplicate = v
+	return s
+}
+
+// SetDetectAndCopyNewConsumerGroups sets the DetectAndCopyNewConsumerGroups field's value.
+func (s *ConsumerGroupReplicationUpdate) SetDetectAndCopyNewConsumerGroups(v bool) *ConsumerGroupReplicationUpdate {
+	s.DetectAndCopyNewConsumerGroups = &v
+	return s
+}
+
+// SetSynchroniseConsumerGroupOffsets sets the SynchroniseConsumerGroupOffsets field's value.
+func (s *ConsumerGroupReplicationUpdate) SetSynchroniseConsumerGroupOffsets(v bool) *ConsumerGroupReplicationUpdate {
+	s.SynchroniseConsumerGroupOffsets = &v
+	return s
+}
+
 // Creates a cluster.
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
@@ -7543,6 +8303,188 @@ func (s *CreateConfigurationOutput) SetState(v string) *CreateConfigurationOutpu
 	return s
 }
 
+// Request body for replicator.
+type CreateReplicatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary description of the replicator.
+	Description *string `locationName:"description" type:"string"`
+
+	// Kafka Clusters to use in setting up sources / targets for replication.
+	//
+	// KafkaClusters is a required field
+	KafkaClusters []*KafkaCluster `locationName:"kafkaClusters" type:"list" required:"true"`
+
+	// A list of replication configurations, where each configuration targets a
+	// given source cluster to target cluster replication flow.
+	//
+	// ReplicationInfoList is a required field
+	ReplicationInfoList []*ReplicationInfo `locationName:"replicationInfoList" type:"list" required:"true"`
+
+	// The name of the replicator. Alpha-numeric characters with '-' are allowed.
+	//
+	// ReplicatorName is a required field
+	ReplicatorName *string `locationName:"replicatorName" min:"1" type:"string" required:"true"`
+
+	// The ARN of the IAM role used by the replicator to access resources in the
+	// customer's account (e.g source and target clusters)
+	//
+	// ServiceExecutionRoleArn is a required field
+	ServiceExecutionRoleArn *string `locationName:"serviceExecutionRoleArn" type:"string" required:"true"`
+
+	// List of tags to attach to created Replicator.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicatorInput"}
+	if s.KafkaClusters == nil {
+		invalidParams.Add(request.NewErrParamRequired("KafkaClusters"))
+	}
+	if s.ReplicationInfoList == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInfoList"))
+	}
+	if s.ReplicatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicatorName"))
+	}
+	if s.ReplicatorName != nil && len(*s.ReplicatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicatorName", 1))
+	}
+	if s.ServiceExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceExecutionRoleArn"))
+	}
+	if s.KafkaClusters != nil {
+		for i, v := range s.KafkaClusters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "KafkaClusters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ReplicationInfoList != nil {
+		for i, v := range s.ReplicationInfoList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReplicationInfoList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateReplicatorInput) SetDescription(v string) *CreateReplicatorInput {
+	s.Description = &v
+	return s
+}
+
+// SetKafkaClusters sets the KafkaClusters field's value.
+func (s *CreateReplicatorInput) SetKafkaClusters(v []*KafkaCluster) *CreateReplicatorInput {
+	s.KafkaClusters = v
+	return s
+}
+
+// SetReplicationInfoList sets the ReplicationInfoList field's value.
+func (s *CreateReplicatorInput) SetReplicationInfoList(v []*ReplicationInfo) *CreateReplicatorInput {
+	s.ReplicationInfoList = v
+	return s
+}
+
+// SetReplicatorName sets the ReplicatorName field's value.
+func (s *CreateReplicatorInput) SetReplicatorName(v string) *CreateReplicatorInput {
+	s.ReplicatorName = &v
+	return s
+}
+
+// SetServiceExecutionRoleArn sets the ServiceExecutionRoleArn field's value.
+func (s *CreateReplicatorInput) SetServiceExecutionRoleArn(v string) *CreateReplicatorInput {
+	s.ServiceExecutionRoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicatorInput) SetTags(v map[string]*string) *CreateReplicatorInput {
+	s.Tags = v
+	return s
+}
+
+// Returns information about the created replicator.
+type CreateReplicatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replicator.
+	ReplicatorArn *string `locationName:"replicatorArn" type:"string"`
+
+	// Name of the replicator provided by the customer.
+	ReplicatorName *string `locationName:"replicatorName" type:"string"`
+
+	// State of the replicator.
+	ReplicatorState *string `locationName:"replicatorState" type:"string" enum:"ReplicatorState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *CreateReplicatorOutput) SetReplicatorArn(v string) *CreateReplicatorOutput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetReplicatorName sets the ReplicatorName field's value.
+func (s *CreateReplicatorOutput) SetReplicatorName(v string) *CreateReplicatorOutput {
+	s.ReplicatorName = &v
+	return s
+}
+
+// SetReplicatorState sets the ReplicatorState field's value.
+func (s *CreateReplicatorOutput) SetReplicatorState(v string) *CreateReplicatorOutput {
+	s.ReplicatorState = &v
+	return s
+}
+
 // Request body for CreateVpcConnection.
 type CreateVpcConnectionInput struct {
 	_ struct{} `type:"structure"`
@@ -8004,6 +8946,102 @@ func (s *DeleteConfigurationOutput) SetArn(v string) *DeleteConfigurationOutput 
 // SetState sets the State field's value.
 func (s *DeleteConfigurationOutput) SetState(v string) *DeleteConfigurationOutput {
 	s.State = &v
+	return s
+}
+
+type DeleteReplicatorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	CurrentVersion *string `location:"querystring" locationName:"currentVersion" type:"string"`
+
+	// ReplicatorArn is a required field
+	ReplicatorArn *string `location:"uri" locationName:"replicatorArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicatorInput"}
+	if s.ReplicatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicatorArn"))
+	}
+	if s.ReplicatorArn != nil && len(*s.ReplicatorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicatorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *DeleteReplicatorInput) SetCurrentVersion(v string) *DeleteReplicatorInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *DeleteReplicatorInput) SetReplicatorArn(v string) *DeleteReplicatorInput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// Returns information about the deleted replicator.
+type DeleteReplicatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replicator.
+	ReplicatorArn *string `locationName:"replicatorArn" type:"string"`
+
+	// The state of the replicator.
+	ReplicatorState *string `locationName:"replicatorState" type:"string" enum:"ReplicatorState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *DeleteReplicatorOutput) SetReplicatorArn(v string) *DeleteReplicatorOutput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetReplicatorState sets the ReplicatorState field's value.
+func (s *DeleteReplicatorOutput) SetReplicatorState(v string) *DeleteReplicatorOutput {
+	s.ReplicatorState = &v
 	return s
 }
 
@@ -8672,6 +9710,196 @@ func (s *DescribeConfigurationRevisionOutput) SetRevision(v int64) *DescribeConf
 // SetServerProperties sets the ServerProperties field's value.
 func (s *DescribeConfigurationRevisionOutput) SetServerProperties(v []byte) *DescribeConfigurationRevisionOutput {
 	s.ServerProperties = v
+	return s
+}
+
+type DescribeReplicatorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ReplicatorArn is a required field
+	ReplicatorArn *string `location:"uri" locationName:"replicatorArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicatorInput"}
+	if s.ReplicatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicatorArn"))
+	}
+	if s.ReplicatorArn != nil && len(*s.ReplicatorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicatorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *DescribeReplicatorInput) SetReplicatorArn(v string) *DescribeReplicatorInput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// Response body for DescribeReplicator.
+type DescribeReplicatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the replicator was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The current version number of the replicator.
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+
+	// Whether this resource is a replicator reference.
+	IsReplicatorReference *bool `locationName:"isReplicatorReference" type:"boolean"`
+
+	// Kafka Clusters used in setting up sources / targets for replication.
+	KafkaClusters []*KafkaClusterDescription `locationName:"kafkaClusters" type:"list"`
+
+	// A list of replication configurations, where each configuration targets a
+	// given source cluster to target cluster replication flow.
+	ReplicationInfoList []*ReplicationInfoDescription `locationName:"replicationInfoList" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the replicator.
+	ReplicatorArn *string `locationName:"replicatorArn" type:"string"`
+
+	// The description of the replicator.
+	ReplicatorDescription *string `locationName:"replicatorDescription" type:"string"`
+
+	// The name of the replicator.
+	ReplicatorName *string `locationName:"replicatorName" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the replicator resource in the region where
+	// the replicator was created.
+	ReplicatorResourceArn *string `locationName:"replicatorResourceArn" type:"string"`
+
+	// State of the replicator.
+	ReplicatorState *string `locationName:"replicatorState" type:"string" enum:"ReplicatorState"`
+
+	// The Amazon Resource Name (ARN) of the IAM role used by the replicator to
+	// access resources in the customer's account (e.g source and target clusters)
+	ServiceExecutionRoleArn *string `locationName:"serviceExecutionRoleArn" type:"string"`
+
+	// Details about the state of the replicator.
+	StateInfo *ReplicationStateInfo `locationName:"stateInfo" type:"structure"`
+
+	// List of tags attached to the Replicator.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeReplicatorOutput) SetCreationTime(v time.Time) *DescribeReplicatorOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *DescribeReplicatorOutput) SetCurrentVersion(v string) *DescribeReplicatorOutput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetIsReplicatorReference sets the IsReplicatorReference field's value.
+func (s *DescribeReplicatorOutput) SetIsReplicatorReference(v bool) *DescribeReplicatorOutput {
+	s.IsReplicatorReference = &v
+	return s
+}
+
+// SetKafkaClusters sets the KafkaClusters field's value.
+func (s *DescribeReplicatorOutput) SetKafkaClusters(v []*KafkaClusterDescription) *DescribeReplicatorOutput {
+	s.KafkaClusters = v
+	return s
+}
+
+// SetReplicationInfoList sets the ReplicationInfoList field's value.
+func (s *DescribeReplicatorOutput) SetReplicationInfoList(v []*ReplicationInfoDescription) *DescribeReplicatorOutput {
+	s.ReplicationInfoList = v
+	return s
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *DescribeReplicatorOutput) SetReplicatorArn(v string) *DescribeReplicatorOutput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetReplicatorDescription sets the ReplicatorDescription field's value.
+func (s *DescribeReplicatorOutput) SetReplicatorDescription(v string) *DescribeReplicatorOutput {
+	s.ReplicatorDescription = &v
+	return s
+}
+
+// SetReplicatorName sets the ReplicatorName field's value.
+func (s *DescribeReplicatorOutput) SetReplicatorName(v string) *DescribeReplicatorOutput {
+	s.ReplicatorName = &v
+	return s
+}
+
+// SetReplicatorResourceArn sets the ReplicatorResourceArn field's value.
+func (s *DescribeReplicatorOutput) SetReplicatorResourceArn(v string) *DescribeReplicatorOutput {
+	s.ReplicatorResourceArn = &v
+	return s
+}
+
+// SetReplicatorState sets the ReplicatorState field's value.
+func (s *DescribeReplicatorOutput) SetReplicatorState(v string) *DescribeReplicatorOutput {
+	s.ReplicatorState = &v
+	return s
+}
+
+// SetServiceExecutionRoleArn sets the ServiceExecutionRoleArn field's value.
+func (s *DescribeReplicatorOutput) SetServiceExecutionRoleArn(v string) *DescribeReplicatorOutput {
+	s.ServiceExecutionRoleArn = &v
+	return s
+}
+
+// SetStateInfo sets the StateInfo field's value.
+func (s *DescribeReplicatorOutput) SetStateInfo(v *ReplicationStateInfo) *DescribeReplicatorOutput {
+	s.StateInfo = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeReplicatorOutput) SetTags(v map[string]*string) *DescribeReplicatorOutput {
+	s.Tags = v
 	return s
 }
 
@@ -9712,6 +10940,226 @@ func (s *JmxExporterInfo) SetEnabledInBroker(v bool) *JmxExporterInfo {
 	return s
 }
 
+// Information about Kafka Cluster to be used as source / target for replication.
+type KafkaCluster struct {
+	_ struct{} `type:"structure"`
+
+	// Details of an Amazon MSK Cluster.
+	//
+	// AmazonMskCluster is a required field
+	AmazonMskCluster *AmazonMskCluster `locationName:"amazonMskCluster" type:"structure" required:"true"`
+
+	// Details of an Amazon VPC which has network connectivity to the Apache Kafka
+	// cluster.
+	//
+	// VpcConfig is a required field
+	VpcConfig *KafkaClusterClientVpcConfig `locationName:"vpcConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaCluster) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KafkaCluster) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KafkaCluster"}
+	if s.AmazonMskCluster == nil {
+		invalidParams.Add(request.NewErrParamRequired("AmazonMskCluster"))
+	}
+	if s.VpcConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConfig"))
+	}
+	if s.AmazonMskCluster != nil {
+		if err := s.AmazonMskCluster.Validate(); err != nil {
+			invalidParams.AddNested("AmazonMskCluster", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmazonMskCluster sets the AmazonMskCluster field's value.
+func (s *KafkaCluster) SetAmazonMskCluster(v *AmazonMskCluster) *KafkaCluster {
+	s.AmazonMskCluster = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *KafkaCluster) SetVpcConfig(v *KafkaClusterClientVpcConfig) *KafkaCluster {
+	s.VpcConfig = v
+	return s
+}
+
+type KafkaClusterClientVpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The security groups to attach to the ENIs for the broker nodes.
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
+
+	// The list of subnets in the client VPC to connect to.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterClientVpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterClientVpcConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KafkaClusterClientVpcConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KafkaClusterClientVpcConfig"}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *KafkaClusterClientVpcConfig) SetSecurityGroupIds(v []*string) *KafkaClusterClientVpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *KafkaClusterClientVpcConfig) SetSubnetIds(v []*string) *KafkaClusterClientVpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
+// Information about Kafka Cluster used as source / target for replication.
+type KafkaClusterDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Details of an Amazon MSK Cluster.
+	AmazonMskCluster *AmazonMskCluster `locationName:"amazonMskCluster" type:"structure"`
+
+	// The alias of the Kafka cluster. Used to prefix names of replicated topics.
+	KafkaClusterAlias *string `locationName:"kafkaClusterAlias" type:"string"`
+
+	// Details of an Amazon VPC which has network connectivity to the Apache Kafka
+	// cluster.
+	VpcConfig *KafkaClusterClientVpcConfig `locationName:"vpcConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterDescription) GoString() string {
+	return s.String()
+}
+
+// SetAmazonMskCluster sets the AmazonMskCluster field's value.
+func (s *KafkaClusterDescription) SetAmazonMskCluster(v *AmazonMskCluster) *KafkaClusterDescription {
+	s.AmazonMskCluster = v
+	return s
+}
+
+// SetKafkaClusterAlias sets the KafkaClusterAlias field's value.
+func (s *KafkaClusterDescription) SetKafkaClusterAlias(v string) *KafkaClusterDescription {
+	s.KafkaClusterAlias = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *KafkaClusterDescription) SetVpcConfig(v *KafkaClusterClientVpcConfig) *KafkaClusterDescription {
+	s.VpcConfig = v
+	return s
+}
+
+// Summarized information about Kafka Cluster used as source / target for replication.
+type KafkaClusterSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Details of an Amazon MSK Cluster
+	// .
+	AmazonMskCluster *AmazonMskCluster `locationName:"amazonMskCluster" type:"structure"`
+
+	// The alias of the Kafka cluster. Used to prefix names of replicated topics.
+	KafkaClusterAlias *string `locationName:"kafkaClusterAlias" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KafkaClusterSummary) GoString() string {
+	return s.String()
+}
+
+// SetAmazonMskCluster sets the AmazonMskCluster field's value.
+func (s *KafkaClusterSummary) SetAmazonMskCluster(v *AmazonMskCluster) *KafkaClusterSummary {
+	s.AmazonMskCluster = v
+	return s
+}
+
+// SetKafkaClusterAlias sets the KafkaClusterAlias field's value.
+func (s *KafkaClusterSummary) SetKafkaClusterAlias(v string) *KafkaClusterSummary {
+	s.KafkaClusterAlias = &v
+	return s
+}
+
 // Information about a Apache Kafka version.
 type KafkaVersion struct {
 	_ struct{} `type:"structure"`
@@ -10691,6 +12139,109 @@ func (s *ListNodesOutput) SetNextToken(v string) *ListNodesOutput {
 // SetNodeInfoList sets the NodeInfoList field's value.
 func (s *ListNodesOutput) SetNodeInfoList(v []*NodeInfo) *ListNodesOutput {
 	s.NodeInfoList = v
+	return s
+}
+
+type ListReplicatorsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	ReplicatorNameFilter *string `location:"querystring" locationName:"replicatorNameFilter" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReplicatorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReplicatorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReplicatorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReplicatorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReplicatorsInput) SetMaxResults(v int64) *ListReplicatorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReplicatorsInput) SetNextToken(v string) *ListReplicatorsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReplicatorNameFilter sets the ReplicatorNameFilter field's value.
+func (s *ListReplicatorsInput) SetReplicatorNameFilter(v string) *ListReplicatorsInput {
+	s.ReplicatorNameFilter = &v
+	return s
+}
+
+// The response contains an array containing replicator information and a NextToken
+// if the response is truncated.
+type ListReplicatorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response of ListReplicators is truncated, it returns a NextToken in
+	// the response. This NextToken should be sent in the subsequent request to
+	// ListReplicators.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List containing information of each of the replicators in the account.
+	Replicators []*ReplicatorSummary `locationName:"replicators" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReplicatorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReplicatorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReplicatorsOutput) SetNextToken(v string) *ListReplicatorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReplicators sets the Replicators field's value.
+func (s *ListReplicatorsOutput) SetReplicators(v []*ReplicatorSummary) *ListReplicatorsOutput {
+	s.Replicators = v
 	return s
 }
 
@@ -12230,6 +13781,377 @@ func (s RejectClientVpcConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies configuration for replication between a source and target Kafka
+// cluster.
+type ReplicationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration relating to consumer group replication.
+	//
+	// ConsumerGroupReplication is a required field
+	ConsumerGroupReplication *ConsumerGroupReplication `locationName:"consumerGroupReplication" type:"structure" required:"true"`
+
+	// The ARN of the source Kafka cluster.
+	//
+	// SourceKafkaClusterArn is a required field
+	SourceKafkaClusterArn *string `locationName:"sourceKafkaClusterArn" type:"string" required:"true"`
+
+	// The compression type to use when producing records to target cluster.
+	//
+	// TargetCompressionType is a required field
+	TargetCompressionType *string `locationName:"targetCompressionType" type:"string" required:"true" enum:"TargetCompressionType"`
+
+	// The ARN of the target Kafka cluster.
+	//
+	// TargetKafkaClusterArn is a required field
+	TargetKafkaClusterArn *string `locationName:"targetKafkaClusterArn" type:"string" required:"true"`
+
+	// Configuration relating to topic replication.
+	//
+	// TopicReplication is a required field
+	TopicReplication *TopicReplication `locationName:"topicReplication" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationInfo"}
+	if s.ConsumerGroupReplication == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerGroupReplication"))
+	}
+	if s.SourceKafkaClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceKafkaClusterArn"))
+	}
+	if s.TargetCompressionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetCompressionType"))
+	}
+	if s.TargetKafkaClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetKafkaClusterArn"))
+	}
+	if s.TopicReplication == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicReplication"))
+	}
+	if s.ConsumerGroupReplication != nil {
+		if err := s.ConsumerGroupReplication.Validate(); err != nil {
+			invalidParams.AddNested("ConsumerGroupReplication", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TopicReplication != nil {
+		if err := s.TopicReplication.Validate(); err != nil {
+			invalidParams.AddNested("TopicReplication", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupReplication sets the ConsumerGroupReplication field's value.
+func (s *ReplicationInfo) SetConsumerGroupReplication(v *ConsumerGroupReplication) *ReplicationInfo {
+	s.ConsumerGroupReplication = v
+	return s
+}
+
+// SetSourceKafkaClusterArn sets the SourceKafkaClusterArn field's value.
+func (s *ReplicationInfo) SetSourceKafkaClusterArn(v string) *ReplicationInfo {
+	s.SourceKafkaClusterArn = &v
+	return s
+}
+
+// SetTargetCompressionType sets the TargetCompressionType field's value.
+func (s *ReplicationInfo) SetTargetCompressionType(v string) *ReplicationInfo {
+	s.TargetCompressionType = &v
+	return s
+}
+
+// SetTargetKafkaClusterArn sets the TargetKafkaClusterArn field's value.
+func (s *ReplicationInfo) SetTargetKafkaClusterArn(v string) *ReplicationInfo {
+	s.TargetKafkaClusterArn = &v
+	return s
+}
+
+// SetTopicReplication sets the TopicReplication field's value.
+func (s *ReplicationInfo) SetTopicReplication(v *TopicReplication) *ReplicationInfo {
+	s.TopicReplication = v
+	return s
+}
+
+// Specifies configuration for replication between a source and target Kafka
+// cluster (sourceKafkaClusterAlias -> targetKafkaClusterAlias)
+type ReplicationInfoDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration relating to consumer group replication
+	// .
+	ConsumerGroupReplication *ConsumerGroupReplication `locationName:"consumerGroupReplication" type:"structure"`
+
+	// The alias of the source Kafka cluster.
+	SourceKafkaClusterAlias *string `locationName:"sourceKafkaClusterAlias" type:"string"`
+
+	// The compression type to use when producing records to target cluster.
+	TargetCompressionType *string `locationName:"targetCompressionType" type:"string" enum:"TargetCompressionType"`
+
+	// The alias of the target Kafka cluster.
+	TargetKafkaClusterAlias *string `locationName:"targetKafkaClusterAlias" type:"string"`
+
+	// Configuration relating to topic replication.
+	TopicReplication *TopicReplication `locationName:"topicReplication" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfoDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfoDescription) GoString() string {
+	return s.String()
+}
+
+// SetConsumerGroupReplication sets the ConsumerGroupReplication field's value.
+func (s *ReplicationInfoDescription) SetConsumerGroupReplication(v *ConsumerGroupReplication) *ReplicationInfoDescription {
+	s.ConsumerGroupReplication = v
+	return s
+}
+
+// SetSourceKafkaClusterAlias sets the SourceKafkaClusterAlias field's value.
+func (s *ReplicationInfoDescription) SetSourceKafkaClusterAlias(v string) *ReplicationInfoDescription {
+	s.SourceKafkaClusterAlias = &v
+	return s
+}
+
+// SetTargetCompressionType sets the TargetCompressionType field's value.
+func (s *ReplicationInfoDescription) SetTargetCompressionType(v string) *ReplicationInfoDescription {
+	s.TargetCompressionType = &v
+	return s
+}
+
+// SetTargetKafkaClusterAlias sets the TargetKafkaClusterAlias field's value.
+func (s *ReplicationInfoDescription) SetTargetKafkaClusterAlias(v string) *ReplicationInfoDescription {
+	s.TargetKafkaClusterAlias = &v
+	return s
+}
+
+// SetTopicReplication sets the TopicReplication field's value.
+func (s *ReplicationInfoDescription) SetTopicReplication(v *TopicReplication) *ReplicationInfoDescription {
+	s.TopicReplication = v
+	return s
+}
+
+// Summarized information of replication between clusters.
+type ReplicationInfoSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The alias of the source Kafka cluster.
+	SourceKafkaClusterAlias *string `locationName:"sourceKafkaClusterAlias" type:"string"`
+
+	// The alias of the target Kafka cluster.
+	TargetKafkaClusterAlias *string `locationName:"targetKafkaClusterAlias" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfoSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationInfoSummary) GoString() string {
+	return s.String()
+}
+
+// SetSourceKafkaClusterAlias sets the SourceKafkaClusterAlias field's value.
+func (s *ReplicationInfoSummary) SetSourceKafkaClusterAlias(v string) *ReplicationInfoSummary {
+	s.SourceKafkaClusterAlias = &v
+	return s
+}
+
+// SetTargetKafkaClusterAlias sets the TargetKafkaClusterAlias field's value.
+func (s *ReplicationInfoSummary) SetTargetKafkaClusterAlias(v string) *ReplicationInfoSummary {
+	s.TargetKafkaClusterAlias = &v
+	return s
+}
+
+// Details about the state of a replicator
+type ReplicationStateInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Code that describes the current state of the replicator.
+	Code *string `locationName:"code" type:"string"`
+
+	// Message that describes the state of the replicator.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStateInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStateInfo) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ReplicationStateInfo) SetCode(v string) *ReplicationStateInfo {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ReplicationStateInfo) SetMessage(v string) *ReplicationStateInfo {
+	s.Message = &v
+	return s
+}
+
+// Information about a replicator.
+type ReplicatorSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time the replicator was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The current version of the replicator.
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+
+	// Whether this resource is a replicator reference.
+	IsReplicatorReference *bool `locationName:"isReplicatorReference" type:"boolean"`
+
+	// Kafka Clusters used in setting up sources / targets for replication.
+	KafkaClustersSummary []*KafkaClusterSummary `locationName:"kafkaClustersSummary" type:"list"`
+
+	// A list of summarized information of replications between clusters.
+	ReplicationInfoSummaryList []*ReplicationInfoSummary `locationName:"replicationInfoSummaryList" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the replicator.
+	ReplicatorArn *string `locationName:"replicatorArn" type:"string"`
+
+	// The name of the replicator.
+	ReplicatorName *string `locationName:"replicatorName" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the replicator resource in the region where
+	// the replicator was created.
+	ReplicatorResourceArn *string `locationName:"replicatorResourceArn" type:"string"`
+
+	// State of the replicator.
+	ReplicatorState *string `locationName:"replicatorState" type:"string" enum:"ReplicatorState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicatorSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicatorSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReplicatorSummary) SetCreationTime(v time.Time) *ReplicatorSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *ReplicatorSummary) SetCurrentVersion(v string) *ReplicatorSummary {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetIsReplicatorReference sets the IsReplicatorReference field's value.
+func (s *ReplicatorSummary) SetIsReplicatorReference(v bool) *ReplicatorSummary {
+	s.IsReplicatorReference = &v
+	return s
+}
+
+// SetKafkaClustersSummary sets the KafkaClustersSummary field's value.
+func (s *ReplicatorSummary) SetKafkaClustersSummary(v []*KafkaClusterSummary) *ReplicatorSummary {
+	s.KafkaClustersSummary = v
+	return s
+}
+
+// SetReplicationInfoSummaryList sets the ReplicationInfoSummaryList field's value.
+func (s *ReplicatorSummary) SetReplicationInfoSummaryList(v []*ReplicationInfoSummary) *ReplicatorSummary {
+	s.ReplicationInfoSummaryList = v
+	return s
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *ReplicatorSummary) SetReplicatorArn(v string) *ReplicatorSummary {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetReplicatorName sets the ReplicatorName field's value.
+func (s *ReplicatorSummary) SetReplicatorName(v string) *ReplicatorSummary {
+	s.ReplicatorName = &v
+	return s
+}
+
+// SetReplicatorResourceArn sets the ReplicatorResourceArn field's value.
+func (s *ReplicatorSummary) SetReplicatorResourceArn(v string) *ReplicatorSummary {
+	s.ReplicatorResourceArn = &v
+	return s
+}
+
+// SetReplicatorState sets the ReplicatorState field's value.
+func (s *ReplicatorSummary) SetReplicatorState(v string) *ReplicatorSummary {
+	s.ReplicatorState = &v
+	return s
+}
+
 // The details of the Amazon S3 destination for broker logs.
 type S3 struct {
 	_ struct{} `type:"structure"`
@@ -12881,6 +14803,198 @@ func (s *TooManyRequestsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Details about topic replication.
+type TopicReplication struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to periodically configure remote topic ACLs to match their corresponding
+	// upstream topics.
+	CopyAccessControlListsForTopics *bool `locationName:"copyAccessControlListsForTopics" type:"boolean"`
+
+	// Whether to periodically configure remote topics to match their corresponding
+	// upstream topics.
+	CopyTopicConfigurations *bool `locationName:"copyTopicConfigurations" type:"boolean"`
+
+	// Whether to periodically check for new topics and partitions.
+	DetectAndCopyNewTopics *bool `locationName:"detectAndCopyNewTopics" type:"boolean"`
+
+	// List of regular expression patterns indicating the topics that should not
+	// be replicated.
+	TopicsToExclude []*string `locationName:"topicsToExclude" type:"list"`
+
+	// List of regular expression patterns indicating the topics to copy.
+	//
+	// TopicsToReplicate is a required field
+	TopicsToReplicate []*string `locationName:"topicsToReplicate" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReplication) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicReplication) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicReplication"}
+	if s.TopicsToReplicate == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicsToReplicate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyAccessControlListsForTopics sets the CopyAccessControlListsForTopics field's value.
+func (s *TopicReplication) SetCopyAccessControlListsForTopics(v bool) *TopicReplication {
+	s.CopyAccessControlListsForTopics = &v
+	return s
+}
+
+// SetCopyTopicConfigurations sets the CopyTopicConfigurations field's value.
+func (s *TopicReplication) SetCopyTopicConfigurations(v bool) *TopicReplication {
+	s.CopyTopicConfigurations = &v
+	return s
+}
+
+// SetDetectAndCopyNewTopics sets the DetectAndCopyNewTopics field's value.
+func (s *TopicReplication) SetDetectAndCopyNewTopics(v bool) *TopicReplication {
+	s.DetectAndCopyNewTopics = &v
+	return s
+}
+
+// SetTopicsToExclude sets the TopicsToExclude field's value.
+func (s *TopicReplication) SetTopicsToExclude(v []*string) *TopicReplication {
+	s.TopicsToExclude = v
+	return s
+}
+
+// SetTopicsToReplicate sets the TopicsToReplicate field's value.
+func (s *TopicReplication) SetTopicsToReplicate(v []*string) *TopicReplication {
+	s.TopicsToReplicate = v
+	return s
+}
+
+// Details for updating the topic replication of a replicator.
+type TopicReplicationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to periodically configure remote topic ACLs to match their corresponding
+	// upstream topics.
+	//
+	// CopyAccessControlListsForTopics is a required field
+	CopyAccessControlListsForTopics *bool `locationName:"copyAccessControlListsForTopics" type:"boolean" required:"true"`
+
+	// Whether to periodically configure remote topics to match their corresponding
+	// upstream topics.
+	//
+	// CopyTopicConfigurations is a required field
+	CopyTopicConfigurations *bool `locationName:"copyTopicConfigurations" type:"boolean" required:"true"`
+
+	// Whether to periodically check for new topics and partitions.
+	//
+	// DetectAndCopyNewTopics is a required field
+	DetectAndCopyNewTopics *bool `locationName:"detectAndCopyNewTopics" type:"boolean" required:"true"`
+
+	// List of regular expression patterns indicating the topics that should not
+	// be replicated.
+	//
+	// TopicsToExclude is a required field
+	TopicsToExclude []*string `locationName:"topicsToExclude" type:"list" required:"true"`
+
+	// List of regular expression patterns indicating the topics to copy.
+	//
+	// TopicsToReplicate is a required field
+	TopicsToReplicate []*string `locationName:"topicsToReplicate" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReplicationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReplicationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicReplicationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicReplicationUpdate"}
+	if s.CopyAccessControlListsForTopics == nil {
+		invalidParams.Add(request.NewErrParamRequired("CopyAccessControlListsForTopics"))
+	}
+	if s.CopyTopicConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("CopyTopicConfigurations"))
+	}
+	if s.DetectAndCopyNewTopics == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectAndCopyNewTopics"))
+	}
+	if s.TopicsToExclude == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicsToExclude"))
+	}
+	if s.TopicsToReplicate == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicsToReplicate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyAccessControlListsForTopics sets the CopyAccessControlListsForTopics field's value.
+func (s *TopicReplicationUpdate) SetCopyAccessControlListsForTopics(v bool) *TopicReplicationUpdate {
+	s.CopyAccessControlListsForTopics = &v
+	return s
+}
+
+// SetCopyTopicConfigurations sets the CopyTopicConfigurations field's value.
+func (s *TopicReplicationUpdate) SetCopyTopicConfigurations(v bool) *TopicReplicationUpdate {
+	s.CopyTopicConfigurations = &v
+	return s
+}
+
+// SetDetectAndCopyNewTopics sets the DetectAndCopyNewTopics field's value.
+func (s *TopicReplicationUpdate) SetDetectAndCopyNewTopics(v bool) *TopicReplicationUpdate {
+	s.DetectAndCopyNewTopics = &v
+	return s
+}
+
+// SetTopicsToExclude sets the TopicsToExclude field's value.
+func (s *TopicReplicationUpdate) SetTopicsToExclude(v []*string) *TopicReplicationUpdate {
+	s.TopicsToExclude = v
+	return s
+}
+
+// SetTopicsToReplicate sets the TopicsToReplicate field's value.
+func (s *TopicReplicationUpdate) SetTopicsToReplicate(v []*string) *TopicReplicationUpdate {
+	s.TopicsToReplicate = v
+	return s
 }
 
 // Contains information about unauthenticated traffic to the cluster.
@@ -14108,6 +16222,166 @@ func (s *UpdateMonitoringOutput) SetClusterOperationArn(v string) *UpdateMonitor
 	return s
 }
 
+// Parameters for updating replication information between source and target
+// Kafka clusters of a replicator.
+type UpdateReplicationInfoInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updated consumer group replication information.
+	ConsumerGroupReplication *ConsumerGroupReplicationUpdate `locationName:"consumerGroupReplication" type:"structure"`
+
+	// Current replicator version.
+	//
+	// CurrentVersion is a required field
+	CurrentVersion *string `locationName:"currentVersion" type:"string" required:"true"`
+
+	// ReplicatorArn is a required field
+	ReplicatorArn *string `location:"uri" locationName:"replicatorArn" type:"string" required:"true"`
+
+	// The ARN of the source Kafka cluster.
+	//
+	// SourceKafkaClusterArn is a required field
+	SourceKafkaClusterArn *string `locationName:"sourceKafkaClusterArn" type:"string" required:"true"`
+
+	// The ARN of the target Kafka cluster.
+	//
+	// TargetKafkaClusterArn is a required field
+	TargetKafkaClusterArn *string `locationName:"targetKafkaClusterArn" type:"string" required:"true"`
+
+	// Updated topic replication information.
+	TopicReplication *TopicReplicationUpdate `locationName:"topicReplication" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateReplicationInfoInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateReplicationInfoInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateReplicationInfoInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateReplicationInfoInput"}
+	if s.CurrentVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentVersion"))
+	}
+	if s.ReplicatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicatorArn"))
+	}
+	if s.ReplicatorArn != nil && len(*s.ReplicatorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicatorArn", 1))
+	}
+	if s.SourceKafkaClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceKafkaClusterArn"))
+	}
+	if s.TargetKafkaClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetKafkaClusterArn"))
+	}
+	if s.ConsumerGroupReplication != nil {
+		if err := s.ConsumerGroupReplication.Validate(); err != nil {
+			invalidParams.AddNested("ConsumerGroupReplication", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TopicReplication != nil {
+		if err := s.TopicReplication.Validate(); err != nil {
+			invalidParams.AddNested("TopicReplication", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerGroupReplication sets the ConsumerGroupReplication field's value.
+func (s *UpdateReplicationInfoInput) SetConsumerGroupReplication(v *ConsumerGroupReplicationUpdate) *UpdateReplicationInfoInput {
+	s.ConsumerGroupReplication = v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *UpdateReplicationInfoInput) SetCurrentVersion(v string) *UpdateReplicationInfoInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *UpdateReplicationInfoInput) SetReplicatorArn(v string) *UpdateReplicationInfoInput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetSourceKafkaClusterArn sets the SourceKafkaClusterArn field's value.
+func (s *UpdateReplicationInfoInput) SetSourceKafkaClusterArn(v string) *UpdateReplicationInfoInput {
+	s.SourceKafkaClusterArn = &v
+	return s
+}
+
+// SetTargetKafkaClusterArn sets the TargetKafkaClusterArn field's value.
+func (s *UpdateReplicationInfoInput) SetTargetKafkaClusterArn(v string) *UpdateReplicationInfoInput {
+	s.TargetKafkaClusterArn = &v
+	return s
+}
+
+// SetTopicReplication sets the TopicReplication field's value.
+func (s *UpdateReplicationInfoInput) SetTopicReplication(v *TopicReplicationUpdate) *UpdateReplicationInfoInput {
+	s.TopicReplication = v
+	return s
+}
+
+// Updated Replication information of a replicator.
+type UpdateReplicationInfoOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replicator.
+	ReplicatorArn *string `locationName:"replicatorArn" type:"string"`
+
+	// State of the replicator.
+	ReplicatorState *string `locationName:"replicatorState" type:"string" enum:"ReplicatorState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateReplicationInfoOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateReplicationInfoOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicatorArn sets the ReplicatorArn field's value.
+func (s *UpdateReplicationInfoOutput) SetReplicatorArn(v string) *UpdateReplicationInfoOutput {
+	s.ReplicatorArn = &v
+	return s
+}
+
+// SetReplicatorState sets the ReplicatorState field's value.
+func (s *UpdateReplicationInfoOutput) SetReplicatorState(v string) *UpdateReplicationInfoOutput {
+	s.ReplicatorState = &v
+	return s
+}
+
 // Request body for UpdateSecurity.
 type UpdateSecurityInput struct {
 	_ struct{} `type:"structure"`
@@ -15095,6 +17369,35 @@ func NodeType_Values() []string {
 	}
 }
 
+// The state of a replicator.
+const (
+	// ReplicatorStateRunning is a ReplicatorState enum value
+	ReplicatorStateRunning = "RUNNING"
+
+	// ReplicatorStateCreating is a ReplicatorState enum value
+	ReplicatorStateCreating = "CREATING"
+
+	// ReplicatorStateUpdating is a ReplicatorState enum value
+	ReplicatorStateUpdating = "UPDATING"
+
+	// ReplicatorStateDeleting is a ReplicatorState enum value
+	ReplicatorStateDeleting = "DELETING"
+
+	// ReplicatorStateFailed is a ReplicatorState enum value
+	ReplicatorStateFailed = "FAILED"
+)
+
+// ReplicatorState_Values returns all elements of the ReplicatorState enum
+func ReplicatorState_Values() []string {
+	return []string{
+		ReplicatorStateRunning,
+		ReplicatorStateCreating,
+		ReplicatorStateUpdating,
+		ReplicatorStateDeleting,
+		ReplicatorStateFailed,
+	}
+}
+
 // Controls storage mode for various supported storage tiers.
 const (
 	// StorageModeLocal is a StorageMode enum value
@@ -15109,6 +17412,35 @@ func StorageMode_Values() []string {
 	return []string{
 		StorageModeLocal,
 		StorageModeTiered,
+	}
+}
+
+// The type of compression to use producing records to the target cluster.
+const (
+	// TargetCompressionTypeNone is a TargetCompressionType enum value
+	TargetCompressionTypeNone = "NONE"
+
+	// TargetCompressionTypeGzip is a TargetCompressionType enum value
+	TargetCompressionTypeGzip = "GZIP"
+
+	// TargetCompressionTypeSnappy is a TargetCompressionType enum value
+	TargetCompressionTypeSnappy = "SNAPPY"
+
+	// TargetCompressionTypeLz4 is a TargetCompressionType enum value
+	TargetCompressionTypeLz4 = "LZ4"
+
+	// TargetCompressionTypeZstd is a TargetCompressionType enum value
+	TargetCompressionTypeZstd = "ZSTD"
+)
+
+// TargetCompressionType_Values returns all elements of the TargetCompressionType enum
+func TargetCompressionType_Values() []string {
+	return []string{
+		TargetCompressionTypeNone,
+		TargetCompressionTypeGzip,
+		TargetCompressionTypeSnappy,
+		TargetCompressionTypeLz4,
+		TargetCompressionTypeZstd,
 	}
 }
 

@@ -14,6 +14,7 @@
     "DescribeControlPanel": "<p>Displays details about a control panel.</p>",
     "DescribeRoutingControl": "<p>Displays details about a routing control. A routing control has one of two states: ON and OFF. You can map the routing control state to the state of an Amazon Route 53 health check, which can be used to control routing.</p> <p>To get or update the routing control state, see the Recovery Cluster (data plane) API actions for Amazon Route 53 Application Recovery Controller.</p>",
     "DescribeSafetyRule": "<p>Returns information about a safety rule.</p>",
+    "GetResourcePolicy": "<p>Get information about the resource policy for a cluster.</p>",
     "ListAssociatedRoute53HealthChecks": "<p>Returns an array of all Amazon Route 53 health checks associated with a specific routing control.</p>",
     "ListClusters": "<p>Returns an array of all the clusters in an account.</p>",
     "ListControlPanels": "<p>Returns an array of control panels in an account or in a cluster.</p>",
@@ -168,6 +169,11 @@
       "base": "<p>Update to a gating rule. You can update the name or the evaluation period (wait period). If you don't specify one of the items to update, the item is unchanged.</p>",
       "refs": {
         "UpdateSafetyRuleRequest$GatingRuleUpdate": "<p>The gating rule to update.</p>"
+      }
+    },
+    "GetResourcePolicyResponse": {
+      "base": "<p>Returns the current Amazon Resource Access Manager resource policy for a cluster.</p>",
+      "refs": {
       }
     },
     "InternalServerException": {
@@ -423,6 +429,16 @@
         "__mapOf__stringMin0Max256PatternS$member": null
       }
     },
+    "__stringMin12Max12PatternD12": {
+      "base": null,
+      "refs": {
+        "AssertionRule$Owner": "<p>The Amazon Web Services account ID of the assertion rule owner.</p>",
+        "Cluster$Owner": "<p>The Amazon Web Services account ID of the cluster owner.</p>",
+        "ControlPanel$Owner": "<p>The Amazon Web Services account ID of the control panel owner.</p>",
+        "GatingRule$Owner": "<p>The Amazon Web Services account ID of the gating rule owner.</p>",
+        "RoutingControl$Owner": "<p>The Amazon Web Services account ID of the routing control owner.</p>"
+      }
+    },
     "__stringMin1Max128PatternAZaZ09": {
       "base": null,
       "refs": {
@@ -490,6 +506,12 @@
         "ListControlPanelsResponse$NextToken": "<p>The token that identifies which batch of results you want to see.</p>",
         "ListRoutingControlsResponse$NextToken": "<p>The token that identifies which batch of results you want to see.</p>",
         "ListSafetyRulesResponse$NextToken": "<p>The token that identifies which batch of results you want to see.</p>"
+      }
+    },
+    "__policy": {
+      "base": null,
+      "refs": {
+        "GetResourcePolicyResponse$Policy": "<p>The resource policy.</p>"
       }
     }
   }

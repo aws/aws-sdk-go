@@ -17,6 +17,8 @@ const (
 
 	// ErrCodeConflictErrorException for service response error code
 	// "ConflictErrorException".
+	//
+	// Conflict error.
 	ErrCodeConflictErrorException = "ConflictErrorException"
 
 	// ErrCodeHomeRegionNotSetException for service response error code

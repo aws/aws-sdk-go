@@ -169,7 +169,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://guardduty-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://route53-recovery-cluster-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -219,34 +219,9 @@
                                     ],
                                     "rules": [
                                         {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        },
-                                                        "aws-us-gov"
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://guardduty.{Region}.amazonaws.com",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://guardduty-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://route53-recovery-cluster-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -298,7 +273,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://guardduty.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://route53-recovery-cluster.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -318,7 +293,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://guardduty.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://route53-recovery-cluster.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

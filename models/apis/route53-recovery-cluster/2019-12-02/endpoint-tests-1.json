@@ -1,32 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region aws-global with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "properties": {
-                        "authSchemes": [
-                            {
-                                "name": "sigv4",
-                                "signingName": "route53-recovery-control-config",
-                                "signingRegion": "us-west-2"
-                            }
-                        ]
-                    },
-                    "url": "https://route53-recovery-control-config.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "aws-global",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-east-1.api.aws"
+                    "url": "https://route53-recovery-cluster-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -39,7 +17,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-east-1.amazonaws.com"
+                    "url": "https://route53-recovery-cluster-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -52,7 +30,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-east-1.api.aws"
+                    "url": "https://route53-recovery-cluster.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -65,7 +43,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-east-1.amazonaws.com"
+                    "url": "https://route53-recovery-cluster.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -78,7 +56,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://route53-recovery-cluster-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -91,7 +69,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://route53-recovery-cluster-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -104,7 +82,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://route53-recovery-cluster.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -117,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.cn-north-1.amazonaws.com.cn"
+                    "url": "https://route53-recovery-cluster.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -130,7 +108,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-gov-east-1.api.aws"
+                    "url": "https://route53-recovery-cluster-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -143,7 +121,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://route53-recovery-cluster-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -156,7 +134,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-gov-east-1.api.aws"
+                    "url": "https://route53-recovery-cluster.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -169,7 +147,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-gov-east-1.amazonaws.com"
+                    "url": "https://route53-recovery-cluster.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -193,7 +171,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://route53-recovery-cluster-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -217,7 +195,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://route53-recovery-cluster.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -241,7 +219,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://route53-recovery-cluster-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -265,7 +243,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://route53-recovery-control-config.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://route53-recovery-cluster.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

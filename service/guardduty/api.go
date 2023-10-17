@@ -11885,6 +11885,10 @@ type DnsRequestAction struct {
 	// The domain information for the DNS query.
 	Domain *string `locationName:"domain" type:"string"`
 
+	// The second and top level domain involved in the activity that prompted GuardDuty
+	// to generate this finding.
+	DomainWithSuffix *string `locationName:"domainWithSuffix" type:"string"`
+
 	// The network connection protocol observed in the activity that prompted GuardDuty
 	// to generate the finding.
 	Protocol *string `locationName:"protocol" type:"string"`
@@ -11917,6 +11921,12 @@ func (s *DnsRequestAction) SetBlocked(v bool) *DnsRequestAction {
 // SetDomain sets the Domain field's value.
 func (s *DnsRequestAction) SetDomain(v string) *DnsRequestAction {
 	s.Domain = &v
+	return s
+}
+
+// SetDomainWithSuffix sets the DomainWithSuffix field's value.
+func (s *DnsRequestAction) SetDomainWithSuffix(v string) *DnsRequestAction {
+	s.DomainWithSuffix = &v
 	return s
 }
 
@@ -16377,6 +16387,8 @@ type ListFindingsInput struct {
 	//    * service.action.awsApiCallAction.serviceName
 	//
 	//    * service.action.dnsRequestAction.domain
+	//
+	//    * service.action.dnsRequestAction.domainWithSuffix
 	//
 	//    * service.action.networkConnectionAction.blocked
 	//

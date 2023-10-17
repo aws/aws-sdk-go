@@ -1,3 +1,20 @@
+Release v1.45.27 (2023-10-17)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Add retryMode ALL_ACTIONS to RetryStageExecution API that retries a failed stage starting from first action in the stage
+* `service/discovery`: Updates service API and documentation
+  * This release introduces three new APIs: StartBatchDeleteConfigurationTask, DescribeBatchDeleteConfigurationTask, and BatchDeleteAgents.
+* `service/ecs`: Updates service documentation and examples
+  * Documentation only updates to address Amazon ECS tickets.
+* `service/globalaccelerator`: Updates service paginators
+* `service/guardduty`: Updates service API and documentation
+  * Add domainWithSuffix finding field to dnsRequestAction
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/route53-recovery-cluster`: Updates service API and documentation
+* `service/route53-recovery-control-config`: Updates service API and documentation
+
 Release v1.45.26 (2023-10-16)
 ===
 

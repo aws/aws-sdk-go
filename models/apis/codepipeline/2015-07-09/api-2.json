@@ -2466,7 +2466,10 @@
     },
     "StageRetryMode":{
       "type":"string",
-      "enum":["FAILED_ACTIONS"]
+      "enum":[
+        "FAILED_ACTIONS",
+        "ALL_ACTIONS"
+      ]
     },
     "StageState":{
       "type":"structure",

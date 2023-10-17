@@ -48,6 +48,12 @@
       "limit_key": "MaxResults",
       "result_key": "Revisions"
     },
+    "ListReplicators": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Replicators"
+    },
     "ListScramSecrets": {
       "input_token": "NextToken",
       "output_token": "NextToken",
