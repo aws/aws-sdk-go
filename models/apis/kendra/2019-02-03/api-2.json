@@ -2769,6 +2769,43 @@
       "min": 1,
       "type": "string"
     },
+    "CollapseConfiguration": {
+      "members": {
+        "DocumentAttributeKey": {
+          "shape": "DocumentAttributeKey"
+        },
+        "Expand": {
+          "shape": "Boolean"
+        },
+        "ExpandConfiguration": {
+          "shape": "ExpandConfiguration"
+        },
+        "MissingAttributeKeyStrategy": {
+          "shape": "MissingAttributeKeyStrategy"
+        },
+        "SortingConfigurations": {
+          "shape": "SortingConfigurationList"
+        }
+      },
+      "required": [
+        "DocumentAttributeKey"
+      ],
+      "type": "structure"
+    },
+    "CollapsedResultDetail": {
+      "members": {
+        "DocumentAttribute": {
+          "shape": "DocumentAttribute"
+        },
+        "ExpandedResults": {
+          "shape": "ExpandedResultList"
+        }
+      },
+      "required": [
+        "DocumentAttribute"
+      ],
+      "type": "structure"
+    },
     "ColumnConfiguration": {
       "members": {
         "ChangeDetectingColumns": {
@@ -5106,6 +5143,46 @@
       "min": 0,
       "type": "list"
     },
+    "ExpandConfiguration": {
+      "members": {
+        "MaxExpandedResultsPerItem": {
+          "shape": "Integer"
+        },
+        "MaxResultItemsToExpand": {
+          "shape": "Integer"
+        }
+      },
+      "type": "structure"
+    },
+    "ExpandedResultItem": {
+      "members": {
+        "DocumentAttributes": {
+          "shape": "DocumentAttributeList"
+        },
+        "DocumentExcerpt": {
+          "shape": "TextWithHighlights"
+        },
+        "DocumentId": {
+          "shape": "DocumentId"
+        },
+        "DocumentTitle": {
+          "shape": "TextWithHighlights"
+        },
+        "DocumentURI": {
+          "shape": "Url"
+        },
+        "Id": {
+          "shape": "ResultId"
+        }
+      },
+      "type": "structure"
+    },
+    "ExpandedResultList": {
+      "member": {
+        "shape": "ExpandedResultItem"
+      },
+      "type": "list"
+    },
     "ExperienceConfiguration": {
       "members": {
         "ContentSourceConfiguration": {
@@ -6806,6 +6883,14 @@
       "min": 1,
       "type": "integer"
     },
+    "MissingAttributeKeyStrategy": {
+      "enum": [
+        "IGNORE",
+        "COLLAPSE",
+        "EXPAND"
+      ],
+      "type": "string"
+    },
     "Mode": {
       "enum": [
         "ENABLED",
@@ -7099,6 +7184,9 @@
         "AttributeFilter": {
           "shape": "AttributeFilter"
         },
+        "CollapseConfiguration": {
+          "shape": "CollapseConfiguration"
+        },
         "DocumentRelevanceOverrideConfigurations": {
           "shape": "DocumentRelevanceOverrideConfigurationList"
         },
@@ -7125,6 +7213,9 @@
         },
         "SortingConfiguration": {
           "shape": "SortingConfiguration"
+        },
+        "SortingConfigurations": {
+          "shape": "SortingConfigurationList"
         },
         "SpellCorrectionConfiguration": {
           "shape": "SpellCorrectionConfiguration"
@@ -7178,6 +7269,9 @@
       "members": {
         "AdditionalAttributes": {
           "shape": "AdditionalResultAttributeList"
+        },
+        "CollapsedResultDetail": {
+          "shape": "CollapsedResultDetail"
         },
         "DocumentAttributes": {
           "shape": "DocumentAttributeList"
@@ -8264,6 +8358,13 @@
         "SortOrder"
       ],
       "type": "structure"
+    },
+    "SortingConfigurationList": {
+      "member": {
+        "shape": "SortingConfiguration"
+      },
+      "min": 1,
+      "type": "list"
     },
     "SourceDocument": {
       "members": {

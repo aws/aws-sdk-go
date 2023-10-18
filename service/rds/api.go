@@ -19024,6 +19024,9 @@ type CreateBlueGreenDeploymentInput struct {
 	// from the one associated with the source DB cluster.
 	TargetDBClusterParameterGroupName *string `min:"1" type:"string"`
 
+	// Specify the DB instance class for the databases in the green environment.
+	TargetDBInstanceClass *string `min:"5" type:"string"`
+
 	// The DB parameter group associated with the DB instance in the green environment.
 	//
 	// To test parameter changes, specify a DB parameter group that is different
@@ -19034,6 +19037,12 @@ type CreateBlueGreenDeploymentInput struct {
 	//
 	// Specify the engine version to upgrade to in the green environment.
 	TargetEngineVersion *string `min:"1" type:"string"`
+
+	// Whether to upgrade the storage file system configuration on the green database.
+	// This option migrates the green DB instance from the older 32-bit file system
+	// to the preferred configuration. For more information, see Upgrading the storage
+	// file system for a DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.UpgradeFileSystem).
+	UpgradeTargetStorageConfig *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19072,6 +19081,9 @@ func (s *CreateBlueGreenDeploymentInput) Validate() error {
 	if s.TargetDBClusterParameterGroupName != nil && len(*s.TargetDBClusterParameterGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetDBClusterParameterGroupName", 1))
 	}
+	if s.TargetDBInstanceClass != nil && len(*s.TargetDBInstanceClass) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDBInstanceClass", 5))
+	}
 	if s.TargetDBParameterGroupName != nil && len(*s.TargetDBParameterGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetDBParameterGroupName", 1))
 	}
@@ -19109,6 +19121,12 @@ func (s *CreateBlueGreenDeploymentInput) SetTargetDBClusterParameterGroupName(v 
 	return s
 }
 
+// SetTargetDBInstanceClass sets the TargetDBInstanceClass field's value.
+func (s *CreateBlueGreenDeploymentInput) SetTargetDBInstanceClass(v string) *CreateBlueGreenDeploymentInput {
+	s.TargetDBInstanceClass = &v
+	return s
+}
+
 // SetTargetDBParameterGroupName sets the TargetDBParameterGroupName field's value.
 func (s *CreateBlueGreenDeploymentInput) SetTargetDBParameterGroupName(v string) *CreateBlueGreenDeploymentInput {
 	s.TargetDBParameterGroupName = &v
@@ -19118,6 +19136,12 @@ func (s *CreateBlueGreenDeploymentInput) SetTargetDBParameterGroupName(v string)
 // SetTargetEngineVersion sets the TargetEngineVersion field's value.
 func (s *CreateBlueGreenDeploymentInput) SetTargetEngineVersion(v string) *CreateBlueGreenDeploymentInput {
 	s.TargetEngineVersion = &v
+	return s
+}
+
+// SetUpgradeTargetStorageConfig sets the UpgradeTargetStorageConfig field's value.
+func (s *CreateBlueGreenDeploymentInput) SetUpgradeTargetStorageConfig(v bool) *CreateBlueGreenDeploymentInput {
+	s.UpgradeTargetStorageConfig = &v
 	return s
 }
 
@@ -23345,6 +23369,11 @@ type CreateDBInstanceReadReplicaInput struct {
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
+	// Whether to upgrade the storage file system configuration on the read replica.
+	// This option migrates the read replica from the old storage file system layout
+	// to the preferred layout.
+	UpgradeStorageConfig *bool `type:"boolean"`
+
 	// Specifies whether the DB instance class of the DB instance uses its default
 	// processor features.
 	//
@@ -23645,6 +23674,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetStorageType(v string) *CreateDBIns
 // SetTags sets the Tags field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetTags(v []*Tag) *CreateDBInstanceReadReplicaInput {
 	s.Tags = v
+	return s
+}
+
+// SetUpgradeStorageConfig sets the UpgradeStorageConfig field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetUpgradeStorageConfig(v bool) *CreateDBInstanceReadReplicaInput {
+	s.UpgradeStorageConfig = &v
 	return s
 }
 
@@ -27596,6 +27631,13 @@ type DBInstance struct {
 	// The Provisioned IOPS (I/O operations per second) value for the DB instance.
 	Iops *int64 `type:"integer"`
 
+	// Indicates whether an upgrade is recommended for the storage file system configuration
+	// on the DB instance. To migrate to the preferred configuration, you can either
+	// create a blue/green deployment, or create a read replica from the DB instance.
+	// For more information, see Upgrading the storage file system for a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.UpgradeFileSystem).
+	IsStorageConfigUpgradeAvailable *bool `type:"boolean"`
+
 	// If StorageEncrypted is enabled, the Amazon Web Services KMS key identifier
 	// for the encrypted DB instance.
 	//
@@ -28078,6 +28120,12 @@ func (s *DBInstance) SetInstanceCreateTime(v time.Time) *DBInstance {
 // SetIops sets the Iops field's value.
 func (s *DBInstance) SetIops(v int64) *DBInstance {
 	s.Iops = &v
+	return s
+}
+
+// SetIsStorageConfigUpgradeAvailable sets the IsStorageConfigUpgradeAvailable field's value.
+func (s *DBInstance) SetIsStorageConfigUpgradeAvailable(v bool) *DBInstance {
+	s.IsStorageConfigUpgradeAvailable = &v
 	return s
 }
 

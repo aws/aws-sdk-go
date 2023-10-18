@@ -3134,7 +3134,9 @@
         "TargetEngineVersion":{"shape":"TargetEngineVersion"},
         "TargetDBParameterGroupName":{"shape":"TargetDBParameterGroupName"},
         "TargetDBClusterParameterGroupName":{"shape":"TargetDBClusterParameterGroupName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TargetDBInstanceClass":{"shape":"TargetDBInstanceClass"},
+        "UpgradeTargetStorageConfig":{"shape":"BooleanOptional"}
       }
     },
     "CreateBlueGreenDeploymentResponse":{
@@ -3410,7 +3412,8 @@
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "SourceDBClusterIdentifier":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "UpgradeStorageConfig":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -4349,7 +4352,8 @@
         "CertificateDetails":{"shape":"CertificateDetails"},
         "ReadReplicaSourceDBClusterIdentifier":{"shape":"String"},
         "PercentProgress":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"Boolean"}
+        "DedicatedLogVolume":{"shape":"Boolean"},
+        "IsStorageConfigUpgradeAvailable":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -8843,6 +8847,12 @@
       "max":255,
       "min":1,
       "pattern":"[A-Za-z](?!.*--)[0-9A-Za-z-]*[^-]|^default(?!.*--)(?!.*\\.\\.)[0-9A-Za-z-.]*[^-]"
+    },
+    "TargetDBInstanceClass":{
+      "type":"string",
+      "max":20,
+      "min":5,
+      "pattern":"db\\.[0-9a-z]{2,6}\\.[0-9a-z]{4,9}"
     },
     "TargetDBParameterGroupName":{
       "type":"string",

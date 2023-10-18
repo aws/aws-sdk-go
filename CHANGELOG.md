@@ -1,3 +1,17 @@
+Release v1.45.28 (2023-10-18)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service documentation
+  * Update to imageId parameter behavior and dates updated.
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Updating descriptions for several APIs.
+* `service/kendra`: Updates service API and documentation
+  * Changes for a new feature in Amazon Kendra's Query API to Collapse/Expand query results
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for upgrading the storage file system configuration on the DB instance using a blue/green deployment or a read replica.
+* `service/wisdom`: Updates service API
+
 Release v1.45.27 (2023-10-17)
 ===
 

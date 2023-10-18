@@ -6112,6 +6112,13 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 //
 // Searches an index given an input query.
 //
+// If you are working with large language models (LLMs) or implementing retrieval
+// augmented generation (RAG) systems, you can use Amazon Kendra's Retrieve
+// (https://docs.aws.amazon.com/kendra/latest/APIReference/API_Retrieve.html)
+// API, which can return longer semantically relevant passages. We recommend
+// using the Retrieve API instead of filing a service limit increase to increase
+// the Query API document excerpt length.
+//
 // You can configure boosting or relevance tuning at the query level to override
 // boosting at the index level, filter based on document fields/attributes and
 // faceted search, and filter based on the user or their group access to documents.
@@ -6259,6 +6266,11 @@ func (c *Kendra) RetrieveRequest(input *RetrieveInput) (req *request.Request, ou
 //   - Filter based on document fields or attributes
 //
 //   - Filter based on the user or their group access to documents
+//
+//   - View the confidence score bucket for a retrieved passage result. The
+//     confidence bucket provides a relative ranking that indicates how confident
+//     Amazon Kendra is that the response is relevant to the query. Confidence
+//     score buckets are currently available only for English.
 //
 // You can also include certain fields in the response that might provide useful
 // additional information.
@@ -10305,6 +10317,165 @@ func (s *ClickFeedback) SetResultId(v string) *ClickFeedback {
 	return s
 }
 
+// Specifies how to group results by document attribute value, and how to display
+// them collapsed/expanded under a designated primary document for each group.
+type CollapseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The document attribute used to group search results. You can use any attribute
+	// that has the Sortable flag set to true. You can also sort by any of the following
+	// built-in attributes:"_category","_created_at", "_last_updated_at", "_version",
+	// "_view_count".
+	//
+	// DocumentAttributeKey is a required field
+	DocumentAttributeKey *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether to expand the collapsed results.
+	Expand *bool `type:"boolean"`
+
+	// Provides configuration information to customize expansion options for a collapsed
+	// group.
+	ExpandConfiguration *ExpandConfiguration `type:"structure"`
+
+	// Specifies the behavior for documents without a value for the collapse attribute.
+	//
+	// Amazon Kendra offers three customization options:
+	//
+	//    * Choose to COLLAPSE all documents with null or missing values in one
+	//    group. This is the default configuration.
+	//
+	//    * Choose to IGNORE documents with null or missing values. Ignored documents
+	//    will not appear in query results.
+	//
+	//    * Choose to EXPAND each document with a null or missing value into a group
+	//    of its own.
+	MissingAttributeKeyStrategy *string `type:"string" enum:"MissingAttributeKeyStrategy"`
+
+	// A prioritized list of document attributes/fields that determine the primary
+	// document among those in a collapsed group.
+	SortingConfigurations []*SortingConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollapseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollapseConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CollapseConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CollapseConfiguration"}
+	if s.DocumentAttributeKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentAttributeKey"))
+	}
+	if s.DocumentAttributeKey != nil && len(*s.DocumentAttributeKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentAttributeKey", 1))
+	}
+	if s.SortingConfigurations != nil && len(s.SortingConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SortingConfigurations", 1))
+	}
+	if s.SortingConfigurations != nil {
+		for i, v := range s.SortingConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortingConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentAttributeKey sets the DocumentAttributeKey field's value.
+func (s *CollapseConfiguration) SetDocumentAttributeKey(v string) *CollapseConfiguration {
+	s.DocumentAttributeKey = &v
+	return s
+}
+
+// SetExpand sets the Expand field's value.
+func (s *CollapseConfiguration) SetExpand(v bool) *CollapseConfiguration {
+	s.Expand = &v
+	return s
+}
+
+// SetExpandConfiguration sets the ExpandConfiguration field's value.
+func (s *CollapseConfiguration) SetExpandConfiguration(v *ExpandConfiguration) *CollapseConfiguration {
+	s.ExpandConfiguration = v
+	return s
+}
+
+// SetMissingAttributeKeyStrategy sets the MissingAttributeKeyStrategy field's value.
+func (s *CollapseConfiguration) SetMissingAttributeKeyStrategy(v string) *CollapseConfiguration {
+	s.MissingAttributeKeyStrategy = &v
+	return s
+}
+
+// SetSortingConfigurations sets the SortingConfigurations field's value.
+func (s *CollapseConfiguration) SetSortingConfigurations(v []*SortingConfiguration) *CollapseConfiguration {
+	s.SortingConfigurations = v
+	return s
+}
+
+// Provides details about a collapsed group of search results.
+type CollapsedResultDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the document attribute that results are collapsed on.
+	//
+	// DocumentAttribute is a required field
+	DocumentAttribute *DocumentAttribute `type:"structure" required:"true"`
+
+	// A list of results in the collapsed group.
+	ExpandedResults []*ExpandedResultItem `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollapsedResultDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollapsedResultDetail) GoString() string {
+	return s.String()
+}
+
+// SetDocumentAttribute sets the DocumentAttribute field's value.
+func (s *CollapsedResultDetail) SetDocumentAttribute(v *DocumentAttribute) *CollapsedResultDetail {
+	s.DocumentAttribute = v
+	return s
+}
+
+// SetExpandedResults sets the ExpandedResults field's value.
+func (s *CollapsedResultDetail) SetExpandedResults(v []*ExpandedResultItem) *CollapsedResultDetail {
+	s.ExpandedResults = v
+	return s
+}
+
 // Provides information about how Amazon Kendra should use the columns of a
 // database in an index.
 type ColumnConfiguration struct {
@@ -12093,9 +12264,9 @@ type CreateExperienceInput struct {
 
 	// The Amazon Resource Name (ARN) of an IAM role with permission to access Query
 	// API, GetQuerySuggestions API, and other required APIs. The role also must
-	// include permission to access IAM Identity Center (successor to Single Sign-On)
-	// that stores your user and group information. For more information, see IAM
-	// access roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// include permission to access IAM Identity Center that stores your user and
+	// group information. For more information, see IAM access roles for Amazon
+	// Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -12673,9 +12844,8 @@ type CreateIndexInput struct {
 	// to the user will be searchable and displayable.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Gets users and groups from IAM Identity Center (successor to Single Sign-On)
-	// identity source. To configure this, see UserGroupResolutionConfiguration
-	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	// Gets users and groups from IAM Identity Center identity source. To configure
+	// this, see UserGroupResolutionConfiguration (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration.
@@ -16101,8 +16271,7 @@ type DescribeIndexOutput struct {
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
 	// Whether you have enabled the configuration for fetching access levels of
-	// groups and users from an IAM Identity Center (successor to Single Sign-On)
-	// identity source.
+	// groups and users from an IAM Identity Center identity source.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration for the Amazon Kendra index.
@@ -18341,6 +18510,136 @@ func (s *EntityPersonaConfiguration) SetEntityId(v string) *EntityPersonaConfigu
 // SetPersona sets the Persona field's value.
 func (s *EntityPersonaConfiguration) SetPersona(v string) *EntityPersonaConfiguration {
 	s.Persona = &v
+	return s
+}
+
+// Specifies the configuration information needed to customize how collapsed
+// search result groups expand.
+type ExpandConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of expanded results to show per collapsed primary document. For
+	// instance, if you set this value to 3, then at most 3 results per collapsed
+	// group will be displayed.
+	MaxExpandedResultsPerItem *int64 `type:"integer"`
+
+	// The number of collapsed search result groups to expand. If you set this value
+	// to 10, for example, only the first 10 out of 100 result groups will have
+	// expand functionality.
+	MaxResultItemsToExpand *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpandConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpandConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetMaxExpandedResultsPerItem sets the MaxExpandedResultsPerItem field's value.
+func (s *ExpandConfiguration) SetMaxExpandedResultsPerItem(v int64) *ExpandConfiguration {
+	s.MaxExpandedResultsPerItem = &v
+	return s
+}
+
+// SetMaxResultItemsToExpand sets the MaxResultItemsToExpand field's value.
+func (s *ExpandConfiguration) SetMaxResultItemsToExpand(v int64) *ExpandConfiguration {
+	s.MaxResultItemsToExpand = &v
+	return s
+}
+
+// A single expanded result in a collapsed group of search results.
+//
+// An expanded result item contains information about an expanded result document
+// within a collapsed group of search results. This includes the original location
+// of the document, a list of attributes assigned to the document, and relevant
+// text from the document that satisfies the query.
+type ExpandedResultItem struct {
+	_ struct{} `type:"structure"`
+
+	// An array of document attributes assigned to a document in the search results.
+	// For example, the document author ("_author") or the source URI ("_source_uri")
+	// of the document.
+	DocumentAttributes []*DocumentAttribute `type:"list"`
+
+	// Provides text and information about where to highlight the text.
+	DocumentExcerpt *TextWithHighlights `type:"structure"`
+
+	// The idenitifier of the document.
+	DocumentId *string `min:"1" type:"string"`
+
+	// Provides text and information about where to highlight the text.
+	DocumentTitle *TextWithHighlights `type:"structure"`
+
+	// The URI of the original location of the document.
+	DocumentURI *string `min:"1" type:"string"`
+
+	// The identifier for the expanded result.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpandedResultItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpandedResultItem) GoString() string {
+	return s.String()
+}
+
+// SetDocumentAttributes sets the DocumentAttributes field's value.
+func (s *ExpandedResultItem) SetDocumentAttributes(v []*DocumentAttribute) *ExpandedResultItem {
+	s.DocumentAttributes = v
+	return s
+}
+
+// SetDocumentExcerpt sets the DocumentExcerpt field's value.
+func (s *ExpandedResultItem) SetDocumentExcerpt(v *TextWithHighlights) *ExpandedResultItem {
+	s.DocumentExcerpt = v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *ExpandedResultItem) SetDocumentId(v string) *ExpandedResultItem {
+	s.DocumentId = &v
+	return s
+}
+
+// SetDocumentTitle sets the DocumentTitle field's value.
+func (s *ExpandedResultItem) SetDocumentTitle(v *TextWithHighlights) *ExpandedResultItem {
+	s.DocumentTitle = v
+	return s
+}
+
+// SetDocumentURI sets the DocumentURI field's value.
+func (s *ExpandedResultItem) SetDocumentURI(v string) *ExpandedResultItem {
+	s.DocumentURI = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExpandedResultItem) SetId(v string) *ExpandedResultItem {
+	s.Id = &v
 	return s
 }
 
@@ -24280,6 +24579,11 @@ type QueryInput struct {
 	// that a document must satisfy to be included in the query results.
 	AttributeFilter *AttributeFilter `type:"structure"`
 
+	// Provides configuration to determine how to group results by document attribute
+	// value, and how to display them (collapsed or expanded) under a designated
+	// primary document for each group.
+	CollapseConfiguration *CollapseConfiguration `type:"structure"`
+
 	// Overrides relevance tuning configurations of fields/attributes set at the
 	// index level.
 	//
@@ -24335,6 +24639,18 @@ type QueryInput struct {
 	// relevance that Amazon Kendra determines for the result.
 	SortingConfiguration *SortingConfiguration `type:"structure"`
 
+	// Provides configuration information to determine how the results of a query
+	// are sorted.
+	//
+	// You can set upto 3 fields that Amazon Kendra should sort the results on,
+	// and specify whether the results should be sorted in ascending or descending
+	// order. The sort field quota can be increased.
+	//
+	// If you don't provide a sorting configuration, the results are sorted by the
+	// relevance that Amazon Kendra determines for the result. In the case of ties
+	// in sorting the results, the results are sorted by relevance.
+	SortingConfigurations []*SortingConfiguration `min:"1" type:"list"`
+
 	// Enables suggested spell corrections for queries.
 	SpellCorrectionConfiguration *SpellCorrectionConfiguration `type:"structure"`
 
@@ -24377,12 +24693,20 @@ func (s *QueryInput) Validate() error {
 	if s.RequestedDocumentAttributes != nil && len(s.RequestedDocumentAttributes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestedDocumentAttributes", 1))
 	}
+	if s.SortingConfigurations != nil && len(s.SortingConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SortingConfigurations", 1))
+	}
 	if s.VisitorId != nil && len(*s.VisitorId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VisitorId", 1))
 	}
 	if s.AttributeFilter != nil {
 		if err := s.AttributeFilter.Validate(); err != nil {
 			invalidParams.AddNested("AttributeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CollapseConfiguration != nil {
+		if err := s.CollapseConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CollapseConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.DocumentRelevanceOverrideConfigurations != nil {
@@ -24410,6 +24734,16 @@ func (s *QueryInput) Validate() error {
 			invalidParams.AddNested("SortingConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SortingConfigurations != nil {
+		for i, v := range s.SortingConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortingConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.SpellCorrectionConfiguration != nil {
 		if err := s.SpellCorrectionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SpellCorrectionConfiguration", err.(request.ErrInvalidParams))
@@ -24430,6 +24764,12 @@ func (s *QueryInput) Validate() error {
 // SetAttributeFilter sets the AttributeFilter field's value.
 func (s *QueryInput) SetAttributeFilter(v *AttributeFilter) *QueryInput {
 	s.AttributeFilter = v
+	return s
+}
+
+// SetCollapseConfiguration sets the CollapseConfiguration field's value.
+func (s *QueryInput) SetCollapseConfiguration(v *CollapseConfiguration) *QueryInput {
+	s.CollapseConfiguration = v
 	return s
 }
 
@@ -24484,6 +24824,12 @@ func (s *QueryInput) SetRequestedDocumentAttributes(v []*string) *QueryInput {
 // SetSortingConfiguration sets the SortingConfiguration field's value.
 func (s *QueryInput) SetSortingConfiguration(v *SortingConfiguration) *QueryInput {
 	s.SortingConfiguration = v
+	return s
+}
+
+// SetSortingConfigurations sets the SortingConfigurations field's value.
+func (s *QueryInput) SetSortingConfigurations(v []*SortingConfiguration) *QueryInput {
+	s.SortingConfigurations = v
 	return s
 }
 
@@ -24614,6 +24960,9 @@ type QueryResultItem struct {
 	// One or more additional fields/attributes associated with the query result.
 	AdditionalAttributes []*AdditionalResultAttribute `type:"list"`
 
+	// Provides details about a collapsed group of search results.
+	CollapsedResultDetail *CollapsedResultDetail `type:"structure"`
+
 	// An array of document fields/attributes assigned to a document in the search
 	// results. For example, the document author (_author) or the source URI (_source_uri)
 	// of the document.
@@ -24685,6 +25034,12 @@ func (s QueryResultItem) GoString() string {
 // SetAdditionalAttributes sets the AdditionalAttributes field's value.
 func (s *QueryResultItem) SetAdditionalAttributes(v []*AdditionalResultAttribute) *QueryResultItem {
 	s.AdditionalAttributes = v
+	return s
+}
+
+// SetCollapsedResultDetail sets the CollapsedResultDetail field's value.
+func (s *QueryResultItem) SetCollapsedResultDetail(v *CollapsedResultDetail) *QueryResultItem {
+	s.CollapsedResultDetail = v
 	return s
 }
 
@@ -30348,7 +30703,7 @@ type UpdateIndexInput struct {
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
 	// Enables fetching access levels of groups and users from an IAM Identity Center
-	// (successor to Single Sign-On) identity source. To configure this, see UserGroupResolutionConfiguration
+	// identity source. To configure this, see UserGroupResolutionConfiguration
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
@@ -31140,10 +31495,9 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 }
 
 // Provides the configuration information to get users and groups from an IAM
-// Identity Center (successor to Single Sign-On) identity source. This is useful
-// for user context filtering, where search results are filtered based on the
-// user or their group access to documents. You can also use the PutPrincipalMapping
-// (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html)
+// Identity Center identity source. This is useful for user context filtering,
+// where search results are filtered based on the user or their group access
+// to documents. You can also use the PutPrincipalMapping (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html)
 // API to map users to their groups so that you only need to provide the user
 // ID when you issue the query.
 //
@@ -31162,9 +31516,9 @@ type UserGroupResolutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The identity store provider (mode) you want to use to get users and groups.
-	// IAM Identity Center (successor to Single Sign-On) is currently the only available
-	// mode. Your users and groups must exist in an IAM Identity Center identity
-	// source in order to use this mode.
+	// IAM Identity Center is currently the only available mode. Your users and
+	// groups must exist in an IAM Identity Center identity source in order to use
+	// this mode.
 	//
 	// UserGroupResolutionMode is a required field
 	UserGroupResolutionMode *string `type:"string" required:"true" enum:"UserGroupResolutionMode"`
@@ -32658,6 +33012,26 @@ func MetricType_Values() []string {
 		MetricTypeDocsByClickCount,
 		MetricTypeAggQueryDocMetrics,
 		MetricTypeTrendQueryDocMetrics,
+	}
+}
+
+const (
+	// MissingAttributeKeyStrategyIgnore is a MissingAttributeKeyStrategy enum value
+	MissingAttributeKeyStrategyIgnore = "IGNORE"
+
+	// MissingAttributeKeyStrategyCollapse is a MissingAttributeKeyStrategy enum value
+	MissingAttributeKeyStrategyCollapse = "COLLAPSE"
+
+	// MissingAttributeKeyStrategyExpand is a MissingAttributeKeyStrategy enum value
+	MissingAttributeKeyStrategyExpand = "EXPAND"
+)
+
+// MissingAttributeKeyStrategy_Values returns all elements of the MissingAttributeKeyStrategy enum
+func MissingAttributeKeyStrategy_Values() []string {
+	return []string{
+		MissingAttributeKeyStrategyIgnore,
+		MissingAttributeKeyStrategyCollapse,
+		MissingAttributeKeyStrategyExpand,
 	}
 }
 
