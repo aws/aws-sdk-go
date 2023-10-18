@@ -1601,15 +1601,18 @@ type CreateEnvironmentEC2Input struct {
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
 	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
 	//
-	// The default Amazon Linux AMI is currently used if the parameter isn't explicitly
-	// assigned a value in the request. Because Amazon Linux AMI has ended standard
-	// support as of December 31, 2020, we recommend you choose Amazon Linux 2,
-	// which includes long term support through 2023.
+	// From November 20, 2023, you will be required to include the imageId parameter
+	// for the CreateEnvironmentEC2 action. This change will be reflected across
+	// all direct methods of communicating with the API, such as Amazon Web Services
+	// SDK, Amazon Web Services CLI and Amazon Web Services CloudFormation. This
+	// change will only affect direct API consumers, and not Cloud9 console users.
 	//
-	// From December 31, 2023, the parameter for Amazon Linux will no longer be
-	// available when you specify an AMI for your instance. Amazon Linux 2 will
-	// then become the default AMI, which is used to launch your instance if no
-	// parameter is explicitly defined.
+	// From January 22, 2024, Amazon Linux (AL1) will be removed from the list of
+	// available image IDs for Cloud9. This is necessary as AL1 will reach the end
+	// of maintenance support in December 2023, and as a result will no longer receive
+	// security updates. We recommend using Amazon Linux 2 as the AMI to create
+	// your environment as it is fully supported. This change will only affect direct
+	// API consumers, and not Cloud9 console users.
 	//
 	// Since Ubuntu 18.04 has ended standard support as of May 31, 2023, we recommend
 	// you choose Ubuntu 22.04.

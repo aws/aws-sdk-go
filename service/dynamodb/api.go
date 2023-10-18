@@ -3417,6 +3417,10 @@ func (c *DynamoDB) ExecuteTransactionRequest(input *ExecuteTransactionInput) (re
 //
 //   - There is a user error, such as an invalid data format.
 //
+//   - There is an ongoing TransactWriteItems operation that conflicts with
+//     a concurrent TransactWriteItems request. In this case the TransactWriteItems
+//     operation fails with a TransactionCanceledException.
+//
 //     DynamoDB cancels a TransactGetItems request under the following circumstances:
 //
 //   - There is an ongoing TransactGetItems operation that conflicts with a
@@ -6085,6 +6089,10 @@ func (c *DynamoDB) TransactGetItemsRequest(input *TransactGetItemsInput) (req *r
 //
 //   - There is a user error, such as an invalid data format.
 //
+//   - There is an ongoing TransactWriteItems operation that conflicts with
+//     a concurrent TransactWriteItems request. In this case the TransactWriteItems
+//     operation fails with a TransactionCanceledException.
+//
 //     DynamoDB cancels a TransactGetItems request under the following circumstances:
 //
 //   - There is an ongoing TransactGetItems operation that conflicts with a
@@ -6345,6 +6353,10 @@ func (c *DynamoDB) TransactWriteItemsRequest(input *TransactWriteItemsInput) (re
 //     of changes made by the transaction.
 //
 //   - There is a user error, such as an invalid data format.
+//
+//   - There is an ongoing TransactWriteItems operation that conflicts with
+//     a concurrent TransactWriteItems request. In this case the TransactWriteItems
+//     operation fails with a TransactionCanceledException.
 //
 //     DynamoDB cancels a TransactGetItems request under the following circumstances:
 //
@@ -14218,9 +14230,7 @@ type ExportDescription struct {
 	// Point in time from which table data was exported.
 	ExportTime *time.Time `type:"timestamp"`
 
-	// Choice of whether to execute as a full export or incremental export. Valid
-	// values are FULL_EXPORT or INCREMENTAL_EXPORT. If INCREMENTAL_EXPORT is provided,
-	// the IncrementalExportSpecification must also be used.
+	// The type of export that was performed. Valid values are FULL_EXPORT or INCREMENTAL_EXPORT.
 	ExportType *string `type:"string" enum:"ExportType"`
 
 	// Status code for the result of the failed export.
@@ -14487,9 +14497,7 @@ type ExportSummary struct {
 	// FAILED.
 	ExportStatus *string `type:"string" enum:"ExportStatus"`
 
-	// Choice of whether to execute as a full export or incremental export. Valid
-	// values are FULL_EXPORT or INCREMENTAL_EXPORT. If INCREMENTAL_EXPORT is provided,
-	// the IncrementalExportSpecification must also be used.
+	// The type of export that was performed. Valid values are FULL_EXPORT or INCREMENTAL_EXPORT.
 	ExportType *string `type:"string" enum:"ExportType"`
 }
 
@@ -14555,8 +14563,9 @@ type ExportTableToPointInTimeInput struct {
 	ExportTime *time.Time `type:"timestamp"`
 
 	// Choice of whether to execute as a full export or incremental export. Valid
-	// values are FULL_EXPORT or INCREMENTAL_EXPORT. If INCREMENTAL_EXPORT is provided,
-	// the IncrementalExportSpecification must also be used.
+	// values are FULL_EXPORT or INCREMENTAL_EXPORT. The default value is FULL_EXPORT.
+	// If INCREMENTAL_EXPORT is provided, the IncrementalExportSpecification must
+	// also be used.
 	ExportType *string `type:"string" enum:"ExportType"`
 
 	// Optional object containing the parameters specific to an incremental export.
@@ -16592,8 +16601,8 @@ type IncrementalExportSpecification struct {
 	// this is not provided, the latest time with data available will be used.
 	ExportToTime *time.Time `type:"timestamp"`
 
-	// Choice of whether to output the previous item image prior to the start time
-	// of the incremental export. Valid values are NEW_AND_OLD_IMAGES and NEW_IMAGES.
+	// The view type that was chosen for the export. Valid values are NEW_AND_OLD_IMAGES
+	// and NEW_IMAGES. The default value is NEW_AND_OLD_IMAGES.
 	ExportViewType *string `type:"string" enum:"ExportViewType"`
 }
 
@@ -22336,7 +22345,7 @@ type ScanInput struct {
 	// A FilterExpression is applied after the items have already been read; the
 	// process of filtering does not consume any additional read capacity units.
 	//
-	// For more information, see Filter Expressions (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Query.FilterExpression)
+	// For more information, see Filter Expressions (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.FilterExpression)
 	// in the Amazon DynamoDB Developer Guide.
 	FilterExpression *string `type:"string"`
 
@@ -24549,6 +24558,10 @@ func (s *TransactWriteItemsOutput) SetItemCollectionMetrics(v map[string][]*Item
 //     of changes made by the transaction.
 //
 //   - There is a user error, such as an invalid data format.
+//
+//   - There is an ongoing TransactWriteItems operation that conflicts with
+//     a concurrent TransactWriteItems request. In this case the TransactWriteItems
+//     operation fails with a TransactionCanceledException.
 //
 // DynamoDB cancels a TransactGetItems request under the following circumstances:
 //
