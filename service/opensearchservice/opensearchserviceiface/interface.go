@@ -202,6 +202,10 @@ type OpenSearchServiceAPI interface {
 	GetCompatibleVersionsWithContext(aws.Context, *opensearchservice.GetCompatibleVersionsInput, ...request.Option) (*opensearchservice.GetCompatibleVersionsOutput, error)
 	GetCompatibleVersionsRequest(*opensearchservice.GetCompatibleVersionsInput) (*request.Request, *opensearchservice.GetCompatibleVersionsOutput)
 
+	GetDomainMaintenanceStatus(*opensearchservice.GetDomainMaintenanceStatusInput) (*opensearchservice.GetDomainMaintenanceStatusOutput, error)
+	GetDomainMaintenanceStatusWithContext(aws.Context, *opensearchservice.GetDomainMaintenanceStatusInput, ...request.Option) (*opensearchservice.GetDomainMaintenanceStatusOutput, error)
+	GetDomainMaintenanceStatusRequest(*opensearchservice.GetDomainMaintenanceStatusInput) (*request.Request, *opensearchservice.GetDomainMaintenanceStatusOutput)
+
 	GetPackageVersionHistory(*opensearchservice.GetPackageVersionHistoryInput) (*opensearchservice.GetPackageVersionHistoryOutput, error)
 	GetPackageVersionHistoryWithContext(aws.Context, *opensearchservice.GetPackageVersionHistoryInput, ...request.Option) (*opensearchservice.GetPackageVersionHistoryOutput, error)
 	GetPackageVersionHistoryRequest(*opensearchservice.GetPackageVersionHistoryInput) (*request.Request, *opensearchservice.GetPackageVersionHistoryOutput)
@@ -219,6 +223,13 @@ type OpenSearchServiceAPI interface {
 	GetUpgradeStatus(*opensearchservice.GetUpgradeStatusInput) (*opensearchservice.GetUpgradeStatusOutput, error)
 	GetUpgradeStatusWithContext(aws.Context, *opensearchservice.GetUpgradeStatusInput, ...request.Option) (*opensearchservice.GetUpgradeStatusOutput, error)
 	GetUpgradeStatusRequest(*opensearchservice.GetUpgradeStatusInput) (*request.Request, *opensearchservice.GetUpgradeStatusOutput)
+
+	ListDomainMaintenances(*opensearchservice.ListDomainMaintenancesInput) (*opensearchservice.ListDomainMaintenancesOutput, error)
+	ListDomainMaintenancesWithContext(aws.Context, *opensearchservice.ListDomainMaintenancesInput, ...request.Option) (*opensearchservice.ListDomainMaintenancesOutput, error)
+	ListDomainMaintenancesRequest(*opensearchservice.ListDomainMaintenancesInput) (*request.Request, *opensearchservice.ListDomainMaintenancesOutput)
+
+	ListDomainMaintenancesPages(*opensearchservice.ListDomainMaintenancesInput, func(*opensearchservice.ListDomainMaintenancesOutput, bool) bool) error
+	ListDomainMaintenancesPagesWithContext(aws.Context, *opensearchservice.ListDomainMaintenancesInput, func(*opensearchservice.ListDomainMaintenancesOutput, bool) bool, ...request.Option) error
 
 	ListDomainNames(*opensearchservice.ListDomainNamesInput) (*opensearchservice.ListDomainNamesOutput, error)
 	ListDomainNamesWithContext(aws.Context, *opensearchservice.ListDomainNamesInput, ...request.Option) (*opensearchservice.ListDomainNamesOutput, error)
@@ -290,6 +301,10 @@ type OpenSearchServiceAPI interface {
 	RevokeVpcEndpointAccess(*opensearchservice.RevokeVpcEndpointAccessInput) (*opensearchservice.RevokeVpcEndpointAccessOutput, error)
 	RevokeVpcEndpointAccessWithContext(aws.Context, *opensearchservice.RevokeVpcEndpointAccessInput, ...request.Option) (*opensearchservice.RevokeVpcEndpointAccessOutput, error)
 	RevokeVpcEndpointAccessRequest(*opensearchservice.RevokeVpcEndpointAccessInput) (*request.Request, *opensearchservice.RevokeVpcEndpointAccessOutput)
+
+	StartDomainMaintenance(*opensearchservice.StartDomainMaintenanceInput) (*opensearchservice.StartDomainMaintenanceOutput, error)
+	StartDomainMaintenanceWithContext(aws.Context, *opensearchservice.StartDomainMaintenanceInput, ...request.Option) (*opensearchservice.StartDomainMaintenanceOutput, error)
+	StartDomainMaintenanceRequest(*opensearchservice.StartDomainMaintenanceInput) (*request.Request, *opensearchservice.StartDomainMaintenanceOutput)
 
 	StartServiceSoftwareUpdate(*opensearchservice.StartServiceSoftwareUpdateInput) (*opensearchservice.StartServiceSoftwareUpdateOutput, error)
 	StartServiceSoftwareUpdateWithContext(aws.Context, *opensearchservice.StartServiceSoftwareUpdateInput, ...request.Option) (*opensearchservice.StartServiceSoftwareUpdateOutput, error)

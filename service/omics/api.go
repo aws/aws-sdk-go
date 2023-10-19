@@ -16176,11 +16176,17 @@ type GetRunOutput struct {
 	// The run's digest.
 	Digest *string `locationName:"digest" min:"1" type:"string"`
 
+	// The reason a run has failed.
+	FailureReason *string `locationName:"failureReason" min:"1" type:"string"`
+
 	// The run's ID.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The run's log level.
 	LogLevel *string `locationName:"logLevel" min:"1" type:"string" enum:"RunLogLevel"`
+
+	// The location of the run log.
+	LogLocation *RunLogLocation `locationName:"logLocation" type:"structure"`
 
 	// The run's name.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -16282,6 +16288,12 @@ func (s *GetRunOutput) SetDigest(v string) *GetRunOutput {
 	return s
 }
 
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetRunOutput) SetFailureReason(v string) *GetRunOutput {
+	s.FailureReason = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *GetRunOutput) SetId(v string) *GetRunOutput {
 	s.Id = &v
@@ -16291,6 +16303,12 @@ func (s *GetRunOutput) SetId(v string) *GetRunOutput {
 // SetLogLevel sets the LogLevel field's value.
 func (s *GetRunOutput) SetLogLevel(v string) *GetRunOutput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetLogLocation sets the LogLocation field's value.
+func (s *GetRunOutput) SetLogLocation(v *RunLogLocation) *GetRunOutput {
+	s.LogLocation = v
 	return s
 }
 
@@ -16399,7 +16417,7 @@ func (s *GetRunOutput) SetWorkflowType(v string) *GetRunOutput {
 type GetRunTaskInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The task's ID.
+	// The workflow run ID.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
@@ -16471,6 +16489,9 @@ type GetRunTaskOutput struct {
 	// When the task was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The reason a task has failed.
+	FailureReason *string `locationName:"failureReason" min:"1" type:"string"`
+
 	// The number of Graphics Processing Units (GPU) specified in the task.
 	Gpus *int64 `locationName:"gpus" type:"integer"`
 
@@ -16529,6 +16550,12 @@ func (s *GetRunTaskOutput) SetCpus(v int64) *GetRunTaskOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetRunTaskOutput) SetCreationTime(v time.Time) *GetRunTaskOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetRunTaskOutput) SetFailureReason(v string) *GetRunTaskOutput {
+	s.FailureReason = &v
 	return s
 }
 
@@ -22406,6 +22433,47 @@ func (s *RunListItem) SetStorageCapacity(v int64) *RunListItem {
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *RunListItem) SetWorkflowId(v string) *RunListItem {
 	s.WorkflowId = &v
+	return s
+}
+
+// The URI for the run log.
+type RunLogLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The log stream ARN for the engine log.
+	EngineLogStream *string `locationName:"engineLogStream" type:"string"`
+
+	// The log stream ARN for the run log.
+	RunLogStream *string `locationName:"runLogStream" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunLogLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunLogLocation) GoString() string {
+	return s.String()
+}
+
+// SetEngineLogStream sets the EngineLogStream field's value.
+func (s *RunLogLocation) SetEngineLogStream(v string) *RunLogLocation {
+	s.EngineLogStream = &v
+	return s
+}
+
+// SetRunLogStream sets the RunLogStream field's value.
+func (s *RunLogLocation) SetRunLogStream(v string) *RunLogLocation {
+	s.RunLogStream = &v
 	return s
 }
 

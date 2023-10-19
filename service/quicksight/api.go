@@ -28973,6 +28973,10 @@ type CreateAnalysisInput struct {
 	// to be valid.
 	Definition *AnalysisDefinition `type:"structure"`
 
+	// When you create the analysis, Amazon QuickSight adds the analysis to these
+	// folders.
+	FolderArns []*string `type:"list"`
+
 	// A descriptive name for the analysis that you're creating. This name displays
 	// for the analysis in the Amazon QuickSight console.
 	//
@@ -29120,6 +29124,12 @@ func (s *CreateAnalysisInput) SetAwsAccountId(v string) *CreateAnalysisInput {
 // SetDefinition sets the Definition field's value.
 func (s *CreateAnalysisInput) SetDefinition(v *AnalysisDefinition) *CreateAnalysisInput {
 	s.Definition = v
+	return s
+}
+
+// SetFolderArns sets the FolderArns field's value.
+func (s *CreateAnalysisInput) SetFolderArns(v []*string) *CreateAnalysisInput {
+	s.FolderArns = v
 	return s
 }
 
@@ -29330,6 +29340,10 @@ type CreateDashboardInput struct {
 	// to be valid.
 	Definition *DashboardVersionDefinition `type:"structure"`
 
+	// When you create the dashboard, Amazon QuickSight adds the dashboard to these
+	// folders.
+	FolderArns []*string `type:"list"`
+
 	// The display name of the dashboard.
 	//
 	// Name is a required field
@@ -29502,6 +29516,12 @@ func (s *CreateDashboardInput) SetDefinition(v *DashboardVersionDefinition) *Cre
 	return s
 }
 
+// SetFolderArns sets the FolderArns field's value.
+func (s *CreateDashboardInput) SetFolderArns(v []*string) *CreateDashboardInput {
+	s.FolderArns = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateDashboardInput) SetName(v string) *CreateDashboardInput {
 	s.Name = &v
@@ -29657,6 +29677,10 @@ type CreateDataSetInput struct {
 
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
+
+	// When you create the dataset, Amazon QuickSight adds the dataset to these
+	// folders.
+	FolderArns []*string `type:"list"`
 
 	// Indicates whether you want to import the data into SPICE.
 	//
@@ -29881,6 +29905,12 @@ func (s *CreateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *CreateD
 	return s
 }
 
+// SetFolderArns sets the FolderArns field's value.
+func (s *CreateDataSetInput) SetFolderArns(v []*string) *CreateDataSetInput {
+	s.FolderArns = v
+	return s
+}
+
 // SetImportMode sets the ImportMode field's value.
 func (s *CreateDataSetInput) SetImportMode(v string) *CreateDataSetInput {
 	s.ImportMode = &v
@@ -30034,6 +30064,10 @@ type CreateDataSourceInput struct {
 	// source.
 	DataSourceParameters *DataSourceParameters `type:"structure"`
 
+	// When you create the data source, Amazon QuickSight adds the data source to
+	// these folders.
+	FolderArns []*string `type:"list"`
+
 	// A display name for the data source.
 	//
 	// Name is a required field
@@ -30170,6 +30204,12 @@ func (s *CreateDataSourceInput) SetDataSourceId(v string) *CreateDataSourceInput
 // SetDataSourceParameters sets the DataSourceParameters field's value.
 func (s *CreateDataSourceInput) SetDataSourceParameters(v *DataSourceParameters) *CreateDataSourceInput {
 	s.DataSourceParameters = v
+	return s
+}
+
+// SetFolderArns sets the FolderArns field's value.
+func (s *CreateDataSourceInput) SetFolderArns(v []*string) *CreateDataSourceInput {
+	s.FolderArns = v
 	return s
 }
 
@@ -36113,23 +36153,68 @@ func (s *DataPathSort) SetSortPaths(v []*DataPathValue) *DataPathSort {
 	return s
 }
 
+// The type of the data path value.
+type DataPathType struct {
+	_ struct{} `type:"structure"`
+
+	// The type of data path value utilized in a pivot table. Choose one of the
+	// following options:
+	//
+	//    * HIERARCHY_ROWS_LAYOUT_COLUMN - The type of data path for the rows layout
+	//    column, when RowsLayout is set to HIERARCHY.
+	//
+	//    * MULTIPLE_ROW_METRICS_COLUMN - The type of data path for the metric column
+	//    when the row is set to Metric Placement.
+	//
+	//    * EMPTY_COLUMN_HEADER - The type of data path for the column with empty
+	//    column header, when there is no field in ColumnsFieldWell and the row
+	//    is set to Metric Placement.
+	//
+	//    * COUNT_METRIC_COLUMN - The type of data path for the column with COUNT
+	//    as the metric, when there is no field in the ValuesFieldWell.
+	PivotTableDataPathType *string `type:"string" enum:"PivotTableDataPathType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPathType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPathType) GoString() string {
+	return s.String()
+}
+
+// SetPivotTableDataPathType sets the PivotTableDataPathType field's value.
+func (s *DataPathType) SetPivotTableDataPathType(v string) *DataPathType {
+	s.PivotTableDataPathType = &v
+	return s
+}
+
 // The data path that needs to be sorted.
 type DataPathValue struct {
 	_ struct{} `type:"structure"`
 
+	// The type configuration of the field.
+	DataPathType *DataPathType `type:"structure"`
+
 	// The field ID of the field that needs to be sorted.
-	//
-	// FieldId is a required field
-	FieldId *string `min:"1" type:"string" required:"true"`
+	FieldId *string `min:"1" type:"string"`
 
 	// The actual value of the field that needs to be sorted.
 	//
 	// FieldValue is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DataPathValue's
 	// String and GoString methods.
-	//
-	// FieldValue is a required field
-	FieldValue *string `type:"string" required:"true" sensitive:"true"`
+	FieldValue *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -36153,20 +36238,20 @@ func (s DataPathValue) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataPathValue) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataPathValue"}
-	if s.FieldId == nil {
-		invalidParams.Add(request.NewErrParamRequired("FieldId"))
-	}
 	if s.FieldId != nil && len(*s.FieldId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FieldId", 1))
-	}
-	if s.FieldValue == nil {
-		invalidParams.Add(request.NewErrParamRequired("FieldValue"))
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataPathType sets the DataPathType field's value.
+func (s *DataPathValue) SetDataPathType(v *DataPathType) *DataPathValue {
+	s.DataPathType = v
+	return s
 }
 
 // SetFieldId sets the FieldId field's value.
@@ -37273,7 +37358,7 @@ type DataSourceParameters struct {
 	// The parameters for IoT Analytics.
 	AwsIotAnalyticsParameters *AwsIotAnalyticsParameters `type:"structure"`
 
-	// The required parameters that are needed to connect to a Databricks data source.
+	// The parameters that are required to connect to a Databricks data source.
 	DatabricksParameters *DatabricksParameters `type:"structure"`
 
 	// The parameters for Exasol.
@@ -37318,8 +37403,14 @@ type DataSourceParameters struct {
 	// The parameters for SQL Server.
 	SqlServerParameters *SqlServerParameters `type:"structure"`
 
+	// The parameters that are required to connect to a Starburst data source.
+	StarburstParameters *StarburstParameters `type:"structure"`
+
 	// The parameters for Teradata.
 	TeradataParameters *TeradataParameters `type:"structure"`
+
+	// The parameters that are required to connect to a Trino data source.
+	TrinoParameters *TrinoParameters `type:"structure"`
 
 	// The parameters for Twitter.
 	TwitterParameters *TwitterParameters `type:"structure"`
@@ -37451,9 +37542,19 @@ func (s *DataSourceParameters) Validate() error {
 			invalidParams.AddNested("SqlServerParameters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.StarburstParameters != nil {
+		if err := s.StarburstParameters.Validate(); err != nil {
+			invalidParams.AddNested("StarburstParameters", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TeradataParameters != nil {
 		if err := s.TeradataParameters.Validate(); err != nil {
 			invalidParams.AddNested("TeradataParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TrinoParameters != nil {
+		if err := s.TrinoParameters.Validate(); err != nil {
+			invalidParams.AddNested("TrinoParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TwitterParameters != nil {
@@ -37594,9 +37695,21 @@ func (s *DataSourceParameters) SetSqlServerParameters(v *SqlServerParameters) *D
 	return s
 }
 
+// SetStarburstParameters sets the StarburstParameters field's value.
+func (s *DataSourceParameters) SetStarburstParameters(v *StarburstParameters) *DataSourceParameters {
+	s.StarburstParameters = v
+	return s
+}
+
 // SetTeradataParameters sets the TeradataParameters field's value.
 func (s *DataSourceParameters) SetTeradataParameters(v *TeradataParameters) *DataSourceParameters {
 	s.TeradataParameters = v
+	return s
+}
+
+// SetTrinoParameters sets the TrinoParameters field's value.
+func (s *DataSourceParameters) SetTrinoParameters(v *TrinoParameters) *DataSourceParameters {
+	s.TrinoParameters = v
 	return s
 }
 
@@ -37791,7 +37904,7 @@ func (s *DataSourceSummary) SetType(v string) *DataSourceSummary {
 	return s
 }
 
-// The required parameters that are needed to connect to a Databricks data source.
+// The parameters that are required to connect to a Databricks data source.
 type DatabricksParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -73420,6 +73533,9 @@ type PivotTotalOptions struct {
 	// The scroll status (pinned, scrolled) for the total cells.
 	ScrollStatus *string `type:"string" enum:"TableTotalsScrollStatus"`
 
+	// The total aggregation options for each value field.
+	TotalAggregationOptions []*TotalAggregationOption `type:"list"`
+
 	// The cell styling options for the total cells.
 	TotalCellStyle *TableCellStyle `type:"structure"`
 
@@ -73454,6 +73570,16 @@ func (s *PivotTotalOptions) Validate() error {
 	if s.MetricHeaderCellStyle != nil {
 		if err := s.MetricHeaderCellStyle.Validate(); err != nil {
 			invalidParams.AddNested("MetricHeaderCellStyle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TotalAggregationOptions != nil {
+		for i, v := range s.TotalAggregationOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TotalAggregationOptions", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.TotalCellStyle != nil {
@@ -73494,6 +73620,12 @@ func (s *PivotTotalOptions) SetPlacement(v string) *PivotTotalOptions {
 // SetScrollStatus sets the ScrollStatus field's value.
 func (s *PivotTotalOptions) SetScrollStatus(v string) *PivotTotalOptions {
 	s.ScrollStatus = &v
+	return s
+}
+
+// SetTotalAggregationOptions sets the TotalAggregationOptions field's value.
+func (s *PivotTotalOptions) SetTotalAggregationOptions(v []*TotalAggregationOption) *PivotTotalOptions {
+	s.TotalAggregationOptions = v
 	return s
 }
 
@@ -75213,6 +75345,14 @@ type ReferenceLineDataConfiguration struct {
 	// The dynamic configuration of the reference line data configuration.
 	DynamicConfiguration *ReferenceLineDynamicDataConfiguration `type:"structure"`
 
+	// The series type of the reference line data configuration. Choose one of the
+	// following options:
+	//
+	//    * BAR
+	//
+	//    * LINE
+	SeriesType *string `type:"string" enum:"ReferenceLineSeriesType"`
+
 	// The static data configuration of the reference line data configuration.
 	StaticConfiguration *ReferenceLineStaticDataConfiguration `type:"structure"`
 }
@@ -75264,6 +75404,12 @@ func (s *ReferenceLineDataConfiguration) SetAxisBinding(v string) *ReferenceLine
 // SetDynamicConfiguration sets the DynamicConfiguration field's value.
 func (s *ReferenceLineDataConfiguration) SetDynamicConfiguration(v *ReferenceLineDynamicDataConfiguration) *ReferenceLineDataConfiguration {
 	s.DynamicConfiguration = v
+	return s
+}
+
+// SetSeriesType sets the SeriesType field's value.
+func (s *ReferenceLineDataConfiguration) SetSeriesType(v string) *ReferenceLineDataConfiguration {
+	s.SeriesType = &v
 	return s
 }
 
@@ -83594,6 +83740,96 @@ func (s *SslProperties) SetDisableSsl(v bool) *SslProperties {
 	return s
 }
 
+// The parameters that are required to connect to a Starburst data source.
+type StarburstParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog name for the Starburst data source.
+	//
+	// Catalog is a required field
+	Catalog *string `type:"string" required:"true"`
+
+	// The host name of the Starburst data source.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port for the Starburst data source.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+
+	// The product type for the Starburst data source.
+	ProductType *string `type:"string" enum:"StarburstProductType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StarburstParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StarburstParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StarburstParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StarburstParameters"}
+	if s.Catalog == nil {
+		invalidParams.Add(request.NewErrParamRequired("Catalog"))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalog sets the Catalog field's value.
+func (s *StarburstParameters) SetCatalog(v string) *StarburstParameters {
+	s.Catalog = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *StarburstParameters) SetHost(v string) *StarburstParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *StarburstParameters) SetPort(v int64) *StarburstParameters {
+	s.Port = &v
+	return s
+}
+
+// SetProductType sets the ProductType field's value.
+func (s *StarburstParameters) SetProductType(v string) *StarburstParameters {
+	s.ProductType = &v
+	return s
+}
+
 type StartAssetBundleExportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -88781,15 +89017,20 @@ type TimeEqualityFilter struct {
 
 	// The parameter whose value should be used for the filter value.
 	//
-	// This field is mutually exclusive to Value.
+	// This field is mutually exclusive to Value and RollingDate.
 	ParameterName *string `min:"1" type:"string"`
+
+	// The rolling date input for the TimeEquality filter.
+	//
+	// This field is mutually exclusive to Value and ParameterName.
+	RollingDate *RollingDateConfiguration `type:"structure"`
 
 	// The level of time precision that is used to aggregate DateTime values.
 	TimeGranularity *string `type:"string" enum:"TimeGranularity"`
 
 	// The value of a TimeEquality filter.
 	//
-	// This field is mutually exclusive to ParameterName.
+	// This field is mutually exclusive to RollingDate and ParameterName.
 	Value *time.Time `type:"timestamp"`
 }
 
@@ -88831,6 +89072,11 @@ func (s *TimeEqualityFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RollingDate != nil {
+		if err := s.RollingDate.Validate(); err != nil {
+			invalidParams.AddNested("RollingDate", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -88853,6 +89099,12 @@ func (s *TimeEqualityFilter) SetFilterId(v string) *TimeEqualityFilter {
 // SetParameterName sets the ParameterName field's value.
 func (s *TimeEqualityFilter) SetParameterName(v string) *TimeEqualityFilter {
 	s.ParameterName = &v
+	return s
+}
+
+// SetRollingDate sets the RollingDate field's value.
+func (s *TimeEqualityFilter) SetRollingDate(v *RollingDateConfiguration) *TimeEqualityFilter {
+	s.RollingDate = v
 	return s
 }
 
@@ -91174,6 +91426,103 @@ func (s *TotalAggregationComputation) SetValue(v *MeasureField) *TotalAggregatio
 	return s
 }
 
+// An aggregation function that aggregates the total values of a measure.
+type TotalAggregationFunction struct {
+	_ struct{} `type:"structure"`
+
+	// A built in aggregation function for total values.
+	SimpleTotalAggregationFunction *string `type:"string" enum:"SimpleTotalAggregationFunction"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TotalAggregationFunction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TotalAggregationFunction) GoString() string {
+	return s.String()
+}
+
+// SetSimpleTotalAggregationFunction sets the SimpleTotalAggregationFunction field's value.
+func (s *TotalAggregationFunction) SetSimpleTotalAggregationFunction(v string) *TotalAggregationFunction {
+	s.SimpleTotalAggregationFunction = &v
+	return s
+}
+
+// The total aggregation settings map of a field id.
+type TotalAggregationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The field id that's associated with the total aggregation option.
+	//
+	// FieldId is a required field
+	FieldId *string `min:"1" type:"string" required:"true"`
+
+	// The total aggregation function that you want to set for a specified field
+	// id.
+	//
+	// TotalAggregationFunction is a required field
+	TotalAggregationFunction *TotalAggregationFunction `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TotalAggregationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TotalAggregationOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TotalAggregationOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TotalAggregationOption"}
+	if s.FieldId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldId"))
+	}
+	if s.FieldId != nil && len(*s.FieldId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldId", 1))
+	}
+	if s.TotalAggregationFunction == nil {
+		invalidParams.Add(request.NewErrParamRequired("TotalAggregationFunction"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldId sets the FieldId field's value.
+func (s *TotalAggregationOption) SetFieldId(v string) *TotalAggregationOption {
+	s.FieldId = &v
+	return s
+}
+
+// SetTotalAggregationFunction sets the TotalAggregationFunction field's value.
+func (s *TotalAggregationOption) SetTotalAggregationFunction(v *TotalAggregationFunction) *TotalAggregationOption {
+	s.TotalAggregationFunction = v
+	return s
+}
+
 // The total options for a table visual.
 type TotalOptions struct {
 	_ struct{} `type:"structure"`
@@ -91186,6 +91535,9 @@ type TotalOptions struct {
 
 	// The scroll status (pinned, scrolled) for the total cells.
 	ScrollStatus *string `type:"string" enum:"TableTotalsScrollStatus"`
+
+	// The total aggregation settings for each value field.
+	TotalAggregationOptions []*TotalAggregationOption `type:"list"`
 
 	// Cell styling options for the total cells.
 	TotalCellStyle *TableCellStyle `type:"structure"`
@@ -91215,6 +91567,16 @@ func (s TotalOptions) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TotalOptions) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TotalOptions"}
+	if s.TotalAggregationOptions != nil {
+		for i, v := range s.TotalAggregationOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TotalAggregationOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TotalCellStyle != nil {
 		if err := s.TotalCellStyle.Validate(); err != nil {
 			invalidParams.AddNested("TotalCellStyle", err.(request.ErrInvalidParams))
@@ -91242,6 +91604,12 @@ func (s *TotalOptions) SetPlacement(v string) *TotalOptions {
 // SetScrollStatus sets the ScrollStatus field's value.
 func (s *TotalOptions) SetScrollStatus(v string) *TotalOptions {
 	s.ScrollStatus = &v
+	return s
+}
+
+// SetTotalAggregationOptions sets the TotalAggregationOptions field's value.
+func (s *TotalOptions) SetTotalAggregationOptions(v []*TotalAggregationOption) *TotalOptions {
+	s.TotalAggregationOptions = v
 	return s
 }
 
@@ -91931,6 +92299,87 @@ func (s TrendArrowOptions) GoString() string {
 // SetVisibility sets the Visibility field's value.
 func (s *TrendArrowOptions) SetVisibility(v string) *TrendArrowOptions {
 	s.Visibility = &v
+	return s
+}
+
+// The parameters that are required to connect to a Trino data source.
+type TrinoParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog name for the Trino data source.
+	//
+	// Catalog is a required field
+	Catalog *string `type:"string" required:"true"`
+
+	// The host name of the Trino data source.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port for the Trino data source.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrinoParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrinoParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TrinoParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrinoParameters"}
+	if s.Catalog == nil {
+		invalidParams.Add(request.NewErrParamRequired("Catalog"))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalog sets the Catalog field's value.
+func (s *TrinoParameters) SetCatalog(v string) *TrinoParameters {
+	s.Catalog = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *TrinoParameters) SetHost(v string) *TrinoParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *TrinoParameters) SetPort(v int64) *TrinoParameters {
+	s.Port = &v
 	return s
 }
 
@@ -102466,12 +102915,16 @@ func FolderFilterAttribute_Values() []string {
 const (
 	// FolderTypeShared is a FolderType enum value
 	FolderTypeShared = "SHARED"
+
+	// FolderTypeRestricted is a FolderType enum value
+	FolderTypeRestricted = "RESTRICTED"
 )
 
 // FolderType_Values returns all elements of the FolderType enum
 func FolderType_Values() []string {
 	return []string{
 		FolderTypeShared,
+		FolderTypeRestricted,
 	}
 }
 
@@ -103924,6 +104377,30 @@ func PivotTableConditionalFormattingScopeRole_Values() []string {
 }
 
 const (
+	// PivotTableDataPathTypeHierarchyRowsLayoutColumn is a PivotTableDataPathType enum value
+	PivotTableDataPathTypeHierarchyRowsLayoutColumn = "HIERARCHY_ROWS_LAYOUT_COLUMN"
+
+	// PivotTableDataPathTypeMultipleRowMetricsColumn is a PivotTableDataPathType enum value
+	PivotTableDataPathTypeMultipleRowMetricsColumn = "MULTIPLE_ROW_METRICS_COLUMN"
+
+	// PivotTableDataPathTypeEmptyColumnHeader is a PivotTableDataPathType enum value
+	PivotTableDataPathTypeEmptyColumnHeader = "EMPTY_COLUMN_HEADER"
+
+	// PivotTableDataPathTypeCountMetricColumn is a PivotTableDataPathType enum value
+	PivotTableDataPathTypeCountMetricColumn = "COUNT_METRIC_COLUMN"
+)
+
+// PivotTableDataPathType_Values returns all elements of the PivotTableDataPathType enum
+func PivotTableDataPathType_Values() []string {
+	return []string{
+		PivotTableDataPathTypeHierarchyRowsLayoutColumn,
+		PivotTableDataPathTypeMultipleRowMetricsColumn,
+		PivotTableDataPathTypeEmptyColumnHeader,
+		PivotTableDataPathTypeCountMetricColumn,
+	}
+}
+
+const (
 	// PivotTableFieldCollapseStateCollapsed is a PivotTableFieldCollapseState enum value
 	PivotTableFieldCollapseStateCollapsed = "COLLAPSED"
 
@@ -104136,6 +104613,22 @@ func ReferenceLinePatternType_Values() []string {
 		ReferenceLinePatternTypeSolid,
 		ReferenceLinePatternTypeDashed,
 		ReferenceLinePatternTypeDotted,
+	}
+}
+
+const (
+	// ReferenceLineSeriesTypeBar is a ReferenceLineSeriesType enum value
+	ReferenceLineSeriesTypeBar = "BAR"
+
+	// ReferenceLineSeriesTypeLine is a ReferenceLineSeriesType enum value
+	ReferenceLineSeriesTypeLine = "LINE"
+)
+
+// ReferenceLineSeriesType_Values returns all elements of the ReferenceLineSeriesType enum
+func ReferenceLineSeriesType_Values() []string {
+	return []string{
+		ReferenceLineSeriesTypeBar,
+		ReferenceLineSeriesTypeLine,
 	}
 }
 
@@ -104528,6 +105021,38 @@ func SimpleNumericalAggregationFunction_Values() []string {
 }
 
 const (
+	// SimpleTotalAggregationFunctionDefault is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionDefault = "DEFAULT"
+
+	// SimpleTotalAggregationFunctionSum is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionSum = "SUM"
+
+	// SimpleTotalAggregationFunctionAverage is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionAverage = "AVERAGE"
+
+	// SimpleTotalAggregationFunctionMin is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionMin = "MIN"
+
+	// SimpleTotalAggregationFunctionMax is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionMax = "MAX"
+
+	// SimpleTotalAggregationFunctionNone is a SimpleTotalAggregationFunction enum value
+	SimpleTotalAggregationFunctionNone = "NONE"
+)
+
+// SimpleTotalAggregationFunction_Values returns all elements of the SimpleTotalAggregationFunction enum
+func SimpleTotalAggregationFunction_Values() []string {
+	return []string{
+		SimpleTotalAggregationFunctionDefault,
+		SimpleTotalAggregationFunctionSum,
+		SimpleTotalAggregationFunctionAverage,
+		SimpleTotalAggregationFunctionMin,
+		SimpleTotalAggregationFunctionMax,
+		SimpleTotalAggregationFunctionNone,
+	}
+}
+
+const (
 	// SmallMultiplesAxisPlacementOutside is a SmallMultiplesAxisPlacement enum value
 	SmallMultiplesAxisPlacementOutside = "OUTSIDE"
 
@@ -104652,6 +105177,22 @@ func SpecialValue_Values() []string {
 		SpecialValueEmpty,
 		SpecialValueNull,
 		SpecialValueOther,
+	}
+}
+
+const (
+	// StarburstProductTypeGalaxy is a StarburstProductType enum value
+	StarburstProductTypeGalaxy = "GALAXY"
+
+	// StarburstProductTypeEnterprise is a StarburstProductType enum value
+	StarburstProductTypeEnterprise = "ENTERPRISE"
+)
+
+// StarburstProductType_Values returns all elements of the StarburstProductType enum
+func StarburstProductType_Values() []string {
+	return []string{
+		StarburstProductTypeGalaxy,
+		StarburstProductTypeEnterprise,
 	}
 }
 

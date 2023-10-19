@@ -660,6 +660,12 @@
         "SseConfig$type": "<p>The encryption type.</p>"
       }
     },
+    "EngineLogStream": {
+      "base": null,
+      "refs": {
+        "RunLogLocation$engineLogStream": "<p> The log stream ARN for the engine log. </p>"
+      }
+    },
     "EscapeChar": {
       "base": null,
       "refs": {
@@ -2192,6 +2198,12 @@
         "GetRunRequest$export": "<p>The run's export format.</p>"
       }
     },
+    "RunFailureReason": {
+      "base": null,
+      "refs": {
+        "GetRunResponse$failureReason": "<p> The reason a run has failed. </p>"
+      }
+    },
     "RunGroupArn": {
       "base": null,
       "refs": {
@@ -2288,7 +2300,7 @@
         "GetRunRequest$id": "<p>The run's ID.</p>",
         "GetRunResponse$id": "<p>The run's ID.</p>",
         "GetRunResponse$runId": "<p>The run's ID.</p>",
-        "GetRunTaskRequest$id": "<p>The task's ID.</p>",
+        "GetRunTaskRequest$id": "<p>The workflow run ID.</p>",
         "ListRunTasksRequest$id": "<p>The run's ID.</p>",
         "RunListItem$id": "<p>The run's ID.</p>",
         "StartRunRequest$runId": "<p>The ID of a run to duplicate.</p>",
@@ -2342,6 +2354,18 @@
       "refs": {
         "GetRunResponse$logLevel": "<p>The run's log level.</p>",
         "StartRunRequest$logLevel": "<p>A log level for the run.</p>"
+      }
+    },
+    "RunLogLocation": {
+      "base": "<p> The URI for the run log. </p>",
+      "refs": {
+        "GetRunResponse$logLocation": "<p> The location of the run log. </p>"
+      }
+    },
+    "RunLogStream": {
+      "base": null,
+      "refs": {
+        "RunLogLocation$runLogStream": "<p> The log stream ARN for the run log. </p>"
       }
     },
     "RunName": {
@@ -3070,6 +3094,12 @@
       "refs": {
         "TagMap$value": null,
         "TagResourceRequestTagsMap$value": null
+      }
+    },
+    "TaskFailureReason": {
+      "base": null,
+      "refs": {
+        "GetRunTaskResponse$failureReason": "<p> The reason a task has failed. </p>"
       }
     },
     "TaskId": {

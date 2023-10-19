@@ -58,6 +58,11 @@ func (c *Neptunedata) CancelGremlinQueryRequest(input *CancelGremlinQueryInput) 
 // Cancels a Gremlin query. See Gremlin query cancellation (https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-status-cancel.html)
 // for more information.
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelquery)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -175,10 +180,14 @@ func (c *Neptunedata) CancelLoaderJobRequest(input *CancelLoaderJobInput) (req *
 
 // CancelLoaderJob API operation for Amazon NeptuneData.
 //
-// Cancels a specified load job. This is an HTTP DELETE request.
-//
-// See Neptune Loader Get-Status API (https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-status.htm)
+// Cancels a specified load job. This is an HTTP DELETE request. See Neptune
+// Loader Get-Status API (https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-status.htm)
 // for more information.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelLoaderJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelloaderjob)
+// IAM action in that cluster..
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -296,6 +305,11 @@ func (c *Neptunedata) CancelMLDataProcessingJobRequest(input *CancelMLDataProces
 // Cancels a Neptune ML data processing job. See The dataprocessing command
 // (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-dataprocessing.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelMLDataProcessingJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelmldataprocessingjob)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -405,6 +419,11 @@ func (c *Neptunedata) CancelMLModelTrainingJobRequest(input *CancelMLModelTraini
 //
 // Cancels a Neptune ML model training job. See Model training using the modeltraining
 // command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-modeltraining.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelMLModelTrainingJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelmlmodeltrainingjob)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -516,6 +535,11 @@ func (c *Neptunedata) CancelMLModelTransformJobRequest(input *CancelMLModelTrans
 // Cancels a specified model transform job. See Use a trained model to generate
 // new model artifacts (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelMLModelTransformJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelmlmodeltransformjob)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -626,6 +650,11 @@ func (c *Neptunedata) CancelOpenCypherQueryRequest(input *CancelOpenCypherQueryI
 // Cancels a specified openCypher query. See Neptune openCypher status endpoint
 // (https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-status.html)
 // for more information.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CancelQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelquery)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -751,6 +780,11 @@ func (c *Neptunedata) CreateMLEndpointRequest(input *CreateMLEndpointInput) (req
 // model that the model-training process constructed. See Managing inference
 // endpoints using the endpoints command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-endpoints.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:CreateMLEndpoint (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#createmlendpoint)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -861,6 +895,11 @@ func (c *Neptunedata) DeleteMLEndpointRequest(input *DeleteMLEndpointInput) (req
 // Cancels the creation of a Neptune ML inference endpoint. See Managing inference
 // endpoints using the endpoints command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-endpoints.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:DeleteMLEndpoint (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletemlendpoint)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -969,6 +1008,11 @@ func (c *Neptunedata) DeletePropertygraphStatisticsRequest(input *DeleteProperty
 // DeletePropertygraphStatistics API operation for Amazon NeptuneData.
 //
 // Deletes statistics for Gremlin and openCypher (property graph) data.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:DeleteStatistics (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletestatistics)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1084,6 +1128,11 @@ func (c *Neptunedata) DeleteSparqlStatisticsRequest(input *DeleteSparqlStatistic
 // DeleteSparqlStatistics API operation for Amazon NeptuneData.
 //
 // # Deletes SPARQL statistics
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:DeleteStatistics (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletestatistics)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1205,6 +1254,11 @@ func (c *Neptunedata) ExecuteFastResetRequest(input *ExecuteFastResetInput) (req
 // with action set to initiateDatabaseReset. This returns a UUID token which
 // you then include when calling ExecuteFastReset again with action set to performDatabaseReset.
 // See Empty an Amazon Neptune DB cluster using the fast reset API (https://docs.aws.amazon.com/neptune/latest/userguide/manage-console-fast-reset.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ResetDatabase (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#resetdatabase)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1332,6 +1386,22 @@ func (c *Neptunedata) ExecuteGremlinExplainQueryRequest(input *ExecuteGremlinExp
 // and execution bottlenecks and to tune your query, as explained in Tuning
 // Gremlin queries (https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-traversal-tuning.html).
 // You can also use query hints to improve query execution plans.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows one of the following IAM actions in that cluster, depending on
+// the query:
+//
+//   - neptune-db:ReadDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery)
+//
+//   - neptune-db:WriteDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#writedataviaquery)
+//
+//   - neptune-db:DeleteDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletedataviaquery)
+//
+// Note that the neptune-db:QueryLanguage:Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of Gremlin queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1475,6 +1545,16 @@ func (c *Neptunedata) ExecuteGremlinProfileQueryRequest(input *ExecuteGremlinPro
 // various metrics about the run, and produces a profile report as output. See
 // Gremlin profile API in Neptune (https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-profile-api.html)
 // for details.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ReadDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of Gremlin queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1620,6 +1700,22 @@ func (c *Neptunedata) ExecuteGremlinQueryRequest(input *ExecuteGremlinQueryInput
 // in the Apache TinkerPop3 documentation. More details can also be found in
 // Accessing a Neptune graph with Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that enables one of the following IAM actions in that cluster, depending
+// on the query:
+//
+//   - neptune-db:ReadDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery)
+//
+//   - neptune-db:WriteDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#writedataviaquery)
+//
+//   - neptune-db:DeleteDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#deletedataviaquery)
+//
+// Note that the neptune-db:QueryLanguage:Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of Gremlin queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1762,6 +1858,16 @@ func (c *Neptunedata) ExecuteOpenCypherExplainQueryRequest(input *ExecuteOpenCyp
 // (https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-explain.html)
 // for more information.
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ReadDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of openCypher queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1903,7 +2009,12 @@ func (c *Neptunedata) GetEngineStatusRequest(input *GetEngineStatusInput) (req *
 
 // GetEngineStatus API operation for Amazon NeptuneData.
 //
-// Check the status of the graph database on the host.
+// Retrieves the status of the graph database on the host.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetEngineStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getenginestatus)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2004,6 +2115,16 @@ func (c *Neptunedata) GetGremlinQueryStatusRequest(input *GetGremlinQueryStatusI
 // GetGremlinQueryStatus API operation for Amazon NeptuneData.
 //
 // Gets the status of a specified Gremlin query.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of Gremlin queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2131,6 +2252,11 @@ func (c *Neptunedata) GetMLDataProcessingJobRequest(input *GetMLDataProcessingJo
 // Retrieves information about a specified data processing job. See The dataprocessing
 // command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-dataprocessing.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:neptune-db:GetMLDataProcessingJobStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getmldataprocessingjobstatus)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2240,6 +2366,11 @@ func (c *Neptunedata) GetMLEndpointRequest(input *GetMLEndpointInput) (req *requ
 //
 // Retrieves details about an inference endpoint. See Managing inference endpoints
 // using the endpoints command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-endpoints.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetMLEndpointStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getmlendpointstatus)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2351,6 +2482,11 @@ func (c *Neptunedata) GetMLModelTrainingJobRequest(input *GetMLModelTrainingJobI
 // Retrieves information about a Neptune ML model training job. See Model training
 // using the modeltraining command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-modeltraining.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetMLModelTrainingJobStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getmlmodeltrainingjobstatus)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2461,6 +2597,11 @@ func (c *Neptunedata) GetMLModelTransformJobRequest(input *GetMLModelTransformJo
 // Gets information about a specified model transform job. See Use a trained
 // model to generate new model artifacts (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetMLModelTransformJobStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getmlmodeltransformjobstatus)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2569,6 +2710,16 @@ func (c *Neptunedata) GetOpenCypherQueryStatusRequest(input *GetOpenCypherQueryS
 // GetOpenCypherQueryStatus API operation for Amazon NeptuneData.
 //
 // Retrieves the status of a specified openCypher query.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of openCypher queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2698,6 +2849,11 @@ func (c *Neptunedata) GetPropertygraphStatisticsRequest(input *GetPropertygraphS
 //
 // Gets property graph statistics (Gremlin and openCypher).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetStatisticsStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getstatisticsstatus)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2813,6 +2969,11 @@ func (c *Neptunedata) GetPropertygraphSummaryRequest(input *GetPropertygraphSumm
 //
 // Gets a graph summary for a property graph.
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetGraphSummary (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getgraphsummary)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2927,6 +3088,11 @@ func (c *Neptunedata) GetRDFGraphSummaryRequest(input *GetRDFGraphSummaryInput) 
 // GetRDFGraphSummary API operation for Amazon NeptuneData.
 //
 // Gets a graph summary for an RDF graph.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetGraphSummary (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getgraphsummary)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3169,6 +3335,16 @@ func (c *Neptunedata) GetSparqlStreamRequest(input *GetSparqlStreamInput) (req *
 //
 // See Capturing graph changes in real time using Neptune streams (https://docs.aws.amazon.com/neptune/latest/userguide/streams.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetStreamRecords (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getstreamrecords)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Sparql (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of SPARQL queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3283,6 +3459,16 @@ func (c *Neptunedata) ListGremlinQueriesRequest(input *ListGremlinQueriesInput) 
 //
 // Lists active Gremlin queries. See Gremlin query status API (https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-status.html)
 // for details about the output.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Gremlin (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of Gremlin queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3409,6 +3595,11 @@ func (c *Neptunedata) ListLoaderJobsRequest(input *ListLoaderJobsInput) (req *re
 //
 // Retrieves a list of the loadIds for all active loader jobs.
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ListLoaderJobs (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#listloaderjobs)
+// IAM action in that cluster..
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3522,6 +3713,11 @@ func (c *Neptunedata) ListMLDataProcessingJobsRequest(input *ListMLDataProcessin
 // Returns a list of Neptune ML data processing jobs. See Listing active data-processing
 // jobs using the Neptune ML dataprocessing command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-dataprocessing.html#machine-learning-api-dataprocessing-list-jobs).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ListMLDataProcessingJobs (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#listmldataprocessingjobs)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3631,6 +3827,11 @@ func (c *Neptunedata) ListMLEndpointsRequest(input *ListMLEndpointsInput) (req *
 //
 // Lists existing inference endpoints. See Managing inference endpoints using
 // the endpoints command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-endpoints.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ListMLEndpoints (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#listmlendpoints)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3742,6 +3943,11 @@ func (c *Neptunedata) ListMLModelTrainingJobsRequest(input *ListMLModelTrainingJ
 // Lists Neptune ML model-training jobs. See Model training using the modeltraining
 // command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-modeltraining.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:neptune-db:ListMLModelTrainingJobs (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#neptune-db:listmlmodeltrainingjobs)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3852,6 +4058,11 @@ func (c *Neptunedata) ListMLModelTransformJobsRequest(input *ListMLModelTransfor
 // Returns a list of model transform job IDs. See Use a trained model to generate
 // new model artifacts (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ListMLModelTransformJobs (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#listmlmodeltransformjobs)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3961,6 +4172,16 @@ func (c *Neptunedata) ListOpenCypherQueriesRequest(input *ListOpenCypherQueriesI
 //
 // Lists active openCypher queries. See Neptune openCypher status endpoint (https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher-status.html)
 // for more information.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
+// IAM action in that cluster.
+//
+// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// IAM condition key can be used in the policy document to restrict the use
+// of openCypher queries (see Condition keys available in Neptune IAM data-access
+// policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4090,6 +4311,11 @@ func (c *Neptunedata) ManagePropertygraphStatisticsRequest(input *ManageProperty
 //
 // Manages the generation and use of property graph statistics.
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ManageStatistics (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#managestatistics)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4204,6 +4430,11 @@ func (c *Neptunedata) ManageSparqlStatisticsRequest(input *ManageSparqlStatistic
 // ManageSparqlStatistics API operation for Amazon NeptuneData.
 //
 // Manages the generation and use of RDF graph statistics.
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:ManageStatistics (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#managestatistics)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4321,6 +4552,11 @@ func (c *Neptunedata) StartLoaderJobRequest(input *StartLoaderJobInput) (req *re
 // Starts a Neptune bulk loader job to load data from an Amazon S3 bucket into
 // a Neptune DB instance. See Using the Amazon Neptune Bulk Loader to Ingest
 // Data (https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:StartLoaderJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startloaderjob)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4441,6 +4677,11 @@ func (c *Neptunedata) StartMLDataProcessingJobRequest(input *StartMLDataProcessi
 // Creates a new Neptune ML data processing job for processing the graph data
 // exported from Neptune for training. See The dataprocessing command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-dataprocessing.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:StartMLModelDataProcessingJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startmlmodeldataprocessingjob)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4551,6 +4792,11 @@ func (c *Neptunedata) StartMLModelTrainingJobRequest(input *StartMLModelTraining
 // Creates a new Neptune ML model training job. See Model training using the
 // modeltraining command (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-modeltraining.html).
 //
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:StartMLModelTrainingJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startmlmodeltrainingjob)
+// IAM action in that cluster.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4660,6 +4906,11 @@ func (c *Neptunedata) StartMLModelTransformJobRequest(input *StartMLModelTransfo
 //
 // Creates a new model transform job. See Use a trained model to generate new
 // model artifacts (https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html).
+//
+// When invoking this operation in a Neptune cluster that has IAM authentication
+// enabled, the IAM user or role making the request must have a policy attached
+// that allows the neptune-db:StartMLModelTransformJob (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startmlmodeltransformjob)
+// IAM action in that cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8039,7 +8290,7 @@ type GetPropertygraphStatisticsOutput struct {
 	Payload *Statistics `locationName:"payload" type:"structure" required:"true"`
 
 	// The HTTP return code of the request. If the request succeeded, the code is
-	// 200. See Common error codes for DFE statistics request (docs.aws.amazon.comneptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors)
+	// 200. See Common error codes for DFE statistics request (https://docs.aws.amazon.com/neptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors)
 	// for a list of common errors.
 	//
 	// Status is a required field
@@ -8251,8 +8502,13 @@ type GetSparqlStatisticsOutput struct {
 	Payload *Statistics `locationName:"payload" type:"structure" required:"true"`
 
 	// The HTTP return code of the request. If the request succeeded, the code is
-	// 200. See Common error codes for DFE statistics request (docs.aws.amazon.comneptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors)
+	// 200. See Common error codes for DFE statistics request (https://docs.aws.amazon.com/neptune/latest/userguide/neptune-dfe-statistics.html#neptune-dfe-statistics-errors)
 	// for a list of common errors.
+	//
+	// When invoking this operation in a Neptune cluster that has IAM authentication
+	// enabled, the IAM user or role making the request must have a policy attached
+	// that allows the neptune-db:GetStatisticsStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getstatisticsstatus)
+	// IAM action in that cluster.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
@@ -11145,7 +11401,7 @@ type RDFGraphSummaryValueMap struct {
 	_ struct{} `type:"structure"`
 
 	// The graph summary of an RDF graph. See Graph summary response for an RDF
-	// graph (https://docs.aws.amazon.com/neptune-graph-summary.html#neptune-graph-summary-rdf-response).
+	// graph (https://docs.aws.amazon.com/neptune/latest/userguide/neptune-graph-summary.html#neptune-graph-summary-rdf-response).
 	GraphSummary *RDFGraphSummary `locationName:"graphSummary" type:"structure"`
 
 	// The timestamp, in ISO 8601 format, of the time at which Neptune last computed

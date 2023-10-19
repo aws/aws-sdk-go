@@ -488,6 +488,22 @@
         {"shape":"InternalException"}
       ]
     },
+    "GetDomainMaintenanceStatus":{
+      "name":"GetDomainMaintenanceStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance"
+      },
+      "input":{"shape":"GetDomainMaintenanceStatusRequest"},
+      "output":{"shape":"GetDomainMaintenanceStatusResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "GetPackageVersionHistory":{
       "name":"GetPackageVersionHistory",
       "http":{
@@ -534,6 +550,22 @@
         {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"}
+      ]
+    },
+    "ListDomainMaintenances":{
+      "name":"ListDomainMaintenances",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenances"
+      },
+      "input":{"shape":"ListDomainMaintenancesRequest"},
+      "output":{"shape":"ListDomainMaintenancesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
       ]
     },
     "ListDomainNames":{
@@ -743,6 +775,22 @@
         {"shape":"DisabledOperationException"},
         {"shape":"InternalException"},
         {"shape":"BaseException"}
+      ]
+    },
+    "StartDomainMaintenance":{
+      "name":"StartDomainMaintenance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance"
+      },
+      "input":{"shape":"StartDomainMaintenanceRequest"},
+      "output":{"shape":"StartDomainMaintenanceResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
       ]
     },
     "StartServiceSoftwareUpdate":{
@@ -1833,7 +1881,8 @@
     },
     "DescribePackagesFilterValues":{
       "type":"list",
-      "member":{"shape":"DescribePackagesFilterValue"}
+      "member":{"shape":"DescribePackagesFilterValue"},
+      "min":1
     },
     "DescribePackagesRequest":{
       "type":"structure",
@@ -2035,6 +2084,23 @@
       "members":{
         "AWSDomainInformation":{"shape":"AWSDomainInformation"}
       }
+    },
+    "DomainMaintenanceDetails":{
+      "type":"structure",
+      "members":{
+        "MaintenanceId":{"shape":"RequestId"},
+        "DomainName":{"shape":"DomainName"},
+        "Action":{"shape":"MaintenanceType"},
+        "NodeId":{"shape":"NodeId"},
+        "Status":{"shape":"MaintenanceStatus"},
+        "StatusMessage":{"shape":"MaintenanceStatusMessage"},
+        "CreatedAt":{"shape":"UpdateTimestamp"},
+        "UpdatedAt":{"shape":"UpdateTimestamp"}
+      }
+    },
+    "DomainMaintenanceList":{
+      "type":"list",
+      "member":{"shape":"DomainMaintenanceDetails"}
     },
     "DomainName":{
       "type":"string",
@@ -2302,6 +2368,36 @@
         "CompatibleVersions":{"shape":"CompatibleVersionsList"}
       }
     },
+    "GetDomainMaintenanceStatusRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "MaintenanceId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MaintenanceId":{
+          "shape":"RequestId",
+          "location":"querystring",
+          "locationName":"maintenanceId"
+        }
+      }
+    },
+    "GetDomainMaintenanceStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"MaintenanceStatus"},
+        "StatusMessage":{"shape":"MaintenanceStatusMessage"},
+        "NodeId":{"shape":"NodeId"},
+        "Action":{"shape":"MaintenanceType"},
+        "CreatedAt":{"shape":"UpdateTimestamp"},
+        "UpdatedAt":{"shape":"UpdateTimestamp"}
+      }
+    },
     "GetPackageVersionHistoryRequest":{
       "type":"structure",
       "required":["PackageID"],
@@ -2523,6 +2619,44 @@
       "type":"map",
       "key":{"shape":"InstanceRole"},
       "value":{"shape":"Limits"}
+    },
+    "ListDomainMaintenancesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Action":{
+          "shape":"MaintenanceType",
+          "location":"querystring",
+          "locationName":"action"
+        },
+        "Status":{
+          "shape":"MaintenanceStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListDomainMaintenancesResponse":{
+      "type":"structure",
+      "members":{
+        "DomainMaintenances":{"shape":"DomainMaintenanceList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListDomainNamesRequest":{
       "type":"structure",
@@ -2810,6 +2944,30 @@
       ]
     },
     "Long":{"type":"long"},
+    "MaintenanceStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "TIMED_OUT"
+      ]
+    },
+    "MaintenanceStatusMessage":{
+      "type":"string",
+      "max":1000,
+      "min":0,
+      "pattern":"^([\\s\\S]*)$"
+    },
+    "MaintenanceType":{
+      "type":"string",
+      "enum":[
+        "REBOOT_NODE",
+        "RESTART_SEARCH_PROCESS",
+        "RESTART_DASHBOARD"
+      ]
+    },
     "MasterNodeStatus":{
       "type":"string",
       "enum":[
@@ -3283,6 +3441,12 @@
         "TagKeys":{"shape":"StringList"}
       }
     },
+    "RequestId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([\\s\\S]*)$"
+    },
     "ReservationToken":{
       "type":"string",
       "max":64,
@@ -3565,6 +3729,28 @@
       }
     },
     "StartAt":{"type":"timestamp"},
+    "StartDomainMaintenanceRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Action"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Action":{"shape":"MaintenanceType"},
+        "NodeId":{"shape":"NodeId"}
+      }
+    },
+    "StartDomainMaintenanceResponse":{
+      "type":"structure",
+      "members":{
+        "MaintenanceId":{"shape":"RequestId"}
+      }
+    },
     "StartServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],

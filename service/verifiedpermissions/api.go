@@ -125,14 +125,14 @@ func (c *VerifiedPermissions) CreateIdentitySourceRequest(input *CreateIdentityS
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -148,6 +148,10 @@ func (c *VerifiedPermissions) CreateIdentitySourceRequest(input *CreateIdentityS
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it would cause a service quota to be exceeded.
+//
+//   - ConflictException
+//     The request failed because another request to modify a resource occurred
+//     at the same.
 //
 //   - AccessDeniedException
 //     You don't have sufficient access to perform this action.
@@ -282,14 +286,14 @@ func (c *VerifiedPermissions) CreatePolicyRequest(input *CreatePolicyInput) (req
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -305,6 +309,10 @@ func (c *VerifiedPermissions) CreatePolicyRequest(input *CreatePolicyInput) (req
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it would cause a service quota to be exceeded.
+//
+//   - ConflictException
+//     The request failed because another request to modify a resource occurred
+//     at the same.
 //
 //   - AccessDeniedException
 //     You don't have sufficient access to perform this action.
@@ -385,7 +393,7 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 //
 // Creates a policy store. A policy store is a container for policy resources.
 //
-// Although Cedar supports multiple namespaces (https://docs.cedarpolicy.com/schema.html#namespace),
+// Although Cedar supports multiple namespaces (https://docs.cedarpolicy.com/schema/schema.html#namespace),
 // Verified Permissions currently supports only one namespace per policy store.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
@@ -428,14 +436,14 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -451,6 +459,10 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it would cause a service quota to be exceeded.
+//
+//   - ConflictException
+//     The request failed because another request to modify a resource occurred
+//     at the same.
 //
 //   - AccessDeniedException
 //     You don't have sufficient access to perform this action.
@@ -574,14 +586,14 @@ func (c *VerifiedPermissions) CreatePolicyTemplateRequest(input *CreatePolicyTem
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -597,6 +609,10 @@ func (c *VerifiedPermissions) CreatePolicyTemplateRequest(input *CreatePolicyTem
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it would cause a service quota to be exceeded.
+//
+//   - ConflictException
+//     The request failed because another request to modify a resource occurred
+//     at the same.
 //
 //   - AccessDeniedException
 //     You don't have sufficient access to perform this action.
@@ -717,14 +733,14 @@ func (c *VerifiedPermissions) DeleteIdentitySourceRequest(input *DeleteIdentityS
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -860,14 +876,14 @@ func (c *VerifiedPermissions) DeletePolicyRequest(input *DeletePolicyInput) (req
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1004,14 +1020,14 @@ func (c *VerifiedPermissions) DeletePolicyStoreRequest(input *DeletePolicyStoreI
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1141,14 +1157,14 @@ func (c *VerifiedPermissions) DeletePolicyTemplateRequest(input *DeletePolicyTem
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1280,14 +1296,14 @@ func (c *VerifiedPermissions) GetIdentitySourceRequest(input *GetIdentitySourceI
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1415,14 +1431,14 @@ func (c *VerifiedPermissions) GetPolicyRequest(input *GetPolicyInput) (req *requ
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1550,14 +1566,14 @@ func (c *VerifiedPermissions) GetPolicyStoreRequest(input *GetPolicyStoreInput) 
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1686,14 +1702,14 @@ func (c *VerifiedPermissions) GetPolicyTemplateRequest(input *GetPolicyTemplateI
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1821,14 +1837,14 @@ func (c *VerifiedPermissions) GetSchemaRequest(input *GetSchemaInput) (req *requ
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -1961,14 +1977,14 @@ func (c *VerifiedPermissions) IsAuthorizedRequest(input *IsAuthorizedInput) (req
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -2119,14 +2135,14 @@ func (c *VerifiedPermissions) IsAuthorizedWithTokenRequest(input *IsAuthorizedWi
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -2261,14 +2277,14 @@ func (c *VerifiedPermissions) ListIdentitySourcesRequest(input *ListIdentitySour
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -2453,14 +2469,14 @@ func (c *VerifiedPermissions) ListPoliciesRequest(input *ListPoliciesInput) (req
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -2646,14 +2662,14 @@ func (c *VerifiedPermissions) ListPolicyStoresRequest(input *ListPolicyStoresInp
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -2836,14 +2852,14 @@ func (c *VerifiedPermissions) ListPolicyTemplatesRequest(input *ListPolicyTempla
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3032,14 +3048,14 @@ func (c *VerifiedPermissions) PutSchemaRequest(input *PutSchemaInput) (req *requ
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3181,14 +3197,14 @@ func (c *VerifiedPermissions) UpdateIdentitySourceRequest(input *UpdateIdentityS
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3343,14 +3359,14 @@ func (c *VerifiedPermissions) UpdatePolicyRequest(input *UpdatePolicyInput) (req
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3490,14 +3506,14 @@ func (c *VerifiedPermissions) UpdatePolicyStoreRequest(input *UpdatePolicyStoreI
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3595,9 +3611,9 @@ func (c *VerifiedPermissions) UpdatePolicyTemplateRequest(input *UpdatePolicyTem
 // Updates the specified policy template. You can update only the description
 // and the some elements of the policyBody (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyTemplate.html#amazonverifiedpermissions-UpdatePolicyTemplate-request-policyBody).
 //
-// Changes you make to the policy template content are immediately reflected
-// in authorization decisions that involve all template-linked policies instantiated
-// from this template.
+// Changes you make to the policy template content are immediately (within the
+// constraints of eventual consistency) reflected in authorization decisions
+// that involve all template-linked policies instantiated from this template.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
 // . It can take a few seconds for a new or changed element to be propagate
@@ -3639,14 +3655,14 @@ func (c *VerifiedPermissions) UpdatePolicyTemplateRequest(input *UpdatePolicyTem
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
@@ -3856,7 +3872,7 @@ func (s *ActionIdentifier) SetActionType(v string) *ActionIdentifier {
 type AttributeValue struct {
 	_ struct{} `type:"structure"`
 
-	// An attribute value of Boolean (https://docs.cedarpolicy.com/syntax-datatypes.html#boolean)
+	// An attribute value of Boolean (https://docs.cedarpolicy.com/policies/syntax-datatypes.html#boolean)
 	// type.
 	//
 	// Example: {"boolean": true}
@@ -3872,7 +3888,7 @@ type AttributeValue struct {
 	// type>"}
 	EntityIdentifier *EntityIdentifier `locationName:"entityIdentifier" type:"structure"`
 
-	// An attribute value of Long (https://docs.cedarpolicy.com/syntax-datatypes.html#long)
+	// An attribute value of Long (https://docs.cedarpolicy.com/policies/syntax-datatypes.html#long)
 	// type.
 	//
 	// Example: {"long": 0}
@@ -3882,19 +3898,19 @@ type AttributeValue struct {
 	// String and GoString methods.
 	Long *int64 `locationName:"long" type:"long" sensitive:"true"`
 
-	// An attribute value of Record (https://docs.cedarpolicy.com/syntax-datatypes.html#record)
+	// An attribute value of Record (https://docs.cedarpolicy.com/policies/syntax-datatypes.html#record)
 	// type.
 	//
 	// Example: {"record": { "keyName": {} } }
 	Record map[string]*AttributeValue `locationName:"record" type:"map"`
 
-	// An attribute value of Set (https://docs.cedarpolicy.com/syntax-datatypes.html#set)
+	// An attribute value of Set (https://docs.cedarpolicy.com/policies/syntax-datatypes.html#set)
 	// type.
 	//
 	// Example: {"set": [ {} ] }
 	Set []*AttributeValue `locationName:"set" type:"list"`
 
-	// An attribute value of String (https://docs.cedarpolicy.com/syntax-datatypes.html#string)
+	// An attribute value of String (https://docs.cedarpolicy.com/policies/syntax-datatypes.html#string)
 	// type.
 	//
 	// Example: {"string": "abc"}
@@ -10051,14 +10067,14 @@ func (s *UpdateStaticPolicyDefinition) SetStatement(v string) *UpdateStaticPolic
 //   - MissingAttribute The policy attempts to access a record or entity attribute
 //     that isn't specified in the schema. Test for the existence of the attribute
 //     first before attempting to access its value. For more information, see
-//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - UnsafeOptionalAttributeAccess The policy attempts to access a record
 //     or entity attribute that is optional and isn't guaranteed to be present.
 //     Test for the existence of the attribute first before attempting to access
 //     its value. For more information, see the has (presence of attribute test)
-//     operator (https://docs.cedarpolicy.com/syntax-operators.html#has-presence-of-attribute-test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
 //     in the Cedar Policy Language Guide.
 //
 //   - ImpossiblePolicy Cedar has determined that a policy condition always
