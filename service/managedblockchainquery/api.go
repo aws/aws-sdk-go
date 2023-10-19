@@ -3848,6 +3848,9 @@ const (
 
 	// QueryNetworkBitcoinTestnet is a QueryNetwork enum value
 	QueryNetworkBitcoinTestnet = "BITCOIN_TESTNET"
+
+	// QueryNetworkEthereumSepoliaTestnet is a QueryNetwork enum value
+	QueryNetworkEthereumSepoliaTestnet = "ETHEREUM_SEPOLIA_TESTNET"
 )
 
 // QueryNetwork_Values returns all elements of the QueryNetwork enum
@@ -3856,6 +3859,7 @@ func QueryNetwork_Values() []string {
 		QueryNetworkEthereumMainnet,
 		QueryNetworkBitcoinMainnet,
 		QueryNetworkBitcoinTestnet,
+		QueryNetworkEthereumSepoliaTestnet,
 	}
 }
 

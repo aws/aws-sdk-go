@@ -579,6 +579,7 @@
         "DescribeTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "Folder$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
+        "FolderArnList$member": null,
         "FolderSummary$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
         "GenerateEmbedUrlForAnonymousUserResponse$AnonymousUserArn": "<p>The Amazon Resource Name (ARN) to use for the anonymous Amazon QuickSight user.</p>",
         "GenerateEmbedUrlForRegisteredUserRequest$UserArn": "<p>The Amazon Resource Name for the registered user.</p>",
@@ -1303,7 +1304,7 @@
         "DataFieldSeriesItem$AxisBinding": "<p>The axis that you are binding the field to.</p>",
         "FieldSeriesItem$AxisBinding": "<p>The axis that you are binding the field to.</p>",
         "LineChartDefaultSeriesSettings$AxisBinding": "<p>The axis to which you are binding all line series to.</p>",
-        "ReferenceLineDataConfiguration$AxisBinding": "<p>The axis binding type of the reference line. Choose one of the following options:</p> <ul> <li> <p>PrimaryY</p> </li> <li> <p>SecondaryY</p> </li> </ul>"
+        "ReferenceLineDataConfiguration$AxisBinding": "<p>The axis binding type of the reference line. Choose one of the following options:</p> <ul> <li> <p> <code>PrimaryY</code> </p> </li> <li> <p> <code>SecondaryY</code> </p> </li> </ul>"
       }
     },
     "AxisDataOptions": {
@@ -1700,7 +1701,9 @@
     "Catalog": {
       "base": null,
       "refs": {
-        "PrestoParameters$Catalog": "<p>Catalog.</p>"
+        "PrestoParameters$Catalog": "<p>Catalog.</p>",
+        "StarburstParameters$Catalog": "<p>The catalog name for the Starburst data source.</p>",
+        "TrinoParameters$Catalog": "<p>The catalog name for the Trino data source.</p>"
       }
     },
     "CategoricalAggregationFunction": {
@@ -2935,6 +2938,12 @@
         "PivotTableSortBy$DataPath": "<p>The data path sort (data path value, direction) for the pivot table sort by options.</p>"
       }
     },
+    "DataPathType": {
+      "base": "<p>The type of the data path value.</p>",
+      "refs": {
+        "DataPathValue$DataPathType": "<p>The type configuration of the field.</p>"
+      }
+    },
     "DataPathValue": {
       "base": "<p>The data path that needs to be sorted.</p>",
       "refs": {
@@ -3223,9 +3232,9 @@
       }
     },
     "DatabricksParameters": {
-      "base": "<p>The required parameters that are needed to connect to a Databricks data source.</p>",
+      "base": "<p>The parameters that are required to connect to a Databricks data source.</p>",
       "refs": {
-        "DataSourceParameters$DatabricksParameters": "<p>The required parameters that are needed to connect to a Databricks data source.</p>"
+        "DataSourceParameters$DatabricksParameters": "<p>The parameters that are required to connect to a Databricks data source.</p>"
       }
     },
     "DatasetMetadata": {
@@ -4545,6 +4554,7 @@
         "TableCellConditionalFormatting$FieldId": "<p>The field ID of the cell for conditional formatting.</p>",
         "TableFieldOption$FieldId": "<p>The field ID for a table field.</p>",
         "TableFieldOrderList$member": null,
+        "TotalAggregationOption$FieldId": "<p>The field id that's associated with the total aggregation option.</p>",
         "UnaggregatedField$FieldId": "<p>The custom field ID.</p>"
       }
     },
@@ -4853,6 +4863,15 @@
       "base": "<p>A folder in Amazon QuickSight.</p>",
       "refs": {
         "DescribeFolderResponse$Folder": "<p>Information about the folder.</p>"
+      }
+    },
+    "FolderArnList": {
+      "base": null,
+      "refs": {
+        "CreateAnalysisRequest$FolderArns": "<p>When you create the analysis, Amazon QuickSight adds the analysis to these folders.</p>",
+        "CreateDashboardRequest$FolderArns": "<p>When you create the dashboard, Amazon QuickSight adds the dashboard to these folders.</p>",
+        "CreateDataSetRequest$FolderArns": "<p>When you create the dataset, Amazon QuickSight adds the dataset to these folders.</p>",
+        "CreateDataSourceRequest$FolderArns": "<p>When you create the data source, Amazon QuickSight adds the data source to these folders.</p>"
       }
     },
     "FolderColumnList": {
@@ -5698,7 +5717,9 @@
         "SnowflakeParameters$Host": "<p>Host.</p>",
         "SparkParameters$Host": "<p>Host.</p>",
         "SqlServerParameters$Host": "<p>Host.</p>",
-        "TeradataParameters$Host": "<p>Host.</p>"
+        "StarburstParameters$Host": "<p>The host name of the Starburst data source.</p>",
+        "TeradataParameters$Host": "<p>Host.</p>",
+        "TrinoParameters$Host": "<p>The host name of the Trino data source.</p>"
       }
     },
     "IAMPolicyAssignment": {
@@ -7457,7 +7478,7 @@
         "RelativeDatesFilter$ParameterName": "<p>The parameter whose value should be used for the filter value.</p>",
         "SetParameterValueConfiguration$DestinationParameterName": "<p>The destination parameter name of the <code>SetParameterValueConfiguration</code>.</p>",
         "StringParameterDeclaration$Name": "<p>The name of the parameter that is being declared.</p>",
-        "TimeEqualityFilter$ParameterName": "<p>The parameter whose value should be used for the filter value.</p> <p>This field is mutually exclusive to <code>Value</code>.</p>",
+        "TimeEqualityFilter$ParameterName": "<p>The parameter whose value should be used for the filter value.</p> <p>This field is mutually exclusive to <code>Value</code> and <code>RollingDate</code>.</p>",
         "TimeRangeFilterValue$Parameter": "<p>The parameter type input value.</p>",
         "TopBottomFilter$ParameterName": "<p>The parameter whose value should be used for the filter value.</p>"
       }
@@ -7719,6 +7740,12 @@
         "PivotTableFieldOptions$DataPathOptions": "<p>The data path options for the pivot table field options.</p>"
       }
     },
+    "PivotTableDataPathType": {
+      "base": null,
+      "refs": {
+        "DataPathType$PivotTableDataPathType": "<p>The type of data path value utilized in a pivot table. Choose one of the following options:</p> <ul> <li> <p> <code>HIERARCHY_ROWS_LAYOUT_COLUMN</code> - The type of data path for the rows layout column, when <code>RowsLayout</code> is set to <code>HIERARCHY</code>.</p> </li> <li> <p> <code>MULTIPLE_ROW_METRICS_COLUMN</code> - The type of data path for the metric column when the row is set to Metric Placement.</p> </li> <li> <p> <code>EMPTY_COLUMN_HEADER</code> - The type of data path for the column with empty column header, when there is no field in <code>ColumnsFieldWell</code> and the row is set to Metric Placement.</p> </li> <li> <p> <code>COUNT_METRIC_COLUMN</code> - The type of data path for the column with <code>COUNT</code> as the metric, when there is no field in the <code>ValuesFieldWell</code>.</p> </li> </ul>"
+      }
+    },
     "PivotTableDimensionList": {
       "base": null,
       "refs": {
@@ -7894,7 +7921,9 @@
         "PrestoParameters$Port": "<p>Port.</p>",
         "SparkParameters$Port": "<p>Port.</p>",
         "SqlServerParameters$Port": "<p>Port.</p>",
-        "TeradataParameters$Port": "<p>Port.</p>"
+        "StarburstParameters$Port": "<p>The port for the Starburst data source.</p>",
+        "TeradataParameters$Port": "<p>Port.</p>",
+        "TrinoParameters$Port": "<p>The port for the Trino data source.</p>"
       }
     },
     "PositiveInteger": {
@@ -8199,6 +8228,12 @@
       "base": null,
       "refs": {
         "ReferenceLineStyleConfiguration$Pattern": "<p>The pattern type of the line style. Choose one of the following options:</p> <ul> <li> <p> <code>SOLID</code> </p> </li> <li> <p> <code>DASHED</code> </p> </li> <li> <p> <code>DOTTED</code> </p> </li> </ul>"
+      }
+    },
+    "ReferenceLineSeriesType": {
+      "base": null,
+      "refs": {
+        "ReferenceLineDataConfiguration$SeriesType": "<p>The series type of the reference line data configuration. Choose one of the following options:</p> <ul> <li> <p> <code>BAR</code> </p> </li> <li> <p> <code>LINE</code> </p> </li> </ul>"
       }
     },
     "ReferenceLineStaticDataConfiguration": {
@@ -8596,6 +8631,7 @@
       "base": "<p>The rolling date configuration of a date time filter.</p>",
       "refs": {
         "DateTimeDefaultValues$RollingDate": "<p>The rolling date of the <code>DataTimeDefaultValues</code>. The date is determined from the dataset based on input expression.</p>",
+        "TimeEqualityFilter$RollingDate": "<p>The rolling date input for the <code>TimeEquality</code> filter.</p> <p>This field is mutually exclusive to <code>Value</code> and <code>ParameterName</code>.</p>",
         "TimeRangeFilterValue$RollingDate": "<p>The rolling date input value.</p>"
       }
     },
@@ -9587,6 +9623,12 @@
         "NumericalAggregationFunction$SimpleNumericalAggregation": "<p>Built-in aggregation functions for numerical values.</p> <ul> <li> <p> <code>SUM</code>: The sum of a dimension or measure. </p> </li> <li> <p> <code>AVERAGE</code>: The average of a dimension or measure.</p> </li> <li> <p> <code>MIN</code>: The minimum value of a dimension or measure.</p> </li> <li> <p> <code>MAX</code>: The maximum value of a dimension or measure.</p> </li> <li> <p> <code>COUNT</code>: The count of a dimension or measure.</p> </li> <li> <p> <code>DISTINCT_COUNT</code>: The count of distinct values in a dimension or measure.</p> </li> <li> <p> <code>VAR</code>: The variance of a dimension or measure.</p> </li> <li> <p> <code>VARP</code>: The partitioned variance of a dimension or measure.</p> </li> <li> <p> <code>STDEV</code>: The standard deviation of a dimension or measure.</p> </li> <li> <p> <code>STDEVP</code>: The partitioned standard deviation of a dimension or measure.</p> </li> <li> <p> <code>MEDIAN</code>: The median value of a dimension or measure.</p> </li> </ul>"
       }
     },
+    "SimpleTotalAggregationFunction": {
+      "base": null,
+      "refs": {
+        "TotalAggregationFunction$SimpleTotalAggregationFunction": "<p>A built in aggregation function for total values.</p>"
+      }
+    },
     "SiteBaseUrl": {
       "base": null,
       "refs": {
@@ -9867,6 +9909,18 @@
         "CreateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "DataSource$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "UpdateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>"
+      }
+    },
+    "StarburstParameters": {
+      "base": "<p>The parameters that are required to connect to a Starburst data source.</p>",
+      "refs": {
+        "DataSourceParameters$StarburstParameters": "<p>The parameters that are required to connect to a Starburst data source.</p>"
+      }
+    },
+    "StarburstProductType": {
+      "base": null,
+      "refs": {
+        "StarburstParameters$ProductType": "<p>The product type for the Starburst data source.</p>"
       }
     },
     "StartAssetBundleExportJobRequest": {
@@ -11297,7 +11351,7 @@
         "ThemeSummary$LastUpdatedTime": "<p>The last date and time that this theme was updated.</p>",
         "ThemeVersion$CreatedTime": "<p>The date and time that this theme version was created.</p>",
         "ThemeVersionSummary$CreatedTime": "<p>The date and time that this theme version was created.</p>",
-        "TimeEqualityFilter$Value": "<p>The value of a <code>TimeEquality</code> filter.</p> <p>This field is mutually exclusive to <code>ParameterName</code>.</p>",
+        "TimeEqualityFilter$Value": "<p>The value of a <code>TimeEquality</code> filter.</p> <p>This field is mutually exclusive to <code>RollingDate</code> and <code>ParameterName</code>.</p>",
         "TimeRangeDrillDownFilter$RangeMinimum": "<p>The minimum value for the filter value range.</p>",
         "TimeRangeDrillDownFilter$RangeMaximum": "<p>The maximum value for the filter value range.</p>",
         "TimeRangeFilterValue$StaticValue": "<p>The static input value.</p>",
@@ -11603,6 +11657,25 @@
         "Computation$TotalAggregation": "<p>The total aggregation computation configuration.</p>"
       }
     },
+    "TotalAggregationFunction": {
+      "base": "<p>An aggregation function that aggregates the total values of a measure.</p>",
+      "refs": {
+        "TotalAggregationOption$TotalAggregationFunction": "<p>The total aggregation function that you want to set for a specified field id.</p>"
+      }
+    },
+    "TotalAggregationOption": {
+      "base": "<p>The total aggregation settings map of a field id.</p>",
+      "refs": {
+        "TotalAggregationOptionList$member": null
+      }
+    },
+    "TotalAggregationOptionList": {
+      "base": null,
+      "refs": {
+        "PivotTotalOptions$TotalAggregationOptions": "<p>The total aggregation options for each value field.</p>",
+        "TotalOptions$TotalAggregationOptions": "<p>The total aggregation settings for each value field.</p>"
+      }
+    },
     "TotalOptions": {
       "base": "<p>The total options for a table visual.</p>",
       "refs": {
@@ -11668,6 +11741,12 @@
       "base": "<p>The options that determine the presentation of trend arrows in a KPI visual.</p>",
       "refs": {
         "KPIOptions$TrendArrows": "<p>The options that determine the presentation of trend arrows in a KPI visual.</p>"
+      }
+    },
+    "TrinoParameters": {
+      "base": "<p>The parameters that are required to connect to a Trino data source.</p>",
+      "refs": {
+        "DataSourceParameters$TrinoParameters": "<p>The parameters that are required to connect to a Trino data source.</p>"
       }
     },
     "TwitterParameters": {

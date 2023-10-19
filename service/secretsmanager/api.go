@@ -2211,25 +2211,8 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 // part of the secret's metadata. They are not associated with specific versions
 // of the secret. This operation appends tags to the existing list of tags.
 //
-// The following restrictions apply to tags:
-//
-//   - Maximum number of tags per secret: 50
-//
-//   - Maximum key length: 127 Unicode characters in UTF-8
-//
-//   - Maximum value length: 255 Unicode characters in UTF-8
-//
-//   - Tag keys and values are case sensitive.
-//
-//   - Do not use the aws: prefix in your tag names or values because Amazon
-//     Web Services reserves it for Amazon Web Services use. You can't edit or
-//     delete tag names or values with this prefix. Tags with this prefix do
-//     not count against your tags per secret limit.
-//
-//   - If you use your tagging schema across multiple services and resources,
-//     other services might have restrictions on allowed characters. Generally
-//     allowed characters: letters, spaces, and numbers representable in UTF-8,
-//     plus the following special characters: + - = . _ : / @.
+// For tag quotas and naming restrictions, see Service quotas for Tagging (https://docs.aws.amazon.com/general/latest/gr/arg.html#taged-reference-quotas)
+// in the Amazon Web Services General Reference guide.
 //
 // If you use tags as part of your security strategy, then adding or removing
 // a tag can change permissions. If successfully completing this operation would
@@ -2951,10 +2934,10 @@ type CreateSecretInput struct {
 	// If you use the Amazon Web Services CLI or one of the Amazon Web Services
 	// SDKs to call this operation, then you can leave this parameter empty. The
 	// CLI or SDK generates a random UUID for you and includes it as the value for
-	// this parameter in the request. If you don't use the SDK and instead generate
-	// a raw HTTP request to the Secrets Manager service endpoint, then you must
-	// generate a ClientRequestToken yourself for the new version and include the
-	// value in the request.
+	// this parameter in the request.
+	//
+	// If you generate a raw HTTP request to the Secrets Manager service endpoint,
+	// then you must generate a ClientRequestToken and include it in the request.
 	//
 	// This value helps ensure idempotency. Secrets Manager uses this value to prevent
 	// the accidental creation of duplicate versions if there are failures and retries
@@ -3063,25 +3046,8 @@ type CreateSecretInput struct {
 	// you should use single quotes to avoid confusion with the double quotes required
 	// in the JSON text.
 	//
-	// The following restrictions apply to tags:
-	//
-	//    * Maximum number of tags per secret: 50
-	//
-	//    * Maximum key length: 127 Unicode characters in UTF-8
-	//
-	//    * Maximum value length: 255 Unicode characters in UTF-8
-	//
-	//    * Tag keys and values are case sensitive.
-	//
-	//    * Do not use the aws: prefix in your tag names or values because Amazon
-	//    Web Services reserves it for Amazon Web Services use. You can't edit or
-	//    delete tag names or values with this prefix. Tags with this prefix do
-	//    not count against your tags per secret limit.
-	//
-	//    * If you use your tagging schema across multiple services and resources,
-	//    other services might have restrictions on allowed characters. Generally
-	//    allowed characters: letters, spaces, and numbers representable in UTF-8,
-	//    plus the following special characters: + - = . _ : / @.
+	// For tag quotas and naming restrictions, see Service quotas for Tagging (https://docs.aws.amazon.com/general/latest/gr/arg.html#taged-reference-quotas)
+	// in the Amazon Web Services General Reference guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -5399,17 +5365,17 @@ type PutSecretValueInput struct {
 	// A unique identifier for the new version of the secret.
 	//
 	// If you use the Amazon Web Services CLI or one of the Amazon Web Services
-	// SDKs to call this operation, then you can leave this parameter empty because
-	// they generate a random UUID for you. If you don't use the SDK and instead
-	// generate a raw HTTP request to the Secrets Manager service endpoint, then
-	// you must generate a ClientRequestToken yourself for new versions and include
-	// that value in the request.
+	// SDKs to call this operation, then you can leave this parameter empty. The
+	// CLI or SDK generates a random UUID for you and includes it as the value for
+	// this parameter in the request.
+	//
+	// If you generate a raw HTTP request to the Secrets Manager service endpoint,
+	// then you must generate a ClientRequestToken and include it in the request.
 	//
 	// This value helps ensure idempotency. Secrets Manager uses this value to prevent
 	// the accidental creation of duplicate versions if there are failures and retries
-	// during the Lambda rotation function processing. We recommend that you generate
-	// a UUID-type (https://wikipedia.org/wiki/Universally_unique_identifier) value
-	// to ensure uniqueness within the specified secret.
+	// during a rotation. We recommend that you generate a UUID-type (https://wikipedia.org/wiki/Universally_unique_identifier)
+	// value to ensure uniqueness of your versions within the specified secret.
 	//
 	//    * If the ClientRequestToken value isn't already associated with a version
 	//    of the secret then a new version of the secret is created.
@@ -6195,23 +6161,22 @@ func (s *RestoreSecretOutput) SetName(v string) *RestoreSecretOutput {
 type RotateSecretInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the new version of the secret that helps ensure idempotency.
-	// Secrets Manager uses this value to prevent the accidental creation of duplicate
-	// versions if there are failures and retries during rotation. This value becomes
-	// the VersionId of the new version.
+	// A unique identifier for the new version of the secret. You only need to specify
+	// this value if you implement your own retry logic and you want to ensure that
+	// Secrets Manager doesn't attempt to create a secret version twice.
 	//
 	// If you use the Amazon Web Services CLI or one of the Amazon Web Services
-	// SDK to call this operation, then you can leave this parameter empty. The
-	// CLI or SDK generates a random UUID for you and includes that in the request
-	// for this parameter. If you don't use the SDK and instead generate a raw HTTP
-	// request to the Secrets Manager service endpoint, then you must generate a
-	// ClientRequestToken yourself for new versions and include that value in the
-	// request.
+	// SDKs to call this operation, then you can leave this parameter empty. The
+	// CLI or SDK generates a random UUID for you and includes it as the value for
+	// this parameter in the request.
 	//
-	// You only need to specify this value if you implement your own retry logic
-	// and you want to ensure that Secrets Manager doesn't attempt to create a secret
-	// version twice. We recommend that you generate a UUID-type (https://wikipedia.org/wiki/Universally_unique_identifier)
-	// value to ensure uniqueness within the specified secret.
+	// If you generate a raw HTTP request to the Secrets Manager service endpoint,
+	// then you must generate a ClientRequestToken and include it in the request.
+	//
+	// This value helps ensure idempotency. Secrets Manager uses this value to prevent
+	// the accidental creation of duplicate versions if there are failures and retries
+	// during a rotation. We recommend that you generate a UUID-type (https://wikipedia.org/wiki/Universally_unique_identifier)
+	// value to ensure uniqueness of your versions within the specified secret.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// Specifies whether to rotate the secret immediately or wait until the next
@@ -7090,12 +7055,15 @@ type UpdateSecretInput struct {
 	// If you use the Amazon Web Services CLI or one of the Amazon Web Services
 	// SDKs to call this operation, then you can leave this parameter empty. The
 	// CLI or SDK generates a random UUID for you and includes it as the value for
-	// this parameter in the request. If you don't use the SDK and instead generate
-	// a raw HTTP request to the Secrets Manager service endpoint, then you must
-	// generate a ClientRequestToken yourself for the new version and include the
-	// value in the request.
+	// this parameter in the request.
 	//
-	// This value becomes the VersionId of the new version.
+	// If you generate a raw HTTP request to the Secrets Manager service endpoint,
+	// then you must generate a ClientRequestToken and include it in the request.
+	//
+	// This value helps ensure idempotency. Secrets Manager uses this value to prevent
+	// the accidental creation of duplicate versions if there are failures and retries
+	// during a rotation. We recommend that you generate a UUID-type (https://wikipedia.org/wiki/Universally_unique_identifier)
+	// value to ensure uniqueness of your versions within the specified secret.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// The description of the secret.

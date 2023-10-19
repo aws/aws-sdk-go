@@ -1,3 +1,27 @@
+Release v1.46.0 (2023-10-19)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Amazon EC2 C7a instances, powered by 4th generation AMD EPYC processors, are ideal for high performance, compute-intensive workloads such as high performance computing. Amazon EC2 R7i instances are next-generation memory optimized and powered by custom 4th Generation Intel Xeon Scalable processors.
+* `service/managedblockchain-query`: Updates service API
+* `service/neptunedata`: Updates service documentation
+* `service/omics`: Updates service API and documentation
+* `service/opensearch`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * This release adds the following: 1) Trino and Starburst Database Connectors 2) Custom total for tables and pivot tables 3) Enable restricted folders 4) Add rolling dates for time equality filters 5) Refine DataPathValue and introduce DataPathType 6) Add SeriesType to ReferenceLineDataConfiguration
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/servicecatalog`: Updates service API and documentation
+  * Introduce support for EXTERNAL product and provisioning artifact type in CreateProduct and CreateProvisioningArtifact APIs.
+* `service/verifiedpermissions`: Updates service API and documentation
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for WorkSpaces
+
+### SDK Features
+* `service/gamesparks`: Deprecate Gamesparks
+  * This change removes the gamesparks service, since it is deprecated.
+
 Release v1.45.28 (2023-10-18)
 ===
 

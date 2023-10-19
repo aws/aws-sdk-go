@@ -4572,6 +4572,10 @@
       ],
       "type": "string"
     },
+    "EngineLogStream": {
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
     "EscapeChar": {
       "max": 1,
       "min": 1,
@@ -5591,11 +5595,17 @@
         "digest": {
           "shape": "WorkflowDigest"
         },
+        "failureReason": {
+          "shape": "RunFailureReason"
+        },
         "id": {
           "shape": "RunId"
         },
         "logLevel": {
           "shape": "RunLogLevel"
+        },
+        "logLocation": {
+          "shape": "RunLogLocation"
         },
         "name": {
           "shape": "RunName"
@@ -5689,6 +5699,9 @@
         },
         "creationTime": {
           "shape": "TaskTimestamp"
+        },
+        "failureReason": {
+          "shape": "TaskFailureReason"
         },
         "gpus": {
           "shape": "GetRunTaskResponseGpusInteger"
@@ -8001,6 +8014,12 @@
       "min": 0,
       "type": "list"
     },
+    "RunFailureReason": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
     "RunGroupArn": {
       "max": 128,
       "min": 1,
@@ -8173,6 +8192,21 @@
       "min": 1,
       "type": "string"
     },
+    "RunLogLocation": {
+      "members": {
+        "engineLogStream": {
+          "shape": "EngineLogStream"
+        },
+        "runLogStream": {
+          "shape": "RunLogStream"
+        }
+      },
+      "type": "structure"
+    },
+    "RunLogStream": {
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
     "RunName": {
       "max": 128,
       "min": 1,
@@ -8180,7 +8214,7 @@
       "type": "string"
     },
     "RunOutputUri": {
-      "max": 128,
+      "max": 750,
       "min": 1,
       "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
@@ -9076,6 +9110,12 @@
     "TagValue": {
       "max": 256,
       "min": 0,
+      "type": "string"
+    },
+    "TaskFailureReason": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
     "TaskId": {

@@ -1344,7 +1344,8 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //     Core. Contact your account team to be allow-listed to use this value.
 //     For more information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
 //
-//   - PCoIP is only available for Windows bundles.
+//   - You don't need to specify the PCOIP protocol for Linux bundles because
+//     WSP is the default protocol for those bundles.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

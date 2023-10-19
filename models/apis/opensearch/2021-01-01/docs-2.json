@@ -33,9 +33,11 @@
     "DescribeVpcEndpoints": "<p>Describes one or more Amazon OpenSearch Service-managed VPC endpoints.</p>",
     "DissociatePackage": "<p>Removes a package from the specified Amazon OpenSearch Service domain. The package can't be in use with any OpenSearch index for the dissociation to succeed. The package is still available in OpenSearch Service for association later. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "GetCompatibleVersions": "<p>Returns a map of OpenSearch or Elasticsearch versions and the versions you can upgrade them to.</p>",
+    "GetDomainMaintenanceStatus": "<p>Get the status of the maintenance action.</p>",
     "GetPackageVersionHistory": "<p>Returns a list of Amazon OpenSearch Service package versions, along with their creation time, commit message, and plugin properties (if the package is a zip plugin package). For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "GetUpgradeHistory": "<p>Retrieves the complete history of the last 10 upgrades performed on an Amazon OpenSearch Service domain.</p>",
     "GetUpgradeStatus": "<p>Returns the most recent status of the last upgrade or upgrade eligibility check performed on an Amazon OpenSearch Service domain.</p>",
+    "ListDomainMaintenances": "<p>Get the list of the maintenance action.</p>",
     "ListDomainNames": "<p>Returns the names of all Amazon OpenSearch Service domains owned by the current user in the active Region.</p>",
     "ListDomainsForPackage": "<p>Lists all Amazon OpenSearch Service domains associated with a given package. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "ListInstanceTypeDetails": "<p>Lists all instance types and available features for a given OpenSearch or Elasticsearch version.</p>",
@@ -50,6 +52,7 @@
     "RejectInboundConnection": "<p>Allows the remote Amazon OpenSearch Service domain owner to reject an inbound cross-cluster connection request.</p>",
     "RemoveTags": "<p>Removes the specified set of tags from an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging\"> Tagging Amazon OpenSearch Service domains</a>.</p>",
     "RevokeVpcEndpointAccess": "<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>",
+    "StartDomainMaintenance": "<p>Starts the node maintenance (Node restart, Node reboot, Opensearch/Elasticsearch process restart, Dashboard/kibana restart) on the data node.</p>",
     "StartServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
     "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.</p>",
     "UpdatePackage": "<p>Updates a package for use with Amazon OpenSearch Service domains. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
@@ -950,6 +953,18 @@
         "OutboundConnection$RemoteDomainInfo": "<p>Information about the destination (remote) domain.</p>"
       }
     },
+    "DomainMaintenanceDetails": {
+      "base": "<p>Container for the domain maintenance details.</p>",
+      "refs": {
+        "DomainMaintenanceList$member": null
+      }
+    },
+    "DomainMaintenanceList": {
+      "base": null,
+      "refs": {
+        "ListDomainMaintenancesResponse$DomainMaintenances": "<p>List of the submitted maintenance actions.</p>"
+      }
+    },
     "DomainName": {
       "base": "<p>The name of an OpenSearch Service domain. Domain names are unique across the domains owned by an account within an Amazon Web Services Region.</p>",
       "refs": {
@@ -969,18 +984,22 @@
         "DescribeInstanceTypeLimitsRequest$DomainName": "<p>The name of the domain. Only specify if you need the limits for an existing domain.</p>",
         "DissociatePackageRequest$DomainName": "<p>Name of the domain to dissociate the package from.</p>",
         "DomainInfo$DomainName": "<p>Name of the domain.</p>",
+        "DomainMaintenanceDetails$DomainName": "<p>The name of the domain.</p>",
         "DomainNameList$member": null,
         "DomainPackageDetails$DomainName": "<p>Name of the domain that the package is associated with.</p>",
         "DomainStatus$DomainName": "<p>Name of the domain. Domain names are unique across all domains owned by the same account within an Amazon Web Services Region.</p>",
         "GetCompatibleVersionsRequest$DomainName": "<p>The name of an existing domain. Provide this parameter to limit the results to a single domain.</p>",
+        "GetDomainMaintenanceStatusRequest$DomainName": "<p>The name of the domain.</p>",
         "GetUpgradeHistoryRequest$DomainName": "<p>The name of an existing domain.</p>",
         "GetUpgradeStatusRequest$DomainName": "<p>The domain of the domain to get upgrade status information for.</p>",
+        "ListDomainMaintenancesRequest$DomainName": "<p>The name of the domain.</p>",
         "ListInstanceTypeDetailsRequest$DomainName": "<p>The name of the domain.</p>",
         "ListPackagesForDomainRequest$DomainName": "<p>The name of the domain for which you want to list associated packages.</p>",
         "ListScheduledActionsRequest$DomainName": "<p>The name of the domain.</p>",
         "ListVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to retrieve access information for.</p>",
         "ListVpcEndpointsForDomainRequest$DomainName": "<p>The name of the domain to list associated VPC endpoints for.</p>",
         "RevokeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain.</p>",
+        "StartDomainMaintenanceRequest$DomainName": "<p>The name of the domain.</p>",
         "StartServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to update to the latest service software.</p>",
         "UpdateDomainConfigRequest$DomainName": "<p>The name of the domain that you're updating.</p>",
         "UpdateScheduledActionRequest$DomainName": "<p>The name of the domain to reschedule an action for.</p>",
@@ -1231,6 +1250,16 @@
       "refs": {
       }
     },
+    "GetDomainMaintenanceStatusRequest": {
+      "base": "<p>Container for the parameters to the <code>GetDomainMaintenanceStatus</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "GetDomainMaintenanceStatusResponse": {
+      "base": "<p>The result of a <code>GetDomainMaintenanceStatus</code> request. Contains information about the requested action. </p>",
+      "refs": {
+      }
+    },
     "GetPackageVersionHistoryRequest": {
       "base": "<p>Container for the request parameters to the <code>GetPackageVersionHistory</code> operation.</p>",
       "refs": {
@@ -1354,7 +1383,7 @@
     "IntegerClass": {
       "base": null,
       "refs": {
-        "ClusterConfig$InstanceCount": "<p>Number of dedicated master nodes in the cluster. This number must be greater than 1, otherwise you receive a validation exception.</p>",
+        "ClusterConfig$InstanceCount": "<p>Number of data nodes in the cluster. This number must be greater than 1, otherwise you receive a validation exception.</p>",
         "ClusterConfig$DedicatedMasterCount": "<p>Number of dedicated master nodes in the cluster. This number must be greater than 2 and not 4, otherwise you receive a validation exception.</p>",
         "ClusterConfig$WarmCount": "<p>The number of warm nodes in the cluster.</p>",
         "EBSOptions$VolumeSize": "<p>Specifies the size (in GiB) of EBS volumes attached to data nodes.</p>",
@@ -1442,6 +1471,16 @@
       "base": "<p> The role of a given instance and all applicable limits. The role performed by a given OpenSearch instance can be one of the following: </p> <ul> <li> <p> <b>data</b> - A data node.</p> </li> <li> <p> <b>master</b> - A dedicated master node.</p> </li> <li> <p> <b>ultra_warm</b> - An UltraWarm node.</p> </li> </ul>",
       "refs": {
         "DescribeInstanceTypeLimitsResponse$LimitsByRole": "<p>Map that contains all applicable instance type limits.<code>data</code> refers to data nodes.<code>master</code> refers to dedicated master nodes.</p>"
+      }
+    },
+    "ListDomainMaintenancesRequest": {
+      "base": "<p>Container for the parameters to the <code>ListDomainMaintenances</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "ListDomainMaintenancesResponse": {
+      "base": "<p>The result of a <code>ListDomainMaintenances</code> request. Contains information about the requested actions. </p>",
+      "refs": {
       }
     },
     "ListDomainNamesRequest": {
@@ -1581,6 +1620,30 @@
         "UpdateScheduledActionRequest$DesiredStartTime": "<p>The time to implement the change, in Coordinated Universal Time (UTC). Only specify this parameter if you set <code>ScheduleAt</code> to <code>TIMESTAMP</code>.</p>"
       }
     },
+    "MaintenanceStatus": {
+      "base": null,
+      "refs": {
+        "DomainMaintenanceDetails$Status": "<p>The status of the action.</p>",
+        "GetDomainMaintenanceStatusResponse$Status": "<p>Contains status of the maintenance action.</p>",
+        "ListDomainMaintenancesRequest$Status": "<p>The status of the action.</p>"
+      }
+    },
+    "MaintenanceStatusMessage": {
+      "base": null,
+      "refs": {
+        "DomainMaintenanceDetails$StatusMessage": "<p>The status message of the action.</p>",
+        "GetDomainMaintenanceStatusResponse$StatusMessage": "<p>Contains status message of the maintenance action.</p>"
+      }
+    },
+    "MaintenanceType": {
+      "base": null,
+      "refs": {
+        "DomainMaintenanceDetails$Action": "<p>The name of the action.</p>",
+        "GetDomainMaintenanceStatusResponse$Action": "<p>Contains action name.</p>",
+        "ListDomainMaintenancesRequest$Action": "<p>The name of the action.</p>",
+        "StartDomainMaintenanceRequest$Action": "<p>The name of the action.</p>"
+      }
+    },
     "MasterNodeStatus": {
       "base": null,
       "refs": {
@@ -1604,6 +1667,7 @@
         "DescribeReservedInstancesRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "GetPackageVersionHistoryRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "GetUpgradeHistoryRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
+        "ListDomainMaintenancesRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListDomainsForPackageRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListInstanceTypeDetailsRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListPackagesForDomainRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
@@ -1645,6 +1709,8 @@
         "DescribeReservedInstancesRequest$NextToken": "<p>If your initial <code>DescribeReservedInstances</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>DescribeReservedInstances</code> operations, which returns results in the next page.</p>",
         "GetPackageVersionHistoryRequest$NextToken": "<p>If your initial <code>GetPackageVersionHistory</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>GetPackageVersionHistory</code> operations, which returns results in the next page. </p>",
         "GetUpgradeHistoryRequest$NextToken": "<p>If your initial <code>GetUpgradeHistory</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>GetUpgradeHistory</code> operations, which returns results in the next page.</p>",
+        "ListDomainMaintenancesRequest$NextToken": "<p>If your initial <code>ListDomainMaintenances</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListDomainMaintenances</code> operations, which returns results in the next page.</p>",
+        "ListDomainMaintenancesResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListDomainsForPackageRequest$NextToken": "<p>If your initial <code>ListDomainsForPackage</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListDomainsForPackage</code> operations, which returns results in the next page.</p>",
         "ListInstanceTypeDetailsRequest$NextToken": "<p>If your initial <code>ListInstanceTypeDetails</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListInstanceTypeDetails</code> operations, which returns results in the next page.</p>",
         "ListInstanceTypeDetailsResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
@@ -1664,7 +1730,10 @@
     "NodeId": {
       "base": null,
       "refs": {
-        "DomainNodesStatus$NodeId": "<p>The ID of the node.</p>"
+        "DomainMaintenanceDetails$NodeId": "<p>Id of the data node.</p>",
+        "DomainNodesStatus$NodeId": "<p>The ID of the node.</p>",
+        "GetDomainMaintenanceStatusResponse$NodeId": "<p>Contains node id of maintenance action.</p>",
+        "StartDomainMaintenanceRequest$NodeId": "<p>Id of the data node.</p>"
       }
     },
     "NodeStatus": {
@@ -2019,6 +2088,14 @@
       "refs": {
       }
     },
+    "RequestId": {
+      "base": null,
+      "refs": {
+        "DomainMaintenanceDetails$MaintenanceId": "<p>Id of the requested action.</p>",
+        "GetDomainMaintenanceStatusRequest$MaintenanceId": "<p>The request id of the maintenance action.</p>",
+        "StartDomainMaintenanceResponse$MaintenanceId": "<p>Contains request id of requested action.</p>"
+      }
+    },
     "ReservationToken": {
       "base": null,
       "refs": {
@@ -2251,6 +2328,16 @@
         "AutoTuneMaintenanceSchedule$StartAt": "<p>The Epoch timestamp at which the Auto-Tune maintenance schedule starts.</p>"
       }
     },
+    "StartDomainMaintenanceRequest": {
+      "base": "<p>Container for the parameters to the <code>StartDomainMaintenance</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "StartDomainMaintenanceResponse": {
+      "base": "<p>The result of a <code>StartDomainMaintenance</code> request. Contains information about the requested action. </p>",
+      "refs": {
+      }
+    },
     "StartServiceSoftwareUpdateRequest": {
       "base": "<p>Container for the request parameters to the <code>StartServiceSoftwareUpdate</code> operation.</p>",
       "refs": {
@@ -2465,6 +2552,10 @@
         "AutoTuneStatus$CreationDate": "<p>Date and time when Auto-Tune was enabled for the domain.</p>",
         "AutoTuneStatus$UpdateDate": "<p>Date and time when the Auto-Tune options were last updated for the domain.</p>",
         "ChangeProgressStatusDetails$StartTime": "<p>The time at which the configuration change is made on the domain.</p>",
+        "DomainMaintenanceDetails$CreatedAt": "<p>Contains time at which action created.</p>",
+        "DomainMaintenanceDetails$UpdatedAt": "<p>Contains time at which action updated.</p>",
+        "GetDomainMaintenanceStatusResponse$CreatedAt": "<p>Contains time at which action created.</p>",
+        "GetDomainMaintenanceStatusResponse$UpdatedAt": "<p>Contains time at which action updated.</p>",
         "OptionStatus$CreationDate": "<p>The timestamp when the entity was created.</p>",
         "OptionStatus$UpdateDate": "<p>The timestamp of the last time the entity was updated.</p>",
         "ReservedInstance$StartTime": "<p>The date and time when the reservation was purchased.</p>"

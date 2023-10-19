@@ -24,6 +24,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -42,6 +43,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -60,6 +62,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
@@ -77,6 +80,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},

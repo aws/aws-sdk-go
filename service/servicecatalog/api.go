@@ -244,7 +244,7 @@ func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *Associate
 // The PortfolioID, PrincipalARN, and PrincipalType parameters are required.
 //
 // You can associate a maximum of 10 Principals with a portfolio using PrincipalType
-// as IAM_PATTERN
+// as IAM_PATTERN.
 //
 // When you associate a principal with portfolio, a potential privilege escalation
 // path may occur when that portfolio is then shared with other accounts. For
@@ -20076,7 +20076,8 @@ type ProvisionedProductAttribute struct {
 	// One or more tags.
 	Tags []*Tag `type:"list"`
 
-	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
+	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	Type *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the user.
@@ -20301,7 +20302,8 @@ type ProvisionedProductDetail struct {
 	// The current status message of the provisioned product.
 	StatusMessage *string `type:"string"`
 
-	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
+	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	Type *string `type:"string"`
 }
 
@@ -20752,7 +20754,13 @@ type ProvisioningArtifactDetail struct {
 
 	// The type of provisioning artifact.
 	//
-	// CLOUD_FORMATION_TEMPLATE - CloudFormation template
+	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
+	//
+	//    * TERRAFORM_OPEN_SOURCE - Terraform Open Source configuration file
+	//
+	//    * TERRAFORM_CLOUD - Terraform Cloud configuration file
+	//
+	//    * EXTERNAL - External configuration file
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
@@ -21033,7 +21041,11 @@ type ProvisioningArtifactProperties struct {
 	//
 	//    * CLOUD_FORMATION_TEMPLATE - CloudFormation template
 	//
-	//    * TERRAFORM_OPEN_SOURCE - Terraform open source configuration file
+	//    * TERRAFORM_OPEN_SOURCE - Terraform Open Source configuration file
+	//
+	//    * TERRAFORM_CLOUD - Terraform Cloud configuration file
+	//
+	//    * EXTERNAL - External configuration file
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 
@@ -21461,7 +21473,7 @@ type RecordDetail struct {
 	ProvisionedProductName *string `min:"1" type:"string"`
 
 	// The type of provisioned product. The supported values are CFN_STACK, CFN_STACKSET,
-	// TERRAFORM_OPEN_SOURCE, and TERRAFORM_CLOUD.
+	// TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, and EXTERNAL.
 	ProvisionedProductType *string `type:"string"`
 
 	// The identifier of the provisioning artifact.
@@ -25795,6 +25807,9 @@ const (
 
 	// ProductTypeTerraformCloud is a ProductType enum value
 	ProductTypeTerraformCloud = "TERRAFORM_CLOUD"
+
+	// ProductTypeExternal is a ProductType enum value
+	ProductTypeExternal = "EXTERNAL"
 )
 
 // ProductType_Values returns all elements of the ProductType enum
@@ -25804,6 +25819,7 @@ func ProductType_Values() []string {
 		ProductTypeMarketplace,
 		ProductTypeTerraformOpenSource,
 		ProductTypeTerraformCloud,
+		ProductTypeExternal,
 	}
 }
 
@@ -25994,6 +26010,9 @@ const (
 
 	// ProvisioningArtifactTypeTerraformCloud is a ProvisioningArtifactType enum value
 	ProvisioningArtifactTypeTerraformCloud = "TERRAFORM_CLOUD"
+
+	// ProvisioningArtifactTypeExternal is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeExternal = "EXTERNAL"
 )
 
 // ProvisioningArtifactType_Values returns all elements of the ProvisioningArtifactType enum
@@ -26004,6 +26023,7 @@ func ProvisioningArtifactType_Values() []string {
 		ProvisioningArtifactTypeMarketplaceCar,
 		ProvisioningArtifactTypeTerraformOpenSource,
 		ProvisioningArtifactTypeTerraformCloud,
+		ProvisioningArtifactTypeExternal,
 	}
 }
 

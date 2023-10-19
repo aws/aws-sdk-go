@@ -5019,7 +5019,8 @@
         "ThemeArn":{"shape":"Arn"},
         "Tags":{"shape":"TagList"},
         "Definition":{"shape":"AnalysisDefinition"},
-        "ValidationStrategy":{"shape":"ValidationStrategy"}
+        "ValidationStrategy":{"shape":"ValidationStrategy"},
+        "FolderArns":{"shape":"FolderArnList"}
       }
     },
     "CreateAnalysisResponse":{
@@ -5069,7 +5070,8 @@
         "DashboardPublishOptions":{"shape":"DashboardPublishOptions"},
         "ThemeArn":{"shape":"Arn"},
         "Definition":{"shape":"DashboardVersionDefinition"},
-        "ValidationStrategy":{"shape":"ValidationStrategy"}
+        "ValidationStrategy":{"shape":"ValidationStrategy"},
+        "FolderArns":{"shape":"FolderArnList"}
       }
     },
     "CreateDashboardResponse":{
@@ -5114,7 +5116,8 @@
         "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
         "Tags":{"shape":"TagList"},
         "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"},
-        "DatasetParameters":{"shape":"DatasetParameterList"}
+        "DatasetParameters":{"shape":"DatasetParameterList"},
+        "FolderArns":{"shape":"FolderArnList"}
       }
     },
     "CreateDataSetResponse":{
@@ -5153,7 +5156,8 @@
         "Permissions":{"shape":"ResourcePermissionList"},
         "VpcConnectionProperties":{"shape":"VpcConnectionProperties"},
         "SslProperties":{"shape":"SslProperties"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "FolderArns":{"shape":"FolderArnList"}
       }
     },
     "CreateDataSourceResponse":{
@@ -6276,15 +6280,18 @@
         "SortPaths":{"shape":"DataPathValueList"}
       }
     },
+    "DataPathType":{
+      "type":"structure",
+      "members":{
+        "PivotTableDataPathType":{"shape":"PivotTableDataPathType"}
+      }
+    },
     "DataPathValue":{
       "type":"structure",
-      "required":[
-        "FieldId",
-        "FieldValue"
-      ],
       "members":{
         "FieldId":{"shape":"FieldId"},
-        "FieldValue":{"shape":"FieldValue"}
+        "FieldValue":{"shape":"FieldValue"},
+        "DataPathType":{"shape":"DataPathType"}
       }
     },
     "DataPathValueList":{
@@ -6553,7 +6560,9 @@
         "TwitterParameters":{"shape":"TwitterParameters"},
         "AmazonOpenSearchParameters":{"shape":"AmazonOpenSearchParameters"},
         "ExasolParameters":{"shape":"ExasolParameters"},
-        "DatabricksParameters":{"shape":"DatabricksParameters"}
+        "DatabricksParameters":{"shape":"DatabricksParameters"},
+        "StarburstParameters":{"shape":"StarburstParameters"},
+        "TrinoParameters":{"shape":"TrinoParameters"}
       }
     },
     "DataSourceParametersList":{
@@ -9970,6 +9979,11 @@
         "SharingModel":{"shape":"SharingModel"}
       }
     },
+    "FolderArnList":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":1
+    },
     "FolderColumnList":{
       "type":"list",
       "member":{"shape":"String"},
@@ -10036,7 +10050,10 @@
     },
     "FolderType":{
       "type":"string",
-      "enum":["SHARED"]
+      "enum":[
+        "SHARED",
+        "RESTRICTED"
+      ]
     },
     "Font":{
       "type":"structure",
@@ -14128,6 +14145,15 @@
       "member":{"shape":"PivotTableDataPathOption"},
       "max":100
     },
+    "PivotTableDataPathType":{
+      "type":"string",
+      "enum":[
+        "HIERARCHY_ROWS_LAYOUT_COLUMN",
+        "MULTIPLE_ROW_METRICS_COLUMN",
+        "EMPTY_COLUMN_HEADER",
+        "COUNT_METRIC_COLUMN"
+      ]
+    },
     "PivotTableDimensionList":{
       "type":"list",
       "member":{"shape":"DimensionField"},
@@ -14301,7 +14327,8 @@
         "CustomLabel":{"shape":"String"},
         "TotalCellStyle":{"shape":"TableCellStyle"},
         "ValueCellStyle":{"shape":"TableCellStyle"},
-        "MetricHeaderCellStyle":{"shape":"TableCellStyle"}
+        "MetricHeaderCellStyle":{"shape":"TableCellStyle"},
+        "TotalAggregationOptions":{"shape":"TotalAggregationOptionList"}
       }
     },
     "PixelLength":{"type":"string"},
@@ -14668,7 +14695,8 @@
       "members":{
         "StaticConfiguration":{"shape":"ReferenceLineStaticDataConfiguration"},
         "DynamicConfiguration":{"shape":"ReferenceLineDynamicDataConfiguration"},
-        "AxisBinding":{"shape":"AxisBinding"}
+        "AxisBinding":{"shape":"AxisBinding"},
+        "SeriesType":{"shape":"ReferenceLineSeriesType"}
       }
     },
     "ReferenceLineDynamicDataConfiguration":{
@@ -14720,6 +14748,13 @@
         "SOLID",
         "DASHED",
         "DOTTED"
+      ]
+    },
+    "ReferenceLineSeriesType":{
+      "type":"string",
+      "enum":[
+        "BAR",
+        "LINE"
       ]
     },
     "ReferenceLineStaticDataConfiguration":{
@@ -16124,6 +16159,17 @@
         "MEDIAN"
       ]
     },
+    "SimpleTotalAggregationFunction":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "SUM",
+        "AVERAGE",
+        "MIN",
+        "MAX",
+        "NONE"
+      ]
+    },
     "SiteBaseUrl":{
       "type":"string",
       "max":1024,
@@ -16435,6 +16481,27 @@
       "members":{
         "DisableSsl":{"shape":"Boolean"}
       }
+    },
+    "StarburstParameters":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port",
+        "Catalog"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "Catalog":{"shape":"Catalog"},
+        "ProductType":{"shape":"StarburstProductType"}
+      }
+    },
+    "StarburstProductType":{
+      "type":"string",
+      "enum":[
+        "GALAXY",
+        "ENTERPRISE"
+      ]
     },
     "StartAssetBundleExportJobRequest":{
       "type":"structure",
@@ -17430,7 +17497,8 @@
         "Column":{"shape":"ColumnIdentifier"},
         "Value":{"shape":"Timestamp"},
         "ParameterName":{"shape":"ParameterName"},
-        "TimeGranularity":{"shape":"TimeGranularity"}
+        "TimeGranularity":{"shape":"TimeGranularity"},
+        "RollingDate":{"shape":"RollingDateConfiguration"}
       }
     },
     "TimeGranularity":{
@@ -17877,6 +17945,28 @@
         "Value":{"shape":"MeasureField"}
       }
     },
+    "TotalAggregationFunction":{
+      "type":"structure",
+      "members":{
+        "SimpleTotalAggregationFunction":{"shape":"SimpleTotalAggregationFunction"}
+      }
+    },
+    "TotalAggregationOption":{
+      "type":"structure",
+      "required":[
+        "FieldId",
+        "TotalAggregationFunction"
+      ],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "TotalAggregationFunction":{"shape":"TotalAggregationFunction"}
+      }
+    },
+    "TotalAggregationOptionList":{
+      "type":"list",
+      "member":{"shape":"TotalAggregationOption"},
+      "max":200
+    },
     "TotalOptions":{
       "type":"structure",
       "members":{
@@ -17884,7 +17974,8 @@
         "Placement":{"shape":"TableTotalsPlacement"},
         "ScrollStatus":{"shape":"TableTotalsScrollStatus"},
         "CustomLabel":{"shape":"String"},
-        "TotalCellStyle":{"shape":"TableCellStyle"}
+        "TotalCellStyle":{"shape":"TableCellStyle"},
+        "TotalAggregationOptions":{"shape":"TotalAggregationOptionList"}
       }
     },
     "TransformOperation":{
@@ -17967,6 +18058,19 @@
       "type":"structure",
       "members":{
         "Visibility":{"shape":"Visibility"}
+      }
+    },
+    "TrinoParameters":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port",
+        "Catalog"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "Catalog":{"shape":"Catalog"}
       }
     },
     "TwitterParameters":{
