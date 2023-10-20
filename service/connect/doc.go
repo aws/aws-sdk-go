@@ -13,7 +13,7 @@
 //
 // There are limits to the number of Amazon Connect resources that you can create.
 // There are also limits to the number of requests that you can make per second.
-// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+// For more information, seeP98941055 Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 // in the Amazon Connect Administrator Guide.
 //
 // You can connect programmatically to an Amazon Web Services service by using

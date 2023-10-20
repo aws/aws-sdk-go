@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Web Services Systems Manager is the operations hub for your Amazon Web Services applications and resources and a secure end-to-end management solution for hybrid cloud environments that enables safe and secure operations at scale.</p> <p>This reference is intended to be used with the <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/\">Amazon Web Services Systems Manager User Guide</a>. To get started, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html\">Setting up Amazon Web Services Systems Manager</a>.</p> <p class=\"title\"> <b>Related resources</b> </p> <ul> <li> <p>For information about each of the capabilities that comprise Systems Manager, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#systems-manager-capabilities\">Systems Manager capabilities</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> </li> <li> <p>For details about predefined runbooks for Automation, a capability of Amazon Web Services Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-runbook-reference.html\">Systems Manager Automation runbook reference</a> </i>.</p> </li> <li> <p>For information about AppConfig, a capability of Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/\">AppConfig User Guide</a> </i> and the <i> <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/\">AppConfig API Reference</a> </i>.</p> </li> <li> <p>For information about Incident Manager, a capability of Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/\">Systems Manager Incident Manager User Guide</a> </i> and the <i> <a href=\"https://docs.aws.amazon.com/incident-manager/latest/APIReference/\">Systems Manager Incident Manager API Reference</a> </i>.</p> </li> </ul>",
+  "service": "<p>Amazon Web Services Systems Manager is the operations hub for your Amazon Web Services applications and resources and a secure end-to-end management solution for hybrid cloud environments that enables safe and secure operations at scale.</p> <p>This reference is intended to be used with the <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/\">Amazon Web Services Systems Manager User Guide</a>. To get started, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html\">Setting up Amazon Web Services Systems Manager</a>.</p> <p class=\"title\"> <b>Related resources</b> </p> <ul> <li> <p>For information about each of the capabilities that comprise Systems Manager, see <a href=\"https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/systems-manager-capabilities.html\">Systems Manager capabilities</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> </li> <li> <p>For details about predefined runbooks for Automation, a capability of Amazon Web Services Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-runbook-reference.html\">Systems Manager Automation runbook reference</a> </i>.</p> </li> <li> <p>For information about AppConfig, a capability of Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/\">AppConfig User Guide</a> </i> and the <i> <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/\">AppConfig API Reference</a> </i>.</p> </li> <li> <p>For information about Incident Manager, a capability of Systems Manager, see the <i> <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/\">Systems Manager Incident Manager User Guide</a> </i> and the <i> <a href=\"https://docs.aws.amazon.com/incident-manager/latest/APIReference/\">Systems Manager Incident Manager API Reference</a> </i>.</p> </li> </ul>",
   "operations": {
     "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified resource. <i>Tags</i> are metadata that you can assign to your automations, documents, managed nodes, maintenance windows, Parameter Store parameters, and patch baselines. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. For example, you could define a set of tags for your account's managed nodes that helps you track each node's owner and stack level. For example:</p> <ul> <li> <p> <code>Key=Owner,Value=DbAdmin</code> </p> </li> <li> <p> <code>Key=Owner,Value=SysAdmin</code> </p> </li> <li> <p> <code>Key=Owner,Value=Dev</code> </p> </li> <li> <p> <code>Key=Stack,Value=Production</code> </p> </li> <li> <p> <code>Key=Stack,Value=Pre-Production</code> </p> </li> <li> <p> <code>Key=Stack,Value=Test</code> </p> </li> </ul> <p>Most resources can have a maximum of 50 tags. Automations can have a maximum of 5 tags.</p> <p>We recommend that you devise a set of tag keys that meets your needs for each resource type. Using a consistent set of tag keys makes it easier for you to manage your resources. You can search and filter the resources based on the tags you add. Tags don't have any semantic meaning to and are interpreted strictly as a string of characters.</p> <p>For more information about using tags with Amazon Elastic Compute Cloud (Amazon EC2) instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging your Amazon EC2 resources</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "AssociateOpsItemRelatedItem": "<p>Associates a related item to a Systems Manager OpsCenter OpsItem. For example, you can associate an Incident Manager incident or analysis with an OpsItem. Incident Manager and OpsCenter are capabilities of Amazon Web Services Systems Manager.</p>",
@@ -20,6 +20,7 @@
     "DeleteDocument": "<p>Deletes the Amazon Web Services Systems Manager document (SSM document) and all managed node associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all managed nodes that are associated with the document.</p>",
     "DeleteInventory": "<p>Delete a custom inventory type or the data associated with a custom Inventory type. Deleting a custom inventory type is also referred to as deleting a custom inventory schema.</p>",
     "DeleteMaintenanceWindow": "<p>Deletes a maintenance window.</p>",
+    "DeleteOpsItem": "<p>Delete an OpsItem. You must have permission in Identity and Access Management (IAM) to delete an OpsItem. </p> <important> <p>Note the following important information about this operation.</p> <ul> <li> <p>Deleting an OpsItem is irreversible. You can't restore a deleted OpsItem.</p> </li> <li> <p>This operation uses an <i>eventual consistency model</i>, which means the system can take a few minutes to complete this operation. If you delete an OpsItem and immediately call, for example, <a>GetOpsItem</a>, the deleted OpsItem might still appear in the response. </p> </li> <li> <p>This operation is idempotent. The system doesn't throw an exception if you repeatedly call this operation for the same OpsItem. If the first call is successful, all additional calls return the same successful response as the first call.</p> </li> <li> <p>This operation doesn't support cross-account calls. A delegated administrator or management account can't delete OpsItems in other accounts, even if OpsCenter has been set up for cross-account administration. For more information about cross-account administration, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-setting-up-cross-account.html\">Setting up OpsCenter to centrally manage OpsItems across accounts</a> in the <i>Systems Manager User Guide</i>.</p> </li> </ul> </important>",
     "DeleteOpsMetadata": "<p>Delete OpsMetadata related to an application.</p>",
     "DeleteParameter": "<p>Delete a parameter from the system. After deleting a parameter, wait for at least 30 seconds to create a parameter with the same name.</p>",
     "DeleteParameters": "<p>Delete a list of parameters. After deleting a parameter, wait for at least 30 seconds to create a parameter with the same name.</p>",
@@ -1721,6 +1722,16 @@
       }
     },
     "DeleteMaintenanceWindowResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOpsItemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOpsItemResponse": {
       "base": null,
       "refs": {
       }
@@ -5174,6 +5185,11 @@
         "UpdateOpsItemRequest$Category": "<p>Specify a new category for an OpsItem.</p>"
       }
     },
+    "OpsItemConflictException": {
+      "base": "<p>The specified OpsItem is in the process of being deleted.</p>",
+      "refs": {
+      }
+    },
     "OpsItemDataKey": {
       "base": null,
       "refs": {
@@ -5300,6 +5316,7 @@
       "base": null,
       "refs": {
         "AssociateOpsItemRelatedItemRequest$OpsItemId": "<p>The ID of the OpsItem to which you want to associate a resource as a related item.</p>",
+        "DeleteOpsItemRequest$OpsItemId": "<p>The ID of the OpsItem that you want to delete.</p>",
         "DisassociateOpsItemRelatedItemRequest$OpsItemId": "<p>The ID of the OpsItem for which you want to delete an association between the OpsItem and a related item.</p>",
         "GetOpsItemRequest$OpsItemId": "<p>The ID of the OpsItem that you want to get.</p>",
         "ListOpsItemRelatedItemsRequest$OpsItemId": "<p>The ID of the OpsItem for which you want to list all related-item resources.</p>",
@@ -5527,9 +5544,9 @@
     "OpsItemType": {
       "base": null,
       "refs": {
-        "CreateOpsItemRequest$OpsItemType": "<p>The type of OpsItem to create. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insight</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
-        "OpsItem$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insight</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
-        "OpsItemSummary$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insight</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>"
+        "CreateOpsItemRequest$OpsItemType": "<p>The type of OpsItem to create. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
+        "OpsItem$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
+        "OpsItemSummary$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>"
       }
     },
     "OpsMetadata": {
@@ -7731,6 +7748,7 @@
         "OpsItemAccessDeniedException$Message": null,
         "OpsItemAlreadyExistsException$Message": null,
         "OpsItemAlreadyExistsException$OpsItemId": null,
+        "OpsItemConflictException$Message": null,
         "OpsItemEventSummary$OpsItemId": "<p>The ID of the OpsItem.</p>",
         "OpsItemEventSummary$EventId": "<p>The ID of the OpsItem event.</p>",
         "OpsItemEventSummary$Source": "<p>The source of the OpsItem event.</p>",

@@ -40,6 +40,12 @@ const (
 	// the parameter values and try again.
 	ErrCodeInvalidParameterValueException = "InvalidParameterValueException"
 
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
+	// The limit of 200 configuration IDs per request has been exceeded.
+	ErrCodeLimitExceededException = "LimitExceededException"
+
 	// ErrCodeOperationNotPermittedException for service response error code
 	// "OperationNotPermittedException".
 	//
@@ -76,6 +82,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"HomeRegionNotSetException":      newErrorHomeRegionNotSetException,
 	"InvalidParameterException":      newErrorInvalidParameterException,
 	"InvalidParameterValueException": newErrorInvalidParameterValueException,
+	"LimitExceededException":         newErrorLimitExceededException,
 	"OperationNotPermittedException": newErrorOperationNotPermittedException,
 	"ResourceInUseException":         newErrorResourceInUseException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,

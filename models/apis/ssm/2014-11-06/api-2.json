@@ -42,7 +42,8 @@
         {"shape":"OpsItemNotFoundException"},
         {"shape":"OpsItemLimitExceededException"},
         {"shape":"OpsItemInvalidParameterException"},
-        {"shape":"OpsItemRelatedItemAlreadyExistsException"}
+        {"shape":"OpsItemRelatedItemAlreadyExistsException"},
+        {"shape":"OpsItemConflictException"}
       ]
     },
     "CancelCommand":{
@@ -297,6 +298,19 @@
       "output":{"shape":"DeleteMaintenanceWindowResult"},
       "errors":[
         {"shape":"InternalServerError"}
+      ]
+    },
+    "DeleteOpsItem":{
+      "name":"DeleteOpsItem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteOpsItemRequest"},
+      "output":{"shape":"DeleteOpsItemResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"OpsItemInvalidParameterException"}
       ]
     },
     "DeleteOpsMetadata":{
@@ -883,7 +897,8 @@
         {"shape":"InternalServerError"},
         {"shape":"OpsItemRelatedItemAssociationNotFoundException"},
         {"shape":"OpsItemNotFoundException"},
-        {"shape":"OpsItemInvalidParameterException"}
+        {"shape":"OpsItemInvalidParameterException"},
+        {"shape":"OpsItemConflictException"}
       ]
     },
     "GetAutomationExecution":{
@@ -1983,7 +1998,8 @@
         {"shape":"OpsItemAlreadyExistsException"},
         {"shape":"OpsItemLimitExceededException"},
         {"shape":"OpsItemInvalidParameterException"},
-        {"shape":"OpsItemAccessDeniedException"}
+        {"shape":"OpsItemAccessDeniedException"},
+        {"shape":"OpsItemConflictException"}
       ]
     },
     "UpdateOpsMetadata":{
@@ -3736,6 +3752,18 @@
       "type":"structure",
       "members":{
         "WindowId":{"shape":"MaintenanceWindowId"}
+      }
+    },
+    "DeleteOpsItemRequest":{
+      "type":"structure",
+      "required":["OpsItemId"],
+      "members":{
+        "OpsItemId":{"shape":"OpsItemId"}
+      }
+    },
+    "DeleteOpsItemResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteOpsMetadataRequest":{
@@ -7723,6 +7751,13 @@
       "max":64,
       "min":1,
       "pattern":"^(?!\\s*$).+"
+    },
+    "OpsItemConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
     },
     "OpsItemDataKey":{
       "type":"string",

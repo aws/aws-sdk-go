@@ -2488,9 +2488,7 @@ type CreateDataIntegrationInput struct {
 	ObjectConfiguration map[string]map[string][]*string `type:"map"`
 
 	// The name of the data and how often it should be pulled from the source.
-	//
-	// ScheduleConfig is a required field
-	ScheduleConfig *ScheduleConfiguration `type:"structure" required:"true"`
+	ScheduleConfig *ScheduleConfiguration `type:"structure"`
 
 	// The URI of the data source.
 	//
@@ -2540,9 +2538,6 @@ func (s *CreateDataIntegrationInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ScheduleConfig == nil {
-		invalidParams.Add(request.NewErrParamRequired("ScheduleConfig"))
 	}
 	if s.SourceURI == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceURI"))

@@ -107,6 +107,98 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationWi
 	return out, req.Send()
 }
 
+const opBatchDeleteAgents = "BatchDeleteAgents"
+
+// BatchDeleteAgentsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteAgents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteAgents for more information on using the BatchDeleteAgents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteAgentsRequest method.
+//	req, resp := client.BatchDeleteAgentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteAgents
+func (c *ApplicationDiscoveryService) BatchDeleteAgentsRequest(input *BatchDeleteAgentsInput) (req *request.Request, output *BatchDeleteAgentsOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteAgents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchDeleteAgentsInput{}
+	}
+
+	output = &BatchDeleteAgentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteAgents API operation for AWS Application Discovery Service.
+//
+// Deletes one or more agents or collectors as specified by ID. Deleting an
+// agent or collector does not delete the previously discovered data. To delete
+// the data collected, use StartBatchDeleteConfigurationTask.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation BatchDeleteAgents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AuthorizationErrorException
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
+//
+//   - InvalidParameterException
+//     One or more parameters are not valid. Verify the parameters and try again.
+//
+//   - InvalidParameterValueException
+//     The value of one or more parameters are either invalid or out of range. Verify
+//     the parameter values and try again.
+//
+//   - ServerInternalErrorException
+//     The server experienced an internal error. Try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteAgents
+func (c *ApplicationDiscoveryService) BatchDeleteAgents(input *BatchDeleteAgentsInput) (*BatchDeleteAgentsOutput, error) {
+	req, out := c.BatchDeleteAgentsRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteAgentsWithContext is the same as BatchDeleteAgents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteAgents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) BatchDeleteAgentsWithContext(ctx aws.Context, input *BatchDeleteAgentsInput, opts ...request.Option) (*BatchDeleteAgentsOutput, error) {
+	req, out := c.BatchDeleteAgentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDeleteImportData = "BatchDeleteImportData"
 
 // BatchDeleteImportDataRequest generates a "aws/request.Request" representing the
@@ -627,6 +719,12 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 		Name:       opDescribeAgents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -687,6 +785,148 @@ func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput)
 // for more information on using Contexts.
 func (c *ApplicationDiscoveryService) DescribeAgentsWithContext(ctx aws.Context, input *DescribeAgentsInput, opts ...request.Option) (*DescribeAgentsOutput, error) {
 	req, out := c.DescribeAgentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeAgentsPages iterates over the pages of a DescribeAgents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeAgents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeAgents operation.
+//	pageNum := 0
+//	err := client.DescribeAgentsPages(params,
+//	    func(page *applicationdiscoveryservice.DescribeAgentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ApplicationDiscoveryService) DescribeAgentsPages(input *DescribeAgentsInput, fn func(*DescribeAgentsOutput, bool) bool) error {
+	return c.DescribeAgentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeAgentsPagesWithContext same as DescribeAgentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeAgentsPagesWithContext(ctx aws.Context, input *DescribeAgentsInput, fn func(*DescribeAgentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeAgentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeAgentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAgentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeBatchDeleteConfigurationTask = "DescribeBatchDeleteConfigurationTask"
+
+// DescribeBatchDeleteConfigurationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBatchDeleteConfigurationTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBatchDeleteConfigurationTask for more information on using the DescribeBatchDeleteConfigurationTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeBatchDeleteConfigurationTaskRequest method.
+//	req, resp := client.DescribeBatchDeleteConfigurationTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeBatchDeleteConfigurationTask
+func (c *ApplicationDiscoveryService) DescribeBatchDeleteConfigurationTaskRequest(input *DescribeBatchDeleteConfigurationTaskInput) (req *request.Request, output *DescribeBatchDeleteConfigurationTaskOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBatchDeleteConfigurationTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeBatchDeleteConfigurationTaskInput{}
+	}
+
+	output = &DescribeBatchDeleteConfigurationTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeBatchDeleteConfigurationTask API operation for AWS Application Discovery Service.
+//
+// Takes a unique deletion task identifier as input and returns metadata about
+// a configuration deletion task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeBatchDeleteConfigurationTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AuthorizationErrorException
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
+//
+//   - InvalidParameterValueException
+//     The value of one or more parameters are either invalid or out of range. Verify
+//     the parameter values and try again.
+//
+//   - ServerInternalErrorException
+//     The server experienced an internal error. Try again.
+//
+//   - HomeRegionNotSetException
+//     The home Region is not set. Set the home Region to continue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeBatchDeleteConfigurationTask
+func (c *ApplicationDiscoveryService) DescribeBatchDeleteConfigurationTask(input *DescribeBatchDeleteConfigurationTaskInput) (*DescribeBatchDeleteConfigurationTaskOutput, error) {
+	req, out := c.DescribeBatchDeleteConfigurationTaskRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBatchDeleteConfigurationTaskWithContext is the same as DescribeBatchDeleteConfigurationTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBatchDeleteConfigurationTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeBatchDeleteConfigurationTaskWithContext(ctx aws.Context, input *DescribeBatchDeleteConfigurationTaskInput, opts ...request.Option) (*DescribeBatchDeleteConfigurationTaskOutput, error) {
+	req, out := c.DescribeBatchDeleteConfigurationTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -998,6 +1238,12 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 		Name:       opDescribeExportConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1070,6 +1316,61 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsWithContext(ct
 	return out, req.Send()
 }
 
+// DescribeExportConfigurationsPages iterates over the pages of a DescribeExportConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeExportConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeExportConfigurations operation.
+//	pageNum := 0
+//	err := client.DescribeExportConfigurationsPages(params,
+//	    func(page *applicationdiscoveryservice.DescribeExportConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+//
+// Deprecated: DescribeExportConfigurationsPages has been deprecated
+func (c *ApplicationDiscoveryService) DescribeExportConfigurationsPages(input *DescribeExportConfigurationsInput, fn func(*DescribeExportConfigurationsOutput, bool) bool) error {
+	return c.DescribeExportConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeExportConfigurationsPagesWithContext same as DescribeExportConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+//
+// Deprecated: DescribeExportConfigurationsPagesWithContext has been deprecated
+func (c *ApplicationDiscoveryService) DescribeExportConfigurationsPagesWithContext(ctx aws.Context, input *DescribeExportConfigurationsInput, fn func(*DescribeExportConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeExportConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeExportConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeExportConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeExportTasks = "DescribeExportTasks"
 
 // DescribeExportTasksRequest generates a "aws/request.Request" representing the
@@ -1100,6 +1401,12 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 		Name:       opDescribeExportTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1162,6 +1469,57 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksWithContext(ctx aws.Con
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeExportTasksPages iterates over the pages of a DescribeExportTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeExportTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeExportTasks operation.
+//	pageNum := 0
+//	err := client.DescribeExportTasksPages(params,
+//	    func(page *applicationdiscoveryservice.DescribeExportTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ApplicationDiscoveryService) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(*DescribeExportTasksOutput, bool) bool) error {
+	return c.DescribeExportTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeExportTasksPagesWithContext same as DescribeExportTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeExportTasksPagesWithContext(ctx aws.Context, input *DescribeExportTasksInput, fn func(*DescribeExportTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeExportTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeExportTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeExportTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeImportTasks = "DescribeImportTasks"
@@ -1345,6 +1703,12 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1422,6 +1786,57 @@ func (c *ApplicationDiscoveryService) DescribeTagsWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeTagsPages iterates over the pages of a DescribeTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeTags operation.
+//	pageNum := 0
+//	err := client.DescribeTagsPages(params,
+//	    func(page *applicationdiscoveryservice.DescribeTagsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ApplicationDiscoveryService) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
+	return c.DescribeTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTagsPagesWithContext same as DescribeTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeTagsPagesWithContext(ctx aws.Context, input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDisassociateConfigurationItemsFromApplication = "DisassociateConfigurationItemsFromApplication"
@@ -1755,6 +2170,12 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 		Name:       opListConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1822,6 +2243,57 @@ func (c *ApplicationDiscoveryService) ListConfigurationsWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListConfigurationsPages iterates over the pages of a ListConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListConfigurations operation.
+//	pageNum := 0
+//	err := client.ListConfigurationsPages(params,
+//	    func(page *applicationdiscoveryservice.ListConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ApplicationDiscoveryService) ListConfigurationsPages(input *ListConfigurationsInput, fn func(*ListConfigurationsOutput, bool) bool) error {
+	return c.ListConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConfigurationsPagesWithContext same as ListConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) ListConfigurationsPagesWithContext(ctx aws.Context, input *ListConfigurationsInput, fn func(*ListConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListServerNeighbors = "ListServerNeighbors"
@@ -1913,6 +2385,103 @@ func (c *ApplicationDiscoveryService) ListServerNeighbors(input *ListServerNeigh
 // for more information on using Contexts.
 func (c *ApplicationDiscoveryService) ListServerNeighborsWithContext(ctx aws.Context, input *ListServerNeighborsInput, opts ...request.Option) (*ListServerNeighborsOutput, error) {
 	req, out := c.ListServerNeighborsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartBatchDeleteConfigurationTask = "StartBatchDeleteConfigurationTask"
+
+// StartBatchDeleteConfigurationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartBatchDeleteConfigurationTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartBatchDeleteConfigurationTask for more information on using the StartBatchDeleteConfigurationTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartBatchDeleteConfigurationTaskRequest method.
+//	req, resp := client.StartBatchDeleteConfigurationTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartBatchDeleteConfigurationTask
+func (c *ApplicationDiscoveryService) StartBatchDeleteConfigurationTaskRequest(input *StartBatchDeleteConfigurationTaskInput) (req *request.Request, output *StartBatchDeleteConfigurationTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartBatchDeleteConfigurationTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartBatchDeleteConfigurationTaskInput{}
+	}
+
+	output = &StartBatchDeleteConfigurationTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartBatchDeleteConfigurationTask API operation for AWS Application Discovery Service.
+//
+// Takes a list of configurationId as input and starts an asynchronous deletion
+// task to remove the configurationItems. Returns a unique deletion task identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation StartBatchDeleteConfigurationTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     The limit of 200 configuration IDs per request has been exceeded.
+//
+//   - AuthorizationErrorException
+//     The user does not have permission to perform the action. Check the IAM policy
+//     associated with this user.
+//
+//   - ServerInternalErrorException
+//     The server experienced an internal error. Try again.
+//
+//   - HomeRegionNotSetException
+//     The home Region is not set. Set the home Region to continue.
+//
+//   - OperationNotPermittedException
+//     This operation is not permitted.
+//
+//   - InvalidParameterValueException
+//     The value of one or more parameters are either invalid or out of range. Verify
+//     the parameter values and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartBatchDeleteConfigurationTask
+func (c *ApplicationDiscoveryService) StartBatchDeleteConfigurationTask(input *StartBatchDeleteConfigurationTaskInput) (*StartBatchDeleteConfigurationTaskOutput, error) {
+	req, out := c.StartBatchDeleteConfigurationTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartBatchDeleteConfigurationTaskWithContext is the same as StartBatchDeleteConfigurationTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartBatchDeleteConfigurationTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) StartBatchDeleteConfigurationTaskWithContext(ctx aws.Context, input *StartBatchDeleteConfigurationTaskInput, opts ...request.Option) (*StartBatchDeleteConfigurationTaskOutput, error) {
+	req, out := c.StartBatchDeleteConfigurationTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3021,6 +3590,265 @@ func (s *AuthorizationErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object representing the agent or data collector that failed to delete,
+// each containing agentId, errorMessage, and errorCode.
+type BatchDeleteAgentError struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the agent or data collector to delete.
+	//
+	// AgentId is a required field
+	AgentId *string `locationName:"agentId" min:"10" type:"string" required:"true"`
+
+	// The type of error that occurred for the delete failed agent. Valid status
+	// are: AGENT_IN_USE | NOT_FOUND | INTERNAL_SERVER_ERROR.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"DeleteAgentErrorCode"`
+
+	// The description of the error that occurred for the delete failed agent.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentError) GoString() string {
+	return s.String()
+}
+
+// SetAgentId sets the AgentId field's value.
+func (s *BatchDeleteAgentError) SetAgentId(v string) *BatchDeleteAgentError {
+	s.AgentId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchDeleteAgentError) SetErrorCode(v string) *BatchDeleteAgentError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchDeleteAgentError) SetErrorMessage(v string) *BatchDeleteAgentError {
+	s.ErrorMessage = &v
+	return s
+}
+
+type BatchDeleteAgentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of agents to delete.
+	//
+	// DeleteAgents is a required field
+	DeleteAgents []*DeleteAgent `locationName:"deleteAgents" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteAgentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteAgentsInput"}
+	if s.DeleteAgents == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeleteAgents"))
+	}
+	if s.DeleteAgents != nil && len(s.DeleteAgents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeleteAgents", 1))
+	}
+	if s.DeleteAgents != nil {
+		for i, v := range s.DeleteAgents {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DeleteAgents", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeleteAgents sets the DeleteAgents field's value.
+func (s *BatchDeleteAgentsInput) SetDeleteAgents(v []*DeleteAgent) *BatchDeleteAgentsInput {
+	s.DeleteAgents = v
+	return s
+}
+
+type BatchDeleteAgentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of agent IDs that failed to delete during the deletion task, each
+	// paired with an error message.
+	Errors []*BatchDeleteAgentError `locationName:"errors" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteAgentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchDeleteAgentsOutput) SetErrors(v []*BatchDeleteAgentError) *BatchDeleteAgentsOutput {
+	s.Errors = v
+	return s
+}
+
+// A metadata object that represents the deletion task being executed.
+type BatchDeleteConfigurationTask struct {
+	_ struct{} `type:"structure"`
+
+	// The type of configuration item to delete. Supported types are: SERVER.
+	ConfigurationType *string `locationName:"configurationType" type:"string" enum:"DeletionConfigurationItemType"`
+
+	// The list of configuration IDs that were successfully deleted by the deletion
+	// task.
+	DeletedConfigurations []*string `locationName:"deletedConfigurations" type:"list"`
+
+	// A list of configuration IDs that produced warnings regarding their deletion,
+	// paired with a warning message.
+	DeletionWarnings []*DeletionWarning `locationName:"deletionWarnings" type:"list"`
+
+	// An epoch seconds timestamp (UTC) of when the deletion task was completed
+	// or failed.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// A list of configuration IDs that failed to delete during the deletion task,
+	// each paired with an error message.
+	FailedConfigurations []*FailedConfiguration `locationName:"failedConfigurations" type:"list"`
+
+	// The list of configuration IDs that were originally requested to be deleted
+	// by the deletion task.
+	RequestedConfigurations []*string `locationName:"requestedConfigurations" type:"list"`
+
+	// An epoch seconds timestamp (UTC) of when the deletion task was started.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+
+	// The current execution status of the deletion task. Valid status are: INITIALIZING
+	// | VALIDATING | DELETING | COMPLETED | FAILED.
+	Status *string `locationName:"status" type:"string" enum:"BatchDeleteConfigurationTaskStatus"`
+
+	// The deletion task's unique identifier.
+	TaskId *string `locationName:"taskId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteConfigurationTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteConfigurationTask) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationType sets the ConfigurationType field's value.
+func (s *BatchDeleteConfigurationTask) SetConfigurationType(v string) *BatchDeleteConfigurationTask {
+	s.ConfigurationType = &v
+	return s
+}
+
+// SetDeletedConfigurations sets the DeletedConfigurations field's value.
+func (s *BatchDeleteConfigurationTask) SetDeletedConfigurations(v []*string) *BatchDeleteConfigurationTask {
+	s.DeletedConfigurations = v
+	return s
+}
+
+// SetDeletionWarnings sets the DeletionWarnings field's value.
+func (s *BatchDeleteConfigurationTask) SetDeletionWarnings(v []*DeletionWarning) *BatchDeleteConfigurationTask {
+	s.DeletionWarnings = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *BatchDeleteConfigurationTask) SetEndTime(v time.Time) *BatchDeleteConfigurationTask {
+	s.EndTime = &v
+	return s
+}
+
+// SetFailedConfigurations sets the FailedConfigurations field's value.
+func (s *BatchDeleteConfigurationTask) SetFailedConfigurations(v []*FailedConfiguration) *BatchDeleteConfigurationTask {
+	s.FailedConfigurations = v
+	return s
+}
+
+// SetRequestedConfigurations sets the RequestedConfigurations field's value.
+func (s *BatchDeleteConfigurationTask) SetRequestedConfigurations(v []*string) *BatchDeleteConfigurationTask {
+	s.RequestedConfigurations = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BatchDeleteConfigurationTask) SetStartTime(v time.Time) *BatchDeleteConfigurationTask {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchDeleteConfigurationTask) SetStatus(v string) *BatchDeleteConfigurationTask {
+	s.Status = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *BatchDeleteConfigurationTask) SetTaskId(v string) *BatchDeleteConfigurationTask {
+	s.TaskId = &v
+	return s
+}
+
 // Error messages returned for each import task that you deleted as a response
 // for this command.
 type BatchDeleteImportDataError struct {
@@ -3075,6 +3903,9 @@ func (s *BatchDeleteImportDataError) SetImportTaskId(v string) *BatchDeleteImpor
 type BatchDeleteImportDataInput struct {
 	_ struct{} `type:"structure"`
 
+	// Set to true to remove the deleted import task from DescribeImportTasks.
+	DeleteHistory *bool `locationName:"deleteHistory" type:"boolean"`
+
 	// The IDs for the import tasks that you want to delete.
 	//
 	// ImportTaskIds is a required field
@@ -3113,6 +3944,12 @@ func (s *BatchDeleteImportDataInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeleteHistory sets the DeleteHistory field's value.
+func (s *BatchDeleteImportDataInput) SetDeleteHistory(v bool) *BatchDeleteImportDataInput {
+	s.DeleteHistory = &v
+	return s
 }
 
 // SetImportTaskIds sets the ImportTaskIds field's value.
@@ -4044,6 +4881,70 @@ func (s *CustomerMeCollectorInfo) SetUnknownMeCollectors(v int64) *CustomerMeCol
 	return s
 }
 
+// An object representing the agent or data collector to be deleted along with
+// the optional configurations for error handling.
+type DeleteAgent struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the agent or data collector to delete.
+	//
+	// AgentId is a required field
+	AgentId *string `locationName:"agentId" min:"10" type:"string" required:"true"`
+
+	// Optional flag used to force delete an agent or data collector. It is needed
+	// to delete any agent in HEALTHY/UNHEALTHY/RUNNING status. Note that deleting
+	// an agent that is actively reporting health causes it to be re-registered
+	// with a different agent ID after data collector re-connects with Amazon Web
+	// Services.
+	Force *bool `locationName:"force" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgent) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAgent) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAgent"}
+	if s.AgentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentId"))
+	}
+	if s.AgentId != nil && len(*s.AgentId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentId sets the AgentId field's value.
+func (s *DeleteAgent) SetAgentId(v string) *DeleteAgent {
+	s.AgentId = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *DeleteAgent) SetForce(v bool) *DeleteAgent {
+	s.Force = &v
+	return s
+}
+
 type DeleteApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4202,6 +5103,56 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
+// A configuration ID paired with a warning message.
+type DeletionWarning struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the configuration that produced a warning.
+	ConfigurationId *string `locationName:"configurationId" type:"string"`
+
+	// The integer warning code associated with the warning message.
+	WarningCode *int64 `locationName:"warningCode" type:"integer"`
+
+	// A descriptive message of the warning the associated configuration ID produced.
+	WarningText *string `locationName:"warningText" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletionWarning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletionWarning) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationId sets the ConfigurationId field's value.
+func (s *DeletionWarning) SetConfigurationId(v string) *DeletionWarning {
+	s.ConfigurationId = &v
+	return s
+}
+
+// SetWarningCode sets the WarningCode field's value.
+func (s *DeletionWarning) SetWarningCode(v int64) *DeletionWarning {
+	s.WarningCode = &v
+	return s
+}
+
+// SetWarningText sets the WarningText field's value.
+func (s *DeletionWarning) SetWarningText(v string) *DeletionWarning {
+	s.WarningText = &v
+	return s
+}
+
 type DescribeAgentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4333,6 +5284,84 @@ func (s *DescribeAgentsOutput) SetAgentsInfo(v []*AgentInfo) *DescribeAgentsOutp
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeAgentsOutput) SetNextToken(v string) *DescribeAgentsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type DescribeBatchDeleteConfigurationTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the task to delete.
+	//
+	// TaskId is a required field
+	TaskId *string `locationName:"taskId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchDeleteConfigurationTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchDeleteConfigurationTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBatchDeleteConfigurationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBatchDeleteConfigurationTaskInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DescribeBatchDeleteConfigurationTaskInput) SetTaskId(v string) *DescribeBatchDeleteConfigurationTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+type DescribeBatchDeleteConfigurationTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The BatchDeleteConfigurationTask that represents the deletion task being
+	// executed.
+	Task *BatchDeleteConfigurationTask `locationName:"task" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchDeleteConfigurationTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchDeleteConfigurationTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetTask sets the Task field's value.
+func (s *DescribeBatchDeleteConfigurationTaskOutput) SetTask(v *BatchDeleteConfigurationTask) *DescribeBatchDeleteConfigurationTaskOutput {
+	s.Task = v
 	return s
 }
 
@@ -5452,6 +6481,57 @@ func (s *ExportPreferences) SetEc2RecommendationsPreferences(v *Ec2Recommendatio
 	return s
 }
 
+// A configuration ID paired with an error message.
+type FailedConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the configuration the failed to delete.
+	ConfigurationId *string `locationName:"configurationId" type:"string"`
+
+	// A descriptive message indicating why the associated configuration failed
+	// to delete.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The integer error code associated with the error message.
+	ErrorStatusCode *int64 `locationName:"errorStatusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationId sets the ConfigurationId field's value.
+func (s *FailedConfiguration) SetConfigurationId(v string) *FailedConfiguration {
+	s.ConfigurationId = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedConfiguration) SetErrorMessage(v string) *FailedConfiguration {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetErrorStatusCode sets the ErrorStatusCode field's value.
+func (s *FailedConfiguration) SetErrorStatusCode(v int64) *FailedConfiguration {
+	s.ErrorStatusCode = &v
+	return s
+}
+
 // A filter that can use conditional operators.
 //
 // For more information about filters, see Querying Discovered Configuration
@@ -6071,6 +7151,70 @@ func (s *InvalidParameterValueException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidParameterValueException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The limit of 200 configuration IDs per request has been exceeded.
+type LimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *LimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -6838,6 +7982,97 @@ func (s *ServerInternalErrorException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServerInternalErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartBatchDeleteConfigurationTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of configuration IDs that will be deleted by the task.
+	//
+	// ConfigurationIds is a required field
+	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
+
+	// The type of configuration item to delete. Supported types are: SERVER.
+	//
+	// ConfigurationType is a required field
+	ConfigurationType *string `locationName:"configurationType" type:"string" required:"true" enum:"DeletionConfigurationItemType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBatchDeleteConfigurationTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBatchDeleteConfigurationTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartBatchDeleteConfigurationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartBatchDeleteConfigurationTaskInput"}
+	if s.ConfigurationIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationIds"))
+	}
+	if s.ConfigurationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationIds sets the ConfigurationIds field's value.
+func (s *StartBatchDeleteConfigurationTaskInput) SetConfigurationIds(v []*string) *StartBatchDeleteConfigurationTaskInput {
+	s.ConfigurationIds = v
+	return s
+}
+
+// SetConfigurationType sets the ConfigurationType field's value.
+func (s *StartBatchDeleteConfigurationTaskInput) SetConfigurationType(v string) *StartBatchDeleteConfigurationTaskInput {
+	s.ConfigurationType = &v
+	return s
+}
+
+type StartBatchDeleteConfigurationTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier associated with the newly started deletion task.
+	TaskId *string `locationName:"taskId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBatchDeleteConfigurationTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBatchDeleteConfigurationTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *StartBatchDeleteConfigurationTaskOutput) SetTaskId(v string) *StartBatchDeleteConfigurationTaskOutput {
+	s.TaskId = &v
+	return s
 }
 
 type StartContinuousExportInput struct {
@@ -7727,6 +8962,34 @@ func AgentStatus_Values() []string {
 }
 
 const (
+	// BatchDeleteConfigurationTaskStatusInitializing is a BatchDeleteConfigurationTaskStatus enum value
+	BatchDeleteConfigurationTaskStatusInitializing = "INITIALIZING"
+
+	// BatchDeleteConfigurationTaskStatusValidating is a BatchDeleteConfigurationTaskStatus enum value
+	BatchDeleteConfigurationTaskStatusValidating = "VALIDATING"
+
+	// BatchDeleteConfigurationTaskStatusDeleting is a BatchDeleteConfigurationTaskStatus enum value
+	BatchDeleteConfigurationTaskStatusDeleting = "DELETING"
+
+	// BatchDeleteConfigurationTaskStatusCompleted is a BatchDeleteConfigurationTaskStatus enum value
+	BatchDeleteConfigurationTaskStatusCompleted = "COMPLETED"
+
+	// BatchDeleteConfigurationTaskStatusFailed is a BatchDeleteConfigurationTaskStatus enum value
+	BatchDeleteConfigurationTaskStatusFailed = "FAILED"
+)
+
+// BatchDeleteConfigurationTaskStatus_Values returns all elements of the BatchDeleteConfigurationTaskStatus enum
+func BatchDeleteConfigurationTaskStatus_Values() []string {
+	return []string{
+		BatchDeleteConfigurationTaskStatusInitializing,
+		BatchDeleteConfigurationTaskStatusValidating,
+		BatchDeleteConfigurationTaskStatusDeleting,
+		BatchDeleteConfigurationTaskStatusCompleted,
+		BatchDeleteConfigurationTaskStatusFailed,
+	}
+}
+
+const (
 	// BatchDeleteImportDataErrorCodeNotFound is a BatchDeleteImportDataErrorCode enum value
 	BatchDeleteImportDataErrorCodeNotFound = "NOT_FOUND"
 
@@ -7815,6 +9078,38 @@ const (
 func DataSource_Values() []string {
 	return []string{
 		DataSourceAgent,
+	}
+}
+
+const (
+	// DeleteAgentErrorCodeNotFound is a DeleteAgentErrorCode enum value
+	DeleteAgentErrorCodeNotFound = "NOT_FOUND"
+
+	// DeleteAgentErrorCodeInternalServerError is a DeleteAgentErrorCode enum value
+	DeleteAgentErrorCodeInternalServerError = "INTERNAL_SERVER_ERROR"
+
+	// DeleteAgentErrorCodeAgentInUse is a DeleteAgentErrorCode enum value
+	DeleteAgentErrorCodeAgentInUse = "AGENT_IN_USE"
+)
+
+// DeleteAgentErrorCode_Values returns all elements of the DeleteAgentErrorCode enum
+func DeleteAgentErrorCode_Values() []string {
+	return []string{
+		DeleteAgentErrorCodeNotFound,
+		DeleteAgentErrorCodeInternalServerError,
+		DeleteAgentErrorCodeAgentInUse,
+	}
+}
+
+const (
+	// DeletionConfigurationItemTypeServer is a DeletionConfigurationItemType enum value
+	DeletionConfigurationItemTypeServer = "SERVER"
+)
+
+// DeletionConfigurationItemType_Values returns all elements of the DeletionConfigurationItemType enum
+func DeletionConfigurationItemType_Values() []string {
+	return []string{
+		DeletionConfigurationItemTypeServer,
 	}
 }
 

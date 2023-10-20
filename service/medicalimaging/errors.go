@@ -47,7 +47,7 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints specified by an AWS service.
+	// The input fails to satisfy the constraints set by the service.
 	ErrCodeValidationException = "ValidationException"
 )
 

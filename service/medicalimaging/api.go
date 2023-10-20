@@ -80,7 +80,7 @@ func (c *MedicalImaging) CopyImageSetRequest(input *CopyImageSetInput) (req *req
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -177,7 +177,7 @@ func (c *MedicalImaging) CreateDatastoreRequest(input *CreateDatastoreInput) (re
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -274,7 +274,7 @@ func (c *MedicalImaging) DeleteDatastoreRequest(input *DeleteDatastoreInput) (re
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -370,7 +370,7 @@ func (c *MedicalImaging) DeleteImageSetRequest(input *DeleteImageSetInput) (req 
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -464,7 +464,7 @@ func (c *MedicalImaging) GetDICOMImportJobRequest(input *GetDICOMImportJobInput)
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -555,7 +555,7 @@ func (c *MedicalImaging) GetDatastoreRequest(input *GetDatastoreInput) (req *req
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -651,7 +651,7 @@ func (c *MedicalImaging) GetImageFrameRequest(input *GetImageFrameInput) (req *r
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -747,7 +747,7 @@ func (c *MedicalImaging) GetImageSetRequest(input *GetImageSetInput) (req *reque
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -843,7 +843,7 @@ func (c *MedicalImaging) GetImageSetMetadataRequest(input *GetImageSetMetadataIn
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -922,7 +922,7 @@ func (c *MedicalImaging) ListDICOMImportJobsRequest(input *ListDICOMImportJobsIn
 
 // ListDICOMImportJobs API operation for AWS Health Imaging.
 //
-// List import jobs created by this AWS account for a specific data store.
+// List import jobs created for a specific data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -943,7 +943,7 @@ func (c *MedicalImaging) ListDICOMImportJobsRequest(input *ListDICOMImportJobsIn
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1073,7 +1073,7 @@ func (c *MedicalImaging) ListDatastoresRequest(input *ListDatastoresInput) (req 
 
 // ListDatastores API operation for AWS Health Imaging.
 //
-// List data stores created by this AWS account.
+// List data stores.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1091,7 +1091,7 @@ func (c *MedicalImaging) ListDatastoresRequest(input *ListDatastoresInput) (req 
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1241,7 +1241,7 @@ func (c *MedicalImaging) ListImageSetVersionsRequest(input *ListImageSetVersions
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1383,7 +1383,7 @@ func (c *MedicalImaging) ListTagsForResourceRequest(input *ListTagsForResourceIn
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1466,6 +1466,13 @@ func (c *MedicalImaging) SearchImageSetsRequest(input *SearchImageSetsInput) (re
 //
 // Search image sets based on defined input attributes.
 //
+// SearchImageSets accepts a single search query parameter and returns a paginated
+// response of all image sets that have the matching criteria. All range queries
+// must be input as (lowerBound, upperBound).
+//
+// SearchImageSets uses the updatedAt field for sorting in decreasing order
+// from latest to oldest.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1485,7 +1492,7 @@ func (c *MedicalImaging) SearchImageSetsRequest(input *SearchImageSetsInput) (re
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1633,7 +1640,7 @@ func (c *MedicalImaging) StartDICOMImportJobRequest(input *StartDICOMImportJobIn
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1728,7 +1735,7 @@ func (c *MedicalImaging) TagResourceRequest(input *TagResourceInput) (req *reque
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1820,7 +1827,7 @@ func (c *MedicalImaging) UntagResourceRequest(input *UntagResourceInput) (req *r
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -1916,7 +1923,7 @@ func (c *MedicalImaging) UpdateImageSetMetadataRequest(input *UpdateImageSetMeta
 //     The user does not have sufficient access to perform this action.
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints set by the service.
 //
 //   - InternalServerException
 //     An unexpected error occurred during processing of the request.
@@ -2580,8 +2587,8 @@ type CreateDatastoreInput struct {
 	// The data store name.
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) assigned to the AWS Key Management Service
-	// (AWS KMS) key for accessing encrypted data.
+	// The Amazon Resource Name (ARN) assigned to the Key Management Service (KMS)
+	// key for accessing encrypted data.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 
 	// The tags provided when creating a data store.
@@ -3258,8 +3265,8 @@ type DatastoreProperties struct {
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `locationName:"datastoreStatus" type:"string" required:"true" enum:"DatastoreStatus"`
 
-	// The Amazon Resource Name (ARN) assigned to the AWS Key Management Service
-	// (AWS KMS) key for accessing encrypted data.
+	// The Amazon Resource Name (ARN) assigned to the Key Management Service (KMS)
+	// key for accessing encrypted data.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 
 	// The timestamp when the data store was last updated.
@@ -4417,8 +4424,8 @@ func (s *ImageSetProperties) SetVersionId(v string) *ImageSetProperties {
 type ImageSetsMetadataSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The time an image set is created in AWS HealthImaging. Sample creation date
-	// is provided in 1985-04-12T23:20:50.52Z format.
+	// The time an image set is created. Sample creation date is provided in 1985-04-12T23:20:50.52Z
+	// format.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The DICOM tags associated with the image set.
@@ -4429,7 +4436,7 @@ type ImageSetsMetadataSummary struct {
 	// ImageSetId is a required field
 	ImageSetId *string `locationName:"imageSetId" type:"string" required:"true"`
 
-	// The time when an image was last updated in AWS HealthImaging.
+	// The time an image set was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 
 	// The image set version.
@@ -6175,7 +6182,7 @@ func (s *UpdateImageSetMetadataOutput) SetUpdatedAt(v time.Time) *UpdateImageSet
 	return s
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// The input fails to satisfy the constraints set by the service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

@@ -3001,6 +3001,24 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "UpdatePhoneNumberMetadata":{
+      "name":"UpdatePhoneNumberMetadata",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/phone-number/{PhoneNumberId}/metadata"
+      },
+      "input":{"shape":"UpdatePhoneNumberMetadataRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"IdempotencyException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdatePrompt":{
       "name":"UpdatePrompt",
       "http":{
@@ -3935,10 +3953,7 @@
       "type":"string",
       "max":50
     },
-    "BoxedBoolean":{
-      "type":"boolean",
-      "box":true
-    },
+    "BoxedBoolean":{"type":"boolean"},
     "BucketName":{
       "type":"string",
       "max":128,
@@ -5177,6 +5192,7 @@
         },
         "EvaluationFormVersion":{
           "shape":"VersionNumber",
+          "box":true,
           "location":"querystring",
           "locationName":"version"
         }
@@ -5683,6 +5699,7 @@
         },
         "EvaluationFormVersion":{
           "shape":"VersionNumber",
+          "box":true,
           "location":"querystring",
           "locationName":"version"
         }
@@ -6796,7 +6813,10 @@
         "LastActivatedTime":{"shape":"Timestamp"},
         "LastActivatedBy":{"shape":"ARN"},
         "LatestVersion":{"shape":"VersionNumber"},
-        "ActiveVersion":{"shape":"VersionNumber"}
+        "ActiveVersion":{
+          "shape":"VersionNumber",
+          "box":true
+        }
       }
     },
     "EvaluationFormSummaryList":{
@@ -12131,7 +12151,10 @@
           "locationName":"EvaluationFormId"
         },
         "EvaluationFormVersion":{"shape":"VersionNumber"},
-        "CreateNewVersion":{"shape":"BoxedBoolean"},
+        "CreateNewVersion":{
+          "shape":"BoxedBoolean",
+          "box":true
+        },
         "Title":{"shape":"EvaluationFormTitle"},
         "Description":{"shape":"EvaluationFormDescription"},
         "Items":{"shape":"EvaluationFormItemsList"},
@@ -12262,6 +12285,22 @@
     "UpdateParticipantRoleConfigResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdatePhoneNumberMetadataRequest":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{
+          "shape":"PhoneNumberId",
+          "location":"uri",
+          "locationName":"PhoneNumberId"
+        },
+        "PhoneNumberDescription":{"shape":"PhoneNumberDescription"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "UpdatePhoneNumberRequest":{
@@ -13083,7 +13122,6 @@
     "Value":{"type":"double"},
     "VersionNumber":{
       "type":"integer",
-      "box":true,
       "min":1
     },
     "View":{

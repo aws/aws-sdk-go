@@ -952,6 +952,10 @@ type ConnectAPI interface {
 	UpdatePhoneNumberWithContext(aws.Context, *connect.UpdatePhoneNumberInput, ...request.Option) (*connect.UpdatePhoneNumberOutput, error)
 	UpdatePhoneNumberRequest(*connect.UpdatePhoneNumberInput) (*request.Request, *connect.UpdatePhoneNumberOutput)
 
+	UpdatePhoneNumberMetadata(*connect.UpdatePhoneNumberMetadataInput) (*connect.UpdatePhoneNumberMetadataOutput, error)
+	UpdatePhoneNumberMetadataWithContext(aws.Context, *connect.UpdatePhoneNumberMetadataInput, ...request.Option) (*connect.UpdatePhoneNumberMetadataOutput, error)
+	UpdatePhoneNumberMetadataRequest(*connect.UpdatePhoneNumberMetadataInput) (*request.Request, *connect.UpdatePhoneNumberMetadataOutput)
+
 	UpdatePrompt(*connect.UpdatePromptInput) (*connect.UpdatePromptOutput, error)
 	UpdatePromptWithContext(aws.Context, *connect.UpdatePromptInput, ...request.Option) (*connect.UpdatePromptOutput, error)
 	UpdatePromptRequest(*connect.UpdatePromptInput) (*request.Request, *connect.UpdatePromptOutput)

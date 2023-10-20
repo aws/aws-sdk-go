@@ -1,3 +1,16 @@
+Release v1.46.1 (2023-10-20)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API
+* `service/appintegrations`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/discovery`: Updates service API, documentation, and paginators
+  * This release introduces three new APIs: StartBatchDeleteConfigurationTask, DescribeBatchDeleteConfigurationTask, and BatchDeleteAgents.
+* `service/medical-imaging`: Updates service documentation
+* `service/ssm`: Updates service API and documentation
+  * This release introduces a new API: DeleteOpsItem. This allows deletion of an OpsItem.
+
 Release v1.46.0 (2023-10-19)
 ===
 
