@@ -5,9 +5,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
-
-	"github.com/pkg/errors"
 )
 
 // Example plugin that will retrieve credentials from a JSON file that the
@@ -41,7 +40,7 @@ type provider struct {
 func (p *provider) Retrieve() (key, secret, token string, err error) {
 	f, err := os.Open(p.Filename)
 	if err != nil {
-		return "", "", "", errors.Wrapf(err, "failed to open credentials file, %q", p.Filename)
+		return "", "", "", fmt.Errorf("failed to open credentials file, %q: %w", p.Filename, err)
 	}
 	decoder := json.NewDecoder(f)
 
@@ -50,7 +49,7 @@ func (p *provider) Retrieve() (key, secret, token string, err error) {
 	}{}
 
 	if err := decoder.Decode(&creds); err != nil {
-		return "", "", "", errors.Wrap(err, "failed to decode credentials file")
+		return "", "", "", fmt.Errorf("failed to decode credentials file: %w", err)
 	}
 
 	p.loaded = true
