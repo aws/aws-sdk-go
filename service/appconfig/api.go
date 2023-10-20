@@ -5104,7 +5104,7 @@ type CreateConfigurationProfileInput struct {
 	// key ID, alias, or the Amazon Resource Name (ARN) of the key ID or alias.
 	// To encrypt data managed in other configuration stores, see the documentation
 	// for how to specify an KMS key for that particular service.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// A URI to locate the configuration. You can specify the following:
 	//
@@ -5189,6 +5189,9 @@ func (s *CreateConfigurationProfileInput) Validate() error {
 	}
 	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
 	}
 	if s.LocationUri == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocationUri"))
@@ -5297,7 +5300,7 @@ type CreateConfigurationProfileOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
@@ -7915,7 +7918,7 @@ type GetConfigurationProfileOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`
@@ -8165,7 +8168,7 @@ type GetDeploymentOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -10710,7 +10713,7 @@ type StartDeploymentInput struct {
 
 	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
 	// ID to encrypt the configuration data using a customer managed key.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// Metadata to assign to the deployment. Tags help organize and categorize your
 	// AppConfig resources. Each tag consists of a key and an optional value, both
@@ -10762,6 +10765,9 @@ func (s *StartDeploymentInput) Validate() error {
 	}
 	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
+	}
+	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10883,7 +10889,7 @@ type StartDeploymentOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -11193,7 +11199,7 @@ type StopDeploymentOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -11803,7 +11809,7 @@ type UpdateConfigurationProfileOutput struct {
 
 	// The Key Management Service key identifier (key ID, key alias, or key ARN)
 	// provided when the resource was created or updated.
-	KmsKeyIdentifier *string `type:"string"`
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The URI location of the configuration.
 	LocationUri *string `min:"1" type:"string"`

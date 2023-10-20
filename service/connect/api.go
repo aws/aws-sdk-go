@@ -2851,7 +2851,7 @@ func (c *Connect) CreateTrafficDistributionGroupRequest(input *CreateTrafficDist
 // Creates a traffic distribution group given an Amazon Connect instance that
 // has been replicated.
 //
-// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
+// The SignInConfig distribution is available only on a default TrafficDistributionGroup
 // (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
 // data type). If you call UpdateTrafficDistribution with a modified SignInConfig
 // and a non-default TrafficDistributionGroup, an InvalidRequestException is
@@ -3051,6 +3051,11 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 // CreateUser API operation for Amazon Connect Service.
 //
 // Creates a user account for the specified Amazon Connect instance.
+//
+// Certain UserIdentityInfo (https://docs.aws.amazon.com/connect/latest/APIReference/API_UserIdentityInfo.html)
+// parameters are required in some situations. For example, Email is required
+// if you are using SAML for identity management. FirstName and LastName are
+// required if you are using Amazon Connect or SAML for identity management.
 //
 // For information about how to create user accounts using the Amazon Connect
 // console, see Add Users (https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html)
@@ -9212,7 +9217,13 @@ func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req
 
 // GetFederationToken API operation for Amazon Connect Service.
 //
-// Retrieves a token for federation.
+// Supports SAML sign-in for Amazon Connect. Retrieves a token for federation.
+// The token is for the Amazon Connect user which corresponds to the IAM credentials
+// that were used to invoke this action.
+//
+// For more information about how SAML sign-in works in Amazon Connect, see
+// Configure SAML with IAM for Amazon Connect in the Amazon Connect Administrator
+// Guide. (https://docs.aws.amazon.com/connect/latest/adminguide/configure-saml.html)
 //
 // This API doesn't support root users. If you try to invoke GetFederationToken
 // with root credentials, an error message similar to the following one appears:
@@ -9323,6 +9334,15 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 // For a description of each historical metric, see Historical Metrics Definitions
 // (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 // in the Amazon Connect Administrator Guide.
+//
+// We recommend using the GetMetricDataV2 (https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricDataV2.html)
+// API. It provides more flexibility, features, and the ability to query longer
+// time ranges than GetMetricData. Use it to retrieve historical agent and contact
+// metrics for the last 3 months, at varying intervals. You can also use it
+// to build custom dashboards to measure historical queue and agent performance.
+// For example, you can track the number of incoming contacts for the last 7
+// days, with data split by day, to see how contact volume changed per day of
+// the week.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18232,7 +18252,36 @@ func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *re
 
 // StartTaskContact API operation for Amazon Connect Service.
 //
-// Initiates a flow to start a new task.
+// Initiates a flow to start a new task contact. For more information about
+// task contacts, see Concepts: Tasks in Amazon Connect (https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html)
+// in the Amazon Connect Administrator Guide.
+//
+// When using PreviousContactId and RelatedContactId input parameters, note
+// the following:
+//
+//   - PreviousContactId Any updates to user-defined task contact attributes
+//     on any contact linked through the same PreviousContactId will affect every
+//     contact in the chain. There can be a maximum of 12 linked task contacts
+//     in a chain. That is, 12 task contacts can be created that share the same
+//     PreviousContactId.
+//
+//   - RelatedContactId Copies contact attributes from the related task contact
+//     to the new contact. Any update on attributes in a new task contact does
+//     not update attributes on previous contact. There’s no limit on the number
+//     of task contacts that can be created that use the same RelatedContactId.
+//
+// In addition, when calling StartTaskContact include only one of these parameters:
+// ContactFlowID, QuickConnectID, or TaskTemplateID. Only one parameter is required
+// as long as the task template has a flow configured to run it. If more than
+// one parameter is specified, or only the TaskTemplateID is specified but it
+// does not have a flow configured, the request returns an error because Amazon
+// Connect cannot identify the unique flow to run when the task is created.
+//
+// A ServiceQuotaExceededException occurs when the number of open tasks exceeds
+// the active tasks quota or there are already 12 tasks referencing the same
+// PreviousContactId. For more information about service quotas for task contacts,
+// see Amazon Connect service quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20647,6 +20696,111 @@ func (c *Connect) UpdatePhoneNumberWithContext(ctx aws.Context, input *UpdatePho
 	return out, req.Send()
 }
 
+const opUpdatePhoneNumberMetadata = "UpdatePhoneNumberMetadata"
+
+// UpdatePhoneNumberMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePhoneNumberMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePhoneNumberMetadata for more information on using the UpdatePhoneNumberMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePhoneNumberMetadataRequest method.
+//	req, resp := client.UpdatePhoneNumberMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumberMetadata
+func (c *Connect) UpdatePhoneNumberMetadataRequest(input *UpdatePhoneNumberMetadataInput) (req *request.Request, output *UpdatePhoneNumberMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePhoneNumberMetadata,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/phone-number/{PhoneNumberId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdatePhoneNumberMetadataInput{}
+	}
+
+	output = &UpdatePhoneNumberMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePhoneNumberMetadata API operation for Amazon Connect Service.
+//
+// Updates a phone number’s metadata.
+//
+// To verify the status of a previous UpdatePhoneNumberMetadata operation, call
+// the DescribePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdatePhoneNumberMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumberMetadata
+func (c *Connect) UpdatePhoneNumberMetadata(input *UpdatePhoneNumberMetadataInput) (*UpdatePhoneNumberMetadataOutput, error) {
+	req, out := c.UpdatePhoneNumberMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePhoneNumberMetadataWithContext is the same as UpdatePhoneNumberMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePhoneNumberMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdatePhoneNumberMetadataWithContext(ctx aws.Context, input *UpdatePhoneNumberMetadataInput, opts ...request.Option) (*UpdatePhoneNumberMetadataOutput, error) {
+	req, out := c.UpdatePhoneNumberMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdatePrompt = "UpdatePrompt"
 
 // UpdatePromptRequest generates a "aws/request.Request" representing the
@@ -22217,7 +22371,7 @@ func (c *Connect) UpdateTrafficDistributionRequest(input *UpdateTrafficDistribut
 //
 // Updates the traffic distribution for a given traffic distribution group.
 //
-// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
+// The SignInConfig distribution is available only on a default TrafficDistributionGroup
 // (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
 // data type). If you call UpdateTrafficDistribution with a modified SignInConfig
 // and a non-default TrafficDistributionGroup, an InvalidRequestException is
@@ -25518,17 +25672,18 @@ type ClaimedPhoneNumberSummary struct {
 
 	// The status of the phone number.
 	//
-	//    * CLAIMED means the previous ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
+	//    * CLAIMED means the previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 	//    or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
 	//    operation succeeded.
 	//
-	//    * IN_PROGRESS means a ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
-	//    or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
+	//    * IN_PROGRESS means a ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html),
+	//    UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html),
+	//    or UpdatePhoneNumberMetadata (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html)
 	//    operation is still in progress and has not yet completed. You can call
 	//    DescribePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
 	//    at a later time to verify if the previous operation has completed.
 	//
-	//    * FAILED indicates that the previous ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
+	//    * FAILED indicates that the previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 	//    or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
 	//    operation has failed. It will include a message indicating the failure
 	//    reason. A common reason for a failure may be that the TargetArn value
@@ -25843,7 +25998,9 @@ type ContactFlow struct {
 	Arn *string `type:"string"`
 
 	// The JSON string that represents the content of the flow. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	//
+	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	Content *string `type:"string"`
 
 	// The description of the flow.
@@ -25942,9 +26099,7 @@ type ContactFlowModule struct {
 	Arn *string `type:"string"`
 
 	// The JSON string that represents the content of the flow. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
-	//
-	// Length Constraints: Minimum length of 1. Maximum length of 256000.
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	Content *string `min:"1" type:"string"`
 
 	// The description of the flow module.
@@ -26512,7 +26667,7 @@ type CreateContactFlowInput struct {
 	_ struct{} `type:"structure"`
 
 	// The JSON string that represents the content of the flow. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	//
@@ -26638,7 +26793,8 @@ type CreateContactFlowModuleInput struct {
 	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The content of the flow module.
+	// The JSON string that represents the content of the flow. For an example,
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
@@ -40479,7 +40635,8 @@ type GetTrafficDistributionOutput struct {
 	// Region.
 	Id *string `type:"string"`
 
-	// The distribution of allowing signing in to the instance and its replica(s).
+	// The distribution that determines which Amazon Web Services Regions should
+	// be used to sign in agents in to both the instance and its replica(s).
 	SignInConfig *SignInConfig `type:"structure"`
 
 	// The distribution of traffic between the instance and its replicas.
@@ -49173,17 +49330,18 @@ func (s *PhoneNumberQuickConnectConfig) SetPhoneNumber(v string) *PhoneNumberQui
 
 // The status of the phone number.
 //
-//   - CLAIMED means the previous ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
+//   - CLAIMED means the previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 //     or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
 //     operation succeeded.
 //
-//   - IN_PROGRESS means a ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
-//     or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
+//   - IN_PROGRESS means a ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html),
+//     UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html),
+//     or UpdatePhoneNumberMetadata (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html)
 //     operation is still in progress and has not yet completed. You can call
 //     DescribePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
 //     at a later time to verify if the previous operation has completed.
 //
-//   - FAILED indicates that the previous ClaimedPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html)
+//   - FAILED indicates that the previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 //     or UpdatePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html)
 //     operation has failed. It will include a message indicating the failure
 //     reason. A common reason for a failure may be that the TargetArn value
@@ -53597,6 +53755,8 @@ type SearchUsersInput struct {
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
 	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceID is a required field. The "Required: No" below is incorrect.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The maximum number of results to return per page.
@@ -54421,7 +54581,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The distribution of allowing signing in to the instance and its replica(s).
+// The distribution that determines which Amazon Web Services Regions should
+// be used to sign in agents in to both the instance and its replica(s).
 type SignInConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -55522,17 +55683,30 @@ type StartTaskContactInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The identifier of the previous chat, voice, or task contact.
+	// The identifier of the previous chat, voice, or task contact. Any updates
+	// to user-defined attributes to task contacts linked using the same PreviousContactID
+	// will affect every contact in the chain. There can be a maximum of 12 linked
+	// task contacts in a chain.
 	PreviousContactId *string `min:"1" type:"string"`
 
-	// The identifier for the quick connect.
+	// The identifier for the quick connect. Tasks that are created by using QuickConnectId
+	// will use the flow that is defined on agent or queue quick connect. For more
+	// information about quick connects, see Create quick connects (https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html).
 	QuickConnectId *string `type:"string"`
 
 	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+	// Tasks can have the following reference types at the time of creation: URL
+	// | NUMBER | STRING | DATE | EMAIL. ATTACHMENT is not a supported reference
+	// type during task creation.
 	References map[string]*Reference `type:"map"`
 
 	// The contactId that is related (https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks)
-	// to this contact.
+	// to this contact. Linking tasks together by using RelatedContactID copies
+	// over contact attributes from the related task contact to the new task contact.
+	// All updates to user-defined attributes in the new task contact are limited
+	// to the individual contact ID, unlike what happens when tasks are linked by
+	// using PreviousContactID. There are no limits to the number of contacts that
+	// can be linked by using RelatedContactId.
 	RelatedContactId *string `min:"1" type:"string"`
 
 	// The timestamp, in Unix Epoch seconds format, at which to start running the
@@ -55540,7 +55714,9 @@ type StartTaskContactInput struct {
 	// up to 6 days in future.
 	ScheduledTime *time.Time `type:"timestamp"`
 
-	// A unique identifier for the task template.
+	// A unique identifier for the task template. For more information about task
+	// templates, see Create task templates (https://docs.aws.amazon.com/connect/latest/adminguide/task-templates.html)
+	// in the Amazon Connect Administrator Guide.
 	TaskTemplateId *string `min:"1" type:"string"`
 }
 
@@ -57386,11 +57562,9 @@ type TrafficDistributionGroup struct {
 	// the DeleteTrafficDistributionGroup API. The default traffic distribution
 	// group is deleted as part of the process for deleting a replica.
 	//
-	// You can change the SignInConfig distribution only for a default TrafficDistributionGroup
-	// (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
-	// data type). If you call UpdateTrafficDistribution with a modified SignInConfig
-	// and a non-default TrafficDistributionGroup, an InvalidRequestException is
-	// returned.
+	// The SignInConfig distribution is available only on the default TrafficDistributionGroup.
+	// If you call UpdateTrafficDistribution with a modified SignInConfig and a
+	// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
 	IsDefault *bool `type:"boolean"`
 
 	// The name of the traffic distribution group.
@@ -57415,8 +57589,7 @@ type TrafficDistributionGroup struct {
 	//    * DELETION_FAILED means the previous DeleteTrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteTrafficDistributionGroup.html)
 	//    operation has failed.
 	//
-	//    * UPDATE_IN_PROGRESS means the previous UpdateTrafficDistributionGroup
-	//    (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html)
+	//    * UPDATE_IN_PROGRESS means the previous UpdateTrafficDistribution (https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html)
 	//    operation is still in progress and has not yet completed.
 	Status *string `type:"string" enum:"TrafficDistributionGroupStatus"`
 
@@ -58259,7 +58432,7 @@ type UpdateContactFlowContentInput struct {
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
 	// The JSON string that represents the content of the flow. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Length Constraints: Minimum length of 1. Maximum length of 256000.
 	//
@@ -58484,7 +58657,7 @@ type UpdateContactFlowModuleContentInput struct {
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
 	// The JSON string that represents the content of the flow. For an example,
-	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
+	// see Example flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
@@ -59879,6 +60052,98 @@ func (s *UpdatePhoneNumberInput) SetPhoneNumberId(v string) *UpdatePhoneNumberIn
 func (s *UpdatePhoneNumberInput) SetTargetArn(v string) *UpdatePhoneNumberInput {
 	s.TargetArn = &v
 	return s
+}
+
+type UpdatePhoneNumberMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The description of the phone number.
+	PhoneNumberDescription *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) or resource ID of the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePhoneNumberMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePhoneNumberMetadataInput"}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePhoneNumberMetadataInput) SetClientToken(v string) *UpdatePhoneNumberMetadataInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPhoneNumberDescription sets the PhoneNumberDescription field's value.
+func (s *UpdatePhoneNumberMetadataInput) SetPhoneNumberDescription(v string) *UpdatePhoneNumberMetadataInput {
+	s.PhoneNumberDescription = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *UpdatePhoneNumberMetadataInput) SetPhoneNumberId(v string) *UpdatePhoneNumberMetadataInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+type UpdatePhoneNumberMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberMetadataOutput) GoString() string {
+	return s.String()
 }
 
 type UpdatePhoneNumberOutput struct {
@@ -61993,7 +62258,8 @@ type UpdateTrafficDistributionInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	// The distribution of allowing signing in to the instance and its replica(s).
+	// The distribution that determines which Amazon Web Services Regions should
+	// be used to sign in agents in to both the instance and its replica(s).
 	SignInConfig *SignInConfig `type:"structure"`
 
 	// The distribution of traffic between the instance and its replica(s).

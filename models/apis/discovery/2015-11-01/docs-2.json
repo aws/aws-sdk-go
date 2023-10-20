@@ -3,12 +3,14 @@
   "service": "<fullname>Amazon Web Services Application Discovery Service</fullname> <p>Amazon Web Services Application Discovery Service (Application Discovery Service) helps you plan application migration projects. It automatically identifies servers, virtual machines (VMs), and network dependencies in your on-premises data centers. For more information, see the <a href=\"http://aws.amazon.com/application-discovery/faqs/\">Amazon Web Services Application Discovery Service FAQ</a>. </p> <p>Application Discovery Service offers three ways of performing discovery and collecting data about your on-premises servers:</p> <ul> <li> <p> <b>Agentless discovery</b> using Amazon Web Services Application Discovery Service Agentless Collector (Agentless Collector), which doesn't require you to install an agent on each host.</p> <ul> <li> <p>Agentless Collector gathers server information regardless of the operating systems, which minimizes the time required for initial on-premises infrastructure assessment.</p> </li> <li> <p>Agentless Collector doesn't collect information about network dependencies, only agent-based discovery collects that information. </p> </li> </ul> </li> </ul> <ul> <li> <p> <b>Agent-based discovery</b> using the Amazon Web Services Application Discovery Agent (Application Discovery Agent) collects a richer set of data than agentless discovery, which you install on one or more hosts in your data center.</p> <ul> <li> <p> The agent captures infrastructure and application information, including an inventory of running processes, system performance information, resource utilization, and network dependencies.</p> </li> <li> <p>The information collected by agents is secured at rest and in transit to the Application Discovery Service database in the Amazon Web Services cloud. For more information, see <a href=\"https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-agent.html\">Amazon Web Services Application Discovery Agent</a>.</p> </li> </ul> </li> </ul> <ul> <li> <p> <b>Amazon Web Services Partner Network (APN) solutions</b> integrate with Application Discovery Service, enabling you to import details of your on-premises environment directly into Amazon Web Services Migration Hub (Migration Hub) without using Agentless Collector or Application Discovery Agent.</p> <ul> <li> <p>Third-party application discovery tools can query Amazon Web Services Application Discovery Service, and they can write to the Application Discovery Service database using the public API.</p> </li> <li> <p>In this way, you can import data into Migration Hub and view it, so that you can associate applications with servers and track migrations.</p> </li> </ul> </li> </ul> <p> <b>Working With This Guide</b> </p> <p>This API reference provides descriptions, syntax, and usage examples for each of the actions and data types for Application Discovery Service. The topic for each action shows the API request parameters and the response. Alternatively, you can use one of the Amazon Web Services SDKs to access an API that is tailored to the programming language or platform that you're using. For more information, see <a href=\"http://aws.amazon.com/tools/#SDKs\">Amazon Web Services SDKs</a>.</p> <note> <ul> <li> <p>Remember that you must set your Migration Hub home Region before you call any of these APIs.</p> </li> <li> <p>You must make API calls for write actions (create, notify, associate, disassociate, import, or put) while in your home Region, or a <code>HomeRegionNotSetException</code> error is returned.</p> </li> <li> <p>API calls for read actions (list, describe, stop, and delete) are permitted outside of your home Region.</p> </li> <li> <p>Although it is unlikely, the Migration Hub home Region could change. If you call APIs outside the home Region, an <code>InvalidInputException</code> is returned.</p> </li> <li> <p>You must call <code>GetHomeRegion</code> to obtain the latest Migration Hub home Region.</p> </li> </ul> </note> <p>This guide is intended for use with the <a href=\"https://docs.aws.amazon.com/application-discovery/latest/userguide/\">Amazon Web Services Application Discovery Service User Guide</a>.</p> <important> <p>All data is handled according to the <a href=\"https://aws.amazon.com/privacy/\">Amazon Web Services Privacy Policy</a>. You can operate Application Discovery Service offline to inspect collected data before it is shared with the service.</p> </important>",
   "operations": {
     "AssociateConfigurationItemsToApplication": "<p>Associates one or more configuration items with an application.</p>",
+    "BatchDeleteAgents": "<p> Deletes one or more agents or collectors as specified by ID. Deleting an agent or collector does not delete the previously discovered data. To delete the data collected, use <code>StartBatchDeleteConfigurationTask</code>. </p>",
     "BatchDeleteImportData": "<p>Deletes one or more import tasks, each identified by their import ID. Each import task has a number of records that can identify servers or applications. </p> <p>Amazon Web Services Application Discovery Service has built-in matching logic that will identify when discovered servers match existing entries that you've previously discovered, the information for the already-existing discovered server is updated. When you delete an import task that contains records that were used to match, the information in those matched records that comes from the deleted records will also be deleted.</p>",
     "CreateApplication": "<p>Creates an application with the given name and description.</p>",
     "CreateTags": "<p>Creates one or more tags for configuration items. Tags are metadata that help you categorize IT assets. This API accepts a list of multiple configuration items.</p> <important> <p>Do not store sensitive information (like personal data) in tags.</p> </important>",
     "DeleteApplications": "<p>Deletes a list of applications and their associations with configuration items.</p>",
     "DeleteTags": "<p>Deletes the association between configuration items and one or more tags. This API accepts a list of multiple configuration items.</p>",
     "DescribeAgents": "<p>Lists agents or collectors as specified by ID or other filters. All agents/collectors associated with your user can be listed if you call <code>DescribeAgents</code> as is without passing any parameters.</p>",
+    "DescribeBatchDeleteConfigurationTask": "<p> Takes a unique deletion task identifier as input and returns metadata about a configuration deletion task.</p>",
     "DescribeConfigurations": "<p>Retrieves attributes for a list of configuration item IDs.</p> <note> <p>All of the supplied IDs must be for the same asset type from one of the following:</p> <ul> <li> <p>server</p> </li> <li> <p>application</p> </li> <li> <p>process</p> </li> <li> <p>connection</p> </li> </ul> <p>Output fields are specific to the asset type specified. For example, the output for a <i>server</i> configuration item includes a list of attributes about the server, such as host name, operating system, number of network cards, etc.</p> <p>For a complete list of outputs for each asset type, see <a href=\"https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#DescribeConfigurations\">Using the DescribeConfigurations Action</a> in the <i>Amazon Web Services Application Discovery Service User Guide</i>.</p> </note>",
     "DescribeContinuousExports": "<p>Lists exports as specified by ID. All continuous exports associated with your user can be listed if you call <code>DescribeContinuousExports</code> as is without passing any parameters.</p>",
     "DescribeExportConfigurations": "<p> <code>DescribeExportConfigurations</code> is deprecated. Use <a href=\"https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html\">DescribeExportTasks</a>, instead.</p>",
@@ -20,6 +22,7 @@
     "GetDiscoverySummary": "<p>Retrieves a short summary of discovered assets.</p> <p>This API operation takes no request parameters and is called as is at the command prompt as shown in the example.</p>",
     "ListConfigurations": "<p>Retrieves a list of configuration items as specified by the value passed to the required parameter <code>configurationType</code>. Optional filtering may be applied to refine search results.</p>",
     "ListServerNeighbors": "<p>Retrieves a list of servers that are one network hop away from a specified server.</p>",
+    "StartBatchDeleteConfigurationTask": "<p> Takes a list of configurationId as input and starts an asynchronous deletion task to remove the configurationItems. Returns a unique deletion task identifier. </p>",
     "StartContinuousExport": "<p>Start the continuous flow of agent's discovered data into Amazon Athena.</p>",
     "StartDataCollectionByAgentIds": "<p>Instructs the specified agents to start collecting data.</p>",
     "StartExportTask": "<p>Begins the export of a discovered data report to an Amazon S3 bucket managed by Amazon Web Services.</p> <note> <p>Exports might provide an estimate of fees and savings based on certain information that you provide. Fee estimates do not include any taxes that might apply. Your actual fees and savings depend on a variety of factors, including your actual usage of Amazon Web Services services, which might vary from the estimates provided in this report.</p> </note> <p>If you do not specify <code>preferences</code> or <code>agentIds</code> in the filter, a summary of all servers, applications, tags, and performance is generated. This data is an aggregation of all server data collected through on-premises tooling, file import, application grouping and applying tags.</p> <p>If you specify <code>agentIds</code> in a filter, the task exports up to 72 hours of detailed data collected by the identified Application Discovery Agent, including network, process, and performance details. A time range for exported agent data may be set by using <code>startTime</code> and <code>endTime</code>. Export of detailed agent data is limited to five concurrently running exports. Export of detailed agent data is limited to two exports per day.</p> <p>If you enable <code>ec2RecommendationsPreferences</code> in <code>preferences</code> , an Amazon EC2 instance matching the characteristics of each server in Application Discovery Service is generated. Changing the attributes of the <code>ec2RecommendationsPreferences</code> changes the criteria of the recommendation.</p>",
@@ -46,7 +49,9 @@
       "base": null,
       "refs": {
         "AgentIds$member": null,
-        "AgentInfo$agentId": "<p>The agent or collector ID.</p>"
+        "AgentInfo$agentId": "<p>The agent or collector ID.</p>",
+        "BatchDeleteAgentError$agentId": "<p> The ID of the agent or data collector to delete. </p>",
+        "DeleteAgent$agentId": "<p> The ID of the agent or data collector to delete. </p>"
       }
     },
     "AgentIds": {
@@ -131,6 +136,40 @@
       "refs": {
       }
     },
+    "BatchDeleteAgentError": {
+      "base": "<p> An object representing the agent or data collector that failed to delete, each containing agentId, errorMessage, and errorCode. </p>",
+      "refs": {
+        "BatchDeleteAgentErrors$member": null
+      }
+    },
+    "BatchDeleteAgentErrors": {
+      "base": null,
+      "refs": {
+        "BatchDeleteAgentsResponse$errors": "<p> A list of agent IDs that failed to delete during the deletion task, each paired with an error message. </p>"
+      }
+    },
+    "BatchDeleteAgentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteAgentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteConfigurationTask": {
+      "base": "<p> A metadata object that represents the deletion task being executed. </p>",
+      "refs": {
+        "DescribeBatchDeleteConfigurationTaskResponse$task": "<p> The <code>BatchDeleteConfigurationTask</code> that represents the deletion task being executed. </p>"
+      }
+    },
+    "BatchDeleteConfigurationTaskStatus": {
+      "base": null,
+      "refs": {
+        "BatchDeleteConfigurationTask$status": "<p> The current execution status of the deletion task. Valid status are: INITIALIZING | VALIDATING | DELETING | COMPLETED | FAILED. </p>"
+      }
+    },
     "BatchDeleteImportDataError": {
       "base": "<p>Error messages returned for each import task that you deleted as a response for this command.</p>",
       "refs": {
@@ -169,6 +208,8 @@
       "base": null,
       "refs": {
         "AgentConfigurationStatus$operationSucceeded": "<p>Information about the status of the <code>StartDataCollection</code> and <code>StopDataCollection</code> operations. The system has recorded the data collection operation. The agent receives this command the next time it polls for a new command. </p>",
+        "BatchDeleteImportDataRequest$deleteHistory": "<p> Set to <code>true</code> to remove the deleted import task from <a>DescribeImportTasks</a>. </p>",
+        "DeleteAgent$force": "<p> Optional flag used to force delete an agent or data collector. It is needed to delete any agent in HEALTHY/UNHEALTHY/RUNNING status. Note that deleting an agent that is actively reporting health causes it to be re-registered with a different agent ID after data collector re-connects with Amazon Web Services. </p>",
         "ExportInfo$isTruncated": "<p>If true, the export of agent information exceeded the size limit for a single export and the exported data is incomplete for the requested time range. To address this, select a smaller time range for the export by using <code>startDate</code> and <code>endDate</code>.</p>",
         "ListServerNeighborsRequest$portInformationNeeded": "<p>Flag to indicate if port and protocol information is needed as part of the response.</p>"
       }
@@ -204,6 +245,8 @@
       "refs": {
         "ConfigurationIdList$member": null,
         "ConfigurationTag$configurationId": "<p>The configuration ID for the item to tag. You can specify a list of keys and values.</p>",
+        "DeletionWarning$configurationId": "<p> The unique identifier of the configuration that produced a warning. </p>",
+        "FailedConfiguration$configurationId": "<p> The unique identifier of the configuration the failed to delete. </p>",
         "ListServerNeighborsRequest$configurationId": "<p>Configuration ID of the server for which neighbors are being listed.</p>",
         "NeighborConnectionDetail$sourceServerId": "<p>The ID of the server that opened the network connection.</p>",
         "NeighborConnectionDetail$destinationServerId": "<p>The ID of the server that accepted the network connection.</p>"
@@ -213,11 +256,14 @@
       "base": null,
       "refs": {
         "AssociateConfigurationItemsToApplicationRequest$configurationIds": "<p>The ID of each configuration item to be associated with an application.</p>",
+        "BatchDeleteConfigurationTask$requestedConfigurations": "<p> The list of configuration IDs that were originally requested to be deleted by the deletion task. </p>",
+        "BatchDeleteConfigurationTask$deletedConfigurations": "<p> The list of configuration IDs that were successfully deleted by the deletion task. </p>",
         "CreateTagsRequest$configurationIds": "<p>A list of configuration items that you want to tag.</p>",
         "DeleteTagsRequest$configurationIds": "<p>A list of configuration items with tags that you want to delete.</p>",
         "DescribeConfigurationsRequest$configurationIds": "<p>One or more configuration IDs.</p>",
         "DisassociateConfigurationItemsFromApplicationRequest$configurationIds": "<p>Configuration ID of each item to be disassociated from an application.</p>",
-        "ListServerNeighborsRequest$neighborConfigurationIds": "<p>List of configuration IDs to test for one-hop-away.</p>"
+        "ListServerNeighborsRequest$neighborConfigurationIds": "<p>List of configuration IDs to test for one-hop-away.</p>",
+        "StartBatchDeleteConfigurationTaskRequest$configurationIds": "<p> The list of configuration IDs that will be deleted by the task. </p>"
       }
     },
     "ConfigurationItemType": {
@@ -350,6 +396,24 @@
         "SchemaStorageConfig$key": null
       }
     },
+    "DeleteAgent": {
+      "base": "<p> An object representing the agent or data collector to be deleted along with the optional configurations for error handling. </p>",
+      "refs": {
+        "DeleteAgents$member": null
+      }
+    },
+    "DeleteAgentErrorCode": {
+      "base": null,
+      "refs": {
+        "BatchDeleteAgentError$errorCode": "<p> The type of error that occurred for the delete failed agent. Valid status are: AGENT_IN_USE | NOT_FOUND | INTERNAL_SERVER_ERROR. </p>"
+      }
+    },
+    "DeleteAgents": {
+      "base": null,
+      "refs": {
+        "BatchDeleteAgentsRequest$deleteAgents": "<p> The list of agents to delete. </p>"
+      }
+    },
     "DeleteApplicationsRequest": {
       "base": null,
       "refs": {
@@ -370,12 +434,41 @@
       "refs": {
       }
     },
+    "DeletionConfigurationItemType": {
+      "base": null,
+      "refs": {
+        "BatchDeleteConfigurationTask$configurationType": "<p> The type of configuration item to delete. Supported types are: SERVER. </p>",
+        "StartBatchDeleteConfigurationTaskRequest$configurationType": "<p> The type of configuration item to delete. Supported types are: SERVER. </p>"
+      }
+    },
+    "DeletionWarning": {
+      "base": "<p> A configuration ID paired with a warning message. </p>",
+      "refs": {
+        "DeletionWarningsList$member": null
+      }
+    },
+    "DeletionWarningsList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteConfigurationTask$deletionWarnings": "<p> A list of configuration IDs that produced warnings regarding their deletion, paired with a warning message. </p>"
+      }
+    },
     "DescribeAgentsRequest": {
       "base": null,
       "refs": {
       }
     },
     "DescribeAgentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBatchDeleteConfigurationTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBatchDeleteConfigurationTaskResponse": {
       "base": null,
       "refs": {
       }
@@ -492,6 +585,18 @@
         "ExportPreferences$ec2RecommendationsPreferences": "<p> If enabled, exported data includes EC2 instance type matches for on-premises servers discovered through Amazon Web Services Application Discovery Service. </p>"
       }
     },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "FailedConfiguration$errorMessage": "<p> A descriptive message indicating why the associated configuration failed to delete. </p>"
+      }
+    },
+    "ErrorStatusCode": {
+      "base": null,
+      "refs": {
+        "FailedConfiguration$errorStatusCode": "<p> The integer error code associated with the error message. </p>"
+      }
+    },
     "ExcludedInstanceTypes": {
       "base": null,
       "refs": {
@@ -576,6 +681,18 @@
       "refs": {
         "DescribeExportConfigurationsResponse$exportsInfo": "<p/>",
         "DescribeExportTasksResponse$exportsInfo": "<p>Contains one or more sets of export request details. When the status of a request is <code>SUCCEEDED</code>, the response includes a URL for an Amazon S3 bucket where you can view the data in a CSV file.</p>"
+      }
+    },
+    "FailedConfiguration": {
+      "base": "<p> A configuration ID paired with an error message. </p>",
+      "refs": {
+        "FailedConfigurationList$member": null
+      }
+    },
+    "FailedConfigurationList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteConfigurationTask$failedConfigurations": "<p> A list of configuration IDs that failed to delete during the deletion task, each paired with an error message. </p>"
       }
     },
     "Filter": {
@@ -745,6 +862,11 @@
       "refs": {
       }
     },
+    "LimitExceededException": {
+      "base": "<p> The limit of 200 configuration IDs per request has been exceeded. </p>",
+      "refs": {
+      }
+    },
     "ListConfigurationsRequest": {
       "base": null,
       "refs": {
@@ -784,6 +906,7 @@
         "HomeRegionNotSetException$message": null,
         "InvalidParameterException$message": null,
         "InvalidParameterValueException$message": null,
+        "LimitExceededException$message": null,
         "OperationNotPermittedException$message": null,
         "ResourceInUseException$message": null,
         "ResourceNotFoundException$message": null,
@@ -897,6 +1020,16 @@
       "refs": {
       }
     },
+    "StartBatchDeleteConfigurationTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartBatchDeleteConfigurationTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartContinuousExportRequest": {
       "base": null,
       "refs": {
@@ -971,6 +1104,7 @@
         "AgentInfo$registeredTime": "<p>Agent's first registration timestamp in UTC.</p>",
         "AgentNetworkInfo$ipAddress": "<p>The IP address for the host where the agent/collector resides.</p>",
         "AgentNetworkInfo$macAddress": "<p>The MAC address for the host where the agent/collector resides.</p>",
+        "BatchDeleteAgentError$errorMessage": "<p> The description of the error that occurred for the delete failed agent. </p>",
         "Configuration$key": null,
         "Configuration$value": null,
         "CreateApplicationResponse$configurationId": "<p>Configuration ID of an application to be created.</p>",
@@ -1043,6 +1177,8 @@
     "TimeStamp": {
       "base": null,
       "refs": {
+        "BatchDeleteConfigurationTask$startTime": "<p> An epoch seconds timestamp (UTC) of when the deletion task was started. </p>",
+        "BatchDeleteConfigurationTask$endTime": "<p> An epoch seconds timestamp (UTC) of when the deletion task was completed or failed. </p>",
         "ConfigurationTag$timeOfCreation": "<p>The time the configuration tag was created in Coordinated Universal Time (UTC).</p>",
         "ContinuousExportDescription$startTime": "<p>The timestamp representing when the continuous export was started.</p>",
         "ContinuousExportDescription$stopTime": "<p>The timestamp that represents when this continuous export was stopped.</p>",
@@ -1062,6 +1198,14 @@
       "base": null,
       "refs": {
         "BatchDeleteImportDataRequest$importTaskIds": "<p>The IDs for the import tasks that you want to delete.</p>"
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "BatchDeleteConfigurationTask$taskId": "<p> The deletion task's unique identifier. </p>",
+        "DescribeBatchDeleteConfigurationTaskRequest$taskId": "<p> The ID of the task to delete. </p>",
+        "StartBatchDeleteConfigurationTaskResponse$taskId": "<p> The unique identifier associated with the newly started deletion task. </p>"
       }
     },
     "UpdateApplicationRequest": {
@@ -1097,6 +1241,18 @@
       "base": null,
       "refs": {
         "Ec2RecommendationsExportPreferences$preferredRegion": "<p> The target Amazon Web Services Region for the recommendations. You can use any of the Region codes available for the chosen service, as listed in <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html\">Amazon Web Services service endpoints</a> in the <i>Amazon Web Services General Reference</i>. </p>"
+      }
+    },
+    "WarningCode": {
+      "base": null,
+      "refs": {
+        "DeletionWarning$warningCode": "<p> The integer warning code associated with the warning message. </p>"
+      }
+    },
+    "WarningText": {
+      "base": null,
+      "refs": {
+        "DeletionWarning$warningText": "<p> A descriptive message of the warning the associated configuration ID produced. </p>"
       }
     },
     "orderString": {
