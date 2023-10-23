@@ -764,6 +764,57 @@
         "title": "To distribute an Amazon Rekognition Custom Labels dataset"
       }
     ],
+    "GetMediaAnalysisJob": [
+      {
+        "input": {
+          "JobId": "861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537"
+        },
+        "output": {
+          "CompletionTimestamp": "2023-07-28T08:05:51.958000-07:00",
+          "CreationTimestamp": "2023-07-28T08:05:51.958000-06:00",
+          "Input": {
+            "S3Object": {
+              "Bucket": "input-bucket",
+              "Name": "input-manifest.json"
+            }
+          },
+          "JobId": "861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537",
+          "JobName": "job-name",
+          "ManifestSummary": {
+            "S3Object": {
+              "Bucket": "output-bucket",
+              "Name": "output-location/861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537-manifest-summary.json"
+            }
+          },
+          "OperationsConfig": {
+            "DetectModerationLabels": {
+              "MinConfidence": 50,
+              "ProjectVersion": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+            }
+          },
+          "OutputConfig": {
+            "S3Bucket": "output-bucket",
+            "S3KeyPrefix": "output-location"
+          },
+          "Results": {
+            "S3Object": {
+              "Bucket": "output-bucket",
+              "Name": "output-location/861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537-results.jsonl"
+            }
+          },
+          "Status": "SUCCEEDED"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Retrieves the results for a given media analysis job.",
+        "id": "getmediaanalysisjob-1697650068124",
+        "title": "GetMediaAnalysisJob"
+      }
+    ],
     "IndexFaces": [
       {
         "input": {
@@ -1058,6 +1109,61 @@
         "description": "This operation lists the faces in a Rekognition collection.",
         "id": "to-list-the-faces-in-a-collection-1482181416530",
         "title": "To list the faces in a collection"
+      }
+    ],
+    "ListMediaAnalysisJobs": [
+      {
+        "input": {
+          "MaxResults": 10
+        },
+        "output": {
+          "MediaAnalysisJobs": [
+            {
+              "CompletionTimestamp": "2023-07-28T08:05:51.958000-07:00",
+              "CreationTimestamp": "2023-07-28T08:05:51.958000-06:00",
+              "Input": {
+                "S3Object": {
+                  "Bucket": "input-bucket",
+                  "Name": "input-manifest.json"
+                }
+              },
+              "JobId": "861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537",
+              "JobName": "job-name",
+              "ManifestSummary": {
+                "S3Object": {
+                  "Bucket": "output-bucket",
+                  "Name": "output-location/861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537-manifest-summary.json"
+                }
+              },
+              "OperationsConfig": {
+                "DetectModerationLabels": {
+                  "MinConfidence": 50,
+                  "ProjectVersion": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+                }
+              },
+              "OutputConfig": {
+                "S3Bucket": "output-bucket",
+                "S3KeyPrefix": "output-location"
+              },
+              "Results": {
+                "S3Object": {
+                  "Bucket": "output-bucket",
+                  "Name": "output-location/861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537-results.jsonl"
+                }
+              },
+              "Status": "SUCCEEDED"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Returns a list of media analysis jobs.",
+        "id": "listmediaanalysisjobs-1697650653077",
+        "title": "ListMediaAnalysisJobs"
       }
     ],
     "ListProjectPolicies": [
@@ -1364,6 +1470,41 @@
         "description": "Searches for UserIDs using a supplied image.",
         "id": "searchusersbyimage-1686183178610",
         "title": "SearchUsersByImage"
+      }
+    ],
+    "StartMediaAnalysisJob": [
+      {
+        "input": {
+          "Input": {
+            "S3Object": {
+              "Bucket": "input-bucket",
+              "Name": "input-manifest.json"
+            }
+          },
+          "JobName": "job-name",
+          "OperationsConfig": {
+            "DetectModerationLabels": {
+              "MinConfidence": 50,
+              "ProjectVersion": "arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"
+            }
+          },
+          "OutputConfig": {
+            "S3Bucket": "output-bucket",
+            "S3KeyPrefix": "output-location"
+          }
+        },
+        "output": {
+          "JobId": "861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Initiates a new media analysis job.",
+        "id": "startmediaanalysisjob-1697651090922",
+        "title": "StartMediaAnalysisJob"
       }
     ],
     "StartProjectVersion": [

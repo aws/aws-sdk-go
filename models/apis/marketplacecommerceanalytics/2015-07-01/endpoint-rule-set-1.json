@@ -169,7 +169,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://rekognition-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://marketplacecommerceanalytics-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -221,7 +221,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://rekognition-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://marketplacecommerceanalytics-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -273,7 +273,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://rekognition.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://marketplacecommerceanalytics.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -293,7 +293,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://rekognition.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://marketplacecommerceanalytics.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

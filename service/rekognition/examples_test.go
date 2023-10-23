@@ -1072,6 +1072,44 @@ func ExampleRekognition_DistributeDatasetEntries_shared00() {
 	fmt.Println(result)
 }
 
+// GetMediaAnalysisJob
+// Retrieves the results for a given media analysis job.
+func ExampleRekognition_GetMediaAnalysisJob_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.GetMediaAnalysisJobInput{
+		JobId: aws.String("861a0645d98ef88efb75477628c011c04942d9d5f58faf2703c393c8cf8c1537"),
+	}
+
+	result, err := svc.GetMediaAnalysisJob(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To add a face to a collection
 // This operation detects faces in an image and adds them to the specified Rekognition
 // collection.
@@ -1289,6 +1327,44 @@ func ExampleRekognition_ListFaces_shared00() {
 				fmt.Println(rekognition.ErrCodeInvalidPaginationTokenException, aerr.Error())
 			case rekognition.ErrCodeResourceNotFoundException:
 				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// ListMediaAnalysisJobs
+// Returns a list of media analysis jobs.
+func ExampleRekognition_ListMediaAnalysisJobs_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.ListMediaAnalysisJobsInput{
+		MaxResults: aws.Int64(10),
+	}
+
+	result, err := svc.ListMediaAnalysisJobs(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeInvalidPaginationTokenException:
+				fmt.Println(rekognition.ErrCodeInvalidPaginationTokenException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1613,6 +1689,70 @@ func ExampleRekognition_SearchUsersByImage_shared00() {
 				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
 			case rekognition.ErrCodeThrottlingException:
 				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// StartMediaAnalysisJob
+// Initiates a new media analysis job.
+func ExampleRekognition_StartMediaAnalysisJob_shared00() {
+	svc := rekognition.New(session.New())
+	input := &rekognition.StartMediaAnalysisJobInput{
+		Input: &rekognition.MediaAnalysisInput_{
+			S3Object: &rekognition.S3Object{
+				Bucket: aws.String("input-bucket"),
+				Name:   aws.String("input-manifest.json"),
+			},
+		},
+		JobName: aws.String("job-name"),
+		OperationsConfig: &rekognition.MediaAnalysisOperationsConfig{
+			DetectModerationLabels: &rekognition.MediaAnalysisDetectModerationLabelsConfig{
+				MinConfidence:  aws.Float64(50.000000),
+				ProjectVersion: aws.String("arn:aws:rekognition:us-east-1:111122223333:project/my-project/version/1/1690556751958"),
+			},
+		},
+		OutputConfig: &rekognition.MediaAnalysisOutputConfig{
+			S3Bucket:    aws.String("output-bucket"),
+			S3KeyPrefix: aws.String("output-location"),
+		},
+	}
+
+	result, err := svc.StartMediaAnalysisJob(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rekognition.ErrCodeInternalServerError:
+				fmt.Println(rekognition.ErrCodeInternalServerError, aerr.Error())
+			case rekognition.ErrCodeAccessDeniedException:
+				fmt.Println(rekognition.ErrCodeAccessDeniedException, aerr.Error())
+			case rekognition.ErrCodeInvalidParameterException:
+				fmt.Println(rekognition.ErrCodeInvalidParameterException, aerr.Error())
+			case rekognition.ErrCodeInvalidManifestException:
+				fmt.Println(rekognition.ErrCodeInvalidManifestException, aerr.Error())
+			case rekognition.ErrCodeInvalidS3ObjectException:
+				fmt.Println(rekognition.ErrCodeInvalidS3ObjectException, aerr.Error())
+			case rekognition.ErrCodeResourceNotFoundException:
+				fmt.Println(rekognition.ErrCodeResourceNotFoundException, aerr.Error())
+			case rekognition.ErrCodeResourceNotReadyException:
+				fmt.Println(rekognition.ErrCodeResourceNotReadyException, aerr.Error())
+			case rekognition.ErrCodeProvisionedThroughputExceededException:
+				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
+			case rekognition.ErrCodeLimitExceededException:
+				fmt.Println(rekognition.ErrCodeLimitExceededException, aerr.Error())
+			case rekognition.ErrCodeThrottlingException:
+				fmt.Println(rekognition.ErrCodeThrottlingException, aerr.Error())
+			case rekognition.ErrCodeIdempotentParameterMismatchException:
+				fmt.Println(rekognition.ErrCodeIdempotentParameterMismatchException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

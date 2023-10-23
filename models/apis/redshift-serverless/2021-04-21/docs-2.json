@@ -171,7 +171,7 @@
       "refs": {
         "CreateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>",
         "GetCredentialsResponse$dbPassword": "<p>A temporary password that authorizes the user name returned by <code>DbUser</code> to log on to the database <code>DbName</code>.</p>",
-        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>"
+        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true.</p>"
       }
     },
     "DbUser": {
@@ -879,8 +879,10 @@
         "VpcEndpoint$vpcId": "<p>The VPC identifier that the endpoint is associated with.</p>",
         "VpcSecurityGroupMembership$status": "<p>The status of the VPC security group.</p>",
         "Workgroup$namespaceName": "<p>The namespace the workgroup is associated with.</p>",
+        "Workgroup$patchVersion": "<p>The patch version of your Amazon Redshift Serverless workgroup. For more information about patch versions, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/cluster-versions.html\">Cluster versions for Amazon Redshift</a>.</p>",
         "Workgroup$workgroupArn": "<p>The Amazon Resource Name (ARN) that links to the workgroup.</p>",
-        "Workgroup$workgroupId": "<p>The unique identifier of the workgroup.</p>"
+        "Workgroup$workgroupId": "<p>The unique identifier of the workgroup.</p>",
+        "Workgroup$workgroupVersion": "<p>The Amazon Redshift Serverless version of your workgroup. For more information about Amazon Redshift Serverless versions, see<a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/cluster-versions.html\">Cluster versions for Amazon Redshift</a>.</p>"
       }
     },
     "SubnetId": {

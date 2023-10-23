@@ -10267,6 +10267,11 @@ type Workgroup struct {
 	// The namespace the workgroup is associated with.
 	NamespaceName *string `locationName:"namespaceName" type:"string"`
 
+	// The patch version of your Amazon Redshift Serverless workgroup. For more
+	// information about patch versions, see Cluster versions for Amazon Redshift
+	// (https://docs.aws.amazon.com/redshift/latest/mgmt/cluster-versions.html).
+	PatchVersion *string `locationName:"patchVersion" type:"string"`
+
 	// The custom port to use when connecting to a workgroup. Valid port ranges
 	// are 5431-5455 and 8191-8215. The default is 5439.
 	Port *int64 `locationName:"port" type:"integer"`
@@ -10292,6 +10297,11 @@ type Workgroup struct {
 
 	// The name of the workgroup.
 	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
+
+	// The Amazon Redshift Serverless version of your workgroup. For more information
+	// about Amazon Redshift Serverless versions, seeCluster versions for Amazon
+	// Redshift (https://docs.aws.amazon.com/redshift/latest/mgmt/cluster-versions.html).
+	WorkgroupVersion *string `locationName:"workgroupVersion" type:"string"`
 }
 
 // String returns the string representation.
@@ -10348,6 +10358,12 @@ func (s *Workgroup) SetNamespaceName(v string) *Workgroup {
 	return s
 }
 
+// SetPatchVersion sets the PatchVersion field's value.
+func (s *Workgroup) SetPatchVersion(v string) *Workgroup {
+	s.PatchVersion = &v
+	return s
+}
+
 // SetPort sets the Port field's value.
 func (s *Workgroup) SetPort(v int64) *Workgroup {
 	s.Port = &v
@@ -10393,6 +10409,12 @@ func (s *Workgroup) SetWorkgroupId(v string) *Workgroup {
 // SetWorkgroupName sets the WorkgroupName field's value.
 func (s *Workgroup) SetWorkgroupName(v string) *Workgroup {
 	s.WorkgroupName = &v
+	return s
+}
+
+// SetWorkgroupVersion sets the WorkgroupVersion field's value.
+func (s *Workgroup) SetWorkgroupVersion(v string) *Workgroup {
+	s.WorkgroupVersion = &v
 	return s
 }
 
