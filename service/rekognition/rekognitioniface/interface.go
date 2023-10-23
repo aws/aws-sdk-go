@@ -233,6 +233,10 @@ type RekognitionAPI interface {
 	GetLabelDetectionPages(*rekognition.GetLabelDetectionInput, func(*rekognition.GetLabelDetectionOutput, bool) bool) error
 	GetLabelDetectionPagesWithContext(aws.Context, *rekognition.GetLabelDetectionInput, func(*rekognition.GetLabelDetectionOutput, bool) bool, ...request.Option) error
 
+	GetMediaAnalysisJob(*rekognition.GetMediaAnalysisJobInput) (*rekognition.GetMediaAnalysisJobOutput, error)
+	GetMediaAnalysisJobWithContext(aws.Context, *rekognition.GetMediaAnalysisJobInput, ...request.Option) (*rekognition.GetMediaAnalysisJobOutput, error)
+	GetMediaAnalysisJobRequest(*rekognition.GetMediaAnalysisJobInput) (*request.Request, *rekognition.GetMediaAnalysisJobOutput)
+
 	GetPersonTracking(*rekognition.GetPersonTrackingInput) (*rekognition.GetPersonTrackingOutput, error)
 	GetPersonTrackingWithContext(aws.Context, *rekognition.GetPersonTrackingInput, ...request.Option) (*rekognition.GetPersonTrackingOutput, error)
 	GetPersonTrackingRequest(*rekognition.GetPersonTrackingInput) (*request.Request, *rekognition.GetPersonTrackingOutput)
@@ -285,6 +289,13 @@ type RekognitionAPI interface {
 
 	ListFacesPages(*rekognition.ListFacesInput, func(*rekognition.ListFacesOutput, bool) bool) error
 	ListFacesPagesWithContext(aws.Context, *rekognition.ListFacesInput, func(*rekognition.ListFacesOutput, bool) bool, ...request.Option) error
+
+	ListMediaAnalysisJobs(*rekognition.ListMediaAnalysisJobsInput) (*rekognition.ListMediaAnalysisJobsOutput, error)
+	ListMediaAnalysisJobsWithContext(aws.Context, *rekognition.ListMediaAnalysisJobsInput, ...request.Option) (*rekognition.ListMediaAnalysisJobsOutput, error)
+	ListMediaAnalysisJobsRequest(*rekognition.ListMediaAnalysisJobsInput) (*request.Request, *rekognition.ListMediaAnalysisJobsOutput)
+
+	ListMediaAnalysisJobsPages(*rekognition.ListMediaAnalysisJobsInput, func(*rekognition.ListMediaAnalysisJobsOutput, bool) bool) error
+	ListMediaAnalysisJobsPagesWithContext(aws.Context, *rekognition.ListMediaAnalysisJobsInput, func(*rekognition.ListMediaAnalysisJobsOutput, bool) bool, ...request.Option) error
 
 	ListProjectPolicies(*rekognition.ListProjectPoliciesInput) (*rekognition.ListProjectPoliciesOutput, error)
 	ListProjectPoliciesWithContext(aws.Context, *rekognition.ListProjectPoliciesInput, ...request.Option) (*rekognition.ListProjectPoliciesOutput, error)
@@ -354,6 +365,10 @@ type RekognitionAPI interface {
 	StartLabelDetection(*rekognition.StartLabelDetectionInput) (*rekognition.StartLabelDetectionOutput, error)
 	StartLabelDetectionWithContext(aws.Context, *rekognition.StartLabelDetectionInput, ...request.Option) (*rekognition.StartLabelDetectionOutput, error)
 	StartLabelDetectionRequest(*rekognition.StartLabelDetectionInput) (*request.Request, *rekognition.StartLabelDetectionOutput)
+
+	StartMediaAnalysisJob(*rekognition.StartMediaAnalysisJobInput) (*rekognition.StartMediaAnalysisJobOutput, error)
+	StartMediaAnalysisJobWithContext(aws.Context, *rekognition.StartMediaAnalysisJobInput, ...request.Option) (*rekognition.StartMediaAnalysisJobOutput, error)
+	StartMediaAnalysisJobRequest(*rekognition.StartMediaAnalysisJobInput) (*request.Request, *rekognition.StartMediaAnalysisJobOutput)
 
 	StartPersonTracking(*rekognition.StartPersonTrackingInput) (*rekognition.StartPersonTrackingOutput, error)
 	StartPersonTrackingWithContext(aws.Context, *rekognition.StartPersonTrackingInput, ...request.Option) (*rekognition.StartPersonTrackingOutput, error)

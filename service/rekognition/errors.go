@@ -57,6 +57,13 @@ const (
 	// The provided image format is not supported.
 	ErrCodeInvalidImageFormatException = "InvalidImageFormatException"
 
+	// ErrCodeInvalidManifestException for service response error code
+	// "InvalidManifestException".
+	//
+	// Indicates that a provided manifest file is empty or larger than the allowed
+	// limit.
+	ErrCodeInvalidManifestException = "InvalidManifestException"
+
 	// ErrCodeInvalidPaginationTokenException for service response error code
 	// "InvalidPaginationTokenException".
 	//
@@ -168,6 +175,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ImageTooLargeException":                 newErrorImageTooLargeException,
 	"InternalServerError":                    newErrorInternalServerError,
 	"InvalidImageFormatException":            newErrorInvalidImageFormatException,
+	"InvalidManifestException":               newErrorInvalidManifestException,
 	"InvalidPaginationTokenException":        newErrorInvalidPaginationTokenException,
 	"InvalidParameterException":              newErrorInvalidParameterException,
 	"InvalidPolicyRevisionIdException":       newErrorInvalidPolicyRevisionIdException,

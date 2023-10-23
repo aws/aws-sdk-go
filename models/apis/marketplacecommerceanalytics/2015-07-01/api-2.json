@@ -35,7 +35,9 @@
       "output":{"shape":"StartSupportDataExportResult"},
       "errors":[
         {"shape":"MarketplaceCommerceAnalyticsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This target has been deprecated. As of December 2022 Product Support Connection is no longer supported."
     }
   },
   "shapes":{
@@ -82,6 +84,7 @@
     },
     "DestinationS3BucketName":{
       "type":"string",
+      "max":63,
       "min":1
     },
     "DestinationS3Prefix":{"type":"string"},
@@ -132,10 +135,12 @@
     },
     "RoleNameArn":{
       "type":"string",
+      "max":2048,
       "min":1
     },
     "SnsTopicArn":{
       "type":"string",
+      "max":256,
       "min":1
     },
     "StartSupportDataExportRequest":{
@@ -155,13 +160,17 @@
         "destinationS3Prefix":{"shape":"DestinationS3Prefix"},
         "snsTopicArn":{"shape":"SnsTopicArn"},
         "customerDefinedValues":{"shape":"CustomerDefinedValues"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This target has been deprecated. As of December 2022 Product Support Connection is no longer supported."
     },
     "StartSupportDataExportResult":{
       "type":"structure",
       "members":{
         "dataSetRequestId":{"shape":"DataSetRequestId"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This target has been deprecated. As of December 2022 Product Support Connection is no longer supported."
     },
     "SupportDataSetType":{
       "type":"string",

@@ -1,3 +1,14 @@
+Release v1.46.2 (2023-10-23)
+===
+
+### Service Client Updates
+* `service/marketplacecommerceanalytics`: Updates service API and documentation
+  * The StartSupportDataExport operation has been deprecated as part of the Product Support Connection deprecation. As of December 2022, Product Support Connection is no longer supported.
+* `service/networkmanager`: Updates service API and documentation
+* `service/redshift-serverless`: Updates service API and documentation
+* `service/rekognition`: Updates service API, documentation, paginators, and examples
+  * Amazon Rekognition introduces StartMediaAnalysisJob, GetMediaAnalysisJob, and ListMediaAnalysisJobs operations to run a bulk analysis of images with a Detect Moderation model.
+
 Release v1.46.1 (2023-10-20)
 ===
 

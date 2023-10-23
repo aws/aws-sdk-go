@@ -1734,7 +1734,8 @@
         "State":{"shape":"ConnectPeerState"},
         "CreatedAt":{"shape":"DateTime"},
         "Configuration":{"shape":"ConnectPeerConfiguration"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SubnetArn":{"shape":"SubnetArn"}
       }
     },
     "ConnectPeerAssociation":{
@@ -1811,7 +1812,8 @@
         "EdgeLocation":{"shape":"ExternalRegionCode"},
         "ConnectPeerState":{"shape":"ConnectPeerState"},
         "CreatedAt":{"shape":"DateTime"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SubnetArn":{"shape":"SubnetArn"}
       }
     },
     "ConnectPeerSummaryList":{
@@ -2129,8 +2131,7 @@
       "type":"structure",
       "required":[
         "ConnectAttachmentId",
-        "PeerAddress",
-        "InsideCidrBlocks"
+        "PeerAddress"
       ],
       "members":{
         "ConnectAttachmentId":{"shape":"AttachmentId"},
@@ -2142,7 +2143,8 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "SubnetArn":{"shape":"SubnetArn"}
       }
     },
     "CreateConnectPeerResponse":{
@@ -4844,7 +4846,10 @@
     },
     "TunnelProtocol":{
       "type":"string",
-      "enum":["GRE"]
+      "enum":[
+        "GRE",
+        "NO_ENCAP"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",

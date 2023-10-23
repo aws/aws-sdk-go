@@ -714,6 +714,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetMediaAnalysisJob":{
+      "name":"GetMediaAnalysisJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMediaAnalysisJobRequest"},
+      "output":{"shape":"GetMediaAnalysisJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetPersonTracking":{
       "name":"GetPersonTracking",
       "http":{
@@ -863,6 +880,23 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InvalidPaginationTokenException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListMediaAnalysisJobs":{
+      "name":"ListMediaAnalysisJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMediaAnalysisJobsRequest"},
+      "output":{"shape":"ListMediaAnalysisJobsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListProjectPolicies":{
@@ -1154,6 +1188,29 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"LimitExceededException"},
         {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "StartMediaAnalysisJob":{
+      "name":"StartMediaAnalysisJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMediaAnalysisJobRequest"},
+      "output":{"shape":"StartMediaAnalysisJobResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidManifestException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ],
       "idempotent":true
     },
@@ -2936,6 +2993,38 @@
         "GetRequestMetadata":{"shape":"GetLabelDetectionRequestMetadata"}
       }
     },
+    "GetMediaAnalysisJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"MediaAnalysisJobId"}
+      }
+    },
+    "GetMediaAnalysisJobResponse":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "OperationsConfig",
+        "Status",
+        "CreationTimestamp",
+        "Input",
+        "OutputConfig"
+      ],
+      "members":{
+        "JobId":{"shape":"MediaAnalysisJobId"},
+        "JobName":{"shape":"MediaAnalysisJobName"},
+        "OperationsConfig":{"shape":"MediaAnalysisOperationsConfig"},
+        "Status":{"shape":"MediaAnalysisJobStatus"},
+        "FailureDetails":{"shape":"MediaAnalysisJobFailureDetails"},
+        "CreationTimestamp":{"shape":"DateTime"},
+        "CompletionTimestamp":{"shape":"DateTime"},
+        "Input":{"shape":"MediaAnalysisInput"},
+        "OutputConfig":{"shape":"MediaAnalysisOutputConfig"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "Results":{"shape":"MediaAnalysisResults"},
+        "ManifestSummary":{"shape":"MediaAnalysisManifestSummary"}
+      }
+    },
     "GetPersonTrackingRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -3163,6 +3252,12 @@
       "fault":true
     },
     "InvalidImageFormatException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidManifestException":{
       "type":"structure",
       "members":{
       },
@@ -3471,6 +3566,26 @@
         "FaceModelVersion":{"shape":"String"}
       }
     },
+    "ListMediaAnalysisJobsPageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ListMediaAnalysisJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ExtendedPaginationToken"},
+        "MaxResults":{"shape":"ListMediaAnalysisJobsPageSize"}
+      }
+    },
+    "ListMediaAnalysisJobsResponse":{
+      "type":"structure",
+      "required":["MediaAnalysisJobs"],
+      "members":{
+        "NextToken":{"shape":"ExtendedPaginationToken"},
+        "MediaAnalysisJobs":{"shape":"MediaAnalysisJobDescriptions"}
+      }
+    },
     "ListProjectPoliciesPageSize":{
       "type":"integer",
       "max":5,
@@ -3610,6 +3725,123 @@
       "type":"integer",
       "max":500,
       "min":1
+    },
+    "MediaAnalysisDetectModerationLabelsConfig":{
+      "type":"structure",
+      "members":{
+        "MinConfidence":{"shape":"Percent"},
+        "ProjectVersion":{"shape":"ProjectVersionId"}
+      }
+    },
+    "MediaAnalysisInput":{
+      "type":"structure",
+      "required":["S3Object"],
+      "members":{
+        "S3Object":{"shape":"S3Object"}
+      }
+    },
+    "MediaAnalysisJobDescription":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "OperationsConfig",
+        "Status",
+        "CreationTimestamp",
+        "Input",
+        "OutputConfig"
+      ],
+      "members":{
+        "JobId":{"shape":"MediaAnalysisJobId"},
+        "JobName":{"shape":"MediaAnalysisJobName"},
+        "OperationsConfig":{"shape":"MediaAnalysisOperationsConfig"},
+        "Status":{"shape":"MediaAnalysisJobStatus"},
+        "FailureDetails":{"shape":"MediaAnalysisJobFailureDetails"},
+        "CreationTimestamp":{"shape":"DateTime"},
+        "CompletionTimestamp":{"shape":"DateTime"},
+        "Input":{"shape":"MediaAnalysisInput"},
+        "OutputConfig":{"shape":"MediaAnalysisOutputConfig"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "Results":{"shape":"MediaAnalysisResults"},
+        "ManifestSummary":{"shape":"MediaAnalysisManifestSummary"}
+      }
+    },
+    "MediaAnalysisJobDescriptions":{
+      "type":"list",
+      "member":{"shape":"MediaAnalysisJobDescription"}
+    },
+    "MediaAnalysisJobFailureCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_ERROR",
+        "INVALID_S3_OBJECT",
+        "INVALID_MANIFEST",
+        "INVALID_OUTPUT_CONFIG",
+        "INVALID_KMS_KEY",
+        "ACCESS_DENIED",
+        "RESOURCE_NOT_FOUND",
+        "RESOURCE_NOT_READY",
+        "THROTTLED"
+      ]
+    },
+    "MediaAnalysisJobFailureDetails":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"MediaAnalysisJobFailureCode"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "MediaAnalysisJobId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]+$"
+    },
+    "MediaAnalysisJobName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.\\-]+"
+    },
+    "MediaAnalysisJobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "QUEUED",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "MediaAnalysisManifestSummary":{
+      "type":"structure",
+      "members":{
+        "S3Object":{"shape":"S3Object"}
+      }
+    },
+    "MediaAnalysisOperationsConfig":{
+      "type":"structure",
+      "members":{
+        "DetectModerationLabels":{"shape":"MediaAnalysisDetectModerationLabelsConfig"}
+      }
+    },
+    "MediaAnalysisOutputConfig":{
+      "type":"structure",
+      "required":["S3Bucket"],
+      "members":{
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3KeyPrefix":{"shape":"MediaAnalysisS3KeyPrefix"}
+      }
+    },
+    "MediaAnalysisResults":{
+      "type":"structure",
+      "members":{
+        "S3Object":{"shape":"S3Object"}
+      }
+    },
+    "MediaAnalysisS3KeyPrefix":{
+      "type":"string",
+      "max":800,
+      "pattern":"\\S*"
     },
     "MinCoveragePercentage":{
       "type":"float",
@@ -4386,6 +4618,32 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"}
+      }
+    },
+    "StartMediaAnalysisJobRequest":{
+      "type":"structure",
+      "required":[
+        "OperationsConfig",
+        "Input",
+        "OutputConfig"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "JobName":{"shape":"MediaAnalysisJobName"},
+        "OperationsConfig":{"shape":"MediaAnalysisOperationsConfig"},
+        "Input":{"shape":"MediaAnalysisInput"},
+        "OutputConfig":{"shape":"MediaAnalysisOutputConfig"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "StartMediaAnalysisJobResponse":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"MediaAnalysisJobId"}
       }
     },
     "StartPersonTrackingRequest":{

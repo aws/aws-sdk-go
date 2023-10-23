@@ -1806,6 +1806,7 @@
         "endpoint":{"shape":"Endpoint"},
         "enhancedVpcRouting":{"shape":"Boolean"},
         "namespaceName":{"shape":"String"},
+        "patchVersion":{"shape":"String"},
         "port":{"shape":"Integer"},
         "publiclyAccessible":{"shape":"Boolean"},
         "securityGroupIds":{"shape":"SecurityGroupIdList"},
@@ -1813,7 +1814,8 @@
         "subnetIds":{"shape":"SubnetIdList"},
         "workgroupArn":{"shape":"String"},
         "workgroupId":{"shape":"String"},
-        "workgroupName":{"shape":"WorkgroupName"}
+        "workgroupName":{"shape":"WorkgroupName"},
+        "workgroupVersion":{"shape":"String"}
       }
     },
     "WorkgroupList":{

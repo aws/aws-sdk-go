@@ -10341,6 +10341,9 @@ type ConnectPeer struct {
 	// The state of the Connect peer.
 	State *string `type:"string" enum:"ConnectPeerState"`
 
+	// The subnet ARN for the Connect peer.
+	SubnetArn *string `type:"string"`
+
 	// The list of key-value tags associated with the Connect peer.
 	Tags []*Tag `type:"list"`
 }
@@ -10402,6 +10405,12 @@ func (s *ConnectPeer) SetEdgeLocation(v string) *ConnectPeer {
 // SetState sets the State field's value.
 func (s *ConnectPeer) SetState(v string) *ConnectPeer {
 	s.State = &v
+	return s
+}
+
+// SetSubnetArn sets the SubnetArn field's value.
+func (s *ConnectPeer) SetSubnetArn(v string) *ConnectPeer {
+	s.SubnetArn = &v
 	return s
 }
 
@@ -10628,6 +10637,9 @@ type ConnectPeerSummary struct {
 	// The Region where the edge is located.
 	EdgeLocation *string `min:"1" type:"string"`
 
+	// The subnet ARN for the Connect peer summary.
+	SubnetArn *string `type:"string"`
+
 	// The list of key-value tags associated with the Connect peer summary.
 	Tags []*Tag `type:"list"`
 }
@@ -10683,6 +10695,12 @@ func (s *ConnectPeerSummary) SetCreatedAt(v time.Time) *ConnectPeerSummary {
 // SetEdgeLocation sets the EdgeLocation field's value.
 func (s *ConnectPeerSummary) SetEdgeLocation(v string) *ConnectPeerSummary {
 	s.EdgeLocation = &v
+	return s
+}
+
+// SetSubnetArn sets the SubnetArn field's value.
+func (s *ConnectPeerSummary) SetSubnetArn(v string) *ConnectPeerSummary {
+	s.SubnetArn = &v
 	return s
 }
 
@@ -11973,14 +11991,15 @@ type CreateConnectPeerInput struct {
 	CoreNetworkAddress *string `min:"1" type:"string"`
 
 	// The inside IP addresses used for BGP peering.
-	//
-	// InsideCidrBlocks is a required field
-	InsideCidrBlocks []*string `type:"list" required:"true"`
+	InsideCidrBlocks []*string `type:"list"`
 
 	// The Connect peer address.
 	//
 	// PeerAddress is a required field
 	PeerAddress *string `min:"1" type:"string" required:"true"`
+
+	// The subnet ARN for the Connect peer.
+	SubnetArn *string `type:"string"`
 
 	// The tags associated with the peer request.
 	Tags []*Tag `type:"list"`
@@ -12012,9 +12031,6 @@ func (s *CreateConnectPeerInput) Validate() error {
 	}
 	if s.CoreNetworkAddress != nil && len(*s.CoreNetworkAddress) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CoreNetworkAddress", 1))
-	}
-	if s.InsideCidrBlocks == nil {
-		invalidParams.Add(request.NewErrParamRequired("InsideCidrBlocks"))
 	}
 	if s.PeerAddress == nil {
 		invalidParams.Add(request.NewErrParamRequired("PeerAddress"))
@@ -12062,6 +12078,12 @@ func (s *CreateConnectPeerInput) SetInsideCidrBlocks(v []*string) *CreateConnect
 // SetPeerAddress sets the PeerAddress field's value.
 func (s *CreateConnectPeerInput) SetPeerAddress(v string) *CreateConnectPeerInput {
 	s.PeerAddress = &v
+	return s
+}
+
+// SetSubnetArn sets the SubnetArn field's value.
+func (s *CreateConnectPeerInput) SetSubnetArn(v string) *CreateConnectPeerInput {
+	s.SubnetArn = &v
 	return s
 }
 
@@ -21251,7 +21273,8 @@ type RouteTableIdentifier struct {
 	// The segment edge in a core network.
 	CoreNetworkSegmentEdge *CoreNetworkSegmentEdgeIdentifier `type:"structure"`
 
-	// The ARN of the transit gateway route table.
+	// The ARN of the transit gateway route table for the attachment request. For
+	// example, "TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456".
 	TransitGatewayRouteTableArn *string `type:"string"`
 }
 
@@ -24170,12 +24193,16 @@ func TransitGatewayRegistrationState_Values() []string {
 const (
 	// TunnelProtocolGre is a TunnelProtocol enum value
 	TunnelProtocolGre = "GRE"
+
+	// TunnelProtocolNoEncap is a TunnelProtocol enum value
+	TunnelProtocolNoEncap = "NO_ENCAP"
 )
 
 // TunnelProtocol_Values returns all elements of the TunnelProtocol enum
 func TunnelProtocol_Values() []string {
 	return []string{
 		TunnelProtocolGre,
+		TunnelProtocolNoEncap,
 	}
 }
 

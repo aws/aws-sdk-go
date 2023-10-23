@@ -5008,6 +5008,100 @@ func (c *Rekognition) GetLabelDetectionPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetMediaAnalysisJob = "GetMediaAnalysisJob"
+
+// GetMediaAnalysisJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetMediaAnalysisJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMediaAnalysisJob for more information on using the GetMediaAnalysisJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMediaAnalysisJobRequest method.
+//	req, resp := client.GetMediaAnalysisJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) GetMediaAnalysisJobRequest(input *GetMediaAnalysisJobInput) (req *request.Request, output *GetMediaAnalysisJobOutput) {
+	op := &request.Operation{
+		Name:       opGetMediaAnalysisJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMediaAnalysisJobInput{}
+	}
+
+	output = &GetMediaAnalysisJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMediaAnalysisJob API operation for Amazon Rekognition.
+//
+// Retrieves the results for a given media analysis job. Takes a JobId returned
+// by StartMediaAnalysisJob.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation GetMediaAnalysisJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) GetMediaAnalysisJob(input *GetMediaAnalysisJobInput) (*GetMediaAnalysisJobOutput, error) {
+	req, out := c.GetMediaAnalysisJobRequest(input)
+	return out, req.Send()
+}
+
+// GetMediaAnalysisJobWithContext is the same as GetMediaAnalysisJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMediaAnalysisJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetMediaAnalysisJobWithContext(ctx aws.Context, input *GetMediaAnalysisJobInput, opts ...request.Option) (*GetMediaAnalysisJobOutput, error) {
+	req, out := c.GetMediaAnalysisJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPersonTracking = "GetPersonTracking"
 
 // GetPersonTrackingRequest generates a "aws/request.Request" representing the
@@ -6418,6 +6512,157 @@ func (c *Rekognition) ListFacesPagesWithContext(ctx aws.Context, input *ListFace
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFacesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMediaAnalysisJobs = "ListMediaAnalysisJobs"
+
+// ListMediaAnalysisJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMediaAnalysisJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMediaAnalysisJobs for more information on using the ListMediaAnalysisJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMediaAnalysisJobsRequest method.
+//	req, resp := client.ListMediaAnalysisJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) ListMediaAnalysisJobsRequest(input *ListMediaAnalysisJobsInput) (req *request.Request, output *ListMediaAnalysisJobsOutput) {
+	op := &request.Operation{
+		Name:       opListMediaAnalysisJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMediaAnalysisJobsInput{}
+	}
+
+	output = &ListMediaAnalysisJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMediaAnalysisJobs API operation for Amazon Rekognition.
+//
+// Returns a list of media analysis jobs. Results are sorted by CreationTimestamp
+// in descending order.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListMediaAnalysisJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - InvalidPaginationTokenException
+//     Pagination token in the request is not valid.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+func (c *Rekognition) ListMediaAnalysisJobs(input *ListMediaAnalysisJobsInput) (*ListMediaAnalysisJobsOutput, error) {
+	req, out := c.ListMediaAnalysisJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListMediaAnalysisJobsWithContext is the same as ListMediaAnalysisJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMediaAnalysisJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListMediaAnalysisJobsWithContext(ctx aws.Context, input *ListMediaAnalysisJobsInput, opts ...request.Option) (*ListMediaAnalysisJobsOutput, error) {
+	req, out := c.ListMediaAnalysisJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMediaAnalysisJobsPages iterates over the pages of a ListMediaAnalysisJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMediaAnalysisJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMediaAnalysisJobs operation.
+//	pageNum := 0
+//	err := client.ListMediaAnalysisJobsPages(params,
+//	    func(page *rekognition.ListMediaAnalysisJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Rekognition) ListMediaAnalysisJobsPages(input *ListMediaAnalysisJobsInput, fn func(*ListMediaAnalysisJobsOutput, bool) bool) error {
+	return c.ListMediaAnalysisJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMediaAnalysisJobsPagesWithContext same as ListMediaAnalysisJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListMediaAnalysisJobsPagesWithContext(ctx aws.Context, input *ListMediaAnalysisJobsInput, fn func(*ListMediaAnalysisJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMediaAnalysisJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMediaAnalysisJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMediaAnalysisJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -8361,6 +8606,124 @@ func (c *Rekognition) StartLabelDetection(input *StartLabelDetectionInput) (*Sta
 // for more information on using Contexts.
 func (c *Rekognition) StartLabelDetectionWithContext(ctx aws.Context, input *StartLabelDetectionInput, opts ...request.Option) (*StartLabelDetectionOutput, error) {
 	req, out := c.StartLabelDetectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMediaAnalysisJob = "StartMediaAnalysisJob"
+
+// StartMediaAnalysisJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartMediaAnalysisJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMediaAnalysisJob for more information on using the StartMediaAnalysisJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMediaAnalysisJobRequest method.
+//	req, resp := client.StartMediaAnalysisJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) StartMediaAnalysisJobRequest(input *StartMediaAnalysisJobInput) (req *request.Request, output *StartMediaAnalysisJobOutput) {
+	op := &request.Operation{
+		Name:       opStartMediaAnalysisJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartMediaAnalysisJobInput{}
+	}
+
+	output = &StartMediaAnalysisJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMediaAnalysisJob API operation for Amazon Rekognition.
+//
+// Initiates a new media analysis job. Accepts a manifest file in an Amazon
+// S3 bucket. The output is a manifest file and a summary of the manifest stored
+// in the Amazon S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation StartMediaAnalysisJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - InvalidManifestException
+//     Indicates that a provided manifest file is empty or larger than the allowed
+//     limit.
+//
+//   - InvalidS3ObjectException
+//     Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request cannot be found.
+//
+//   - ResourceNotReadyException
+//     The requested resource isn't ready. For example, this exception occurs when
+//     you call DetectCustomLabels with a model version that isn't deployed.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+//
+//   - LimitExceededException
+//     An Amazon Rekognition service limit was exceeded. For example, if you start
+//     too many jobs concurrently, subsequent calls to start operations (ex: StartLabelDetection)
+//     will raise a LimitExceededException exception (HTTP status code: 400) until
+//     the number of concurrently running jobs is below the Amazon Rekognition service
+//     limit.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+func (c *Rekognition) StartMediaAnalysisJob(input *StartMediaAnalysisJobInput) (*StartMediaAnalysisJobOutput, error) {
+	req, out := c.StartMediaAnalysisJobRequest(input)
+	return out, req.Send()
+}
+
+// StartMediaAnalysisJobWithContext is the same as StartMediaAnalysisJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMediaAnalysisJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) StartMediaAnalysisJobWithContext(ctx aws.Context, input *StartMediaAnalysisJobInput, opts ...request.Option) (*StartMediaAnalysisJobOutput, error) {
+	req, out := c.StartMediaAnalysisJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -18300,6 +18663,199 @@ func (s *GetLabelDetectionRequestMetadata) SetSortBy(v string) *GetLabelDetectio
 	return s
 }
 
+type GetMediaAnalysisJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the media analysis job for which you want to retrieve
+	// results.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaAnalysisJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaAnalysisJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMediaAnalysisJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMediaAnalysisJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetMediaAnalysisJobInput) SetJobId(v string) *GetMediaAnalysisJobInput {
+	s.JobId = &v
+	return s
+}
+
+type GetMediaAnalysisJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix date and time when the job finished.
+	CompletionTimestamp *time.Time `type:"timestamp"`
+
+	// The Unix date and time when the job was started.
+	//
+	// CreationTimestamp is a required field
+	CreationTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// Details about the error that resulted in failure of the job.
+	FailureDetails *MediaAnalysisJobFailureDetails `type:"structure"`
+
+	// Reference to the input manifest that was provided in the job creation request.
+	//
+	// Input is a required field
+	Input *MediaAnalysisInput_ `type:"structure" required:"true"`
+
+	// The identifier for the media analysis job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the media analysis job.
+	JobName *string `min:"1" type:"string"`
+
+	// KMS Key that was provided in the creation request.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The summary manifest provides statistics on input manifest and errors identified
+	// in the input manifest.
+	ManifestSummary *MediaAnalysisManifestSummary `type:"structure"`
+
+	// Operation configurations that were provided during job creation.
+	//
+	// OperationsConfig is a required field
+	OperationsConfig *MediaAnalysisOperationsConfig `type:"structure" required:"true"`
+
+	// Output configuration that was provided in the creation request.
+	//
+	// OutputConfig is a required field
+	OutputConfig *MediaAnalysisOutputConfig `type:"structure" required:"true"`
+
+	// Output manifest that contains prediction results.
+	Results *MediaAnalysisResults `type:"structure"`
+
+	// The current status of the media analysis job.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"MediaAnalysisJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaAnalysisJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMediaAnalysisJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletionTimestamp sets the CompletionTimestamp field's value.
+func (s *GetMediaAnalysisJobOutput) SetCompletionTimestamp(v time.Time) *GetMediaAnalysisJobOutput {
+	s.CompletionTimestamp = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *GetMediaAnalysisJobOutput) SetCreationTimestamp(v time.Time) *GetMediaAnalysisJobOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *GetMediaAnalysisJobOutput) SetFailureDetails(v *MediaAnalysisJobFailureDetails) *GetMediaAnalysisJobOutput {
+	s.FailureDetails = v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *GetMediaAnalysisJobOutput) SetInput(v *MediaAnalysisInput_) *GetMediaAnalysisJobOutput {
+	s.Input = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetMediaAnalysisJobOutput) SetJobId(v string) *GetMediaAnalysisJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetMediaAnalysisJobOutput) SetJobName(v string) *GetMediaAnalysisJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetMediaAnalysisJobOutput) SetKmsKeyId(v string) *GetMediaAnalysisJobOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetManifestSummary sets the ManifestSummary field's value.
+func (s *GetMediaAnalysisJobOutput) SetManifestSummary(v *MediaAnalysisManifestSummary) *GetMediaAnalysisJobOutput {
+	s.ManifestSummary = v
+	return s
+}
+
+// SetOperationsConfig sets the OperationsConfig field's value.
+func (s *GetMediaAnalysisJobOutput) SetOperationsConfig(v *MediaAnalysisOperationsConfig) *GetMediaAnalysisJobOutput {
+	s.OperationsConfig = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *GetMediaAnalysisJobOutput) SetOutputConfig(v *MediaAnalysisOutputConfig) *GetMediaAnalysisJobOutput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *GetMediaAnalysisJobOutput) SetResults(v *MediaAnalysisResults) *GetMediaAnalysisJobOutput {
+	s.Results = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetMediaAnalysisJobOutput) SetStatus(v string) *GetMediaAnalysisJobOutput {
+	s.Status = &v
+	return s
+}
+
 type GetPersonTrackingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19849,6 +20405,71 @@ func (s *InvalidImageFormatException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Indicates that a provided manifest file is empty or larger than the allowed
+// limit.
+type InvalidManifestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidManifestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidManifestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidManifestException(v protocol.ResponseMetadata) error {
+	return &InvalidManifestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidManifestException) Code() string {
+	return "InvalidManifestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidManifestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidManifestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidManifestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidManifestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidManifestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Pagination token in the request is not valid.
 type InvalidPaginationTokenException struct {
 	_            struct{}                  `type:"structure"`
@@ -21169,6 +21790,103 @@ func (s *ListFacesOutput) SetNextToken(v string) *ListFacesOutput {
 	return s
 }
 
+type ListMediaAnalysisJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// user can specify is 100. If user specifies a value greater than 100, an InvalidParameterException
+	// error occurs. The default value is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Pagination token, if the previous response was incomplete.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaAnalysisJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaAnalysisJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMediaAnalysisJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMediaAnalysisJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMediaAnalysisJobsInput) SetMaxResults(v int64) *ListMediaAnalysisJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaAnalysisJobsInput) SetNextToken(v string) *ListMediaAnalysisJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMediaAnalysisJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a list of all media analysis jobs.
+	//
+	// MediaAnalysisJobs is a required field
+	MediaAnalysisJobs []*MediaAnalysisJobDescription `type:"list" required:"true"`
+
+	// Pagination token, if the previous response was incomplete.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaAnalysisJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMediaAnalysisJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaAnalysisJobs sets the MediaAnalysisJobs field's value.
+func (s *ListMediaAnalysisJobsOutput) SetMediaAnalysisJobs(v []*MediaAnalysisJobDescription) *ListMediaAnalysisJobsOutput {
+	s.MediaAnalysisJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaAnalysisJobsOutput) SetNextToken(v string) *ListMediaAnalysisJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListProjectPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21743,6 +22461,494 @@ func (s *MatchedUser) SetUserId(v string) *MatchedUser {
 // SetUserStatus sets the UserStatus field's value.
 func (s *MatchedUser) SetUserStatus(v string) *MatchedUser {
 	s.UserStatus = &v
+	return s
+}
+
+// Configuration for Moderation Labels Detection.
+type MediaAnalysisDetectModerationLabelsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the minimum confidence level for the moderation labels to return.
+	// Amazon Rekognition doesn't return any labels with a confidence level lower
+	// than this specified value.
+	MinConfidence *float64 `type:"float"`
+
+	// Specifies the custom moderation model to be used during the label detection
+	// job. If not provided the pre-trained model is used.
+	ProjectVersion *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisDetectModerationLabelsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisDetectModerationLabelsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaAnalysisDetectModerationLabelsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaAnalysisDetectModerationLabelsConfig"}
+	if s.ProjectVersion != nil && len(*s.ProjectVersion) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectVersion", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *MediaAnalysisDetectModerationLabelsConfig) SetMinConfidence(v float64) *MediaAnalysisDetectModerationLabelsConfig {
+	s.MinConfidence = &v
+	return s
+}
+
+// SetProjectVersion sets the ProjectVersion field's value.
+func (s *MediaAnalysisDetectModerationLabelsConfig) SetProjectVersion(v string) *MediaAnalysisDetectModerationLabelsConfig {
+	s.ProjectVersion = &v
+	return s
+}
+
+// Contains input information for a media analysis job.
+type MediaAnalysisInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the S3 bucket name and object name.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
+	//
+	// S3Object is a required field
+	S3Object *S3Object `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaAnalysisInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaAnalysisInput_"}
+	if s.S3Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Object"))
+	}
+	if s.S3Object != nil {
+		if err := s.S3Object.Validate(); err != nil {
+			invalidParams.AddNested("S3Object", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Object sets the S3Object field's value.
+func (s *MediaAnalysisInput_) SetS3Object(v *S3Object) *MediaAnalysisInput_ {
+	s.S3Object = v
+	return s
+}
+
+// Description for a media analysis job.
+type MediaAnalysisJobDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix date and time when the job finished.
+	CompletionTimestamp *time.Time `type:"timestamp"`
+
+	// The Unix date and time when the job was started.
+	//
+	// CreationTimestamp is a required field
+	CreationTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// Details about the error that resulted in failure of the job.
+	FailureDetails *MediaAnalysisJobFailureDetails `type:"structure"`
+
+	// Reference to the input manifest that was provided in the job creation request.
+	//
+	// Input is a required field
+	Input *MediaAnalysisInput_ `type:"structure" required:"true"`
+
+	// The identifier for a media analysis job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The name of a media analysis job.
+	JobName *string `min:"1" type:"string"`
+
+	// KMS Key that was provided in the creation request.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// Provides statistics on input manifest and errors identified in the input
+	// manifest.
+	ManifestSummary *MediaAnalysisManifestSummary `type:"structure"`
+
+	// Operation configurations that were provided during job creation.
+	//
+	// OperationsConfig is a required field
+	OperationsConfig *MediaAnalysisOperationsConfig `type:"structure" required:"true"`
+
+	// Output configuration that was provided in the creation request.
+	//
+	// OutputConfig is a required field
+	OutputConfig *MediaAnalysisOutputConfig `type:"structure" required:"true"`
+
+	// Output manifest that contains prediction results.
+	Results *MediaAnalysisResults `type:"structure"`
+
+	// The status of the media analysis job being retrieved.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"MediaAnalysisJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisJobDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisJobDescription) GoString() string {
+	return s.String()
+}
+
+// SetCompletionTimestamp sets the CompletionTimestamp field's value.
+func (s *MediaAnalysisJobDescription) SetCompletionTimestamp(v time.Time) *MediaAnalysisJobDescription {
+	s.CompletionTimestamp = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *MediaAnalysisJobDescription) SetCreationTimestamp(v time.Time) *MediaAnalysisJobDescription {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *MediaAnalysisJobDescription) SetFailureDetails(v *MediaAnalysisJobFailureDetails) *MediaAnalysisJobDescription {
+	s.FailureDetails = v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *MediaAnalysisJobDescription) SetInput(v *MediaAnalysisInput_) *MediaAnalysisJobDescription {
+	s.Input = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *MediaAnalysisJobDescription) SetJobId(v string) *MediaAnalysisJobDescription {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *MediaAnalysisJobDescription) SetJobName(v string) *MediaAnalysisJobDescription {
+	s.JobName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *MediaAnalysisJobDescription) SetKmsKeyId(v string) *MediaAnalysisJobDescription {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetManifestSummary sets the ManifestSummary field's value.
+func (s *MediaAnalysisJobDescription) SetManifestSummary(v *MediaAnalysisManifestSummary) *MediaAnalysisJobDescription {
+	s.ManifestSummary = v
+	return s
+}
+
+// SetOperationsConfig sets the OperationsConfig field's value.
+func (s *MediaAnalysisJobDescription) SetOperationsConfig(v *MediaAnalysisOperationsConfig) *MediaAnalysisJobDescription {
+	s.OperationsConfig = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *MediaAnalysisJobDescription) SetOutputConfig(v *MediaAnalysisOutputConfig) *MediaAnalysisJobDescription {
+	s.OutputConfig = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *MediaAnalysisJobDescription) SetResults(v *MediaAnalysisResults) *MediaAnalysisJobDescription {
+	s.Results = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaAnalysisJobDescription) SetStatus(v string) *MediaAnalysisJobDescription {
+	s.Status = &v
+	return s
+}
+
+// Details about the error that resulted in failure of the job.
+type MediaAnalysisJobFailureDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Error code for the failed job.
+	Code *string `type:"string" enum:"MediaAnalysisJobFailureCode"`
+
+	// Human readable error message.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisJobFailureDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisJobFailureDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *MediaAnalysisJobFailureDetails) SetCode(v string) *MediaAnalysisJobFailureDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *MediaAnalysisJobFailureDetails) SetMessage(v string) *MediaAnalysisJobFailureDetails {
+	s.Message = &v
+	return s
+}
+
+// Summary that provides statistics on input manifest and errors identified
+// in the input manifest.
+type MediaAnalysisManifestSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the S3 bucket name and object name.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
+	S3Object *S3Object `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisManifestSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisManifestSummary) GoString() string {
+	return s.String()
+}
+
+// SetS3Object sets the S3Object field's value.
+func (s *MediaAnalysisManifestSummary) SetS3Object(v *S3Object) *MediaAnalysisManifestSummary {
+	s.S3Object = v
+	return s
+}
+
+// Configuration options for a media analysis job. Configuration is operation-specific.
+type MediaAnalysisOperationsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configuration options for a DetectModerationLabels job.
+	DetectModerationLabels *MediaAnalysisDetectModerationLabelsConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisOperationsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisOperationsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaAnalysisOperationsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaAnalysisOperationsConfig"}
+	if s.DetectModerationLabels != nil {
+		if err := s.DetectModerationLabels.Validate(); err != nil {
+			invalidParams.AddNested("DetectModerationLabels", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectModerationLabels sets the DetectModerationLabels field's value.
+func (s *MediaAnalysisOperationsConfig) SetDetectModerationLabels(v *MediaAnalysisDetectModerationLabelsConfig) *MediaAnalysisOperationsConfig {
+	s.DetectModerationLabels = v
+	return s
+}
+
+// Output configuration provided in the job creation request.
+type MediaAnalysisOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 bucket to contain the output of the media analysis
+	// job.
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `min:"3" type:"string" required:"true"`
+
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for storage.
+	S3KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisOutputConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaAnalysisOutputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaAnalysisOutputConfig"}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3Bucket != nil && len(*s.S3Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *MediaAnalysisOutputConfig) SetS3Bucket(v string) *MediaAnalysisOutputConfig {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *MediaAnalysisOutputConfig) SetS3KeyPrefix(v string) *MediaAnalysisOutputConfig {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// Contains the results for a media analysis job created with StartMediaAnalysisJob.
+type MediaAnalysisResults struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the S3 bucket name and object name.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
+	S3Object *S3Object `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisResults) GoString() string {
+	return s.String()
+}
+
+// SetS3Object sets the S3Object field's value.
+func (s *MediaAnalysisResults) SetS3Object(v *S3Object) *MediaAnalysisResults {
+	s.S3Object = v
 	return s
 }
 
@@ -25611,6 +26817,169 @@ func (s *StartLabelDetectionOutput) SetJobId(v string) *StartLabelDetectionOutpu
 	return s
 }
 
+type StartMediaAnalysisJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotency token used to prevent the accidental creation of duplicate versions.
+	// If you use the same token with multiple StartMediaAnalysisJobRequest requests,
+	// the same response is returned. Use ClientRequestToken to prevent the same
+	// request from being processed more than once.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Input data to be analyzed by the job.
+	//
+	// Input is a required field
+	Input *MediaAnalysisInput_ `type:"structure" required:"true"`
+
+	// The name of the job. Does not have to be unique.
+	JobName *string `min:"1" type:"string"`
+
+	// The identifier of customer managed AWS KMS key (name or ARN). The key is
+	// used to encrypt images copied into the service. The key is also used to encrypt
+	// results and manifest files written to the output Amazon S3 bucket.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// Configuration options for the media analysis job to be created.
+	//
+	// OperationsConfig is a required field
+	OperationsConfig *MediaAnalysisOperationsConfig `type:"structure" required:"true"`
+
+	// The Amazon S3 bucket location to store the results.
+	//
+	// OutputConfig is a required field
+	OutputConfig *MediaAnalysisOutputConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMediaAnalysisJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMediaAnalysisJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMediaAnalysisJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMediaAnalysisJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Input == nil {
+		invalidParams.Add(request.NewErrParamRequired("Input"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.OperationsConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationsConfig"))
+	}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.Input != nil {
+		if err := s.Input.Validate(); err != nil {
+			invalidParams.AddNested("Input", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OperationsConfig != nil {
+		if err := s.OperationsConfig.Validate(); err != nil {
+			invalidParams.AddNested("OperationsConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartMediaAnalysisJobInput) SetClientRequestToken(v string) *StartMediaAnalysisJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *StartMediaAnalysisJobInput) SetInput(v *MediaAnalysisInput_) *StartMediaAnalysisJobInput {
+	s.Input = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartMediaAnalysisJobInput) SetJobName(v string) *StartMediaAnalysisJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *StartMediaAnalysisJobInput) SetKmsKeyId(v string) *StartMediaAnalysisJobInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOperationsConfig sets the OperationsConfig field's value.
+func (s *StartMediaAnalysisJobInput) SetOperationsConfig(v *MediaAnalysisOperationsConfig) *StartMediaAnalysisJobInput {
+	s.OperationsConfig = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *StartMediaAnalysisJobInput) SetOutputConfig(v *MediaAnalysisOutputConfig) *StartMediaAnalysisJobInput {
+	s.OutputConfig = v
+	return s
+}
+
+type StartMediaAnalysisJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier for the created job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMediaAnalysisJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMediaAnalysisJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartMediaAnalysisJobOutput) SetJobId(v string) *StartMediaAnalysisJobOutput {
+	s.JobId = &v
+	return s
+}
+
 type StartPersonTrackingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29249,6 +30618,78 @@ func LivenessSessionStatus_Values() []string {
 		LivenessSessionStatusSucceeded,
 		LivenessSessionStatusFailed,
 		LivenessSessionStatusExpired,
+	}
+}
+
+const (
+	// MediaAnalysisJobFailureCodeInternalError is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeInternalError = "INTERNAL_ERROR"
+
+	// MediaAnalysisJobFailureCodeInvalidS3Object is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeInvalidS3Object = "INVALID_S3_OBJECT"
+
+	// MediaAnalysisJobFailureCodeInvalidManifest is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeInvalidManifest = "INVALID_MANIFEST"
+
+	// MediaAnalysisJobFailureCodeInvalidOutputConfig is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeInvalidOutputConfig = "INVALID_OUTPUT_CONFIG"
+
+	// MediaAnalysisJobFailureCodeInvalidKmsKey is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeInvalidKmsKey = "INVALID_KMS_KEY"
+
+	// MediaAnalysisJobFailureCodeAccessDenied is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeAccessDenied = "ACCESS_DENIED"
+
+	// MediaAnalysisJobFailureCodeResourceNotFound is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeResourceNotFound = "RESOURCE_NOT_FOUND"
+
+	// MediaAnalysisJobFailureCodeResourceNotReady is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeResourceNotReady = "RESOURCE_NOT_READY"
+
+	// MediaAnalysisJobFailureCodeThrottled is a MediaAnalysisJobFailureCode enum value
+	MediaAnalysisJobFailureCodeThrottled = "THROTTLED"
+)
+
+// MediaAnalysisJobFailureCode_Values returns all elements of the MediaAnalysisJobFailureCode enum
+func MediaAnalysisJobFailureCode_Values() []string {
+	return []string{
+		MediaAnalysisJobFailureCodeInternalError,
+		MediaAnalysisJobFailureCodeInvalidS3Object,
+		MediaAnalysisJobFailureCodeInvalidManifest,
+		MediaAnalysisJobFailureCodeInvalidOutputConfig,
+		MediaAnalysisJobFailureCodeInvalidKmsKey,
+		MediaAnalysisJobFailureCodeAccessDenied,
+		MediaAnalysisJobFailureCodeResourceNotFound,
+		MediaAnalysisJobFailureCodeResourceNotReady,
+		MediaAnalysisJobFailureCodeThrottled,
+	}
+}
+
+const (
+	// MediaAnalysisJobStatusCreated is a MediaAnalysisJobStatus enum value
+	MediaAnalysisJobStatusCreated = "CREATED"
+
+	// MediaAnalysisJobStatusQueued is a MediaAnalysisJobStatus enum value
+	MediaAnalysisJobStatusQueued = "QUEUED"
+
+	// MediaAnalysisJobStatusInProgress is a MediaAnalysisJobStatus enum value
+	MediaAnalysisJobStatusInProgress = "IN_PROGRESS"
+
+	// MediaAnalysisJobStatusSucceeded is a MediaAnalysisJobStatus enum value
+	MediaAnalysisJobStatusSucceeded = "SUCCEEDED"
+
+	// MediaAnalysisJobStatusFailed is a MediaAnalysisJobStatus enum value
+	MediaAnalysisJobStatusFailed = "FAILED"
+)
+
+// MediaAnalysisJobStatus_Values returns all elements of the MediaAnalysisJobStatus enum
+func MediaAnalysisJobStatus_Values() []string {
+	return []string{
+		MediaAnalysisJobStatusCreated,
+		MediaAnalysisJobStatusQueued,
+		MediaAnalysisJobStatusInProgress,
+		MediaAnalysisJobStatusSucceeded,
+		MediaAnalysisJobStatusFailed,
 	}
 }
 

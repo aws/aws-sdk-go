@@ -2385,6 +2385,9 @@
       "base": null,
       "refs": {
         "AWSLocation$SubnetArn": "<p>The Amazon Resource Name (ARN) of the subnet that the device is located in.</p>",
+        "ConnectPeer$SubnetArn": "<p>The subnet ARN for the Connect peer.</p>",
+        "ConnectPeerSummary$SubnetArn": "<p>The subnet ARN for the Connect peer summary.</p>",
+        "CreateConnectPeerRequest$SubnetArn": "<p>The subnet ARN for the Connect peer.</p>",
         "SubnetArnList$member": null
       }
     },
@@ -2578,7 +2581,7 @@
       "base": null,
       "refs": {
         "CreateTransitGatewayRouteTableAttachmentRequest$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>",
-        "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>",
+        "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>",
         "TransitGatewayRouteTableAttachment$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway attachment route table. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>"
       }
     },
