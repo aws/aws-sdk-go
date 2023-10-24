@@ -30,6 +30,22 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DeleteHomeRegionControl":{
+      "name":"DeleteHomeRegionControl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHomeRegionControlRequest"},
+      "output":{"shape":"DeleteHomeRegionControlResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DescribeHomeRegionControls":{
       "name":"DescribeHomeRegionControls",
       "http":{
@@ -93,6 +109,18 @@
       "type":"structure",
       "members":{
         "HomeRegionControl":{"shape":"HomeRegionControl"}
+      }
+    },
+    "DeleteHomeRegionControlRequest":{
+      "type":"structure",
+      "required":["ControlId"],
+      "members":{
+        "ControlId":{"shape":"ControlId"}
+      }
+    },
+    "DeleteHomeRegionControlResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DescribeHomeRegionControlsMaxResults":{

@@ -3,14 +3,18 @@
   "service": "<p>Use the Amazon OpenSearch Serverless API to create, configure, and manage OpenSearch Serverless collections and security policies.</p> <p>OpenSearch Serverless is an on-demand, pre-provisioned serverless configuration for Amazon OpenSearch Service. OpenSearch Serverless removes the operational complexities of provisioning, configuring, and tuning your OpenSearch clusters. It enables you to easily search and analyze petabytes of data without having to worry about the underlying infrastructure and data management.</p> <p> To learn more about OpenSearch Serverless, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html\">What is Amazon OpenSearch Serverless?</a> </p>",
   "operations": {
     "BatchGetCollection": "<p>Returns attributes for one or more collections, including the collection endpoint and the OpenSearch Dashboards endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>",
+    "BatchGetEffectiveLifecyclePolicy": "<p>Returns a list of successful and failed retrievals for the OpenSearch Serverless indexes. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list\">Viewing data lifecycle policies</a>.</p>",
+    "BatchGetLifecyclePolicy": "<p>Returns one or more configured OpenSearch Serverless lifecycle policies. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list\">Viewing data lifecycle policies</a>.</p>",
     "BatchGetVpcEndpoint": "<p>Returns attributes for one or more VPC endpoints associated with the current account. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>",
     "CreateAccessPolicy": "<p>Creates a data access policy for OpenSearch Serverless. Access policies limit access to collections and the resources within them, and allow a user to access that data irrespective of the access mechanism or network source. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>",
     "CreateCollection": "<p>Creates a new OpenSearch Serverless collection. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>",
+    "CreateLifecyclePolicy": "<p>Creates a lifecyle policy to be applied to OpenSearch Serverless indexes. Lifecycle policies define the number of days or hours to retain the data on an OpenSearch Serverless index. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-create\">Creating data lifecycle policies</a>.</p>",
     "CreateSecurityConfig": "<p>Specifies a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>. </p>",
     "CreateSecurityPolicy": "<p>Creates a security policy to be used by one or more OpenSearch Serverless collections. Security policies provide access to a collection and its OpenSearch Dashboards endpoint from public networks or specific VPC endpoints. They also allow you to secure a collection with a KMS encryption key. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>",
     "CreateVpcEndpoint": "<p>Creates an OpenSearch Serverless-managed interface VPC endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>",
     "DeleteAccessPolicy": "<p>Deletes an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>",
     "DeleteCollection": "<p>Deletes an OpenSearch Serverless collection. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p>",
+    "DeleteLifecyclePolicy": "<p>Deletes an OpenSearch Serverless lifecycle policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-delete\">Deleting data lifecycle policies</a>.</p>",
     "DeleteSecurityConfig": "<p>Deletes a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>",
     "DeleteSecurityPolicy": "<p>Deletes an OpenSearch Serverless security policy.</p>",
     "DeleteVpcEndpoint": "<p>Deletes an OpenSearch Serverless-managed interface endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>",
@@ -21,6 +25,7 @@
     "GetSecurityPolicy": "<p>Returns information about a configured OpenSearch Serverless security policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>",
     "ListAccessPolicies": "<p>Returns information about a list of OpenSearch Serverless access policies.</p>",
     "ListCollections": "<p>Lists all OpenSearch Serverless collections. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-manage.html\">Creating and managing Amazon OpenSearch Serverless collections</a>.</p> <note> <p>Make sure to include an empty request body {} if you don't include any collection filters in the request.</p> </note>",
+    "ListLifecyclePolicies": "<p>Returns a list of OpenSearch Serverless lifecycle policies. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list\">Viewing data lifecycle policies</a>.</p>",
     "ListSecurityConfigs": "<p>Returns information about configured OpenSearch Serverless security configurations. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>",
     "ListSecurityPolicies": "<p>Returns information about configured OpenSearch Serverless security policies.</p>",
     "ListTagsForResource": "<p>Returns the tags for an OpenSearch Serverless resource. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-collection.html\">Tagging Amazon OpenSearch Serverless collections</a>.</p>",
@@ -30,6 +35,7 @@
     "UpdateAccessPolicy": "<p>Updates an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateAccountSettings": "<p>Update the OpenSearch Serverless settings for the current Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html\">Managing capacity limits for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateCollection": "<p>Updates an OpenSearch Serverless collection.</p>",
+    "UpdateLifecyclePolicy": "<p>Updates an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-update\">Updating data lifecycle policies</a>.</p>",
     "UpdateSecurityConfig": "<p>Updates a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateSecurityPolicy": "<p>Updates an OpenSearch Serverless security policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateVpcEndpoint": "<p>Updates an OpenSearch Serverless-managed interface endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html\">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>"
@@ -65,10 +71,10 @@
       "base": null,
       "refs": {
         "AccessPolicyDetail$type": "<p>The type of access policy.</p>",
-        "AccessPolicySummary$type": "<p>The type of access policy. Currently the only available type is <code>data</code>.</p>",
+        "AccessPolicySummary$type": "<p>The type of access policy. Currently, the only available type is <code>data</code>.</p>",
         "CreateAccessPolicyRequest$type": "<p>The type of policy.</p>",
         "DeleteAccessPolicyRequest$type": "<p>The type of policy.</p>",
-        "GetAccessPolicyRequest$type": "<p>Tye type of policy. Currently the only supported value is <code>data</code>.</p>",
+        "GetAccessPolicyRequest$type": "<p>Tye type of policy. Currently, the only supported value is <code>data</code>.</p>",
         "ListAccessPoliciesRequest$type": "<p>The type of access policy.</p>",
         "UpdateAccessPolicyRequest$type": "<p>The type of policy.</p>"
       }
@@ -98,6 +104,26 @@
       "refs": {
       }
     },
+    "BatchGetEffectiveLifecyclePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetEffectiveLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetLifecyclePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchGetVpcEndpointRequest": {
       "base": null,
       "refs": {
@@ -106,6 +132,12 @@
     "BatchGetVpcEndpointResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "EffectiveLifecyclePolicyDetail$noMinRetentionPeriod": "<p>The minimum number of index retention days set. That is an optional param that will return as <code>true</code> if the minimum number of days or hours is not set to a index resource.</p>"
       }
     },
     "CapacityLimits": {
@@ -120,16 +152,19 @@
       "refs": {
         "CreateAccessPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "CreateCollectionRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
+        "CreateLifecyclePolicyRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "CreateSecurityConfigRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "CreateSecurityPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "CreateVpcEndpointRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "DeleteAccessPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "DeleteCollectionRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>",
+        "DeleteLifecyclePolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "DeleteSecurityConfigRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "DeleteSecurityPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "DeleteVpcEndpointRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "UpdateAccessPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "UpdateCollectionRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
+        "UpdateLifecyclePolicyRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "UpdateSecurityConfigRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "UpdateSecurityPolicyRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>",
         "UpdateVpcEndpointRequest$clientToken": "<p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>"
@@ -160,9 +195,9 @@
       }
     },
     "CollectionFilters": {
-      "base": "<p>List of filter keys that you can use for LIST, UPDATE, and DELETE requests to OpenSearch Serverless collections.</p>",
+      "base": "<p>A list of filter keys that you can use for LIST, UPDATE, and DELETE requests to OpenSearch Serverless collections.</p>",
       "refs": {
-        "ListCollectionsRequest$collectionFilters": "<p>List of filter names and values that you can use for requests.</p>"
+        "ListCollectionsRequest$collectionFilters": "<p> A list of filter names and values that you can use for requests.</p>"
       }
     },
     "CollectionId": {
@@ -289,6 +324,16 @@
       "refs": {
       }
     },
+    "CreateLifecyclePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateSecurityConfigRequest": {
       "base": null,
       "refs": {
@@ -351,6 +396,16 @@
       "refs": {
       }
     },
+    "DeleteLifecyclePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteSecurityConfigRequest": {
       "base": null,
       "refs": {
@@ -391,7 +446,32 @@
       "base": null,
       "refs": {
         "AccessPolicyDetail$policy": "<p>The JSON policy document without any whitespaces.</p>",
+        "LifecyclePolicyDetail$policy": "<p>The JSON policy document without any whitespaces.</p>",
         "SecurityPolicyDetail$policy": "<p>The JSON policy document without any whitespaces.</p>"
+      }
+    },
+    "EffectiveLifecyclePolicyDetail": {
+      "base": "<p>Error information for an OpenSearch Serverless request.</p>",
+      "refs": {
+        "EffectiveLifecyclePolicyDetails$member": null
+      }
+    },
+    "EffectiveLifecyclePolicyDetails": {
+      "base": null,
+      "refs": {
+        "BatchGetEffectiveLifecyclePolicyResponse$effectiveLifecyclePolicyDetails": "<p>A list of lifecycle policies applied to the OpenSearch Serverless indexes.</p>"
+      }
+    },
+    "EffectiveLifecyclePolicyErrorDetail": {
+      "base": "<p>Error information for an OpenSearch Serverless request.</p>",
+      "refs": {
+        "EffectiveLifecyclePolicyErrorDetails$member": null
+      }
+    },
+    "EffectiveLifecyclePolicyErrorDetails": {
+      "base": null,
+      "refs": {
+        "BatchGetEffectiveLifecyclePolicyResponse$effectiveLifecyclePolicyErrorDetails": "<p>A list of resources for which retrieval failed.</p>"
       }
     },
     "GetAccessPolicyRequest": {
@@ -455,6 +535,96 @@
       "refs": {
       }
     },
+    "LifecyclePolicyDetail": {
+      "base": "<p>Details about an OpenSearch Serverless lifecycle policy.</p>",
+      "refs": {
+        "CreateLifecyclePolicyResponse$lifecyclePolicyDetail": "<p>Details about the created lifecycle policy.</p>",
+        "LifecyclePolicyDetails$member": null,
+        "UpdateLifecyclePolicyResponse$lifecyclePolicyDetail": "<p>Details about the updated lifecycle policy.</p>"
+      }
+    },
+    "LifecyclePolicyDetails": {
+      "base": null,
+      "refs": {
+        "BatchGetLifecyclePolicyResponse$lifecyclePolicyDetails": "<p>A list of lifecycle policies matched to the input policy name and policy type.</p>"
+      }
+    },
+    "LifecyclePolicyErrorDetail": {
+      "base": "<p>Error information for an OpenSearch Serverless request.</p>",
+      "refs": {
+        "LifecyclePolicyErrorDetails$member": null
+      }
+    },
+    "LifecyclePolicyErrorDetails": {
+      "base": null,
+      "refs": {
+        "BatchGetLifecyclePolicyResponse$lifecyclePolicyErrorDetails": "<p>A list of lifecycle policy names and policy types for which retrieval failed.</p>"
+      }
+    },
+    "LifecyclePolicyIdentifier": {
+      "base": "<p>The unique identifiers of policy types and policy names.</p>",
+      "refs": {
+        "LifecyclePolicyIdentifiers$member": null
+      }
+    },
+    "LifecyclePolicyIdentifiers": {
+      "base": null,
+      "refs": {
+        "BatchGetLifecyclePolicyRequest$identifiers": "<p>The unique identifiers of policy types and policy names.</p>"
+      }
+    },
+    "LifecyclePolicyResourceIdentifier": {
+      "base": "<p>The unique identifiers of policy types and resource names.</p>",
+      "refs": {
+        "LifecyclePolicyResourceIdentifiers$member": null
+      }
+    },
+    "LifecyclePolicyResourceIdentifiers": {
+      "base": null,
+      "refs": {
+        "BatchGetEffectiveLifecyclePolicyRequest$resourceIdentifiers": "<p>The unique identifiers of policy types and resource names.</p>"
+      }
+    },
+    "LifecyclePolicyStats": {
+      "base": "<p>Statistics for an OpenSearch Serverless lifecycle policy.</p>",
+      "refs": {
+        "GetPoliciesStatsResponse$LifecyclePolicyStats": "<p>Information about the lifecycle policies in your account.</p>"
+      }
+    },
+    "LifecyclePolicySummaries": {
+      "base": null,
+      "refs": {
+        "ListLifecyclePoliciesResponse$lifecyclePolicySummaries": "<p>Details about the requested lifecycle policies.</p>"
+      }
+    },
+    "LifecyclePolicySummary": {
+      "base": "<p>A summary of the lifecycle policy.</p>",
+      "refs": {
+        "LifecyclePolicySummaries$member": null
+      }
+    },
+    "LifecyclePolicyType": {
+      "base": null,
+      "refs": {
+        "CreateLifecyclePolicyRequest$type": "<p>The type of lifecycle policy.</p>",
+        "DeleteLifecyclePolicyRequest$type": "<p>The type of lifecycle policy.</p>",
+        "EffectiveLifecyclePolicyDetail$type": "<p>The type of lifecycle policy.</p>",
+        "EffectiveLifecyclePolicyErrorDetail$type": "<p>The type of lifecycle policy.</p>",
+        "LifecyclePolicyDetail$type": "<p>The type of lifecycle policy.</p>",
+        "LifecyclePolicyErrorDetail$type": "<p>The type of lifecycle policy.</p>",
+        "LifecyclePolicyIdentifier$type": "<p>The type of lifecycle policy.</p>",
+        "LifecyclePolicyResourceIdentifier$type": "<p>The type of lifecycle policy.</p>",
+        "LifecyclePolicySummary$type": "<p>The type of lifecycle policy.</p>",
+        "ListLifecyclePoliciesRequest$type": "<p>The type of lifecycle policy.</p>",
+        "UpdateLifecyclePolicyRequest$type": "<p> The type of lifecycle policy.</p>"
+      }
+    },
+    "LifecycleResource": {
+      "base": null,
+      "refs": {
+        "ListLifecyclePoliciesRequestResourcesList$member": null
+      }
+    },
     "ListAccessPoliciesRequest": {
       "base": null,
       "refs": {
@@ -489,6 +659,28 @@
       }
     },
     "ListCollectionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLifecyclePoliciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLifecyclePoliciesRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListLifecyclePoliciesRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use use <code>nextToken</code> to get the next page of results. The default is 10.</p>"
+      }
+    },
+    "ListLifecyclePoliciesRequestResourcesList": {
+      "base": null,
+      "refs": {
+        "ListLifecyclePoliciesRequest$resources": "<p>Resource filters that policies can apply to. Currently, the only supported resource type is <code>index</code>.</p>"
+      }
+    },
+    "ListLifecyclePoliciesResponse": {
       "base": null,
       "refs": {
       }
@@ -570,6 +762,11 @@
         "CreateCollectionDetail$createdDate": "<p>The Epoch time when the collection was created.</p>",
         "CreateCollectionDetail$lastModifiedDate": "<p>The date and time when the collection was last modified.</p>",
         "GetPoliciesStatsResponse$TotalPolicyCount": "<p>The total number of OpenSearch Serverless security policies and configurations in your account.</p>",
+        "LifecyclePolicyDetail$createdDate": "<p>The date the lifecycle policy was created.</p>",
+        "LifecyclePolicyDetail$lastModifiedDate": "<p>The timestamp of when the lifecycle policy was last modified.</p>",
+        "LifecyclePolicyStats$RetentionPolicyCount": "<p>The number of retention lifecycle policies in the current account.</p>",
+        "LifecyclePolicySummary$createdDate": "<p>The Epoch time when the lifecycle policy was created.</p>",
+        "LifecyclePolicySummary$lastModifiedDate": "<p>The date and time when the lifecycle policy was last modified.</p>",
         "SecurityConfigDetail$createdDate": "<p>The date the configuration was created.</p>",
         "SecurityConfigDetail$lastModifiedDate": "<p>The timestamp of when the configuration was last modified.</p>",
         "SecurityConfigStats$SamlConfigCount": "<p>The number of security configurations in the current account.</p>",
@@ -598,10 +795,14 @@
         "AccessPolicyDetail$description": "<p>The description of the policy.</p>",
         "AccessPolicySummary$description": "<p>The description of the access policy.</p>",
         "CreateAccessPolicyRequest$description": "<p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>",
+        "CreateLifecyclePolicyRequest$description": "<p>A description of the lifecycle policy.</p>",
         "CreateSecurityPolicyRequest$description": "<p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>",
+        "LifecyclePolicyDetail$description": "<p>The description of the lifecycle policy.</p>",
+        "LifecyclePolicySummary$description": "<p>The description of the lifecycle policy.</p>",
         "SecurityPolicyDetail$description": "<p>The description of the security policy.</p>",
         "SecurityPolicySummary$description": "<p>The description of the security policy.</p>",
         "UpdateAccessPolicyRequest$description": "<p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>",
+        "UpdateLifecyclePolicyRequest$description": "<p>A description of the lifecycle policy.</p>",
         "UpdateSecurityPolicyRequest$description": "<p>A description of the policy. Typically used to store information about the permissions defined in the policy.</p>"
       }
     },
@@ -609,8 +810,10 @@
       "base": null,
       "refs": {
         "CreateAccessPolicyRequest$policy": "<p>The JSON policy document to use as the content for the policy.</p>",
+        "CreateLifecyclePolicyRequest$policy": "<p>The JSON policy document to use as the content for the lifecycle policy.</p>",
         "CreateSecurityPolicyRequest$policy": "<p>The JSON policy document to use as the content for the new policy.</p>",
         "UpdateAccessPolicyRequest$policy": "<p>The JSON policy document to use as the content for the policy.</p>",
+        "UpdateLifecyclePolicyRequest$policy": "<p>The JSON policy document to use as the content for the lifecycle policy.</p>",
         "UpdateSecurityPolicyRequest$policy": "<p>The JSON policy document to use as the content for the new policy.</p>"
       }
     },
@@ -620,14 +823,22 @@
         "AccessPolicyDetail$name": "<p>The name of the policy.</p>",
         "AccessPolicySummary$name": "<p>The name of the access policy.</p>",
         "CreateAccessPolicyRequest$name": "<p>The name of the policy.</p>",
+        "CreateLifecyclePolicyRequest$name": "<p>The name of the lifecycle policy.</p>",
         "CreateSecurityPolicyRequest$name": "<p>The name of the policy.</p>",
         "DeleteAccessPolicyRequest$name": "<p>The name of the policy to delete.</p>",
+        "DeleteLifecyclePolicyRequest$name": "<p>The name of the policy to delete.</p>",
         "DeleteSecurityPolicyRequest$name": "<p>The name of the policy to delete.</p>",
+        "EffectiveLifecyclePolicyDetail$policyName": "<p>The name of the lifecycle policy.</p>",
         "GetAccessPolicyRequest$name": "<p>The name of the access policy.</p>",
         "GetSecurityPolicyRequest$name": "<p>The name of the security policy.</p>",
+        "LifecyclePolicyDetail$name": "<p>The name of the lifecycle policy.</p>",
+        "LifecyclePolicyErrorDetail$name": "<p>The name of the lifecycle policy.</p>",
+        "LifecyclePolicyIdentifier$name": "<p>The name of the lifecycle policy.</p>",
+        "LifecyclePolicySummary$name": "<p>The name of the lifecycle policy.</p>",
         "SecurityPolicyDetail$name": "<p>The name of the policy.</p>",
         "SecurityPolicySummary$name": "<p>The name of the policy.</p>",
         "UpdateAccessPolicyRequest$name": "<p>The name of the policy.</p>",
+        "UpdateLifecyclePolicyRequest$name": "<p>The name of the policy.</p>",
         "UpdateSecurityPolicyRequest$name": "<p>The name of the policy.</p>"
       }
     },
@@ -636,11 +847,14 @@
       "refs": {
         "AccessPolicyDetail$policyVersion": "<p>The version of the policy.</p>",
         "AccessPolicySummary$policyVersion": "<p>The version of the policy.</p>",
+        "LifecyclePolicyDetail$policyVersion": "<p>The version of the lifecycle policy.</p>",
+        "LifecyclePolicySummary$policyVersion": "<p>The version of the lifecycle policy.</p>",
         "SecurityConfigDetail$configVersion": "<p>The version of the security configuration.</p>",
         "SecurityConfigSummary$configVersion": "<p>The version of the security configuration.</p>",
         "SecurityPolicyDetail$policyVersion": "<p>The version of the policy.</p>",
         "SecurityPolicySummary$policyVersion": "<p>The version of the policy.</p>",
         "UpdateAccessPolicyRequest$policyVersion": "<p>The version of the policy being updated.</p>",
+        "UpdateLifecyclePolicyRequest$policyVersion": "<p>The version of the policy being updated.</p>",
         "UpdateSecurityConfigRequest$configVersion": "<p>The version of the security configuration to be updated. You can find the most recent version of a security configuration using the <code>GetSecurityPolicy</code> command.</p>",
         "UpdateSecurityPolicyRequest$policyVersion": "<p>The version of the policy being updated.</p>"
       }
@@ -648,13 +862,27 @@
     "Resource": {
       "base": null,
       "refs": {
+        "EffectiveLifecyclePolicyDetail$resource": "<p>The name of the OpenSearch Serverless index resource.</p>",
+        "EffectiveLifecyclePolicyErrorDetail$resource": "<p>The name of OpenSearch Serverless index resource.</p>",
         "ListAccessPoliciesRequestResourceList$member": null,
         "ListSecurityPoliciesRequestResourceList$member": null
+      }
+    },
+    "ResourceName": {
+      "base": null,
+      "refs": {
+        "LifecyclePolicyResourceIdentifier$resource": "<p>The name of the OpenSearch Serverless ilndex resource.</p>"
       }
     },
     "ResourceNotFoundException": {
       "base": "<p>Thrown when accessing or deleting a resource that does not exist.</p>",
       "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "EffectiveLifecyclePolicyDetail$resourceType": "<p>The type of OpenSearch Serverless resource. Currently, the only supported resource is <code>index</code>.</p>"
       }
     },
     "SamlConfigOptions": {
@@ -796,11 +1024,18 @@
         "CreateCollectionDetail$arn": "<p>The Amazon Resource Name (ARN) of the collection.</p>",
         "CreateCollectionDetail$description": "<p>A description of the collection.</p>",
         "CreateCollectionDetail$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the collection.</p>",
+        "EffectiveLifecyclePolicyDetail$retentionPeriod": "<p>The minimum number of index retention in days or hours. This is an optional parameter that will return only if it’s set.</p>",
+        "EffectiveLifecyclePolicyErrorDetail$errorCode": "<p>The error code for the request.</p>",
+        "EffectiveLifecyclePolicyErrorDetail$errorMessage": "<p>A description of the error. For example, <code>The specified Index resource is not found</code>.</p>",
         "InternalServerException$message": null,
+        "LifecyclePolicyErrorDetail$errorCode": "<p>The error code for the request. For example, <code>NOT_FOUND</code>.</p>",
+        "LifecyclePolicyErrorDetail$errorMessage": "<p>A description of the error. For example, <code>The specified Lifecycle Policy is not found</code>.</p>",
         "ListAccessPoliciesRequest$nextToken": "<p>If your initial <code>ListAccessPolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListAccessPolicies</code> operations, which returns results in the next page. </p>",
         "ListAccessPoliciesResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListCollectionsRequest$nextToken": "<p>If your initial <code>ListCollections</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListCollections</code> operations, which returns results in the next page.</p>",
         "ListCollectionsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListLifecyclePoliciesRequest$nextToken": "<p>If your initial <code>ListLifecyclePolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListLifecyclePolicies</code> operations, which returns results in the next page.</p>",
+        "ListLifecyclePoliciesResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListSecurityConfigsRequest$nextToken": "<p>If your initial <code>ListSecurityConfigs</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListSecurityConfigs</code> operations, which returns results in the next page. </p>",
         "ListSecurityConfigsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListSecurityPoliciesRequest$nextToken": "<p>If your initial <code>ListSecurityPolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListSecurityPolicies</code> operations, which returns results in the next page. </p>",
@@ -928,6 +1163,16 @@
       }
     },
     "UpdateCollectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLifecyclePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLifecyclePolicyResponse": {
       "base": null,
       "refs": {
       }

@@ -963,6 +963,153 @@ func (c *MigrationHubStrategyRecommendations) GetServerStrategiesWithContext(ctx
 	return out, req.Send()
 }
 
+const opListAnalyzableServers = "ListAnalyzableServers"
+
+// ListAnalyzableServersRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnalyzableServers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnalyzableServers for more information on using the ListAnalyzableServers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAnalyzableServersRequest method.
+//	req, resp := client.ListAnalyzableServersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhubstrategy-2020-02-19/ListAnalyzableServers
+func (c *MigrationHubStrategyRecommendations) ListAnalyzableServersRequest(input *ListAnalyzableServersInput) (req *request.Request, output *ListAnalyzableServersOutput) {
+	op := &request.Operation{
+		Name:       opListAnalyzableServers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-analyzable-servers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnalyzableServersInput{}
+	}
+
+	output = &ListAnalyzableServersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnalyzableServers API operation for Migration Hub Strategy Recommendations.
+//
+// Retrieves a list of all the servers fetched from customer vCenter using Strategy
+// Recommendation Collector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Migration Hub Strategy Recommendations's
+// API operation ListAnalyzableServers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The request body isn't valid.
+//
+//   - InternalServerException
+//     The server experienced an internal error. Try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhubstrategy-2020-02-19/ListAnalyzableServers
+func (c *MigrationHubStrategyRecommendations) ListAnalyzableServers(input *ListAnalyzableServersInput) (*ListAnalyzableServersOutput, error) {
+	req, out := c.ListAnalyzableServersRequest(input)
+	return out, req.Send()
+}
+
+// ListAnalyzableServersWithContext is the same as ListAnalyzableServers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnalyzableServers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubStrategyRecommendations) ListAnalyzableServersWithContext(ctx aws.Context, input *ListAnalyzableServersInput, opts ...request.Option) (*ListAnalyzableServersOutput, error) {
+	req, out := c.ListAnalyzableServersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnalyzableServersPages iterates over the pages of a ListAnalyzableServers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnalyzableServers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAnalyzableServers operation.
+//	pageNum := 0
+//	err := client.ListAnalyzableServersPages(params,
+//	    func(page *migrationhubstrategyrecommendations.ListAnalyzableServersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MigrationHubStrategyRecommendations) ListAnalyzableServersPages(input *ListAnalyzableServersInput, fn func(*ListAnalyzableServersOutput, bool) bool) error {
+	return c.ListAnalyzableServersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnalyzableServersPagesWithContext same as ListAnalyzableServersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubStrategyRecommendations) ListAnalyzableServersPagesWithContext(ctx aws.Context, input *ListAnalyzableServersInput, fn func(*ListAnalyzableServersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnalyzableServersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnalyzableServersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnalyzableServersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListApplicationComponents = "ListApplicationComponents"
 
 // ListApplicationComponentsRequest generates a "aws/request.Request" representing the
@@ -2288,6 +2435,65 @@ func (s *AnalysisStatusUnion) SetRuntimeAnalysisStatus(v string) *AnalysisStatus
 // SetSrcCodeOrDbAnalysisStatus sets the SrcCodeOrDbAnalysisStatus field's value.
 func (s *AnalysisStatusUnion) SetSrcCodeOrDbAnalysisStatus(v string) *AnalysisStatusUnion {
 	s.SrcCodeOrDbAnalysisStatus = &v
+	return s
+}
+
+// Summary information about an analyzable server.
+type AnalyzableServerSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The host name of the analyzable server.
+	Hostname *string `locationName:"hostname" type:"string"`
+
+	// The ip address of the analyzable server.
+	IpAddress *string `locationName:"ipAddress" type:"string"`
+
+	// The data source of the analyzable server.
+	Source *string `locationName:"source" type:"string"`
+
+	// The virtual machine id of the analyzable server.
+	VmId *string `locationName:"vmId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzableServerSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzableServerSummary) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AnalyzableServerSummary) SetHostname(v string) *AnalyzableServerSummary {
+	s.Hostname = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *AnalyzableServerSummary) SetIpAddress(v string) *AnalyzableServerSummary {
+	s.IpAddress = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *AnalyzableServerSummary) SetSource(v string) *AnalyzableServerSummary {
+	s.Source = &v
+	return s
+}
+
+// SetVmId sets the VmId field's value.
+func (s *AnalyzableServerSummary) SetVmId(v string) *AnalyzableServerSummary {
+	s.VmId = &v
 	return s
 }
 
@@ -5107,6 +5313,102 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Represents input for ListAnalyzableServers operation.
+type ListAnalyzableServersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of items to include in the response. The maximum value
+	// is 100.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token from a previous call that you use to retrieve the next set of results.
+	// For example, if a previous call to this action returned 100 items, but you
+	// set maxResults to 10. You'll receive a set of 10 results along with a token.
+	// You then use the returned token to retrieve the next set of 10.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies whether to sort by ascending (ASC) or descending (DESC) order.
+	Sort *string `locationName:"sort" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalyzableServersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalyzableServersInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAnalyzableServersInput) SetMaxResults(v int64) *ListAnalyzableServersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnalyzableServersInput) SetNextToken(v string) *ListAnalyzableServersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *ListAnalyzableServersInput) SetSort(v string) *ListAnalyzableServersInput {
+	s.Sort = &v
+	return s
+}
+
+// Represents output for ListAnalyzableServers operation.
+type ListAnalyzableServersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of analyzable servers with summary information about each server.
+	AnalyzableServers []*AnalyzableServerSummary `locationName:"analyzableServers" type:"list"`
+
+	// The token you use to retrieve the next set of results, or null if there are
+	// no more results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalyzableServersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnalyzableServersOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzableServers sets the AnalyzableServers field's value.
+func (s *ListAnalyzableServersOutput) SetAnalyzableServers(v []*AnalyzableServerSummary) *ListAnalyzableServersOutput {
+	s.AnalyzableServers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnalyzableServersOutput) SetNextToken(v string) *ListAnalyzableServersOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListApplicationComponentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6975,6 +7277,9 @@ func (s *SourceCodeRepository) SetVersionControlType(v string) *SourceCodeReposi
 type StartAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The data source type of an assessment to be started.
+	AssessmentDataSourceType *string `locationName:"assessmentDataSourceType" type:"string" enum:"AssessmentDataSourceType"`
+
 	// List of criteria for assessment.
 	AssessmentTargets []*AssessmentTarget `locationName:"assessmentTargets" type:"list"`
 
@@ -7023,6 +7328,12 @@ func (s *StartAssessmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAssessmentDataSourceType sets the AssessmentDataSourceType field's value.
+func (s *StartAssessmentInput) SetAssessmentDataSourceType(v string) *StartAssessmentInput {
+	s.AssessmentDataSourceType = &v
+	return s
 }
 
 // SetAssessmentTargets sets the AssessmentTargets field's value.
@@ -8231,6 +8542,26 @@ func ApplicationMode_Values() []string {
 }
 
 const (
+	// AssessmentDataSourceTypeStrategyRecommendationsApplicationDataCollector is a AssessmentDataSourceType enum value
+	AssessmentDataSourceTypeStrategyRecommendationsApplicationDataCollector = "StrategyRecommendationsApplicationDataCollector"
+
+	// AssessmentDataSourceTypeManualImport is a AssessmentDataSourceType enum value
+	AssessmentDataSourceTypeManualImport = "ManualImport"
+
+	// AssessmentDataSourceTypeApplicationDiscoveryService is a AssessmentDataSourceType enum value
+	AssessmentDataSourceTypeApplicationDiscoveryService = "ApplicationDiscoveryService"
+)
+
+// AssessmentDataSourceType_Values returns all elements of the AssessmentDataSourceType enum
+func AssessmentDataSourceType_Values() []string {
+	return []string{
+		AssessmentDataSourceTypeStrategyRecommendationsApplicationDataCollector,
+		AssessmentDataSourceTypeManualImport,
+		AssessmentDataSourceTypeApplicationDiscoveryService,
+	}
+}
+
+const (
 	// AssessmentStatusInProgress is a AssessmentStatus enum value
 	AssessmentStatusInProgress = "IN_PROGRESS"
 
@@ -8359,6 +8690,9 @@ const (
 
 	// DataSourceTypeImport is a DataSourceType enum value
 	DataSourceTypeImport = "Import"
+
+	// DataSourceTypeStrategyRecommendationsApplicationDataCollector is a DataSourceType enum value
+	DataSourceTypeStrategyRecommendationsApplicationDataCollector = "StrategyRecommendationsApplicationDataCollector"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -8367,6 +8701,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeApplicationDiscoveryService,
 		DataSourceTypeMpa,
 		DataSourceTypeImport,
+		DataSourceTypeStrategyRecommendationsApplicationDataCollector,
 	}
 }
 

@@ -33,6 +33,48 @@
         "shape": "BatchGetCollectionResponse"
       }
     },
+    "BatchGetEffectiveLifecyclePolicy": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "BatchGetEffectiveLifecyclePolicyRequest"
+      },
+      "name": "BatchGetEffectiveLifecyclePolicy",
+      "output": {
+        "shape": "BatchGetEffectiveLifecyclePolicyResponse"
+      }
+    },
+    "BatchGetLifecyclePolicy": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "BatchGetLifecyclePolicyRequest"
+      },
+      "name": "BatchGetLifecyclePolicy",
+      "output": {
+        "shape": "BatchGetLifecyclePolicyResponse"
+      }
+    },
     "BatchGetVpcEndpoint": {
       "errors": [
         {
@@ -111,6 +153,34 @@
       "name": "CreateCollection",
       "output": {
         "shape": "CreateCollectionResponse"
+      }
+    },
+    "CreateLifecyclePolicy": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "CreateLifecyclePolicyRequest"
+      },
+      "name": "CreateLifecyclePolicy",
+      "output": {
+        "shape": "CreateLifecyclePolicyResponse"
       }
     },
     "CreateSecurityConfig": {
@@ -251,6 +321,34 @@
       "name": "DeleteCollection",
       "output": {
         "shape": "DeleteCollectionResponse"
+      }
+    },
+    "DeleteLifecyclePolicy": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "DeleteLifecyclePolicyRequest"
+      },
+      "name": "DeleteLifecyclePolicy",
+      "output": {
+        "shape": "DeleteLifecyclePolicyResponse"
       }
     },
     "DeleteSecurityConfig": {
@@ -490,6 +588,27 @@
         "shape": "ListCollectionsResponse"
       }
     },
+    "ListLifecyclePolicies": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListLifecyclePoliciesRequest"
+      },
+      "name": "ListLifecyclePolicies",
+      "output": {
+        "shape": "ListLifecyclePoliciesResponse"
+      }
+    },
     "ListSecurityConfigs": {
       "errors": [
         {
@@ -708,6 +827,37 @@
         "shape": "UpdateCollectionResponse"
       }
     },
+    "UpdateLifecyclePolicy": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "UpdateLifecyclePolicyRequest"
+      },
+      "name": "UpdateLifecyclePolicy",
+      "output": {
+        "shape": "UpdateLifecyclePolicyResponse"
+      }
+    },
     "UpdateSecurityConfig": {
       "errors": [
         {
@@ -895,6 +1045,50 @@
       },
       "type": "structure"
     },
+    "BatchGetEffectiveLifecyclePolicyRequest": {
+      "members": {
+        "resourceIdentifiers": {
+          "shape": "LifecyclePolicyResourceIdentifiers"
+        }
+      },
+      "required": [
+        "resourceIdentifiers"
+      ],
+      "type": "structure"
+    },
+    "BatchGetEffectiveLifecyclePolicyResponse": {
+      "members": {
+        "effectiveLifecyclePolicyDetails": {
+          "shape": "EffectiveLifecyclePolicyDetails"
+        },
+        "effectiveLifecyclePolicyErrorDetails": {
+          "shape": "EffectiveLifecyclePolicyErrorDetails"
+        }
+      },
+      "type": "structure"
+    },
+    "BatchGetLifecyclePolicyRequest": {
+      "members": {
+        "identifiers": {
+          "shape": "LifecyclePolicyIdentifiers"
+        }
+      },
+      "required": [
+        "identifiers"
+      ],
+      "type": "structure"
+    },
+    "BatchGetLifecyclePolicyResponse": {
+      "members": {
+        "lifecyclePolicyDetails": {
+          "shape": "LifecyclePolicyDetails"
+        },
+        "lifecyclePolicyErrorDetails": {
+          "shape": "LifecyclePolicyErrorDetails"
+        }
+      },
+      "type": "structure"
+    },
     "BatchGetVpcEndpointRequest": {
       "members": {
         "ids": {
@@ -916,6 +1110,10 @@
         }
       },
       "type": "structure"
+    },
+    "Boolean": {
+      "box": true,
+      "type": "boolean"
     },
     "CapacityLimits": {
       "members": {
@@ -1202,6 +1400,40 @@
       },
       "type": "structure"
     },
+    "CreateLifecyclePolicyRequest": {
+      "members": {
+        "clientToken": {
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "description": {
+          "shape": "PolicyDescription"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "policy": {
+          "shape": "PolicyDocument"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "name",
+        "policy",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "CreateLifecyclePolicyResponse": {
+      "members": {
+        "lifecyclePolicyDetail": {
+          "shape": "LifecyclePolicyDetail"
+        }
+      },
+      "type": "structure"
+    },
     "CreateSecurityConfigRequest": {
       "members": {
         "clientToken": {
@@ -1377,6 +1609,29 @@
       },
       "type": "structure"
     },
+    "DeleteLifecyclePolicyRequest": {
+      "members": {
+        "clientToken": {
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "DeleteLifecyclePolicyResponse": {
+      "members": {},
+      "type": "structure"
+    },
     "DeleteSecurityConfigRequest": {
       "members": {
         "clientToken": {
@@ -1456,6 +1711,58 @@
       },
       "type": "structure"
     },
+    "EffectiveLifecyclePolicyDetail": {
+      "members": {
+        "noMinRetentionPeriod": {
+          "shape": "Boolean"
+        },
+        "policyName": {
+          "shape": "PolicyName"
+        },
+        "resource": {
+          "shape": "Resource"
+        },
+        "resourceType": {
+          "shape": "ResourceType"
+        },
+        "retentionPeriod": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "type": "structure"
+    },
+    "EffectiveLifecyclePolicyDetails": {
+      "member": {
+        "shape": "EffectiveLifecyclePolicyDetail"
+      },
+      "type": "list"
+    },
+    "EffectiveLifecyclePolicyErrorDetail": {
+      "members": {
+        "errorCode": {
+          "shape": "String"
+        },
+        "errorMessage": {
+          "shape": "String"
+        },
+        "resource": {
+          "shape": "Resource"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "type": "structure"
+    },
+    "EffectiveLifecyclePolicyErrorDetails": {
+      "member": {
+        "shape": "EffectiveLifecyclePolicyErrorDetail"
+      },
+      "type": "list"
+    },
     "GetAccessPolicyRequest": {
       "members": {
         "name": {
@@ -1499,6 +1806,9 @@
       "members": {
         "AccessPolicyStats": {
           "shape": "AccessPolicyStats"
+        },
+        "LifecyclePolicyStats": {
+          "shape": "LifecyclePolicyStats"
         },
         "SecurityConfigStats": {
           "shape": "SecurityConfigStats"
@@ -1569,6 +1879,150 @@
       },
       "type": "structure"
     },
+    "LifecyclePolicyDetail": {
+      "members": {
+        "createdDate": {
+          "shape": "Long"
+        },
+        "description": {
+          "shape": "PolicyDescription"
+        },
+        "lastModifiedDate": {
+          "shape": "Long"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "policyVersion": {
+          "shape": "PolicyVersion"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "type": "structure"
+    },
+    "LifecyclePolicyDetails": {
+      "member": {
+        "shape": "LifecyclePolicyDetail"
+      },
+      "type": "list"
+    },
+    "LifecyclePolicyErrorDetail": {
+      "members": {
+        "errorCode": {
+          "shape": "String"
+        },
+        "errorMessage": {
+          "shape": "String"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "type": "structure"
+    },
+    "LifecyclePolicyErrorDetails": {
+      "member": {
+        "shape": "LifecyclePolicyErrorDetail"
+      },
+      "type": "list"
+    },
+    "LifecyclePolicyIdentifier": {
+      "members": {
+        "name": {
+          "shape": "PolicyName"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "LifecyclePolicyIdentifiers": {
+      "max": 40,
+      "member": {
+        "shape": "LifecyclePolicyIdentifier"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "LifecyclePolicyResourceIdentifier": {
+      "members": {
+        "resource": {
+          "shape": "ResourceName"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "resource",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "LifecyclePolicyResourceIdentifiers": {
+      "max": 100,
+      "member": {
+        "shape": "LifecyclePolicyResourceIdentifier"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "LifecyclePolicyStats": {
+      "members": {
+        "RetentionPolicyCount": {
+          "shape": "Long"
+        }
+      },
+      "type": "structure"
+    },
+    "LifecyclePolicySummaries": {
+      "member": {
+        "shape": "LifecyclePolicySummary"
+      },
+      "type": "list"
+    },
+    "LifecyclePolicySummary": {
+      "members": {
+        "createdDate": {
+          "shape": "Long"
+        },
+        "description": {
+          "shape": "PolicyDescription"
+        },
+        "lastModifiedDate": {
+          "shape": "Long"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "policyVersion": {
+          "shape": "PolicyVersion"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "type": "structure"
+    },
+    "LifecyclePolicyType": {
+      "enum": [
+        "retention"
+      ],
+      "type": "string"
+    },
+    "LifecycleResource": {
+      "type": "string"
+    },
     "ListAccessPoliciesRequest": {
       "members": {
         "maxResults": {
@@ -1638,6 +2092,51 @@
       "members": {
         "collectionSummaries": {
           "shape": "CollectionSummaries"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListLifecyclePoliciesRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "ListLifecyclePoliciesRequestMaxResultsInteger"
+        },
+        "nextToken": {
+          "shape": "String"
+        },
+        "resources": {
+          "shape": "ListLifecyclePoliciesRequestResourcesList"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "structure"
+    },
+    "ListLifecyclePoliciesRequestMaxResultsInteger": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListLifecyclePoliciesRequestResourcesList": {
+      "max": 1000,
+      "member": {
+        "shape": "LifecycleResource"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ListLifecyclePoliciesResponse": {
+      "members": {
+        "lifecyclePolicySummaries": {
+          "shape": "LifecyclePolicySummaries"
         },
         "nextToken": {
           "shape": "String"
@@ -1816,6 +2315,10 @@
     "Resource": {
       "type": "string"
     },
+    "ResourceName": {
+      "pattern": "^index/[a-z][a-z0-9-]{3,32}/([a-z;0-9\u0026$%][+.~=\\-_a-z;0-9\u0026$%]*|\\*)$",
+      "type": "string"
+    },
     "ResourceNotFoundException": {
       "exception": true,
       "members": {
@@ -1824,6 +2327,12 @@
         }
       },
       "type": "structure"
+    },
+    "ResourceType": {
+      "enum": [
+        "index"
+      ],
+      "type": "string"
     },
     "SamlConfigOptions": {
       "members": {
@@ -2244,6 +2753,43 @@
       "members": {
         "updateCollectionDetail": {
           "shape": "UpdateCollectionDetail"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateLifecyclePolicyRequest": {
+      "members": {
+        "clientToken": {
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "description": {
+          "shape": "PolicyDescription"
+        },
+        "name": {
+          "shape": "PolicyName"
+        },
+        "policy": {
+          "shape": "PolicyDocument"
+        },
+        "policyVersion": {
+          "shape": "PolicyVersion"
+        },
+        "type": {
+          "shape": "LifecyclePolicyType"
+        }
+      },
+      "required": [
+        "name",
+        "policyVersion",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "UpdateLifecyclePolicyResponse": {
+      "members": {
+        "lifecyclePolicyDetail": {
+          "shape": "LifecyclePolicyDetail"
         }
       },
       "type": "structure"

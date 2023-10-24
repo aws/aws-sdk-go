@@ -173,6 +173,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListAnalyzableServers":{
+      "name":"ListAnalyzableServers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-analyzable-servers",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAnalyzableServersRequest"},
+      "output":{"shape":"ListAnalyzableServersResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListApplicationComponents":{
       "name":"ListApplicationComponents",
       "http":{
@@ -383,6 +399,19 @@
         "BINARY_ANALYSIS"
       ]
     },
+    "AnalyzableServerSummary":{
+      "type":"structure",
+      "members":{
+        "hostname":{"shape":"String"},
+        "ipAddress":{"shape":"String"},
+        "source":{"shape":"String"},
+        "vmId":{"shape":"String"}
+      }
+    },
+    "AnalyzableServerSummaryList":{
+      "type":"list",
+      "member":{"shape":"AnalyzableServerSummary"}
+    },
     "AnalyzerNameUnion":{
       "type":"structure",
       "members":{
@@ -553,6 +582,14 @@
       "members":{
         "managementPreference":{"shape":"ManagementPreference"}
       }
+    },
+    "AssessmentDataSourceType":{
+      "type":"string",
+      "enum":[
+        "StrategyRecommendationsApplicationDataCollector",
+        "ManualImport",
+        "ApplicationDiscoveryService"
+      ]
     },
     "AssessmentStatus":{
       "type":"string",
@@ -757,7 +794,8 @@
       "enum":[
         "ApplicationDiscoveryService",
         "MPA",
-        "Import"
+        "Import",
+        "StrategyRecommendationsApplicationDataCollector"
       ]
     },
     "DatabaseConfigDetail":{
@@ -1116,6 +1154,21 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "ListAnalyzableServersRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"MaxResult"},
+        "nextToken":{"shape":"NextToken"},
+        "sort":{"shape":"SortOrder"}
+      }
+    },
+    "ListAnalyzableServersResponse":{
+      "type":"structure",
+      "members":{
+        "analyzableServers":{"shape":"AnalyzableServerSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListAntipatternSeveritySummary":{
       "type":"list",
@@ -1742,6 +1795,7 @@
     "StartAssessmentRequest":{
       "type":"structure",
       "members":{
+        "assessmentDataSourceType":{"shape":"AssessmentDataSourceType"},
         "assessmentTargets":{"shape":"AssessmentTargets"},
         "s3bucketForAnalysisData":{"shape":"StartAssessmentRequestS3bucketForAnalysisDataString"},
         "s3bucketForReportData":{"shape":"StartAssessmentRequestS3bucketForReportDataString"}

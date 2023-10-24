@@ -103,6 +103,13 @@ type MigrationHubStrategyRecommendationsAPI interface {
 	GetServerStrategiesWithContext(aws.Context, *migrationhubstrategyrecommendations.GetServerStrategiesInput, ...request.Option) (*migrationhubstrategyrecommendations.GetServerStrategiesOutput, error)
 	GetServerStrategiesRequest(*migrationhubstrategyrecommendations.GetServerStrategiesInput) (*request.Request, *migrationhubstrategyrecommendations.GetServerStrategiesOutput)
 
+	ListAnalyzableServers(*migrationhubstrategyrecommendations.ListAnalyzableServersInput) (*migrationhubstrategyrecommendations.ListAnalyzableServersOutput, error)
+	ListAnalyzableServersWithContext(aws.Context, *migrationhubstrategyrecommendations.ListAnalyzableServersInput, ...request.Option) (*migrationhubstrategyrecommendations.ListAnalyzableServersOutput, error)
+	ListAnalyzableServersRequest(*migrationhubstrategyrecommendations.ListAnalyzableServersInput) (*request.Request, *migrationhubstrategyrecommendations.ListAnalyzableServersOutput)
+
+	ListAnalyzableServersPages(*migrationhubstrategyrecommendations.ListAnalyzableServersInput, func(*migrationhubstrategyrecommendations.ListAnalyzableServersOutput, bool) bool) error
+	ListAnalyzableServersPagesWithContext(aws.Context, *migrationhubstrategyrecommendations.ListAnalyzableServersInput, func(*migrationhubstrategyrecommendations.ListAnalyzableServersOutput, bool) bool, ...request.Option) error
+
 	ListApplicationComponents(*migrationhubstrategyrecommendations.ListApplicationComponentsInput) (*migrationhubstrategyrecommendations.ListApplicationComponentsOutput, error)
 	ListApplicationComponentsWithContext(aws.Context, *migrationhubstrategyrecommendations.ListApplicationComponentsInput, ...request.Option) (*migrationhubstrategyrecommendations.ListApplicationComponentsOutput, error)
 	ListApplicationComponentsRequest(*migrationhubstrategyrecommendations.ListApplicationComponentsInput) (*request.Request, *migrationhubstrategyrecommendations.ListApplicationComponentsOutput)

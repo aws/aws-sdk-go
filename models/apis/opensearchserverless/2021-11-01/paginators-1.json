@@ -10,6 +10,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListLifecyclePolicies": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListSecurityConfigs": {
       "input_token": "nextToken",
       "output_token": "nextToken",

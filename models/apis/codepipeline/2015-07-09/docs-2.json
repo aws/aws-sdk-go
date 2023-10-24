@@ -240,6 +240,7 @@
         "ActionDeclaration$name": "<p>The action declaration's name.</p>",
         "ActionExecutionDetail$actionName": "<p>The name of the action.</p>",
         "ActionState$actionName": "<p>The name of the action.</p>",
+        "GitConfiguration$sourceActionName": "<p>The name of the pipeline source action where the trigger configuration, such as Git tags, is specified. The trigger configuration will start the pipeline upon the specified change only.</p> <note> <p>You can only specify one trigger configuration per source action.</p> </note>",
         "PutActionRevisionInput$actionName": "<p>The name of the action that processes the revision.</p>",
         "PutApprovalResultInput$actionName": "<p>The name of the action for which approval is requested.</p>",
         "SourceRevision$actionName": "<p>The name of the action that processed the revision to the source artifact.</p>",
@@ -763,6 +764,7 @@
     "ExecutionTrigger": {
       "base": "<p>The interaction or event that started a pipeline execution.</p>",
       "refs": {
+        "PipelineExecution$trigger": null,
         "PipelineExecutionSummary$trigger": "<p>The interaction or event that started a pipeline execution, such as automated change detection or a <code>StartPipelineExecution</code> API call.</p>"
       }
     },
@@ -861,6 +863,43 @@
     "GetThirdPartyJobDetailsOutput": {
       "base": "<p>Represents the output of a <code>GetThirdPartyJobDetails</code> action.</p>",
       "refs": {
+      }
+    },
+    "GitConfiguration": {
+      "base": "<p>A type of trigger configuration for Git-based source actions.</p> <note> <p>You can specify the Git configuration trigger type for all third-party Git-based source actions that are supported by the <code>CodeStarSourceConnection</code> action type.</p> </note>",
+      "refs": {
+        "PipelineTriggerDeclaration$gitConfiguration": "<p>Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags.</p>"
+      }
+    },
+    "GitPushFilter": {
+      "base": "<p>The event criteria that specify when a specified repository event will start the pipeline for the specified trigger configuration, such as the lists of Git tags to include and exclude.</p>",
+      "refs": {
+        "GitPushFilterList$member": null
+      }
+    },
+    "GitPushFilterList": {
+      "base": null,
+      "refs": {
+        "GitConfiguration$push": "<p>The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details.</p> <note> <p>Git tags is the only supported event type.</p> </note>"
+      }
+    },
+    "GitTagFilterCriteria": {
+      "base": "<p>The Git tags specified as filter criteria for whether a Git tag repository event will start the pipeline.</p>",
+      "refs": {
+        "GitPushFilter$tags": "<p>The field that contains the details for the Git tags trigger configuration.</p>"
+      }
+    },
+    "GitTagNamePattern": {
+      "base": null,
+      "refs": {
+        "GitTagPatternList$member": null
+      }
+    },
+    "GitTagPatternList": {
+      "base": null,
+      "refs": {
+        "GitTagFilterCriteria$includes": "<p>The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline.</p>",
+        "GitTagFilterCriteria$excludes": "<p>The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline.</p>"
       }
     },
     "InputArtifact": {
@@ -1397,6 +1436,75 @@
         "PipelineList$member": null
       }
     },
+    "PipelineTriggerDeclaration": {
+      "base": "<p>Represents information about the specified trigger configuration, such as the filter criteria and the source stage for the action that contains the trigger.</p> <note> <p>This is only supported for the <code>CodeStarSourceConnection</code> action type.</p> </note> <note> <p>When a trigger configuration is specified, default change detection for repository and branch commits is disabled.</p> </note>",
+      "refs": {
+        "PipelineTriggerDeclarationList$member": null
+      }
+    },
+    "PipelineTriggerDeclarationList": {
+      "base": null,
+      "refs": {
+        "PipelineDeclaration$triggers": "<p>The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline.</p> <note> <p>When a trigger configuration is specified, default change detection for repository and branch commits is disabled.</p> </note>"
+      }
+    },
+    "PipelineTriggerProviderType": {
+      "base": null,
+      "refs": {
+        "PipelineTriggerDeclaration$providerType": "<p>The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration.</p>"
+      }
+    },
+    "PipelineType": {
+      "base": null,
+      "refs": {
+        "PipelineDeclaration$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"https://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p>",
+        "PipelineSummary$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"https://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p>"
+      }
+    },
+    "PipelineVariable": {
+      "base": "<p>A pipeline-level variable used for a pipeline execution.</p>",
+      "refs": {
+        "PipelineVariableList$member": null
+      }
+    },
+    "PipelineVariableDeclaration": {
+      "base": "<p>A variable declared at the pipeline level.</p>",
+      "refs": {
+        "PipelineVariableDeclarationList$member": null
+      }
+    },
+    "PipelineVariableDeclarationList": {
+      "base": null,
+      "refs": {
+        "PipelineDeclaration$variables": "<p>A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9@\\-_]+</code>.</p>"
+      }
+    },
+    "PipelineVariableDescription": {
+      "base": null,
+      "refs": {
+        "PipelineVariableDeclaration$description": "<p>The description of a pipeline-level variable. It's used to add additional context about the variable, and not being used at time when pipeline executes.</p>"
+      }
+    },
+    "PipelineVariableList": {
+      "base": null,
+      "refs": {
+        "StartPipelineExecutionInput$variables": "<p>A list that overrides pipeline variables for a pipeline execution that's being started. Variable names must match <code>[A-Za-z0-9@\\-_]+</code>, and the values can be anything except an empty string.</p>"
+      }
+    },
+    "PipelineVariableName": {
+      "base": null,
+      "refs": {
+        "PipelineVariable$name": "<p>The name of a pipeline-level variable.</p>",
+        "PipelineVariableDeclaration$name": "<p>The name of a pipeline-level variable.</p>"
+      }
+    },
+    "PipelineVariableValue": {
+      "base": null,
+      "refs": {
+        "PipelineVariable$value": "<p>The value of a pipeline-level variable.</p>",
+        "PipelineVariableDeclaration$defaultValue": "<p>The value of a pipeline-level variable.</p>"
+      }
+    },
     "PipelineVersion": {
       "base": null,
       "refs": {
@@ -1532,6 +1640,18 @@
       "base": null,
       "refs": {
         "ActionExecutionInput$resolvedConfiguration": "<p>Configuration data for an action execution with all variable references replaced with their real values for the execution.</p>"
+      }
+    },
+    "ResolvedPipelineVariable": {
+      "base": "<p>A pipeline-level variable used for a pipeline execution.</p>",
+      "refs": {
+        "ResolvedPipelineVariableList$member": null
+      }
+    },
+    "ResolvedPipelineVariableList": {
+      "base": null,
+      "refs": {
+        "PipelineExecution$variables": "<p>A list of pipeline variables used for the pipeline execution.</p>"
       }
     },
     "ResourceArn": {
@@ -1780,7 +1900,9 @@
       "base": null,
       "refs": {
         "ResolvedActionConfigurationMap$key": null,
-        "ResolvedActionConfigurationMap$value": null
+        "ResolvedActionConfigurationMap$value": null,
+        "ResolvedPipelineVariable$name": "<p>The name of a pipeline-level variable.</p>",
+        "ResolvedPipelineVariable$resolvedValue": "<p>The resolved value of a pipeline-level variable.</p>"
       }
     },
     "Tag": {
