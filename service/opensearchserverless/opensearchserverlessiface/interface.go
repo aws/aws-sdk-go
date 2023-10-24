@@ -64,6 +64,14 @@ type OpenSearchServerlessAPI interface {
 	BatchGetCollectionWithContext(aws.Context, *opensearchserverless.BatchGetCollectionInput, ...request.Option) (*opensearchserverless.BatchGetCollectionOutput, error)
 	BatchGetCollectionRequest(*opensearchserverless.BatchGetCollectionInput) (*request.Request, *opensearchserverless.BatchGetCollectionOutput)
 
+	BatchGetEffectiveLifecyclePolicy(*opensearchserverless.BatchGetEffectiveLifecyclePolicyInput) (*opensearchserverless.BatchGetEffectiveLifecyclePolicyOutput, error)
+	BatchGetEffectiveLifecyclePolicyWithContext(aws.Context, *opensearchserverless.BatchGetEffectiveLifecyclePolicyInput, ...request.Option) (*opensearchserverless.BatchGetEffectiveLifecyclePolicyOutput, error)
+	BatchGetEffectiveLifecyclePolicyRequest(*opensearchserverless.BatchGetEffectiveLifecyclePolicyInput) (*request.Request, *opensearchserverless.BatchGetEffectiveLifecyclePolicyOutput)
+
+	BatchGetLifecyclePolicy(*opensearchserverless.BatchGetLifecyclePolicyInput) (*opensearchserverless.BatchGetLifecyclePolicyOutput, error)
+	BatchGetLifecyclePolicyWithContext(aws.Context, *opensearchserverless.BatchGetLifecyclePolicyInput, ...request.Option) (*opensearchserverless.BatchGetLifecyclePolicyOutput, error)
+	BatchGetLifecyclePolicyRequest(*opensearchserverless.BatchGetLifecyclePolicyInput) (*request.Request, *opensearchserverless.BatchGetLifecyclePolicyOutput)
+
 	BatchGetVpcEndpoint(*opensearchserverless.BatchGetVpcEndpointInput) (*opensearchserverless.BatchGetVpcEndpointOutput, error)
 	BatchGetVpcEndpointWithContext(aws.Context, *opensearchserverless.BatchGetVpcEndpointInput, ...request.Option) (*opensearchserverless.BatchGetVpcEndpointOutput, error)
 	BatchGetVpcEndpointRequest(*opensearchserverless.BatchGetVpcEndpointInput) (*request.Request, *opensearchserverless.BatchGetVpcEndpointOutput)
@@ -75,6 +83,10 @@ type OpenSearchServerlessAPI interface {
 	CreateCollection(*opensearchserverless.CreateCollectionInput) (*opensearchserverless.CreateCollectionOutput, error)
 	CreateCollectionWithContext(aws.Context, *opensearchserverless.CreateCollectionInput, ...request.Option) (*opensearchserverless.CreateCollectionOutput, error)
 	CreateCollectionRequest(*opensearchserverless.CreateCollectionInput) (*request.Request, *opensearchserverless.CreateCollectionOutput)
+
+	CreateLifecyclePolicy(*opensearchserverless.CreateLifecyclePolicyInput) (*opensearchserverless.CreateLifecyclePolicyOutput, error)
+	CreateLifecyclePolicyWithContext(aws.Context, *opensearchserverless.CreateLifecyclePolicyInput, ...request.Option) (*opensearchserverless.CreateLifecyclePolicyOutput, error)
+	CreateLifecyclePolicyRequest(*opensearchserverless.CreateLifecyclePolicyInput) (*request.Request, *opensearchserverless.CreateLifecyclePolicyOutput)
 
 	CreateSecurityConfig(*opensearchserverless.CreateSecurityConfigInput) (*opensearchserverless.CreateSecurityConfigOutput, error)
 	CreateSecurityConfigWithContext(aws.Context, *opensearchserverless.CreateSecurityConfigInput, ...request.Option) (*opensearchserverless.CreateSecurityConfigOutput, error)
@@ -95,6 +107,10 @@ type OpenSearchServerlessAPI interface {
 	DeleteCollection(*opensearchserverless.DeleteCollectionInput) (*opensearchserverless.DeleteCollectionOutput, error)
 	DeleteCollectionWithContext(aws.Context, *opensearchserverless.DeleteCollectionInput, ...request.Option) (*opensearchserverless.DeleteCollectionOutput, error)
 	DeleteCollectionRequest(*opensearchserverless.DeleteCollectionInput) (*request.Request, *opensearchserverless.DeleteCollectionOutput)
+
+	DeleteLifecyclePolicy(*opensearchserverless.DeleteLifecyclePolicyInput) (*opensearchserverless.DeleteLifecyclePolicyOutput, error)
+	DeleteLifecyclePolicyWithContext(aws.Context, *opensearchserverless.DeleteLifecyclePolicyInput, ...request.Option) (*opensearchserverless.DeleteLifecyclePolicyOutput, error)
+	DeleteLifecyclePolicyRequest(*opensearchserverless.DeleteLifecyclePolicyInput) (*request.Request, *opensearchserverless.DeleteLifecyclePolicyOutput)
 
 	DeleteSecurityConfig(*opensearchserverless.DeleteSecurityConfigInput) (*opensearchserverless.DeleteSecurityConfigOutput, error)
 	DeleteSecurityConfigWithContext(aws.Context, *opensearchserverless.DeleteSecurityConfigInput, ...request.Option) (*opensearchserverless.DeleteSecurityConfigOutput, error)
@@ -142,6 +158,13 @@ type OpenSearchServerlessAPI interface {
 	ListCollectionsPages(*opensearchserverless.ListCollectionsInput, func(*opensearchserverless.ListCollectionsOutput, bool) bool) error
 	ListCollectionsPagesWithContext(aws.Context, *opensearchserverless.ListCollectionsInput, func(*opensearchserverless.ListCollectionsOutput, bool) bool, ...request.Option) error
 
+	ListLifecyclePolicies(*opensearchserverless.ListLifecyclePoliciesInput) (*opensearchserverless.ListLifecyclePoliciesOutput, error)
+	ListLifecyclePoliciesWithContext(aws.Context, *opensearchserverless.ListLifecyclePoliciesInput, ...request.Option) (*opensearchserverless.ListLifecyclePoliciesOutput, error)
+	ListLifecyclePoliciesRequest(*opensearchserverless.ListLifecyclePoliciesInput) (*request.Request, *opensearchserverless.ListLifecyclePoliciesOutput)
+
+	ListLifecyclePoliciesPages(*opensearchserverless.ListLifecyclePoliciesInput, func(*opensearchserverless.ListLifecyclePoliciesOutput, bool) bool) error
+	ListLifecyclePoliciesPagesWithContext(aws.Context, *opensearchserverless.ListLifecyclePoliciesInput, func(*opensearchserverless.ListLifecyclePoliciesOutput, bool) bool, ...request.Option) error
+
 	ListSecurityConfigs(*opensearchserverless.ListSecurityConfigsInput) (*opensearchserverless.ListSecurityConfigsOutput, error)
 	ListSecurityConfigsWithContext(aws.Context, *opensearchserverless.ListSecurityConfigsInput, ...request.Option) (*opensearchserverless.ListSecurityConfigsOutput, error)
 	ListSecurityConfigsRequest(*opensearchserverless.ListSecurityConfigsInput) (*request.Request, *opensearchserverless.ListSecurityConfigsOutput)
@@ -186,6 +209,10 @@ type OpenSearchServerlessAPI interface {
 	UpdateCollection(*opensearchserverless.UpdateCollectionInput) (*opensearchserverless.UpdateCollectionOutput, error)
 	UpdateCollectionWithContext(aws.Context, *opensearchserverless.UpdateCollectionInput, ...request.Option) (*opensearchserverless.UpdateCollectionOutput, error)
 	UpdateCollectionRequest(*opensearchserverless.UpdateCollectionInput) (*request.Request, *opensearchserverless.UpdateCollectionOutput)
+
+	UpdateLifecyclePolicy(*opensearchserverless.UpdateLifecyclePolicyInput) (*opensearchserverless.UpdateLifecyclePolicyOutput, error)
+	UpdateLifecyclePolicyWithContext(aws.Context, *opensearchserverless.UpdateLifecyclePolicyInput, ...request.Option) (*opensearchserverless.UpdateLifecyclePolicyOutput, error)
+	UpdateLifecyclePolicyRequest(*opensearchserverless.UpdateLifecyclePolicyInput) (*request.Request, *opensearchserverless.UpdateLifecyclePolicyOutput)
 
 	UpdateSecurityConfig(*opensearchserverless.UpdateSecurityConfigInput) (*opensearchserverless.UpdateSecurityConfigOutput, error)
 	UpdateSecurityConfigWithContext(aws.Context, *opensearchserverless.UpdateSecurityConfigInput, ...request.Option) (*opensearchserverless.UpdateSecurityConfigOutput, error)

@@ -845,7 +845,20 @@
         "ConfigurationConflict",
         "InternalFailure",
         "ResourceLimitExceeded",
-        "ResourceNotFound"
+        "ResourceNotFound",
+        "IamRoleNotFound",
+        "VpcNotFound",
+        "InsufficientFreeAddresses",
+        "Ec2ServiceNotSubscribed",
+        "Ec2SubnetNotFound",
+        "Ec2SecurityGroupNotFound",
+        "KmsGrantRevoked",
+        "KmsKeyNotFound",
+        "KmsKeyMarkedForDeletion",
+        "KmsKeyDisabled",
+        "StsRegionalEndpointDisabled",
+        "UnsupportedVersion",
+        "Other"
       ]
     },
     "ClusterIssueList":{
@@ -2472,7 +2485,10 @@
         "ServiceAccountRoleArn",
         "ResolveConflicts",
         "MaxUnavailable",
-        "MaxUnavailablePercentage"
+        "MaxUnavailablePercentage",
+        "ConfigurationValues",
+        "SecurityGroups",
+        "Subnets"
       ]
     },
     "UpdateParams":{
@@ -2505,7 +2521,8 @@
         "AssociateIdentityProviderConfig",
         "DisassociateIdentityProviderConfig",
         "AssociateEncryptionConfig",
-        "AddonUpdate"
+        "AddonUpdate",
+        "VpcConfigUpdate"
       ]
     },
     "VpcConfigRequest":{

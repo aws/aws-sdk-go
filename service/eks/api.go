@@ -12874,6 +12874,45 @@ const (
 
 	// ClusterIssueCodeResourceNotFound is a ClusterIssueCode enum value
 	ClusterIssueCodeResourceNotFound = "ResourceNotFound"
+
+	// ClusterIssueCodeIamRoleNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeIamRoleNotFound = "IamRoleNotFound"
+
+	// ClusterIssueCodeVpcNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeVpcNotFound = "VpcNotFound"
+
+	// ClusterIssueCodeInsufficientFreeAddresses is a ClusterIssueCode enum value
+	ClusterIssueCodeInsufficientFreeAddresses = "InsufficientFreeAddresses"
+
+	// ClusterIssueCodeEc2serviceNotSubscribed is a ClusterIssueCode enum value
+	ClusterIssueCodeEc2serviceNotSubscribed = "Ec2ServiceNotSubscribed"
+
+	// ClusterIssueCodeEc2subnetNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeEc2subnetNotFound = "Ec2SubnetNotFound"
+
+	// ClusterIssueCodeEc2securityGroupNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeEc2securityGroupNotFound = "Ec2SecurityGroupNotFound"
+
+	// ClusterIssueCodeKmsGrantRevoked is a ClusterIssueCode enum value
+	ClusterIssueCodeKmsGrantRevoked = "KmsGrantRevoked"
+
+	// ClusterIssueCodeKmsKeyNotFound is a ClusterIssueCode enum value
+	ClusterIssueCodeKmsKeyNotFound = "KmsKeyNotFound"
+
+	// ClusterIssueCodeKmsKeyMarkedForDeletion is a ClusterIssueCode enum value
+	ClusterIssueCodeKmsKeyMarkedForDeletion = "KmsKeyMarkedForDeletion"
+
+	// ClusterIssueCodeKmsKeyDisabled is a ClusterIssueCode enum value
+	ClusterIssueCodeKmsKeyDisabled = "KmsKeyDisabled"
+
+	// ClusterIssueCodeStsRegionalEndpointDisabled is a ClusterIssueCode enum value
+	ClusterIssueCodeStsRegionalEndpointDisabled = "StsRegionalEndpointDisabled"
+
+	// ClusterIssueCodeUnsupportedVersion is a ClusterIssueCode enum value
+	ClusterIssueCodeUnsupportedVersion = "UnsupportedVersion"
+
+	// ClusterIssueCodeOther is a ClusterIssueCode enum value
+	ClusterIssueCodeOther = "Other"
 )
 
 // ClusterIssueCode_Values returns all elements of the ClusterIssueCode enum
@@ -12885,6 +12924,19 @@ func ClusterIssueCode_Values() []string {
 		ClusterIssueCodeInternalFailure,
 		ClusterIssueCodeResourceLimitExceeded,
 		ClusterIssueCodeResourceNotFound,
+		ClusterIssueCodeIamRoleNotFound,
+		ClusterIssueCodeVpcNotFound,
+		ClusterIssueCodeInsufficientFreeAddresses,
+		ClusterIssueCodeEc2serviceNotSubscribed,
+		ClusterIssueCodeEc2subnetNotFound,
+		ClusterIssueCodeEc2securityGroupNotFound,
+		ClusterIssueCodeKmsGrantRevoked,
+		ClusterIssueCodeKmsKeyNotFound,
+		ClusterIssueCodeKmsKeyMarkedForDeletion,
+		ClusterIssueCodeKmsKeyDisabled,
+		ClusterIssueCodeStsRegionalEndpointDisabled,
+		ClusterIssueCodeUnsupportedVersion,
+		ClusterIssueCodeOther,
 	}
 }
 
@@ -13417,6 +13469,15 @@ const (
 
 	// UpdateParamTypeMaxUnavailablePercentage is a UpdateParamType enum value
 	UpdateParamTypeMaxUnavailablePercentage = "MaxUnavailablePercentage"
+
+	// UpdateParamTypeConfigurationValues is a UpdateParamType enum value
+	UpdateParamTypeConfigurationValues = "ConfigurationValues"
+
+	// UpdateParamTypeSecurityGroups is a UpdateParamType enum value
+	UpdateParamTypeSecurityGroups = "SecurityGroups"
+
+	// UpdateParamTypeSubnets is a UpdateParamType enum value
+	UpdateParamTypeSubnets = "Subnets"
 )
 
 // UpdateParamType_Values returns all elements of the UpdateParamType enum
@@ -13445,6 +13506,9 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeResolveConflicts,
 		UpdateParamTypeMaxUnavailable,
 		UpdateParamTypeMaxUnavailablePercentage,
+		UpdateParamTypeConfigurationValues,
+		UpdateParamTypeSecurityGroups,
+		UpdateParamTypeSubnets,
 	}
 }
 
@@ -13496,6 +13560,9 @@ const (
 
 	// UpdateTypeAddonUpdate is a UpdateType enum value
 	UpdateTypeAddonUpdate = "AddonUpdate"
+
+	// UpdateTypeVpcConfigUpdate is a UpdateType enum value
+	UpdateTypeVpcConfigUpdate = "VpcConfigUpdate"
 )
 
 // UpdateType_Values returns all elements of the UpdateType enum
@@ -13509,5 +13576,6 @@ func UpdateType_Values() []string {
 		UpdateTypeDisassociateIdentityProviderConfig,
 		UpdateTypeAssociateEncryptionConfig,
 		UpdateTypeAddonUpdate,
+		UpdateTypeVpcConfigUpdate,
 	}
 }

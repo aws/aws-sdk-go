@@ -9018,6 +9018,198 @@ func (s *GetThirdPartyJobDetailsOutput) SetJobDetails(v *ThirdPartyJobDetails) *
 	return s
 }
 
+// A type of trigger configuration for Git-based source actions.
+//
+// You can specify the Git configuration trigger type for all third-party Git-based
+// source actions that are supported by the CodeStarSourceConnection action
+// type.
+type GitConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The field where the repository event that will start the pipeline, such as
+	// pushing Git tags, is specified with details.
+	//
+	// Git tags is the only supported event type.
+	Push []*GitPushFilter `locationName:"push" min:"1" type:"list"`
+
+	// The name of the pipeline source action where the trigger configuration, such
+	// as Git tags, is specified. The trigger configuration will start the pipeline
+	// upon the specified change only.
+	//
+	// You can only specify one trigger configuration per source action.
+	//
+	// SourceActionName is a required field
+	SourceActionName *string `locationName:"sourceActionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitConfiguration"}
+	if s.Push != nil && len(s.Push) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Push", 1))
+	}
+	if s.SourceActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceActionName"))
+	}
+	if s.SourceActionName != nil && len(*s.SourceActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceActionName", 1))
+	}
+	if s.Push != nil {
+		for i, v := range s.Push {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Push", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPush sets the Push field's value.
+func (s *GitConfiguration) SetPush(v []*GitPushFilter) *GitConfiguration {
+	s.Push = v
+	return s
+}
+
+// SetSourceActionName sets the SourceActionName field's value.
+func (s *GitConfiguration) SetSourceActionName(v string) *GitConfiguration {
+	s.SourceActionName = &v
+	return s
+}
+
+// The event criteria that specify when a specified repository event will start
+// the pipeline for the specified trigger configuration, such as the lists of
+// Git tags to include and exclude.
+type GitPushFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The field that contains the details for the Git tags trigger configuration.
+	Tags *GitTagFilterCriteria `locationName:"tags" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPushFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPushFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitPushFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitPushFilter"}
+	if s.Tags != nil {
+		if err := s.Tags.Validate(); err != nil {
+			invalidParams.AddNested("Tags", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *GitPushFilter) SetTags(v *GitTagFilterCriteria) *GitPushFilter {
+	s.Tags = v
+	return s
+}
+
+// The Git tags specified as filter criteria for whether a Git tag repository
+// event will start the pipeline.
+type GitTagFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of patterns of Git tags that, when pushed, are to be excluded from
+	// starting the pipeline.
+	Excludes []*string `locationName:"excludes" min:"1" type:"list"`
+
+	// The list of patterns of Git tags that, when pushed, are to be included as
+	// criteria that starts the pipeline.
+	Includes []*string `locationName:"includes" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitTagFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitTagFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitTagFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitTagFilterCriteria"}
+	if s.Excludes != nil && len(s.Excludes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Excludes", 1))
+	}
+	if s.Includes != nil && len(s.Includes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Includes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *GitTagFilterCriteria) SetExcludes(v []*string) *GitTagFilterCriteria {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *GitTagFilterCriteria) SetIncludes(v []*string) *GitTagFilterCriteria {
+	s.Includes = v
+	return s
+}
+
 // Represents information about an artifact to be worked on, such as a test
 // or build artifact.
 type InputArtifact struct {
@@ -11501,6 +11693,26 @@ type PipelineDeclaration struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// CodePipeline provides the following pipeline types, which differ in characteristics
+	// and price, so that you can tailor your pipeline features and cost to the
+	// needs of your applications.
+	//
+	//    * V1 type pipelines have a JSON structure that contains standard pipeline,
+	//    stage, and action-level parameters.
+	//
+	//    * V2 type pipelines have the same structure as a V1 type, along with additional
+	//    parameters for release safety and trigger configuration.
+	//
+	// Including V2 parameters, such as triggers on Git tags, in the pipeline JSON
+	// when creating or updating a pipeline will result in the pipeline having the
+	// V2 type of pipeline and the associated costs.
+	//
+	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	//
+	// For information about which type of pipeline to choose, see What type of
+	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
+
 	// The Amazon Resource Name (ARN) for CodePipeline to use to either perform
 	// actions with no actionRoleArn, or to use to assume roles for actions with
 	// an actionRoleArn.
@@ -11512,6 +11724,18 @@ type PipelineDeclaration struct {
 	//
 	// Stages is a required field
 	Stages []*StageDeclaration `locationName:"stages" type:"list" required:"true"`
+
+	// The trigger configuration specifying a type of event, such as Git tags, that
+	// starts the pipeline.
+	//
+	// When a trigger configuration is specified, default change detection for repository
+	// and branch commits is disabled.
+	Triggers []*PipelineTriggerDeclaration `locationName:"triggers" type:"list"`
+
+	// A list that defines the pipeline variables for a pipeline resource. Variable
+	// names can have alphanumeric and underscore characters, and the values must
+	// match [A-Za-z0-9@\-_]+.
+	Variables []*PipelineVariableDeclaration `locationName:"variables" type:"list"`
 
 	// The version number of the pipeline. A new pipeline always has a version number
 	// of 1. This number is incremented when a pipeline is updated.
@@ -11579,6 +11803,26 @@ func (s *PipelineDeclaration) Validate() error {
 			}
 		}
 	}
+	if s.Triggers != nil {
+		for i, v := range s.Triggers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Triggers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Variables != nil {
+		for i, v := range s.Variables {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variables", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11604,6 +11848,12 @@ func (s *PipelineDeclaration) SetName(v string) *PipelineDeclaration {
 	return s
 }
 
+// SetPipelineType sets the PipelineType field's value.
+func (s *PipelineDeclaration) SetPipelineType(v string) *PipelineDeclaration {
+	s.PipelineType = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *PipelineDeclaration) SetRoleArn(v string) *PipelineDeclaration {
 	s.RoleArn = &v
@@ -11613,6 +11863,18 @@ func (s *PipelineDeclaration) SetRoleArn(v string) *PipelineDeclaration {
 // SetStages sets the Stages field's value.
 func (s *PipelineDeclaration) SetStages(v []*StageDeclaration) *PipelineDeclaration {
 	s.Stages = v
+	return s
+}
+
+// SetTriggers sets the Triggers field's value.
+func (s *PipelineDeclaration) SetTriggers(v []*PipelineTriggerDeclaration) *PipelineDeclaration {
+	s.Triggers = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *PipelineDeclaration) SetVariables(v []*PipelineVariableDeclaration) *PipelineDeclaration {
+	s.Variables = v
 	return s
 }
 
@@ -11665,6 +11927,12 @@ type PipelineExecution struct {
 
 	// A summary that contains a description of the pipeline execution status.
 	StatusSummary *string `locationName:"statusSummary" type:"string"`
+
+	// The interaction or event that started a pipeline execution.
+	Trigger *ExecutionTrigger `locationName:"trigger" type:"structure"`
+
+	// A list of pipeline variables used for the pipeline execution.
+	Variables []*ResolvedPipelineVariable `locationName:"variables" type:"list"`
 }
 
 // String returns the string representation.
@@ -11718,6 +11986,18 @@ func (s *PipelineExecution) SetStatus(v string) *PipelineExecution {
 // SetStatusSummary sets the StatusSummary field's value.
 func (s *PipelineExecution) SetStatusSummary(v string) *PipelineExecution {
 	s.StatusSummary = &v
+	return s
+}
+
+// SetTrigger sets the Trigger field's value.
+func (s *PipelineExecution) SetTrigger(v *ExecutionTrigger) *PipelineExecution {
+	s.Trigger = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *PipelineExecution) SetVariables(v []*ResolvedPipelineVariable) *PipelineExecution {
+	s.Variables = v
 	return s
 }
 
@@ -12161,6 +12441,26 @@ type PipelineSummary struct {
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// CodePipeline provides the following pipeline types, which differ in characteristics
+	// and price, so that you can tailor your pipeline features and cost to the
+	// needs of your applications.
+	//
+	//    * V1 type pipelines have a JSON structure that contains standard pipeline,
+	//    stage, and action-level parameters.
+	//
+	//    * V2 type pipelines have the same structure as a V1 type, along with additional
+	//    parameters for release safety and trigger configuration.
+	//
+	// Including V2 parameters, such as triggers on Git tags, in the pipeline JSON
+	// when creating or updating a pipeline will result in the pipeline having the
+	// V2 type of pipeline and the associated costs.
+	//
+	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	//
+	// For information about which type of pipeline to choose, see What type of
+	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
+
 	// The date and time of the last update to the pipeline, in timestamp format.
 	Updated *time.Time `locationName:"updated" type:"timestamp"`
 
@@ -12198,6 +12498,12 @@ func (s *PipelineSummary) SetName(v string) *PipelineSummary {
 	return s
 }
 
+// SetPipelineType sets the PipelineType field's value.
+func (s *PipelineSummary) SetPipelineType(v string) *PipelineSummary {
+	s.PipelineType = &v
+	return s
+}
+
 // SetUpdated sets the Updated field's value.
 func (s *PipelineSummary) SetUpdated(v time.Time) *PipelineSummary {
 	s.Updated = &v
@@ -12207,6 +12513,220 @@ func (s *PipelineSummary) SetUpdated(v time.Time) *PipelineSummary {
 // SetVersion sets the Version field's value.
 func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 	s.Version = &v
+	return s
+}
+
+// Represents information about the specified trigger configuration, such as
+// the filter criteria and the source stage for the action that contains the
+// trigger.
+//
+// This is only supported for the CodeStarSourceConnection action type.
+//
+// When a trigger configuration is specified, default change detection for repository
+// and branch commits is disabled.
+type PipelineTriggerDeclaration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the filter criteria and the source stage for the repository event
+	// that starts the pipeline, such as Git tags.
+	//
+	// GitConfiguration is a required field
+	GitConfiguration *GitConfiguration `locationName:"gitConfiguration" type:"structure" required:"true"`
+
+	// The source provider for the event, such as connections configured for a repository
+	// with Git tags, for the specified trigger configuration.
+	//
+	// ProviderType is a required field
+	ProviderType *string `locationName:"providerType" type:"string" required:"true" enum:"PipelineTriggerProviderType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineTriggerDeclaration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineTriggerDeclaration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineTriggerDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineTriggerDeclaration"}
+	if s.GitConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("GitConfiguration"))
+	}
+	if s.ProviderType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
+	}
+	if s.GitConfiguration != nil {
+		if err := s.GitConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GitConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGitConfiguration sets the GitConfiguration field's value.
+func (s *PipelineTriggerDeclaration) SetGitConfiguration(v *GitConfiguration) *PipelineTriggerDeclaration {
+	s.GitConfiguration = v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *PipelineTriggerDeclaration) SetProviderType(v string) *PipelineTriggerDeclaration {
+	s.ProviderType = &v
+	return s
+}
+
+// A pipeline-level variable used for a pipeline execution.
+type PipelineVariable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a pipeline-level variable.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The value of a pipeline-level variable.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariable) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineVariable) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineVariable"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *PipelineVariable) SetName(v string) *PipelineVariable {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PipelineVariable) SetValue(v string) *PipelineVariable {
+	s.Value = &v
+	return s
+}
+
+// A variable declared at the pipeline level.
+type PipelineVariableDeclaration struct {
+	_ struct{} `type:"structure"`
+
+	// The value of a pipeline-level variable.
+	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
+
+	// The description of a pipeline-level variable. It's used to add additional
+	// context about the variable, and not being used at time when pipeline executes.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of a pipeline-level variable.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariableDeclaration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineVariableDeclaration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineVariableDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineVariableDeclaration"}
+	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *PipelineVariableDeclaration) SetDefaultValue(v string) *PipelineVariableDeclaration {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PipelineVariableDeclaration) SetDescription(v string) *PipelineVariableDeclaration {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PipelineVariableDeclaration) SetName(v string) *PipelineVariableDeclaration {
+	s.Name = &v
 	return s
 }
 
@@ -13473,6 +13993,47 @@ func (s *RequestFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A pipeline-level variable used for a pipeline execution.
+type ResolvedPipelineVariable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a pipeline-level variable.
+	Name *string `locationName:"name" type:"string"`
+
+	// The resolved value of a pipeline-level variable.
+	ResolvedValue *string `locationName:"resolvedValue" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedPipelineVariable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolvedPipelineVariable) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ResolvedPipelineVariable) SetName(v string) *ResolvedPipelineVariable {
+	s.Name = &v
+	return s
+}
+
+// SetResolvedValue sets the ResolvedValue field's value.
+func (s *ResolvedPipelineVariable) SetResolvedValue(v string) *ResolvedPipelineVariable {
+	s.ResolvedValue = &v
+	return s
+}
+
 // The resource was specified in an invalid format.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -14203,6 +14764,11 @@ type StartPipelineExecutionInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list that overrides pipeline variables for a pipeline execution that's
+	// being started. Variable names must match [A-Za-z0-9@\-_]+, and the values
+	// can be anything except an empty string.
+	Variables []*PipelineVariable `locationName:"variables" min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -14235,6 +14801,19 @@ func (s *StartPipelineExecutionInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Variables != nil && len(s.Variables) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Variables", 1))
+	}
+	if s.Variables != nil {
+		for i, v := range s.Variables {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variables", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14251,6 +14830,12 @@ func (s *StartPipelineExecutionInput) SetClientRequestToken(v string) *StartPipe
 // SetName sets the Name field's value.
 func (s *StartPipelineExecutionInput) SetName(v string) *StartPipelineExecutionInput {
 	s.Name = &v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *StartPipelineExecutionInput) SetVariables(v []*PipelineVariable) *StartPipelineExecutionInput {
+	s.Variables = v
 	return s
 }
 
@@ -15863,6 +16448,34 @@ func PipelineExecutionStatus_Values() []string {
 }
 
 const (
+	// PipelineTriggerProviderTypeCodeStarSourceConnection is a PipelineTriggerProviderType enum value
+	PipelineTriggerProviderTypeCodeStarSourceConnection = "CodeStarSourceConnection"
+)
+
+// PipelineTriggerProviderType_Values returns all elements of the PipelineTriggerProviderType enum
+func PipelineTriggerProviderType_Values() []string {
+	return []string{
+		PipelineTriggerProviderTypeCodeStarSourceConnection,
+	}
+}
+
+const (
+	// PipelineTypeV1 is a PipelineType enum value
+	PipelineTypeV1 = "V1"
+
+	// PipelineTypeV2 is a PipelineType enum value
+	PipelineTypeV2 = "V2"
+)
+
+// PipelineType_Values returns all elements of the PipelineType enum
+func PipelineType_Values() []string {
+	return []string{
+		PipelineTypeV1,
+		PipelineTypeV2,
+	}
+}
+
+const (
 	// StageExecutionStatusCancelled is a StageExecutionStatus enum value
 	StageExecutionStatusCancelled = "Cancelled"
 
@@ -15944,6 +16557,9 @@ const (
 
 	// TriggerTypePutActionRevision is a TriggerType enum value
 	TriggerTypePutActionRevision = "PutActionRevision"
+
+	// TriggerTypeWebhookV2 is a TriggerType enum value
+	TriggerTypeWebhookV2 = "WebhookV2"
 )
 
 // TriggerType_Values returns all elements of the TriggerType enum
@@ -15955,6 +16571,7 @@ func TriggerType_Values() []string {
 		TriggerTypeWebhook,
 		TriggerTypeCloudWatchEvent,
 		TriggerTypePutActionRevision,
+		TriggerTypeWebhookV2,
 	}
 }
 

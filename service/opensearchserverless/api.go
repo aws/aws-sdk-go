@@ -97,6 +97,174 @@ func (c *OpenSearchServerless) BatchGetCollectionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opBatchGetEffectiveLifecyclePolicy = "BatchGetEffectiveLifecyclePolicy"
+
+// BatchGetEffectiveLifecyclePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetEffectiveLifecyclePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetEffectiveLifecyclePolicy for more information on using the BatchGetEffectiveLifecyclePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetEffectiveLifecyclePolicyRequest method.
+//	req, resp := client.BatchGetEffectiveLifecyclePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/BatchGetEffectiveLifecyclePolicy
+func (c *OpenSearchServerless) BatchGetEffectiveLifecyclePolicyRequest(input *BatchGetEffectiveLifecyclePolicyInput) (req *request.Request, output *BatchGetEffectiveLifecyclePolicyOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetEffectiveLifecyclePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetEffectiveLifecyclePolicyInput{}
+	}
+
+	output = &BatchGetEffectiveLifecyclePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetEffectiveLifecyclePolicy API operation for OpenSearch Service Serverless.
+//
+// Returns a list of successful and failed retrievals for the OpenSearch Serverless
+// indexes. For more information, see Viewing data lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation BatchGetEffectiveLifecyclePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/BatchGetEffectiveLifecyclePolicy
+func (c *OpenSearchServerless) BatchGetEffectiveLifecyclePolicy(input *BatchGetEffectiveLifecyclePolicyInput) (*BatchGetEffectiveLifecyclePolicyOutput, error) {
+	req, out := c.BatchGetEffectiveLifecyclePolicyRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetEffectiveLifecyclePolicyWithContext is the same as BatchGetEffectiveLifecyclePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetEffectiveLifecyclePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) BatchGetEffectiveLifecyclePolicyWithContext(ctx aws.Context, input *BatchGetEffectiveLifecyclePolicyInput, opts ...request.Option) (*BatchGetEffectiveLifecyclePolicyOutput, error) {
+	req, out := c.BatchGetEffectiveLifecyclePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetLifecyclePolicy = "BatchGetLifecyclePolicy"
+
+// BatchGetLifecyclePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetLifecyclePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetLifecyclePolicy for more information on using the BatchGetLifecyclePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetLifecyclePolicyRequest method.
+//	req, resp := client.BatchGetLifecyclePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/BatchGetLifecyclePolicy
+func (c *OpenSearchServerless) BatchGetLifecyclePolicyRequest(input *BatchGetLifecyclePolicyInput) (req *request.Request, output *BatchGetLifecyclePolicyOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetLifecyclePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetLifecyclePolicyInput{}
+	}
+
+	output = &BatchGetLifecyclePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetLifecyclePolicy API operation for OpenSearch Service Serverless.
+//
+// Returns one or more configured OpenSearch Serverless lifecycle policies.
+// For more information, see Viewing data lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation BatchGetLifecyclePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/BatchGetLifecyclePolicy
+func (c *OpenSearchServerless) BatchGetLifecyclePolicy(input *BatchGetLifecyclePolicyInput) (*BatchGetLifecyclePolicyOutput, error) {
+	req, out := c.BatchGetLifecyclePolicyRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetLifecyclePolicyWithContext is the same as BatchGetLifecyclePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetLifecyclePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) BatchGetLifecyclePolicyWithContext(ctx aws.Context, input *BatchGetLifecyclePolicyInput, opts ...request.Option) (*BatchGetLifecyclePolicyOutput, error) {
+	req, out := c.BatchGetLifecyclePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetVpcEndpoint = "BatchGetVpcEndpoint"
 
 // BatchGetVpcEndpointRequest generates a "aws/request.Request" representing the
@@ -370,6 +538,101 @@ func (c *OpenSearchServerless) CreateCollection(input *CreateCollectionInput) (*
 // for more information on using Contexts.
 func (c *OpenSearchServerless) CreateCollectionWithContext(ctx aws.Context, input *CreateCollectionInput, opts ...request.Option) (*CreateCollectionOutput, error) {
 	req, out := c.CreateCollectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLifecyclePolicy = "CreateLifecyclePolicy"
+
+// CreateLifecyclePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLifecyclePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLifecyclePolicy for more information on using the CreateLifecyclePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLifecyclePolicyRequest method.
+//	req, resp := client.CreateLifecyclePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateLifecyclePolicy
+func (c *OpenSearchServerless) CreateLifecyclePolicyRequest(input *CreateLifecyclePolicyInput) (req *request.Request, output *CreateLifecyclePolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateLifecyclePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLifecyclePolicyInput{}
+	}
+
+	output = &CreateLifecyclePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLifecyclePolicy API operation for OpenSearch Service Serverless.
+//
+// Creates a lifecyle policy to be applied to OpenSearch Serverless indexes.
+// Lifecycle policies define the number of days or hours to retain the data
+// on an OpenSearch Serverless index. For more information, see Creating data
+// lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-create).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation CreateLifecyclePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ConflictException
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
+//     is not in the ACTIVE or FAILED state.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateLifecyclePolicy
+func (c *OpenSearchServerless) CreateLifecyclePolicy(input *CreateLifecyclePolicyInput) (*CreateLifecyclePolicyOutput, error) {
+	req, out := c.CreateLifecyclePolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateLifecyclePolicyWithContext is the same as CreateLifecyclePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLifecyclePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) CreateLifecyclePolicyWithContext(ctx aws.Context, input *CreateLifecyclePolicyInput, opts ...request.Option) (*CreateLifecyclePolicyOutput, error) {
+	req, out := c.CreateLifecyclePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -839,6 +1102,99 @@ func (c *OpenSearchServerless) DeleteCollection(input *DeleteCollectionInput) (*
 // for more information on using Contexts.
 func (c *OpenSearchServerless) DeleteCollectionWithContext(ctx aws.Context, input *DeleteCollectionInput, opts ...request.Option) (*DeleteCollectionOutput, error) {
 	req, out := c.DeleteCollectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLifecyclePolicy = "DeleteLifecyclePolicy"
+
+// DeleteLifecyclePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLifecyclePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLifecyclePolicy for more information on using the DeleteLifecyclePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLifecyclePolicyRequest method.
+//	req, resp := client.DeleteLifecyclePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/DeleteLifecyclePolicy
+func (c *OpenSearchServerless) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyInput) (req *request.Request, output *DeleteLifecyclePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLifecyclePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLifecyclePolicyInput{}
+	}
+
+	output = &DeleteLifecyclePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLifecyclePolicy API operation for OpenSearch Service Serverless.
+//
+// Deletes an OpenSearch Serverless lifecycle policy. For more information,
+// see Deleting data lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-delete).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation DeleteLifecyclePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ResourceNotFoundException
+//     Thrown when accessing or deleting a resource that does not exist.
+//
+//   - ConflictException
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
+//     is not in the ACTIVE or FAILED state.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/DeleteLifecyclePolicy
+func (c *OpenSearchServerless) DeleteLifecyclePolicy(input *DeleteLifecyclePolicyInput) (*DeleteLifecyclePolicyOutput, error) {
+	req, out := c.DeleteLifecyclePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLifecyclePolicyWithContext is the same as DeleteLifecyclePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLifecyclePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) DeleteLifecyclePolicyWithContext(ctx aws.Context, input *DeleteLifecyclePolicyInput, opts ...request.Option) (*DeleteLifecyclePolicyOutput, error) {
+	req, out := c.DeleteLifecyclePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1831,6 +2187,147 @@ func (c *OpenSearchServerless) ListCollectionsPagesWithContext(ctx aws.Context, 
 	return p.Err()
 }
 
+const opListLifecyclePolicies = "ListLifecyclePolicies"
+
+// ListLifecyclePoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListLifecyclePolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLifecyclePolicies for more information on using the ListLifecyclePolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLifecyclePoliciesRequest method.
+//	req, resp := client.ListLifecyclePoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/ListLifecyclePolicies
+func (c *OpenSearchServerless) ListLifecyclePoliciesRequest(input *ListLifecyclePoliciesInput) (req *request.Request, output *ListLifecyclePoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListLifecyclePolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLifecyclePoliciesInput{}
+	}
+
+	output = &ListLifecyclePoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLifecyclePolicies API operation for OpenSearch Service Serverless.
+//
+// Returns a list of OpenSearch Serverless lifecycle policies. For more information,
+// see Viewing data lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-list).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation ListLifecyclePolicies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/ListLifecyclePolicies
+func (c *OpenSearchServerless) ListLifecyclePolicies(input *ListLifecyclePoliciesInput) (*ListLifecyclePoliciesOutput, error) {
+	req, out := c.ListLifecyclePoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListLifecyclePoliciesWithContext is the same as ListLifecyclePolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLifecyclePolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) ListLifecyclePoliciesWithContext(ctx aws.Context, input *ListLifecyclePoliciesInput, opts ...request.Option) (*ListLifecyclePoliciesOutput, error) {
+	req, out := c.ListLifecyclePoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLifecyclePoliciesPages iterates over the pages of a ListLifecyclePolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLifecyclePolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLifecyclePolicies operation.
+//	pageNum := 0
+//	err := client.ListLifecyclePoliciesPages(params,
+//	    func(page *opensearchserverless.ListLifecyclePoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *OpenSearchServerless) ListLifecyclePoliciesPages(input *ListLifecyclePoliciesInput, fn func(*ListLifecyclePoliciesOutput, bool) bool) error {
+	return c.ListLifecyclePoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLifecyclePoliciesPagesWithContext same as ListLifecyclePoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) ListLifecyclePoliciesPagesWithContext(ctx aws.Context, input *ListLifecyclePoliciesInput, fn func(*ListLifecyclePoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLifecyclePoliciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLifecyclePoliciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLifecyclePoliciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityConfigs = "ListSecurityConfigs"
 
 // ListSecurityConfigsRequest generates a "aws/request.Request" representing the
@@ -2797,6 +3294,102 @@ func (c *OpenSearchServerless) UpdateCollectionWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opUpdateLifecyclePolicy = "UpdateLifecyclePolicy"
+
+// UpdateLifecyclePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLifecyclePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLifecyclePolicy for more information on using the UpdateLifecyclePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLifecyclePolicyRequest method.
+//	req, resp := client.UpdateLifecyclePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/UpdateLifecyclePolicy
+func (c *OpenSearchServerless) UpdateLifecyclePolicyRequest(input *UpdateLifecyclePolicyInput) (req *request.Request, output *UpdateLifecyclePolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLifecyclePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLifecyclePolicyInput{}
+	}
+
+	output = &UpdateLifecyclePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateLifecyclePolicy API operation for OpenSearch Service Serverless.
+//
+// Updates an OpenSearch Serverless access policy. For more information, see
+// Updating data lifecycle policies (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-lifecycle.html#serverless-lifecycle-update).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for OpenSearch Service Serverless's
+// API operation UpdateLifecyclePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Thrown when an error internal to the service occurs while processing a request.
+//
+//   - ResourceNotFoundException
+//     Thrown when accessing or deleting a resource that does not exist.
+//
+//   - ConflictException
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
+//     is not in the ACTIVE or FAILED state.
+//
+//   - ValidationException
+//     Thrown when the HTTP request contains invalid input or is missing required
+//     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/UpdateLifecyclePolicy
+func (c *OpenSearchServerless) UpdateLifecyclePolicy(input *UpdateLifecyclePolicyInput) (*UpdateLifecyclePolicyOutput, error) {
+	req, out := c.UpdateLifecyclePolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLifecyclePolicyWithContext is the same as UpdateLifecyclePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLifecyclePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchServerless) UpdateLifecyclePolicyWithContext(ctx aws.Context, input *UpdateLifecyclePolicyInput, opts ...request.Option) (*UpdateLifecyclePolicyOutput, error) {
+	req, out := c.UpdateLifecyclePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSecurityConfig = "UpdateSecurityConfig"
 
 // UpdateSecurityConfigRequest generates a "aws/request.Request" representing the
@@ -3203,7 +3796,7 @@ type AccessPolicySummary struct {
 	// The version of the policy.
 	PolicyVersion *string `locationName:"policyVersion" min:"20" type:"string"`
 
-	// The type of access policy. Currently the only available type is data.
+	// The type of access policy. Currently, the only available type is data.
 	Type *string `locationName:"type" type:"string" enum:"AccessPolicyType"`
 }
 
@@ -3392,6 +3985,205 @@ func (s *BatchGetCollectionOutput) SetCollectionDetails(v []*CollectionDetail) *
 // SetCollectionErrorDetails sets the CollectionErrorDetails field's value.
 func (s *BatchGetCollectionOutput) SetCollectionErrorDetails(v []*CollectionErrorDetail) *BatchGetCollectionOutput {
 	s.CollectionErrorDetails = v
+	return s
+}
+
+type BatchGetEffectiveLifecyclePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers of policy types and resource names.
+	//
+	// ResourceIdentifiers is a required field
+	ResourceIdentifiers []*LifecyclePolicyResourceIdentifier `locationName:"resourceIdentifiers" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetEffectiveLifecyclePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetEffectiveLifecyclePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetEffectiveLifecyclePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetEffectiveLifecyclePolicyInput"}
+	if s.ResourceIdentifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifiers"))
+	}
+	if s.ResourceIdentifiers != nil && len(s.ResourceIdentifiers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifiers", 1))
+	}
+	if s.ResourceIdentifiers != nil {
+		for i, v := range s.ResourceIdentifiers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceIdentifiers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifiers sets the ResourceIdentifiers field's value.
+func (s *BatchGetEffectiveLifecyclePolicyInput) SetResourceIdentifiers(v []*LifecyclePolicyResourceIdentifier) *BatchGetEffectiveLifecyclePolicyInput {
+	s.ResourceIdentifiers = v
+	return s
+}
+
+type BatchGetEffectiveLifecyclePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of lifecycle policies applied to the OpenSearch Serverless indexes.
+	EffectiveLifecyclePolicyDetails []*EffectiveLifecyclePolicyDetail `locationName:"effectiveLifecyclePolicyDetails" type:"list"`
+
+	// A list of resources for which retrieval failed.
+	EffectiveLifecyclePolicyErrorDetails []*EffectiveLifecyclePolicyErrorDetail `locationName:"effectiveLifecyclePolicyErrorDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetEffectiveLifecyclePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetEffectiveLifecyclePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetEffectiveLifecyclePolicyDetails sets the EffectiveLifecyclePolicyDetails field's value.
+func (s *BatchGetEffectiveLifecyclePolicyOutput) SetEffectiveLifecyclePolicyDetails(v []*EffectiveLifecyclePolicyDetail) *BatchGetEffectiveLifecyclePolicyOutput {
+	s.EffectiveLifecyclePolicyDetails = v
+	return s
+}
+
+// SetEffectiveLifecyclePolicyErrorDetails sets the EffectiveLifecyclePolicyErrorDetails field's value.
+func (s *BatchGetEffectiveLifecyclePolicyOutput) SetEffectiveLifecyclePolicyErrorDetails(v []*EffectiveLifecyclePolicyErrorDetail) *BatchGetEffectiveLifecyclePolicyOutput {
+	s.EffectiveLifecyclePolicyErrorDetails = v
+	return s
+}
+
+type BatchGetLifecyclePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers of policy types and policy names.
+	//
+	// Identifiers is a required field
+	Identifiers []*LifecyclePolicyIdentifier `locationName:"identifiers" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetLifecyclePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetLifecyclePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetLifecyclePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetLifecyclePolicyInput"}
+	if s.Identifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifiers"))
+	}
+	if s.Identifiers != nil && len(s.Identifiers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifiers", 1))
+	}
+	if s.Identifiers != nil {
+		for i, v := range s.Identifiers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Identifiers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifiers sets the Identifiers field's value.
+func (s *BatchGetLifecyclePolicyInput) SetIdentifiers(v []*LifecyclePolicyIdentifier) *BatchGetLifecyclePolicyInput {
+	s.Identifiers = v
+	return s
+}
+
+type BatchGetLifecyclePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of lifecycle policies matched to the input policy name and policy
+	// type.
+	LifecyclePolicyDetails []*LifecyclePolicyDetail `locationName:"lifecyclePolicyDetails" type:"list"`
+
+	// A list of lifecycle policy names and policy types for which retrieval failed.
+	LifecyclePolicyErrorDetails []*LifecyclePolicyErrorDetail `locationName:"lifecyclePolicyErrorDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetLifecyclePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetLifecyclePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecyclePolicyDetails sets the LifecyclePolicyDetails field's value.
+func (s *BatchGetLifecyclePolicyOutput) SetLifecyclePolicyDetails(v []*LifecyclePolicyDetail) *BatchGetLifecyclePolicyOutput {
+	s.LifecyclePolicyDetails = v
+	return s
+}
+
+// SetLifecyclePolicyErrorDetails sets the LifecyclePolicyErrorDetails field's value.
+func (s *BatchGetLifecyclePolicyOutput) SetLifecyclePolicyErrorDetails(v []*LifecyclePolicyErrorDetail) *BatchGetLifecyclePolicyOutput {
+	s.LifecyclePolicyErrorDetails = v
 	return s
 }
 
@@ -3730,7 +4522,7 @@ func (s *CollectionErrorDetail) SetName(v string) *CollectionErrorDetail {
 	return s
 }
 
-// List of filter keys that you can use for LIST, UPDATE, and DELETE requests
+// A list of filter keys that you can use for LIST, UPDATE, and DELETE requests
 // to OpenSearch Serverless collections.
 type CollectionFilters struct {
 	_ struct{} `type:"structure"`
@@ -4274,6 +5066,138 @@ func (s CreateCollectionOutput) GoString() string {
 // SetCreateCollectionDetail sets the CreateCollectionDetail field's value.
 func (s *CreateCollectionOutput) SetCreateCollectionDetail(v *CreateCollectionDetail) *CreateCollectionOutput {
 	s.CreateCollectionDetail = v
+	return s
+}
+
+type CreateLifecyclePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A description of the lifecycle policy.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the lifecycle policy.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The JSON policy document to use as the content for the lifecycle policy.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLifecyclePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLifecyclePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLifecyclePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLifecyclePolicyInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateLifecyclePolicyInput) SetClientToken(v string) *CreateLifecyclePolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateLifecyclePolicyInput) SetDescription(v string) *CreateLifecyclePolicyInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateLifecyclePolicyInput) SetName(v string) *CreateLifecyclePolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *CreateLifecyclePolicyInput) SetPolicy(v string) *CreateLifecyclePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateLifecyclePolicyInput) SetType(v string) *CreateLifecyclePolicyInput {
+	s.Type = &v
+	return s
+}
+
+type CreateLifecyclePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the created lifecycle policy.
+	LifecyclePolicyDetail *LifecyclePolicyDetail `locationName:"lifecyclePolicyDetail" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLifecyclePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLifecyclePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecyclePolicyDetail sets the LifecyclePolicyDetail field's value.
+func (s *CreateLifecyclePolicyOutput) SetLifecyclePolicyDetail(v *LifecyclePolicyDetail) *CreateLifecyclePolicyOutput {
+	s.LifecyclePolicyDetail = v
 	return s
 }
 
@@ -4976,6 +5900,103 @@ func (s *DeleteCollectionOutput) SetDeleteCollectionDetail(v *DeleteCollectionDe
 	return s
 }
 
+type DeleteLifecyclePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier to ensure idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the policy to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLifecyclePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLifecyclePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLifecyclePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLifecyclePolicyInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteLifecyclePolicyInput) SetClientToken(v string) *DeleteLifecyclePolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteLifecyclePolicyInput) SetName(v string) *DeleteLifecyclePolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DeleteLifecyclePolicyInput) SetType(v string) *DeleteLifecyclePolicyInput {
+	s.Type = &v
+	return s
+}
+
+type DeleteLifecyclePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLifecyclePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLifecyclePolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteSecurityConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5299,6 +6320,147 @@ func (s *DeleteVpcEndpointOutput) SetDeleteVpcEndpointDetail(v *DeleteVpcEndpoin
 	return s
 }
 
+// Error information for an OpenSearch Serverless request.
+type EffectiveLifecyclePolicyDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The minimum number of index retention days set. That is an optional param
+	// that will return as true if the minimum number of days or hours is not set
+	// to a index resource.
+	NoMinRetentionPeriod *bool `locationName:"noMinRetentionPeriod" type:"boolean"`
+
+	// The name of the lifecycle policy.
+	PolicyName *string `locationName:"policyName" min:"3" type:"string"`
+
+	// The name of the OpenSearch Serverless index resource.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The type of OpenSearch Serverless resource. Currently, the only supported
+	// resource is index.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// The minimum number of index retention in days or hours. This is an optional
+	// parameter that will return only if it’s set.
+	RetentionPeriod *string `locationName:"retentionPeriod" type:"string"`
+
+	// The type of lifecycle policy.
+	Type *string `locationName:"type" type:"string" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveLifecyclePolicyDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveLifecyclePolicyDetail) GoString() string {
+	return s.String()
+}
+
+// SetNoMinRetentionPeriod sets the NoMinRetentionPeriod field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetNoMinRetentionPeriod(v bool) *EffectiveLifecyclePolicyDetail {
+	s.NoMinRetentionPeriod = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetPolicyName(v string) *EffectiveLifecyclePolicyDetail {
+	s.PolicyName = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetResource(v string) *EffectiveLifecyclePolicyDetail {
+	s.Resource = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetResourceType(v string) *EffectiveLifecyclePolicyDetail {
+	s.ResourceType = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetRetentionPeriod(v string) *EffectiveLifecyclePolicyDetail {
+	s.RetentionPeriod = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EffectiveLifecyclePolicyDetail) SetType(v string) *EffectiveLifecyclePolicyDetail {
+	s.Type = &v
+	return s
+}
+
+// Error information for an OpenSearch Serverless request.
+type EffectiveLifecyclePolicyErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the request.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// A description of the error. For example, The specified Index resource is
+	// not found.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The name of OpenSearch Serverless index resource.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The type of lifecycle policy.
+	Type *string `locationName:"type" type:"string" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveLifecyclePolicyErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveLifecyclePolicyErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *EffectiveLifecyclePolicyErrorDetail) SetErrorCode(v string) *EffectiveLifecyclePolicyErrorDetail {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *EffectiveLifecyclePolicyErrorDetail) SetErrorMessage(v string) *EffectiveLifecyclePolicyErrorDetail {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *EffectiveLifecyclePolicyErrorDetail) SetResource(v string) *EffectiveLifecyclePolicyErrorDetail {
+	s.Resource = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EffectiveLifecyclePolicyErrorDetail) SetType(v string) *EffectiveLifecyclePolicyErrorDetail {
+	s.Type = &v
+	return s
+}
+
 type GetAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5307,7 +6469,7 @@ type GetAccessPolicyInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
 
-	// Tye type of policy. Currently the only supported value is data.
+	// Tye type of policy. Currently, the only supported value is data.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"AccessPolicyType"`
@@ -5474,6 +6636,9 @@ type GetPoliciesStatsOutput struct {
 	// Information about the data access policies in your account.
 	AccessPolicyStats *AccessPolicyStats `type:"structure"`
 
+	// Information about the lifecycle policies in your account.
+	LifecyclePolicyStats *LifecyclePolicyStats `type:"structure"`
+
 	// Information about the security configurations in your account.
 	SecurityConfigStats *SecurityConfigStats `type:"structure"`
 
@@ -5506,6 +6671,12 @@ func (s GetPoliciesStatsOutput) GoString() string {
 // SetAccessPolicyStats sets the AccessPolicyStats field's value.
 func (s *GetPoliciesStatsOutput) SetAccessPolicyStats(v *AccessPolicyStats) *GetPoliciesStatsOutput {
 	s.AccessPolicyStats = v
+	return s
+}
+
+// SetLifecyclePolicyStats sets the LifecyclePolicyStats field's value.
+func (s *GetPoliciesStatsOutput) SetLifecyclePolicyStats(v *LifecyclePolicyStats) *GetPoliciesStatsOutput {
+	s.LifecyclePolicyStats = v
 	return s
 }
 
@@ -5765,6 +6936,377 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Details about an OpenSearch Serverless lifecycle policy.
+type LifecyclePolicyDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The date the lifecycle policy was created.
+	CreatedDate *int64 `locationName:"createdDate" type:"long"`
+
+	// The description of the lifecycle policy.
+	Description *string `locationName:"description" type:"string"`
+
+	// The timestamp of when the lifecycle policy was last modified.
+	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
+
+	// The name of the lifecycle policy.
+	Name *string `locationName:"name" min:"3" type:"string"`
+
+	// The version of the lifecycle policy.
+	PolicyVersion *string `locationName:"policyVersion" min:"20" type:"string"`
+
+	// The type of lifecycle policy.
+	Type *string `locationName:"type" type:"string" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyDetail) GoString() string {
+	return s.String()
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *LifecyclePolicyDetail) SetCreatedDate(v int64) *LifecyclePolicyDetail {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LifecyclePolicyDetail) SetDescription(v string) *LifecyclePolicyDetail {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *LifecyclePolicyDetail) SetLastModifiedDate(v int64) *LifecyclePolicyDetail {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LifecyclePolicyDetail) SetName(v string) *LifecyclePolicyDetail {
+	s.Name = &v
+	return s
+}
+
+// SetPolicyVersion sets the PolicyVersion field's value.
+func (s *LifecyclePolicyDetail) SetPolicyVersion(v string) *LifecyclePolicyDetail {
+	s.PolicyVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LifecyclePolicyDetail) SetType(v string) *LifecyclePolicyDetail {
+	s.Type = &v
+	return s
+}
+
+// Error information for an OpenSearch Serverless request.
+type LifecyclePolicyErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the request. For example, NOT_FOUND.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// A description of the error. For example, The specified Lifecycle Policy is
+	// not found.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The name of the lifecycle policy.
+	Name *string `locationName:"name" min:"3" type:"string"`
+
+	// The type of lifecycle policy.
+	Type *string `locationName:"type" type:"string" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *LifecyclePolicyErrorDetail) SetErrorCode(v string) *LifecyclePolicyErrorDetail {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *LifecyclePolicyErrorDetail) SetErrorMessage(v string) *LifecyclePolicyErrorDetail {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LifecyclePolicyErrorDetail) SetName(v string) *LifecyclePolicyErrorDetail {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LifecyclePolicyErrorDetail) SetType(v string) *LifecyclePolicyErrorDetail {
+	s.Type = &v
+	return s
+}
+
+// The unique identifiers of policy types and policy names.
+type LifecyclePolicyIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the lifecycle policy.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecyclePolicyIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecyclePolicyIdentifier"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *LifecyclePolicyIdentifier) SetName(v string) *LifecyclePolicyIdentifier {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LifecyclePolicyIdentifier) SetType(v string) *LifecyclePolicyIdentifier {
+	s.Type = &v
+	return s
+}
+
+// The unique identifiers of policy types and resource names.
+type LifecyclePolicyResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the OpenSearch Serverless ilndex resource.
+	//
+	// Resource is a required field
+	Resource *string `locationName:"resource" type:"string" required:"true"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecyclePolicyResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecyclePolicyResourceIdentifier"}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResource sets the Resource field's value.
+func (s *LifecyclePolicyResourceIdentifier) SetResource(v string) *LifecyclePolicyResourceIdentifier {
+	s.Resource = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LifecyclePolicyResourceIdentifier) SetType(v string) *LifecyclePolicyResourceIdentifier {
+	s.Type = &v
+	return s
+}
+
+// Statistics for an OpenSearch Serverless lifecycle policy.
+type LifecyclePolicyStats struct {
+	_ struct{} `type:"structure"`
+
+	// The number of retention lifecycle policies in the current account.
+	RetentionPolicyCount *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicyStats) GoString() string {
+	return s.String()
+}
+
+// SetRetentionPolicyCount sets the RetentionPolicyCount field's value.
+func (s *LifecyclePolicyStats) SetRetentionPolicyCount(v int64) *LifecyclePolicyStats {
+	s.RetentionPolicyCount = &v
+	return s
+}
+
+// A summary of the lifecycle policy.
+type LifecyclePolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Epoch time when the lifecycle policy was created.
+	CreatedDate *int64 `locationName:"createdDate" type:"long"`
+
+	// The description of the lifecycle policy.
+	Description *string `locationName:"description" type:"string"`
+
+	// The date and time when the lifecycle policy was last modified.
+	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
+
+	// The name of the lifecycle policy.
+	Name *string `locationName:"name" min:"3" type:"string"`
+
+	// The version of the lifecycle policy.
+	PolicyVersion *string `locationName:"policyVersion" min:"20" type:"string"`
+
+	// The type of lifecycle policy.
+	Type *string `locationName:"type" type:"string" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LifecyclePolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *LifecyclePolicySummary) SetCreatedDate(v int64) *LifecyclePolicySummary {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LifecyclePolicySummary) SetDescription(v string) *LifecyclePolicySummary {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *LifecyclePolicySummary) SetLastModifiedDate(v int64) *LifecyclePolicySummary {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LifecyclePolicySummary) SetName(v string) *LifecyclePolicySummary {
+	s.Name = &v
+	return s
+}
+
+// SetPolicyVersion sets the PolicyVersion field's value.
+func (s *LifecyclePolicySummary) SetPolicyVersion(v string) *LifecyclePolicySummary {
+	s.PolicyVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LifecyclePolicySummary) SetType(v string) *LifecyclePolicySummary {
+	s.Type = &v
+	return s
+}
+
 type ListAccessPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5893,7 +7435,7 @@ func (s *ListAccessPoliciesOutput) SetNextToken(v string) *ListAccessPoliciesOut
 type ListCollectionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// List of filter names and values that you can use for requests.
+	// A list of filter names and values that you can use for requests.
 	CollectionFilters *CollectionFilters `locationName:"collectionFilters" type:"structure"`
 
 	// The maximum number of results to return. Default is 20. You can use nextToken
@@ -5998,6 +7540,132 @@ func (s *ListCollectionsOutput) SetCollectionSummaries(v []*CollectionSummary) *
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCollectionsOutput) SetNextToken(v string) *ListCollectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLifecyclePoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use use nextToken to get the next page of results. The default is
+	// 10.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If your initial ListLifecyclePolicies operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListLifecyclePolicies operations,
+	// which returns results in the next page.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Resource filters that policies can apply to. Currently, the only supported
+	// resource type is index.
+	Resources []*string `locationName:"resources" min:"1" type:"list"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLifecyclePoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLifecyclePoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLifecyclePoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLifecyclePoliciesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Resources != nil && len(s.Resources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resources", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLifecyclePoliciesInput) SetMaxResults(v int64) *ListLifecyclePoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLifecyclePoliciesInput) SetNextToken(v string) *ListLifecyclePoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *ListLifecyclePoliciesInput) SetResources(v []*string) *ListLifecyclePoliciesInput {
+	s.Resources = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListLifecyclePoliciesInput) SetType(v string) *ListLifecyclePoliciesInput {
+	s.Type = &v
+	return s
+}
+
+type ListLifecyclePoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the requested lifecycle policies.
+	LifecyclePolicySummaries []*LifecyclePolicySummary `locationName:"lifecyclePolicySummaries" type:"list"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLifecyclePoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLifecyclePoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecyclePolicySummaries sets the LifecyclePolicySummaries field's value.
+func (s *ListLifecyclePoliciesOutput) SetLifecyclePolicySummaries(v []*LifecyclePolicySummary) *ListLifecyclePoliciesOutput {
+	s.LifecyclePolicySummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLifecyclePoliciesOutput) SetNextToken(v string) *ListLifecyclePoliciesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -7787,6 +9455,150 @@ func (s *UpdateCollectionOutput) SetUpdateCollectionDetail(v *UpdateCollectionDe
 	return s
 }
 
+type UpdateLifecyclePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A description of the lifecycle policy.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the policy.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The JSON policy document to use as the content for the lifecycle policy.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// The version of the policy being updated.
+	//
+	// PolicyVersion is a required field
+	PolicyVersion *string `locationName:"policyVersion" min:"20" type:"string" required:"true"`
+
+	// The type of lifecycle policy.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LifecyclePolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLifecyclePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLifecyclePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLifecyclePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLifecyclePolicyInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.PolicyVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyVersion"))
+	}
+	if s.PolicyVersion != nil && len(*s.PolicyVersion) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyVersion", 20))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateLifecyclePolicyInput) SetClientToken(v string) *UpdateLifecyclePolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateLifecyclePolicyInput) SetDescription(v string) *UpdateLifecyclePolicyInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateLifecyclePolicyInput) SetName(v string) *UpdateLifecyclePolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *UpdateLifecyclePolicyInput) SetPolicy(v string) *UpdateLifecyclePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetPolicyVersion sets the PolicyVersion field's value.
+func (s *UpdateLifecyclePolicyInput) SetPolicyVersion(v string) *UpdateLifecyclePolicyInput {
+	s.PolicyVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateLifecyclePolicyInput) SetType(v string) *UpdateLifecyclePolicyInput {
+	s.Type = &v
+	return s
+}
+
+type UpdateLifecyclePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the updated lifecycle policy.
+	LifecyclePolicyDetail *LifecyclePolicyDetail `locationName:"lifecyclePolicyDetail" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLifecyclePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLifecyclePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecyclePolicyDetail sets the LifecyclePolicyDetail field's value.
+func (s *UpdateLifecyclePolicyOutput) SetLifecyclePolicyDetail(v *LifecyclePolicyDetail) *UpdateLifecyclePolicyOutput {
+	s.LifecyclePolicyDetail = v
+	return s
+}
+
 type UpdateSecurityConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8627,6 +10439,30 @@ func CollectionType_Values() []string {
 		CollectionTypeSearch,
 		CollectionTypeTimeseries,
 		CollectionTypeVectorsearch,
+	}
+}
+
+const (
+	// LifecyclePolicyTypeRetention is a LifecyclePolicyType enum value
+	LifecyclePolicyTypeRetention = "retention"
+)
+
+// LifecyclePolicyType_Values returns all elements of the LifecyclePolicyType enum
+func LifecyclePolicyType_Values() []string {
+	return []string{
+		LifecyclePolicyTypeRetention,
+	}
+}
+
+const (
+	// ResourceTypeIndex is a ResourceType enum value
+	ResourceTypeIndex = "index"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeIndex,
 	}
 }
 

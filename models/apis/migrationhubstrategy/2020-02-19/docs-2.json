@@ -12,6 +12,7 @@
     "GetRecommendationReportDetails": "<p> Retrieves detailed information about the specified recommendation report. </p>",
     "GetServerDetails": "<p> Retrieves detailed information about a specified server. </p>",
     "GetServerStrategies": "<p> Retrieves recommended strategies and tools for the specified server. </p>",
+    "ListAnalyzableServers": "<p>Retrieves a list of all the servers fetched from customer vCenter using Strategy Recommendation Collector.</p>",
     "ListApplicationComponents": "<p> Retrieves a list of all the application components (processes). </p>",
     "ListCollectors": "<p> Retrieves a list of all the installed collectors. </p>",
     "ListImportFileTask": "<p> Retrieves a list of all the imports performed. </p>",
@@ -40,6 +41,18 @@
       "base": null,
       "refs": {
         "Result$analysisType": "<p>The error in server analysis.</p>"
+      }
+    },
+    "AnalyzableServerSummary": {
+      "base": "<p>Summary information about an analyzable server.</p>",
+      "refs": {
+        "AnalyzableServerSummaryList$member": null
+      }
+    },
+    "AnalyzableServerSummaryList": {
+      "base": null,
+      "refs": {
+        "ListAnalyzableServersResponse$analyzableServers": "<p>The list of analyzable servers with summary information about each server.</p>"
       }
     },
     "AnalyzerNameUnion": {
@@ -158,6 +171,12 @@
       "refs": {
         "GetPortfolioPreferencesResponse$applicationPreferences": "<p> The transformation preferences for non-database applications. </p>",
         "PutPortfolioPreferencesRequest$applicationPreferences": "<p> The transformation preferences for non-database applications. </p>"
+      }
+    },
+    "AssessmentDataSourceType": {
+      "base": null,
+      "refs": {
+        "StartAssessmentRequest$assessmentDataSourceType": "<p>The data source type of an assessment to be started.</p>"
       }
     },
     "AssessmentStatus": {
@@ -586,6 +605,16 @@
       "refs": {
       }
     },
+    "ListAnalyzableServersRequest": {
+      "base": "<p>Represents input for ListAnalyzableServers operation.</p>",
+      "refs": {
+      }
+    },
+    "ListAnalyzableServersResponse": {
+      "base": "<p>Represents output for ListAnalyzableServers operation.</p>",
+      "refs": {
+      }
+    },
     "ListAntipatternSeveritySummary": {
       "base": null,
       "refs": {
@@ -700,6 +729,7 @@
       "base": null,
       "refs": {
         "GetServerDetailsRequest$maxResults": "<p> The maximum number of items to include in the response. The maximum value is 100. </p>",
+        "ListAnalyzableServersRequest$maxResults": "<p>The maximum number of items to include in the response. The maximum value is 100.</p>",
         "ListApplicationComponentsRequest$maxResults": "<p> The maximum number of items to include in the response. The maximum value is 100. </p>",
         "ListCollectorsRequest$maxResults": "<p> The maximum number of items to include in the response. The maximum value is 100. </p>",
         "ListServersRequest$maxResults": "<p> The maximum number of items to include in the response. The maximum value is 100. </p>"
@@ -727,6 +757,8 @@
       "base": null,
       "refs": {
         "GetServerDetailsRequest$nextToken": "<p> The token from a previous call that you use to retrieve the next set of results. For example, if a previous call to this action returned 100 items, but you set <code>maxResults</code> to 10. You'll receive a set of 10 results along with a token. You then use the returned token to retrieve the next set of 10. </p>",
+        "ListAnalyzableServersRequest$nextToken": "<p>The token from a previous call that you use to retrieve the next set of results. For example, if a previous call to this action returned 100 items, but you set maxResults to 10. You'll receive a set of 10 results along with a token. You then use the returned token to retrieve the next set of 10.</p>",
+        "ListAnalyzableServersResponse$nextToken": "<p>The token you use to retrieve the next set of results, or null if there are no more results.</p>",
         "ListApplicationComponentsRequest$nextToken": "<p> The token from a previous call that you use to retrieve the next set of results. For example, if a previous call to this action returned 100 items, but you set <code>maxResults</code> to 10. You'll receive a set of 10 results along with a token. You then use the returned token to retrieve the next set of 10. </p>",
         "ListApplicationComponentsResponse$nextToken": "<p> The token you use to retrieve the next set of results, or null if there are no more results. </p>",
         "ListCollectorsRequest$nextToken": "<p> The token from a previous call that you use to retrieve the next set of results. For example, if a previous call to this action returned 100 items, but you set <code>maxResults</code> to 10. You'll receive a set of 10 results along with a token. You then use the returned token to retrieve the next set of 10. </p>",
@@ -1071,6 +1103,7 @@
     "SortOrder": {
       "base": null,
       "refs": {
+        "ListAnalyzableServersRequest$sort": "<p>Specifies whether to sort by ascending (ASC) or descending (DESC) order.</p>",
         "ListApplicationComponentsRequest$sort": "<p> Specifies whether to sort by ascending (<code>ASC</code>) or descending (<code>DESC</code>) order. </p>",
         "ListServersRequest$sort": "<p> Specifies whether to sort by ascending (<code>ASC</code>) or descending (<code>DESC</code>) order. </p>"
       }
@@ -1228,6 +1261,10 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "AnalyzableServerSummary$hostname": "<p>The host name of the analyzable server.</p>",
+        "AnalyzableServerSummary$ipAddress": "<p>The ip address of the analyzable server.</p>",
+        "AnalyzableServerSummary$source": "<p>The data source of the analyzable server.</p>",
+        "AnalyzableServerSummary$vmId": "<p>The virtual machine id of the analyzable server.</p>",
         "ApplicationComponentDetail$osDriver": "<p> OS driver. </p>",
         "ApplicationComponentDetail$osVersion": "<p> OS version. </p>",
         "AssessmentTarget$name": "<p>Name of an assessment.</p>",

@@ -1,3 +1,18 @@
+Release v1.46.3 (2023-10-24)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Add ability to trigger pipelines from git tags, define variables at pipeline level and new pipeline type V2.
+* `service/ec2`: Updates service documentation
+  * This release updates the documentation for InstanceInterruptionBehavior and HibernationOptionsRequest to more accurately describe the behavior of these two parameters when using Spot hibernation.
+* `service/eks`: Updates service API
+* `service/iam`: Adds new service
+  * Add the partitional endpoint for IAM in iso-f.
+* `service/migrationhub-config`: Updates service API and documentation
+* `service/migrationhubstrategy`: Updates service API, documentation, and paginators
+* `service/opensearchserverless`: Updates service API, documentation, and paginators
+
 Release v1.46.2 (2023-10-23)
 ===
 
