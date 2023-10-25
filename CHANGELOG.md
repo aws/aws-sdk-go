@@ -1,3 +1,12 @@
+Release v1.46.4 (2023-10-25)
+===
+
+### Service Client Updates
+* `service/connectcases`: Updates service API and documentation
+* `service/groundstation`: Updates service API and documentation
+* `service/iam`: Updates service API and documentation
+  * Updates to GetAccessKeyLastUsed action to replace NoSuchEntity error with AccessDeniedException error.
+
 Release v1.46.3 (2023-10-24)
 ===
 
