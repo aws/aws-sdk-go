@@ -790,6 +790,12 @@
         "KmsKey$kmsAliasArn": "<p>KMS Alias Arn.</p>"
       }
     },
+    "KeyAliasName": {
+      "base": null,
+      "refs": {
+        "KmsKey$kmsAliasName": "<p>KMS Alias Name.</p>"
+      }
+    },
     "KeyArn": {
       "base": null,
       "refs": {

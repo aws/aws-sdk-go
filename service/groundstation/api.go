@@ -8004,6 +8004,9 @@ type KmsKey struct {
 	// KMS Alias Arn.
 	KmsAliasArn *string `locationName:"kmsAliasArn" min:"1" type:"string"`
 
+	// KMS Alias Name.
+	KmsAliasName *string `locationName:"kmsAliasName" min:"1" type:"string"`
+
 	// KMS Key Arn.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 }
@@ -8032,6 +8035,9 @@ func (s *KmsKey) Validate() error {
 	if s.KmsAliasArn != nil && len(*s.KmsAliasArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsAliasArn", 1))
 	}
+	if s.KmsAliasName != nil && len(*s.KmsAliasName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsAliasName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8042,6 +8048,12 @@ func (s *KmsKey) Validate() error {
 // SetKmsAliasArn sets the KmsAliasArn field's value.
 func (s *KmsKey) SetKmsAliasArn(v string) *KmsKey {
 	s.KmsAliasArn = &v
+	return s
+}
+
+// SetKmsAliasName sets the KmsAliasName field's value.
+func (s *KmsKey) SetKmsAliasName(v string) *KmsKey {
+	s.KmsAliasName = &v
 	return s
 }
 

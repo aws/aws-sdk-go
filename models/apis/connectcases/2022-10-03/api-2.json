@@ -728,7 +728,7 @@
     },
     "CommentBody":{
       "type":"string",
-      "max":1000,
+      "max":3000,
       "min":1
     },
     "CommentBodyTextType":{
@@ -1252,7 +1252,7 @@
     },
     "FieldValueUnionStringValueString":{
       "type":"string",
-      "max":500,
+      "max":1500,
       "min":0
     },
     "GetCaseEventConfigurationRequest":{

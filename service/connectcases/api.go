@@ -256,9 +256,9 @@ func (c *ConnectCases) CreateCaseRequest(input *CreateCaseInput) (req *request.R
 // The following fields are required when creating a case:
 //
 //	<ul> <li> <p> <code>customer_id</code> - You must provide the full customer
-//	profile ARN in this format: <code>arn:aws:profile:your AWS Region:your
-//	AWS account ID:domains/profiles domain name/profiles/profile ID</code>
-//	</p> </li> <li> <p> <code>title</code> </p> </li> </ul> </note>
+//	profile ARN in this format: <code>arn:aws:profile:your_AWS_Region:your_AWS_account
+//	ID:domains/your_profiles_domain_name/profiles/profile_ID</code> </p> </li>
+//	<li> <p> <code>title</code> </p> </li> </ul>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2529,7 +2529,9 @@ func (c *ConnectCases) PutCaseEventConfigurationRequest(input *PutCaseEventConfi
 
 // PutCaseEventConfiguration API operation for Amazon Connect Cases.
 //
-// # API for adding case event publishing configuration
+// Adds case event publishing configuration. For a complete list of fields you
+// can add to the event message, see Create case fields (https://docs.aws.amazon.com/connect/latest/adminguide/case-fields.html)
+// in the Amazon Connect Administrator Guide
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9612,7 +9614,7 @@ type UpdateLayoutInput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about which fields will be present in the layout, the order of
-	// the fields, and a read-only attribute of the field.
+	// the fields.
 	Content *LayoutContent `locationName:"content" type:"structure"`
 
 	// The unique identifier of the Cases domain.
