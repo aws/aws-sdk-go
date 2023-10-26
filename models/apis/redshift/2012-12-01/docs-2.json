@@ -42,6 +42,7 @@
     "DeleteHsmClientCertificate": "<p>Deletes the specified HSM client certificate.</p>",
     "DeleteHsmConfiguration": "<p>Deletes the specified Amazon Redshift HSM configuration.</p>",
     "DeletePartner": "<p>Deletes a partner integration from a cluster. Data can still flow to the cluster until the integration is deleted at the partner's website.</p>",
+    "DeleteResourcePolicy": "<p>Deletes the resource policy for a specified resource.</p>",
     "DeleteScheduledAction": "<p>Deletes a scheduled action. </p>",
     "DeleteSnapshotCopyGrant": "<p>Deletes the specified snapshot copy grant.</p>",
     "DeleteSnapshotSchedule": "<p>Deletes a snapshot schedule.</p>",
@@ -70,6 +71,7 @@
     "DescribeEvents": "<p>Returns events related to clusters, security groups, snapshots, and parameter groups for the past 14 days. Events specific to a particular cluster, security group, snapshot or parameter group can be obtained by providing the name as a parameter. By default, the past hour of events are returned.</p>",
     "DescribeHsmClientCertificates": "<p>Returns information about the specified HSM client certificate. If no certificate ID is specified, returns information about all the HSM certificates owned by your Amazon Web Services account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM client certificates that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM client certificates that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM client certificates are returned regardless of whether they have tag keys or values associated with them.</p>",
     "DescribeHsmConfigurations": "<p>Returns information about the specified Amazon Redshift HSM configuration. If no configuration ID is specified, returns information about all the HSM configurations owned by your Amazon Web Services account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM connections that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM connections that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM connections are returned regardless of whether they have tag keys or values associated with them.</p>",
+    "DescribeInboundIntegrations": "<p>Returns a list of inbound integrations.</p>",
     "DescribeLoggingStatus": "<p>Describes whether information, such as queries and connection attempts, is being logged for the specified Amazon Redshift cluster.</p>",
     "DescribeNodeConfigurationOptions": "<p>Returns properties of possible node configurations such as node type, number of nodes, and disk usage for the specified action type.</p>",
     "DescribeOrderableClusterOptions": "<p>Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific Amazon Web Services Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -94,6 +96,7 @@
     "GetClusterCredentialsWithIAM": "<p>Returns a database user name and temporary password with temporary authorization to log in to an Amazon Redshift database. The database user is mapped 1:1 to the source Identity and Access Management (IAM) identity. For more information about IAM identities, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html\">IAM Identities (users, user groups, and roles)</a> in the Amazon Web Services Identity and Access Management User Guide.</p> <p>The Identity and Access Management (IAM) identity that runs this operation must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using identity-based policies (IAM policies)</a> in the Amazon Redshift Cluster Management Guide. </p>",
     "GetReservedNodeExchangeConfigurationOptions": "<p>Gets the configuration options for the reserved-node exchange. These options include information about the source reserved node and target reserved node offering. Details include the node type, the price, the node count, and the offering type.</p>",
     "GetReservedNodeExchangeOfferings": "<p>Returns an array of DC2 ReservedNodeOfferings that matches the payment type, term, and usage price of the given DC1 reserved node.</p>",
+    "GetResourcePolicy": "<p>Get the resource policy for a specified resource.</p>",
     "ModifyAquaConfiguration": "<p>This operation is retired. Calling this operation does not change AQUA configuration. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator). </p>",
     "ModifyAuthenticationProfile": "<p>Modifies an authentication profile.</p>",
     "ModifyCluster": "<p>Modifies the settings for a cluster.</p> <p>You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change.</p> <p>You can add another security or parameter group, or change the admin user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -113,6 +116,7 @@
     "ModifyUsageLimit": "<p>Modifies a usage limit in a cluster. You can't modify the feature type or period of a usage limit.</p>",
     "PauseCluster": "<p>Pauses a cluster.</p>",
     "PurchaseReservedNodeOffering": "<p>Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
+    "PutResourcePolicy": "<p>Updates the resource policy for a specified resource.</p>",
     "RebootCluster": "<p>Reboots a cluster. This action is taken as soon as possible. It results in a momentary outage to the cluster, during which the cluster status is set to <code>rebooting</code>. A cluster event is created when the reboot is completed. Any pending cluster modifications (see <a>ModifyCluster</a>) are applied at this reboot. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "RejectDataShare": "<p>From a datashare consumer account, rejects the specified datashare.</p>",
     "ResetClusterParameterGroup": "<p>Sets one or more parameters of the specified parameter group to their default values and sets the source values of the parameters to \"engine-default\". To reset the entire parameter group specify the <i>ResetAllParameters</i> parameter. For parameter changes to take effect you must reboot any associated clusters. </p>",
@@ -779,6 +783,11 @@
       "refs": {
       }
     },
+    "ConflictPolicyUpdateFault": {
+      "base": "<p>There is a conflict while updating the resource policy.</p>",
+      "refs": {
+      }
+    },
     "CopyClusterSnapshotMessage": {
       "base": "<p/>",
       "refs": {
@@ -1125,6 +1134,11 @@
       "refs": {
       }
     },
+    "DeleteResourcePolicyMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteScheduledActionMessage": {
       "base": null,
       "refs": {
@@ -1297,6 +1311,11 @@
     },
     "DescribeHsmConfigurationsMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeInboundIntegrationsMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -1655,6 +1674,16 @@
       "refs": {
       }
     },
+    "GetResourcePolicyMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "HsmClientCertificate": {
       "base": "<p>Returns information about an HSM client certificate. The certificate is stored in a secure Hardware Storage Module (HSM), and used by the Amazon Redshift cluster to encrypt data files.</p>",
       "refs": {
@@ -1771,6 +1800,23 @@
       "refs": {
       }
     },
+    "InboundIntegration": {
+      "base": "<p>The content of an inbound integration.</p>",
+      "refs": {
+        "InboundIntegrationList$member": null
+      }
+    },
+    "InboundIntegrationList": {
+      "base": null,
+      "refs": {
+        "InboundIntegrationsMessage$InboundIntegrations": "<p>A list of <a>InboundIntegration</a> instances.</p>"
+      }
+    },
+    "InboundIntegrationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "IncompatibleOrderableOptions": {
       "base": "<p>The specified options are incompatible.</p>",
       "refs": {
@@ -1841,6 +1887,7 @@
         "DescribeEventsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeHsmClientCertificatesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeHsmConfigurationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeInboundIntegrationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeNodeConfigurationOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>500</code> </p> <p>Constraints: minimum 100, maximum 500.</p>",
         "DescribeOrderableClusterOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodeExchangeStatusInputMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>Marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
@@ -1876,6 +1923,23 @@
         "Snapshot$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "Snapshot$ManualSnapshotRemainingDays": "<p>The number of days until a manual snapshot will pass its retention period.</p>",
         "SnapshotSchedule$AssociatedClusterCount": "<p>The number of clusters associated with the schedule.</p>"
+      }
+    },
+    "IntegrationError": {
+      "base": "<p>The error of an inbound integration.</p>",
+      "refs": {
+        "IntegrationErrorList$member": null
+      }
+    },
+    "IntegrationErrorList": {
+      "base": null,
+      "refs": {
+        "InboundIntegration$Errors": "<p>The outstanding errors of an inbound integration. Each item is an \"IntegrationError\". This is null if there is no error.</p>"
+      }
+    },
+    "IntegrationNotFoundFault": {
+      "base": "<p>The integration can't be found.</p>",
+      "refs": {
       }
     },
     "InvalidAuthenticationProfileRequestFault": {
@@ -1955,6 +2019,11 @@
     },
     "InvalidNamespaceFault": {
       "base": "<p>The namespace isn't valid because the namespace doesn't exist. Provide a valid namespace.</p>",
+      "refs": {
+      }
+    },
+    "InvalidPolicyFault": {
+      "base": "<p>The resource policy isn't valid.</p>",
       "refs": {
       }
     },
@@ -2452,6 +2521,16 @@
       "refs": {
       }
     },
+    "PutResourcePolicyMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RebootClusterMessage": {
       "base": "<p/>",
       "refs": {
@@ -2628,6 +2707,13 @@
     "ResourceNotFoundFault": {
       "base": "<p>The resource could not be found.</p>",
       "refs": {
+      }
+    },
+    "ResourcePolicy": {
+      "base": "<p>The policy that is attached to a resource.</p>",
+      "refs": {
+        "GetResourcePolicyResult$ResourcePolicy": "<p>The content of the resource policy.</p>",
+        "PutResourcePolicyResult$ResourcePolicy": "<p>The content of the updated resource policy.</p>"
       }
     },
     "RestorableNodeTypeList": {
@@ -3199,6 +3285,7 @@
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon Redshift event notification subscription to be deleted.</p>",
         "DeleteHsmClientCertificateMessage$HsmClientCertificateIdentifier": "<p>The identifier of the HSM client certificate to be deleted.</p>",
         "DeleteHsmConfigurationMessage$HsmConfigurationIdentifier": "<p>The identifier of the Amazon Redshift HSM configuration to be deleted.</p>",
+        "DeleteResourcePolicyMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource of which its resource policy is deleted.</p>",
         "DeleteScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action to delete. </p>",
         "DeleteSnapshotCopyGrantMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant to delete.</p>",
         "DeleteSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique identifier of the snapshot schedule to delete.</p>",
@@ -3257,6 +3344,9 @@
         "DescribeHsmClientCertificatesMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeHsmClientCertificates</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeHsmConfigurationsMessage$HsmConfigurationIdentifier": "<p>The identifier of a specific Amazon Redshift HSM configuration to be described. If no identifier is specified, information is returned for all HSM configurations owned by your Amazon Web Services account.</p>",
         "DescribeHsmConfigurationsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeHsmConfigurations</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
+        "DescribeInboundIntegrationsMessage$IntegrationArn": "<p>The Amazon Resource Name (ARN) of the inbound integration.</p>",
+        "DescribeInboundIntegrationsMessage$TargetArn": "<p>The Amazon Resource Name (ARN) of the target of an inbound integration.</p>",
+        "DescribeInboundIntegrationsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeInboundIntegrations</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeLoggingStatusMessage$ClusterIdentifier": "<p>The identifier of the cluster from which to get the logging status.</p> <p>Example: <code>examplecluster</code> </p>",
         "DescribeNodeConfigurationOptionsMessage$ClusterIdentifier": "<p>The identifier of the cluster to evaluate for possible node configurations.</p>",
         "DescribeNodeConfigurationOptionsMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to evaluate for possible node configurations.</p>",
@@ -3352,6 +3442,7 @@
         "GetReservedNodeExchangeOfferingsInputMessage$ReservedNodeId": "<p>A string representing the node identifier for the DC1 Reserved Node to be exchanged.</p>",
         "GetReservedNodeExchangeOfferingsInputMessage$Marker": "<p>A value that indicates the starting point for the next set of ReservedNodeOfferings.</p>",
         "GetReservedNodeExchangeOfferingsOutputMessage$Marker": "<p>An optional parameter that specifies the starting point for returning a set of response records. When the results of a <code>GetReservedNodeExchangeOfferings</code> request exceed the value specified in MaxRecords, Amazon Redshift returns a value in the marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the marker parameter and retrying the request. </p>",
+        "GetResourcePolicyMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource of which its resource policy is fetched.</p>",
         "HsmClientCertificate$HsmClientCertificateIdentifier": "<p>The identifier of the HSM client certificate.</p>",
         "HsmClientCertificate$HsmClientCertificatePublicKey": "<p>The public key that the Amazon Redshift cluster will use to connect to the HSM. You must register the public key in the HSM.</p>",
         "HsmClientCertificateMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
@@ -3369,6 +3460,12 @@
         "ImportTablesCompleted$member": null,
         "ImportTablesInProgress$member": null,
         "ImportTablesNotStarted$member": null,
+        "InboundIntegration$IntegrationArn": "<p>The Amazon Resource Name (ARN) of an inbound integration.</p>",
+        "InboundIntegration$SourceArn": "<p>The Amazon Resource Name (ARN) of the source of an inbound integration.</p>",
+        "InboundIntegration$TargetArn": "<p>The Amazon Resource Name (ARN) of the target of an inbound integration.</p>",
+        "InboundIntegrationsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
+        "IntegrationError$ErrorCode": "<p>The error code of an inbound integration error.</p>",
+        "IntegrationError$ErrorMessage": "<p>The error message of an inbound integration error.</p>",
         "LogTypeList$member": null,
         "LoggingStatus$BucketName": "<p>The name of the S3 bucket where the log files are stored.</p>",
         "LoggingStatus$S3KeyPrefix": "<p>The prefix applied to the log file names.</p>",
@@ -3445,6 +3542,8 @@
         "PendingModifiedValues$MaintenanceTrackName": "<p>The name of the maintenance track that the cluster will change to during the next maintenance window.</p>",
         "PendingModifiedValues$EncryptionType": "<p>The encryption type for a cluster. Possible values are: KMS and None. </p>",
         "PurchaseReservedNodeOfferingMessage$ReservedNodeOfferingId": "<p>The unique identifier of the reserved node offering you want to purchase.</p>",
+        "PutResourcePolicyMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource of which its resource policy is updated.</p>",
+        "PutResourcePolicyMessage$Policy": "<p>The content of the resource policy being updated.</p>",
         "RebootClusterMessage$ClusterIdentifier": "<p>The cluster identifier.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency at which the recurring charge amount is applied.</p>",
         "RejectDataShareMessage$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare to reject.</p>",
@@ -3478,6 +3577,8 @@
         "ResizeProgressMessage$ResizeType": "<p>An enum with possible values of <code>ClassicResize</code> and <code>ElasticResize</code>. These values describe the type of resize operation being performed. </p>",
         "ResizeProgressMessage$Message": "<p>An optional string to provide additional details about the resize action.</p>",
         "ResizeProgressMessage$TargetEncryptionType": "<p>The type of encryption for the cluster after the resize is complete.</p> <p>Possible values are <code>KMS</code> and <code>None</code>. </p>",
+        "ResourcePolicy$ResourceArn": "<p>The resources that a policy is attached to.</p>",
+        "ResourcePolicy$Policy": "<p>The content of a resource policy.</p>",
         "RestorableNodeTypeList$member": null,
         "RestoreFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the cluster that will be created from restoring the snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an Amazon Web Services account.</p> </li> </ul>",
         "RestoreFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive. You must specify this parameter or <code>snapshotArn</code>, but not both.</p> <p>Example: <code>my-snapshot-id</code> </p>",
@@ -3697,6 +3798,7 @@
         "EndpointAuthorization$AuthorizeTime": "<p>The time (UTC) when the authorization was created.</p>",
         "Event$Date": "<p>The date and time of the event.</p>",
         "EventSubscription$SubscriptionCreationTime": "<p>The date and time the Amazon Redshift event notification subscription was created.</p>",
+        "InboundIntegration$CreateTime": "<p>The creation time of an inbound integration.</p>",
         "LoggingStatus$LastSuccessfulDeliveryTime": "<p>The last time that logs were delivered.</p>",
         "LoggingStatus$LastFailureTime": "<p>The last time when logs failed to be delivered.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceStartTime": "<p>A timestamp indicating the start time for the deferred maintenance window.</p>",
@@ -3999,6 +4101,12 @@
       "refs": {
         "Cluster$VpcSecurityGroups": "<p>A list of Amazon Virtual Private Cloud (Amazon VPC) security groups that are associated with the cluster. This parameter is returned only if the cluster is in a VPC.</p>",
         "EndpointAccess$VpcSecurityGroups": "<p>The security groups associated with the endpoint.</p>"
+      }
+    },
+    "ZeroETLIntegrationStatus": {
+      "base": null,
+      "refs": {
+        "InboundIntegration$Status": "<p>The status of an inbound integration.</p>"
       }
     }
   }

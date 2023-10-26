@@ -724,6 +724,18 @@
         {"shape":"UnauthorizedPartnerIntegrationFault"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyMessage"},
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "DeleteScheduledAction":{
       "name":"DeleteScheduledAction",
       "http":{
@@ -1131,6 +1143,23 @@
         {"shape":"InvalidTagFault"}
       ]
     },
+    "DescribeInboundIntegrations":{
+      "name":"DescribeInboundIntegrations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInboundIntegrationsMessage"},
+      "output":{
+        "shape":"InboundIntegrationsMessage",
+        "resultWrapper":"DescribeInboundIntegrationsResult"
+      },
+      "errors":[
+        {"shape":"IntegrationNotFoundFault"},
+        {"shape":"InvalidNamespaceFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "DescribeLoggingStatus":{
       "name":"DescribeLoggingStatus",
       "http":{
@@ -1531,6 +1560,23 @@
         {"shape":"DependentServiceUnavailableFault"}
       ]
     },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePolicyMessage"},
+      "output":{
+        "shape":"GetResourcePolicyResult",
+        "resultWrapper":"GetResourcePolicyResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidPolicyFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "ModifyAquaConfiguration":{
       "name":"ModifyAquaConfiguration",
       "http":{
@@ -1878,6 +1924,24 @@
         {"shape":"ReservedNodeOfferingNotFoundFault"},
         {"shape":"ReservedNodeAlreadyExistsFault"},
         {"shape":"ReservedNodeQuotaExceededFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyMessage"},
+      "output":{
+        "shape":"PutResourcePolicyResult",
+        "resultWrapper":"PutResourcePolicyResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidPolicyFault"},
+        {"shape":"ConflictPolicyUpdateFault"},
         {"shape":"UnsupportedOperationFault"}
       ]
     },
@@ -3044,6 +3108,17 @@
         "Clusters":{"shape":"ClusterList"}
       }
     },
+    "ConflictPolicyUpdateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ConflictPolicyUpdateFault",
+        "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "CopyClusterSnapshotMessage":{
       "type":"structure",
       "required":[
@@ -3657,6 +3732,13 @@
         "HsmConfigurationIdentifier":{"shape":"String"}
       }
     },
+    "DeleteResourcePolicyMessage":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"}
+      }
+    },
     "DeleteScheduledActionMessage":{
       "type":"structure",
       "required":["ScheduledActionName"],
@@ -3967,6 +4049,15 @@
         "Marker":{"shape":"String"},
         "TagKeys":{"shape":"TagKeyList"},
         "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "DescribeInboundIntegrationsMessage":{
+      "type":"structure",
+      "members":{
+        "IntegrationArn":{"shape":"String"},
+        "TargetArn":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeLoggingStatusMessage":{
@@ -4531,6 +4622,19 @@
         "ReservedNodeOfferings":{"shape":"ReservedNodeOfferingList"}
       }
     },
+    "GetResourcePolicyMessage":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"}
+      }
+    },
+    "GetResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"ResourcePolicy"}
+      }
+    },
     "HsmClientCertificate":{
       "type":"structure",
       "members":{
@@ -4698,6 +4802,31 @@
       },
       "exception":true
     },
+    "InboundIntegration":{
+      "type":"structure",
+      "members":{
+        "IntegrationArn":{"shape":"String"},
+        "SourceArn":{"shape":"String"},
+        "TargetArn":{"shape":"String"},
+        "Status":{"shape":"ZeroETLIntegrationStatus"},
+        "Errors":{"shape":"IntegrationErrorList"},
+        "CreateTime":{"shape":"TStamp"}
+      }
+    },
+    "InboundIntegrationList":{
+      "type":"list",
+      "member":{
+        "shape":"InboundIntegration",
+        "locationName":"InboundIntegration"
+      }
+    },
+    "InboundIntegrationsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "InboundIntegrations":{"shape":"InboundIntegrationList"}
+      }
+    },
     "IncompatibleOrderableOptions":{
       "type":"structure",
       "members":{
@@ -4733,6 +4862,32 @@
     },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
+    "IntegrationError":{
+      "type":"structure",
+      "required":["ErrorCode"],
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "IntegrationErrorList":{
+      "type":"list",
+      "member":{
+        "shape":"IntegrationError",
+        "locationName":"IntegrationError"
+      }
+    },
+    "IntegrationNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IntegrationNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidAuthenticationProfileRequestFault":{
       "type":"structure",
       "members":{
@@ -4904,6 +5059,17 @@
       },
       "error":{
         "code":"InvalidNamespaceFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidPolicyFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidPolicyFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -5679,6 +5845,23 @@
         "ReservedNode":{"shape":"ReservedNode"}
       }
     },
+    "PutResourcePolicyMessage":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Policy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "Policy":{"shape":"String"}
+      }
+    },
+    "PutResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"ResourcePolicy"}
+      }
+    },
     "RebootClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -5982,6 +6165,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ResourcePolicy":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "Policy":{"shape":"String"}
+      }
     },
     "RestorableNodeTypeList":{
       "type":"list",
@@ -7104,6 +7294,18 @@
         "shape":"VpcSecurityGroupMembership",
         "locationName":"VpcSecurityGroup"
       }
+    },
+    "ZeroETLIntegrationStatus":{
+      "type":"string",
+      "enum":[
+        "creating",
+        "active",
+        "modifying",
+        "failed",
+        "deleting",
+        "syncing",
+        "needs_attention"
+      ]
     }
   }
 }

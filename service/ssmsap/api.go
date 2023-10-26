@@ -154,6 +154,9 @@ func (c *SsmSap) DeregisterApplicationRequest(input *DeregisterApplicationInput)
 //
 // Returned Error Types:
 //
+//   - UnauthorizedException
+//     The request is not authorized.
+//
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
@@ -319,6 +322,9 @@ func (c *SsmSap) GetComponentRequest(input *GetComponentInput) (req *request.Req
 // API operation GetComponent for usage and error information.
 //
 // Returned Error Types:
+//
+//   - UnauthorizedException
+//     The request is not authorized.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
@@ -799,6 +805,9 @@ func (c *SsmSap) ListComponentsRequest(input *ListComponentsInput) (req *request
 // API operation ListComponents for usage and error information.
 //
 // Returned Error Types:
+//
+//   - UnauthorizedException
+//     The request is not authorized.
 //
 //   - ResourceNotFoundException
 //     The resource is not available.
@@ -1399,6 +1408,9 @@ func (c *SsmSap) RegisterApplicationRequest(input *RegisterApplicationInput) (re
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
@@ -1483,6 +1495,9 @@ func (c *SsmSap) StartApplicationRefreshRequest(input *StartApplicationRefreshIn
 // API operation StartApplicationRefresh for usage and error information.
 //
 // Returned Error Types:
+//
+//   - UnauthorizedException
+//     The request is not authorized.
 //
 //   - ResourceNotFoundException
 //     The resource is not available.
@@ -1745,6 +1760,9 @@ func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettin
 //
 // Returned Error Types:
 //
+//   - UnauthorizedException
+//     The request is not authorized.
+//
 //   - ResourceNotFoundException
 //     The resource is not available.
 //
@@ -1977,6 +1995,9 @@ type ApplicationSummary struct {
 	// The Amazon Resource Name (ARN) of the application.
 	Arn *string `type:"string"`
 
+	// The status of the latest discovery.
+	DiscoveryStatus *string `type:"string" enum:"ApplicationDiscoveryStatus"`
+
 	// The ID of the application.
 	Id *string `type:"string"`
 
@@ -2011,6 +2032,12 @@ func (s *ApplicationSummary) SetArn(v string) *ApplicationSummary {
 	return s
 }
 
+// SetDiscoveryStatus sets the DiscoveryStatus field's value.
+func (s *ApplicationSummary) SetDiscoveryStatus(v string) *ApplicationSummary {
+	s.DiscoveryStatus = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ApplicationSummary) SetId(v string) *ApplicationSummary {
 	s.Id = &v
@@ -2038,6 +2065,9 @@ type AssociatedHost struct {
 
 	// The name of the host.
 	Hostname *string `type:"string"`
+
+	// The IP addresses of the associated host.
+	IpAddresses []*IpAddressMember `type:"list"`
 
 	// The version of the operating system.
 	OsVersion *string `type:"string"`
@@ -2070,6 +2100,12 @@ func (s *AssociatedHost) SetEc2InstanceId(v string) *AssociatedHost {
 // SetHostname sets the Hostname field's value.
 func (s *AssociatedHost) SetHostname(v string) *AssociatedHost {
 	s.Hostname = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *AssociatedHost) SetIpAddresses(v []*IpAddressMember) *AssociatedHost {
+	s.IpAddresses = v
 	return s
 }
 
@@ -2163,6 +2199,9 @@ type Component struct {
 	// The type of the component.
 	ComponentType *string `type:"string" enum:"ComponentType"`
 
+	// The connection specifications for the database of the component.
+	DatabaseConnection *DatabaseConnection `type:"structure"`
+
 	// The SAP HANA databases of the component.
 	Databases []*string `type:"list"`
 
@@ -2190,14 +2229,40 @@ type Component struct {
 	// Details of the SAP HANA system replication for the component.
 	Resilience *Resilience `type:"structure"`
 
+	// The SAP feature of the component.
+	SapFeature *string `type:"string"`
+
 	// The hostname of the component.
 	SapHostname *string `type:"string"`
 
 	// The kernel version of the component.
 	SapKernelVersion *string `type:"string"`
 
+	// The SAP System Identifier of the application component.
+	Sid *string `type:"string"`
+
 	// The status of the component.
+	//
+	//    * ACTIVATED - this status has been deprecated.
+	//
+	//    * STARTING - the component is in the process of being started.
+	//
+	//    * STOPPED - the component is not running.
+	//
+	//    * STOPPING - the component is in the process of being stopped.
+	//
+	//    * RUNNING - the component is running.
+	//
+	//    * RUNNING_WITH_ERROR - one or more child component(s) of the parent component
+	//    is not running. Call GetComponent (https://docs.aws.amazon.com/ssmsap/latest/APIReference/API_GetComponent.html)
+	//    to review the status of each child component.
+	//
+	//    * UNDEFINED - AWS Systems Manager for SAP cannot provide the component
+	//    status based on the discovered information. Verify your SAP application.
 	Status *string `type:"string" enum:"ComponentStatus"`
+
+	// The SAP system number of the application component.
+	SystemNumber *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -2254,6 +2319,12 @@ func (s *Component) SetComponentType(v string) *Component {
 	return s
 }
 
+// SetDatabaseConnection sets the DatabaseConnection field's value.
+func (s *Component) SetDatabaseConnection(v *DatabaseConnection) *Component {
+	s.DatabaseConnection = v
+	return s
+}
+
 // SetDatabases sets the Databases field's value.
 func (s *Component) SetDatabases(v []*string) *Component {
 	s.Databases = v
@@ -2296,6 +2367,12 @@ func (s *Component) SetResilience(v *Resilience) *Component {
 	return s
 }
 
+// SetSapFeature sets the SapFeature field's value.
+func (s *Component) SetSapFeature(v string) *Component {
+	s.SapFeature = &v
+	return s
+}
+
 // SetSapHostname sets the SapHostname field's value.
 func (s *Component) SetSapHostname(v string) *Component {
 	s.SapHostname = &v
@@ -2308,9 +2385,21 @@ func (s *Component) SetSapKernelVersion(v string) *Component {
 	return s
 }
 
+// SetSid sets the Sid field's value.
+func (s *Component) SetSid(v string) *Component {
+	s.Sid = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Component) SetStatus(v string) *Component {
 	s.Status = &v
+	return s
+}
+
+// SetSystemNumber sets the SystemNumber field's value.
+func (s *Component) SetSystemNumber(v string) *Component {
+	s.SystemNumber = &v
 	return s
 }
 
@@ -2461,7 +2550,7 @@ type Database struct {
 	ComponentId *string `type:"string"`
 
 	// The credentials of the database.
-	Credentials []*ApplicationCredential `min:"1" type:"list"`
+	Credentials []*ApplicationCredential `type:"list"`
 
 	// The ID of the SAP HANA database.
 	DatabaseId *string `type:"string"`
@@ -2566,6 +2655,56 @@ func (s *Database) SetSQLPort(v int64) *Database {
 // SetStatus sets the Status field's value.
 func (s *Database) SetStatus(v string) *Database {
 	s.Status = &v
+	return s
+}
+
+// The connection specifications for the database.
+type DatabaseConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address for connection.
+	ConnectionIp *string `type:"string"`
+
+	// The Amazon Resource Name of the connected SAP HANA database.
+	DatabaseArn *string `type:"string"`
+
+	// The method of connection.
+	DatabaseConnectionMethod *string `type:"string" enum:"DatabaseConnectionMethod"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseConnection) GoString() string {
+	return s.String()
+}
+
+// SetConnectionIp sets the ConnectionIp field's value.
+func (s *DatabaseConnection) SetConnectionIp(v string) *DatabaseConnection {
+	s.ConnectionIp = &v
+	return s
+}
+
+// SetDatabaseArn sets the DatabaseArn field's value.
+func (s *DatabaseConnection) SetDatabaseArn(v string) *DatabaseConnection {
+	s.DatabaseArn = &v
+	return s
+}
+
+// SetDatabaseConnectionMethod sets the DatabaseConnectionMethod field's value.
+func (s *DatabaseConnection) SetDatabaseConnectionMethod(v string) *DatabaseConnection {
+	s.DatabaseConnectionMethod = &v
 	return s
 }
 
@@ -3483,8 +3622,61 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides information of the IP address.
+type IpAddressMember struct {
+	_ struct{} `type:"structure"`
+
+	// The type of allocation for the IP address.
+	AllocationType *string `type:"string" enum:"AllocationType"`
+
+	// The IP address.
+	IpAddress *string `type:"string"`
+
+	// The primary IP address.
+	Primary *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAddressMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IpAddressMember) GoString() string {
+	return s.String()
+}
+
+// SetAllocationType sets the AllocationType field's value.
+func (s *IpAddressMember) SetAllocationType(v string) *IpAddressMember {
+	s.AllocationType = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *IpAddressMember) SetIpAddress(v string) *IpAddressMember {
+	s.IpAddress = &v
+	return s
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *IpAddressMember) SetPrimary(v bool) *IpAddressMember {
+	s.Primary = &v
+	return s
+}
+
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
+
+	// The filter of name, value, and operator.
+	Filters []*Filter `min:"1" type:"list"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3515,14 +3707,33 @@ func (s ListApplicationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListApplicationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListApplicationsInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListApplicationsInput) SetFilters(v []*Filter) *ListApplicationsInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4246,9 +4457,10 @@ type RegisterApplicationInput struct {
 	ApplicationType *string `type:"string" required:"true" enum:"ApplicationType"`
 
 	// The credentials of the SAP application.
-	//
-	// Credentials is a required field
-	Credentials []*ApplicationCredential `min:"1" type:"list" required:"true"`
+	Credentials []*ApplicationCredential `type:"list"`
+
+	// The Amazon Resource Name of the SAP HANA database.
+	DatabaseArn *string `type:"string"`
 
 	// The Amazon EC2 instances on which your SAP application is running.
 	//
@@ -4292,12 +4504,6 @@ func (s *RegisterApplicationInput) Validate() error {
 	if s.ApplicationType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationType"))
 	}
-	if s.Credentials == nil {
-		invalidParams.Add(request.NewErrParamRequired("Credentials"))
-	}
-	if s.Credentials != nil && len(s.Credentials) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Credentials", 1))
-	}
 	if s.Instances == nil {
 		invalidParams.Add(request.NewErrParamRequired("Instances"))
 	}
@@ -4336,6 +4542,12 @@ func (s *RegisterApplicationInput) SetApplicationType(v string) *RegisterApplica
 // SetCredentials sets the Credentials field's value.
 func (s *RegisterApplicationInput) SetCredentials(v []*ApplicationCredential) *RegisterApplicationInput {
 	s.Credentials = v
+	return s
+}
+
+// SetDatabaseArn sets the DatabaseArn field's value.
+func (s *RegisterApplicationInput) SetDatabaseArn(v string) *RegisterApplicationInput {
+	s.DatabaseArn = &v
 	return s
 }
 
@@ -4410,6 +4622,9 @@ type Resilience struct {
 	// The cluster status of the component.
 	ClusterStatus *string `type:"string" enum:"ClusterStatus"`
 
+	// Indicates if or not enqueue replication is enabled for the ASCS component.
+	EnqueueReplication *bool `type:"boolean"`
+
 	// The operation mode of the component.
 	HsrOperationMode *string `type:"string" enum:"OperationMode"`
 
@@ -4441,6 +4656,12 @@ func (s Resilience) GoString() string {
 // SetClusterStatus sets the ClusterStatus field's value.
 func (s *Resilience) SetClusterStatus(v string) *Resilience {
 	s.ClusterStatus = &v
+	return s
+}
+
+// SetEnqueueReplication sets the EnqueueReplication field's value.
+func (s *Resilience) SetEnqueueReplication(v bool) *Resilience {
+	s.EnqueueReplication = &v
 	return s
 }
 
@@ -4688,6 +4909,70 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The request is not authorized.
+type UnauthorizedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnauthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnauthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnauthorizedException) Code() string {
+	return "UnauthorizedException"
+}
+
+// Message returns the exception's message.
+func (s *UnauthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnauthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s *UnauthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnauthorizedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnauthorizedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -4786,10 +5071,14 @@ type UpdateApplicationSettingsInput struct {
 	Backint *BackintConfig `type:"structure"`
 
 	// The credentials to be added or updated.
-	CredentialsToAddOrUpdate []*ApplicationCredential `min:"1" type:"list"`
+	CredentialsToAddOrUpdate []*ApplicationCredential `type:"list"`
 
 	// The credentials to be removed.
-	CredentialsToRemove []*ApplicationCredential `min:"1" type:"list"`
+	CredentialsToRemove []*ApplicationCredential `type:"list"`
+
+	// The Amazon Resource Name of the SAP HANA database that replaces the current
+	// SAP HANA connection with the SAP_ABAP application.
+	DatabaseArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -4815,12 +5104,6 @@ func (s *UpdateApplicationSettingsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateApplicationSettingsInput"}
 	if s.ApplicationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
-	}
-	if s.CredentialsToAddOrUpdate != nil && len(s.CredentialsToAddOrUpdate) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("CredentialsToAddOrUpdate", 1))
-	}
-	if s.CredentialsToRemove != nil && len(s.CredentialsToRemove) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("CredentialsToRemove", 1))
 	}
 	if s.Backint != nil {
 		if err := s.Backint.Validate(); err != nil {
@@ -4875,6 +5158,12 @@ func (s *UpdateApplicationSettingsInput) SetCredentialsToAddOrUpdate(v []*Applic
 // SetCredentialsToRemove sets the CredentialsToRemove field's value.
 func (s *UpdateApplicationSettingsInput) SetCredentialsToRemove(v []*ApplicationCredential) *UpdateApplicationSettingsInput {
 	s.CredentialsToRemove = v
+	return s
+}
+
+// SetDatabaseArn sets the DatabaseArn field's value.
+func (s *UpdateApplicationSettingsInput) SetDatabaseArn(v string) *UpdateApplicationSettingsInput {
+	s.DatabaseArn = &v
 	return s
 }
 
@@ -4983,6 +5272,30 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AllocationTypeVpcSubnet is a AllocationType enum value
+	AllocationTypeVpcSubnet = "VPC_SUBNET"
+
+	// AllocationTypeElasticIp is a AllocationType enum value
+	AllocationTypeElasticIp = "ELASTIC_IP"
+
+	// AllocationTypeOverlay is a AllocationType enum value
+	AllocationTypeOverlay = "OVERLAY"
+
+	// AllocationTypeUnknown is a AllocationType enum value
+	AllocationTypeUnknown = "UNKNOWN"
+)
+
+// AllocationType_Values returns all elements of the AllocationType enum
+func AllocationType_Values() []string {
+	return []string{
+		AllocationTypeVpcSubnet,
+		AllocationTypeElasticIp,
+		AllocationTypeOverlay,
+		AllocationTypeUnknown,
+	}
+}
+
+const (
 	// ApplicationDiscoveryStatusSuccess is a ApplicationDiscoveryStatus enum value
 	ApplicationDiscoveryStatusSuccess = "SUCCESS"
 
@@ -5053,12 +5366,16 @@ func ApplicationStatus_Values() []string {
 const (
 	// ApplicationTypeHana is a ApplicationType enum value
 	ApplicationTypeHana = "HANA"
+
+	// ApplicationTypeSapAbap is a ApplicationType enum value
+	ApplicationTypeSapAbap = "SAP_ABAP"
 )
 
 // ApplicationType_Values returns all elements of the ApplicationType enum
 func ApplicationType_Values() []string {
 	return []string{
 		ApplicationTypeHana,
+		ApplicationTypeSapAbap,
 	}
 }
 
@@ -5144,6 +5461,24 @@ const (
 
 	// ComponentTypeHanaNode is a ComponentType enum value
 	ComponentTypeHanaNode = "HANA_NODE"
+
+	// ComponentTypeAbap is a ComponentType enum value
+	ComponentTypeAbap = "ABAP"
+
+	// ComponentTypeAscs is a ComponentType enum value
+	ComponentTypeAscs = "ASCS"
+
+	// ComponentTypeDialog is a ComponentType enum value
+	ComponentTypeDialog = "DIALOG"
+
+	// ComponentTypeWebdisp is a ComponentType enum value
+	ComponentTypeWebdisp = "WEBDISP"
+
+	// ComponentTypeWd is a ComponentType enum value
+	ComponentTypeWd = "WD"
+
+	// ComponentTypeErs is a ComponentType enum value
+	ComponentTypeErs = "ERS"
 )
 
 // ComponentType_Values returns all elements of the ComponentType enum
@@ -5151,6 +5486,12 @@ func ComponentType_Values() []string {
 	return []string{
 		ComponentTypeHana,
 		ComponentTypeHanaNode,
+		ComponentTypeAbap,
+		ComponentTypeAscs,
+		ComponentTypeDialog,
+		ComponentTypeWebdisp,
+		ComponentTypeWd,
+		ComponentTypeErs,
 	}
 }
 
@@ -5163,6 +5504,22 @@ const (
 func CredentialType_Values() []string {
 	return []string{
 		CredentialTypeAdmin,
+	}
+}
+
+const (
+	// DatabaseConnectionMethodDirect is a DatabaseConnectionMethod enum value
+	DatabaseConnectionMethodDirect = "DIRECT"
+
+	// DatabaseConnectionMethodOverlay is a DatabaseConnectionMethod enum value
+	DatabaseConnectionMethodOverlay = "OVERLAY"
+)
+
+// DatabaseConnectionMethod_Values returns all elements of the DatabaseConnectionMethod enum
+func DatabaseConnectionMethod_Values() []string {
+	return []string{
+		DatabaseConnectionMethodDirect,
+		DatabaseConnectionMethodOverlay,
 	}
 }
 

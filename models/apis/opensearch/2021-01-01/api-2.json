@@ -1424,6 +1424,7 @@
         "ClusterConfig":{"shape":"ClusterConfig"},
         "EBSOptions":{"shape":"EBSOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
+        "IPAddressType":{"shape":"IPAddressType"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
         "VPCOptions":{"shape":"VPCOptions"},
         "CognitoOptions":{"shape":"CognitoOptions"},
@@ -2018,6 +2019,7 @@
         "ClusterConfig":{"shape":"ClusterConfigStatus"},
         "EBSOptions":{"shape":"EBSOptionsStatus"},
         "AccessPolicies":{"shape":"AccessPoliciesStatus"},
+        "IPAddressType":{"shape":"IPAddressTypeStatus"},
         "SnapshotOptions":{"shape":"SnapshotOptionsStatus"},
         "VPCOptions":{"shape":"VPCDerivedInfoStatus"},
         "CognitoOptions":{"shape":"CognitoOptionsStatus"},
@@ -2186,6 +2188,7 @@
         "Created":{"shape":"Boolean"},
         "Deleted":{"shape":"Boolean"},
         "Endpoint":{"shape":"ServiceUrl"},
+        "EndpointV2":{"shape":"ServiceUrl"},
         "Endpoints":{"shape":"EndpointsMap"},
         "Processing":{"shape":"Boolean"},
         "UpgradeProcessing":{"shape":"Boolean"},
@@ -2193,6 +2196,7 @@
         "ClusterConfig":{"shape":"ClusterConfig"},
         "EBSOptions":{"shape":"EBSOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
+        "IPAddressType":{"shape":"IPAddressType"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
         "VPCOptions":{"shape":"VPCDerivedInfo"},
         "CognitoOptions":{"shape":"CognitoOptions"},
@@ -2472,6 +2476,24 @@
         "UpgradeStep":{"shape":"UpgradeStep"},
         "StepStatus":{"shape":"UpgradeStatus"},
         "UpgradeName":{"shape":"UpgradeName"}
+      }
+    },
+    "IPAddressType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "dualstack"
+      ]
+    },
+    "IPAddressTypeStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"IPAddressType"},
+        "Status":{"shape":"OptionStatus"}
       }
     },
     "IdentityPoolId":{
@@ -3867,6 +3889,7 @@
         "CognitoOptions":{"shape":"CognitoOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
+        "IPAddressType":{"shape":"IPAddressType"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},

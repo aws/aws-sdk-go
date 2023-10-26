@@ -3868,6 +3868,89 @@ func (c *Redshift) DeletePartnerWithContext(ctx aws.Context, input *DeletePartne
 	return out, req.Send()
 }
 
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteResourcePolicy
+func (c *Redshift) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for Amazon Redshift.
+//
+// Deletes the resource policy for a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//     The resource could not be found.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteResourcePolicy
+func (c *Redshift) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteScheduledAction = "DeleteScheduledAction"
 
 // DeleteScheduledActionRequest generates a "aws/request.Request" representing the
@@ -7404,6 +7487,149 @@ func (c *Redshift) DescribeHsmConfigurationsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opDescribeInboundIntegrations = "DescribeInboundIntegrations"
+
+// DescribeInboundIntegrationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInboundIntegrations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInboundIntegrations for more information on using the DescribeInboundIntegrations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeInboundIntegrationsRequest method.
+//	req, resp := client.DescribeInboundIntegrationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeInboundIntegrations
+func (c *Redshift) DescribeInboundIntegrationsRequest(input *DescribeInboundIntegrationsInput) (req *request.Request, output *DescribeInboundIntegrationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInboundIntegrations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeInboundIntegrationsInput{}
+	}
+
+	output = &DescribeInboundIntegrationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInboundIntegrations API operation for Amazon Redshift.
+//
+// Returns a list of inbound integrations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeInboundIntegrations for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeIntegrationNotFoundFault "IntegrationNotFoundFault"
+//     The integration can't be found.
+//
+//   - ErrCodeInvalidNamespaceFault "InvalidNamespaceFault"
+//     The namespace isn't valid because the namespace doesn't exist. Provide a
+//     valid namespace.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeInboundIntegrations
+func (c *Redshift) DescribeInboundIntegrations(input *DescribeInboundIntegrationsInput) (*DescribeInboundIntegrationsOutput, error) {
+	req, out := c.DescribeInboundIntegrationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInboundIntegrationsWithContext is the same as DescribeInboundIntegrations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInboundIntegrations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeInboundIntegrationsWithContext(ctx aws.Context, input *DescribeInboundIntegrationsInput, opts ...request.Option) (*DescribeInboundIntegrationsOutput, error) {
+	req, out := c.DescribeInboundIntegrationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeInboundIntegrationsPages iterates over the pages of a DescribeInboundIntegrations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeInboundIntegrations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeInboundIntegrations operation.
+//	pageNum := 0
+//	err := client.DescribeInboundIntegrationsPages(params,
+//	    func(page *redshift.DescribeInboundIntegrationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Redshift) DescribeInboundIntegrationsPages(input *DescribeInboundIntegrationsInput, fn func(*DescribeInboundIntegrationsOutput, bool) bool) error {
+	return c.DescribeInboundIntegrationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeInboundIntegrationsPagesWithContext same as DescribeInboundIntegrationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeInboundIntegrationsPagesWithContext(ctx aws.Context, input *DescribeInboundIntegrationsInput, fn func(*DescribeInboundIntegrationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeInboundIntegrationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeInboundIntegrationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeInboundIntegrationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeLoggingStatus = "DescribeLoggingStatus"
 
 // DescribeLoggingStatusRequest generates a "aws/request.Request" representing the
@@ -10306,6 +10532,91 @@ func (c *Redshift) GetReservedNodeExchangeOfferingsPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetResourcePolicy
+func (c *Redshift) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for Amazon Redshift.
+//
+// Get the resource policy for a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//     The resource could not be found.
+//
+//   - ErrCodeInvalidPolicyFault "InvalidPolicyFault"
+//     The resource policy isn't valid.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetResourcePolicy
+func (c *Redshift) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyAquaConfiguration = "ModifyAquaConfiguration"
 
 // ModifyAquaConfigurationRequest generates a "aws/request.Request" representing the
@@ -12091,6 +12402,94 @@ func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOffer
 // for more information on using Contexts.
 func (c *Redshift) PurchaseReservedNodeOfferingWithContext(ctx aws.Context, input *PurchaseReservedNodeOfferingInput, opts ...request.Option) (*PurchaseReservedNodeOfferingOutput, error) {
 	req, out := c.PurchaseReservedNodeOfferingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PutResourcePolicy
+func (c *Redshift) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourcePolicy API operation for Amazon Redshift.
+//
+// Updates the resource policy for a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//     The resource could not be found.
+//
+//   - ErrCodeInvalidPolicyFault "InvalidPolicyFault"
+//     The resource policy isn't valid.
+//
+//   - ErrCodeConflictPolicyUpdateFault "ConflictPolicyUpdateFault"
+//     There is a conflict while updating the resource policy.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PutResourcePolicy
+func (c *Redshift) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20980,6 +21379,75 @@ func (s *DeletePartnerOutput) SetPartnerName(v string) *DeletePartnerOutput {
 	return s
 }
 
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource of which its resource policy
+	// is deleted.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteScheduledActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24175,6 +24643,120 @@ func (s *DescribeHsmConfigurationsOutput) SetHsmConfigurations(v []*HsmConfigura
 
 // SetMarker sets the Marker field's value.
 func (s *DescribeHsmConfigurationsOutput) SetMarker(v string) *DescribeHsmConfigurationsOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeInboundIntegrationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the inbound integration.
+	IntegrationArn *string `type:"string"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeInboundIntegrations request
+	// exceed the value specified in MaxRecords, Amazon Web Services returns a value
+	// in the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the target of an inbound integration.
+	TargetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundIntegrationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundIntegrationsInput) GoString() string {
+	return s.String()
+}
+
+// SetIntegrationArn sets the IntegrationArn field's value.
+func (s *DescribeInboundIntegrationsInput) SetIntegrationArn(v string) *DescribeInboundIntegrationsInput {
+	s.IntegrationArn = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeInboundIntegrationsInput) SetMarker(v string) *DescribeInboundIntegrationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeInboundIntegrationsInput) SetMaxRecords(v int64) *DescribeInboundIntegrationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *DescribeInboundIntegrationsInput) SetTargetArn(v string) *DescribeInboundIntegrationsInput {
+	s.TargetArn = &v
+	return s
+}
+
+type DescribeInboundIntegrationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of InboundIntegration instances.
+	InboundIntegrations []*InboundIntegration `locationNameList:"InboundIntegration" type:"list"`
+
+	// A value that indicates the starting point for the next set of response records
+	// in a subsequent request. If a value is returned in a response, you can retrieve
+	// the next set of records by providing this returned marker value in the Marker
+	// parameter and retrying the command. If the Marker field is empty, all response
+	// records have been retrieved for the request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundIntegrationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundIntegrationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInboundIntegrations sets the InboundIntegrations field's value.
+func (s *DescribeInboundIntegrationsOutput) SetInboundIntegrations(v []*InboundIntegration) *DescribeInboundIntegrationsOutput {
+	s.InboundIntegrations = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeInboundIntegrationsOutput) SetMarker(v string) *DescribeInboundIntegrationsOutput {
 	s.Marker = &v
 	return s
 }
@@ -27937,6 +28519,84 @@ func (s *GetReservedNodeExchangeOfferingsOutput) SetReservedNodeOfferings(v []*R
 	return s
 }
 
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource of which its resource policy
+	// is fetched.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the resource policy.
+	ResourcePolicy *ResourcePolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *GetResourcePolicyOutput) SetResourcePolicy(v *ResourcePolicy) *GetResourcePolicyOutput {
+	s.ResourcePolicy = v
+	return s
+}
+
 // Returns information about an HSM client certificate. The certificate is stored
 // in a secure Hardware Storage Module (HSM), and used by the Amazon Redshift
 // cluster to encrypt data files.
@@ -28163,6 +28823,127 @@ func (s *IPRange) SetStatus(v string) *IPRange {
 // SetTags sets the Tags field's value.
 func (s *IPRange) SetTags(v []*Tag) *IPRange {
 	s.Tags = v
+	return s
+}
+
+// The content of an inbound integration.
+type InboundIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of an inbound integration.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The outstanding errors of an inbound integration. Each item is an "IntegrationError".
+	// This is null if there is no error.
+	Errors []*IntegrationError `locationNameList:"IntegrationError" type:"list"`
+
+	// The Amazon Resource Name (ARN) of an inbound integration.
+	IntegrationArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source of an inbound integration.
+	SourceArn *string `type:"string"`
+
+	// The status of an inbound integration.
+	Status *string `type:"string" enum:"ZeroETLIntegrationStatus"`
+
+	// The Amazon Resource Name (ARN) of the target of an inbound integration.
+	TargetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InboundIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InboundIntegration) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *InboundIntegration) SetCreateTime(v time.Time) *InboundIntegration {
+	s.CreateTime = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *InboundIntegration) SetErrors(v []*IntegrationError) *InboundIntegration {
+	s.Errors = v
+	return s
+}
+
+// SetIntegrationArn sets the IntegrationArn field's value.
+func (s *InboundIntegration) SetIntegrationArn(v string) *InboundIntegration {
+	s.IntegrationArn = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *InboundIntegration) SetSourceArn(v string) *InboundIntegration {
+	s.SourceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InboundIntegration) SetStatus(v string) *InboundIntegration {
+	s.Status = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *InboundIntegration) SetTargetArn(v string) *InboundIntegration {
+	s.TargetArn = &v
+	return s
+}
+
+// The error of an inbound integration.
+type IntegrationError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code of an inbound integration error.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true"`
+
+	// The error message of an inbound integration error.
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegrationError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegrationError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *IntegrationError) SetErrorCode(v string) *IntegrationError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *IntegrationError) SetErrorMessage(v string) *IntegrationError {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -31587,6 +32368,98 @@ func (s *PurchaseReservedNodeOfferingOutput) SetReservedNode(v *ReservedNode) *P
 	return s
 }
 
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the resource policy being updated.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource of which its resource policy
+	// is updated.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutResourcePolicyInput) SetPolicy(v string) *PutResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the updated resource policy.
+	ResourcePolicy *ResourcePolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *PutResourcePolicyOutput) SetResourcePolicy(v *ResourcePolicy) *PutResourcePolicyOutput {
+	s.ResourcePolicy = v
+	return s
+}
+
 type RebootClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -32599,6 +33472,47 @@ func (s *ResizeInfo) SetAllowCancelResize(v bool) *ResizeInfo {
 // SetResizeType sets the ResizeType field's value.
 func (s *ResizeInfo) SetResizeType(v string) *ResizeInfo {
 	s.ResizeType = &v
+	return s
+}
+
+// The policy that is attached to a resource.
+type ResourcePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The content of a resource policy.
+	Policy *string `type:"string"`
+
+	// The resources that a policy is attached to.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *ResourcePolicy) SetPolicy(v string) *ResourcePolicy {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ResourcePolicy) SetResourceArn(v string) *ResourcePolicy {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -36298,5 +37212,41 @@ func UsageLimitPeriod_Values() []string {
 		UsageLimitPeriodDaily,
 		UsageLimitPeriodWeekly,
 		UsageLimitPeriodMonthly,
+	}
+}
+
+const (
+	// ZeroETLIntegrationStatusCreating is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusCreating = "creating"
+
+	// ZeroETLIntegrationStatusActive is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusActive = "active"
+
+	// ZeroETLIntegrationStatusModifying is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusModifying = "modifying"
+
+	// ZeroETLIntegrationStatusFailed is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusFailed = "failed"
+
+	// ZeroETLIntegrationStatusDeleting is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusDeleting = "deleting"
+
+	// ZeroETLIntegrationStatusSyncing is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusSyncing = "syncing"
+
+	// ZeroETLIntegrationStatusNeedsAttention is a ZeroETLIntegrationStatus enum value
+	ZeroETLIntegrationStatusNeedsAttention = "needs_attention"
+)
+
+// ZeroETLIntegrationStatus_Values returns all elements of the ZeroETLIntegrationStatus enum
+func ZeroETLIntegrationStatus_Values() []string {
+	return []string{
+		ZeroETLIntegrationStatusCreating,
+		ZeroETLIntegrationStatusActive,
+		ZeroETLIntegrationStatusModifying,
+		ZeroETLIntegrationStatusFailed,
+		ZeroETLIntegrationStatusDeleting,
+		ZeroETLIntegrationStatusSyncing,
+		ZeroETLIntegrationStatusNeedsAttention,
 	}
 }

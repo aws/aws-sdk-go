@@ -26,6 +26,12 @@ const (
 	// The resource is not available.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeUnauthorizedException for service response error code
+	// "UnauthorizedException".
+	//
+	// The request is not authorized.
+	ErrCodeUnauthorizedException = "UnauthorizedException"
+
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
@@ -37,5 +43,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConflictException":         newErrorConflictException,
 	"InternalServerException":   newErrorInternalServerException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"UnauthorizedException":     newErrorUnauthorizedException,
 	"ValidationException":       newErrorValidationException,
 }
