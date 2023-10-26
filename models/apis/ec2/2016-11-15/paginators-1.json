@@ -785,6 +785,12 @@
       "output_token": "NextToken",
       "result_key": "AnalysisFindings"
     },
+    "GetSecurityGroupsForVpc": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "SecurityGroupForVpcs"
+    },
     "GetSpotPlacementScores": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

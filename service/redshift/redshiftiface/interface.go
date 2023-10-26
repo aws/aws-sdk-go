@@ -220,6 +220,10 @@ type RedshiftAPI interface {
 	DeletePartnerWithContext(aws.Context, *redshift.DeletePartnerInput, ...request.Option) (*redshift.DeletePartnerOutput, error)
 	DeletePartnerRequest(*redshift.DeletePartnerInput) (*request.Request, *redshift.DeletePartnerOutput)
 
+	DeleteResourcePolicy(*redshift.DeleteResourcePolicyInput) (*redshift.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *redshift.DeleteResourcePolicyInput, ...request.Option) (*redshift.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*redshift.DeleteResourcePolicyInput) (*request.Request, *redshift.DeleteResourcePolicyOutput)
+
 	DeleteScheduledAction(*redshift.DeleteScheduledActionInput) (*redshift.DeleteScheduledActionOutput, error)
 	DeleteScheduledActionWithContext(aws.Context, *redshift.DeleteScheduledActionInput, ...request.Option) (*redshift.DeleteScheduledActionOutput, error)
 	DeleteScheduledActionRequest(*redshift.DeleteScheduledActionInput) (*request.Request, *redshift.DeleteScheduledActionOutput)
@@ -392,6 +396,13 @@ type RedshiftAPI interface {
 	DescribeHsmConfigurationsPages(*redshift.DescribeHsmConfigurationsInput, func(*redshift.DescribeHsmConfigurationsOutput, bool) bool) error
 	DescribeHsmConfigurationsPagesWithContext(aws.Context, *redshift.DescribeHsmConfigurationsInput, func(*redshift.DescribeHsmConfigurationsOutput, bool) bool, ...request.Option) error
 
+	DescribeInboundIntegrations(*redshift.DescribeInboundIntegrationsInput) (*redshift.DescribeInboundIntegrationsOutput, error)
+	DescribeInboundIntegrationsWithContext(aws.Context, *redshift.DescribeInboundIntegrationsInput, ...request.Option) (*redshift.DescribeInboundIntegrationsOutput, error)
+	DescribeInboundIntegrationsRequest(*redshift.DescribeInboundIntegrationsInput) (*request.Request, *redshift.DescribeInboundIntegrationsOutput)
+
+	DescribeInboundIntegrationsPages(*redshift.DescribeInboundIntegrationsInput, func(*redshift.DescribeInboundIntegrationsOutput, bool) bool) error
+	DescribeInboundIntegrationsPagesWithContext(aws.Context, *redshift.DescribeInboundIntegrationsInput, func(*redshift.DescribeInboundIntegrationsOutput, bool) bool, ...request.Option) error
+
 	DescribeLoggingStatus(*redshift.DescribeLoggingStatusInput) (*redshift.LoggingStatus, error)
 	DescribeLoggingStatusWithContext(aws.Context, *redshift.DescribeLoggingStatusInput, ...request.Option) (*redshift.LoggingStatus, error)
 	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*request.Request, *redshift.LoggingStatus)
@@ -527,6 +538,10 @@ type RedshiftAPI interface {
 	GetReservedNodeExchangeOfferingsPages(*redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool) error
 	GetReservedNodeExchangeOfferingsPagesWithContext(aws.Context, *redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool, ...request.Option) error
 
+	GetResourcePolicy(*redshift.GetResourcePolicyInput) (*redshift.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *redshift.GetResourcePolicyInput, ...request.Option) (*redshift.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*redshift.GetResourcePolicyInput) (*request.Request, *redshift.GetResourcePolicyOutput)
+
 	ModifyAquaConfiguration(*redshift.ModifyAquaConfigurationInput) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationWithContext(aws.Context, *redshift.ModifyAquaConfigurationInput, ...request.Option) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationRequest(*redshift.ModifyAquaConfigurationInput) (*request.Request, *redshift.ModifyAquaConfigurationOutput)
@@ -602,6 +617,10 @@ type RedshiftAPI interface {
 	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingWithContext(aws.Context, *redshift.PurchaseReservedNodeOfferingInput, ...request.Option) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingRequest(*redshift.PurchaseReservedNodeOfferingInput) (*request.Request, *redshift.PurchaseReservedNodeOfferingOutput)
+
+	PutResourcePolicy(*redshift.PutResourcePolicyInput) (*redshift.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *redshift.PutResourcePolicyInput, ...request.Option) (*redshift.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*redshift.PutResourcePolicyInput) (*request.Request, *redshift.PutResourcePolicyOutput)
 
 	RebootCluster(*redshift.RebootClusterInput) (*redshift.RebootClusterOutput, error)
 	RebootClusterWithContext(aws.Context, *redshift.RebootClusterInput, ...request.Option) (*redshift.RebootClusterOutput, error)

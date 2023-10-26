@@ -4448,7 +4448,14 @@
         "MAPE",
         "MASE",
         "WAPE",
-        "AverageWeightedQuantileLoss"
+        "AverageWeightedQuantileLoss",
+        "Rouge1",
+        "Rouge2",
+        "RougeL",
+        "RougeLSum",
+        "Perplexity",
+        "ValidationLoss",
+        "TrainingLoss"
       ]
     },
     "AutoMLMode":{
@@ -4490,7 +4497,8 @@
         "ImageClassificationJobConfig":{"shape":"ImageClassificationJobConfig"},
         "TextClassificationJobConfig":{"shape":"TextClassificationJobConfig"},
         "TabularJobConfig":{"shape":"TabularJobConfig"},
-        "TimeSeriesForecastingJobConfig":{"shape":"TimeSeriesForecastingJobConfig"}
+        "TimeSeriesForecastingJobConfig":{"shape":"TimeSeriesForecastingJobConfig"},
+        "TextGenerationJobConfig":{"shape":"TextGenerationJobConfig"}
       },
       "union":true
     },
@@ -4500,13 +4508,15 @@
         "ImageClassification",
         "TextClassification",
         "Tabular",
-        "TimeSeriesForecasting"
+        "TimeSeriesForecasting",
+        "TextGeneration"
       ]
     },
     "AutoMLProblemTypeResolvedAttributes":{
       "type":"structure",
       "members":{
-        "TabularResolvedAttributes":{"shape":"TabularResolvedAttributes"}
+        "TabularResolvedAttributes":{"shape":"TabularResolvedAttributes"},
+        "TextGenerationResolvedAttributes":{"shape":"TextGenerationResolvedAttributes"}
       },
       "union":true
     },
@@ -4611,6 +4621,12 @@
     "BacktestResultsLocation":{
       "type":"string",
       "min":1
+    },
+    "BaseModelName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "BatchDataCaptureConfig":{
       "type":"structure",
@@ -19808,6 +19824,19 @@
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "ContentColumn":{"shape":"ContentColumn"},
         "TargetLabelColumn":{"shape":"TargetLabelColumn"}
+      }
+    },
+    "TextGenerationJobConfig":{
+      "type":"structure",
+      "members":{
+        "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
+        "BaseModelName":{"shape":"BaseModelName"}
+      }
+    },
+    "TextGenerationResolvedAttributes":{
+      "type":"structure",
+      "members":{
+        "BaseModelName":{"shape":"BaseModelName"}
       }
     },
     "ThingName":{

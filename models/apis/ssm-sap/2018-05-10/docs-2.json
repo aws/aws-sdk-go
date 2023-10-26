@@ -22,6 +22,12 @@
     "UpdateApplicationSettings": "<p>Updates the settings of an application registered with AWS Systems Manager for SAP.</p>"
   },
   "shapes": {
+    "AllocationType": {
+      "base": null,
+      "refs": {
+        "IpAddressMember$AllocationType": "<p>The type of allocation for the IP address.</p>"
+      }
+    },
     "AppRegistryArn": {
       "base": null,
       "refs": {
@@ -54,7 +60,8 @@
     "ApplicationDiscoveryStatus": {
       "base": null,
       "refs": {
-        "Application$DiscoveryStatus": "<p>The latest discovery result for the application.</p>"
+        "Application$DiscoveryStatus": "<p>The latest discovery result for the application.</p>",
+        "ApplicationSummary$DiscoveryStatus": "<p>The status of the latest discovery.</p>"
       }
     },
     "ApplicationId": {
@@ -136,7 +143,9 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "BackintConfig$EnsureNoBackupInProcess": "<p/>"
+        "BackintConfig$EnsureNoBackupInProcess": "<p/>",
+        "IpAddressMember$Primary": "<p>The primary IP address.</p>",
+        "Resilience$EnqueueReplication": "<p>Indicates if or not enqueue replication is enabled for the ASCS component.</p>"
       }
     },
     "ClusterStatus": {
@@ -175,7 +184,7 @@
     "ComponentStatus": {
       "base": null,
       "refs": {
-        "Component$Status": "<p>The status of the component.</p>"
+        "Component$Status": "<p>The status of the component.</p> <ul> <li> <p>ACTIVATED - this status has been deprecated.</p> </li> <li> <p>STARTING - the component is in the process of being started.</p> </li> <li> <p>STOPPED - the component is not running.</p> </li> <li> <p>STOPPING - the component is in the process of being stopped.</p> </li> <li> <p>RUNNING - the component is running.</p> </li> <li> <p>RUNNING_WITH_ERROR - one or more child component(s) of the parent component is not running. Call <a href=\"https://docs.aws.amazon.com/ssmsap/latest/APIReference/API_GetComponent.html\"> <code>GetComponent</code> </a> to review the status of each child component.</p> </li> <li> <p>UNDEFINED - AWS Systems Manager for SAP cannot provide the component status based on the discovered information. Verify your SAP application.</p> </li> </ul>"
       }
     },
     "ComponentSummary": {
@@ -212,6 +221,18 @@
       "base": "<p>The SAP HANA database of the application registered with AWS Systems Manager for SAP.</p>",
       "refs": {
         "GetDatabaseOutput$Database": "<p>The SAP HANA database of an application registered with AWS Systems Manager for SAP.</p>"
+      }
+    },
+    "DatabaseConnection": {
+      "base": "<p>The connection specifications for the database.</p>",
+      "refs": {
+        "Component$DatabaseConnection": "<p>The connection specifications for the database of the component.</p>"
+      }
+    },
+    "DatabaseConnectionMethod": {
+      "base": null,
+      "refs": {
+        "DatabaseConnection$DatabaseConnectionMethod": "<p>The method of connection.</p>"
       }
     },
     "DatabaseId": {
@@ -289,6 +310,7 @@
     "FilterList": {
       "base": null,
       "refs": {
+        "ListApplicationsInput$Filters": "<p>The filter of name, value, and operator.</p>",
         "ListOperationsInput$Filters": "<p>The filters of an operation.</p>"
       }
     },
@@ -399,6 +421,18 @@
     "InternalServerException": {
       "base": "<p>An internal error has occurred.</p>",
       "refs": {
+      }
+    },
+    "IpAddressList": {
+      "base": null,
+      "refs": {
+        "AssociatedHost$IpAddresses": "<p>The IP addresses of the associated host.</p>"
+      }
+    },
+    "IpAddressMember": {
+      "base": "<p>Provides information of the IP address.</p>",
+      "refs": {
+        "IpAddressList$member": null
       }
     },
     "ListApplicationsInput": {
@@ -586,12 +620,14 @@
     "SAPInstanceNumber": {
       "base": null,
       "refs": {
+        "Component$SystemNumber": "<p>The SAP system number of the application component.</p>",
         "RegisterApplicationInput$SapInstanceNumber": "<p>The SAP instance number of the application.</p>"
       }
     },
     "SID": {
       "base": null,
       "refs": {
+        "Component$Sid": "<p>The SAP System Identifier of the application component.</p>",
         "RegisterApplicationInput$Sid": "<p>The System ID of the application.</p>"
       }
     },
@@ -609,12 +645,15 @@
         "Component$Arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
         "ComponentSummary$Arn": "<p>The Amazon Resource Name (ARN) of the component summary.</p>",
         "Database$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "DatabaseConnection$DatabaseArn": "<p>The Amazon Resource Name of the connected SAP HANA database.</p>",
         "DatabaseSummary$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
         "GetApplicationInput$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the application. </p>",
         "GetDatabaseInput$DatabaseArn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "RegisterApplicationInput$DatabaseArn": "<p>The Amazon Resource Name of the SAP HANA database.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
-        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UpdateApplicationSettingsInput$DatabaseArn": "<p>The Amazon Resource Name of the SAP HANA database that replaces the current SAP HANA connection with the SAP_ABAP application.</p>"
       }
     },
     "StartApplicationRefreshInput": {
@@ -635,12 +674,14 @@
         "AssociatedHost$Ec2InstanceId": "<p>The ID of the Amazon EC2 instance.</p>",
         "AssociatedHost$OsVersion": "<p>The version of the operating system.</p>",
         "Component$SapHostname": "<p>The hostname of the component.</p>",
+        "Component$SapFeature": "<p>The SAP feature of the component.</p>",
         "Component$SapKernelVersion": "<p>The kernel version of the component.</p>",
         "Component$HdbVersion": "<p>The SAP HANA version of the component.</p>",
         "Component$PrimaryHost": "<p>The primary host of the component.</p>",
         "ConflictException$Message": null,
         "Database$DatabaseName": "<p>The name of the database.</p>",
         "Database$PrimaryHost": "<p>The primary host of the database.</p>",
+        "DatabaseConnection$ConnectionIp": "<p>The IP address for connection.</p>",
         "DeleteResourcePermissionOutput$Policy": "<p>The policy that removes permissions on the target database.</p>",
         "GetResourcePermissionOutput$Policy": "<p/>",
         "Host$HostName": "<p>The name of the Dedicated Host.</p>",
@@ -649,12 +690,14 @@
         "Host$InstanceId": "<p>The instance ID of the instance on the Dedicated Host.</p>",
         "Host$OsVersion": "<p>The version of the operating system.</p>",
         "InternalServerException$Message": null,
+        "IpAddressMember$IpAddress": "<p>The IP address.</p>",
         "Operation$StatusMessage": "<p>The status message of the operation.</p>",
         "OperationProperties$key": null,
         "OperationProperties$value": null,
         "PutResourcePermissionOutput$Policy": "<p/>",
         "Resilience$HsrTier": "<p>The tier of the component.</p>",
         "ResourceNotFoundException$Message": null,
+        "UnauthorizedException$Message": null,
         "UpdateApplicationSettingsOutput$Message": "<p>The update message.</p>",
         "ValidationException$Message": null
       }
@@ -711,6 +754,11 @@
         "Operation$StartTime": "<p>The start time of the operation.</p>",
         "Operation$EndTime": "<p>The end time of the operation.</p>",
         "Operation$LastUpdatedTime": "<p>The time at which the operation was last updated.</p>"
+      }
+    },
+    "UnauthorizedException": {
+      "base": "<p>The request is not authorized.</p>",
+      "refs": {
       }
     },
     "UntagResourceRequest": {

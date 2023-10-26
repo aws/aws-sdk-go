@@ -198,6 +198,12 @@ const (
 	// in the Amazon Redshift Cluster Management Guide.
 	ErrCodeClusterSubnetQuotaExceededFault = "ClusterSubnetQuotaExceededFault"
 
+	// ErrCodeConflictPolicyUpdateFault for service response error code
+	// "ConflictPolicyUpdateFault".
+	//
+	// There is a conflict while updating the resource policy.
+	ErrCodeConflictPolicyUpdateFault = "ConflictPolicyUpdateFault"
+
 	// ErrCodeCopyToRegionDisabledFault for service response error code
 	// "CopyToRegionDisabledFault".
 	//
@@ -351,6 +357,12 @@ const (
 	// bucket specified when enabling logging.
 	ErrCodeInsufficientS3BucketPolicyFault = "InsufficientS3BucketPolicyFault"
 
+	// ErrCodeIntegrationNotFoundFault for service response error code
+	// "IntegrationNotFoundFault".
+	//
+	// The integration can't be found.
+	ErrCodeIntegrationNotFoundFault = "IntegrationNotFoundFault"
+
 	// ErrCodeInvalidAuthenticationProfileRequestFault for service response error code
 	// "InvalidAuthenticationProfileRequestFault".
 	//
@@ -454,6 +466,12 @@ const (
 	// The namespace isn't valid because the namespace doesn't exist. Provide a
 	// valid namespace.
 	ErrCodeInvalidNamespaceFault = "InvalidNamespaceFault"
+
+	// ErrCodeInvalidPolicyFault for service response error code
+	// "InvalidPolicyFault".
+	//
+	// The resource policy isn't valid.
+	ErrCodeInvalidPolicyFault = "InvalidPolicyFault"
 
 	// ErrCodeInvalidReservedNodeStateFault for service response error code
 	// "InvalidReservedNodeState".

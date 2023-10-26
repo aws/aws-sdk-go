@@ -120,6 +120,12 @@
       "output_token": "Marker",
       "result_key": "HsmConfigurations"
     },
+    "DescribeInboundIntegrations": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "InboundIntegrations"
+    },
     "DescribeNodeConfigurationOptions": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",

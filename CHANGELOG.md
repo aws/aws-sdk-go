@@ -1,3 +1,23 @@
+Release v1.46.5 (2023-10-26)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This release introduces multi-session fleets, allowing customers to provision more than one user session on a single fleet instance.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Launching GetSecurityGroupsForVpc API. This API gets security groups that can be associated by the AWS account making the request with network interfaces in the specified VPC.
+* `service/network-firewall`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Add Redshift APIs GetResourcePolicy, DeleteResourcePolicy, PutResourcePolicy and DescribeInboundIntegrations for the new Amazon Redshift Zero-ETL integration feature, which can be used to control data ingress into Redshift namespace, and view inbound integrations.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon Sagemaker Autopilot now supports Text Generation jobs.
+* `service/sns`: Updates service API and documentation
+  * Message Archiving and Replay is now supported in Amazon SNS for FIFO topics.
+* `service/ssm-sap`: Updates service API and documentation
+* `service/transfer`: Updates service API, documentation, waiters, and paginators
+  * No API changes from previous release. This release migrated the model to Smithy keeping all features unchanged.
+
 Release v1.46.4 (2023-10-25)
 ===
 

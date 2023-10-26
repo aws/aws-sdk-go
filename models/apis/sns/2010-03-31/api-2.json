@@ -61,7 +61,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InternalErrorException"},
         {"shape":"AuthorizationErrorException"},
-        {"shape":"FilterPolicyLimitExceededException"}
+        {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"}
       ]
     },
     "CreatePlatformApplication":{
@@ -197,6 +198,7 @@
       "input":{"shape":"DeleteTopicInput"},
       "errors":[
         {"shape":"InvalidParameterException"},
+        {"shape":"InvalidStateException"},
         {"shape":"InternalErrorException"},
         {"shape":"AuthorizationErrorException"},
         {"shape":"NotFoundException"},
@@ -660,6 +662,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"},
         {"shape":"InternalErrorException"},
         {"shape":"NotFoundException"},
         {"shape":"AuthorizationErrorException"}
@@ -694,6 +697,7 @@
       "errors":[
         {"shape":"SubscriptionLimitExceededException"},
         {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"ReplayLimitExceededException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InternalErrorException"},
         {"shape":"NotFoundException"},
@@ -1198,6 +1202,18 @@
       },
       "exception":true
     },
+    "InvalidStateException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"InvalidState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Iso2CountryCode":{
       "type":"string",
       "max":2,
@@ -1655,6 +1671,18 @@
         "TopicArn":{"shape":"topicARN"},
         "Label":{"shape":"label"}
       }
+    },
+    "ReplayLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"ReplayLimitExceeded",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
     },
     "ResourceNotFoundException":{
       "type":"structure",

@@ -72,23 +72,23 @@ func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - ResourceExistsException
 //     The requested resource does not exist, or exists in a region other than the
 //     one specified for the command.
-//
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAccess
 func (c *Transfer) CreateAccess(input *CreateAccessInput) (*CreateAccessOutput, error) {
@@ -173,26 +173,26 @@ func (c *Transfer) CreateAgreementRequest(input *CreateAgreementInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
 func (c *Transfer) CreateAgreement(input *CreateAgreementInput) (*CreateAgreementOutput, error) {
@@ -278,26 +278,26 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
 func (c *Transfer) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
@@ -375,22 +375,22 @@ func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
 func (c *Transfer) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -471,29 +471,29 @@ func (c *Transfer) CreateServerRequest(input *CreateServerInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
 //
 //   - ServiceUnavailableException
 //     The request has failed because the Amazon Web ServicesTransfer Family service
 //     is not available.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceExistsException
 //     The requested resource does not exist, or exists in a region other than the
 //     one specified for the command.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateServer
 func (c *Transfer) CreateServer(input *CreateServerInput) (*CreateServerOutput, error) {
@@ -577,23 +577,23 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - ResourceExistsException
 //     The requested resource does not exist, or exists in a region other than the
 //     one specified for the command.
-//
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateUser
 func (c *Transfer) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -674,25 +674,25 @@ func (c *Transfer) CreateWorkflowRequest(input *CreateWorkflowInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
 //
 //   - ServiceUnavailableException
 //     The request has failed because the Amazon Web ServicesTransfer Family service
 //     is not available.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceExistsException
 //     The requested resource does not exist, or exists in a region other than the
 //     one specified for the command.
 //
-//   - ThrottlingException
-//     The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateWorkflow
 func (c *Transfer) CreateWorkflow(input *CreateWorkflowInput) (*CreateWorkflowOutput, error) {
@@ -772,19 +772,19 @@ func (c *Transfer) DeleteAccessRequest(input *DeleteAccessInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAccess
 func (c *Transfer) DeleteAccess(input *DeleteAccessInput) (*DeleteAccessOutput, error) {
@@ -863,19 +863,19 @@ func (c *Transfer) DeleteAgreementRequest(input *DeleteAgreementInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAgreement
 func (c *Transfer) DeleteAgreement(input *DeleteAgreementInput) (*DeleteAgreementOutput, error) {
@@ -954,19 +954,19 @@ func (c *Transfer) DeleteCertificateRequest(input *DeleteCertificateInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteCertificate
 func (c *Transfer) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
@@ -1045,19 +1045,19 @@ func (c *Transfer) DeleteConnectorRequest(input *DeleteConnectorInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteConnector
 func (c *Transfer) DeleteConnector(input *DeleteConnectorInput) (*DeleteConnectorOutput, error) {
@@ -1136,22 +1136,22 @@ func (c *Transfer) DeleteHostKeyRequest(input *DeleteHostKeyInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteHostKey
 func (c *Transfer) DeleteHostKey(input *DeleteHostKeyInput) (*DeleteHostKeyOutput, error) {
@@ -1230,19 +1230,19 @@ func (c *Transfer) DeleteProfileRequest(input *DeleteProfileInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteProfile
 func (c *Transfer) DeleteProfile(input *DeleteProfileInput) (*DeleteProfileOutput, error) {
@@ -1323,22 +1323,22 @@ func (c *Transfer) DeleteServerRequest(input *DeleteServerInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
 //
 //   - ServiceUnavailableException
 //     The request has failed because the Amazon Web ServicesTransfer Family service
 //     is not available.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteServer
 func (c *Transfer) DeleteServer(input *DeleteServerInput) (*DeleteServerOutput, error) {
@@ -1417,22 +1417,22 @@ func (c *Transfer) DeleteSshPublicKeyRequest(input *DeleteSshPublicKeyInput) (re
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteSshPublicKey
 func (c *Transfer) DeleteSshPublicKey(input *DeleteSshPublicKeyInput) (*DeleteSshPublicKeyOutput, error) {
@@ -1516,19 +1516,19 @@ func (c *Transfer) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteUser
 func (c *Transfer) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -1607,22 +1607,22 @@ func (c *Transfer) DeleteWorkflowRequest(input *DeleteWorkflowInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
 //
 //   - ServiceUnavailableException
 //     The request has failed because the Amazon Web ServicesTransfer Family service
 //     is not available.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteWorkflow
 func (c *Transfer) DeleteWorkflow(input *DeleteWorkflowInput) (*DeleteWorkflowOutput, error) {
@@ -1704,19 +1704,19 @@ func (c *Transfer) DescribeAccessRequest(input *DescribeAccessInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAccess
 func (c *Transfer) DescribeAccess(input *DescribeAccessInput) (*DescribeAccessOutput, error) {
@@ -1794,19 +1794,19 @@ func (c *Transfer) DescribeAgreementRequest(input *DescribeAgreementInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAgreement
 func (c *Transfer) DescribeAgreement(input *DescribeAgreementInput) (*DescribeAgreementOutput, error) {
@@ -1884,19 +1884,19 @@ func (c *Transfer) DescribeCertificateRequest(input *DescribeCertificateInput) (
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeCertificate
 func (c *Transfer) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
@@ -1974,19 +1974,19 @@ func (c *Transfer) DescribeConnectorRequest(input *DescribeConnectorInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeConnector
 func (c *Transfer) DescribeConnector(input *DescribeConnectorInput) (*DescribeConnectorOutput, error) {
@@ -2071,19 +2071,19 @@ func (c *Transfer) DescribeExecutionRequest(input *DescribeExecutionInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeExecution
 func (c *Transfer) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecutionOutput, error) {
@@ -2162,19 +2162,19 @@ func (c *Transfer) DescribeHostKeyRequest(input *DescribeHostKeyInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeHostKey
 func (c *Transfer) DescribeHostKey(input *DescribeHostKeyInput) (*DescribeHostKeyOutput, error) {
@@ -2252,19 +2252,19 @@ func (c *Transfer) DescribeProfileRequest(input *DescribeProfileInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeProfile
 func (c *Transfer) DescribeProfile(input *DescribeProfileInput) (*DescribeProfileOutput, error) {
@@ -2345,19 +2345,19 @@ func (c *Transfer) DescribeSecurityPolicyRequest(input *DescribeSecurityPolicyIn
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeSecurityPolicy
 func (c *Transfer) DescribeSecurityPolicy(input *DescribeSecurityPolicyInput) (*DescribeSecurityPolicyOutput, error) {
@@ -2439,19 +2439,19 @@ func (c *Transfer) DescribeServerRequest(input *DescribeServerInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeServer
 func (c *Transfer) DescribeServer(input *DescribeServerInput) (*DescribeServerOutput, error) {
@@ -2533,19 +2533,19 @@ func (c *Transfer) DescribeUserRequest(input *DescribeUserInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeUser
 func (c *Transfer) DescribeUser(input *DescribeUserInput) (*DescribeUserOutput, error) {
@@ -2623,19 +2623,19 @@ func (c *Transfer) DescribeWorkflowRequest(input *DescribeWorkflowInput) (req *r
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeWorkflow
 func (c *Transfer) DescribeWorkflow(input *DescribeWorkflowInput) (*DescribeWorkflowOutput, error) {
@@ -2714,19 +2714,19 @@ func (c *Transfer) ImportCertificateRequest(input *ImportCertificateInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportCertificate
 func (c *Transfer) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
@@ -2804,26 +2804,26 @@ func (c *Transfer) ImportHostKeyRequest(input *ImportHostKeyInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportHostKey
 func (c *Transfer) ImportHostKey(input *ImportHostKeyInput) (*ImportHostKeyOutput, error) {
@@ -2906,26 +2906,26 @@ func (c *Transfer) ImportSshPublicKeyRequest(input *ImportSshPublicKeyInput) (re
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ImportSshPublicKey
 func (c *Transfer) ImportSshPublicKey(input *ImportSshPublicKeyInput) (*ImportSshPublicKeyOutput, error) {
@@ -3009,22 +3009,22 @@ func (c *Transfer) ListAccessesRequest(input *ListAccessesInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAccesses
 func (c *Transfer) ListAccesses(input *ListAccessesInput) (*ListAccessesOutput, error) {
@@ -3163,22 +3163,22 @@ func (c *Transfer) ListAgreementsRequest(input *ListAgreementsInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAgreements
 func (c *Transfer) ListAgreements(input *ListAgreementsInput) (*ListAgreementsOutput, error) {
@@ -3317,22 +3317,22 @@ func (c *Transfer) ListCertificatesRequest(input *ListCertificatesInput) (req *r
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListCertificates
 func (c *Transfer) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
@@ -3467,22 +3467,22 @@ func (c *Transfer) ListConnectorsRequest(input *ListConnectorsInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListConnectors
 func (c *Transfer) ListConnectors(input *ListConnectorsInput) (*ListConnectorsOutput, error) {
@@ -3620,22 +3620,22 @@ func (c *Transfer) ListExecutionsRequest(input *ListExecutionsInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListExecutions
 func (c *Transfer) ListExecutions(input *ListExecutionsInput) (*ListExecutionsOutput, error) {
@@ -3765,22 +3765,22 @@ func (c *Transfer) ListHostKeysRequest(input *ListHostKeysInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListHostKeys
 func (c *Transfer) ListHostKeys(input *ListHostKeysInput) (*ListHostKeysOutput, error) {
@@ -3867,22 +3867,22 @@ func (c *Transfer) ListProfilesRequest(input *ListProfilesInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListProfiles
 func (c *Transfer) ListProfiles(input *ListProfilesInput) (*ListProfilesOutput, error) {
@@ -4018,18 +4018,18 @@ func (c *Transfer) ListSecurityPoliciesRequest(input *ListSecurityPoliciesInput)
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
 //
 //   - InternalServiceError
 //     This exception is thrown when an error occurs in the Transfer Family service.
 //
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - InvalidNextTokenException
 //     The NextToken parameter that was passed is invalid.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListSecurityPolicies
 func (c *Transfer) ListSecurityPolicies(input *ListSecurityPoliciesInput) (*ListSecurityPoliciesOutput, error) {
@@ -4165,18 +4165,18 @@ func (c *Transfer) ListServersRequest(input *ListServersInput) (req *request.Req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
 //
 //   - InternalServiceError
 //     This exception is thrown when an error occurs in the Transfer Family service.
 //
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - InvalidNextTokenException
 //     The NextToken parameter that was passed is invalid.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListServers
 func (c *Transfer) ListServers(input *ListServersInput) (*ListServersOutput, error) {
@@ -4312,18 +4312,18 @@ func (c *Transfer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
 //
 //   - InternalServiceError
 //     This exception is thrown when an error occurs in the Transfer Family service.
 //
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - InvalidNextTokenException
 //     The NextToken parameter that was passed is invalid.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListTagsForResource
 func (c *Transfer) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4459,22 +4459,22 @@ func (c *Transfer) ListUsersRequest(input *ListUsersInput) (req *request.Request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidNextTokenException
-//     The NextToken parameter that was passed is invalid.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - InvalidNextTokenException
+//     The NextToken parameter that was passed is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListUsers
 func (c *Transfer) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
@@ -4610,18 +4610,18 @@ func (c *Transfer) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
 //
 //   - InternalServiceError
 //     This exception is thrown when an error occurs in the Transfer Family service.
 //
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
 //   - InvalidNextTokenException
 //     The NextToken parameter that was passed is invalid.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListWorkflows
 func (c *Transfer) ListWorkflows(input *ListWorkflowsInput) (*ListWorkflowsOutput, error) {
@@ -4755,25 +4755,25 @@ func (c *Transfer) SendWorkflowStepStateRequest(input *SendWorkflowStepStateInpu
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
 //
 //   - ServiceUnavailableException
 //     The request has failed because the Amazon Web ServicesTransfer Family service
 //     is not available.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/SendWorkflowStepState
 func (c *Transfer) SendWorkflowStepState(input *SendWorkflowStepStateInput) (*SendWorkflowStepStateOutput, error) {
@@ -4866,22 +4866,22 @@ func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartFileTransfer
 func (c *Transfer) StartFileTransfer(input *StartFileTransferInput) (*StartFileTransferOutput, error) {
@@ -4968,22 +4968,22 @@ func (c *Transfer) StartServerRequest(input *StartServerInput) (req *request.Req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartServer
 func (c *Transfer) StartServer(input *StartServerInput) (*StartServerOutput, error) {
@@ -5074,22 +5074,22 @@ func (c *Transfer) StopServerRequest(input *StopServerInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StopServer
 func (c *Transfer) StopServer(input *StopServerInput) (*StopServerOutput, error) {
@@ -5171,19 +5171,19 @@ func (c *Transfer) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TagResource
 func (c *Transfer) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -5263,19 +5263,19 @@ func (c *Transfer) TestConnectionRequest(input *TestConnectionInput) (req *reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TestConnection
 func (c *Transfer) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
@@ -5386,19 +5386,19 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TestIdentityProvider
 func (c *Transfer) TestIdentityProvider(input *TestIdentityProviderInput) (*TestIdentityProviderOutput, error) {
@@ -5480,19 +5480,19 @@ func (c *Transfer) UntagResourceRequest(input *UntagResourceInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UntagResource
 func (c *Transfer) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -5571,26 +5571,26 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
 func (c *Transfer) UpdateAccess(input *UpdateAccessInput) (*UpdateAccessOutput, error) {
@@ -5670,26 +5670,26 @@ func (c *Transfer) UpdateAgreementRequest(input *UpdateAgreementInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
 func (c *Transfer) UpdateAgreement(input *UpdateAgreementInput) (*UpdateAgreementOutput, error) {
@@ -5767,22 +5767,22 @@ func (c *Transfer) UpdateCertificateRequest(input *UpdateCertificateInput) (req 
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
 func (c *Transfer) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
@@ -5862,26 +5862,26 @@ func (c *Transfer) UpdateConnectorRequest(input *UpdateConnectorInput) (req *req
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
-//   - ResourceExistsException
-//     The requested resource does not exist, or exists in a region other than the
-//     one specified for the command.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+//   - ResourceExistsException
+//     The requested resource does not exist, or exists in a region other than the
+//     one specified for the command.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
 func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
@@ -5960,22 +5960,22 @@ func (c *Transfer) UpdateHostKeyRequest(input *UpdateHostKeyInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateHostKey
 func (c *Transfer) UpdateHostKey(input *UpdateHostKeyInput) (*UpdateHostKeyOutput, error) {
@@ -6055,22 +6055,22 @@ func (c *Transfer) UpdateProfileRequest(input *UpdateProfileInput) (req *request
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
 func (c *Transfer) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
@@ -6151,34 +6151,34 @@ func (c *Transfer) UpdateServerRequest(input *UpdateServerInput) (req *request.R
 //
 // Returned Error Types:
 //
-//   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
-//
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
 //   - ConflictException
 //     This exception is thrown when the UpdateServer is called for a file transfer
 //     protocol-enabled server that has VPC as the endpoint type and the server's
 //     VpcEndpointID is not in the available state.
 //
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
 //
 //   - InvalidRequestException
 //     This exception is thrown when the client submits a malformed request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 //   - ResourceExistsException
 //     The requested resource does not exist, or exists in a region other than the
 //     one specified for the command.
 //
-//   - ResourceNotFoundException
-//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
-//     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateServer
 func (c *Transfer) UpdateServer(input *UpdateServerInput) (*UpdateServerOutput, error) {
@@ -6260,22 +6260,22 @@ func (c *Transfer) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //
-//   - ServiceUnavailableException
-//     The request has failed because the Amazon Web ServicesTransfer Family service
-//     is not available.
-//
-//   - InternalServiceError
-//     This exception is thrown when an error occurs in the Transfer Family service.
-//
-//   - InvalidRequestException
-//     This exception is thrown when the client submits a malformed request.
-//
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateUser
 func (c *Transfer) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
@@ -7652,7 +7652,7 @@ type CreateServerInput struct {
 	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
 	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
 	// logs.
-	LoggingRole *string `min:"20" type:"string"`
+	LoggingRole *string `type:"string"`
 
 	// Specifies a string to display when users connect to a server. This string
 	// is displayed after the user authenticates.
@@ -7778,9 +7778,6 @@ func (s CreateServerInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateServerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateServerInput"}
-	if s.LoggingRole != nil && len(*s.LoggingRole) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("LoggingRole", 20))
-	}
 	if s.Protocols != nil && len(s.Protocols) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Protocols", 1))
 	}
@@ -11547,7 +11544,7 @@ type DescribedServer struct {
 	// role that allows a server to turn on Amazon CloudWatch logging for Amazon
 	// S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch
 	// logs.
-	LoggingRole *string `min:"20" type:"string"`
+	LoggingRole *string `type:"string"`
 
 	// Specifies a string to display when users connect to a server. This string
 	// is displayed after the user authenticates.
@@ -16430,8 +16427,8 @@ type SftpConnectorConfig struct {
 	TrustedHostKeys []*string `min:"1" type:"list"`
 
 	// The identifier for the secret (in Amazon Web Services Secrets Manager) that
-	// contains the SFTP user's private key, password, or both. The identifier can
-	// be either the Amazon Resource Name (ARN) or the name of the secret.
+	// contains the SFTP user's private key, password, or both. The identifier must
+	// be the Amazon Resource Name (ARN) of the secret.
 	UserSecretId *string `min:"1" type:"string"`
 }
 

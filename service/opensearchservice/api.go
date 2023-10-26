@@ -3256,7 +3256,7 @@ func (c *OpenSearchService) GetDomainMaintenanceStatusRequest(input *GetDomainMa
 
 // GetDomainMaintenanceStatus API operation for Amazon OpenSearch Service.
 //
-// Get the status of the maintenance action.
+// The status of the maintenance action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3749,7 +3749,7 @@ func (c *OpenSearchService) ListDomainMaintenancesRequest(input *ListDomainMaint
 
 // ListDomainMaintenances API operation for Amazon OpenSearch Service.
 //
-// Get the list of the maintenance action.
+// A list of maintenance actions for the domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5439,8 +5439,9 @@ func (c *OpenSearchService) StartDomainMaintenanceRequest(input *StartDomainMain
 
 // StartDomainMaintenance API operation for Amazon OpenSearch Service.
 //
-// Starts the node maintenance (Node restart, Node reboot, Opensearch/Elasticsearch
-// process restart, Dashboard/kibana restart) on the data node.
+// Starts the node maintenance process on the data node. These processes can
+// include a node reboot, an Opensearch or Elasticsearch process restart, or
+// a Dashboard or Kibana restart.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8510,6 +8511,9 @@ type CreateDomainInput struct {
 	// OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
 	EngineVersion *string `min:"14" type:"string"`
 
+	// The type of IP addresses supported by the endpoint for the domain.
+	IPAddressType *string `type:"string" enum:"IPAddressType"`
+
 	// Key-value pairs to configure log publishing.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
@@ -8695,6 +8699,12 @@ func (s *CreateDomainInput) SetEncryptionAtRestOptions(v *EncryptionAtRestOption
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *CreateDomainInput) SetEngineVersion(v string) *CreateDomainInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetIPAddressType sets the IPAddressType field's value.
+func (s *CreateDomainInput) SetIPAddressType(v string) *CreateDomainInput {
+	s.IPAddressType = &v
 	return s
 }
 
@@ -11633,6 +11643,9 @@ type DomainConfig struct {
 	// The OpenSearch or Elasticsearch version that the domain is running.
 	EngineVersion *VersionStatus `type:"structure"`
 
+	// The type of IP addresses supported by the endpoint for the domain.
+	IPAddressType *IPAddressTypeStatus `type:"structure"`
+
 	// Key-value pairs to configure log publishing.
 	LogPublishingOptions *LogPublishingOptionsStatus `type:"structure"`
 
@@ -11735,6 +11748,12 @@ func (s *DomainConfig) SetEncryptionAtRestOptions(v *EncryptionAtRestOptionsStat
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *DomainConfig) SetEngineVersion(v *VersionStatus) *DomainConfig {
 	s.EngineVersion = v
+	return s
+}
+
+// SetIPAddressType sets the IPAddressType field's value.
+func (s *DomainConfig) SetIPAddressType(v *IPAddressTypeStatus) *DomainConfig {
+	s.IPAddressType = v
 	return s
 }
 
@@ -12008,25 +12027,25 @@ type DomainMaintenanceDetails struct {
 	// The name of the action.
 	Action *string `type:"string" enum:"MaintenanceType"`
 
-	// Contains time at which action created.
+	// The time at which the action was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The name of the domain.
 	DomainName *string `min:"3" type:"string"`
 
-	// Id of the requested action.
+	// The ID of the requested action.
 	MaintenanceId *string `min:"1" type:"string"`
 
-	// Id of the data node.
+	// The ID of the data node.
 	NodeId *string `min:"10" type:"string"`
 
 	// The status of the action.
 	Status *string `type:"string" enum:"MaintenanceStatus"`
 
-	// The status message of the action.
+	// The status message for the action.
 	StatusMessage *string `type:"string"`
 
-	// Contains time at which action updated.
+	// The time at which the action was updated.
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
@@ -12368,6 +12387,10 @@ type DomainStatus struct {
 	// to the domain.
 	Endpoint *string `type:"string"`
 
+	// The domain endpoint to which index and search requests are submitted. For
+	// example, search-imdb-movies-oopcnjfn6ugo.eu-west-1.es.amazonaws.com or doc-imdb-movies-oopcnjfn6u.eu-west-1.es.amazonaws.com.
+	EndpointV2 *string `type:"string"`
+
 	// The key-value pair that exists if the OpenSearch Service domain uses VPC
 	// endpoints.. Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
 	Endpoints map[string]*string `type:"map"`
@@ -12375,6 +12398,9 @@ type DomainStatus struct {
 	// Version of OpenSearch or Elasticsearch that the domain is running, in the
 	// format Elasticsearch_X.Y or OpenSearch_X.Y.
 	EngineVersion *string `min:"14" type:"string"`
+
+	// The type of IP addresses supported by the endpoint for the domain.
+	IPAddressType *string `type:"string" enum:"IPAddressType"`
 
 	// Log publishing options for the domain.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
@@ -12523,6 +12549,12 @@ func (s *DomainStatus) SetEndpoint(v string) *DomainStatus {
 	return s
 }
 
+// SetEndpointV2 sets the EndpointV2 field's value.
+func (s *DomainStatus) SetEndpointV2(v string) *DomainStatus {
+	s.EndpointV2 = &v
+	return s
+}
+
 // SetEndpoints sets the Endpoints field's value.
 func (s *DomainStatus) SetEndpoints(v map[string]*string) *DomainStatus {
 	s.Endpoints = v
@@ -12532,6 +12564,12 @@ func (s *DomainStatus) SetEndpoints(v map[string]*string) *DomainStatus {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *DomainStatus) SetEngineVersion(v string) *DomainStatus {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetIPAddressType sets the IPAddressType field's value.
+func (s *DomainStatus) SetIPAddressType(v string) *DomainStatus {
+	s.IPAddressType = &v
 	return s
 }
 
@@ -13212,7 +13250,7 @@ type GetDomainMaintenanceStatusInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The request id of the maintenance action.
+	// The request ID of the maintenance action.
 	//
 	// MaintenanceId is a required field
 	MaintenanceId *string `location:"querystring" locationName:"maintenanceId" min:"1" type:"string" required:"true"`
@@ -13270,27 +13308,27 @@ func (s *GetDomainMaintenanceStatusInput) SetMaintenanceId(v string) *GetDomainM
 	return s
 }
 
-// The result of a GetDomainMaintenanceStatus request. Contains information
-// about the requested action.
+// The result of a GetDomainMaintenanceStatus request that information about
+// the requested action.
 type GetDomainMaintenanceStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains action name.
+	// The action name.
 	Action *string `type:"string" enum:"MaintenanceType"`
 
-	// Contains time at which action created.
+	// The time at which the action was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// Contains node id of maintenance action.
+	// The node ID of the maintenance action.
 	NodeId *string `min:"10" type:"string"`
 
-	// Contains status of the maintenance action.
+	// The status of the maintenance action.
 	Status *string `type:"string" enum:"MaintenanceStatus"`
 
-	// Contains status message of the maintenance action.
+	// The status message of the maintenance action.
 	StatusMessage *string `type:"string"`
 
-	// Contains time at which action updated.
+	// The time at which the action was updated.
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
@@ -13683,6 +13721,51 @@ func (s *GetUpgradeStatusOutput) SetUpgradeName(v string) *GetUpgradeStatusOutpu
 // SetUpgradeStep sets the UpgradeStep field's value.
 func (s *GetUpgradeStatusOutput) SetUpgradeStep(v string) *GetUpgradeStatusOutput {
 	s.UpgradeStep = &v
+	return s
+}
+
+// The IP address type status for the domain.
+type IPAddressTypeStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address options for the domain.
+	//
+	// Options is a required field
+	Options *string `type:"string" required:"true" enum:"IPAddressType"`
+
+	// Provides the current status of an entity.
+	//
+	// Status is a required field
+	Status *OptionStatus `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPAddressTypeStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPAddressTypeStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *IPAddressTypeStatus) SetOptions(v string) *IPAddressTypeStatus {
+	s.Options = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *IPAddressTypeStatus) SetStatus(v *OptionStatus) *IPAddressTypeStatus {
+	s.Status = v
 	return s
 }
 
@@ -14314,9 +14397,9 @@ type ListDomainMaintenancesInput struct {
 	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// If your initial ListDomainMaintenances operation returns a nextToken, you
-	// can include the returned nextToken in subsequent ListDomainMaintenances operations,
-	// which returns results in the next page.
+	// If your initial ListDomainMaintenances operation returns a nextToken, include
+	// the returned nextToken in subsequent ListDomainMaintenances operations, which
+	// returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The status of the action.
@@ -14387,12 +14470,12 @@ func (s *ListDomainMaintenancesInput) SetStatus(v string) *ListDomainMaintenance
 	return s
 }
 
-// The result of a ListDomainMaintenances request. Contains information about
-// the requested actions.
+// The result of a ListDomainMaintenances request that contains information
+// about the requested actions.
 type ListDomainMaintenancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of the submitted maintenance actions.
+	// A list of the submitted maintenance actions.
 	DomainMaintenances []*DomainMaintenanceDetails `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
@@ -17964,7 +18047,7 @@ type StartDomainMaintenanceInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// Id of the data node.
+	// The ID of the data node.
 	NodeId *string `min:"10" type:"string"`
 }
 
@@ -18026,12 +18109,12 @@ func (s *StartDomainMaintenanceInput) SetNodeId(v string) *StartDomainMaintenanc
 	return s
 }
 
-// The result of a StartDomainMaintenance request. Contains information about
-// the requested action.
+// The result of a StartDomainMaintenance request that information about the
+// requested action.
 type StartDomainMaintenanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains request id of requested action.
+	// The request ID of requested action.
 	MaintenanceId *string `min:"1" type:"string"`
 }
 
@@ -18424,6 +18507,9 @@ type UpdateDomainConfigInput struct {
 	// Encryption at rest options for the domain.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
+	// The type of IP addresses supported by the endpoint for the domain.
+	IPAddressType *string `type:"string" enum:"IPAddressType"`
+
 	// Options to publish OpenSearch logs to Amazon CloudWatch Logs.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
@@ -18594,6 +18680,12 @@ func (s *UpdateDomainConfigInput) SetEBSOptions(v *EBSOptions) *UpdateDomainConf
 // SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
 func (s *UpdateDomainConfigInput) SetEncryptionAtRestOptions(v *EncryptionAtRestOptions) *UpdateDomainConfigInput {
 	s.EncryptionAtRestOptions = v
+	return s
+}
+
+// SetIPAddressType sets the IPAddressType field's value.
+func (s *UpdateDomainConfigInput) SetIPAddressType(v string) *UpdateDomainConfigInput {
+	s.IPAddressType = &v
 	return s
 }
 
@@ -20279,6 +20371,22 @@ func EngineType_Values() []string {
 	return []string{
 		EngineTypeOpenSearch,
 		EngineTypeElasticsearch,
+	}
+}
+
+const (
+	// IPAddressTypeIpv4 is a IPAddressType enum value
+	IPAddressTypeIpv4 = "ipv4"
+
+	// IPAddressTypeDualstack is a IPAddressType enum value
+	IPAddressTypeDualstack = "dualstack"
+)
+
+// IPAddressType_Values returns all elements of the IPAddressType enum
+func IPAddressType_Values() []string {
+	return []string{
+		IPAddressTypeIpv4,
+		IPAddressTypeDualstack,
 	}
 }
 

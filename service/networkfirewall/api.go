@@ -84,7 +84,7 @@ func (c *NetworkFirewall) AssociateFirewallPolicyRequest(input *AssociateFirewal
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -194,7 +194,7 @@ func (c *NetworkFirewall) AssociateSubnetsRequest(input *AssociateSubnetsInput) 
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -323,7 +323,7 @@ func (c *NetworkFirewall) CreateFirewallRequest(input *CreateFirewallInput) (req
 //     Unable to perform the operation because doing so would violate a limit setting.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ThrottlingException
@@ -435,7 +435,7 @@ func (c *NetworkFirewall) CreateFirewallPolicyRequest(input *CreateFirewallPolic
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - InsufficientCapacityException
@@ -540,7 +540,7 @@ func (c *NetworkFirewall) CreateRuleGroupRequest(input *CreateRuleGroupInput) (r
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - InsufficientCapacityException
@@ -613,11 +613,12 @@ func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateT
 // CreateTLSInspectionConfiguration API operation for AWS Network Firewall.
 //
 // Creates an Network Firewall TLS inspection configuration. A TLS inspection
-// configuration contains the Certificate Manager certificate references that
-// Network Firewall uses to decrypt and re-encrypt inbound traffic.
+// configuration contains the Certificate Manager certificate associations that
+// Network Firewall uses to decrypt and re-encrypt traffic traveling through
+// your firewall.
 //
-// After you create a TLS inspection configuration, you associate it with a
-// new firewall policy.
+// After you create a TLS inspection configuration, you can associate it with
+// a new firewall policy.
 //
 // To update the settings for a TLS inspection configuration, use UpdateTLSInspectionConfiguration.
 //
@@ -628,7 +629,7 @@ func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateT
 // To retrieve information about TLS inspection configurations, use ListTLSInspectionConfigurations
 // and DescribeTLSInspectionConfiguration.
 //
-// For more information about TLS inspection configurations, see Decrypting
+// For more information about TLS inspection configurations, see Inspecting
 // SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
 // in the Network Firewall Developer Guide.
 //
@@ -656,7 +657,7 @@ func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateT
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - LimitExceededException
@@ -765,7 +766,7 @@ func (c *NetworkFirewall) DeleteFirewallRequest(input *DeleteFirewallInput) (req
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -875,7 +876,7 @@ func (c *NetworkFirewall) DeleteFirewallPolicyRequest(input *DeleteFirewallPolic
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - UnsupportedOperationException
@@ -974,7 +975,7 @@ func (c *NetworkFirewall) DeleteResourcePolicyRequest(input *DeleteResourcePolic
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1080,7 +1081,7 @@ func (c *NetworkFirewall) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (r
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - UnsupportedOperationException
@@ -1178,7 +1179,7 @@ func (c *NetworkFirewall) DeleteTLSInspectionConfigurationRequest(input *DeleteT
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1279,7 +1280,7 @@ func (c *NetworkFirewall) DescribeFirewallRequest(input *DescribeFirewallInput) 
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1382,7 +1383,7 @@ func (c *NetworkFirewall) DescribeFirewallPolicyRequest(input *DescribeFirewallP
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeFirewallPolicy
@@ -1473,7 +1474,7 @@ func (c *NetworkFirewall) DescribeLoggingConfigurationRequest(input *DescribeLog
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1570,7 +1571,7 @@ func (c *NetworkFirewall) DescribeResourcePolicyRequest(input *DescribeResourceP
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1673,7 +1674,7 @@ func (c *NetworkFirewall) DescribeRuleGroupRequest(input *DescribeRuleGroupInput
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeRuleGroup
@@ -1773,7 +1774,7 @@ func (c *NetworkFirewall) DescribeRuleGroupMetadataRequest(input *DescribeRuleGr
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeRuleGroupMetadata
@@ -1864,7 +1865,7 @@ func (c *NetworkFirewall) DescribeTLSInspectionConfigurationRequest(input *Descr
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -1963,7 +1964,7 @@ func (c *NetworkFirewall) DisassociateSubnetsRequest(input *DisassociateSubnetsI
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -2078,7 +2079,7 @@ func (c *NetworkFirewall) ListFirewallPoliciesRequest(input *ListFirewallPolicie
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/ListFirewallPolicies
@@ -2231,7 +2232,7 @@ func (c *NetworkFirewall) ListFirewallsRequest(input *ListFirewallsInput) (req *
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ThrottlingException
@@ -2387,7 +2388,7 @@ func (c *NetworkFirewall) ListRuleGroupsRequest(input *ListRuleGroupsInput) (req
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/ListRuleGroups
@@ -2537,7 +2538,7 @@ func (c *NetworkFirewall) ListTLSInspectionConfigurationsRequest(input *ListTLSI
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ThrottlingException
@@ -2687,7 +2688,7 @@ func (c *NetworkFirewall) ListTagsForResourceRequest(input *ListTagsForResourceI
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -2867,7 +2868,7 @@ func (c *NetworkFirewall) PutResourcePolicyRequest(input *PutResourcePolicyInput
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -2967,7 +2968,7 @@ func (c *NetworkFirewall) TagResourceRequest(input *TagResourceInput) (req *requ
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3072,7 +3073,7 @@ func (c *NetworkFirewall) UntagResourceRequest(input *UntagResourceInput) (req *
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3180,7 +3181,7 @@ func (c *NetworkFirewall) UpdateFirewallDeleteProtectionRequest(input *UpdateFir
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3284,7 +3285,7 @@ func (c *NetworkFirewall) UpdateFirewallDescriptionRequest(input *UpdateFirewall
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3384,7 +3385,7 @@ func (c *NetworkFirewall) UpdateFirewallEncryptionConfigurationRequest(input *Up
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3493,7 +3494,7 @@ func (c *NetworkFirewall) UpdateFirewallPolicyRequest(input *UpdateFirewallPolic
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - InvalidTokenException
@@ -3590,7 +3591,7 @@ func (c *NetworkFirewall) UpdateFirewallPolicyChangeProtectionRequest(input *Upd
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3714,7 +3715,7 @@ func (c *NetworkFirewall) UpdateLoggingConfigurationRequest(input *UpdateLogging
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -3829,7 +3830,7 @@ func (c *NetworkFirewall) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (r
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - InvalidTokenException
@@ -3921,7 +3922,7 @@ func (c *NetworkFirewall) UpdateSubnetChangeProtectionRequest(input *UpdateSubne
 //     a resource that isn't valid in the context of the request.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - ResourceNotFoundException
@@ -4002,8 +4003,8 @@ func (c *NetworkFirewall) UpdateTLSInspectionConfigurationRequest(input *UpdateT
 // UpdateTLSInspectionConfiguration API operation for AWS Network Firewall.
 //
 // Updates the TLS inspection configuration settings for the specified TLS inspection
-// configuration. You use a TLS inspection configuration by reference in one
-// or more firewall policies. When you modify a TLS inspection configuration,
+// configuration. You use a TLS inspection configuration by referencing it in
+// one or more firewall policies. When you modify a TLS inspection configuration,
 // you modify all firewall policies that use the TLS inspection configuration.
 //
 // To update a TLS inspection configuration, first call DescribeTLSInspectionConfiguration
@@ -4037,7 +4038,7 @@ func (c *NetworkFirewall) UpdateTLSInspectionConfigurationRequest(input *UpdateT
 //     Unable to process the request due to throttling limitations.
 //
 //   - InternalServerError
-//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     Your request is valid, but Network Firewall couldn't perform the operation
 //     because of a system problem. Retry your request.
 //
 //   - InvalidTokenException
@@ -4707,6 +4708,74 @@ func (s CapacityUsageSummary) GoString() string {
 // SetCIDRs sets the CIDRs field's value.
 func (s *CapacityUsageSummary) SetCIDRs(v *CIDRSummary) *CapacityUsageSummary {
 	s.CIDRs = v
+	return s
+}
+
+// Defines the actions to take on the SSL/TLS connection if the certificate
+// presented by the server in the connection has a revoked or unknown status.
+type CheckCertificateRevocationStatusActions struct {
+	_ struct{} `type:"structure"`
+
+	// Configures how Network Firewall processes traffic when it determines that
+	// the certificate presented by the server in the SSL/TLS connection has a revoked
+	// status.
+	//
+	//    * PASS - Allow the connection to continue, and pass subsequent packets
+	//    to the stateful engine for inspection.
+	//
+	//    * DROP - Network Firewall fails closed and drops all subsequent traffic.
+	//
+	//    * REJECT - Network Firewall sends a TCP reject packet back to your client
+	//    so that the client can immediately establish a new session. Network Firewall
+	//    then fails closed and drops all subsequent traffic. REJECT is available
+	//    only for TCP traffic.
+	RevokedStatusAction *string `type:"string" enum:"RevocationCheckAction"`
+
+	// Configures how Network Firewall processes traffic when it determines that
+	// the certificate presented by the server in the SSL/TLS connection has an
+	// unknown status, or a status that cannot be determined for any other reason,
+	// including when the service is unable to connect to the OCSP and CRL endpoints
+	// for the certificate.
+	//
+	//    * PASS - Allow the connection to continue, and pass subsequent packets
+	//    to the stateful engine for inspection.
+	//
+	//    * DROP - Network Firewall fails closed and drops all subsequent traffic.
+	//
+	//    * REJECT - Network Firewall sends a TCP reject packet back to your client
+	//    so that the client can immediately establish a new session. Network Firewall
+	//    then fails closed and drops all subsequent traffic. REJECT is available
+	//    only for TCP traffic.
+	UnknownStatusAction *string `type:"string" enum:"RevocationCheckAction"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckCertificateRevocationStatusActions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckCertificateRevocationStatusActions) GoString() string {
+	return s.String()
+}
+
+// SetRevokedStatusAction sets the RevokedStatusAction field's value.
+func (s *CheckCertificateRevocationStatusActions) SetRevokedStatusAction(v string) *CheckCertificateRevocationStatusActions {
+	s.RevokedStatusAction = &v
+	return s
+}
+
+// SetUnknownStatusAction sets the UnknownStatusAction field's value.
+func (s *CheckCertificateRevocationStatusActions) SetUnknownStatusAction(v string) *CheckCertificateRevocationStatusActions {
+	s.UnknownStatusAction = &v
 	return s
 }
 
@@ -5453,11 +5522,11 @@ type CreateTLSInspectionConfigurationInput struct {
 	//
 	// To use a TLS inspection configuration, you add it to a new Network Firewall
 	// firewall policy, then you apply the firewall policy to a firewall. Network
-	// Firewall acts as a proxy service to decrypt and inspect inbound traffic.
-	// You can reference a TLS inspection configuration from more than one firewall
-	// policy, and you can use a firewall policy in more than one firewall. For
-	// more information about using TLS inspection configurations, see Decrypting
-	// SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// Firewall acts as a proxy service to decrypt and inspect the traffic traveling
+	// through your firewalls. You can reference a TLS inspection configuration
+	// from more than one firewall policy, and you can use a firewall policy in
+	// more than one firewall. For more information about using TLS inspection configurations,
+	// see Inspecting SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
 	// in the Network Firewall Developer Guide.
 	//
 	// TLSInspectionConfiguration is a required field
@@ -7028,11 +7097,11 @@ type DescribeTLSInspectionConfigurationOutput struct {
 	//
 	// To use a TLS inspection configuration, you add it to a new Network Firewall
 	// firewall policy, then you apply the firewall policy to a firewall. Network
-	// Firewall acts as a proxy service to decrypt and inspect inbound traffic.
-	// You can reference a TLS inspection configuration from more than one firewall
-	// policy, and you can use a firewall policy in more than one firewall. For
-	// more information about using TLS inspection configurations, see Decrypting
-	// SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// Firewall acts as a proxy service to decrypt and inspect the traffic traveling
+	// through your firewalls. You can reference a TLS inspection configuration
+	// from more than one firewall policy, and you can use a firewall policy in
+	// more than one firewall. For more information about using TLS inspection configurations,
+	// see Inspecting SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
 	// in the Network Firewall Developer Guide.
 	TLSInspectionConfiguration *TLSInspectionConfiguration `type:"structure"`
 
@@ -8474,7 +8543,7 @@ func (s *InsufficientCapacityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Your request is valid, but Network Firewall couldn’t perform the operation
+// Your request is valid, but Network Firewall couldn't perform the operation
 // because of a system problem. Retry your request.
 type InternalServerError struct {
 	_            struct{}                  `type:"structure"`
@@ -11143,21 +11212,21 @@ func (s *RulesSourceList) SetTargets(v []*string) *RulesSourceList {
 	return s
 }
 
-// Any Certificate Manager Secure Sockets Layer/Transport Layer Security (SSL/TLS)
-// server certificate that's associated with a ServerCertificateConfiguration
-// used in a TLSInspectionConfiguration. You must request or import a SSL/TLS
-// certificate into ACM for each domain Network Firewall needs to decrypt and
-// inspect. Network Firewall uses the SSL/TLS certificates to decrypt specified
-// inbound SSL/TLS traffic going to your firewall. For information about working
-// with certificates in Certificate Manager, see Request a public certificate
-// (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
+// Any Certificate Manager (ACM) Secure Sockets Layer/Transport Layer Security
+// (SSL/TLS) server certificate that's associated with a ServerCertificateConfiguration.
+// Used in a TLSInspectionConfiguration for inspection of inbound traffic to
+// your firewall. You must request or import a SSL/TLS certificate into ACM
+// for each domain Network Firewall needs to decrypt and inspect. Network Firewall
+// uses the SSL/TLS certificates to decrypt specified inbound SSL/TLS traffic
+// going to your firewall. For information about working with certificates in
+// Certificate Manager, see Request a public certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
 // or Importing certificates (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
 // in the Certificate Manager User Guide.
 type ServerCertificate struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Certificate Manager SSL/TLS server
-	// certificate.
+	// certificate that's used for inbound SSL/TLS inspection.
 	ResourceArn *string `min:"1" type:"string"`
 }
 
@@ -11198,12 +11267,12 @@ func (s *ServerCertificate) SetResourceArn(v string) *ServerCertificate {
 	return s
 }
 
-// Configures the associated Certificate Manager Secure Sockets Layer/Transport
-// Layer Security (SSL/TLS) server certificates and scope settings Network Firewall
-// uses to decrypt traffic in a TLSInspectionConfiguration. For information
-// about working with SSL/TLS certificates for TLS inspection, see Requirements
-// for using SSL/TLS server certficiates with TLS inspection configurations
-// (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
+// Configures the Certificate Manager certificates and scope that Network Firewall
+// uses to decrypt and re-encrypt traffic using a TLSInspectionConfiguration.
+// You can configure ServerCertificates for inbound SSL/TLS inspection, a CertificateAuthorityArn
+// for outbound SSL/TLS inspection, or both. For information about working with
+// certificates for TLS inspection, see Requirements for using SSL/TLS server
+// certficiates with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
 // in the Network Firewall Developer Guide.
 //
 // If a server certificate that's associated with your TLSInspectionConfiguration
@@ -11211,11 +11280,39 @@ func (s *ServerCertificate) SetResourceArn(v string) *ServerCertificate {
 type ServerCertificateConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of a server certificate configuration's scopes.
+	// The Amazon Resource Name (ARN) of the imported certificate authority (CA)
+	// certificate configured in Certificate Manager (ACM) to use for outbound SSL/TLS
+	// inspection.
+	//
+	// The following limitations apply:
+	//
+	//    * You can use CA certificates that you imported into ACM, but you can't
+	//    generate CA certificates with ACM.
+	//
+	//    * You can't use certificates issued by Private Certificate Authority.
+	//
+	// For more information about the certificate requirements for outbound inspection,
+	// see Requirements for using SSL/TLS certificates with TLS inspection configurations
+	// (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
+	// in the Network Firewall Developer Guide.
+	//
+	// For information about working with certificates in ACM, see Importing certificates
+	// (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
+	// in the Certificate Manager User Guide.
+	CertificateAuthorityArn *string `min:"1" type:"string"`
+
+	// When enabled, Network Firewall checks if the server certificate presented
+	// by the server in the SSL/TLS connection has a revoked or unkown status. If
+	// the certificate has an unknown or revoked status, you must specify the actions
+	// that Network Firewall takes on outbound traffic. To use this option, you
+	// must specify a CertificateAuthorityArn in ServerCertificateConfiguration.
+	CheckCertificateRevocationStatus *CheckCertificateRevocationStatusActions `type:"structure"`
+
+	// A list of scopes.
 	Scopes []*ServerCertificateScope `type:"list"`
 
-	// The list of a server certificate configuration's Certificate Manager SSL/TLS
-	// certificates.
+	// The list of a server certificate configuration's Certificate Manager certificates,
+	// used for inbound SSL/TLS inspection.
 	ServerCertificates []*ServerCertificate `type:"list"`
 }
 
@@ -11240,6 +11337,9 @@ func (s ServerCertificateConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ServerCertificateConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ServerCertificateConfiguration"}
+	if s.CertificateAuthorityArn != nil && len(*s.CertificateAuthorityArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateAuthorityArn", 1))
+	}
 	if s.Scopes != nil {
 		for i, v := range s.Scopes {
 			if v == nil {
@@ -11265,6 +11365,18 @@ func (s *ServerCertificateConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *ServerCertificateConfiguration) SetCertificateAuthorityArn(v string) *ServerCertificateConfiguration {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetCheckCertificateRevocationStatus sets the CheckCertificateRevocationStatus field's value.
+func (s *ServerCertificateConfiguration) SetCheckCertificateRevocationStatus(v *CheckCertificateRevocationStatusActions) *ServerCertificateConfiguration {
+	s.CheckCertificateRevocationStatus = v
+	return s
 }
 
 // SetScopes sets the Scopes field's value.
@@ -12242,11 +12354,11 @@ func (s *TCPFlagField) SetMasks(v []*string) *TCPFlagField {
 //
 // To use a TLS inspection configuration, you add it to a new Network Firewall
 // firewall policy, then you apply the firewall policy to a firewall. Network
-// Firewall acts as a proxy service to decrypt and inspect inbound traffic.
-// You can reference a TLS inspection configuration from more than one firewall
-// policy, and you can use a firewall policy in more than one firewall. For
-// more information about using TLS inspection configurations, see Decrypting
-// SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+// Firewall acts as a proxy service to decrypt and inspect the traffic traveling
+// through your firewalls. You can reference a TLS inspection configuration
+// from more than one firewall policy, and you can use a firewall policy in
+// more than one firewall. For more information about using TLS inspection configurations,
+// see Inspecting SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
 // in the Network Firewall Developer Guide.
 type TLSInspectionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -12351,6 +12463,9 @@ func (s *TLSInspectionConfigurationMetadata) SetName(v string) *TLSInspectionCon
 type TLSInspectionConfigurationResponse struct {
 	_ struct{} `type:"structure"`
 
+	// Contains metadata about an Certificate Manager certificate.
+	CertificateAuthority *TlsCertificateData `type:"structure"`
+
 	// A list of the certificates associated with the TLS inspection configuration.
 	Certificates []*TlsCertificateData `type:"list"`
 
@@ -12410,6 +12525,12 @@ func (s TLSInspectionConfigurationResponse) String() string {
 // value will be replaced with "sensitive".
 func (s TLSInspectionConfigurationResponse) GoString() string {
 	return s.String()
+}
+
+// SetCertificateAuthority sets the CertificateAuthority field's value.
+func (s *TLSInspectionConfigurationResponse) SetCertificateAuthority(v *TlsCertificateData) *TLSInspectionConfigurationResponse {
+	s.CertificateAuthority = v
+	return s
 }
 
 // SetCertificates sets the Certificates field's value.
@@ -14398,11 +14519,11 @@ type UpdateTLSInspectionConfigurationInput struct {
 	//
 	// To use a TLS inspection configuration, you add it to a new Network Firewall
 	// firewall policy, then you apply the firewall policy to a firewall. Network
-	// Firewall acts as a proxy service to decrypt and inspect inbound traffic.
-	// You can reference a TLS inspection configuration from more than one firewall
-	// policy, and you can use a firewall policy in more than one firewall. For
-	// more information about using TLS inspection configurations, see Decrypting
-	// SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// Firewall acts as a proxy service to decrypt and inspect the traffic traveling
+	// through your firewalls. You can reference a TLS inspection configuration
+	// from more than one firewall policy, and you can use a firewall policy in
+	// more than one firewall. For more information about using TLS inspection configurations,
+	// see Inspecting SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
 	// in the Network Firewall Developer Guide.
 	//
 	// TLSInspectionConfiguration is a required field
@@ -14809,6 +14930,9 @@ const (
 
 	// ResourceStatusDeleting is a ResourceStatus enum value
 	ResourceStatusDeleting = "DELETING"
+
+	// ResourceStatusError is a ResourceStatus enum value
+	ResourceStatusError = "ERROR"
 )
 
 // ResourceStatus_Values returns all elements of the ResourceStatus enum
@@ -14816,6 +14940,27 @@ func ResourceStatus_Values() []string {
 	return []string{
 		ResourceStatusActive,
 		ResourceStatusDeleting,
+		ResourceStatusError,
+	}
+}
+
+const (
+	// RevocationCheckActionPass is a RevocationCheckAction enum value
+	RevocationCheckActionPass = "PASS"
+
+	// RevocationCheckActionDrop is a RevocationCheckAction enum value
+	RevocationCheckActionDrop = "DROP"
+
+	// RevocationCheckActionReject is a RevocationCheckAction enum value
+	RevocationCheckActionReject = "REJECT"
+)
+
+// RevocationCheckAction_Values returns all elements of the RevocationCheckAction enum
+func RevocationCheckAction_Values() []string {
+	return []string{
+		RevocationCheckActionPass,
+		RevocationCheckActionDrop,
+		RevocationCheckActionReject,
 	}
 }
 

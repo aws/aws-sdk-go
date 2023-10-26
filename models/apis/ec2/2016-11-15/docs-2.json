@@ -447,6 +447,7 @@
     "GetNetworkInsightsAccessScopeContent": "<p>Gets the content for the specified Network Access Scope.</p>",
     "GetPasswordData": "<p>Retrieves the encrypted administrator password for a running Windows instance.</p> <p>The Windows password is generated at boot by the <code>EC2Config</code> service or <code>EC2Launch</code> scripts (Windows Server 2016 and later). This usually only happens the first time an instance is launched. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html\">EC2Config</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2launch.html\">EC2Launch</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For the <code>EC2Config</code> service, the password is not generated for rebundled AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.</p> <p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p> <p>When you launch an instance, password generation and encryption may take a few minutes. If you try to retrieve the password before it's available, the output returns an empty string. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>",
     "GetReservedInstancesExchangeQuote": "<p>Returns a quote and exchange information for exchanging one or more specified Convertible Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be performed, the reason is returned in the response. Use <a>AcceptReservedInstancesExchangeQuote</a> to perform the exchange.</p>",
+    "GetSecurityGroupsForVpc": "<p>Gets security groups that can be associated by the Amazon Web Services account making the request with network interfaces in the specified VPC.</p>",
     "GetSerialConsoleAccessStatus": "<p>Retrieves the access status of your account to the EC2 serial console of all instances. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetSpotPlacementScores": "<p>Calculates the Spot placement score for a Region or Availability Zone based on the specified target capacity and compute requirements.</p> <p>You can specify your compute requirements either by using <code>InstanceRequirementsWithMetadata</code> and letting Amazon EC2 choose the optimal instance types to fulfill your Spot request, or you can specify the instance types by using <code>InstanceTypes</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the Amazon EC2 User Guide.</p>",
     "GetSubnetCidrReservations": "<p>Gets information about the subnet CIDR reservations.</p>",
@@ -2435,6 +2436,7 @@
         "GetPasswordDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetReservedInstancesExchangeQuoteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetReservedInstancesExchangeQuoteResult$IsValidExchange": "<p>If <code>true</code>, the exchange is valid. If <code>false</code>, the exchange cannot be completed.</p>",
+        "GetSecurityGroupsForVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSerialConsoleAccessStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSerialConsoleAccessStatusResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
         "GetSpotPlacementScoresRequest$SingleAvailabilityZone": "<p>Specify <code>true</code> so that the response returns a list of scored Availability Zones. Otherwise, the response returns a list of scored Regions.</p> <p>A list of scored Availability Zones is useful if you want to launch all of your Spot capacity into a single Availability Zone.</p>",
@@ -9217,6 +9219,7 @@
         "GetIpamPoolAllocationsRequest$Filters": "<p>One or more filters for the request. For more information about filtering, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html\">Filtering CLI output</a>.</p>",
         "GetIpamPoolCidrsRequest$Filters": "<p>One or more filters for the request. For more information about filtering, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html\">Filtering CLI output</a>.</p>",
         "GetIpamResourceCidrsRequest$Filters": "<p>One or more filters for the request. For more information about filtering, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html\">Filtering CLI output</a>.</p>",
+        "GetSecurityGroupsForVpcRequest$Filters": "<p>The filters. If using multiple filters, the results include security groups which match all filters.</p> <ul> <li> <p> <code>group-id</code>: The security group ID.</p> </li> <li> <p> <code>description</code>: The security group's description.</p> </li> <li> <p> <code>group-name</code>: The security group name.</p> </li> <li> <p> <code>owner-id</code>: The security group owner ID.</p> </li> <li> <p> <code>primary-vpc-id</code>: The VPC ID in which the security group was created.</p> </li> </ul>",
         "GetSubnetCidrReservationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>reservationType</code> - The type of reservation (<code>prefix</code> | <code>explicit</code>).</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "GetTransitGatewayAttachmentPropagationsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>transit-gateway-route-table-id</code> - The ID of the transit gateway route table.</p> </li> </ul>",
         "GetTransitGatewayMulticastDomainAssociationsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>resource-id</code> - The ID of the resource.</p> </li> <li> <p> <code>resource-type</code> - The type of resource. The valid value is: <code>vpc</code>.</p> </li> <li> <p> <code>state</code> - The state of the subnet association. Valid values are <code>associated</code> | <code>associating</code> | <code>disassociated</code> | <code>disassociating</code>.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet.</p> </li> <li> <p> <code>transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p> </li> </ul>",
@@ -9953,6 +9956,22 @@
     },
     "GetReservedInstancesExchangeQuoteResult": {
       "base": "<p>Contains the output of GetReservedInstancesExchangeQuote.</p>",
+      "refs": {
+      }
+    },
+    "GetSecurityGroupsForVpcRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSecurityGroupsForVpcRequestMaxResults": {
+      "base": null,
+      "refs": {
+        "GetSecurityGroupsForVpcRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>"
+      }
+    },
+    "GetSecurityGroupsForVpcResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -17666,6 +17685,18 @@
         "SecurityGroupList$member": null
       }
     },
+    "SecurityGroupForVpc": {
+      "base": "<p>A security group that can be used by interfaces in the VPC.</p>",
+      "refs": {
+        "SecurityGroupForVpcList$member": null
+      }
+    },
+    "SecurityGroupForVpcList": {
+      "base": null,
+      "refs": {
+        "GetSecurityGroupsForVpcResult$SecurityGroupForVpcs": "<p>The security group that can be used by interfaces in the VPC.</p>"
+      }
+    },
     "SecurityGroupId": {
       "base": null,
       "refs": {
@@ -19283,6 +19314,8 @@
         "GetReservedInstancesExchangeQuoteResult$CurrencyCode": "<p>The currency of the transaction.</p>",
         "GetReservedInstancesExchangeQuoteResult$PaymentDue": "<p>The total true upfront charge for the exchange.</p>",
         "GetReservedInstancesExchangeQuoteResult$ValidationFailureReason": "<p>Describes the reason why the exchange cannot be completed.</p>",
+        "GetSecurityGroupsForVpcRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "GetSecurityGroupsForVpcResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "GetSpotPlacementScoresRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "GetSpotPlacementScoresResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "GetSubnetCidrReservationsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -20049,6 +20082,11 @@
         "SecurityGroup$OwnerId": "<p>The Amazon Web Services account ID of the owner of the security group.</p>",
         "SecurityGroup$GroupId": "<p>The ID of the security group.</p>",
         "SecurityGroup$VpcId": "<p>The ID of the VPC for the security group.</p>",
+        "SecurityGroupForVpc$Description": "<p>The security group's description.</p>",
+        "SecurityGroupForVpc$GroupName": "<p>The security group name.</p>",
+        "SecurityGroupForVpc$OwnerId": "<p>The security group owner ID.</p>",
+        "SecurityGroupForVpc$GroupId": "<p>The security group ID.</p>",
+        "SecurityGroupForVpc$PrimaryVpcId": "<p>The VPC ID in which the security group was created.</p>",
         "SecurityGroupIdentifier$GroupId": "<p>The ID of the security group.</p>",
         "SecurityGroupIdentifier$GroupName": "<p>The name of the security group.</p>",
         "SecurityGroupReference$GroupId": "<p>The ID of your security group.</p>",
@@ -20779,6 +20817,7 @@
         "ReservedInstancesListing$Tags": "<p>Any tags assigned to the resource.</p>",
         "RouteTable$Tags": "<p>Any tags assigned to the route table.</p>",
         "SecurityGroup$Tags": "<p>Any tags assigned to the security group.</p>",
+        "SecurityGroupForVpc$Tags": "<p>The security group tags.</p>",
         "SecurityGroupRule$Tags": "<p>The tags applied to the security group rule.</p>",
         "ServiceConfiguration$Tags": "<p>The tags assigned to the service.</p>",
         "ServiceDetail$Tags": "<p>The tags assigned to the service.</p>",
@@ -23226,6 +23265,7 @@
         "Ec2InstanceConnectEndpoint$VpcId": "<p>The ID of the VPC in which the EC2 Instance Connect Endpoint was created.</p>",
         "EnableVpcClassicLinkDnsSupportRequest$VpcId": "<p>The ID of the VPC.</p>",
         "EnableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "GetSecurityGroupsForVpcRequest$VpcId": "<p>The VPC ID where the security group can be used.</p>",
         "ModifyClientVpnEndpointRequest$VpcId": "<p>The ID of the VPC to associate with the Client VPN endpoint.</p>",
         "ModifyVpcAttributeRequest$VpcId": "<p>The ID of the VPC.</p>",
         "ModifyVpcTenancyRequest$VpcId": "<p>The ID of the VPC.</p>",

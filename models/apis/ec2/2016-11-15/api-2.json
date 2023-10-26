@@ -3982,6 +3982,15 @@
       "input":{"shape":"GetReservedInstancesExchangeQuoteRequest"},
       "output":{"shape":"GetReservedInstancesExchangeQuoteResult"}
     },
+    "GetSecurityGroupsForVpc":{
+      "name":"GetSecurityGroupsForVpc",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSecurityGroupsForVpcRequest"},
+      "output":{"shape":"GetSecurityGroupsForVpcResult"}
+    },
     "GetSerialConsoleAccessStatus":{
       "name":"GetSerialConsoleAccessStatus",
       "http":{
@@ -23318,6 +23327,38 @@
         }
       }
     },
+    "GetSecurityGroupsForVpcRequest":{
+      "type":"structure",
+      "required":["VpcId"],
+      "members":{
+        "VpcId":{"shape":"VpcId"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"GetSecurityGroupsForVpcRequestMaxResults"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetSecurityGroupsForVpcRequestMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "GetSecurityGroupsForVpcResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "SecurityGroupForVpcs":{
+          "shape":"SecurityGroupForVpcList",
+          "locationName":"securityGroupForVpcSet"
+        }
+      }
+    },
     "GetSerialConsoleAccessStatusRequest":{
       "type":"structure",
       "members":{
@@ -38707,6 +38748,42 @@
           "shape":"String",
           "locationName":"vpcId"
         }
+      }
+    },
+    "SecurityGroupForVpc":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "PrimaryVpcId":{
+          "shape":"String",
+          "locationName":"primaryVpcId"
+        }
+      }
+    },
+    "SecurityGroupForVpcList":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupForVpc",
+        "locationName":"item"
       }
     },
     "SecurityGroupId":{"type":"string"},

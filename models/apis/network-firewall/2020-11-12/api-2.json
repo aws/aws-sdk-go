@@ -709,6 +709,13 @@
       "type":"list",
       "member":{"shape":"TlsCertificateData"}
     },
+    "CheckCertificateRevocationStatusActions":{
+      "type":"structure",
+      "members":{
+        "RevokedStatusAction":{"shape":"RevocationCheckAction"},
+        "UnknownStatusAction":{"shape":"RevocationCheckAction"}
+      }
+    },
     "CollectionMember_String":{"type":"string"},
     "ConfigurationSyncState":{
       "type":"string",
@@ -1676,7 +1683,16 @@
       "type":"string",
       "enum":[
         "ACTIVE",
-        "DELETING"
+        "DELETING",
+        "ERROR"
+      ]
+    },
+    "RevocationCheckAction":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "DROP",
+        "REJECT"
       ]
     },
     "RuleCapacity":{"type":"integer"},
@@ -1816,7 +1832,9 @@
       "type":"structure",
       "members":{
         "ServerCertificates":{"shape":"ServerCertificates"},
-        "Scopes":{"shape":"ServerCertificateScopes"}
+        "Scopes":{"shape":"ServerCertificateScopes"},
+        "CertificateAuthorityArn":{"shape":"ResourceArn"},
+        "CheckCertificateRevocationStatus":{"shape":"CheckCertificateRevocationStatusActions"}
       }
     },
     "ServerCertificateConfigurations":{
@@ -2101,7 +2119,8 @@
         "LastModifiedTime":{"shape":"LastUpdateTime"},
         "NumberOfAssociations":{"shape":"NumberOfAssociations"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "Certificates":{"shape":"Certificates"}
+        "Certificates":{"shape":"Certificates"},
+        "CertificateAuthority":{"shape":"TlsCertificateData"}
       }
     },
     "TLSInspectionConfigurations":{

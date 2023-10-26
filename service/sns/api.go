@@ -279,6 +279,10 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 //     exceeds the limit. To add more filter polices, submit an Amazon SNS Limit
 //     Increase case in the Amazon Web Services Support Center.
 //
+//   - ErrCodeReplayLimitExceededException "ReplayLimitExceeded"
+//     Indicates that the request parameter has exceeded the maximum number of concurrent
+//     message replays.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ConfirmSubscription
 func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (*ConfirmSubscriptionOutput, error) {
 	req, out := c.ConfirmSubscriptionRequest(input)
@@ -1084,6 +1088,9 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *request.Request,
 //
 //   - ErrCodeInvalidParameterException "InvalidParameter"
 //     Indicates that a request parameter does not comply with the associated constraints.
+//
+//   - ErrCodeInvalidStateException "InvalidState"
+//     Indicates that the specified state is not a valid state for an event source.
 //
 //   - ErrCodeInternalErrorException "InternalError"
 //     Indicates an internal service error.
@@ -3272,13 +3279,13 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output 
 //     Indicates that the user has been denied access to the requested resource.
 //
 //   - ErrCodeKMSDisabledException "KMSDisabled"
-//     The request was rejected because the specified customer master key (CMK)
+//     The request was rejected because the specified Amazon Web Services KMS key
 //     isn't enabled.
 //
 //   - ErrCodeKMSInvalidStateException "KMSInvalidState"
 //     The request was rejected because the state of the specified resource isn't
-//     valid for this request. For more information, see How Key State Affects Use
-//     of a Customer Master Key (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+//     valid for this request. For more information, see Key states of Amazon Web
+//     Services KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //     in the Key Management Service Developer Guide.
 //
 //   - ErrCodeKMSNotFoundException "KMSNotFound"
@@ -3444,13 +3451,13 @@ func (c *SNS) PublishBatchRequest(input *PublishBatchInput) (req *request.Reques
 //     The batch request contains more entries than permissible.
 //
 //   - ErrCodeKMSDisabledException "KMSDisabled"
-//     The request was rejected because the specified customer master key (CMK)
+//     The request was rejected because the specified Amazon Web Services KMS key
 //     isn't enabled.
 //
 //   - ErrCodeKMSInvalidStateException "KMSInvalidState"
 //     The request was rejected because the state of the specified resource isn't
-//     valid for this request. For more information, see How Key State Affects Use
-//     of a Customer Master Key (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+//     valid for this request. For more information, see Key states of Amazon Web
+//     Services KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //     in the Key Management Service Developer Guide.
 //
 //   - ErrCodeKMSNotFoundException "KMSNotFound"
@@ -4032,6 +4039,10 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 //     exceeds the limit. To add more filter polices, submit an Amazon SNS Limit
 //     Increase case in the Amazon Web Services Support Center.
 //
+//   - ErrCodeReplayLimitExceededException "ReplayLimitExceeded"
+//     Indicates that the request parameter has exceeded the maximum number of concurrent
+//     message replays.
+//
 //   - ErrCodeInternalErrorException "InternalError"
 //     Indicates an internal service error.
 //
@@ -4209,7 +4220,7 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, out
 // to confirm the subscription.
 //
 // You call the ConfirmSubscription action with the token from the subscription
-// response. Confirmation tokens are valid for three days.
+// response. Confirmation tokens are valid for two days.
 //
 // This action is throttled at 100 transactions per second (TPS).
 //
@@ -4229,6 +4240,10 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, out
 //     Indicates that the number of filter polices in your Amazon Web Services account
 //     exceeds the limit. To add more filter polices, submit an Amazon SNS Limit
 //     Increase case in the Amazon Web Services Support Center.
+//
+//   - ErrCodeReplayLimitExceededException "ReplayLimitExceeded"
+//     Indicates that the request parameter has exceeded the maximum number of concurrent
+//     message replays.
 //
 //   - ErrCodeInvalidParameterException "InvalidParameter"
 //     Indicates that a request parameter does not comply with the associated constraints.
@@ -5423,7 +5438,13 @@ type CreateTopicInput struct {
 	//
 	// The following attributes apply only to FIFO topics (https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html):
 	//
-	//    * FifoTopic – When this is set to true, a FIFO topic is created.
+	//    * ArchivePolicy – Adds or updates an inline policy document to archive
+	//    messages stored in the specified Amazon SNS topic.
+	//
+	//    * BeginningArchiveTime – The earliest starting point at which a message
+	//    in the topic’s archive can be replayed from. This point in time is based
+	//    on the configured message retention period set by the topic’s message
+	//    archiving policy.
 	//
 	//    * ContentBasedDeduplication – Enables content-based deduplication for
 	//    FIFO topics. By default, ContentBasedDeduplication is set to false. If
@@ -9154,6 +9175,19 @@ type SubscribeInput struct {
 	//    more information, see Fanout to Kinesis Data Firehose delivery streams
 	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
+	//
+	// The following attributes apply only to FIFO topics (https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html):
+	//
+	//    * ReplayPolicy – Adds or updates an inline policy document for a subscription
+	//    to replay messages stored in the specified Amazon SNS topic.
+	//
+	//    * ReplayStatus – Retrieves the status of the subscription message replay,
+	//    which can be one of the following: Completed – The replay has successfully
+	//    redelivered all messages, and is now delivering newly published messages.
+	//    If an ending point was specified in the ReplayPolicy then the subscription
+	//    will no longer receive newly published messages. In progress – The replay
+	//    is currently replaying the selected messages. Failed – The replay was
+	//    unable to complete. Pending – The default state while the replay initiates.
 	Attributes map[string]*string `type:"map"`
 
 	// The endpoint that you want to receive notifications. Endpoints vary by protocol:
