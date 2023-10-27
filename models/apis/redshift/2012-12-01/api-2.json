@@ -257,7 +257,8 @@
         {"shape":"DependentServiceRequestThrottlingFault"},
         {"shape":"InvalidClusterTrackFault"},
         {"shape":"SnapshotScheduleNotFoundFault"},
-        {"shape":"InvalidRetentionPeriodFault"}
+        {"shape":"InvalidRetentionPeriodFault"},
+        {"shape":"Ipv6CidrBlockNotFoundFault"}
       ]
     },
     "CreateClusterParameterGroup":{
@@ -1643,7 +1644,8 @@
         {"shape":"InvalidClusterTrackFault"},
         {"shape":"InvalidRetentionPeriodFault"},
         {"shape":"UnsupportedOperationFault"},
-        {"shape":"CustomCnameAssociationFault"}
+        {"shape":"CustomCnameAssociationFault"},
+        {"shape":"Ipv6CidrBlockNotFoundFault"}
       ]
     },
     "ModifyClusterDbRevision":{
@@ -2064,7 +2066,8 @@
         {"shape":"ReservedNodeOfferingNotFoundFault"},
         {"shape":"DependentServiceUnavailableFault"},
         {"shape":"ReservedNodeAlreadyExistsFault"},
-        {"shape":"UnsupportedOperationFault"}
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"Ipv6CidrBlockNotFoundFault"}
       ]
     },
     "RestoreTableFromClusterSnapshot":{
@@ -2669,7 +2672,8 @@
         "CustomDomainCertificateArn":{"shape":"String"},
         "CustomDomainCertificateExpiryDate":{"shape":"TStamp"},
         "MasterPasswordSecretArn":{"shape":"String"},
-        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"},
+        "IpAddressType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3017,7 +3021,8 @@
         "VpcId":{"shape":"String"},
         "SubnetGroupStatus":{"shape":"String"},
         "Subnets":{"shape":"SubnetList"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SupportedClusterIpAddressTypes":{"shape":"ValueStringList"}
       },
       "wrapper":true
     },
@@ -3210,7 +3215,8 @@
         "DefaultIamRoleArn":{"shape":"String"},
         "LoadSampleData":{"shape":"String"},
         "ManageMasterPassword":{"shape":"BooleanOptional"},
-        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"},
+        "IpAddressType":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -5229,6 +5235,17 @@
       },
       "exception":true
     },
+    "Ipv6CidrBlockNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"Ipv6CidrBlockNotFoundFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "LimitExceededFault":{
       "type":"structure",
       "members":{
@@ -5394,7 +5411,8 @@
         "AvailabilityZone":{"shape":"String"},
         "Port":{"shape":"IntegerOptional"},
         "ManageMasterPassword":{"shape":"BooleanOptional"},
-        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"},
+        "IpAddressType":{"shape":"String"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -5559,7 +5577,8 @@
         "NetworkInterfaceId":{"shape":"String"},
         "SubnetId":{"shape":"String"},
         "PrivateIpAddress":{"shape":"String"},
-        "AvailabilityZone":{"shape":"String"}
+        "AvailabilityZone":{"shape":"String"},
+        "Ipv6Address":{"shape":"String"}
       }
     },
     "NetworkInterfaceList":{
@@ -6218,7 +6237,8 @@
         "TargetReservedNodeOfferingId":{"shape":"String"},
         "Encrypted":{"shape":"BooleanOptional"},
         "ManageMasterPassword":{"shape":"BooleanOptional"},
-        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"},
+        "IpAddressType":{"shape":"String"}
       }
     },
     "RestoreFromClusterSnapshotResult":{

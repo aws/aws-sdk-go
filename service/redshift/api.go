@@ -1260,6 +1260,10 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *request
 //
 //     The value must be either -1 or an integer between 1 and 3,653.
 //
+//   - ErrCodeIpv6CidrBlockNotFoundFault "Ipv6CidrBlockNotFoundFault"
+//     There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
+//     dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCluster
 func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
@@ -10929,6 +10933,10 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *request
 //   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
 //     An error occurred when an attempt was made to change the custom domain association.
 //
+//   - ErrCodeIpv6CidrBlockNotFoundFault "Ipv6CidrBlockNotFoundFault"
+//     There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
+//     dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCluster
 func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
 	req, out := c.ModifyClusterRequest(input)
@@ -13060,6 +13068,10 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 //
 //   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
 //     The requested operation isn't supported.
+//
+//   - ErrCodeIpv6CidrBlockNotFoundFault "Ipv6CidrBlockNotFoundFault"
+//     There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
+//     dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreFromClusterSnapshot
 func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
@@ -15613,6 +15625,9 @@ type Cluster struct {
 	// the cluster to access other Amazon Web Services services.
 	IamRoles []*ClusterIamRole `locationNameList:"ClusterIamRole" type:"list"`
 
+	// The IP address type for the cluster. Possible values are ipv4 and dualstack.
+	IpAddressType *string `type:"string"`
+
 	// The Key Management Service (KMS) key ID of the encryption key used to encrypt
 	// data in the cluster.
 	KmsKeyId *string `type:"string"`
@@ -15921,6 +15936,12 @@ func (s *Cluster) SetHsmStatus(v *HsmStatus) *Cluster {
 // SetIamRoles sets the IamRoles field's value.
 func (s *Cluster) SetIamRoles(v []*ClusterIamRole) *Cluster {
 	s.IamRoles = v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *Cluster) SetIpAddressType(v string) *Cluster {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -16685,6 +16706,10 @@ type ClusterSubnetGroup struct {
 	// A list of the VPC Subnet elements.
 	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
 
+	// The IP address types supported by this cluster subnet group. Possible values
+	// are ipv4 and dualstack.
+	SupportedClusterIpAddressTypes []*string `locationNameList:"item" type:"list"`
+
 	// The list of tags for the cluster subnet group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -16731,6 +16756,12 @@ func (s *ClusterSubnetGroup) SetSubnetGroupStatus(v string) *ClusterSubnetGroup 
 // SetSubnets sets the Subnets field's value.
 func (s *ClusterSubnetGroup) SetSubnets(v []*Subnet) *ClusterSubnetGroup {
 	s.Subnets = v
+	return s
+}
+
+// SetSupportedClusterIpAddressTypes sets the SupportedClusterIpAddressTypes field's value.
+func (s *ClusterSubnetGroup) SetSupportedClusterIpAddressTypes(v []*string) *ClusterSubnetGroup {
+	s.SupportedClusterIpAddressTypes = v
 	return s
 }
 
@@ -17222,6 +17253,10 @@ type CreateClusterInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	IamRoles []*string `locationNameList:"IamRoleArn" type:"list"`
 
+	// The IP address types that the cluster supports. Possible values are ipv4
+	// and dualstack.
+	IpAddressType *string `type:"string"`
+
 	// The Key Management Service (KMS) key ID of the encryption key that you want
 	// to use to encrypt data in the cluster.
 	KmsKeyId *string `type:"string"`
@@ -17519,6 +17554,12 @@ func (s *CreateClusterInput) SetHsmConfigurationIdentifier(v string) *CreateClus
 // SetIamRoles sets the IamRoles field's value.
 func (s *CreateClusterInput) SetIamRoles(v []*string) *CreateClusterInput {
 	s.IamRoles = v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *CreateClusterInput) SetIpAddressType(v string) *CreateClusterInput {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -29610,6 +29651,10 @@ type ModifyClusterInput struct {
 	// the Amazon Redshift cluster can use to retrieve and store keys in an HSM.
 	HsmConfigurationIdentifier *string `type:"string"`
 
+	// The IP address types that the cluster supports. Possible values are ipv4
+	// and dualstack.
+	IpAddressType *string `type:"string"`
+
 	// The Key Management Service (KMS) key ID of the encryption key that you want
 	// to use to encrypt data in the cluster.
 	KmsKeyId *string `type:"string"`
@@ -29852,6 +29897,12 @@ func (s *ModifyClusterInput) SetHsmClientCertificateIdentifier(v string) *Modify
 // SetHsmConfigurationIdentifier sets the HsmConfigurationIdentifier field's value.
 func (s *ModifyClusterInput) SetHsmConfigurationIdentifier(v string) *ModifyClusterInput {
 	s.HsmConfigurationIdentifier = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *ModifyClusterInput) SetIpAddressType(v string) *ModifyClusterInput {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -31600,6 +31651,9 @@ type NetworkInterface struct {
 	// The Availability Zone.
 	AvailabilityZone *string `type:"string"`
 
+	// The IPv6 address of the network interface within the subnet.
+	Ipv6Address *string `type:"string"`
+
 	// The network interface identifier.
 	NetworkInterfaceId *string `type:"string"`
 
@@ -31631,6 +31685,12 @@ func (s NetworkInterface) GoString() string {
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *NetworkInterface) SetAvailabilityZone(v string) *NetworkInterface {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetIpv6Address sets the Ipv6Address field's value.
+func (s *NetworkInterface) SetIpv6Address(v string) *NetworkInterface {
+	s.Ipv6Address = &v
 	return s
 }
 
@@ -33643,6 +33703,9 @@ type RestoreFromClusterSnapshotInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	IamRoles []*string `locationNameList:"IamRoleArn" type:"list"`
 
+	// The IP address type for the cluster. Possible values are ipv4 and dualstack.
+	IpAddressType *string `type:"string"`
+
 	// The Key Management Service (KMS) key ID of the encryption key that encrypts
 	// data in the cluster restored from a shared snapshot. You can also provide
 	// the key ID when you restore from an unencrypted snapshot to an encrypted
@@ -33890,6 +33953,12 @@ func (s *RestoreFromClusterSnapshotInput) SetHsmConfigurationIdentifier(v string
 // SetIamRoles sets the IamRoles field's value.
 func (s *RestoreFromClusterSnapshotInput) SetIamRoles(v []*string) *RestoreFromClusterSnapshotInput {
 	s.IamRoles = v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *RestoreFromClusterSnapshotInput) SetIpAddressType(v string) *RestoreFromClusterSnapshotInput {
+	s.IpAddressType = &v
 	return s
 }
 

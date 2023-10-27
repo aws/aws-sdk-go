@@ -1,3 +1,17 @@
+Release v1.46.6 (2023-10-27)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Updated CreateCluster API request and DescribeCluster API responses to include EbsRootVolumeIops, and EbsRootVolumeThroughput attributes that specify the user configured root volume IOPS and throughput for Amazon EBS root device volume. This feature will be available from Amazon EMR releases 6.15.0
+* `service/neptune`: Updates service API and documentation
+  * Update TdeCredentialPassword type to SensitiveString
+* `service/pinpoint`: Updates service documentation
+  * Updated documentation to describe the case insensitivity for EndpointIds.
+* `service/redshift`: Updates service API and documentation
+  * added support to create a dual stack cluster
+* `service/wafv2`: Updates service documentation
+
 Release v1.46.5 (2023-10-26)
 ===
 

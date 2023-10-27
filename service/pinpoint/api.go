@@ -21395,7 +21395,8 @@ type EndpointBatchItem struct {
 	// specified by the Address property.
 	EndpointStatus *string `type:"string"`
 
-	// The unique identifier for the endpoint in the context of the batch.
+	// The case insensitive unique identifier for the endpoint in the context of
+	// the batch. The identifier can't contain $, { or }.
 	Id *string `type:"string"`
 
 	// The geographic information for the endpoint.
