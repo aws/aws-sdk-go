@@ -2097,6 +2097,11 @@
       "refs": {
       }
     },
+    "Ipv6CidrBlockNotFoundFault": {
+      "base": "<p>There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.</p>",
+      "refs": {
+      }
+    },
     "LimitExceededFault": {
       "base": "<p>The encryption key has exceeded its grant limit in Amazon Web Services KMS.</p>",
       "refs": {
@@ -3157,6 +3162,7 @@
         "Cluster$CustomDomainCertificateArn": "<p>The certificate Amazon Resource Name (ARN) for the custom domain name.</p>",
         "Cluster$MasterPasswordSecretArn": "<p>The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.</p>",
         "Cluster$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret.</p>",
+        "Cluster$IpAddressType": "<p>The IP address type for the cluster. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
         "ClusterAssociatedToSchedule$ClusterIdentifier": "<p/>",
         "ClusterCredentials$DbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified DbUser exists in the database, the new user name has the same database permissions as the the user named in DbUser. By default, the user is added to PUBLIC. If the <code>DbGroups</code> parameter is specifed, <code>DbUser</code> is added to the listed groups for any sessions created using these credentials.</p>",
         "ClusterDbRevision$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
@@ -3223,6 +3229,7 @@
         "CreateClusterMessage$DefaultIamRoleArn": "<p>The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was created. </p>",
         "CreateClusterMessage$LoadSampleData": "<p>A flag that specifies whether to load sample data once the cluster is created.</p>",
         "CreateClusterMessage$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if <code>ManageMasterPassword</code> is true.</p>",
+        "CreateClusterMessage$IpAddressType": "<p>The IP address types that the cluster supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
         "CreateClusterParameterGroupMessage$ParameterGroupName": "<p>The name of the cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique withing your Amazon Web Services account.</p> </li> </ul> <note> <p>This value is stored as a lower-case string.</p> </note>",
         "CreateClusterParameterGroupMessage$ParameterGroupFamily": "<p>The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters.</p> <p>To get a list of valid parameter group family names, you can call <a>DescribeClusterParameterGroups</a>. By default, Amazon Redshift returns a list of all the parameter groups that are owned by your Amazon Web Services account, including the default parameter groups for each Amazon Redshift engine version. The parameter group family names associated with the default parameter groups provide you the valid values. For example, a valid family name is \"redshift-1.0\". </p>",
         "CreateClusterParameterGroupMessage$Description": "<p>A description of the parameter group.</p>",
@@ -3495,6 +3502,7 @@
         "ModifyClusterMessage$KmsKeyId": "<p>The Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster.</p>",
         "ModifyClusterMessage$AvailabilityZone": "<p>The option to initiate relocation for an Amazon Redshift cluster to the target Availability Zone.</p>",
         "ModifyClusterMessage$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if <code>ManageMasterPassword</code> is true.</p>",
+        "ModifyClusterMessage$IpAddressType": "<p>The IP address types that the cluster supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
         "ModifyClusterParameterGroupMessage$ParameterGroupName": "<p>The name of the parameter group to be modified.</p>",
         "ModifyClusterSnapshotMessage$SnapshotIdentifier": "<p>The identifier of the snapshot whose setting you want to modify.</p>",
         "ModifyClusterSnapshotScheduleMessage$ClusterIdentifier": "<p>A unique identifier for the cluster whose snapshot schedule you want to modify. </p>",
@@ -3520,6 +3528,7 @@
         "NetworkInterface$SubnetId": "<p>The subnet identifier. </p>",
         "NetworkInterface$PrivateIpAddress": "<p>The IPv4 address of the network interface within the subnet. </p>",
         "NetworkInterface$AvailabilityZone": "<p>The Availability Zone. </p>",
+        "NetworkInterface$Ipv6Address": "<p>The IPv6 address of the network interface within the subnet. </p>",
         "NodeConfigurationOption$NodeType": "<p>The node type, such as, \"ds2.8xlarge\".</p>",
         "NodeConfigurationOptionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "OrderableClusterOption$ClusterVersion": "<p>The version of the orderable cluster.</p>",
@@ -3601,6 +3610,7 @@
         "RestoreFromClusterSnapshotMessage$ReservedNodeId": "<p>The identifier of the target reserved node offering.</p>",
         "RestoreFromClusterSnapshotMessage$TargetReservedNodeOfferingId": "<p>The identifier of the target reserved node offering.</p>",
         "RestoreFromClusterSnapshotMessage$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if <code>ManageMasterPassword</code> is true.</p>",
+        "RestoreFromClusterSnapshotMessage$IpAddressType": "<p>The IP address type for the cluster. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
         "RestoreStatus$Status": "<p>The status of the restore action. Returns starting, restoring, completed, or failed.</p>",
         "RestoreTableFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the Amazon Redshift cluster to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to restore the table from. This snapshot must have been created from the Amazon Redshift cluster specified by the <code>ClusterIdentifier</code> parameter.</p>",
@@ -4055,6 +4065,7 @@
     "ValueStringList": {
       "base": null,
       "refs": {
+        "ClusterSubnetGroup$SupportedClusterIpAddressTypes": "<p>The IP address types supported by this cluster subnet group. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
         "NodeConfigurationOptionsFilter$Values": "<p>List of values. Compare Name using Operator to Values. If filter Name is NumberOfNodes, then values can range from 0 to 200. If filter Name is EstimatedDiskUtilizationPercent, then values can range from 0 to 100. For example, filter NumberOfNodes (name) GT (operator) 3 (values).</p>",
         "ScheduledActionFilter$Values": "<p>List of values. Compare if the value (of type defined by <code>Name</code>) equals an item in the list of scheduled actions. </p>"
       }

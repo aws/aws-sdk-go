@@ -7286,8 +7286,7 @@ type AddRoleToDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the Neptune DB cluster that the IAM role is to
-	// be associated with. For the list of supported feature names, see DBEngineVersion
-	// (neptune/latest/userguide/api-other-apis.html#DBEngineVersion).
+	// be associated with. For the list of supported feature names, see DBEngineVersion.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune
@@ -8740,8 +8739,8 @@ type CreateDBClusterInput struct {
 	// backups are enabled using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each Amazon Region. To see the time blocks available, see Adjusting
-	// the Preferred Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// of time for each Amazon Region. To see the time blocks available, see Neptune
+	// Maintenance Window (https://docs.aws.amazon.com/neptune/latest/userguide/manage-console-maintaining.html#manage-console-maintaining-window)
 	// in the Amazon Neptune User Guide.
 	//
 	// Constraints:
@@ -8762,8 +8761,7 @@ type CreateDBClusterInput struct {
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
 	// of time for each Amazon Region, occurring on a random day of the week. To
-	// see the time blocks available, see Adjusting the Preferred Maintenance Window
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// see the time blocks available, see Neptune Maintenance Window (https://docs.aws.amazon.com/neptune/latest/userguide/manage-console-maintaining.html#manage-console-maintaining-window)
 	// in the Amazon Neptune User Guide.
 	//
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
@@ -9012,7 +9010,7 @@ type CreateDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -9546,7 +9544,11 @@ type CreateDBInstanceInput struct {
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
-	TdeCredentialPassword *string `type:"string"`
+	//
+	// TdeCredentialPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateDBInstanceInput's
+	// String and GoString methods.
+	TdeCredentialPassword *string `type:"string" sensitive:"true"`
 
 	// The time zone of the DB instance.
 	Timezone *string `type:"string"`
@@ -10448,7 +10450,7 @@ func (s *CreateGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *CreateGl
 
 // Contains the details of an Amazon Neptune DB cluster.
 //
-// This data type is used as a response element in the DescribeDBClusters action.
+// This data type is used as a response element in the DescribeDBClusters.
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
@@ -11202,8 +11204,7 @@ type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the feature associated with the Amazon Identity and Access Management
-	// (IAM) role. For the list of supported feature names, see DescribeDBEngineVersions
-	// (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
+	// (IAM) role. For the list of supported feature names, see DescribeDBEngineVersions.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
@@ -12837,7 +12838,7 @@ type DeleteDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -16756,7 +16757,7 @@ type FailoverDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -17513,7 +17514,7 @@ type ModifyDBClusterInput struct {
 	//
 	// For a list of valid engine versions, see Engine Releases for Amazon Neptune
 	// (https://docs.aws.amazon.com/neptune/latest/userguide/engine-releases.html),
-	// or call DescribeDBEngineVersions (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
+	// or call DescribeDBEngineVersions.
 	EngineVersion *string `type:"string"`
 
 	// Not supported by Neptune.
@@ -17733,7 +17734,7 @@ type ModifyDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -18211,7 +18212,11 @@ type ModifyDBInstanceInput struct {
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
-	TdeCredentialPassword *string `type:"string"`
+	//
+	// TdeCredentialPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ModifyDBInstanceInput's
+	// String and GoString methods.
+	TdeCredentialPassword *string `type:"string" sensitive:"true"`
 
 	// A list of EC2 VPC security groups to authorize on this DB instance. This
 	// change is asynchronously applied as soon as possible.
@@ -19675,7 +19680,7 @@ type PromoteReadReplicaDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -19960,8 +19965,7 @@ type RemoveRoleFromDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB cluster that the IAM role is to be disassociated
-	// from. For the list of supported feature names, see DescribeDBEngineVersions
-	// (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
+	// from. For the list of supported feature names, see DescribeDBEngineVersions.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB
@@ -20757,7 +20761,7 @@ type RestoreDBClusterFromSnapshotOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -21061,7 +21065,7 @@ type RestoreDBClusterToPointInTimeOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -21237,7 +21241,7 @@ type StartDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -21317,7 +21321,7 @@ type StopDBClusterOutput struct {
 
 	// Contains the details of an Amazon Neptune DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters action.
+	// This data type is used as a response element in the DescribeDBClusters.
 	DBCluster *DBCluster `type:"structure"`
 }
 

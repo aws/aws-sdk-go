@@ -566,6 +566,13 @@ const (
 	// The cluster subnet group does not cover all Availability Zones.
 	ErrCodeInvalidVPCNetworkStateFault = "InvalidVPCNetworkStateFault"
 
+	// ErrCodeIpv6CidrBlockNotFoundFault for service response error code
+	// "Ipv6CidrBlockNotFoundFault".
+	//
+	// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
+	// dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
+	ErrCodeIpv6CidrBlockNotFoundFault = "Ipv6CidrBlockNotFoundFault"
+
 	// ErrCodeLimitExceededFault for service response error code
 	// "LimitExceededFault".
 	//

@@ -1548,7 +1548,7 @@
         "DBClusterIdentifier":{"shape":"String"},
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"},
+        "TdeCredentialPassword":{"shape":"SensitiveString"},
         "StorageEncrypted":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"},
         "Domain":{"shape":"String"},
@@ -3363,7 +3363,7 @@
         "NewDBInstanceIdentifier":{"shape":"String"},
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"},
+        "TdeCredentialPassword":{"shape":"SensitiveString"},
         "CACertificateIdentifier":{"shape":"String"},
         "Domain":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
@@ -3867,6 +3867,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "ServerlessV2ScalingConfiguration":{
       "type":"structure",

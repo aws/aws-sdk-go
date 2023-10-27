@@ -975,7 +975,9 @@
         "OutpostArn":{"shape":"OptionalArnType"},
         "StepConcurrencyLevel":{"shape":"Integer"},
         "PlacementGroups":{"shape":"PlacementGroupConfigList"},
-        "OSReleaseLabel":{"shape":"String"}
+        "OSReleaseLabel":{"shape":"String"},
+        "EbsRootVolumeIops":{"shape":"Integer"},
+        "EbsRootVolumeThroughput":{"shape":"Integer"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -2728,7 +2730,9 @@
         "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"},
         "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"},
         "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"},
-        "OSReleaseLabel":{"shape":"XmlStringMaxLen256"}
+        "OSReleaseLabel":{"shape":"XmlStringMaxLen256"},
+        "EbsRootVolumeIops":{"shape":"Integer"},
+        "EbsRootVolumeThroughput":{"shape":"Integer"}
       }
     },
     "RunJobFlowOutput":{

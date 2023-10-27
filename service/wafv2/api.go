@@ -69,18 +69,33 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 // of the web ACL. For information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html)
 // in the Amazon CloudFront Developer Guide.
 //
-// When you make changes to web ACLs or web ACL components, like rules and rule
-// groups, WAF propagates the changes everywhere that the web ACL and its components
-// are stored and used. Your changes are applied within seconds, but there might
-// be a brief period of inconsistency when the changes have arrived in some
-// places and not in others. So, for example, if you change a rule action setting,
-// the action might be the old action in one area and the new action in another
-// area. Or if you add an IP address to an IP set used in a blocking rule, the
-// new address might briefly be blocked in one area while still allowed in another.
-// This temporary inconsistency can occur when you first associate a web ACL
-// with an Amazon Web Services resource and when you change a web ACL that is
-// already associated with a resource. Generally, any inconsistencies of this
-// type last only a few seconds.
+// # Required permissions for customer-managed IAM policies
+//
+// This call requires permissions that are specific to the protected resource
+// type. For details, see Permissions for AssociateWebACL (https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-AssociateWebACL)
+// in the WAF Developer Guide.
+//
+// # Temporary inconsistencies during updates
+//
+// When you create or change a web ACL or other WAF resources, the changes take
+// a small amount of time to propagate to all areas where the resources are
+// stored. The propagation time can be from a few seconds to a number of minutes.
+//
+// The following are examples of the temporary inconsistencies that you might
+// notice during change propagation:
+//
+//   - After you create a web ACL, if you try to associate it with a resource,
+//     you might get an exception indicating that the web ACL is unavailable.
+//
+//   - After you add a rule group to a web ACL, the new rule group rules might
+//     be in effect in one area where the web ACL is used and not in another.
+//
+//   - After you change a rule action setting, you might see the old action
+//     in some places and the new action in others.
+//
+//   - After you add an IP address to an IP set that is in use in a blocking
+//     rule, the new address might be blocked in one area while still allowed
+//     in another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2142,6 +2157,12 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 // (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html)
 // in the Amazon CloudFront API Reference.
 //
+// # Required permissions for customer-managed IAM policies
+//
+// This call requires permissions that are specific to the protected resource
+// type. For details, see Permissions for DisassociateWebACL (https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-DisassociateWebACL)
+// in the WAF Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3550,6 +3571,22 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //
 // Retrieves the WebACL for the specified resource.
 //
+// This call uses GetWebACL, to verify that your account has permission to access
+// the retrieved web ACL. If you get an error that indicates that your account
+// isn't authorized to perform wafv2:GetWebACL on the resource, that error won't
+// be included in your CloudTrail event history.
+//
+// For Amazon CloudFront, don't use this call. Instead, call the CloudFront
+// action GetDistributionConfig. For information, see GetDistributionConfig
+// (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html)
+// in the Amazon CloudFront API Reference.
+//
+// # Required permissions for customer-managed IAM policies
+//
+// This call requires permissions that are specific to the protected resource
+// type. For details, see Permissions for GetWebACLForResource (https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-GetWebACLForResource)
+// in the WAF Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4479,8 +4516,18 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 // ListResourcesForWebACL API operation for AWS WAFV2.
 //
 // Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources
-// that are associated with the specified web ACL. If you want the list of Amazon
-// CloudFront resources, use the CloudFront call ListDistributionsByWebACLId.
+// that are associated with the specified web ACL.
+//
+// For Amazon CloudFront, don't use this call. Instead, use the CloudFront call
+// ListDistributionsByWebACLId. For information, see ListDistributionsByWebACLId
+// (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html)
+// in the Amazon CloudFront API Reference.
+//
+// # Required permissions for customer-managed IAM policies
+//
+// This call requires permissions that are specific to the protected resource
+// type. For details, see Permissions for ListResourcesForWebACL (https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-ListResourcesForWebACL)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5589,18 +5636,27 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //
 // # Provide the complete IP set specification to this call
 //
-// When you make changes to web ACLs or web ACL components, like rules and rule
-// groups, WAF propagates the changes everywhere that the web ACL and its components
-// are stored and used. Your changes are applied within seconds, but there might
-// be a brief period of inconsistency when the changes have arrived in some
-// places and not in others. So, for example, if you change a rule action setting,
-// the action might be the old action in one area and the new action in another
-// area. Or if you add an IP address to an IP set used in a blocking rule, the
-// new address might briefly be blocked in one area while still allowed in another.
-// This temporary inconsistency can occur when you first associate a web ACL
-// with an Amazon Web Services resource and when you change a web ACL that is
-// already associated with a resource. Generally, any inconsistencies of this
-// type last only a few seconds.
+// # Temporary inconsistencies during updates
+//
+// When you create or change a web ACL or other WAF resources, the changes take
+// a small amount of time to propagate to all areas where the resources are
+// stored. The propagation time can be from a few seconds to a number of minutes.
+//
+// The following are examples of the temporary inconsistencies that you might
+// notice during change propagation:
+//
+//   - After you create a web ACL, if you try to associate it with a resource,
+//     you might get an exception indicating that the web ACL is unavailable.
+//
+//   - After you add a rule group to a web ACL, the new rule group rules might
+//     be in effect in one area where the web ACL is used and not in another.
+//
+//   - After you change a rule action setting, you might see the old action
+//     in some places and the new action in others.
+//
+//   - After you add an IP address to an IP set that is in use in a blocking
+//     rule, the new address might be blocked in one area while still allowed
+//     in another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5852,18 +5908,27 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 //
 // # Provide the complete regex pattern set specification to this call
 //
-// When you make changes to web ACLs or web ACL components, like rules and rule
-// groups, WAF propagates the changes everywhere that the web ACL and its components
-// are stored and used. Your changes are applied within seconds, but there might
-// be a brief period of inconsistency when the changes have arrived in some
-// places and not in others. So, for example, if you change a rule action setting,
-// the action might be the old action in one area and the new action in another
-// area. Or if you add an IP address to an IP set used in a blocking rule, the
-// new address might briefly be blocked in one area while still allowed in another.
-// This temporary inconsistency can occur when you first associate a web ACL
-// with an Amazon Web Services resource and when you change a web ACL that is
-// already associated with a resource. Generally, any inconsistencies of this
-// type last only a few seconds.
+// # Temporary inconsistencies during updates
+//
+// When you create or change a web ACL or other WAF resources, the changes take
+// a small amount of time to propagate to all areas where the resources are
+// stored. The propagation time can be from a few seconds to a number of minutes.
+//
+// The following are examples of the temporary inconsistencies that you might
+// notice during change propagation:
+//
+//   - After you create a web ACL, if you try to associate it with a resource,
+//     you might get an exception indicating that the web ACL is unavailable.
+//
+//   - After you add a rule group to a web ACL, the new rule group rules might
+//     be in effect in one area where the web ACL is used and not in another.
+//
+//   - After you change a rule action setting, you might see the old action
+//     in some places and the new action in others.
+//
+//   - After you add an IP address to an IP set that is in use in a blocking
+//     rule, the new address might be blocked in one area while still allowed
+//     in another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5995,24 +6060,33 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //
 // # Provide the complete rule group specification to this call
 //
-// When you make changes to web ACLs or web ACL components, like rules and rule
-// groups, WAF propagates the changes everywhere that the web ACL and its components
-// are stored and used. Your changes are applied within seconds, but there might
-// be a brief period of inconsistency when the changes have arrived in some
-// places and not in others. So, for example, if you change a rule action setting,
-// the action might be the old action in one area and the new action in another
-// area. Or if you add an IP address to an IP set used in a blocking rule, the
-// new address might briefly be blocked in one area while still allowed in another.
-// This temporary inconsistency can occur when you first associate a web ACL
-// with an Amazon Web Services resource and when you change a web ACL that is
-// already associated with a resource. Generally, any inconsistencies of this
-// type last only a few seconds.
-//
 // A rule group defines a collection of rules to inspect and control web requests
 // that you can use in a WebACL. When you create a rule group, you define an
 // immutable capacity limit. If you update a rule group, you must stay within
 // the capacity. This allows others to reuse the rule group with confidence
 // in its capacity requirements.
+//
+// # Temporary inconsistencies during updates
+//
+// When you create or change a web ACL or other WAF resources, the changes take
+// a small amount of time to propagate to all areas where the resources are
+// stored. The propagation time can be from a few seconds to a number of minutes.
+//
+// The following are examples of the temporary inconsistencies that you might
+// notice during change propagation:
+//
+//   - After you create a web ACL, if you try to associate it with a resource,
+//     you might get an exception indicating that the web ACL is unavailable.
+//
+//   - After you add a rule group to a web ACL, the new rule group rules might
+//     be in effect in one area where the web ACL is used and not in another.
+//
+//   - After you change a rule action setting, you might see the old action
+//     in some places and the new action in others.
+//
+//   - After you add an IP address to an IP set that is in use in a blocking
+//     rule, the new address might be blocked in one area while still allowed
+//     in another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6170,19 +6244,6 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //
 // # Provide the complete web ACL specification to this call
 //
-// When you make changes to web ACLs or web ACL components, like rules and rule
-// groups, WAF propagates the changes everywhere that the web ACL and its components
-// are stored and used. Your changes are applied within seconds, but there might
-// be a brief period of inconsistency when the changes have arrived in some
-// places and not in others. So, for example, if you change a rule action setting,
-// the action might be the old action in one area and the new action in another
-// area. Or if you add an IP address to an IP set used in a blocking rule, the
-// new address might briefly be blocked in one area while still allowed in another.
-// This temporary inconsistency can occur when you first associate a web ACL
-// with an Amazon Web Services resource and when you change a web ACL that is
-// already associated with a resource. Generally, any inconsistencies of this
-// type last only a few seconds.
-//
 // A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has a statement that defines what to look for in web
 // requests and an action that WAF applies to requests that match the statement.
@@ -6194,6 +6255,28 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 // API Gateway REST API, an Application Load Balancer, an AppSync GraphQL API,
 // an Amazon Cognito user pool, an App Runner service, or an Amazon Web Services
 // Verified Access instance.
+//
+// # Temporary inconsistencies during updates
+//
+// When you create or change a web ACL or other WAF resources, the changes take
+// a small amount of time to propagate to all areas where the resources are
+// stored. The propagation time can be from a few seconds to a number of minutes.
+//
+// The following are examples of the temporary inconsistencies that you might
+// notice during change propagation:
+//
+//   - After you create a web ACL, if you try to associate it with a resource,
+//     you might get an exception indicating that the web ACL is unavailable.
+//
+//   - After you add a rule group to a web ACL, the new rule group rules might
+//     be in effect in one area where the web ACL is used and not in another.
+//
+//   - After you change a rule action setting, you might see the old action
+//     in some places and the new action in others.
+//
+//   - After you add an IP address to an IP set that is in use in a blocking
+//     rule, the new address might be blocked in one area while still allowed
+//     in another.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7336,9 +7419,9 @@ type ByteMatchStatement struct {
 	//    logs. For information about the logging fields, see Log fields (https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html)
 	//    in the WAF Developer Guide.
 	//
-	//    * HeaderOrder: The comma-separated list of header names to match for.
-	//    WAF creates a string that contains the ordered list of header names, from
-	//    the headers in the web request, and then matches against that string.
+	//    * HeaderOrder: The list of header names to match for. WAF creates a string
+	//    that contains the ordered list of header names, from the headers in the
+	//    web request, and then matches against that string.
 	//
 	// If SearchString includes alphabetic characters A-Z and a-z, note that the
 	// value is case sensitive.
@@ -8086,7 +8169,13 @@ type Cookies struct {
 	MatchPattern *CookieMatchPattern `type:"structure" required:"true"`
 
 	// The parts of the cookies to inspect with the rule inspection criteria. If
-	// you specify All, WAF inspects both keys and values.
+	// you specify ALL, WAF inspects both keys and values.
+	//
+	// All does not require a match to be found in the keys and a match to be found
+	// in the values. It requires a match to be found in the keys or the values
+	// or both. To require a match in the keys and in the values, use a logical
+	// AND statement to combine two match rules, one that inspects the keys and
+	// another that inspects the values.
 	//
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
@@ -13728,7 +13817,13 @@ type Headers struct {
 	MatchPattern *HeaderMatchPattern `type:"structure" required:"true"`
 
 	// The parts of the headers to match with the rule inspection criteria. If you
-	// specify All, WAF inspects both keys and values.
+	// specify ALL, WAF inspects both keys and values.
+	//
+	// All does not require a match to be found in the keys and a match to be found
+	// in the values. It requires a match to be found in the keys or the values
+	// or both. To require a match in the keys and in the values, use a logical
+	// AND statement to combine two match rules, one that inspects the keys and
+	// another that inspects the values.
 	//
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
@@ -14389,7 +14484,13 @@ type JsonBody struct {
 	MatchPattern *JsonMatchPattern `type:"structure" required:"true"`
 
 	// The parts of the JSON to match against using the MatchPattern. If you specify
-	// All, WAF matches against keys and values.
+	// ALL, WAF matches against keys and values.
+	//
+	// All does not require a match to be found in the keys and a match to be found
+	// in the values. It requires a match to be found in the keys or the values
+	// or both. To require a match in the keys and in the values, use a logical
+	// AND statement to combine two match rules, one that inspects the keys and
+	// another that inspects the values.
 	//
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
