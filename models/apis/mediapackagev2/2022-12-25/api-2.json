@@ -276,7 +276,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListOriginEndpoints":{
@@ -619,7 +620,8 @@
         "ChildManifestName":{"shape":"ManifestName"},
         "ScteHls":{"shape":"ScteHls"},
         "ManifestWindowSeconds":{"shape":"CreateHlsManifestConfigurationManifestWindowSecondsInteger"},
-        "ProgramDateTimeIntervalSeconds":{"shape":"CreateHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger"}
+        "ProgramDateTimeIntervalSeconds":{"shape":"CreateHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger"},
+        "FilterConfiguration":{"shape":"FilterConfiguration"}
       }
     },
     "CreateHlsManifestConfigurationManifestWindowSecondsInteger":{
@@ -646,7 +648,8 @@
         "ChildManifestName":{"shape":"ManifestName"},
         "ScteHls":{"shape":"ScteHls"},
         "ManifestWindowSeconds":{"shape":"CreateLowLatencyHlsManifestConfigurationManifestWindowSecondsInteger"},
-        "ProgramDateTimeIntervalSeconds":{"shape":"CreateLowLatencyHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger"}
+        "ProgramDateTimeIntervalSeconds":{"shape":"CreateLowLatencyHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger"},
+        "FilterConfiguration":{"shape":"FilterConfiguration"}
       }
     },
     "CreateLowLatencyHlsManifestConfigurationManifestWindowSecondsInteger":{
@@ -910,6 +913,26 @@
         "CmafEncryptionMethod":{"shape":"CmafEncryptionMethod"}
       }
     },
+    "FilterConfiguration":{
+      "type":"structure",
+      "members":{
+        "ManifestFilter":{"shape":"FilterConfigurationManifestFilterString"},
+        "Start":{"shape":"Timestamp"},
+        "End":{"shape":"Timestamp"},
+        "TimeDelaySeconds":{"shape":"FilterConfigurationTimeDelaySecondsInteger"}
+      }
+    },
+    "FilterConfigurationManifestFilterString":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "FilterConfigurationTimeDelaySecondsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1209600,
+      "min":0
+    },
     "GetChannelGroupRequest":{
       "type":"structure",
       "required":["ChannelGroupName"],
@@ -1026,7 +1049,8 @@
         "ChildManifestName":{"shape":"ResourceName"},
         "ManifestWindowSeconds":{"shape":"Integer"},
         "ProgramDateTimeIntervalSeconds":{"shape":"Integer"},
-        "ScteHls":{"shape":"ScteHls"}
+        "ScteHls":{"shape":"ScteHls"},
+        "FilterConfiguration":{"shape":"FilterConfiguration"}
       }
     },
     "GetHlsManifests":{
@@ -1045,7 +1069,8 @@
         "ChildManifestName":{"shape":"ResourceName"},
         "ManifestWindowSeconds":{"shape":"Integer"},
         "ProgramDateTimeIntervalSeconds":{"shape":"Integer"},
-        "ScteHls":{"shape":"ScteHls"}
+        "ScteHls":{"shape":"ScteHls"},
+        "FilterConfiguration":{"shape":"FilterConfiguration"}
       }
     },
     "GetLowLatencyHlsManifests":{
@@ -1829,7 +1854,10 @@
         "MEMBER_MIN_LENGTH",
         "MEMBER_MAX_LENGTH",
         "MEMBER_INVALID_ENUM_VALUE",
-        "MEMBER_DOES_NOT_MATCH_PATTERN"
+        "MEMBER_DOES_NOT_MATCH_PATTERN",
+        "INVALID_MANIFEST_FILTER",
+        "INVALID_TIME_DELAY_SECONDS",
+        "END_TIME_EARLIER_THAN_START_TIME"
       ]
     }
   }

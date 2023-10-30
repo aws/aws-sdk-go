@@ -56,8 +56,13 @@ func (c *ResilienceHub) AddDraftAppVersionResourceMappingsRequest(input *AddDraf
 
 // AddDraftAppVersionResourceMappings API operation for AWS Resilience Hub.
 //
-// Adds the resource mapping for the draft application version. You can also
-// update an existing resource mapping to a new physical resource.
+// Adds the source of resource-maps to the draft version of an application.
+// During assessment, Resilience Hub will use these resource-maps to resolve
+// the latest physical ID for each resource in the application template. For
+// more information about different types of resources suported by Resilience
+// Hub and how to add them in your application, see Step 2: How is your application
+// managed? (https://docs.aws.amazon.com/resilience-hub/latest/userguide/how-app-manage.html)
+// in the Resilience Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -707,6 +712,13 @@ func (c *ResilienceHub) CreateResiliencyPolicyRequest(input *CreateResiliencyPol
 // CreateResiliencyPolicy API operation for AWS Resilience Hub.
 //
 // Creates a resiliency policy for an application.
+//
+// Resilience Hub allows you to provide a value of zero for rtoInSecs and rpoInSecs
+// of your resiliency policy. But, while assessing your application, the lowest
+// possible assessment result is near zero. Hence, if you provide value zero
+// for rtoInSecs and rpoInSecs, the estimated workload RTO and estimated workload
+// RPO result will be near zero and the Compliance status for your application
+// will be set to Policy breached.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6361,6 +6373,13 @@ func (c *ResilienceHub) UpdateResiliencyPolicyRequest(input *UpdateResiliencyPol
 //
 // Updates a resiliency policy.
 //
+// Resilience Hub allows you to provide a value of zero for rtoInSecs and rpoInSecs
+// of your resiliency policy. But, while assessing your application, the lowest
+// possible assessment result is near zero. Hence, if you provide value zero
+// for rtoInSecs and rpoInSecs, the estimated workload RTO and estimated workload
+// RPO result will be near zero and the Compliance status for your application
+// will be set to Policy breached.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6489,7 +6508,7 @@ type AddDraftAppVersionResourceMappingsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -6566,7 +6585,7 @@ type AddDraftAppVersionResourceMappingsOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -6742,7 +6761,7 @@ type App struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -6753,7 +6772,7 @@ type App struct {
 	// Current status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"AppComplianceStatusType"`
 
-	// Timestamp for when the app was created.
+	// Date and time when the app was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
@@ -6770,13 +6789,13 @@ type App struct {
 	// and Scheduled assessment failure events.
 	EventSubscriptions []*EventSubscription `locationName:"eventSubscriptions" type:"list"`
 
-	// Timestamp for the most recent compliance evaluation.
+	// Date and time the most recent compliance evaluation.
 	LastAppComplianceEvaluationTime *time.Time `locationName:"lastAppComplianceEvaluationTime" type:"timestamp"`
 
 	// Indicates the last time that a drift was evaluated.
 	LastDriftEvaluationTime *time.Time `locationName:"lastDriftEvaluationTime" type:"timestamp"`
 
-	// Timestamp for the most recent resiliency score evaluation.
+	// Date and time the most recent resiliency score evaluation.
 	LastResiliencyScoreEvaluationTime *time.Time `locationName:"lastResiliencyScoreEvaluationTime" type:"timestamp"`
 
 	// Name for the application.
@@ -6791,11 +6810,17 @@ type App struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
 	// Current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
+
+	// Recovery Point Objective (RPO) in seconds.
+	RpoInSecs *int64 `locationName:"rpoInSecs" type:"integer"`
+
+	// Recovery Time Objective (RTO) in seconds.
+	RtoInSecs *int64 `locationName:"rtoInSecs" type:"integer"`
 
 	// Status of the application.
 	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
@@ -6911,6 +6936,18 @@ func (s *App) SetResiliencyScore(v float64) *App {
 	return s
 }
 
+// SetRpoInSecs sets the RpoInSecs field's value.
+func (s *App) SetRpoInSecs(v int64) *App {
+	s.RpoInSecs = &v
+	return s
+}
+
+// SetRtoInSecs sets the RtoInSecs field's value.
+func (s *App) SetRtoInSecs(v int64) *App {
+	s.RtoInSecs = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *App) SetStatus(v string) *App {
 	s.Status = &v
@@ -6930,7 +6967,7 @@ type AppAssessment struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// Version of an application.
@@ -6939,7 +6976,7 @@ type AppAssessment struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -7134,7 +7171,7 @@ type AppAssessmentSummary struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// Version of an application.
@@ -7143,7 +7180,7 @@ type AppAssessmentSummary struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -7455,7 +7492,7 @@ type AppInputSource struct {
 
 	// The Amazon Resource Name (ARN) of the input source. For more information
 	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	SourceArn *string `locationName:"sourceArn" type:"string"`
 
 	// The name of the input source.
@@ -7526,7 +7563,7 @@ type AppSummary struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -7537,7 +7574,7 @@ type AppSummary struct {
 	// The current status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"AppComplianceStatusType"`
 
-	// The timestamp for when the app was created.
+	// Date and time when the app was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
@@ -7549,6 +7586,9 @@ type AppSummary struct {
 	// assessment for your application.
 	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"AppDriftStatusType"`
 
+	// Date and time of the most recent compliance evaluation.
+	LastAppComplianceEvaluationTime *time.Time `locationName:"lastAppComplianceEvaluationTime" type:"timestamp"`
+
 	// The name of the application.
 	//
 	// Name is a required field
@@ -7556,6 +7596,12 @@ type AppSummary struct {
 
 	// The current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
+
+	// Recovery Point Objective (RPO) in seconds.
+	RpoInSecs *int64 `locationName:"rpoInSecs" type:"integer"`
+
+	// Recovery Time Objective (RTO) in seconds.
+	RtoInSecs *int64 `locationName:"rtoInSecs" type:"integer"`
 
 	// Status of the application.
 	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
@@ -7615,6 +7661,12 @@ func (s *AppSummary) SetDriftStatus(v string) *AppSummary {
 	return s
 }
 
+// SetLastAppComplianceEvaluationTime sets the LastAppComplianceEvaluationTime field's value.
+func (s *AppSummary) SetLastAppComplianceEvaluationTime(v time.Time) *AppSummary {
+	s.LastAppComplianceEvaluationTime = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *AppSummary) SetName(v string) *AppSummary {
 	s.Name = &v
@@ -7624,6 +7676,18 @@ func (s *AppSummary) SetName(v string) *AppSummary {
 // SetResiliencyScore sets the ResiliencyScore field's value.
 func (s *AppSummary) SetResiliencyScore(v float64) *AppSummary {
 	s.ResiliencyScore = &v
+	return s
+}
+
+// SetRpoInSecs sets the RpoInSecs field's value.
+func (s *AppSummary) SetRpoInSecs(v int64) *AppSummary {
+	s.RpoInSecs = &v
+	return s
+}
+
+// SetRtoInSecs sets the RtoInSecs field's value.
+func (s *AppSummary) SetRtoInSecs(v int64) *AppSummary {
+	s.RtoInSecs = &v
 	return s
 }
 
@@ -7747,7 +7811,7 @@ type BatchUpdateRecommendationStatusInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -7824,7 +7888,7 @@ type BatchUpdateRecommendationStatusOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -8417,7 +8481,7 @@ type CreateAppInput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
 	// Tags assigned to the resource. A tag is a label that you assign to an Amazon
@@ -8572,7 +8636,7 @@ type CreateAppVersionAppComponentInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -8688,7 +8752,7 @@ type CreateAppVersionAppComponentOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -8747,7 +8811,7 @@ type CreateAppVersionResourceInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -8911,7 +8975,7 @@ type CreateAppVersionResourceOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -8969,7 +9033,7 @@ type CreateRecommendationTemplateInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -9328,7 +9392,7 @@ type DeleteAppAssessmentInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -9391,7 +9455,7 @@ type DeleteAppAssessmentOutput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -9438,7 +9502,7 @@ type DeleteAppInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9510,7 +9574,7 @@ type DeleteAppInputSourceInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9527,7 +9591,7 @@ type DeleteAppInputSourceInput struct {
 	// The Amazon Resource Name (ARN) of the imported resource you want to remove
 	// from the Resilience Hub application. For more information about ARNs, see
 	// Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	SourceArn *string `locationName:"sourceArn" type:"string"`
 
 	// The imported Terraform s3 state ﬁle you want to remove from the Resilience
@@ -9615,7 +9679,7 @@ type DeleteAppInputSourceOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// Name of the input source from where the application resource is imported
@@ -9659,7 +9723,7 @@ type DeleteAppOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9695,7 +9759,7 @@ type DeleteAppVersionAppComponentInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9775,7 +9839,7 @@ type DeleteAppVersionAppComponentOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9831,7 +9895,7 @@ type DeleteAppVersionResourceInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -9947,7 +10011,7 @@ type DeleteAppVersionResourceOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10114,7 +10178,7 @@ type DeleteResiliencyPolicyInput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// PolicyArn is a required field
 	PolicyArn *string `locationName:"policyArn" type:"string" required:"true"`
@@ -10172,7 +10236,7 @@ type DeleteResiliencyPolicyOutput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// PolicyArn is a required field
 	PolicyArn *string `locationName:"policyArn" type:"string" required:"true"`
@@ -10208,7 +10272,7 @@ type DescribeAppAssessmentInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -10292,7 +10356,7 @@ type DescribeAppInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10375,7 +10439,7 @@ type DescribeAppVersionAppComponentInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10455,7 +10519,7 @@ type DescribeAppVersionAppComponentOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10511,7 +10575,7 @@ type DescribeAppVersionInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10582,7 +10646,7 @@ type DescribeAppVersionOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10635,7 +10699,7 @@ type DescribeAppVersionResourceInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10751,7 +10815,7 @@ type DescribeAppVersionResourceOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10809,7 +10873,7 @@ type DescribeAppVersionResourcesResolutionStatusInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10884,7 +10948,7 @@ type DescribeAppVersionResourcesResolutionStatusOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -10962,7 +11026,7 @@ type DescribeAppVersionTemplateInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -11025,7 +11089,7 @@ type DescribeAppVersionTemplateOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -11149,7 +11213,7 @@ type DescribeDraftAppVersionResourcesImportStatusInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -11198,7 +11262,7 @@ type DescribeDraftAppVersionResourcesImportStatusOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -11216,7 +11280,7 @@ type DescribeDraftAppVersionResourcesImportStatusOutput struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceImportStatusType"`
 
-	// The timestamp for when the status last changed.
+	// The time when the status last changed.
 	//
 	// StatusChangeTime is a required field
 	StatusChangeTime *time.Time `locationName:"statusChangeTime" type:"timestamp" required:"true"`
@@ -11276,7 +11340,7 @@ type DescribeResiliencyPolicyInput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// PolicyArn is a required field
 	PolicyArn *string `locationName:"policyArn" type:"string" required:"true"`
@@ -11477,7 +11541,7 @@ type EksSource struct {
 	// Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
 	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// EksClusterArn is a required field
 	EksClusterArn *string `locationName:"eksClusterArn" type:"string" required:"true"`
@@ -11543,7 +11607,7 @@ type EksSourceClusterNamespace struct {
 	// Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
 	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// EksClusterArn is a required field
 	EksClusterArn *string `locationName:"eksClusterArn" type:"string" required:"true"`
@@ -11623,9 +11687,9 @@ type EventSubscription struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic.
-	// The format for this ARN is: arn:partition:resiliencehub:region:account:app/app-id.
+	// The format for this ARN is: arn:partition:sns:region:account:topic-name.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	SnsTopicArn *string `locationName:"snsTopicArn" type:"string"`
 }
 
@@ -11688,12 +11752,12 @@ func (s *EventSubscription) SetSnsTopicArn(v string) *EventSubscription {
 type FailurePolicy struct {
 	_ struct{} `type:"structure"`
 
-	// The Recovery Point Objective (RPO), in seconds.
+	// Recovery Point Objective (RPO) in seconds.
 	//
 	// RpoInSecs is a required field
 	RpoInSecs *int64 `locationName:"rpoInSecs" type:"integer" required:"true"`
 
-	// The Recovery Time Objective (RTO), in seconds.
+	// Recovery Time Objective (RTO) in seconds.
 	//
 	// RtoInSecs is a required field
 	RtoInSecs *int64 `locationName:"rtoInSecs" type:"integer" required:"true"`
@@ -11751,7 +11815,7 @@ type ImportResourcesToDraftAppVersionInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -11858,7 +11922,7 @@ type ImportResourcesToDraftAppVersionOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -12009,7 +12073,7 @@ type ListAlarmRecommendationsInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -12126,7 +12190,7 @@ type ListAppAssessmentComplianceDriftsInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -12241,7 +12305,7 @@ type ListAppAssessmentsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `location:"querystring" locationName:"appArn" type:"string"`
 
 	// The name for the assessment.
@@ -12402,7 +12466,7 @@ type ListAppComponentCompliancesInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -12518,7 +12582,7 @@ type ListAppComponentRecommendationsInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -12634,7 +12698,7 @@ type ListAppInputSourcesInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -12760,7 +12824,7 @@ type ListAppVersionAppComponentsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -12845,7 +12909,7 @@ type ListAppVersionAppComponentsOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -12910,7 +12974,7 @@ type ListAppVersionResourceMappingsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -13042,7 +13106,7 @@ type ListAppVersionResourcesInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -13193,7 +13257,7 @@ type ListAppVersionsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -13325,8 +13389,12 @@ type ListAppsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `location:"querystring" locationName:"appArn" type:"string"`
+
+	// Indicates the lower limit of the range that is used to filter applications
+	// based on their last assessment times.
+	FromLastAssessmentTime *time.Time `location:"querystring" locationName:"fromLastAssessmentTime" type:"timestamp"`
 
 	// Maximum number of results to include in the response. If more results exist
 	// than the specified MaxResults value, a token is included in the response
@@ -13338,6 +13406,15 @@ type ListAppsInput struct {
 
 	// Null, or the token from a previous call to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The application list is sorted based on the values of lastAppComplianceEvaluationTime
+	// field. By default, application list is sorted in ascending order. To sort
+	// the appliation list in descending order, set this field to True.
+	ReverseOrder *bool `location:"querystring" locationName:"reverseOrder" type:"boolean"`
+
+	// Indicates the upper limit of the range that is used to filter the applications
+	// based on their last assessment times.
+	ToLastAssessmentTime *time.Time `location:"querystring" locationName:"toLastAssessmentTime" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -13377,6 +13454,12 @@ func (s *ListAppsInput) SetAppArn(v string) *ListAppsInput {
 	return s
 }
 
+// SetFromLastAssessmentTime sets the FromLastAssessmentTime field's value.
+func (s *ListAppsInput) SetFromLastAssessmentTime(v time.Time) *ListAppsInput {
+	s.FromLastAssessmentTime = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListAppsInput) SetMaxResults(v int64) *ListAppsInput {
 	s.MaxResults = &v
@@ -13392,6 +13475,18 @@ func (s *ListAppsInput) SetName(v string) *ListAppsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListAppsInput) SetNextToken(v string) *ListAppsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetReverseOrder sets the ReverseOrder field's value.
+func (s *ListAppsInput) SetReverseOrder(v bool) *ListAppsInput {
+	s.ReverseOrder = &v
+	return s
+}
+
+// SetToLastAssessmentTime sets the ToLastAssessmentTime field's value.
+func (s *ListAppsInput) SetToLastAssessmentTime(v time.Time) *ListAppsInput {
+	s.ToLastAssessmentTime = &v
 	return s
 }
 
@@ -13443,7 +13538,7 @@ type ListRecommendationTemplatesInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `location:"querystring" locationName:"assessmentArn" type:"string" required:"true"`
@@ -13701,7 +13796,7 @@ type ListSopRecommendationsInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -13999,7 +14094,7 @@ type ListTestRecommendationsInput struct {
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -14113,7 +14208,7 @@ type ListUnsupportedAppVersionResourcesInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -14479,7 +14574,7 @@ type PhysicalResource struct {
 	// The name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of resource.
+	// Type of resource.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -14706,7 +14801,7 @@ type PublishAppVersionInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -14764,7 +14859,7 @@ type PublishAppVersionOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -14827,7 +14922,7 @@ type PutDraftAppVersionTemplateInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -14956,7 +15051,7 @@ type PutDraftAppVersionTemplateOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// The version of the application.
@@ -15151,13 +15246,13 @@ type RecommendationTemplate struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AssessmentArn is a required field
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
@@ -15342,7 +15437,7 @@ type RemoveDraftAppVersionResourceMappingsInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -15450,7 +15545,7 @@ type RemoveDraftAppVersionResourceMappingsOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// The version of the application.
@@ -15488,10 +15583,17 @@ func (s *RemoveDraftAppVersionResourceMappingsOutput) SetAppVersion(v string) *R
 }
 
 // Defines a resiliency policy.
+//
+// Resilience Hub allows you to provide a value of zero for rtoInSecs and rpoInSecs
+// of your resiliency policy. But, while assessing your application, the lowest
+// possible assessment result is near zero. Hence, if you provide value zero
+// for rtoInSecs and rpoInSecs, the estimated workload RTO and estimated workload
+// RPO result will be near zero and the Compliance status for your application
+// will be set to Policy breached.
 type ResiliencyPolicy struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the resiliency policy was created.
+	// Date and time when the resiliency policy was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// Specifies a high-level geographical location constraint for where your resilience
@@ -15507,7 +15609,7 @@ type ResiliencyPolicy struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
 	// The description for the policy.
@@ -15653,7 +15755,7 @@ type ResolveAppVersionResourcesInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -15716,7 +15818,7 @@ type ResolveAppVersionResourcesOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -16307,7 +16409,7 @@ type StartAppAssessmentInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -16937,7 +17039,7 @@ type UpdateAppInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -16963,7 +17065,7 @@ type UpdateAppInput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 }
 
@@ -17098,7 +17200,7 @@ type UpdateAppVersionAppComponentInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17195,7 +17297,7 @@ type UpdateAppVersionAppComponentOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17264,7 +17366,7 @@ type UpdateAppVersionInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17327,7 +17429,7 @@ type UpdateAppVersionOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17383,7 +17485,7 @@ type UpdateAppVersionResourceInput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17524,7 +17626,7 @@ type UpdateAppVersionResourceOutput struct {
 	// Amazon Resource Name (ARN) of the Resilience Hub application. The format
 	// for this ARN is: arn:partition:resiliencehub:region:account:app/app-id. For
 	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
@@ -17766,7 +17868,7 @@ type UpdateResiliencyPolicyInput struct {
 	// Amazon Resource Name (ARN) of the resiliency policy. The format for this
 	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
 	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference guide.
+	// in the Amazon Web Services General Reference guide.
 	//
 	// PolicyArn is a required field
 	PolicyArn *string `locationName:"policyArn" type:"string" required:"true"`

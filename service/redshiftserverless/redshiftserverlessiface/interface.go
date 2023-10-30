@@ -64,6 +64,10 @@ type RedshiftServerlessAPI interface {
 	ConvertRecoveryPointToSnapshotWithContext(aws.Context, *redshiftserverless.ConvertRecoveryPointToSnapshotInput, ...request.Option) (*redshiftserverless.ConvertRecoveryPointToSnapshotOutput, error)
 	ConvertRecoveryPointToSnapshotRequest(*redshiftserverless.ConvertRecoveryPointToSnapshotInput) (*request.Request, *redshiftserverless.ConvertRecoveryPointToSnapshotOutput)
 
+	CreateCustomDomainAssociation(*redshiftserverless.CreateCustomDomainAssociationInput) (*redshiftserverless.CreateCustomDomainAssociationOutput, error)
+	CreateCustomDomainAssociationWithContext(aws.Context, *redshiftserverless.CreateCustomDomainAssociationInput, ...request.Option) (*redshiftserverless.CreateCustomDomainAssociationOutput, error)
+	CreateCustomDomainAssociationRequest(*redshiftserverless.CreateCustomDomainAssociationInput) (*request.Request, *redshiftserverless.CreateCustomDomainAssociationOutput)
+
 	CreateEndpointAccess(*redshiftserverless.CreateEndpointAccessInput) (*redshiftserverless.CreateEndpointAccessOutput, error)
 	CreateEndpointAccessWithContext(aws.Context, *redshiftserverless.CreateEndpointAccessInput, ...request.Option) (*redshiftserverless.CreateEndpointAccessOutput, error)
 	CreateEndpointAccessRequest(*redshiftserverless.CreateEndpointAccessInput) (*request.Request, *redshiftserverless.CreateEndpointAccessOutput)
@@ -83,6 +87,10 @@ type RedshiftServerlessAPI interface {
 	CreateWorkgroup(*redshiftserverless.CreateWorkgroupInput) (*redshiftserverless.CreateWorkgroupOutput, error)
 	CreateWorkgroupWithContext(aws.Context, *redshiftserverless.CreateWorkgroupInput, ...request.Option) (*redshiftserverless.CreateWorkgroupOutput, error)
 	CreateWorkgroupRequest(*redshiftserverless.CreateWorkgroupInput) (*request.Request, *redshiftserverless.CreateWorkgroupOutput)
+
+	DeleteCustomDomainAssociation(*redshiftserverless.DeleteCustomDomainAssociationInput) (*redshiftserverless.DeleteCustomDomainAssociationOutput, error)
+	DeleteCustomDomainAssociationWithContext(aws.Context, *redshiftserverless.DeleteCustomDomainAssociationInput, ...request.Option) (*redshiftserverless.DeleteCustomDomainAssociationOutput, error)
+	DeleteCustomDomainAssociationRequest(*redshiftserverless.DeleteCustomDomainAssociationInput) (*request.Request, *redshiftserverless.DeleteCustomDomainAssociationOutput)
 
 	DeleteEndpointAccess(*redshiftserverless.DeleteEndpointAccessInput) (*redshiftserverless.DeleteEndpointAccessOutput, error)
 	DeleteEndpointAccessWithContext(aws.Context, *redshiftserverless.DeleteEndpointAccessInput, ...request.Option) (*redshiftserverless.DeleteEndpointAccessOutput, error)
@@ -111,6 +119,10 @@ type RedshiftServerlessAPI interface {
 	GetCredentials(*redshiftserverless.GetCredentialsInput) (*redshiftserverless.GetCredentialsOutput, error)
 	GetCredentialsWithContext(aws.Context, *redshiftserverless.GetCredentialsInput, ...request.Option) (*redshiftserverless.GetCredentialsOutput, error)
 	GetCredentialsRequest(*redshiftserverless.GetCredentialsInput) (*request.Request, *redshiftserverless.GetCredentialsOutput)
+
+	GetCustomDomainAssociation(*redshiftserverless.GetCustomDomainAssociationInput) (*redshiftserverless.GetCustomDomainAssociationOutput, error)
+	GetCustomDomainAssociationWithContext(aws.Context, *redshiftserverless.GetCustomDomainAssociationInput, ...request.Option) (*redshiftserverless.GetCustomDomainAssociationOutput, error)
+	GetCustomDomainAssociationRequest(*redshiftserverless.GetCustomDomainAssociationInput) (*request.Request, *redshiftserverless.GetCustomDomainAssociationOutput)
 
 	GetEndpointAccess(*redshiftserverless.GetEndpointAccessInput) (*redshiftserverless.GetEndpointAccessOutput, error)
 	GetEndpointAccessWithContext(aws.Context, *redshiftserverless.GetEndpointAccessInput, ...request.Option) (*redshiftserverless.GetEndpointAccessOutput, error)
@@ -143,6 +155,13 @@ type RedshiftServerlessAPI interface {
 	GetWorkgroup(*redshiftserverless.GetWorkgroupInput) (*redshiftserverless.GetWorkgroupOutput, error)
 	GetWorkgroupWithContext(aws.Context, *redshiftserverless.GetWorkgroupInput, ...request.Option) (*redshiftserverless.GetWorkgroupOutput, error)
 	GetWorkgroupRequest(*redshiftserverless.GetWorkgroupInput) (*request.Request, *redshiftserverless.GetWorkgroupOutput)
+
+	ListCustomDomainAssociations(*redshiftserverless.ListCustomDomainAssociationsInput) (*redshiftserverless.ListCustomDomainAssociationsOutput, error)
+	ListCustomDomainAssociationsWithContext(aws.Context, *redshiftserverless.ListCustomDomainAssociationsInput, ...request.Option) (*redshiftserverless.ListCustomDomainAssociationsOutput, error)
+	ListCustomDomainAssociationsRequest(*redshiftserverless.ListCustomDomainAssociationsInput) (*request.Request, *redshiftserverless.ListCustomDomainAssociationsOutput)
+
+	ListCustomDomainAssociationsPages(*redshiftserverless.ListCustomDomainAssociationsInput, func(*redshiftserverless.ListCustomDomainAssociationsOutput, bool) bool) error
+	ListCustomDomainAssociationsPagesWithContext(aws.Context, *redshiftserverless.ListCustomDomainAssociationsInput, func(*redshiftserverless.ListCustomDomainAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListEndpointAccess(*redshiftserverless.ListEndpointAccessInput) (*redshiftserverless.ListEndpointAccessOutput, error)
 	ListEndpointAccessWithContext(aws.Context, *redshiftserverless.ListEndpointAccessInput, ...request.Option) (*redshiftserverless.ListEndpointAccessOutput, error)
@@ -220,6 +239,10 @@ type RedshiftServerlessAPI interface {
 	UntagResource(*redshiftserverless.UntagResourceInput) (*redshiftserverless.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *redshiftserverless.UntagResourceInput, ...request.Option) (*redshiftserverless.UntagResourceOutput, error)
 	UntagResourceRequest(*redshiftserverless.UntagResourceInput) (*request.Request, *redshiftserverless.UntagResourceOutput)
+
+	UpdateCustomDomainAssociation(*redshiftserverless.UpdateCustomDomainAssociationInput) (*redshiftserverless.UpdateCustomDomainAssociationOutput, error)
+	UpdateCustomDomainAssociationWithContext(aws.Context, *redshiftserverless.UpdateCustomDomainAssociationInput, ...request.Option) (*redshiftserverless.UpdateCustomDomainAssociationOutput, error)
+	UpdateCustomDomainAssociationRequest(*redshiftserverless.UpdateCustomDomainAssociationInput) (*request.Request, *redshiftserverless.UpdateCustomDomainAssociationOutput)
 
 	UpdateEndpointAccess(*redshiftserverless.UpdateEndpointAccessInput) (*redshiftserverless.UpdateEndpointAccessOutput, error)
 	UpdateEndpointAccessWithContext(aws.Context, *redshiftserverless.UpdateEndpointAccessInput, ...request.Option) (*redshiftserverless.UpdateEndpointAccessOutput, error)

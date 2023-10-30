@@ -1,3 +1,19 @@
+Release v1.46.7 (2023-10-30)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/dataexchange`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/finspace`: Updates service API and documentation
+* `service/mediapackagev2`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release launches the CreateIntegration, DeleteIntegration, and DescribeIntegrations APIs to manage zero-ETL Integrations.
+* `service/redshift-serverless`: Updates service API, documentation, and paginators
+* `service/resiliencehub`: Updates service API and documentation
+* `service/s3outposts`: Updates service API and documentation
+* `service/wisdom`: Updates service documentation
+
 Release v1.46.6 (2023-10-27)
 ===
 

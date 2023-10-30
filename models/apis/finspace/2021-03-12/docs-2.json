@@ -31,6 +31,7 @@
     "TagResource": "<p>Adds metadata tags to a FinSpace resource.</p>",
     "UntagResource": "<p>Removes metadata tags from a FinSpace resource.</p>",
     "UpdateEnvironment": "<p>Update your FinSpace environment.</p>",
+    "UpdateKxClusterCodeConfiguration": "<p> Allows you to update code configuration on a running cluster. By using this API you can update the code, the initialization script path, and the command line arguments for a specific cluster. The configuration that you want to update will override any existing configurations on the cluster. </p>",
     "UpdateKxClusterDatabases": "<p>Updates the databases mounted on a kdb cluster, which includes the <code>changesetId</code> and all the dbPaths to be cached. This API does not allow you to change a database name or add a database if you created a cluster without one. </p> <p>Using this API you can point a cluster to a different changeset and modify a list of partitions being cached.</p>",
     "UpdateKxDatabase": "<p>Updates information for the given kdb database.</p>",
     "UpdateKxEnvironment": "<p>Updates information for the given kdb environment.</p>",
@@ -160,6 +161,7 @@
         "CreateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "DeleteKxClusterRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "DeleteKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxClusterCodeConfigurationRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxClusterDatabasesRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
       }
@@ -169,7 +171,8 @@
       "refs": {
         "CreateKxClusterRequest$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>",
         "CreateKxClusterResponse$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>",
-        "GetKxClusterResponse$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>"
+        "GetKxClusterResponse$code": "<p>The details of the custom code that you want to use inside a cluster when analyzing a data. It consists of the S3 source bucket, location, S3 object version, and the relative path from where the custom code is loaded into the cluster. </p>",
+        "UpdateKxClusterCodeConfigurationRequest$code": null
       }
     },
     "ConflictException": {
@@ -663,7 +666,8 @@
         "CreateKxClusterRequest$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
         "CreateKxClusterResponse$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
         "GetKxClusterResponse$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
-        "KxCluster$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>"
+        "KxCluster$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>",
+        "UpdateKxClusterCodeConfigurationRequest$initializationScript": "<p>Specifies a Q program that will be run at launch of a cluster. It is a relative path within <i>.zip</i> file that contains the custom code, which will be loaded on the cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.</p>"
       }
     },
     "InternalServerException": {
@@ -726,7 +730,7 @@
     "KxCacheStorageType": {
       "base": null,
       "refs": {
-        "KxCacheStorageConfiguration$type": "<p>The type of cache storage . The valid values are: </p> <ul> <li> <p>CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. </p> </li> </ul>",
+        "KxCacheStorageConfiguration$type": "<p>The type of cache storage. The valid values are: </p> <ul> <li> <p>CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. </p> </li> <li> <p>CACHE_250 – This type provides at least 250 MB/s disk access throughput. </p> </li> <li> <p>CACHE_12 – This type provides at least 12 MB/s disk access throughput. </p> </li> </ul> <p>For cache type <code>CACHE_1000</code> and <code>CACHE_250</code> you can select cache size as 1200 GB or increments of 2400 GB. For cache type <code>CACHE_12</code> you can select the cache size in increments of 6000 GB.</p>",
         "KxDatabaseCacheConfiguration$cacheType": "<p>The type of disk cache. This parameter is used to map the database path to cache storage. The valid values are:</p> <ul> <li> <p>CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. </p> </li> </ul>"
       }
     },
@@ -746,6 +750,18 @@
       "base": "<p>The details of a kdb cluster.</p>",
       "refs": {
         "KxClusters$member": null
+      }
+    },
+    "KxClusterCodeDeploymentConfiguration": {
+      "base": "<p> The configuration that allows you to choose how you want to update code on a cluster. Depending on the option you choose, you can reduce the time it takes to update the cluster. </p>",
+      "refs": {
+        "UpdateKxClusterCodeConfigurationRequest$deploymentConfiguration": "<p> The configuration that allows you to choose how you want to update the code on a cluster. </p>"
+      }
+    },
+    "KxClusterCodeDeploymentStrategy": {
+      "base": null,
+      "refs": {
+        "KxClusterCodeDeploymentConfiguration$deploymentStrategy": "<p> The type of deployment that you want on a cluster. </p> <ul> <li> <p>ROLLING – This options updates the cluster by stopping the exiting q process and starting a new q process with updated configuration.</p> </li> <li> <p>FORCE – This option updates the cluster by immediately stopping all the running processes before starting up new ones with the updated configuration. </p> </li> </ul>"
       }
     },
     "KxClusterDescription": {
@@ -768,6 +784,7 @@
         "GetKxConnectionStringRequest$clusterName": "<p>A name of the kdb cluster.</p>",
         "KxCluster$clusterName": "<p>A unique name for the cluster.</p>",
         "ListKxClusterNodesRequest$clusterName": "<p>A unique name for the cluster.</p>",
+        "UpdateKxClusterCodeConfigurationRequest$clusterName": "<p>The name of the cluster.</p>",
         "UpdateKxClusterDatabasesRequest$clusterName": "<p>A unique name for the cluster that you want to modify.</p>"
       }
     },
@@ -832,7 +849,8 @@
       "refs": {
         "CreateKxClusterRequest$commandLineArguments": "<p>Defines the key-value pairs to make them available inside the cluster.</p>",
         "CreateKxClusterResponse$commandLineArguments": "<p>Defines the key-value pairs to make them available inside the cluster.</p>",
-        "GetKxClusterResponse$commandLineArguments": "<p>Defines key-value pairs to make them available inside the cluster.</p>"
+        "GetKxClusterResponse$commandLineArguments": "<p>Defines key-value pairs to make them available inside the cluster.</p>",
+        "UpdateKxClusterCodeConfigurationRequest$commandLineArguments": "<p>Specifies the key-value pairs to make them available inside the cluster.</p>"
       }
     },
     "KxDatabaseCacheConfiguration": {
@@ -875,7 +893,7 @@
       }
     },
     "KxDeploymentConfiguration": {
-      "base": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. Depending on the option you choose, you can reduce the time it takes to update the database changesets on to a cluster. </p>",
+      "base": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. Depending on the option you choose, you can reduce the time it takes to update the cluster. </p>",
       "refs": {
         "UpdateKxClusterDatabasesRequest$deploymentConfiguration": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. </p>"
       }
@@ -883,7 +901,7 @@
     "KxDeploymentStrategy": {
       "base": null,
       "refs": {
-        "KxDeploymentConfiguration$deploymentStrategy": "<p> The type of deployment that you want on a cluster. </p> <ul> <li> <p>ROLLING – This options loads the updated database by stopping the exiting q process and starting a new q process with updated configuration.</p> </li> <li> <p>NO_RESTART – This option loads the updated database on the running q process without stopping it. This option is quicker as it reduces the turn around time to update a kdb database changeset configuration on a cluster.</p> </li> </ul>"
+        "KxDeploymentConfiguration$deploymentStrategy": "<p> The type of deployment that you want on a cluster. </p> <ul> <li> <p>ROLLING – This options updates the cluster by stopping the exiting q process and starting a new q process with updated configuration.</p> </li> <li> <p>NO_RESTART – This option updates the cluster without stopping the running q process. It is only available for <code>HDB</code> type cluster. This option is quicker as it reduces the turn around time to update configuration on a cluster. </p> <p>With this deployment mode, you cannot update the <code>initializationScript</code> and <code>commandLineArguments</code> parameters.</p> </li> </ul>"
       }
     },
     "KxEnvironment": {
@@ -901,6 +919,7 @@
         "GetKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "ListKxClusterNodesRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "ListKxClustersRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxClusterCodeConfigurationRequest$environmentId": "<p> A unique identifier of the kdb environment. </p>",
         "UpdateKxClusterDatabasesRequest$environmentId": "<p>The unique identifier of a kdb environment.</p>"
       }
     },
@@ -1395,6 +1414,16 @@
       }
     },
     "UpdateEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxClusterCodeConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxClusterCodeConfigurationResponse": {
       "base": null,
       "refs": {
       }

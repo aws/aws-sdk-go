@@ -864,7 +864,8 @@
       "members":{
         "AgentArn":{"shape":"AgentArn"},
         "Name":{"shape":"TagValue"},
-        "Status":{"shape":"AgentStatus"}
+        "Status":{"shape":"AgentStatus"},
+        "Platform":{"shape":"Platform"}
       }
     },
     "AgentStatus":{
@@ -873,6 +874,12 @@
         "ONLINE",
         "OFFLINE"
       ]
+    },
+    "AgentVersion":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "Atime":{
       "type":"string",
@@ -1311,7 +1318,8 @@
         "LastConnectionTime":{"shape":"Time"},
         "CreationTime":{"shape":"Time"},
         "EndpointType":{"shape":"EndpointType"},
-        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
+        "PrivateLinkConfig":{"shape":"PrivateLinkConfig"},
+        "Platform":{"shape":"Platform"}
       }
     },
     "DescribeDiscoveryJobRequest":{
@@ -2412,8 +2420,8 @@
     "ObjectStorageSecretKey":{
       "type":"string",
       "max":200,
-      "min":1,
-      "pattern":"^.+$",
+      "min":0,
+      "pattern":"^.*$",
       "sensitive":true
     },
     "ObjectStorageServerPort":{
@@ -2525,6 +2533,12 @@
         "SUCCESS",
         "ERROR"
       ]
+    },
+    "Platform":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"AgentVersion"}
+      }
     },
     "PosixPermissions":{
       "type":"string",

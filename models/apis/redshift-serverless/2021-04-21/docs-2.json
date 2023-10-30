@@ -3,11 +3,13 @@
   "service": "<p>This is an interface reference for Amazon Redshift Serverless. It contains documentation for one of the programming or command line interfaces you can use to manage Amazon Redshift Serverless. </p> <p>Amazon Redshift Serverless automatically provisions data warehouse capacity and intelligently scales the underlying resources based on workload demands. Amazon Redshift Serverless adjusts capacity in seconds to deliver consistently high performance and simplified operations for even the most demanding and volatile workloads. Amazon Redshift Serverless lets you focus on using your data to acquire new insights for your business and customers. </p> <p> To learn more about Amazon Redshift Serverless, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-whatis.html\">What is Amazon Redshift Serverless</a>. </p>",
   "operations": {
     "ConvertRecoveryPointToSnapshot": "<p>Converts a recovery point to a snapshot. For more information about recovery points and snapshots, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-snapshots-recovery.html\">Working with snapshots and recovery points</a>.</p>",
+    "CreateCustomDomainAssociation": "<p>Creates a custom domain association for Amazon Redshift Serverless.</p>",
     "CreateEndpointAccess": "<p>Creates an Amazon Redshift Serverless managed VPC endpoint.</p>",
     "CreateNamespace": "<p>Creates a namespace in Amazon Redshift Serverless.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of all databases in a namespace. For more information about snapshots, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-snapshots-recovery.html\"> Working with snapshots and recovery points</a>.</p>",
     "CreateUsageLimit": "<p>Creates a usage limit for a specified Amazon Redshift Serverless usage type. The usage limit is identified by the returned usage limit identifier. </p>",
     "CreateWorkgroup": "<p>Creates an workgroup in Amazon Redshift Serverless.</p>",
+    "DeleteCustomDomainAssociation": "<p>Deletes a custom domain association for Amazon Redshift Serverless.</p>",
     "DeleteEndpointAccess": "<p>Deletes an Amazon Redshift Serverless managed VPC endpoint.</p>",
     "DeleteNamespace": "<p>Deletes a namespace from Amazon Redshift Serverless. Before you delete the namespace, you can create a final snapshot that has all of the data within the namespace.</p>",
     "DeleteResourcePolicy": "<p>Deletes the specified resource policy.</p>",
@@ -15,6 +17,7 @@
     "DeleteUsageLimit": "<p>Deletes a usage limit from Amazon Redshift Serverless.</p>",
     "DeleteWorkgroup": "<p>Deletes a workgroup.</p>",
     "GetCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless.</p> <p>By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).</p> <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.&lt;/p&gt; </code></pre>",
+    "GetCustomDomainAssociation": "<p>Gets information about a specific custom domain association.</p>",
     "GetEndpointAccess": "<p>Returns information, such as the name, about a VPC endpoint.</p>",
     "GetNamespace": "<p>Returns information about a namespace in Amazon Redshift Serverless.</p>",
     "GetRecoveryPoint": "<p>Returns information about a recovery point.</p>",
@@ -23,6 +26,7 @@
     "GetTableRestoreStatus": "<p>Returns information about a <code>TableRestoreStatus</code> object.</p>",
     "GetUsageLimit": "<p>Returns information about a usage limit.</p>",
     "GetWorkgroup": "<p>Returns information about a specific workgroup.</p>",
+    "ListCustomDomainAssociations": "<p> Lists custom domain associations for Amazon Redshift Serverless.</p>",
     "ListEndpointAccess": "<p>Returns an array of <code>EndpointAccess</code> objects and relevant information.</p>",
     "ListNamespaces": "<p>Returns information about a list of specified namespaces.</p>",
     "ListRecoveryPoints": "<p>Returns an array of recovery points.</p>",
@@ -37,6 +41,7 @@
     "RestoreTableFromSnapshot": "<p>Restores a table from a snapshot to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html#t_Sorting_data-interleaved\">interleaved sort keys</a>.</p>",
     "TagResource": "<p>Assigns one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes a tag or set of tags from a resource.</p>",
+    "UpdateCustomDomainAssociation": "<p>Updates an Amazon Redshift Serverless certificate associated with a custom domain.</p>",
     "UpdateEndpointAccess": "<p>Updates an Amazon Redshift Serverless managed endpoint.</p>",
     "UpdateNamespace": "<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p>",
     "UpdateSnapshot": "<p>Updates a snapshot.</p>",
@@ -64,6 +69,18 @@
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
         "TooManyTagsException$resourceName": "<p>The name of the resource that exceeded the number of tags allowed for a resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to remove tags from.</p>"
+      }
+    },
+    "Association": {
+      "base": "<p>An object that represents the custom domain name association.</p>",
+      "refs": {
+        "AssociationList$member": null
+      }
+    },
+    "AssociationList": {
+      "base": null,
+      "refs": {
+        "ListCustomDomainAssociationsResponse$associations": "<p>A list of Association objects.</p>"
       }
     },
     "Boolean": {
@@ -106,6 +123,16 @@
       }
     },
     "ConvertRecoveryPointToSnapshotResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomDomainAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomDomainAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -160,6 +187,35 @@
       "refs": {
       }
     },
+    "CustomDomainCertificateArnString": {
+      "base": null,
+      "refs": {
+        "Association$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "CreateCustomDomainAssociationRequest$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "CreateCustomDomainAssociationResponse$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "GetCustomDomainAssociationResponse$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "ListCustomDomainAssociationsRequest$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "UpdateCustomDomainAssociationRequest$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN). This is optional.</p>",
+        "UpdateCustomDomainAssociationResponse$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>",
+        "Workgroup$customDomainCertificateArn": "<p>The custom domain name’s certificate Amazon resource name (ARN).</p>"
+      }
+    },
+    "CustomDomainName": {
+      "base": null,
+      "refs": {
+        "Association$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "CreateCustomDomainAssociationRequest$customDomainName": "<p>The custom domain name to associate with the workgroup.</p>",
+        "CreateCustomDomainAssociationResponse$customDomainName": "<p>The custom domain name to associate with the workgroup.</p>",
+        "DeleteCustomDomainAssociationRequest$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "GetCredentialsRequest$customDomainName": "<p>The custom domain name associated with the workgroup. The custom domain name or the workgroup name must be included in the request.</p>",
+        "GetCustomDomainAssociationRequest$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "GetCustomDomainAssociationResponse$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "ListCustomDomainAssociationsRequest$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "UpdateCustomDomainAssociationRequest$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "UpdateCustomDomainAssociationResponse$customDomainName": "<p>The custom domain name associated with the workgroup.</p>",
+        "Workgroup$customDomainName": "<p>The custom domain name associated with the workgroup.</p>"
+      }
+    },
     "DbName": {
       "base": null,
       "refs": {
@@ -171,7 +227,7 @@
       "refs": {
         "CreateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>",
         "GetCredentialsResponse$dbPassword": "<p>A temporary password that authorizes the user name returned by <code>DbUser</code> to log on to the database <code>DbName</code>.</p>",
-        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true.</p>"
+        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>"
       }
     },
     "DbUser": {
@@ -181,6 +237,16 @@
         "GetCredentialsResponse$dbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified <code>DbUser</code> exists in the database, the new user name has the same database privileges as the the user named in <code>DbUser</code>. By default, the user is added to PUBLIC.</p>",
         "Namespace$adminUsername": "<p>The username of the administrator for the first database created in the namespace.</p>",
         "UpdateNamespaceRequest$adminUsername": "<p>The username of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUserPassword</code>.</p>"
+      }
+    },
+    "DeleteCustomDomainAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomDomainAssociationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteEndpointAccessRequest": {
@@ -281,6 +347,16 @@
       }
     },
     "GetCredentialsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCustomDomainAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCustomDomainAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -423,6 +499,22 @@
         "Snapshot$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
         "Snapshot$kmsKeyId": "<p>The unique identifier of the KMS key used to encrypt the snapshot.</p>",
         "UpdateNamespaceRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>"
+      }
+    },
+    "ListCustomDomainAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCustomDomainAssociationsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListCustomDomainAssociationsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
+      }
+    },
+    "ListCustomDomainAssociationsResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ListEndpointAccessRequest": {
@@ -627,6 +719,8 @@
     "PaginationToken": {
       "base": null,
       "refs": {
+        "ListCustomDomainAssociationsRequest$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListCustomDomainAssociationsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListTableRestoreStatusRequest$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a nextToken, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will return results on the next page.</p>",
         "ListTableRestoreStatusResponse$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will returns results on the next page.</p>",
         "ListUsageLimitsRequest$nextToken": "<p>If your initial <code>ListUsageLimits</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListUsageLimits</code> operations, which returns results in the next page. </p>",
@@ -904,12 +998,17 @@
     "SyntheticTimestamp_date_time": {
       "base": null,
       "refs": {
+        "Association$customDomainCertificateExpiryTime": "<p>The expiration time for the certificate.</p>",
+        "CreateCustomDomainAssociationResponse$customDomainCertificateExpiryTime": "<p>The expiration time for the certificate.</p>",
         "EndpointAccess$endpointCreateTime": "<p>The time that the endpoint was created.</p>",
+        "GetCustomDomainAssociationResponse$customDomainCertificateExpiryTime": "<p>The expiration time for the certificate.</p>",
         "Namespace$creationDate": "<p>The date of when the namespace was created.</p>",
         "RecoveryPoint$recoveryPointCreateTime": "<p>The time the recovery point is created.</p>",
         "Snapshot$snapshotCreateTime": "<p>The timestamp of when the snapshot was created.</p>",
         "Snapshot$snapshotRetentionStartTime": "<p>The timestamp of when data within the snapshot started getting retained.</p>",
-        "Workgroup$creationDate": "<p>The creation date of the workgroup.</p>"
+        "UpdateCustomDomainAssociationResponse$customDomainCertificateExpiryTime": "<p>The expiration time for the certificate.</p>",
+        "Workgroup$creationDate": "<p>The creation date of the workgroup.</p>",
+        "Workgroup$customDomainCertificateExpiryTime": "<p>The expiration time for the certificate.</p>"
       }
     },
     "TableRestoreStatus": {
@@ -1000,6 +1099,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCustomDomainAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCustomDomainAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -1156,13 +1265,21 @@
     "WorkgroupName": {
       "base": null,
       "refs": {
+        "Association$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
+        "CreateCustomDomainAssociationRequest$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
+        "CreateCustomDomainAssociationResponse$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
         "CreateWorkgroupRequest$workgroupName": "<p>The name of the created workgroup.</p>",
+        "DeleteCustomDomainAssociationRequest$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
         "DeleteWorkgroupRequest$workgroupName": "<p>The name of the workgroup to be deleted.</p>",
         "GetCredentialsRequest$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
+        "GetCustomDomainAssociationRequest$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
+        "GetCustomDomainAssociationResponse$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
         "GetWorkgroupRequest$workgroupName": "<p>The name of the workgroup to return information for.</p>",
         "RecoveryPoint$workgroupName": "<p>The name of the workgroup the recovery point is associated with.</p>",
         "RestoreFromRecoveryPointRequest$workgroupName": "<p>The name of the workgroup used to restore data.</p>",
         "RestoreFromSnapshotRequest$workgroupName": "<p>The name of the workgroup used to restore the snapshot.</p>",
+        "UpdateCustomDomainAssociationRequest$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
+        "UpdateCustomDomainAssociationResponse$workgroupName": "<p>The name of the workgroup associated with the database.</p>",
         "UpdateWorkgroupRequest$workgroupName": "<p>The name of the workgroup to update. You can't update the name of a workgroup once it is created.</p>",
         "Workgroup$workgroupName": "<p>The name of the workgroup.</p>"
       }

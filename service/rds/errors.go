@@ -494,6 +494,34 @@ const (
 	// Availability Zones that have more storage available.
 	ErrCodeInsufficientStorageClusterCapacityFault = "InsufficientStorageClusterCapacity"
 
+	// ErrCodeIntegrationAlreadyExistsFault for service response error code
+	// "IntegrationAlreadyExistsFault".
+	//
+	// The integration you are trying to create already exists.
+	ErrCodeIntegrationAlreadyExistsFault = "IntegrationAlreadyExistsFault"
+
+	// ErrCodeIntegrationConflictOperationFault for service response error code
+	// "IntegrationConflictOperationFault".
+	//
+	// A conflicting conditional operation is currently in progress against this
+	// resource. Typically occurs when there are multiple requests being made to
+	// the same resource at the same time, and these requests conflict with each
+	// other.
+	ErrCodeIntegrationConflictOperationFault = "IntegrationConflictOperationFault"
+
+	// ErrCodeIntegrationNotFoundFault for service response error code
+	// "IntegrationNotFoundFault".
+	//
+	// The specified integration could not be found.
+	ErrCodeIntegrationNotFoundFault = "IntegrationNotFoundFault"
+
+	// ErrCodeIntegrationQuotaExceededFault for service response error code
+	// "IntegrationQuotaExceededFault".
+	//
+	// You can't crate any more zero-ETL integrations because the quota has been
+	// reached.
+	ErrCodeIntegrationQuotaExceededFault = "IntegrationQuotaExceededFault"
+
 	// ErrCodeInvalidBlueGreenDeploymentStateFault for service response error code
 	// "InvalidBlueGreenDeploymentStateFault".
 	//
@@ -637,6 +665,12 @@ const (
 	// The global cluster is in an invalid state and can't perform the requested
 	// operation.
 	ErrCodeInvalidGlobalClusterStateFault = "InvalidGlobalClusterStateFault"
+
+	// ErrCodeInvalidIntegrationStateFault for service response error code
+	// "InvalidIntegrationStateFault".
+	//
+	// The integration is in an invalid state and can't perform the requested operation.
+	ErrCodeInvalidIntegrationStateFault = "InvalidIntegrationStateFault"
 
 	// ErrCodeInvalidOptionGroupStateFault for service response error code
 	// "InvalidOptionGroupStateFault".

@@ -2283,6 +2283,102 @@ func (c *DataExchange) SendApiAssetWithContext(ctx aws.Context, input *SendApiAs
 	return out, req.Send()
 }
 
+const opSendDataSetNotification = "SendDataSetNotification"
+
+// SendDataSetNotificationRequest generates a "aws/request.Request" representing the
+// client's request for the SendDataSetNotification operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendDataSetNotification for more information on using the SendDataSetNotification
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendDataSetNotificationRequest method.
+//	req, resp := client.SendDataSetNotificationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendDataSetNotification
+func (c *DataExchange) SendDataSetNotificationRequest(input *SendDataSetNotificationInput) (req *request.Request, output *SendDataSetNotificationOutput) {
+	op := &request.Operation{
+		Name:       opSendDataSetNotification,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/data-sets/{DataSetId}/notification",
+	}
+
+	if input == nil {
+		input = &SendDataSetNotificationInput{}
+	}
+
+	output = &SendDataSetNotificationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendDataSetNotification API operation for AWS Data Exchange.
+//
+// The type of event associated with the data set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation SendDataSetNotification for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource couldn't be found.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - AccessDeniedException
+//     Access to the resource is denied.
+//
+//   - ConflictException
+//     The request couldn't be completed because it conflicted with the current
+//     state of the resource.
+//
+//   - ValidationException
+//     The request was invalid.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendDataSetNotification
+func (c *DataExchange) SendDataSetNotification(input *SendDataSetNotificationInput) (*SendDataSetNotificationOutput, error) {
+	req, out := c.SendDataSetNotificationRequest(input)
+	return out, req.Send()
+}
+
+// SendDataSetNotificationWithContext is the same as SendDataSetNotification with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendDataSetNotification for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) SendDataSetNotificationWithContext(ctx aws.Context, input *SendDataSetNotificationInput, opts ...request.Option) (*SendDataSetNotificationOutput, error) {
+	req, out := c.SendDataSetNotificationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartJob = "StartJob"
 
 // StartJobRequest generates a "aws/request.Request" representing the
@@ -4728,6 +4824,39 @@ func (s *DataSetEntry) SetUpdatedAt(v time.Time) *DataSetEntry {
 	return s
 }
 
+// Extra details specific to a data update type notification.
+type DataUpdateRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A datetime in the past when the data was updated. This typically means that
+	// the underlying resource supporting the data set was updated.
+	DataUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataUpdateRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataUpdateRequestDetails) GoString() string {
+	return s.String()
+}
+
+// SetDataUpdatedAt sets the DataUpdatedAt field's value.
+func (s *DataUpdateRequestDetails) SetDataUpdatedAt(v time.Time) *DataUpdateRequestDetails {
+	s.DataUpdatedAt = &v
+	return s
+}
+
 // The LF-tag policy for database resources.
 type DatabaseLFTagPolicy struct {
 	_ struct{} `type:"structure"`
@@ -5166,6 +5295,53 @@ func (s DeleteRevisionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteRevisionOutput) GoString() string {
 	return s.String()
+}
+
+// Extra details specific to a deprecation type notification.
+type DeprecationRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A datetime in the future when the data set will be deprecated.
+	//
+	// DeprecationAt is a required field
+	DeprecationAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecationRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecationRequestDetails"}
+	if s.DeprecationAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeprecationAt"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeprecationAt sets the DeprecationAt field's value.
+func (s *DeprecationRequestDetails) SetDeprecationAt(v time.Time) *DeprecationRequestDetails {
+	s.DeprecationAt = &v
+	return s
 }
 
 // Information about the job error.
@@ -8296,6 +8472,47 @@ func (s *LakeFormationDataPermissionDetails) SetLFTagPolicy(v *LFTagPolicyDetail
 	return s
 }
 
+// Extra details specific to the affected scope in this LF data set.
+type LakeFormationTagPolicyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The underlying Glue database that the notification is referring to.
+	Database *string `type:"string"`
+
+	// The underlying Glue table that the notification is referring to.
+	Table *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationTagPolicyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationTagPolicyDetails) GoString() string {
+	return s.String()
+}
+
+// SetDatabase sets the Database field's value.
+func (s *LakeFormationTagPolicyDetails) SetDatabase(v string) *LakeFormationTagPolicyDetails {
+	s.Database = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *LakeFormationTagPolicyDetails) SetTable(v string) *LakeFormationTagPolicyDetails {
+	s.Table = &v
+	return s
+}
+
 type ListDataSetRevisionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8939,6 +9156,76 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Extra details specific to this notification.
+type NotificationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Extra details specific to a data update type notification.
+	DataUpdate *DataUpdateRequestDetails `type:"structure"`
+
+	// Extra details specific to a deprecation type notification.
+	Deprecation *DeprecationRequestDetails `type:"structure"`
+
+	// Extra details specific to a schema change type notification.
+	SchemaChange *SchemaChangeRequestDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotificationDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotificationDetails"}
+	if s.Deprecation != nil {
+		if err := s.Deprecation.Validate(); err != nil {
+			invalidParams.AddNested("Deprecation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SchemaChange != nil {
+		if err := s.SchemaChange.Validate(); err != nil {
+			invalidParams.AddNested("SchemaChange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataUpdate sets the DataUpdate field's value.
+func (s *NotificationDetails) SetDataUpdate(v *DataUpdateRequestDetails) *NotificationDetails {
+	s.DataUpdate = v
+	return s
+}
+
+// SetDeprecation sets the Deprecation field's value.
+func (s *NotificationDetails) SetDeprecation(v *DeprecationRequestDetails) *NotificationDetails {
+	s.Deprecation = v
+	return s
+}
+
+// SetSchemaChange sets the SchemaChange field's value.
+func (s *NotificationDetails) SetSchemaChange(v *SchemaChangeRequestDetails) *NotificationDetails {
+	s.SchemaChange = v
+	return s
+}
+
 // Details about the origin of the data set.
 type OriginDetails struct {
 	_ struct{} `type:"structure"`
@@ -9051,6 +9338,105 @@ func (s *RedshiftDataShareAssetSourceEntry) Validate() error {
 // SetDataShareArn sets the DataShareArn field's value.
 func (s *RedshiftDataShareAssetSourceEntry) SetDataShareArn(v string) *RedshiftDataShareAssetSourceEntry {
 	s.DataShareArn = &v
+	return s
+}
+
+// Extra details specific to the affected scope in this Redshift data set.
+type RedshiftDataShareDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the underlying Redshift data share that is being affected by this
+	// notification.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The database name in the Redshift data share that is being affected by this
+	// notification.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// A function name in the Redshift database that is being affected by this notification.
+	Function *string `type:"string"`
+
+	// A schema name in the Redshift database that is being affected by this notification.
+	Schema *string `type:"string"`
+
+	// A table name in the Redshift database that is being affected by this notification.
+	Table *string `type:"string"`
+
+	// A view name in the Redshift database that is being affected by this notification.
+	View *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDataShareDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDataShareDetails"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *RedshiftDataShareDetails) SetArn(v string) *RedshiftDataShareDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *RedshiftDataShareDetails) SetDatabase(v string) *RedshiftDataShareDetails {
+	s.Database = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *RedshiftDataShareDetails) SetFunction(v string) *RedshiftDataShareDetails {
+	s.Function = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *RedshiftDataShareDetails) SetSchema(v string) *RedshiftDataShareDetails {
+	s.Schema = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *RedshiftDataShareDetails) SetTable(v string) *RedshiftDataShareDetails {
+	s.Table = &v
+	return s
+}
+
+// SetView sets the View field's value.
+func (s *RedshiftDataShareDetails) SetView(v string) *RedshiftDataShareDetails {
+	s.View = &v
 	return s
 }
 
@@ -10034,6 +10420,50 @@ func (s *S3DataAccessAssetSourceEntry) SetKmsKeysToGrant(v []*KmsKeyToGrant) *S3
 	return s
 }
 
+// Extra details specific to the affected scope in this S3 Data Access data
+// set.
+type S3DataAccessDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the key prefixes affected by this notification. This can have up
+	// to 50 entries.
+	KeyPrefixes []*string `type:"list"`
+
+	// A list of the keys affected by this notification. This can have up to 50
+	// entries.
+	Keys []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessDetails) GoString() string {
+	return s.String()
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessDetails) SetKeyPrefixes(v []*string) *S3DataAccessDetails {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessDetails) SetKeys(v []*string) *S3DataAccessDetails {
+	s.Keys = v
+	return s
+}
+
 // The Amazon S3 object that is the asset.
 type S3SnapshotAsset struct {
 	_ struct{} `type:"structure"`
@@ -10065,6 +10495,215 @@ func (s S3SnapshotAsset) GoString() string {
 // SetSize sets the Size field's value.
 func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 	s.Size = &v
+	return s
+}
+
+// Object encompassing information about a schema change to a single, particular
+// field, a notification can have up to 100 of these.
+type SchemaChangeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Description of what's changing about this field. This value can be up to
+	// 512 characters long.
+	Description *string `type:"string"`
+
+	// Name of the changing field. This value can be up to 255 characters long.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Is the field being added, removed, or modified?
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"SchemaChangeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaChangeDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaChangeDetails"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *SchemaChangeDetails) SetDescription(v string) *SchemaChangeDetails {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SchemaChangeDetails) SetName(v string) *SchemaChangeDetails {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SchemaChangeDetails) SetType(v string) *SchemaChangeDetails {
+	s.Type = &v
+	return s
+}
+
+// Extra details specific to this schema change type notification.
+type SchemaChangeRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// List of schema changes happening in the scope of this notification. This
+	// can have up to 100 entries.
+	Changes []*SchemaChangeDetails `type:"list"`
+
+	// A date in the future when the schema change is taking effect.
+	//
+	// SchemaChangeAt is a required field
+	SchemaChangeAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaChangeRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaChangeRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaChangeRequestDetails"}
+	if s.SchemaChangeAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaChangeAt"))
+	}
+	if s.Changes != nil {
+		for i, v := range s.Changes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Changes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChanges sets the Changes field's value.
+func (s *SchemaChangeRequestDetails) SetChanges(v []*SchemaChangeDetails) *SchemaChangeRequestDetails {
+	s.Changes = v
+	return s
+}
+
+// SetSchemaChangeAt sets the SchemaChangeAt field's value.
+func (s *SchemaChangeRequestDetails) SetSchemaChangeAt(v time.Time) *SchemaChangeRequestDetails {
+	s.SchemaChangeAt = &v
+	return s
+}
+
+// Details about the scope of the notifications such as the affected resources.
+type ScopeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Underlying LF resources that will be affected by this notification.
+	LakeFormationTagPolicies []*LakeFormationTagPolicyDetails `type:"list"`
+
+	// Underlying Redshift resources that will be affected by this notification.
+	RedshiftDataShares []*RedshiftDataShareDetails `type:"list"`
+
+	// Underlying S3 resources that will be affected by this notification.
+	S3DataAccesses []*S3DataAccessDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScopeDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScopeDetails"}
+	if s.RedshiftDataShares != nil {
+		for i, v := range s.RedshiftDataShares {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RedshiftDataShares", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLakeFormationTagPolicies sets the LakeFormationTagPolicies field's value.
+func (s *ScopeDetails) SetLakeFormationTagPolicies(v []*LakeFormationTagPolicyDetails) *ScopeDetails {
+	s.LakeFormationTagPolicies = v
+	return s
+}
+
+// SetRedshiftDataShares sets the RedshiftDataShares field's value.
+func (s *ScopeDetails) SetRedshiftDataShares(v []*RedshiftDataShareDetails) *ScopeDetails {
+	s.RedshiftDataShares = v
+	return s
+}
+
+// SetS3DataAccesses sets the S3DataAccesses field's value.
+func (s *ScopeDetails) SetS3DataAccesses(v []*S3DataAccessDetails) *ScopeDetails {
+	s.S3DataAccesses = v
 	return s
 }
 
@@ -10234,6 +10873,143 @@ func (s *SendApiAssetOutput) SetBody(v string) *SendApiAssetOutput {
 func (s *SendApiAssetOutput) SetResponseHeaders(v map[string]*string) *SendApiAssetOutput {
 	s.ResponseHeaders = v
 	return s
+}
+
+type SendDataSetNotificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotency key for the notification, this key allows us to deduplicate notifications
+	// that are sent in quick succession erroneously.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Free-form text field for providers to add information about their notifications.
+	Comment *string `type:"string"`
+
+	// Affected data set of the notification.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// Extra details specific to this notification type.
+	Details *NotificationDetails `type:"structure"`
+
+	// Affected scope of this notification such as the underlying resources affected
+	// by the notification event.
+	Scope *ScopeDetails `type:"structure"`
+
+	// The type of the notification. Describing the kind of event the notification
+	// is alerting you to.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"NotificationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendDataSetNotificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendDataSetNotificationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Scope != nil {
+		if err := s.Scope.Validate(); err != nil {
+			invalidParams.AddNested("Scope", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SendDataSetNotificationInput) SetClientToken(v string) *SendDataSetNotificationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *SendDataSetNotificationInput) SetComment(v string) *SendDataSetNotificationInput {
+	s.Comment = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *SendDataSetNotificationInput) SetDataSetId(v string) *SendDataSetNotificationInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *SendDataSetNotificationInput) SetDetails(v *NotificationDetails) *SendDataSetNotificationInput {
+	s.Details = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *SendDataSetNotificationInput) SetScope(v *ScopeDetails) *SendDataSetNotificationInput {
+	s.Scope = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SendDataSetNotificationInput) SetType(v string) *SendDataSetNotificationInput {
+	s.Type = &v
+	return s
+}
+
+type SendDataSetNotificationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataSetNotificationOutput) GoString() string {
+	return s.String()
 }
 
 // The request has exceeded the quotas imposed by the service.
@@ -11853,6 +12629,30 @@ func LimitName_Values() []string {
 }
 
 const (
+	// NotificationTypeDataDelay is a NotificationType enum value
+	NotificationTypeDataDelay = "DATA_DELAY"
+
+	// NotificationTypeDataUpdate is a NotificationType enum value
+	NotificationTypeDataUpdate = "DATA_UPDATE"
+
+	// NotificationTypeDeprecation is a NotificationType enum value
+	NotificationTypeDeprecation = "DEPRECATION"
+
+	// NotificationTypeSchemaChange is a NotificationType enum value
+	NotificationTypeSchemaChange = "SCHEMA_CHANGE"
+)
+
+// NotificationType_Values returns all elements of the NotificationType enum
+func NotificationType_Values() []string {
+	return []string{
+		NotificationTypeDataDelay,
+		NotificationTypeDataUpdate,
+		NotificationTypeDeprecation,
+		NotificationTypeSchemaChange,
+	}
+}
+
+const (
 	// OriginOwned is a Origin enum value
 	OriginOwned = "OWNED"
 
@@ -11905,6 +12705,26 @@ func ResourceType_Values() []string {
 		ResourceTypeAsset,
 		ResourceTypeJob,
 		ResourceTypeEventAction,
+	}
+}
+
+const (
+	// SchemaChangeTypeAdd is a SchemaChangeType enum value
+	SchemaChangeTypeAdd = "ADD"
+
+	// SchemaChangeTypeRemove is a SchemaChangeType enum value
+	SchemaChangeTypeRemove = "REMOVE"
+
+	// SchemaChangeTypeModify is a SchemaChangeType enum value
+	SchemaChangeTypeModify = "MODIFY"
+)
+
+// SchemaChangeType_Values returns all elements of the SchemaChangeType enum
+func SchemaChangeType_Values() []string {
+	return []string{
+		SchemaChangeTypeAdd,
+		SchemaChangeTypeRemove,
+		SchemaChangeTypeModify,
 	}
 }
 

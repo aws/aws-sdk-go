@@ -176,6 +176,10 @@ type RDSAPI interface {
 	CreateGlobalClusterWithContext(aws.Context, *rds.CreateGlobalClusterInput, ...request.Option) (*rds.CreateGlobalClusterOutput, error)
 	CreateGlobalClusterRequest(*rds.CreateGlobalClusterInput) (*request.Request, *rds.CreateGlobalClusterOutput)
 
+	CreateIntegration(*rds.CreateIntegrationInput) (*rds.CreateIntegrationOutput, error)
+	CreateIntegrationWithContext(aws.Context, *rds.CreateIntegrationInput, ...request.Option) (*rds.CreateIntegrationOutput, error)
+	CreateIntegrationRequest(*rds.CreateIntegrationInput) (*request.Request, *rds.CreateIntegrationOutput)
+
 	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupWithContext(aws.Context, *rds.CreateOptionGroupInput, ...request.Option) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*request.Request, *rds.CreateOptionGroupOutput)
@@ -247,6 +251,10 @@ type RDSAPI interface {
 	DeleteGlobalCluster(*rds.DeleteGlobalClusterInput) (*rds.DeleteGlobalClusterOutput, error)
 	DeleteGlobalClusterWithContext(aws.Context, *rds.DeleteGlobalClusterInput, ...request.Option) (*rds.DeleteGlobalClusterOutput, error)
 	DeleteGlobalClusterRequest(*rds.DeleteGlobalClusterInput) (*request.Request, *rds.DeleteGlobalClusterOutput)
+
+	DeleteIntegration(*rds.DeleteIntegrationInput) (*rds.DeleteIntegrationOutput, error)
+	DeleteIntegrationWithContext(aws.Context, *rds.DeleteIntegrationInput, ...request.Option) (*rds.DeleteIntegrationOutput, error)
+	DeleteIntegrationRequest(*rds.DeleteIntegrationInput) (*request.Request, *rds.DeleteIntegrationOutput)
 
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupWithContext(aws.Context, *rds.DeleteOptionGroupInput, ...request.Option) (*rds.DeleteOptionGroupOutput, error)
@@ -464,6 +472,13 @@ type RDSAPI interface {
 
 	DescribeGlobalClustersPages(*rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool) error
 	DescribeGlobalClustersPagesWithContext(aws.Context, *rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool, ...request.Option) error
+
+	DescribeIntegrations(*rds.DescribeIntegrationsInput) (*rds.DescribeIntegrationsOutput, error)
+	DescribeIntegrationsWithContext(aws.Context, *rds.DescribeIntegrationsInput, ...request.Option) (*rds.DescribeIntegrationsOutput, error)
+	DescribeIntegrationsRequest(*rds.DescribeIntegrationsInput) (*request.Request, *rds.DescribeIntegrationsOutput)
+
+	DescribeIntegrationsPages(*rds.DescribeIntegrationsInput, func(*rds.DescribeIntegrationsOutput, bool) bool) error
+	DescribeIntegrationsPagesWithContext(aws.Context, *rds.DescribeIntegrationsInput, func(*rds.DescribeIntegrationsOutput, bool) bool, ...request.Option) error
 
 	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, error)
 	DescribeOptionGroupOptionsWithContext(aws.Context, *rds.DescribeOptionGroupOptionsInput, ...request.Option) (*rds.DescribeOptionGroupOptionsOutput, error)

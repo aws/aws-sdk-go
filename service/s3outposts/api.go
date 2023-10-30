@@ -1619,6 +1619,10 @@ type Outpost struct {
 	// Returns the Amazon Web Services account ID of the outpost owner. Useful for
 	// comparing owned versus shared outposts.
 	OwnerId *string `type:"string"`
+
+	// Specifies the unique S3 on Outposts ARN for use with Resource Access Manager
+	// (RAM).
+	S3OutpostArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -1660,6 +1664,12 @@ func (s *Outpost) SetOutpostId(v string) *Outpost {
 // SetOwnerId sets the OwnerId field's value.
 func (s *Outpost) SetOwnerId(v string) *Outpost {
 	s.OwnerId = &v
+	return s
+}
+
+// SetS3OutpostArn sets the S3OutpostArn field's value.
+func (s *Outpost) SetS3OutpostArn(v string) *Outpost {
+	s.S3OutpostArn = &v
 	return s
 }
 

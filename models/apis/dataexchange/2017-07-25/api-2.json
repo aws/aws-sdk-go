@@ -369,6 +369,24 @@
       ],
       "endpoint":{"hostPrefix":"api-fulfill."}
     },
+    "SendDataSetNotification":{
+      "name":"SendDataSetNotification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/data-sets/{DataSetId}/notification",
+        "responseCode":202
+      },
+      "input":{"shape":"SendDataSetNotificationRequest"},
+      "output":{"shape":"SendDataSetNotificationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StartJob":{
       "name":"StartJob",
       "http":{
@@ -615,6 +633,12 @@
         }
       }
     },
+    "ClientToken":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\x21-\\x7E]{1,64}"
+    },
     "Code":{
       "type":"string",
       "enum":[
@@ -798,6 +822,12 @@
         "UpdatedAt":{"shape":"Timestamp"}
       }
     },
+    "DataUpdateRequestDetails":{
+      "type":"structure",
+      "members":{
+        "DataUpdatedAt":{"shape":"Timestamp"}
+      }
+    },
     "DatabaseLFTagPolicy":{
       "type":"structure",
       "required":["Expression"],
@@ -884,6 +914,13 @@
           "location":"uri",
           "locationName":"RevisionId"
         }
+      }
+    },
+    "DeprecationRequestDetails":{
+      "type":"structure",
+      "required":["DeprecationAt"],
+      "members":{
+        "DeprecationAt":{"shape":"Timestamp"}
       }
     },
     "Description":{"type":"string"},
@@ -1486,6 +1523,13 @@
       "type":"string",
       "enum":["LFTagPolicy"]
     },
+    "LakeFormationTagPolicyDetails":{
+      "type":"structure",
+      "members":{
+        "Database":{"shape":"__string"},
+        "Table":{"shape":"__string"}
+      }
+    },
     "LimitName":{
       "type":"string",
       "enum":[
@@ -1683,9 +1727,17 @@
       "type":"list",
       "member":{"shape":"LFTag"}
     },
+    "ListOfLakeFormationTagPolicies":{
+      "type":"list",
+      "member":{"shape":"LakeFormationTagPolicyDetails"}
+    },
     "ListOfRedshiftDataShareAssetSourceEntry":{
       "type":"list",
       "member":{"shape":"RedshiftDataShareAssetSourceEntry"}
+    },
+    "ListOfRedshiftDataShares":{
+      "type":"list",
+      "member":{"shape":"RedshiftDataShareDetails"}
     },
     "ListOfRevisionDestinationEntry":{
       "type":"list",
@@ -1694,6 +1746,14 @@
     "ListOfRevisionEntry":{
       "type":"list",
       "member":{"shape":"RevisionEntry"}
+    },
+    "ListOfS3DataAccesses":{
+      "type":"list",
+      "member":{"shape":"S3DataAccessDetails"}
+    },
+    "ListOfSchemaChangeDetails":{
+      "type":"list",
+      "member":{"shape":"SchemaChangeDetails"}
     },
     "ListOfTableTagPolicyLFPermissions":{
       "type":"list",
@@ -1771,6 +1831,23 @@
     },
     "Name":{"type":"string"},
     "NextToken":{"type":"string"},
+    "NotificationDetails":{
+      "type":"structure",
+      "members":{
+        "DataUpdate":{"shape":"DataUpdateRequestDetails"},
+        "Deprecation":{"shape":"DeprecationRequestDetails"},
+        "SchemaChange":{"shape":"SchemaChangeRequestDetails"}
+      }
+    },
+    "NotificationType":{
+      "type":"string",
+      "enum":[
+        "DATA_DELAY",
+        "DATA_UPDATE",
+        "DEPRECATION",
+        "SCHEMA_CHANGE"
+      ]
+    },
     "Origin":{
       "type":"string",
       "enum":[
@@ -1801,6 +1878,21 @@
       "required":["DataShareArn"],
       "members":{
         "DataShareArn":{"shape":"__string"}
+      }
+    },
+    "RedshiftDataShareDetails":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "Database"
+      ],
+      "members":{
+        "Arn":{"shape":"__string"},
+        "Database":{"shape":"__string"},
+        "Function":{"shape":"__string"},
+        "Table":{"shape":"__string"},
+        "Schema":{"shape":"__string"},
+        "View":{"shape":"__string"}
       }
     },
     "RequestDetails":{
@@ -1960,11 +2052,54 @@
         "KmsKeysToGrant":{"shape":"ListOfKmsKeysToGrant"}
       }
     },
+    "S3DataAccessDetails":{
+      "type":"structure",
+      "members":{
+        "KeyPrefixes":{"shape":"ListOf__string"},
+        "Keys":{"shape":"ListOf__string"}
+      }
+    },
     "S3SnapshotAsset":{
       "type":"structure",
       "required":["Size"],
       "members":{
         "Size":{"shape":"__doubleMin0"}
+      }
+    },
+    "SchemaChangeDetails":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"__string"},
+        "Type":{"shape":"SchemaChangeType"},
+        "Description":{"shape":"__string"}
+      }
+    },
+    "SchemaChangeRequestDetails":{
+      "type":"structure",
+      "required":["SchemaChangeAt"],
+      "members":{
+        "Changes":{"shape":"ListOfSchemaChangeDetails"},
+        "SchemaChangeAt":{"shape":"Timestamp"}
+      }
+    },
+    "SchemaChangeType":{
+      "type":"string",
+      "enum":[
+        "ADD",
+        "REMOVE",
+        "MODIFY"
+      ]
+    },
+    "ScopeDetails":{
+      "type":"structure",
+      "members":{
+        "LakeFormationTagPolicies":{"shape":"ListOfLakeFormationTagPolicies"},
+        "RedshiftDataShares":{"shape":"ListOfRedshiftDataShares"},
+        "S3DataAccesses":{"shape":"ListOfS3DataAccesses"}
       }
     },
     "SendApiAssetRequest":{
@@ -2024,6 +2159,33 @@
         }
       },
       "payload":"Body"
+    },
+    "SendDataSetNotificationRequest":{
+      "type":"structure",
+      "required":[
+        "DataSetId",
+        "Type"
+      ],
+      "members":{
+        "Scope":{"shape":"ScopeDetails"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "Comment":{"shape":"__stringMin0Max16384"},
+        "DataSetId":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "Details":{"shape":"NotificationDetails"},
+        "Type":{"shape":"NotificationType"}
+      }
+    },
+    "SendDataSetNotificationResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "ServerSideEncryptionTypes":{
       "type":"string",

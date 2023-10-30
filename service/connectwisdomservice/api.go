@@ -3226,6 +3226,14 @@ type AppIntegrationsConfiguration struct {
 	//    your AppIntegrations DataIntegration must have a FileConfiguration, including
 	//    only file extensions that are among docx, pdf, html, htm, and txt.
 	//
+	//    * For Amazon S3 (https://aws.amazon.com/s3/), the ObjectConfiguration
+	//    and FileConfiguration of your AppIntegrations DataIntegration must be
+	//    null. The SourceURI of your DataIntegration must use the following format:
+	//    s3://your_s3_bucket_name. The bucket policy of the corresponding S3 bucket
+	//    must allow the Amazon Web Services principal app-integrations.amazonaws.com
+	//    to perform s3:ListBucket, s3:GetObject, and s3:GetBucketLocation against
+	//    the bucket.
+	//
 	// AppIntegrationArn is a required field
 	AppIntegrationArn *string `locationName:"appIntegrationArn" min:"1" type:"string" required:"true"`
 
@@ -3582,7 +3590,15 @@ type AssistantData struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// This KMS key must have a policy that allows kms:CreateGrant and kms:DescribeKey
+	// permissions to the IAM identity using the key to invoke Wisdom. To use Wisdom
+	// with chat, the key policy must also allow kms:Decrypt, kms:GenerateDataKey*,
+	// and kms:DescribeKey permissions to the connect.amazonaws.com service principal.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// The status of the assistant.
@@ -3729,7 +3745,15 @@ type AssistantSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// This KMS key must have a policy that allows kms:CreateGrant and kms:DescribeKey
+	// permissions to the IAM identity using the key to invoke Wisdom. To use Wisdom
+	// with chat, the key policy must also allow kms:Decrypt, kms:GenerateDataKey*,
+	// and kms:DescribeKey permissions to the connect.amazonaws.com service principal.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// The status of the assistant.
@@ -4419,7 +4443,15 @@ type CreateAssistantInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// The customer managed key must have a policy that allows kms:CreateGrant and
+	// kms:DescribeKey permissions to the IAM identity using the key to invoke Wisdom.
+	// To use Wisdom with chat, the key policy must also allow kms:Decrypt, kms:GenerateDataKey*,
+	// and kms:DescribeKey permissions to the connect.amazonaws.com service principal.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -4753,7 +4785,13 @@ type CreateKnowledgeBaseInput struct {
 	// Information about how to render the content.
 	RenderingConfiguration *RenderingConfiguration `locationName:"renderingConfiguration" type:"structure"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// This KMS key must have a policy that allows kms:CreateGrant and kms:DescribeKey
+	// permissions to the IAM identity using the key to invoke Wisdom.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// The source of the knowledge base content. Only set this argument for EXTERNAL
@@ -6344,7 +6382,13 @@ type KnowledgeBaseData struct {
 	// Information about how to render the content.
 	RenderingConfiguration *RenderingConfiguration `locationName:"renderingConfiguration" type:"structure"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// This KMS key must have a policy that allows kms:CreateGrant and kms:DescribeKey
+	// permissions to the IAM identity using the key to invoke Wisdom.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// Source configuration information about the knowledge base.
@@ -6473,7 +6517,13 @@ type KnowledgeBaseSummary struct {
 	// Information about how to render the content.
 	RenderingConfiguration *RenderingConfiguration `locationName:"renderingConfiguration" type:"structure"`
 
-	// The KMS key used for encryption.
+	// The configuration information for the customer managed key used for encryption.
+	//
+	// This KMS key must have a policy that allows kms:CreateGrant and kms:DescribeKey
+	// permissions to the IAM identity using the key to invoke Wisdom.
+	//
+	// For more information about setting up a customer managed key for Wisdom,
+	// see Enable Amazon Connect Wisdom for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
 	// Configuration information about the external data source.
@@ -8247,12 +8297,14 @@ func (s *SearchSessionsOutput) SetSessionSummaries(v []*SessionSummary) *SearchS
 	return s
 }
 
-// The KMS key used for encryption.
+// The configuration information for the customer managed key used for encryption.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS key. For information about valid ID values, see Key identifiers (KeyId)
-	// (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id).
+	// The customer managed key used for encryption. For more information about
+	// setting up a customer managed key for Wisdom, see Enable Amazon Connect Wisdom
+	// for your instance (https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html).
+	// For information about valid ID values, see Key identifiers (KeyId) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id).
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 }
 

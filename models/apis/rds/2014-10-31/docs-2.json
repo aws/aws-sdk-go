@@ -31,6 +31,7 @@
     "CreateDBSubnetGroup": "<p>Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the Amazon Web Services Region.</p>",
     "CreateEventSubscription": "<p>Creates an RDS event notification subscription. This operation requires a topic Amazon Resource Name (ARN) created by either the RDS console, the SNS console, or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the type of source (<code>SourceType</code>) that you want to be notified of and provide a list of RDS sources (<code>SourceIds</code>) that triggers the events. You can also provide a list of event categories (<code>EventCategories</code>) for events that you want to be notified of. For example, you can specify <code>SourceType</code> = <code>db-instance</code>, <code>SourceIds</code> = <code>mydbinstance1</code>, <code>mydbinstance2</code> and <code>EventCategories</code> = <code>Availability</code>, <code>Backup</code>.</p> <p>If you specify both the <code>SourceType</code> and <code>SourceIds</code>, such as <code>SourceType</code> = <code>db-instance</code> and <code>SourceIds</code> = <code>myDBInstance1</code>, you are notified of all the <code>db-instance</code> events for the specified source. If you specify a <code>SourceType</code> but do not specify <code>SourceIds</code>, you receive notice of the events for that source type for all your RDS sources. If you don't specify either the SourceType or the <code>SourceIds</code>, you are notified of events generated from all RDS sources belonging to your customer account.</p> <p>For more information about subscribing to an event for RDS DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html\"> Subscribing to Amazon RDS event notification</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about subscribing to an event for Aurora DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Subscribing.html\"> Subscribing to Amazon RDS event notification</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "CreateGlobalCluster": "<p>Creates an Aurora global database spread across multiple Amazon Web Services Regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem.</p> <p>You can create a global database that is initially empty, and then create the primary and secondary DB clusters in the global database. Or you can specify an existing Aurora cluster during the create operation, and this cluster becomes the primary cluster of the global database.</p> <note> <p>This operation applies only to Aurora DB clusters.</p> </note>",
+    "CreateIntegration": "<p>Creates a zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html\">Working with Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "CreateOptionGroup": "<p>Creates a new option group. You can create up to 20 option groups.</p> <p>This command doesn't apply to RDS Custom.</p>",
     "DeleteBlueGreenDeployment": "<p>Deletes a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "DeleteCustomDBEngineVersion": "<p>Deletes a custom engine version. To run this command, make sure you meet the following prerequisites:</p> <ul> <li> <p>The CEV must not be the default for RDS Custom. If it is, change the default before running this command.</p> </li> <li> <p>The CEV must not be associated with an RDS Custom DB instance, RDS Custom instance snapshot, or automated backup of your RDS Custom instance.</p> </li> </ul> <p>Typically, deletion takes a few minutes.</p> <note> <p>The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in CloudTrail, calls to the <code>DeleteCustomDbEngineVersion</code> event aren't logged. However, you might see calls from the API gateway that accesses your Amazon S3 bucket. These calls originate from the MediaImport service for the <code>DeleteCustomDbEngineVersion</code> event.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.delete\">Deleting a CEV</a> in the <i>Amazon RDS User Guide</i>.</p>",
@@ -49,6 +50,7 @@
     "DeleteDBSubnetGroup": "<p>Deletes a DB subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
     "DeleteEventSubscription": "<p>Deletes an RDS event notification subscription.</p>",
     "DeleteGlobalCluster": "<p>Deletes a global database cluster. The primary and secondary clusters must already be detached or destroyed first.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
+    "DeleteIntegration": "<p>Deletes a zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.deleting.html\">Deleting Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i> </p>",
     "DeleteOptionGroup": "<p>Deletes an existing option group.</p>",
     "DeregisterDBProxyTargets": "<p>Remove the association between one or more <code>DBProxyTarget</code> data structures and a <code>DBProxyTargetGroup</code>.</p>",
     "DescribeAccountAttributes": "<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command doesn't take any parameters.</p>",
@@ -83,6 +85,7 @@
     "DescribeEvents": "<p>Returns events related to DB instances, DB clusters, DB parameter groups, DB security groups, DB snapshots, DB cluster snapshots, and RDS Proxies for the past 14 days. Events specific to a particular DB instance, DB cluster, DB parameter group, DB security group, DB snapshot, DB cluster snapshot group, or RDS Proxy can be obtained by providing the name as a parameter.</p> <p>For more information on working with events, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/working-with-events.html\">Monitoring Amazon RDS events</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/working-with-events.html\">Monitoring Amazon Aurora events</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>By default, RDS returns events that were generated in the past hour.</p> </note>",
     "DescribeExportTasks": "<p>Returns information about a snapshot or cluster export to Amazon S3. This API operation supports pagination.</p>",
     "DescribeGlobalClusters": "<p>Returns information about Aurora global database clusters. This API supports pagination.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
+    "DescribeIntegrations": "<p>Describe one or more zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.describingmonitoring.html\">Viewing and monitoring Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i> </p>",
     "DescribeOptionGroupOptions": "<p>Describes all available options.</p>",
     "DescribeOptionGroups": "<p>Describes the available option groups.</p>",
     "DescribeOrderableDBInstanceOptions": "<p>Returns a list of orderable DB instance options for the specified DB engine, DB engine version, and DB instance class.</p>",
@@ -237,6 +240,13 @@
     "ApplyPendingMaintenanceActionResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$TargetArn": "<p>The ARN of the Redshift data warehouse to use as the target for replication.</p>",
+        "Integration$TargetArn": "<p>The ARN of the Redshift data warehouse used as the target for replication.</p>"
       }
     },
     "AttributeValueList": {
@@ -444,6 +454,7 @@
         "DBEngineVersion$SupportsParallelQuery": "<p>Indicates whether you can use Aurora parallel query with a specific DB engine version.</p>",
         "DBEngineVersion$SupportsGlobalDatabases": "<p>Indicates whether you can use Aurora global databases with a specific DB engine version.</p>",
         "DBEngineVersion$SupportsBabelfish": "<p>Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.</p>",
+        "DBEngineVersion$SupportsIntegrations": "<p>Indicates whether the DB engine version supports Aurora zero-ETL integrations with Amazon Redshift.</p>",
         "DBInstance$MultiAZ": "<p>Indicates whether the DB instance is a Multi-AZ deployment. This setting doesn't apply to RDS Custom DB instances.</p>",
         "DBInstance$AutoMinorVersionUpgrade": "<p>Indicates whether minor version patches are applied automatically.</p>",
         "DBInstance$PubliclyAccessible": "<p>Indicates whether the DB instance is publicly accessible.</p> <p>When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it.</p> <p>When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.</p> <p>For more information, see <a>CreateDBInstance</a>.</p>",
@@ -688,7 +699,8 @@
         "UpgradeTarget$SupportsParallelQuery": "<p>Indicates whether you can use Aurora parallel query with the target engine version.</p>",
         "UpgradeTarget$SupportsGlobalDatabases": "<p>Indicates whether you can use Aurora global databases with the target engine version.</p>",
         "UpgradeTarget$SupportsBabelfish": "<p>Indicates whether you can use Babelfish for Aurora PostgreSQL with the target engine version.</p>",
-        "UpgradeTarget$SupportsLocalWriteForwarding": "<p>Indicates whether the target engine version supports forwarding write operations from reader DB instances to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.</p> <p>Valid for: Aurora DB clusters only</p>"
+        "UpgradeTarget$SupportsLocalWriteForwarding": "<p>Indicates whether the target engine version supports forwarding write operations from reader DB instances to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.</p> <p>Valid for: Aurora DB clusters only</p>",
+        "UpgradeTarget$SupportsIntegrations": "<p>Indicates whether the DB engine version supports Aurora zero-ETL integrations with Amazon Redshift.</p>"
       }
     },
     "BucketName": {
@@ -977,6 +989,11 @@
       }
     },
     "CreateGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIntegrationMessage": {
       "base": null,
       "refs": {
       }
@@ -1957,6 +1974,11 @@
       "refs": {
       }
     },
+    "DeleteIntegrationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteOptionGroupMessage": {
       "base": "<p/>",
       "refs": {
@@ -2194,6 +2216,16 @@
       "refs": {
       }
     },
+    "DescribeIntegrationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeIntegrationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeOptionGroupOptionsMessage": {
       "base": "<p/>",
       "refs": {
@@ -2327,6 +2359,13 @@
     "Ec2ImagePropertiesNotSupportedFault": {
       "base": "<p>The AMI configuration prerequisite has not been met.</p>",
       "refs": {
+      }
+    },
+    "EncryptionContextMap": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$AdditionalEncryptionContext": "<p>An optional set of non-secret key–value pairs that contains additional contextual information about the data. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context\">Encryption context</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p> <p>You can only include this parameter if you specify the <code>KMSKeyId</code> parameter.</p>",
+        "Integration$AdditionalEncryptionContext": "<p>The encryption context for the integration. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context\">Encryption context</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>"
       }
     },
     "Endpoint": {
@@ -2540,6 +2579,7 @@
         "DescribeEventsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeExportTasksMessage$Filters": "<p>Filters specify one or more snapshot or cluster exports to describe. The filters are specified as name-value pairs that define what to include in the output. Filter names and values are case-sensitive.</p> <p>Supported filters include the following:</p> <ul> <li> <p> <code>export-task-identifier</code> - An identifier for the snapshot or cluster export task.</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket the data is exported to.</p> </li> <li> <p> <code>source-arn</code> - The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon S3.</p> </li> <li> <p> <code>status</code> - The status of the export task. Must be lowercase. Valid statuses are the following:</p> <ul> <li> <p> <code>canceled</code> </p> </li> <li> <p> <code>canceling</code> </p> </li> <li> <p> <code>complete</code> </p> </li> <li> <p> <code>failed</code> </p> </li> <li> <p> <code>in_progress</code> </p> </li> <li> <p> <code>starting</code> </p> </li> </ul> </li> </ul>",
         "DescribeGlobalClustersMessage$Filters": "<p>This parameter isn't currently supported.</p>",
+        "DescribeIntegrationsMessage$Filters": "<p>A filter that specifies one or more resources to return.</p>",
         "DescribeOptionGroupOptionsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeOptionGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
@@ -2784,6 +2824,7 @@
         "DescribeEventsMessage$Duration": "<p>The number of minutes to retrieve events for.</p> <p>Default: 60</p>",
         "DescribeEventsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeGlobalClustersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeIntegrationsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOptionGroupOptionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOptionGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 10000.</p>",
@@ -2859,6 +2900,76 @@
         "ScalingConfigurationInfo$SecondsUntilAutoPause": "<p>The remaining amount of time, in seconds, before the Aurora DB cluster in <code>serverless</code> mode is paused. A DB cluster can be paused only when it's idle (it has no connections).</p>",
         "ScalingConfigurationInfo$SecondsBeforeTimeout": "<p>The number of seconds before scaling times out. What happens when an attempted scaling action times out is determined by the <code>TimeoutAction</code> setting.</p>",
         "StartDBInstanceAutomatedBackupsReplicationMessage$BackupRetentionPeriod": "<p>The retention period for the replicated automated backups.</p>"
+      }
+    },
+    "Integration": {
+      "base": "<p>An Aurora zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html\">Working with Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "IntegrationList$member": null
+      }
+    },
+    "IntegrationAlreadyExistsFault": {
+      "base": "<p>The integration you are trying to create already exists.</p>",
+      "refs": {
+      }
+    },
+    "IntegrationArn": {
+      "base": null,
+      "refs": {
+        "Integration$IntegrationArn": "<p>The ARN of the integration.</p>"
+      }
+    },
+    "IntegrationConflictOperationFault": {
+      "base": "<p>A conflicting conditional operation is currently in progress against this resource. Typically occurs when there are multiple requests being made to the same resource at the same time, and these requests conflict with each other.</p>",
+      "refs": {
+      }
+    },
+    "IntegrationError": {
+      "base": "<p>An error associated with a zero-ETL integration with Amazon Redshift.</p>",
+      "refs": {
+        "IntegrationErrorList$member": null
+      }
+    },
+    "IntegrationErrorList": {
+      "base": null,
+      "refs": {
+        "Integration$Errors": "<p>Any errors associated with the integration.</p>"
+      }
+    },
+    "IntegrationIdentifier": {
+      "base": null,
+      "refs": {
+        "DeleteIntegrationMessage$IntegrationIdentifier": "<p>The unique identifier of the integration.</p>",
+        "DescribeIntegrationsMessage$IntegrationIdentifier": "<p>The unique identifier of the integration.</p>"
+      }
+    },
+    "IntegrationList": {
+      "base": null,
+      "refs": {
+        "DescribeIntegrationsResponse$Integrations": "<p>A list of integrations.</p>"
+      }
+    },
+    "IntegrationName": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$IntegrationName": "<p>The name of the integration.</p>",
+        "Integration$IntegrationName": "<p>The name of the integration.</p>"
+      }
+    },
+    "IntegrationNotFoundFault": {
+      "base": "<p>The specified integration could not be found.</p>",
+      "refs": {
+      }
+    },
+    "IntegrationQuotaExceededFault": {
+      "base": "<p>You can't crate any more zero-ETL integrations because the quota has been reached.</p>",
+      "refs": {
+      }
+    },
+    "IntegrationStatus": {
+      "base": null,
+      "refs": {
+        "Integration$Status": "<p>The current status of the integration.</p>"
       }
     },
     "InvalidBlueGreenDeploymentStateFault": {
@@ -2971,6 +3082,11 @@
       "refs": {
       }
     },
+    "InvalidIntegrationStateFault": {
+      "base": "<p>The integration is in an invalid state and can't perform the requested operation.</p>",
+      "refs": {
+      }
+    },
     "InvalidOptionGroupStateFault": {
       "base": "<p>The option group isn't in the <i>available</i> state.</p>",
       "refs": {
@@ -3066,6 +3182,13 @@
         "RestoreDBClusterFromS3Message$BacktrackWindow": "<p>The target backtrack window, in seconds. To disable backtracking, set this value to 0.</p> <note> <p>Currently, Backtrack is only supported for Aurora MySQL DB clusters.</p> </note> <p>Default: 0</p> <p>Constraints:</p> <ul> <li> <p>If specified, this value must be set to a number from 0 to 259,200 (72 hours).</p> </li> </ul>",
         "RestoreDBClusterFromSnapshotMessage$BacktrackWindow": "<p>The target backtrack window, in seconds. To disable backtracking, set this value to 0.</p> <note> <p>Currently, Backtrack is only supported for Aurora MySQL DB clusters.</p> </note> <p>Default: 0</p> <p>Constraints:</p> <ul> <li> <p>If specified, this value must be set to a number from 0 to 259,200 (72 hours).</p> </li> </ul> <p>Valid for: Aurora DB clusters only</p>",
         "RestoreDBClusterToPointInTimeMessage$BacktrackWindow": "<p>The target backtrack window, in seconds. To disable backtracking, set this value to 0.</p> <p>Default: 0</p> <p>Constraints:</p> <ul> <li> <p>If specified, this value must be set to a number from 0 to 259,200 (72 hours).</p> </li> </ul> <p>Valid for: Aurora MySQL DB clusters only</p>"
+      }
+    },
+    "Marker": {
+      "base": null,
+      "refs": {
+        "DescribeIntegrationsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeIntegrations</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeIntegrationsResponse$Marker": "<p>A pagination token that can be used in a later <code>DescribeIntegrations</code> request.</p>"
       }
     },
     "MasterUserSecret": {
@@ -3888,6 +4011,13 @@
       "refs": {
       }
     },
+    "SourceArn": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$SourceArn": "<p>The Amazon Resource Name (ARN) of the Aurora DB cluster to use as the source for replication.</p>",
+        "Integration$SourceArn": "<p>The Amazon Resource Name (ARN) of the Aurora DB cluster used as the source for replication.</p>"
+      }
+    },
     "SourceClusterNotSupportedFault": {
       "base": "<p>The source DB cluster isn't supported for a blue/green deployment.</p>",
       "refs": {
@@ -4207,6 +4337,7 @@
         "CreateGlobalClusterMessage$Engine": "<p>The database engine to use for this global database cluster.</p> <p>Valid Values: <code>aurora-mysql | aurora-postgresql</code> </p> <p>Constraints:</p> <ul> <li> <p>Can't be specified if <code>SourceDBClusterIdentifier</code> is specified. In this case, Amazon Aurora uses the engine of the source DB cluster.</p> </li> </ul>",
         "CreateGlobalClusterMessage$EngineVersion": "<p>The engine version to use for this global database cluster.</p> <p>Constraints:</p> <ul> <li> <p>Can't be specified if <code>SourceDBClusterIdentifier</code> is specified. In this case, Amazon Aurora uses the engine version of the source DB cluster.</p> </li> </ul>",
         "CreateGlobalClusterMessage$DatabaseName": "<p>The name for your database of up to 64 alphanumeric characters. If you don't specify a name, Amazon Aurora doesn't create a database in the global database cluster.</p> <p>Constraints:</p> <ul> <li> <p>Can't be specified if <code>SourceDBClusterIdentifier</code> is specified. In this case, Amazon Aurora uses the database name from the source DB cluster.</p> </li> </ul>",
+        "CreateIntegrationMessage$KMSKeyId": "<p>The Amazon Web Services Key Management System (Amazon Web Services KMS) key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, Aurora uses a default Amazon Web Services owned key. </p>",
         "CreateOptionGroupMessage$OptionGroupName": "<p>Specifies the name of the option group to be created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>myoptiongroup</code> </p>",
         "CreateOptionGroupMessage$EngineName": "<p>Specifies the name of the engine that this option group should be associated with.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p> </li> <li> <p> <code>oracle-ee-cdb</code> </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p> <code>oracle-se2-cdb</code> </p> </li> <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code> </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p> <code>sqlserver-ex</code> </p> </li> <li> <p> <code>sqlserver-web</code> </p> </li> </ul>",
         "CreateOptionGroupMessage$MajorEngineVersion": "<p>Specifies the major version of the engine that this option group should be associated with.</p>",
@@ -4601,6 +4732,8 @@
         "EC2SecurityGroup$EC2SecurityGroupName": "<p>Specifies the name of the EC2 security group.</p>",
         "EC2SecurityGroup$EC2SecurityGroupId": "<p>Specifies the id of the EC2 security group.</p>",
         "EC2SecurityGroup$EC2SecurityGroupOwnerId": "<p>Specifies the Amazon Web Services ID of the owner of the EC2 security group specified in the <code>EC2SecurityGroupName</code> field.</p>",
+        "EncryptionContextMap$key": null,
+        "EncryptionContextMap$value": null,
         "Endpoint$Address": "<p>Specifies the DNS address of the DB instance.</p>",
         "Endpoint$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "EngineDefaults$DBParameterGroupFamily": "<p>Specifies the name of the DB parameter group family that the engine default parameters apply to.</p>",
@@ -4648,6 +4781,9 @@
         "GlobalClustersMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeGlobalClusters</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "IPRange$Status": "<p>The status of the IP range. Status can be \"authorizing\", \"authorized\", \"revoking\", and \"revoked\".</p>",
         "IPRange$CIDRIP": "<p>The IP range.</p>",
+        "Integration$KMSKeyId": "<p>The Amazon Web Services Key Management System (Amazon Web Services KMS) key identifier for the key used to to encrypt the integration. </p>",
+        "IntegrationError$ErrorCode": "<p>The error code associated with the integration.</p>",
+        "IntegrationError$ErrorMessage": "<p>A message explaining the error.</p>",
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon RDS resource with tags to be listed. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon RDS User Guide</i>.</p>",
         "LogTypeList$member": null,
@@ -5219,6 +5355,7 @@
         "ExportTask$SnapshotTime": "<p>The time when the snapshot was created.</p>",
         "ExportTask$TaskStartTime": "<p>The time when the snapshot or cluster export task started.</p>",
         "ExportTask$TaskEndTime": "<p>The time when the snapshot or cluster export task ended.</p>",
+        "Integration$CreateTime": "<p>The time when the integration was created, in Universal Coordinated Time (UTC).</p>",
         "OptionGroup$CopyTimestamp": "<p>Indicates when the option group was copied.</p>",
         "PendingMaintenanceAction$AutoAppliedAfterDate": "<p>The date of the maintenance window when the action is applied. The maintenance action is applied to the resource during its first maintenance window after this date.</p>",
         "PendingMaintenanceAction$ForcedApplyDate": "<p>The date when the maintenance action is automatically applied.</p> <p>On this date, the maintenance action is applied to the resource as soon as possible, regardless of the maintenance window for the resource. There might be a delay of one or more days from this date before the maintenance action is applied.</p>",
@@ -5262,12 +5399,14 @@
         "CreateDBSnapshotMessage$Tags": null,
         "CreateDBSubnetGroupMessage$Tags": "<p>Tags to assign to the DB subnet group.</p>",
         "CreateEventSubscriptionMessage$Tags": null,
+        "CreateIntegrationMessage$Tags": null,
         "CreateOptionGroupMessage$Tags": "<p>Tags to assign to the option group.</p>",
         "DBCluster$TagList": null,
         "DBClusterSnapshot$TagList": null,
         "DBEngineVersion$TagList": null,
         "DBInstance$TagList": null,
         "DBSnapshot$TagList": null,
+        "Integration$Tags": null,
         "PurchaseReservedDBInstancesOfferingMessage$Tags": null,
         "RestoreDBClusterFromS3Message$Tags": null,
         "RestoreDBClusterFromSnapshotMessage$Tags": "<p>The tags to be assigned to the restored DB cluster.</p> <p>Valid for: Aurora DB clusters and Multi-AZ DB clusters</p>",

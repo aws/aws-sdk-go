@@ -24,6 +24,7 @@
     "ListTagsForResource": "<p>This operation lists the tags on the resource.</p>",
     "RevokeRevision": "<p>This operation revokes subscribers' access to a revision.</p>",
     "SendApiAsset": "<p>This operation invokes an API Gateway API asset. The request is proxied to the provider’s API Gateway API.</p>",
+    "SendDataSetNotification": "<p>The type of event associated with the data set.</p>",
     "StartJob": "<p>This operation starts a job.</p>",
     "TagResource": "<p>This operation tags a resource.</p>",
     "UntagResource": "<p>This operation removes one or more tags from a resource.</p>",
@@ -163,6 +164,12 @@
       "refs": {
       }
     },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "SendDataSetNotificationRequest$ClientToken": "<p>Idempotency key for the notification, this key allows us to deduplicate notifications that are sent in quick succession erroneously.</p>"
+      }
+    },
     "Code": {
       "base": null,
       "refs": {
@@ -232,6 +239,12 @@
         "ListOfDataSetEntry$member": null
       }
     },
+    "DataUpdateRequestDetails": {
+      "base": "<p>Extra details specific to a data update type notification.</p>",
+      "refs": {
+        "NotificationDetails$DataUpdate": "<p>Extra details specific to a data update type notification.</p>"
+      }
+    },
     "DatabaseLFTagPolicy": {
       "base": "<p>The LF-tag policy for database resources.</p>",
       "refs": {
@@ -269,6 +282,12 @@
     "DeleteRevisionRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeprecationRequestDetails": {
+      "base": "<p>Extra details specific to a deprecation type notification.</p>",
+      "refs": {
+        "NotificationDetails$Deprecation": "<p>Extra details specific to a deprecation type notification.</p>"
       }
     },
     "Description": {
@@ -647,6 +666,12 @@
         "LakeFormationDataPermissionAsset$LakeFormationDataPermissionType": "<p>The data permission type.</p>"
       }
     },
+    "LakeFormationTagPolicyDetails": {
+      "base": "<p>Extra details specific to the affected scope in this LF data set.</p>",
+      "refs": {
+        "ListOfLakeFormationTagPolicies$member": null
+      }
+    },
     "LimitName": {
       "base": null,
       "refs": {
@@ -774,11 +799,23 @@
         "TableLFTagPolicyAndPermissions$Expression": "<p>A list of LF-tag conditions that apply to table resources.</p>"
       }
     },
+    "ListOfLakeFormationTagPolicies": {
+      "base": null,
+      "refs": {
+        "ScopeDetails$LakeFormationTagPolicies": "<p>Underlying LF resources that will be affected by this notification.</p>"
+      }
+    },
     "ListOfRedshiftDataShareAssetSourceEntry": {
       "base": null,
       "refs": {
         "ImportAssetsFromRedshiftDataSharesRequestDetails$AssetSources": "<p>A list of Amazon Redshift datashare assets.</p>",
         "ImportAssetsFromRedshiftDataSharesResponseDetails$AssetSources": "<p>A list of Amazon Redshift datashare asset sources.</p>"
+      }
+    },
+    "ListOfRedshiftDataShares": {
+      "base": null,
+      "refs": {
+        "ScopeDetails$RedshiftDataShares": "<p>Underlying Redshift resources that will be affected by this notification.</p>"
       }
     },
     "ListOfRevisionDestinationEntry": {
@@ -794,6 +831,18 @@
         "ListDataSetRevisionsResponse$Revisions": "<p>The asset objects listed by the request.</p>"
       }
     },
+    "ListOfS3DataAccesses": {
+      "base": null,
+      "refs": {
+        "ScopeDetails$S3DataAccesses": "<p>Underlying S3 resources that will be affected by this notification.</p>"
+      }
+    },
+    "ListOfSchemaChangeDetails": {
+      "base": null,
+      "refs": {
+        "SchemaChangeRequestDetails$Changes": "<p>List of schema changes happening in the scope of this notification. This can have up to 100 entries.</p>"
+      }
+    },
     "ListOfTableTagPolicyLFPermissions": {
       "base": null,
       "refs": {
@@ -807,6 +856,8 @@
         "S3DataAccessAsset$Keys": "<p>S3 keys made available using this asset.</p>",
         "S3DataAccessAssetSourceEntry$KeyPrefixes": "<p>Organizes Amazon S3 asset key prefixes stored in an Amazon S3 bucket.</p>",
         "S3DataAccessAssetSourceEntry$Keys": "<p>The keys used to create the Amazon S3 data access.</p>",
+        "S3DataAccessDetails$KeyPrefixes": "<p>A list of the key prefixes affected by this notification. This can have up to 50 entries.</p>",
+        "S3DataAccessDetails$Keys": "<p>A list of the keys affected by this notification. This can have up to 50 entries.</p>",
         "UntagResourceRequest$TagKeys": "<p>The key tags.</p>"
       }
     },
@@ -877,6 +928,18 @@
         "ListRevisionAssetsResponse$NextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
       }
     },
+    "NotificationDetails": {
+      "base": "<p>Extra details specific to this notification.</p>",
+      "refs": {
+        "SendDataSetNotificationRequest$Details": "<p>Extra details specific to this notification type.</p>"
+      }
+    },
+    "NotificationType": {
+      "base": null,
+      "refs": {
+        "SendDataSetNotificationRequest$Type": "<p>The type of the notification. Describing the kind of event the notification is alerting you to.</p>"
+      }
+    },
     "Origin": {
       "base": null,
       "refs": {
@@ -913,6 +976,12 @@
       "base": "<p>The source of the Amazon Redshift datashare asset.</p>",
       "refs": {
         "ListOfRedshiftDataShareAssetSourceEntry$member": null
+      }
+    },
+    "RedshiftDataShareDetails": {
+      "base": "<p>Extra details specific to the affected scope in this Redshift data set.</p>",
+      "refs": {
+        "ListOfRedshiftDataShares$member": null
       }
     },
     "RequestDetails": {
@@ -990,10 +1059,40 @@
         "CreateS3DataAccessFromS3BucketResponseDetails$AssetSource": "<p>Details about the asset source from an Amazon S3 bucket.</p>"
       }
     },
+    "S3DataAccessDetails": {
+      "base": "<p>Extra details specific to the affected scope in this S3 Data Access data set.</p>",
+      "refs": {
+        "ListOfS3DataAccesses$member": null
+      }
+    },
     "S3SnapshotAsset": {
       "base": "<p>The Amazon S3 object that is the asset.</p>",
       "refs": {
         "AssetDetails$S3SnapshotAsset": "<p>The Amazon S3 object that is the asset.</p>"
+      }
+    },
+    "SchemaChangeDetails": {
+      "base": "<p>Object encompassing information about a schema change to a single, particular field, a notification can have up to 100 of these.</p>",
+      "refs": {
+        "ListOfSchemaChangeDetails$member": null
+      }
+    },
+    "SchemaChangeRequestDetails": {
+      "base": "<p>Extra details specific to this schema change type notification.</p>",
+      "refs": {
+        "NotificationDetails$SchemaChange": "<p>Extra details specific to a schema change type notification.</p>"
+      }
+    },
+    "SchemaChangeType": {
+      "base": null,
+      "refs": {
+        "SchemaChangeDetails$Type": "<p>Is the field being added, removed, or modified?</p>"
+      }
+    },
+    "ScopeDetails": {
+      "base": "<p>Details about the scope of the notifications such as the affected resources.</p>",
+      "refs": {
+        "SendDataSetNotificationRequest$Scope": "<p>Affected scope of this notification such as the underlying resources affected by the notification event.</p>"
       }
     },
     "SendApiAssetRequest": {
@@ -1002,6 +1101,16 @@
       }
     },
     "SendApiAssetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendDataSetNotificationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendDataSetNotificationResponse": {
       "base": null,
       "refs": {
       }
@@ -1088,6 +1197,8 @@
         "CreateRevisionResponse$RevokedAt": "<p>The date and time that the revision was revoked, in ISO 8601 format.</p>",
         "DataSetEntry$CreatedAt": "<p>The date and time that the data set was created, in ISO 8601 format.</p>",
         "DataSetEntry$UpdatedAt": "<p>The date and time that the data set was last updated, in ISO 8601 format.</p>",
+        "DataUpdateRequestDetails$DataUpdatedAt": "<p>A datetime in the past when the data was updated. This typically means that the underlying resource supporting the data set was updated.</p>",
+        "DeprecationRequestDetails$DeprecationAt": "<p>A datetime in the future when the data set will be deprecated.</p>",
         "EventActionEntry$CreatedAt": "<p>The date and time that the event action was created, in ISO 8601 format.</p>",
         "EventActionEntry$UpdatedAt": "<p>The date and time that the event action was last updated, in ISO 8601 format.</p>",
         "ExportAssetToSignedUrlResponseDetails$SignedUrlExpiresAt": "<p>The date and time that the signed URL expires, in ISO 8601 format.</p>",
@@ -1112,6 +1223,7 @@
         "RevokeRevisionResponse$CreatedAt": "<p>The date and time that the revision was created, in ISO 8601 format.</p>",
         "RevokeRevisionResponse$UpdatedAt": "<p>The date and time that the revision was last updated, in ISO 8601 format.</p>",
         "RevokeRevisionResponse$RevokedAt": "<p>The date and time that the revision was revoked, in ISO 8601 format.</p>",
+        "SchemaChangeRequestDetails$SchemaChangeAt": "<p>A date in the future when the schema change is taking effect.</p>",
         "UpdateAssetResponse$CreatedAt": "<p>The date and time that the asset was created, in ISO 8601 format.</p>",
         "UpdateAssetResponse$UpdatedAt": "<p>The date and time that the asset was last updated, in ISO 8601 format.</p>",
         "UpdateDataSetResponse$CreatedAt": "<p>The date and time that the data set was created, in ISO 8601 format.</p>",
@@ -1262,6 +1374,8 @@
         "InternalServerException$Message": "<p>The message identifying the service exception that occurred.</p>",
         "JobError$Message": "<p>The message related to the job error.</p>",
         "JobError$ResourceId": "<p>The unique identifier for the resource related to the error.</p>",
+        "LakeFormationTagPolicyDetails$Database": "<p>The underlying Glue database that the notification is referring to.</p>",
+        "LakeFormationTagPolicyDetails$Table": "<p>The underlying Glue table that the notification is referring to.</p>",
         "ListDataSetRevisionsRequest$DataSetId": "<p>The unique identifier for a data set.</p>",
         "ListDataSetRevisionsRequest$NextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListDataSetsRequest$NextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
@@ -1281,6 +1395,12 @@
         "OriginDetails$ProductId": "<p>The product ID of the origin of the data set.</p>",
         "RedshiftDataShareAsset$Arn": "<p>The Amazon Resource Name (ARN) of the datashare asset.</p>",
         "RedshiftDataShareAssetSourceEntry$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare asset.</p>",
+        "RedshiftDataShareDetails$Arn": "<p>The ARN of the underlying Redshift data share that is being affected by this notification.</p>",
+        "RedshiftDataShareDetails$Database": "<p>The database name in the Redshift data share that is being affected by this notification.</p>",
+        "RedshiftDataShareDetails$Function": "<p>A function name in the Redshift database that is being affected by this notification.</p>",
+        "RedshiftDataShareDetails$Table": "<p>A table name in the Redshift database that is being affected by this notification.</p>",
+        "RedshiftDataShareDetails$Schema": "<p>A schema name in the Redshift database that is being affected by this notification.</p>",
+        "RedshiftDataShareDetails$View": "<p>A view name in the Redshift database that is being affected by this notification.</p>",
         "ResourceNotFoundException$Message": "<p>The resource couldn't be found.</p>",
         "ResourceNotFoundException$ResourceId": "<p>The unique identifier for the resource that couldn't be found.</p>",
         "RevisionDestinationEntry$Bucket": "<p>The Amazon S3 bucket that is the destination for the assets in the revision.</p>",
@@ -1291,6 +1411,8 @@
         "S3DataAccessAsset$S3AccessPointAlias": "<p>The automatically-generated bucket-style alias for your Amazon S3 Access Point. Customers can access their entitled data using the S3 Access Point alias.</p>",
         "S3DataAccessAsset$S3AccessPointArn": "<p>The ARN for your Amazon S3 Access Point. Customers can also access their entitled data using the S3 Access Point ARN.</p>",
         "S3DataAccessAssetSourceEntry$Bucket": "<p>The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.</p>",
+        "SchemaChangeDetails$Name": "<p>Name of the changing field. This value can be up to 255 characters long.</p>",
+        "SchemaChangeDetails$Description": "<p>Description of what's changing about this field. This value can be up to 512 characters long.</p>",
         "SendApiAssetRequest$Body": "<p>The request body.</p>",
         "SendApiAssetRequest$AssetId": "<p>Asset ID value for the API request.</p>",
         "SendApiAssetRequest$DataSetId": "<p>Data set ID value for the API request.</p>",
@@ -1298,6 +1420,7 @@
         "SendApiAssetRequest$Path": "<p>URI path value for the API request. Alternatively, you can set the URI path directly by invoking /v1/{pathValue}.</p>",
         "SendApiAssetRequest$RevisionId": "<p>Revision ID value for the API request.</p>",
         "SendApiAssetResponse$Body": "<p>The response body from the underlying API tracked by the API asset.</p>",
+        "SendDataSetNotificationRequest$DataSetId": "<p>Affected data set of the notification.</p>",
         "ServiceLimitExceededException$Message": "<p>The request has exceeded the quotas imposed by the service.</p>",
         "StartJobRequest$JobId": "<p>The unique identifier for a job.</p>",
         "TagResourceRequest$ResourceArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.</p>",
@@ -1321,6 +1444,7 @@
         "GetRevisionResponse$Comment": "<p>An optional comment about the revision.</p>",
         "RevisionEntry$Comment": "<p>An optional comment about the revision.</p>",
         "RevokeRevisionResponse$Comment": "<p>An optional comment about the revision.</p>",
+        "SendDataSetNotificationRequest$Comment": "<p>Free-form text field for providers to add information about their notifications.</p>",
         "UpdateRevisionRequest$Comment": "<p>An optional comment about the revision.</p>",
         "UpdateRevisionResponse$Comment": "<p>An optional comment about the revision.</p>"
       }
