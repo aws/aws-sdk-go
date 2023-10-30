@@ -271,6 +271,27 @@
         "Encryption$EncryptionMethod": "<p>The encryption method to use.</p>"
       }
     },
+    "FilterConfiguration": {
+      "base": "<p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>",
+      "refs": {
+        "CreateHlsManifestConfiguration$FilterConfiguration": null,
+        "CreateLowLatencyHlsManifestConfiguration$FilterConfiguration": null,
+        "GetHlsManifestConfiguration$FilterConfiguration": null,
+        "GetLowLatencyHlsManifestConfiguration$FilterConfiguration": null
+      }
+    },
+    "FilterConfigurationManifestFilterString": {
+      "base": null,
+      "refs": {
+        "FilterConfiguration$ManifestFilter": "<p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>"
+      }
+    },
+    "FilterConfigurationTimeDelaySecondsInteger": {
+      "base": null,
+      "refs": {
+        "FilterConfiguration$TimeDelaySeconds": "<p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>"
+      }
+    },
     "GetChannelGroupRequest": {
       "base": null,
       "refs": {
@@ -832,6 +853,8 @@
         "CreateChannelResponse$ModifiedAt": "<p>The date and time the channel was modified.</p>",
         "CreateOriginEndpointResponse$CreatedAt": "<p>The date and time the origin endpoint was created.</p>",
         "CreateOriginEndpointResponse$ModifiedAt": "<p>The date and time the origin endpoint was modified.</p>",
+        "FilterConfiguration$Start": "<p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>",
+        "FilterConfiguration$End": "<p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>",
         "GetChannelGroupResponse$CreatedAt": "<p>The date and time the channel group was created.</p>",
         "GetChannelGroupResponse$ModifiedAt": "<p>The date and time the channel group was modified.</p>",
         "GetChannelResponse$CreatedAt": "<p>The date and time the channel was created.</p>",

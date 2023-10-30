@@ -13985,7 +13985,7 @@ func (c *Connect) ListSecurityProfileApplicationsRequest(input *ListSecurityProf
 
 // ListSecurityProfileApplications API operation for Amazon Connect Service.
 //
-// Returns a list of third party applications in a specific security profile.
+// Returns a list of third-party applications in a specific security profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16148,7 +16148,9 @@ func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInp
 // ResumeContactRecording API operation for Amazon Connect Service.
 //
 // When a contact is being recorded, and the recording has been suspended using
-// SuspendContactRecording, this API resumes recording the call or screen.
+// SuspendContactRecording, this API resumes recording whatever recording is
+// selected in the flow configuration: call, screen, or both. If only call recording
+// or only screen recording is enabled, then it would resume.
 //
 // Voice and screen recordings are supported.
 //
@@ -18761,10 +18763,12 @@ func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingI
 
 // SuspendContactRecording API operation for Amazon Connect Service.
 //
-// When a contact is being recorded, this API suspends recording the call or
-// screen. For example, you might suspend the call or screen recording while
-// collecting sensitive information, such as a credit card number. Then use
-// ResumeContactRecording to restart recording.
+// When a contact is being recorded, this API suspends recording whatever is
+// selected in the flow configuration: call, screen, or both. If only call recording
+// or only screen recording is enabled, then it would be suspended. For example,
+// you might suspend the screen recording while collecting sensitive information,
+// such as a credit card number. Then use ResumeContactRecording to restart
+// recording the screen.
 //
 // The period of time that the recording is suspended is filled with silence
 // in the final recording.
@@ -23966,7 +23970,7 @@ func (s *AnswerMachineDetectionConfig) SetEnableAnswerMachineDetection(v bool) *
 
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// A third party application's metadata.
+// A third-party application's metadata.
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -25522,6 +25526,12 @@ type ClaimPhoneNumberInput struct {
 	// Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId
+	// or TargetArn.
+	InstanceId *string `min:"1" type:"string"`
+
 	// The phone number you want to claim. Phone numbers are formatted [+] [country
 	// code] [subscriber number including area code].
 	//
@@ -25536,10 +25546,9 @@ type ClaimPhoneNumberInput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to.
-	//
-	// TargetArn is a required field
-	TargetArn *string `type:"string" required:"true"`
+	// groups that phone number inbound traffic is routed through. You must enter
+	// InstanceId or TargetArn.
+	TargetArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -25563,14 +25572,14 @@ func (s ClaimPhoneNumberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ClaimPhoneNumberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ClaimPhoneNumberInput"}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
 	if s.PhoneNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
-	}
-	if s.TargetArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -25582,6 +25591,12 @@ func (s *ClaimPhoneNumberInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *ClaimPhoneNumberInput) SetClientToken(v string) *ClaimPhoneNumberInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ClaimPhoneNumberInput) SetInstanceId(v string) *ClaimPhoneNumberInput {
+	s.InstanceId = &v
 	return s
 }
 
@@ -25654,6 +25669,11 @@ func (s *ClaimPhoneNumberOutput) SetPhoneNumberId(v string) *ClaimPhoneNumberOut
 type ClaimedPhoneNumberSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	InstanceId *string `min:"1" type:"string"`
+
 	// The phone number. Phone numbers are formatted [+] [country code] [subscriber
 	// number including area code].
 	PhoneNumber *string `type:"string"`
@@ -25704,7 +25724,7 @@ type ClaimedPhoneNumberSummary struct {
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to.
+	// groups that phone number inbound traffic is routed through.
 	TargetArn *string `type:"string"`
 }
 
@@ -25724,6 +25744,12 @@ func (s ClaimedPhoneNumberSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ClaimedPhoneNumberSummary) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ClaimedPhoneNumberSummary) SetInstanceId(v string) *ClaimedPhoneNumberSummary {
+	s.InstanceId = &v
+	return s
 }
 
 // SetPhoneNumber sets the PhoneNumber field's value.
@@ -28704,7 +28730,7 @@ type CreateSecurityProfileInput struct {
 
 	// This API is in preview release for Amazon Connect and is subject to change.
 	//
-	// A list of third party applications that the security profile will give access
+	// A list of third-party applications that the security profile will give access
 	// to.
 	Applications []*Application `type:"list"`
 
@@ -45397,6 +45423,11 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumberSummaryList(v []*PhoneNumberSumma
 type ListPhoneNumbersSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	InstanceId *string `min:"1" type:"string"`
+
 	// The phone number. Phone numbers are formatted [+] [country code] [subscriber
 	// number including area code].
 	PhoneNumber *string `type:"string"`
@@ -45414,7 +45445,7 @@ type ListPhoneNumbersSummary struct {
 	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to.
+	// groups that phone number inbound traffic is routed through.
 	TargetArn *string `type:"string"`
 }
 
@@ -45434,6 +45465,12 @@ func (s ListPhoneNumbersSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ListPhoneNumbersSummary) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListPhoneNumbersSummary) SetInstanceId(v string) *ListPhoneNumbersSummary {
+	s.InstanceId = &v
+	return s
 }
 
 // SetPhoneNumber sets the PhoneNumber field's value.
@@ -45475,6 +45512,14 @@ func (s *ListPhoneNumbersSummary) SetTargetArn(v string) *ListPhoneNumbersSummar
 type ListPhoneNumbersV2Input struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance. If both TargetArn and
+	// InstanceId are not provided, this API lists numbers claimed to all the Amazon
+	// Connect instances belonging to your account in the same AWS Region as the
+	// request.
+	InstanceId *string `min:"1" type:"string"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -45493,9 +45538,10 @@ type ListPhoneNumbersV2Input struct {
 	PhoneNumberTypes []*string `type:"list" enum:"PhoneNumberType"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to. If TargetArn input is not provided,
-	// this API lists numbers claimed to all the Amazon Connect instances belonging
-	// to your account in the same Amazon Web Services Region as the request.
+	// groups that phone number inbound traffic is routed through. If both TargetArn
+	// and InstanceId input are not provided, this API lists numbers claimed to
+	// all the Amazon Connect instances belonging to your account in the same Amazon
+	// Web Services Region as the request.
 	TargetArn *string `type:"string"`
 }
 
@@ -45520,6 +45566,9 @@ func (s ListPhoneNumbersV2Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListPhoneNumbersV2Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListPhoneNumbersV2Input"}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -45531,6 +45580,12 @@ func (s *ListPhoneNumbersV2Input) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListPhoneNumbersV2Input) SetInstanceId(v string) *ListPhoneNumbersV2Input {
+	s.InstanceId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -46595,7 +46650,9 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 type ListSecurityProfileApplicationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The instance identifier.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46603,12 +46660,11 @@ type ListSecurityProfileApplicationsInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next set of results. The next set of results can be retrieved
-	// by using the token value returned in the previous response when making the
-	// next request.
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The security profile identifier.
+	// The identifier for the security profle.
 	//
 	// SecurityProfileId is a required field
 	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
@@ -46686,12 +46742,10 @@ type ListSecurityProfileApplicationsOutput struct {
 
 	// This API is in preview release for Amazon Connect and is subject to change.
 	//
-	// A list of the third party application's metadata.
+	// A list of the third-party application's metadata.
 	Applications []*Application `type:"list"`
 
-	// The token for the next set of results. The next set of results can be retrieved
-	// by using the token value returned in the previous response when making the
-	// next request.
+	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 }
 
@@ -52594,6 +52648,12 @@ func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
 type SearchAvailablePhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId
+	// or TargetArn.
+	InstanceId *string `min:"1" type:"string"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -52616,10 +52676,9 @@ type SearchAvailablePhoneNumbersInput struct {
 	PhoneNumberType *string `type:"string" required:"true" enum:"PhoneNumberType"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to.
-	//
-	// TargetArn is a required field
-	TargetArn *string `type:"string" required:"true"`
+	// groups that phone number inbound traffic is routed through. You must enter
+	// InstanceId or TargetArn.
+	TargetArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -52643,6 +52702,9 @@ func (s SearchAvailablePhoneNumbersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SearchAvailablePhoneNumbersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SearchAvailablePhoneNumbersInput"}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -52655,14 +52717,17 @@ func (s *SearchAvailablePhoneNumbersInput) Validate() error {
 	if s.PhoneNumberType == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhoneNumberType"))
 	}
-	if s.TargetArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetInstanceId(v string) *SearchAvailablePhoneNumbersInput {
+	s.InstanceId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -59987,16 +60052,21 @@ type UpdatePhoneNumberInput struct {
 	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
+	// The identifier of the Amazon Connect instance that phone numbers are claimed
+	// to. You can find the instance ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId
+	// or TargetArn.
+	InstanceId *string `min:"1" type:"string"`
+
 	// A unique identifier for the phone number.
 	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
-	// groups that phone numbers are claimed to.
-	//
-	// TargetArn is a required field
-	TargetArn *string `type:"string" required:"true"`
+	// groups that phone number inbound traffic is routed through. You must enter
+	// InstanceId or TargetArn.
+	TargetArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -60020,14 +60090,14 @@ func (s UpdatePhoneNumberInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdatePhoneNumberInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdatePhoneNumberInput"}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
 	if s.PhoneNumberId == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
 	}
 	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
-	}
-	if s.TargetArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -60039,6 +60109,12 @@ func (s *UpdatePhoneNumberInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdatePhoneNumberInput) SetClientToken(v string) *UpdatePhoneNumberInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdatePhoneNumberInput) SetInstanceId(v string) *UpdatePhoneNumberInput {
+	s.InstanceId = &v
 	return s
 }
 
@@ -61806,7 +61882,7 @@ type UpdateSecurityProfileInput struct {
 
 	// This API is in preview release for Amazon Connect and is subject to change.
 	//
-	// A list of the third party application's metadata.
+	// A list of the third-party application's metadata.
 	Applications []*Application `type:"list"`
 
 	// The description of the security profile.

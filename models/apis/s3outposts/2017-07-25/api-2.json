@@ -326,6 +326,7 @@
       "type":"structure",
       "members":{
         "OutpostArn":{"shape":"OutpostArn"},
+        "S3OutpostArn":{"shape":"S3OutpostArn"},
         "OutpostId":{"shape":"OutpostId"},
         "OwnerId":{"shape":"AwsAccountId"},
         "CapacityInBytes":{"shape":"CapacityInBytes"}
@@ -358,6 +359,10 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "S3OutpostArn":{
+      "type":"string",
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3-outposts:[a-z\\-0-9]*:[0-9]{12}:outpost/(op-[a-f0-9]{17}|\\d{12})/s3$"
     },
     "SecurityGroupId":{
       "type":"string",

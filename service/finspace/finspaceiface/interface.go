@@ -188,6 +188,10 @@ type FinspaceAPI interface {
 	UpdateEnvironmentWithContext(aws.Context, *finspace.UpdateEnvironmentInput, ...request.Option) (*finspace.UpdateEnvironmentOutput, error)
 	UpdateEnvironmentRequest(*finspace.UpdateEnvironmentInput) (*request.Request, *finspace.UpdateEnvironmentOutput)
 
+	UpdateKxClusterCodeConfiguration(*finspace.UpdateKxClusterCodeConfigurationInput) (*finspace.UpdateKxClusterCodeConfigurationOutput, error)
+	UpdateKxClusterCodeConfigurationWithContext(aws.Context, *finspace.UpdateKxClusterCodeConfigurationInput, ...request.Option) (*finspace.UpdateKxClusterCodeConfigurationOutput, error)
+	UpdateKxClusterCodeConfigurationRequest(*finspace.UpdateKxClusterCodeConfigurationInput) (*request.Request, *finspace.UpdateKxClusterCodeConfigurationOutput)
+
 	UpdateKxClusterDatabases(*finspace.UpdateKxClusterDatabasesInput) (*finspace.UpdateKxClusterDatabasesOutput, error)
 	UpdateKxClusterDatabasesWithContext(aws.Context, *finspace.UpdateKxClusterDatabasesInput, ...request.Option) (*finspace.UpdateKxClusterDatabasesOutput, error)
 	UpdateKxClusterDatabasesRequest(*finspace.UpdateKxClusterDatabasesInput) (*request.Request, *finspace.UpdateKxClusterDatabasesOutput)

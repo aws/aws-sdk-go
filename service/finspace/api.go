@@ -2951,6 +2951,108 @@ func (c *Finspace) UpdateEnvironmentWithContext(ctx aws.Context, input *UpdateEn
 	return out, req.Send()
 }
 
+const opUpdateKxClusterCodeConfiguration = "UpdateKxClusterCodeConfiguration"
+
+// UpdateKxClusterCodeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateKxClusterCodeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateKxClusterCodeConfiguration for more information on using the UpdateKxClusterCodeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateKxClusterCodeConfigurationRequest method.
+//	req, resp := client.UpdateKxClusterCodeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxClusterCodeConfiguration
+func (c *Finspace) UpdateKxClusterCodeConfigurationRequest(input *UpdateKxClusterCodeConfigurationInput) (req *request.Request, output *UpdateKxClusterCodeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateKxClusterCodeConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/code",
+	}
+
+	if input == nil {
+		input = &UpdateKxClusterCodeConfigurationInput{}
+	}
+
+	output = &UpdateKxClusterCodeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateKxClusterCodeConfiguration API operation for FinSpace User Environment Management service.
+//
+// Allows you to update code configuration on a running cluster. By using this
+// API you can update the code, the initialization script path, and the command
+// line arguments for a specific cluster. The configuration that you want to
+// update will override any existing configurations on the cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace User Environment Management service's
+// API operation UpdateKxClusterCodeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - LimitExceededException
+//     A service limit or quota is exceeded.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ConflictException
+//     There was a conflict with this action, and it could not be completed.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateKxClusterCodeConfiguration
+func (c *Finspace) UpdateKxClusterCodeConfiguration(input *UpdateKxClusterCodeConfigurationInput) (*UpdateKxClusterCodeConfigurationOutput, error) {
+	req, out := c.UpdateKxClusterCodeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateKxClusterCodeConfigurationWithContext is the same as UpdateKxClusterCodeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateKxClusterCodeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Finspace) UpdateKxClusterCodeConfigurationWithContext(ctx aws.Context, input *UpdateKxClusterCodeConfigurationInput, opts ...request.Option) (*UpdateKxClusterCodeConfigurationOutput, error) {
+	req, out := c.UpdateKxClusterCodeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateKxClusterDatabases = "UpdateKxClusterDatabases"
 
 // UpdateKxClusterDatabasesRequest generates a "aws/request.Request" representing the
@@ -7733,9 +7835,17 @@ type KxCacheStorageConfiguration struct {
 	// Size is a required field
 	Size *int64 `locationName:"size" min:"1200" type:"integer" required:"true"`
 
-	// The type of cache storage . The valid values are:
+	// The type of cache storage. The valid values are:
 	//
 	//    * CACHE_1000 – This type provides at least 1000 MB/s disk access throughput.
+	//
+	//    * CACHE_250 – This type provides at least 250 MB/s disk access throughput.
+	//
+	//    * CACHE_12 – This type provides at least 12 MB/s disk access throughput.
+	//
+	// For cache type CACHE_1000 and CACHE_250 you can select cache size as 1200
+	// GB or increments of 2400 GB. For cache type CACHE_12 you can select the cache
+	// size in increments of 6000 GB.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" min:"8" type:"string" required:"true"`
@@ -8051,6 +8161,61 @@ func (s *KxCluster) SetStatusReason(v string) *KxCluster {
 	return s
 }
 
+// The configuration that allows you to choose how you want to update code on
+// a cluster. Depending on the option you choose, you can reduce the time it
+// takes to update the cluster.
+type KxClusterCodeDeploymentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of deployment that you want on a cluster.
+	//
+	//    * ROLLING – This options updates the cluster by stopping the exiting
+	//    q process and starting a new q process with updated configuration.
+	//
+	//    * FORCE – This option updates the cluster by immediately stopping all
+	//    the running processes before starting up new ones with the updated configuration.
+	//
+	// DeploymentStrategy is a required field
+	DeploymentStrategy *string `locationName:"deploymentStrategy" type:"string" required:"true" enum:"KxClusterCodeDeploymentStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KxClusterCodeDeploymentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KxClusterCodeDeploymentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KxClusterCodeDeploymentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KxClusterCodeDeploymentConfiguration"}
+	if s.DeploymentStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentStrategy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentStrategy sets the DeploymentStrategy field's value.
+func (s *KxClusterCodeDeploymentConfiguration) SetDeploymentStrategy(v string) *KxClusterCodeDeploymentConfiguration {
+	s.DeploymentStrategy = &v
+	return s
+}
+
 // Defines the key-value pairs to make them available inside the cluster.
 type KxCommandLineArgument struct {
 	_ struct{} `type:"structure"`
@@ -8316,19 +8481,20 @@ func (s *KxDatabaseListEntry) SetLastModifiedTimestamp(v time.Time) *KxDatabaseL
 
 // The configuration that allows you to choose how you want to update the databases
 // on a cluster. Depending on the option you choose, you can reduce the time
-// it takes to update the database changesets on to a cluster.
+// it takes to update the cluster.
 type KxDeploymentConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The type of deployment that you want on a cluster.
 	//
-	//    * ROLLING – This options loads the updated database by stopping the
-	//    exiting q process and starting a new q process with updated configuration.
+	//    * ROLLING – This options updates the cluster by stopping the exiting
+	//    q process and starting a new q process with updated configuration.
 	//
-	//    * NO_RESTART – This option loads the updated database on the running
-	//    q process without stopping it. This option is quicker as it reduces the
-	//    turn around time to update a kdb database changeset configuration on a
-	//    cluster.
+	//    * NO_RESTART – This option updates the cluster without stopping the
+	//    running q process. It is only available for HDB type cluster. This option
+	//    is quicker as it reduces the turn around time to update configuration
+	//    on a cluster. With this deployment mode, you cannot update the initializationScript
+	//    and commandLineArguments parameters.
 	//
 	// DeploymentStrategy is a required field
 	DeploymentStrategy *string `locationName:"deploymentStrategy" type:"string" required:"true" enum:"KxDeploymentStrategy"`
@@ -10652,6 +10818,173 @@ func (s *UpdateEnvironmentOutput) SetEnvironment(v *Environment) *UpdateEnvironm
 	return s
 }
 
+type UpdateKxClusterCodeConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the cluster.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"clusterName" min:"3" type:"string" required:"true"`
+
+	// The structure of the customer code available within the running cluster.
+	//
+	// Code is a required field
+	Code *CodeConfiguration `locationName:"code" type:"structure" required:"true"`
+
+	// Specifies the key-value pairs to make them available inside the cluster.
+	CommandLineArguments []*KxCommandLineArgument `locationName:"commandLineArguments" type:"list"`
+
+	// The configuration that allows you to choose how you want to update the code
+	// on a cluster.
+	DeploymentConfiguration *KxClusterCodeDeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
+
+	// A unique identifier of the kdb environment.
+	//
+	// EnvironmentId is a required field
+	EnvironmentId *string `location:"uri" locationName:"environmentId" min:"1" type:"string" required:"true"`
+
+	// Specifies a Q program that will be run at launch of a cluster. It is a relative
+	// path within .zip file that contains the custom code, which will be loaded
+	// on the cluster. It must include the file name itself. For example, somedir/init.q.
+	InitializationScript *string `locationName:"initializationScript" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKxClusterCodeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKxClusterCodeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateKxClusterCodeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateKxClusterCodeConfigurationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 3))
+	}
+	if s.Code == nil {
+		invalidParams.Add(request.NewErrParamRequired("Code"))
+	}
+	if s.EnvironmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentId"))
+	}
+	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
+	}
+	if s.InitializationScript != nil && len(*s.InitializationScript) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitializationScript", 1))
+	}
+	if s.Code != nil {
+		if err := s.Code.Validate(); err != nil {
+			invalidParams.AddNested("Code", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CommandLineArguments != nil {
+		for i, v := range s.CommandLineArguments {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CommandLineArguments", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DeploymentConfiguration != nil {
+		if err := s.DeploymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetClientToken(v string) *UpdateKxClusterCodeConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetClusterName(v string) *UpdateKxClusterCodeConfigurationInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetCode(v *CodeConfiguration) *UpdateKxClusterCodeConfigurationInput {
+	s.Code = v
+	return s
+}
+
+// SetCommandLineArguments sets the CommandLineArguments field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetCommandLineArguments(v []*KxCommandLineArgument) *UpdateKxClusterCodeConfigurationInput {
+	s.CommandLineArguments = v
+	return s
+}
+
+// SetDeploymentConfiguration sets the DeploymentConfiguration field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetDeploymentConfiguration(v *KxClusterCodeDeploymentConfiguration) *UpdateKxClusterCodeConfigurationInput {
+	s.DeploymentConfiguration = v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetEnvironmentId(v string) *UpdateKxClusterCodeConfigurationInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetInitializationScript sets the InitializationScript field's value.
+func (s *UpdateKxClusterCodeConfigurationInput) SetInitializationScript(v string) *UpdateKxClusterCodeConfigurationInput {
+	s.InitializationScript = &v
+	return s
+}
+
+type UpdateKxClusterCodeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKxClusterCodeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKxClusterCodeConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateKxClusterDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11978,6 +12311,22 @@ func KxAzMode_Values() []string {
 	return []string{
 		KxAzModeSingle,
 		KxAzModeMulti,
+	}
+}
+
+const (
+	// KxClusterCodeDeploymentStrategyRolling is a KxClusterCodeDeploymentStrategy enum value
+	KxClusterCodeDeploymentStrategyRolling = "ROLLING"
+
+	// KxClusterCodeDeploymentStrategyForce is a KxClusterCodeDeploymentStrategy enum value
+	KxClusterCodeDeploymentStrategyForce = "FORCE"
+)
+
+// KxClusterCodeDeploymentStrategy_Values returns all elements of the KxClusterCodeDeploymentStrategy enum
+func KxClusterCodeDeploymentStrategy_Values() []string {
+	return []string{
+		KxClusterCodeDeploymentStrategyRolling,
+		KxClusterCodeDeploymentStrategyForce,
 	}
 }
 

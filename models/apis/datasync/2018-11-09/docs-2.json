@@ -8,19 +8,19 @@
     "CreateLocationAzureBlob": "<p>Creates an endpoint for a Microsoft Azure Blob Storage container that DataSync can use as a transfer source or destination.</p> <p>Before you begin, make sure you know <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access\">how DataSync accesses Azure Blob Storage</a> and works with <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-access-tiers\">access tiers</a> and <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#blob-types\">blob types</a>. You also need a <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-azure-blob-location.html#azure-blob-creating-agent\">DataSync agent</a> that can connect to your container.</p>",
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html\">Creating a location for Amazon EFS</a>.</p>",
     "CreateLocationFsxLustre": "<p>Creates an endpoint for an Amazon FSx for Lustre file system.</p>",
-    "CreateLocationFsxOntap": "<p>Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html\">Creating a location for FSx for ONTAP</a>.</p>",
+    "CreateLocationFsxOntap": "<p>Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync can use for a data transfer.</p> <p>Before you begin, make sure that you understand how DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access\">accesses an FSx for ONTAP file system</a>.</p>",
     "CreateLocationFsxOpenZfs": "<p>Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html\">Creating a location for FSx for OpenZFS</a>.</p> <note> <p>Request parameters related to <code>SMB</code> aren't supported with the <code>CreateLocationFsxOpenZfs</code> operation.</p> </note>",
-    "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows File Server file system.</p>",
+    "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows File Server file system that DataSync can use for a data transfer.</p> <p>Before you begin, make sure that you understand how DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-location-access\">accesses an FSx for Windows File Server</a>.</p>",
     "CreateLocationHdfs": "<p>Creates an endpoint for a Hadoop Distributed File System (HDFS). </p>",
     "CreateLocationNfs": "<p>Creates an endpoint for a Network File System (NFS) file server that DataSync can use for a data transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Configuring transfers to or from an NFS file server</a>.</p> <note> <p>If you're copying data to or from an Snowcone device, you can also use <code>CreateLocationNfs</code> to create your transfer location. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/nfs-on-snowcone.html\">Configuring transfers with Snowcone</a>.</p> </note>",
     "CreateLocationObjectStorage": "<p>Creates an endpoint for an object storage system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "CreateLocationS3": "<p>A <i>location</i> is an endpoint for an Amazon S3 bucket. DataSync can use the location as a source or destination for copying data.</p> <important> <p>Before you create your location, make sure that you read the following sections:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">Evaluating S3 request costs when using DataSync</a> </p> </li> </ul> </important> <p> For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli\">Creating an Amazon S3 location</a>.</p>",
     "CreateLocationSmb": "<p>Creates an endpoint for a Server Message Block (SMB) file server that DataSync can use for a data transfer.</p> <p>Before you begin, make sure that you understand how DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">accesses an SMB file server</a>.</p>",
     "CreateTask": "<p>Configures a transfer task, which defines where and how DataSync moves your data.</p> <p>A task includes a source location, destination location, and the options for how and when you want to transfer your data (such as bandwidth limits, scheduling, among other options).</p> <important> <p>If you're planning to transfer data to or from an Amazon S3 location, review <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">how DataSync can affect your S3 request charges</a> and the <a href=\"http://aws.amazon.com/datasync/pricing/\">DataSync pricing page</a> before you begin.</p> </important>",
-    "DeleteAgent": "<p>Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your Amazon Web Services account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.</p>",
+    "DeleteAgent": "<p>Removes an DataSync agent resource from your Amazon Web Services account.</p> <p>Keep in mind that this operation (which can't be undone) doesn't remove the agent's virtual machine (VM) or Amazon EC2 instance from your storage environment. For next steps, you can delete the VM or instance from your storage environment or reuse it to <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html\">activate a new agent</a>.</p>",
     "DeleteLocation": "<p>Deletes the configuration of a location used by DataSync. </p>",
     "DeleteTask": "<p>Deletes an DataSync transfer task.</p>",
-    "DescribeAgent": "<p>Returns metadata about an DataSync agent, such as its name, endpoint type, and status.</p>",
+    "DescribeAgent": "<p>Returns information about an DataSync agent, such as its name, service endpoint type, and status.</p>",
     "DescribeDiscoveryJob": "<p>Returns information about a DataSync discovery job.</p>",
     "DescribeLocationAzureBlob": "<p>Provides details about how an DataSync transfer location for Microsoft Azure Blob Storage is configured.</p>",
     "DescribeLocationEfs": "<p>Returns metadata about your DataSync location for an Amazon EFS file system.</p>",
@@ -52,13 +52,13 @@
     "StopDiscoveryJob": "<p>Stops a running DataSync discovery job.</p> <p>You can stop a discovery job anytime. A job that's stopped before it's scheduled to end likely will provide you some information about your on-premises storage system resources. To get recommendations for a stopped job, you must use the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_GenerateRecommendations.html\">GenerateRecommendations</a> operation.</p>",
     "TagResource": "<p>Applies a <i>tag</i> to an Amazon Web Services resource. Tags are key-value pairs that can help you manage, filter, and search for your resources.</p> <p>These include DataSync resources, such as locations, tasks, and task executions.</p>",
     "UntagResource": "<p>Removes tags from an Amazon Web Services resource.</p>",
-    "UpdateAgent": "<p>Updates the name of an agent.</p>",
+    "UpdateAgent": "<p>Updates the name of an DataSync agent.</p>",
     "UpdateDiscoveryJob": "<p>Edits a DataSync discovery job configuration.</p>",
     "UpdateLocationAzureBlob": "<p>Modifies some configurations of the Microsoft Azure Blob Storage transfer location that you're using with DataSync.</p>",
     "UpdateLocationHdfs": "<p>Updates some parameters of a previously created location for a Hadoop Distributed File System cluster.</p>",
     "UpdateLocationNfs": "<p>Modifies some configurations of the Network File System (NFS) transfer location that you're using with DataSync.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Configuring transfers to or from an NFS file server</a>.</p>",
     "UpdateLocationObjectStorage": "<p>Updates some parameters of an existing object storage location that DataSync accesses for a transfer. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
-    "UpdateLocationSmb": "<p>Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">Creating a location for SMB</a>.</p>",
+    "UpdateLocationSmb": "<p>Updates some of the parameters of a Server Message Block (SMB) file server location that you can use for DataSync transfers.</p>",
     "UpdateStorageSystem": "<p>Modifies some configurations of an on-premises storage system resource that you're using with DataSync Discovery.</p>",
     "UpdateTask": "<p>Updates the configuration of a DataSync transfer task.</p>",
     "UpdateTaskExecution": "<p>Updates the configuration of a running DataSync task execution.</p> <note> <p>Currently, the only <code>Option</code> that you can modify with <code>UpdateTaskExecution</code> is <code> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond\">BytesPerSecond</a> </code>, which throttles bandwidth for a running or queued task execution.</p> </note>"
@@ -87,7 +87,7 @@
         "AgentListEntry$AgentArn": "<p>The Amazon Resource Name (ARN) of a DataSync agent.</p>",
         "CreateAgentResponse$AgentArn": "<p>The ARN of the agent that you just activated. Use the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html\">ListAgents</a> operation to return a list of agents in your Amazon Web Services account and Amazon Web Services Region.</p>",
         "DeleteAgentRequest$AgentArn": "<p>The Amazon Resource Name (ARN) of the agent to delete. Use the <code>ListAgents</code> operation to return a list of agents for your account and Amazon Web Services Region.</p>",
-        "DescribeAgentRequest$AgentArn": "<p>Specifies the Amazon Resource Name (ARN) of the DataSync agent to describe.</p>",
+        "DescribeAgentRequest$AgentArn": "<p>Specifies the Amazon Resource Name (ARN) of the DataSync agent that you want information about.</p>",
         "DescribeAgentResponse$AgentArn": "<p>The ARN of the agent.</p>",
         "DiscoveryAgentArnList$member": null,
         "UpdateAgentRequest$AgentArn": "<p>The Amazon Resource Name (ARN) of the agent to update.</p>"
@@ -110,7 +110,7 @@
         "UpdateLocationAzureBlobRequest$AgentArns": "<p>Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container.</p> <p>You can specify more than one agent. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/multiple-agents.html\">Using multiple agents for your transfer</a>.</p>",
         "UpdateLocationHdfsRequest$AgentArns": "<p>The ARNs of the agents that are used to connect to the HDFS cluster. </p>",
         "UpdateLocationObjectStorageRequest$AgentArns": "<p>Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location.</p>",
-        "UpdateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.</p>"
+        "UpdateLocationSmbRequest$AgentArns": "<p>Specifies the DataSync agent (or agents) which you want to connect to your SMB file server. You specify an agent by using its Amazon Resource Name (ARN).</p>"
       }
     },
     "AgentList": {
@@ -128,8 +128,14 @@
     "AgentStatus": {
       "base": null,
       "refs": {
-        "AgentListEntry$Status": "<p>The status of an agent. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/understand-agent-statuses.html\">DataSync agent statuses</a>.</p>",
-        "DescribeAgentResponse$Status": "<p>The status of the agent. If the status is ONLINE, then the agent is configured properly and is available to use. The Running status is the normal running status for an agent. If the status is OFFLINE, the agent's VM is turned off or the agent is in an unhealthy state. When the issue that caused the unhealthy state is resolved, the agent returns to ONLINE status.</p>"
+        "AgentListEntry$Status": "<p>The status of an agent.</p> <ul> <li> <p>If the status is <code>ONLINE</code>, the agent is configured properly and ready to use.</p> </li> <li> <p>If the status is <code>OFFLINE</code>, the agent has been out of contact with DataSync for five minutes or longer. This can happen for a few reasons. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-agents.html#troubleshoot-agent-offline\">What do I do if my agent is offline?</a> </p> </li> </ul>",
+        "DescribeAgentResponse$Status": "<p>The status of the agent.</p> <ul> <li> <p>If the status is <code>ONLINE</code>, the agent is configured properly and ready to use.</p> </li> <li> <p>If the status is <code>OFFLINE</code>, the agent has been out of contact with DataSync for five minutes or longer. This can happen for a few reasons. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-agents.html#troubleshoot-agent-offline\">What do I do if my agent is offline?</a> </p> </li> </ul>"
+      }
+    },
+    "AgentVersion": {
+      "base": null,
+      "refs": {
+        "Platform$Version": "<p>The version of the DataSync agent.</p> <important> <p>Beginning December 7, 2023, we will discontinue version 1 DataSync agents. Check the DataSync console to see if you have affected agents. If you do, <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/replacing-agent.html\">replace</a> those agents before then to avoid data transfer or storage discovery disruptions. If you need more help, contact <a href=\"https://aws.amazon.com/contact-us/\">Amazon Web Services Support</a>.</p> </important>"
       }
     },
     "Atime": {
@@ -770,7 +776,7 @@
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeAgentResponse$EndpointType": "<p>The type of endpoint that your agent is connected to. If the endpoint is a VPC endpoint, the agent is not accessible over the public internet. </p>"
+        "DescribeAgentResponse$EndpointType": "<p>The type of <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html\">service endpoint</a> that your agent is connected to.</p>"
       }
     },
     "ErrorMessage": {
@@ -989,7 +995,7 @@
       "refs": {
         "CreateLocationEfsRequest$FileSystemAccessRoleArn": "<p>Specifies an Identity and Access Management (IAM) role that DataSync assumes when mounting the Amazon EFS file system.</p>",
         "DescribeLocationEfsResponse$FileSystemAccessRoleArn": "<p>The Identity and Access Management (IAM) role that DataSync assumes when mounting the Amazon EFS file system.</p>",
-        "ReportDestinationS3$BucketAccessRoleArn": "<p>Specifies the Amazon Resource Name (ARN) of the IAM policy that allows DataSync to upload a task report to your S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">Allowing DataSync to upload a task report to an Amazon S3 bucket</a>.</p>",
+        "ReportDestinationS3$BucketAccessRoleArn": "<p>Specifies the Amazon Resource Name (ARN) of the IAM policy that allows DataSync to upload a task report to your S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Allowing DataSync to upload a task report to an Amazon S3 bucket</a>.</p>",
         "S3Config$BucketAccessRoleArn": "<p>The ARN of the IAM role for accessing the S3 bucket. </p>"
       }
     },
@@ -1177,7 +1183,7 @@
         "UpdateLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>",
         "UpdateLocationNfsRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of the NFS transfer location that you want to update.</p>",
         "UpdateLocationObjectStorageRequest$LocationArn": "<p>Specifies the ARN of the object storage system location that you're updating.</p>",
-        "UpdateLocationSmbRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location to update.</p>"
+        "UpdateLocationSmbRequest$LocationArn": "<p>Specifies the ARN of the SMB location that you want to update.</p>"
       }
     },
     "LocationFilter": {
@@ -1543,6 +1549,13 @@
         "TaskExecutionResultDetail$VerifyStatus": "<p>The status of the VERIFYING phase.</p>"
       }
     },
+    "Platform": {
+      "base": "<p>The platform-related details about the DataSync agent, such as the version number.</p>",
+      "refs": {
+        "AgentListEntry$Platform": "<p>The platform-related details about the agent, such as the version number.</p>",
+        "DescribeAgentResponse$Platform": "<p>The platform-related details about the agent, such as the version number.</p>"
+      }
+    },
     "PosixPermissions": {
       "base": null,
       "refs": {
@@ -1562,9 +1575,9 @@
       }
     },
     "PrivateLinkConfig": {
-      "base": "<p>Specifies how your DataSync agent connects to Amazon Web Services using a virtual private cloud (VPC) service endpoint. An agent that uses a VPC endpoint isn't accessible over the public internet.</p>",
+      "base": "<p>Specifies how your DataSync agent connects to Amazon Web Services using a <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc\">virtual private cloud (VPC) service endpoint</a>. An agent that uses a VPC endpoint isn't accessible over the public internet.</p>",
       "refs": {
-        "DescribeAgentResponse$PrivateLinkConfig": "<p>The subnet and the security group that DataSync used to access a VPC endpoint.</p>"
+        "DescribeAgentResponse$PrivateLinkConfig": "<p>The network configuration that the agent uses when connecting to a <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc\">VPC service endpoint</a>.</p>"
       }
     },
     "PtolemyBoolean": {
@@ -1660,13 +1673,13 @@
       }
     },
     "ReportDestination": {
-      "base": "<p>Specifies where DataSync uploads your <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a>.</p>",
+      "base": "<p>Specifies where DataSync uploads your <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a>.</p>",
       "refs": {
-        "TaskReportConfig$Destination": "<p>Specifies the Amazon S3 bucket where DataSync uploads your task report. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html#task-report-access\">Task reports</a>.</p>"
+        "TaskReportConfig$Destination": "<p>Specifies the Amazon S3 bucket where DataSync uploads your task report. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html#task-report-access\">Task reports</a>.</p>"
       }
     },
     "ReportDestinationS3": {
-      "base": "<p>Specifies the Amazon S3 bucket where DataSync uploads your <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a>.</p>",
+      "base": "<p>Specifies the Amazon S3 bucket where DataSync uploads your <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a>.</p>",
       "refs": {
         "ReportDestination$S3": "<p>Specifies the Amazon S3 bucket where DataSync uploads your task report.</p>"
       }
@@ -1685,7 +1698,7 @@
       }
     },
     "ReportOverride": {
-      "base": "<p>Specifies the level of detail for a particular aspect of your DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a>.</p>",
+      "base": "<p>Specifies the level of detail for a particular aspect of your DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a>.</p>",
       "refs": {
         "ReportOverrides$Transferred": "<p>Specifies the level of reporting for the files, objects, and directories that DataSync attempted to transfer.</p>",
         "ReportOverrides$Verified": "<p>Specifies the level of reporting for the files, objects, and directories that DataSync attempted to verify at the end of your transfer.</p>",
@@ -1694,15 +1707,15 @@
       }
     },
     "ReportOverrides": {
-      "base": "<p>The level of detail included in each aspect of your DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a>.</p>",
+      "base": "<p>The level of detail included in each aspect of your DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a>.</p>",
       "refs": {
         "TaskReportConfig$Overrides": "<p>Customizes the reporting level for aspects of your task report. For example, your report might generally only include errors, but you could specify that you want a list of successes and errors just for the files that DataSync attempted to delete in your destination location.</p>"
       }
     },
     "ReportResult": {
-      "base": "<p>Indicates whether DataSync created a complete <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a> for your transfer.</p>",
+      "base": "<p>Indicates whether DataSync created a complete <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a> for your transfer.</p>",
       "refs": {
-        "DescribeTaskExecutionResponse$ReportResult": "<p>Indicates whether DataSync generated a complete <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">task report</a> for your transfer.</p>"
+        "DescribeTaskExecutionResponse$ReportResult": "<p>Indicates whether DataSync generated a complete <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">task report</a> for your transfer.</p>"
       }
     },
     "ResourceDetails": {
@@ -1791,12 +1804,12 @@
     "SmbDomain": {
       "base": null,
       "refs": {
-        "CreateLocationFsxWindowsRequest$Domain": "<p>Specifies the name of the Windows domain that the FSx for Windows File Server belongs to.</p>",
-        "CreateLocationSmbRequest$Domain": "<p>Specifies the Windows domain name that your SMB file server belongs to. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>",
+        "CreateLocationFsxWindowsRequest$Domain": "<p>Specifies the name of the Windows domain that the FSx for Windows File Server belongs to.</p> <p>If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right file server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions\">required permissions</a> for FSx for Windows File Server locations.</p>",
+        "CreateLocationSmbRequest$Domain": "<p>Specifies the Windows domain name that your SMB file server belongs to. </p> <p>If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right file server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>",
         "DescribeLocationFsxWindowsResponse$Domain": "<p>The name of the Windows domain that the FSx for Windows File Server belongs to.</p>",
         "DescribeLocationSmbResponse$Domain": "<p>The name of the Windows domain that the SMB server belongs to.</p>",
         "FsxProtocolSmb$Domain": "<p>Specifies the fully qualified domain name (FQDN) of the Microsoft Active Directory that your storage virtual machine (SVM) belongs to.</p>",
-        "UpdateLocationSmbRequest$Domain": "<p>The name of the Windows domain that the SMB server belongs to.</p>"
+        "UpdateLocationSmbRequest$Domain": "<p>Specifies the Windows domain name that your SMB file server belongs to. </p> <p>If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right file server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>"
       }
     },
     "SmbMountOptions": {
@@ -1811,10 +1824,10 @@
     "SmbPassword": {
       "base": null,
       "refs": {
-        "CreateLocationFsxWindowsRequest$Password": "<p>Specifies the password of the user who has the permissions to access files and folders in the file system.</p>",
+        "CreateLocationFsxWindowsRequest$Password": "<p>Specifies the password of the user who has the permissions to access files and folders in the file system.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions\">required permissions</a> for FSx for Windows File Server locations.</p>",
         "CreateLocationSmbRequest$Password": "<p>Specifies the password of the user who can mount your SMB file server and has permission to access the files and folders involved in your transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>",
         "FsxProtocolSmb$Password": "<p>Specifies the password of a user who has permission to access your SVM.</p>",
-        "UpdateLocationSmbRequest$Password": "<p>The password of the user who can mount the share has the permissions to access files and folders in the SMB share.</p>"
+        "UpdateLocationSmbRequest$Password": "<p>Specifies the password of the user who can mount your SMB file server and has permission to access the files and folders involved in your transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>"
       }
     },
     "SmbSecurityDescriptorCopyFlags": {
@@ -1827,18 +1840,18 @@
       "base": null,
       "refs": {
         "CreateLocationSmbRequest$Subdirectory": "<p>Specifies the name of the share exported by your SMB file server where DataSync will read or write data. You can include a subdirectory in the share path (for example, <code>/path/to/subdirectory</code>). Make sure that other SMB clients in your network can also mount this path.</p> <p>To copy all data in the specified subdirectory, DataSync must be able to mount the SMB share and access all of its data. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>",
-        "UpdateLocationSmbRequest$Subdirectory": "<p>The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.</p> <note> <p> <code>Subdirectory</code> must be specified with forward slashes. For example, <code>/path/to/folder</code>.</p> </note> <p>To transfer all the data in the folder that you specified, DataSync must have permissions to mount the SMB share and to access all the data in that share. To ensure this, do either of the following:</p> <ul> <li> <p>Ensure that the user/password specified belongs to the user who can mount the share and who has the appropriate permissions for all of the files and directories that you want DataSync to access.</p> </li> <li> <p>Use credentials of a member of the Backup Operators group to mount the share. </p> </li> </ul> <p>Doing either of these options enables the agent to access the data. For the agent to access directories, you must also enable all execute access.</p>"
+        "UpdateLocationSmbRequest$Subdirectory": "<p>Specifies the name of the share exported by your SMB file server where DataSync will read or write data. You can include a subdirectory in the share path (for example, <code>/path/to/subdirectory</code>). Make sure that other SMB clients in your network can also mount this path.</p> <p>To copy all data in the specified subdirectory, DataSync must be able to mount the SMB share and access all of its data. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>"
       }
     },
     "SmbUser": {
       "base": null,
       "refs": {
-        "CreateLocationFsxWindowsRequest$User": "<p>Specifies the user who has the permissions to access files, folders, and metadata in your file system.</p> <p>For information about choosing a user with sufficient permissions, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions\">Required permissions</a>.</p>",
+        "CreateLocationFsxWindowsRequest$User": "<p>Specifies the user who has the permissions to access files, folders, and metadata in your file system.</p> <p>For information about choosing a user with the right level of access for your transfer, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions\">required permissions</a> for FSx for Windows File Server locations.</p>",
         "CreateLocationSmbRequest$User": "<p>Specifies the user name that can mount your SMB file server and has permission to access the files and folders involved in your transfer.</p> <p>For information about choosing a user with the right level of access for your transfer, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>",
         "DescribeLocationFsxWindowsResponse$User": "<p>The user who has the permissions to access files and folders in the FSx for Windows File Server file system.</p>",
         "DescribeLocationSmbResponse$User": "<p>The user who can mount the share, has the permissions to access files and folders in the SMB share.</p>",
         "FsxProtocolSmb$User": "<p>Specifies a user name that can mount the location and access the files, folders, and metadata that you need in the SVM.</p> <p>If you provide a user in your Active Directory, note the following:</p> <ul> <li> <p>If you're using Directory Service for Microsoft Active Directory, the user must be a member of the Amazon Web Services Delegated FSx Administrators group.</p> </li> <li> <p>If you're using a self-managed Active Directory, the user must be a member of either the Domain Admins group or a custom group that you specified for file system administration when you created your file system.</p> </li> </ul> <p>Make sure that the user has the permissions it needs to copy the data you want:</p> <ul> <li> <p> <code>SE_TCB_NAME</code>: Required to set object ownership and file metadata. With this privilege, you also can copy NTFS discretionary access lists (DACLs).</p> </li> <li> <p> <code>SE_SECURITY_NAME</code>: May be needed to copy NTFS system access control lists (SACLs). This operation specifically requires the Windows privilege, which is granted to members of the Domain Admins group. If you configure your task to copy SACLs, make sure that the user has the required privileges. For information about copying SACLs, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html#configure-ownership-and-permissions\">Ownership and permissions-related options</a>.</p> </li> </ul>",
-        "UpdateLocationSmbRequest$User": "<p>The user who can mount the share has the permissions to access files and folders in the SMB share.</p>"
+        "UpdateLocationSmbRequest$User": "<p>Specifies the user name that can mount your SMB file server and has permission to access the files and folders involved in your transfer.</p> <p>For information about choosing a user with the right level of access for your transfer, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions\">required permissions</a> for SMB locations.</p>"
       }
     },
     "SmbVersion": {
@@ -2061,11 +2074,11 @@
       }
     },
     "TaskReportConfig": {
-      "base": "<p>Specifies how you want to configure a task report, which provides detailed information about for your DataSync transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">Task reports</a>.</p>",
+      "base": "<p>Specifies how you want to configure a task report, which provides detailed information about for your DataSync transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Task reports</a>.</p>",
       "refs": {
         "CreateTaskRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about for your DataSync transfer.</p>",
         "DescribeTaskExecutionResponse$TaskReportConfig": "<p>The configuration of your task report, which provides detailed information about for your DataSync transfer.</p>",
-        "DescribeTaskResponse$TaskReportConfig": "<p>The configuration of your task report. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html\">Creating a task report</a>.</p>",
+        "DescribeTaskResponse$TaskReportConfig": "<p>The configuration of your task report. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Creating a task report</a>.</p>",
         "StartTaskExecutionRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about for your DataSync transfer.</p>",
         "UpdateTaskRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about for your DataSync transfer.</p>"
       }
@@ -2094,8 +2107,8 @@
     "Time": {
       "base": null,
       "refs": {
-        "DescribeAgentResponse$LastConnectionTime": "<p>The time that the agent last connected to DataSync.</p>",
-        "DescribeAgentResponse$CreationTime": "<p>The time that the agent was activated (that is, created in your account).</p>",
+        "DescribeAgentResponse$LastConnectionTime": "<p>The last time that the agent was communicating with the DataSync service.</p>",
+        "DescribeAgentResponse$CreationTime": "<p>The time that the agent was <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html\">activated</a>.</p>",
         "DescribeLocationAzureBlobResponse$CreationTime": "<p>The time that your Azure Blob Storage transfer location was created.</p>",
         "DescribeLocationEfsResponse$CreationTime": "<p>The time that the location was created.</p>",
         "DescribeLocationFsxLustreResponse$CreationTime": "<p>The time that the FSx for Lustre location was created.</p>",
@@ -2264,7 +2277,7 @@
         "DescribeTaskExecutionResponse$BytesCompressed": "<p>The physical number of bytes transferred over the network after compression was applied. In most cases, this number is less than <code>BytesTransferred</code> unless the data isn't compressible.</p>",
         "DescribeTaskExecutionResponse$FilesDeleted": "<p>The number of files, objects, and directories that DataSync deleted in your destination location. If you don't <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/configure-metadata.html\">configure your task</a> to delete data in the destination that isn't in the source, the value is always <code>0</code>.</p>",
         "DescribeTaskExecutionResponse$FilesSkipped": "<p>The number of files, objects, and directories that DataSync skipped during your transfer.</p>",
-        "DescribeTaskExecutionResponse$FilesVerified": "<p>The number of files, objects, and directories that DataSync verified during your transfer.</p>",
+        "DescribeTaskExecutionResponse$FilesVerified": "<p>The number of files, objects, and directories that DataSync verified during your transfer.</p> <note> <p>When you configure your task to <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/configure-data-verification-options.html\">verify only the data that's transferred</a>, DataSync doesn't verify directories in some situations or files that fail to transfer.</p> </note>",
         "DescribeTaskExecutionResponse$EstimatedFilesToDelete": "<p>The expected number of files, objects, and directories that DataSync will delete in your destination location. If you don't <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/configure-metadata.html\">configure your task</a> to delete data in the destination that isn't in the source, the value is always <code>0</code>.</p>"
       }
     },

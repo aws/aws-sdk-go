@@ -1076,6 +1076,8 @@
         "permissionModel":{"shape":"PermissionModel"},
         "policyArn":{"shape":"Arn"},
         "resiliencyScore":{"shape":"Double"},
+        "rpoInSecs":{"shape":"IntegerOptional"},
+        "rtoInSecs":{"shape":"IntegerOptional"},
         "status":{"shape":"AppStatusType"},
         "tags":{"shape":"TagMap"}
       }
@@ -1228,8 +1230,11 @@
         "creationTime":{"shape":"TimeStamp"},
         "description":{"shape":"EntityDescription"},
         "driftStatus":{"shape":"AppDriftStatusType"},
+        "lastAppComplianceEvaluationTime":{"shape":"TimeStamp"},
         "name":{"shape":"EntityName"},
         "resiliencyScore":{"shape":"Double"},
+        "rpoInSecs":{"shape":"IntegerOptional"},
+        "rtoInSecs":{"shape":"IntegerOptional"},
         "status":{"shape":"AppStatusType"}
       }
     },
@@ -2218,6 +2223,10 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegerOptional":{
+      "type":"integer",
+      "box":true
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -2469,6 +2478,11 @@
           "location":"querystring",
           "locationName":"appArn"
         },
+        "fromLastAssessmentTime":{
+          "shape":"TimeStamp",
+          "location":"querystring",
+          "locationName":"fromLastAssessmentTime"
+        },
         "maxResults":{
           "shape":"MaxResults",
           "location":"querystring",
@@ -2483,6 +2497,16 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "reverseOrder":{
+          "shape":"BooleanOptional",
+          "location":"querystring",
+          "locationName":"reverseOrder"
+        },
+        "toLastAssessmentTime":{
+          "shape":"TimeStamp",
+          "location":"querystring",
+          "locationName":"toLastAssessmentTime"
         }
       }
     },

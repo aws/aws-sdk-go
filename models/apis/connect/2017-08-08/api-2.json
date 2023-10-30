@@ -4029,12 +4029,10 @@
     },
     "ClaimPhoneNumberRequest":{
       "type":"structure",
-      "required":[
-        "TargetArn",
-        "PhoneNumber"
-      ],
+      "required":["PhoneNumber"],
       "members":{
         "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
         "PhoneNumber":{"shape":"PhoneNumber"},
         "PhoneNumberDescription":{"shape":"PhoneNumberDescription"},
         "Tags":{"shape":"TagMap"},
@@ -4061,6 +4059,7 @@
         "PhoneNumberType":{"shape":"PhoneNumberType"},
         "PhoneNumberDescription":{"shape":"PhoneNumberDescription"},
         "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
         "Tags":{"shape":"TagMap"},
         "PhoneNumberStatus":{"shape":"PhoneNumberStatus"}
       }
@@ -8479,7 +8478,8 @@
         "PhoneNumber":{"shape":"PhoneNumber"},
         "PhoneNumberCountryCode":{"shape":"PhoneNumberCountryCode"},
         "PhoneNumberType":{"shape":"PhoneNumberType"},
-        "TargetArn":{"shape":"ARN"}
+        "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"}
       }
     },
     "ListPhoneNumbersSummaryList":{
@@ -8490,6 +8490,7 @@
       "type":"structure",
       "members":{
         "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
         "MaxResults":{
           "shape":"MaxResult1000",
           "box":true
@@ -10694,12 +10695,12 @@
     "SearchAvailablePhoneNumbersRequest":{
       "type":"structure",
       "required":[
-        "TargetArn",
         "PhoneNumberCountryCode",
         "PhoneNumberType"
       ],
       "members":{
         "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
         "PhoneNumberCountryCode":{"shape":"PhoneNumberCountryCode"},
         "PhoneNumberType":{"shape":"PhoneNumberType"},
         "PhoneNumberPrefix":{"shape":"PhoneNumberPrefix"},
@@ -12305,10 +12306,7 @@
     },
     "UpdatePhoneNumberRequest":{
       "type":"structure",
-      "required":[
-        "PhoneNumberId",
-        "TargetArn"
-      ],
+      "required":["PhoneNumberId"],
       "members":{
         "PhoneNumberId":{
           "shape":"PhoneNumberId",
@@ -12316,6 +12314,7 @@
           "locationName":"PhoneNumberId"
         },
         "TargetArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true

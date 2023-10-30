@@ -485,6 +485,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateKxClusterCodeConfiguration":{
+      "name":"UpdateKxClusterCodeConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/kx/environments/{environmentId}/clusters/{clusterName}/configuration/code"
+      },
+      "input":{"shape":"UpdateKxClusterCodeConfigurationRequest"},
+      "output":{"shape":"UpdateKxClusterCodeConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateKxClusterDatabases":{
       "name":"UpdateKxClusterDatabases",
       "http":{
@@ -1561,6 +1579,20 @@
         "createdTimestamp":{"shape":"Timestamp"}
       }
     },
+    "KxClusterCodeDeploymentConfiguration":{
+      "type":"structure",
+      "required":["deploymentStrategy"],
+      "members":{
+        "deploymentStrategy":{"shape":"KxClusterCodeDeploymentStrategy"}
+      }
+    },
+    "KxClusterCodeDeploymentStrategy":{
+      "type":"string",
+      "enum":[
+        "ROLLING",
+        "FORCE"
+      ]
+    },
     "KxClusterDescription":{
       "type":"string",
       "max":1000,
@@ -2326,6 +2358,39 @@
       "type":"structure",
       "members":{
         "environment":{"shape":"Environment"}
+      }
+    },
+    "UpdateKxClusterCodeConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "environmentId",
+        "clusterName",
+        "code"
+      ],
+      "members":{
+        "environmentId":{
+          "shape":"KxEnvironmentId",
+          "location":"uri",
+          "locationName":"environmentId"
+        },
+        "clusterName":{
+          "shape":"KxClusterName",
+          "location":"uri",
+          "locationName":"clusterName"
+        },
+        "clientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        },
+        "code":{"shape":"CodeConfiguration"},
+        "initializationScript":{"shape":"InitializationScriptFilePath"},
+        "commandLineArguments":{"shape":"KxCommandLineArguments"},
+        "deploymentConfiguration":{"shape":"KxClusterCodeDeploymentConfiguration"}
+      }
+    },
+    "UpdateKxClusterCodeConfigurationResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateKxClusterDatabasesRequest":{

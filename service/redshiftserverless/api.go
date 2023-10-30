@@ -109,6 +109,101 @@ func (c *RedshiftServerless) ConvertRecoveryPointToSnapshotWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opCreateCustomDomainAssociation = "CreateCustomDomainAssociation"
+
+// CreateCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomDomainAssociation for more information on using the CreateCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCustomDomainAssociationRequest method.
+//	req, resp := client.CreateCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateCustomDomainAssociation
+func (c *RedshiftServerless) CreateCustomDomainAssociationRequest(input *CreateCustomDomainAssociationInput) (req *request.Request, output *CreateCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomDomainAssociationInput{}
+	}
+
+	output = &CreateCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomDomainAssociation API operation for Redshift Serverless.
+//
+// Creates a custom domain association for Amazon Redshift Serverless.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation CreateCustomDomainAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/CreateCustomDomainAssociation
+func (c *RedshiftServerless) CreateCustomDomainAssociation(input *CreateCustomDomainAssociationInput) (*CreateCustomDomainAssociationOutput, error) {
+	req, out := c.CreateCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomDomainAssociationWithContext is the same as CreateCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) CreateCustomDomainAssociationWithContext(ctx aws.Context, input *CreateCustomDomainAssociationInput, opts ...request.Option) (*CreateCustomDomainAssociationOutput, error) {
+	req, out := c.CreateCustomDomainAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEndpointAccess = "CreateEndpointAccess"
 
 // CreateEndpointAccessRequest generates a "aws/request.Request" representing the
@@ -572,6 +667,102 @@ func (c *RedshiftServerless) CreateWorkgroup(input *CreateWorkgroupInput) (*Crea
 // for more information on using Contexts.
 func (c *RedshiftServerless) CreateWorkgroupWithContext(ctx aws.Context, input *CreateWorkgroupInput, opts ...request.Option) (*CreateWorkgroupOutput, error) {
 	req, out := c.CreateWorkgroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomDomainAssociation = "DeleteCustomDomainAssociation"
+
+// DeleteCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomDomainAssociation for more information on using the DeleteCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCustomDomainAssociationRequest method.
+//	req, resp := client.DeleteCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteCustomDomainAssociation
+func (c *RedshiftServerless) DeleteCustomDomainAssociationRequest(input *DeleteCustomDomainAssociationInput) (req *request.Request, output *DeleteCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomDomainAssociationInput{}
+	}
+
+	output = &DeleteCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomDomainAssociation API operation for Redshift Serverless.
+//
+// Deletes a custom domain association for Amazon Redshift Serverless.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation DeleteCustomDomainAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/DeleteCustomDomainAssociation
+func (c *RedshiftServerless) DeleteCustomDomainAssociation(input *DeleteCustomDomainAssociationInput) (*DeleteCustomDomainAssociationOutput, error) {
+	req, out := c.DeleteCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomDomainAssociationWithContext is the same as DeleteCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) DeleteCustomDomainAssociationWithContext(ctx aws.Context, input *DeleteCustomDomainAssociationInput, opts ...request.Option) (*DeleteCustomDomainAssociationOutput, error) {
+	req, out := c.DeleteCustomDomainAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1203,6 +1394,101 @@ func (c *RedshiftServerless) GetCredentials(input *GetCredentialsInput) (*GetCre
 // for more information on using Contexts.
 func (c *RedshiftServerless) GetCredentialsWithContext(ctx aws.Context, input *GetCredentialsInput, opts ...request.Option) (*GetCredentialsOutput, error) {
 	req, out := c.GetCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCustomDomainAssociation = "GetCustomDomainAssociation"
+
+// GetCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCustomDomainAssociation for more information on using the GetCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCustomDomainAssociationRequest method.
+//	req, resp := client.GetCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCustomDomainAssociation
+func (c *RedshiftServerless) GetCustomDomainAssociationRequest(input *GetCustomDomainAssociationInput) (req *request.Request, output *GetCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCustomDomainAssociationInput{}
+	}
+
+	output = &GetCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCustomDomainAssociation API operation for Redshift Serverless.
+//
+// Gets information about a specific custom domain association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation GetCustomDomainAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetCustomDomainAssociation
+func (c *RedshiftServerless) GetCustomDomainAssociation(input *GetCustomDomainAssociationInput) (*GetCustomDomainAssociationOutput, error) {
+	req, out := c.GetCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetCustomDomainAssociationWithContext is the same as GetCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) GetCustomDomainAssociationWithContext(ctx aws.Context, input *GetCustomDomainAssociationInput, opts ...request.Option) (*GetCustomDomainAssociationOutput, error) {
+	req, out := c.GetCustomDomainAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1899,6 +2185,155 @@ func (c *RedshiftServerless) GetWorkgroupWithContext(ctx aws.Context, input *Get
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListCustomDomainAssociations = "ListCustomDomainAssociations"
+
+// ListCustomDomainAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomDomainAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomDomainAssociations for more information on using the ListCustomDomainAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCustomDomainAssociationsRequest method.
+//	req, resp := client.ListCustomDomainAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListCustomDomainAssociations
+func (c *RedshiftServerless) ListCustomDomainAssociationsRequest(input *ListCustomDomainAssociationsInput) (req *request.Request, output *ListCustomDomainAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomDomainAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomDomainAssociationsInput{}
+	}
+
+	output = &ListCustomDomainAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomDomainAssociations API operation for Redshift Serverless.
+//
+// Lists custom domain associations for Amazon Redshift Serverless.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation ListCustomDomainAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - InvalidPaginationException
+//     The provided pagination token is invalid.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListCustomDomainAssociations
+func (c *RedshiftServerless) ListCustomDomainAssociations(input *ListCustomDomainAssociationsInput) (*ListCustomDomainAssociationsOutput, error) {
+	req, out := c.ListCustomDomainAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomDomainAssociationsWithContext is the same as ListCustomDomainAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomDomainAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) ListCustomDomainAssociationsWithContext(ctx aws.Context, input *ListCustomDomainAssociationsInput, opts ...request.Option) (*ListCustomDomainAssociationsOutput, error) {
+	req, out := c.ListCustomDomainAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomDomainAssociationsPages iterates over the pages of a ListCustomDomainAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomDomainAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCustomDomainAssociations operation.
+//	pageNum := 0
+//	err := client.ListCustomDomainAssociationsPages(params,
+//	    func(page *redshiftserverless.ListCustomDomainAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RedshiftServerless) ListCustomDomainAssociationsPages(input *ListCustomDomainAssociationsInput, fn func(*ListCustomDomainAssociationsOutput, bool) bool) error {
+	return c.ListCustomDomainAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomDomainAssociationsPagesWithContext same as ListCustomDomainAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) ListCustomDomainAssociationsPagesWithContext(ctx aws.Context, input *ListCustomDomainAssociationsInput, fn func(*ListCustomDomainAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomDomainAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomDomainAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomDomainAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListEndpointAccess = "ListEndpointAccess"
@@ -3538,6 +3973,102 @@ func (c *RedshiftServerless) UntagResourceWithContext(ctx aws.Context, input *Un
 	return out, req.Send()
 }
 
+const opUpdateCustomDomainAssociation = "UpdateCustomDomainAssociation"
+
+// UpdateCustomDomainAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCustomDomainAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCustomDomainAssociation for more information on using the UpdateCustomDomainAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCustomDomainAssociationRequest method.
+//	req, resp := client.UpdateCustomDomainAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateCustomDomainAssociation
+func (c *RedshiftServerless) UpdateCustomDomainAssociationRequest(input *UpdateCustomDomainAssociationInput) (req *request.Request, output *UpdateCustomDomainAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCustomDomainAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCustomDomainAssociationInput{}
+	}
+
+	output = &UpdateCustomDomainAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCustomDomainAssociation API operation for Redshift Serverless.
+//
+// Updates an Amazon Redshift Serverless certificate associated with a custom
+// domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation UpdateCustomDomainAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/UpdateCustomDomainAssociation
+func (c *RedshiftServerless) UpdateCustomDomainAssociation(input *UpdateCustomDomainAssociationInput) (*UpdateCustomDomainAssociationOutput, error) {
+	req, out := c.UpdateCustomDomainAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCustomDomainAssociationWithContext is the same as UpdateCustomDomainAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCustomDomainAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) UpdateCustomDomainAssociationWithContext(ctx aws.Context, input *UpdateCustomDomainAssociationInput, opts ...request.Option) (*UpdateCustomDomainAssociationOutput, error) {
+	req, out := c.UpdateCustomDomainAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateEndpointAccess = "UpdateEndpointAccess"
 
 // UpdateEndpointAccessRequest generates a "aws/request.Request" representing the
@@ -4061,6 +4592,65 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that represents the custom domain name association.
+type Association struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The expiration time for the certificate.
+	CustomDomainCertificateExpiryTime *time.Time `locationName:"customDomainCertificateExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The custom domain name associated with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
+	// The name of the workgroup associated with the database.
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Association) GoString() string {
+	return s.String()
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *Association) SetCustomDomainCertificateArn(v string) *Association {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryTime sets the CustomDomainCertificateExpiryTime field's value.
+func (s *Association) SetCustomDomainCertificateExpiryTime(v time.Time) *Association {
+	s.CustomDomainCertificateExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *Association) SetCustomDomainName(v string) *Association {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *Association) SetWorkgroupName(v string) *Association {
+	s.WorkgroupName = &v
+	return s
+}
+
 // An array of key-value pairs to set for advanced control over Amazon Redshift
 // Serverless.
 type ConfigParameter struct {
@@ -4288,6 +4878,147 @@ func (s ConvertRecoveryPointToSnapshotOutput) GoString() string {
 // SetSnapshot sets the Snapshot field's value.
 func (s *ConvertRecoveryPointToSnapshotOutput) SetSnapshot(v *Snapshot) *ConvertRecoveryPointToSnapshotOutput {
 	s.Snapshot = v
+	return s
+}
+
+type CreateCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	//
+	// CustomDomainCertificateArn is a required field
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string" required:"true"`
+
+	// The custom domain name to associate with the workgroup.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the workgroup associated with the database.
+	//
+	// WorkgroupName is a required field
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDomainAssociationInput"}
+	if s.CustomDomainCertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainCertificateArn"))
+	}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+	if s.WorkgroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *CreateCustomDomainAssociationInput) SetCustomDomainCertificateArn(v string) *CreateCustomDomainAssociationInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *CreateCustomDomainAssociationInput) SetCustomDomainName(v string) *CreateCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *CreateCustomDomainAssociationInput) SetWorkgroupName(v string) *CreateCustomDomainAssociationInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type CreateCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The expiration time for the certificate.
+	CustomDomainCertificateExpiryTime *time.Time `locationName:"customDomainCertificateExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The custom domain name to associate with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
+	// The name of the workgroup associated with the database.
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainCertificateArn(v string) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryTime sets the CustomDomainCertificateExpiryTime field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainCertificateExpiryTime(v time.Time) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainCertificateExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *CreateCustomDomainAssociationOutput) SetCustomDomainName(v string) *CreateCustomDomainAssociationOutput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *CreateCustomDomainAssociationOutput) SetWorkgroupName(v string) *CreateCustomDomainAssociationOutput {
+	s.WorkgroupName = &v
 	return s
 }
 
@@ -5046,6 +5777,94 @@ func (s *CreateWorkgroupOutput) SetWorkgroup(v *Workgroup) *CreateWorkgroupOutpu
 	return s
 }
 
+type DeleteCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name associated with the workgroup.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the workgroup associated with the database.
+	//
+	// WorkgroupName is a required field
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomDomainAssociationInput"}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+	if s.WorkgroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *DeleteCustomDomainAssociationInput) SetCustomDomainName(v string) *DeleteCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *DeleteCustomDomainAssociationInput) SetWorkgroupName(v string) *DeleteCustomDomainAssociationInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type DeleteCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEndpointAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5694,6 +6513,10 @@ func (s *EndpointAccess) SetWorkgroupName(v string) *EndpointAccess {
 type GetCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The custom domain name associated with the workgroup. The custom domain name
+	// or the workgroup name must be included in the request.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
 	// The name of the database to get temporary authorization to log on to.
 	//
 	// Constraints:
@@ -5717,9 +6540,7 @@ type GetCredentialsInput struct {
 	DurationSeconds *int64 `locationName:"durationSeconds" type:"integer"`
 
 	// The name of the workgroup associated with the database.
-	//
-	// WorkgroupName is a required field
-	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
 }
 
 // String returns the string representation.
@@ -5743,8 +6564,8 @@ func (s GetCredentialsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCredentialsInput"}
-	if s.WorkgroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
 	}
 	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
@@ -5754,6 +6575,12 @@ func (s *GetCredentialsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *GetCredentialsInput) SetCustomDomainName(v string) *GetCredentialsInput {
+	s.CustomDomainName = &v
+	return s
 }
 
 // SetDbName sets the DbName field's value.
@@ -5841,6 +6668,130 @@ func (s *GetCredentialsOutput) SetExpiration(v time.Time) *GetCredentialsOutput 
 // SetNextRefreshTime sets the NextRefreshTime field's value.
 func (s *GetCredentialsOutput) SetNextRefreshTime(v time.Time) *GetCredentialsOutput {
 	s.NextRefreshTime = &v
+	return s
+}
+
+type GetCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name associated with the workgroup.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the workgroup associated with the database.
+	//
+	// WorkgroupName is a required field
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCustomDomainAssociationInput"}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+	if s.WorkgroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *GetCustomDomainAssociationInput) SetCustomDomainName(v string) *GetCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *GetCustomDomainAssociationInput) SetWorkgroupName(v string) *GetCustomDomainAssociationInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type GetCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The expiration time for the certificate.
+	CustomDomainCertificateExpiryTime *time.Time `locationName:"customDomainCertificateExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The custom domain name associated with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
+	// The name of the workgroup associated with the database.
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *GetCustomDomainAssociationOutput) SetCustomDomainCertificateArn(v string) *GetCustomDomainAssociationOutput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryTime sets the CustomDomainCertificateExpiryTime field's value.
+func (s *GetCustomDomainAssociationOutput) SetCustomDomainCertificateExpiryTime(v time.Time) *GetCustomDomainAssociationOutput {
+	s.CustomDomainCertificateExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *GetCustomDomainAssociationOutput) SetCustomDomainName(v string) *GetCustomDomainAssociationOutput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *GetCustomDomainAssociationOutput) SetWorkgroupName(v string) *GetCustomDomainAssociationOutput {
+	s.WorkgroupName = &v
 	return s
 }
 
@@ -6665,6 +7616,131 @@ func (s *InvalidPaginationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidPaginationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListCustomDomainAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The custom domain name associated with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to display the next page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomDomainAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomDomainAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomDomainAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomDomainAssociationsInput"}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *ListCustomDomainAssociationsInput) SetCustomDomainCertificateArn(v string) *ListCustomDomainAssociationsInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *ListCustomDomainAssociationsInput) SetCustomDomainName(v string) *ListCustomDomainAssociationsInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomDomainAssociationsInput) SetMaxResults(v int64) *ListCustomDomainAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomDomainAssociationsInput) SetNextToken(v string) *ListCustomDomainAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomDomainAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Association objects.
+	Associations []*Association `locationName:"associations" type:"list"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomDomainAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomDomainAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *ListCustomDomainAssociationsOutput) SetAssociations(v []*Association) *ListCustomDomainAssociationsOutput {
+	s.Associations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomDomainAssociationsOutput) SetNextToken(v string) *ListCustomDomainAssociationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListEndpointAccessInput struct {
@@ -9387,6 +10463,148 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateCustomDomainAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN). This is
+	// optional.
+	//
+	// CustomDomainCertificateArn is a required field
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string" required:"true"`
+
+	// The custom domain name associated with the workgroup.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string" required:"true"`
+
+	// The name of the workgroup associated with the database.
+	//
+	// WorkgroupName is a required field
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCustomDomainAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCustomDomainAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCustomDomainAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCustomDomainAssociationInput"}
+	if s.CustomDomainCertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainCertificateArn"))
+	}
+	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
+	if s.WorkgroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	}
+	if s.WorkgroupName != nil && len(*s.WorkgroupName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkgroupName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *UpdateCustomDomainAssociationInput) SetCustomDomainCertificateArn(v string) *UpdateCustomDomainAssociationInput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *UpdateCustomDomainAssociationInput) SetCustomDomainName(v string) *UpdateCustomDomainAssociationInput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *UpdateCustomDomainAssociationInput) SetWorkgroupName(v string) *UpdateCustomDomainAssociationInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type UpdateCustomDomainAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The expiration time for the certificate.
+	CustomDomainCertificateExpiryTime *time.Time `locationName:"customDomainCertificateExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The custom domain name associated with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
+	// The name of the workgroup associated with the database.
+	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCustomDomainAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCustomDomainAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *UpdateCustomDomainAssociationOutput) SetCustomDomainCertificateArn(v string) *UpdateCustomDomainAssociationOutput {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryTime sets the CustomDomainCertificateExpiryTime field's value.
+func (s *UpdateCustomDomainAssociationOutput) SetCustomDomainCertificateExpiryTime(v time.Time) *UpdateCustomDomainAssociationOutput {
+	s.CustomDomainCertificateExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *UpdateCustomDomainAssociationOutput) SetCustomDomainName(v string) *UpdateCustomDomainAssociationOutput {
+	s.CustomDomainName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *UpdateCustomDomainAssociationOutput) SetWorkgroupName(v string) *UpdateCustomDomainAssociationOutput {
+	s.WorkgroupName = &v
+	return s
+}
+
 type UpdateEndpointAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10256,6 +11474,15 @@ type Workgroup struct {
 	// The creation date of the workgroup.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The custom domain name’s certificate Amazon resource name (ARN).
+	CustomDomainCertificateArn *string `locationName:"customDomainCertificateArn" min:"20" type:"string"`
+
+	// The expiration time for the certificate.
+	CustomDomainCertificateExpiryTime *time.Time `locationName:"customDomainCertificateExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The custom domain name associated with the workgroup.
+	CustomDomainName *string `locationName:"customDomainName" min:"1" type:"string"`
+
 	// The endpoint that is created from the workgroup.
 	Endpoint *Endpoint `locationName:"endpoint" type:"structure"`
 
@@ -10337,6 +11564,24 @@ func (s *Workgroup) SetConfigParameters(v []*ConfigParameter) *Workgroup {
 // SetCreationDate sets the CreationDate field's value.
 func (s *Workgroup) SetCreationDate(v time.Time) *Workgroup {
 	s.CreationDate = &v
+	return s
+}
+
+// SetCustomDomainCertificateArn sets the CustomDomainCertificateArn field's value.
+func (s *Workgroup) SetCustomDomainCertificateArn(v string) *Workgroup {
+	s.CustomDomainCertificateArn = &v
+	return s
+}
+
+// SetCustomDomainCertificateExpiryTime sets the CustomDomainCertificateExpiryTime field's value.
+func (s *Workgroup) SetCustomDomainCertificateExpiryTime(v time.Time) *Workgroup {
+	s.CustomDomainCertificateExpiryTime = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *Workgroup) SetCustomDomainName(v string) *Workgroup {
+	s.CustomDomainName = &v
 	return s
 }
 

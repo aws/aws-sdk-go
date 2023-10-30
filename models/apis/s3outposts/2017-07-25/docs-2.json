@@ -244,6 +244,12 @@
       "refs": {
       }
     },
+    "S3OutpostArn": {
+      "base": null,
+      "refs": {
+        "Outpost$S3OutpostArn": "<p>Specifies the unique S3 on Outposts ARN for use with Resource Access Manager (RAM).</p>"
+      }
+    },
     "SecurityGroupId": {
       "base": null,
       "refs": {

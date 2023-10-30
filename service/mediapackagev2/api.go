@@ -1527,6 +1527,9 @@ func (c *MediaPackageV2) ListChannelsRequest(input *ListChannelsInput) (req *req
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
 //
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackagev2-2022-12-25/ListChannels
 func (c *MediaPackageV2) ListChannels(input *ListChannelsInput) (*ListChannelsOutput, error) {
 	req, out := c.ListChannelsRequest(input)
@@ -3222,6 +3225,11 @@ type CreateHlsManifestConfiguration struct {
 	// the manifestName you provided on the originEndpoint object.
 	ChildManifestName *string `min:"1" type:"string"`
 
+	// Filter configuration includes settings for manifest filtering, start and
+	// end times, and time delay that apply to all of your egress requests for this
+	// manifest.
+	FilterConfiguration *FilterConfiguration `type:"structure"`
+
 	// A short short string that's appended to the endpoint URL. The manifest name
 	// creates a unique path to this endpoint. If you don't enter a value, MediaPackage
 	// uses the default manifest name, index. MediaPackage automatically inserts
@@ -3287,6 +3295,11 @@ func (s *CreateHlsManifestConfiguration) Validate() error {
 	if s.ProgramDateTimeIntervalSeconds != nil && *s.ProgramDateTimeIntervalSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ProgramDateTimeIntervalSeconds", 1))
 	}
+	if s.FilterConfiguration != nil {
+		if err := s.FilterConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FilterConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3297,6 +3310,12 @@ func (s *CreateHlsManifestConfiguration) Validate() error {
 // SetChildManifestName sets the ChildManifestName field's value.
 func (s *CreateHlsManifestConfiguration) SetChildManifestName(v string) *CreateHlsManifestConfiguration {
 	s.ChildManifestName = &v
+	return s
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *CreateHlsManifestConfiguration) SetFilterConfiguration(v *FilterConfiguration) *CreateHlsManifestConfiguration {
+	s.FilterConfiguration = v
 	return s
 }
 
@@ -3334,6 +3353,11 @@ type CreateLowLatencyHlsManifestConfiguration struct {
 	// it from the manifest name. The manifestName on the HLSManifest object overrides
 	// the manifestName you provided on the originEndpoint object.
 	ChildManifestName *string `min:"1" type:"string"`
+
+	// Filter configuration includes settings for manifest filtering, start and
+	// end times, and time delay that apply to all of your egress requests for this
+	// manifest.
+	FilterConfiguration *FilterConfiguration `type:"structure"`
 
 	// A short short string that's appended to the endpoint URL. The manifest name
 	// creates a unique path to this endpoint. If you don't enter a value, MediaPackage
@@ -3400,6 +3424,11 @@ func (s *CreateLowLatencyHlsManifestConfiguration) Validate() error {
 	if s.ProgramDateTimeIntervalSeconds != nil && *s.ProgramDateTimeIntervalSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ProgramDateTimeIntervalSeconds", 1))
 	}
+	if s.FilterConfiguration != nil {
+		if err := s.FilterConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FilterConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3410,6 +3439,12 @@ func (s *CreateLowLatencyHlsManifestConfiguration) Validate() error {
 // SetChildManifestName sets the ChildManifestName field's value.
 func (s *CreateLowLatencyHlsManifestConfiguration) SetChildManifestName(v string) *CreateLowLatencyHlsManifestConfiguration {
 	s.ChildManifestName = &v
+	return s
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *CreateLowLatencyHlsManifestConfiguration) SetFilterConfiguration(v *FilterConfiguration) *CreateLowLatencyHlsManifestConfiguration {
+	s.FilterConfiguration = v
 	return s
 }
 
@@ -4545,6 +4580,90 @@ func (s *EncryptionMethod) SetTsEncryptionMethod(v string) *EncryptionMethod {
 	return s
 }
 
+// Filter configuration includes settings for manifest filtering, start and
+// end times, and time delay that apply to all of your egress requests for this
+// manifest.
+type FilterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Optionally specify the end time for all of your manifest egress requests.
+	// When you include end time, note that you cannot use end time query parameters
+	// for this manifest's endpoint URL.
+	End *time.Time `type:"timestamp"`
+
+	// Optionally specify one or more manifest filters for all of your manifest
+	// egress requests. When you include a manifest filter, note that you cannot
+	// use an identical manifest filter query parameter for this manifest's endpoint
+	// URL.
+	ManifestFilter *string `min:"1" type:"string"`
+
+	// Optionally specify the start time for all of your manifest egress requests.
+	// When you include start time, note that you cannot use start time query parameters
+	// for this manifest's endpoint URL.
+	Start *time.Time `type:"timestamp"`
+
+	// Optionally specify the time delay for all of your manifest egress requests.
+	// Enter a value that is smaller than your endpoint's startover window. When
+	// you include time delay, note that you cannot use time delay query parameters
+	// for this manifest's endpoint URL.
+	TimeDelaySeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterConfiguration"}
+	if s.ManifestFilter != nil && len(*s.ManifestFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManifestFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnd sets the End field's value.
+func (s *FilterConfiguration) SetEnd(v time.Time) *FilterConfiguration {
+	s.End = &v
+	return s
+}
+
+// SetManifestFilter sets the ManifestFilter field's value.
+func (s *FilterConfiguration) SetManifestFilter(v string) *FilterConfiguration {
+	s.ManifestFilter = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *FilterConfiguration) SetStart(v time.Time) *FilterConfiguration {
+	s.Start = &v
+	return s
+}
+
+// SetTimeDelaySeconds sets the TimeDelaySeconds field's value.
+func (s *FilterConfiguration) SetTimeDelaySeconds(v int64) *FilterConfiguration {
+	s.TimeDelaySeconds = &v
+	return s
+}
+
 type GetChannelGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5005,6 +5124,11 @@ type GetHlsManifestConfiguration struct {
 	// object overrides the manifestName you provided on the originEndpoint object.
 	ChildManifestName *string `min:"1" type:"string"`
 
+	// Filter configuration includes settings for manifest filtering, start and
+	// end times, and time delay that apply to all of your egress requests for this
+	// manifest.
+	FilterConfiguration *FilterConfiguration `type:"structure"`
+
 	// A short short string that's appended to the endpoint URL. The manifest name
 	// creates a unique path to this endpoint. If you don't enter a value, MediaPackage
 	// uses the default manifest name, index. MediaPackage automatically inserts
@@ -5063,6 +5187,12 @@ func (s *GetHlsManifestConfiguration) SetChildManifestName(v string) *GetHlsMani
 	return s
 }
 
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *GetHlsManifestConfiguration) SetFilterConfiguration(v *FilterConfiguration) *GetHlsManifestConfiguration {
+	s.FilterConfiguration = v
+	return s
+}
+
 // SetManifestName sets the ManifestName field's value.
 func (s *GetHlsManifestConfiguration) SetManifestName(v string) *GetHlsManifestConfiguration {
 	s.ManifestName = &v
@@ -5102,6 +5232,11 @@ type GetLowLatencyHlsManifestConfiguration struct {
 	// uses the default child manifest name, index_1. The manifestName on the HLSManifest
 	// object overrides the manifestName you provided on the originEndpoint object.
 	ChildManifestName *string `min:"1" type:"string"`
+
+	// Filter configuration includes settings for manifest filtering, start and
+	// end times, and time delay that apply to all of your egress requests for this
+	// manifest.
+	FilterConfiguration *FilterConfiguration `type:"structure"`
 
 	// A short short string that's appended to the endpoint URL. The manifest name
 	// creates a unique path to this endpoint. If you don't enter a value, MediaPackage
@@ -5158,6 +5293,12 @@ func (s GetLowLatencyHlsManifestConfiguration) GoString() string {
 // SetChildManifestName sets the ChildManifestName field's value.
 func (s *GetLowLatencyHlsManifestConfiguration) SetChildManifestName(v string) *GetLowLatencyHlsManifestConfiguration {
 	s.ChildManifestName = &v
+	return s
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *GetLowLatencyHlsManifestConfiguration) SetFilterConfiguration(v *FilterConfiguration) *GetLowLatencyHlsManifestConfiguration {
+	s.FilterConfiguration = v
 	return s
 }
 
@@ -8418,6 +8559,15 @@ const (
 
 	// ValidationExceptionTypeMemberDoesNotMatchPattern is a ValidationExceptionType enum value
 	ValidationExceptionTypeMemberDoesNotMatchPattern = "MEMBER_DOES_NOT_MATCH_PATTERN"
+
+	// ValidationExceptionTypeInvalidManifestFilter is a ValidationExceptionType enum value
+	ValidationExceptionTypeInvalidManifestFilter = "INVALID_MANIFEST_FILTER"
+
+	// ValidationExceptionTypeInvalidTimeDelaySeconds is a ValidationExceptionType enum value
+	ValidationExceptionTypeInvalidTimeDelaySeconds = "INVALID_TIME_DELAY_SECONDS"
+
+	// ValidationExceptionTypeEndTimeEarlierThanStartTime is a ValidationExceptionType enum value
+	ValidationExceptionTypeEndTimeEarlierThanStartTime = "END_TIME_EARLIER_THAN_START_TIME"
 )
 
 // ValidationExceptionType_Values returns all elements of the ValidationExceptionType enum
@@ -8457,5 +8607,8 @@ func ValidationExceptionType_Values() []string {
 		ValidationExceptionTypeMemberMaxLength,
 		ValidationExceptionTypeMemberInvalidEnumValue,
 		ValidationExceptionTypeMemberDoesNotMatchPattern,
+		ValidationExceptionTypeInvalidManifestFilter,
+		ValidationExceptionTypeInvalidTimeDelaySeconds,
+		ValidationExceptionTypeEndTimeEarlierThanStartTime,
 	}
 }

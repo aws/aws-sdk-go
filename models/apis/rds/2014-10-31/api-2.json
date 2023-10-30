@@ -69,7 +69,8 @@
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
-        {"shape":"BlueGreenDeploymentNotFoundFault"}
+        {"shape":"BlueGreenDeploymentNotFoundFault"},
+        {"shape":"IntegrationNotFoundFault"}
       ]
     },
     "ApplyPendingMaintenanceAction":{
@@ -577,6 +578,26 @@
         {"shape":"DBClusterNotFoundFault"}
       ]
     },
+    "CreateIntegration":{
+      "name":"CreateIntegration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIntegrationMessage"},
+      "output":{
+        "shape":"Integration",
+        "resultWrapper":"CreateIntegrationResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"IntegrationAlreadyExistsFault"},
+        {"shape":"IntegrationQuotaExceededFault"},
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"IntegrationConflictOperationFault"}
+      ]
+    },
     "CreateOptionGroup":{
       "name":"CreateOptionGroup",
       "http":{
@@ -857,6 +878,23 @@
       "errors":[
         {"shape":"GlobalClusterNotFoundFault"},
         {"shape":"InvalidGlobalClusterStateFault"}
+      ]
+    },
+    "DeleteIntegration":{
+      "name":"DeleteIntegration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIntegrationMessage"},
+      "output":{
+        "shape":"Integration",
+        "resultWrapper":"DeleteIntegrationResult"
+      },
+      "errors":[
+        {"shape":"IntegrationNotFoundFault"},
+        {"shape":"IntegrationConflictOperationFault"},
+        {"shape":"InvalidIntegrationStateFault"}
       ]
     },
     "DeleteOptionGroup":{
@@ -1358,6 +1396,21 @@
         {"shape":"GlobalClusterNotFoundFault"}
       ]
     },
+    "DescribeIntegrations":{
+      "name":"DescribeIntegrations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIntegrationsMessage"},
+      "output":{
+        "shape":"DescribeIntegrationsResponse",
+        "resultWrapper":"DescribeIntegrationsResult"
+      },
+      "errors":[
+        {"shape":"IntegrationNotFoundFault"}
+      ]
+    },
     "DescribeOptionGroupOptions":{
       "name":"DescribeOptionGroupOptions",
       "http":{
@@ -1538,7 +1591,8 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
-        {"shape":"BlueGreenDeploymentNotFoundFault"}
+        {"shape":"BlueGreenDeploymentNotFoundFault"},
+        {"shape":"IntegrationNotFoundFault"}
       ]
     },
     "ModifyActivityStream":{
@@ -2070,7 +2124,8 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
-        {"shape":"BlueGreenDeploymentNotFoundFault"}
+        {"shape":"BlueGreenDeploymentNotFoundFault"},
+        {"shape":"IntegrationNotFoundFault"}
       ]
     },
     "ResetDBClusterParameterGroup":{
@@ -2681,6 +2736,11 @@
       "members":{
         "ResourcePendingMaintenanceActions":{"shape":"ResourcePendingMaintenanceActions"}
       }
+    },
+    "Arn":{
+      "type":"string",
+      "max":2048,
+      "min":20
     },
     "AttributeValueList":{
       "type":"list",
@@ -3594,6 +3654,22 @@
         "GlobalCluster":{"shape":"GlobalCluster"}
       }
     },
+    "CreateIntegrationMessage":{
+      "type":"structure",
+      "required":[
+        "SourceArn",
+        "TargetArn",
+        "IntegrationName"
+      ],
+      "members":{
+        "SourceArn":{"shape":"SourceArn"},
+        "TargetArn":{"shape":"Arn"},
+        "IntegrationName":{"shape":"IntegrationName"},
+        "KMSKeyId":{"shape":"String"},
+        "AdditionalEncryptionContext":{"shape":"EncryptionContextMap"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "CreateOptionGroupMessage":{
       "type":"structure",
       "required":[
@@ -4250,7 +4326,8 @@
         "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"},
         "SupportsCertificateRotationWithoutRestart":{"shape":"BooleanOptional"},
         "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"},
-        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"}
+        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"},
+        "SupportsIntegrations":{"shape":"Boolean"}
       }
     },
     "DBEngineVersionList":{
@@ -5348,6 +5425,13 @@
         "GlobalCluster":{"shape":"GlobalCluster"}
       }
     },
+    "DeleteIntegrationMessage":{
+      "type":"structure",
+      "required":["IntegrationIdentifier"],
+      "members":{
+        "IntegrationIdentifier":{"shape":"IntegrationIdentifier"}
+      }
+    },
     "DeleteOptionGroupMessage":{
       "type":"structure",
       "required":["OptionGroupName"],
@@ -5774,6 +5858,22 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeIntegrationsMessage":{
+      "type":"structure",
+      "members":{
+        "IntegrationIdentifier":{"shape":"IntegrationIdentifier"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
+    "DescribeIntegrationsResponse":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"Marker"},
+        "Integrations":{"shape":"IntegrationList"}
+      }
+    },
     "DescribeOptionGroupOptionsMessage":{
       "type":"structure",
       "required":["EngineName"],
@@ -5971,6 +6071,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "EncryptionContextMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
     },
     "Endpoint":{
       "type":"structure",
@@ -6435,6 +6540,117 @@
     },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
+    "Integration":{
+      "type":"structure",
+      "members":{
+        "SourceArn":{"shape":"SourceArn"},
+        "TargetArn":{"shape":"Arn"},
+        "IntegrationName":{"shape":"IntegrationName"},
+        "IntegrationArn":{"shape":"IntegrationArn"},
+        "KMSKeyId":{"shape":"String"},
+        "AdditionalEncryptionContext":{"shape":"EncryptionContextMap"},
+        "Status":{"shape":"IntegrationStatus"},
+        "Tags":{"shape":"TagList"},
+        "CreateTime":{"shape":"TStamp"},
+        "Errors":{"shape":"IntegrationErrorList"}
+      }
+    },
+    "IntegrationAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IntegrationAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IntegrationArn":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"arn:aws[a-z\\-]*:rds(-[a-z]*)?:[a-z0-9\\-]*:[0-9]*:integration:[a-z][a-z0-9]*(-[a-zA-Z0-9]+)*\\/[a-zA-Z0-9_:\\-\\/]+"
+    },
+    "IntegrationConflictOperationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IntegrationConflictOperationFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IntegrationError":{
+      "type":"structure",
+      "required":["ErrorCode"],
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "IntegrationErrorList":{
+      "type":"list",
+      "member":{
+        "shape":"IntegrationError",
+        "locationName":"IntegrationError"
+      }
+    },
+    "IntegrationIdentifier":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_:\\-\\/]+"
+    },
+    "IntegrationList":{
+      "type":"list",
+      "member":{
+        "shape":"Integration",
+        "locationName":"Integration"
+      }
+    },
+    "IntegrationName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
+    },
+    "IntegrationNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IntegrationNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IntegrationQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IntegrationQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IntegrationStatus":{
+      "type":"string",
+      "enum":[
+        "creating",
+        "active",
+        "modifying",
+        "failed",
+        "deleting",
+        "syncing",
+        "needs_attention"
+      ]
+    },
     "InvalidBlueGreenDeploymentStateFault":{
       "type":"structure",
       "members":{
@@ -6677,6 +6893,17 @@
       },
       "exception":true
     },
+    "InvalidIntegrationStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidIntegrationStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidOptionGroupStateFault":{
       "type":"structure",
       "members":{
@@ -6777,6 +7004,11 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "Marker":{
+      "type":"string",
+      "max":340,
+      "min":1
+    },
     "MasterUserSecret":{
       "type":"structure",
       "members":{
@@ -8415,6 +8647,12 @@
       },
       "exception":true
     },
+    "SourceArn":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"arn:aws[a-z\\-]*:rds(-[a-z]*)?:[a-z0-9\\-]*:[0-9]*:(cluster|db):[a-z][a-z0-9]*(-[a-z0-9]+)*"
+    },
     "SourceClusterNotSupportedFault":{
       "type":"structure",
       "members":{
@@ -8934,7 +9172,8 @@
         "SupportsParallelQuery":{"shape":"BooleanOptional"},
         "SupportsGlobalDatabases":{"shape":"BooleanOptional"},
         "SupportsBabelfish":{"shape":"BooleanOptional"},
-        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"}
+        "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"},
+        "SupportsIntegrations":{"shape":"BooleanOptional"}
       }
     },
     "UserAuthConfig":{

@@ -582,8 +582,10 @@ func (c *DataSync) CreateLocationFsxOntapRequest(input *CreateLocationFsxOntapIn
 // CreateLocationFsxOntap API operation for AWS DataSync.
 //
 // Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync
-// can access for a transfer. For more information, see Creating a location
-// for FSx for ONTAP (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html).
+// can use for a data transfer.
+//
+// Before you begin, make sure that you understand how DataSync accesses an
+// FSx for ONTAP file system (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -752,7 +754,11 @@ func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindo
 
 // CreateLocationFsxWindows API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon FSx for Windows File Server file system.
+// Creates an endpoint for an Amazon FSx for Windows File Server file system
+// that DataSync can use for a data transfer.
+//
+// Before you begin, make sure that you understand how DataSync accesses an
+// FSx for Windows File Server (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-location-access).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1360,10 +1366,12 @@ func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Req
 
 // DeleteAgent API operation for AWS DataSync.
 //
-// Deletes an agent. To specify which agent to delete, use the Amazon Resource
-// Name (ARN) of the agent in your request. The operation disassociates the
-// agent from your Amazon Web Services account. However, it doesn't delete the
-// agent virtual machine (VM) from your on-premises environment.
+// Removes an DataSync agent resource from your Amazon Web Services account.
+//
+// Keep in mind that this operation (which can't be undone) doesn't remove the
+// agent's virtual machine (VM) or Amazon EC2 instance from your storage environment.
+// For next steps, you can delete the VM or instance from your storage environment
+// or reuse it to activate a new agent (https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1611,8 +1619,8 @@ func (c *DataSync) DescribeAgentRequest(input *DescribeAgentInput) (req *request
 
 // DescribeAgent API operation for AWS DataSync.
 //
-// Returns metadata about an DataSync agent, such as its name, endpoint type,
-// and status.
+// Returns information about an DataSync agent, such as its name, service endpoint
+// type, and status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4842,7 +4850,7 @@ func (c *DataSync) UpdateAgentRequest(input *UpdateAgentInput) (req *request.Req
 
 // UpdateAgent API operation for AWS DataSync.
 //
-// Updates the name of an agent.
+// Updates the name of an DataSync agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5350,9 +5358,8 @@ func (c *DataSync) UpdateLocationSmbRequest(input *UpdateLocationSmbInput) (req 
 
 // UpdateLocationSmb API operation for AWS DataSync.
 //
-// Updates some of the parameters of a previously created location for Server
-// Message Block (SMB) file system access. For information about creating an
-// SMB location, see Creating a location for SMB (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
+// Updates some of the parameters of a Server Message Block (SMB) file server
+// location that you can use for DataSync transfers.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5856,8 +5863,17 @@ type AgentListEntry struct {
 	// The name of an agent.
 	Name *string `min:"1" type:"string"`
 
-	// The status of an agent. For more information, see DataSync agent statuses
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/understand-agent-statuses.html).
+	// The platform-related details about the agent, such as the version number.
+	Platform *Platform `type:"structure"`
+
+	// The status of an agent.
+	//
+	//    * If the status is ONLINE, the agent is configured properly and ready
+	//    to use.
+	//
+	//    * If the status is OFFLINE, the agent has been out of contact with DataSync
+	//    for five minutes or longer. This can happen for a few reasons. For more
+	//    information, see What do I do if my agent is offline? (https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-agents.html#troubleshoot-agent-offline)
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
@@ -5888,6 +5904,12 @@ func (s *AgentListEntry) SetAgentArn(v string) *AgentListEntry {
 // SetName sets the Name field's value.
 func (s *AgentListEntry) SetName(v string) *AgentListEntry {
 	s.Name = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *AgentListEntry) SetPlatform(v *Platform) *AgentListEntry {
+	s.Platform = v
 	return s
 }
 
@@ -7045,6 +7067,12 @@ type CreateLocationFsxWindowsInput struct {
 
 	// Specifies the name of the Windows domain that the FSx for Windows File Server
 	// belongs to.
+	//
+	// If you have multiple domains in your environment, configuring this parameter
+	// makes sure that DataSync connects to the right file server.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions)
+	// for FSx for Windows File Server locations.
 	Domain *string `type:"string"`
 
 	// Specifies the Amazon Resource Name (ARN) for the FSx for Windows File Server
@@ -7055,6 +7083,9 @@ type CreateLocationFsxWindowsInput struct {
 
 	// Specifies the password of the user who has the permissions to access files
 	// and folders in the file system.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions)
+	// for FSx for Windows File Server locations.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationFsxWindowsInput's
@@ -7090,8 +7121,9 @@ type CreateLocationFsxWindowsInput struct {
 	// Specifies the user who has the permissions to access files, folders, and
 	// metadata in your file system.
 	//
-	// For information about choosing a user with sufficient permissions, see Required
-	// permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions).
+	// For information about choosing a user with the right level of access for
+	// your transfer, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions)
+	// for FSx for Windows File Server locations.
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -7665,7 +7697,7 @@ type CreateLocationObjectStorageInput struct {
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationObjectStorageInput's
 	// String and GoString methods.
-	SecretKey *string `min:"1" type:"string" sensitive:"true"`
+	SecretKey *string `type:"string" sensitive:"true"`
 
 	// Specifies a file with the certificates that are used to sign the object storage
 	// server's certificate (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
@@ -7744,9 +7776,6 @@ func (s *CreateLocationObjectStorageInput) Validate() error {
 	}
 	if s.BucketName != nil && len(*s.BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
-	}
-	if s.SecretKey != nil && len(*s.SecretKey) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 1))
 	}
 	if s.ServerHostname == nil {
 		invalidParams.Add(request.NewErrParamRequired("ServerHostname"))
@@ -8040,6 +8069,9 @@ type CreateLocationSmbInput struct {
 	AgentArns []*string `min:"1" type:"list" required:"true"`
 
 	// Specifies the Windows domain name that your SMB file server belongs to.
+	//
+	// If you have multiple domains in your environment, configuring this parameter
+	// makes sure that DataSync connects to the right file server.
 	//
 	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
 	// for SMB locations.
@@ -8733,7 +8765,8 @@ func (s DeleteTaskOutput) GoString() string {
 type DescribeAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the DataSync agent to describe.
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that you want
+	// information about.
 	//
 	// AgentArn is a required field
 	AgentArn *string `type:"string" required:"true"`
@@ -8783,27 +8816,34 @@ type DescribeAgentOutput struct {
 	// The ARN of the agent.
 	AgentArn *string `type:"string"`
 
-	// The time that the agent was activated (that is, created in your account).
+	// The time that the agent was activated (https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html).
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The type of endpoint that your agent is connected to. If the endpoint is
-	// a VPC endpoint, the agent is not accessible over the public internet.
+	// The type of service endpoint (https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html)
+	// that your agent is connected to.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// The time that the agent last connected to DataSync.
+	// The last time that the agent was communicating with the DataSync service.
 	LastConnectionTime *time.Time `type:"timestamp"`
 
 	// The name of the agent.
 	Name *string `min:"1" type:"string"`
 
-	// The subnet and the security group that DataSync used to access a VPC endpoint.
+	// The platform-related details about the agent, such as the version number.
+	Platform *Platform `type:"structure"`
+
+	// The network configuration that the agent uses when connecting to a VPC service
+	// endpoint (https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc).
 	PrivateLinkConfig *PrivateLinkConfig `type:"structure"`
 
-	// The status of the agent. If the status is ONLINE, then the agent is configured
-	// properly and is available to use. The Running status is the normal running
-	// status for an agent. If the status is OFFLINE, the agent's VM is turned off
-	// or the agent is in an unhealthy state. When the issue that caused the unhealthy
-	// state is resolved, the agent returns to ONLINE status.
+	// The status of the agent.
+	//
+	//    * If the status is ONLINE, the agent is configured properly and ready
+	//    to use.
+	//
+	//    * If the status is OFFLINE, the agent has been out of contact with DataSync
+	//    for five minutes or longer. This can happen for a few reasons. For more
+	//    information, see What do I do if my agent is offline? (https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-agents.html#troubleshoot-agent-offline)
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
@@ -8852,6 +8892,12 @@ func (s *DescribeAgentOutput) SetLastConnectionTime(v time.Time) *DescribeAgentO
 // SetName sets the Name field's value.
 func (s *DescribeAgentOutput) SetName(v string) *DescribeAgentOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *DescribeAgentOutput) SetPlatform(v *Platform) *DescribeAgentOutput {
+	s.Platform = v
 	return s
 }
 
@@ -11064,6 +11110,10 @@ type DescribeTaskExecutionOutput struct {
 
 	// The number of files, objects, and directories that DataSync verified during
 	// your transfer.
+	//
+	// When you configure your task to verify only the data that's transferred (https://docs.aws.amazon.com/datasync/latest/userguide/configure-data-verification-options.html),
+	// DataSync doesn't verify directories in some situations or files that fail
+	// to transfer.
 	FilesVerified *int64 `type:"long"`
 
 	// A list of filter rules that include specific data during your transfer. For
@@ -11080,7 +11130,7 @@ type DescribeTaskExecutionOutput struct {
 	// any of these options before starting your task.
 	Options *Options `type:"structure"`
 
-	// Indicates whether DataSync generated a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html)
+	// Indicates whether DataSync generated a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html)
 	// for your transfer.
 	ReportResult *ReportResult `type:"structure"`
 
@@ -11362,7 +11412,7 @@ type DescribeTaskOutput struct {
 	TaskArn *string `type:"string"`
 
 	// The configuration of your task report. For more information, see Creating
-	// a task report (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+	// a task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
@@ -14278,9 +14328,48 @@ func (s *P95Metrics) SetThroughput(v *Throughput) *P95Metrics {
 	return s
 }
 
+// The platform-related details about the DataSync agent, such as the version
+// number.
+type Platform struct {
+	_ struct{} `type:"structure"`
+
+	// The version of the DataSync agent.
+	//
+	// Beginning December 7, 2023, we will discontinue version 1 DataSync agents.
+	// Check the DataSync console to see if you have affected agents. If you do,
+	// replace (https://docs.aws.amazon.com/datasync/latest/userguide/replacing-agent.html)
+	// those agents before then to avoid data transfer or storage discovery disruptions.
+	// If you need more help, contact Amazon Web Services Support (https://aws.amazon.com/contact-us/).
+	Version *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Platform) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Platform) GoString() string {
+	return s.String()
+}
+
+// SetVersion sets the Version field's value.
+func (s *Platform) SetVersion(v string) *Platform {
+	s.Version = &v
+	return s
+}
+
 // Specifies how your DataSync agent connects to Amazon Web Services using a
-// virtual private cloud (VPC) service endpoint. An agent that uses a VPC endpoint
-// isn't accessible over the public internet.
+// virtual private cloud (VPC) service endpoint (https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html#choose-service-endpoint-vpc).
+// An agent that uses a VPC endpoint isn't accessible over the public internet.
 type PrivateLinkConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -14516,7 +14605,7 @@ func (s RemoveStorageSystemOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+// Specifies where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 type ReportDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -14563,13 +14652,13 @@ func (s *ReportDestination) SetS3(v *ReportDestinationS3) *ReportDestination {
 	return s
 }
 
-// Specifies the Amazon S3 bucket where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+// Specifies the Amazon S3 bucket where DataSync uploads your task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 type ReportDestinationS3 struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the Amazon Resource Name (ARN) of the IAM policy that allows DataSync
 	// to upload a task report to your S3 bucket. For more information, see Allowing
-	// DataSync to upload a task report to an Amazon S3 bucket (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+	// DataSync to upload a task report to an Amazon S3 bucket (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 	//
 	// BucketAccessRoleArn is a required field
 	BucketAccessRoleArn *string `type:"string" required:"true"`
@@ -14636,7 +14725,7 @@ func (s *ReportDestinationS3) SetSubdirectory(v string) *ReportDestinationS3 {
 }
 
 // Specifies the level of detail for a particular aspect of your DataSync task
-// report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+// report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 type ReportOverride struct {
 	_ struct{} `type:"structure"`
 
@@ -14677,7 +14766,7 @@ func (s *ReportOverride) SetReportLevel(v string) *ReportOverride {
 }
 
 // The level of detail included in each aspect of your DataSync task report
-// (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+// (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 type ReportOverrides struct {
 	_ struct{} `type:"structure"`
 
@@ -14742,7 +14831,7 @@ func (s *ReportOverrides) SetVerified(v *ReportOverride) *ReportOverrides {
 	return s
 }
 
-// Indicates whether DataSync created a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html)
+// Indicates whether DataSync created a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html)
 // for your transfer.
 type ReportResult struct {
 	_ struct{} `type:"structure"`
@@ -15878,12 +15967,12 @@ func (s *TaskListEntry) SetTaskArn(v string) *TaskListEntry {
 // Specifies how you want to configure a task report, which provides detailed
 // information about for your DataSync transfer.
 //
-// For more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html).
+// For more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 type TaskReportConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the Amazon S3 bucket where DataSync uploads your task report. For
-	// more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/creating-task-reports.html#task-report-access).
+	// more information, see Task reports (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html#task-report-access).
 	Destination *ReportDestination `type:"structure"`
 
 	// Specifies whether your task report includes the new version of each object
@@ -16843,7 +16932,7 @@ type UpdateLocationObjectStorageInput struct {
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateLocationObjectStorageInput's
 	// String and GoString methods.
-	SecretKey *string `min:"1" type:"string" sensitive:"true"`
+	SecretKey *string `type:"string" sensitive:"true"`
 
 	// Specifies a certificate to authenticate with an object storage system that
 	// uses a private or self-signed certificate authority (CA). You must specify
@@ -16898,9 +16987,6 @@ func (s *UpdateLocationObjectStorageInput) Validate() error {
 	}
 	if s.LocationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
-	}
-	if s.SecretKey != nil && len(*s.SecretKey) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 1))
 	}
 	if s.ServerPort != nil && *s.ServerPort < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))
@@ -16985,14 +17071,20 @@ func (s UpdateLocationObjectStorageOutput) GoString() string {
 type UpdateLocationSmbInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block
-	// (SMB) location.
+	// Specifies the DataSync agent (or agents) which you want to connect to your
+	// SMB file server. You specify an agent by using its Amazon Resource Name (ARN).
 	AgentArns []*string `min:"1" type:"list"`
 
-	// The name of the Windows domain that the SMB server belongs to.
+	// Specifies the Windows domain name that your SMB file server belongs to.
+	//
+	// If you have multiple domains in your environment, configuring this parameter
+	// makes sure that DataSync connects to the right file server.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	Domain *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the SMB location to update.
+	// Specifies the ARN of the SMB location that you want to update.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -17001,39 +17093,34 @@ type UpdateLocationSmbInput struct {
 	// uses to access an SMB file server.
 	MountOptions *SmbMountOptions `type:"structure"`
 
-	// The password of the user who can mount the share has the permissions to access
-	// files and folders in the SMB share.
+	// Specifies the password of the user who can mount your SMB file server and
+	// has permission to access the files and folders involved in your transfer.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateLocationSmbInput's
 	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
-	// The subdirectory in the SMB file system that is used to read data from the
-	// SMB source location or write data to the SMB destination. The SMB path should
-	// be a path that's exported by the SMB server, or a subdirectory of that path.
-	// The path should be such that it can be mounted by other SMB clients in your
-	// network.
+	// Specifies the name of the share exported by your SMB file server where DataSync
+	// will read or write data. You can include a subdirectory in the share path
+	// (for example, /path/to/subdirectory). Make sure that other SMB clients in
+	// your network can also mount this path.
 	//
-	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
-	//
-	// To transfer all the data in the folder that you specified, DataSync must
-	// have permissions to mount the SMB share and to access all the data in that
-	// share. To ensure this, do either of the following:
-	//
-	//    * Ensure that the user/password specified belongs to the user who can
-	//    mount the share and who has the appropriate permissions for all of the
-	//    files and directories that you want DataSync to access.
-	//
-	//    * Use credentials of a member of the Backup Operators group to mount the
-	//    share.
-	//
-	// Doing either of these options enables the agent to access the data. For the
-	// agent to access directories, you must also enable all execute access.
+	// To copy all data in the specified subdirectory, DataSync must be able to
+	// mount the SMB share and access all of its data. For more information, see
+	// required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	Subdirectory *string `type:"string"`
 
-	// The user who can mount the share has the permissions to access files and
-	// folders in the SMB share.
+	// Specifies the user name that can mount your SMB file server and has permission
+	// to access the files and folders involved in your transfer.
+	//
+	// For information about choosing a user with the right level of access for
+	// your transfer, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	User *string `type:"string"`
 }
 
