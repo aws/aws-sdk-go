@@ -2,7 +2,7 @@
 
 [![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://github.com/aws/aws-sdk-go/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/aws/aws-sdk-go/actions/workflows/go.yml) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/main/LICENSE.txt)
 
-aws-sdk-go is the official AWS SDK for the Go programming language.
+aws-sdk-go is the v1 AWS SDK for the Go programming language.
 
 Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for
 information about the latest bug fixes, updates, and features added to the SDK.
@@ -19,45 +19,13 @@ Jump To:
 ## Getting Started
 
 ### Installing
-Use `go get` to retrieve the SDK to add it to your `GOPATH` workspace, or
-project's Go module dependencies.
+Use `go get` to retrieve the SDK to add it to your project's Go module dependencies.
 
 	go get github.com/aws/aws-sdk-go
 
 To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
 	go get -u github.com/aws/aws-sdk-go
-
-### Dependencies
-
-The SDK includes a `vendor` folder containing the runtime dependencies of the
-SDK. The metadata of the SDK's dependencies can be found in the Go module file
-`go.mod` or Dep file `Gopkg.toml`.
-
-### Go Modules
-
-If you are using Go modules, your `go get` will default to the latest tagged
-release version of the SDK. To get a specific release version of the SDK use
-`@<tag>` in your `go get` command.
-
-	go get github.com/aws/aws-sdk-go@v1.15.77
-
-To get the latest SDK repository change use `@latest`.
-
-	go get github.com/aws/aws-sdk-go@latest
-
-### Go 1.5
-
-If you are using Go 1.5 without vendoring enabled, (`GO15VENDOREXPERIMENT=1`),
-you will need to use `...` when retrieving the SDK to get its dependencies.
-
-	go get github.com/aws/aws-sdk-go/...
-
-This will still include the `vendor` folder. The `vendor` folder can be deleted
-if not used by your environment.
-
-    rm -rf $GOPATH/src/github.com/aws/aws-sdk-go/vendor
-
 
 ## Quick Examples 
 
@@ -489,6 +457,15 @@ For information about maintenance and support for SDK major versions and our und
 
 * [AWS SDKs and Tools Maintenance Policy](https://docs.aws.amazon.com/credref/latest/refdocs/maint-policy.html)
 * [AWS SDKs and Tools Version Support Matrix](https://docs.aws.amazon.com/credref/latest/refdocs/version-support-matrix.html)
+
+### Go version support policy
+
+The v2 SDK follows the upstream [release policy](https://go.dev/doc/devel/release#policy)
+with an additional six months of support for the most recently deprecated
+language version.
+
+**AWS reserves the right to drop support for unsupported Go versions earlier to
+address critical security issues.**
 
 ## Resources
 
