@@ -1863,7 +1863,7 @@ func (c *Neptunedata) ExecuteOpenCypherExplainQueryRequest(input *ExecuteOpenCyp
 // that allows the neptune-db:ReadDataViaQuery (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#readdataviaquery)
 // IAM action in that cluster.
 //
-// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// Note that the neptune-db:QueryLanguage:OpenCypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
 // IAM condition key can be used in the policy document to restrict the use
 // of openCypher queries (see Condition keys available in Neptune IAM data-access
 // policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
@@ -2716,7 +2716,7 @@ func (c *Neptunedata) GetOpenCypherQueryStatusRequest(input *GetOpenCypherQueryS
 // that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
 // IAM action in that cluster.
 //
-// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// Note that the neptune-db:QueryLanguage:OpenCypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
 // IAM condition key can be used in the policy document to restrict the use
 // of openCypher queries (see Condition keys available in Neptune IAM data-access
 // policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
@@ -4178,7 +4178,7 @@ func (c *Neptunedata) ListOpenCypherQueriesRequest(input *ListOpenCypherQueriesI
 // that allows the neptune-db:GetQueryStatus (https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getquerystatus)
 // IAM action in that cluster.
 //
-// Note that the neptune-db:QueryLanguage:Opencypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
+// Note that the neptune-db:QueryLanguage:OpenCypher (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys)
 // IAM condition key can be used in the policy document to restrict the use
 // of openCypher queries (see Condition keys available in Neptune IAM data-access
 // policy statements (https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html)).
@@ -11976,7 +11976,8 @@ type StartLoaderJobInput struct {
 	//
 	// You don't have to wait for one load job to complete before issuing the next
 	// one, because Neptune can queue up as many as 64 jobs at a time, provided
-	// that their queueRequest parameters are all set to "TRUE".
+	// that their queueRequest parameters are all set to "TRUE". The queue order
+	// of the jobs will be first-in-first-out (FIFO).
 	//
 	// If the queueRequest parameter is omitted or set to "FALSE", the load request
 	// will fail if another load job is already running.

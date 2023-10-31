@@ -198,6 +198,7 @@
         "GetEnvironmentResponse$publiclyAccessible": "<p>Whether applications running in this runtime environment are publicly accessible. </p>",
         "StopApplicationRequest$forceStop": "<p>Stopping an application process can take a long time. Setting this parameter to true lets you force stop the application so you don't need to wait until the process finishes to apply another action on the application. The default value is false.</p>",
         "UpdateEnvironmentRequest$applyDuringMaintenanceWindow": "<p>Indicates whether to update the runtime environment during the maintenance window. The default is false. Currently, Amazon Web Services Mainframe Modernization accepts the <code>engineVersion</code> parameter only if <code>applyDuringMaintenanceWindow</code> is true. If any parameter other than <code>engineVersion</code> is provided in <code>UpdateEnvironmentRequest</code>, it will fail if <code>applyDuringMaintenanceWindow</code> is set to true.</p>",
+        "UpdateEnvironmentRequest$forceUpdate": "<p>Forces the updates on the environment. This option is needed if the applications in the environment are not stopped or if there are ongoing application-related activities in the environment.</p> <p>If you use this option, be aware that it could lead to data corruption in the applications, and that you might need to perform repair and recovery procedures for the applications.</p> <p>This option is not needed if the attribute being updated is <code>preferredMaintenanceWindow</code>.</p>",
         "VsamAttributes$compressed": "<p>Indicates whether indexes for this dataset are stored as compressed values. If you have a large data set (typically &gt; 100 Mb), consider setting this flag to True.</p>",
         "VsamDetailAttributes$cacheAtStartup": "<p>If set to True, enforces loading the data set into cache before it’s used by the application.</p>",
         "VsamDetailAttributes$compressed": "<p>Indicates whether indexes for this dataset are stored as compressed values. If you have a large data set (typically &gt; 100 Mb), consider setting this flag to True.</p>"
@@ -216,7 +217,7 @@
     "CapacityValue": {
       "base": null,
       "refs": {
-        "GetEnvironmentResponse$actualCapacity": "<p>The number of instances included in the runtime environment. A standalone runtime environment has a maxiumum of one instance. Currently, a high availability runtime environment has a maximum of two instances. </p>",
+        "GetEnvironmentResponse$actualCapacity": "<p>The number of instances included in the runtime environment. A standalone runtime environment has a maximum of one instance. Currently, a high availability runtime environment has a maximum of two instances. </p>",
         "HighAvailabilityConfig$desiredCapacity": "<p>The number of instances in a high availability configuration. The minimum possible value is 1 and the maximum is 100.</p>",
         "UpdateEnvironmentRequest$desiredCapacity": "<p>The desired capacity for the runtime environment to update. The minimum possible value is 0 and the maximum is 100.</p>"
       }
@@ -494,6 +495,11 @@
         "ListEnvironmentsResponse$environments": "<p>Returns a list of summary details for all the runtime environments in your account. </p>"
       }
     },
+    "ExecutionTimeoutException": {
+      "base": "<p> Failed to connect to server, or didn’t receive response within expected time period.</p>",
+      "refs": {
+      }
+    },
     "ExternalLocation": {
       "base": "<p>Defines an external storage location.</p>",
       "refs": {
@@ -707,6 +713,12 @@
       "refs": {
       }
     },
+    "JobIdentifier": {
+      "base": "<p>Identifies a specific batch job.</p>",
+      "refs": {
+        "S3BatchJobIdentifier$identifier": "<p>Identifies the batch job definition. This identifier can also point to any batch job definition that already exists in the application or to one of the batch job definitions within the directory that is specified in <code>keyPrefix</code>.</p>"
+      }
+    },
     "ListApplicationVersionsRequest": {
       "base": null,
       "refs": {
@@ -825,6 +837,12 @@
         "LogGroupSummaries$member": null
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "GetDataSetDetailsResponse$fileSize": "<p>File size of the dataset.</p>"
+      }
+    },
     "MaintenanceSchedule": {
       "base": "<p>The information about the maintenance schedule.</p>",
       "refs": {
@@ -922,6 +940,12 @@
       "refs": {
       }
     },
+    "S3BatchJobIdentifier": {
+      "base": "<p>A batch job identifier in which the batch jobs to run are identified by an Amazon S3 location.</p>",
+      "refs": {
+        "BatchJobIdentifier$s3BatchJobIdentifier": "<p>Specifies an Amazon S3 location that identifies the batch jobs that you want to run. Use this identifier to run ad hoc batch jobs.</p>"
+      }
+    },
     "ScriptBatchJobDefinition": {
       "base": "<p>A batch job definition contained in a script.</p>",
       "refs": {
@@ -936,6 +960,11 @@
     },
     "ServiceQuotaExceededException": {
       "base": "<p>One or more quotas for Amazon Web Services Mainframe Modernization exceeds the limit.</p>",
+      "refs": {
+      }
+    },
+    "ServiceUnavailableException": {
+      "base": "<p>Server cannot process the request at the moment.</p>",
       "refs": {
       }
     },
@@ -1001,10 +1030,12 @@
         "DataSet$datasetName": "<p>The logical identifier for a specific data set (in mainframe format).</p>",
         "DataSet$relativePath": "<p>The relative location of the data set in the database or file system. </p>",
         "DataSet$storageType": "<p>The storage type of the data set: database or file system. For Micro Focus, database corresponds to datastore and file system corresponds to EFS/FSX. For Blu Age, there is no support of file system and database corresponds to Blusam. </p>",
+        "DataSetImportTask$statusReason": "<p>If dataset import failed, the failure reason will show here.</p>",
         "DeployedVersionSummary$statusReason": "<p>The reason for the reported status.</p>",
         "DeploymentSummary$statusReason": "<p>The reason for the reported status.</p>",
         "EngineVersionsSummary$engineType": "<p>The type of target platform for the application.</p>",
         "EngineVersionsSummary$engineVersion": "<p>The version of the engine type used by the application.</p>",
+        "ExecutionTimeoutException$message": null,
         "FileBatchJobDefinition$fileName": "<p>The name of the file containing the batch job definition.</p>",
         "FileBatchJobDefinition$folderPath": "<p>The path to the file containing the batch job definition.</p>",
         "FileBatchJobIdentifier$fileName": "<p>The file name for the batch job identifier.</p>",
@@ -1021,6 +1052,8 @@
         "GetEnvironmentResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetSignedBluinsightsUrlResponse$signedBiUrl": "<p>Single sign-on AWS Blu Insights URL.</p>",
         "InternalServerException$message": null,
+        "JobIdentifier$fileName": "<p>The name of the file that contains the batch job definition.</p>",
+        "JobIdentifier$scriptName": "<p>The name of the script that contains the batch job definition.</p>",
         "ListBatchJobDefinitionsRequest$prefix": "<p>If the batch job definition is a FileBatchJobDefinition, the prefix allows you to search on the file names of FileBatchJobDefinitions.</p>",
         "PendingMaintenance$engineVersion": "<p>The specific runtime engine that the maintenance schedule applies to.</p>",
         "PoAttributes$encoding": "<p>The character set encoding of the data set.</p>",
@@ -1035,6 +1068,8 @@
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p>The ID of the missing resource.</p>",
         "ResourceNotFoundException$resourceType": "<p>The type of the missing resource.</p>",
+        "S3BatchJobIdentifier$bucket": "<p>The Amazon S3 bucket that contains the batch job definitions.</p>",
+        "S3BatchJobIdentifier$keyPrefix": "<p>The key prefix that specifies the path to the folder in the S3 bucket that has the batch job definitions.</p>",
         "ScriptBatchJobDefinition$scriptName": "<p>The name of the script containing the batch job definition.</p>",
         "ScriptBatchJobIdentifier$scriptName": "<p>The name of the script containing the batch job definition.</p>",
         "ServiceQuotaExceededException$message": null,
@@ -1042,10 +1077,11 @@
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that is exceeding the quota limit.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>The type of resource that is exceeding the quota limit for Amazon Web Services Mainframe Modernization.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>A code that identifies the service that the exceeded quota belongs to.</p>",
+        "ServiceUnavailableException$message": null,
         "ThrottlingException$message": null,
-        "ThrottlingException$quotaCode": "<p>The identifier of the throttled reuqest.</p>",
+        "ThrottlingException$quotaCode": "<p>The identifier of the throttled request.</p>",
         "ThrottlingException$serviceCode": "<p>The identifier of the service that the throttled request was made to.</p>",
-        "UpdateEnvironmentRequest$preferredMaintenanceWindow": "<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>",
+        "UpdateEnvironmentRequest$preferredMaintenanceWindow": "<p>Configures the maintenance window that you want for the runtime environment. The maintenance window must have the format <code>ddd:hh24:mi-ddd:hh24:mi</code> and must be less than 24 hours. The following two examples are valid maintenance windows: <code>sun:23:45-mon:00:15</code> or <code>sat:01:00-sat:03:00</code>. </p> <p>If you do not provide a value, a random system-generated value will be assigned.</p>",
         "ValidationException$message": null,
         "ValidationExceptionField$message": "<p>The message of the exception field.</p>",
         "ValidationExceptionField$name": "<p>The name of the exception field.</p>",
@@ -1090,6 +1126,7 @@
         "FsxStorageConfiguration$mountPoint": "<p>The mount point for the file system.</p>",
         "GetDataSetDetailsRequest$dataSetName": "<p>The name of the data set.</p>",
         "GetDataSetDetailsResponse$dataSetName": "<p>The name of the data set.</p>",
+        "ListDataSetsRequest$nameFilter": "<p>Filter dataset name matching the specified pattern. Can use * and % as wild cards.</p>",
         "ListDataSetsRequest$prefix": "<p>The prefix of the data set name, which you can use to filter the list of data sets.</p>"
       }
     },
@@ -1111,9 +1148,9 @@
     "String50": {
       "base": null,
       "refs": {
-        "CreateEnvironmentRequest$preferredMaintenanceWindow": "<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>",
+        "CreateEnvironmentRequest$preferredMaintenanceWindow": "<p>Configures the maintenance window that you want for the runtime environment. The maintenance window must have the format <code>ddd:hh24:mi-ddd:hh24:mi</code> and must be less than 24 hours. The following two examples are valid maintenance windows: <code>sun:23:45-mon:00:15</code> or <code>sat:01:00-sat:03:00</code>. </p> <p>If you do not provide a value, a random system-generated value will be assigned.</p>",
         "GdgDetailAttributes$rollDisposition": "<p>The disposition of the data set in the catalog.</p>",
-        "GetEnvironmentResponse$preferredMaintenanceWindow": "<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>",
+        "GetEnvironmentResponse$preferredMaintenanceWindow": "<p>The maintenance window for the runtime environment. If you don't provide a value for the maintenance window, the service assigns a random value.</p>",
         "GetEnvironmentResponse$vpcId": "<p>The unique identifier for the VPC used with this runtime environment.</p>",
         "String50List$member": null
       }

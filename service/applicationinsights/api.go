@@ -2995,6 +2995,9 @@ func (c *ApplicationInsights) UpdateComponentConfigurationRequest(input *UpdateC
 //   - InternalServerException
 //     The server encountered an internal error and is unable to complete the request.
 //
+//   - ResourceInUseException
+//     The resource is already created or in use.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/application-insights-2018-11-25/UpdateComponentConfiguration
 func (c *ApplicationInsights) UpdateComponentConfiguration(input *UpdateComponentConfigurationInput) (*UpdateComponentConfigurationOutput, error) {
 	req, out := c.UpdateComponentConfigurationRequest(input)
@@ -3563,6 +3566,10 @@ type ApplicationInfo struct {
 	// The AWS account ID for the owner of the application.
 	AccountId *string `min:"12" type:"string"`
 
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
 	// Indicates whether auto-configuration is turned on for this application.
 	AutoConfigEnabled *bool `type:"boolean"`
 
@@ -3618,6 +3625,12 @@ func (s ApplicationInfo) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *ApplicationInfo) SetAccountId(v string) *ApplicationInfo {
 	s.AccountId = &v
+	return s
+}
+
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *ApplicationInfo) SetAttachMissingPermission(v bool) *ApplicationInfo {
+	s.AttachMissingPermission = &v
 	return s
 }
 
@@ -3835,6 +3848,10 @@ func (s *ConfigurationEvent) SetResourceGroupName(v string) *ConfigurationEvent 
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
 	// Indicates whether Application Insights automatically configures unmonitored
 	// resources in the resource group.
 	AutoConfigEnabled *bool `type:"boolean"`
@@ -3911,6 +3928,12 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *CreateApplicationInput) SetAttachMissingPermission(v bool) *CreateApplicationInput {
+	s.AttachMissingPermission = &v
+	return s
 }
 
 // SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
@@ -4761,6 +4784,9 @@ type DescribeComponentConfigurationRecommendationInput struct {
 	//
 	// Tier is a required field
 	Tier *string `min:"1" type:"string" required:"true" enum:"Tier"`
+
+	// The name of the workload.
+	WorkloadName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -4802,6 +4828,9 @@ func (s *DescribeComponentConfigurationRecommendationInput) Validate() error {
 	if s.Tier != nil && len(*s.Tier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tier", 1))
 	}
+	if s.WorkloadName != nil && len(*s.WorkloadName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4830,6 +4859,12 @@ func (s *DescribeComponentConfigurationRecommendationInput) SetResourceGroupName
 // SetTier sets the Tier field's value.
 func (s *DescribeComponentConfigurationRecommendationInput) SetTier(v string) *DescribeComponentConfigurationRecommendationInput {
 	s.Tier = &v
+	return s
+}
+
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *DescribeComponentConfigurationRecommendationInput) SetWorkloadName(v string) *DescribeComponentConfigurationRecommendationInput {
+	s.WorkloadName = &v
 	return s
 }
 
@@ -8064,6 +8099,10 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, the managed policies for SSM and CW will be attached to the
+	// instance roles if they are missing.
+	AttachMissingPermission *bool `type:"boolean"`
+
 	// Turns auto-configuration on or off.
 	AutoConfigEnabled *bool `type:"boolean"`
 
@@ -8123,6 +8162,12 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttachMissingPermission sets the AttachMissingPermission field's value.
+func (s *UpdateApplicationInput) SetAttachMissingPermission(v bool) *UpdateApplicationInput {
+	s.AttachMissingPermission = &v
+	return s
 }
 
 // SetAutoConfigEnabled sets the AutoConfigEnabled field's value.

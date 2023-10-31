@@ -2510,9 +2510,6 @@
         "requestId",
         "code"
       ],
-      "retryable": {
-        "throttling": false
-      },
       "type": "structure"
     },
     "Classes": {
