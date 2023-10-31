@@ -1823,12 +1823,11 @@ func (c *Translate) TranslateDocumentRequest(input *TranslateDocumentInput) (req
 // TranslateDocument API operation for Amazon Translate.
 //
 // Translates the input document from the source language to the target language.
-// This synchronous operation supports plain text or HTML for the input document.
-// TranslateDocument supports translations from English to any supported language,
-// and from any supported language to English. Therefore, specify either the
-// source language code or the target language code as “en” (English).
-//
-// TranslateDocument does not support language auto-detection.
+// This synchronous operation supports text, HTML, or Word documents as the
+// input document. TranslateDocument supports translations from English to any
+// supported language, and from any supported language to English. Therefore,
+// specify either the source language code or the target language code as “en”
+// (English).
 //
 // If you set the Formality parameter, the request will fail if the target language
 // does not support formality. For a list of target languages that support formality,
@@ -2339,11 +2338,6 @@ func (s *CreateParallelDataInput) Validate() error {
 	if s.EncryptionKey != nil {
 		if err := s.EncryptionKey.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionKey", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.ParallelDataConfig != nil {
-		if err := s.ParallelDataConfig.Validate(); err != nil {
-			invalidParams.AddNested("ParallelDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -4400,15 +4394,11 @@ type ParallelDataConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The format of the parallel data input file.
-	//
-	// Format is a required field
-	Format *string `type:"string" required:"true" enum:"ParallelDataFormat"`
+	Format *string `type:"string" enum:"ParallelDataFormat"`
 
 	// The URI of the Amazon S3 folder that contains the parallel data input file.
 	// The folder must be in the same Region as the API endpoint you are calling.
-	//
-	// S3Uri is a required field
-	S3Uri *string `type:"string" required:"true"`
+	S3Uri *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -4427,22 +4417,6 @@ func (s ParallelDataConfig) String() string {
 // value will be replaced with "sensitive".
 func (s ParallelDataConfig) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ParallelDataConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ParallelDataConfig"}
-	if s.Format == nil {
-		invalidParams.Add(request.NewErrParamRequired("Format"))
-	}
-	if s.S3Uri == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetFormat sets the Format field's value.
@@ -4881,9 +4855,14 @@ type StartTextTranslationJobInput struct {
 	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-parallel-data.html).
 	ParallelDataNames []*string `type:"list"`
 
-	// Settings to configure your translation output, including the option to set
-	// the formality level of the output text and the option to mask profane words
-	// and phrases.
+	// Settings to configure your translation output. You can configure the following
+	// options:
+	//
+	//    * Brevity: not supported.
+	//
+	//    * Formality: sets the formality level of the output text.
+	//
+	//    * Profanity: masks profane words and phrases in your translation output.
 	Settings *TranslationSettings `type:"structure"`
 
 	// The language code of the input language. Specify the language if all input
@@ -5723,9 +5702,14 @@ func (s *TerminologyProperties) SetTermCount(v int64) *TerminologyProperties {
 type TextInput struct {
 	_ struct{} `type:"structure"`
 
-	// Settings to configure your translation output, including the option to set
-	// the formality level of the output text and the option to mask profane words
-	// and phrases.
+	// Settings to configure your translation output. You can configure the following
+	// options:
+	//
+	//    * Brevity: reduces the length of the translated output for most translations.
+	//
+	//    * Formality: sets the formality level of the output text.
+	//
+	//    * Profanity: masks profane words and phrases in your translation output.
 	Settings *TranslationSettings `type:"structure"`
 
 	// The language code for the language of the source text. For a list of language
@@ -6366,14 +6350,27 @@ type TranslateDocumentInput struct {
 	// Document is a required field
 	Document *Document `type:"structure" required:"true"`
 
-	// Settings to configure your translation output, including the option to set
-	// the formality level of the output text and the option to mask profane words
-	// and phrases.
+	// Settings to configure your translation output. You can configure the following
+	// options:
+	//
+	//    * Brevity: not supported.
+	//
+	//    * Formality: sets the formality level of the output text.
+	//
+	//    * Profanity: masks profane words and phrases in your translation output.
 	Settings *TranslationSettings `type:"structure"`
 
-	// The language code for the language of the source text. Do not use auto, because
-	// TranslateDocument does not support language auto-detection. For a list of
-	// supported language codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	// The language code for the language of the source text. For a list of supported
+	// language codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	//
+	// To have Amazon Translate determine the source language of your text, you
+	// can specify auto in the SourceLanguageCode field. If you specify auto, Amazon
+	// Translate will call Amazon Comprehend (https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html)
+	// to determine the source language.
+	//
+	// If you specify auto, you must send the TranslateDocument request in a region
+	// that supports Amazon Comprehend. Otherwise, the request returns an error
+	// indicating that autodetect is not supported.
 	//
 	// SourceLanguageCode is a required field
 	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
@@ -6477,9 +6474,15 @@ func (s *TranslateDocumentInput) SetTerminologyNames(v []*string) *TranslateDocu
 type TranslateDocumentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Settings to configure your translation output, including the option to set
-	// the formality level of the output text and the option to mask profane words
-	// and phrases.
+	// Settings to configure your translation output. You can configure the following
+	// options:
+	//
+	//    * Brevity: reduces the length of the translation output for most translations.
+	//    Available for TranslateText only.
+	//
+	//    * Formality: sets the formality level of the translation output.
+	//
+	//    * Profanity: masks profane words and phrases in the translation output.
 	AppliedSettings *TranslationSettings `type:"structure"`
 
 	// The names of the custom terminologies applied to the input text by Amazon
@@ -6591,15 +6594,32 @@ func (s *TranslatedDocument) SetContent(v []byte) *TranslatedDocument {
 	return s
 }
 
-// Settings to configure your translation output, including the option to set
-// the formality level of the output text and the option to mask profane words
-// and phrases.
+// Settings to configure your translation output. You can configure the following
+// options:
+//
+//   - Brevity: reduces the length of the translation output for most translations.
+//     Available for TranslateText only.
+//
+//   - Formality: sets the formality level of the translation output.
+//
+//   - Profanity: masks profane words and phrases in the translation output.
 type TranslationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// You can optionally specify the desired level of formality for translations
-	// to supported target languages. The formality setting controls the level of
-	// formal language usage (also known as register (https://en.wikipedia.org/wiki/Register_(sociolinguistics)))
+	// When you turn on brevity, Amazon Translate reduces the length of the translation
+	// output for most translations (when compared with the same translation with
+	// brevity turned off). By default, brevity is turned off.
+	//
+	// If you turn on brevity for a translation request with an unsupported language
+	// pair, the translation proceeds with the brevity setting turned off.
+	//
+	// For the language pairs that brevity supports, see Using brevity (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-brevity)
+	// in the Amazon Translate Developer Guide.
+	Brevity *string `type:"string" enum:"Brevity"`
+
+	// You can specify the desired level of formality for translations to supported
+	// target languages. The formality setting controls the level of formal language
+	// usage (also known as register (https://en.wikipedia.org/wiki/Register_(sociolinguistics)))
 	// in the translation output. You can set the value to informal or formal. If
 	// you don't specify a value for formality, or if the target language doesn't
 	// support formality, the translation will ignore the formality setting.
@@ -6612,8 +6632,8 @@ type TranslationSettings struct {
 	// in the Amazon Translate Developer Guide.
 	Formality *string `type:"string" enum:"Formality"`
 
-	// Enable the profanity setting if you want Amazon Translate to mask profane
-	// words and phrases in your translation output.
+	// You can enable the profanity setting if you want to mask profane words and
+	// phrases in your translation output.
 	//
 	// To mask profane words and phrases, Amazon Translate replaces them with the
 	// grawlix string “?$#@$“. This 5-character sequence is used for each profane
@@ -6647,6 +6667,12 @@ func (s TranslationSettings) String() string {
 // value will be replaced with "sensitive".
 func (s TranslationSettings) GoString() string {
 	return s.String()
+}
+
+// SetBrevity sets the Brevity field's value.
+func (s *TranslationSettings) SetBrevity(v string) *TranslationSettings {
+	s.Brevity = &v
+	return s
 }
 
 // SetFormality sets the Formality field's value.
@@ -6942,11 +6968,6 @@ func (s *UpdateParallelDataInput) Validate() error {
 	if s.ParallelDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("ParallelDataConfig"))
 	}
-	if s.ParallelDataConfig != nil {
-		if err := s.ParallelDataConfig.Validate(); err != nil {
-			invalidParams.AddNested("ParallelDataConfig", err.(request.ErrInvalidParams))
-		}
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7036,6 +7057,18 @@ func (s *UpdateParallelDataOutput) SetName(v string) *UpdateParallelDataOutput {
 func (s *UpdateParallelDataOutput) SetStatus(v string) *UpdateParallelDataOutput {
 	s.Status = &v
 	return s
+}
+
+const (
+	// BrevityOn is a Brevity enum value
+	BrevityOn = "ON"
+)
+
+// Brevity_Values returns all elements of the Brevity enum
+func Brevity_Values() []string {
+	return []string{
+		BrevityOn,
+	}
 }
 
 const (

@@ -224,8 +224,11 @@
       "output":{"shape":"GetDataSetDetailsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ExecutionTimeoutException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]
@@ -390,8 +393,11 @@
       "output":{"shape":"ListDataSetsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ExecutionTimeoutException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]
@@ -763,6 +769,7 @@
       "type":"structure",
       "members":{
         "fileBatchJobIdentifier":{"shape":"FileBatchJobIdentifier"},
+        "s3BatchJobIdentifier":{"shape":"S3BatchJobIdentifier"},
         "scriptBatchJobIdentifier":{"shape":"ScriptBatchJobIdentifier"}
       },
       "union":true
@@ -784,13 +791,13 @@
     },
     "BatchParamKey":{
       "type":"string",
-      "max":8,
+      "max":32,
       "min":1,
       "pattern":"^[A-Za-z][A-Za-z0-9]{1,7}$"
     },
     "BatchParamValue":{
       "type":"string",
-      "max":44,
+      "max":80,
       "min":0
     },
     "Boolean":{"type":"boolean"},
@@ -1024,6 +1031,7 @@
       ],
       "members":{
         "status":{"shape":"DataSetTaskLifecycle"},
+        "statusReason":{"shape":"String"},
         "summary":{"shape":"DataSetImportSummary"},
         "taskId":{"shape":"Identifier"}
       }
@@ -1049,7 +1057,8 @@
       "enum":[
         "Creating",
         "Running",
-        "Completed"
+        "Completed",
+        "Failed"
       ]
     },
     "DataSetsSummaryList":{
@@ -1157,7 +1166,8 @@
       "enum":[
         "Deploying",
         "Succeeded",
-        "Failed"
+        "Failed",
+        "Updating Deployment"
       ]
     },
     "DeploymentList":{
@@ -1278,6 +1288,17 @@
     "EnvironmentSummaryList":{
       "type":"list",
       "member":{"shape":"EnvironmentSummary"}
+    },
+    "ExecutionTimeoutException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":504},
+      "exception":true,
+      "fault":true,
+      "retryable":{"throttling":false}
     },
     "ExternalLocation":{
       "type":"structure",
@@ -1488,6 +1509,7 @@
         "creationTime":{"shape":"Timestamp"},
         "dataSetName":{"shape":"String200"},
         "dataSetOrg":{"shape":"DatasetDetailOrgAttributes"},
+        "fileSize":{"shape":"Long"},
         "lastReferencedTime":{"shape":"Timestamp"},
         "lastUpdatedTime":{"shape":"Timestamp"},
         "location":{"shape":"String2000"},
@@ -1658,6 +1680,14 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "JobIdentifier":{
+      "type":"structure",
+      "members":{
+        "fileName":{"shape":"String"},
+        "scriptName":{"shape":"String"}
+      },
+      "union":true
     },
     "ListApplicationVersionsRequest":{
       "type":"structure",
@@ -1852,6 +1882,11 @@
           "location":"querystring",
           "locationName":"maxResults"
         },
+        "nameFilter":{
+          "shape":"String200",
+          "location":"querystring",
+          "locationName":"nameFilter"
+        },
         "nextToken":{
           "shape":"NextToken",
           "location":"querystring",
@@ -2000,6 +2035,10 @@
         "logType":{"shape":"String20"}
       }
     },
+    "Long":{
+      "type":"long",
+      "box":true
+    },
     "MaintenanceSchedule":{
       "type":"structure",
       "members":{
@@ -2108,6 +2147,18 @@
       },
       "exception":true
     },
+    "S3BatchJobIdentifier":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "identifier"
+      ],
+      "members":{
+        "bucket":{"shape":"String"},
+        "identifier":{"shape":"JobIdentifier"},
+        "keyPrefix":{"shape":"String"}
+      }
+    },
     "ScriptBatchJobDefinition":{
       "type":"structure",
       "required":["scriptName"],
@@ -2137,6 +2188,17 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ServiceUnavailableException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":503},
+      "exception":true,
+      "fault":true,
+      "retryable":{"throttling":false}
     },
     "StartApplicationRequest":{
       "type":"structure",
@@ -2365,6 +2427,7 @@
           "location":"uri",
           "locationName":"environmentId"
         },
+        "forceUpdate":{"shape":"Boolean"},
         "instanceType":{"shape":"String20"},
         "preferredMaintenanceWindow":{"shape":"String"}
       }

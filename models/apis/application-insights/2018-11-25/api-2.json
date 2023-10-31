@@ -437,7 +437,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "UpdateLogPattern":{
@@ -552,13 +553,15 @@
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "Remarks":{"shape":"Remarks"},
         "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
-        "DiscoveryType":{"shape":"DiscoveryType"}
+        "DiscoveryType":{"shape":"DiscoveryType"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "ApplicationInfoList":{
       "type":"list",
       "member":{"shape":"ApplicationInfo"}
     },
+    "AttachMissingPermission":{"type":"boolean"},
     "AutoConfigEnabled":{"type":"boolean"},
     "AutoCreate":{"type":"boolean"},
     "BadRequestException":{
@@ -645,7 +648,8 @@
         "Tags":{"shape":"TagList"},
         "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
         "AutoCreate":{"shape":"AutoCreate"},
-        "GroupingType":{"shape":"GroupingType"}
+        "GroupingType":{"shape":"GroupingType"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "CreateApplicationResponse":{
@@ -773,6 +777,7 @@
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "ComponentName":{"shape":"ComponentName"},
         "Tier":{"shape":"Tier"},
+        "WorkloadName":{"shape":"WorkloadName"},
         "RecommendationType":{"shape":"RecommendationType"}
       }
     },
@@ -1506,7 +1511,8 @@
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "RemoveSNSTopic":{"shape":"RemoveSNSTopic"},
-        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"}
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "AttachMissingPermission":{"shape":"AttachMissingPermission"}
       }
     },
     "UpdateApplicationResponse":{

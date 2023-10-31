@@ -735,6 +735,12 @@
       "max":1000,
       "pattern":"^$|^arn:aws:iam::\\d{12}:role.+"
     },
+    "Backend":{
+      "type":"structure",
+      "members":{
+        "stackArn":{"shape":"StackArn"}
+      }
+    },
     "BackendEnvironment":{
       "type":"structure",
       "required":[
@@ -824,7 +830,8 @@
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
         "destinationBranch":{"shape":"BranchName"},
         "sourceBranch":{"shape":"BranchName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "BranchArn":{
@@ -957,7 +964,8 @@
         "displayName":{"shape":"DisplayName"},
         "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "CreateBranchResult":{
@@ -2010,6 +2018,12 @@
       "max":3000,
       "pattern":"(?s).*"
     },
+    "StackArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws:cloudformation:[a-z0-9-]+:\\d{12}:stack/.+/.+$"
+    },
     "StackName":{
       "type":"string",
       "max":255,
@@ -2370,7 +2384,8 @@
         "displayName":{"shape":"DisplayName"},
         "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
         "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
-        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"},
+        "backend":{"shape":"Backend"}
       }
     },
     "UpdateBranchResult":{
