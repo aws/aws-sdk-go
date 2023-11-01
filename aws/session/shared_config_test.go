@@ -11,6 +11,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/internal/ini"
@@ -410,6 +411,30 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigFilename},
 			Profile:   "sso-session-not-exist",
 			Err:       fmt.Errorf("failed to find SSO session section, sso-session-lost"),
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-false",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-false",
+				EC2IMDSv1Disabled: aws.Bool(false),
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-true",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-true",
+				EC2IMDSv1Disabled: aws.Bool(true),
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "ec2-metadata-v1-disabled-invalid",
+			Expected: sharedConfig{
+				Profile:           "ec2-metadata-v1-disabled-invalid",
+				EC2IMDSv1Disabled: aws.Bool(false),
+			},
 		},
 	}
 

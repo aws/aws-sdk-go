@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/awstesting"
@@ -466,6 +467,35 @@ func TestLoadEnvConfig(t *testing.T) {
 				"AWS_USE_FIPS_ENDPOINT": "invalid",
 			},
 			WantErr: true,
+		},
+		33: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_V1_DISABLED": "fAlSe",
+			},
+			Config: envConfig{
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+				EC2IMDSv1Disabled:     aws.Bool(false),
+			},
+		},
+		34: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_V1_DISABLED": "tRuE",
+			},
+			Config: envConfig{
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+				EC2IMDSv1Disabled:     aws.Bool(true),
+			},
+		},
+		35: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_V1_DISABLED": "invalid",
+			},
+			Config: envConfig{
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
 		},
 	}
 
