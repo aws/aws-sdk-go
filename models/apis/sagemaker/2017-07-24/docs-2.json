@@ -1382,6 +1382,7 @@
       "refs": {
         "DataQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
         "ModelBiasJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelDashboardMonitoringSchedule$BatchTransformInput": null,
         "ModelExplainabilityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
         "ModelQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
         "MonitoringInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>"

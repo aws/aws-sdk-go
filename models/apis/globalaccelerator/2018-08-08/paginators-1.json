@@ -12,6 +12,18 @@
       "limit_key": "MaxResults",
       "result_key": "ByoipCidrs"
     },
+    "ListCrossAccountAttachments": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "CrossAccountAttachments"
+    },
+    "ListCrossAccountResources": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "CrossAccountResources"
+    },
     "ListCustomRoutingAccelerators": {
       "input_token": "NextToken",
       "output_token": "NextToken",

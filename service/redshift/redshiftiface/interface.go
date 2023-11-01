@@ -516,6 +516,10 @@ type RedshiftAPI interface {
 	EnableSnapshotCopyWithContext(aws.Context, *redshift.EnableSnapshotCopyInput, ...request.Option) (*redshift.EnableSnapshotCopyOutput, error)
 	EnableSnapshotCopyRequest(*redshift.EnableSnapshotCopyInput) (*request.Request, *redshift.EnableSnapshotCopyOutput)
 
+	FailoverPrimaryCompute(*redshift.FailoverPrimaryComputeInput) (*redshift.FailoverPrimaryComputeOutput, error)
+	FailoverPrimaryComputeWithContext(aws.Context, *redshift.FailoverPrimaryComputeInput, ...request.Option) (*redshift.FailoverPrimaryComputeOutput, error)
+	FailoverPrimaryComputeRequest(*redshift.FailoverPrimaryComputeInput) (*request.Request, *redshift.FailoverPrimaryComputeOutput)
+
 	GetClusterCredentials(*redshift.GetClusterCredentialsInput) (*redshift.GetClusterCredentialsOutput, error)
 	GetClusterCredentialsWithContext(aws.Context, *redshift.GetClusterCredentialsInput, ...request.Option) (*redshift.GetClusterCredentialsOutput, error)
 	GetClusterCredentialsRequest(*redshift.GetClusterCredentialsInput) (*request.Request, *redshift.GetClusterCredentialsOutput)

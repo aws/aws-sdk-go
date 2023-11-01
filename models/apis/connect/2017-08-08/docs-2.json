@@ -14,6 +14,7 @@
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
     "AssociateTrafficDistributionGroupUser": "<p>Associates an agent with a traffic distribution group.</p>",
+    "BatchGetFlowAssociation": "<p>Retrieve the flow associations for the given resources.</p>",
     "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
@@ -144,7 +145,7 @@
     "MonitorContact": "<p>Initiates silent monitoring of a contact. The Contact Control Panel (CCP) of the user specified by <i>userId</i> will be set to silent monitoring mode on the contact.</p>",
     "PutUserStatus": "<p>Changes the current status of a user or agent in Amazon Connect. If the agent is currently handling a contact, this sets the agent's next status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-agent-status.html\">Agent status</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-next-status.html\">Set your next status</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance or traffic distribution group. You can call this API only in the Amazon Web Services Region where the number was claimed.</p> <important> <p>To release phone numbers from a traffic distribution group, use the <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.</p> <p>After releasing a phone number, the phone number enters into a cooldown period of 30 days. It cannot be searched for or claimed again until the period has ended. If you accidentally release a phone number, contact Amazon Web Services Support.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
-    "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region.</p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region and copies configuration information for Amazon Connect resources across Amazon Web Services Regions. </p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording whatever recording is selected in the flow configuration: call, screen, or both. If only call recording or only screen recording is enabled, then it would resume.</p> <p>Voice and screen recordings are supported.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with the traffic distribution group.</p>",
     "SearchHoursOfOperations": "<p>Searches the hours of operation in an Amazon Connect instance, with optional filtering.</p>",
@@ -266,6 +267,8 @@
         "EvaluationMetadata$EvaluatorArn": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation.</p>",
         "EvaluationSummary$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
         "EvaluationSummary$EvaluatorArn": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation.</p>",
+        "FlowAssociationSummary$ResourceId": "<p>The identifier of the resource.</p>",
+        "FlowAssociationSummary$FlowId": "<p>The identifier of the flow.</p>",
         "GetFederationTokenResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "GetMetricDataV2Request$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. This includes the <code>instanceId</code> an Amazon Connect instance.</p>",
         "HierarchyGroup$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
@@ -328,7 +331,8 @@
         "ViewVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the view version.</p>",
         "Vocabulary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
         "VocabularySummary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
-        "WisdomInfo$SessionArn": "<p>The Amazon Resource Name (ARN) of the Wisdom session.</p>"
+        "WisdomInfo$SessionArn": "<p>The Amazon Resource Name (ARN) of the Wisdom session.</p>",
+        "resourceArnListMaxLimit100$member": null
       }
     },
     "AccessDeniedException": {
@@ -746,6 +750,16 @@
         "SignInDistribution$Region": "<p>The Amazon Web Services Region of the sign in distribution.</p>"
       }
     },
+    "BatchGetFlowAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetFlowAssociationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BehaviorType": {
       "base": null,
       "refs": {
@@ -764,8 +778,9 @@
         "EvaluationScore$NotApplicable": "<p>The flag to mark the item as not applicable for scoring.</p>",
         "EvaluationScore$AutomaticFail": "<p>The flag that marks the item as automatic fail. If the item or a child item gets an automatic fail answer, this flag will be true.</p>",
         "MetricFilterV2$Negate": "<p>The flag to use to filter on requested metric filter values or to not filter on requested metric filter values. By default the negate is <code>false</code>, which indicates to filter on the requested metric filter. </p>",
+        "RoutingProfile$IsDefault": "<p>Whether this a default routing profile.</p>",
         "SignInDistribution$Enabled": "<p>Whether sign in distribution is enabled.</p>",
-        "TrafficDistributionGroup$IsDefault": "<p>Whether this is the default traffic distribution group created during instance replication. The default traffic distribution group cannot be deleted by the <code>DeleteTrafficDistributionGroup</code> API. The default traffic distribution group is deleted as part of the process for deleting a replica.</p> <note> <p>The <code>SignInConfig</code> distribution is available only on the default <code>TrafficDistributionGroup</code>. If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code> and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code> is returned.</p> </note>",
+        "TrafficDistributionGroup$IsDefault": "<p>Whether this is the default traffic distribution group created during instance replication. The default traffic distribution group cannot be deleted by the <code>DeleteTrafficDistributionGroup</code> API. The default traffic distribution group is deleted as part of the process for deleting a replica.</p> <note> <p>The <code>SignInConfig</code> distribution is available only on a default <code>TrafficDistributionGroup</code> (see the <code>IsDefault</code> parameter in the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html\">TrafficDistributionGroup</a> data type). If you call <code>UpdateTrafficDistribution</code> with a modified <code>SignInConfig</code> and a non-default <code>TrafficDistributionGroup</code>, an <code>InvalidRequestException</code> is returned.</p> </note>",
         "TrafficDistributionGroupSummary$IsDefault": "<p>Whether this is the default traffic distribution group created during instance replication. The default traffic distribution group cannot be deleted by the <code>DeleteTrafficDistributionGroup</code> API. The default traffic distribution group is deleted as part of the process for deleting a replica.</p>",
         "UpdateAgentStatusRequest$ResetOrderNumber": "<p>A number indicating the reset order of the agent status.</p>"
       }
@@ -2497,6 +2512,18 @@
         "GetMetricDataV2Request$Filters": "<p>The filters to apply to returned metrics. You can filter on the following resources:</p> <ul> <li> <p>Queues</p> </li> <li> <p>Routing profiles</p> </li> <li> <p>Agents</p> </li> <li> <p>Channels</p> </li> <li> <p>User hierarchy groups</p> </li> <li> <p>Feature</p> </li> </ul> <p>At least one filter must be passed from queues, routing profiles, agents, or user hierarchy groups.</p> <p>To filter by phone number, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-historical-metrics-report.html\">Create a historical metrics report</a> in the <i>Amazon Connect Administrator's Guide</i>.</p> <p>Note the following limits:</p> <ul> <li> <p> <b>Filter keys</b>: A maximum of 5 filter keys are supported in a single request. Valid filter keys: <code>QUEUE</code> | <code>ROUTING_PROFILE</code> | <code>AGENT</code> | <code>CHANNEL</code> | <code>AGENT_HIERARCHY_LEVEL_ONE</code> | <code>AGENT_HIERARCHY_LEVEL_TWO</code> | <code>AGENT_HIERARCHY_LEVEL_THREE</code> | <code>AGENT_HIERARCHY_LEVEL_FOUR</code> | <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code> </p> </li> <li> <p> <b>Filter values</b>: A maximum of 100 filter values are supported in a single request. VOICE, CHAT, and TASK are valid <code>filterValue</code> for the CHANNEL filter key. They do not count towards limitation of 100 filter values. For example, a GetMetricDataV2 request can filter by 50 queues, 35 agents, and 15 routing profiles for a total of 100 filter values, along with 3 channel filters. </p> <p> <code>contact_lens_conversational_analytics</code> is a valid filterValue for the <code>FEATURE</code> filter key. It is available only to contacts analyzed by Contact Lens conversational analytics.</p> </li> </ul>"
       }
     },
+    "FlowAssociationSummary": {
+      "base": "<p>Information about flow associations.</p>",
+      "refs": {
+        "FlowAssociationSummaryList$member": null
+      }
+    },
+    "FlowAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "BatchGetFlowAssociationResponse$FlowAssociationSummaryList": "<p>Information about flow associations.</p>"
+      }
+    },
     "FunctionArn": {
       "base": null,
       "refs": {
@@ -2972,6 +2999,7 @@
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "BatchGetFlowAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ClaimPhoneNumberRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter <code>InstanceId</code> or <code>TargetArn</code>. </p>",
         "ClaimedPhoneNumberSummary$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3500,6 +3528,13 @@
     "ListEvaluationFormsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListFlowAssociationResourceType": {
+      "base": null,
+      "refs": {
+        "BatchGetFlowAssociationRequest$ResourceType": "<p>The type of resource association.</p>",
+        "FlowAssociationSummary$ResourceType": "<p>The type of resource association.</p>"
       }
     },
     "ListHoursOfOperationsRequest": {
@@ -4951,6 +4986,35 @@
         "UrlReference$Value": "<p>A valid URL.</p>"
       }
     },
+    "RegionName": {
+      "base": null,
+      "refs": {
+        "AgentStatus$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "AgentStatusSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "GetPromptFileResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "HierarchyGroup$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "HierarchyGroupSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "HierarchyLevel$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "HoursOfOperation$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "HoursOfOperationSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "ListQueueQuickConnectsResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "ListRoutingProfileQueuesResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "ListSecurityProfileApplicationsResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "ListSecurityProfilePermissionsResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "Prompt$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "PromptSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "Queue$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "QueueSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "QuickConnect$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "QuickConnectSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "RoutingProfile$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "RoutingProfileSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "SecurityProfile$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "SecurityProfileSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "User$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "UserSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>"
+      }
+    },
     "RehydrationType": {
       "base": null,
       "refs": {
@@ -5300,8 +5364,8 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "CreatePromptRequest$S3Uri": "<p>The URI for the S3 bucket where the prompt is stored.</p>",
-        "UpdatePromptRequest$S3Uri": "<p>The URI for the S3 bucket where the prompt is stored.</p>"
+        "CreatePromptRequest$S3Uri": "<p>The URI for the S3 bucket where the prompt is stored. You can provide S3 pre-signed URLs returned by the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html\">GetPromptFile</a> API instead of providing S3 URIs.</p>",
+        "UpdatePromptRequest$S3Uri": "<p>The URI for the S3 bucket where the prompt is stored. You can provide S3 pre-signed URLs returned by the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html\">GetPromptFile</a> API instead of providing S3 URIs.</p>"
       }
     },
     "SearchAvailablePhoneNumbersRequest": {
@@ -6169,7 +6233,9 @@
       "refs": {
         "AgentContactReference$StateStartTimestamp": "<p>The epoch timestamp when the contact state started.</p>",
         "AgentContactReference$ConnectedToAgentTimestamp": "<p>The time at which the contact was connected to an agent.</p>",
+        "AgentStatus$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "AgentStatusReference$StatusStartTimestamp": "<p>The start timestamp of the agent's status.</p>",
+        "AgentStatusSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "Evaluation$CreatedTime": "<p>The timestamp for when the evaluation was created.</p>",
         "Evaluation$LastModifiedTime": "<p>The timestamp for when the evaluation was last updated.</p>",
         "EvaluationForm$CreatedTime": "<p>The timestamp for when the evaluation form was created.</p>",
@@ -6183,16 +6249,38 @@
         "EvaluationSummary$LastModifiedTime": "<p>The timestamp for when the evaluation was last updated.</p>",
         "GetMetricDataV2Request$StartTime": "<p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be before the end time timestamp. The start and end time depends on the <code>IntervalPeriod</code> selected. By default the time range between start and end time is 35 days. Historical metrics are available for 3 months.</p>",
         "GetMetricDataV2Request$EndTime": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be later than the start time timestamp. It cannot be later than the current timestamp.</p>",
+        "GetPromptFileResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "HierarchyGroup$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "HierarchyGroupSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "HierarchyLevel$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "HoursOfOperation$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "HoursOfOperationSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "Instance$CreatedTime": "<p>When the instance was created.</p>",
         "InstanceSummary$CreatedTime": "<p>When the instance was created.</p>",
+        "ListQueueQuickConnectsResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "ListRoutingProfileQueuesResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "ListSecurityProfileApplicationsResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "ListSecurityProfilePermissionsResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "MetricInterval$StartTime": "<p>The timestamp, in UNIX Epoch time format. Start time is based on the interval period selected. </p>",
         "MetricInterval$EndTime": "<p>The timestamp, in UNIX Epoch time format. End time is based on the interval period selected. For example, If <code>IntervalPeriod</code> is selected <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code> in the API request differs by 1 day, then 48 results are returned in the response. Each result is aggregated by the 30 minutes period, with each <code>StartTime</code> and <code>EndTime</code> differing by 30 minutes. </p>",
+        "Prompt$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "PromptSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "Queue$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "QueueSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "QuickConnect$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "QuickConnectSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "RoutingProfile$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "RoutingProfileSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "Rule$CreatedTime": "<p>The timestamp for when the rule was created.</p>",
         "Rule$LastUpdatedTime": "<p>The timestamp for the when the rule was last updated.</p>",
         "RuleSummary$CreatedTime": "<p>The timestamp for when the rule was created. </p>",
         "RuleSummary$LastUpdatedTime": "<p>The timestamp for when the rule was last updated.</p>",
+        "SecurityProfile$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "SecurityProfileSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "StartTaskContactRequest$ScheduledTime": "<p>The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future. </p>",
         "UpdateContactScheduleRequest$ScheduledTime": "<p>The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future. </p>",
+        "User$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "UserSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "View$CreatedTime": "<p>The timestamp of when the view was created.</p>",
         "View$LastModifiedTime": "<p>Latest timestamp of the <code>UpdateViewContent</code> or <code>CreateViewVersion</code> operations.</p>"
       }
@@ -7127,6 +7215,12 @@
       "base": "<p>Information about Amazon Connect Wisdom.</p>",
       "refs": {
         "Contact$WisdomInfo": "<p>Information about Amazon Connect Wisdom.</p>"
+      }
+    },
+    "resourceArnListMaxLimit100": {
+      "base": null,
+      "refs": {
+        "BatchGetFlowAssociationRequest$ResourceIds": "<p>A list of resource identifiers to retrieve flow associations.</p>"
       }
     },
     "timestamp": {

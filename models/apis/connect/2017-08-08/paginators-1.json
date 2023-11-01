@@ -141,6 +141,10 @@
     "ListQueueQuickConnects": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "LastModifiedRegion",
+        "LastModifiedTime"
+      ],
       "output_token": "NextToken",
       "result_key": "QuickConnectSummaryList"
     },
@@ -159,6 +163,10 @@
     "ListRoutingProfileQueues": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "LastModifiedRegion",
+        "LastModifiedTime"
+      ],
       "output_token": "NextToken",
       "result_key": "RoutingProfileQueueConfigSummaryList"
     },
@@ -183,12 +191,20 @@
     "ListSecurityProfileApplications": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "LastModifiedRegion",
+        "LastModifiedTime"
+      ],
       "output_token": "NextToken",
       "result_key": "Applications"
     },
     "ListSecurityProfilePermissions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "LastModifiedRegion",
+        "LastModifiedTime"
+      ],
       "output_token": "NextToken",
       "result_key": "Permissions"
     },

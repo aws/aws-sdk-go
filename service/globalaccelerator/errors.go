@@ -42,6 +42,12 @@ const (
 	// it.
 	ErrCodeAssociatedListenerFoundException = "AssociatedListenerFoundException"
 
+	// ErrCodeAttachmentNotFoundException for service response error code
+	// "AttachmentNotFoundException".
+	//
+	// No cross-account attachment was found.
+	ErrCodeAttachmentNotFoundException = "AttachmentNotFoundException"
+
 	// ErrCodeByoipCidrNotFoundException for service response error code
 	// "ByoipCidrNotFoundException".
 	//
@@ -135,6 +141,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":                 newErrorAccessDeniedException,
 	"AssociatedEndpointGroupFoundException": newErrorAssociatedEndpointGroupFoundException,
 	"AssociatedListenerFoundException":      newErrorAssociatedListenerFoundException,
+	"AttachmentNotFoundException":           newErrorAttachmentNotFoundException,
 	"ByoipCidrNotFoundException":            newErrorByoipCidrNotFoundException,
 	"ConflictException":                     newErrorConflictException,
 	"EndpointAlreadyExistsException":        newErrorEndpointAlreadyExistsException,
