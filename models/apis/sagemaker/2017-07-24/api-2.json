@@ -3583,7 +3583,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:algorithm/.*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:algorithm/[\\S]{1,2048}$"
     },
     "AlgorithmImage":{
       "type":"string",
@@ -5319,7 +5319,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:code-repository/.*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:code-repository/[\\S]{1,2048}$"
     },
     "CodeRepositoryContains":{
       "type":"string",
@@ -11177,7 +11177,9 @@
     },
     "GitConfigUrl":{
       "type":"string",
-      "pattern":"^https://([^/]+)/?(.*)$"
+      "max":1024,
+      "min":11,
+      "pattern":"^https://([^/]+)/?.{3,1016}$"
     },
     "Group":{
       "type":"string",
@@ -15108,7 +15110,8 @@
         "MonitoringScheduleConfig":{"shape":"MonitoringScheduleConfig"},
         "EndpointName":{"shape":"EndpointName"},
         "MonitoringAlertSummaries":{"shape":"MonitoringAlertSummaryList"},
-        "LastMonitoringExecutionSummary":{"shape":"MonitoringExecutionSummary"}
+        "LastMonitoringExecutionSummary":{"shape":"MonitoringExecutionSummary"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"}
       }
     },
     "ModelDashboardMonitoringSchedules":{
@@ -15321,7 +15324,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:model-package/.*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:model-package/[\\S]{1,2048}$"
     },
     "ModelPackageArnList":{
       "type":"list",
@@ -15374,7 +15377,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:model-package-group/.*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:model-package-group/[\\S]{1,2048}$"
     },
     "ModelPackageGroupSortBy":{
       "type":"string",
@@ -17606,7 +17609,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:project:.*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:project/[\\S]{1,2048}$"
     },
     "ProjectEntityName":{
       "type":"string",

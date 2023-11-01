@@ -1190,6 +1190,100 @@ func (c *Connect) AssociateTrafficDistributionGroupUserWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opBatchGetFlowAssociation = "BatchGetFlowAssociation"
+
+// BatchGetFlowAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetFlowAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetFlowAssociation for more information on using the BatchGetFlowAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetFlowAssociationRequest method.
+//	req, resp := client.BatchGetFlowAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchGetFlowAssociation
+func (c *Connect) BatchGetFlowAssociationRequest(input *BatchGetFlowAssociationInput) (req *request.Request, output *BatchGetFlowAssociationOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetFlowAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flow-associations-batch/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &BatchGetFlowAssociationInput{}
+	}
+
+	output = &BatchGetFlowAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetFlowAssociation API operation for Amazon Connect Service.
+//
+// Retrieve the flow associations for the given resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation BatchGetFlowAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchGetFlowAssociation
+func (c *Connect) BatchGetFlowAssociation(input *BatchGetFlowAssociationInput) (*BatchGetFlowAssociationOutput, error) {
+	req, out := c.BatchGetFlowAssociationRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetFlowAssociationWithContext is the same as BatchGetFlowAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetFlowAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) BatchGetFlowAssociationWithContext(ctx aws.Context, input *BatchGetFlowAssociationInput, opts ...request.Option) (*BatchGetFlowAssociationOutput, error) {
+	req, out := c.BatchGetFlowAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opClaimPhoneNumber = "ClaimPhoneNumber"
 
 // ClaimPhoneNumberRequest generates a "aws/request.Request" representing the
@@ -16042,7 +16136,8 @@ func (c *Connect) ReplicateInstanceRequest(input *ReplicateInstanceInput) (req *
 // ReplicateInstance API operation for Amazon Connect Service.
 //
 // Replicates an Amazon Connect instance in the specified Amazon Web Services
-// Region.
+// Region and copies configuration information for Amazon Connect resources
+// across Amazon Web Services Regions.
 //
 // For more information about replicating an Amazon Connect instance, see Create
 // a replica of your existing Amazon Connect instance (https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html)
@@ -23737,6 +23832,12 @@ type AgentStatus struct {
 	// The display order of the agent status.
 	DisplayOrder *int64 `min:"1" type:"integer"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the agent status.
 	Name *string `min:"1" type:"string"`
 
@@ -23790,6 +23891,18 @@ func (s *AgentStatus) SetDescription(v string) *AgentStatus {
 // SetDisplayOrder sets the DisplayOrder field's value.
 func (s *AgentStatus) SetDisplayOrder(v int64) *AgentStatus {
 	s.DisplayOrder = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *AgentStatus) SetLastModifiedRegion(v string) *AgentStatus {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *AgentStatus) SetLastModifiedTime(v time.Time) *AgentStatus {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -23877,6 +23990,12 @@ type AgentStatusSummary struct {
 	// The identifier for an agent status.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the agent status.
 	Name *string `min:"1" type:"string"`
 
@@ -23911,6 +24030,18 @@ func (s *AgentStatusSummary) SetArn(v string) *AgentStatusSummary {
 // SetId sets the Id field's value.
 func (s *AgentStatusSummary) SetId(v string) *AgentStatusSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *AgentStatusSummary) SetLastModifiedRegion(v string) *AgentStatusSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *AgentStatusSummary) SetLastModifiedTime(v time.Time) *AgentStatusSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -25322,6 +25453,114 @@ func (s *AvailableNumberSummary) SetPhoneNumberCountryCode(v string) *AvailableN
 // SetPhoneNumberType sets the PhoneNumberType field's value.
 func (s *AvailableNumberSummary) SetPhoneNumberType(v string) *AvailableNumberSummary {
 	s.PhoneNumberType = &v
+	return s
+}
+
+type BatchGetFlowAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A list of resource identifiers to retrieve flow associations.
+	//
+	// ResourceIds is a required field
+	ResourceIds []*string `min:"1" type:"list" required:"true"`
+
+	// The type of resource association.
+	ResourceType *string `type:"string" enum:"ListFlowAssociationResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFlowAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFlowAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetFlowAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetFlowAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ResourceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIds"))
+	}
+	if s.ResourceIds != nil && len(s.ResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *BatchGetFlowAssociationInput) SetInstanceId(v string) *BatchGetFlowAssociationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *BatchGetFlowAssociationInput) SetResourceIds(v []*string) *BatchGetFlowAssociationInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *BatchGetFlowAssociationInput) SetResourceType(v string) *BatchGetFlowAssociationInput {
+	s.ResourceType = &v
+	return s
+}
+
+type BatchGetFlowAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about flow associations.
+	FlowAssociationSummaryList []*FlowAssociationSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFlowAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetFlowAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowAssociationSummaryList sets the FlowAssociationSummaryList field's value.
+func (s *BatchGetFlowAssociationOutput) SetFlowAssociationSummaryList(v []*FlowAssociationSummary) *BatchGetFlowAssociationOutput {
+	s.FlowAssociationSummaryList = v
 	return s
 }
 
@@ -27844,7 +28083,9 @@ type CreatePromptInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The URI for the S3 bucket where the prompt is stored.
+	// The URI for the S3 bucket where the prompt is stored. You can provide S3
+	// pre-signed URLs returned by the GetPromptFile (https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html)
+	// API instead of providing S3 URIs.
 	//
 	// S3Uri is a required field
 	S3Uri *string `min:"1" type:"string" required:"true"`
@@ -38577,6 +38818,56 @@ func (s *Filters) SetRoutingProfiles(v []*string) *Filters {
 	return s
 }
 
+// Information about flow associations.
+type FlowAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the flow.
+	FlowId *string `type:"string"`
+
+	// The identifier of the resource.
+	ResourceId *string `type:"string"`
+
+	// The type of resource association.
+	ResourceType *string `type:"string" enum:"ListFlowAssociationResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *FlowAssociationSummary) SetFlowId(v string) *FlowAssociationSummary {
+	s.FlowId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *FlowAssociationSummary) SetResourceId(v string) *FlowAssociationSummary {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *FlowAssociationSummary) SetResourceType(v string) *FlowAssociationSummary {
+	s.ResourceType = &v
+	return s
+}
+
 type GetContactAttributesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -40338,6 +40629,12 @@ func (s *GetPromptFileInput) SetPromptId(v string) *GetPromptFileInput {
 type GetPromptFileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// A generated URL to the prompt that can be given to an unauthorized user so
 	// they can access the prompt in S3.
 	PromptPresignedUrl *string `min:"1" type:"string"`
@@ -40359,6 +40656,18 @@ func (s GetPromptFileOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetPromptFileOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *GetPromptFileOutput) SetLastModifiedRegion(v string) *GetPromptFileOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetPromptFileOutput) SetLastModifiedTime(v time.Time) *GetPromptFileOutput {
+	s.LastModifiedTime = &v
+	return s
 }
 
 // SetPromptPresignedUrl sets the PromptPresignedUrl field's value.
@@ -40730,6 +41039,12 @@ type HierarchyGroup struct {
 	// The identifier of the hierarchy group.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The identifier of the level in the hierarchy group.
 	LevelId *string `type:"string"`
 
@@ -40774,6 +41089,18 @@ func (s *HierarchyGroup) SetHierarchyPath(v *HierarchyPath) *HierarchyGroup {
 // SetId sets the Id field's value.
 func (s *HierarchyGroup) SetId(v string) *HierarchyGroup {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *HierarchyGroup) SetLastModifiedRegion(v string) *HierarchyGroup {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HierarchyGroup) SetLastModifiedTime(v time.Time) *HierarchyGroup {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -40846,6 +41173,12 @@ type HierarchyGroupSummary struct {
 	// The identifier of the hierarchy group.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the hierarchy group.
 	Name *string `type:"string"`
 }
@@ -40877,6 +41210,18 @@ func (s *HierarchyGroupSummary) SetArn(v string) *HierarchyGroupSummary {
 // SetId sets the Id field's value.
 func (s *HierarchyGroupSummary) SetId(v string) *HierarchyGroupSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *HierarchyGroupSummary) SetLastModifiedRegion(v string) *HierarchyGroupSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HierarchyGroupSummary) SetLastModifiedTime(v time.Time) *HierarchyGroupSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -40937,6 +41282,12 @@ type HierarchyLevel struct {
 	// The identifier of the hierarchy level.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the hierarchy level.
 	Name *string `type:"string"`
 }
@@ -40968,6 +41319,18 @@ func (s *HierarchyLevel) SetArn(v string) *HierarchyLevel {
 // SetId sets the Id field's value.
 func (s *HierarchyLevel) SetId(v string) *HierarchyLevel {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *HierarchyLevel) SetLastModifiedRegion(v string) *HierarchyLevel {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HierarchyLevel) SetLastModifiedTime(v time.Time) *HierarchyLevel {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -41490,6 +41853,12 @@ type HoursOfOperation struct {
 	// The identifier for the hours of operation.
 	HoursOfOperationId *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name for the hours of operation.
 	Name *string `min:"1" type:"string"`
 
@@ -41540,6 +41909,18 @@ func (s *HoursOfOperation) SetHoursOfOperationArn(v string) *HoursOfOperation {
 // SetHoursOfOperationId sets the HoursOfOperationId field's value.
 func (s *HoursOfOperation) SetHoursOfOperationId(v string) *HoursOfOperation {
 	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *HoursOfOperation) SetLastModifiedRegion(v string) *HoursOfOperation {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HoursOfOperation) SetLastModifiedTime(v time.Time) *HoursOfOperation {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -41747,6 +42128,12 @@ type HoursOfOperationSummary struct {
 	// The identifier of the hours of operation.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the hours of operation.
 	Name *string `type:"string"`
 }
@@ -41778,6 +42165,18 @@ func (s *HoursOfOperationSummary) SetArn(v string) *HoursOfOperationSummary {
 // SetId sets the Id field's value.
 func (s *HoursOfOperationSummary) SetId(v string) *HoursOfOperationSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *HoursOfOperationSummary) SetLastModifiedRegion(v string) *HoursOfOperationSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *HoursOfOperationSummary) SetLastModifiedTime(v time.Time) *HoursOfOperationSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -45871,6 +46270,12 @@ func (s *ListQueueQuickConnectsInput) SetQueueId(v string) *ListQueueQuickConnec
 type ListQueueQuickConnectsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 
@@ -45894,6 +46299,18 @@ func (s ListQueueQuickConnectsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ListQueueQuickConnectsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *ListQueueQuickConnectsOutput) SetLastModifiedRegion(v string) *ListQueueQuickConnectsOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ListQueueQuickConnectsOutput) SetLastModifiedTime(v time.Time) *ListQueueQuickConnectsOutput {
+	s.LastModifiedTime = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -46250,6 +46667,12 @@ func (s *ListRoutingProfileQueuesInput) SetRoutingProfileId(v string) *ListRouti
 type ListRoutingProfileQueuesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 
@@ -46273,6 +46696,18 @@ func (s ListRoutingProfileQueuesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ListRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *ListRoutingProfileQueuesOutput) SetLastModifiedRegion(v string) *ListRoutingProfileQueuesOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ListRoutingProfileQueuesOutput) SetLastModifiedTime(v time.Time) *ListRoutingProfileQueuesOutput {
+	s.LastModifiedTime = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -46745,6 +47180,12 @@ type ListSecurityProfileApplicationsOutput struct {
 	// A list of the third-party application's metadata.
 	Applications []*Application `type:"list"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 }
@@ -46770,6 +47211,18 @@ func (s ListSecurityProfileApplicationsOutput) GoString() string {
 // SetApplications sets the Applications field's value.
 func (s *ListSecurityProfileApplicationsOutput) SetApplications(v []*Application) *ListSecurityProfileApplicationsOutput {
 	s.Applications = v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *ListSecurityProfileApplicationsOutput) SetLastModifiedRegion(v string) *ListSecurityProfileApplicationsOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ListSecurityProfileApplicationsOutput) SetLastModifiedTime(v time.Time) *ListSecurityProfileApplicationsOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -46872,6 +47325,12 @@ func (s *ListSecurityProfilePermissionsInput) SetSecurityProfileId(v string) *Li
 type ListSecurityProfilePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 
@@ -46896,6 +47355,18 @@ func (s ListSecurityProfilePermissionsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ListSecurityProfilePermissionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetLastModifiedRegion(v string) *ListSecurityProfilePermissionsOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetLastModifiedTime(v time.Time) *ListSecurityProfilePermissionsOutput {
+	s.LastModifiedTime = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -49550,6 +50021,12 @@ type Prompt struct {
 	// The description of the prompt.
 	Description *string `min:"1" type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the prompt.
 	Name *string `min:"1" type:"string"`
 
@@ -49585,6 +50062,18 @@ func (s Prompt) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *Prompt) SetDescription(v string) *Prompt {
 	s.Description = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *Prompt) SetLastModifiedRegion(v string) *Prompt {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Prompt) SetLastModifiedTime(v time.Time) *Prompt {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -49712,6 +50201,12 @@ type PromptSummary struct {
 	// The identifier of the prompt.
 	Id *string `min:"1" type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the prompt.
 	Name *string `min:"1" type:"string"`
 }
@@ -49743,6 +50238,18 @@ func (s *PromptSummary) SetArn(v string) *PromptSummary {
 // SetId sets the Id field's value.
 func (s *PromptSummary) SetId(v string) *PromptSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *PromptSummary) SetLastModifiedRegion(v string) *PromptSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PromptSummary) SetLastModifiedTime(v time.Time) *PromptSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -49988,6 +50495,12 @@ type Queue struct {
 	// The identifier for the hours of operation.
 	HoursOfOperationId *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The maximum number of contacts that can be in the queue before it is considered
 	// full.
 	MaxContacts *int64 `type:"integer"`
@@ -50039,6 +50552,18 @@ func (s *Queue) SetDescription(v string) *Queue {
 // SetHoursOfOperationId sets the HoursOfOperationId field's value.
 func (s *Queue) SetHoursOfOperationId(v string) *Queue {
 	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *Queue) SetLastModifiedRegion(v string) *Queue {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Queue) SetLastModifiedTime(v time.Time) *Queue {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -50341,6 +50866,12 @@ type QueueSummary struct {
 	// The identifier of the queue.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the queue.
 	Name *string `min:"1" type:"string"`
 
@@ -50378,6 +50909,18 @@ func (s *QueueSummary) SetId(v string) *QueueSummary {
 	return s
 }
 
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *QueueSummary) SetLastModifiedRegion(v string) *QueueSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *QueueSummary) SetLastModifiedTime(v time.Time) *QueueSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *QueueSummary) SetName(v string) *QueueSummary {
 	s.Name = &v
@@ -50396,6 +50939,12 @@ type QuickConnect struct {
 
 	// The description.
 	Description *string `min:"1" type:"string"`
+
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the quick connect.
 	Name *string `min:"1" type:"string"`
@@ -50435,6 +50984,18 @@ func (s QuickConnect) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *QuickConnect) SetDescription(v string) *QuickConnect {
 	s.Description = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *QuickConnect) SetLastModifiedRegion(v string) *QuickConnect {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *QuickConnect) SetLastModifiedTime(v time.Time) *QuickConnect {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -50659,6 +51220,12 @@ type QuickConnectSummary struct {
 	// The identifier for the quick connect.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the quick connect.
 	Name *string `min:"1" type:"string"`
 
@@ -50695,6 +51262,18 @@ func (s *QuickConnectSummary) SetArn(v string) *QuickConnectSummary {
 // SetId sets the Id field's value.
 func (s *QuickConnectSummary) SetId(v string) *QuickConnectSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *QuickConnectSummary) SetLastModifiedRegion(v string) *QuickConnectSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *QuickConnectSummary) SetLastModifiedTime(v time.Time) *QuickConnectSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -51601,6 +52180,15 @@ type RoutingProfile struct {
 	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
+	// Whether this a default routing profile.
+	IsDefault *bool `type:"boolean"`
+
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The channels agents can handle in the Contact Control Panel (CCP) for this
 	// routing profile.
 	MediaConcurrencies []*MediaConcurrency `type:"list"`
@@ -51664,6 +52252,24 @@ func (s *RoutingProfile) SetDescription(v string) *RoutingProfile {
 // SetInstanceId sets the InstanceId field's value.
 func (s *RoutingProfile) SetInstanceId(v string) *RoutingProfile {
 	s.InstanceId = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *RoutingProfile) SetIsDefault(v bool) *RoutingProfile {
+	s.IsDefault = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *RoutingProfile) SetLastModifiedRegion(v string) *RoutingProfile {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *RoutingProfile) SetLastModifiedTime(v time.Time) *RoutingProfile {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -52097,6 +52703,12 @@ type RoutingProfileSummary struct {
 	// The identifier of the routing profile.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the routing profile.
 	Name *string `min:"1" type:"string"`
 }
@@ -52128,6 +52740,18 @@ func (s *RoutingProfileSummary) SetArn(v string) *RoutingProfileSummary {
 // SetId sets the Id field's value.
 func (s *RoutingProfileSummary) SetId(v string) *RoutingProfileSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *RoutingProfileSummary) SetLastModifiedRegion(v string) *RoutingProfileSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *RoutingProfileSummary) SetLastModifiedTime(v time.Time) *RoutingProfileSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -54173,6 +54797,12 @@ type SecurityProfile struct {
 	// The identifier for the security profile.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The organization resource identifier for the security profile.
 	OrganizationResourceId *string `min:"1" type:"string"`
 
@@ -54227,6 +54857,18 @@ func (s *SecurityProfile) SetDescription(v string) *SecurityProfile {
 // SetId sets the Id field's value.
 func (s *SecurityProfile) SetId(v string) *SecurityProfile {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *SecurityProfile) SetLastModifiedRegion(v string) *SecurityProfile {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *SecurityProfile) SetLastModifiedTime(v time.Time) *SecurityProfile {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -54396,6 +55038,12 @@ type SecurityProfileSummary struct {
 	// The identifier of the security profile.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the security profile.
 	Name *string `type:"string"`
 }
@@ -54427,6 +55075,18 @@ func (s *SecurityProfileSummary) SetArn(v string) *SecurityProfileSummary {
 // SetId sets the Id field's value.
 func (s *SecurityProfileSummary) SetId(v string) *SecurityProfileSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *SecurityProfileSummary) SetLastModifiedRegion(v string) *SecurityProfileSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *SecurityProfileSummary) SetLastModifiedTime(v time.Time) *SecurityProfileSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -57627,9 +58287,11 @@ type TrafficDistributionGroup struct {
 	// the DeleteTrafficDistributionGroup API. The default traffic distribution
 	// group is deleted as part of the process for deleting a replica.
 	//
-	// The SignInConfig distribution is available only on the default TrafficDistributionGroup.
-	// If you call UpdateTrafficDistribution with a modified SignInConfig and a
-	// non-default TrafficDistributionGroup, an InvalidRequestException is returned.
+	// The SignInConfig distribution is available only on a default TrafficDistributionGroup
+	// (see the IsDefault parameter in the TrafficDistributionGroup (https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html)
+	// data type). If you call UpdateTrafficDistribution with a modified SignInConfig
+	// and a non-default TrafficDistributionGroup, an InvalidRequestException is
+	// returned.
 	IsDefault *bool `type:"boolean"`
 
 	// The name of the traffic distribution group.
@@ -60283,7 +60945,9 @@ type UpdatePromptInput struct {
 	// PromptId is a required field
 	PromptId *string `location:"uri" locationName:"PromptId" min:"1" type:"string" required:"true"`
 
-	// The URI for the S3 bucket where the prompt is stored.
+	// The URI for the S3 bucket where the prompt is stored. You can provide S3
+	// pre-signed URLs returned by the GetPromptFile (https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html)
+	// API instead of providing S3 URIs.
 	S3Uri *string `min:"1" type:"string"`
 }
 
@@ -63521,6 +64185,12 @@ type User struct {
 	// Information about the user identity.
 	IdentityInfo *UserIdentityInfo `type:"structure"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// Information about the phone configuration for the user.
 	PhoneConfig *UserPhoneConfig `type:"structure"`
 
@@ -63582,6 +64252,18 @@ func (s *User) SetId(v string) *User {
 // SetIdentityInfo sets the IdentityInfo field's value.
 func (s *User) SetIdentityInfo(v *UserIdentityInfo) *User {
 	s.IdentityInfo = v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *User) SetLastModifiedRegion(v string) *User {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *User) SetLastModifiedTime(v time.Time) *User {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -64421,6 +65103,12 @@ type UserSummary struct {
 	// The identifier of the user account.
 	Id *string `type:"string"`
 
+	// The Amazon Web Services Region where this resource was last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when this resource was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The Amazon Connect user name of the user account.
 	Username *string `min:"1" type:"string"`
 }
@@ -64452,6 +65140,18 @@ func (s *UserSummary) SetArn(v string) *UserSummary {
 // SetId sets the Id field's value.
 func (s *UserSummary) SetId(v string) *UserSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *UserSummary) SetLastModifiedRegion(v string) *UserSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UserSummary) SetLastModifiedTime(v time.Time) *UserSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -66079,6 +66779,22 @@ func LexVersion_Values() []string {
 	return []string{
 		LexVersionV1,
 		LexVersionV2,
+	}
+}
+
+const (
+	// ListFlowAssociationResourceTypeSmsPhoneNumber is a ListFlowAssociationResourceType enum value
+	ListFlowAssociationResourceTypeSmsPhoneNumber = "SMS_PHONE_NUMBER"
+
+	// ListFlowAssociationResourceTypeVoicePhoneNumber is a ListFlowAssociationResourceType enum value
+	ListFlowAssociationResourceTypeVoicePhoneNumber = "VOICE_PHONE_NUMBER"
+)
+
+// ListFlowAssociationResourceType_Values returns all elements of the ListFlowAssociationResourceType enum
+func ListFlowAssociationResourceType_Values() []string {
+	return []string{
+		ListFlowAssociationResourceTypeSmsPhoneNumber,
+		ListFlowAssociationResourceTypeVoicePhoneNumber,
 	}
 }
 

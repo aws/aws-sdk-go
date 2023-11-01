@@ -1,3 +1,16 @@
+Release v1.47.1 (2023-11-01)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/globalaccelerator`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for customized networking resources to Amazon RDS Custom.
+* `service/redshift`: Updates service API and documentation
+  * Added support for Multi-AZ deployments for Provisioned RA3 clusters that provide 99.99% SLA availability.
+* `service/sagemaker`: Updates service API and documentation
+  * Support for batch transform input in Model dashboard
+
 Release v1.47.0 (2023-10-31)
 ===
 
