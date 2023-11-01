@@ -122,6 +122,14 @@
         "ListApplicationsResponse$ApplicationInfoList": "<p>The list of applications.</p>"
       }
     },
+    "AttachMissingPermission": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$AttachMissingPermission": "<p>If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing.</p>",
+        "CreateApplicationRequest$AttachMissingPermission": "<p>If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing.</p>",
+        "UpdateApplicationRequest$AttachMissingPermission": "<p>If set to true, the managed policies for SSM and CW will be attached to the instance roles if they are missing.</p>"
+      }
+    },
     "AutoConfigEnabled": {
       "base": null,
       "refs": {
@@ -1276,6 +1284,7 @@
     "WorkloadName": {
       "base": null,
       "refs": {
+        "DescribeComponentConfigurationRecommendationRequest$WorkloadName": "<p>The name of the workload.</p>",
         "Workload$WorkloadName": "<p>The name of the workload.</p>",
         "WorkloadConfiguration$WorkloadName": "<p>The name of the workload.</p>"
       }

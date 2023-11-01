@@ -3691,6 +3691,16 @@
         "ValidStorageOptions$ProvisionedStorageThroughput": "<p>The valid range of provisioned storage throughput. For example, 500-4,000 mebibytes per second (MiBps).</p>"
       }
     },
+    "RdsCustomClusterConfiguration": {
+      "base": "<p>Reserved for future use.</p>",
+      "refs": {
+        "ClusterPendingModifiedValues$RdsCustomClusterConfiguration": "<p>Reserved for future use.</p>",
+        "CreateDBClusterMessage$RdsCustomClusterConfiguration": "<p>Reserved for future use.</p>",
+        "DBCluster$RdsCustomClusterConfiguration": "<p>Reserved for future use.</p>",
+        "RestoreDBClusterFromSnapshotMessage$RdsCustomClusterConfiguration": "<p>Reserved for future use.</p>",
+        "RestoreDBClusterToPointInTimeMessage$RdsCustomClusterConfiguration": "<p>Reserved for future use.</p>"
+      }
+    },
     "ReadReplicaDBClusterIdentifierList": {
       "base": null,
       "refs": {
@@ -4941,6 +4951,8 @@
         "PromoteReadReplicaMessage$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region. To see the time blocks available, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html\"> Adjusting the Preferred Maintenance Window</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "PurchaseReservedDBInstancesOfferingMessage$ReservedDBInstancesOfferingId": "<p>The ID of the Reserved DB instance offering to purchase.</p> <p>Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706</p>",
         "PurchaseReservedDBInstancesOfferingMessage$ReservedDBInstanceId": "<p>Customer-specified identifier to track this reservation.</p> <p>Example: myreservationID</p>",
+        "RdsCustomClusterConfiguration$InterconnectSubnetId": "<p>Reserved for future use.</p>",
+        "RdsCustomClusterConfiguration$TransitGatewayMulticastDomainId": "<p>Reserved for future use.</p>",
         "ReadReplicaDBClusterIdentifierList$member": null,
         "ReadReplicaDBInstanceIdentifierList$member": null,
         "ReadReplicaIdentifierList$member": null,

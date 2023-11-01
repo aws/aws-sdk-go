@@ -228,6 +228,7 @@
     "DescribeAwsNetworkPerformanceMetricSubscriptions": "<p>Describes the current Infrastructure Performance metric subscriptions.</p>",
     "DescribeBundleTasks": "<p>Describes the specified bundle tasks or all of your bundle tasks.</p> <note> <p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p> </note>",
     "DescribeByoipCidrs": "<p>Describes the IP address ranges that were specified in calls to <a>ProvisionByoipCidr</a>.</p> <p>To describe the address pools that were created when you provisioned the address ranges, use <a>DescribePublicIpv4Pools</a> or <a>DescribeIpv6Pools</a>.</p>",
+    "DescribeCapacityBlockOfferings": "<p>Describes Capacity Block offerings available for purchase. With Capacity Blocks, you purchase a specific instance type for a period of time.</p>",
     "DescribeCapacityReservationFleets": "<p>Describes one or more Capacity Reservation Fleets.</p>",
     "DescribeCapacityReservations": "<p>Describes one or more of your Capacity Reservations. The results describe only the Capacity Reservations in the Amazon Web Services Region that you're currently using.</p>",
     "DescribeCarrierGateways": "<p>Describes one or more of your carrier gateways.</p>",
@@ -541,6 +542,7 @@
     "ProvisionByoipCidr": "<p>Provisions an IPv4 or IPv6 address range for use with your Amazon Web Services resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>Amazon Web Services verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring your own IP addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your IPv4 address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
     "ProvisionIpamPoolCidr": "<p>Provision a CIDR to an IPAM pool. You can use this action to provision new CIDRs to a top-level pool or to transfer a CIDR from a top-level pool to a pool within it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/prov-cidr-ipam.html\">Provision CIDRs to pools</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
     "ProvisionPublicIpv4PoolCidr": "<p>Provision a CIDR to a public IPv4 pool.</p> <p>For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
+    "PurchaseCapacityBlock": "<p>Purchase the Capacity Block for use with your account. With Capacity Blocks you ensure GPU capacity is available for machine learning (ML) workloads. You must specify the ID of the Capacity Block offering you are purchasing.</p>",
     "PurchaseHostReservation": "<p>Purchase a reservation with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation. This action results in the specified reservation being purchased and charged to your account.</p>",
     "PurchaseReservedInstancesOffering": "<p>Purchases a Reserved Instance for use with your account. With Reserved Instances, you pay a lower hourly rate compared to On-Demand instance pricing.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>To queue a purchase for a future date and time, specify a purchase time. If you do not specify a purchase time, the default is the current time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "PurchaseScheduledInstances": "<note> <p>You can no longer purchase Scheduled Instances.</p> </note> <p>Purchases the Scheduled Instances with the specified schedule.</p> <p>Scheduled Instances enable you to purchase Amazon EC2 compute capacity by the hour for a one-year term. Before you can purchase a Scheduled Instance, you must call <a>DescribeScheduledInstanceAvailability</a> to check for available schedules and obtain a purchase token. After you purchase a Scheduled Instance, you must call <a>RunScheduledInstances</a> during each scheduled time period.</p> <p>After you purchase a Scheduled Instance, you can't cancel, modify, or resell your purchase.</p>",
@@ -2180,6 +2182,7 @@
         "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeBundleTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeByoipCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeCapacityBlockOfferingsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCapacityReservationFleetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCapacityReservationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCarrierGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2653,6 +2656,7 @@
         "ProvisionByoipCidrRequest$MultiRegion": "<p>Reserved.</p>",
         "ProvisionIpamPoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ProvisionPublicIpv4PoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "PurchaseCapacityBlockRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseReservedInstancesOfferingRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseScheduledInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RebootInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3105,11 +3109,24 @@
         "CapacityReservation$CapacityAllocations": "<p>Information about instance capacity usage.</p>"
       }
     },
+    "CapacityBlockOffering": {
+      "base": "<p>The recommended Capacity Block that fits your search requirements.</p>",
+      "refs": {
+        "CapacityBlockOfferingSet$member": null
+      }
+    },
+    "CapacityBlockOfferingSet": {
+      "base": null,
+      "refs": {
+        "DescribeCapacityBlockOfferingsResult$CapacityBlockOfferings": "<p>The recommended Capacity Block offering for the dates specified.</p>"
+      }
+    },
     "CapacityReservation": {
       "base": "<p>Describes a Capacity Reservation.</p>",
       "refs": {
         "CapacityReservationSet$member": null,
-        "CreateCapacityReservationResult$CapacityReservation": "<p>Information about the Capacity Reservation.</p>"
+        "CreateCapacityReservationResult$CapacityReservation": "<p>Information about the Capacity Reservation.</p>",
+        "PurchaseCapacityBlockResult$CapacityReservation": "<p>The Capacity Reservation.</p>"
       }
     },
     "CapacityReservationFleet": {
@@ -3199,6 +3216,7 @@
         "CapacityReservation$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation reserves capacity.</p>",
         "CreateCapacityReservationRequest$InstancePlatform": "<p>The type of operating system for which to reserve capacity.</p>",
         "FleetCapacityReservation$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation reserves capacity.</p>",
+        "PurchaseCapacityBlockRequest$InstancePlatform": "<p>The type of operating system for which to reserve capacity.</p>",
         "ReservationFleetInstanceSpecification$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation Fleet reserves capacity.</p>"
       }
     },
@@ -3266,8 +3284,15 @@
     "CapacityReservationTenancy": {
       "base": null,
       "refs": {
+        "CapacityBlockOffering$Tenancy": "<p>The tenancy of the Capacity Block.</p>",
         "CapacityReservation$Tenancy": "<p>Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul>",
         "CreateCapacityReservationRequest$Tenancy": "<p>Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul>"
+      }
+    },
+    "CapacityReservationType": {
+      "base": null,
+      "refs": {
+        "CapacityReservation$ReservationType": "<p>The type of Capacity Reservation.</p>"
       }
     },
     "CarrierGateway": {
@@ -5956,6 +5981,22 @@
       }
     },
     "DescribeByoipCidrsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCapacityBlockOfferingsMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeCapacityBlockOfferingsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
+      }
+    },
+    "DescribeCapacityBlockOfferingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCapacityBlockOfferingsResult": {
       "base": null,
       "refs": {
       }
@@ -11418,7 +11459,7 @@
       }
     },
     "InstanceRequirements": {
-      "base": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other attributes are optional. Any unspecified optional attribute is set to its default.</p> <p>When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.</p> <p>To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:</p> <ul> <li> <p> <code>AllowedInstanceTypes</code> - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.</p> </li> <li> <p> <code>ExcludedInstanceTypes</code> - The instance types to exclude from the list, even if they match your specified attributes.</p> </li> </ul> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.</p> <p>Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html\">launch instance wizard</a> or with the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances API</a>, you can't specify <code>InstanceRequirements</code>.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "base": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other attributes are optional. Any unspecified optional attribute is set to its default.</p> <p>When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.</p> <p>To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:</p> <ul> <li> <p> <code>AllowedInstanceTypes</code> - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.</p> </li> <li> <p> <code>ExcludedInstanceTypes</code> - The instance types to exclude from the list, even if they match your specified attributes.</p> </li> </ul> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.</p> <p>Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html\">launch instance wizard</a> or with the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances API</a>, you can't specify <code>InstanceRequirements</code>.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-mixed-instances-group-attribute-based-instance-type-selection.html\">Create a mixed instances group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>, and also <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>.</p>",
       "refs": {
         "FleetLaunchTemplateOverrides$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.</p> </note>",
         "LaunchTemplateOverrides$InstanceRequirements": "<p>The instance requirements. When you specify instance requirements, Amazon EC2 will identify instance types with the provided requirements, and then use your On-Demand and Spot allocation strategies to launch instances from these instance types, in the same way as when you specify a list of instance types.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.</p> </note>",
@@ -11688,6 +11729,8 @@
         "BaselineEbsBandwidthMbpsRequest$Min": "<p>The minimum baseline bandwidth, in Mbps. To specify no minimum limit, omit this parameter.</p>",
         "BaselineEbsBandwidthMbpsRequest$Max": "<p>The maximum baseline bandwidth, in Mbps. To specify no maximum limit, omit this parameter.</p>",
         "CapacityAllocation$Count": "<p>The amount of instance capacity associated with the usage. For example a value of <code>4</code> indicates that instance capacity for 4 instances is currently in use.</p>",
+        "CapacityBlockOffering$InstanceCount": "<p>The number of instances in the Capacity Block offering.</p>",
+        "CapacityBlockOffering$CapacityBlockDurationHours": "<p>The amount of time of the Capacity Block reservation in hours.</p>",
         "CapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "CapacityReservation$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
         "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
@@ -11721,6 +11764,8 @@
         "CreateVolumeRequest$Size": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>: 1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul>",
         "CreateVolumeRequest$Throughput": "<p>The throughput to provision for a volume, with a maximum of 1,000 MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
         "DeleteNetworkAclEntryRequest$RuleNumber": "<p>The rule number of the entry to delete.</p>",
+        "DescribeCapacityBlockOfferingsRequest$InstanceCount": "<p>The number of instances for which to reserve capacity.</p>",
+        "DescribeCapacityBlockOfferingsRequest$CapacityDurationHours": "<p>The number of hours for which to reserve Capacity Block.</p>",
         "DescribeElasticGpusResult$MaxResults": "<p>The total number of items to return. If the total number of items available is more than the value specified in max-items then a Next-Token will be provided in the output that you can use to resume pagination.</p>",
         "DescribeFastLaunchImagesSuccessItem$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>",
         "DescribeFleetHistoryRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>",
@@ -13942,12 +13987,16 @@
         "AddressTransfer$TransferOfferAcceptedTimestamp": "<p>The timestamp when the Elastic IP address transfer was accepted.</p>",
         "AthenaIntegration$PartitionStartDate": "<p>The start date for the partition.</p>",
         "AthenaIntegration$PartitionEndDate": "<p>The end date for the partition.</p>",
+        "CapacityBlockOffering$StartDate": "<p>The start date of the Capacity Block offering.</p>",
+        "CapacityBlockOffering$EndDate": "<p>The end date of the Capacity Block offering.</p>",
         "CapacityReservation$StartDate": "<p>The date and time at which the Capacity Reservation was started.</p>",
         "CapacityReservationFleet$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
         "CapacityReservationFleet$CreateTime": "<p>The date and time at which the Capacity Reservation Fleet was created.</p>",
         "CreateCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>. </p>",
         "CreateCapacityReservationFleetResult$CreateTime": "<p>The date and time at which the Capacity Reservation Fleet was created.</p>",
         "CreateCapacityReservationFleetResult$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
+        "DescribeCapacityBlockOfferingsRequest$StartDateRange": "<p>The earliest start date for the Capacity Block offering.</p>",
+        "DescribeCapacityBlockOfferingsRequest$EndDateRange": "<p>The latest end date for the Capacity Block offering.</p>",
         "DescribeFastLaunchImagesSuccessItem$StateTransitionTime": "<p>The time that faster launching for the Windows AMI changed to the current state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
@@ -15387,10 +15436,12 @@
     "OfferingId": {
       "base": null,
       "refs": {
+        "CapacityBlockOffering$CapacityBlockOfferingId": "<p>The ID of the Capacity Block offering.</p>",
         "DescribeHostReservationOfferingsRequest$OfferingId": "<p>The ID of the reservation offering.</p>",
         "GetHostReservationPurchasePreviewRequest$OfferingId": "<p>The offering ID of the reservation.</p>",
         "HostOffering$OfferingId": "<p>The ID of the offering.</p>",
         "HostReservation$OfferingId": "<p>The ID of the reservation. This remains the same regardless of which Dedicated Hosts are associated with it.</p>",
+        "PurchaseCapacityBlockRequest$CapacityBlockOfferingId": "<p>The ID of the Capacity Block offering.</p>",
         "PurchaseHostReservationRequest$OfferingId": "<p>The ID of the offering.</p>"
       }
     },
@@ -16337,6 +16388,16 @@
       "base": "<p>Describes the result of the purchase.</p>",
       "refs": {
         "PurchaseSet$member": null
+      }
+    },
+    "PurchaseCapacityBlockRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PurchaseCapacityBlockResult": {
+      "base": null,
+      "refs": {
       }
     },
     "PurchaseHostReservationRequest": {
@@ -18618,6 +18679,10 @@
         "CancelSpotFleetRequestsErrorItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "CancelSpotFleetRequestsSuccessItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "CancelledSpotInstanceRequest$SpotInstanceRequestId": "<p>The ID of the Spot Instance request.</p>",
+        "CapacityBlockOffering$InstanceType": "<p>The instance type of the Capacity Block offering.</p>",
+        "CapacityBlockOffering$AvailabilityZone": "<p>The Availability Zone of the Capacity Block offering.</p>",
+        "CapacityBlockOffering$UpfrontFee": "<p>The total price to be paid up front.</p>",
+        "CapacityBlockOffering$CurrencyCode": "<p>The currency of the payment for the Capacity Block.</p>",
         "CapacityReservation$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "CapacityReservation$OwnerId": "<p>The ID of the Amazon Web Services account that owns the Capacity Reservation.</p>",
         "CapacityReservation$CapacityReservationArn": "<p>The Amazon Resource Name (ARN) of the Capacity Reservation.</p>",
@@ -18935,6 +19000,9 @@
         "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeAwsNetworkPerformanceMetricSubscriptionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeCapacityBlockOfferingsRequest$InstanceType": "<p>The type of instance for which the Capacity Block offering reserves capacity.</p>",
+        "DescribeCapacityBlockOfferingsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "DescribeCapacityBlockOfferingsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCapacityReservationFleetsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeCapacityReservationFleetsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCapacityReservationsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
@@ -20943,6 +21011,7 @@
         "ImportKeyPairRequest$TagSpecifications": "<p>The tags to apply to the imported key pair.</p>",
         "ImportSnapshotRequest$TagSpecifications": "<p>The tags to apply to the import snapshot task during creation.</p>",
         "ProvisionByoipCidrRequest$PoolTagSpecifications": "<p>The tags to apply to the address pool.</p>",
+        "PurchaseCapacityBlockRequest$TagSpecifications": "<p>The tags to apply to the Capacity Block during launch.</p>",
         "PurchaseHostReservationRequest$TagSpecifications": "<p>The tags to apply to the Dedicated Host Reservation during purchase.</p>",
         "RequestSpotInstancesRequest$TagSpecifications": "<p>The key-value pair for tagging the Spot Instance request on creation. The value for <code>ResourceType</code> must be <code>spot-instances-request</code>, otherwise the Spot Instance request fails. To tag the Spot Instance request after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>. </p>",
         "RunInstancesRequest$TagSpecifications": "<p>The tags to apply to the resources that are created during instance launch.</p> <p>You can specify tags for the following resources only:</p> <ul> <li> <p>Instances</p> </li> <li> <p>Volumes</p> </li> <li> <p>Elastic graphics</p> </li> <li> <p>Spot Instance requests</p> </li> <li> <p>Network interfaces</p> </li> </ul> <p>To tag a resource after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>.</p>",

@@ -178,6 +178,9 @@ func (c *Redshift) AddPartnerRequest(input *AddPartnerInput) (req *request.Reque
 //   - ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
 //     The partner integration is not authorized.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AddPartner
 func (c *Redshift) AddPartner(input *AddPartnerInput) (*AddPartnerOutput, error) {
 	req, out := c.AddPartnerRequest(input)
@@ -991,6 +994,9 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 //
 // Returned Error Codes:
 //
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
 //   - ErrCodeClusterSnapshotAlreadyExistsFault "ClusterSnapshotAlreadyExists"
 //     The value specified as a snapshot identifier is already used by an existing
 //     snapshot.
@@ -1263,6 +1269,9 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *request
 //   - ErrCodeIpv6CidrBlockNotFoundFault "Ipv6CidrBlockNotFoundFault"
 //     There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
 //     dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCluster
 func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
@@ -2295,6 +2304,9 @@ func (c *Redshift) CreateScheduledActionRequest(input *CreateScheduledActionInpu
 //
 // Returned Error Codes:
 //
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
 //   - ErrCodeScheduledActionAlreadyExistsFault "ScheduledActionAlreadyExists"
 //     The scheduled action already exists.
 //
@@ -2312,6 +2324,9 @@ func (c *Redshift) CreateScheduledActionRequest(input *CreateScheduledActionInpu
 //
 //   - ErrCodeUnauthorizedOperation "UnauthorizedOperation"
 //     Your account is not authorized to perform the requested operation.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateScheduledAction
 func (c *Redshift) CreateScheduledAction(input *CreateScheduledActionInput) (*CreateScheduledActionOutput, error) {
@@ -3849,6 +3864,9 @@ func (c *Redshift) DeletePartnerRequest(input *DeletePartnerInput) (req *request
 //
 //   - ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
 //     The partner integration is not authorized.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeletePartner
 func (c *Redshift) DeletePartner(input *DeletePartnerInput) (*DeletePartnerOutput, error) {
@@ -7688,8 +7706,12 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInpu
 // API operation DescribeLoggingStatus for usage and error information.
 //
 // Returned Error Codes:
+//
 //   - ErrCodeClusterNotFoundFault "ClusterNotFound"
 //     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeLoggingStatus
 func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*LoggingStatus, error) {
@@ -8061,6 +8083,9 @@ func (c *Redshift) DescribePartnersRequest(input *DescribePartnersInput) (req *r
 //
 //   - ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
 //     The partner integration is not authorized.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribePartners
 func (c *Redshift) DescribePartners(input *DescribePartnersInput) (*DescribePartnersOutput, error) {
@@ -8584,6 +8609,9 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *reque
 //
 //   - ErrCodeResizeNotFoundFault "ResizeNotFound"
 //     A resize operation for the specified cluster is not found.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeResize
 func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOutput, error) {
@@ -9612,6 +9640,9 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *reque
 //   - ErrCodeInvalidClusterStateFault "InvalidClusterState"
 //     The specified cluster is not in the available state.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableLogging
 func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.DisableLoggingRequest(input)
@@ -9705,6 +9736,9 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 //
 //   - ErrCodeUnauthorizedOperation "UnauthorizedOperation"
 //     Your account is not authorized to perform the requested operation.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableSnapshotCopy
 func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*DisableSnapshotCopyOutput, error) {
@@ -9888,6 +9922,9 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *request
 //   - ErrCodeInvalidClusterStateFault "InvalidClusterState"
 //     The specified cluster is not in the available state.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EnableLogging
 func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.EnableLoggingRequest(input)
@@ -10019,6 +10056,95 @@ func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSn
 // for more information on using Contexts.
 func (c *Redshift) EnableSnapshotCopyWithContext(ctx aws.Context, input *EnableSnapshotCopyInput, opts ...request.Option) (*EnableSnapshotCopyOutput, error) {
 	req, out := c.EnableSnapshotCopyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opFailoverPrimaryCompute = "FailoverPrimaryCompute"
+
+// FailoverPrimaryComputeRequest generates a "aws/request.Request" representing the
+// client's request for the FailoverPrimaryCompute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See FailoverPrimaryCompute for more information on using the FailoverPrimaryCompute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the FailoverPrimaryComputeRequest method.
+//	req, resp := client.FailoverPrimaryComputeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/FailoverPrimaryCompute
+func (c *Redshift) FailoverPrimaryComputeRequest(input *FailoverPrimaryComputeInput) (req *request.Request, output *FailoverPrimaryComputeOutput) {
+	op := &request.Operation{
+		Name:       opFailoverPrimaryCompute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &FailoverPrimaryComputeInput{}
+	}
+
+	output = &FailoverPrimaryComputeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// FailoverPrimaryCompute API operation for Amazon Redshift.
+//
+// Fails over the primary compute unit of the specified Multi-AZ cluster to
+// another Availability Zone.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation FailoverPrimaryCompute for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+//   - ErrCodeUnauthorizedOperation "UnauthorizedOperation"
+//     Your account is not authorized to perform the requested operation.
+//
+//   - ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//     The specified cluster is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/FailoverPrimaryCompute
+func (c *Redshift) FailoverPrimaryCompute(input *FailoverPrimaryComputeInput) (*FailoverPrimaryComputeOutput, error) {
+	req, out := c.FailoverPrimaryComputeRequest(input)
+	return out, req.Send()
+}
+
+// FailoverPrimaryComputeWithContext is the same as FailoverPrimaryCompute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See FailoverPrimaryCompute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) FailoverPrimaryComputeWithContext(ctx aws.Context, input *FailoverPrimaryComputeInput, opts ...request.Option) (*FailoverPrimaryComputeOutput, error) {
+	req, out := c.FailoverPrimaryComputeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11023,6 +11149,9 @@ func (c *Redshift) ModifyClusterDbRevisionRequest(input *ModifyClusterDbRevision
 //   - ErrCodeInvalidClusterStateFault "InvalidClusterState"
 //     The specified cluster is not in the available state.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterDbRevision
 func (c *Redshift) ModifyClusterDbRevision(input *ModifyClusterDbRevisionInput) (*ModifyClusterDbRevisionOutput, error) {
 	req, out := c.ModifyClusterDbRevisionRequest(input)
@@ -11926,6 +12055,9 @@ func (c *Redshift) ModifyScheduledActionRequest(input *ModifyScheduledActionInpu
 //
 // Returned Error Codes:
 //
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
 //   - ErrCodeScheduledActionNotFoundFault "ScheduledActionNotFound"
 //     The scheduled action cannot be found.
 //
@@ -11940,6 +12072,9 @@ func (c *Redshift) ModifyScheduledActionRequest(input *ModifyScheduledActionInpu
 //
 //   - ErrCodeUnauthorizedOperation "UnauthorizedOperation"
 //     Your account is not authorized to perform the requested operation.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyScheduledAction
 func (c *Redshift) ModifyScheduledAction(input *ModifyScheduledActionInput) (*ModifyScheduledActionOutput, error) {
@@ -12294,6 +12429,9 @@ func (c *Redshift) PauseClusterRequest(input *PauseClusterInput) (req *request.R
 //
 //   - ErrCodeInvalidClusterStateFault "InvalidClusterState"
 //     The specified cluster is not in the available state.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PauseCluster
 func (c *Redshift) PauseCluster(input *PauseClusterInput) (*PauseClusterOutput, error) {
@@ -13273,6 +13411,9 @@ func (c *Redshift) ResumeClusterRequest(input *ResumeClusterInput) (req *request
 //   - ErrCodeInsufficientClusterCapacityFault "InsufficientClusterCapacity"
 //     The number of nodes specified exceeds the allotted capacity of the cluster.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ResumeCluster
 func (c *Redshift) ResumeCluster(input *ResumeClusterInput) (*ResumeClusterOutput, error) {
 	req, out := c.ResumeClusterRequest(input)
@@ -13643,6 +13784,9 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (
 //     The request cannot be completed because a dependent service is throttling
 //     requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RotateEncryptionKey
 func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*RotateEncryptionKeyOutput, error) {
 	req, out := c.RotateEncryptionKeyRequest(input)
@@ -13727,6 +13871,9 @@ func (c *Redshift) UpdatePartnerStatusRequest(input *UpdatePartnerStatusInput) (
 //
 //   - ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
 //     The partner integration is not authorized.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/UpdatePartnerStatus
 func (c *Redshift) UpdatePartnerStatus(input *UpdatePartnerStatusInput) (*UpdatePartnerStatusOutput, error) {
@@ -15656,6 +15803,14 @@ type Cluster struct {
 	// The status of a modify operation, if any, initiated for the cluster.
 	ModifyStatus *string `type:"string"`
 
+	// A boolean value that, if true, indicates that the cluster is deployed in
+	// two Availability Zones.
+	MultiAZ *string `type:"string"`
+
+	// The secondary compute unit of a cluster, if Multi-AZ deployment is turned
+	// on.
+	MultiAZSecondary *SecondaryClusterInfo `type:"structure"`
+
 	// The date and time in UTC when system maintenance can begin.
 	NextMaintenanceWindowStartTime *time.Time `type:"timestamp"`
 
@@ -15984,6 +16139,18 @@ func (s *Cluster) SetMasterUsername(v string) *Cluster {
 // SetModifyStatus sets the ModifyStatus field's value.
 func (s *Cluster) SetModifyStatus(v string) *Cluster {
 	s.ModifyStatus = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *Cluster) SetMultiAZ(v string) *Cluster {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetMultiAZSecondary sets the MultiAZSecondary field's value.
+func (s *Cluster) SetMultiAZSecondary(v *SecondaryClusterInfo) *Cluster {
+	s.MultiAZSecondary = v
 	return s
 }
 
@@ -17332,6 +17499,10 @@ type CreateClusterInput struct {
 	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
 
+	// If true, Amazon Redshift will deploy the cluster in two Availability Zones
+	// (AZ).
+	MultiAZ *bool `type:"boolean"`
+
 	// The node type to be provisioned for the cluster. For information about node
 	// types, go to Working with Clusters (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes)
 	// in the Amazon Redshift Cluster Management Guide.
@@ -17608,6 +17779,12 @@ func (s *CreateClusterInput) SetMasterUserPassword(v string) *CreateClusterInput
 // SetMasterUsername sets the MasterUsername field's value.
 func (s *CreateClusterInput) SetMasterUsername(v string) *CreateClusterInput {
 	s.MasterUsername = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *CreateClusterInput) SetMultiAZ(v bool) *CreateClusterInput {
+	s.MultiAZ = &v
 	return s
 }
 
@@ -27962,6 +28139,84 @@ func (s *EventSubscription) SetTags(v []*Tag) *EventSubscription {
 	return s
 }
 
+type FailoverPrimaryComputeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the cluster for which the primary compute unit will
+	// be failed over to another Availability Zone.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailoverPrimaryComputeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailoverPrimaryComputeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailoverPrimaryComputeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailoverPrimaryComputeInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *FailoverPrimaryComputeInput) SetClusterIdentifier(v string) *FailoverPrimaryComputeInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+type FailoverPrimaryComputeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a cluster.
+	Cluster *Cluster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailoverPrimaryComputeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailoverPrimaryComputeOutput) GoString() string {
+	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *FailoverPrimaryComputeOutput) SetCluster(v *Cluster) *FailoverPrimaryComputeOutput {
+	s.Cluster = v
+	return s
+}
+
 // The request parameters to get cluster credentials.
 type GetClusterCredentialsInput struct {
 	_ struct{} `type:"structure"`
@@ -29717,6 +29972,10 @@ type ModifyClusterInput struct {
 	// String and GoString methods.
 	MasterUserPassword *string `type:"string" sensitive:"true"`
 
+	// If true and the cluster is currently only deployed in a single Availability
+	// Zone, the cluster will be modified to be deployed in two Availability Zones.
+	MultiAZ *bool `type:"boolean"`
+
 	// The new identifier for the cluster.
 	//
 	// Constraints:
@@ -29939,6 +30198,12 @@ func (s *ModifyClusterInput) SetMasterPasswordSecretKmsKeyId(v string) *ModifyCl
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *ModifyClusterInput) SetMasterUserPassword(v string) *ModifyClusterInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ModifyClusterInput) SetMultiAZ(v bool) *ModifyClusterInput {
+	s.MultiAZ = &v
 	return s
 }
 
@@ -33741,6 +34006,10 @@ type RestoreFromClusterSnapshotInput struct {
 	// ManageMasterPassword is true.
 	MasterPasswordSecretKmsKeyId *string `type:"string"`
 
+	// If true, the snapshot will be restored to a cluster deployed in two Availability
+	// Zones.
+	MultiAZ *bool `type:"boolean"`
+
 	// The node type that the restored cluster will be provisioned with.
 	//
 	// Default: The node type of the cluster from which the snapshot was taken.
@@ -33989,6 +34258,12 @@ func (s *RestoreFromClusterSnapshotInput) SetManualSnapshotRetentionPeriod(v int
 // SetMasterPasswordSecretKmsKeyId sets the MasterPasswordSecretKmsKeyId field's value.
 func (s *RestoreFromClusterSnapshotInput) SetMasterPasswordSecretKmsKeyId(v string) *RestoreFromClusterSnapshotInput {
 	s.MasterPasswordSecretKmsKeyId = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *RestoreFromClusterSnapshotInput) SetMultiAZ(v bool) *RestoreFromClusterSnapshotInput {
+	s.MultiAZ = &v
 	return s
 }
 
@@ -35266,6 +35541,49 @@ func (s *ScheduledActionType) SetResizeCluster(v *ResizeClusterMessage) *Schedul
 // SetResumeCluster sets the ResumeCluster field's value.
 func (s *ScheduledActionType) SetResumeCluster(v *ResumeClusterMessage) *ScheduledActionType {
 	s.ResumeCluster = v
+	return s
+}
+
+// The AvailabilityZone and ClusterNodes information of the secondary compute
+// unit.
+type SecondaryClusterInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Availability Zone in which the secondary compute unit of
+	// the cluster is located.
+	AvailabilityZone *string `type:"string"`
+
+	// The nodes in the secondary compute unit.
+	ClusterNodes []*ClusterNode `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecondaryClusterInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecondaryClusterInfo) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *SecondaryClusterInfo) SetAvailabilityZone(v string) *SecondaryClusterInfo {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetClusterNodes sets the ClusterNodes field's value.
+func (s *SecondaryClusterInfo) SetClusterNodes(v []*ClusterNode) *SecondaryClusterInfo {
+	s.ClusterNodes = v
 	return s
 }
 

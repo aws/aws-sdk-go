@@ -20,6 +20,13 @@ const (
 	// The parameters provided in the request conflict with existing resources.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeExecutionTimeoutException for service response error code
+	// "ExecutionTimeoutException".
+	//
+	// Failed to connect to server, or didn’t receive response within expected
+	// time period.
+	ErrCodeExecutionTimeoutException = "ExecutionTimeoutException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -39,6 +46,12 @@ const (
 	// the limit.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
+	// ErrCodeServiceUnavailableException for service response error code
+	// "ServiceUnavailableException".
+	//
+	// Server cannot process the request at the moment.
+	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -55,9 +68,11 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
+	"ExecutionTimeoutException":     newErrorExecutionTimeoutException,
 	"InternalServerException":       newErrorInternalServerException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ServiceUnavailableException":   newErrorServiceUnavailableException,
 	"ThrottlingException":           newErrorThrottlingException,
 	"ValidationException":           newErrorValidationException,
 }

@@ -108,6 +108,10 @@ type ConnectAPI interface {
 	AssociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.AssociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
 	AssociateTrafficDistributionGroupUserRequest(*connect.AssociateTrafficDistributionGroupUserInput) (*request.Request, *connect.AssociateTrafficDistributionGroupUserOutput)
 
+	BatchGetFlowAssociation(*connect.BatchGetFlowAssociationInput) (*connect.BatchGetFlowAssociationOutput, error)
+	BatchGetFlowAssociationWithContext(aws.Context, *connect.BatchGetFlowAssociationInput, ...request.Option) (*connect.BatchGetFlowAssociationOutput, error)
+	BatchGetFlowAssociationRequest(*connect.BatchGetFlowAssociationInput) (*request.Request, *connect.BatchGetFlowAssociationOutput)
+
 	ClaimPhoneNumber(*connect.ClaimPhoneNumberInput) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberWithContext(aws.Context, *connect.ClaimPhoneNumberInput, ...request.Option) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberRequest(*connect.ClaimPhoneNumberInput) (*request.Request, *connect.ClaimPhoneNumberOutput)

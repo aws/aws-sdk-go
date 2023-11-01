@@ -212,6 +212,23 @@
       ],
       "idempotent":true
     },
+    "BatchGetFlowAssociation":{
+      "name":"BatchGetFlowAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/flow-associations-batch/{InstanceId}"
+      },
+      "input":{"shape":"BatchGetFlowAssociationRequest"},
+      "output":{"shape":"BatchGetFlowAssociationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ClaimPhoneNumber":{
       "name":"ClaimPhoneNumber",
       "http":{
@@ -3557,7 +3574,9 @@
         "Type":{"shape":"AgentStatusType"},
         "DisplayOrder":{"shape":"AgentStatusOrderNumber"},
         "State":{"shape":"AgentStatusState"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "AgentStatusDescription":{
@@ -3597,7 +3616,9 @@
         "Id":{"shape":"AgentStatusId"},
         "Arn":{"shape":"ARN"},
         "Name":{"shape":"AgentStatusName"},
-        "Type":{"shape":"AgentStatusType"}
+        "Type":{"shape":"AgentStatusType"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "AgentStatusSummaryList":{
@@ -3940,6 +3961,28 @@
       "max":31,
       "min":8,
       "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
+    },
+    "BatchGetFlowAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceIds"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceIds":{"shape":"resourceArnListMaxLimit100"},
+        "ResourceType":{"shape":"ListFlowAssociationResourceType"}
+      }
+    },
+    "BatchGetFlowAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "FlowAssociationSummaryList":{"shape":"FlowAssociationSummaryList"}
+      }
     },
     "BehaviorType":{
       "type":"string",
@@ -7000,6 +7043,18 @@
       "max":5,
       "min":1
     },
+    "FlowAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"ARN"},
+        "FlowId":{"shape":"ARN"},
+        "ResourceType":{"shape":"ListFlowAssociationResourceType"}
+      }
+    },
+    "FlowAssociationSummaryList":{
+      "type":"list",
+      "member":{"shape":"FlowAssociationSummary"}
+    },
     "FunctionArn":{
       "type":"string",
       "max":140,
@@ -7202,7 +7257,9 @@
     "GetPromptFileResponse":{
       "type":"structure",
       "members":{
-        "PromptPresignedUrl":{"shape":"PromptPresignedUrl"}
+        "PromptPresignedUrl":{"shape":"PromptPresignedUrl"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "GetTaskTemplateRequest":{
@@ -7300,7 +7357,9 @@
         "Name":{"shape":"HierarchyGroupName"},
         "LevelId":{"shape":"HierarchyLevelId"},
         "HierarchyPath":{"shape":"HierarchyPath"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "HierarchyGroupCondition":{
@@ -7324,7 +7383,9 @@
       "members":{
         "Id":{"shape":"HierarchyGroupId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"HierarchyGroupName"}
+        "Name":{"shape":"HierarchyGroupName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "HierarchyGroupSummaryList":{
@@ -7343,7 +7404,9 @@
       "members":{
         "Id":{"shape":"HierarchyLevelId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"HierarchyLevelName"}
+        "Name":{"shape":"HierarchyLevelName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "HierarchyLevelId":{"type":"string"},
@@ -7485,7 +7548,9 @@
         "Description":{"shape":"HoursOfOperationDescription"},
         "TimeZone":{"shape":"TimeZone"},
         "Config":{"shape":"HoursOfOperationConfigList"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "HoursOfOperationConfig":{
@@ -7553,7 +7618,9 @@
       "members":{
         "Id":{"shape":"HoursOfOperationId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"HoursOfOperationName"}
+        "Name":{"shape":"HoursOfOperationName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "HoursOfOperationSummaryList":{
@@ -8223,6 +8290,13 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListFlowAssociationResourceType":{
+      "type":"string",
+      "enum":[
+        "SMS_PHONE_NUMBER",
+        "VOICE_PHONE_NUMBER"
+      ]
+    },
     "ListHoursOfOperationsRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -8571,7 +8645,9 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"NextToken"},
-        "QuickConnectSummaryList":{"shape":"QuickConnectSummaryList"}
+        "QuickConnectSummaryList":{"shape":"QuickConnectSummaryList"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "ListQueuesRequest":{
@@ -8675,7 +8751,9 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"NextToken"},
-        "RoutingProfileQueueConfigSummaryList":{"shape":"RoutingProfileQueueConfigSummaryList"}
+        "RoutingProfileQueueConfigSummaryList":{"shape":"RoutingProfileQueueConfigSummaryList"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "ListRoutingProfilesRequest":{
@@ -8809,7 +8887,9 @@
       "type":"structure",
       "members":{
         "Applications":{"shape":"Applications"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "ListSecurityProfilePermissionsRequest":{
@@ -8846,7 +8926,9 @@
       "type":"structure",
       "members":{
         "Permissions":{"shape":"PermissionsList"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "ListSecurityProfilesRequest":{
@@ -9894,7 +9976,9 @@
         "PromptId":{"shape":"PromptId"},
         "Name":{"shape":"CommonNameLength127"},
         "Description":{"shape":"PromptDescription"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "PromptDescription":{
@@ -9944,7 +10028,9 @@
       "members":{
         "Id":{"shape":"PromptId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"PromptName"}
+        "Name":{"shape":"PromptName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "PromptSummaryList":{
@@ -10029,7 +10115,9 @@
           "box":true
         },
         "Status":{"shape":"QueueStatus"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "QueueDescription":{
@@ -10108,7 +10196,9 @@
         "Id":{"shape":"QueueId"},
         "Arn":{"shape":"ARN"},
         "Name":{"shape":"QueueName"},
-        "QueueType":{"shape":"QueueType"}
+        "QueueType":{"shape":"QueueType"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "QueueSummaryList":{
@@ -10141,7 +10231,9 @@
         "Name":{"shape":"QuickConnectName"},
         "Description":{"shape":"QuickConnectDescription"},
         "QuickConnectConfig":{"shape":"QuickConnectConfig"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "QuickConnectConfig":{
@@ -10193,7 +10285,9 @@
         "Id":{"shape":"QuickConnectId"},
         "Arn":{"shape":"ARN"},
         "Name":{"shape":"QuickConnectName"},
-        "QuickConnectType":{"shape":"QuickConnectType"}
+        "QuickConnectType":{"shape":"QuickConnectType"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "QuickConnectSummaryList":{
@@ -10293,6 +10387,10 @@
       "type":"string",
       "max":4096,
       "min":0
+    },
+    "RegionName":{
+      "type":"string",
+      "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
     },
     "RehydrationType":{
       "type":"string",
@@ -10453,7 +10551,10 @@
         "Tags":{"shape":"TagMap"},
         "NumberOfAssociatedQueues":{"shape":"Long"},
         "NumberOfAssociatedUsers":{"shape":"Long"},
-        "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"}
+        "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"},
+        "IsDefault":{"shape":"Boolean"}
       }
     },
     "RoutingProfileDescription":{
@@ -10564,7 +10665,9 @@
       "members":{
         "Id":{"shape":"RoutingProfileId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"RoutingProfileName"}
+        "Name":{"shape":"RoutingProfileName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "RoutingProfileSummaryList":{
@@ -10688,9 +10791,9 @@
     },
     "S3Uri":{
       "type":"string",
-      "max":512,
+      "max":2000,
       "min":1,
-      "pattern":"s3://\\S+/.+"
+      "pattern":"s3://\\S+/.+|https://\\\\S+\\\\.s3\\\\.\\\\S+\\\\.amazonaws\\\\.com/\\\\S+"
     },
     "SearchAvailablePhoneNumbersRequest":{
       "type":"structure",
@@ -10941,7 +11044,9 @@
         "Description":{"shape":"SecurityProfileDescription"},
         "Tags":{"shape":"TagMap"},
         "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
-        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "SecurityProfileDescription":{
@@ -10998,7 +11103,9 @@
       "members":{
         "Id":{"shape":"SecurityProfileId"},
         "Arn":{"shape":"ARN"},
-        "Name":{"shape":"SecurityProfileName"}
+        "Name":{"shape":"SecurityProfileName"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "SecurityProfileSummaryList":{
@@ -12968,7 +13075,9 @@
         "SecurityProfileIds":{"shape":"SecurityProfileIds"},
         "RoutingProfileId":{"shape":"RoutingProfileId"},
         "HierarchyGroupId":{"shape":"HierarchyGroupId"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "UserData":{
@@ -13106,7 +13215,9 @@
       "members":{
         "Id":{"shape":"UserId"},
         "Arn":{"shape":"ARN"},
-        "Username":{"shape":"AgentUsername"}
+        "Username":{"shape":"AgentUsername"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
     "UserSummaryList":{
@@ -13386,6 +13497,12 @@
       "members":{
         "SessionArn":{"shape":"ARN"}
       }
+    },
+    "resourceArnListMaxLimit100":{
+      "type":"list",
+      "member":{"shape":"ARN"},
+      "max":100,
+      "min":1
     },
     "timestamp":{"type":"timestamp"}
   }

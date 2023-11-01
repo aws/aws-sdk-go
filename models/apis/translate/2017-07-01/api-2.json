@@ -331,6 +331,10 @@
       "min":1,
       "pattern":"[\\P{M}\\p{M}]{1,10000}"
     },
+    "Brevity":{
+      "type":"string",
+      "enum":["ON"]
+    },
     "ClientTokenString":{
       "type":"string",
       "max":64,
@@ -767,10 +771,6 @@
     },
     "ParallelDataConfig":{
       "type":"structure",
-      "required":[
-        "S3Uri",
-        "Format"
-      ],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
         "Format":{"shape":"ParallelDataFormat"}
@@ -1187,7 +1187,8 @@
       "type":"structure",
       "members":{
         "Formality":{"shape":"Formality"},
-        "Profanity":{"shape":"Profanity"}
+        "Profanity":{"shape":"Profanity"},
+        "Brevity":{"shape":"Brevity"}
       }
     },
     "UnboundedLengthString":{"type":"string"},

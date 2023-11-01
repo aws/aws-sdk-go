@@ -18108,6 +18108,9 @@ type ClusterPendingModifiedValues struct {
 	// these log types are in the process of being activated or deactivated.
 	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
 
+	// Reserved for future use.
+	RdsCustomClusterConfiguration *RdsCustomClusterConfiguration `type:"structure"`
+
 	// The storage type for the DB cluster.
 	StorageType *string `type:"string"`
 }
@@ -18175,6 +18178,12 @@ func (s *ClusterPendingModifiedValues) SetMasterUserPassword(v string) *ClusterP
 // SetPendingCloudwatchLogsExports sets the PendingCloudwatchLogsExports field's value.
 func (s *ClusterPendingModifiedValues) SetPendingCloudwatchLogsExports(v *PendingCloudwatchLogsExports) *ClusterPendingModifiedValues {
 	s.PendingCloudwatchLogsExports = v
+	return s
+}
+
+// SetRdsCustomClusterConfiguration sets the RdsCustomClusterConfiguration field's value.
+func (s *ClusterPendingModifiedValues) SetRdsCustomClusterConfiguration(v *RdsCustomClusterConfiguration) *ClusterPendingModifiedValues {
+	s.RdsCustomClusterConfiguration = v
 	return s
 }
 
@@ -20972,6 +20981,9 @@ type CreateDBClusterInput struct {
 	//    to it, the DB cluster is public.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Reserved for future use.
+	RdsCustomClusterConfiguration *RdsCustomClusterConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the source DB instance or DB cluster if
 	// this DB cluster is created as a read replica.
 	//
@@ -21337,6 +21349,12 @@ func (s *CreateDBClusterInput) SetPreferredMaintenanceWindow(v string) *CreateDB
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *CreateDBClusterInput) SetPubliclyAccessible(v bool) *CreateDBClusterInput {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRdsCustomClusterConfiguration sets the RdsCustomClusterConfiguration field's value.
+func (s *CreateDBClusterInput) SetRdsCustomClusterConfiguration(v *RdsCustomClusterConfiguration) *CreateDBClusterInput {
+	s.RdsCustomClusterConfiguration = v
 	return s
 }
 
@@ -26083,6 +26101,9 @@ type DBCluster struct {
 	// This setting is only for non-Aurora Multi-AZ DB clusters.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Reserved for future use.
+	RdsCustomClusterConfiguration *RdsCustomClusterConfiguration `type:"structure"`
+
 	// Contains one or more identifiers of the read replicas associated with this
 	// DB cluster.
 	ReadReplicaIdentifiers []*string `locationNameList:"ReadReplicaIdentifier" type:"list"`
@@ -26532,6 +26553,12 @@ func (s *DBCluster) SetPreferredMaintenanceWindow(v string) *DBCluster {
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *DBCluster) SetPubliclyAccessible(v bool) *DBCluster {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRdsCustomClusterConfiguration sets the RdsCustomClusterConfiguration field's value.
+func (s *DBCluster) SetRdsCustomClusterConfiguration(v *RdsCustomClusterConfiguration) *DBCluster {
+	s.RdsCustomClusterConfiguration = v
 	return s
 }
 
@@ -48316,6 +48343,47 @@ func (s *Range) SetTo(v int64) *Range {
 	return s
 }
 
+// Reserved for future use.
+type RdsCustomClusterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Reserved for future use.
+	InterconnectSubnetId *string `type:"string"`
+
+	// Reserved for future use.
+	TransitGatewayMulticastDomainId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsCustomClusterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsCustomClusterConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetInterconnectSubnetId sets the InterconnectSubnetId field's value.
+func (s *RdsCustomClusterConfiguration) SetInterconnectSubnetId(v string) *RdsCustomClusterConfiguration {
+	s.InterconnectSubnetId = &v
+	return s
+}
+
+// SetTransitGatewayMulticastDomainId sets the TransitGatewayMulticastDomainId field's value.
+func (s *RdsCustomClusterConfiguration) SetTransitGatewayMulticastDomainId(v string) *RdsCustomClusterConfiguration {
+	s.TransitGatewayMulticastDomainId = &v
+	return s
+}
+
 type RebootDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -50550,6 +50618,9 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Reserved for future use.
+	RdsCustomClusterConfiguration *RdsCustomClusterConfiguration `type:"structure"`
+
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
 	// DB cluster.
 	//
@@ -50767,6 +50838,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetPort(v int64) *RestoreDBClusterFr
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetPubliclyAccessible(v bool) *RestoreDBClusterFromSnapshotInput {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRdsCustomClusterConfiguration sets the RdsCustomClusterConfiguration field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetRdsCustomClusterConfiguration(v *RdsCustomClusterConfiguration) *RestoreDBClusterFromSnapshotInput {
+	s.RdsCustomClusterConfiguration = v
 	return s
 }
 
@@ -51113,6 +51190,9 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Reserved for future use.
+	RdsCustomClusterConfiguration *RdsCustomClusterConfiguration `type:"structure"`
+
 	// The date and time to restore the DB cluster to.
 	//
 	// Valid Values: Value must be a time in Universal Coordinated Time (UTC) format
@@ -51339,6 +51419,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetPort(v int64) *RestoreDBClusterT
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetPubliclyAccessible(v bool) *RestoreDBClusterToPointInTimeInput {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRdsCustomClusterConfiguration sets the RdsCustomClusterConfiguration field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetRdsCustomClusterConfiguration(v *RdsCustomClusterConfiguration) *RestoreDBClusterToPointInTimeInput {
+	s.RdsCustomClusterConfiguration = v
 	return s
 }
 

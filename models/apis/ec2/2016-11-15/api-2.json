@@ -2019,6 +2019,15 @@
       "input":{"shape":"DescribeByoipCidrsRequest"},
       "output":{"shape":"DescribeByoipCidrsResult"}
     },
+    "DescribeCapacityBlockOfferings":{
+      "name":"DescribeCapacityBlockOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCapacityBlockOfferingsRequest"},
+      "output":{"shape":"DescribeCapacityBlockOfferingsResult"}
+    },
     "DescribeCapacityReservationFleets":{
       "name":"DescribeCapacityReservationFleets",
       "http":{
@@ -4818,6 +4827,15 @@
       },
       "input":{"shape":"ProvisionPublicIpv4PoolCidrRequest"},
       "output":{"shape":"ProvisionPublicIpv4PoolCidrResult"}
+    },
+    "PurchaseCapacityBlock":{
+      "name":"PurchaseCapacityBlock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PurchaseCapacityBlockRequest"},
+      "output":{"shape":"PurchaseCapacityBlockResult"}
     },
     "PurchaseHostReservation":{
       "name":"PurchaseHostReservation",
@@ -8339,6 +8357,58 @@
         "locationName":"item"
       }
     },
+    "CapacityBlockOffering":{
+      "type":"structure",
+      "members":{
+        "CapacityBlockOfferingId":{
+          "shape":"OfferingId",
+          "locationName":"capacityBlockOfferingId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "InstanceCount":{
+          "shape":"Integer",
+          "locationName":"instanceCount"
+        },
+        "StartDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"startDate"
+        },
+        "EndDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"endDate"
+        },
+        "CapacityBlockDurationHours":{
+          "shape":"Integer",
+          "locationName":"capacityBlockDurationHours"
+        },
+        "UpfrontFee":{
+          "shape":"String",
+          "locationName":"upfrontFee"
+        },
+        "CurrencyCode":{
+          "shape":"String",
+          "locationName":"currencyCode"
+        },
+        "Tenancy":{
+          "shape":"CapacityReservationTenancy",
+          "locationName":"tenancy"
+        }
+      }
+    },
+    "CapacityBlockOfferingSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityBlockOffering",
+        "locationName":"item"
+      }
+    },
     "CapacityReservation":{
       "type":"structure",
       "members":{
@@ -8433,6 +8503,10 @@
         "CapacityAllocations":{
           "shape":"CapacityAllocations",
           "locationName":"capacityAllocationSet"
+        },
+        "ReservationType":{
+          "shape":"CapacityReservationType",
+          "locationName":"reservationType"
         }
       }
     },
@@ -8649,7 +8723,10 @@
         "expired",
         "cancelled",
         "pending",
-        "failed"
+        "failed",
+        "scheduled",
+        "payment-pending",
+        "payment-failed"
       ]
     },
     "CapacityReservationTarget":{
@@ -8677,6 +8754,13 @@
       "enum":[
         "default",
         "dedicated"
+      ]
+    },
+    "CapacityReservationType":{
+      "type":"string",
+      "enum":[
+        "default",
+        "capacity-block"
       ]
     },
     "CarrierGateway":{
@@ -12642,7 +12726,8 @@
       "type":"string",
       "enum":[
         "spot",
-        "on-demand"
+        "on-demand",
+        "capacity-block"
       ]
     },
     "DefaultingDhcpOptionsId":{"type":"string"},
@@ -14445,6 +14530,42 @@
         "ByoipCidrs":{
           "shape":"ByoipCidrSet",
           "locationName":"byoipCidrSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeCapacityBlockOfferingsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "DescribeCapacityBlockOfferingsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "InstanceCount",
+        "CapacityDurationHours"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceType":{"shape":"String"},
+        "InstanceCount":{"shape":"Integer"},
+        "StartDateRange":{"shape":"MillisecondDateTime"},
+        "EndDateRange":{"shape":"MillisecondDateTime"},
+        "CapacityDurationHours":{"shape":"Integer"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeCapacityBlockOfferingsMaxResults"}
+      }
+    },
+    "DescribeCapacityBlockOfferingsResult":{
+      "type":"structure",
+      "members":{
+        "CapacityBlockOfferings":{
+          "shape":"CapacityBlockOfferingSet",
+          "locationName":"capacityBlockOfferingSet"
         },
         "NextToken":{
           "shape":"String",
@@ -26101,7 +26222,8 @@
       "type":"string",
       "enum":[
         "spot",
-        "scheduled"
+        "scheduled",
+        "capacity-block"
       ]
     },
     "InstanceList":{
@@ -30875,7 +30997,10 @@
     },
     "MarketType":{
       "type":"string",
-      "enum":["spot"]
+      "enum":[
+        "spot",
+        "capacity-block"
+      ]
     },
     "MaxIpv4AddrPerInterface":{"type":"integer"},
     "MaxIpv6AddrPerInterface":{"type":"integer"},
@@ -35460,6 +35585,31 @@
         "UpfrontPrice":{
           "shape":"String",
           "locationName":"upfrontPrice"
+        }
+      }
+    },
+    "PurchaseCapacityBlockRequest":{
+      "type":"structure",
+      "required":[
+        "CapacityBlockOfferingId",
+        "InstancePlatform"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "CapacityBlockOfferingId":{"shape":"OfferingId"},
+        "InstancePlatform":{"shape":"CapacityReservationInstancePlatform"}
+      }
+    },
+    "PurchaseCapacityBlockResult":{
+      "type":"structure",
+      "members":{
+        "CapacityReservation":{
+          "shape":"CapacityReservation",
+          "locationName":"capacityReservation"
         }
       }
     },
@@ -43405,7 +43555,8 @@
       "type":"string",
       "enum":[
         "spot",
-        "on-demand"
+        "on-demand",
+        "capacity-block"
       ]
     },
     "UsageClassTypeList":{

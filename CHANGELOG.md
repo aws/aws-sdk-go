@@ -1,3 +1,32 @@
+Release v1.47.1 (2023-11-01)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/globalaccelerator`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for customized networking resources to Amazon RDS Custom.
+* `service/redshift`: Updates service API and documentation
+  * Added support for Multi-AZ deployments for Provisioned RA3 clusters that provide 99.99% SLA availability.
+* `service/sagemaker`: Updates service API and documentation
+  * Support for batch transform input in Model dashboard
+
+Release v1.47.0 (2023-10-31)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API, documentation, and paginators
+* `service/application-insights`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Capacity Blocks for ML are a new EC2 purchasing option for reserving GPU instances on a future date to support short duration machine learning (ML) workloads. Capacity Blocks automatically place instances close together inside Amazon EC2 UltraClusters for low-latency, high-throughput networking.
+* `service/m2`: Updates service API and documentation
+* `service/neptunedata`: Updates service API and documentation
+* `service/translate`: Updates service API and documentation
+
+### SDK Features
+* `aws`: Bump minimum go version to 1.19.
+  * See https://aws.amazon.com/blogs/developer/aws-sdk-for-go-aligns-with-go-release-policy-on-supported-runtimes/.
+
 Release v1.46.7 (2023-10-30)
 ===
 

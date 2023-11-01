@@ -1110,11 +1110,21 @@ func (c *M2) GetDataSetDetailsRequest(input *GetDataSetDetailsInput) (req *reque
 //   - ResourceNotFoundException
 //     The specified resource was not found.
 //
+//   - ExecutionTimeoutException
+//     Failed to connect to server, or didn’t receive response within expected
+//     time period.
+//
+//   - ServiceUnavailableException
+//     Server cannot process the request at the moment.
+//
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
@@ -2312,11 +2322,21 @@ func (c *M2) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request
 //   - ResourceNotFoundException
 //     The specified resource was not found.
 //
+//   - ExecutionTimeoutException
+//     Failed to connect to server, or didn’t receive response within expected
+//     time period.
+//
+//   - ServiceUnavailableException
+//     Server cannot process the request at the moment.
+//
 //   - ThrottlingException
 //     The number of requests made exceeds the limit.
 //
 //   - AccessDeniedException
 //     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
 //
 //   - ValidationException
 //     One or more parameters provided in the request is not valid.
@@ -4135,6 +4155,10 @@ type BatchJobIdentifier struct {
 	// Specifies a file associated with a specific batch job.
 	FileBatchJobIdentifier *FileBatchJobIdentifier `locationName:"fileBatchJobIdentifier" type:"structure"`
 
+	// Specifies an Amazon S3 location that identifies the batch jobs that you want
+	// to run. Use this identifier to run ad hoc batch jobs.
+	S3BatchJobIdentifier *S3BatchJobIdentifier `locationName:"s3BatchJobIdentifier" type:"structure"`
+
 	// A batch job identifier in which the batch job to run is identified by the
 	// script name.
 	ScriptBatchJobIdentifier *ScriptBatchJobIdentifier `locationName:"scriptBatchJobIdentifier" type:"structure"`
@@ -4166,6 +4190,11 @@ func (s *BatchJobIdentifier) Validate() error {
 			invalidParams.AddNested("FileBatchJobIdentifier", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3BatchJobIdentifier != nil {
+		if err := s.S3BatchJobIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("S3BatchJobIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ScriptBatchJobIdentifier != nil {
 		if err := s.ScriptBatchJobIdentifier.Validate(); err != nil {
 			invalidParams.AddNested("ScriptBatchJobIdentifier", err.(request.ErrInvalidParams))
@@ -4181,6 +4210,12 @@ func (s *BatchJobIdentifier) Validate() error {
 // SetFileBatchJobIdentifier sets the FileBatchJobIdentifier field's value.
 func (s *BatchJobIdentifier) SetFileBatchJobIdentifier(v *FileBatchJobIdentifier) *BatchJobIdentifier {
 	s.FileBatchJobIdentifier = v
+	return s
+}
+
+// SetS3BatchJobIdentifier sets the S3BatchJobIdentifier field's value.
+func (s *BatchJobIdentifier) SetS3BatchJobIdentifier(v *S3BatchJobIdentifier) *BatchJobIdentifier {
+	s.S3BatchJobIdentifier = v
 	return s
 }
 
@@ -4817,8 +4852,12 @@ type CreateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Configures the maintenance window you want for the runtime environment. If
-	// you do not provide a value, a random system-generated value will be assigned.
+	// Configures the maintenance window that you want for the runtime environment.
+	// The maintenance window must have the format ddd:hh24:mi-ddd:hh24:mi and must
+	// be less than 24 hours. The following two examples are valid maintenance windows:
+	// sun:23:45-mon:00:15 or sat:01:00-sat:03:00.
+	//
+	// If you do not provide a value, a random system-generated value will be assigned.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
 	// Specifies whether the runtime environment is publicly accessible.
@@ -5330,6 +5369,9 @@ type DataSetImportTask struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"DataSetTaskLifecycle"`
 
+	// If dataset import failed, the failure reason will show here.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+
 	// A summary of the data set import task.
 	//
 	// Summary is a required field
@@ -5362,6 +5404,12 @@ func (s DataSetImportTask) GoString() string {
 // SetStatus sets the Status field's value.
 func (s *DataSetImportTask) SetStatus(v string) *DataSetImportTask {
 	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *DataSetImportTask) SetStatusReason(v string) *DataSetImportTask {
+	s.StatusReason = &v
 	return s
 }
 
@@ -6257,6 +6305,71 @@ func (s *EnvironmentSummary) SetName(v string) *EnvironmentSummary {
 func (s *EnvironmentSummary) SetStatus(v string) *EnvironmentSummary {
 	s.Status = &v
 	return s
+}
+
+// Failed to connect to server, or didn’t receive response within expected
+// time period.
+type ExecutionTimeoutException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionTimeoutException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionTimeoutException) GoString() string {
+	return s.String()
+}
+
+func newErrorExecutionTimeoutException(v protocol.ResponseMetadata) error {
+	return &ExecutionTimeoutException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ExecutionTimeoutException) Code() string {
+	return "ExecutionTimeoutException"
+}
+
+// Message returns the exception's message.
+func (s *ExecutionTimeoutException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ExecutionTimeoutException) OrigErr() error {
+	return nil
+}
+
+func (s *ExecutionTimeoutException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ExecutionTimeoutException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ExecutionTimeoutException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Defines an external storage location.
@@ -7268,6 +7381,9 @@ type GetDataSetDetailsOutput struct {
 	// The type of data set. The only supported value is VSAM.
 	DataSetOrg *DatasetDetailOrgAttributes `locationName:"dataSetOrg" type:"structure"`
 
+	// File size of the dataset.
+	FileSize *int64 `locationName:"fileSize" type:"long"`
+
 	// The last time the data set was referenced.
 	LastReferencedTime *time.Time `locationName:"lastReferencedTime" type:"timestamp"`
 
@@ -7320,6 +7436,12 @@ func (s *GetDataSetDetailsOutput) SetDataSetName(v string) *GetDataSetDetailsOut
 // SetDataSetOrg sets the DataSetOrg field's value.
 func (s *GetDataSetDetailsOutput) SetDataSetOrg(v *DatasetDetailOrgAttributes) *GetDataSetDetailsOutput {
 	s.DataSetOrg = v
+	return s
+}
+
+// SetFileSize sets the FileSize field's value.
+func (s *GetDataSetDetailsOutput) SetFileSize(v int64) *GetDataSetDetailsOutput {
+	s.FileSize = &v
 	return s
 }
 
@@ -7682,7 +7804,7 @@ type GetEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of instances included in the runtime environment. A standalone
-	// runtime environment has a maxiumum of one instance. Currently, a high availability
+	// runtime environment has a maximum of one instance. Currently, a high availability
 	// runtime environment has a maximum of two instances.
 	ActualCapacity *int64 `locationName:"actualCapacity" type:"integer"`
 
@@ -7738,8 +7860,8 @@ type GetEnvironmentOutput struct {
 	// Indicates the pending maintenance scheduled on this environment.
 	PendingMaintenance *PendingMaintenance `locationName:"pendingMaintenance" type:"structure"`
 
-	// Configures the maintenance window you want for the runtime environment. If
-	// you do not provide a value, a random system-generated value will be assigned.
+	// The maintenance window for the runtime environment. If you don't provide
+	// a value for the maintenance window, the service assigns a random value.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
 	// Whether applications running in this runtime environment are publicly accessible.
@@ -8093,6 +8215,47 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Identifies a specific batch job.
+type JobIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the file that contains the batch job definition.
+	FileName *string `locationName:"fileName" type:"string"`
+
+	// The name of the script that contains the batch job definition.
+	ScriptName *string `locationName:"scriptName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetFileName sets the FileName field's value.
+func (s *JobIdentifier) SetFileName(v string) *JobIdentifier {
+	s.FileName = &v
+	return s
+}
+
+// SetScriptName sets the ScriptName field's value.
+func (s *JobIdentifier) SetScriptName(v string) *JobIdentifier {
+	s.ScriptName = &v
+	return s
 }
 
 type ListApplicationVersionsInput struct {
@@ -8743,6 +8906,10 @@ type ListDataSetsInput struct {
 	// The maximum number of objects to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Filter dataset name matching the specified pattern. Can use * and % as wild
+	// cards.
+	NameFilter *string `location:"querystring" locationName:"nameFilter" type:"string"`
+
 	// A pagination token returned from a previous call to this operation. This
 	// specifies the next item to return. To return to the beginning of the list,
 	// exclude this parameter.
@@ -8799,6 +8966,12 @@ func (s *ListDataSetsInput) SetApplicationId(v string) *ListDataSetsInput {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListDataSetsInput) SetMaxResults(v int64) *ListDataSetsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNameFilter sets the NameFilter field's value.
+func (s *ListDataSetsInput) SetNameFilter(v string) *ListDataSetsInput {
+	s.NameFilter = &v
 	return s
 }
 
@@ -9835,6 +10008,80 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A batch job identifier in which the batch jobs to run are identified by an
+// Amazon S3 location.
+type S3BatchJobIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket that contains the batch job definitions.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" type:"string" required:"true"`
+
+	// Identifies the batch job definition. This identifier can also point to any
+	// batch job definition that already exists in the application or to one of
+	// the batch job definitions within the directory that is specified in keyPrefix.
+	//
+	// Identifier is a required field
+	Identifier *JobIdentifier `locationName:"identifier" type:"structure" required:"true"`
+
+	// The key prefix that specifies the path to the folder in the S3 bucket that
+	// has the batch job definitions.
+	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BatchJobIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BatchJobIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BatchJobIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BatchJobIdentifier"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3BatchJobIdentifier) SetBucket(v string) *S3BatchJobIdentifier {
+	s.Bucket = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *S3BatchJobIdentifier) SetIdentifier(v *JobIdentifier) *S3BatchJobIdentifier {
+	s.Identifier = v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *S3BatchJobIdentifier) SetKeyPrefix(v string) *S3BatchJobIdentifier {
+	s.KeyPrefix = &v
+	return s
+}
+
 // A batch job definition contained in a script.
 type ScriptBatchJobDefinition struct {
 	_ struct{} `type:"structure"`
@@ -9992,6 +10239,70 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Server cannot process the request at the moment.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10413,7 +10724,7 @@ type ThrottlingException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// The identifier of the throttled reuqest.
+	// The identifier of the throttled request.
 	QuotaCode *string `locationName:"quotaCode" type:"string"`
 
 	// The number of seconds to wait before retrying the request.
@@ -10709,11 +11020,26 @@ type UpdateEnvironmentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"environmentId" type:"string" required:"true"`
 
+	// Forces the updates on the environment. This option is needed if the applications
+	// in the environment are not stopped or if there are ongoing application-related
+	// activities in the environment.
+	//
+	// If you use this option, be aware that it could lead to data corruption in
+	// the applications, and that you might need to perform repair and recovery
+	// procedures for the applications.
+	//
+	// This option is not needed if the attribute being updated is preferredMaintenanceWindow.
+	ForceUpdate *bool `locationName:"forceUpdate" type:"boolean"`
+
 	// The instance type for the runtime environment to update.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// Configures the maintenance window you want for the runtime environment. If
-	// you do not provide a value, a random system-generated value will be assigned.
+	// Configures the maintenance window that you want for the runtime environment.
+	// The maintenance window must have the format ddd:hh24:mi-ddd:hh24:mi and must
+	// be less than 24 hours. The following two examples are valid maintenance windows:
+	// sun:23:45-mon:00:15 or sat:01:00-sat:03:00.
+	//
+	// If you do not provide a value, a random system-generated value will be assigned.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 }
 
@@ -10772,6 +11098,12 @@ func (s *UpdateEnvironmentInput) SetEngineVersion(v string) *UpdateEnvironmentIn
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *UpdateEnvironmentInput) SetEnvironmentId(v string) *UpdateEnvironmentInput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetForceUpdate sets the ForceUpdate field's value.
+func (s *UpdateEnvironmentInput) SetForceUpdate(v bool) *UpdateEnvironmentInput {
+	s.ForceUpdate = &v
 	return s
 }
 
@@ -11280,6 +11612,9 @@ const (
 
 	// DataSetTaskLifecycleCompleted is a DataSetTaskLifecycle enum value
 	DataSetTaskLifecycleCompleted = "Completed"
+
+	// DataSetTaskLifecycleFailed is a DataSetTaskLifecycle enum value
+	DataSetTaskLifecycleFailed = "Failed"
 )
 
 // DataSetTaskLifecycle_Values returns all elements of the DataSetTaskLifecycle enum
@@ -11288,6 +11623,7 @@ func DataSetTaskLifecycle_Values() []string {
 		DataSetTaskLifecycleCreating,
 		DataSetTaskLifecycleRunning,
 		DataSetTaskLifecycleCompleted,
+		DataSetTaskLifecycleFailed,
 	}
 }
 
@@ -11300,6 +11636,9 @@ const (
 
 	// DeploymentLifecycleFailed is a DeploymentLifecycle enum value
 	DeploymentLifecycleFailed = "Failed"
+
+	// DeploymentLifecycleUpdatingDeployment is a DeploymentLifecycle enum value
+	DeploymentLifecycleUpdatingDeployment = "Updating Deployment"
 )
 
 // DeploymentLifecycle_Values returns all elements of the DeploymentLifecycle enum
@@ -11308,6 +11647,7 @@ func DeploymentLifecycle_Values() []string {
 		DeploymentLifecycleDeploying,
 		DeploymentLifecycleSucceeded,
 		DeploymentLifecycleFailed,
+		DeploymentLifecycleUpdatingDeployment,
 	}
 }
 

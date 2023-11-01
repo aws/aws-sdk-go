@@ -526,6 +526,109 @@ func (c *GlobalAccelerator) CreateAcceleratorWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opCreateCrossAccountAttachment = "CreateCrossAccountAttachment"
+
+// CreateCrossAccountAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCrossAccountAttachment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCrossAccountAttachment for more information on using the CreateCrossAccountAttachment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCrossAccountAttachmentRequest method.
+//	req, resp := client.CreateCrossAccountAttachmentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCrossAccountAttachment
+func (c *GlobalAccelerator) CreateCrossAccountAttachmentRequest(input *CreateCrossAccountAttachmentInput) (req *request.Request, output *CreateCrossAccountAttachmentOutput) {
+	op := &request.Operation{
+		Name:       opCreateCrossAccountAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCrossAccountAttachmentInput{}
+	}
+
+	output = &CreateCrossAccountAttachmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCrossAccountAttachment API operation for AWS Global Accelerator.
+//
+// Create a cross-account attachment in Global Accelerator. You create a cross-account
+// attachment to specify the principals who have permission to add to accelerators
+// in their own account the resources in your account that you also list in
+// the attachment.
+//
+// A principal can be an Amazon Web Services account number or the Amazon Resource
+// Name (ARN) for an accelerator. For account numbers that are listed as principals,
+// to add a resource listed in the attachment to an accelerator, you must sign
+// in to an account specified as a principal. Then you can add the resources
+// that are listed to any of your accelerators. If an accelerator ARN is listed
+// in the cross-account attachment as a principal, anyone with permission to
+// make updates to the accelerator can add as endpoints resources that are listed
+// in the attachment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation CreateCrossAccountAttachment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - LimitExceededException
+//     Processing your request would cause you to exceed an Global Accelerator limit.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - TransactionInProgressException
+//     There's already a transaction in progress. Another transaction can't be processed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCrossAccountAttachment
+func (c *GlobalAccelerator) CreateCrossAccountAttachment(input *CreateCrossAccountAttachmentInput) (*CreateCrossAccountAttachmentOutput, error) {
+	req, out := c.CreateCrossAccountAttachmentRequest(input)
+	return out, req.Send()
+}
+
+// CreateCrossAccountAttachmentWithContext is the same as CreateCrossAccountAttachment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCrossAccountAttachment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) CreateCrossAccountAttachmentWithContext(ctx aws.Context, input *CreateCrossAccountAttachmentInput, opts ...request.Option) (*CreateCrossAccountAttachmentOutput, error) {
+	req, out := c.CreateCrossAccountAttachmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCustomRoutingAccelerator = "CreateCustomRoutingAccelerator"
 
 // CreateCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
@@ -1128,6 +1231,115 @@ func (c *GlobalAccelerator) DeleteAccelerator(input *DeleteAcceleratorInput) (*D
 // for more information on using Contexts.
 func (c *GlobalAccelerator) DeleteAcceleratorWithContext(ctx aws.Context, input *DeleteAcceleratorInput, opts ...request.Option) (*DeleteAcceleratorOutput, error) {
 	req, out := c.DeleteAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCrossAccountAttachment = "DeleteCrossAccountAttachment"
+
+// DeleteCrossAccountAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCrossAccountAttachment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCrossAccountAttachment for more information on using the DeleteCrossAccountAttachment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCrossAccountAttachmentRequest method.
+//	req, resp := client.DeleteCrossAccountAttachmentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCrossAccountAttachment
+func (c *GlobalAccelerator) DeleteCrossAccountAttachmentRequest(input *DeleteCrossAccountAttachmentInput) (req *request.Request, output *DeleteCrossAccountAttachmentOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCrossAccountAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCrossAccountAttachmentInput{}
+	}
+
+	output = &DeleteCrossAccountAttachmentOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCrossAccountAttachment API operation for AWS Global Accelerator.
+//
+// Delete a cross-account attachment. When you delete an attachment, Global
+// Accelerator revokes the permission to use the resources in the attachment
+// from all principals in the list of principals. Global Accelerator revokes
+// the permission for specific resources by doing the following:
+//
+//   - If the principal is an account ID, Global Accelerator reviews every
+//     accelerator in the account and removes cross-account endpoints from all
+//     accelerators.
+//
+//   - If the principal is an accelerator, Global Accelerator reviews just
+//     that accelerator and removes cross-account endpoints from it.
+//
+// If there are overlapping permissions provided by multiple cross-account attachments,
+// Global Accelerator only removes endpoints if there are no current cross-account
+// attachments that provide access permission. For example, if you delete a
+// cross-account attachment that lists an accelerator as a principal, but another
+// cross-account attachment includes the account ID that owns that accelerator,
+// endpoints will not be removed from the accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DeleteCrossAccountAttachment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AttachmentNotFoundException
+//     No cross-account attachment was found.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - TransactionInProgressException
+//     There's already a transaction in progress. Another transaction can't be processed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCrossAccountAttachment
+func (c *GlobalAccelerator) DeleteCrossAccountAttachment(input *DeleteCrossAccountAttachmentInput) (*DeleteCrossAccountAttachmentOutput, error) {
+	req, out := c.DeleteCrossAccountAttachmentRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCrossAccountAttachmentWithContext is the same as DeleteCrossAccountAttachment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCrossAccountAttachment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DeleteCrossAccountAttachmentWithContext(ctx aws.Context, input *DeleteCrossAccountAttachmentInput, opts ...request.Option) (*DeleteCrossAccountAttachmentOutput, error) {
+	req, out := c.DeleteCrossAccountAttachmentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1963,6 +2175,94 @@ func (c *GlobalAccelerator) DescribeAcceleratorAttributesWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opDescribeCrossAccountAttachment = "DescribeCrossAccountAttachment"
+
+// DescribeCrossAccountAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCrossAccountAttachment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCrossAccountAttachment for more information on using the DescribeCrossAccountAttachment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeCrossAccountAttachmentRequest method.
+//	req, resp := client.DescribeCrossAccountAttachmentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCrossAccountAttachment
+func (c *GlobalAccelerator) DescribeCrossAccountAttachmentRequest(input *DescribeCrossAccountAttachmentInput) (req *request.Request, output *DescribeCrossAccountAttachmentOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCrossAccountAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCrossAccountAttachmentInput{}
+	}
+
+	output = &DescribeCrossAccountAttachmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCrossAccountAttachment API operation for AWS Global Accelerator.
+//
+// Gets configuration information about a cross-account attachment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DescribeCrossAccountAttachment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AttachmentNotFoundException
+//     No cross-account attachment was found.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCrossAccountAttachment
+func (c *GlobalAccelerator) DescribeCrossAccountAttachment(input *DescribeCrossAccountAttachmentInput) (*DescribeCrossAccountAttachmentOutput, error) {
+	req, out := c.DescribeCrossAccountAttachmentRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCrossAccountAttachmentWithContext is the same as DescribeCrossAccountAttachment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCrossAccountAttachment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DescribeCrossAccountAttachmentWithContext(ctx aws.Context, input *DescribeCrossAccountAttachmentInput, opts ...request.Option) (*DescribeCrossAccountAttachmentOutput, error) {
+	req, out := c.DescribeCrossAccountAttachmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeCustomRoutingAccelerator = "DescribeCustomRoutingAccelerator"
 
 // DescribeCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
@@ -2755,6 +3055,381 @@ func (c *GlobalAccelerator) ListByoipCidrsPagesWithContext(ctx aws.Context, inpu
 
 	for p.Next() {
 		if !fn(p.Page().(*ListByoipCidrsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCrossAccountAttachments = "ListCrossAccountAttachments"
+
+// ListCrossAccountAttachmentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCrossAccountAttachments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCrossAccountAttachments for more information on using the ListCrossAccountAttachments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCrossAccountAttachmentsRequest method.
+//	req, resp := client.ListCrossAccountAttachmentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountAttachments
+func (c *GlobalAccelerator) ListCrossAccountAttachmentsRequest(input *ListCrossAccountAttachmentsInput) (req *request.Request, output *ListCrossAccountAttachmentsOutput) {
+	op := &request.Operation{
+		Name:       opListCrossAccountAttachments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCrossAccountAttachmentsInput{}
+	}
+
+	output = &ListCrossAccountAttachmentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCrossAccountAttachments API operation for AWS Global Accelerator.
+//
+// List the cross-account attachments that have been created in Global Accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCrossAccountAttachments for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - InvalidNextTokenException
+//     There isn't another item to return.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountAttachments
+func (c *GlobalAccelerator) ListCrossAccountAttachments(input *ListCrossAccountAttachmentsInput) (*ListCrossAccountAttachmentsOutput, error) {
+	req, out := c.ListCrossAccountAttachmentsRequest(input)
+	return out, req.Send()
+}
+
+// ListCrossAccountAttachmentsWithContext is the same as ListCrossAccountAttachments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCrossAccountAttachments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCrossAccountAttachmentsWithContext(ctx aws.Context, input *ListCrossAccountAttachmentsInput, opts ...request.Option) (*ListCrossAccountAttachmentsOutput, error) {
+	req, out := c.ListCrossAccountAttachmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCrossAccountAttachmentsPages iterates over the pages of a ListCrossAccountAttachments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCrossAccountAttachments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCrossAccountAttachments operation.
+//	pageNum := 0
+//	err := client.ListCrossAccountAttachmentsPages(params,
+//	    func(page *globalaccelerator.ListCrossAccountAttachmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *GlobalAccelerator) ListCrossAccountAttachmentsPages(input *ListCrossAccountAttachmentsInput, fn func(*ListCrossAccountAttachmentsOutput, bool) bool) error {
+	return c.ListCrossAccountAttachmentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCrossAccountAttachmentsPagesWithContext same as ListCrossAccountAttachmentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCrossAccountAttachmentsPagesWithContext(ctx aws.Context, input *ListCrossAccountAttachmentsInput, fn func(*ListCrossAccountAttachmentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCrossAccountAttachmentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCrossAccountAttachmentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCrossAccountAttachmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCrossAccountResourceAccounts = "ListCrossAccountResourceAccounts"
+
+// ListCrossAccountResourceAccountsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCrossAccountResourceAccounts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCrossAccountResourceAccounts for more information on using the ListCrossAccountResourceAccounts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCrossAccountResourceAccountsRequest method.
+//	req, resp := client.ListCrossAccountResourceAccountsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResourceAccounts
+func (c *GlobalAccelerator) ListCrossAccountResourceAccountsRequest(input *ListCrossAccountResourceAccountsInput) (req *request.Request, output *ListCrossAccountResourceAccountsOutput) {
+	op := &request.Operation{
+		Name:       opListCrossAccountResourceAccounts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListCrossAccountResourceAccountsInput{}
+	}
+
+	output = &ListCrossAccountResourceAccountsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCrossAccountResourceAccounts API operation for AWS Global Accelerator.
+//
+// List the accounts that have cross-account endpoints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCrossAccountResourceAccounts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResourceAccounts
+func (c *GlobalAccelerator) ListCrossAccountResourceAccounts(input *ListCrossAccountResourceAccountsInput) (*ListCrossAccountResourceAccountsOutput, error) {
+	req, out := c.ListCrossAccountResourceAccountsRequest(input)
+	return out, req.Send()
+}
+
+// ListCrossAccountResourceAccountsWithContext is the same as ListCrossAccountResourceAccounts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCrossAccountResourceAccounts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCrossAccountResourceAccountsWithContext(ctx aws.Context, input *ListCrossAccountResourceAccountsInput, opts ...request.Option) (*ListCrossAccountResourceAccountsOutput, error) {
+	req, out := c.ListCrossAccountResourceAccountsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListCrossAccountResources = "ListCrossAccountResources"
+
+// ListCrossAccountResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCrossAccountResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCrossAccountResources for more information on using the ListCrossAccountResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCrossAccountResourcesRequest method.
+//	req, resp := client.ListCrossAccountResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResources
+func (c *GlobalAccelerator) ListCrossAccountResourcesRequest(input *ListCrossAccountResourcesInput) (req *request.Request, output *ListCrossAccountResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListCrossAccountResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCrossAccountResourcesInput{}
+	}
+
+	output = &ListCrossAccountResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCrossAccountResources API operation for AWS Global Accelerator.
+//
+// List the cross-account endpoints available to add to an accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCrossAccountResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - InvalidNextTokenException
+//     There isn't another item to return.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - AcceleratorNotFoundException
+//     The accelerator that you specified doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCrossAccountResources
+func (c *GlobalAccelerator) ListCrossAccountResources(input *ListCrossAccountResourcesInput) (*ListCrossAccountResourcesOutput, error) {
+	req, out := c.ListCrossAccountResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListCrossAccountResourcesWithContext is the same as ListCrossAccountResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCrossAccountResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCrossAccountResourcesWithContext(ctx aws.Context, input *ListCrossAccountResourcesInput, opts ...request.Option) (*ListCrossAccountResourcesOutput, error) {
+	req, out := c.ListCrossAccountResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCrossAccountResourcesPages iterates over the pages of a ListCrossAccountResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCrossAccountResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCrossAccountResources operation.
+//	pageNum := 0
+//	err := client.ListCrossAccountResourcesPages(params,
+//	    func(page *globalaccelerator.ListCrossAccountResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *GlobalAccelerator) ListCrossAccountResourcesPages(input *ListCrossAccountResourcesInput, fn func(*ListCrossAccountResourcesOutput, bool) bool) error {
+	return c.ListCrossAccountResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCrossAccountResourcesPagesWithContext same as ListCrossAccountResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCrossAccountResourcesPagesWithContext(ctx aws.Context, input *ListCrossAccountResourcesInput, fn func(*ListCrossAccountResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCrossAccountResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCrossAccountResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCrossAccountResourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4562,6 +5237,117 @@ func (c *GlobalAccelerator) UpdateAcceleratorAttributesWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opUpdateCrossAccountAttachment = "UpdateCrossAccountAttachment"
+
+// UpdateCrossAccountAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCrossAccountAttachment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCrossAccountAttachment for more information on using the UpdateCrossAccountAttachment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCrossAccountAttachmentRequest method.
+//	req, resp := client.UpdateCrossAccountAttachmentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCrossAccountAttachment
+func (c *GlobalAccelerator) UpdateCrossAccountAttachmentRequest(input *UpdateCrossAccountAttachmentInput) (req *request.Request, output *UpdateCrossAccountAttachmentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCrossAccountAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCrossAccountAttachmentInput{}
+	}
+
+	output = &UpdateCrossAccountAttachmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCrossAccountAttachment API operation for AWS Global Accelerator.
+//
+// Update a cross-account attachment to add or remove principals or resources.
+// When you update an attachment to remove a principal (account ID or accelerator)
+// or a resource, Global Accelerator revokes the permission for specific resources
+// by doing the following:
+//
+//   - If the principal is an account ID, Global Accelerator reviews every
+//     accelerator in the account and removes cross-account endpoints from all
+//     accelerators.
+//
+//   - If the principal is an accelerator, Global Accelerator reviews just
+//     that accelerator and removes cross-account endpoints from it.
+//
+// If there are overlapping permissions provided by multiple cross-account attachments,
+// Global Accelerator only removes endpoints if there are no current cross-account
+// attachments that provide access permission. For example, if you delete a
+// cross-account attachment that lists an accelerator as a principal, but another
+// cross-account attachment includes the account ID that owns that accelerator,
+// endpoints will not be removed from the accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation UpdateCrossAccountAttachment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AttachmentNotFoundException
+//     No cross-account attachment was found.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - LimitExceededException
+//     Processing your request would cause you to exceed an Global Accelerator limit.
+//
+//   - TransactionInProgressException
+//     There's already a transaction in progress. Another transaction can't be processed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCrossAccountAttachment
+func (c *GlobalAccelerator) UpdateCrossAccountAttachment(input *UpdateCrossAccountAttachmentInput) (*UpdateCrossAccountAttachmentOutput, error) {
+	req, out := c.UpdateCrossAccountAttachmentRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCrossAccountAttachmentWithContext is the same as UpdateCrossAccountAttachment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCrossAccountAttachment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) UpdateCrossAccountAttachmentWithContext(ctx aws.Context, input *UpdateCrossAccountAttachmentInput, opts ...request.Option) (*UpdateCrossAccountAttachmentOutput, error) {
+	req, out := c.UpdateCrossAccountAttachmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCustomRoutingAccelerator = "UpdateCustomRoutingAccelerator"
 
 // UpdateCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
@@ -6113,6 +6899,149 @@ func (s *AssociatedListenerFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A cross-account attachment in Global Accelerator. A cross-account attachment
+// specifies the principals who have permission to add to accelerators in their
+// own account the resources in your account that you also list in the attachment.
+type Attachment struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cross-account attachment.
+	AttachmentArn *string `type:"string"`
+
+	// The date and time that the cross-account attachment was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The date and time that the cross-account attachment was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the cross-account attachment.
+	Name *string `type:"string"`
+
+	// The principals included in the cross-account attachment.
+	Principals []*string `type:"list"`
+
+	// The resources included in the cross-account attachment.
+	Resources []*Resource `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Attachment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Attachment) GoString() string {
+	return s.String()
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *Attachment) SetAttachmentArn(v string) *Attachment {
+	s.AttachmentArn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Attachment) SetCreatedTime(v time.Time) *Attachment {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Attachment) SetLastModifiedTime(v time.Time) *Attachment {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Attachment) SetName(v string) *Attachment {
+	s.Name = &v
+	return s
+}
+
+// SetPrincipals sets the Principals field's value.
+func (s *Attachment) SetPrincipals(v []*string) *Attachment {
+	s.Principals = v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *Attachment) SetResources(v []*Resource) *Attachment {
+	s.Resources = v
+	return s
+}
+
+// No cross-account attachment was found.
+type AttachmentNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentNotFoundException(v protocol.ResponseMetadata) error {
+	return &AttachmentNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentNotFoundException) Code() string {
+	return "AttachmentNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Information about an IP address range that is provisioned for use with your
 // Amazon Web Services resources through bring your own IP address (BYOIP).
 //
@@ -6608,6 +7537,147 @@ func (s CreateAcceleratorOutput) GoString() string {
 // SetAccelerator sets the Accelerator field's value.
 func (s *CreateAcceleratorOutput) SetAccelerator(v *Accelerator) *CreateAcceleratorOutput {
 	s.Accelerator = v
+	return s
+}
+
+type CreateCrossAccountAttachmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency—that
+	// is, the uniqueness—of the request.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// The name of the cross-account attachment.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The principals to list in the cross-account attachment. A principal can be
+	// an Amazon Web Services account number or the Amazon Resource Name (ARN) for
+	// an accelerator.
+	Principals []*string `type:"list"`
+
+	// The Amazon Resource Names (ARNs) for the resources to list in the cross-account
+	// attachment. A resource can be any supported Amazon Web Services resource
+	// type for Global Accelerator.
+	Resources []*Resource `type:"list"`
+
+	// Create tags for cross-account attachment.
+	//
+	// For more information, see Tagging in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
+	// in the Global Accelerator Developer Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCrossAccountAttachmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCrossAccountAttachmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCrossAccountAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCrossAccountAttachmentInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Resources != nil {
+		for i, v := range s.Resources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateCrossAccountAttachmentInput) SetIdempotencyToken(v string) *CreateCrossAccountAttachmentInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCrossAccountAttachmentInput) SetName(v string) *CreateCrossAccountAttachmentInput {
+	s.Name = &v
+	return s
+}
+
+// SetPrincipals sets the Principals field's value.
+func (s *CreateCrossAccountAttachmentInput) SetPrincipals(v []*string) *CreateCrossAccountAttachmentInput {
+	s.Principals = v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *CreateCrossAccountAttachmentInput) SetResources(v []*Resource) *CreateCrossAccountAttachmentInput {
+	s.Resources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCrossAccountAttachmentInput) SetTags(v []*Tag) *CreateCrossAccountAttachmentInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCrossAccountAttachmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the cross-account attachment.
+	CrossAccountAttachment *Attachment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCrossAccountAttachmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCrossAccountAttachmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrossAccountAttachment sets the CrossAccountAttachment field's value.
+func (s *CreateCrossAccountAttachmentOutput) SetCrossAccountAttachment(v *Attachment) *CreateCrossAccountAttachmentOutput {
+	s.CrossAccountAttachment = v
 	return s
 }
 
@@ -7390,6 +8460,52 @@ func (s *CreateListenerOutput) SetListener(v *Listener) *CreateListenerOutput {
 	return s
 }
 
+// An endpoint (Amazon Web Services resource) that is listed in a cross-account
+// attachment and can be added to an accelerator by specified principals, that
+// are also listed in the attachment.
+type CrossAccountResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
+	// the endpoints (resources) that can be added to accelerators and principals
+	// that have permission to add the endpoints to accelerators.
+	AttachmentArn *string `type:"string"`
+
+	// The endpoint ID for the endpoint that is listed in a cross-account attachment
+	// and can be added to an accelerator by specified principals.
+	EndpointId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossAccountResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossAccountResource) GoString() string {
+	return s.String()
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *CrossAccountResource) SetAttachmentArn(v string) *CrossAccountResource {
+	s.AttachmentArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *CrossAccountResource) SetEndpointId(v string) *CrossAccountResource {
+	s.EndpointId = &v
+	return s
+}
+
 // Attributes of a custom routing accelerator.
 type CustomRoutingAccelerator struct {
 	_ struct{} `type:"structure"`
@@ -7725,6 +8841,11 @@ func (s *CustomRoutingDestinationDescription) SetToPort(v int64) *CustomRoutingD
 type CustomRoutingEndpointConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
+	// the endpoints (resources) that can be added to accelerators and principals
+	// that have permission to add the endpoints to accelerators.
+	AttachmentArn *string `type:"string"`
+
 	// An ID for the endpoint. For custom routing accelerators, this is the virtual
 	// private cloud (VPC) subnet ID.
 	EndpointId *string `type:"string"`
@@ -7746,6 +8867,12 @@ func (s CustomRoutingEndpointConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s CustomRoutingEndpointConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *CustomRoutingEndpointConfiguration) SetAttachmentArn(v string) *CustomRoutingEndpointConfiguration {
+	s.AttachmentArn = &v
+	return s
 }
 
 // SetEndpointId sets the EndpointId field's value.
@@ -7962,6 +9089,74 @@ func (s DeleteAcceleratorOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCrossAccountAttachmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the cross-account attachment to delete.
+	//
+	// AttachmentArn is a required field
+	AttachmentArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCrossAccountAttachmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCrossAccountAttachmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCrossAccountAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCrossAccountAttachmentInput"}
+	if s.AttachmentArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *DeleteCrossAccountAttachmentInput) SetAttachmentArn(v string) *DeleteCrossAccountAttachmentInput {
+	s.AttachmentArn = &v
+	return s
+}
+
+type DeleteCrossAccountAttachmentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCrossAccountAttachmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCrossAccountAttachmentOutput) GoString() string {
 	return s.String()
 }
 
@@ -8665,6 +9860,83 @@ func (s *DescribeAcceleratorOutput) SetAccelerator(v *Accelerator) *DescribeAcce
 	return s
 }
 
+type DescribeCrossAccountAttachmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the cross-account attachment to describe.
+	//
+	// AttachmentArn is a required field
+	AttachmentArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCrossAccountAttachmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCrossAccountAttachmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCrossAccountAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCrossAccountAttachmentInput"}
+	if s.AttachmentArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *DescribeCrossAccountAttachmentInput) SetAttachmentArn(v string) *DescribeCrossAccountAttachmentInput {
+	s.AttachmentArn = &v
+	return s
+}
+
+type DescribeCrossAccountAttachmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the cross-account attachment.
+	CrossAccountAttachment *Attachment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCrossAccountAttachmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCrossAccountAttachmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrossAccountAttachment sets the CrossAccountAttachment field's value.
+func (s *DescribeCrossAccountAttachmentOutput) SetCrossAccountAttachment(v *Attachment) *DescribeCrossAccountAttachmentOutput {
+	s.CrossAccountAttachment = v
+	return s
+}
+
 type DescribeCustomRoutingAcceleratorAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9298,8 +10570,14 @@ func (s *EndpointAlreadyExistsException) RequestID() string {
 type EndpointConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
+	// the endpoints (resources) that can be added to accelerators and principals
+	// that have permission to add the endpoints to accelerators.
+	AttachmentArn *string `type:"string"`
+
 	// Indicates whether client IP address preservation is enabled for an endpoint.
-	// The value is true or false. The default value is true for new accelerators.
+	// The value is true or false. The default value is true for Application Load
+	// Balancer endpoints.
 	//
 	// If the value is set to true, the client's IP address is preserved in the
 	// X-Forwarded-For request header as traffic travels to applications on the
@@ -9307,7 +10585,7 @@ type EndpointConfiguration struct {
 	//
 	// Client IP address preservation is supported, in specific Amazon Web Services
 	// Regions, for endpoints that are Application Load Balancers, Amazon EC2 instances,
-	// and Network Load Balancers with Security Groups. IMPORTANT: You cannot use
+	// and Network Load Balancers with security groups. IMPORTANT: You cannot use
 	// client IP address preservation with Network Load Balancers with TLS listeners.
 	//
 	// For more information, see Preserve client IP addresses in Global Accelerator
@@ -9353,6 +10631,12 @@ func (s EndpointConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *EndpointConfiguration) SetAttachmentArn(v string) *EndpointConfiguration {
+	s.AttachmentArn = &v
+	return s
+}
+
 // SetClientIPPreservationEnabled sets the ClientIPPreservationEnabled field's value.
 func (s *EndpointConfiguration) SetClientIPPreservationEnabled(v bool) *EndpointConfiguration {
 	s.ClientIPPreservationEnabled = &v
@@ -9377,7 +10661,8 @@ type EndpointDescription struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether client IP address preservation is enabled for an endpoint.
-	// The value is true or false. The default value is true for new accelerators.
+	// The value is true or false. The default value is true for Application Load
+	// Balancers endpoints.
 	//
 	// If the value is set to true, the client's IP address is preserved in the
 	// X-Forwarded-For request header as traffic travels to applications on the
@@ -9385,7 +10670,7 @@ type EndpointDescription struct {
 	//
 	// Client IP address preservation is supported, in specific Amazon Web Services
 	// Regions, for endpoints that are Application Load Balancers, Amazon EC2 instances,
-	// and Network Load Balancers with Security Groups. IMPORTANT: You cannot use
+	// and Network Load Balancers with security groups. IMPORTANT: You cannot use
 	// client IP address preservation with Network Load Balancers with TLS listeners.
 	//
 	// For more information, see Preserve client IP addresses in Global Accelerator
@@ -10485,6 +11770,278 @@ func (s *ListByoipCidrsOutput) SetByoipCidrs(v []*ByoipCidr) *ListByoipCidrsOutp
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListByoipCidrsOutput) SetNextToken(v string) *ListByoipCidrsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCrossAccountAttachmentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of cross-account attachment objects that you want to return with
+	// this call. The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountAttachmentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountAttachmentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCrossAccountAttachmentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCrossAccountAttachmentsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCrossAccountAttachmentsInput) SetMaxResults(v int64) *ListCrossAccountAttachmentsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrossAccountAttachmentsInput) SetNextToken(v string) *ListCrossAccountAttachmentsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCrossAccountAttachmentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the cross-account attachments.
+	CrossAccountAttachments []*Attachment `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountAttachmentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountAttachmentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrossAccountAttachments sets the CrossAccountAttachments field's value.
+func (s *ListCrossAccountAttachmentsOutput) SetCrossAccountAttachments(v []*Attachment) *ListCrossAccountAttachmentsOutput {
+	s.CrossAccountAttachments = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrossAccountAttachmentsOutput) SetNextToken(v string) *ListCrossAccountAttachmentsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCrossAccountResourceAccountsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourceAccountsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourceAccountsInput) GoString() string {
+	return s.String()
+}
+
+type ListCrossAccountResourceAccountsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The account IDs of principals (resource owners) in a cross-account attachment
+	// who can add endpoints (resources) listed in the same attachment.
+	ResourceOwnerAwsAccountIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourceAccountsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourceAccountsOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceOwnerAwsAccountIds sets the ResourceOwnerAwsAccountIds field's value.
+func (s *ListCrossAccountResourceAccountsOutput) SetResourceOwnerAwsAccountIds(v []*string) *ListCrossAccountResourceAccountsOutput {
+	s.ResourceOwnerAwsAccountIds = v
+	return s
+}
+
+type ListCrossAccountResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an accelerator in a cross-account attachment.
+	AcceleratorArn *string `type:"string"`
+
+	// The number of cross-account endpoints objects that you want to return with
+	// this call. The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+
+	// The account ID of a resource owner in a cross-account attachment.
+	//
+	// ResourceOwnerAwsAccountId is a required field
+	ResourceOwnerAwsAccountId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCrossAccountResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCrossAccountResourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceOwnerAwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceOwnerAwsAccountId"))
+	}
+	if s.ResourceOwnerAwsAccountId != nil && len(*s.ResourceOwnerAwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceOwnerAwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *ListCrossAccountResourcesInput) SetAcceleratorArn(v string) *ListCrossAccountResourcesInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCrossAccountResourcesInput) SetMaxResults(v int64) *ListCrossAccountResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrossAccountResourcesInput) SetNextToken(v string) *ListCrossAccountResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceOwnerAwsAccountId sets the ResourceOwnerAwsAccountId field's value.
+func (s *ListCrossAccountResourcesInput) SetResourceOwnerAwsAccountId(v string) *ListCrossAccountResourcesInput {
+	s.ResourceOwnerAwsAccountId = &v
+	return s
+}
+
+type ListCrossAccountResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoints attached to an accelerator in a cross-account attachment.
+	CrossAccountResources []*CrossAccountResource `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCrossAccountResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrossAccountResources sets the CrossAccountResources field's value.
+func (s *ListCrossAccountResourcesOutput) SetCrossAccountResources(v []*CrossAccountResource) *ListCrossAccountResourcesOutput {
+	s.CrossAccountResources = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCrossAccountResourcesOutput) SetNextToken(v string) *ListCrossAccountResourcesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -11981,6 +13538,63 @@ func (s RemoveEndpointsOutput) GoString() string {
 	return s.String()
 }
 
+// An Amazon Web Services resource that is supported by Global Accelerator and
+// can be added as an endpoint for an accelerator.
+type Resource struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint ID for the endpoint (Amazon Web Services resource).
+	//
+	// EndpointId is a required field
+	EndpointId *string `type:"string" required:"true"`
+
+	// The Amazon Web Services Region where a resource is located.
+	Region *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Resource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Resource"}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *Resource) SetEndpointId(v string) *Resource {
+	s.EndpointId = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Resource) SetRegion(v string) *Resource {
+	s.Region = &v
+	return s
+}
+
 // An IP address/port combination.
 type SocketAddress struct {
 	_ struct{} `type:"structure"`
@@ -12557,6 +14171,168 @@ func (s UpdateAcceleratorOutput) GoString() string {
 // SetAccelerator sets the Accelerator field's value.
 func (s *UpdateAcceleratorOutput) SetAccelerator(v *Accelerator) *UpdateAcceleratorOutput {
 	s.Accelerator = v
+	return s
+}
+
+type UpdateCrossAccountAttachmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The principals to add to the cross-account attachment. A principal is an
+	// account or the Amazon Resource Name (ARN) of an accelerator that the attachment
+	// gives permission to add the resources from another account, listed in the
+	// attachment.
+	//
+	// To add more than one principal, separate the account numbers or accelerator
+	// ARNs, or both, with commas.
+	AddPrincipals []*string `type:"list"`
+
+	// The resources to add to the cross-account attachment. A resource listed in
+	// a cross-account attachment can be added to an accelerator by the principals
+	// that are listed in the attachment.
+	//
+	// To add more than one resource, separate the resource ARNs with commas.
+	AddResources []*Resource `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the cross-account attachment to update.
+	//
+	// AttachmentArn is a required field
+	AttachmentArn *string `type:"string" required:"true"`
+
+	// The name of the cross-account attachment.
+	Name *string `type:"string"`
+
+	// The principals to remove from the cross-account attachment. A principal is
+	// an account or the Amazon Resource Name (ARN) of an accelerator that is given
+	// permission to add the resources from another account, listed in the cross-account
+	// attachment.
+	//
+	// To remove more than one principal, separate the account numbers or accelerator
+	// ARNs, or both, with commas.
+	RemovePrincipals []*string `type:"list"`
+
+	// The resources to remove from the cross-account attachment. A resource listed
+	// in a cross-account attachment can be added to an accelerator fy principals
+	// that are listed in the cross-account attachment.
+	//
+	// To remove more than one resource, separate the resource ARNs with commas.
+	RemoveResources []*Resource `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCrossAccountAttachmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCrossAccountAttachmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCrossAccountAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCrossAccountAttachmentInput"}
+	if s.AttachmentArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentArn"))
+	}
+	if s.AddResources != nil {
+		for i, v := range s.AddResources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddResources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RemoveResources != nil {
+		for i, v := range s.RemoveResources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RemoveResources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddPrincipals sets the AddPrincipals field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetAddPrincipals(v []*string) *UpdateCrossAccountAttachmentInput {
+	s.AddPrincipals = v
+	return s
+}
+
+// SetAddResources sets the AddResources field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetAddResources(v []*Resource) *UpdateCrossAccountAttachmentInput {
+	s.AddResources = v
+	return s
+}
+
+// SetAttachmentArn sets the AttachmentArn field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetAttachmentArn(v string) *UpdateCrossAccountAttachmentInput {
+	s.AttachmentArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetName(v string) *UpdateCrossAccountAttachmentInput {
+	s.Name = &v
+	return s
+}
+
+// SetRemovePrincipals sets the RemovePrincipals field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetRemovePrincipals(v []*string) *UpdateCrossAccountAttachmentInput {
+	s.RemovePrincipals = v
+	return s
+}
+
+// SetRemoveResources sets the RemoveResources field's value.
+func (s *UpdateCrossAccountAttachmentInput) SetRemoveResources(v []*Resource) *UpdateCrossAccountAttachmentInput {
+	s.RemoveResources = v
+	return s
+}
+
+type UpdateCrossAccountAttachmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the updated cross-account attachment.
+	CrossAccountAttachment *Attachment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCrossAccountAttachmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCrossAccountAttachmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetCrossAccountAttachment sets the CrossAccountAttachment field's value.
+func (s *UpdateCrossAccountAttachmentOutput) SetCrossAccountAttachment(v *Attachment) *UpdateCrossAccountAttachmentOutput {
+	s.CrossAccountAttachment = v
 	return s
 }
 
