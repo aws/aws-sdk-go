@@ -19259,6 +19259,9 @@ type Analysis struct {
 	// The descriptive name of the analysis.
 	Name *string `min:"1" type:"string"`
 
+	// An array of analysis level configurations.
+	Options *AssetOptions `type:"structure"`
+
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -19327,6 +19330,12 @@ func (s *Analysis) SetLastUpdatedTime(v time.Time) *Analysis {
 // SetName sets the Name field's value.
 func (s *Analysis) SetName(v string) *Analysis {
 	s.Name = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *Analysis) SetOptions(v *AssetOptions) *Analysis {
+	s.Options = v
 	return s
 }
 
@@ -19425,6 +19434,9 @@ type AnalysisDefinition struct {
 	// For more information, see Filtering Data in Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/adding-a-filter.html)
 	// in the Amazon QuickSight User Guide.
 	FilterGroups []*FilterGroup `type:"list"`
+
+	// An array of option definitions for an analysis.
+	Options *AssetOptions `type:"structure"`
 
 	// An array of parameter declarations for an analysis.
 	//
@@ -19566,6 +19578,12 @@ func (s *AnalysisDefinition) SetDataSetIdentifierDeclarations(v []*DataSetIdenti
 // SetFilterGroups sets the FilterGroups field's value.
 func (s *AnalysisDefinition) SetFilterGroups(v []*FilterGroup) *AnalysisDefinition {
 	s.FilterGroups = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *AnalysisDefinition) SetOptions(v *AssetOptions) *AnalysisDefinition {
+	s.Options = v
 	return s
 }
 
@@ -22344,6 +22362,47 @@ func (s *AssetBundleImportSourceDescription) SetBody(v string) *AssetBundleImpor
 // SetS3Uri sets the S3Uri field's value.
 func (s *AssetBundleImportSourceDescription) SetS3Uri(v string) *AssetBundleImportSourceDescription {
 	s.S3Uri = &v
+	return s
+}
+
+// An array of analysis level configurations.
+type AssetOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Determines the timezone for the analysis.
+	Timezone *string `type:"string"`
+
+	// Determines the week start day for an analysis.
+	WeekStart *string `type:"string" enum:"DayOfTheWeek"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetOptions) GoString() string {
+	return s.String()
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *AssetOptions) SetTimezone(v string) *AssetOptions {
+	s.Timezone = &v
+	return s
+}
+
+// SetWeekStart sets the WeekStart field's value.
+func (s *AssetOptions) SetWeekStart(v string) *AssetOptions {
+	s.WeekStart = &v
 	return s
 }
 
@@ -25271,6 +25330,10 @@ type CastColumnTypeOperation struct {
 	//
 	// NewColumnType is a required field
 	NewColumnType *string `type:"string" required:"true" enum:"ColumnDataType"`
+
+	// The sub data type of the new column. Sub types are only available for decimal
+	// columns that are part of a SPICE dataset.
+	SubType *string `type:"string" enum:"ColumnDataSubType"`
 }
 
 // String returns the string representation.
@@ -25325,6 +25388,12 @@ func (s *CastColumnTypeOperation) SetFormat(v string) *CastColumnTypeOperation {
 // SetNewColumnType sets the NewColumnType field's value.
 func (s *CastColumnTypeOperation) SetNewColumnType(v string) *CastColumnTypeOperation {
 	s.NewColumnType = &v
+	return s
+}
+
+// SetSubType sets the SubType field's value.
+func (s *CastColumnTypeOperation) SetSubType(v string) *CastColumnTypeOperation {
+	s.SubType = &v
 	return s
 }
 
@@ -34939,6 +35008,9 @@ type DashboardVersion struct {
 	// Errors associated with this dashboard version.
 	Errors []*DashboardError `min:"1" type:"list"`
 
+	// An array of analysis level configurations.
+	Options *AssetOptions `type:"structure"`
+
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -35004,6 +35076,12 @@ func (s *DashboardVersion) SetErrors(v []*DashboardError) *DashboardVersion {
 	return s
 }
 
+// SetOptions sets the Options field's value.
+func (s *DashboardVersion) SetOptions(v *AssetOptions) *DashboardVersion {
+	s.Options = v
+	return s
+}
+
 // SetSheets sets the Sheets field's value.
 func (s *DashboardVersion) SetSheets(v []*Sheet) *DashboardVersion {
 	s.Sheets = v
@@ -35061,6 +35139,9 @@ type DashboardVersionDefinition struct {
 	// For more information, see Filtering Data in Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/adding-a-filter.html)
 	// in the Amazon QuickSight User Guide.
 	FilterGroups []*FilterGroup `type:"list"`
+
+	// An array of option definitions for a dashboard.
+	Options *AssetOptions `type:"structure"`
 
 	// The parameter declarations for a dashboard. Parameters are named variables
 	// that can transfer a value for use by an action or an object.
@@ -35199,6 +35280,12 @@ func (s *DashboardVersionDefinition) SetDataSetIdentifierDeclarations(v []*DataS
 // SetFilterGroups sets the FilterGroups field's value.
 func (s *DashboardVersionDefinition) SetFilterGroups(v []*FilterGroup) *DashboardVersionDefinition {
 	s.FilterGroups = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *DashboardVersionDefinition) SetOptions(v *AssetOptions) *DashboardVersionDefinition {
+	s.Options = v
 	return s
 }
 
@@ -59137,6 +59224,10 @@ type InputColumn struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The sub data type of the column. Sub types are only available for decimal
+	// columns that are part of a SPICE dataset.
+	SubType *string `type:"string" enum:"ColumnDataSubType"`
+
 	// The data type of the column.
 	//
 	// Type is a required field
@@ -59183,6 +59274,12 @@ func (s *InputColumn) Validate() error {
 // SetName sets the Name field's value.
 func (s *InputColumn) SetName(v string) *InputColumn {
 	s.Name = &v
+	return s
+}
+
+// SetSubType sets the SubType field's value.
+func (s *InputColumn) SetSubType(v string) *InputColumn {
+	s.SubType = &v
 	return s
 }
 
@@ -69497,10 +69594,13 @@ type OutputColumn struct {
 	// A description for a column.
 	Description *string `type:"string"`
 
-	// A display name for the dataset.
+	// The display name of the column..
 	Name *string `min:"1" type:"string"`
 
-	// The type.
+	// The sub data type of the column.
+	SubType *string `type:"string" enum:"ColumnDataSubType"`
+
+	// The data type of the column.
 	Type *string `type:"string" enum:"ColumnDataType"`
 }
 
@@ -69531,6 +69631,12 @@ func (s *OutputColumn) SetDescription(v string) *OutputColumn {
 // SetName sets the Name field's value.
 func (s *OutputColumn) SetName(v string) *OutputColumn {
 	s.Name = &v
+	return s
+}
+
+// SetSubType sets the SubType field's value.
+func (s *OutputColumn) SetSubType(v string) *OutputColumn {
+	s.SubType = &v
 	return s
 }
 
@@ -87577,6 +87683,9 @@ type TemplateVersion struct {
 	// Errors associated with this template version.
 	Errors []*TemplateError `min:"1" type:"list"`
 
+	// An array of analysis level configurations.
+	Options *AssetOptions `type:"structure"`
+
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -87651,6 +87760,12 @@ func (s *TemplateVersion) SetErrors(v []*TemplateError) *TemplateVersion {
 	return s
 }
 
+// SetOptions sets the Options field's value.
+func (s *TemplateVersion) SetOptions(v *AssetOptions) *TemplateVersion {
+	s.Options = v
+	return s
+}
+
 // SetSheets sets the Sheets field's value.
 func (s *TemplateVersion) SetSheets(v []*Sheet) *TemplateVersion {
 	s.Sheets = v
@@ -87706,6 +87821,9 @@ type TemplateVersionDefinition struct {
 	// For more information, see Filtering Data (https://docs.aws.amazon.com/quicksight/latest/user/filtering-visual-data.html)
 	// in the Amazon QuickSight User Guide.
 	FilterGroups []*FilterGroup `type:"list"`
+
+	// An array of option definitions for a template.
+	Options *AssetOptions `type:"structure"`
 
 	// An array of parameter declarations for a template.
 	//
@@ -87833,6 +87951,12 @@ func (s *TemplateVersionDefinition) SetDataSetConfigurations(v []*DataSetConfigu
 // SetFilterGroups sets the FilterGroups field's value.
 func (s *TemplateVersionDefinition) SetFilterGroups(v []*FilterGroup) *TemplateVersionDefinition {
 	s.FilterGroups = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *TemplateVersionDefinition) SetOptions(v *AssetOptions) *TemplateVersionDefinition {
+	s.Options = v
 	return s
 }
 
@@ -101885,6 +102009,22 @@ func ColumnDataRole_Values() []string {
 }
 
 const (
+	// ColumnDataSubTypeFloat is a ColumnDataSubType enum value
+	ColumnDataSubTypeFloat = "FLOAT"
+
+	// ColumnDataSubTypeFixed is a ColumnDataSubType enum value
+	ColumnDataSubTypeFixed = "FIXED"
+)
+
+// ColumnDataSubType_Values returns all elements of the ColumnDataSubType enum
+func ColumnDataSubType_Values() []string {
+	return []string{
+		ColumnDataSubTypeFloat,
+		ColumnDataSubTypeFixed,
+	}
+}
+
+const (
 	// ColumnDataTypeString is a ColumnDataType enum value
 	ColumnDataTypeString = "STRING"
 
@@ -102565,6 +102705,42 @@ func DateAggregationFunction_Values() []string {
 		DateAggregationFunctionDistinctCount,
 		DateAggregationFunctionMin,
 		DateAggregationFunctionMax,
+	}
+}
+
+const (
+	// DayOfTheWeekSunday is a DayOfTheWeek enum value
+	DayOfTheWeekSunday = "SUNDAY"
+
+	// DayOfTheWeekMonday is a DayOfTheWeek enum value
+	DayOfTheWeekMonday = "MONDAY"
+
+	// DayOfTheWeekTuesday is a DayOfTheWeek enum value
+	DayOfTheWeekTuesday = "TUESDAY"
+
+	// DayOfTheWeekWednesday is a DayOfTheWeek enum value
+	DayOfTheWeekWednesday = "WEDNESDAY"
+
+	// DayOfTheWeekThursday is a DayOfTheWeek enum value
+	DayOfTheWeekThursday = "THURSDAY"
+
+	// DayOfTheWeekFriday is a DayOfTheWeek enum value
+	DayOfTheWeekFriday = "FRIDAY"
+
+	// DayOfTheWeekSaturday is a DayOfTheWeek enum value
+	DayOfTheWeekSaturday = "SATURDAY"
+)
+
+// DayOfTheWeek_Values returns all elements of the DayOfTheWeek enum
+func DayOfTheWeek_Values() []string {
+	return []string{
+		DayOfTheWeekSunday,
+		DayOfTheWeekMonday,
+		DayOfTheWeekTuesday,
+		DayOfTheWeekWednesday,
+		DayOfTheWeekThursday,
+		DayOfTheWeekFriday,
+		DayOfTheWeekSaturday,
 	}
 }
 

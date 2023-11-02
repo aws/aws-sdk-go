@@ -616,6 +616,18 @@
       "type":"list",
       "member":{"shape":"Address"}
     },
+    "AnalysisResult":{
+      "type":"structure",
+      "members":{
+        "IdentifiedRuleIds":{"shape":"RuleIdList"},
+        "IdentifiedType":{"shape":"IdentifiedType"},
+        "AnalysisDetail":{"shape":"CollectionMember_String"}
+      }
+    },
+    "AnalysisResultList":{
+      "type":"list",
+      "member":{"shape":"AnalysisResult"}
+    },
     "AssociateFirewallPolicyRequest":{
       "type":"structure",
       "required":["FirewallPolicyArn"],
@@ -796,7 +808,8 @@
         "Tags":{"shape":"TagList"},
         "DryRun":{"shape":"Boolean"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "SourceMetadata":{"shape":"SourceMetadata"}
+        "SourceMetadata":{"shape":"SourceMetadata"},
+        "AnalyzeRuleGroup":{"shape":"Boolean"}
       }
     },
     "CreateRuleGroupResponse":{
@@ -1009,7 +1022,8 @@
       "members":{
         "RuleGroupName":{"shape":"ResourceName"},
         "RuleGroupArn":{"shape":"ResourceArn"},
-        "Type":{"shape":"RuleGroupType"}
+        "Type":{"shape":"RuleGroupType"},
+        "AnalyzeRuleGroup":{"shape":"Boolean"}
       }
     },
     "DescribeRuleGroupResponse":{
@@ -1304,6 +1318,13 @@
       "type":"map",
       "key":{"shape":"RuleVariableName"},
       "value":{"shape":"IPSet"}
+    },
+    "IdentifiedType":{
+      "type":"string",
+      "enum":[
+        "STATELESS_RULE_FORWARDING_ASYMMETRICALLY",
+        "STATELESS_RULE_CONTAINS_TCP_FLAGS"
+      ]
     },
     "InsufficientCapacityException":{
       "type":"structure",
@@ -1745,7 +1766,8 @@
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "SourceMetadata":{"shape":"SourceMetadata"},
         "SnsTopic":{"shape":"ResourceArn"},
-        "LastModifiedTime":{"shape":"LastUpdateTime"}
+        "LastModifiedTime":{"shape":"LastUpdateTime"},
+        "AnalysisResults":{"shape":"AnalysisResultList"}
       }
     },
     "RuleGroupType":{
@@ -1758,6 +1780,10 @@
     "RuleGroups":{
       "type":"list",
       "member":{"shape":"RuleGroupMetadata"}
+    },
+    "RuleIdList":{
+      "type":"list",
+      "member":{"shape":"CollectionMember_String"}
     },
     "RuleOption":{
       "type":"structure",
@@ -2363,7 +2389,8 @@
         "Description":{"shape":"Description"},
         "DryRun":{"shape":"Boolean"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "SourceMetadata":{"shape":"SourceMetadata"}
+        "SourceMetadata":{"shape":"SourceMetadata"},
+        "AnalyzeRuleGroup":{"shape":"Boolean"}
       }
     },
     "UpdateRuleGroupResponse":{

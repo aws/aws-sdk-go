@@ -25750,6 +25750,12 @@ type CodeGenConfigurationNode struct {
 	// Specifies a target that uses a Glue Data Catalog table.
 	CatalogTarget *BasicCatalogTarget `type:"structure"`
 
+	// Specifies a source generated with standard connection options.
+	ConnectorDataSource *ConnectorDataSource `type:"structure"`
+
+	// Specifies a target generated with standard connection options.
+	ConnectorDataTarget *ConnectorDataTarget `type:"structure"`
+
 	// Specifies a transform that uses custom code you provide to perform the data
 	// transformation. The output is a collection of DynamicFrames.
 	CustomCode *CustomCode `type:"structure"`
@@ -26019,6 +26025,16 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.CatalogTarget != nil {
 		if err := s.CatalogTarget.Validate(); err != nil {
 			invalidParams.AddNested("CatalogTarget", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConnectorDataSource != nil {
+		if err := s.ConnectorDataSource.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConnectorDataTarget != nil {
+		if err := s.ConnectorDataTarget.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorDataTarget", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.CustomCode != nil {
@@ -26381,6 +26397,18 @@ func (s *CodeGenConfigurationNode) SetCatalogSource(v *CatalogSource) *CodeGenCo
 // SetCatalogTarget sets the CatalogTarget field's value.
 func (s *CodeGenConfigurationNode) SetCatalogTarget(v *BasicCatalogTarget) *CodeGenConfigurationNode {
 	s.CatalogTarget = v
+	return s
+}
+
+// SetConnectorDataSource sets the ConnectorDataSource field's value.
+func (s *CodeGenConfigurationNode) SetConnectorDataSource(v *ConnectorDataSource) *CodeGenConfigurationNode {
+	s.ConnectorDataSource = v
+	return s
+}
+
+// SetConnectorDataTarget sets the ConnectorDataTarget field's value.
+func (s *CodeGenConfigurationNode) SetConnectorDataTarget(v *ConnectorDataTarget) *CodeGenConfigurationNode {
+	s.ConnectorDataTarget = v
 	return s
 }
 
@@ -28382,6 +28410,199 @@ func (s ConnectionsList) GoString() string {
 // SetConnections sets the Connections field's value.
 func (s *ConnectionsList) SetConnections(v []*string) *ConnectionsList {
 	s.Connections = v
+	return s
+}
+
+// Specifies a source generated with standard connection options.
+type ConnectorDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// The connectionType, as provided to the underlying Glue library. This node
+	// type supports the following connection types:
+	//
+	//    * bigquery
+	//
+	// ConnectionType is a required field
+	ConnectionType *string `type:"string" required:"true"`
+
+	// A map specifying connection options for the node. You can find standard connection
+	// options for the corresponding connection type in the Connection parameters
+	// (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-connect.html)
+	// section of the Glue documentation.
+	//
+	// Data is a required field
+	Data map[string]*string `type:"map" required:"true"`
+
+	// The name of this source node.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the data schema for this source.
+	OutputSchemas []*GlueSchema `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectorDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectorDataSource"}
+	if s.ConnectionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionType"))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionType sets the ConnectionType field's value.
+func (s *ConnectorDataSource) SetConnectionType(v string) *ConnectorDataSource {
+	s.ConnectionType = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *ConnectorDataSource) SetData(v map[string]*string) *ConnectorDataSource {
+	s.Data = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConnectorDataSource) SetName(v string) *ConnectorDataSource {
+	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *ConnectorDataSource) SetOutputSchemas(v []*GlueSchema) *ConnectorDataSource {
+	s.OutputSchemas = v
+	return s
+}
+
+// Specifies a target generated with standard connection options.
+type ConnectorDataTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The connectionType, as provided to the underlying Glue library. This node
+	// type supports the following connection types:
+	//
+	//    * bigquery
+	//
+	// ConnectionType is a required field
+	ConnectionType *string `type:"string" required:"true"`
+
+	// A map specifying connection options for the node. You can find standard connection
+	// options for the corresponding connection type in the Connection parameters
+	// (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-connect.html)
+	// section of the Glue documentation.
+	//
+	// Data is a required field
+	Data map[string]*string `type:"map" required:"true"`
+
+	// The nodes that are inputs to the data target.
+	Inputs []*string `min:"1" type:"list"`
+
+	// The name of this target node.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorDataTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectorDataTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectorDataTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectorDataTarget"}
+	if s.ConnectionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionType"))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionType sets the ConnectionType field's value.
+func (s *ConnectorDataTarget) SetConnectionType(v string) *ConnectorDataTarget {
+	s.ConnectionType = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *ConnectorDataTarget) SetData(v map[string]*string) *ConnectorDataTarget {
+	s.Data = v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *ConnectorDataTarget) SetInputs(v []*string) *ConnectorDataTarget {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConnectorDataTarget) SetName(v string) *ConnectorDataTarget {
+	s.Name = &v
 	return s
 }
 

@@ -40325,6 +40325,46 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy
 	//
+	// PERCENT_NON_TALK_TIME
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Percentage
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// PERCENT_TALK_TIME
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Percentage
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// PERCENT_TALK_TIME_AGENT
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Percentage
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// PERCENT_TALK_TIME_CUSTOMER
+	//
+	// This metric is available only for contacts analyzed by Contact Lens conversational
+	// analytics.
+	//
+	// Unit: Percentage
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
 	// SERVICE_LEVEL
 	//
 	// You can include up to 20 SERVICE_LEVEL metrics in a request.
