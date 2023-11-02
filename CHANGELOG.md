@@ -10,7 +10,7 @@ Release v1.47.2 (2023-11-02)
   * This release introduces Google BigQuery Source and Target in AWS Glue CodeGenConfigurationNode.
 * `service/network-firewall`: Updates service API and documentation
 * `service/quicksight`: Updates service API and documentation
-  * Got confirmed from qmeixua@ about custom week features, and tested locally with aws cli and java sdk that the subtypes are showing up.
+  * This release introduces Float Decimal Type as SubType in QuickSight SPICE datasets and Custom week start and Custom timezone options in Analysis and DashboardI
 
 ### SDK Enhancements
 * `aws/ec2metadata`: Added environment and shared config support for disabling IMDSv1 fallback.
