@@ -9008,6 +9008,18 @@ type NetworkConfiguration struct {
 
 	// Network configuration settings for inbound message traffic.
 	IngressConfiguration *IngressConfiguration `type:"structure"`
+
+	// App Runner provides you with the option to choose between Internet Protocol
+	// version 4 (IPv4) and dual-stack (IPv4 and IPv6) for your incoming public
+	// network configuration. This is an optional parameter. If you do not specify
+	// an IpAddressType, it defaults to select IPv4.
+	//
+	// Currently, App Runner supports dual-stack for only Public endpoint. Only
+	// IPv4 is supported for Private endpoint. If you update a service that's using
+	// dual-stack Public endpoint to a Private endpoint, your App Runner service
+	// will default to support only IPv4 for Private endpoint and fail to receive
+	// traffic originating from IPv6 endpoint.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
 }
 
 // String returns the string representation.
@@ -9052,6 +9064,12 @@ func (s *NetworkConfiguration) SetEgressConfiguration(v *EgressConfiguration) *N
 // SetIngressConfiguration sets the IngressConfiguration field's value.
 func (s *NetworkConfiguration) SetIngressConfiguration(v *IngressConfiguration) *NetworkConfiguration {
 	s.IngressConfiguration = v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *NetworkConfiguration) SetIpAddressType(v string) *NetworkConfiguration {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -11427,6 +11445,22 @@ func ImageRepositoryType_Values() []string {
 	return []string{
 		ImageRepositoryTypeEcr,
 		ImageRepositoryTypeEcrPublic,
+	}
+}
+
+const (
+	// IpAddressTypeIpv4 is a IpAddressType enum value
+	IpAddressTypeIpv4 = "IPV4"
+
+	// IpAddressTypeDualStack is a IpAddressType enum value
+	IpAddressTypeDualStack = "DUAL_STACK"
+)
+
+// IpAddressType_Values returns all elements of the IpAddressType enum
+func IpAddressType_Values() []string {
+	return []string{
+		IpAddressTypeIpv4,
+		IpAddressTypeDualStack,
 	}
 }
 

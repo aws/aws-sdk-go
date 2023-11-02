@@ -4271,7 +4271,9 @@
         "EvaluateDataQualityMultiFrame":{"shape":"EvaluateDataQualityMultiFrame"},
         "Recipe":{"shape":"Recipe"},
         "SnowflakeSource":{"shape":"SnowflakeSource"},
-        "SnowflakeTarget":{"shape":"SnowflakeTarget"}
+        "SnowflakeTarget":{"shape":"SnowflakeTarget"},
+        "ConnectorDataSource":{"shape":"ConnectorDataSource"},
+        "ConnectorDataTarget":{"shape":"ConnectorDataTarget"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -4657,6 +4659,39 @@
       "members":{
         "Connections":{"shape":"OrchestrationStringList"}
       }
+    },
+    "ConnectorDataSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ConnectionType",
+        "Data"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "ConnectionType":{"shape":"EnclosedInStringProperty"},
+        "Data":{"shape":"ConnectorOptions"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
+    "ConnectorDataTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ConnectionType",
+        "Data"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "ConnectionType":{"shape":"EnclosedInStringProperty"},
+        "Data":{"shape":"ConnectorOptions"},
+        "Inputs":{"shape":"OneInput"}
+      }
+    },
+    "ConnectorOptions":{
+      "type":"map",
+      "key":{"shape":"GenericString"},
+      "value":{"shape":"GenericString"}
     },
     "ContextWords":{
       "type":"list",

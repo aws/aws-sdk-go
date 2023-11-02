@@ -605,6 +605,14 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // If successful, this operation creates a new Fleet resource and places it
 // in NEW status, which prompts Amazon GameLift to initiate the fleet creation
 // workflow (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-all.html#fleets-creation-workflow).
+// You can track fleet creation by checking fleet status using DescribeFleetAttributes
+// and DescribeFleetLocationAttributes/, or by monitoring fleet creation events
+// using DescribeFleetEvents.
+//
+// When the fleet status changes to ACTIVE, you can enable automatic scaling
+// with PutScalingPolicy and set capacity for the home Region with UpdateFleetCapacity.
+// When the status of each remote location reaches ACTIVE, you can set capacity
+// by location using UpdateFleetCapacity.
 //
 // # Learn more
 //
@@ -2935,8 +2943,8 @@ func (c *GameLift) DeleteLocationRequest(input *DeleteLocationInput) (req *reque
 // Deletes a custom location.
 //
 // Before deleting a custom location, review any fleets currently using the
-// custom location and deregister the location if it is in use. For more information
-// see, DeregisterCompute (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeregisterCompute.html).
+// custom location and deregister the location if it is in use. For more information,
+// see DeregisterCompute (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeregisterCompute.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9858,6 +9866,10 @@ func (c *GameLift) RegisterComputeRequest(input *RegisterComputeInput) (req *req
 //     the request. Clients can retry such requests immediately or after a waiting
 //     period.
 //
+//   - LimitExceededException
+//     The requested operation would cause the resource to exceed the allowed service
+//     limit. Resolve the issue before retrying.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/RegisterCompute
 func (c *GameLift) RegisterCompute(input *RegisterComputeInput) (*RegisterComputeOutput, error) {
 	req, out := c.RegisterComputeRequest(input)
@@ -13150,8 +13162,12 @@ type AcceptMatchInput struct {
 	// A unique identifier for a player delivering the response. This parameter
 	// can include one or multiple player IDs.
 	//
+	// PlayerIds is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AcceptMatchInput's
+	// String and GoString methods.
+	//
 	// PlayerIds is a required field
-	PlayerIds []*string `type:"list" required:"true"`
+	PlayerIds []*string `type:"list" required:"true" sensitive:"true"`
 
 	// A unique identifier for a matchmaking ticket. The ticket must be in status
 	// REQUIRES_ACCEPTANCE; otherwise this request will fail.
@@ -13911,7 +13927,11 @@ type Compute struct {
 
 	// The IP address of a compute resource. Amazon GameLift requires a DNS name
 	// or IP address for a compute.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Compute's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of the custom location you added to the fleet that this compute
 	// resource resides in.
@@ -14415,8 +14435,8 @@ type CreateFleetInput struct {
 
 	// The unique identifier for a custom game server build to be deployed on fleet
 	// instances. You can use either the build ID or ARN. The build must be uploaded
-	// to Amazon GameLift and in READY status. This fleet property cannot be changed
-	// later.
+	// to Amazon GameLift and in READY status. This fleet property can't be changed
+	// after the fleet is created.
 	BuildId *string `type:"string"`
 
 	// Prompts Amazon GameLift to generate a TLS/SSL certificate for the fleet.
@@ -14462,19 +14482,27 @@ type CreateFleetInput struct {
 	// Indicates whether to use On-Demand or Spot instances for this fleet. By default,
 	// this property is set to ON_DEMAND. Learn more about when to use On-Demand
 	// versus Spot Instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot).
-	// This property cannot be changed after the fleet is created.
+	// This fleet property can't be changed after the fleet is created.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// A unique identifier for an IAM role that manages access to your Amazon Web
-	// Services services. With an instance role ARN set, any application that runs
-	// on an instance in this fleet can assume the role, including install scripts,
-	// server processes, and daemons (background processes). Create a role or look
-	// up a role's ARN by using the IAM dashboard (https://console.aws.amazon.com/iam/)
-	// in the Amazon Web Services Management Console. Learn more about using on-box
-	// credentials for your game servers at Access external resources from a game
-	// server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
-	// This property cannot be changed after the fleet is created.
+	// A unique identifier for an IAM role with access permissions to other Amazon
+	// Web Services services. Any application that runs on an instance in the fleet--including
+	// install scripts, server processes, and other processes--can use these permissions
+	// to interact with Amazon Web Services resources that you own or have access
+	// to. For more information about using the role with your game server builds,
+	// see Communicate with other Amazon Web Services resources from your fleets
+	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// This fleet property can't be changed after the fleet is created.
 	InstanceRoleArn *string `min:"1" type:"string"`
+
+	// Prompts Amazon GameLift to generate a shared credentials file for the IAM
+	// role defined in InstanceRoleArn. The shared credentials file is stored on
+	// each fleet instance and refreshed as needed. Use shared credentials for applications
+	// that are deployed along with the game server executable, if the game server
+	// is integrated with server SDK version 5.x. For more information about using
+	// shared credentials, see Communicate with other Amazon Web Services resources
+	// from your fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	InstanceRoleCredentialsProvider *string `type:"string" enum:"InstanceRoleCredentialsProvider"`
 
 	// A set of remote locations to deploy additional instances to and manage as
 	// part of the fleet. This parameter can only be used when creating fleets in
@@ -14547,7 +14575,7 @@ type CreateFleetInput struct {
 	// The unique identifier for a Realtime configuration script to be deployed
 	// on fleet instances. You can use either the script ID or ARN. Scripts must
 	// be uploaded to Amazon GameLift prior to creating the fleet. This fleet property
-	// cannot be changed later.
+	// can't be changed after the fleet is created.
 	ScriptId *string `type:"string"`
 
 	// This parameter is no longer used. Specify server launch parameters using
@@ -14719,6 +14747,12 @@ func (s *CreateFleetInput) SetFleetType(v string) *CreateFleetInput {
 // SetInstanceRoleArn sets the InstanceRoleArn field's value.
 func (s *CreateFleetInput) SetInstanceRoleArn(v string) *CreateFleetInput {
 	s.InstanceRoleArn = &v
+	return s
+}
+
+// SetInstanceRoleCredentialsProvider sets the InstanceRoleCredentialsProvider field's value.
+func (s *CreateFleetInput) SetInstanceRoleCredentialsProvider(v string) *CreateFleetInput {
+	s.InstanceRoleCredentialsProvider = &v
 	return s
 }
 
@@ -16264,8 +16298,12 @@ type CreatePlayerSessionInput struct {
 
 	// A unique identifier for a player. Player IDs are developer-defined.
 	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePlayerSessionInput's
+	// String and GoString methods.
+	//
 	// PlayerId is a required field
-	PlayerId *string `min:"1" type:"string" required:"true"`
+	PlayerId *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -16376,8 +16414,12 @@ type CreatePlayerSessionsInput struct {
 
 	// List of unique identifiers for the players to be added.
 	//
+	// PlayerIds is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePlayerSessionsInput's
+	// String and GoString methods.
+	//
 	// PlayerIds is a required field
-	PlayerIds []*string `min:"1" type:"list" required:"true"`
+	PlayerIds []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -20686,7 +20728,11 @@ type DescribePlayerSessionsInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// A unique identifier for a player to retrieve player sessions for.
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribePlayerSessionsInput's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// A unique identifier for a player session to retrieve.
 	PlayerSessionId *string `type:"string"`
@@ -21270,7 +21316,11 @@ type DesiredPlayerSession struct {
 	PlayerData *string `min:"1" type:"string"`
 
 	// A unique identifier for a player to associate with the player session.
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DesiredPlayerSession's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -21814,18 +21864,26 @@ type FleetAttributes struct {
 	// Indicates whether to use On-Demand or Spot instances for this fleet. By default,
 	// this property is set to ON_DEMAND. Learn more about when to use On-Demand
 	// versus Spot Instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot).
-	// This property cannot be changed after the fleet is created.
+	// This fleet property can't be changed after the fleet is created.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// A unique identifier for an IAM role that manages access to your Amazon Web
-	// Services services. With an instance role ARN set, any application that runs
-	// on an instance in this fleet can assume the role, including install scripts,
-	// server processes, and daemons (background processes). Create a role or look
-	// up a role's ARN by using the IAM dashboard (https://console.aws.amazon.com/iam/)
-	// in the Amazon Web Services Management Console. Learn more about using on-box
-	// credentials for your game servers at Access external resources from a game
-	// server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// A unique identifier for an IAM role with access permissions to other Amazon
+	// Web Services services. Any application that runs on an instance in the fleet--including
+	// install scripts, server processes, and other processes--can use these permissions
+	// to interact with Amazon Web Services resources that you own or have access
+	// to. For more information about using the role with your game server builds,
+	// see Communicate with other Amazon Web Services resources from your fleets
+	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
 	InstanceRoleArn *string `min:"1" type:"string"`
+
+	// Indicates that fleet instances maintain a shared credentials file for the
+	// IAM role defined in InstanceRoleArn. Shared credentials allow applications
+	// that are deployed with the game server executable to communicate with other
+	// Amazon Web Services resources. This property is used only when the game server
+	// is integrated with the server SDK version 5.x. For more information about
+	// using shared credentials, see Communicate with other Amazon Web Services
+	// resources from your fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	InstanceRoleCredentialsProvider *string `type:"string" enum:"InstanceRoleCredentialsProvider"`
 
 	// The Amazon EC2 instance type that determines the computing resources of each
 	// instance in the fleet. Instance type defines the CPU, memory, storage, and
@@ -22001,6 +22059,12 @@ func (s *FleetAttributes) SetFleetType(v string) *FleetAttributes {
 // SetInstanceRoleArn sets the InstanceRoleArn field's value.
 func (s *FleetAttributes) SetInstanceRoleArn(v string) *FleetAttributes {
 	s.InstanceRoleArn = &v
+	return s
+}
+
+// SetInstanceRoleCredentialsProvider sets the InstanceRoleCredentialsProvider field's value.
+func (s *FleetAttributes) SetInstanceRoleCredentialsProvider(v string) *FleetAttributes {
+	s.InstanceRoleCredentialsProvider = &v
 	return s
 }
 
@@ -22959,7 +23023,11 @@ type GameSession struct {
 
 	// The IP address of the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GameSession's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The fleet location where the game session is running. This value might specify
 	// the fleet's home Region or a remote location. Location is expressed as an
@@ -22987,7 +23055,11 @@ type GameSession struct {
 
 	// The port number for the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number.
-	Port *int64 `min:"1" type:"integer"`
+	//
+	// Port is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GameSession's
+	// String and GoString methods.
+	Port *int64 `min:"1" type:"integer" sensitive:"true"`
 
 	// Current status of the game session. A game session must have an ACTIVE status
 	// to have player sessions.
@@ -23160,7 +23232,11 @@ type GameSessionConnectionInfo struct {
 
 	// The IP address of the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GameSessionConnectionInfo's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// A collection of player session IDs, one for each player ID that was included
 	// in the original matchmaking request.
@@ -23394,7 +23470,11 @@ type GameSessionPlacement struct {
 	// The IP address of the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number. This value isn't
 	// final until placement status is FULFILLED.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GameSessionPlacement's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// Information on the matchmaking process for this game. Data is in JSON syntax,
 	// formatted as a string. It identifies the matchmaking configuration used to
@@ -23424,7 +23504,11 @@ type GameSessionPlacement struct {
 	// The port number for the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number. This value isn't
 	// final until placement status is FULFILLED.
-	Port *int64 `min:"1" type:"integer"`
+	//
+	// Port is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GameSessionPlacement's
+	// String and GoString methods.
+	Port *int64 `min:"1" type:"integer" sensitive:"true"`
 
 	// Time stamp indicating when this request was placed in the queue. Format is
 	// a number expressed in Unix time as milliseconds (for example "1469498468.057").
@@ -24313,7 +24397,11 @@ type Instance struct {
 	InstanceId *string `type:"string"`
 
 	// IP address that is assigned to the instance.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Instance's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The fleet location of the instance, expressed as an Amazon Web Services Region
 	// code, such as us-west-2.
@@ -24439,7 +24527,11 @@ type InstanceAccess struct {
 	InstanceId *string `type:"string"`
 
 	// IP address assigned to the instance.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InstanceAccess's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// Operating system that is running on the instance.
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
@@ -24887,15 +24979,23 @@ type IpPermission struct {
 	//
 	// For fleets using Windows builds, only ports 1026-60000 are valid.
 	//
+	// FromPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpPermission's
+	// String and GoString methods.
+	//
 	// FromPort is a required field
-	FromPort *int64 `min:"1" type:"integer" required:"true"`
+	FromPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
 
 	// A range of allowed IP addresses. This value must be expressed in CIDR notation.
 	// Example: "000.000.000.000/[subnet mask]" or optionally the shortened version
 	// "0.0.0.0/[subnet mask]".
 	//
+	// IpRange is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpPermission's
+	// String and GoString methods.
+	//
 	// IpRange is a required field
-	IpRange *string `type:"string" required:"true"`
+	IpRange *string `type:"string" required:"true" sensitive:"true"`
 
 	// The network communication protocol used by the fleet.
 	//
@@ -24909,8 +25009,12 @@ type IpPermission struct {
 	//
 	// For fleets using Windows builds, only ports 1026-60000 are valid.
 	//
+	// ToPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IpPermission's
+	// String and GoString methods.
+	//
 	// ToPort is a required field
-	ToPort *int64 `min:"1" type:"integer" required:"true"`
+	ToPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -26381,7 +26485,11 @@ type MatchedPlayerSession struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for a player
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MatchedPlayerSession's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// A unique identifier for a player session
 	PlayerSessionId *string `type:"string"`
@@ -27052,7 +27160,11 @@ type PlacedPlayerSession struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for a player that is associated with this player session.
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PlacedPlayerSession's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// A unique identifier for a player session.
 	PlayerSessionId *string `type:"string"`
@@ -27114,7 +27226,11 @@ type Player struct {
 	PlayerAttributes map[string]*AttributeValue `type:"map"`
 
 	// A unique identifier for a player
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Player's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// Name of the team that the player is assigned to in a match. Team names are
 	// defined in a matchmaking rule set.
@@ -27202,7 +27318,11 @@ type PlayerLatency struct {
 	LatencyInMilliseconds *float64 `type:"float"`
 
 	// A unique identifier for a player associated with the latency data.
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PlayerLatency's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// Name of the Region that is associated with the latency value.
 	RegionIdentifier *string `min:"1" type:"string"`
@@ -27355,21 +27475,33 @@ type PlayerSession struct {
 
 	// The IP address of the game session. To connect to a Amazon GameLift game
 	// server, an app needs both the IP address and port number.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PlayerSession's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// Developer-defined information related to a player. Amazon GameLift does not
 	// use this data, so it can be formatted as needed for use in the game.
 	PlayerData *string `min:"1" type:"string"`
 
 	// A unique identifier for a player that is associated with this player session.
-	PlayerId *string `min:"1" type:"string"`
+	//
+	// PlayerId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PlayerSession's
+	// String and GoString methods.
+	PlayerId *string `min:"1" type:"string" sensitive:"true"`
 
 	// A unique identifier for a player session.
 	PlayerSessionId *string `type:"string"`
 
 	// Port number for the game session. To connect to a Amazon GameLift server
 	// process, an app needs both the IP address and port number.
-	Port *int64 `min:"1" type:"integer"`
+	//
+	// Port is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PlayerSession's
+	// String and GoString methods.
+	Port *int64 `min:"1" type:"integer" sensitive:"true"`
 
 	// Current status of the player session.
 	//
@@ -27833,7 +27965,11 @@ type RegisterComputeInput struct {
 
 	// The IP address of the compute resource. Amazon GameLift requires either a
 	// DNS name or IP address.
-	IpAddress *string `min:"1" type:"string"`
+	//
+	// IpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterComputeInput's
+	// String and GoString methods.
+	IpAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of a custom location to associate with the compute resource being
 	// registered.
@@ -34697,6 +34833,18 @@ const (
 func GameSessionStatusReason_Values() []string {
 	return []string{
 		GameSessionStatusReasonInterrupted,
+	}
+}
+
+const (
+	// InstanceRoleCredentialsProviderSharedCredentialFile is a InstanceRoleCredentialsProvider enum value
+	InstanceRoleCredentialsProviderSharedCredentialFile = "SHARED_CREDENTIAL_FILE"
+)
+
+// InstanceRoleCredentialsProvider_Values returns all elements of the InstanceRoleCredentialsProvider enum
+func InstanceRoleCredentialsProvider_Values() []string {
+	return []string{
+		InstanceRoleCredentialsProviderSharedCredentialFile,
 	}
 }
 

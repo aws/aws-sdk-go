@@ -1276,6 +1276,13 @@
       },
       "exception":true
     },
+    "IpAddressType":{
+      "type":"string",
+      "enum":[
+        "IPV4",
+        "DUAL_STACK"
+      ]
+    },
     "IsDefault":{"type":"boolean"},
     "KmsKeyArn":{
       "type":"string",
@@ -1456,7 +1463,8 @@
       "type":"structure",
       "members":{
         "EgressConfiguration":{"shape":"EgressConfiguration"},
-        "IngressConfiguration":{"shape":"IngressConfiguration"}
+        "IngressConfiguration":{"shape":"IngressConfiguration"},
+        "IpAddressType":{"shape":"IpAddressType"}
       }
     },
     "NextToken":{

@@ -613,9 +613,9 @@ func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateT
 // CreateTLSInspectionConfiguration API operation for AWS Network Firewall.
 //
 // Creates an Network Firewall TLS inspection configuration. A TLS inspection
-// configuration contains the Certificate Manager certificate associations that
-// Network Firewall uses to decrypt and re-encrypt traffic traveling through
-// your firewall.
+// configuration contains Certificate Manager certificate associations between
+// and the scope configurations that Network Firewall uses to decrypt and re-encrypt
+// traffic traveling through your firewall.
 //
 // After you create a TLS inspection configuration, you can associate it with
 // a new firewall policy.
@@ -4192,6 +4192,83 @@ func (s *Address) SetAddressDefinition(v string) *Address {
 	return s
 }
 
+// The analysis result for Network Firewall's stateless rule group analyzer.
+// Every time you call CreateRuleGroup, UpdateRuleGroup, or DescribeRuleGroup
+// on a stateless rule group, Network Firewall analyzes the stateless rule groups
+// in your account and identifies the rules that might adversely effect your
+// firewall's functionality. For example, if Network Firewall detects a rule
+// that's routing traffic asymmetrically, which impacts the service's ability
+// to properly process traffic, the service includes the rule in a list of analysis
+// results.
+type AnalysisResult struct {
+	_ struct{} `type:"structure"`
+
+	// Provides analysis details for the identified rule.
+	AnalysisDetail *string `type:"string"`
+
+	// The priority number of the stateless rules identified in the analysis.
+	IdentifiedRuleIds []*string `type:"list"`
+
+	// The types of rule configurations that Network Firewall analyzes your rule
+	// groups for. Network Firewall analyzes stateless rule groups for the following
+	// types of rule configurations:
+	//
+	//    * STATELESS_RULE_FORWARDING_ASYMMETRICALLY Cause: One or more stateless
+	//    rules with the action pass or forward are forwarding traffic asymmetrically.
+	//    Specifically, the rule's set of source IP addresses or their associated
+	//    port numbers, don't match the set of destination IP addresses or their
+	//    associated port numbers. To mitigate: Make sure that there's an existing
+	//    return path. For example, if the rule allows traffic from source 10.1.0.0/24
+	//    to destination 20.1.0.0/24, you should allow return traffic from source
+	//    20.1.0.0/24 to destination 10.1.0.0/24.
+	//
+	//    * STATELESS_RULE_CONTAINS_TCP_FLAGS Cause: At least one stateless rule
+	//    with the action pass orforward contains TCP flags that are inconsistent
+	//    in the forward and return directions. To mitigate: Prevent asymmetric
+	//    routing issues caused by TCP flags by following these actions: Remove
+	//    unnecessary TCP flag inspections from the rules. If you need to inspect
+	//    TCP flags, check that the rules correctly account for changes in TCP flags
+	//    throughout the TCP connection cycle, for example SYN and ACK flags used
+	//    in a 3-way TCP handshake.
+	IdentifiedType *string `type:"string" enum:"IdentifiedType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisResult) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisDetail sets the AnalysisDetail field's value.
+func (s *AnalysisResult) SetAnalysisDetail(v string) *AnalysisResult {
+	s.AnalysisDetail = &v
+	return s
+}
+
+// SetIdentifiedRuleIds sets the IdentifiedRuleIds field's value.
+func (s *AnalysisResult) SetIdentifiedRuleIds(v []*string) *AnalysisResult {
+	s.IdentifiedRuleIds = v
+	return s
+}
+
+// SetIdentifiedType sets the IdentifiedType field's value.
+func (s *AnalysisResult) SetIdentifiedType(v string) *AnalysisResult {
+	s.IdentifiedType = &v
+	return s
+}
+
 type AssociateFirewallPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4723,12 +4800,12 @@ type CheckCertificateRevocationStatusActions struct {
 	//    * PASS - Allow the connection to continue, and pass subsequent packets
 	//    to the stateful engine for inspection.
 	//
-	//    * DROP - Network Firewall fails closed and drops all subsequent traffic.
+	//    * DROP - Network Firewall closes the connection and drops subsequent packets
+	//    for that connection.
 	//
-	//    * REJECT - Network Firewall sends a TCP reject packet back to your client
-	//    so that the client can immediately establish a new session. Network Firewall
-	//    then fails closed and drops all subsequent traffic. REJECT is available
-	//    only for TCP traffic.
+	//    * REJECT - Network Firewall sends a TCP reject packet back to your client.
+	//    The service closes the connection and drops subsequent packets for that
+	//    connection. REJECT is available only for TCP traffic.
 	RevokedStatusAction *string `type:"string" enum:"RevocationCheckAction"`
 
 	// Configures how Network Firewall processes traffic when it determines that
@@ -4740,12 +4817,12 @@ type CheckCertificateRevocationStatusActions struct {
 	//    * PASS - Allow the connection to continue, and pass subsequent packets
 	//    to the stateful engine for inspection.
 	//
-	//    * DROP - Network Firewall fails closed and drops all subsequent traffic.
+	//    * DROP - Network Firewall closes the connection and drops subsequent packets
+	//    for that connection.
 	//
-	//    * REJECT - Network Firewall sends a TCP reject packet back to your client
-	//    so that the client can immediately establish a new session. Network Firewall
-	//    then fails closed and drops all subsequent traffic. REJECT is available
-	//    only for TCP traffic.
+	//    * REJECT - Network Firewall sends a TCP reject packet back to your client.
+	//    The service closes the connection and drops subsequent packets for that
+	//    connection. REJECT is available only for TCP traffic.
 	UnknownStatusAction *string `type:"string" enum:"RevocationCheckAction"`
 }
 
@@ -5209,6 +5286,13 @@ func (s *CreateFirewallPolicyOutput) SetUpdateToken(v string) *CreateFirewallPol
 type CreateRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether you want Network Firewall to analyze the stateless rules
+	// in the rule group for rule behavior such as asymmetric routing. If set to
+	// TRUE, Network Firewall runs the analysis and then creates the rule group
+	// for you. To run the stateless rule group analyzer without creating the rule
+	// group, set DryRun to TRUE.
+	AnalyzeRuleGroup *bool `type:"boolean"`
+
 	// The maximum operating resources that this rule group can use. Rule group
 	// capacity is fixed at creation. When you update a rule group, you are limited
 	// to this capacity. When you reference a rule group from a firewall policy,
@@ -5379,6 +5463,12 @@ func (s *CreateRuleGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnalyzeRuleGroup sets the AnalyzeRuleGroup field's value.
+func (s *CreateRuleGroupInput) SetAnalyzeRuleGroup(v bool) *CreateRuleGroupInput {
+	s.AnalyzeRuleGroup = &v
+	return s
 }
 
 // SetCapacity sets the Capacity field's value.
@@ -6696,6 +6786,11 @@ func (s *DescribeResourcePolicyOutput) SetPolicy(v string) *DescribeResourcePoli
 type DescribeRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether you want Network Firewall to analyze the stateless rules
+	// in the rule group for rule behavior such as asymmetric routing. If set to
+	// TRUE, Network Firewall runs the analysis.
+	AnalyzeRuleGroup *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the rule group.
 	//
 	// You must specify the ARN or the name, and you can specify both.
@@ -6747,6 +6842,12 @@ func (s *DescribeRuleGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnalyzeRuleGroup sets the AnalyzeRuleGroup field's value.
+func (s *DescribeRuleGroupInput) SetAnalyzeRuleGroup(v bool) *DescribeRuleGroupInput {
+	s.AnalyzeRuleGroup = &v
+	return s
 }
 
 // SetRuleGroupArn sets the RuleGroupArn field's value.
@@ -10594,7 +10695,9 @@ type RuleGroup struct {
 
 	// Additional options governing how Network Firewall handles stateful rules.
 	// The policies where you use your stateful rule group must have stateful rule
-	// options settings that are compatible with these settings.
+	// options settings that are compatible with these settings. Some limitations
+	// apply; for more information, see Strict evaluation order (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-limitations-caveats.html)
+	// in the Network Firewall Developer Guide.
 	StatefulRuleOptions *StatefulRuleOptions `type:"structure"`
 }
 
@@ -10718,6 +10821,15 @@ func (s *RuleGroupMetadata) SetName(v string) *RuleGroupMetadata {
 type RuleGroupResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The list of analysis results for AnalyzeRuleGroup. If you set AnalyzeRuleGroup
+	// to TRUE in CreateRuleGroup, UpdateRuleGroup, or DescribeRuleGroup, Network
+	// Firewall analyzes the rule group and identifies the rules that might adversely
+	// effect your firewall's functionality. For example, if Network Firewall detects
+	// a rule that's routing traffic asymmetrically, which impacts the service's
+	// ability to properly process traffic, the service includes the rule in the
+	// list of analysis results.
+	AnalysisResults []*AnalysisResult `type:"list"`
+
 	// The maximum operating resources that this rule group can use. Rule group
 	// capacity is fixed at creation. When you update a rule group, you are limited
 	// to this capacity. When you reference a rule group from a firewall policy,
@@ -10803,6 +10915,12 @@ func (s RuleGroupResponse) String() string {
 // value will be replaced with "sensitive".
 func (s RuleGroupResponse) GoString() string {
 	return s.String()
+}
+
+// SetAnalysisResults sets the AnalysisResults field's value.
+func (s *RuleGroupResponse) SetAnalysisResults(v []*AnalysisResult) *RuleGroupResponse {
+	s.AnalysisResults = v
+	return s
 }
 
 // SetCapacity sets the Capacity field's value.
@@ -11026,13 +11144,16 @@ type RulesSource struct {
 	// Stateful inspection criteria for a domain list rule group.
 	RulesSourceList *RulesSourceList `type:"structure"`
 
-	// Stateful inspection criteria, provided in Suricata compatible intrusion prevention
-	// system (IPS) rules. Suricata is an open-source network IPS that includes
-	// a standard rule-based language for network traffic inspection.
+	// Stateful inspection criteria, provided in Suricata compatible rules. Suricata
+	// is an open-source threat detection framework that includes a standard rule-based
+	// language for network traffic inspection.
 	//
 	// These rules contain the inspection criteria and the action to take for traffic
 	// that matches the criteria, so this type of rule group doesn't have a separate
 	// action setting.
+	//
+	// You can't use the priority keyword if the RuleOrder option in StatefulRuleOptions
+	// is set to STRICT_ORDER.
 	RulesString *string `type:"string"`
 
 	// An array of individual stateful rules inspection criteria to be used together
@@ -11271,8 +11392,8 @@ func (s *ServerCertificate) SetResourceArn(v string) *ServerCertificate {
 // uses to decrypt and re-encrypt traffic using a TLSInspectionConfiguration.
 // You can configure ServerCertificates for inbound SSL/TLS inspection, a CertificateAuthorityArn
 // for outbound SSL/TLS inspection, or both. For information about working with
-// certificates for TLS inspection, see Requirements for using SSL/TLS server
-// certficiates with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
+// certificates for TLS inspection, see Using SSL/TLS server certficiates with
+// TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
 // in the Network Firewall Developer Guide.
 //
 // If a server certificate that's associated with your TLSInspectionConfiguration
@@ -11281,7 +11402,7 @@ type ServerCertificateConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the imported certificate authority (CA)
-	// certificate configured in Certificate Manager (ACM) to use for outbound SSL/TLS
+	// certificate within Certificate Manager (ACM) to use for outbound SSL/TLS
 	// inspection.
 	//
 	// The following limitations apply:
@@ -11291,8 +11412,8 @@ type ServerCertificateConfiguration struct {
 	//
 	//    * You can't use certificates issued by Private Certificate Authority.
 	//
-	// For more information about the certificate requirements for outbound inspection,
-	// see Requirements for using SSL/TLS certificates with TLS inspection configurations
+	// For more information about configuring certificates for outbound inspection,
+	// see Using SSL/TLS certificates with certificates with TLS inspection configurations
 	// (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
 	// in the Network Firewall Developer Guide.
 	//
@@ -11304,15 +11425,14 @@ type ServerCertificateConfiguration struct {
 	// When enabled, Network Firewall checks if the server certificate presented
 	// by the server in the SSL/TLS connection has a revoked or unkown status. If
 	// the certificate has an unknown or revoked status, you must specify the actions
-	// that Network Firewall takes on outbound traffic. To use this option, you
-	// must specify a CertificateAuthorityArn in ServerCertificateConfiguration.
+	// that Network Firewall takes on outbound traffic. To check the certificate
+	// revocation status, you must also specify a CertificateAuthorityArn in ServerCertificateConfiguration.
 	CheckCertificateRevocationStatus *CheckCertificateRevocationStatusActions `type:"structure"`
 
 	// A list of scopes.
 	Scopes []*ServerCertificateScope `type:"list"`
 
-	// The list of a server certificate configuration's Certificate Manager certificates,
-	// used for inbound SSL/TLS inspection.
+	// The list of server certificates to use for inbound SSL/TLS inspection.
 	ServerCertificates []*ServerCertificate `type:"list"`
 }
 
@@ -11593,10 +11713,15 @@ type StatefulEngineOptions struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates how to manage the order of stateful rule evaluation for the policy.
-	// DEFAULT_ACTION_ORDER is the default behavior. Stateful rules are provided
-	// to the rule engine as Suricata compatible strings, and Suricata evaluates
-	// them based on certain settings. For more information, see Evaluation order
-	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
+	// STRICT_ORDER is the default and recommended option. With STRICT_ORDER, provide
+	// your rules in the order that you want them to be evaluated. You can then
+	// choose one or more default actions for packets that don't match any rules.
+	// Choose STRICT_ORDER to have the stateful rules engine determine the evaluation
+	// order of your rules. The default action for this rule order is PASS, followed
+	// by DROP, REJECT, and ALERT actions. Stateful rules are provided to the rule
+	// engine as Suricata compatible strings, and Suricata evaluates them based
+	// on your settings. For more information, see Evaluation order for stateful
+	// rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
 	// in the Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
 
@@ -11674,11 +11799,11 @@ type StatefulRule struct {
 	//    sends an alert log message, if alert logging is configured in the Firewall
 	//    LoggingConfiguration.
 	//
-	//    * ALERT - Permits the packets to go to the intended destination and sends
-	//    an alert log message, if alert logging is configured in the Firewall LoggingConfiguration.
-	//    You can use this action to test a rule that you intend to use to drop
-	//    traffic. You can enable the rule with ALERT action, verify in the logs
-	//    that the rule is filtering as you want, then change the action to DROP.
+	//    * ALERT - Sends an alert log message, if alert logging is configured in
+	//    the Firewall LoggingConfiguration. You can use this action to test a rule
+	//    that you intend to use to drop traffic. You can enable the rule with ALERT
+	//    action, verify in the logs that the rule is filtering as you want, then
+	//    change the action to DROP.
 	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
@@ -14075,6 +14200,13 @@ func (s *UpdateLoggingConfigurationOutput) SetLoggingConfiguration(v *LoggingCon
 type UpdateRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether you want Network Firewall to analyze the stateless rules
+	// in the rule group for rule behavior such as asymmetric routing. If set to
+	// TRUE, Network Firewall runs the analysis and then updates the rule group
+	// for you. To run the stateless rule group analyzer without updating the rule
+	// group, set DryRun to TRUE.
+	AnalyzeRuleGroup *bool `type:"boolean"`
+
 	// A description of the rule group.
 	Description *string `type:"string"`
 
@@ -14204,6 +14336,12 @@ func (s *UpdateRuleGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnalyzeRuleGroup sets the AnalyzeRuleGroup field's value.
+func (s *UpdateRuleGroupInput) SetAnalyzeRuleGroup(v bool) *UpdateRuleGroupInput {
+	s.AnalyzeRuleGroup = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -14821,6 +14959,22 @@ func IPAddressType_Values() []string {
 		IPAddressTypeDualstack,
 		IPAddressTypeIpv4,
 		IPAddressTypeIpv6,
+	}
+}
+
+const (
+	// IdentifiedTypeStatelessRuleForwardingAsymmetrically is a IdentifiedType enum value
+	IdentifiedTypeStatelessRuleForwardingAsymmetrically = "STATELESS_RULE_FORWARDING_ASYMMETRICALLY"
+
+	// IdentifiedTypeStatelessRuleContainsTcpFlags is a IdentifiedType enum value
+	IdentifiedTypeStatelessRuleContainsTcpFlags = "STATELESS_RULE_CONTAINS_TCP_FLAGS"
+)
+
+// IdentifiedType_Values returns all elements of the IdentifiedType enum
+func IdentifiedType_Values() []string {
+	return []string{
+		IdentifiedTypeStatelessRuleForwardingAsymmetrically,
+		IdentifiedTypeStatelessRuleContainsTcpFlags,
 	}
 }
 

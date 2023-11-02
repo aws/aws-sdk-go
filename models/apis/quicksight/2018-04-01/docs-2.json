@@ -1058,6 +1058,17 @@
         "StartAssetBundleExportJobRequest$ResourceArns": "<p>An array of resource ARNs to export. The following resources are supported.</p> <ul> <li> <p> <code>Analysis</code> </p> </li> <li> <p> <code>Dashboard</code> </p> </li> <li> <p> <code>DataSet</code> </p> </li> <li> <p> <code>DataSource</code> </p> </li> <li> <p> <code>RefreshSchedule</code> </p> </li> <li> <p> <code>Theme</code> </p> </li> <li> <p> <code>VPCConnection</code> </p> </li> </ul> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>"
       }
     },
+    "AssetOptions": {
+      "base": "<p>An array of analysis level configurations.</p>",
+      "refs": {
+        "Analysis$Options": null,
+        "AnalysisDefinition$Options": "<p>An array of option definitions for an analysis.</p>",
+        "DashboardVersion$Options": null,
+        "DashboardVersionDefinition$Options": "<p>An array of option definitions for a dashboard.</p>",
+        "TemplateVersion$Options": null,
+        "TemplateVersionDefinition$Options": "<p>An array of option definitions for a template.</p>"
+      }
+    },
     "AssignmentStatus": {
       "base": null,
       "refs": {
@@ -1910,11 +1921,19 @@
         "TopicColumn$ColumnDataRole": "<p>The role of the column in the data. Valid values are <code>DIMENSION</code> and <code>MEASURE</code>.</p>"
       }
     },
+    "ColumnDataSubType": {
+      "base": null,
+      "refs": {
+        "CastColumnTypeOperation$SubType": "<p>The sub data type of the new column. Sub types are only available for decimal columns that are part of a SPICE dataset.</p>",
+        "InputColumn$SubType": "<p>The sub data type of the column. Sub types are only available for decimal columns that are part of a SPICE dataset.</p>",
+        "OutputColumn$SubType": "<p>The sub data type of the column.</p>"
+      }
+    },
     "ColumnDataType": {
       "base": null,
       "refs": {
         "CastColumnTypeOperation$NewColumnType": "<p>New column data type.</p>",
-        "OutputColumn$Type": "<p>The type.</p>"
+        "OutputColumn$Type": "<p>The data type of the column.</p>"
       }
     },
     "ColumnDescription": {
@@ -2073,7 +2092,7 @@
         "ColumnIdentifier$ColumnName": "<p>The name of the column.</p>",
         "ColumnList$member": null,
         "InputColumn$Name": "<p>The name of this column in the underlying data source.</p>",
-        "OutputColumn$Name": "<p>A display name for the dataset.</p>",
+        "OutputColumn$Name": "<p>The display name of the column..</p>",
         "RenameColumnOperation$ColumnName": "<p>The name of the column to be renamed.</p>",
         "RenameColumnOperation$NewColumnName": "<p>The new name for the column.</p>",
         "TagColumnOperation$ColumnName": "<p>The column that this operation acts on.</p>",
@@ -3412,6 +3431,12 @@
       "base": null,
       "refs": {
         "ScheduleRefreshOnEntity$DayOfMonth": "<p>The day of the month that you want to schedule refresh on.</p>"
+      }
+    },
+    "DayOfTheWeek": {
+      "base": null,
+      "refs": {
+        "AssetOptions$WeekStart": "<p>Determines the week start day for an analysis.</p>"
       }
     },
     "DayOfWeek": {
@@ -10150,6 +10175,7 @@
         "AssetBundleImportJobRefreshScheduleOverrideParameters$ScheduleId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource being overridden. This structure is used together with the <code>DataSetId</code> structure.</p>",
         "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
         "AssetBundleImportSourceDescription$Body": "<p>An HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for five minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
+        "AssetOptions$Timezone": "<p>Determines the timezone for the analysis.</p>",
         "AttributeAggregationFunction$ValueForMultipleValues": "<p>Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple values for the field used by the aggregation, the value for this property will be returned instead. Defaults to '*'.</p>",
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",

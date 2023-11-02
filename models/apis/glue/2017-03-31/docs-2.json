@@ -1451,6 +1451,25 @@
         "Session$Connections": "<p>The number of connections used for the session.</p>"
       }
     },
+    "ConnectorDataSource": {
+      "base": "<p>Specifies a source generated with standard connection options.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$ConnectorDataSource": "<p>Specifies a source generated with standard connection options.</p>"
+      }
+    },
+    "ConnectorDataTarget": {
+      "base": "<p>Specifies a target generated with standard connection options.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$ConnectorDataTarget": "<p>Specifies a target generated with standard connection options.</p>"
+      }
+    },
+    "ConnectorOptions": {
+      "base": null,
+      "refs": {
+        "ConnectorDataSource$Data": "<p>A map specifying connection options for the node. You can find standard connection options for the corresponding connection type in the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-connect.html\"> Connection parameters</a> section of the Glue documentation.</p>",
+        "ConnectorDataTarget$Data": "<p>A map specifying connection options for the node. You can find standard connection options for the corresponding connection type in the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-connect.html\"> Connection parameters</a> section of the Glue documentation.</p>"
+      }
+    },
     "ContextWords": {
       "base": null,
       "refs": {
@@ -2798,6 +2817,8 @@
         "CatalogKinesisSource$Database": "<p>The name of the database to read from.</p>",
         "CatalogSource$Database": "<p>The name of the database to read from.</p>",
         "CatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
+        "ConnectorDataSource$ConnectionType": "<p>The <code>connectionType</code>, as provided to the underlying Glue library. This node type supports the following connection types: </p> <ul> <li> <p> <code>bigquery</code> </p> </li> </ul>",
+        "ConnectorDataTarget$ConnectionType": "<p>The <code>connectionType</code>, as provided to the underlying Glue library. This node type supports the following connection types: </p> <ul> <li> <p> <code>bigquery</code> </p> </li> </ul>",
         "CustomCode$ClassName": "<p>The name defined for the custom code node class.</p>",
         "DQDLAliases$value": null,
         "DQResultsPublishingOptions$ResultsS3Prefix": "<p>The Amazon S3 prefix prepended to the results.</p>",
@@ -3317,6 +3338,8 @@
         "AmazonRedshiftNodeData$StagingTable": "<p>The name of the temporary staging table that is used when doing a MERGE or APPEND with upsert.</p>",
         "Blueprint$BlueprintLocation": "<p>Specifies the path in Amazon S3 where the blueprint is published.</p>",
         "Blueprint$BlueprintServiceLocation": "<p>Specifies a path in Amazon S3 where the blueprint is copied when you call <code>CreateBlueprint/UpdateBlueprint</code> to register the blueprint in Glue.</p>",
+        "ConnectorOptions$key": null,
+        "ConnectorOptions$value": null,
         "CrawlsFilter$FieldValue": "<p>The value provided for comparison on the crawl field. </p>",
         "CreateDevEndpointRequest$EndpointName": "<p>The name to be assigned to the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointRequest$SubnetId": "<p>The subnet ID for the new <code>DevEndpoint</code> to use.</p>",
@@ -4153,6 +4176,7 @@
         "AthenaConnectorSource$OutputSchemas": "<p>Specifies the data schema for the custom Athena source.</p>",
         "CatalogDeltaSource$OutputSchemas": "<p>Specifies the data schema for the Delta Lake source.</p>",
         "CatalogHudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
+        "ConnectorDataSource$OutputSchemas": "<p>Specifies the data schema for this source.</p>",
         "CustomCode$OutputSchemas": "<p>Specifies the data schema for the custom code transform.</p>",
         "DynamicTransform$OutputSchemas": "<p>Specifies the data schema for the dynamic transform.</p>",
         "JDBCConnectorSource$OutputSchemas": "<p>Specifies the data schema for the custom JDBC source.</p>",
@@ -5718,6 +5742,8 @@
         "CatalogKafkaSource$Name": "<p>The name of the data store.</p>",
         "CatalogKinesisSource$Name": "<p>The name of the data source.</p>",
         "CatalogSource$Name": "<p>The name of the data store.</p>",
+        "ConnectorDataSource$Name": "<p>The name of this source node.</p>",
+        "ConnectorDataTarget$Name": "<p>The name of this target node.</p>",
         "CustomCode$Name": "<p>The name of the transform node.</p>",
         "DQDLAliases$key": null,
         "DirectJDBCSource$Name": "<p>The name of the JDBC source connection.</p>",
@@ -5964,6 +5990,7 @@
         "AmazonRedshiftTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "ApplyMapping$Inputs": "<p>The data inputs identified by their node names.</p>",
         "BasicCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
+        "ConnectorDataTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "DropDuplicates$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DropFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DropNullFields$Inputs": "<p>The data inputs identified by their node names.</p>",

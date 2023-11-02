@@ -1,3 +1,21 @@
+Release v1.47.2 (2023-11-02)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API and documentation
+* `service/connect`: Updates service documentation
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift adds support for shared credentials, which allows applications that are deployed on managed EC2 fleets to interact with other AWS resources.
+* `service/glue`: Updates service API and documentation
+  * This release introduces Google BigQuery Source and Target in AWS Glue CodeGenConfigurationNode.
+* `service/network-firewall`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Got confirmed from qmeixua@ about custom week features, and tested locally with aws cli and java sdk that the subtypes are showing up.
+
+### SDK Enhancements
+* `aws/ec2metadata`: Added environment and shared config support for disabling IMDSv1 fallback.
+  * Use env `AWS_EC2_METADATA_V1_DISABLED` or shared config `ec2_metadata_v1_disabled` accordingly.
+
 Release v1.47.1 (2023-11-01)
 ===
 
