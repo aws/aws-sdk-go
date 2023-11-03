@@ -2199,6 +2199,102 @@ func (c *Connect) CreateParticipantWithContext(ctx aws.Context, input *CreatePar
 	return out, req.Send()
 }
 
+const opCreatePersistentContactAssociation = "CreatePersistentContactAssociation"
+
+// CreatePersistentContactAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePersistentContactAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePersistentContactAssociation for more information on using the CreatePersistentContactAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePersistentContactAssociationRequest method.
+//	req, resp := client.CreatePersistentContactAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePersistentContactAssociation
+func (c *Connect) CreatePersistentContactAssociationRequest(input *CreatePersistentContactAssociationInput) (req *request.Request, output *CreatePersistentContactAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreatePersistentContactAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/persistent-contact-association/{InstanceId}/{InitialContactId}",
+	}
+
+	if input == nil {
+		input = &CreatePersistentContactAssociationInput{}
+	}
+
+	output = &CreatePersistentContactAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePersistentContactAssociation API operation for Amazon Connect Service.
+//
+// Enables rehydration of chats for the lifespan of a contact. For more information
+// about chat rehydration, see Enable persistent chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreatePersistentContactAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePersistentContactAssociation
+func (c *Connect) CreatePersistentContactAssociation(input *CreatePersistentContactAssociationInput) (*CreatePersistentContactAssociationOutput, error) {
+	req, out := c.CreatePersistentContactAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreatePersistentContactAssociationWithContext is the same as CreatePersistentContactAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePersistentContactAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreatePersistentContactAssociationWithContext(ctx aws.Context, input *CreatePersistentContactAssociationInput, opts ...request.Option) (*CreatePersistentContactAssociationOutput, error) {
+	req, out := c.CreatePersistentContactAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreatePrompt = "CreatePrompt"
 
 // CreatePromptRequest generates a "aws/request.Request" representing the
@@ -28062,6 +28158,189 @@ func (s *CreateParticipantOutput) SetParticipantCredentials(v *ParticipantTokenC
 // SetParticipantId sets the ParticipantId field's value.
 func (s *CreateParticipantOutput) SetParticipantId(v string) *CreateParticipantOutput {
 	s.ParticipantId = &v
+	return s
+}
+
+type CreatePersistentContactAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string"`
+
+	// This is the contactId of the current contact that the CreatePersistentContactAssociation
+	// API is being called from.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `location:"uri" locationName:"InitialContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The contactId chosen for rehydration depends on the type chosen.
+	//
+	//    * ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated
+	//    past chat contact of the specified past ended chat session. To use this
+	//    type, provide the initialContactId of the past ended chat session in the
+	//    sourceContactId field. In this type, Amazon Connect determines what the
+	//    most recent chat contact on the past ended chat session and uses it to
+	//    start a persistent chat.
+	//
+	//    * FROM_SEGMENT: Rehydrates a chat from the specified past chat contact
+	//    provided in the sourceContactId field.
+	//
+	// The actual contactId used for rehydration is provided in the response of
+	// this API.
+	//
+	// To illustrate how to use rehydration type, consider the following example:
+	// A customer starts a chat session. Agent a1 accepts the chat and a conversation
+	// starts between the customer and Agent a1. This first contact creates a contact
+	// ID C1. Agent a1 then transfers the chat to Agent a2. This creates another
+	// contact ID C2. At this point Agent a2 ends the chat. The customer is forwarded
+	// to the disconnect flow for a post chat survey that creates another contact
+	// ID C3. After the chat survey, the chat session ends. Later, the customer
+	// returns and wants to resume their past chat session. At this point, the customer
+	// can have following use cases:
+	//
+	//    * Use Case 1: The customer wants to continue the past chat session but
+	//    they want to hide the post chat survey. For this they will use the following
+	//    configuration: Configuration SourceContactId = "C2" RehydrationType =
+	//    "FROM_SEGMENT" Expected behavior This starts a persistent chat session
+	//    from the specified past ended contact (C2). Transcripts of past chat sessions
+	//    C2 and C1 are accessible in the current persistent chat session. Note
+	//    that chat segment C3 is dropped from the persistent chat session.
+	//
+	//    * Use Case 2: The customer wants to continue the past chat session and
+	//    see the transcript of the entire past engagement, including the post chat
+	//    survey. For this they will use the following configuration: Configuration
+	//    SourceContactId = "C1" RehydrationType = "ENTIRE_PAST_SESSION" Expected
+	//    behavior This starts a persistent chat session from the most recently
+	//    ended chat contact (C3). Transcripts of past chat sessions C3, C2 and
+	//    C1 are accessible in the current persistent chat session.
+	//
+	// RehydrationType is a required field
+	RehydrationType *string `type:"string" required:"true" enum:"RehydrationType"`
+
+	// The contactId from which a persistent chat session must be started.
+	//
+	// SourceContactId is a required field
+	SourceContactId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePersistentContactAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePersistentContactAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePersistentContactAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePersistentContactAssociationInput"}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RehydrationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RehydrationType"))
+	}
+	if s.SourceContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceContactId"))
+	}
+	if s.SourceContactId != nil && len(*s.SourceContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceContactId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePersistentContactAssociationInput) SetClientToken(v string) *CreatePersistentContactAssociationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *CreatePersistentContactAssociationInput) SetInitialContactId(v string) *CreatePersistentContactAssociationInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreatePersistentContactAssociationInput) SetInstanceId(v string) *CreatePersistentContactAssociationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRehydrationType sets the RehydrationType field's value.
+func (s *CreatePersistentContactAssociationInput) SetRehydrationType(v string) *CreatePersistentContactAssociationInput {
+	s.RehydrationType = &v
+	return s
+}
+
+// SetSourceContactId sets the SourceContactId field's value.
+func (s *CreatePersistentContactAssociationInput) SetSourceContactId(v string) *CreatePersistentContactAssociationInput {
+	s.SourceContactId = &v
+	return s
+}
+
+type CreatePersistentContactAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The contactId from which a persistent chat session is started. This field
+	// is populated only for persistent chat.
+	ContinuedFromContactId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePersistentContactAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePersistentContactAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuedFromContactId sets the ContinuedFromContactId field's value.
+func (s *CreatePersistentContactAssociationOutput) SetContinuedFromContactId(v string) *CreatePersistentContactAssociationOutput {
+	s.ContinuedFromContactId = &v
 	return s
 }
 

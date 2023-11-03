@@ -388,6 +388,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreatePersistentContactAssociation":{
+      "name":"CreatePersistentContactAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/persistent-contact-association/{InstanceId}/{InitialContactId}"
+      },
+      "input":{"shape":"CreatePersistentContactAssociationRequest"},
+      "output":{"shape":"CreatePersistentContactAssociationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreatePrompt":{
       "name":"CreatePrompt",
       "http":{
@@ -4572,6 +4589,36 @@
       "members":{
         "ParticipantCredentials":{"shape":"ParticipantTokenCredentials"},
         "ParticipantId":{"shape":"ParticipantId"}
+      }
+    },
+    "CreatePersistentContactAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "InitialContactId",
+        "RehydrationType",
+        "SourceContactId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "InitialContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"InitialContactId"
+        },
+        "RehydrationType":{"shape":"RehydrationType"},
+        "SourceContactId":{"shape":"ContactId"},
+        "ClientToken":{"shape":"ClientToken"}
+      }
+    },
+    "CreatePersistentContactAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "ContinuedFromContactId":{"shape":"ContactId"}
       }
     },
     "CreatePromptRequest":{

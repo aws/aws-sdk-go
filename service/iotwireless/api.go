@@ -13115,7 +13115,7 @@ type CreateNetworkAnalyzerConfigurationInput struct {
 	// use to manage a resource.
 	Tags []*Tag `type:"list"`
 
-	// Trace content for your wireless gateway and wireless device resources.
+	// Trace content for your wireless devices, gateways, and multicast groups.
 	TraceContent *TraceContent `type:"structure"`
 
 	// Wireless device resources to add to the network analyzer configuration. Provide
@@ -17044,10 +17044,10 @@ type GetNetworkAnalyzerConfigurationOutput struct {
 	// Name of the network analyzer configuration.
 	Name *string `min:"1" type:"string"`
 
-	// Trace content for your wireless gateway and wireless device resources.
+	// Trace content for your wireless devices, gateways, and multicast groups.
 	TraceContent *TraceContent `type:"structure"`
 
-	// List of wireless gateway resources that have been added to the network analyzer
+	// List of wireless device resources that have been added to the network analyzer
 	// configuration.
 	WirelessDevices []*string `type:"list"`
 
@@ -17439,8 +17439,11 @@ type GetPositionEstimateOutput struct {
 	_ struct{} `type:"structure" payload:"GeoJsonPayload"`
 
 	// The position information of the resource, displayed as a JSON payload. The
-	// payload uses the GeoJSON format, which a format that's used to encode geographic
-	// data structures. For more information, see GeoJSON (https://geojson.org/).
+	// payload is of type blob and uses the GeoJSON (https://geojson.org/) format,
+	// which a format that's used to encode geographic data structures. A sample
+	// payload contains the timestamp information, the WGS84 coordinates of the
+	// location, and the accuracy and confidence level. For more information and
+	// examples, see Resolve device location (console) (https://docs.aws.amazon.com/iot/latest/developerguide/location-resolve-console.html).
 	GeoJsonPayload []byte `type:"blob"`
 }
 
@@ -21882,7 +21885,7 @@ type LoRaWANDeviceProfile struct {
 	// profile.
 	MacVersion *string `type:"string"`
 
-	// The MaxDutyCycle value.
+	// The MaxDutyCycle value. It ranges from 0 to 15.
 	MaxDutyCycle *int64 `type:"integer"`
 
 	// The MaxEIRP value.
@@ -23874,6 +23877,9 @@ type OtaaV10X struct {
 
 	// The GenAppKey value.
 	GenAppKey *string `type:"string"`
+
+	// The JoinEUI value.
+	JoinEui *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -23909,6 +23915,12 @@ func (s *OtaaV10X) SetAppKey(v string) *OtaaV10X {
 // SetGenAppKey sets the GenAppKey field's value.
 func (s *OtaaV10X) SetGenAppKey(v string) *OtaaV10X {
 	s.GenAppKey = &v
+	return s
+}
+
+// SetJoinEui sets the JoinEui field's value.
+func (s *OtaaV10X) SetJoinEui(v string) *OtaaV10X {
+	s.JoinEui = &v
 	return s
 }
 
@@ -27375,7 +27387,7 @@ func (s *TooManyTagsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Trace content for your wireless gateway and wireless device resources.
+// Trace content for your wireless devices, gateways, and multicast groups.
 type TraceContent struct {
 	_ struct{} `type:"structure"`
 
@@ -27385,8 +27397,8 @@ type TraceContent struct {
 	LogLevel *string `type:"string" enum:"LogLevel"`
 
 	// FrameInfo of your multicast group resources for the trace content. Use FrameInfo
-	// to debug the multicast communication between your LoRaWAN end devices and
-	// the network server.
+	// to debug the multicast communication between your multicast groups and the
+	// network server.
 	MulticastFrameInfo *string `type:"string" enum:"MulticastFrameInfo"`
 
 	// FrameInfo of your wireless device resources for the trace content. Use FrameInfo
@@ -28233,10 +28245,10 @@ type UpdateNetworkAnalyzerConfigurationInput struct {
 	MulticastGroupsToAdd []*string `type:"list"`
 
 	// Multicast group resources to remove from the network analyzer configuration.
-	// Provide the MulticastGroupId of the resource to remove in the input array.
+	// Provide the MulticastGroupId of the resources to remove in the input array.
 	MulticastGroupsToRemove []*string `type:"list"`
 
-	// Trace content for your wireless gateway and wireless device resources.
+	// Trace content for your wireless devices, gateways, and multicast groups.
 	TraceContent *TraceContent `type:"structure"`
 
 	// Wireless device resources to add to the network analyzer configuration. Provide
@@ -30796,8 +30808,8 @@ func MessageType_Values() []string {
 }
 
 // FrameInfo of your multicast group resources for the trace content. Use FrameInfo
-// to debug the multicast communication between your LoRaWAN end devices and
-// the network server.
+// to debug the multicast communication between your multicast groups and the
+// network server.
 const (
 	// MulticastFrameInfoEnabled is a MulticastFrameInfo enum value
 	MulticastFrameInfoEnabled = "ENABLED"

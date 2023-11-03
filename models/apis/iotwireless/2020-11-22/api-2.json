@@ -5131,6 +5131,7 @@
       "members":{
         "AppKey":{"shape":"AppKey"},
         "AppEui":{"shape":"AppEui"},
+        "JoinEui":{"shape":"JoinEui"},
         "GenAppKey":{"shape":"GenAppKey"}
       }
     },
