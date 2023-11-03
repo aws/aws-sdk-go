@@ -148,6 +148,10 @@ type ConnectAPI interface {
 	CreateParticipantWithContext(aws.Context, *connect.CreateParticipantInput, ...request.Option) (*connect.CreateParticipantOutput, error)
 	CreateParticipantRequest(*connect.CreateParticipantInput) (*request.Request, *connect.CreateParticipantOutput)
 
+	CreatePersistentContactAssociation(*connect.CreatePersistentContactAssociationInput) (*connect.CreatePersistentContactAssociationOutput, error)
+	CreatePersistentContactAssociationWithContext(aws.Context, *connect.CreatePersistentContactAssociationInput, ...request.Option) (*connect.CreatePersistentContactAssociationOutput, error)
+	CreatePersistentContactAssociationRequest(*connect.CreatePersistentContactAssociationInput) (*request.Request, *connect.CreatePersistentContactAssociationOutput)
+
 	CreatePrompt(*connect.CreatePromptInput) (*connect.CreatePromptOutput, error)
 	CreatePromptWithContext(aws.Context, *connect.CreatePromptInput, ...request.Option) (*connect.CreatePromptOutput, error)
 	CreatePromptRequest(*connect.CreatePromptInput) (*request.Request, *connect.CreatePromptOutput)

@@ -1,3 +1,12 @@
+Release v1.47.3 (2023-11-03)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/launch-wizard`: Adds new service
+
 Release v1.47.2 (2023-11-02)
 ===
 

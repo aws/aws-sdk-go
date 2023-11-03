@@ -35072,6 +35072,57 @@ const (
 
 	// ResourceTypeAwsBatchSchedulingPolicy is a ResourceType enum value
 	ResourceTypeAwsBatchSchedulingPolicy = "AWS::Batch::SchedulingPolicy"
+
+	// ResourceTypeAwsAcmpcaCertificateAuthorityActivation is a ResourceType enum value
+	ResourceTypeAwsAcmpcaCertificateAuthorityActivation = "AWS::ACMPCA::CertificateAuthorityActivation"
+
+	// ResourceTypeAwsAppMeshGatewayRoute is a ResourceType enum value
+	ResourceTypeAwsAppMeshGatewayRoute = "AWS::AppMesh::GatewayRoute"
+
+	// ResourceTypeAwsAppMeshMesh is a ResourceType enum value
+	ResourceTypeAwsAppMeshMesh = "AWS::AppMesh::Mesh"
+
+	// ResourceTypeAwsConnectInstance is a ResourceType enum value
+	ResourceTypeAwsConnectInstance = "AWS::Connect::Instance"
+
+	// ResourceTypeAwsConnectQuickConnect is a ResourceType enum value
+	ResourceTypeAwsConnectQuickConnect = "AWS::Connect::QuickConnect"
+
+	// ResourceTypeAwsEc2CarrierGateway is a ResourceType enum value
+	ResourceTypeAwsEc2CarrierGateway = "AWS::EC2::CarrierGateway"
+
+	// ResourceTypeAwsEc2Ipampool is a ResourceType enum value
+	ResourceTypeAwsEc2Ipampool = "AWS::EC2::IPAMPool"
+
+	// ResourceTypeAwsEc2TransitGatewayConnect is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGatewayConnect = "AWS::EC2::TransitGatewayConnect"
+
+	// ResourceTypeAwsEc2TransitGatewayMulticastDomain is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGatewayMulticastDomain = "AWS::EC2::TransitGatewayMulticastDomain"
+
+	// ResourceTypeAwsEcsCapacityProvider is a ResourceType enum value
+	ResourceTypeAwsEcsCapacityProvider = "AWS::ECS::CapacityProvider"
+
+	// ResourceTypeAwsIamInstanceProfile is a ResourceType enum value
+	ResourceTypeAwsIamInstanceProfile = "AWS::IAM::InstanceProfile"
+
+	// ResourceTypeAwsIoTCacertificate is a ResourceType enum value
+	ResourceTypeAwsIoTCacertificate = "AWS::IoT::CACertificate"
+
+	// ResourceTypeAwsIoTtwinMakerSyncJob is a ResourceType enum value
+	ResourceTypeAwsIoTtwinMakerSyncJob = "AWS::IoTTwinMaker::SyncJob"
+
+	// ResourceTypeAwsKafkaConnectConnector is a ResourceType enum value
+	ResourceTypeAwsKafkaConnectConnector = "AWS::KafkaConnect::Connector"
+
+	// ResourceTypeAwsLambdaCodeSigningConfig is a ResourceType enum value
+	ResourceTypeAwsLambdaCodeSigningConfig = "AWS::Lambda::CodeSigningConfig"
+
+	// ResourceTypeAwsNetworkManagerConnectPeer is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerConnectPeer = "AWS::NetworkManager::ConnectPeer"
+
+	// ResourceTypeAwsResourceExplorer2Index is a ResourceType enum value
+	ResourceTypeAwsResourceExplorer2Index = "AWS::ResourceExplorer2::Index"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -35449,6 +35500,23 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsCodeGuruProfilerProfilingGroup,
 		ResourceTypeAwsRoute53resolverResolverQueryLoggingConfig,
 		ResourceTypeAwsBatchSchedulingPolicy,
+		ResourceTypeAwsAcmpcaCertificateAuthorityActivation,
+		ResourceTypeAwsAppMeshGatewayRoute,
+		ResourceTypeAwsAppMeshMesh,
+		ResourceTypeAwsConnectInstance,
+		ResourceTypeAwsConnectQuickConnect,
+		ResourceTypeAwsEc2CarrierGateway,
+		ResourceTypeAwsEc2Ipampool,
+		ResourceTypeAwsEc2TransitGatewayConnect,
+		ResourceTypeAwsEc2TransitGatewayMulticastDomain,
+		ResourceTypeAwsEcsCapacityProvider,
+		ResourceTypeAwsIamInstanceProfile,
+		ResourceTypeAwsIoTCacertificate,
+		ResourceTypeAwsIoTtwinMakerSyncJob,
+		ResourceTypeAwsKafkaConnectConnector,
+		ResourceTypeAwsLambdaCodeSigningConfig,
+		ResourceTypeAwsNetworkManagerConnectPeer,
+		ResourceTypeAwsResourceExplorer2Index,
 	}
 }
 

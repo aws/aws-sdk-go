@@ -1,0 +1,373 @@
+{
+  "version": "2.0",
+  "service": "<p>Launch Wizard offers a guided way of sizing, configuring, and deploying Amazon Web Services resources for third party applications, such as Microsoft SQL Server Always On and HANA based SAP systems, without the need to manually identify and provision individual Amazon Web Services resources.</p>",
+  "operations": {
+    "CreateDeployment": "<p>Creates a deployment for the given workload. Deployments created by this operation are not available in the Launch Wizard console to use the <code>Clone deployment</code> action on.</p>",
+    "DeleteDeployment": "<p>Deletes a deployment.</p>",
+    "GetDeployment": "<p>Returns information about the deployment.</p>",
+    "GetWorkload": "<p>Returns information about a workload.</p>",
+    "ListDeploymentEvents": "<p>Lists the events of a deployment.</p>",
+    "ListDeployments": "<p>Lists the deployments that have been created.</p>",
+    "ListWorkloadDeploymentPatterns": "<p>Lists the workload deployment patterns.</p>",
+    "ListWorkloads": "<p>Lists the workloads.</p>"
+  },
+  "shapes": {
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentInput$dryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>"
+      }
+    },
+    "CreateDeploymentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDeploymentOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDeploymentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDeploymentOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeploymentData": {
+      "base": "<p>The data associated with a deployment.</p>",
+      "refs": {
+        "GetDeploymentOutput$deployment": "<p>An object that details the deployment.</p>"
+      }
+    },
+    "DeploymentDataSummary": {
+      "base": "<p>A summary of the deployment data.</p>",
+      "refs": {
+        "DeploymentDataSummaryList$member": null
+      }
+    },
+    "DeploymentDataSummaryList": {
+      "base": null,
+      "refs": {
+        "ListDeploymentsOutput$deployments": "<p>Lists the deployments.</p>"
+      }
+    },
+    "DeploymentEventDataSummary": {
+      "base": "<p>A summary of the deployment event data.</p>",
+      "refs": {
+        "DeploymentEventDataSummaryList$member": null
+      }
+    },
+    "DeploymentEventDataSummaryList": {
+      "base": null,
+      "refs": {
+        "ListDeploymentEventsOutput$deploymentEvents": "<p>Lists the deployment events.</p>"
+      }
+    },
+    "DeploymentFilter": {
+      "base": "<p>A filter name and value pair that is used to return more specific results from a describe operation. Filters can be used to match a set of resources by specific criteria.</p>",
+      "refs": {
+        "DeploymentFilterList$member": null
+      }
+    },
+    "DeploymentFilterKey": {
+      "base": null,
+      "refs": {
+        "DeploymentFilter$name": "<p>The name of the filter. Filter names are case-sensitive.</p>"
+      }
+    },
+    "DeploymentFilterList": {
+      "base": null,
+      "refs": {
+        "ListDeploymentsInput$filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>WORKLOAD_NAME</code> </p> </li> <li> <p> <code>DEPLOYMENT_STATUS</code> </p> </li> </ul>"
+      }
+    },
+    "DeploymentFilterValues": {
+      "base": null,
+      "refs": {
+        "DeploymentFilter$values": "<p>The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+      }
+    },
+    "DeploymentFilterValuesMemberString": {
+      "base": null,
+      "refs": {
+        "DeploymentFilterValues$member": null
+      }
+    },
+    "DeploymentId": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentOutput$deploymentId": "<p>The ID of the deployment.</p>",
+        "DeleteDeploymentInput$deploymentId": "<p>The ID of the deployment.</p>",
+        "DeploymentData$id": "<p>The ID of the deployment.</p>",
+        "DeploymentDataSummary$id": "<p>The ID of the deployment.</p>",
+        "GetDeploymentInput$deploymentId": "<p>The ID of the deployment.</p>",
+        "ListDeploymentEventsInput$deploymentId": "<p>The ID of the deployment.</p>"
+      }
+    },
+    "DeploymentName": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentInput$name": "<p>The name of the deployment.</p>"
+      }
+    },
+    "DeploymentPatternName": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentInput$deploymentPatternName": "<p>The name of the deployment pattern supported by a given workload. You can use the <a href=\"https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloadDeploymentPatterns.html\"> <code>ListWorkloadDeploymentPatterns</code> </a> operation to discover supported values for this parameter. </p>",
+        "DeploymentData$patternName": "<p>The pattern name of the deployment.</p>",
+        "DeploymentDataSummary$patternName": "<p>The name of the workload deployment pattern.</p>",
+        "WorkloadDeploymentPatternDataSummary$deploymentPatternName": "<p>The name of a workload deployment pattern.</p>"
+      }
+    },
+    "DeploymentSpecifications": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentInput$specifications": "<p>The settings specified for the deployment. For more information on the specifications required for creating a deployment, see <a href=\"https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications.html\">Workload specifications</a>.</p>",
+        "DeploymentData$specifications": "<p>The specifications of the deployment. For more information on specifications for each deployment, see <a href=\"https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications.html\">Workload specifications</a>.</p>"
+      }
+    },
+    "DeploymentStatus": {
+      "base": null,
+      "refs": {
+        "DeleteDeploymentOutput$status": "<p>The status of the deployment.</p>",
+        "DeploymentData$status": "<p>The status of the deployment.</p>",
+        "DeploymentDataSummary$status": "<p>The status of the deployment.</p>"
+      }
+    },
+    "EventStatus": {
+      "base": null,
+      "refs": {
+        "DeploymentEventDataSummary$status": "<p>The status of the deployment event.</p>"
+      }
+    },
+    "GetDeploymentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDeploymentOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkloadInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkloadOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>An internal error has occurred. Retry your request, but if the problem persists, contact us with details by posting a question on <a href=\"https://repost.aws/\">re:Post</a>.</p>",
+      "refs": {
+      }
+    },
+    "KeyString": {
+      "base": null,
+      "refs": {
+        "DeploymentSpecifications$key": null
+      }
+    },
+    "ListDeploymentEventsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeploymentEventsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeploymentsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeploymentsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkloadDeploymentPatternsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkloadDeploymentPatternsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkloadsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkloadsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxDeploymentEventResults": {
+      "base": null,
+      "refs": {
+        "ListDeploymentEventsInput$maxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p>"
+      }
+    },
+    "MaxDeploymentResults": {
+      "base": null,
+      "refs": {
+        "ListDeploymentsInput$maxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p>"
+      }
+    },
+    "MaxWorkloadDeploymentPatternResults": {
+      "base": null,
+      "refs": {
+        "ListWorkloadDeploymentPatternsInput$maxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p>"
+      }
+    },
+    "MaxWorkloadResults": {
+      "base": null,
+      "refs": {
+        "ListWorkloadsInput$maxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListDeploymentEventsInput$nextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "ListDeploymentEventsOutput$nextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "ListDeploymentsInput$nextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "ListDeploymentsOutput$nextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "ListWorkloadDeploymentPatternsInput$nextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "ListWorkloadDeploymentPatternsOutput$nextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "ListWorkloadsInput$nextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "ListWorkloadsOutput$nextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>"
+      }
+    },
+    "ResourceLimitException": {
+      "base": "<p>You have exceeded an Launch Wizard resource limit. For example, you might have too many deployments in progress.</p>",
+      "refs": {
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified workload or deployment resource can't be found.</p>",
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "DeleteDeploymentOutput$statusReason": "<p>The reason for the deployment status.</p>",
+        "DeploymentData$name": "<p>The name of the deployment.</p>",
+        "DeploymentData$resourceGroup": "<p>The resource group of the deployment.</p>",
+        "DeploymentDataSummary$name": "<p>The name of the deployment</p>",
+        "DeploymentEventDataSummary$description": "<p>The description of the deployment event.</p>",
+        "DeploymentEventDataSummary$name": "<p>The name of the deployment event.</p>",
+        "DeploymentEventDataSummary$statusReason": "<p>The reason of the deployment event status.</p>",
+        "InternalServerException$message": null,
+        "ResourceLimitException$message": null,
+        "ResourceNotFoundException$message": null,
+        "ValidationException$message": null,
+        "WorkloadData$description": "<p>The description of a workload.</p>",
+        "WorkloadData$displayName": "<p>The display name of a workload.</p>",
+        "WorkloadData$documentationUrl": "<p>The URL of a workload document.</p>",
+        "WorkloadData$iconUrl": "<p>The URL of a workload icon.</p>",
+        "WorkloadData$statusMessage": "<p>The message about a workload's status.</p>",
+        "WorkloadDataSummary$displayName": "<p>The display name of the workload data.</p>",
+        "WorkloadDeploymentPatternDataSummary$description": "<p>The description of a workload deployment pattern.</p>",
+        "WorkloadDeploymentPatternDataSummary$displayName": "<p>The display name of a workload deployment pattern.</p>",
+        "WorkloadDeploymentPatternDataSummary$statusMessage": "<p>A message about a workload deployment pattern's status.</p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "DeploymentData$createdAt": "<p>The time the deployment was created.</p>",
+        "DeploymentData$deletedAt": "<p>The time the deployment was deleted.</p>",
+        "DeploymentDataSummary$createdAt": "<p>The time the deployment was created.</p>",
+        "DeploymentEventDataSummary$timestamp": "<p>The timestamp of the deployment event.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
+      "refs": {
+      }
+    },
+    "ValueString": {
+      "base": null,
+      "refs": {
+        "DeploymentSpecifications$value": null
+      }
+    },
+    "WorkloadData": {
+      "base": "<p>Describes a workload.</p>",
+      "refs": {
+        "GetWorkloadOutput$workload": "<p>Information about the workload.</p>"
+      }
+    },
+    "WorkloadDataSummary": {
+      "base": "<p>Describes workload data.</p>",
+      "refs": {
+        "WorkloadDataSummaryList$member": null
+      }
+    },
+    "WorkloadDataSummaryList": {
+      "base": null,
+      "refs": {
+        "ListWorkloadsOutput$workloads": "<p>Information about the workloads.</p>"
+      }
+    },
+    "WorkloadDeploymentPatternDataSummary": {
+      "base": "<p>Describes a workload deployment pattern.</p>",
+      "refs": {
+        "WorkloadDeploymentPatternDataSummaryList$member": null
+      }
+    },
+    "WorkloadDeploymentPatternDataSummaryList": {
+      "base": null,
+      "refs": {
+        "ListWorkloadDeploymentPatternsOutput$workloadDeploymentPatterns": "<p>Describes the workload deployment patterns.</p>"
+      }
+    },
+    "WorkloadDeploymentPatternStatus": {
+      "base": null,
+      "refs": {
+        "WorkloadDeploymentPatternDataSummary$status": "<p>The status of a workload deployment pattern.</p>"
+      }
+    },
+    "WorkloadName": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentInput$workloadName": "<p>The name of the workload. You can use the <a href=\"https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloadDeploymentPatterns.html\"> <code>ListWorkloadDeploymentPatterns</code> </a> operation to discover supported values for this parameter.</p>",
+        "DeploymentData$workloadName": "<p>The name of the workload.</p>",
+        "DeploymentDataSummary$workloadName": "<p>The name of the workload.</p>",
+        "GetWorkloadInput$workloadName": "<p>The name of the workload.</p>",
+        "ListWorkloadDeploymentPatternsInput$workloadName": "<p>The name of the workload.</p>",
+        "WorkloadData$workloadName": "<p>The name of the workload.</p>",
+        "WorkloadDataSummary$workloadName": "<p>The name of the workload.</p>",
+        "WorkloadDeploymentPatternDataSummary$workloadName": "<p>The name of the workload.</p>"
+      }
+    },
+    "WorkloadStatus": {
+      "base": null,
+      "refs": {
+        "WorkloadData$status": "<p>The status of a workload.</p>"
+      }
+    },
+    "WorkloadVersionName": {
+      "base": null,
+      "refs": {
+        "WorkloadDeploymentPatternDataSummary$workloadVersionName": "<p>The name of the workload deployment pattern version.</p>"
+      }
+    }
+  }
+}

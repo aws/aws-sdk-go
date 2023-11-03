@@ -1440,7 +1440,7 @@
     "GeoJsonPayload": {
       "base": null,
       "refs": {
-        "GetPositionEstimateResponse$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>",
+        "GetPositionEstimateResponse$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload is of type blob and uses the <a href=\"https://geojson.org/\">GeoJSON</a> format, which a format that's used to encode geographic data structures. A sample payload contains the timestamp information, the WGS84 coordinates of the location, and the accuracy and confidence level. For more information and examples, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/location-resolve-console.html\">Resolve device location (console)</a>.</p>",
         "GetResourcePositionResponse$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>",
         "UpdateResourcePositionRequest$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>"
       }
@@ -1910,6 +1910,7 @@
       "base": null,
       "refs": {
         "JoinEuiRange$member": null,
+        "OtaaV1_0_x$JoinEui": "<p>The JoinEUI value.</p>",
         "OtaaV1_1$JoinEui": "<p>The JoinEUI value.</p>"
       }
     },
@@ -2383,7 +2384,7 @@
     "MaxDutyCycle": {
       "base": null,
       "refs": {
-        "LoRaWANDeviceProfile$MaxDutyCycle": "<p>The MaxDutyCycle value.</p>"
+        "LoRaWANDeviceProfile$MaxDutyCycle": "<p>The MaxDutyCycle value. It ranges from 0 to 15.</p>"
       }
     },
     "MaxEirp": {
@@ -2479,7 +2480,7 @@
       }
     },
     "MulticastFrameInfo": {
-      "base": "<p> <code>FrameInfo</code> of your multicast group resources for the trace content. Use FrameInfo to debug the multicast communication between your LoRaWAN end devices and the network server.</p>",
+      "base": "<p> <code>FrameInfo</code> of your multicast group resources for the trace content. Use FrameInfo to debug the multicast communication between your multicast groups and the network server.</p>",
       "refs": {
         "TraceContent$MulticastFrameInfo": null
       }
@@ -2624,7 +2625,7 @@
         "CreateNetworkAnalyzerConfigurationRequest$MulticastGroups": "<p>Multicast Group resources to add to the network analyzer configruation. Provide the <code>MulticastGroupId</code> of the resource to add in the input array.</p>",
         "GetNetworkAnalyzerConfigurationResponse$MulticastGroups": "<p>List of multicast group resources that have been added to the network analyzer configuration.</p>",
         "UpdateNetworkAnalyzerConfigurationRequest$MulticastGroupsToAdd": "<p>Multicast group resources to add to the network analyzer configuration. Provide the <code>MulticastGroupId</code> of the resource to add in the input array.</p>",
-        "UpdateNetworkAnalyzerConfigurationRequest$MulticastGroupsToRemove": "<p>Multicast group resources to remove from the network analyzer configuration. Provide the <code>MulticastGroupId</code> of the resource to remove in the input array.</p>"
+        "UpdateNetworkAnalyzerConfigurationRequest$MulticastGroupsToRemove": "<p>Multicast group resources to remove from the network analyzer configuration. Provide the <code>MulticastGroupId</code> of the resources to remove in the input array.</p>"
       }
     },
     "NetworkId": {
@@ -3698,7 +3699,7 @@
       }
     },
     "TraceContent": {
-      "base": "<p>Trace content for your wireless gateway and wireless device resources.</p>",
+      "base": "<p>Trace content for your wireless devices, gateways, and multicast groups.</p>",
       "refs": {
         "CreateNetworkAnalyzerConfigurationRequest$TraceContent": null,
         "GetNetworkAnalyzerConfigurationResponse$TraceContent": null,
@@ -4080,7 +4081,7 @@
       "base": null,
       "refs": {
         "CreateNetworkAnalyzerConfigurationRequest$WirelessDevices": "<p>Wireless device resources to add to the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resource to add in the input array.</p>",
-        "GetNetworkAnalyzerConfigurationResponse$WirelessDevices": "<p>List of wireless gateway resources that have been added to the network analyzer configuration.</p>",
+        "GetNetworkAnalyzerConfigurationResponse$WirelessDevices": "<p>List of wireless device resources that have been added to the network analyzer configuration.</p>",
         "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToAdd": "<p>Wireless device resources to add to the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resource to add in the input array.</p>",
         "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToRemove": "<p>Wireless device resources to remove from the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resources to remove in the input array.</p>"
       }
