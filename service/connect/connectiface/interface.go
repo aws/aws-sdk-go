@@ -112,6 +112,10 @@ type ConnectAPI interface {
 	BatchGetFlowAssociationWithContext(aws.Context, *connect.BatchGetFlowAssociationInput, ...request.Option) (*connect.BatchGetFlowAssociationOutput, error)
 	BatchGetFlowAssociationRequest(*connect.BatchGetFlowAssociationInput) (*request.Request, *connect.BatchGetFlowAssociationOutput)
 
+	BatchPutContact(*connect.BatchPutContactInput) (*connect.BatchPutContactOutput, error)
+	BatchPutContactWithContext(aws.Context, *connect.BatchPutContactInput, ...request.Option) (*connect.BatchPutContactOutput, error)
+	BatchPutContactRequest(*connect.BatchPutContactInput) (*request.Request, *connect.BatchPutContactOutput)
+
 	ClaimPhoneNumber(*connect.ClaimPhoneNumberInput) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberWithContext(aws.Context, *connect.ClaimPhoneNumberInput, ...request.Option) (*connect.ClaimPhoneNumberOutput, error)
 	ClaimPhoneNumberRequest(*connect.ClaimPhoneNumberInput) (*request.Request, *connect.ClaimPhoneNumberOutput)

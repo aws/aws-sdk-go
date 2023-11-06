@@ -6614,7 +6614,7 @@ func (s *EBSResourceUtilization) SetEbsWriteOpsPerSecond(v string) *EBSResourceU
 	return s
 }
 
-// Details about the Amazon EC2 instances that Amazon Web Services recommends
+// Details about the Amazon EC2 reservations that Amazon Web Services recommends
 // that you purchase.
 type EC2InstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -6931,8 +6931,8 @@ func (s *EC2Specification) SetOfferingClass(v string) *EC2Specification {
 	return s
 }
 
-// Details about the Amazon OpenSearch Service instances that Amazon Web Services
-// recommends that you purchase.
+// Details about the Amazon OpenSearch Service reservations that Amazon Web
+// Services recommends that you purchase.
 type ESInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -7000,8 +7000,8 @@ func (s *ESInstanceDetails) SetSizeFlexEligible(v bool) *ESInstanceDetails {
 	return s
 }
 
-// Details about the Amazon ElastiCache instances that Amazon Web Services recommends
-// that you purchase.
+// Details about the Amazon ElastiCache reservations that Amazon Web Services
+// recommends that you purchase.
 type ElastiCacheInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -11711,26 +11711,32 @@ func (s *Impact) SetTotalImpactPercentage(v float64) *Impact {
 	return s
 }
 
-// Details about the instances that Amazon Web Services recommends that you
+// Details about the reservations that Amazon Web Services recommends that you
 // purchase.
 type InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EC2 instances that Amazon Web Services recommends that you purchase.
+	// The Amazon EC2 reservations that Amazon Web Services recommends that you
+	// purchase.
 	EC2InstanceDetails *EC2InstanceDetails `type:"structure"`
 
-	// The Amazon OpenSearch Service instances that Amazon Web Services recommends
+	// The Amazon OpenSearch Service reservations that Amazon Web Services recommends
 	// that you purchase.
 	ESInstanceDetails *ESInstanceDetails `type:"structure"`
 
-	// The ElastiCache instances that Amazon Web Services recommends that you purchase.
+	// The ElastiCache reservations that Amazon Web Services recommends that you
+	// purchase.
 	ElastiCacheInstanceDetails *ElastiCacheInstanceDetails `type:"structure"`
 
-	// The Amazon RDS instances that Amazon Web Services recommends that you purchase.
+	// The MemoryDB reservations that Amazon Web Services recommends that you purchase.
+	MemoryDBInstanceDetails *MemoryDBInstanceDetails `type:"structure"`
+
+	// The Amazon RDS reservations that Amazon Web Services recommends that you
+	// purchase.
 	RDSInstanceDetails *RDSInstanceDetails `type:"structure"`
 
-	// The Amazon Redshift instances that Amazon Web Services recommends that you
-	// purchase.
+	// The Amazon Redshift reservations that Amazon Web Services recommends that
+	// you purchase.
 	RedshiftInstanceDetails *RedshiftInstanceDetails `type:"structure"`
 }
 
@@ -11767,6 +11773,12 @@ func (s *InstanceDetails) SetESInstanceDetails(v *ESInstanceDetails) *InstanceDe
 // SetElastiCacheInstanceDetails sets the ElastiCacheInstanceDetails field's value.
 func (s *InstanceDetails) SetElastiCacheInstanceDetails(v *ElastiCacheInstanceDetails) *InstanceDetails {
 	s.ElastiCacheInstanceDetails = v
+	return s
+}
+
+// SetMemoryDBInstanceDetails sets the MemoryDBInstanceDetails field's value.
+func (s *InstanceDetails) SetMemoryDBInstanceDetails(v *MemoryDBInstanceDetails) *InstanceDetails {
+	s.MemoryDBInstanceDetails = v
 	return s
 }
 
@@ -12333,6 +12345,75 @@ func (s *ListTagsForResourceOutput) SetResourceTags(v []*ResourceTag) *ListTagsF
 	return s
 }
 
+// Details about the MemoryDB reservations that Amazon Web Services recommends
+// that you purchase.
+type MemoryDBInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether the recommendation is for a current generation instance.
+	CurrentGeneration *bool `type:"boolean"`
+
+	// The instance family of the recommended reservation.
+	Family *string `type:"string"`
+
+	// The node type of the recommended reservation.
+	NodeType *string `type:"string"`
+
+	// The Amazon Web Services Region of the recommended reservation.
+	Region *string `type:"string"`
+
+	// Determines whether the recommended reservation is size flexible.
+	SizeFlexEligible *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemoryDBInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemoryDBInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *MemoryDBInstanceDetails) SetCurrentGeneration(v bool) *MemoryDBInstanceDetails {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *MemoryDBInstanceDetails) SetFamily(v string) *MemoryDBInstanceDetails {
+	s.Family = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *MemoryDBInstanceDetails) SetNodeType(v string) *MemoryDBInstanceDetails {
+	s.NodeType = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *MemoryDBInstanceDetails) SetRegion(v string) *MemoryDBInstanceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSizeFlexEligible sets the SizeFlexEligible field's value.
+func (s *MemoryDBInstanceDetails) SetSizeFlexEligible(v bool) *MemoryDBInstanceDetails {
+	s.SizeFlexEligible = &v
+	return s
+}
+
 // The aggregated value for a metric.
 type MetricValue struct {
 	_ struct{} `type:"structure"`
@@ -12562,7 +12643,7 @@ func (s *ProvideAnomalyFeedbackOutput) SetAnomalyId(v string) *ProvideAnomalyFee
 	return s
 }
 
-// Details about the Amazon RDS instances that Amazon Web Services recommends
+// Details about the Amazon RDS reservations that Amazon Web Services recommends
 // that you purchase.
 type RDSInstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -13040,7 +13121,7 @@ func (s *RecommendationDetailHourlyMetrics) SetStartTime(v string) *Recommendati
 	return s
 }
 
-// Details about the Amazon Redshift instances that Amazon Web Services recommends
+// Details about the Amazon Redshift reservations that Amazon Web Services recommends
 // that you purchase.
 type RedshiftInstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -13536,7 +13617,7 @@ type ReservationPurchaseRecommendationDetail struct {
 	// during the specified historical period if you had a reservation.
 	EstimatedReservationCostForLookbackPeriod *string `type:"string"`
 
-	// Details about the instances that Amazon Web Services recommends that you
+	// Details about the reservations that Amazon Web Services recommends that you
 	// purchase.
 	InstanceDetails *InstanceDetails `type:"structure"`
 

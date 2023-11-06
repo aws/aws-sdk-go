@@ -165,6 +165,7 @@
         "CreateEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription, set to <code>false</code> to create the subscription but not active it. </p>",
         "CreateGlobalClusterMessage$DeletionProtection": "<p>The deletion protection setting for the new global cluster. The global cluster can't be deleted when deletion protection is enabled. </p>",
         "CreateGlobalClusterMessage$StorageEncrypted": "<p>The storage encryption setting for the new global cluster. </p>",
+        "DBEngineVersion$SupportsCertificateRotationWithoutRestart": "<p>Indicates whether the engine version supports rotating the server certificate without rebooting the DB instance.</p>",
         "DBInstance$CopyTagsToSnapshot": "<p>A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.</p>",
         "DescribeDBEngineVersionsMessage$ListSupportedCharacterSets": "<p>If this parameter is specified and the requested engine supports the <code>CharacterSetName</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported character sets for each engine version. </p>",
         "DescribeDBEngineVersionsMessage$ListSupportedTimezones": "<p>If this parameter is specified and the requested engine supports the <code>TimeZone</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported time zones for each engine version. </p>",
@@ -175,6 +176,7 @@
         "ModifyDBInstanceMessage$AutoMinorVersionUpgrade": "<p>This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB does not perform minor version upgrades regardless of the value set.</p>",
         "ModifyDBInstanceMessage$CopyTagsToSnapshot": "<p>A value that indicates whether to copy all tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.</p>",
         "ModifyDBInstanceMessage$EnablePerformanceInsights": "<p>A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html\">Using Amazon Performance Insights</a>.</p>",
+        "ModifyDBInstanceMessage$CertificateRotationRestart": "<p>Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate.</p> <p>By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted.</p> <important> <p>Set this parameter only if you are <i>not</i> using SSL/TLS to connect to the DB instance.</p> </important> <p>If you are using SSL/TLS to connect to the DB instance, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription. </p>",
         "ModifyGlobalClusterMessage$DeletionProtection": "<p>Indicates if the global cluster has deletion protection enabled. The global cluster can't be deleted when deletion protection is enabled. </p>",
         "PendingModifiedValues$MultiAZ": "<p>Indicates that the Single-AZ instance is to change to a Multi-AZ deployment.</p>",
@@ -183,10 +185,22 @@
         "RestoreDBClusterToPointInTimeMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>"
       }
     },
+    "CACertificateIdentifiersList": {
+      "base": null,
+      "refs": {
+        "DBEngineVersion$SupportedCACertificateIdentifiers": "<p>A list of the supported CA certificate identifiers.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>"
+      }
+    },
     "Certificate": {
       "base": "<p>A certificate authority (CA) certificate for an Amazon Web Services account.</p>",
       "refs": {
         "CertificateList$member": null
+      }
+    },
+    "CertificateDetails": {
+      "base": "<p>Returns the details of the DB instance’s server certificate.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>",
+      "refs": {
+        "DBInstance$CertificateDetails": "<p>The details of the DB instance's server certificate.</p>"
       }
     },
     "CertificateList": {
@@ -1389,10 +1403,12 @@
         "AttributeValueList$member": null,
         "AvailabilityZone$Name": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZones$member": null,
+        "CACertificateIdentifiersList$member": null,
         "Certificate$CertificateIdentifier": "<p>The unique key that identifies a certificate.</p> <p>Example: <code>rds-ca-2019</code> </p>",
         "Certificate$CertificateType": "<p>The type of the certificate.</p> <p>Example: <code>CA</code> </p>",
         "Certificate$Thumbprint": "<p>The thumbprint of the certificate.</p>",
         "Certificate$CertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate.</p> <p>Example: <code>arn:aws:rds:us-east-1::cert:rds-ca-2019</code> </p>",
+        "CertificateDetails$CAIdentifier": "<p>The CA identifier of the CA certificate used for the DB instance's server certificate.</p>",
         "CertificateMessage$Marker": "<p>An optional pagination token provided if the number of records retrieved is greater than <code>MaxRecords</code>. If this parameter is specified, the marker specifies the next record in the list. Including the value of <code>Marker</code> in the next call to <code>DescribeCertificates</code> results in the next page of certificates.</p>",
         "CopyDBClusterParameterGroupMessage$SourceDBClusterParameterGroupIdentifier": "<p>The identifier or Amazon Resource Name (ARN) for the source cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid cluster parameter group.</p> </li> <li> <p>If the source cluster parameter group is in the same Amazon Web Services Region as the copy, specify a valid parameter group identifier; for example, <code>my-db-cluster-param-group</code>, or a valid ARN.</p> </li> <li> <p>If the source parameter group is in a different Amazon Web Services Region than the copy, specify a valid cluster parameter group ARN; for example, <code>arn:aws:rds:us-east-1:123456789012:sample-cluster:sample-parameter-group</code>.</p> </li> </ul>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupIdentifier": "<p>The identifier for the copied cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank.</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens. </p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens. </p> </li> </ul> <p>Example: <code>my-cluster-param-group1</code> </p>",
@@ -1424,6 +1440,7 @@
         "CreateDBInstanceMessage$PreferredMaintenanceWindow": "<p>The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week. </p> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
         "CreateDBInstanceMessage$DBClusterIdentifier": "<p>The identifier of the cluster that the instance will belong to.</p>",
         "CreateDBInstanceMessage$PerformanceInsightsKMSKeyId": "<p>The KMS key identifier for encryption of Performance Insights data.</p> <p>The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <p>If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon DocumentDB uses your default KMS key. There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services region.</p>",
+        "CreateDBInstanceMessage$CACertificateIdentifier": "<p>The CA certificate identifier to use for the DB instance's server certificate.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html\">Updating Your Amazon DocumentDB TLS Certificates</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html\"> Encrypting Data in Transit</a> in the <i>Amazon DocumentDB Developer Guide</i>.</p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupDescription": "<p>The description for the subnet group.</p>",
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be fewer than 255 characters.</p>",
@@ -1710,6 +1727,7 @@
       "refs": {
         "Certificate$ValidFrom": "<p>The starting date-time from which the certificate is valid.</p> <p>Example: <code>2019-07-31T17:57:09Z</code> </p>",
         "Certificate$ValidTill": "<p>The date-time after which the certificate is no longer valid.</p> <p>Example: <code>2024-07-31T17:57:09Z</code> </p>",
+        "CertificateDetails$ValidTill": "<p>The expiration date of the DB instance’s server certificate.</p>",
         "DBCluster$EarliestRestorableTime": "<p>The earliest time to which a database can be restored with point-in-time restore.</p>",
         "DBCluster$LatestRestorableTime": "<p>Specifies the latest time to which a database can be restored with point-in-time restore.</p>",
         "DBCluster$ClusterCreateTime": "<p>Specifies the time when the cluster was created, in Universal Coordinated Time (UTC).</p>",

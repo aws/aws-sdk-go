@@ -229,6 +229,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "BatchPutContact":{
+      "name":"BatchPutContact",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact/batch/{InstanceId}"
+      },
+      "input":{"shape":"BatchPutContactRequest"},
+      "output":{"shape":"BatchPutContactResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"IdempotencyException"}
+      ],
+      "idempotent":true
+    },
     "ClaimPhoneNumber":{
       "name":"ClaimPhoneNumber",
       "http":{
@@ -4001,6 +4019,32 @@
         "FlowAssociationSummaryList":{"shape":"FlowAssociationSummaryList"}
       }
     },
+    "BatchPutContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactDataRequestList"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactDataRequestList":{"shape":"ContactDataRequestList"}
+      }
+    },
+    "BatchPutContactResponse":{
+      "type":"structure",
+      "members":{
+        "SuccessfulRequestList":{"shape":"SuccessfulRequestList"},
+        "FailedRequestList":{"shape":"FailedRequestList"}
+      }
+    },
     "BehaviorType":{
       "type":"string",
       "enum":[
@@ -4018,6 +4062,12 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "Campaign":{
+      "type":"structure",
+      "members":{
+        "CampaignId":{"shape":"CampaignId"}
+      }
     },
     "CampaignId":{
       "type":"string",
@@ -4162,6 +4212,23 @@
         "RelatedContactId":{"shape":"ContactId"},
         "WisdomInfo":{"shape":"WisdomInfo"}
       }
+    },
+    "ContactDataRequest":{
+      "type":"structure",
+      "members":{
+        "SystemEndpoint":{"shape":"Endpoint"},
+        "CustomerEndpoint":{"shape":"Endpoint"},
+        "RequestIdentifier":{"shape":"RequestIdentifier"},
+        "QueueId":{"shape":"QueueId"},
+        "Attributes":{"shape":"Attributes"},
+        "Campaign":{"shape":"Campaign"}
+      }
+    },
+    "ContactDataRequestList":{
+      "type":"list",
+      "member":{"shape":"ContactDataRequest"},
+      "max":25,
+      "min":1
     },
     "ContactFilter":{
       "type":"structure",
@@ -6469,6 +6536,13 @@
       "members":{
       }
     },
+    "DisconnectReason":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"DisconnectReasonCode"}
+      }
+    },
+    "DisconnectReasonCode":{"type":"string"},
     "DismissUserContactRequest":{
       "type":"structure",
       "required":[
@@ -6545,6 +6619,26 @@
     "EncryptionType":{
       "type":"string",
       "enum":["KMS"]
+    },
+    "Endpoint":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"EndpointType"},
+        "Address":{"shape":"EndpointAddress"}
+      }
+    },
+    "EndpointAddress":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "EndpointType":{
+      "type":"string",
+      "enum":[
+        "TELEPHONE_NUMBER",
+        "VOIP",
+        "CONTACT_FLOW"
+      ]
     },
     "Evaluation":{
       "type":"structure",
@@ -7061,6 +7155,33 @@
         "OnSalesforceCaseCreate",
         "OnContactEvaluationSubmit",
         "OnMetricDataUpdate"
+      ]
+    },
+    "FailedRequest":{
+      "type":"structure",
+      "members":{
+        "RequestIdentifier":{"shape":"RequestIdentifier"},
+        "FailureReasonCode":{"shape":"FailureReasonCode"},
+        "FailureReasonMessage":{"shape":"String"}
+      }
+    },
+    "FailedRequestList":{
+      "type":"list",
+      "member":{"shape":"FailedRequest"}
+    },
+    "FailureReasonCode":{
+      "type":"string",
+      "enum":[
+        "INVALID_ATTRIBUTE_KEY",
+        "INVALID_CUSTOMER_ENDPOINT",
+        "INVALID_SYSTEM_ENDPOINT",
+        "INVALID_QUEUE",
+        "MISSING_CAMPAIGN",
+        "MISSING_CUSTOMER_ENDPOINT",
+        "MISSING_QUEUE_ID_AND_SYSTEM_ENDPOINT",
+        "REQUEST_THROTTLED",
+        "IDEMPOTENCY_EXCEPTION",
+        "INTERNAL_ERROR"
       ]
     },
     "FilterV2":{
@@ -10491,6 +10612,10 @@
         "Arn":{"shape":"ARN"}
       }
     },
+    "RequestIdentifier":{
+      "type":"string",
+      "max":80
+    },
     "RequiredFieldInfo":{
       "type":"structure",
       "members":{
@@ -11471,7 +11596,8 @@
       ],
       "members":{
         "ContactId":{"shape":"ContactId"},
-        "InstanceId":{"shape":"InstanceId"}
+        "InstanceId":{"shape":"InstanceId"},
+        "DisconnectReason":{"shape":"DisconnectReason"}
       }
     },
     "StopContactResponse":{
@@ -11571,6 +11697,17 @@
         "EvaluationId":{"shape":"ResourceId"},
         "EvaluationArn":{"shape":"ARN"}
       }
+    },
+    "SuccessfulRequest":{
+      "type":"structure",
+      "members":{
+        "RequestIdentifier":{"shape":"RequestIdentifier"},
+        "ContactId":{"shape":"ContactId"}
+      }
+    },
+    "SuccessfulRequestList":{
+      "type":"list",
+      "member":{"shape":"SuccessfulRequest"}
     },
     "SupportedMessagingContentType":{
       "type":"string",

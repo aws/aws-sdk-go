@@ -1,3 +1,21 @@
+Release v1.47.4 (2023-11-06)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports AWS Lambda compute.
+* `service/connect`: Updates service API and documentation
+* `service/docdb`: Updates service API and documentation
+  * Update the input of CreateDBInstance and ModifyDBInstance to support setting CA Certificates. Update the output of DescribeDBInstance and DescribeDBEngineVersions to show current and supported CA certificates.
+* `service/iam`: Adds new service
+  * Add partitional endpoint for iso-e.
+* `service/mwaa`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new US English voices - Danielle and Gregory. Danielle and Gregory are available as Neural voices only.
+* `service/route53`: Adds new service
+  * Add partitional endpoints for iso-e and iso-f.
+
 Release v1.47.3 (2023-11-03)
 ===
 

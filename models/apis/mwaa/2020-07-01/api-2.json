@@ -137,6 +137,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
+      "deprecated":true,
+      "deprecatedMessage":"This API is for internal use and not meant for public use, and is no longer available.",
       "endpoint":{"hostPrefix":"ops."}
     },
     "TagResource":{
@@ -338,11 +340,15 @@
       "members":{
         "Name":{"shape":"String"},
         "Value":{"shape":"String"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "Dimensions":{
       "type":"list",
-      "member":{"shape":"Dimension"}
+      "member":{"shape":"Dimension"},
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "Double":{
       "type":"double",
@@ -568,7 +574,9 @@
     },
     "MetricData":{
       "type":"list",
-      "member":{"shape":"MetricDatum"}
+      "member":{"shape":"MetricDatum"},
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "MetricDatum":{
       "type":"structure",
@@ -583,7 +591,9 @@
         "Timestamp":{"shape":"Timestamp"},
         "Unit":{"shape":"Unit"},
         "Value":{"shape":"Double"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "MinWorkers":{
       "type":"integer",
@@ -634,12 +644,16 @@
           "locationName":"EnvironmentName"
         },
         "MetricData":{"shape":"MetricData"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "PublishMetricsOutput":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "RelativePath":{
       "type":"string",
@@ -693,7 +707,9 @@
         "Minimum":{"shape":"Double"},
         "SampleCount":{"shape":"Integer"},
         "Sum":{"shape":"Double"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
     },
     "String":{"type":"string"},
     "SubnetId":{

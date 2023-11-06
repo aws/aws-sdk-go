@@ -15,6 +15,7 @@
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
     "AssociateTrafficDistributionGroupUser": "<p>Associates an agent with a traffic distribution group.</p>",
     "BatchGetFlowAssociation": "<p>Retrieve the flow associations for the given resources.</p>",
+    "BatchPutContact": "<note> <p>Only the Amazon Connect outbound campaigns service principal is allowed to assume a role in your account and call this API.</p> </note> <p>Allows you to create a batch of contacts in Amazon Connect. The outbound campaigns capability ingests dial requests via the <a href=\"https://docs.aws.amazon.com/connect-outbound/latest/APIReference/API_PutDialRequestBatch.html\">PutDialRequestBatch</a> API. It then uses BatchPutContact to create contacts corresponding to those dial requests. If agents are available, the dial requests are dialed out, which results in a voice call. The resulting voice call uses the same contactId that was created by BatchPutContact. </p>",
     "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
@@ -712,6 +713,7 @@
     "Attributes": {
       "base": null,
       "refs": {
+        "ContactDataRequest$Attributes": "<p>List of attributes to be stored in a contact.</p>",
         "GetContactAttributesResponse$Attributes": "<p>Information about the attributes.</p>",
         "StartChatContactRequest$Attributes": "<p>A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in flows just like any other contact attributes. </p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>",
         "StartOutboundVoiceContactRequest$Attributes": "<p>A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in flows just like any other contact attributes.</p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>",
@@ -761,6 +763,16 @@
       "refs": {
       }
     },
+    "BatchPutContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchPutContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BehaviorType": {
       "base": null,
       "refs": {
@@ -805,9 +817,16 @@
         "S3Config$BucketName": "<p>The S3 bucket name.</p>"
       }
     },
+    "Campaign": {
+      "base": "<p>Information associated with a campaign.</p>",
+      "refs": {
+        "ContactDataRequest$Campaign": "<p>Structure to store information associated with a campaign.</p>"
+      }
+    },
     "CampaignId": {
       "base": null,
       "refs": {
+        "Campaign$CampaignId": "<p>A unique identifier for a campaign.</p>",
         "StartOutboundVoiceContactRequest$CampaignId": "<p>The campaign identifier of the outbound communication.</p>"
       }
     },
@@ -899,6 +918,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "BatchPutContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p> <p>Pattern: <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code> </p>",
         "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateEvaluationFormRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
@@ -953,6 +973,18 @@
       "base": "<p>Contains information about a contact.</p>",
       "refs": {
         "DescribeContactResponse$Contact": "<p>Information about the contact.</p>"
+      }
+    },
+    "ContactDataRequest": {
+      "base": "<p>Request object with information to create a contact.</p>",
+      "refs": {
+        "ContactDataRequestList$member": null
+      }
+    },
+    "ContactDataRequestList": {
+      "base": null,
+      "refs": {
+        "BatchPutContactRequest$ContactDataRequestList": "<p>List of individual contact requests.</p>"
       }
     },
     "ContactFilter": {
@@ -1168,6 +1200,7 @@
         "StopContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StopContactRequest$ContactId": "<p>The ID of the contact.</p>",
         "StopContactStreamingRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact that is associated with the first interaction with the contact center.</p>",
+        "SuccessfulRequest$ContactId": "<p>The contactId of the contact that was created successfully.</p>",
         "SuspendContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "SuspendContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "TransferContactRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
@@ -2069,6 +2102,18 @@
       "refs": {
       }
     },
+    "DisconnectReason": {
+      "base": "<p>Contains details about why a contact was disconnected. Only Amazon Connect outbound campaigns can provide this field.</p>",
+      "refs": {
+        "StopContactRequest$DisconnectReason": "<p>The reason a contact can be disconnected. Only Amazon Connect outbound campaigns can provide this field.</p>"
+      }
+    },
+    "DisconnectReasonCode": {
+      "base": null,
+      "refs": {
+        "DisconnectReason$Code": "<p>A code that indicates how the contact was terminated.</p>"
+      }
+    },
     "DismissUserContactRequest": {
       "base": null,
       "refs": {
@@ -2128,6 +2173,25 @@
       "base": null,
       "refs": {
         "EncryptionConfig$EncryptionType": "<p>The type of encryption.</p>"
+      }
+    },
+    "Endpoint": {
+      "base": "<p>Information about the endpoint.</p>",
+      "refs": {
+        "ContactDataRequest$SystemEndpoint": "<p>Endpoint associated with the Amazon Connect instance from which outbound contact will be initiated for the campaign.</p>",
+        "ContactDataRequest$CustomerEndpoint": "<p>Endpoint of the customer for which contact will be initiated.</p>"
+      }
+    },
+    "EndpointAddress": {
+      "base": null,
+      "refs": {
+        "Endpoint$Address": "<p>Address of the endpoint.</p>"
+      }
+    },
+    "EndpointType": {
+      "base": null,
+      "refs": {
+        "Endpoint$Type": "<p>Type of the endpoint.</p>"
       }
     },
     "Evaluation": {
@@ -2500,6 +2564,24 @@
         "ListRulesRequest$EventSourceName": "<p>The name of the event source.</p>",
         "RuleSummary$EventSourceName": "<p>The name of the event source.</p>",
         "RuleTriggerEventSource$EventSourceName": "<p>The name of the event source.</p>"
+      }
+    },
+    "FailedRequest": {
+      "base": "<p>Request for which contact failed to be generated.</p>",
+      "refs": {
+        "FailedRequestList$member": null
+      }
+    },
+    "FailedRequestList": {
+      "base": null,
+      "refs": {
+        "BatchPutContactResponse$FailedRequestList": "<p>List of requests for which contact creation failed.</p>"
+      }
+    },
+    "FailureReasonCode": {
+      "base": null,
+      "refs": {
+        "FailedRequest$FailureReasonCode": "<p>Reason code for the failure.</p>"
       }
     },
     "FilterV2": {
@@ -3015,6 +3097,7 @@
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "BatchGetFlowAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "BatchPutContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ClaimPhoneNumberRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter <code>InstanceId</code> or <code>TargetArn</code>. </p>",
         "ClaimedPhoneNumberSummary$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -4689,6 +4772,7 @@
       "base": null,
       "refs": {
         "AssociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
+        "ContactDataRequest$QueueId": "<p>The identifier of the queue associated with the Amazon Connect instance in which contacts that are created will be queued.</p>",
         "CreateQueueResponse$QueueId": "<p>The identifier for the queue.</p>",
         "CreateRoutingProfileRequest$DefaultOutboundQueueId": "<p>The default outbound queue for the routing profile.</p>",
         "DeleteQueueRequest$QueueId": "<p>The identifier for the queue.</p>",
@@ -5051,6 +5135,14 @@
     "ReplicateInstanceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "RequestIdentifier": {
+      "base": null,
+      "refs": {
+        "ContactDataRequest$RequestIdentifier": "<p>Identifier to uniquely identify individual requests in the batch.</p>",
+        "FailedRequest$RequestIdentifier": "<p>Request identifier provided in the API call in the ContactDataRequest to create a contact.</p>",
+        "SuccessfulRequest$RequestIdentifier": "<p>Request identifier provided in the API call in the ContactDataRequest to create a contact.</p>"
       }
     },
     "RequiredFieldInfo": {
@@ -5811,6 +5903,7 @@
     "String": {
       "base": null,
       "refs": {
+        "FailedRequest$FailureReasonMessage": "<p>Why the request to create a contact failed.</p>",
         "HierarchyGroupCondition$Value": "<p>The value in the hierarchy group condition.</p>",
         "InstanceStatusReason$Message": "<p>The message.</p>",
         "IntervalDetails$TimeZone": "<p>The timezone applied to requested metrics.</p>",
@@ -5866,6 +5959,18 @@
     "SubmitContactEvaluationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SuccessfulRequest": {
+      "base": "<p>Request for which contact was successfully created.</p>",
+      "refs": {
+        "SuccessfulRequestList$member": null
+      }
+    },
+    "SuccessfulRequestList": {
+      "base": null,
+      "refs": {
+        "BatchPutContactResponse$SuccessfulRequestList": "<p>List of requests for which contact was successfully created.</p>"
       }
     },
     "SupportedMessagingContentType": {
