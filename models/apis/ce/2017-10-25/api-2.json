@@ -1859,7 +1859,8 @@
         "RDSInstanceDetails":{"shape":"RDSInstanceDetails"},
         "RedshiftInstanceDetails":{"shape":"RedshiftInstanceDetails"},
         "ElastiCacheInstanceDetails":{"shape":"ElastiCacheInstanceDetails"},
-        "ESInstanceDetails":{"shape":"ESInstanceDetails"}
+        "ESInstanceDetails":{"shape":"ESInstanceDetails"},
+        "MemoryDBInstanceDetails":{"shape":"MemoryDBInstanceDetails"}
       }
     },
     "InvalidNextTokenException":{
@@ -1976,6 +1977,16 @@
     "MaxResults":{
       "type":"integer",
       "min":1
+    },
+    "MemoryDBInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "Family":{"shape":"GenericString"},
+        "NodeType":{"shape":"GenericString"},
+        "Region":{"shape":"GenericString"},
+        "CurrentGeneration":{"shape":"GenericBoolean"},
+        "SizeFlexEligible":{"shape":"GenericBoolean"}
+      }
     },
     "Metric":{
       "type":"string",

@@ -1284,6 +1284,108 @@ func (c *Connect) BatchGetFlowAssociationWithContext(ctx aws.Context, input *Bat
 	return out, req.Send()
 }
 
+const opBatchPutContact = "BatchPutContact"
+
+// BatchPutContactRequest generates a "aws/request.Request" representing the
+// client's request for the BatchPutContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchPutContact for more information on using the BatchPutContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchPutContactRequest method.
+//	req, resp := client.BatchPutContactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchPutContact
+func (c *Connect) BatchPutContactRequest(input *BatchPutContactInput) (req *request.Request, output *BatchPutContactOutput) {
+	op := &request.Operation{
+		Name:       opBatchPutContact,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact/batch/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &BatchPutContactInput{}
+	}
+
+	output = &BatchPutContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchPutContact API operation for Amazon Connect Service.
+//
+// Only the Amazon Connect outbound campaigns service principal is allowed to
+// assume a role in your account and call this API.
+//
+// Allows you to create a batch of contacts in Amazon Connect. The outbound
+// campaigns capability ingests dial requests via the PutDialRequestBatch (https://docs.aws.amazon.com/connect-outbound/latest/APIReference/API_PutDialRequestBatch.html)
+// API. It then uses BatchPutContact to create contacts corresponding to those
+// dial requests. If agents are available, the dial requests are dialed out,
+// which results in a voice call. The resulting voice call uses the same contactId
+// that was created by BatchPutContact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation BatchPutContact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
+//
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchPutContact
+func (c *Connect) BatchPutContact(input *BatchPutContactInput) (*BatchPutContactOutput, error) {
+	req, out := c.BatchPutContactRequest(input)
+	return out, req.Send()
+}
+
+// BatchPutContactWithContext is the same as BatchPutContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchPutContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) BatchPutContactWithContext(ctx aws.Context, input *BatchPutContactInput, opts ...request.Option) (*BatchPutContactOutput, error) {
+	req, out := c.BatchPutContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opClaimPhoneNumber = "ClaimPhoneNumber"
 
 // ClaimPhoneNumberRequest generates a "aws/request.Request" representing the
@@ -25660,6 +25762,181 @@ func (s *BatchGetFlowAssociationOutput) SetFlowAssociationSummaryList(v []*FlowA
 	return s
 }
 
+type BatchPutContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// List of individual contact requests.
+	//
+	// ContactDataRequestList is a required field
+	ContactDataRequestList []*ContactDataRequest `min:"1" type:"list" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchPutContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchPutContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchPutContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchPutContactInput"}
+	if s.ContactDataRequestList == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactDataRequestList"))
+	}
+	if s.ContactDataRequestList != nil && len(s.ContactDataRequestList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactDataRequestList", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ContactDataRequestList != nil {
+		for i, v := range s.ContactDataRequestList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContactDataRequestList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *BatchPutContactInput) SetClientToken(v string) *BatchPutContactInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactDataRequestList sets the ContactDataRequestList field's value.
+func (s *BatchPutContactInput) SetContactDataRequestList(v []*ContactDataRequest) *BatchPutContactInput {
+	s.ContactDataRequestList = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *BatchPutContactInput) SetInstanceId(v string) *BatchPutContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+type BatchPutContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of requests for which contact creation failed.
+	FailedRequestList []*FailedRequest `type:"list"`
+
+	// List of requests for which contact was successfully created.
+	SuccessfulRequestList []*SuccessfulRequest `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchPutContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchPutContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedRequestList sets the FailedRequestList field's value.
+func (s *BatchPutContactOutput) SetFailedRequestList(v []*FailedRequest) *BatchPutContactOutput {
+	s.FailedRequestList = v
+	return s
+}
+
+// SetSuccessfulRequestList sets the SuccessfulRequestList field's value.
+func (s *BatchPutContactOutput) SetSuccessfulRequestList(v []*SuccessfulRequest) *BatchPutContactOutput {
+	s.SuccessfulRequestList = v
+	return s
+}
+
+// Information associated with a campaign.
+type Campaign struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for a campaign.
+	CampaignId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Campaign) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Campaign) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Campaign) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Campaign"}
+	if s.CampaignId != nil && len(*s.CampaignId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CampaignId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCampaignId sets the CampaignId field's value.
+func (s *Campaign) SetCampaignId(v string) *Campaign {
+	s.CampaignId = &v
+	return s
+}
+
 // A chat message.
 type ChatMessage struct {
 	_ struct{} `type:"structure"`
@@ -26315,6 +26592,100 @@ func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
 // SetWisdomInfo sets the WisdomInfo field's value.
 func (s *Contact) SetWisdomInfo(v *WisdomInfo) *Contact {
 	s.WisdomInfo = v
+	return s
+}
+
+// Request object with information to create a contact.
+type ContactDataRequest struct {
+	_ struct{} `type:"structure"`
+
+	// List of attributes to be stored in a contact.
+	Attributes map[string]*string `type:"map"`
+
+	// Structure to store information associated with a campaign.
+	Campaign *Campaign `type:"structure"`
+
+	// Endpoint of the customer for which contact will be initiated.
+	CustomerEndpoint *Endpoint `type:"structure"`
+
+	// The identifier of the queue associated with the Amazon Connect instance in
+	// which contacts that are created will be queued.
+	QueueId *string `type:"string"`
+
+	// Identifier to uniquely identify individual requests in the batch.
+	RequestIdentifier *string `type:"string"`
+
+	// Endpoint associated with the Amazon Connect instance from which outbound
+	// contact will be initiated for the campaign.
+	SystemEndpoint *Endpoint `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactDataRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactDataRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContactDataRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContactDataRequest"}
+	if s.Campaign != nil {
+		if err := s.Campaign.Validate(); err != nil {
+			invalidParams.AddNested("Campaign", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *ContactDataRequest) SetAttributes(v map[string]*string) *ContactDataRequest {
+	s.Attributes = v
+	return s
+}
+
+// SetCampaign sets the Campaign field's value.
+func (s *ContactDataRequest) SetCampaign(v *Campaign) *ContactDataRequest {
+	s.Campaign = v
+	return s
+}
+
+// SetCustomerEndpoint sets the CustomerEndpoint field's value.
+func (s *ContactDataRequest) SetCustomerEndpoint(v *Endpoint) *ContactDataRequest {
+	s.CustomerEndpoint = v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *ContactDataRequest) SetQueueId(v string) *ContactDataRequest {
+	s.QueueId = &v
+	return s
+}
+
+// SetRequestIdentifier sets the RequestIdentifier field's value.
+func (s *ContactDataRequest) SetRequestIdentifier(v string) *ContactDataRequest {
+	s.RequestIdentifier = &v
+	return s
+}
+
+// SetSystemEndpoint sets the SystemEndpoint field's value.
+func (s *ContactDataRequest) SetSystemEndpoint(v *Endpoint) *ContactDataRequest {
+	s.SystemEndpoint = v
 	return s
 }
 
@@ -36582,6 +36953,39 @@ func (s DisassociateTrafficDistributionGroupUserOutput) GoString() string {
 	return s.String()
 }
 
+// Contains details about why a contact was disconnected. Only Amazon Connect
+// outbound campaigns can provide this field.
+type DisconnectReason struct {
+	_ struct{} `type:"structure"`
+
+	// A code that indicates how the contact was terminated.
+	Code *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisconnectReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisconnectReason) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *DisconnectReason) SetCode(v string) *DisconnectReason {
+	s.Code = &v
+	return s
+}
+
 type DismissUserContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36924,6 +37328,47 @@ func (s *EncryptionConfig) SetEncryptionType(v string) *EncryptionConfig {
 // SetKeyId sets the KeyId field's value.
 func (s *EncryptionConfig) SetKeyId(v string) *EncryptionConfig {
 	s.KeyId = &v
+	return s
+}
+
+// Information about the endpoint.
+type Endpoint struct {
+	_ struct{} `type:"structure"`
+
+	// Address of the endpoint.
+	Address *string `type:"string"`
+
+	// Type of the endpoint.
+	Type *string `type:"string" enum:"EndpointType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Endpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Endpoint) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *Endpoint) SetAddress(v string) *Endpoint {
+	s.Address = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Endpoint) SetType(v string) *Endpoint {
+	s.Type = &v
 	return s
 }
 
@@ -38963,6 +39408,57 @@ func (s *EventBridgeActionDefinition) Validate() error {
 // SetName sets the Name field's value.
 func (s *EventBridgeActionDefinition) SetName(v string) *EventBridgeActionDefinition {
 	s.Name = &v
+	return s
+}
+
+// Request for which contact failed to be generated.
+type FailedRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Reason code for the failure.
+	FailureReasonCode *string `type:"string" enum:"FailureReasonCode"`
+
+	// Why the request to create a contact failed.
+	FailureReasonMessage *string `type:"string"`
+
+	// Request identifier provided in the API call in the ContactDataRequest to
+	// create a contact.
+	RequestIdentifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedRequest) GoString() string {
+	return s.String()
+}
+
+// SetFailureReasonCode sets the FailureReasonCode field's value.
+func (s *FailedRequest) SetFailureReasonCode(v string) *FailedRequest {
+	s.FailureReasonCode = &v
+	return s
+}
+
+// SetFailureReasonMessage sets the FailureReasonMessage field's value.
+func (s *FailedRequest) SetFailureReasonMessage(v string) *FailedRequest {
+	s.FailureReasonMessage = &v
+	return s
+}
+
+// SetRequestIdentifier sets the RequestIdentifier field's value.
+func (s *FailedRequest) SetRequestIdentifier(v string) *FailedRequest {
+	s.RequestIdentifier = &v
 	return s
 }
 
@@ -56931,6 +57427,10 @@ type StopContactInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
+	// The reason a contact can be disconnected. Only Amazon Connect outbound campaigns
+	// can provide this field.
+	DisconnectReason *DisconnectReason `type:"structure"`
+
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
 	// in the Amazon Resource Name (ARN) of the instance.
@@ -56982,6 +57482,12 @@ func (s *StopContactInput) Validate() error {
 // SetContactId sets the ContactId field's value.
 func (s *StopContactInput) SetContactId(v string) *StopContactInput {
 	s.ContactId = &v
+	return s
+}
+
+// SetDisconnectReason sets the DisconnectReason field's value.
+func (s *StopContactInput) SetDisconnectReason(v *DisconnectReason) *StopContactInput {
+	s.DisconnectReason = v
 	return s
 }
 
@@ -57448,6 +57954,48 @@ func (s *SubmitContactEvaluationOutput) SetEvaluationArn(v string) *SubmitContac
 // SetEvaluationId sets the EvaluationId field's value.
 func (s *SubmitContactEvaluationOutput) SetEvaluationId(v string) *SubmitContactEvaluationOutput {
 	s.EvaluationId = &v
+	return s
+}
+
+// Request for which contact was successfully created.
+type SuccessfulRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The contactId of the contact that was created successfully.
+	ContactId *string `min:"1" type:"string"`
+
+	// Request identifier provided in the API call in the ContactDataRequest to
+	// create a contact.
+	RequestIdentifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulRequest) GoString() string {
+	return s.String()
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *SuccessfulRequest) SetContactId(v string) *SuccessfulRequest {
+	s.ContactId = &v
+	return s
+}
+
+// SetRequestIdentifier sets the RequestIdentifier field's value.
+func (s *SuccessfulRequest) SetRequestIdentifier(v string) *SuccessfulRequest {
+	s.RequestIdentifier = &v
 	return s
 }
 
@@ -66581,6 +67129,26 @@ func EncryptionType_Values() []string {
 }
 
 const (
+	// EndpointTypeTelephoneNumber is a EndpointType enum value
+	EndpointTypeTelephoneNumber = "TELEPHONE_NUMBER"
+
+	// EndpointTypeVoip is a EndpointType enum value
+	EndpointTypeVoip = "VOIP"
+
+	// EndpointTypeContactFlow is a EndpointType enum value
+	EndpointTypeContactFlow = "CONTACT_FLOW"
+)
+
+// EndpointType_Values returns all elements of the EndpointType enum
+func EndpointType_Values() []string {
+	return []string{
+		EndpointTypeTelephoneNumber,
+		EndpointTypeVoip,
+		EndpointTypeContactFlow,
+	}
+}
+
+const (
 	// EvaluationFormQuestionTypeText is a EvaluationFormQuestionType enum value
 	EvaluationFormQuestionTypeText = "TEXT"
 
@@ -66717,6 +67285,54 @@ func EventSourceName_Values() []string {
 		EventSourceNameOnSalesforceCaseCreate,
 		EventSourceNameOnContactEvaluationSubmit,
 		EventSourceNameOnMetricDataUpdate,
+	}
+}
+
+const (
+	// FailureReasonCodeInvalidAttributeKey is a FailureReasonCode enum value
+	FailureReasonCodeInvalidAttributeKey = "INVALID_ATTRIBUTE_KEY"
+
+	// FailureReasonCodeInvalidCustomerEndpoint is a FailureReasonCode enum value
+	FailureReasonCodeInvalidCustomerEndpoint = "INVALID_CUSTOMER_ENDPOINT"
+
+	// FailureReasonCodeInvalidSystemEndpoint is a FailureReasonCode enum value
+	FailureReasonCodeInvalidSystemEndpoint = "INVALID_SYSTEM_ENDPOINT"
+
+	// FailureReasonCodeInvalidQueue is a FailureReasonCode enum value
+	FailureReasonCodeInvalidQueue = "INVALID_QUEUE"
+
+	// FailureReasonCodeMissingCampaign is a FailureReasonCode enum value
+	FailureReasonCodeMissingCampaign = "MISSING_CAMPAIGN"
+
+	// FailureReasonCodeMissingCustomerEndpoint is a FailureReasonCode enum value
+	FailureReasonCodeMissingCustomerEndpoint = "MISSING_CUSTOMER_ENDPOINT"
+
+	// FailureReasonCodeMissingQueueIdAndSystemEndpoint is a FailureReasonCode enum value
+	FailureReasonCodeMissingQueueIdAndSystemEndpoint = "MISSING_QUEUE_ID_AND_SYSTEM_ENDPOINT"
+
+	// FailureReasonCodeRequestThrottled is a FailureReasonCode enum value
+	FailureReasonCodeRequestThrottled = "REQUEST_THROTTLED"
+
+	// FailureReasonCodeIdempotencyException is a FailureReasonCode enum value
+	FailureReasonCodeIdempotencyException = "IDEMPOTENCY_EXCEPTION"
+
+	// FailureReasonCodeInternalError is a FailureReasonCode enum value
+	FailureReasonCodeInternalError = "INTERNAL_ERROR"
+)
+
+// FailureReasonCode_Values returns all elements of the FailureReasonCode enum
+func FailureReasonCode_Values() []string {
+	return []string{
+		FailureReasonCodeInvalidAttributeKey,
+		FailureReasonCodeInvalidCustomerEndpoint,
+		FailureReasonCodeInvalidSystemEndpoint,
+		FailureReasonCodeInvalidQueue,
+		FailureReasonCodeMissingCampaign,
+		FailureReasonCodeMissingCustomerEndpoint,
+		FailureReasonCodeMissingQueueIdAndSystemEndpoint,
+		FailureReasonCodeRequestThrottled,
+		FailureReasonCodeIdempotencyException,
+		FailureReasonCodeInternalError,
 	}
 }
 

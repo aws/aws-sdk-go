@@ -1027,6 +1027,10 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
+    "CACertificateIdentifiersList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Certificate":{
       "type":"structure",
       "members":{
@@ -1038,6 +1042,13 @@
         "CertificateArn":{"shape":"String"}
       },
       "wrapper":true
+    },
+    "CertificateDetails":{
+      "type":"structure",
+      "members":{
+        "CAIdentifier":{"shape":"String"},
+        "ValidTill":{"shape":"TStamp"}
+      }
     },
     "CertificateList":{
       "type":"list",
@@ -1205,7 +1216,8 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "PromotionTier":{"shape":"IntegerOptional"},
         "EnablePerformanceInsights":{"shape":"BooleanOptional"},
-        "PerformanceInsightsKMSKeyId":{"shape":"String"}
+        "PerformanceInsightsKMSKeyId":{"shape":"String"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "CreateDBInstanceResult":{
@@ -1530,7 +1542,9 @@
         "DBEngineVersionDescription":{"shape":"String"},
         "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"},
         "ExportableLogTypes":{"shape":"LogTypeList"},
-        "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"}
+        "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"},
+        "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"},
+        "SupportsCertificateRotationWithoutRestart":{"shape":"BooleanOptional"}
       }
     },
     "DBEngineVersionList":{
@@ -1576,7 +1590,8 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "PromotionTier":{"shape":"IntegerOptional"},
         "DBInstanceArn":{"shape":"String"},
-        "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"}
+        "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
+        "CertificateDetails":{"shape":"CertificateDetails"}
       },
       "wrapper":true
     },
@@ -2565,7 +2580,8 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "PromotionTier":{"shape":"IntegerOptional"},
         "EnablePerformanceInsights":{"shape":"BooleanOptional"},
-        "PerformanceInsightsKMSKeyId":{"shape":"String"}
+        "PerformanceInsightsKMSKeyId":{"shape":"String"},
+        "CertificateRotationRestart":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBInstanceResult":{

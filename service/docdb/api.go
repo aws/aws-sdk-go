@@ -6028,6 +6028,53 @@ func (s *Certificate) SetValidTill(v time.Time) *Certificate {
 	return s
 }
 
+// Returns the details of the DB instance’s server certificate.
+//
+// For more information, see Updating Your Amazon DocumentDB TLS Certificates
+// (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)
+// and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)
+// in the Amazon DocumentDB Developer Guide.
+type CertificateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The CA identifier of the CA certificate used for the DB instance's server
+	// certificate.
+	CAIdentifier *string `type:"string"`
+
+	// The expiration date of the DB instance’s server certificate.
+	ValidTill *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateDetails) GoString() string {
+	return s.String()
+}
+
+// SetCAIdentifier sets the CAIdentifier field's value.
+func (s *CertificateDetails) SetCAIdentifier(v string) *CertificateDetails {
+	s.CAIdentifier = &v
+	return s
+}
+
+// SetValidTill sets the ValidTill field's value.
+func (s *CertificateDetails) SetValidTill(v time.Time) *CertificateDetails {
+	s.ValidTill = &v
+	return s
+}
+
 // The configuration setting for the log types to be enabled for export to Amazon
 // CloudWatch Logs for a specific instance or cluster.
 //
@@ -7054,6 +7101,14 @@ type CreateDBInstanceInput struct {
 	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
+	// The CA certificate identifier to use for the DB instance's server certificate.
+	//
+	// For more information, see Updating Your Amazon DocumentDB TLS Certificates
+	// (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)
+	// and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)
+	// in the Amazon DocumentDB Developer Guide.
+	CACertificateIdentifier *string `type:"string"`
+
 	// A value that indicates whether to copy tags from the DB instance to snapshots
 	// of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -7182,6 +7237,12 @@ func (s *CreateDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *CreateDBInst
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *CreateDBInstanceInput) SetAvailabilityZone(v string) *CreateDBInstanceInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *CreateDBInstanceInput) SetCACertificateIdentifier(v string) *CreateDBInstanceInput {
+	s.CACertificateIdentifier = &v
 	return s
 }
 
@@ -8515,6 +8576,18 @@ type DBEngineVersion struct {
 	// CloudWatch Logs.
 	ExportableLogTypes []*string `type:"list"`
 
+	// A list of the supported CA certificate identifiers.
+	//
+	// For more information, see Updating Your Amazon DocumentDB TLS Certificates
+	// (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)
+	// and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)
+	// in the Amazon DocumentDB Developer Guide.
+	SupportedCACertificateIdentifiers []*string `type:"list"`
+
+	// Indicates whether the engine version supports rotating the server certificate
+	// without rebooting the DB instance.
+	SupportsCertificateRotationWithoutRestart *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
@@ -8578,6 +8651,18 @@ func (s *DBEngineVersion) SetExportableLogTypes(v []*string) *DBEngineVersion {
 	return s
 }
 
+// SetSupportedCACertificateIdentifiers sets the SupportedCACertificateIdentifiers field's value.
+func (s *DBEngineVersion) SetSupportedCACertificateIdentifiers(v []*string) *DBEngineVersion {
+	s.SupportedCACertificateIdentifiers = v
+	return s
+}
+
+// SetSupportsCertificateRotationWithoutRestart sets the SupportsCertificateRotationWithoutRestart field's value.
+func (s *DBEngineVersion) SetSupportsCertificateRotationWithoutRestart(v bool) *DBEngineVersion {
+	s.SupportsCertificateRotationWithoutRestart = &v
+	return s
+}
+
 // SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
 func (s *DBEngineVersion) SetSupportsLogExportsToCloudwatchLogs(v bool) *DBEngineVersion {
 	s.SupportsLogExportsToCloudwatchLogs = &v
@@ -8608,6 +8693,9 @@ type DBInstance struct {
 
 	// The identifier of the CA certificate for this DB instance.
 	CACertificateIdentifier *string `type:"string"`
+
+	// The details of the DB instance's server certificate.
+	CertificateDetails *CertificateDetails `type:"structure"`
 
 	// A value that indicates whether to copy tags from the DB instance to snapshots
 	// of the DB instance. By default, tags are not copied.
@@ -8734,6 +8822,12 @@ func (s *DBInstance) SetBackupRetentionPeriod(v int64) *DBInstance {
 // SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
 func (s *DBInstance) SetCACertificateIdentifier(v string) *DBInstance {
 	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCertificateDetails sets the CertificateDetails field's value.
+func (s *DBInstance) SetCertificateDetails(v *CertificateDetails) *DBInstance {
+	s.CertificateDetails = v
 	return s
 }
 
@@ -13223,6 +13317,21 @@ type ModifyDBInstanceInput struct {
 	// Indicates the certificate that needs to be associated with the instance.
 	CACertificateIdentifier *string `type:"string"`
 
+	// Specifies whether the DB instance is restarted when you rotate your SSL/TLS
+	// certificate.
+	//
+	// By default, the DB instance is restarted when you rotate your SSL/TLS certificate.
+	// The certificate is not updated until the DB instance is restarted.
+	//
+	// Set this parameter only if you are not using SSL/TLS to connect to the DB
+	// instance.
+	//
+	// If you are using SSL/TLS to connect to the DB instance, see Updating Your
+	// Amazon DocumentDB TLS Certificates (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)
+	// and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)
+	// in the Amazon DocumentDB Developer Guide.
+	CertificateRotationRestart *bool `type:"boolean"`
+
 	// A value that indicates whether to copy all tags from the DB instance to snapshots
 	// of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -13352,6 +13461,12 @@ func (s *ModifyDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBInst
 // SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
 func (s *ModifyDBInstanceInput) SetCACertificateIdentifier(v string) *ModifyDBInstanceInput {
 	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCertificateRotationRestart sets the CertificateRotationRestart field's value.
+func (s *ModifyDBInstanceInput) SetCertificateRotationRestart(v bool) *ModifyDBInstanceInput {
+	s.CertificateRotationRestart = &v
 	return s
 }
 

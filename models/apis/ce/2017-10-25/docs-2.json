@@ -607,9 +607,9 @@
       }
     },
     "EC2InstanceDetails": {
-      "base": "<p>Details about the Amazon EC2 instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the Amazon EC2 reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "InstanceDetails$EC2InstanceDetails": "<p>The Amazon EC2 instances that Amazon Web Services recommends that you purchase.</p>"
+        "InstanceDetails$EC2InstanceDetails": "<p>The Amazon EC2 reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "EC2ResourceDetails": {
@@ -631,15 +631,15 @@
       }
     },
     "ESInstanceDetails": {
-      "base": "<p>Details about the Amazon OpenSearch Service instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the Amazon OpenSearch Service reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "InstanceDetails$ESInstanceDetails": "<p>The Amazon OpenSearch Service instances that Amazon Web Services recommends that you purchase.</p>"
+        "InstanceDetails$ESInstanceDetails": "<p>The Amazon OpenSearch Service reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "ElastiCacheInstanceDetails": {
-      "base": "<p>Details about the Amazon ElastiCache instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the Amazon ElastiCache reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "InstanceDetails$ElastiCacheInstanceDetails": "<p>The ElastiCache instances that Amazon Web Services recommends that you purchase.</p>"
+        "InstanceDetails$ElastiCacheInstanceDetails": "<p>The ElastiCache reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "Entity": {
@@ -763,6 +763,8 @@
         "ESInstanceDetails$SizeFlexEligible": "<p>Determines whether the recommended reservation is size flexible.</p>",
         "ElastiCacheInstanceDetails$CurrentGeneration": "<p>Determines whether the recommendation is for a current generation instance.</p>",
         "ElastiCacheInstanceDetails$SizeFlexEligible": "<p>Determines whether the recommended reservation is size flexible.</p>",
+        "MemoryDBInstanceDetails$CurrentGeneration": "<p>Determines whether the recommendation is for a current generation instance.</p>",
+        "MemoryDBInstanceDetails$SizeFlexEligible": "<p>Determines whether the recommended reservation is size flexible.</p>",
         "RDSInstanceDetails$CurrentGeneration": "<p>Determines whether the recommendation is for a current-generation instance. </p>",
         "RDSInstanceDetails$SizeFlexEligible": "<p>Determines whether the recommended reservation is size flexible.</p>",
         "RedshiftInstanceDetails$CurrentGeneration": "<p>Determines whether the recommendation is for a current-generation instance.</p>",
@@ -850,6 +852,9 @@
         "GetReservationPurchaseRecommendationRequest$AccountId": "<p>The account ID that's associated with the recommendation. </p>",
         "GetReservationPurchaseRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
         "GetRightsizingRecommendationRequest$Service": "<p>The specific service that you want recommendations for. The only valid value for <code>GetRightsizingRecommendation</code> is \"<code>AmazonEC2</code>\".</p>",
+        "MemoryDBInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
+        "MemoryDBInstanceDetails$NodeType": "<p>The node type of the recommended reservation.</p>",
+        "MemoryDBInstanceDetails$Region": "<p>The Amazon Web Services Region of the recommended reservation.</p>",
         "NetworkResourceUtilization$NetworkInBytesPerSecond": "<p>The network inbound throughput utilization measured in Bytes per second (Bps). </p>",
         "NetworkResourceUtilization$NetworkOutBytesPerSecond": "<p>The network outbound throughput utilization measured in Bytes per second (Bps). </p>",
         "NetworkResourceUtilization$NetworkPacketsInPerSecond": "<p>The network inbound packets that are measured in packets per second. </p>",
@@ -1238,9 +1243,9 @@
       }
     },
     "InstanceDetails": {
-      "base": "<p>Details about the instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "ReservationPurchaseRecommendationDetail$InstanceDetails": "<p>Details about the instances that Amazon Web Services recommends that you purchase.</p>"
+        "ReservationPurchaseRecommendationDetail$InstanceDetails": "<p>Details about the reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "InvalidNextTokenException": {
@@ -1340,6 +1345,12 @@
         "GetSavingsPlansCoverageRequest$MaxResults": "<p>The number of items to be returned in a response. The default is <code>20</code>, with a minimum value of <code>1</code>.</p>",
         "GetSavingsPlansUtilizationDetailsRequest$MaxResults": "<p>The number of items to be returned in a response. The default is <code>20</code>, with a minimum value of <code>1</code>.</p>",
         "GetTagsRequest$MaxResults": "<p>This field is only used when SortBy is provided in the request. The maximum number of objects that are returned for this request. If MaxResults isn't specified with SortBy, the request returns 1000 results as the default value for this parameter.</p> <p>For <code>GetTags</code>, MaxResults has an upper quota of 1000.</p>"
+      }
+    },
+    "MemoryDBInstanceDetails": {
+      "base": "<p>Details about the MemoryDB reservations that Amazon Web Services recommends that you purchase.</p>",
+      "refs": {
+        "InstanceDetails$MemoryDBInstanceDetails": "<p>The MemoryDB reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "Metric": {
@@ -1599,9 +1610,9 @@
       }
     },
     "RDSInstanceDetails": {
-      "base": "<p>Details about the Amazon RDS instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the Amazon RDS reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "InstanceDetails$RDSInstanceDetails": "<p>The Amazon RDS instances that Amazon Web Services recommends that you purchase.</p>"
+        "InstanceDetails$RDSInstanceDetails": "<p>The Amazon RDS reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "RICostForUnusedHours": {
@@ -1657,9 +1668,9 @@
       }
     },
     "RedshiftInstanceDetails": {
-      "base": "<p>Details about the Amazon Redshift instances that Amazon Web Services recommends that you purchase.</p>",
+      "base": "<p>Details about the Amazon Redshift reservations that Amazon Web Services recommends that you purchase.</p>",
       "refs": {
-        "InstanceDetails$RedshiftInstanceDetails": "<p>The Amazon Redshift instances that Amazon Web Services recommends that you purchase.</p>"
+        "InstanceDetails$RedshiftInstanceDetails": "<p>The Amazon Redshift reservations that Amazon Web Services recommends that you purchase.</p>"
       }
     },
     "RequestChangedException": {

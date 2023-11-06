@@ -699,7 +699,12 @@ const opPublishMetrics = "PublishMetrics"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/PublishMetrics
+//
+// Deprecated: This API is for internal use and not meant for public use, and is no longer available.
 func (c *MWAA) PublishMetricsRequest(input *PublishMetricsInput) (req *request.Request, output *PublishMetricsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, PublishMetrics, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opPublishMetrics,
 		HTTPMethod: "POST",
@@ -738,6 +743,8 @@ func (c *MWAA) PublishMetricsRequest(input *PublishMetricsInput) (req *request.R
 //     InternalServerException: An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mwaa-2020-07-01/PublishMetrics
+//
+// Deprecated: This API is for internal use and not meant for public use, and is no longer available.
 func (c *MWAA) PublishMetrics(input *PublishMetricsInput) (*PublishMetricsOutput, error) {
 	req, out := c.PublishMetricsRequest(input)
 	return out, req.Send()
@@ -752,6 +759,8 @@ func (c *MWAA) PublishMetrics(input *PublishMetricsInput) (*PublishMetricsOutput
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API is for internal use and not meant for public use, and is no longer available.
 func (c *MWAA) PublishMetricsWithContext(ctx aws.Context, input *PublishMetricsInput, opts ...request.Option) (*PublishMetricsOutput, error) {
 	req, out := c.PublishMetricsRequest(input)
 	req.SetContext(ctx)
@@ -1198,9 +1207,10 @@ type CreateEnvironmentInput struct {
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
 	// The Apache Airflow version for your environment. If no value is specified,
-	// it defaults to the latest version. Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3,
-	// and 2.5.1. For more information, see Apache Airflow versions on Amazon Managed
-	// Workflows for Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
+	// it defaults to the latest version. For more information, see Apache Airflow
+	// versions on Amazon Managed Workflows for Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
+	//
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
@@ -1764,8 +1774,10 @@ func (s DeleteEnvironmentOutput) GoString() string {
 // Internal only. Represents the dimensions of a metric. To learn more about
 // the metrics published to Amazon CloudWatch, see Amazon MWAA performance metrics
 // in Amazon CloudWatch (https://docs.aws.amazon.com/mwaa/latest/userguide/cw-metrics.html).
+//
+// Deprecated: This type is for internal use and not meant for public use. Data set for this type will be ignored.
 type Dimension struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Internal only. The name of the dimension.
 	//
@@ -1837,8 +1849,9 @@ type Environment struct {
 	// String and GoString methods.
 	AirflowConfigurationOptions map[string]*string `type:"map" sensitive:"true"`
 
-	// The Apache Airflow version on your environment. Valid values: 1.10.12, 2.0.2,
-	// 2.2.2, 2.4.3, and 2.5.1.
+	// The Apache Airflow version on your environment.
+	//
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment.
@@ -2756,11 +2769,13 @@ func (s *LoggingConfigurationInput) SetWorkerLogs(v *ModuleLoggingConfigurationI
 // Internal only. Collects Apache Airflow metrics. To learn more about the metrics
 // published to Amazon CloudWatch, see Amazon MWAA performance metrics in Amazon
 // CloudWatch (https://docs.aws.amazon.com/mwaa/latest/userguide/cw-metrics.html).
+//
+// Deprecated: This type is for internal use and not meant for public use. Data set for this type will be ignored.
 type MetricDatum struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Internal only. The dimensions associated with the metric.
-	Dimensions []*Dimension `type:"list"`
+	Dimensions []*Dimension `deprecated:"true" type:"list"`
 
 	// Internal only. The name of the metric.
 	//
@@ -2768,7 +2783,7 @@ type MetricDatum struct {
 	MetricName *string `type:"string" required:"true"`
 
 	// Internal only. The statistical values for the metric.
-	StatisticValues *StatisticSet `type:"structure"`
+	StatisticValues *StatisticSet `deprecated:"true" type:"structure"`
 
 	// Internal only. The time the metric data was received.
 	//
@@ -3037,8 +3052,9 @@ func (s *NetworkConfiguration) SetSubnetIds(v []*string) *NetworkConfiguration {
 	return s
 }
 
+// Deprecated: This type is for internal use and not meant for public use. Data set for this type will be ignored.
 type PublishMetricsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Internal only. The name of the environment.
 	//
@@ -3050,7 +3066,7 @@ type PublishMetricsInput struct {
 	// in Amazon CloudWatch (https://docs.aws.amazon.com/mwaa/latest/userguide/cw-metrics.html).
 	//
 	// MetricData is a required field
-	MetricData []*MetricDatum `type:"list" required:"true"`
+	MetricData []*MetricDatum `deprecated:"true" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -3112,8 +3128,9 @@ func (s *PublishMetricsInput) SetMetricData(v []*MetricDatum) *PublishMetricsInp
 	return s
 }
 
+// Deprecated: This type is for internal use and not meant for public use. Data set for this type will be ignored.
 type PublishMetricsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -3201,8 +3218,10 @@ func (s *ResourceNotFoundException) RequestID() string {
 // Internal only. Represents a set of statistics that describe a specific metric.
 // To learn more about the metrics published to Amazon CloudWatch, see Amazon
 // MWAA performance metrics in Amazon CloudWatch (https://docs.aws.amazon.com/mwaa/latest/userguide/cw-metrics.html).
+//
+// Deprecated: This type is for internal use and not meant for public use. Data set for this type will be ignored.
 type StatisticSet struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Internal only. The maximum value of the sample set.
 	Maximum *float64 `type:"double"`
@@ -3456,7 +3475,7 @@ type UpdateEnvironmentInput struct {
 	// Airflow version. For more information about updating your resources, see
 	// Upgrading an Amazon MWAA environment (https://docs.aws.amazon.com/mwaa/latest/userguide/upgrading-environment.html).
 	//
-	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, and 2.5.1.
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2.
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
