@@ -365,6 +365,12 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //   - ErrCodeIntegrationNotFoundFault "IntegrationNotFoundFault"
 //     The specified integration could not be found.
 //
+//   - ErrCodeTenantDatabaseNotFoundFault "TenantDatabaseNotFound"
+//     The specified tenant database wasn't found in the DB instance.
+//
+//   - ErrCodeDBSnapshotTenantDatabaseNotFoundFault "DBSnapshotTenantDatabaseNotFoundFault"
+//     The specified snapshot tenant database wasn't found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddTagsToResource
 func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
@@ -2082,6 +2088,10 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 //   - ErrCodeCertificateNotFoundFault "CertificateNotFound"
 //     CertificateIdentifier doesn't refer to an existing certificate.
 //
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstance
 func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, error) {
 	req, out := c.CreateDBInstanceRequest(input)
@@ -2247,6 +2257,10 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //   - ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
+//
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstanceReadReplica
 func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, error) {
@@ -3250,6 +3264,97 @@ func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGro
 // for more information on using Contexts.
 func (c *RDS) CreateOptionGroupWithContext(ctx aws.Context, input *CreateOptionGroupInput, opts ...request.Option) (*CreateOptionGroupOutput, error) {
 	req, out := c.CreateOptionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateTenantDatabase = "CreateTenantDatabase"
+
+// CreateTenantDatabaseRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTenantDatabase operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTenantDatabase for more information on using the CreateTenantDatabase
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTenantDatabaseRequest method.
+//	req, resp := client.CreateTenantDatabaseRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateTenantDatabase
+func (c *RDS) CreateTenantDatabaseRequest(input *CreateTenantDatabaseInput) (req *request.Request, output *CreateTenantDatabaseOutput) {
+	op := &request.Operation{
+		Name:       opCreateTenantDatabase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTenantDatabaseInput{}
+	}
+
+	output = &CreateTenantDatabaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTenantDatabase API operation for Amazon Relational Database Service.
+//
+// Creates a tenant database in a DB instance that uses the multi-tenant configuration.
+// Only RDS for Oracle container database (CDB) instances are supported.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation CreateTenantDatabase for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//     The DB instance isn't in a valid state.
+//
+//   - ErrCodeTenantDatabaseAlreadyExistsFault "TenantDatabaseAlreadyExists"
+//     You attempted to either create a tenant database that already exists or modify
+//     a tenant database to use the name of an existing tenant database.
+//
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateTenantDatabase
+func (c *RDS) CreateTenantDatabase(input *CreateTenantDatabaseInput) (*CreateTenantDatabaseOutput, error) {
+	req, out := c.CreateTenantDatabaseRequest(input)
+	return out, req.Send()
+}
+
+// CreateTenantDatabaseWithContext is the same as CreateTenantDatabase with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTenantDatabase for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) CreateTenantDatabaseWithContext(ctx aws.Context, input *CreateTenantDatabaseInput, opts ...request.Option) (*CreateTenantDatabaseOutput, error) {
+	req, out := c.CreateTenantDatabaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4978,6 +5083,94 @@ func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGro
 // for more information on using Contexts.
 func (c *RDS) DeleteOptionGroupWithContext(ctx aws.Context, input *DeleteOptionGroupInput, opts ...request.Option) (*DeleteOptionGroupOutput, error) {
 	req, out := c.DeleteOptionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTenantDatabase = "DeleteTenantDatabase"
+
+// DeleteTenantDatabaseRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTenantDatabase operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTenantDatabase for more information on using the DeleteTenantDatabase
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTenantDatabaseRequest method.
+//	req, resp := client.DeleteTenantDatabaseRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteTenantDatabase
+func (c *RDS) DeleteTenantDatabaseRequest(input *DeleteTenantDatabaseInput) (req *request.Request, output *DeleteTenantDatabaseOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTenantDatabase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTenantDatabaseInput{}
+	}
+
+	output = &DeleteTenantDatabaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTenantDatabase API operation for Amazon Relational Database Service.
+//
+// Deletes a tenant database from your DB instance. This command only applies
+// to RDS for Oracle container database (CDB) instances.
+//
+// You can't delete a tenant database when it is the only tenant in the DB instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DeleteTenantDatabase for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   - ErrCodeTenantDatabaseNotFoundFault "TenantDatabaseNotFound"
+//     The specified tenant database wasn't found in the DB instance.
+//
+//   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//     The DB instance isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteTenantDatabase
+func (c *RDS) DeleteTenantDatabase(input *DeleteTenantDatabaseInput) (*DeleteTenantDatabaseOutput, error) {
+	req, out := c.DeleteTenantDatabaseRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTenantDatabaseWithContext is the same as DeleteTenantDatabase with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTenantDatabase for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DeleteTenantDatabaseWithContext(ctx aws.Context, input *DeleteTenantDatabaseInput, opts ...request.Option) (*DeleteTenantDatabaseOutput, error) {
+	req, out := c.DeleteTenantDatabaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8150,6 +8343,147 @@ func (c *RDS) DescribeDBSnapshotAttributesWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDescribeDBSnapshotTenantDatabases = "DescribeDBSnapshotTenantDatabases"
+
+// DescribeDBSnapshotTenantDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBSnapshotTenantDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDBSnapshotTenantDatabases for more information on using the DescribeDBSnapshotTenantDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDBSnapshotTenantDatabasesRequest method.
+//	req, resp := client.DescribeDBSnapshotTenantDatabasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSnapshotTenantDatabases
+func (c *RDS) DescribeDBSnapshotTenantDatabasesRequest(input *DescribeDBSnapshotTenantDatabasesInput) (req *request.Request, output *DescribeDBSnapshotTenantDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBSnapshotTenantDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDBSnapshotTenantDatabasesInput{}
+	}
+
+	output = &DescribeDBSnapshotTenantDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDBSnapshotTenantDatabases API operation for Amazon Relational Database Service.
+//
+// Describes the tenant databases that exist in a DB snapshot. This command
+// only applies to RDS for Oracle DB instances in the multi-tenant configuration.
+//
+// You can use this command to inspect the tenant databases within a snapshot
+// before restoring it. You can't directly interact with the tenant databases
+// in a DB snapshot. If you restore a snapshot that was taken from DB instance
+// using the multi-tenant configuration, you restore all its tenant databases.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeDBSnapshotTenantDatabases for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeDBSnapshotNotFoundFault "DBSnapshotNotFound"
+//     DBSnapshotIdentifier doesn't refer to an existing DB snapshot.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSnapshotTenantDatabases
+func (c *RDS) DescribeDBSnapshotTenantDatabases(input *DescribeDBSnapshotTenantDatabasesInput) (*DescribeDBSnapshotTenantDatabasesOutput, error) {
+	req, out := c.DescribeDBSnapshotTenantDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDBSnapshotTenantDatabasesWithContext is the same as DescribeDBSnapshotTenantDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDBSnapshotTenantDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBSnapshotTenantDatabasesWithContext(ctx aws.Context, input *DescribeDBSnapshotTenantDatabasesInput, opts ...request.Option) (*DescribeDBSnapshotTenantDatabasesOutput, error) {
+	req, out := c.DescribeDBSnapshotTenantDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDBSnapshotTenantDatabasesPages iterates over the pages of a DescribeDBSnapshotTenantDatabases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBSnapshotTenantDatabases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeDBSnapshotTenantDatabases operation.
+//	pageNum := 0
+//	err := client.DescribeDBSnapshotTenantDatabasesPages(params,
+//	    func(page *rds.DescribeDBSnapshotTenantDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RDS) DescribeDBSnapshotTenantDatabasesPages(input *DescribeDBSnapshotTenantDatabasesInput, fn func(*DescribeDBSnapshotTenantDatabasesOutput, bool) bool) error {
+	return c.DescribeDBSnapshotTenantDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBSnapshotTenantDatabasesPagesWithContext same as DescribeDBSnapshotTenantDatabasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBSnapshotTenantDatabasesPagesWithContext(ctx aws.Context, input *DescribeDBSnapshotTenantDatabasesInput, fn func(*DescribeDBSnapshotTenantDatabasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBSnapshotTenantDatabasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBSnapshotTenantDatabasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBSnapshotTenantDatabasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
 // DescribeDBSnapshotsRequest generates a "aws/request.Request" representing the
@@ -10347,6 +10681,142 @@ func (c *RDS) DescribeSourceRegionsPagesWithContext(ctx aws.Context, input *Desc
 	return p.Err()
 }
 
+const opDescribeTenantDatabases = "DescribeTenantDatabases"
+
+// DescribeTenantDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTenantDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTenantDatabases for more information on using the DescribeTenantDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTenantDatabasesRequest method.
+//	req, resp := client.DescribeTenantDatabasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeTenantDatabases
+func (c *RDS) DescribeTenantDatabasesRequest(input *DescribeTenantDatabasesInput) (req *request.Request, output *DescribeTenantDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTenantDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeTenantDatabasesInput{}
+	}
+
+	output = &DescribeTenantDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTenantDatabases API operation for Amazon Relational Database Service.
+//
+// Describes the tenant databases in a DB instance that uses the multi-tenant
+// configuration. Only RDS for Oracle CDB instances are supported.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeTenantDatabases for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeTenantDatabases
+func (c *RDS) DescribeTenantDatabases(input *DescribeTenantDatabasesInput) (*DescribeTenantDatabasesOutput, error) {
+	req, out := c.DescribeTenantDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTenantDatabasesWithContext is the same as DescribeTenantDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTenantDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeTenantDatabasesWithContext(ctx aws.Context, input *DescribeTenantDatabasesInput, opts ...request.Option) (*DescribeTenantDatabasesOutput, error) {
+	req, out := c.DescribeTenantDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeTenantDatabasesPages iterates over the pages of a DescribeTenantDatabases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTenantDatabases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeTenantDatabases operation.
+//	pageNum := 0
+//	err := client.DescribeTenantDatabasesPages(params,
+//	    func(page *rds.DescribeTenantDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RDS) DescribeTenantDatabasesPages(input *DescribeTenantDatabasesInput, fn func(*DescribeTenantDatabasesOutput, bool) bool) error {
+	return c.DescribeTenantDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTenantDatabasesPagesWithContext same as DescribeTenantDatabasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeTenantDatabasesPagesWithContext(ctx aws.Context, input *DescribeTenantDatabasesInput, fn func(*DescribeTenantDatabasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeTenantDatabasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeTenantDatabasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeTenantDatabasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeValidDBInstanceModifications = "DescribeValidDBInstanceModifications"
 
 // DescribeValidDBInstanceModificationsRequest generates a "aws/request.Request" representing the
@@ -10895,6 +11365,12 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 //   - ErrCodeIntegrationNotFoundFault "IntegrationNotFoundFault"
 //     The specified integration could not be found.
+//
+//   - ErrCodeTenantDatabaseNotFoundFault "TenantDatabaseNotFound"
+//     The specified tenant database wasn't found in the DB instance.
+//
+//   - ErrCodeDBSnapshotTenantDatabaseNotFoundFault "DBSnapshotTenantDatabaseNotFoundFault"
+//     The specified snapshot tenant database wasn't found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ListTagsForResource
 func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -11885,6 +12361,10 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
 //
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBInstance
 func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, error) {
 	req, out := c.ModifyDBInstanceRequest(input)
@@ -12826,6 +13306,97 @@ func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGro
 // for more information on using Contexts.
 func (c *RDS) ModifyOptionGroupWithContext(ctx aws.Context, input *ModifyOptionGroupInput, opts ...request.Option) (*ModifyOptionGroupOutput, error) {
 	req, out := c.ModifyOptionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyTenantDatabase = "ModifyTenantDatabase"
+
+// ModifyTenantDatabaseRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyTenantDatabase operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyTenantDatabase for more information on using the ModifyTenantDatabase
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyTenantDatabaseRequest method.
+//	req, resp := client.ModifyTenantDatabaseRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyTenantDatabase
+func (c *RDS) ModifyTenantDatabaseRequest(input *ModifyTenantDatabaseInput) (req *request.Request, output *ModifyTenantDatabaseOutput) {
+	op := &request.Operation{
+		Name:       opModifyTenantDatabase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyTenantDatabaseInput{}
+	}
+
+	output = &ModifyTenantDatabaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyTenantDatabase API operation for Amazon Relational Database Service.
+//
+// Modifies an existing tenant database in a DB instance. You can change the
+// tenant database name or the master user password. This operation is supported
+// only for RDS for Oracle CDB instances using the multi-tenant configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyTenantDatabase for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   - ErrCodeTenantDatabaseNotFoundFault "TenantDatabaseNotFound"
+//     The specified tenant database wasn't found in the DB instance.
+//
+//   - ErrCodeTenantDatabaseAlreadyExistsFault "TenantDatabaseAlreadyExists"
+//     You attempted to either create a tenant database that already exists or modify
+//     a tenant database to use the name of an existing tenant database.
+//
+//   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//     The DB instance isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyTenantDatabase
+func (c *RDS) ModifyTenantDatabase(input *ModifyTenantDatabaseInput) (*ModifyTenantDatabaseOutput, error) {
+	req, out := c.ModifyTenantDatabaseRequest(input)
+	return out, req.Send()
+}
+
+// ModifyTenantDatabaseWithContext is the same as ModifyTenantDatabase with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyTenantDatabase for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) ModifyTenantDatabaseWithContext(ctx aws.Context, input *ModifyTenantDatabaseInput, opts ...request.Option) (*ModifyTenantDatabaseOutput, error) {
+	req, out := c.ModifyTenantDatabaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13835,6 +14406,12 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //   - ErrCodeIntegrationNotFoundFault "IntegrationNotFoundFault"
 //     The specified integration could not be found.
 //
+//   - ErrCodeTenantDatabaseNotFoundFault "TenantDatabaseNotFound"
+//     The specified tenant database wasn't found in the DB instance.
+//
+//   - ErrCodeDBSnapshotTenantDatabaseNotFoundFault "DBSnapshotTenantDatabaseNotFoundFault"
+//     The specified snapshot tenant database wasn't found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveTagsFromResource
 func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
@@ -14669,6 +15246,10 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
 //     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
 //
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromDBSnapshot
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
@@ -14986,6 +15567,10 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 //   - ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
+//
+//   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
+//     You attempted to create more tenant databases than are permitted in your
+//     Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceToPointInTime
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
@@ -22533,6 +23118,21 @@ type CreateDBInstanceInput struct {
 	//    * RDS Custom
 	MultiAZ *bool `type:"boolean"`
 
+	// Specifies whether to use the multi-tenant configuration or the single-tenant
+	// configuration (default). This parameter only applies to RDS for Oracle container
+	// database (CDB) engines.
+	//
+	// Note the following restrictions:
+	//
+	//    * The DB engine that you specify in the request must support the multi-tenant
+	//    configuration. If you attempt to enable the multi-tenant configuration
+	//    on a DB engine that doesn't support it, the request fails.
+	//
+	//    * If you specify the multi-tenant configuration when you create your DB
+	//    instance, you can't later modify this DB instance to use the single-tenant
+	//    configuration.
+	MultiTenant *bool `type:"boolean"`
+
 	// The name of the NCHAR character set for the Oracle DB instance.
 	//
 	// This setting doesn't apply to RDS Custom DB instances.
@@ -23052,6 +23652,12 @@ func (s *CreateDBInstanceInput) SetMonitoringRoleArn(v string) *CreateDBInstance
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *CreateDBInstanceInput) SetMultiAZ(v bool) *CreateDBInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *CreateDBInstanceInput) SetMultiTenant(v bool) *CreateDBInstanceInput {
+	s.MultiTenant = &v
 	return s
 }
 
@@ -25718,6 +26324,178 @@ func (s *CreateOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CreateOptionGr
 	return s
 }
 
+type CreateTenantDatabaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The character set for your tenant database. If you don't specify a value,
+	// the character set name defaults to AL32UTF8.
+	CharacterSetName *string `type:"string"`
+
+	// The user-supplied DB instance identifier. RDS creates your tenant database
+	// in this DB instance. This parameter isn't case-sensitive.
+	//
+	// DBInstanceIdentifier is a required field
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The password for the master user in your tenant database.
+	//
+	// Constraints:
+	//
+	//    * Must be 8 to 30 characters.
+	//
+	//    * Can include any printable ASCII character except forward slash (/),
+	//    double quote ("), at symbol (@), ampersand (&), or single quote (').
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateTenantDatabaseInput's
+	// String and GoString methods.
+	//
+	// MasterUserPassword is a required field
+	MasterUserPassword *string `type:"string" required:"true" sensitive:"true"`
+
+	// The name for the master user account in your tenant database. RDS creates
+	// this user account in the tenant database and grants privileges to the master
+	// user. This parameter is case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must be 1 to 16 letters, numbers, or underscores.
+	//
+	//    * First character must be a letter.
+	//
+	//    * Can't be a reserved word for the chosen database engine.
+	//
+	// MasterUsername is a required field
+	MasterUsername *string `type:"string" required:"true"`
+
+	// The NCHAR value for the tenant database.
+	NcharCharacterSetName *string `type:"string"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The user-supplied name of the tenant database that you want to create in
+	// your DB instance. This parameter has the same constraints as DBName in CreateDBInstance.
+	//
+	// TenantDBName is a required field
+	TenantDBName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTenantDatabaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTenantDatabaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTenantDatabaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTenantDatabaseInput"}
+	if s.DBInstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
+	}
+	if s.MasterUserPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("MasterUserPassword"))
+	}
+	if s.MasterUsername == nil {
+		invalidParams.Add(request.NewErrParamRequired("MasterUsername"))
+	}
+	if s.TenantDBName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TenantDBName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *CreateTenantDatabaseInput) SetCharacterSetName(v string) *CreateTenantDatabaseInput {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *CreateTenantDatabaseInput) SetDBInstanceIdentifier(v string) *CreateTenantDatabaseInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *CreateTenantDatabaseInput) SetMasterUserPassword(v string) *CreateTenantDatabaseInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *CreateTenantDatabaseInput) SetMasterUsername(v string) *CreateTenantDatabaseInput {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
+func (s *CreateTenantDatabaseInput) SetNcharCharacterSetName(v string) *CreateTenantDatabaseInput {
+	s.NcharCharacterSetName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTenantDatabaseInput) SetTags(v []*Tag) *CreateTenantDatabaseInput {
+	s.Tags = v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *CreateTenantDatabaseInput) SetTenantDBName(v string) *CreateTenantDatabaseInput {
+	s.TenantDBName = &v
+	return s
+}
+
+type CreateTenantDatabaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A tenant database in the DB instance. This data type is an element in the
+	// response to the DescribeTenantDatabases action.
+	TenantDatabase *TenantDatabase `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTenantDatabaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTenantDatabaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetTenantDatabase sets the TenantDatabase field's value.
+func (s *CreateTenantDatabaseOutput) SetTenantDatabase(v *TenantDatabase) *CreateTenantDatabaseOutput {
+	s.TenantDatabase = v
+	return s
+}
+
 // A value that indicates the AMI information.
 type CustomDBEngineVersionAMI struct {
 	_ struct{} `type:"structure"`
@@ -28177,8 +28955,8 @@ type DBInstance struct {
 	// in the Amazon RDS User Guide.
 	DBInstanceStatus *string `type:"string"`
 
-	// Contains the initial database name that you provided (if required) when you
-	// created the DB instance. This name is returned for the life of your DB instance.
+	// The initial database name that you provided (if required) when you created
+	// the DB instance. This name is returned for the life of your DB instance.
 	// For an RDS for Oracle CDB instance, the name identifies the PDB rather than
 	// the CDB.
 	DBName *string `type:"string"`
@@ -28308,6 +29086,10 @@ type DBInstance struct {
 	// Indicates whether the DB instance is a Multi-AZ deployment. This setting
 	// doesn't apply to RDS Custom DB instances.
 	MultiAZ *bool `type:"boolean"`
+
+	// Specifies whether the DB instance is in the multi-tenant configuration (TRUE)
+	// or the single-tenant configuration (FALSE).
+	MultiTenant *bool `type:"boolean"`
 
 	// The name of the NCHAR character set for the Oracle DB instance. This character
 	// set specifies the Unicode encoding for data stored in table columns of type
@@ -28815,6 +29597,12 @@ func (s *DBInstance) SetMultiAZ(v bool) *DBInstance {
 	return s
 }
 
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *DBInstance) SetMultiTenant(v bool) *DBInstance {
+	s.MultiTenant = &v
+	return s
+}
+
 // SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
 func (s *DBInstance) SetNcharCharacterSetName(v string) *DBInstance {
 	s.NcharCharacterSetName = &v
@@ -29060,6 +29848,10 @@ type DBInstanceAutomatedBackup struct {
 	// The master user name of an automated backup.
 	MasterUsername *string `type:"string"`
 
+	// Specifies whether the automatic backup is for a DB instance in the multi-tenant
+	// configuration (TRUE) or the single-tenant configuration (FALSE).
+	MultiTenant *bool `type:"boolean"`
+
 	// The option group the automated backup is associated with. If omitted, the
 	// default option group for the engine specified is used.
 	OptionGroupName *string `type:"string"`
@@ -29244,6 +30036,12 @@ func (s *DBInstanceAutomatedBackup) SetMasterUsername(v string) *DBInstanceAutom
 	return s
 }
 
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *DBInstanceAutomatedBackup) SetMultiTenant(v bool) *DBInstanceAutomatedBackup {
+	s.MultiTenant = &v
+	return s
+}
+
 // SetOptionGroupName sets the OptionGroupName field's value.
 func (s *DBInstanceAutomatedBackup) SetOptionGroupName(v string) *DBInstanceAutomatedBackup {
 	s.OptionGroupName = &v
@@ -29410,8 +30208,8 @@ type DBInstanceStatusInfo struct {
 	// isn't in an error state, this value is blank.
 	Message *string `type:"string"`
 
-	// A Boolean value that is true if the instance is operating normally, or false
-	// if the instance is in an error state.
+	// Indicates whether the instance is operating normally (TRUE) or is in an error
+	// state (FALSE).
 	Normal *bool `type:"boolean"`
 
 	// The status of the DB instance. For a StatusType of read replica, the values
@@ -30363,6 +31161,10 @@ type DBSnapshot struct {
 	// Provides the master username for the DB snapshot.
 	MasterUsername *string `type:"string"`
 
+	// Indicates whether the snapshot is of a DB instance using the multi-tenant
+	// configuration (TRUE) or the single-tenant configuration (FALSE).
+	MultiTenant *bool `type:"boolean"`
+
 	// Provides the option group name for the DB snapshot.
 	OptionGroupName *string `type:"string"`
 
@@ -30554,6 +31356,12 @@ func (s *DBSnapshot) SetLicenseModel(v string) *DBSnapshot {
 // SetMasterUsername sets the MasterUsername field's value.
 func (s *DBSnapshot) SetMasterUsername(v string) *DBSnapshot {
 	s.MasterUsername = &v
+	return s
+}
+
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *DBSnapshot) SetMultiTenant(v bool) *DBSnapshot {
+	s.MultiTenant = &v
 	return s
 }
 
@@ -30763,6 +31571,149 @@ func (s *DBSnapshotAttributesResult) SetDBSnapshotAttributes(v []*DBSnapshotAttr
 // SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
 func (s *DBSnapshotAttributesResult) SetDBSnapshotIdentifier(v string) *DBSnapshotAttributesResult {
 	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// Contains the details of a tenant database in a snapshot of a DB instance.
+type DBSnapshotTenantDatabase struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the character set of a tenant database.
+	CharacterSetName *string `type:"string"`
+
+	// The ID for the DB instance that contains the tenant databases.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// The identifier for the snapshot of the DB instance.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the snapshot tenant database.
+	DBSnapshotTenantDatabaseARN *string `type:"string"`
+
+	// The resource identifier of the source CDB instance. This identifier can't
+	// be changed and is unique to an Amazon Web Services Region.
+	DbiResourceId *string `type:"string"`
+
+	// The name of the database engine.
+	EngineName *string `type:"string"`
+
+	// The master username of the tenant database.
+	MasterUsername *string `type:"string"`
+
+	// The NCHAR character set name of the tenant database.
+	NcharCharacterSetName *string `type:"string"`
+
+	// The type of DB snapshot.
+	SnapshotType *string `type:"string"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The name of the tenant database.
+	TenantDBName *string `type:"string"`
+
+	// The time the DB snapshot was taken, specified in Coordinated Universal Time
+	// (UTC). If you copy the snapshot, the creation time changes.
+	TenantDatabaseCreateTime *time.Time `type:"timestamp"`
+
+	// The resource ID of the tenant database.
+	TenantDatabaseResourceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBSnapshotTenantDatabase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBSnapshotTenantDatabase) GoString() string {
+	return s.String()
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *DBSnapshotTenantDatabase) SetCharacterSetName(v string) *DBSnapshotTenantDatabase {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DBSnapshotTenantDatabase) SetDBInstanceIdentifier(v string) *DBSnapshotTenantDatabase {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DBSnapshotTenantDatabase) SetDBSnapshotIdentifier(v string) *DBSnapshotTenantDatabase {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotTenantDatabaseARN sets the DBSnapshotTenantDatabaseARN field's value.
+func (s *DBSnapshotTenantDatabase) SetDBSnapshotTenantDatabaseARN(v string) *DBSnapshotTenantDatabase {
+	s.DBSnapshotTenantDatabaseARN = &v
+	return s
+}
+
+// SetDbiResourceId sets the DbiResourceId field's value.
+func (s *DBSnapshotTenantDatabase) SetDbiResourceId(v string) *DBSnapshotTenantDatabase {
+	s.DbiResourceId = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *DBSnapshotTenantDatabase) SetEngineName(v string) *DBSnapshotTenantDatabase {
+	s.EngineName = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBSnapshotTenantDatabase) SetMasterUsername(v string) *DBSnapshotTenantDatabase {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
+func (s *DBSnapshotTenantDatabase) SetNcharCharacterSetName(v string) *DBSnapshotTenantDatabase {
+	s.NcharCharacterSetName = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DBSnapshotTenantDatabase) SetSnapshotType(v string) *DBSnapshotTenantDatabase {
+	s.SnapshotType = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DBSnapshotTenantDatabase) SetTagList(v []*Tag) *DBSnapshotTenantDatabase {
+	s.TagList = v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *DBSnapshotTenantDatabase) SetTenantDBName(v string) *DBSnapshotTenantDatabase {
+	s.TenantDBName = &v
+	return s
+}
+
+// SetTenantDatabaseCreateTime sets the TenantDatabaseCreateTime field's value.
+func (s *DBSnapshotTenantDatabase) SetTenantDatabaseCreateTime(v time.Time) *DBSnapshotTenantDatabase {
+	s.TenantDatabaseCreateTime = &v
+	return s
+}
+
+// SetTenantDatabaseResourceId sets the TenantDatabaseResourceId field's value.
+func (s *DBSnapshotTenantDatabase) SetTenantDatabaseResourceId(v string) *DBSnapshotTenantDatabase {
+	s.TenantDatabaseResourceId = &v
 	return s
 }
 
@@ -33062,6 +34013,128 @@ func (s DeleteOptionGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteOptionGroupOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteTenantDatabaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The user-supplied identifier for the DB instance that contains the tenant
+	// database that you want to delete.
+	//
+	// DBInstanceIdentifier is a required field
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The DBSnapshotIdentifier of the new DBSnapshot created when the SkipFinalSnapshot
+	// parameter is disabled.
+	//
+	// If you enable this parameter and also enable SkipFinalShapshot, the command
+	// results in an error.
+	FinalDBSnapshotIdentifier *string `type:"string"`
+
+	// Specifies whether to skip the creation of a final DB snapshot before removing
+	// the tenant database from your DB instance. If you enable this parameter,
+	// RDS doesn't create a DB snapshot. If you don't enable this parameter, RDS
+	// creates a DB snapshot before it deletes the tenant database. By default,
+	// RDS doesn't skip the final snapshot. If you don't enable this parameter,
+	// you must specify the FinalDBSnapshotIdentifier parameter.
+	SkipFinalSnapshot *bool `type:"boolean"`
+
+	// The user-supplied name of the tenant database that you want to remove from
+	// your DB instance. Amazon RDS deletes the tenant database with this name.
+	// This parameter isn’t case-sensitive.
+	//
+	// TenantDBName is a required field
+	TenantDBName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTenantDatabaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTenantDatabaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTenantDatabaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTenantDatabaseInput"}
+	if s.DBInstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
+	}
+	if s.TenantDBName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TenantDBName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DeleteTenantDatabaseInput) SetDBInstanceIdentifier(v string) *DeleteTenantDatabaseInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetFinalDBSnapshotIdentifier sets the FinalDBSnapshotIdentifier field's value.
+func (s *DeleteTenantDatabaseInput) SetFinalDBSnapshotIdentifier(v string) *DeleteTenantDatabaseInput {
+	s.FinalDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetSkipFinalSnapshot sets the SkipFinalSnapshot field's value.
+func (s *DeleteTenantDatabaseInput) SetSkipFinalSnapshot(v bool) *DeleteTenantDatabaseInput {
+	s.SkipFinalSnapshot = &v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *DeleteTenantDatabaseInput) SetTenantDBName(v string) *DeleteTenantDatabaseInput {
+	s.TenantDBName = &v
+	return s
+}
+
+type DeleteTenantDatabaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A tenant database in the DB instance. This data type is an element in the
+	// response to the DescribeTenantDatabases action.
+	TenantDatabase *TenantDatabase `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTenantDatabaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTenantDatabaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetTenantDatabase sets the TenantDatabase field's value.
+func (s *DeleteTenantDatabaseOutput) SetTenantDatabase(v *TenantDatabase) *DeleteTenantDatabaseOutput {
+	s.TenantDatabase = v
+	return s
 }
 
 type DeregisterDBProxyTargetsInput struct {
@@ -36631,6 +37704,205 @@ func (s *DescribeDBSnapshotAttributesOutput) SetDBSnapshotAttributesResult(v *DB
 	return s
 }
 
+type DescribeDBSnapshotTenantDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the DB instance used to create the DB snapshots. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * If supplied, must match the identifier of an existing DBInstance.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// The ID of a DB snapshot that contains the tenant databases to describe. This
+	// value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//    * If you specify this parameter, the value must match the ID of an existing
+	//    DB snapshot.
+	//
+	//    * If you specify an automatic snapshot, you must also specify SnapshotType.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	// A specific DB resource identifier to describe.
+	DbiResourceId *string `type:"string"`
+
+	// A filter that specifies one or more tenant databases to describe.
+	//
+	// Supported filters:
+	//
+	//    * tenant-db-name - Tenant database names. The results list only includes
+	//    information about the tenant databases that match these tenant DB names.
+	//
+	//    * tenant-database-resource-id - Tenant database resource identifiers.
+	//    The results list only includes information about the tenant databases
+	//    contained within the DB snapshots.
+	//
+	//    * dbi-resource-id - DB instance resource identifiers. The results list
+	//    only includes information about snapshots containing tenant databases
+	//    contained within the DB instances identified by these resource identifiers.
+	//
+	//    * db-instance-id - Accepts DB instance identifiers and DB instance Amazon
+	//    Resource Names (ARNs).
+	//
+	//    * db-snapshot-id - Accepts DB snapshot identifiers.
+	//
+	//    * snapshot-type - Accepts types of DB snapshots.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBSnapshotTenantDatabases
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+
+	// The type of DB snapshots to be returned. You can specify one of the following
+	// values:
+	//
+	//    * automated – All DB snapshots that have been automatically taken by
+	//    Amazon RDS for my Amazon Web Services account.
+	//
+	//    * manual – All DB snapshots that have been taken by my Amazon Web Services
+	//    account.
+	//
+	//    * shared – All manual DB snapshots that have been shared to my Amazon
+	//    Web Services account.
+	//
+	//    * public – All DB snapshots that have been marked as public.
+	//
+	//    * awsbackup – All DB snapshots managed by the Amazon Web Services Backup
+	//    service.
+	SnapshotType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBSnapshotTenantDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBSnapshotTenantDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDBSnapshotTenantDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDBSnapshotTenantDatabasesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetDBInstanceIdentifier(v string) *DescribeDBSnapshotTenantDatabasesInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetDBSnapshotIdentifier(v string) *DescribeDBSnapshotTenantDatabasesInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetDbiResourceId sets the DbiResourceId field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetDbiResourceId(v string) *DescribeDBSnapshotTenantDatabasesInput {
+	s.DbiResourceId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetFilters(v []*Filter) *DescribeDBSnapshotTenantDatabasesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetMarker(v string) *DescribeDBSnapshotTenantDatabasesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetMaxRecords(v int64) *DescribeDBSnapshotTenantDatabasesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DescribeDBSnapshotTenantDatabasesInput) SetSnapshotType(v string) *DescribeDBSnapshotTenantDatabasesInput {
+	s.SnapshotType = &v
+	return s
+}
+
+type DescribeDBSnapshotTenantDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DB snapshot tenant databases.
+	DBSnapshotTenantDatabases []*DBSnapshotTenantDatabase `locationNameList:"DBSnapshotTenantDatabase" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBSnapshotTenantDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBSnapshotTenantDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBSnapshotTenantDatabases sets the DBSnapshotTenantDatabases field's value.
+func (s *DescribeDBSnapshotTenantDatabasesOutput) SetDBSnapshotTenantDatabases(v []*DBSnapshotTenantDatabase) *DescribeDBSnapshotTenantDatabasesOutput {
+	s.DBSnapshotTenantDatabases = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSnapshotTenantDatabasesOutput) SetMarker(v string) *DescribeDBSnapshotTenantDatabasesOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeDBSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -39456,6 +40728,155 @@ func (s *DescribeSourceRegionsOutput) SetSourceRegions(v []*SourceRegion) *Descr
 	return s
 }
 
+type DescribeTenantDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The user-supplied DB instance identifier, which must match the identifier
+	// of an existing instance owned by the Amazon Web Services account. This parameter
+	// isn't case-sensitive.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// A filter that specifies one or more database tenants to describe.
+	//
+	// Supported filters:
+	//
+	//    * tenant-db-name - Tenant database names. The results list only includes
+	//    information about the tenant databases that match these tenant DB names.
+	//
+	//    * tenant-database-resource-id - Tenant database resource identifiers.
+	//
+	//    * dbi-resource-id - DB instance resource identifiers. The results list
+	//    only includes information about the tenants contained within the DB instances
+	//    identified by these resource identifiers.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeTenantDatabases
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+
+	// The user-supplied tenant database name, which must match the name of an existing
+	// tenant database on the specified DB instance owned by your Amazon Web Services
+	// account. This parameter isn’t case-sensitive.
+	TenantDBName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTenantDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTenantDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTenantDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTenantDatabasesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DescribeTenantDatabasesInput) SetDBInstanceIdentifier(v string) *DescribeTenantDatabasesInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeTenantDatabasesInput) SetFilters(v []*Filter) *DescribeTenantDatabasesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeTenantDatabasesInput) SetMarker(v string) *DescribeTenantDatabasesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeTenantDatabasesInput) SetMaxRecords(v int64) *DescribeTenantDatabasesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *DescribeTenantDatabasesInput) SetTenantDBName(v string) *DescribeTenantDatabasesInput {
+	s.TenantDBName = &v
+	return s
+}
+
+type DescribeTenantDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous DescribeTenantDatabases
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// An array of the tenant databases requested by the DescribeTenantDatabases
+	// operation.
+	TenantDatabases []*TenantDatabase `locationNameList:"TenantDatabase" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTenantDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTenantDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeTenantDatabasesOutput) SetMarker(v string) *DescribeTenantDatabasesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetTenantDatabases sets the TenantDatabases field's value.
+func (s *DescribeTenantDatabasesOutput) SetTenantDatabases(v []*TenantDatabase) *DescribeTenantDatabasesOutput {
+	s.TenantDatabases = v
+	return s
+}
+
 type DescribeValidDBInstanceModificationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -40137,8 +41558,8 @@ type EventSubscription struct {
 	// subscription.
 	CustomerAwsId *string `type:"string"`
 
-	// A Boolean value indicating if the subscription is enabled. True indicates
-	// the subscription is enabled.
+	// Specifies whether the subscription is enabled. True indicates the subscription
+	// is enabled.
 	Enabled *bool `type:"boolean"`
 
 	// A list of event categories for the RDS event notification subscription.
@@ -40724,14 +42145,17 @@ type FailoverState struct {
 	//    the global cluster. The global cluster's primary DB cluster and the specified
 	//    secondary DB cluster are being verified before the operation starts.
 	//
-	//    * failing-over – This status covers the range of Aurora internal operations
-	//    that take place during the switchover or failover process, such as demoting
-	//    the primary Aurora DB cluster, promoting the secondary Aurora DB cluster,
-	//    and synchronizing replicas.
+	//    * failing-over – Aurora is promoting the chosen secondary Aurora DB
+	//    cluster to become the new primary DB cluster to fail over the global cluster.
 	//
 	//    * cancelling – The request to switch over or fail over the global cluster
 	//    was cancelled and the primary Aurora DB cluster and the selected secondary
 	//    Aurora DB cluster are returning to their previous states.
+	//
+	//    * switching-over – This status covers the range of Aurora internal operations
+	//    that take place during the switchover process, such as demoting the primary
+	//    Aurora DB cluster, promoting the secondary Aurora DB cluster, and synchronizing
+	//    replicas.
 	Status *string `type:"string" enum:"FailoverStatus"`
 
 	// The Amazon Resource Name (ARN) of the Aurora DB cluster that is currently
@@ -43815,8 +45239,8 @@ type ModifyDBInstanceInput struct {
 	//    * If you are modifying the DB instance class and upgrading the engine
 	//    version at the same time, the currently running engine version must be
 	//    supported on the specified DB instance class. Otherwise, the operation
-	//    returns an error. In this case, first run the operation to modify the
-	//    DB instance class, and then run it again to upgrade the engine version.
+	//    returns an error. In this case, first run the operation to upgrade the
+	//    engine version, and then run it again to modify the DB instance class.
 	DBInstanceClass *string `type:"string"`
 
 	// The identifier of DB instance to modify. This value is stored as a lowercase
@@ -44065,8 +45489,8 @@ type ModifyDBInstanceInput struct {
 	//    * If you are upgrading the engine version and modifying the DB instance
 	//    class at the same time, the currently running engine version must be supported
 	//    on the specified DB instance class. Otherwise, the operation returns an
-	//    error. In this case, first run the operation to modify the DB instance
-	//    class, and then run it again to upgrade the engine version.
+	//    error. In this case, first run the operation to upgrade the engine version,
+	//    and then run it again to modify the DB instance class.
 	EngineVersion *string `type:"string"`
 
 	// The new Provisioned IOPS (I/O operations per second) value for the RDS instance.
@@ -44250,6 +45674,21 @@ type ModifyDBInstanceInput struct {
 	//
 	// This setting doesn't apply to RDS Custom DB instances.
 	MultiAZ *bool `type:"boolean"`
+
+	// Specifies whether the to convert your DB instance from the single-tenant
+	// conﬁguration to the multi-tenant conﬁguration. This parameter is supported
+	// only for RDS for Oracle CDB instances.
+	//
+	// During the conversion, RDS creates an initial tenant database and associates
+	// the DB name, master user name, character set, and national character set
+	// metadata with this database. The tags associated with the instance also propagate
+	// to the initial tenant database. You can add more tenant databases to your
+	// DB instance by using the CreateTenantDatabase operation.
+	//
+	// The conversion to the multi-tenant configuration is permanent and irreversible,
+	// so you can't later convert back to the single-tenant configuration. When
+	// you specify this parameter, you must also specify ApplyImmediately.
+	MultiTenant *bool `type:"boolean"`
 
 	// The network type of the DB instance.
 	//
@@ -44799,6 +46238,12 @@ func (s *ModifyDBInstanceInput) SetMonitoringRoleArn(v string) *ModifyDBInstance
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *ModifyDBInstanceInput) SetMultiAZ(v bool) *ModifyDBInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *ModifyDBInstanceInput) SetMultiTenant(v bool) *ModifyDBInstanceInput {
+	s.MultiTenant = &v
 	return s
 }
 
@@ -46158,6 +47603,151 @@ func (s ModifyOptionGroupOutput) GoString() string {
 // SetOptionGroup sets the OptionGroup field's value.
 func (s *ModifyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *ModifyOptionGroupOutput {
 	s.OptionGroup = v
+	return s
+}
+
+type ModifyTenantDatabaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the DB instance that contains the tenant database that
+	// you are modifying. This parameter isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing DB instance.
+	//
+	// DBInstanceIdentifier is a required field
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The new password for the master user of the specified tenant database in
+	// your DB instance.
+	//
+	// Amazon RDS operations never return the password, so this action provides
+	// a way to regain access to a tenant database user if the password is lost.
+	// This includes restoring privileges that might have been accidentally revoked.
+	//
+	// Constraints:
+	//
+	//    * Can include any printable ASCII character except /, " (double quote),
+	//    @, & (ampersand), and ' (single quote).
+	//
+	// Length constraints:
+	//
+	//    * Must contain between 8 and 30 characters.
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ModifyTenantDatabaseInput's
+	// String and GoString methods.
+	MasterUserPassword *string `type:"string" sensitive:"true"`
+
+	// The new name of the tenant database when renaming a tenant database. This
+	// parameter isn’t case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Can't be the string null or any other reserved word.
+	//
+	//    * Can't be longer than 8 characters.
+	NewTenantDBName *string `type:"string"`
+
+	// The user-supplied name of the tenant database that you want to modify. This
+	// parameter isn’t case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing tenant database.
+	//
+	// TenantDBName is a required field
+	TenantDBName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyTenantDatabaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyTenantDatabaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyTenantDatabaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyTenantDatabaseInput"}
+	if s.DBInstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
+	}
+	if s.TenantDBName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TenantDBName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *ModifyTenantDatabaseInput) SetDBInstanceIdentifier(v string) *ModifyTenantDatabaseInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *ModifyTenantDatabaseInput) SetMasterUserPassword(v string) *ModifyTenantDatabaseInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetNewTenantDBName sets the NewTenantDBName field's value.
+func (s *ModifyTenantDatabaseInput) SetNewTenantDBName(v string) *ModifyTenantDatabaseInput {
+	s.NewTenantDBName = &v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *ModifyTenantDatabaseInput) SetTenantDBName(v string) *ModifyTenantDatabaseInput {
+	s.TenantDBName = &v
+	return s
+}
+
+type ModifyTenantDatabaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A tenant database in the DB instance. This data type is an element in the
+	// response to the DescribeTenantDatabases action.
+	TenantDatabase *TenantDatabase `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyTenantDatabaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyTenantDatabaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetTenantDatabase sets the TenantDatabase field's value.
+func (s *ModifyTenantDatabaseOutput) SetTenantDatabase(v *TenantDatabase) *ModifyTenantDatabaseOutput {
+	s.TenantDatabase = v
 	return s
 }
 
@@ -47693,6 +49283,10 @@ type PendingModifiedValues struct {
 	// Indicates whether the Single-AZ DB instance will change to a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
 
+	// Indicates whether the DB instance will change to the multi-tenant configuration
+	// (TRUE) or the single-tenant configuration (FALSE).
+	MultiTenant *bool `type:"boolean"`
+
 	// A list of the log types whose configuration is still pending. In other words,
 	// these log types are in the process of being activated or deactivated.
 	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
@@ -47821,6 +49415,12 @@ func (s *PendingModifiedValues) SetMasterUserPassword(v string) *PendingModified
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *PendingModifiedValues) SetMultiAZ(v bool) *PendingModifiedValues {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetMultiTenant sets the MultiTenant field's value.
+func (s *PendingModifiedValues) SetMultiTenant(v bool) *PendingModifiedValues {
+	s.MultiTenant = &v
 	return s
 }
 
@@ -56196,6 +57796,195 @@ func (s *TargetHealth) SetReason(v string) *TargetHealth {
 // SetState sets the State field's value.
 func (s *TargetHealth) SetState(v string) *TargetHealth {
 	s.State = &v
+	return s
+}
+
+// A tenant database in the DB instance. This data type is an element in the
+// response to the DescribeTenantDatabases action.
+type TenantDatabase struct {
+	_ struct{} `type:"structure"`
+
+	// The character set of the tenant database.
+	CharacterSetName *string `type:"string"`
+
+	// The ID of the DB instance that contains the tenant database.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// The Amazon Web Services Region-unique, immutable identifier for the DB instance.
+	DbiResourceId *string `type:"string"`
+
+	// Specifies whether deletion protection is enabled for the DB instance.
+	DeletionProtection *bool `type:"boolean"`
+
+	// The master username of the tenant database.
+	MasterUsername *string `type:"string"`
+
+	// The NCHAR character set name of the tenant database.
+	NcharCharacterSetName *string `type:"string"`
+
+	// Information about pending changes for a tenant database.
+	PendingModifiedValues *TenantDatabasePendingModifiedValues `type:"structure"`
+
+	// The status of the tenant database.
+	Status *string `type:"string"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The database name of the tenant database.
+	TenantDBName *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the tenant database.
+	TenantDatabaseARN *string `type:"string"`
+
+	// The creation time of the tenant database.
+	TenantDatabaseCreateTime *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services Region-unique, immutable identifier for the tenant
+	// database.
+	TenantDatabaseResourceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TenantDatabase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TenantDatabase) GoString() string {
+	return s.String()
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *TenantDatabase) SetCharacterSetName(v string) *TenantDatabase {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *TenantDatabase) SetDBInstanceIdentifier(v string) *TenantDatabase {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDbiResourceId sets the DbiResourceId field's value.
+func (s *TenantDatabase) SetDbiResourceId(v string) *TenantDatabase {
+	s.DbiResourceId = &v
+	return s
+}
+
+// SetDeletionProtection sets the DeletionProtection field's value.
+func (s *TenantDatabase) SetDeletionProtection(v bool) *TenantDatabase {
+	s.DeletionProtection = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *TenantDatabase) SetMasterUsername(v string) *TenantDatabase {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
+func (s *TenantDatabase) SetNcharCharacterSetName(v string) *TenantDatabase {
+	s.NcharCharacterSetName = &v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *TenantDatabase) SetPendingModifiedValues(v *TenantDatabasePendingModifiedValues) *TenantDatabase {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TenantDatabase) SetStatus(v string) *TenantDatabase {
+	s.Status = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *TenantDatabase) SetTagList(v []*Tag) *TenantDatabase {
+	s.TagList = v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *TenantDatabase) SetTenantDBName(v string) *TenantDatabase {
+	s.TenantDBName = &v
+	return s
+}
+
+// SetTenantDatabaseARN sets the TenantDatabaseARN field's value.
+func (s *TenantDatabase) SetTenantDatabaseARN(v string) *TenantDatabase {
+	s.TenantDatabaseARN = &v
+	return s
+}
+
+// SetTenantDatabaseCreateTime sets the TenantDatabaseCreateTime field's value.
+func (s *TenantDatabase) SetTenantDatabaseCreateTime(v time.Time) *TenantDatabase {
+	s.TenantDatabaseCreateTime = &v
+	return s
+}
+
+// SetTenantDatabaseResourceId sets the TenantDatabaseResourceId field's value.
+func (s *TenantDatabase) SetTenantDatabaseResourceId(v string) *TenantDatabase {
+	s.TenantDatabaseResourceId = &v
+	return s
+}
+
+// A response element in the ModifyTenantDatabase operation that describes changes
+// that will be applied. Specific changes are identified by subelements.
+type TenantDatabasePendingModifiedValues struct {
+	_ struct{} `type:"structure"`
+
+	// The master password for the tenant database.
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TenantDatabasePendingModifiedValues's
+	// String and GoString methods.
+	MasterUserPassword *string `type:"string" sensitive:"true"`
+
+	// The name of the tenant database.
+	TenantDBName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TenantDatabasePendingModifiedValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TenantDatabasePendingModifiedValues) GoString() string {
+	return s.String()
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *TenantDatabasePendingModifiedValues) SetMasterUserPassword(v string) *TenantDatabasePendingModifiedValues {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetTenantDBName sets the TenantDBName field's value.
+func (s *TenantDatabasePendingModifiedValues) SetTenantDBName(v string) *TenantDatabasePendingModifiedValues {
+	s.TenantDBName = &v
 	return s
 }
 

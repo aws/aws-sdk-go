@@ -1,3 +1,12 @@
+Release v1.47.5 (2023-11-07)
+===
+
+### Service Client Updates
+* `service/dataexchange`: Updates service API and documentation
+* `service/dlm`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This Amazon RDS release adds support for the multi-tenant configuration. In this configuration, an RDS DB instance can contain multiple tenant databases. In RDS for Oracle, a tenant database is a pluggable database (PDB).
+
 Release v1.47.4 (2023-11-06)
 ===
 

@@ -33,6 +33,7 @@
     "CreateGlobalCluster": "<p>Creates an Aurora global database spread across multiple Amazon Web Services Regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem.</p> <p>You can create a global database that is initially empty, and then create the primary and secondary DB clusters in the global database. Or you can specify an existing Aurora cluster during the create operation, and this cluster becomes the primary cluster of the global database.</p> <note> <p>This operation applies only to Aurora DB clusters.</p> </note>",
     "CreateIntegration": "<p>Creates a zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html\">Working with Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "CreateOptionGroup": "<p>Creates a new option group. You can create up to 20 option groups.</p> <p>This command doesn't apply to RDS Custom.</p>",
+    "CreateTenantDatabase": "<p>Creates a tenant database in a DB instance that uses the multi-tenant configuration. Only RDS for Oracle container database (CDB) instances are supported.</p>",
     "DeleteBlueGreenDeployment": "<p>Deletes a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "DeleteCustomDBEngineVersion": "<p>Deletes a custom engine version. To run this command, make sure you meet the following prerequisites:</p> <ul> <li> <p>The CEV must not be the default for RDS Custom. If it is, change the default before running this command.</p> </li> <li> <p>The CEV must not be associated with an RDS Custom DB instance, RDS Custom instance snapshot, or automated backup of your RDS Custom instance.</p> </li> </ul> <p>Typically, deletion takes a few minutes.</p> <note> <p>The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in CloudTrail, calls to the <code>DeleteCustomDbEngineVersion</code> event aren't logged. However, you might see calls from the API gateway that accesses your Amazon S3 bucket. These calls originate from the MediaImport service for the <code>DeleteCustomDbEngineVersion</code> event.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.delete\">Deleting a CEV</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "DeleteDBCluster": "<p>The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified DB cluster are not deleted.</p> <p>If you're deleting a Multi-AZ DB cluster with read replicas, all cluster members are terminated and read replicas are promoted to standalone instances.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ DB cluster deployments</a> in the <i>Amazon RDS User Guide</i>.</p>",
@@ -52,6 +53,7 @@
     "DeleteGlobalCluster": "<p>Deletes a global database cluster. The primary and secondary clusters must already be detached or destroyed first.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "DeleteIntegration": "<p>Deletes a zero-ETL integration with Amazon Redshift. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.deleting.html\">Deleting Amazon Aurora zero-ETL integrations with Amazon Redshift</a> in the <i>Amazon Aurora User Guide</i> </p>",
     "DeleteOptionGroup": "<p>Deletes an existing option group.</p>",
+    "DeleteTenantDatabase": "<p>Deletes a tenant database from your DB instance. This command only applies to RDS for Oracle container database (CDB) instances.</p> <p>You can't delete a tenant database when it is the only tenant in the DB instance.</p>",
     "DeregisterDBProxyTargets": "<p>Remove the association between one or more <code>DBProxyTarget</code> data structures and a <code>DBProxyTargetGroup</code>.</p>",
     "DescribeAccountAttributes": "<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command doesn't take any parameters.</p>",
     "DescribeBlueGreenDeployments": "<p>Describes one or more blue/green deployments.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
@@ -76,6 +78,7 @@
     "DescribeDBProxyTargets": "<p>Returns information about <code>DBProxyTarget</code> objects. This API supports pagination.</p>",
     "DescribeDBSecurityGroups": "<p>Returns a list of <code>DBSecurityGroup</code> descriptions. If a <code>DBSecurityGroupName</code> is specified, the list will contain only the descriptions of the specified DB security group.</p> <note> <p>EC2-Classic was retired on August 15, 2022. If you haven't migrated from EC2-Classic to a VPC, we recommend that you migrate as soon as possible. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon EC2 User Guide</i>, the blog <a href=\"http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/\">EC2-Classic Networking is Retiring – Here’s How to Prepare</a>, and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html\">Moving a DB instance not in a VPC into a VPC</a> in the <i>Amazon RDS User Guide</i>.</p> </note>",
     "DescribeDBSnapshotAttributes": "<p>Returns a list of DB snapshot attribute names and values for a manual DB snapshot.</p> <p>When sharing snapshots with other Amazon Web Services accounts, <code>DescribeDBSnapshotAttributes</code> returns the <code>restore</code> attribute and a list of IDs for the Amazon Web Services accounts that are authorized to copy or restore the manual DB snapshot. If <code>all</code> is included in the list of values for the <code>restore</code> attribute, then the manual DB snapshot is public and can be copied or restored by all Amazon Web Services accounts.</p> <p>To add or remove access for an Amazon Web Services account to copy or restore a manual DB snapshot, or to make the manual DB snapshot public or private, use the <code>ModifyDBSnapshotAttribute</code> API action.</p>",
+    "DescribeDBSnapshotTenantDatabases": "<p>Describes the tenant databases that exist in a DB snapshot. This command only applies to RDS for Oracle DB instances in the multi-tenant configuration.</p> <p>You can use this command to inspect the tenant databases within a snapshot before restoring it. You can't directly interact with the tenant databases in a DB snapshot. If you restore a snapshot that was taken from DB instance using the multi-tenant configuration, you restore all its tenant databases.</p>",
     "DescribeDBSnapshots": "<p>Returns information about DB snapshots. This API action supports pagination.</p>",
     "DescribeDBSubnetGroups": "<p>Returns a list of DBSubnetGroup descriptions. If a DBSubnetGroupName is specified, the list will contain only the descriptions of the specified DBSubnetGroup.</p> <p>For an overview of CIDR ranges, go to the <a href=\"http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing\">Wikipedia Tutorial</a>.</p>",
     "DescribeEngineDefaultClusterParameters": "<p>Returns the default engine and system parameter information for the cluster database engine.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p>",
@@ -93,6 +96,7 @@
     "DescribeReservedDBInstances": "<p>Returns information about reserved DB instances for this account, or about a specified reserved DB instance.</p>",
     "DescribeReservedDBInstancesOfferings": "<p>Lists available reserved DB instance offerings.</p>",
     "DescribeSourceRegions": "<p>Returns a list of the source Amazon Web Services Regions where the current Amazon Web Services Region can create a read replica, copy a DB snapshot from, or replicate automated backups from.</p> <p>Use this operation to determine whether cross-Region features are supported between other Regions and your current Region. This operation supports pagination.</p> <p>To return information about the Regions that are enabled for your account, or all Regions, use the EC2 operation <code>DescribeRegions</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRegions.html\"> DescribeRegions</a> in the <i>Amazon EC2 API Reference</i>.</p>",
+    "DescribeTenantDatabases": "<p>Describes the tenant databases in a DB instance that uses the multi-tenant configuration. Only RDS for Oracle CDB instances are supported.</p>",
     "DescribeValidDBInstanceModifications": "<p>You can call <code>DescribeValidDBInstanceModifications</code> to learn what modifications you can make to your DB instance. You can use this information when you call <code>ModifyDBInstance</code>.</p> <p>This command doesn't apply to RDS Custom.</p>",
     "DownloadDBLogFilePortion": "<p>Downloads all or a portion of the specified log file, up to 1 MB in size.</p> <p>This command doesn't apply to RDS Custom.</p>",
     "FailoverDBCluster": "<p>Forces a failover for a DB cluster.</p> <p>For an Aurora DB cluster, failover for a DB cluster promotes one of the Aurora Replicas (read-only instances) in the DB cluster to be the primary DB instance (the cluster writer).</p> <p>For a Multi-AZ DB cluster, failover for a DB cluster promotes one of the readable standby DB instances (read-only instances) in the DB cluster to be the primary DB instance (the cluster writer).</p> <p>An Amazon Aurora DB cluster automatically fails over to an Aurora Replica, if one exists, when the primary DB instance fails. A Multi-AZ DB cluster automatically fails over to a readable standby DB instance when the primary DB instance fails.</p> <p>To simulate a failure of a primary instance for testing, you can force a failover. Because each instance in a DB cluster has its own endpoint address, make sure to clean up and re-establish any existing connections that use those endpoint addresses when the failover is complete.</p> <p>For more information on Amazon Aurora DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ DB cluster deployments</a> in the <i>Amazon RDS User Guide</i>.</p>",
@@ -117,6 +121,7 @@
     "ModifyEventSubscription": "<p>Modifies an existing RDS event notification subscription. You can't modify the source identifiers using this call. To change source identifiers for a subscription, use the <code>AddSourceIdentifierToSubscription</code> and <code>RemoveSourceIdentifierFromSubscription</code> calls.</p> <p>You can see a list of the event categories for a given source type (<code>SourceType</code>) in <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html\">Events</a> in the <i>Amazon RDS User Guide</i> or by using the <code>DescribeEventCategories</code> operation.</p>",
     "ModifyGlobalCluster": "<p>Modifies a setting for an Amazon Aurora global database cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This operation only applies to Aurora global database clusters.</p> </note>",
     "ModifyOptionGroup": "<p>Modifies an existing option group.</p>",
+    "ModifyTenantDatabase": "<p>Modifies an existing tenant database in a DB instance. You can change the tenant database name or the master user password. This operation is supported only for RDS for Oracle CDB instances using the multi-tenant configuration.</p>",
     "PromoteReadReplica": "<p>Promotes a read replica DB instance to a standalone DB instance.</p> <note> <ul> <li> <p>Backup duration is a function of the amount of changes to the database since the previous backup. If you plan to promote a read replica to a standalone instance, we recommend that you enable backups and complete at least one backup prior to promotion. In addition, a read replica cannot be promoted to a standalone instance when it is in the <code>backing-up</code> status. If you have enabled backups on your read replica, configure the automated backup window so that daily backups do not interfere with read replica promotion.</p> </li> <li> <p>This command doesn't apply to Aurora MySQL, Aurora PostgreSQL, or RDS Custom.</p> </li> </ul> </note>",
     "PromoteReadReplicaDBCluster": "<p>Promotes a read replica DB cluster to a standalone DB cluster.</p>",
     "PurchaseReservedDBInstancesOffering": "<p>Purchases a reserved DB instance offering.</p>",
@@ -465,7 +470,7 @@
         "DBInstance$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.</p>",
         "DBInstanceAutomatedBackup$Encrypted": "<p>Indicates whether the automated backup is encrypted.</p>",
         "DBInstanceAutomatedBackup$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
-        "DBInstanceStatusInfo$Normal": "<p>A Boolean value that is true if the instance is operating normally, or false if the instance is in an error state.</p>",
+        "DBInstanceStatusInfo$Normal": "<p>Indicates whether the instance is operating normally (TRUE) or is in an error state (FALSE).</p>",
         "DBProxy$RequireTLS": "<p>Indicates whether Transport Layer Security (TLS) encryption is required for connections to the proxy.</p>",
         "DBProxy$DebugLogging": "<p>Indicates whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.</p>",
         "DBProxyEndpoint$IsDefault": "<p>Indicates whether this endpoint is the default endpoint for the associated DB proxy. Default DB proxy endpoints always have read/write capability. Other endpoints that you associate with the DB proxy can be either read/write or read-only.</p>",
@@ -475,6 +480,7 @@
         "DBSnapshot$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.</p>",
         "DeleteDBClusterMessage$SkipFinalSnapshot": "<p>Specifies whether to skip the creation of a final DB cluster snapshot before the DB cluster is deleted. If skip is specified, no DB cluster snapshot is created. If skip isn't specified, a DB cluster snapshot is created before the DB cluster is deleted. By default, skip isn't specified, and the DB cluster snapshot is created. By default, this parameter is disabled.</p> <note> <p>You must specify a <code>FinalDBSnapshotIdentifier</code> parameter if <code>SkipFinalSnapshot</code> is disabled.</p> </note>",
         "DeleteDBInstanceMessage$SkipFinalSnapshot": "<p>Specifies whether to skip the creation of a final DB snapshot before deleting the instance. If you enable this parameter, RDS doesn't create a DB snapshot. If you don't enable this parameter, RDS creates a DB snapshot before the DB instance is deleted. By default, skip isn't enabled, and the DB snapshot is created.</p> <note> <p>If you don't enable this parameter, you must specify the <code>FinalDBSnapshotIdentifier</code> parameter.</p> </note> <p>When a DB instance is in a failure state and has a status of <code>failed</code>, <code>incompatible-restore</code>, or <code>incompatible-network</code>, RDS can delete the instance only if you enable this parameter.</p> <p>If you delete a read replica or an RDS Custom instance, you must enable this setting.</p> <p>This setting is required for RDS Custom.</p>",
+        "DeleteTenantDatabaseMessage$SkipFinalSnapshot": "<p>Specifies whether to skip the creation of a final DB snapshot before removing the tenant database from your DB instance. If you enable this parameter, RDS doesn't create a DB snapshot. If you don't enable this parameter, RDS creates a DB snapshot before it deletes the tenant database. By default, RDS doesn't skip the final snapshot. If you don't enable this parameter, you must specify the <code>FinalDBSnapshotIdentifier</code> parameter.</p>",
         "DescribeDBClusterSnapshotsMessage$IncludeShared": "<p>Specifies whether to include shared manual DB cluster snapshots from other Amazon Web Services accounts that this Amazon Web Services account has been given permission to copy or restore. By default, these snapshots are not included.</p> <p>You can give an Amazon Web Services account permission to restore a manual DB cluster snapshot from another Amazon Web Services account by the <code>ModifyDBClusterSnapshotAttribute</code> API action.</p>",
         "DescribeDBClusterSnapshotsMessage$IncludePublic": "<p>Specifies whether to include manual DB cluster snapshots that are public and can be copied or restored by any Amazon Web Services account. By default, the public snapshots are not included.</p> <p>You can share a manual DB cluster snapshot as public by using the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>",
         "DescribeDBClustersMessage$IncludeShared": "<p>Specifies whether the output includes information about clusters shared from other Amazon Web Services accounts.</p>",
@@ -482,7 +488,7 @@
         "DescribeDBSnapshotsMessage$IncludeShared": "<p>Specifies whether to include shared manual DB cluster snapshots from other Amazon Web Services accounts that this Amazon Web Services account has been given permission to copy or restore. By default, these snapshots are not included.</p> <p>You can give an Amazon Web Services account permission to restore a manual DB snapshot from another Amazon Web Services account by using the <code>ModifyDBSnapshotAttribute</code> API action.</p> <p>This setting doesn't apply to RDS Custom.</p>",
         "DescribeDBSnapshotsMessage$IncludePublic": "<p>Specifies whether to include manual DB cluster snapshots that are public and can be copied or restored by any Amazon Web Services account. By default, the public snapshots are not included.</p> <p>You can share a manual DB snapshot as public by using the <a>ModifyDBSnapshotAttribute</a> API.</p> <p>This setting doesn't apply to RDS Custom.</p>",
         "DownloadDBLogFilePortionDetails$AdditionalDataPending": "<p>A Boolean value that, if true, indicates there is more data to be downloaded.</p>",
-        "EventSubscription$Enabled": "<p>A Boolean value indicating if the subscription is enabled. True indicates the subscription is enabled.</p>",
+        "EventSubscription$Enabled": "<p>Specifies whether the subscription is enabled. True indicates the subscription is enabled.</p>",
         "FailoverState$IsDataLossAllowed": "<p>Indicates whether the operation is a global switchover or a global failover. If data loss is allowed, then the operation is a global failover. Otherwise, it's a switchover.</p>",
         "GlobalClusterMember$IsWriter": "<p>Indicates whether the Aurora DB cluster is the primary cluster (that is, has read-write capability) for the global cluster with which it is associated.</p>",
         "ModifyDBClusterMessage$ApplyImmediately": "<p>Specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the DB cluster. If this parameter is disabled, changes to the DB cluster are applied during the next maintenance window.</p> <p>Most modifications can be applied immediately or during the next scheduled maintenance window. Some modifications, such as turning on deletion protection and changing the master password, are applied immediately—regardless of when you choose to apply them.</p> <p>By default, this parameter is disabled.</p> <p>Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters</p>",
@@ -526,6 +532,7 @@
         "RestoreDBInstanceToPointInTimeMessage$UseLatestRestorableTime": "<p>Specifies whether the DB instance is restored from the latest backup time. By default, the DB instance isn't restored from the latest backup time.</p> <p>Constraints:</p> <ul> <li> <p>Can't be specified if the <code>RestoreTime</code> parameter is provided.</p> </li> </ul>",
         "SourceRegion$SupportsDBInstanceAutomatedBackupsReplication": "<p>Indicates whether the source Amazon Web Services Region supports replicating automated backups to the current Amazon Web Services Region.</p>",
         "StartActivityStreamResponse$ApplyImmediately": "<p>Indicates whether or not the database activity stream will start as soon as possible, regardless of the maintenance window for the database.</p>",
+        "TenantDatabase$DeletionProtection": "<p>Specifies whether deletion protection is enabled for the DB instance.</p>",
         "UpgradeTarget$AutoUpgrade": "<p>Indicates whether the target version is applied to any source DB instances that have <code>AutoMinorVersionUpgrade</code> set to true.</p>",
         "UpgradeTarget$IsMajorVersionUpgrade": "<p>Indicates whether upgrading to the target version requires upgrading the major version of the database engine.</p>",
         "ValidDBInstanceModificationsMessage$SupportsDedicatedLogVolume": "<p>Indicates whether a DB instance supports using a dedicated log volume (DLV).</p>",
@@ -566,6 +573,7 @@
         "CreateDBInstanceMessage$EnableCustomerOwnedIp": "<p>Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts DB instance.</p> <p>A <i>CoIP</i> provides local or external connectivity to resources in your Outpost subnets through your on-premises network. For some use cases, a CoIP can provide lower latency for connections to the DB instance from outside of its virtual private cloud (VPC) on your local network.</p> <p>For more information about RDS on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html\">Working with Amazon RDS on Amazon Web Services Outposts</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about CoIPs, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing\">Customer-owned IP addresses</a> in the <i>Amazon Web Services Outposts User Guide</i>.</p>",
         "CreateDBInstanceMessage$ManageMasterUserPassword": "<p>Specifies whether to manage the master user password with Amazon Web Services Secrets Manager.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html\">Password management with Amazon Web Services Secrets Manager</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Constraints:</p> <ul> <li> <p>Can't manage the master user password with Amazon Web Services Secrets Manager if <code>MasterUserPassword</code> is specified.</p> </li> </ul>",
         "CreateDBInstanceMessage$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.</p>",
+        "CreateDBInstanceMessage$MultiTenant": "<p>Specifies whether to use the multi-tenant configuration or the single-tenant configuration (default). This parameter only applies to RDS for Oracle container database (CDB) engines.</p> <p>Note the following restrictions: </p> <ul> <li> <p>The DB engine that you specify in the request must support the multi-tenant configuration. If you attempt to enable the multi-tenant configuration on a DB engine that doesn't support it, the request fails.</p> </li> <li> <p>If you specify the multi-tenant configuration when you create your DB instance, you can't later modify this DB instance to use the single-tenant configuration.</p> </li> </ul>",
         "CreateDBInstanceReadReplicaMessage$MultiAZ": "<p>Specifies whether the read replica is in a Multi-AZ deployment.</p> <p>You can create a read replica as a Multi-AZ DB instance. RDS creates a standby of your replica in another Availability Zone for failover support for the replica. Creating your read replica as a Multi-AZ DB instance is independent of whether the source is a Multi-AZ DB instance or a Multi-AZ DB cluster.</p> <p>This setting doesn't apply to RDS Custom DB instances.</p>",
         "CreateDBInstanceReadReplicaMessage$AutoMinorVersionUpgrade": "<p>Specifies whether to automatically apply minor engine upgrades to the read replica during the maintenance window.</p> <p>This setting doesn't apply to RDS Custom DB instances.</p> <p>Default: Inherits the value from the source DB instance.</p>",
         "CreateDBInstanceReadReplicaMessage$PubliclyAccessible": "<p>Specifies whether the DB instance is publicly accessible.</p> <p>When the DB cluster is publicly accessible, its Domain Name System (DNS) endpoint resolves to the private IP address from within the DB cluster's virtual private cloud (VPC). It resolves to the public IP address from outside of the DB cluster's VPC. Access to the DB cluster is ultimately controlled by the security group it uses. That public access isn't permitted if the security group assigned to the DB cluster doesn't permit it.</p> <p>When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.</p> <p>For more information, see <a>CreateDBInstance</a>.</p>",
@@ -595,7 +603,10 @@
         "DBInstance$CustomerOwnedIpEnabled": "<p>Indicates whether a customer-owned IP address (CoIP) is enabled for an RDS on Outposts DB instance.</p> <p>A <i>CoIP </i>provides local or external connectivity to resources in your Outpost subnets through your on-premises network. For some use cases, a CoIP can provide lower latency for connections to the DB instance from outside of its virtual private cloud (VPC) on your local network.</p> <p>For more information about RDS on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html\">Working with Amazon RDS on Amazon Web Services Outposts</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about CoIPs, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing\">Customer-owned IP addresses</a> in the <i>Amazon Web Services Outposts User Guide</i>.</p>",
         "DBInstance$ActivityStreamEngineNativeAuditFieldsIncluded": "<p>Indicates whether engine-native audit fields are included in the database activity stream.</p>",
         "DBInstance$IsStorageConfigUpgradeAvailable": "<p>Indicates whether an upgrade is recommended for the storage file system configuration on the DB instance. To migrate to the preferred configuration, you can either create a blue/green deployment, or create a read replica from the DB instance. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.UpgradeFileSystem\">Upgrading the storage file system for a DB instance</a>.</p>",
+        "DBInstance$MultiTenant": "<p>Specifies whether the DB instance is in the multi-tenant configuration (TRUE) or the single-tenant configuration (FALSE).</p>",
         "DBInstanceAutomatedBackup$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.</p>",
+        "DBInstanceAutomatedBackup$MultiTenant": "<p>Specifies whether the automatic backup is for a DB instance in the multi-tenant configuration (TRUE) or the single-tenant configuration (FALSE). </p>",
+        "DBSnapshot$MultiTenant": "<p>Indicates whether the snapshot is of a DB instance using the multi-tenant configuration (TRUE) or the single-tenant configuration (FALSE).</p>",
         "DeleteBlueGreenDeploymentRequest$DeleteTarget": "<p>Specifies whether to delete the resources in the green environment. You can't specify this option if the blue/green deployment <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_BlueGreenDeployment.html\">status</a> is <code>SWITCHOVER_COMPLETED</code>.</p>",
         "DeleteDBClusterMessage$DeleteAutomatedBackups": "<p>Specifies whether to remove automated backups immediately after the DB cluster is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB cluster is deleted.</p>",
         "DeleteDBInstanceMessage$DeleteAutomatedBackups": "<p>Specifies whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.</p>",
@@ -635,6 +646,7 @@
         "ModifyDBInstanceMessage$ManageMasterUserPassword": "<p>Specifies whether to manage the master user password with Amazon Web Services Secrets Manager.</p> <p>If the DB instance doesn't manage the master user password with Amazon Web Services Secrets Manager, you can turn on this management. In this case, you can't specify <code>MasterUserPassword</code>.</p> <p>If the DB instance already manages the master user password with Amazon Web Services Secrets Manager, and you specify that the master user password is not managed with Amazon Web Services Secrets Manager, then you must specify <code>MasterUserPassword</code>. In this case, Amazon RDS deletes the secret and uses the new password for the master user specified by <code>MasterUserPassword</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html\">Password management with Amazon Web Services Secrets Manager</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Constraints:</p> <ul> <li> <p>Can't manage the master user password with Amazon Web Services Secrets Manager if <code>MasterUserPassword</code> is specified.</p> </li> </ul>",
         "ModifyDBInstanceMessage$RotateMasterUserPassword": "<p>Specifies whether to rotate the secret managed by Amazon Web Services Secrets Manager for the master user password.</p> <p>This setting is valid only if the master user password is managed by RDS in Amazon Web Services Secrets Manager for the DB cluster. The secret value contains the updated password.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html\">Password management with Amazon Web Services Secrets Manager</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Constraints:</p> <ul> <li> <p>You must apply the change immediately when rotating the master user password.</p> </li> </ul>",
         "ModifyDBInstanceMessage$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.</p>",
+        "ModifyDBInstanceMessage$MultiTenant": "<p>Specifies whether the to convert your DB instance from the single-tenant conﬁguration to the multi-tenant conﬁguration. This parameter is supported only for RDS for Oracle CDB instances.</p> <p>During the conversion, RDS creates an initial tenant database and associates the DB name, master user name, character set, and national character set metadata with this database. The tags associated with the instance also propagate to the initial tenant database. You can add more tenant databases to your DB instance by using the <code>CreateTenantDatabase</code> operation.</p> <important> <p>The conversion to the multi-tenant configuration is permanent and irreversible, so you can't later convert back to the single-tenant configuration. When you specify this parameter, you must also specify <code>ApplyImmediately</code>.</p> </important>",
         "ModifyDBProxyRequest$RequireTLS": "<p>Whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy, even if the associated database doesn't use TLS.</p>",
         "ModifyDBProxyRequest$DebugLogging": "<p>Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p>Specifies whether to activate the subscription.</p>",
@@ -647,6 +659,7 @@
         "PendingModifiedValues$MultiAZ": "<p>Indicates whether the Single-AZ DB instance will change to a Multi-AZ deployment.</p>",
         "PendingModifiedValues$IAMDatabaseAuthenticationEnabled": "<p>Indicates whether mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts is enabled.</p>",
         "PendingModifiedValues$DedicatedLogVolume": "<p>Indicates whether the DB instance has a dedicated log volume (DLV) enabled.&gt;</p>",
+        "PendingModifiedValues$MultiTenant": "<p>Indicates whether the DB instance will change to the multi-tenant configuration (TRUE) or the single-tenant configuration (FALSE). </p>",
         "RebootDBInstanceMessage$ForceFailover": "<p>Specifies whether the reboot is conducted through a Multi-AZ failover.</p> <p>Constraint: You can't enable force failover if the instance isn't configured for Multi-AZ.</p>",
         "RestoreDBClusterFromS3Message$StorageEncrypted": "<p>Specifies whether the restored DB cluster is encrypted.</p>",
         "RestoreDBClusterFromS3Message$EnableIAMDatabaseAuthentication": "<p>Specifies whether to enable mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts. By default, mapping isn't enabled.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html\"> IAM Database Authentication</a> in the <i>Amazon Aurora User Guide</i>.</p>",
@@ -1004,6 +1017,16 @@
       }
     },
     "CreateOptionGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTenantDatabaseMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTenantDatabaseResult": {
       "base": null,
       "refs": {
       }
@@ -1769,6 +1792,28 @@
       "refs": {
       }
     },
+    "DBSnapshotTenantDatabase": {
+      "base": "<p>Contains the details of a tenant database in a snapshot of a DB instance.</p>",
+      "refs": {
+        "DBSnapshotTenantDatabasesList$member": null
+      }
+    },
+    "DBSnapshotTenantDatabaseNotFoundFault": {
+      "base": "<p>The specified snapshot tenant database wasn't found.</p>",
+      "refs": {
+      }
+    },
+    "DBSnapshotTenantDatabasesList": {
+      "base": null,
+      "refs": {
+        "DBSnapshotTenantDatabasesMessage$DBSnapshotTenantDatabases": "<p>A list of DB snapshot tenant databases.</p>"
+      }
+    },
+    "DBSnapshotTenantDatabasesMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DBSubnetGroup": {
       "base": "<p>Contains the details of an Amazon RDS DB subnet group.</p> <p>This data type is used as a response element in the <code>DescribeDBSubnetGroups</code> action.</p>",
       "refs": {
@@ -1984,6 +2029,16 @@
       "refs": {
       }
     },
+    "DeleteTenantDatabaseMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTenantDatabaseResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeregisterDBProxyTargetsRequest": {
       "base": null,
       "refs": {
@@ -2161,6 +2216,11 @@
       "refs": {
       }
     },
+    "DescribeDBSnapshotTenantDatabasesMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDBSnapshotsMessage": {
       "base": "<p/>",
       "refs": {
@@ -2258,6 +2318,11 @@
     },
     "DescribeSourceRegionsMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeTenantDatabasesMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -2532,7 +2597,7 @@
     "FailoverStatus": {
       "base": null,
       "refs": {
-        "FailoverState$Status": "<p>The current status of the global cluster. Possible values are as follows:</p> <ul> <li> <p>pending &#x96; The service received a request to switch over or fail over the global cluster. The global cluster's primary DB cluster and the specified secondary DB cluster are being verified before the operation starts.</p> </li> <li> <p>failing-over &#x96; This status covers the range of Aurora internal operations that take place during the switchover or failover process, such as demoting the primary Aurora DB cluster, promoting the secondary Aurora DB cluster, and synchronizing replicas.</p> </li> <li> <p>cancelling &#x96; The request to switch over or fail over the global cluster was cancelled and the primary Aurora DB cluster and the selected secondary Aurora DB cluster are returning to their previous states.</p> </li> </ul>"
+        "FailoverState$Status": "<p>The current status of the global cluster. Possible values are as follows:</p> <ul> <li> <p>pending &#x96; The service received a request to switch over or fail over the global cluster. The global cluster's primary DB cluster and the specified secondary DB cluster are being verified before the operation starts.</p> </li> <li> <p>failing-over &#x96; Aurora is promoting the chosen secondary Aurora DB cluster to become the new primary DB cluster to fail over the global cluster.</p> </li> <li> <p>cancelling &#x96; The request to switch over or fail over the global cluster was cancelled and the primary Aurora DB cluster and the selected secondary Aurora DB cluster are returning to their previous states.</p> </li> <li> <p>switching-over &#x96; This status covers the range of Aurora internal operations that take place during the switchover process, such as demoting the primary Aurora DB cluster, promoting the secondary Aurora DB cluster, and synchronizing replicas.</p> </li> </ul>"
       }
     },
     "FeatureNameList": {
@@ -2570,6 +2635,7 @@
         "DescribeDBProxyTargetGroupsRequest$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBProxyTargetsRequest$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBSecurityGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
+        "DescribeDBSnapshotTenantDatabasesMessage$Filters": "<p>A filter that specifies one or more tenant databases to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>tenant-db-name</code> - Tenant database names. The results list only includes information about the tenant databases that match these tenant DB names.</p> </li> <li> <p> <code>tenant-database-resource-id</code> - Tenant database resource identifiers. The results list only includes information about the tenant databases contained within the DB snapshots.</p> </li> <li> <p> <code>dbi-resource-id</code> - DB instance resource identifiers. The results list only includes information about snapshots containing tenant databases contained within the DB instances identified by these resource identifiers.</p> </li> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs).</p> </li> <li> <p> <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.</p> </li> <li> <p> <code>snapshot-type</code> - Accepts types of DB snapshots.</p> </li> </ul>",
         "DescribeDBSnapshotsMessage$Filters": "<p>A filter that specifies one or more DB snapshots to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs).</p> </li> <li> <p> <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.</p> </li> <li> <p> <code>dbi-resource-id</code> - Accepts identifiers of source DB instances.</p> </li> <li> <p> <code>snapshot-type</code> - Accepts types of DB snapshots.</p> </li> <li> <p> <code>engine</code> - Accepts names of database engines.</p> </li> </ul>",
         "DescribeDBSubnetGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeEngineDefaultClusterParametersMessage$Filters": "<p>This parameter isn't currently supported.</p>",
@@ -2587,6 +2653,7 @@
         "DescribeReservedDBInstancesMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeSourceRegionsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
+        "DescribeTenantDatabasesMessage$Filters": "<p>A filter that specifies one or more database tenants to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>tenant-db-name</code> - Tenant database names. The results list only includes information about the tenant databases that match these tenant DB names.</p> </li> <li> <p> <code>tenant-database-resource-id</code> - Tenant database resource identifiers.</p> </li> <li> <p> <code>dbi-resource-id</code> - DB instance resource identifiers. The results list only includes information about the tenants contained within the DB instances identified by these resource identifiers.</p> </li> </ul>",
         "ListTagsForResourceMessage$Filters": "<p>This parameter isn't currently supported.</p>"
       }
     },
@@ -2816,6 +2883,7 @@
         "DescribeDBParameterGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBParametersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBSecurityGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeDBSnapshotTenantDatabasesMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p>",
         "DescribeDBSnapshotsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBSubnetGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEngineDefaultClusterParametersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -2832,6 +2900,7 @@
         "DescribeReservedDBInstancesMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more than the <code>MaxRecords</code> value is available, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more than the <code>MaxRecords</code> value is available, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeSourceRegionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeTenantDatabasesMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p>",
         "ModifyCurrentDBClusterCapacityMessage$Capacity": "<p>The DB cluster capacity.</p> <p>When you change the capacity of a paused Aurora Serverless v1 DB cluster, it automatically resumes.</p> <p>Constraints:</p> <ul> <li> <p>For Aurora MySQL, valid capacity values are <code>1</code>, <code>2</code>, <code>4</code>, <code>8</code>, <code>16</code>, <code>32</code>, <code>64</code>, <code>128</code>, and <code>256</code>.</p> </li> <li> <p>For Aurora PostgreSQL, valid capacity values are <code>2</code>, <code>4</code>, <code>8</code>, <code>16</code>, <code>32</code>, <code>64</code>, <code>192</code>, and <code>384</code>.</p> </li> </ul>",
         "ModifyCurrentDBClusterCapacityMessage$SecondsBeforeTimeout": "<p>The amount of time, in seconds, that Aurora Serverless v1 tries to find a scaling point to perform seamless scaling before enforcing the timeout action. The default is 300.</p> <p>Specify a value between 10 and 600 seconds.</p>",
         "ModifyDBClusterMessage$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained. Specify a minimum value of <code>1</code>.</p> <p>Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters</p> <p>Default: <code>1</code> </p> <p>Constraints:</p> <ul> <li> <p>Must be a value from 1 to 35.</p> </li> </ul>",
@@ -3382,6 +3451,16 @@
       }
     },
     "ModifyOptionGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyTenantDatabaseMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyTenantDatabaseResult": {
       "base": null,
       "refs": {
       }
@@ -3995,6 +4074,14 @@
         "DBCluster$ScalingConfigurationInfo": null
       }
     },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "CreateTenantDatabaseMessage$MasterUserPassword": "<p>The password for the master user in your tenant database.</p> <p>Constraints:</p> <ul> <li> <p>Must be 8 to 30 characters.</p> </li> <li> <p>Can include any printable ASCII character except forward slash (<code>/</code>), double quote (<code>\"</code>), at symbol (<code>@</code>), ampersand (<code>&amp;</code>), or single quote (<code>'</code>).</p> </li> </ul>",
+        "ModifyTenantDatabaseMessage$MasterUserPassword": "<p>The new password for the master user of the specified tenant database in your DB instance.</p> <note> <p>Amazon RDS operations never return the password, so this action provides a way to regain access to a tenant database user if the password is lost. This includes restoring privileges that might have been accidentally revoked.</p> </note> <p>Constraints:</p> <ul> <li> <p>Can include any printable ASCII character except <code>/</code>, <code>\"</code> (double quote), <code>@</code>, <code>&amp;</code> (ampersand), and <code>'</code> (single quote).</p> </li> </ul> <p>Length constraints:</p> <ul> <li> <p>Must contain between 8 and 30 characters. </p> </li> </ul>",
+        "TenantDatabasePendingModifiedValues$MasterUserPassword": "<p>The master password for the tenant database.</p>"
+      }
+    },
     "ServerlessV2ScalingConfiguration": {
       "base": "<p>Contains the scaling configuration of an Aurora Serverless v2 DB cluster.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html\">Using Amazon Aurora Serverless v2</a> in the <i>Amazon Aurora User Guide</i>.</p>",
       "refs": {
@@ -4352,6 +4439,11 @@
         "CreateOptionGroupMessage$EngineName": "<p>Specifies the name of the engine that this option group should be associated with.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p> </li> <li> <p> <code>oracle-ee-cdb</code> </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p> <code>oracle-se2-cdb</code> </p> </li> <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code> </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p> <code>sqlserver-ex</code> </p> </li> <li> <p> <code>sqlserver-web</code> </p> </li> </ul>",
         "CreateOptionGroupMessage$MajorEngineVersion": "<p>Specifies the major version of the engine that this option group should be associated with.</p>",
         "CreateOptionGroupMessage$OptionGroupDescription": "<p>The description of the option group.</p>",
+        "CreateTenantDatabaseMessage$DBInstanceIdentifier": "<p>The user-supplied DB instance identifier. RDS creates your tenant database in this DB instance. This parameter isn't case-sensitive.</p>",
+        "CreateTenantDatabaseMessage$TenantDBName": "<p>The user-supplied name of the tenant database that you want to create in your DB instance. This parameter has the same constraints as <code>DBName</code> in <code>CreateDBInstance</code>.</p>",
+        "CreateTenantDatabaseMessage$MasterUsername": "<p>The name for the master user account in your tenant database. RDS creates this user account in the tenant database and grants privileges to the master user. This parameter is case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 16 letters, numbers, or underscores.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Can't be a reserved word for the chosen database engine.</p> </li> </ul>",
+        "CreateTenantDatabaseMessage$CharacterSetName": "<p>The character set for your tenant database. If you don't specify a value, the character set name defaults to <code>AL32UTF8</code>.</p>",
+        "CreateTenantDatabaseMessage$NcharCharacterSetName": "<p>The <code>NCHAR</code> value for the tenant database.</p>",
         "CustomDBEngineVersionAMI$ImageId": "<p>A value that indicates the ID of the AMI.</p>",
         "CustomDBEngineVersionAMI$Status": "<p>A value that indicates the status of a custom engine version (CEV).</p>",
         "DBCluster$CharacterSetName": "<p>If present, specifies the name of the character set that this cluster is associated with.</p>",
@@ -4467,7 +4559,7 @@
         "DBInstance$Engine": "<p>The database engine used for this DB instance.</p>",
         "DBInstance$DBInstanceStatus": "<p>The current state of this database.</p> <p>For information about DB instance statuses, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/accessing-monitoring.html#Overview.DBInstance.Status\">Viewing DB instance status</a> in the <i>Amazon RDS User Guide.</i> </p>",
         "DBInstance$MasterUsername": "<p>The master username for the DB instance.</p>",
-        "DBInstance$DBName": "<p>Contains the initial database name that you provided (if required) when you created the DB instance. This name is returned for the life of your DB instance. For an RDS for Oracle CDB instance, the name identifies the PDB rather than the CDB.</p>",
+        "DBInstance$DBName": "<p>The initial database name that you provided (if required) when you created the DB instance. This name is returned for the life of your DB instance. For an RDS for Oracle CDB instance, the name identifies the PDB rather than the CDB.</p>",
         "DBInstance$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, as determined by the <code>BackupRetentionPeriod</code>.</p>",
         "DBInstance$AvailabilityZone": "<p>The name of the Availability Zone where the DB instance is located.</p>",
         "DBInstance$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p>",
@@ -4586,6 +4678,18 @@
         "DBSnapshotAttribute$AttributeName": "<p>The name of the manual DB snapshot attribute.</p> <p>The attribute named <code>restore</code> refers to the list of Amazon Web Services accounts that have permission to copy or restore the manual DB cluster snapshot. For more information, see the <code>ModifyDBSnapshotAttribute</code> API action.</p>",
         "DBSnapshotAttributesResult$DBSnapshotIdentifier": "<p>The identifier of the manual DB snapshot that the attributes apply to.</p>",
         "DBSnapshotMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DBSnapshotTenantDatabase$DBSnapshotIdentifier": "<p>The identifier for the snapshot of the DB instance.</p>",
+        "DBSnapshotTenantDatabase$DBInstanceIdentifier": "<p>The ID for the DB instance that contains the tenant databases.</p>",
+        "DBSnapshotTenantDatabase$DbiResourceId": "<p>The resource identifier of the source CDB instance. This identifier can't be changed and is unique to an Amazon Web Services Region.</p>",
+        "DBSnapshotTenantDatabase$EngineName": "<p>The name of the database engine.</p>",
+        "DBSnapshotTenantDatabase$SnapshotType": "<p>The type of DB snapshot.</p>",
+        "DBSnapshotTenantDatabase$TenantDBName": "<p>The name of the tenant database.</p>",
+        "DBSnapshotTenantDatabase$MasterUsername": "<p>The master username of the tenant database.</p>",
+        "DBSnapshotTenantDatabase$TenantDatabaseResourceId": "<p>The resource ID of the tenant database.</p>",
+        "DBSnapshotTenantDatabase$CharacterSetName": "<p>The name of the character set of a tenant database.</p>",
+        "DBSnapshotTenantDatabase$DBSnapshotTenantDatabaseARN": "<p>The Amazon Resource Name (ARN) for the snapshot tenant database.</p>",
+        "DBSnapshotTenantDatabase$NcharCharacterSetName": "<p>The <code>NCHAR</code> character set name of the tenant database.</p>",
+        "DBSnapshotTenantDatabasesMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DBSubnetGroup$DBSubnetGroupName": "<p>The name of the DB subnet group.</p>",
         "DBSubnetGroup$DBSubnetGroupDescription": "<p>Provides the description of the DB subnet group.</p>",
         "DBSubnetGroup$VpcId": "<p>Provides the VpcId of the DB subnet group.</p>",
@@ -4610,6 +4714,9 @@
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to delete.</p>",
         "DeleteGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the global database cluster being deleted.</p>",
         "DeleteOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be deleted.</p> <note> <p>You can't delete default option groups.</p> </note>",
+        "DeleteTenantDatabaseMessage$DBInstanceIdentifier": "<p>The user-supplied identifier for the DB instance that contains the tenant database that you want to delete.</p>",
+        "DeleteTenantDatabaseMessage$TenantDBName": "<p>The user-supplied name of the tenant database that you want to remove from your DB instance. Amazon RDS deletes the tenant database with this name. This parameter isn’t case-sensitive.</p>",
+        "DeleteTenantDatabaseMessage$FinalDBSnapshotIdentifier": "<p>The <code>DBSnapshotIdentifier</code> of the new <code>DBSnapshot</code> created when the <code>SkipFinalSnapshot</code> parameter is disabled.</p> <note> <p>If you enable this parameter and also enable <code>SkipFinalShapshot</code>, the command results in an error.</p> </note>",
         "DeregisterDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> that is associated with the <code>DBProxyTargetGroup</code>.</p>",
         "DeregisterDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code>.</p>",
         "DescribeBlueGreenDeploymentsRequest$Marker": "<p>An optional pagination token provided by a previous <code>DescribeBlueGreenDeployments</code> request. If you specify this parameter, the response only includes records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
@@ -4674,6 +4781,11 @@
         "DescribeDBSecurityGroupsMessage$DBSecurityGroupName": "<p>The name of the DB security group to return details for.</p>",
         "DescribeDBSecurityGroupsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBSecurityGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBSnapshotAttributesMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to describe the attributes for.</p>",
+        "DescribeDBSnapshotTenantDatabasesMessage$DBInstanceIdentifier": "<p>The ID of the DB instance used to create the DB snapshots. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the identifier of an existing <code>DBInstance</code>.</p> </li> </ul>",
+        "DescribeDBSnapshotTenantDatabasesMessage$DBSnapshotIdentifier": "<p>The ID of a DB snapshot that contains the tenant databases to describe. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>If you specify this parameter, the value must match the ID of an existing DB snapshot.</p> </li> <li> <p>If you specify an automatic snapshot, you must also specify <code>SnapshotType</code>.</p> </li> </ul>",
+        "DescribeDBSnapshotTenantDatabasesMessage$SnapshotType": "<p>The type of DB snapshots to be returned. You can specify one of the following values:</p> <ul> <li> <p> <code>automated</code> – All DB snapshots that have been automatically taken by Amazon RDS for my Amazon Web Services account.</p> </li> <li> <p> <code>manual</code> – All DB snapshots that have been taken by my Amazon Web Services account.</p> </li> <li> <p> <code>shared</code> – All manual DB snapshots that have been shared to my Amazon Web Services account.</p> </li> <li> <p> <code>public</code> – All DB snapshots that have been marked as public.</p> </li> <li> <p> <code>awsbackup</code> – All DB snapshots managed by the Amazon Web Services Backup service.</p> </li> </ul>",
+        "DescribeDBSnapshotTenantDatabasesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBSnapshotTenantDatabases</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeDBSnapshotTenantDatabasesMessage$DbiResourceId": "<p>A specific DB resource identifier to describe.</p>",
         "DescribeDBSnapshotsMessage$DBInstanceIdentifier": "<p>The ID of the DB instance to retrieve the list of DB snapshots for. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>",
         "DescribeDBSnapshotsMessage$DBSnapshotIdentifier": "<p>A specific DB snapshot identifier to describe. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier is for an automated snapshot, the <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>",
         "DescribeDBSnapshotsMessage$SnapshotType": "<p>The type of snapshots to be returned. You can specify one of the following values:</p> <ul> <li> <p> <code>automated</code> - Return all DB snapshots that have been automatically taken by Amazon RDS for my Amazon Web Services account.</p> </li> <li> <p> <code>manual</code> - Return all DB snapshots that have been taken by my Amazon Web Services account.</p> </li> <li> <p> <code>shared</code> - Return all manual DB snapshots that have been shared to my Amazon Web Services account.</p> </li> <li> <p> <code>public</code> - Return all DB snapshots that have been marked as public.</p> </li> <li> <p> <code>awsbackup</code> - Return the DB snapshots managed by the Amazon Web Services Backup service.</p> <p>For information about Amazon Web Services Backup, see the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html\"> <i>Amazon Web Services Backup Developer Guide.</i> </a> </p> <p>The <code>awsbackup</code> type does not apply to Aurora.</p> </li> </ul> <p>If you don't specify a <code>SnapshotType</code> value, then both automated and manual snapshots are returned. Shared and public DB snapshots are not included in the returned results by default. You can include shared snapshots with these results by enabling the <code>IncludeShared</code> parameter. You can include public snapshots with these results by enabling the <code>IncludePublic</code> parameter.</p> <p>The <code>IncludeShared</code> and <code>IncludePublic</code> parameters don't apply for <code>SnapshotType</code> values of <code>manual</code> or <code>automated</code>. The <code>IncludePublic</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>shared</code>. The <code>IncludeShared</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>public</code>.</p>",
@@ -4726,6 +4838,9 @@
         "DescribeReservedDBInstancesOfferingsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeSourceRegionsMessage$RegionName": "<p>The source Amazon Web Services Region name. For example, <code>us-east-1</code>.</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid Amazon Web Services Region name.</p> </li> </ul>",
         "DescribeSourceRegionsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeSourceRegions</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeTenantDatabasesMessage$DBInstanceIdentifier": "<p>The user-supplied DB instance identifier, which must match the identifier of an existing instance owned by the Amazon Web Services account. This parameter isn't case-sensitive.</p>",
+        "DescribeTenantDatabasesMessage$TenantDBName": "<p>The user-supplied tenant database name, which must match the name of an existing tenant database on the specified DB instance owned by your Amazon Web Services account. This parameter isn’t case-sensitive.</p>",
+        "DescribeTenantDatabasesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeTenantDatabases</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeValidDBInstanceModificationsMessage$DBInstanceIdentifier": "<p>The customer identifier or the ARN of your DB instance.</p>",
         "DomainMembership$Domain": "<p>The identifier of the Active Directory Domain.</p>",
         "DomainMembership$Status": "<p>The status of the Active Directory Domain membership for the DB instance or cluster. Values include <code>joined</code>, <code>pending-join</code>, <code>failed</code>, and so on.</p>",
@@ -4832,13 +4947,13 @@
         "ModifyDBClusterSnapshotAttributeMessage$DBClusterSnapshotIdentifier": "<p>The identifier for the DB cluster snapshot to modify the attributes for.</p>",
         "ModifyDBClusterSnapshotAttributeMessage$AttributeName": "<p>The name of the DB cluster snapshot attribute to modify.</p> <p>To manage authorization for other Amazon Web Services accounts to copy or restore a manual DB cluster snapshot, set this value to <code>restore</code>.</p> <note> <p>To view the list of attributes available to modify, use the <a>DescribeDBClusterSnapshotAttributes</a> API operation.</p> </note>",
         "ModifyDBInstanceMessage$DBInstanceIdentifier": "<p>The identifier of DB instance to modify. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DB instance.</p> </li> </ul>",
-        "ModifyDBInstanceMessage$DBInstanceClass": "<p>The new compute and memory capacity of the DB instance, for example <code>db.m4.large</code>. Not all DB instance classes are available in all Amazon Web Services Regions, or for all database engines. For the full list of DB instance classes, and availability for your engine, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html\">DB Instance Class</a> in the <i>Amazon RDS User Guide</i> or <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html\">Aurora DB instance classes</a> in the <i>Amazon Aurora User Guide</i>. For RDS Custom, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits.html#custom-reqs-limits.instances\">DB instance class support for RDS Custom for Oracle</a> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html#custom-reqs-limits.instancesMS\"> DB instance class support for RDS Custom for SQL Server</a>.</p> <p>If you modify the DB instance class, an outage occurs during the change. The change is applied during the next maintenance window, unless you specify <code>ApplyImmediately</code> in your request. </p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li> <p>If you are modifying the DB instance class and upgrading the engine version at the same time, the currently running engine version must be supported on the specified DB instance class. Otherwise, the operation returns an error. In this case, first run the operation to modify the DB instance class, and then run it again to upgrade the engine version.</p> </li> </ul>",
+        "ModifyDBInstanceMessage$DBInstanceClass": "<p>The new compute and memory capacity of the DB instance, for example <code>db.m4.large</code>. Not all DB instance classes are available in all Amazon Web Services Regions, or for all database engines. For the full list of DB instance classes, and availability for your engine, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html\">DB Instance Class</a> in the <i>Amazon RDS User Guide</i> or <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html\">Aurora DB instance classes</a> in the <i>Amazon Aurora User Guide</i>. For RDS Custom, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits.html#custom-reqs-limits.instances\">DB instance class support for RDS Custom for Oracle</a> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html#custom-reqs-limits.instancesMS\"> DB instance class support for RDS Custom for SQL Server</a>.</p> <p>If you modify the DB instance class, an outage occurs during the change. The change is applied during the next maintenance window, unless you specify <code>ApplyImmediately</code> in your request. </p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li> <p>If you are modifying the DB instance class and upgrading the engine version at the same time, the currently running engine version must be supported on the specified DB instance class. Otherwise, the operation returns an error. In this case, first run the operation to upgrade the engine version, and then run it again to modify the DB instance class.</p> </li> </ul>",
         "ModifyDBInstanceMessage$DBSubnetGroupName": "<p>The new DB subnet group for the DB instance. You can use this parameter to move your DB instance to a different VPC. If your DB instance isn't in a VPC, you can also use this parameter to move your DB instance into a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC\">Working with a DB instance in a VPC</a> in the <i>Amazon RDS User Guide</i>.</p> <p>Changing the subnet group causes an outage during the change. The change is applied during the next maintenance window, unless you enable <code>ApplyImmediately</code>.</p> <p>This parameter doesn't apply to RDS Custom DB instances.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match existing DB subnet group.</p> </li> </ul> <p>Example: <code>mydbsubnetgroup</code> </p>",
         "ModifyDBInstanceMessage$MasterUserPassword": "<p>The new password for the master user.</p> <p>Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible. Between the time of the request and the completion of the request, the <code>MasterUserPassword</code> element exists in the <code>PendingModifiedValues</code> element of the operation response.</p> <note> <p>Amazon RDS API operations never return the password, so this action provides a way to regain access to a primary instance user if the password is lost. This includes restoring privileges that might have been accidentally revoked.</p> </note> <p>This setting doesn't apply to the following DB instances:</p> <ul> <li> <p>Amazon Aurora (The password for the master user is managed by the DB cluster. For more information, see <code>ModifyDBCluster</code>.)</p> </li> <li> <p>RDS Custom</p> </li> </ul> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li> <p>Can't be specified if <code>ManageMasterUserPassword</code> is turned on.</p> </li> <li> <p>Can include any printable ASCII character except \"/\", \"\"\", or \"@\".</p> </li> </ul> <p>Length Constraints:</p> <ul> <li> <p>RDS for MariaDB - Must contain from 8 to 41 characters.</p> </li> <li> <p>RDS for Microsoft SQL Server - Must contain from 8 to 128 characters.</p> </li> <li> <p>RDS for MySQL - Must contain from 8 to 41 characters.</p> </li> <li> <p>RDS for Oracle - Must contain from 8 to 30 characters.</p> </li> <li> <p>RDS for PostgreSQL - Must contain from 8 to 128 characters.</p> </li> </ul>",
         "ModifyDBInstanceMessage$DBParameterGroupName": "<p>The name of the DB parameter group to apply to the DB instance.</p> <p>Changing this setting doesn't result in an outage. The parameter group name itself is changed immediately, but the actual parameter changes are not applied until you reboot the instance without failover. In this case, the DB instance isn't rebooted automatically, and the parameter changes aren't applied during the next maintenance window. However, if you modify dynamic parameters in the newly associated DB parameter group, these changes are applied immediately without a reboot.</p> <p>This setting doesn't apply to RDS Custom DB instances.</p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li> <p>Must be in the same DB parameter group family as the DB instance.</p> </li> </ul>",
         "ModifyDBInstanceMessage$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, as determined by the <code>BackupRetentionPeriod</code> parameter. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow\">Backup window</a> in the <i>Amazon RDS User Guide</i>.</p> <p>This setting doesn't apply to Amazon Aurora DB instances. The daily time range for creating automated backups is managed by the DB cluster. For more information, see <code>ModifyDBCluster</code>.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "ModifyDBInstanceMessage$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, which might result in an outage. Changing this parameter doesn't result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If there are pending actions that cause a reboot, and the maintenance window is changed to include the current time, then changing this parameter causes a reboot of the DB instance. If you change this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts.DBMaintenance\">Amazon RDS Maintenance Window</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: Uses existing setting</p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>ddd:hh24:mi-ddd:hh24:mi</code>.</p> </li> <li> <p>The day values must be <code>mon | tue | wed | thu | fri | sat | sun</code>. </p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred backup window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
-        "ModifyDBInstanceMessage$EngineVersion": "<p>The version number of the database engine to upgrade to. Changing this parameter results in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is enabled for this request.</p> <p>For major version upgrades, if a nondefault DB parameter group is currently in use, a new DB parameter group in the DB parameter group family for the new engine version must be specified. The new DB parameter group can be the default for that DB parameter group family.</p> <p>If you specify only a major version, Amazon RDS updates the DB instance to the default minor version if the current minor version is lower. For information about valid engine versions, see <code>CreateDBInstance</code>, or call <code>DescribeDBEngineVersions</code>.</p> <p>If the instance that you're modifying is acting as a read replica, the engine version that you specify must be the same or higher than the version that the source DB instance or cluster is running.</p> <p>In RDS Custom for Oracle, this parameter is supported for read replicas only if they are in the <code>PATCH_DB_FAILURE</code> lifecycle.</p> <p>Constraints:</p> <ul> <li> <p>If you are upgrading the engine version and modifying the DB instance class at the same time, the currently running engine version must be supported on the specified DB instance class. Otherwise, the operation returns an error. In this case, first run the operation to modify the DB instance class, and then run it again to upgrade the engine version.</p> </li> </ul>",
+        "ModifyDBInstanceMessage$EngineVersion": "<p>The version number of the database engine to upgrade to. Changing this parameter results in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is enabled for this request.</p> <p>For major version upgrades, if a nondefault DB parameter group is currently in use, a new DB parameter group in the DB parameter group family for the new engine version must be specified. The new DB parameter group can be the default for that DB parameter group family.</p> <p>If you specify only a major version, Amazon RDS updates the DB instance to the default minor version if the current minor version is lower. For information about valid engine versions, see <code>CreateDBInstance</code>, or call <code>DescribeDBEngineVersions</code>.</p> <p>If the instance that you're modifying is acting as a read replica, the engine version that you specify must be the same or higher than the version that the source DB instance or cluster is running.</p> <p>In RDS Custom for Oracle, this parameter is supported for read replicas only if they are in the <code>PATCH_DB_FAILURE</code> lifecycle.</p> <p>Constraints:</p> <ul> <li> <p>If you are upgrading the engine version and modifying the DB instance class at the same time, the currently running engine version must be supported on the specified DB instance class. Otherwise, the operation returns an error. In this case, first run the operation to upgrade the engine version, and then run it again to modify the DB instance class.</p> </li> </ul>",
         "ModifyDBInstanceMessage$LicenseModel": "<p>The license model for the DB instance.</p> <p>This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.</p> <p>Valid Values:</p> <ul> <li> <p>RDS for MariaDB - <code>general-public-license</code> </p> </li> <li> <p>RDS for Microsoft SQL Server - <code>license-included</code> </p> </li> <li> <p>RDS for MySQL - <code>general-public-license</code> </p> </li> <li> <p>RDS for Oracle - <code>bring-your-own-license | license-included</code> </p> </li> <li> <p>RDS for PostgreSQL - <code>postgresql-license</code> </p> </li> </ul>",
         "ModifyDBInstanceMessage$OptionGroupName": "<p>The option group to associate the DB instance with.</p> <p>Changing this parameter doesn't result in an outage, with one exception. If the parameter change results in an option group that enables OEM, it can cause a brief period, lasting less than a second, during which new connections are rejected but existing connections aren't interrupted.</p> <p>The change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is enabled for this request.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, can't be removed from an option group, and that option group can't be removed from a DB instance after it is associated with a DB instance.</p> <p>This setting doesn't apply to RDS Custom DB instances.</p>",
         "ModifyDBInstanceMessage$NewDBInstanceIdentifier": "<p>The new identifier for the DB instance when renaming a DB instance. When you change the DB instance identifier, an instance reboot occurs immediately if you enable <code>ApplyImmediately</code>, or will occur during the next maintenance window if you disable <code>ApplyImmediately</code>. This value is stored as a lowercase string.</p> <p>This setting doesn't apply to RDS Custom DB instances.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>mydbinstance</code> </p>",
@@ -4877,6 +4992,9 @@
         "ModifyGlobalClusterMessage$NewGlobalClusterIdentifier": "<p>The new cluster identifier for the global database cluster. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
         "ModifyGlobalClusterMessage$EngineVersion": "<p>The version number of the database engine to which you want to upgrade. </p> <p>To list all of the available engine versions for <code>aurora-mysql</code> (for MySQL-based Aurora global databases), use the following command:</p> <p> <code>aws rds describe-db-engine-versions --engine aurora-mysql --query '*[]|[?SupportsGlobalDatabases == `true`].[EngineVersion]'</code> </p> <p>To list all of the available engine versions for <code>aurora-postgresql</code> (for PostgreSQL-based Aurora global databases), use the following command:</p> <p> <code>aws rds describe-db-engine-versions --engine aurora-postgresql --query '*[]|[?SupportsGlobalDatabases == `true`].[EngineVersion]'</code> </p>",
         "ModifyOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be modified.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, can't be removed from an option group, and that option group can't be removed from a DB instance once it is associated with a DB instance</p>",
+        "ModifyTenantDatabaseMessage$DBInstanceIdentifier": "<p>The identifier of the DB instance that contains the tenant database that you are modifying. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DB instance.</p> </li> </ul>",
+        "ModifyTenantDatabaseMessage$TenantDBName": "<p>The user-supplied name of the tenant database that you want to modify. This parameter isn’t case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing tenant database.</p> </li> </ul>",
+        "ModifyTenantDatabaseMessage$NewTenantDBName": "<p>The new name of the tenant database when renaming a tenant database. This parameter isn’t case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Can't be the string null or any other reserved word.</p> </li> <li> <p>Can't be longer than 8 characters.</p> </li> </ul>",
         "Option$OptionName": "<p>The name of the option.</p>",
         "Option$OptionDescription": "<p>The description of the option.</p>",
         "Option$OptionVersion": "<p>The version of the option.</p>",
@@ -5156,6 +5274,17 @@
         "Tag$Key": "<p>A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with <code>aws:</code> or <code>rds:</code>. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-@]*)$\").</p>",
         "Tag$Value": "<p>A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with <code>aws:</code> or <code>rds:</code>. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-@]*)$\").</p>",
         "TargetHealth$Description": "<p>A description of the health of the RDS Proxy target. If the <code>State</code> is <code>AVAILABLE</code>, a description is not included.</p>",
+        "TenantDatabase$DBInstanceIdentifier": "<p>The ID of the DB instance that contains the tenant database.</p>",
+        "TenantDatabase$TenantDBName": "<p>The database name of the tenant database.</p>",
+        "TenantDatabase$Status": "<p>The status of the tenant database.</p>",
+        "TenantDatabase$MasterUsername": "<p>The master username of the tenant database.</p>",
+        "TenantDatabase$DbiResourceId": "<p>The Amazon Web Services Region-unique, immutable identifier for the DB instance.</p>",
+        "TenantDatabase$TenantDatabaseResourceId": "<p>The Amazon Web Services Region-unique, immutable identifier for the tenant database.</p>",
+        "TenantDatabase$TenantDatabaseARN": "<p>The Amazon Resource Name (ARN) for the tenant database.</p>",
+        "TenantDatabase$CharacterSetName": "<p>The character set of the tenant database.</p>",
+        "TenantDatabase$NcharCharacterSetName": "<p>The <code>NCHAR</code> character set name of the tenant database.</p>",
+        "TenantDatabasePendingModifiedValues$TenantDBName": "<p>The name of the tenant database.</p>",
+        "TenantDatabasesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeTenantDatabases</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "Timezone$TimezoneName": "<p>The name of the time zone.</p>",
         "UpgradeTarget$Engine": "<p>The name of the upgrade target database engine.</p>",
         "UpgradeTarget$EngineVersion": "<p>The version number of the upgrade target database engine.</p>",
@@ -5361,6 +5490,7 @@
         "DBSnapshot$InstanceCreateTime": "<p>Specifies the time in Coordinated Universal Time (UTC) when the DB instance, from which the snapshot was taken, was created.</p>",
         "DBSnapshot$OriginalSnapshotCreateTime": "<p>Specifies the time of the CreateDBSnapshot operation in Coordinated Universal Time (UTC). Doesn't change when the snapshot is copied.</p>",
         "DBSnapshot$SnapshotDatabaseTime": "<p>The timestamp of the most recent transaction applied to the database that you're backing up. Thus, if you restore a snapshot, SnapshotDatabaseTime is the most recent transaction in the restored DB instance. In contrast, originalSnapshotCreateTime specifies the system time that the snapshot completed.</p> <p>If you back up a read replica, you can determine the replica lag by comparing SnapshotDatabaseTime with originalSnapshotCreateTime. For example, if originalSnapshotCreateTime is two hours later than SnapshotDatabaseTime, then the replica lag is two hours.</p>",
+        "DBSnapshotTenantDatabase$TenantDatabaseCreateTime": "<p>The time the DB snapshot was taken, specified in Coordinated Universal Time (UTC). If you copy the snapshot, the creation time changes.</p>",
         "DescribeEventsMessage$StartTime": "<p>The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>",
         "DescribeEventsMessage$EndTime": "<p>The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>",
         "Event$Date": "<p>Specifies the date and time of the event.</p>",
@@ -5377,7 +5507,8 @@
         "RestoreDBClusterToPointInTimeMessage$RestoreToTime": "<p>The date and time to restore the DB cluster to.</p> <p>Valid Values: Value must be a time in Universal Coordinated Time (UTC) format</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the DB instance</p> </li> <li> <p>Must be specified if <code>UseLatestRestorableTime</code> parameter isn't provided</p> </li> <li> <p>Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled</p> </li> <li> <p>Can't be specified if the <code>RestoreType</code> parameter is <code>copy-on-write</code> </p> </li> </ul> <p>Example: <code>2015-03-07T23:45:00Z</code> </p> <p>Valid for: Aurora DB clusters and Multi-AZ DB clusters</p>",
         "RestoreDBInstanceToPointInTimeMessage$RestoreTime": "<p>The date and time to restore from.</p> <p>Constraints:</p> <ul> <li> <p>Must be a time in Universal Coordinated Time (UTC) format.</p> </li> <li> <p>Must be before the latest restorable time for the DB instance.</p> </li> <li> <p>Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled.</p> </li> </ul> <p>Example: <code>2009-09-07T23:45:00Z</code> </p>",
         "RestoreWindow$EarliestTime": "<p>The earliest time you can restore an instance to.</p>",
-        "RestoreWindow$LatestTime": "<p>The latest time you can restore an instance to.</p>"
+        "RestoreWindow$LatestTime": "<p>The latest time you can restore an instance to.</p>",
+        "TenantDatabase$TenantDatabaseCreateTime": "<p>The creation time of the tenant database.</p>"
       }
     },
     "Tag": {
@@ -5413,11 +5544,13 @@
         "CreateEventSubscriptionMessage$Tags": null,
         "CreateIntegrationMessage$Tags": null,
         "CreateOptionGroupMessage$Tags": "<p>Tags to assign to the option group.</p>",
+        "CreateTenantDatabaseMessage$Tags": null,
         "DBCluster$TagList": null,
         "DBClusterSnapshot$TagList": null,
         "DBEngineVersion$TagList": null,
         "DBInstance$TagList": null,
         "DBSnapshot$TagList": null,
+        "DBSnapshotTenantDatabase$TagList": null,
         "Integration$Tags": null,
         "PurchaseReservedDBInstancesOfferingMessage$Tags": null,
         "RestoreDBClusterFromS3Message$Tags": null,
@@ -5426,7 +5559,8 @@
         "RestoreDBInstanceFromDBSnapshotMessage$Tags": null,
         "RestoreDBInstanceFromS3Message$Tags": "<p>A list of tags to associate with this DB instance. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> </p>",
         "RestoreDBInstanceToPointInTimeMessage$Tags": null,
-        "TagListMessage$TagList": "<p>List of tags returned by the <code>ListTagsForResource</code> operation.</p>"
+        "TagListMessage$TagList": "<p>List of tags returned by the <code>ListTagsForResource</code> operation.</p>",
+        "TenantDatabase$TagList": null
       }
     },
     "TagListMessage": {
@@ -5499,6 +5633,47 @@
       "base": null,
       "refs": {
         "DBProxyTarget$Type": "<p>Specifies the kind of database, such as an RDS DB instance or an Aurora DB cluster, that the target represents.</p>"
+      }
+    },
+    "TenantDatabase": {
+      "base": "<p>A tenant database in the DB instance. This data type is an element in the response to the <code>DescribeTenantDatabases</code> action.</p>",
+      "refs": {
+        "CreateTenantDatabaseResult$TenantDatabase": null,
+        "DeleteTenantDatabaseResult$TenantDatabase": null,
+        "ModifyTenantDatabaseResult$TenantDatabase": null,
+        "TenantDatabasesList$member": null
+      }
+    },
+    "TenantDatabaseAlreadyExistsFault": {
+      "base": "<p>You attempted to either create a tenant database that already exists or modify a tenant database to use the name of an existing tenant database.</p>",
+      "refs": {
+      }
+    },
+    "TenantDatabaseNotFoundFault": {
+      "base": "<p>The specified tenant database wasn't found in the DB instance.</p>",
+      "refs": {
+      }
+    },
+    "TenantDatabasePendingModifiedValues": {
+      "base": "<p>A response element in the <code>ModifyTenantDatabase</code> operation that describes changes that will be applied. Specific changes are identified by subelements.</p>",
+      "refs": {
+        "TenantDatabase$PendingModifiedValues": "<p>Information about pending changes for a tenant database.</p>"
+      }
+    },
+    "TenantDatabaseQuotaExceededFault": {
+      "base": "<p>You attempted to create more tenant databases than are permitted in your Amazon Web Services account.</p>",
+      "refs": {
+      }
+    },
+    "TenantDatabasesList": {
+      "base": null,
+      "refs": {
+        "TenantDatabasesMessage$TenantDatabases": "<p>An array of the tenant databases requested by the <code>DescribeTenantDatabases</code> operation.</p>"
+      }
+    },
+    "TenantDatabasesMessage": {
+      "base": null,
+      "refs": {
       }
     },
     "Timezone": {

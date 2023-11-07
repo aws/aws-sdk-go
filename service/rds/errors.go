@@ -350,6 +350,12 @@ const (
 	// DBSnapshotIdentifier doesn't refer to an existing DB snapshot.
 	ErrCodeDBSnapshotNotFoundFault = "DBSnapshotNotFound"
 
+	// ErrCodeDBSnapshotTenantDatabaseNotFoundFault for service response error code
+	// "DBSnapshotTenantDatabaseNotFoundFault".
+	//
+	// The specified snapshot tenant database wasn't found.
+	ErrCodeDBSnapshotTenantDatabaseNotFoundFault = "DBSnapshotTenantDatabaseNotFoundFault"
+
 	// ErrCodeDBSubnetGroupAlreadyExistsFault for service response error code
 	// "DBSubnetGroupAlreadyExists".
 	//
@@ -872,4 +878,24 @@ const (
 	//
 	// The subscription name does not exist.
 	ErrCodeSubscriptionNotFoundFault = "SubscriptionNotFound"
+
+	// ErrCodeTenantDatabaseAlreadyExistsFault for service response error code
+	// "TenantDatabaseAlreadyExists".
+	//
+	// You attempted to either create a tenant database that already exists or modify
+	// a tenant database to use the name of an existing tenant database.
+	ErrCodeTenantDatabaseAlreadyExistsFault = "TenantDatabaseAlreadyExists"
+
+	// ErrCodeTenantDatabaseNotFoundFault for service response error code
+	// "TenantDatabaseNotFound".
+	//
+	// The specified tenant database wasn't found in the DB instance.
+	ErrCodeTenantDatabaseNotFoundFault = "TenantDatabaseNotFound"
+
+	// ErrCodeTenantDatabaseQuotaExceededFault for service response error code
+	// "TenantDatabaseQuotaExceeded".
+	//
+	// You attempted to create more tenant databases than are permitted in your
+	// Amazon Web Services account.
+	ErrCodeTenantDatabaseQuotaExceededFault = "TenantDatabaseQuotaExceeded"
 )

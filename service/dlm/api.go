@@ -234,7 +234,7 @@ func (c *DLM) GetLifecyclePoliciesRequest(input *GetLifecyclePoliciesInput) (req
 //
 // Gets summary information about all or the specified data lifecycle policies.
 //
-// To get complete information about a policy, use GetLifecyclePolicy.
+// To get complete information about a policy, use GetLifecyclePolicy (https://docs.aws.amazon.com/dlm/latest/APIReference/API_GetLifecyclePolicy.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1034,8 +1034,9 @@ func (s *CreateLifecyclePolicyOutput) SetPolicyId(v string) *CreateLifecyclePoli
 //   - You must specify either CronExpression, or Interval, IntervalUnit, and
 //     Times.
 //
-//   - If you need to specify an ArchiveRule for the schedule, then you must
-//     specify a creation frequency of at least 28 days.
+//   - If you need to specify an ArchiveRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html)
+//     for the schedule, then you must specify a creation frequency of at least
+//     28 days.
 type CreateRule struct {
 	_ struct{} `type:"structure"`
 
@@ -1061,6 +1062,16 @@ type CreateRule struct {
 	// targets resources on an Outpost, then you can create snapshots on the same
 	// Outpost as the source resource, or in the Region of that Outpost.
 	Location *string `type:"string" enum:"LocationValues"`
+
+	// [Snapshot policies that target instances only] Specifies pre and/or post
+	// scripts for a snapshot lifecycle policy that targets instances. This is useful
+	// for creating application-consistent snapshots, or for performing specific
+	// administrative tasks before or after Amazon Data Lifecycle Manager initiates
+	// snapshot creation.
+	//
+	// For more information, see Automating application-consistent snapshots with
+	// pre and post scripts (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/automate-app-consistent-backups.html).
+	Scripts []*Script `type:"list"`
 
 	// The time, in UTC, to start the operation. The supported format is hh:mm.
 	//
@@ -1097,6 +1108,16 @@ func (s *CreateRule) Validate() error {
 	if s.Interval != nil && *s.Interval < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
 	}
+	if s.Scripts != nil {
+		for i, v := range s.Scripts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Scripts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1128,6 +1149,12 @@ func (s *CreateRule) SetLocation(v string) *CreateRule {
 	return s
 }
 
+// SetScripts sets the Scripts field's value.
+func (s *CreateRule) SetScripts(v []*Script) *CreateRule {
+	s.Scripts = v
+	return s
+}
+
 // SetTimes sets the Times field's value.
 func (s *CreateRule) SetTimes(v []*string) *CreateRule {
 	s.Times = v
@@ -1137,7 +1164,8 @@ func (s *CreateRule) SetTimes(v []*string) *CreateRule {
 // [Event-based policies only] Specifies a cross-Region copy action for event-based
 // policies.
 //
-// To specify a cross-Region copy rule for snapshot and AMI policies, use CrossRegionCopyRule.
+// To specify a cross-Region copy rule for snapshot and AMI policies, use CrossRegionCopyRule
+// (https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyRule.html).
 type CrossRegionCopyAction struct {
 	_ struct{} `type:"structure"`
 
@@ -1336,10 +1364,11 @@ func (s *CrossRegionCopyRetainRule) SetIntervalUnit(v string) *CrossRegionCopyRe
 	return s
 }
 
-// [Snapshot and AMI policies only] Specifies a cross-Region copy rule for snapshot
-// and AMI policies.
+// [Snapshot and AMI policies only] Specifies a cross-Region copy rule for a
+// snapshot and AMI policies.
 //
-// To specify a cross-Region copy action for event-based polices, use CrossRegionCopyAction.
+// To specify a cross-Region copy action for event-based polices, use CrossRegionCopyAction
+// (https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyAction.html).
 type CrossRegionCopyRule struct {
 	_ struct{} `type:"structure"`
 
@@ -1368,18 +1397,21 @@ type CrossRegionCopyRule struct {
 	// copies are to be retained in the destination Region.
 	RetainRule *CrossRegionCopyRetainRule `type:"structure"`
 
-	// The target Region or the Amazon Resource Name (ARN) of the target Outpost
-	// for the snapshot copies.
 	//
-	// Use this parameter instead of TargetRegion. Do not specify both.
+	// Use this parameter for snapshot policies only. For AMI policies, use TargetRegion
+	// instead.
+	//
+	// [Snapshot policies only] The target Region or the Amazon Resource Name (ARN)
+	// of the target Outpost for the snapshot copies.
 	Target *string `type:"string"`
 
 	//
-	// Avoid using this parameter when creating new policies. Instead, use Target
-	// to specify a target Region or a target Outpost for snapshot copies.
+	// Use this parameter for AMI policies only. For snapshot policies, use Target
+	// instead. For snapshot policies created before the Target parameter was introduced,
+	// this parameter indicates the target Region for snapshot copies.
 	//
-	// For policies created before the Target parameter was introduced, this parameter
-	// indicates the target Region for snapshot copies.
+	// [AMI policies only] The target Region or the Amazon Resource Name (ARN) of
+	// the target Outpost for the snapshot copies.
 	TargetRegion *string `type:"string"`
 }
 
@@ -2936,9 +2968,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 // [Snapshot and AMI policies only] Specifies a retention rule for snapshots
 // created by snapshot policies, or for AMIs created by AMI policies.
 //
-// For snapshot policies that have an ArchiveRule, this retention rule applies
-// to standard tier retention. When the retention threshold is met, snapshots
-// are moved from the standard to the archive tier.
+// For snapshot policies that have an ArchiveRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html),
+// this retention rule applies to standard tier retention. When the retention
+// threshold is met, snapshots are moved from the standard to the archive tier.
 //
 // For snapshot policies that do not have an ArchiveRule, snapshots are permanently
 // deleted when this retention threshold is met.
@@ -2946,23 +2978,29 @@ func (s *ResourceNotFoundException) RequestID() string {
 // You can retain snapshots based on either a count or a time interval.
 //
 //   - Count-based retention You must specify Count. If you specify an ArchiveRule
+//     (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html)
 //     for the schedule, then you can specify a retention count of 0 to archive
-//     snapshots immediately after creation. If you specify a FastRestoreRule,
-//     ShareRule, or a CrossRegionCopyRule, then you must specify a retention
-//     count of 1 or more.
+//     snapshots immediately after creation. If you specify a FastRestoreRule
+//     (https://docs.aws.amazon.com/dlm/latest/APIReference/API_FastRestoreRule.html),
+//     ShareRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ShareRule.html),
+//     or a CrossRegionCopyRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyRule.html),
+//     then you must specify a retention count of 1 or more.
 //
 //   - Age-based retention You must specify Interval and IntervalUnit. If you
-//     specify an ArchiveRule for the schedule, then you can specify a retention
-//     interval of 0 days to archive snapshots immediately after creation. If
-//     you specify a FastRestoreRule, ShareRule, or a CrossRegionCopyRule, then
-//     you must specify a retention interval of 1 day or more.
+//     specify an ArchiveRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html)
+//     for the schedule, then you can specify a retention interval of 0 days
+//     to archive snapshots immediately after creation. If you specify a FastRestoreRule
+//     (https://docs.aws.amazon.com/dlm/latest/APIReference/API_FastRestoreRule.html),
+//     ShareRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ShareRule.html),
+//     or a CrossRegionCopyRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_CrossRegionCopyRule.html),
+//     then you must specify a retention interval of 1 day or more.
 type RetainRule struct {
 	_ struct{} `type:"structure"`
 
 	// The number of snapshots to retain for each volume, up to a maximum of 1000.
 	// For example if you want to retain a maximum of three snapshots, specify 3.
 	// When the fourth snapshot is created, the oldest retained snapshot is deleted,
-	// or it is moved to the archive tier if you have specified an ArchiveRule.
+	// or it is moved to the archive tier if you have specified an ArchiveRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html).
 	Count *int64 `type:"integer"`
 
 	// The amount of time to retain each snapshot. The maximum is 100 years. This
@@ -2972,7 +3010,7 @@ type RetainRule struct {
 	// The unit of time for time-based retention. For example, to retain snapshots
 	// for 3 months, specify Interval=3 and IntervalUnit=MONTHS. Once the snapshot
 	// has been retained for 3 months, it is deleted, or it is moved to the archive
-	// tier if you have specified an ArchiveRule.
+	// tier if you have specified an ArchiveRule (https://docs.aws.amazon.com/dlm/latest/APIReference/API_ArchiveRule.html).
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
@@ -3303,6 +3341,175 @@ func (s *Schedule) SetTagsToAdd(v []*Tag) *Schedule {
 // SetVariableTags sets the VariableTags field's value.
 func (s *Schedule) SetVariableTags(v []*Tag) *Schedule {
 	s.VariableTags = v
+	return s
+}
+
+// [Snapshot policies that target instances only] Information about pre and/or
+// post scripts for a snapshot lifecycle policy that targets instances. For
+// more information, see Automating application-consistent snapshots with pre
+// and post scripts (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/automate-app-consistent-backups.html).
+type Script struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether Amazon Data Lifecycle Manager should default to crash-consistent
+	// snapshots if the pre script fails.
+	//
+	//    * To default to crash consistent snapshot if the pre script fails, specify
+	//    true.
+	//
+	//    * To skip the instance for snapshot creation if the pre script fails,
+	//    specify false.
+	//
+	// This parameter is supported only if you run a pre script. If you run a post
+	// script only, omit this parameter.
+	//
+	// Default: true
+	ExecuteOperationOnScriptFailure *bool `type:"boolean"`
+
+	// The SSM document that includes the pre and/or post scripts to run.
+	//
+	//    * If you are automating VSS backups, specify AWS_VSS_BACKUP. In this case,
+	//    Amazon Data Lifecycle Manager automatically uses the AWSEC2-CreateVssSnapshot
+	//    SSM document.
+	//
+	//    * If you are using a custom SSM document that you own, specify either
+	//    the name or ARN of the SSM document. If you are using a custom SSM document
+	//    that is shared with you, specify the ARN of the SSM document.
+	//
+	// ExecutionHandler is a required field
+	ExecutionHandler *string `type:"string" required:"true"`
+
+	// Indicates the service used to execute the pre and/or post scripts.
+	//
+	//    * If you are using custom SSM documents, specify AWS_SYSTEMS_MANAGER.
+	//
+	//    * If you are automating VSS Backups, omit this parameter.
+	//
+	// Default: AWS_SYSTEMS_MANAGER
+	ExecutionHandlerService *string `type:"string" enum:"ExecutionHandlerServiceValues"`
+
+	// Specifies a timeout period, in seconds, after which Amazon Data Lifecycle
+	// Manager fails the script run attempt if it has not completed. If a script
+	// does not complete within its timeout period, Amazon Data Lifecycle Manager
+	// fails the attempt. The timeout period applies to the pre and post scripts
+	// individually.
+	//
+	// If you are automating VSS Backups, omit this parameter.
+	//
+	// Default: 10
+	ExecutionTimeout *int64 `min:"10" type:"integer"`
+
+	// Specifies the number of times Amazon Data Lifecycle Manager should retry
+	// scripts that fail.
+	//
+	//    * If the pre script fails, Amazon Data Lifecycle Manager retries the entire
+	//    snapshot creation process, including running the pre and post scripts.
+	//
+	//    * If the post script fails, Amazon Data Lifecycle Manager retries the
+	//    post script only; in this case, the pre script will have completed and
+	//    the snapshot might have been created.
+	//
+	// If you do not want Amazon Data Lifecycle Manager to retry failed scripts,
+	// specify 0.
+	//
+	// Default: 0
+	MaximumRetryCount *int64 `type:"integer"`
+
+	// Indicate which scripts Amazon Data Lifecycle Manager should run on target
+	// instances. Pre scripts run before Amazon Data Lifecycle Manager initiates
+	// snapshot creation. Post scripts run after Amazon Data Lifecycle Manager initiates
+	// snapshot creation.
+	//
+	//    * To run a pre script only, specify PRE. In this case, Amazon Data Lifecycle
+	//    Manager calls the SSM document with the pre-script parameter before initiating
+	//    snapshot creation.
+	//
+	//    * To run a post script only, specify POST. In this case, Amazon Data Lifecycle
+	//    Manager calls the SSM document with the post-script parameter after initiating
+	//    snapshot creation.
+	//
+	//    * To run both pre and post scripts, specify both PRE and POST. In this
+	//    case, Amazon Data Lifecycle Manager calls the SSM document with the pre-script
+	//    parameter before initiating snapshot creation, and then it calls the SSM
+	//    document again with the post-script parameter after initiating snapshot
+	//    creation.
+	//
+	// If you are automating VSS Backups, omit this parameter.
+	//
+	// Default: PRE and POST
+	Stages []*string `min:"1" type:"list" enum:"StageValues"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Script) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Script) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Script) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Script"}
+	if s.ExecutionHandler == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionHandler"))
+	}
+	if s.ExecutionTimeout != nil && *s.ExecutionTimeout < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("ExecutionTimeout", 10))
+	}
+	if s.Stages != nil && len(s.Stages) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Stages", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecuteOperationOnScriptFailure sets the ExecuteOperationOnScriptFailure field's value.
+func (s *Script) SetExecuteOperationOnScriptFailure(v bool) *Script {
+	s.ExecuteOperationOnScriptFailure = &v
+	return s
+}
+
+// SetExecutionHandler sets the ExecutionHandler field's value.
+func (s *Script) SetExecutionHandler(v string) *Script {
+	s.ExecutionHandler = &v
+	return s
+}
+
+// SetExecutionHandlerService sets the ExecutionHandlerService field's value.
+func (s *Script) SetExecutionHandlerService(v string) *Script {
+	s.ExecutionHandlerService = &v
+	return s
+}
+
+// SetExecutionTimeout sets the ExecutionTimeout field's value.
+func (s *Script) SetExecutionTimeout(v int64) *Script {
+	s.ExecutionTimeout = &v
+	return s
+}
+
+// SetMaximumRetryCount sets the MaximumRetryCount field's value.
+func (s *Script) SetMaximumRetryCount(v int64) *Script {
+	s.MaximumRetryCount = &v
+	return s
+}
+
+// SetStages sets the Stages field's value.
+func (s *Script) SetStages(v []*string) *Script {
+	s.Stages = v
 	return s
 }
 
@@ -3755,6 +3962,18 @@ func EventTypeValues_Values() []string {
 }
 
 const (
+	// ExecutionHandlerServiceValuesAwsSystemsManager is a ExecutionHandlerServiceValues enum value
+	ExecutionHandlerServiceValuesAwsSystemsManager = "AWS_SYSTEMS_MANAGER"
+)
+
+// ExecutionHandlerServiceValues_Values returns all elements of the ExecutionHandlerServiceValues enum
+func ExecutionHandlerServiceValues_Values() []string {
+	return []string{
+		ExecutionHandlerServiceValuesAwsSystemsManager,
+	}
+}
+
+const (
 	// GettablePolicyStateValuesEnabled is a GettablePolicyStateValues enum value
 	GettablePolicyStateValuesEnabled = "ENABLED"
 
@@ -3891,5 +4110,21 @@ func SettablePolicyStateValues_Values() []string {
 	return []string{
 		SettablePolicyStateValuesEnabled,
 		SettablePolicyStateValuesDisabled,
+	}
+}
+
+const (
+	// StageValuesPre is a StageValues enum value
+	StageValuesPre = "PRE"
+
+	// StageValuesPost is a StageValues enum value
+	StageValuesPost = "POST"
+)
+
+// StageValues_Values returns all elements of the StageValues enum
+func StageValues_Values() []string {
+	return []string{
+		StageValuesPre,
+		StageValuesPost,
 	}
 }
