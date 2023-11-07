@@ -184,6 +184,10 @@ type RDSAPI interface {
 	CreateOptionGroupWithContext(aws.Context, *rds.CreateOptionGroupInput, ...request.Option) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*request.Request, *rds.CreateOptionGroupOutput)
 
+	CreateTenantDatabase(*rds.CreateTenantDatabaseInput) (*rds.CreateTenantDatabaseOutput, error)
+	CreateTenantDatabaseWithContext(aws.Context, *rds.CreateTenantDatabaseInput, ...request.Option) (*rds.CreateTenantDatabaseOutput, error)
+	CreateTenantDatabaseRequest(*rds.CreateTenantDatabaseInput) (*request.Request, *rds.CreateTenantDatabaseOutput)
+
 	DeleteBlueGreenDeployment(*rds.DeleteBlueGreenDeploymentInput) (*rds.DeleteBlueGreenDeploymentOutput, error)
 	DeleteBlueGreenDeploymentWithContext(aws.Context, *rds.DeleteBlueGreenDeploymentInput, ...request.Option) (*rds.DeleteBlueGreenDeploymentOutput, error)
 	DeleteBlueGreenDeploymentRequest(*rds.DeleteBlueGreenDeploymentInput) (*request.Request, *rds.DeleteBlueGreenDeploymentOutput)
@@ -259,6 +263,10 @@ type RDSAPI interface {
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupWithContext(aws.Context, *rds.DeleteOptionGroupInput, ...request.Option) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupRequest(*rds.DeleteOptionGroupInput) (*request.Request, *rds.DeleteOptionGroupOutput)
+
+	DeleteTenantDatabase(*rds.DeleteTenantDatabaseInput) (*rds.DeleteTenantDatabaseOutput, error)
+	DeleteTenantDatabaseWithContext(aws.Context, *rds.DeleteTenantDatabaseInput, ...request.Option) (*rds.DeleteTenantDatabaseOutput, error)
+	DeleteTenantDatabaseRequest(*rds.DeleteTenantDatabaseInput) (*request.Request, *rds.DeleteTenantDatabaseOutput)
 
 	DeregisterDBProxyTargets(*rds.DeregisterDBProxyTargetsInput) (*rds.DeregisterDBProxyTargetsOutput, error)
 	DeregisterDBProxyTargetsWithContext(aws.Context, *rds.DeregisterDBProxyTargetsInput, ...request.Option) (*rds.DeregisterDBProxyTargetsOutput, error)
@@ -416,6 +424,13 @@ type RDSAPI interface {
 	DescribeDBSnapshotAttributesWithContext(aws.Context, *rds.DescribeDBSnapshotAttributesInput, ...request.Option) (*rds.DescribeDBSnapshotAttributesOutput, error)
 	DescribeDBSnapshotAttributesRequest(*rds.DescribeDBSnapshotAttributesInput) (*request.Request, *rds.DescribeDBSnapshotAttributesOutput)
 
+	DescribeDBSnapshotTenantDatabases(*rds.DescribeDBSnapshotTenantDatabasesInput) (*rds.DescribeDBSnapshotTenantDatabasesOutput, error)
+	DescribeDBSnapshotTenantDatabasesWithContext(aws.Context, *rds.DescribeDBSnapshotTenantDatabasesInput, ...request.Option) (*rds.DescribeDBSnapshotTenantDatabasesOutput, error)
+	DescribeDBSnapshotTenantDatabasesRequest(*rds.DescribeDBSnapshotTenantDatabasesInput) (*request.Request, *rds.DescribeDBSnapshotTenantDatabasesOutput)
+
+	DescribeDBSnapshotTenantDatabasesPages(*rds.DescribeDBSnapshotTenantDatabasesInput, func(*rds.DescribeDBSnapshotTenantDatabasesOutput, bool) bool) error
+	DescribeDBSnapshotTenantDatabasesPagesWithContext(aws.Context, *rds.DescribeDBSnapshotTenantDatabasesInput, func(*rds.DescribeDBSnapshotTenantDatabasesOutput, bool) bool, ...request.Option) error
+
 	DescribeDBSnapshots(*rds.DescribeDBSnapshotsInput) (*rds.DescribeDBSnapshotsOutput, error)
 	DescribeDBSnapshotsWithContext(aws.Context, *rds.DescribeDBSnapshotsInput, ...request.Option) (*rds.DescribeDBSnapshotsOutput, error)
 	DescribeDBSnapshotsRequest(*rds.DescribeDBSnapshotsInput) (*request.Request, *rds.DescribeDBSnapshotsOutput)
@@ -529,6 +544,13 @@ type RDSAPI interface {
 	DescribeSourceRegionsPages(*rds.DescribeSourceRegionsInput, func(*rds.DescribeSourceRegionsOutput, bool) bool) error
 	DescribeSourceRegionsPagesWithContext(aws.Context, *rds.DescribeSourceRegionsInput, func(*rds.DescribeSourceRegionsOutput, bool) bool, ...request.Option) error
 
+	DescribeTenantDatabases(*rds.DescribeTenantDatabasesInput) (*rds.DescribeTenantDatabasesOutput, error)
+	DescribeTenantDatabasesWithContext(aws.Context, *rds.DescribeTenantDatabasesInput, ...request.Option) (*rds.DescribeTenantDatabasesOutput, error)
+	DescribeTenantDatabasesRequest(*rds.DescribeTenantDatabasesInput) (*request.Request, *rds.DescribeTenantDatabasesOutput)
+
+	DescribeTenantDatabasesPages(*rds.DescribeTenantDatabasesInput, func(*rds.DescribeTenantDatabasesOutput, bool) bool) error
+	DescribeTenantDatabasesPagesWithContext(aws.Context, *rds.DescribeTenantDatabasesInput, func(*rds.DescribeTenantDatabasesOutput, bool) bool, ...request.Option) error
+
 	DescribeValidDBInstanceModifications(*rds.DescribeValidDBInstanceModificationsInput) (*rds.DescribeValidDBInstanceModificationsOutput, error)
 	DescribeValidDBInstanceModificationsWithContext(aws.Context, *rds.DescribeValidDBInstanceModificationsInput, ...request.Option) (*rds.DescribeValidDBInstanceModificationsOutput, error)
 	DescribeValidDBInstanceModificationsRequest(*rds.DescribeValidDBInstanceModificationsInput) (*request.Request, *rds.DescribeValidDBInstanceModificationsOutput)
@@ -627,6 +649,10 @@ type RDSAPI interface {
 	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupWithContext(aws.Context, *rds.ModifyOptionGroupInput, ...request.Option) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupRequest(*rds.ModifyOptionGroupInput) (*request.Request, *rds.ModifyOptionGroupOutput)
+
+	ModifyTenantDatabase(*rds.ModifyTenantDatabaseInput) (*rds.ModifyTenantDatabaseOutput, error)
+	ModifyTenantDatabaseWithContext(aws.Context, *rds.ModifyTenantDatabaseInput, ...request.Option) (*rds.ModifyTenantDatabaseOutput, error)
+	ModifyTenantDatabaseRequest(*rds.ModifyTenantDatabaseInput) (*request.Request, *rds.ModifyTenantDatabaseOutput)
 
 	PromoteReadReplica(*rds.PromoteReadReplicaInput) (*rds.PromoteReadReplicaOutput, error)
 	PromoteReadReplicaWithContext(aws.Context, *rds.PromoteReadReplicaInput, ...request.Option) (*rds.PromoteReadReplicaOutput, error)
@@ -779,6 +805,12 @@ type RDSAPI interface {
 
 	WaitUntilDBSnapshotDeleted(*rds.DescribeDBSnapshotsInput) error
 	WaitUntilDBSnapshotDeletedWithContext(aws.Context, *rds.DescribeDBSnapshotsInput, ...request.WaiterOption) error
+
+	WaitUntilTenantDatabaseAvailable(*rds.DescribeTenantDatabasesInput) error
+	WaitUntilTenantDatabaseAvailableWithContext(aws.Context, *rds.DescribeTenantDatabasesInput, ...request.WaiterOption) error
+
+	WaitUntilTenantDatabaseDeleted(*rds.DescribeTenantDatabasesInput) error
+	WaitUntilTenantDatabaseDeletedWithContext(aws.Context, *rds.DescribeTenantDatabasesInput, ...request.WaiterOption) error
 }
 
 var _ RDSAPI = (*rds.RDS)(nil)

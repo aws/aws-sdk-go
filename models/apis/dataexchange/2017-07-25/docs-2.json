@@ -1444,9 +1444,14 @@
         "GetRevisionResponse$Comment": "<p>An optional comment about the revision.</p>",
         "RevisionEntry$Comment": "<p>An optional comment about the revision.</p>",
         "RevokeRevisionResponse$Comment": "<p>An optional comment about the revision.</p>",
-        "SendDataSetNotificationRequest$Comment": "<p>Free-form text field for providers to add information about their notifications.</p>",
         "UpdateRevisionRequest$Comment": "<p>An optional comment about the revision.</p>",
         "UpdateRevisionResponse$Comment": "<p>An optional comment about the revision.</p>"
+      }
+    },
+    "__stringMin0Max4096": {
+      "base": null,
+      "refs": {
+        "SendDataSetNotificationRequest$Comment": "<p>Free-form text field for providers to add information about their notifications.</p>"
       }
     },
     "__stringMin10Max512": {

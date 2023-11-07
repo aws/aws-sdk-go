@@ -159,6 +159,10 @@ func ExampleRDS_AddTagsToResource_shared00() {
 				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			case rds.ErrCodeIntegrationNotFoundFault:
 				fmt.Println(rds.ErrCodeIntegrationNotFoundFault, aerr.Error())
+			case rds.ErrCodeTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -870,6 +874,8 @@ func ExampleRDS_CreateDBInstance_shared00() {
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			case rds.ErrCodeCertificateNotFoundFault:
 				fmt.Println(rds.ErrCodeCertificateNotFoundFault, aerr.Error())
+			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -942,6 +948,8 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeNetworkTypeNotSupported:
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
+			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2851,6 +2859,10 @@ func ExampleRDS_ListTagsForResource_shared00() {
 				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			case rds.ErrCodeIntegrationNotFoundFault:
 				fmt.Println(rds.ErrCodeIntegrationNotFoundFault, aerr.Error())
+			case rds.ErrCodeTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3165,6 +3177,8 @@ func ExampleRDS_ModifyDBInstance_shared00() {
 				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
 			case rds.ErrCodeNetworkTypeNotSupported:
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
+			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3709,6 +3723,10 @@ func ExampleRDS_RemoveTagsFromResource_shared00() {
 				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			case rds.ErrCodeIntegrationNotFoundFault:
 				fmt.Println(rds.ErrCodeIntegrationNotFoundFault, aerr.Error())
+			case rds.ErrCodeTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault:
+				fmt.Println(rds.ErrCodeDBSnapshotTenantDatabaseNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -4050,6 +4068,8 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			case rds.ErrCodeDBClusterSnapshotNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterSnapshotNotFoundFault, aerr.Error())
+			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -4125,6 +4145,8 @@ func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeDBInstanceAutomatedBackupNotFoundFault, aerr.Error())
 			case rds.ErrCodeNetworkTypeNotSupported:
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
+			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
+				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

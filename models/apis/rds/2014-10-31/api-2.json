@@ -70,7 +70,9 @@
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
         {"shape":"BlueGreenDeploymentNotFoundFault"},
-        {"shape":"IntegrationNotFoundFault"}
+        {"shape":"IntegrationNotFoundFault"},
+        {"shape":"TenantDatabaseNotFoundFault"},
+        {"shape":"DBSnapshotTenantDatabaseNotFoundFault"}
       ]
     },
     "ApplyPendingMaintenanceAction":{
@@ -394,7 +396,8 @@
         {"shape":"DomainNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"NetworkTypeNotSupported"},
-        {"shape":"CertificateNotFoundFault"}
+        {"shape":"CertificateNotFoundFault"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "CreateDBInstanceReadReplica":{
@@ -430,7 +433,8 @@
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DomainNotFoundFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "CreateDBParameterGroup":{
@@ -612,6 +616,24 @@
       "errors":[
         {"shape":"OptionGroupAlreadyExistsFault"},
         {"shape":"OptionGroupQuotaExceededFault"}
+      ]
+    },
+    "CreateTenantDatabase":{
+      "name":"CreateTenantDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTenantDatabaseMessage"},
+      "output":{
+        "shape":"CreateTenantDatabaseResult",
+        "resultWrapper":"CreateTenantDatabaseResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"TenantDatabaseAlreadyExistsFault"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "DeleteBlueGreenDeployment":{
@@ -907,6 +929,23 @@
       "errors":[
         {"shape":"OptionGroupNotFoundFault"},
         {"shape":"InvalidOptionGroupStateFault"}
+      ]
+    },
+    "DeleteTenantDatabase":{
+      "name":"DeleteTenantDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTenantDatabaseMessage"},
+      "output":{
+        "shape":"DeleteTenantDatabaseResult",
+        "resultWrapper":"DeleteTenantDatabaseResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"TenantDatabaseNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
     "DeregisterDBProxyTargets":{
@@ -1273,6 +1312,21 @@
         {"shape":"DBSnapshotNotFoundFault"}
       ]
     },
+    "DescribeDBSnapshotTenantDatabases":{
+      "name":"DescribeDBSnapshotTenantDatabases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBSnapshotTenantDatabasesMessage"},
+      "output":{
+        "shape":"DBSnapshotTenantDatabasesMessage",
+        "resultWrapper":"DescribeDBSnapshotTenantDatabasesResult"
+      },
+      "errors":[
+        {"shape":"DBSnapshotNotFoundFault"}
+      ]
+    },
     "DescribeDBSnapshots":{
       "name":"DescribeDBSnapshots",
       "http":{
@@ -1507,6 +1561,21 @@
         "resultWrapper":"DescribeSourceRegionsResult"
       }
     },
+    "DescribeTenantDatabases":{
+      "name":"DescribeTenantDatabases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTenantDatabasesMessage"},
+      "output":{
+        "shape":"TenantDatabasesMessage",
+        "resultWrapper":"DescribeTenantDatabasesResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"}
+      ]
+    },
     "DescribeValidDBInstanceModifications":{
       "name":"DescribeValidDBInstanceModifications",
       "http":{
@@ -1592,7 +1661,9 @@
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
         {"shape":"BlueGreenDeploymentNotFoundFault"},
-        {"shape":"IntegrationNotFoundFault"}
+        {"shape":"IntegrationNotFoundFault"},
+        {"shape":"TenantDatabaseNotFoundFault"},
+        {"shape":"DBSnapshotTenantDatabaseNotFoundFault"}
       ]
     },
     "ModifyActivityStream":{
@@ -1771,7 +1842,8 @@
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"InvalidDBClusterStateFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "ModifyDBParameterGroup":{
@@ -1945,6 +2017,24 @@
       "errors":[
         {"shape":"InvalidOptionGroupStateFault"},
         {"shape":"OptionGroupNotFoundFault"}
+      ]
+    },
+    "ModifyTenantDatabase":{
+      "name":"ModifyTenantDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyTenantDatabaseMessage"},
+      "output":{
+        "shape":"ModifyTenantDatabaseResult",
+        "resultWrapper":"ModifyTenantDatabaseResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"TenantDatabaseNotFoundFault"},
+        {"shape":"TenantDatabaseAlreadyExistsFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
     "PromoteReadReplica":{
@@ -2125,7 +2215,9 @@
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
         {"shape":"BlueGreenDeploymentNotFoundFault"},
-        {"shape":"IntegrationNotFoundFault"}
+        {"shape":"IntegrationNotFoundFault"},
+        {"shape":"TenantDatabaseNotFoundFault"},
+        {"shape":"DBSnapshotTenantDatabaseNotFoundFault"}
       ]
     },
     "ResetDBClusterParameterGroup":{
@@ -2290,7 +2382,8 @@
         {"shape":"DBParameterGroupNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"NetworkTypeNotSupported"},
-        {"shape":"DBClusterSnapshotNotFoundFault"}
+        {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "RestoreDBInstanceFromS3":{
@@ -2359,7 +2452,8 @@
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"DBParameterGroupNotFoundFault"},
         {"shape":"DBInstanceAutomatedBackupNotFoundFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
     "RevokeDBSecurityGroupIngress":{
@@ -3425,7 +3519,8 @@
         "MasterUserSecretKmsKeyId":{"shape":"String"},
         "CACertificateIdentifier":{"shape":"String"},
         "DBSystemId":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -3692,6 +3787,30 @@
       "type":"structure",
       "members":{
         "OptionGroup":{"shape":"OptionGroup"}
+      }
+    },
+    "CreateTenantDatabaseMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "TenantDBName",
+        "MasterUsername",
+        "MasterUserPassword"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "TenantDBName":{"shape":"String"},
+        "MasterUsername":{"shape":"String"},
+        "MasterUserPassword":{"shape":"SensitiveString"},
+        "CharacterSetName":{"shape":"String"},
+        "NcharCharacterSetName":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateTenantDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "TenantDatabase":{"shape":"TenantDatabase"}
       }
     },
     "CustomAvailabilityZoneNotFoundFault":{
@@ -4433,7 +4552,8 @@
         "ReadReplicaSourceDBClusterIdentifier":{"shape":"String"},
         "PercentProgress":{"shape":"String"},
         "DedicatedLogVolume":{"shape":"Boolean"},
-        "IsStorageConfigUpgradeAvailable":{"shape":"BooleanOptional"}
+        "IsStorageConfigUpgradeAvailable":{"shape":"BooleanOptional"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -4480,7 +4600,8 @@
         "BackupTarget":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "AwsBackupRecoveryPointArn":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -5059,7 +5180,8 @@
         "SnapshotTarget":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "DBSystemId":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"Boolean"}
+        "DedicatedLogVolume":{"shape":"Boolean"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -5121,6 +5243,50 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBSnapshotTenantDatabase":{
+      "type":"structure",
+      "members":{
+        "DBSnapshotIdentifier":{"shape":"String"},
+        "DBInstanceIdentifier":{"shape":"String"},
+        "DbiResourceId":{"shape":"String"},
+        "EngineName":{"shape":"String"},
+        "SnapshotType":{"shape":"String"},
+        "TenantDatabaseCreateTime":{"shape":"TStamp"},
+        "TenantDBName":{"shape":"String"},
+        "MasterUsername":{"shape":"String"},
+        "TenantDatabaseResourceId":{"shape":"String"},
+        "CharacterSetName":{"shape":"String"},
+        "DBSnapshotTenantDatabaseARN":{"shape":"String"},
+        "NcharCharacterSetName":{"shape":"String"},
+        "TagList":{"shape":"TagList"}
+      },
+      "wrapper":true
+    },
+    "DBSnapshotTenantDatabaseNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBSnapshotTenantDatabaseNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBSnapshotTenantDatabasesList":{
+      "type":"list",
+      "member":{
+        "shape":"DBSnapshotTenantDatabase",
+        "locationName":"DBSnapshotTenantDatabase"
+      }
+    },
+    "DBSnapshotTenantDatabasesMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "DBSnapshotTenantDatabases":{"shape":"DBSnapshotTenantDatabasesList"}
+      }
     },
     "DBSubnetGroup":{
       "type":"structure",
@@ -5442,6 +5608,25 @@
         "OptionGroupName":{"shape":"String"}
       }
     },
+    "DeleteTenantDatabaseMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "TenantDBName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "TenantDBName":{"shape":"String"},
+        "SkipFinalSnapshot":{"shape":"Boolean"},
+        "FinalDBSnapshotIdentifier":{"shape":"String"}
+      }
+    },
+    "DeleteTenantDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "TenantDatabase":{"shape":"TenantDatabase"}
+      }
+    },
     "DeregisterDBProxyTargetsRequest":{
       "type":"structure",
       "required":["DBProxyName"],
@@ -5756,6 +5941,18 @@
         "DBSnapshotAttributesResult":{"shape":"DBSnapshotAttributesResult"}
       }
     },
+    "DescribeDBSnapshotTenantDatabasesMessage":{
+      "type":"structure",
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "DBSnapshotIdentifier":{"shape":"String"},
+        "SnapshotType":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"},
+        "DbiResourceId":{"shape":"String"}
+      }
+    },
     "DescribeDBSnapshotsMessage":{
       "type":"structure",
       "members":{
@@ -5960,6 +6157,16 @@
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"},
         "Filters":{"shape":"FilterList"}
+      }
+    },
+    "DescribeTenantDatabasesMessage":{
+      "type":"structure",
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "TenantDBName":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"}
       }
     },
     "DescribeValidDBInstanceModificationsMessage":{
@@ -7250,7 +7457,8 @@
         "RotateMasterUserPassword":{"shape":"BooleanOptional"},
         "MasterUserSecretKmsKeyId":{"shape":"String"},
         "Engine":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBInstanceResult":{
@@ -7423,6 +7631,25 @@
       "type":"structure",
       "members":{
         "OptionGroup":{"shape":"OptionGroup"}
+      }
+    },
+    "ModifyTenantDatabaseMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "TenantDBName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "TenantDBName":{"shape":"String"},
+        "MasterUserPassword":{"shape":"SensitiveString"},
+        "NewTenantDBName":{"shape":"String"}
+      }
+    },
+    "ModifyTenantDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "TenantDatabase":{"shape":"TenantDatabase"}
       }
     },
     "NetworkTypeNotSupported":{
@@ -7817,7 +8044,8 @@
         "ResumeFullAutomationModeTime":{"shape":"TStamp"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "Engine":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "MultiTenant":{"shape":"BooleanOptional"}
       }
     },
     "PointInTimeRestoreNotEnabledFault":{
@@ -8623,6 +8851,10 @@
         "SecondsBeforeTimeout":{"shape":"IntegerOptional"}
       }
     },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
+    },
     "ServerlessV2ScalingConfiguration":{
       "type":"structure",
       "members":{
@@ -9165,6 +9397,79 @@
         "RDS_SERVERLESS_ENDPOINT",
         "TRACKED_CLUSTER"
       ]
+    },
+    "TenantDatabase":{
+      "type":"structure",
+      "members":{
+        "TenantDatabaseCreateTime":{"shape":"TStamp"},
+        "DBInstanceIdentifier":{"shape":"String"},
+        "TenantDBName":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "MasterUsername":{"shape":"String"},
+        "DbiResourceId":{"shape":"String"},
+        "TenantDatabaseResourceId":{"shape":"String"},
+        "TenantDatabaseARN":{"shape":"String"},
+        "CharacterSetName":{"shape":"String"},
+        "NcharCharacterSetName":{"shape":"String"},
+        "DeletionProtection":{"shape":"Boolean"},
+        "PendingModifiedValues":{"shape":"TenantDatabasePendingModifiedValues"},
+        "TagList":{"shape":"TagList"}
+      },
+      "wrapper":true
+    },
+    "TenantDatabaseAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TenantDatabaseAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TenantDatabaseNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TenantDatabaseNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TenantDatabasePendingModifiedValues":{
+      "type":"structure",
+      "members":{
+        "MasterUserPassword":{"shape":"SensitiveString"},
+        "TenantDBName":{"shape":"String"}
+      }
+    },
+    "TenantDatabaseQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TenantDatabaseQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TenantDatabasesList":{
+      "type":"list",
+      "member":{
+        "shape":"TenantDatabase",
+        "locationName":"TenantDatabase"
+      }
+    },
+    "TenantDatabasesMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "TenantDatabases":{"shape":"TenantDatabasesList"}
+      }
     },
     "Timezone":{
       "type":"structure",

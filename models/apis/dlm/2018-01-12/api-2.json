@@ -226,7 +226,8 @@
         "Interval":{"shape":"Interval"},
         "IntervalUnit":{"shape":"IntervalUnitValues"},
         "Times":{"shape":"TimesList"},
-        "CronExpression":{"shape":"CronExpression"}
+        "CronExpression":{"shape":"CronExpression"},
+        "Scripts":{"shape":"ScriptsList"}
       }
     },
     "CronExpression":{
@@ -362,6 +363,17 @@
       "member":{"shape":"Tag"},
       "max":50,
       "min":0
+    },
+    "ExecuteOperationOnScriptFailure":{"type":"boolean"},
+    "ExecutionHandler":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"^([a-zA-Z0-9_\\-.]{3,128}|[a-zA-Z0-9_\\-.:/]{3,200}|[A-Z0-9_]+)$"
+    },
+    "ExecutionHandlerServiceValues":{
+      "type":"string",
+      "enum":["AWS_SYSTEMS_MANAGER"]
     },
     "ExecutionRoleArn":{
       "type":"string",
@@ -678,6 +690,34 @@
       "min":0,
       "pattern":"[0-9A-Za-z _-]+"
     },
+    "Script":{
+      "type":"structure",
+      "required":["ExecutionHandler"],
+      "members":{
+        "Stages":{"shape":"StagesList"},
+        "ExecutionHandlerService":{"shape":"ExecutionHandlerServiceValues"},
+        "ExecutionHandler":{"shape":"ExecutionHandler"},
+        "ExecuteOperationOnScriptFailure":{"shape":"ExecuteOperationOnScriptFailure"},
+        "ExecutionTimeout":{"shape":"ScriptExecutionTimeout"},
+        "MaximumRetryCount":{"shape":"ScriptMaximumRetryCount"}
+      }
+    },
+    "ScriptExecutionTimeout":{
+      "type":"integer",
+      "max":120,
+      "min":10
+    },
+    "ScriptMaximumRetryCount":{
+      "type":"integer",
+      "max":3,
+      "min":0
+    },
+    "ScriptsList":{
+      "type":"list",
+      "member":{"shape":"Script"},
+      "max":1,
+      "min":0
+    },
     "SettablePolicyStateValues":{
       "type":"string",
       "enum":[
@@ -710,6 +750,19 @@
       "member":{"shape":"AwsAccountId"},
       "max":50,
       "min":0
+    },
+    "StageValues":{
+      "type":"string",
+      "enum":[
+        "PRE",
+        "POST"
+      ]
+    },
+    "StagesList":{
+      "type":"list",
+      "member":{"shape":"StageValues"},
+      "max":2,
+      "min":1
     },
     "StandardTierRetainRuleCount":{
       "type":"integer",
