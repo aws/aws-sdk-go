@@ -214,6 +214,49 @@
         "AwsApiCallAction$AffectedResources": "<p>The details of the Amazon Web Services account that made the API call. This field identifies the resources that were affected by this API call.</p>"
       }
     },
+    "Anomaly": {
+      "base": "<p>Contains information about the anomalies.</p>",
+      "refs": {
+        "Detection$Anomaly": "<p>The details about the anomalous activity that caused GuardDuty to generate the finding.</p>"
+      }
+    },
+    "AnomalyObject": {
+      "base": "<p>Contains information about the unusual anomalies.</p>",
+      "refs": {
+        "AnomalyProfileFeatureObjects$member": null,
+        "AnomalyUnusualBehaviorFeature$value": null
+      }
+    },
+    "AnomalyProfileFeatureObjects": {
+      "base": null,
+      "refs": {
+        "AnomalyProfileFeatures$value": null
+      }
+    },
+    "AnomalyProfileFeatures": {
+      "base": null,
+      "refs": {
+        "AnomalyProfiles$value": null
+      }
+    },
+    "AnomalyProfiles": {
+      "base": null,
+      "refs": {
+        "Anomaly$Profiles": "<p>Information about the types of profiles.</p>"
+      }
+    },
+    "AnomalyUnusual": {
+      "base": "<p>Contains information about the behavior of the anomaly that is new to GuardDuty.</p>",
+      "refs": {
+        "Anomaly$Unusual": "<p>Information about the behavior of the anomalies.</p>"
+      }
+    },
+    "AnomalyUnusualBehaviorFeature": {
+      "base": null,
+      "refs": {
+        "Behavior$value": null
+      }
+    },
     "ArchiveFindingsRequest": {
       "base": null,
       "refs": {
@@ -242,6 +285,12 @@
       "refs": {
       }
     },
+    "Behavior": {
+      "base": null,
+      "refs": {
+        "AnomalyUnusual$Behavior": "<p>The behavior of the anomalous activity that caused GuardDuty to generate the finding.</p>"
+      }
+    },
     "BlockPublicAccess": {
       "base": "<p>Contains information on how the bucker owner's S3 Block Public Access settings are being applied to the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\">S3 Block Public Access</a> for more information. </p>",
       "refs": {
@@ -268,7 +317,10 @@
         "DnsRequestAction$Blocked": "<p>Indicates whether the targeted port is blocked.</p>",
         "InviteMembersRequest$DisableEmailNotification": "<p>A Boolean value that specifies whether you want to disable email notification to the accounts that you are inviting to GuardDuty as members.</p>",
         "KubernetesAuditLogsConfiguration$Enable": "<p>The status of Kubernetes audit logs as a data source.</p>",
+        "KubernetesPermissionCheckedDetails$Allowed": "<p>Information whether the user has the permission to call the Kubernetes API.</p>",
         "KubernetesWorkloadDetails$HostNetwork": "<p>Whether the hostNetwork flag is enabled for the pods included in the workload.</p>",
+        "KubernetesWorkloadDetails$HostIPC": "<p>Whether the host IPC flag is enabled for the pods in the workload.</p>",
+        "KubernetesWorkloadDetails$HostPID": "<p>Whether the host PID flag is enabled for the pods in the workload. </p>",
         "NetworkConnectionAction$Blocked": "<p>Indicates whether EC2 blocked the network connection to your instance.</p>",
         "OrganizationEbsVolumes$AutoEnable": "<p>Whether scanning EBS volumes should be auto-enabled for new members joining the organization.</p>",
         "OrganizationEbsVolumesResult$AutoEnable": "<p>An object that contains the status of whether scanning EBS volumes should be auto-enabled for new members joining the organization.</p>",
@@ -281,6 +333,7 @@
         "S3LogsConfiguration$Enable": "<p> The status of S3 data event logs as a data source.</p>",
         "ScanEc2InstanceWithFindings$EbsVolumes": "<p>Describes the configuration for scanning EBS volumes as data source.</p>",
         "SecurityContext$Privileged": "<p>Whether the container is privileged.</p>",
+        "SecurityContext$AllowPrivilegeEscalation": "<p>Whether or not a container or a Kubernetes pod is allowed to gain more privileges than its parent process.</p>",
         "Service$Archived": "<p>Indicates whether this finding is archived.</p>",
         "ThreatDetectedByName$Shortened": "<p>Flag to determine if the finding contains every single infected file-path and/or every threat.</p>",
         "UpdateDetectorRequest$Enable": "<p>Specifies whether the detector is enabled or not enabled.</p>",
@@ -752,6 +805,12 @@
         "ListPublishingDestinationsResponse$Destinations": "<p>A <code>Destinations</code> object that includes information about each publishing destination returned.</p>"
       }
     },
+    "Detection": {
+      "base": "<p>Contains information about the detected behavior.</p>",
+      "refs": {
+        "Service$Detection": "<p>Contains information about the detected unusual behavior.</p>"
+      }
+    },
     "DetectorAdditionalConfiguration": {
       "base": "<p>Information about the additional configuration for a feature in your GuardDuty account.</p>",
       "refs": {
@@ -1137,7 +1196,7 @@
     "FindingCriteria": {
       "base": "<p>Contains information about the criteria used for querying findings.</p>",
       "refs": {
-        "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p> <p>You can only use the following attributes to query findings:</p> <ul> <li> <p>accountId</p> </li> <li> <p>id</p> </li> <li> <p>region</p> </li> <li> <p>severity</p> <p>To filter on the basis of severity, the API and CLI use the following input list for the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_FindingCriteria.html\">FindingCriteria</a> condition:</p> <ul> <li> <p> <b>Low</b>: <code>[\"1\", \"2\", \"3\"]</code> </p> </li> <li> <p> <b>Medium</b>: <code>[\"4\", \"5\", \"6\"]</code> </p> </li> <li> <p> <b>High</b>: <code>[\"7\", \"8\", \"9\"]</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html#guardduty_findings-severity\">Severity levels for GuardDuty findings</a>.</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: ISO 8601 string format: YYYY-MM-DDTHH:MM:SS.SSSZ or YYYY-MM-DDTHH:MM:SSZ depending on whether the value contains milliseconds.</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>resource.s3BucketDetails.publicAccess.effectivePermissions</p> </li> <li> <p>resource.s3BucketDetails.name</p> </li> <li> <p>resource.s3BucketDetails.tags.key</p> </li> <li> <p>resource.s3BucketDetails.tags.value</p> </li> <li> <p>resource.s3BucketDetails.type</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.errorCode</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.action.awsApiCallAction.remoteAccountDetails.affiliated</p> </li> <li> <p>service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.kubernetesApiCallAction.requestUri</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.awsApiCallAction.remoteAccountDetails.accountId</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>resource.eksClusterDetails.name</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.name</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.namespace</p> </li> <li> <p>resource.kubernetesDetails.kubernetesUserDetails.username</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.containers.image</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.containers.imagePrefix</p> </li> <li> <p>service.ebsVolumeScanDetails.scanId</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.name</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.severity</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.filePaths.hash</p> </li> <li> <p>resource.ecsClusterDetails.name</p> </li> <li> <p>resource.ecsClusterDetails.taskDetails.containers.image</p> </li> <li> <p>resource.ecsClusterDetails.taskDetails.definitionArn</p> </li> <li> <p>resource.containerDetails.image</p> </li> <li> <p>resource.rdsDbInstanceDetails.dbInstanceIdentifier</p> </li> <li> <p>resource.rdsDbInstanceDetails.dbClusterIdentifier</p> </li> <li> <p>resource.rdsDbInstanceDetails.engine</p> </li> <li> <p>resource.rdsDbUserDetails.user</p> </li> <li> <p>resource.rdsDbInstanceDetails.tags.key</p> </li> <li> <p>resource.rdsDbInstanceDetails.tags.value</p> </li> <li> <p>service.runtimeDetails.process.executableSha256</p> </li> <li> <p>service.runtimeDetails.process.name</p> </li> <li> <p>service.runtimeDetails.process.name</p> </li> <li> <p>resource.lambdaDetails.functionName</p> </li> <li> <p>resource.lambdaDetails.functionArn</p> </li> <li> <p>resource.lambdaDetails.tags.key</p> </li> <li> <p>resource.lambdaDetails.tags.value</p> </li> </ul>",
+        "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p> <p>You can only use the following attributes to query findings:</p> <ul> <li> <p>accountId</p> </li> <li> <p>id</p> </li> <li> <p>region</p> </li> <li> <p>severity</p> <p>To filter on the basis of severity, the API and CLI use the following input list for the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_FindingCriteria.html\">FindingCriteria</a> condition:</p> <ul> <li> <p> <b>Low</b>: <code>[\"1\", \"2\", \"3\"]</code> </p> </li> <li> <p> <b>Medium</b>: <code>[\"4\", \"5\", \"6\"]</code> </p> </li> <li> <p> <b>High</b>: <code>[\"7\", \"8\", \"9\"]</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html#guardduty_findings-severity\">Severity levels for GuardDuty findings</a>.</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: ISO 8601 string format: YYYY-MM-DDTHH:MM:SS.SSSZ or YYYY-MM-DDTHH:MM:SSZ depending on whether the value contains milliseconds.</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>resource.s3BucketDetails.publicAccess.effectivePermissions</p> </li> <li> <p>resource.s3BucketDetails.name</p> </li> <li> <p>resource.s3BucketDetails.tags.key</p> </li> <li> <p>resource.s3BucketDetails.tags.value</p> </li> <li> <p>resource.s3BucketDetails.type</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.errorCode</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.dnsRequestAction.domainWithSuffix</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.action.awsApiCallAction.remoteAccountDetails.affiliated</p> </li> <li> <p>service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.kubernetesApiCallAction.namespace</p> </li> <li> <p>service.action.kubernetesApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.kubernetesApiCallAction.requestUri</p> </li> <li> <p>service.action.kubernetesApiCallAction.statusCode</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.awsApiCallAction.remoteAccountDetails.accountId</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>resource.eksClusterDetails.name</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.name</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.namespace</p> </li> <li> <p>resource.kubernetesDetails.kubernetesUserDetails.username</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.containers.image</p> </li> <li> <p>resource.kubernetesDetails.kubernetesWorkloadDetails.containers.imagePrefix</p> </li> <li> <p>service.ebsVolumeScanDetails.scanId</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.name</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.severity</p> </li> <li> <p>service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.filePaths.hash</p> </li> <li> <p>resource.ecsClusterDetails.name</p> </li> <li> <p>resource.ecsClusterDetails.taskDetails.containers.image</p> </li> <li> <p>resource.ecsClusterDetails.taskDetails.definitionArn</p> </li> <li> <p>resource.containerDetails.image</p> </li> <li> <p>resource.rdsDbInstanceDetails.dbInstanceIdentifier</p> </li> <li> <p>resource.rdsDbInstanceDetails.dbClusterIdentifier</p> </li> <li> <p>resource.rdsDbInstanceDetails.engine</p> </li> <li> <p>resource.rdsDbUserDetails.user</p> </li> <li> <p>resource.rdsDbInstanceDetails.tags.key</p> </li> <li> <p>resource.rdsDbInstanceDetails.tags.value</p> </li> <li> <p>service.runtimeDetails.process.executableSha256</p> </li> <li> <p>service.runtimeDetails.process.name</p> </li> <li> <p>service.runtimeDetails.process.name</p> </li> <li> <p>resource.lambdaDetails.functionName</p> </li> <li> <p>resource.lambdaDetails.functionArn</p> </li> <li> <p>resource.lambdaDetails.tags.key</p> </li> <li> <p>resource.lambdaDetails.tags.value</p> </li> </ul>",
         "GetFilterResponse$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>",
         "GetFindingsStatisticsRequest$FindingCriteria": "<p>Represents the criteria that is used for querying findings.</p>",
         "ListFindingsRequest$FindingCriteria": "<p>Represents the criteria used for querying findings. Valid values include:</p> <ul> <li> <p>JSON field name</p> </li> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.dnsRequestAction.domainWithSuffix</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: Timestamp in Unix Epoch millisecond format: 1486685375000</p> </li> </ul>",
@@ -1394,6 +1453,7 @@
     "Groups": {
       "base": null,
       "refs": {
+        "ImpersonatedUser$Groups": "<p>The <code>group</code> to which the user name belongs.</p>",
         "KubernetesUserDetails$Groups": "<p>The groups that include the user who called the Kubernetes API.</p>"
       }
     },
@@ -1421,6 +1481,12 @@
       "base": "<p>Contains information about the EC2 instance profile.</p>",
       "refs": {
         "InstanceDetails$IamInstanceProfile": "<p>The profile information of the EC2 instance.</p>"
+      }
+    },
+    "ImpersonatedUser": {
+      "base": "<p>Contains information about the impersonated user.</p>",
+      "refs": {
+        "KubernetesUserDetails$ImpersonatedUser": "<p>Information about the impersonated user.</p>"
       }
     },
     "InstanceArn": {
@@ -1573,6 +1639,24 @@
       "base": "<p>Details about Kubernetes resources such as a Kubernetes user or workload resource involved in a Kubernetes finding.</p>",
       "refs": {
         "Resource$KubernetesDetails": "<p>Details about the Kubernetes user and workload involved in a Kubernetes finding.</p>"
+      }
+    },
+    "KubernetesPermissionCheckedDetails": {
+      "base": "<p>Information about the Kubernetes API for which you check if you have permission to call.</p>",
+      "refs": {
+        "Action$KubernetesPermissionCheckedDetails": "<p>Information whether the user has the permission to use a specific Kubernetes API.</p>"
+      }
+    },
+    "KubernetesRoleBindingDetails": {
+      "base": "<p>Contains information about the role binding that grants the permission defined in a Kubernetes role.</p>",
+      "refs": {
+        "Action$KubernetesRoleBindingDetails": "<p>Information about the role binding that grants the permission defined in a Kubernetes role.</p>"
+      }
+    },
+    "KubernetesRoleDetails": {
+      "base": "<p>Information about the Kubernetes role name and role type.</p>",
+      "refs": {
+        "Action$KubernetesRoleDetails": "<p>Information about the Kubernetes role name and role type.</p>"
       }
     },
     "KubernetesUserDetails": {
@@ -1897,7 +1981,7 @@
       "base": null,
       "refs": {
         "GetMembersResponse$Members": "<p>A list of members.</p>",
-        "ListMembersResponse$Members": "<p>A list of members.</p>"
+        "ListMembersResponse$Members": "<p>A list of members.</p> <note> <p>The values for <code>email</code> and <code>invitedAt</code> are available only if the member accounts are added by invitation.</p> </note>"
       }
     },
     "MemoryRegionsList": {
@@ -1957,6 +2041,18 @@
       "refs": {
         "Condition$NotEquals": "<p>Represents a <i>not equal</i> <b/> condition to be applied to a single field when querying for findings.</p>",
         "CoverageFilterCondition$NotEquals": "<p>Represents a not equal condition that is applied to a single field while retrieving the coverage details.</p>"
+      }
+    },
+    "ObservationTexts": {
+      "base": null,
+      "refs": {
+        "Observations$Text": "<p>The text that was unusual.</p>"
+      }
+    },
+    "Observations": {
+      "base": "<p>Contains information about the observed behavior.</p>",
+      "refs": {
+        "AnomalyObject$Observations": "<p>The recorded value.</p>"
       }
     },
     "OrderBy": {
@@ -2198,6 +2294,18 @@
       "base": null,
       "refs": {
         "InstanceDetails$ProductCodes": "<p>The product code of the EC2 instance.</p>"
+      }
+    },
+    "ProfileSubtype": {
+      "base": null,
+      "refs": {
+        "AnomalyObject$ProfileSubtype": "<p>The frequency of the anomaly.</p>"
+      }
+    },
+    "ProfileType": {
+      "base": null,
+      "refs": {
+        "AnomalyObject$ProfileType": "<p>The type of behavior of the profile.</p>"
       }
     },
     "PublicAccess": {
@@ -2541,6 +2649,9 @@
         "Administrator$InvitedAt": "<p>The timestamp when the invitation was sent.</p>",
         "AffectedResources$key": null,
         "AffectedResources$value": null,
+        "AnomalyProfileFeatures$key": null,
+        "AnomalyProfiles$key": null,
+        "AnomalyUnusualBehaviorFeature$key": null,
         "AwsApiCallAction$Api": "<p>The Amazon Web Services API name.</p>",
         "AwsApiCallAction$CallerType": "<p>The Amazon Web Services API caller type.</p>",
         "AwsApiCallAction$ErrorCode": "<p>The error code of the failed Amazon Web Services API action.</p>",
@@ -2548,6 +2659,7 @@
         "AwsApiCallAction$ServiceName": "<p>The Amazon Web Services service name whose API was invoked.</p>",
         "BadRequestException$Message": "<p>The error message.</p>",
         "BadRequestException$Type": "<p>The error type.</p>",
+        "Behavior$key": null,
         "City$CityName": "<p>The city name of the remote IP address.</p>",
         "ConflictException$Message": "<p>The error message.</p>",
         "ConflictException$Type": "<p>The error type.</p>",
@@ -2630,6 +2742,7 @@
         "HostPath$Path": "<p>Path of the file or directory on the host that the volume maps to.</p>",
         "IamInstanceProfile$Arn": "<p>The profile ARN of the EC2 instance.</p>",
         "IamInstanceProfile$Id": "<p>The profile ID of the EC2 instance.</p>",
+        "ImpersonatedUser$Username": "<p>Information about the <code>username</code> that was being impersonated.</p>",
         "InstanceDetails$AvailabilityZone": "<p>The Availability Zone of the EC2 instance.</p>",
         "InstanceDetails$ImageDescription": "<p>The image description of the EC2 instance.</p>",
         "InstanceDetails$ImageId": "<p>The image ID of the EC2 instance.</p>",
@@ -2651,12 +2764,28 @@
         "KubernetesApiCallAction$Verb": "<p>The Kubernetes API request HTTP verb.</p>",
         "KubernetesApiCallAction$UserAgent": "<p>The user agent of the caller of the Kubernetes API.</p>",
         "KubernetesApiCallAction$Parameters": "<p>Parameters related to the Kubernetes API call action.</p>",
+        "KubernetesApiCallAction$Resource": "<p>The resource component in the Kubernetes API call action.</p>",
+        "KubernetesApiCallAction$Subresource": "<p>The name of the sub-resource in the Kubernetes API call action.</p>",
+        "KubernetesApiCallAction$Namespace": "<p>The name of the namespace where the Kubernetes API call action takes place.</p>",
+        "KubernetesApiCallAction$ResourceName": "<p>The name of the resource in the Kubernetes API call action.</p>",
+        "KubernetesPermissionCheckedDetails$Verb": "<p>The verb component of the Kubernetes API call. For example, when you check whether or not you have the permission to call the <code>CreatePod</code> API, the verb component will be <code>Create</code>.</p>",
+        "KubernetesPermissionCheckedDetails$Resource": "<p>The Kubernetes resource with which your Kubernetes API call will interact.</p>",
+        "KubernetesPermissionCheckedDetails$Namespace": "<p>The namespace where the Kubernetes API action will take place.</p>",
+        "KubernetesRoleBindingDetails$Kind": "<p>The kind of the role. For role binding, this value will be <code>RoleBinding</code>.</p>",
+        "KubernetesRoleBindingDetails$Name": "<p>The name of the <code>RoleBinding</code>.</p>",
+        "KubernetesRoleBindingDetails$Uid": "<p>The unique identifier of the role binding.</p>",
+        "KubernetesRoleBindingDetails$RoleRefName": "<p>The name of the role being referenced. This must match the name of the <code>Role</code> or <code>ClusterRole</code> that you want to bind to.</p>",
+        "KubernetesRoleBindingDetails$RoleRefKind": "<p>The type of the role being referenced. This could be either <code>Role</code> or <code>ClusterRole</code>.</p>",
+        "KubernetesRoleDetails$Kind": "<p>The kind of role. For this API, the value of <code>kind</code> will be <code>Role</code>.</p>",
+        "KubernetesRoleDetails$Name": "<p>The name of the Kubernetes role.</p>",
+        "KubernetesRoleDetails$Uid": "<p>The unique identifier of the Kubernetes role name.</p>",
         "KubernetesUserDetails$Username": "<p>The username of the user who called the Kubernetes API.</p>",
         "KubernetesUserDetails$Uid": "<p>The user ID of the user who called the Kubernetes API.</p>",
         "KubernetesWorkloadDetails$Name": "<p>Kubernetes workload name.</p>",
         "KubernetesWorkloadDetails$Type": "<p>Kubernetes workload type (e.g. Pod, Deployment, etc.).</p>",
         "KubernetesWorkloadDetails$Uid": "<p>Kubernetes workload ID.</p>",
         "KubernetesWorkloadDetails$Namespace": "<p>Kubernetes namespace that the workload is part of.</p>",
+        "KubernetesWorkloadDetails$ServiceAccountName": "<p>The service account name that is associated with a Kubernetes workload.</p>",
         "LambdaDetails$FunctionArn": "<p>Amazon Resource Name (ARN) of the Lambda function.</p>",
         "LambdaDetails$FunctionName": "<p>Name of the Lambda function.</p>",
         "LambdaDetails$Description": "<p>Description of the Lambda function.</p>",
@@ -2713,6 +2842,7 @@
         "NetworkInterface$SubnetId": "<p>The subnet ID of the EC2 instance.</p>",
         "NetworkInterface$VpcId": "<p>The VPC ID of the EC2 instance.</p>",
         "NotEquals$member": null,
+        "ObservationTexts$member": null,
         "Organization$Asn": "<p>The Autonomous System Number (ASN) of the internet provider of the remote IP address.</p>",
         "Organization$AsnOrg": "<p>The organization that registered this ASN.</p>",
         "Organization$Isp": "<p>The ISP information for the internet provider.</p>",

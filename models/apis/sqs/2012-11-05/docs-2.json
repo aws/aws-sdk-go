@@ -211,6 +211,37 @@
       "refs": {
       }
     },
+    "ExceptionMessage": {
+      "base": null,
+      "refs": {
+        "BatchEntryIdsNotDistinct$message": null,
+        "BatchRequestTooLong$message": null,
+        "EmptyBatchRequest$message": null,
+        "InvalidAddress$message": null,
+        "InvalidAttributeName$message": null,
+        "InvalidAttributeValue$message": null,
+        "InvalidBatchEntryId$message": null,
+        "InvalidMessageContents$message": null,
+        "InvalidSecurity$message": null,
+        "KmsAccessDenied$message": null,
+        "KmsDisabled$message": null,
+        "KmsInvalidKeyUsage$message": null,
+        "KmsInvalidState$message": null,
+        "KmsNotFound$message": null,
+        "KmsOptInRequired$message": null,
+        "KmsThrottled$message": null,
+        "OverLimit$message": null,
+        "PurgeQueueInProgress$message": null,
+        "QueueDeletedRecently$message": null,
+        "QueueDoesNotExist$message": null,
+        "QueueNameExists$message": null,
+        "ReceiptHandleIsInvalid$message": null,
+        "RequestThrottled$message": null,
+        "ResourceNotFoundException$message": null,
+        "TooManyEntriesInBatchRequest$message": null,
+        "UnsupportedOperation$message": null
+      }
+    },
     "GetQueueAttributesRequest": {
       "base": "<p/>",
       "refs": {
@@ -231,23 +262,18 @@
       "refs": {
       }
     },
-    "Integer": {
-      "base": null,
+    "InvalidAddress": {
+      "base": "<p>The <code>accountId</code> is invalid.</p>",
       "refs": {
-        "ChangeMessageVisibilityBatchRequestEntry$VisibilityTimeout": "<p>The new value (in seconds) for the message's visibility timeout.</p>",
-        "ChangeMessageVisibilityRequest$VisibilityTimeout": "<p>The new value for the message's visibility timeout (in seconds). Values range: <code>0</code> to <code>43200</code>. Maximum: 12 hours.</p>",
-        "ListMessageMoveTasksRequest$MaxResults": "<p>The maximum number of results to include in the response. The default is 1, which provides the most recent message movement task. The upper limit is 10.</p>",
-        "ListMessageMoveTasksResultEntry$MaxNumberOfMessagesPerSecond": "<p>The number of messages to be moved per second (the message movement rate), if it has been specified in the <code>StartMessageMoveTask</code> request. If a <code>MaxNumberOfMessagesPerSecond</code> has not been specified in the <code>StartMessageMoveTask</code> request, this field value will be NULL.</p>",
-        "ReceiveMessageRequest$MaxNumberOfMessages": "<p>The maximum number of messages to return. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10. Default: 1.</p>",
-        "ReceiveMessageRequest$VisibilityTimeout": "<p>The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a <code>ReceiveMessage</code> request.</p>",
-        "ReceiveMessageRequest$WaitTimeSeconds": "<p>The duration (in seconds) for which the call waits for a message to arrive in the queue before returning. If a message is available, the call returns sooner than <code>WaitTimeSeconds</code>. If no messages are available and the wait time expires, the call returns successfully with an empty list of messages.</p> <important> <p>To avoid HTTP errors, ensure that the HTTP response timeout for <code>ReceiveMessage</code> requests is longer than the <code>WaitTimeSeconds</code> parameter. For example, with the Java SDK, you can set HTTP transport settings using the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/nio/netty/NettyNioAsyncHttpClient.html\"> NettyNioAsyncHttpClient</a> for asynchronous clients, or the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.html\"> ApacheHttpClient</a> for synchronous clients. </p> </important>",
-        "SendMessageBatchRequestEntry$DelaySeconds": "<p>The length of time, in seconds, for which a specific message is delayed. Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value become available for processing after the delay period is finished. If you don't specify a value, the default value for the queue is applied. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per message. You can set this parameter only on a queue level.</p> </note>",
-        "SendMessageRequest$DelaySeconds": "<p> The length of time, in seconds, for which to delay a specific message. Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value become available for processing after the delay period is finished. If you don't specify a value, the default value for the queue applies. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per message. You can set this parameter only on a queue level.</p> </note>",
-        "StartMessageMoveTaskRequest$MaxNumberOfMessagesPerSecond": "<p>The number of messages to be moved per second (the message movement rate). You can use this field to define a fixed message movement rate. The maximum value for messages per second is 500. If this field is left blank, the system will optimize the rate based on the queue message backlog size, which may vary throughout the duration of the message movement task.</p>"
       }
     },
     "InvalidAttributeName": {
       "base": "<p>The specified attribute doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "InvalidAttributeValue": {
+      "base": "<p>A queue attribute value is invalid.</p>",
       "refs": {
       }
     },
@@ -263,6 +289,46 @@
     },
     "InvalidMessageContents": {
       "base": "<p>The message contains characters outside the allowed set.</p>",
+      "refs": {
+      }
+    },
+    "InvalidSecurity": {
+      "base": "<p>When the request to a queue is not HTTPS and SigV4.</p>",
+      "refs": {
+      }
+    },
+    "KmsAccessDenied": {
+      "base": "<p>The caller doesn't have the required KMS access.</p>",
+      "refs": {
+      }
+    },
+    "KmsDisabled": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "KmsInvalidKeyUsage": {
+      "base": "<p>The request was rejected for one of the following reasons:</p> <ul> <li> <p>The KeyUsage value of the KMS key is incompatible with the API operation.</p> </li> <li> <p>The encryption algorithm or signing algorithm specified for the operation is incompatible with the type of key material in the KMS key (KeySpec).</p> </li> </ul>",
+      "refs": {
+      }
+    },
+    "KmsInvalidState": {
+      "base": "<p>The request was rejected because the state of the specified resource is not valid for this request.</p>",
+      "refs": {
+      }
+    },
+    "KmsNotFound": {
+      "base": "<p>The request was rejected because the specified entity or resource could not be found. </p>",
+      "refs": {
+      }
+    },
+    "KmsOptInRequired": {
+      "base": "<p>The request was rejected because the specified key policy isn't syntactically or semantically correct.</p>",
+      "refs": {
+      }
+    },
+    "KmsThrottled": {
+      "base": "<p>Amazon Web Services KMS throttles requests for the following conditions.</p>",
       "refs": {
       }
     },
@@ -323,7 +389,6 @@
       "refs": {
         "CancelMessageMoveTaskResult$ApproximateNumberOfMessagesMoved": "<p>The approximate number of messages already moved to the destination queue.</p>",
         "ListMessageMoveTasksResultEntry$ApproximateNumberOfMessagesMoved": "<p>The approximate number of messages already moved to the destination queue.</p>",
-        "ListMessageMoveTasksResultEntry$ApproximateNumberOfMessagesToMove": "<p>The number of messages to be moved from the source queue. This number is obtained at the time of starting the message movement task.</p>",
         "ListMessageMoveTasksResultEntry$StartedTimestamp": "<p>The timestamp of starting the message movement task.</p>"
       }
     },
@@ -401,6 +466,27 @@
         "MessageBodySystemAttributeMap$value": null
       }
     },
+    "NullableInteger": {
+      "base": null,
+      "refs": {
+        "ChangeMessageVisibilityBatchRequestEntry$VisibilityTimeout": "<p>The new value (in seconds) for the message's visibility timeout.</p>",
+        "ChangeMessageVisibilityRequest$VisibilityTimeout": "<p>The new value for the message's visibility timeout (in seconds). Values range: <code>0</code> to <code>43200</code>. Maximum: 12 hours.</p>",
+        "ListMessageMoveTasksRequest$MaxResults": "<p>The maximum number of results to include in the response. The default is 1, which provides the most recent message movement task. The upper limit is 10.</p>",
+        "ListMessageMoveTasksResultEntry$MaxNumberOfMessagesPerSecond": "<p>The number of messages to be moved per second (the message movement rate), if it has been specified in the <code>StartMessageMoveTask</code> request. If a <code>MaxNumberOfMessagesPerSecond</code> has not been specified in the <code>StartMessageMoveTask</code> request, this field value will be NULL.</p>",
+        "ReceiveMessageRequest$MaxNumberOfMessages": "<p>The maximum number of messages to return. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10. Default: 1.</p>",
+        "ReceiveMessageRequest$VisibilityTimeout": "<p>The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a <code>ReceiveMessage</code> request.</p>",
+        "ReceiveMessageRequest$WaitTimeSeconds": "<p>The duration (in seconds) for which the call waits for a message to arrive in the queue before returning. If a message is available, the call returns sooner than <code>WaitTimeSeconds</code>. If no messages are available and the wait time expires, the call returns successfully with an empty list of messages.</p> <important> <p>To avoid HTTP errors, ensure that the HTTP response timeout for <code>ReceiveMessage</code> requests is longer than the <code>WaitTimeSeconds</code> parameter. For example, with the Java SDK, you can set HTTP transport settings using the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/nio/netty/NettyNioAsyncHttpClient.html\"> NettyNioAsyncHttpClient</a> for asynchronous clients, or the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.html\"> ApacheHttpClient</a> for synchronous clients. </p> </important>",
+        "SendMessageBatchRequestEntry$DelaySeconds": "<p>The length of time, in seconds, for which a specific message is delayed. Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value become available for processing after the delay period is finished. If you don't specify a value, the default value for the queue is applied. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per message. You can set this parameter only on a queue level.</p> </note>",
+        "SendMessageRequest$DelaySeconds": "<p> The length of time, in seconds, for which to delay a specific message. Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value become available for processing after the delay period is finished. If you don't specify a value, the default value for the queue applies. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per message. You can set this parameter only on a queue level.</p> </note>",
+        "StartMessageMoveTaskRequest$MaxNumberOfMessagesPerSecond": "<p>The number of messages to be moved per second (the message movement rate). You can use this field to define a fixed message movement rate. The maximum value for messages per second is 500. If this field is left blank, the system will optimize the rate based on the queue message backlog size, which may vary throughout the duration of the message movement task.</p>"
+      }
+    },
+    "NullableLong": {
+      "base": null,
+      "refs": {
+        "ListMessageMoveTasksResultEntry$ApproximateNumberOfMessagesToMove": "<p>The number of messages to be moved from the source queue. This number is obtained at the time of starting the message movement task.</p>"
+      }
+    },
     "OverLimit": {
       "base": "<p>The specified action violates a limit. For example, <code>ReceiveMessage</code> returns this error if the maximum number of in flight messages is reached and <code>AddPermission</code> returns this error if the maximum number of permissions for the queue is reached.</p>",
       "refs": {
@@ -470,6 +556,11 @@
     },
     "RemovePermissionRequest": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "RequestThrottled": {
+      "base": "<p>The request was denied due to request throttling.</p> <ul> <li> <p>The rate of requests per second exceeds the Amazon Web Services KMS request quota for an account and Region. </p> </li> <li> <p>A burst or sustained high rate of requests to change the state of the same KMS key. This condition is often known as a \"hot key.\"</p> </li> <li> <p>Requests for operations on KMS keys in a Amazon Web Services CloudHSM key store might be throttled at a lower-than-expected rate when the Amazon Web Services CloudHSM cluster associated with the Amazon Web Services CloudHSM key store is processing numerous commands, including those unrelated to the Amazon Web Services CloudHSM key store.</p> </li> </ul>",
       "refs": {
       }
     },
@@ -570,7 +661,6 @@
         "ListDeadLetterSourceQueuesRequest$QueueUrl": "<p>The URL of a dead-letter queue.</p> <p>Queue URLs and names are case-sensitive.</p>",
         "ListMessageMoveTasksRequest$SourceArn": "<p>The ARN of the queue whose message movement tasks are to be listed.</p>",
         "ListMessageMoveTasksResultEntry$TaskHandle": "<p>An identifier associated with a message movement task. When this field is returned in the response of the <code>ListMessageMoveTasks</code> action, it is only populated for tasks that are in RUNNING status.</p>",
-        "ListMessageMoveTasksResultEntry$Status": "<p>The status of the message movement task. Possible values are: RUNNING, COMPLETED, CANCELLING, CANCELLED, and FAILED.</p>",
         "ListMessageMoveTasksResultEntry$SourceArn": "<p>The ARN of the queue that contains the messages to be moved to another queue.</p>",
         "ListMessageMoveTasksResultEntry$DestinationArn": "<p>The ARN of the destination queue if it has been specified in the <code>StartMessageMoveTask</code> request. If a <code>DestinationArn</code> has not been specified in the <code>StartMessageMoveTask</code> request, this field value will be NULL.</p>",
         "ListMessageMoveTasksResultEntry$FailureReason": "<p>The task failure reason (only included if the task status is FAILED).</p>",
@@ -660,6 +750,12 @@
       "base": null,
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "TaskStatus": {
+      "base": null,
+      "refs": {
+        "ListMessageMoveTasksResultEntry$Status": "<p>The status of the message movement task. Possible values are: RUNNING, COMPLETED, CANCELLING, CANCELLED, and FAILED.</p>"
       }
     },
     "Token": {

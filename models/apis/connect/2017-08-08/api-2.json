@@ -11148,6 +11148,7 @@
     },
     "SearchUsersRequest":{
       "type":"structure",
+      "required":["InstanceId"],
       "members":{
         "InstanceId":{"shape":"InstanceId"},
         "NextToken":{"shape":"NextToken2500"},

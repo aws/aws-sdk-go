@@ -7678,7 +7678,7 @@ type CreateLocationObjectStorageInput struct {
 
 	// Specifies the access key (for example, a user name) if credentials are required
 	// to authenticate with the object storage server.
-	AccessKey *string `min:"1" type:"string"`
+	AccessKey *string `type:"string"`
 
 	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
 	// securely connect with your location.
@@ -7762,9 +7762,6 @@ func (s CreateLocationObjectStorageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateLocationObjectStorageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLocationObjectStorageInput"}
-	if s.AccessKey != nil && len(*s.AccessKey) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 1))
-	}
 	if s.AgentArns == nil {
 		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
 	}
@@ -10150,7 +10147,7 @@ type DescribeLocationObjectStorageOutput struct {
 
 	// The access key (for example, a user name) required to authenticate with the
 	// object storage system.
-	AccessKey *string `min:"1" type:"string"`
+	AccessKey *string `type:"string"`
 
 	// The ARNs of the DataSync agents that can securely connect with your location.
 	AgentArns []*string `min:"1" type:"list"`
@@ -16915,7 +16912,7 @@ type UpdateLocationObjectStorageInput struct {
 
 	// Specifies the access key (for example, a user name) if credentials are required
 	// to authenticate with the object storage server.
-	AccessKey *string `min:"1" type:"string"`
+	AccessKey *string `type:"string"`
 
 	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
 	// securely connect with your location.
@@ -16979,9 +16976,6 @@ func (s UpdateLocationObjectStorageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateLocationObjectStorageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationObjectStorageInput"}
-	if s.AccessKey != nil && len(*s.AccessKey) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 1))
-	}
 	if s.AgentArns != nil && len(s.AgentArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
 	}

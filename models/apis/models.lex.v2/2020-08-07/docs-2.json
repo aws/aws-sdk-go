@@ -1358,6 +1358,7 @@
         "AggregatedUtterancesSummary$containsDataFromDeletedResources": "<p>Aggregated utterance data may contain utterances from versions of your bot that have since been deleted. When the aggregated contains this kind of data, this field is set to true.</p>",
         "AllowedInputTypes$allowAudioInput": "<p>Indicates whether audio input is allowed.</p>",
         "AllowedInputTypes$allowDTMFInput": "<p>Indicates whether DTMF input is allowed.</p>",
+        "AudioLogSetting$selectiveLoggingEnabled": "<p>The option to enable selective conversation log capture for audio.</p>",
         "ConditionalSpecification$active": "<p>Determines whether a conditional branch is active. When <code>active</code> is false, the conditions are not evaluated.</p>",
         "DialogAction$suppressNextMessage": "<p>When true the next message for the intent is not used.</p>",
         "DialogCodeHookInvocationSetting$enableCodeHookInvocation": "<p>Indicates whether a Lambda function should be invoked for the dialog.</p>",
@@ -1373,6 +1374,7 @@
         "PromptSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech prompt from the bot.</p>",
         "ResponseSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech response from Amazon Lex.</p>",
         "StillWaitingResponseSpecification$allowInterrupt": "<p>Indicates that the user can interrupt the response by speaking while the message is being played.</p>",
+        "TextLogSetting$selectiveLoggingEnabled": "<p>The option to enable selective conversation log capture for text.</p>",
         "WaitAndContinueSpecification$active": "<p>Specifies whether the bot will wait for a user to respond. When this field is false, wait and continue responses for a slot aren't used. If the <code>active</code> field isn't specified, the default is true.</p>"
       }
     },

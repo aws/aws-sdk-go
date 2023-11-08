@@ -837,7 +837,9 @@
         "AppSummary$resiliencyScore": "<p>The current resiliency score for the application.</p>",
         "Cost$amount": "<p>The cost amount.</p>",
         "DisruptionResiliencyScore$value": null,
-        "ResiliencyScore$score": "<p>The outage score for a valid key.</p>"
+        "ResiliencyScore$score": "<p>The outage score for a valid key.</p>",
+        "ScoringComponentResiliencyScore$possibleScore": "<p>Maximum possible score that can be obtained for the scoring component. If the <code>Possible score</code> is 20 points, it indicates the maximum possible score you can achieve for your application when you run a new assessment after implementing all the Resilience Hub recommendations.</p>",
+        "ScoringComponentResiliencyScore$score": "<p>Resiliency score of your application.</p>"
       }
     },
     "DriftStatus": {
@@ -1067,7 +1069,7 @@
     "IamRoleName": {
       "base": null,
       "refs": {
-        "PermissionModel$invokerRoleName": "<p>Existing Amazon Web Services IAM role name in the primary Amazon Web Services account that will be assumed by Resilience Hub Service Principle to obtain a read-only access to your application resources while running an assessment.</p> <note> <p>You must have <code>iam:passRole</code> permission for this role while creating or updating the application.</p> </note>"
+        "PermissionModel$invokerRoleName": "<p>Existing Amazon Web Services IAM role name in the primary Amazon Web Services account that will be assumed by Resilience Hub Service Principle to obtain a read-only access to your application resources while running an assessment.</p> <note> <ul> <li> <p>You must have <code>iam:passRole</code> permission for this role while creating or updating the application.</p> </li> <li> <p>Currently, <code>invokerRoleName</code> accepts only <code>[A-Za-z0-9_+=,.@-]</code> characters.</p> </li> </ul> </note>"
       }
     },
     "ImportResourcesToDraftAppVersionRequest": {
@@ -1291,6 +1293,13 @@
         "UpdateAppVersionResourceRequest$logicalResourceId": "<p>Logical identifier of the resource.</p>"
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "ScoringComponentResiliencyScore$excludedCount": "<p>Number of recommendations that were excluded from the assessment.</p> <p>For example, if the <code>Excluded count</code> for Resilience Hub recommended Amazon CloudWatch alarms is 7, it indicates that 7 Amazon CloudWatch alarms are excluded from the assessment.</p>",
+        "ScoringComponentResiliencyScore$outstandingCount": "<p>Number of issues that must be resolved to obtain the maximum possible score for the scoring component. For SOPs, alarms, and FIS experiments, these are the number of recommendations that must be implemented. For compliance, it is the number of Application Components that has breached the resiliency policy.</p> <p>For example, if the <code>Outstanding count</code> for Resilience Hub recommended Amazon CloudWatch alarms is 5, it indicates that 5 Amazon CloudWatch alarms must be fixed to achieve the maximum possible score.</p>"
+      }
+    },
     "LongOptional": {
       "base": null,
       "refs": {
@@ -1462,6 +1471,14 @@
         "TestRecommendation$items": "<p>The test recommendation items.</p>"
       }
     },
+    "RecommendationStatus": {
+      "base": null,
+      "refs": {
+        "AlarmRecommendation$recommendationStatus": "<p>Status of the recommended Amazon CloudWatch alarm.</p>",
+        "SopRecommendation$recommendationStatus": "<p>Status of the recommended standard operating procedure.</p>",
+        "TestRecommendation$recommendationStatus": "<p>Status of the recommended test.</p>"
+      }
+    },
     "RecommendationTemplate": {
       "base": "<p>Defines a recommendation template created with the <a>CreateRecommendationTemplate</a> action.</p>",
       "refs": {
@@ -1542,6 +1559,12 @@
       "refs": {
         "AppAssessment$resiliencyScore": "<p>Current resiliency score for an application.</p>",
         "AppComponentCompliance$resiliencyScore": "<p>The current resiliency score for the application.</p>"
+      }
+    },
+    "ResiliencyScoreType": {
+      "base": null,
+      "refs": {
+        "ScoringComponentResiliencyScores$key": null
       }
     },
     "ResolveAppVersionResourcesRequest": {
@@ -1656,6 +1679,18 @@
         "TerraformSource$s3StateFileUrl": "<p> The URL of the Terraform s3 state file you need to import. </p>"
       }
     },
+    "ScoringComponentResiliencyScore": {
+      "base": "<p>Resiliency score of each scoring component. For more information about scoring component, see <a href=\"https://docs.aws.amazon.com/resilience-hub/latest/userguide/calculate-score.html\">Calculating resiliency score</a>.</p>",
+      "refs": {
+        "ScoringComponentResiliencyScores$value": null
+      }
+    },
+    "ScoringComponentResiliencyScores": {
+      "base": null,
+      "refs": {
+        "ResiliencyScore$componentScore": "<p>The score generated by Resilience Hub for the scoring component after running an assessment.</p> <p>For example, if the <code>score</code> is 25 points, it indicates the overall score of your application generated by Resilience Hub after running an assessment.</p>"
+      }
+    },
     "Seconds": {
       "base": null,
       "refs": {
@@ -1767,7 +1802,7 @@
         "LogicalResourceId$identifier": "<p>Identifier of the resource.</p>",
         "LogicalResourceId$logicalStackName": "<p>The name of the CloudFormation stack this resource belongs to.</p>",
         "LogicalResourceId$terraformSourceName": "<p> The name of the Terraform S3 state file this resource belongs to. </p>",
-        "PhysicalResource$resourceType": "<p>Type of resource.</p>",
+        "PhysicalResource$resourceType": "<p>The type of resource.</p>",
         "PhysicalResourceId$identifier": "<p>Identifier of the physical resource.</p>",
         "ResolveAppVersionResourcesResponse$resolutionId": "<p>The identifier for a specific resolution.</p>",
         "ResourceError$logicalResourceId": "<p>Identifier of the logical resource. </p>",

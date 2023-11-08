@@ -16212,6 +16212,9 @@ type GetRunOutput struct {
 	// The run's ID.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
+	// The destination for workflow outputs.
+	RunOutputUri *string `locationName:"runOutputUri" min:"1" type:"string"`
+
 	// When the run started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -16232,6 +16235,9 @@ type GetRunOutput struct {
 
 	// The run's tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The universally unique identifier for a run.
+	Uuid *string `locationName:"uuid" min:"1" type:"string"`
 
 	// The run's workflow ID.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
@@ -16360,6 +16366,12 @@ func (s *GetRunOutput) SetRunId(v string) *GetRunOutput {
 	return s
 }
 
+// SetRunOutputUri sets the RunOutputUri field's value.
+func (s *GetRunOutput) SetRunOutputUri(v string) *GetRunOutput {
+	s.RunOutputUri = &v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *GetRunOutput) SetStartTime(v time.Time) *GetRunOutput {
 	s.StartTime = &v
@@ -16399,6 +16411,12 @@ func (s *GetRunOutput) SetStorageCapacity(v int64) *GetRunOutput {
 // SetTags sets the Tags field's value.
 func (s *GetRunOutput) SetTags(v map[string]*string) *GetRunOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUuid sets the Uuid field's value.
+func (s *GetRunOutput) SetUuid(v string) *GetRunOutput {
+	s.Uuid = &v
 	return s
 }
 
@@ -24355,11 +24373,17 @@ type StartRunOutput struct {
 	// The run's ID.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
+	// The destination for workflow outputs.
+	RunOutputUri *string `locationName:"runOutputUri" min:"1" type:"string"`
+
 	// The run's status.
 	Status *string `locationName:"status" min:"1" type:"string" enum:"RunStatus"`
 
 	// The run's tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The universally unique identifier for a run.
+	Uuid *string `locationName:"uuid" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -24392,6 +24416,12 @@ func (s *StartRunOutput) SetId(v string) *StartRunOutput {
 	return s
 }
 
+// SetRunOutputUri sets the RunOutputUri field's value.
+func (s *StartRunOutput) SetRunOutputUri(v string) *StartRunOutput {
+	s.RunOutputUri = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *StartRunOutput) SetStatus(v string) *StartRunOutput {
 	s.Status = &v
@@ -24401,6 +24431,12 @@ func (s *StartRunOutput) SetStatus(v string) *StartRunOutput {
 // SetTags sets the Tags field's value.
 func (s *StartRunOutput) SetTags(v map[string]*string) *StartRunOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUuid sets the Uuid field's value.
+func (s *StartRunOutput) SetUuid(v string) *StartRunOutput {
+	s.Uuid = &v
 	return s
 }
 

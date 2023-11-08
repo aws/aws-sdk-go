@@ -7130,6 +7130,17 @@ type Action struct {
 	// Information about the Kubernetes API call action described in this finding.
 	KubernetesApiCallAction *KubernetesApiCallAction `locationName:"kubernetesApiCallAction" type:"structure"`
 
+	// Information whether the user has the permission to use a specific Kubernetes
+	// API.
+	KubernetesPermissionCheckedDetails *KubernetesPermissionCheckedDetails `locationName:"kubernetesPermissionCheckedDetails" type:"structure"`
+
+	// Information about the role binding that grants the permission defined in
+	// a Kubernetes role.
+	KubernetesRoleBindingDetails *KubernetesRoleBindingDetails `locationName:"kubernetesRoleBindingDetails" type:"structure"`
+
+	// Information about the Kubernetes role name and role type.
+	KubernetesRoleDetails *KubernetesRoleDetails `locationName:"kubernetesRoleDetails" type:"structure"`
+
 	// Information about the NETWORK_CONNECTION action described in this finding.
 	NetworkConnectionAction *NetworkConnectionAction `locationName:"networkConnectionAction" type:"structure"`
 
@@ -7179,6 +7190,24 @@ func (s *Action) SetDnsRequestAction(v *DnsRequestAction) *Action {
 // SetKubernetesApiCallAction sets the KubernetesApiCallAction field's value.
 func (s *Action) SetKubernetesApiCallAction(v *KubernetesApiCallAction) *Action {
 	s.KubernetesApiCallAction = v
+	return s
+}
+
+// SetKubernetesPermissionCheckedDetails sets the KubernetesPermissionCheckedDetails field's value.
+func (s *Action) SetKubernetesPermissionCheckedDetails(v *KubernetesPermissionCheckedDetails) *Action {
+	s.KubernetesPermissionCheckedDetails = v
+	return s
+}
+
+// SetKubernetesRoleBindingDetails sets the KubernetesRoleBindingDetails field's value.
+func (s *Action) SetKubernetesRoleBindingDetails(v *KubernetesRoleBindingDetails) *Action {
+	s.KubernetesRoleBindingDetails = v
+	return s
+}
+
+// SetKubernetesRoleDetails sets the KubernetesRoleDetails field's value.
+func (s *Action) SetKubernetesRoleDetails(v *KubernetesRoleDetails) *Action {
+	s.KubernetesRoleDetails = v
 	return s
 }
 
@@ -7340,6 +7369,130 @@ func (s *Administrator) SetInvitedAt(v string) *Administrator {
 // SetRelationshipStatus sets the RelationshipStatus field's value.
 func (s *Administrator) SetRelationshipStatus(v string) *Administrator {
 	s.RelationshipStatus = &v
+	return s
+}
+
+// Contains information about the anomalies.
+type Anomaly struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the types of profiles.
+	Profiles map[string]map[string][]*AnomalyObject `locationName:"profiles" type:"map"`
+
+	// Information about the behavior of the anomalies.
+	Unusual *AnomalyUnusual `locationName:"unusual" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) GoString() string {
+	return s.String()
+}
+
+// SetProfiles sets the Profiles field's value.
+func (s *Anomaly) SetProfiles(v map[string]map[string][]*AnomalyObject) *Anomaly {
+	s.Profiles = v
+	return s
+}
+
+// SetUnusual sets the Unusual field's value.
+func (s *Anomaly) SetUnusual(v *AnomalyUnusual) *Anomaly {
+	s.Unusual = v
+	return s
+}
+
+// Contains information about the unusual anomalies.
+type AnomalyObject struct {
+	_ struct{} `type:"structure"`
+
+	// The recorded value.
+	Observations *Observations `locationName:"observations" type:"structure"`
+
+	// The frequency of the anomaly.
+	ProfileSubtype *string `locationName:"profileSubtype" type:"string" enum:"ProfileSubtype"`
+
+	// The type of behavior of the profile.
+	ProfileType *string `locationName:"profileType" type:"string" enum:"ProfileType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyObject) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyObject) GoString() string {
+	return s.String()
+}
+
+// SetObservations sets the Observations field's value.
+func (s *AnomalyObject) SetObservations(v *Observations) *AnomalyObject {
+	s.Observations = v
+	return s
+}
+
+// SetProfileSubtype sets the ProfileSubtype field's value.
+func (s *AnomalyObject) SetProfileSubtype(v string) *AnomalyObject {
+	s.ProfileSubtype = &v
+	return s
+}
+
+// SetProfileType sets the ProfileType field's value.
+func (s *AnomalyObject) SetProfileType(v string) *AnomalyObject {
+	s.ProfileType = &v
+	return s
+}
+
+// Contains information about the behavior of the anomaly that is new to GuardDuty.
+type AnomalyUnusual struct {
+	_ struct{} `type:"structure"`
+
+	// The behavior of the anomalous activity that caused GuardDuty to generate
+	// the finding.
+	Behavior map[string]map[string]*AnomalyObject `locationName:"behavior" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyUnusual) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyUnusual) GoString() string {
+	return s.String()
+}
+
+// SetBehavior sets the Behavior field's value.
+func (s *AnomalyUnusual) SetBehavior(v map[string]map[string]*AnomalyObject) *AnomalyUnusual {
+	s.Behavior = v
 	return s
 }
 
@@ -8847,6 +9000,8 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.dnsRequestAction.domain
 	//
+	//    * service.action.dnsRequestAction.domainWithSuffix
+	//
 	//    * service.action.networkConnectionAction.blocked
 	//
 	//    * service.action.networkConnectionAction.connectionDirection
@@ -8871,7 +9026,13 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV4
 	//
+	//    * service.action.kubernetesApiCallAction.namespace
+	//
+	//    * service.action.kubernetesApiCallAction.remoteIpDetails.organization.asn
+	//
 	//    * service.action.kubernetesApiCallAction.requestUri
+	//
+	//    * service.action.kubernetesApiCallAction.statusCode
 	//
 	//    * service.action.networkConnectionAction.localIpDetails.ipAddressV4
 	//
@@ -11355,6 +11516,39 @@ func (s *DestinationProperties) SetDestinationArn(v string) *DestinationProperti
 // SetKmsKeyArn sets the KmsKeyArn field's value.
 func (s *DestinationProperties) SetKmsKeyArn(v string) *DestinationProperties {
 	s.KmsKeyArn = &v
+	return s
+}
+
+// Contains information about the detected behavior.
+type Detection struct {
+	_ struct{} `type:"structure"`
+
+	// The details about the anomalous activity that caused GuardDuty to generate
+	// the finding.
+	Anomaly *Anomaly `locationName:"anomaly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Detection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Detection) GoString() string {
+	return s.String()
+}
+
+// SetAnomaly sets the Anomaly field's value.
+func (s *Detection) SetAnomaly(v *Anomaly) *Detection {
+	s.Anomaly = v
 	return s
 }
 
@@ -14881,6 +15075,47 @@ func (s *IamInstanceProfile) SetId(v string) *IamInstanceProfile {
 	return s
 }
 
+// Contains information about the impersonated user.
+type ImpersonatedUser struct {
+	_ struct{} `type:"structure"`
+
+	// The group to which the user name belongs.
+	Groups []*string `locationName:"groups" type:"list"`
+
+	// Information about the username that was being impersonated.
+	Username *string `locationName:"username" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImpersonatedUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImpersonatedUser) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ImpersonatedUser) SetGroups(v []*string) *ImpersonatedUser {
+	s.Groups = v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *ImpersonatedUser) SetUsername(v string) *ImpersonatedUser {
+	s.Username = &v
+	return s
+}
+
 // Contains information about the details of an instance.
 type InstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -15276,6 +15511,9 @@ func (s *InviteMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *I
 type KubernetesApiCallAction struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the namespace where the Kubernetes API call action takes place.
+	Namespace *string `locationName:"namespace" type:"string"`
+
 	// Parameters related to the Kubernetes API call action.
 	Parameters *string `locationName:"parameters" type:"string"`
 
@@ -15285,12 +15523,21 @@ type KubernetesApiCallAction struct {
 	// The Kubernetes API request URI.
 	RequestUri *string `locationName:"requestUri" type:"string"`
 
+	// The resource component in the Kubernetes API call action.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The name of the resource in the Kubernetes API call action.
+	ResourceName *string `locationName:"resourceName" type:"string"`
+
 	// The IP of the Kubernetes API caller and the IPs of any proxies or load balancers
 	// between the caller and the API endpoint.
 	SourceIps []*string `locationName:"sourceIps" type:"list"`
 
 	// The resulting HTTP response code of the Kubernetes API call action.
 	StatusCode *int64 `locationName:"statusCode" type:"integer"`
+
+	// The name of the sub-resource in the Kubernetes API call action.
+	Subresource *string `locationName:"subresource" type:"string"`
 
 	// The user agent of the caller of the Kubernetes API.
 	UserAgent *string `locationName:"userAgent" type:"string"`
@@ -15317,6 +15564,12 @@ func (s KubernetesApiCallAction) GoString() string {
 	return s.String()
 }
 
+// SetNamespace sets the Namespace field's value.
+func (s *KubernetesApiCallAction) SetNamespace(v string) *KubernetesApiCallAction {
+	s.Namespace = &v
+	return s
+}
+
 // SetParameters sets the Parameters field's value.
 func (s *KubernetesApiCallAction) SetParameters(v string) *KubernetesApiCallAction {
 	s.Parameters = &v
@@ -15335,6 +15588,18 @@ func (s *KubernetesApiCallAction) SetRequestUri(v string) *KubernetesApiCallActi
 	return s
 }
 
+// SetResource sets the Resource field's value.
+func (s *KubernetesApiCallAction) SetResource(v string) *KubernetesApiCallAction {
+	s.Resource = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *KubernetesApiCallAction) SetResourceName(v string) *KubernetesApiCallAction {
+	s.ResourceName = &v
+	return s
+}
+
 // SetSourceIps sets the SourceIps field's value.
 func (s *KubernetesApiCallAction) SetSourceIps(v []*string) *KubernetesApiCallAction {
 	s.SourceIps = v
@@ -15344,6 +15609,12 @@ func (s *KubernetesApiCallAction) SetSourceIps(v []*string) *KubernetesApiCallAc
 // SetStatusCode sets the StatusCode field's value.
 func (s *KubernetesApiCallAction) SetStatusCode(v int64) *KubernetesApiCallAction {
 	s.StatusCode = &v
+	return s
+}
+
+// SetSubresource sets the Subresource field's value.
+func (s *KubernetesApiCallAction) SetSubresource(v string) *KubernetesApiCallAction {
+	s.Subresource = &v
 	return s
 }
 
@@ -15602,12 +15873,197 @@ func (s *KubernetesDetails) SetKubernetesWorkloadDetails(v *KubernetesWorkloadDe
 	return s
 }
 
+// Information about the Kubernetes API for which you check if you have permission
+// to call.
+type KubernetesPermissionCheckedDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information whether the user has the permission to call the Kubernetes API.
+	Allowed *bool `locationName:"allowed" type:"boolean"`
+
+	// The namespace where the Kubernetes API action will take place.
+	Namespace *string `locationName:"namespace" type:"string"`
+
+	// The Kubernetes resource with which your Kubernetes API call will interact.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The verb component of the Kubernetes API call. For example, when you check
+	// whether or not you have the permission to call the CreatePod API, the verb
+	// component will be Create.
+	Verb *string `locationName:"verb" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesPermissionCheckedDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesPermissionCheckedDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllowed sets the Allowed field's value.
+func (s *KubernetesPermissionCheckedDetails) SetAllowed(v bool) *KubernetesPermissionCheckedDetails {
+	s.Allowed = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *KubernetesPermissionCheckedDetails) SetNamespace(v string) *KubernetesPermissionCheckedDetails {
+	s.Namespace = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *KubernetesPermissionCheckedDetails) SetResource(v string) *KubernetesPermissionCheckedDetails {
+	s.Resource = &v
+	return s
+}
+
+// SetVerb sets the Verb field's value.
+func (s *KubernetesPermissionCheckedDetails) SetVerb(v string) *KubernetesPermissionCheckedDetails {
+	s.Verb = &v
+	return s
+}
+
+// Contains information about the role binding that grants the permission defined
+// in a Kubernetes role.
+type KubernetesRoleBindingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The kind of the role. For role binding, this value will be RoleBinding.
+	Kind *string `locationName:"kind" type:"string"`
+
+	// The name of the RoleBinding.
+	Name *string `locationName:"name" type:"string"`
+
+	// The type of the role being referenced. This could be either Role or ClusterRole.
+	RoleRefKind *string `locationName:"roleRefKind" type:"string"`
+
+	// The name of the role being referenced. This must match the name of the Role
+	// or ClusterRole that you want to bind to.
+	RoleRefName *string `locationName:"roleRefName" type:"string"`
+
+	// The unique identifier of the role binding.
+	Uid *string `locationName:"uid" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesRoleBindingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesRoleBindingDetails) GoString() string {
+	return s.String()
+}
+
+// SetKind sets the Kind field's value.
+func (s *KubernetesRoleBindingDetails) SetKind(v string) *KubernetesRoleBindingDetails {
+	s.Kind = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *KubernetesRoleBindingDetails) SetName(v string) *KubernetesRoleBindingDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRoleRefKind sets the RoleRefKind field's value.
+func (s *KubernetesRoleBindingDetails) SetRoleRefKind(v string) *KubernetesRoleBindingDetails {
+	s.RoleRefKind = &v
+	return s
+}
+
+// SetRoleRefName sets the RoleRefName field's value.
+func (s *KubernetesRoleBindingDetails) SetRoleRefName(v string) *KubernetesRoleBindingDetails {
+	s.RoleRefName = &v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *KubernetesRoleBindingDetails) SetUid(v string) *KubernetesRoleBindingDetails {
+	s.Uid = &v
+	return s
+}
+
+// Information about the Kubernetes role name and role type.
+type KubernetesRoleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The kind of role. For this API, the value of kind will be Role.
+	Kind *string `locationName:"kind" type:"string"`
+
+	// The name of the Kubernetes role.
+	Name *string `locationName:"name" type:"string"`
+
+	// The unique identifier of the Kubernetes role name.
+	Uid *string `locationName:"uid" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesRoleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesRoleDetails) GoString() string {
+	return s.String()
+}
+
+// SetKind sets the Kind field's value.
+func (s *KubernetesRoleDetails) SetKind(v string) *KubernetesRoleDetails {
+	s.Kind = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *KubernetesRoleDetails) SetName(v string) *KubernetesRoleDetails {
+	s.Name = &v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *KubernetesRoleDetails) SetUid(v string) *KubernetesRoleDetails {
+	s.Uid = &v
+	return s
+}
+
 // Details about the Kubernetes user involved in a Kubernetes finding.
 type KubernetesUserDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The groups that include the user who called the Kubernetes API.
 	Groups []*string `locationName:"groups" type:"list"`
+
+	// Information about the impersonated user.
+	ImpersonatedUser *ImpersonatedUser `locationName:"impersonatedUser" type:"structure"`
 
 	// Entity that assumes the IAM role when Kubernetes RBAC permissions are assigned
 	// to that role.
@@ -15644,6 +16100,12 @@ func (s *KubernetesUserDetails) SetGroups(v []*string) *KubernetesUserDetails {
 	return s
 }
 
+// SetImpersonatedUser sets the ImpersonatedUser field's value.
+func (s *KubernetesUserDetails) SetImpersonatedUser(v *ImpersonatedUser) *KubernetesUserDetails {
+	s.ImpersonatedUser = v
+	return s
+}
+
 // SetSessionName sets the SessionName field's value.
 func (s *KubernetesUserDetails) SetSessionName(v []*string) *KubernetesUserDetails {
 	s.SessionName = v
@@ -15669,14 +16131,23 @@ type KubernetesWorkloadDetails struct {
 	// Containers running as part of the Kubernetes workload.
 	Containers []*Container `locationName:"containers" type:"list"`
 
+	// Whether the host IPC flag is enabled for the pods in the workload.
+	HostIPC *bool `locationName:"hostIPC" type:"boolean"`
+
 	// Whether the hostNetwork flag is enabled for the pods included in the workload.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
+
+	// Whether the host PID flag is enabled for the pods in the workload.
+	HostPID *bool `locationName:"hostPID" type:"boolean"`
 
 	// Kubernetes workload name.
 	Name *string `locationName:"name" type:"string"`
 
 	// Kubernetes namespace that the workload is part of.
 	Namespace *string `locationName:"namespace" type:"string"`
+
+	// The service account name that is associated with a Kubernetes workload.
+	ServiceAccountName *string `locationName:"serviceAccountName" type:"string"`
 
 	// Kubernetes workload type (e.g. Pod, Deployment, etc.).
 	Type *string `locationName:"type" type:"string"`
@@ -15712,9 +16183,21 @@ func (s *KubernetesWorkloadDetails) SetContainers(v []*Container) *KubernetesWor
 	return s
 }
 
+// SetHostIPC sets the HostIPC field's value.
+func (s *KubernetesWorkloadDetails) SetHostIPC(v bool) *KubernetesWorkloadDetails {
+	s.HostIPC = &v
+	return s
+}
+
 // SetHostNetwork sets the HostNetwork field's value.
 func (s *KubernetesWorkloadDetails) SetHostNetwork(v bool) *KubernetesWorkloadDetails {
 	s.HostNetwork = &v
+	return s
+}
+
+// SetHostPID sets the HostPID field's value.
+func (s *KubernetesWorkloadDetails) SetHostPID(v bool) *KubernetesWorkloadDetails {
+	s.HostPID = &v
 	return s
 }
 
@@ -15727,6 +16210,12 @@ func (s *KubernetesWorkloadDetails) SetName(v string) *KubernetesWorkloadDetails
 // SetNamespace sets the Namespace field's value.
 func (s *KubernetesWorkloadDetails) SetNamespace(v string) *KubernetesWorkloadDetails {
 	s.Namespace = &v
+	return s
+}
+
+// SetServiceAccountName sets the ServiceAccountName field's value.
+func (s *KubernetesWorkloadDetails) SetServiceAccountName(v string) *KubernetesWorkloadDetails {
+	s.ServiceAccountName = &v
 	return s
 }
 
@@ -16853,6 +17342,9 @@ type ListMembersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of members.
+	//
+	// The values for email and invitedAt are available only if the member accounts
+	// are added by invitation.
 	Members []*Member `locationName:"members" type:"list"`
 
 	// The pagination parameter to be used on the next list operation to retrieve
@@ -18165,6 +18657,38 @@ func (s *NetworkInterface) SetSubnetId(v string) *NetworkInterface {
 // SetVpcId sets the VpcId field's value.
 func (s *NetworkInterface) SetVpcId(v string) *NetworkInterface {
 	s.VpcId = &v
+	return s
+}
+
+// Contains information about the observed behavior.
+type Observations struct {
+	_ struct{} `type:"structure"`
+
+	// The text that was unusual.
+	Text []*string `locationName:"text" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Observations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Observations) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *Observations) SetText(v []*string) *Observations {
+	s.Text = v
 	return s
 }
 
@@ -21112,6 +21636,10 @@ func (s *ScannedItemCount) SetVolumes(v int64) *ScannedItemCount {
 type SecurityContext struct {
 	_ struct{} `type:"structure"`
 
+	// Whether or not a container or a Kubernetes pod is allowed to gain more privileges
+	// than its parent process.
+	AllowPrivilegeEscalation *bool `locationName:"allowPrivilegeEscalation" type:"boolean"`
+
 	// Whether the container is privileged.
 	Privileged *bool `locationName:"privileged" type:"boolean"`
 }
@@ -21132,6 +21660,12 @@ func (s SecurityContext) String() string {
 // value will be replaced with "sensitive".
 func (s SecurityContext) GoString() string {
 	return s.String()
+}
+
+// SetAllowPrivilegeEscalation sets the AllowPrivilegeEscalation field's value.
+func (s *SecurityContext) SetAllowPrivilegeEscalation(v bool) *SecurityContext {
+	s.AllowPrivilegeEscalation = &v
+	return s
 }
 
 // SetPrivileged sets the Privileged field's value.
@@ -21196,6 +21730,9 @@ type Service struct {
 
 	// The total count of the occurrences of this finding type.
 	Count *int64 `locationName:"count" type:"integer"`
+
+	// Contains information about the detected unusual behavior.
+	Detection *Detection `locationName:"detection" type:"structure"`
 
 	// The detector ID for the GuardDuty service.
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
@@ -21271,6 +21808,12 @@ func (s *Service) SetArchived(v bool) *Service {
 // SetCount sets the Count field's value.
 func (s *Service) SetCount(v int64) *Service {
 	s.Count = &v
+	return s
+}
+
+// SetDetection sets the Detection field's value.
+func (s *Service) SetDetection(v *Detection) *Service {
+	s.Detection = v
 	return s
 }
 
@@ -24544,6 +25087,42 @@ func OrgFeatureStatus_Values() []string {
 		OrgFeatureStatusNew,
 		OrgFeatureStatusNone,
 		OrgFeatureStatusAll,
+	}
+}
+
+const (
+	// ProfileSubtypeFrequent is a ProfileSubtype enum value
+	ProfileSubtypeFrequent = "FREQUENT"
+
+	// ProfileSubtypeInfrequent is a ProfileSubtype enum value
+	ProfileSubtypeInfrequent = "INFREQUENT"
+
+	// ProfileSubtypeUnseen is a ProfileSubtype enum value
+	ProfileSubtypeUnseen = "UNSEEN"
+
+	// ProfileSubtypeRare is a ProfileSubtype enum value
+	ProfileSubtypeRare = "RARE"
+)
+
+// ProfileSubtype_Values returns all elements of the ProfileSubtype enum
+func ProfileSubtype_Values() []string {
+	return []string{
+		ProfileSubtypeFrequent,
+		ProfileSubtypeInfrequent,
+		ProfileSubtypeUnseen,
+		ProfileSubtypeRare,
+	}
+}
+
+const (
+	// ProfileTypeFrequency is a ProfileType enum value
+	ProfileTypeFrequency = "FREQUENCY"
+)
+
+// ProfileType_Values returns all elements of the ProfileType enum
+func ProfileType_Values() []string {
+	return []string{
+		ProfileTypeFrequency,
 	}
 }
 

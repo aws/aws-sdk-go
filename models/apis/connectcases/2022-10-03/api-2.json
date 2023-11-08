@@ -945,6 +945,7 @@
           "location":"uri",
           "locationName":"domainId"
         },
+        "performedBy":{"shape":"UserUnion"},
         "type":{"shape":"RelatedItemType"}
       }
     },
@@ -1986,6 +1987,7 @@
       "members":{
         "associationTime":{"shape":"AssociationTime"},
         "content":{"shape":"RelatedItemContent"},
+        "performedBy":{"shape":"UserUnion"},
         "relatedItemId":{"shape":"RelatedItemId"},
         "tags":{"shape":"Tags"},
         "type":{"shape":"RelatedItemType"}
@@ -2259,6 +2261,18 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UserArn":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "UserUnion":{
+      "type":"structure",
+      "members":{
+        "userArn":{"shape":"UserArn"}
+      },
+      "union":true
     },
     "ValidationException":{
       "type":"structure",

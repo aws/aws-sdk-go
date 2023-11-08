@@ -466,6 +466,7 @@
         "ConvertRecoveryPointToSnapshotRequest$retentionPeriod": "<p>How long to retain the snapshot.</p>",
         "CreateSnapshotRequest$retentionPeriod": "<p>How long to retain the created snapshot.</p>",
         "CreateWorkgroupRequest$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>",
+        "CreateWorkgroupRequest$maxCapacity": "<p>The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries. The max capacity is specified in RPUs.</p>",
         "CreateWorkgroupRequest$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>",
         "DeleteNamespaceRequest$finalSnapshotRetentionPeriod": "<p>How long to retain the final snapshot.</p>",
         "Endpoint$port": "<p>The port that Amazon Redshift Serverless listens on.</p>",
@@ -475,8 +476,10 @@
         "Snapshot$snapshotRetentionPeriod": "<p>The period of time, in days, of how long the snapshot is retained.</p>",
         "UpdateSnapshotRequest$retentionPeriod": "<p>The new retention period of the snapshot.</p>",
         "UpdateWorkgroupRequest$baseCapacity": "<p>The new base data warehouse capacity in Redshift Processing Units (RPUs).</p>",
+        "UpdateWorkgroupRequest$maxCapacity": "<p>The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries. The max capacity is specified in RPUs.</p>",
         "UpdateWorkgroupRequest$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>",
         "Workgroup$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>",
+        "Workgroup$maxCapacity": "<p>The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries. The max capacity is specified in RPUs.</p>",
         "Workgroup$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>"
       }
     },

@@ -2456,7 +2456,8 @@
       ],
       "members":{
         "enabled":{"shape":"Boolean"},
-        "destination":{"shape":"AudioLogDestination"}
+        "destination":{"shape":"AudioLogDestination"},
+        "selectiveLoggingEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "AudioLogSettingsList":{
@@ -8014,7 +8015,8 @@
       ],
       "members":{
         "enabled":{"shape":"Boolean"},
-        "destination":{"shape":"TextLogDestination"}
+        "destination":{"shape":"TextLogDestination"},
+        "selectiveLoggingEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "TextLogSettingsList":{

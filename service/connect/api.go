@@ -55261,7 +55261,9 @@ type SearchUsersInput struct {
 	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceID is a required field. The "Required: No" below is incorrect.
-	InstanceId *string `min:"1" type:"string"`
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -55302,6 +55304,9 @@ func (s SearchUsersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SearchUsersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SearchUsersInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
 	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
 	}

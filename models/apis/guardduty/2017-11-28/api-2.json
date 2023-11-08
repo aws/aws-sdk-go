@@ -1181,6 +1181,18 @@
         "RdsLoginAttemptAction":{
           "shape":"RdsLoginAttemptAction",
           "locationName":"rdsLoginAttemptAction"
+        },
+        "KubernetesPermissionCheckedDetails":{
+          "shape":"KubernetesPermissionCheckedDetails",
+          "locationName":"kubernetesPermissionCheckedDetails"
+        },
+        "KubernetesRoleBindingDetails":{
+          "shape":"KubernetesRoleBindingDetails",
+          "locationName":"kubernetesRoleBindingDetails"
+        },
+        "KubernetesRoleDetails":{
+          "shape":"KubernetesRoleDetails",
+          "locationName":"kubernetesRoleDetails"
         }
       }
     },
@@ -1250,6 +1262,64 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
+    },
+    "Anomaly":{
+      "type":"structure",
+      "members":{
+        "Profiles":{
+          "shape":"AnomalyProfiles",
+          "locationName":"profiles"
+        },
+        "Unusual":{
+          "shape":"AnomalyUnusual",
+          "locationName":"unusual"
+        }
+      }
+    },
+    "AnomalyObject":{
+      "type":"structure",
+      "members":{
+        "ProfileType":{
+          "shape":"ProfileType",
+          "locationName":"profileType"
+        },
+        "ProfileSubtype":{
+          "shape":"ProfileSubtype",
+          "locationName":"profileSubtype"
+        },
+        "Observations":{
+          "shape":"Observations",
+          "locationName":"observations"
+        }
+      }
+    },
+    "AnomalyProfileFeatureObjects":{
+      "type":"list",
+      "member":{"shape":"AnomalyObject"}
+    },
+    "AnomalyProfileFeatures":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyProfileFeatureObjects"}
+    },
+    "AnomalyProfiles":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyProfileFeatures"}
+    },
+    "AnomalyUnusual":{
+      "type":"structure",
+      "members":{
+        "Behavior":{
+          "shape":"Behavior",
+          "locationName":"behavior"
+        }
+      }
+    },
+    "AnomalyUnusualBehaviorFeature":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyObject"}
     },
     "ArchiveFindingsRequest":{
       "type":"structure",
@@ -1337,6 +1407,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Behavior":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AnomalyUnusualBehaviorFeature"}
     },
     "BlockPublicAccess":{
       "type":"structure",
@@ -2552,6 +2627,15 @@
     "Destinations":{
       "type":"list",
       "member":{"shape":"Destination"}
+    },
+    "Detection":{
+      "type":"structure",
+      "members":{
+        "Anomaly":{
+          "shape":"Anomaly",
+          "locationName":"anomaly"
+        }
+      }
     },
     "DetectorAdditionalConfiguration":{
       "type":"structure",
@@ -3881,6 +3965,19 @@
         }
       }
     },
+    "ImpersonatedUser":{
+      "type":"structure",
+      "members":{
+        "Username":{
+          "shape":"String",
+          "locationName":"username"
+        },
+        "Groups":{
+          "shape":"Groups",
+          "locationName":"groups"
+        }
+      }
+    },
     "InstanceArn":{
       "type":"string",
       "pattern":"^arn:(aws|aws-cn|aws-us-gov):[a-z]+:[a-z]+(-[0-9]+|-[a-z]+)+:([0-9]{12}):[a-z\\-]+\\/[a-zA-Z0-9]*$"
@@ -4093,6 +4190,22 @@
         "Parameters":{
           "shape":"String",
           "locationName":"parameters"
+        },
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "Subresource":{
+          "shape":"String",
+          "locationName":"subresource"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "ResourceName":{
+          "shape":"String",
+          "locationName":"resourceName"
         }
       }
     },
@@ -4158,6 +4271,69 @@
         }
       }
     },
+    "KubernetesPermissionCheckedDetails":{
+      "type":"structure",
+      "members":{
+        "Verb":{
+          "shape":"String",
+          "locationName":"verb"
+        },
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "Allowed":{
+          "shape":"Boolean",
+          "locationName":"allowed"
+        }
+      }
+    },
+    "KubernetesRoleBindingDetails":{
+      "type":"structure",
+      "members":{
+        "Kind":{
+          "shape":"String",
+          "locationName":"kind"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "RoleRefName":{
+          "shape":"String",
+          "locationName":"roleRefName"
+        },
+        "RoleRefKind":{
+          "shape":"String",
+          "locationName":"roleRefKind"
+        }
+      }
+    },
+    "KubernetesRoleDetails":{
+      "type":"structure",
+      "members":{
+        "Kind":{
+          "shape":"String",
+          "locationName":"kind"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        }
+      }
+    },
     "KubernetesUserDetails":{
       "type":"structure",
       "members":{
@@ -4176,6 +4352,10 @@
         "SessionName":{
           "shape":"SessionNameList",
           "locationName":"sessionName"
+        },
+        "ImpersonatedUser":{
+          "shape":"ImpersonatedUser",
+          "locationName":"impersonatedUser"
         }
       }
     },
@@ -4209,6 +4389,18 @@
         "Volumes":{
           "shape":"Volumes",
           "locationName":"volumes"
+        },
+        "ServiceAccountName":{
+          "shape":"String",
+          "locationName":"serviceAccountName"
+        },
+        "HostIPC":{
+          "shape":"Boolean",
+          "locationName":"hostIPC"
+        },
+        "HostPID":{
+          "shape":"Boolean",
+          "locationName":"hostPID"
         }
       }
     },
@@ -5050,6 +5242,19 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ObservationTexts":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Observations":{
+      "type":"structure",
+      "members":{
+        "Text":{
+          "shape":"ObservationTexts",
+          "locationName":"text"
+        }
+      }
+    },
     "OrderBy":{
       "type":"string",
       "enum":[
@@ -5476,6 +5681,19 @@
     "ProductCodes":{
       "type":"list",
       "member":{"shape":"ProductCode"}
+    },
+    "ProfileSubtype":{
+      "type":"string",
+      "enum":[
+        "FREQUENT",
+        "INFREQUENT",
+        "UNSEEN",
+        "RARE"
+      ]
+    },
+    "ProfileType":{
+      "type":"string",
+      "enum":["FREQUENCY"]
     },
     "PublicAccess":{
       "type":"structure",
@@ -6104,6 +6322,10 @@
         "Privileged":{
           "shape":"Boolean",
           "locationName":"privileged"
+        },
+        "AllowPrivilegeEscalation":{
+          "shape":"Boolean",
+          "locationName":"allowPrivilegeEscalation"
         }
       }
     },
@@ -6182,6 +6404,10 @@
         "RuntimeDetails":{
           "shape":"RuntimeDetails",
           "locationName":"runtimeDetails"
+        },
+        "Detection":{
+          "shape":"Detection",
+          "locationName":"detection"
         }
       }
     },

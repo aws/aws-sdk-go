@@ -2381,7 +2381,9 @@
       "base": null,
       "refs": {
         "GetRunResponse$outputUri": "<p>The run's output URI.</p>",
-        "StartRunRequest$outputUri": "<p>An output URI for the run.</p>"
+        "GetRunResponse$runOutputUri": "<p> The destination for workflow outputs. </p>",
+        "StartRunRequest$outputUri": "<p>An output URI for the run.</p>",
+        "StartRunResponse$runOutputUri": "<p> The destination for workflow outputs. </p>"
       }
     },
     "RunParameters": {
@@ -2459,6 +2461,13 @@
         "RunListItem$creationTime": "<p>When the run was created.</p>",
         "RunListItem$startTime": "<p>When the run started.</p>",
         "RunListItem$stopTime": "<p>When the run stopped.</p>"
+      }
+    },
+    "RunUuid": {
+      "base": null,
+      "refs": {
+        "GetRunResponse$uuid": "<p> The universally unique identifier for a run. </p>",
+        "StartRunResponse$uuid": "<p> The universally unique identifier for a run. </p>"
       }
     },
     "S3Destination": {
