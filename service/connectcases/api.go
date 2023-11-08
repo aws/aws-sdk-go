@@ -685,10 +685,17 @@ func (c *ConnectCases) CreateRelatedItemRequest(input *CreateRelatedItemInput) (
 // Creates a related item (comments, tasks, and contacts) and associates it
 // with a case.
 //
-// A Related Item is a resource that is associated with a case. It may or may
-// not have an external identifier linking it to an external resource (for example,
-// a contactArn). All Related Items have their own internal identifier, the
-// relatedItemArn. Examples of related items include comments and contacts.
+//   - A Related Item is a resource that is associated with a case. It may
+//     or may not have an external identifier linking it to an external resource
+//     (for example, a contactArn). All Related Items have their own internal
+//     identifier, the relatedItemArn. Examples of related items include comments
+//     and contacts.
+//
+//   - If you provide a value for performedBy.userArn you must also have DescribeUser
+//     (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html)
+//     permission on the ARN of the user that you provide.
+//
+//     </note>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4904,6 +4911,9 @@ type CreateRelatedItemInput struct {
 	// DomainId is a required field
 	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
 
+	// Represents the creator of the related item.
+	PerformedBy *UserUnion `locationName:"performedBy" type:"structure"`
+
 	// The type of a related item.
 	//
 	// Type is a required field
@@ -4954,6 +4964,11 @@ func (s *CreateRelatedItemInput) Validate() error {
 			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PerformedBy != nil {
+		if err := s.PerformedBy.Validate(); err != nil {
+			invalidParams.AddNested("PerformedBy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4976,6 +4991,12 @@ func (s *CreateRelatedItemInput) SetContent(v *RelatedItemInputContent) *CreateR
 // SetDomainId sets the DomainId field's value.
 func (s *CreateRelatedItemInput) SetDomainId(v string) *CreateRelatedItemInput {
 	s.DomainId = &v
+	return s
+}
+
+// SetPerformedBy sets the PerformedBy field's value.
+func (s *CreateRelatedItemInput) SetPerformedBy(v *UserUnion) *CreateRelatedItemInput {
+	s.PerformedBy = v
 	return s
 }
 
@@ -8846,6 +8867,9 @@ type SearchRelatedItemsResponseItem struct {
 	// Content is a required field
 	Content *RelatedItemContent `locationName:"content" type:"structure" required:"true"`
 
+	// Represents the creator of the related item.
+	PerformedBy *UserUnion `locationName:"performedBy" type:"structure"`
+
 	// Unique identifier of a related item.
 	//
 	// RelatedItemId is a required field
@@ -8888,6 +8912,12 @@ func (s *SearchRelatedItemsResponseItem) SetAssociationTime(v time.Time) *Search
 // SetContent sets the Content field's value.
 func (s *SearchRelatedItemsResponseItem) SetContent(v *RelatedItemContent) *SearchRelatedItemsResponseItem {
 	s.Content = v
+	return s
+}
+
+// SetPerformedBy sets the PerformedBy field's value.
+func (s *SearchRelatedItemsResponseItem) SetPerformedBy(v *UserUnion) *SearchRelatedItemsResponseItem {
+	s.PerformedBy = v
 	return s
 }
 
@@ -9875,6 +9905,51 @@ func (s UpdateTemplateOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// Represents the identity of the person who performed the action.
+type UserUnion struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the Amazon Connect ARN of the user.
+	UserArn *string `locationName:"userArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserUnion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserUnion) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserUnion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserUnion"}
+	if s.UserArn != nil && len(*s.UserArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserArn sets the UserArn field's value.
+func (s *UserUnion) SetUserArn(v string) *UserUnion {
+	s.UserArn = &v
+	return s
 }
 
 // The request isn't valid. Check the syntax and try again.

@@ -20196,14 +20196,18 @@ type CreateCustomDBEngineVersionInput struct {
 	// in the Amazon RDS User Guide.
 	Manifest *string `min:"1" type:"string"`
 
-	// Reserved for future use.
+	// The ARN of a CEV to use as a source for creating a new CEV. You can specify
+	// a different Amazon Machine Imagine (AMI) by using either Source or UseAwsProvidedLatestImage.
+	// You can't specify a different JSON manifest when you specify SourceCustomDbEngineVersionIdentifier.
 	SourceCustomDbEngineVersionIdentifier *string `min:"1" type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// Reserved for future use.
+	// Specifies whether to use the latest service-provided Amazon Machine Image
+	// (AMI) for the CEV. If you specify UseAwsProvidedLatestImage, you can't also
+	// specify ImageId.
 	UseAwsProvidedLatestImage *bool `type:"boolean"`
 }
 

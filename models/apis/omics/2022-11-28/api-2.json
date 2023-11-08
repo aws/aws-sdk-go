@@ -5631,6 +5631,9 @@
         "runId": {
           "shape": "RunId"
         },
+        "runOutputUri": {
+          "shape": "RunOutputUri"
+        },
         "startTime": {
           "shape": "RunTimestamp"
         },
@@ -5651,6 +5654,9 @@
         },
         "tags": {
           "shape": "TagMap"
+        },
+        "uuid": {
+          "shape": "RunUuid"
         },
         "workflowId": {
           "shape": "WorkflowId"
@@ -8289,6 +8295,12 @@
       "timestampFormat": "iso8601",
       "type": "timestamp"
     },
+    "RunUuid": {
+      "max": 128,
+      "min": 1,
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
+    },
     "S3Destination": {
       "pattern": "s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/?((.{1,1024})/)?",
       "type": "string"
@@ -8945,11 +8957,17 @@
         "id": {
           "shape": "RunId"
         },
+        "runOutputUri": {
+          "shape": "RunOutputUri"
+        },
         "status": {
           "shape": "RunStatus"
         },
         "tags": {
           "shape": "TagMap"
+        },
+        "uuid": {
+          "shape": "RunUuid"
         }
       },
       "type": "structure"

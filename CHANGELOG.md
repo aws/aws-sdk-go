@@ -1,3 +1,23 @@
+Release v1.47.6 (2023-11-08)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/connectcases`: Updates service API and documentation
+* `service/datasync`: Updates service API
+* `service/guardduty`: Updates service API and documentation
+  * Added API support for new GuardDuty EKS Audit Log finding types.
+* `service/lambda`: Updates service API and documentation
+  * Add Node 20 (nodejs20.x) support to AWS Lambda.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/omics`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This Amazon RDS release adds support for patching the OS of an RDS Custom for Oracle DB instance. You can now upgrade the database or operating system using the modify-db-instance command.
+* `service/redshift-serverless`: Updates service API and documentation
+* `service/resiliencehub`: Updates service API and documentation
+* `service/sqs`: Updates service API, documentation, and paginators
+  * This release enables customers to call SQS using AWS JSON-1.0 protocol.
+
 Release v1.47.5 (2023-11-07)
 ===
 

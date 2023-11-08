@@ -3254,8 +3254,10 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 // Invoke API operation for AWS Lambda.
 //
 // Invokes a Lambda function. You can invoke a function synchronously (and wait
-// for the response), or asynchronously. To invoke a function asynchronously,
-// set InvocationType to Event.
+// for the response), or asynchronously. By default, Lambda invokes your function
+// synchronously (i.e. theInvocationType is RequestResponse). To invoke a function
+// asynchronously, set InvocationType to Event. Lambda passes the ClientContext
+// object to your function for synchronous invocations only.
 //
 // For synchronous invocation (https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html),
 // details about the function response, including errors, are included in the
@@ -3485,6 +3487,10 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 // For asynchronous function invocation, use Invoke.
 //
 // Invokes a function asynchronously.
+//
+// If you do use the InvokeAsync action, note that it doesn't support the use
+// of X-Ray active tracing. Trace ID is not propagated to the function, even
+// if X-Ray active tracing is turned on.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9225,7 +9231,8 @@ type CreateFunctionInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB.
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.
@@ -11411,7 +11418,8 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 }
 
 // The size of the function's /tmp directory in MB. The default value is 512,
-// but it can be any whole number between 512 and 10,240 MB.
+// but can be any whole number between 512 and 10,240 MB. For more information,
+// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
@@ -12090,8 +12098,9 @@ type FunctionConfiguration struct {
 	// Omitted from CloudTrail logs.
 	Environment *EnvironmentResponse `type:"structure"`
 
-	// The size of the function’s /tmp directory in MB. The default value is 512,
-	// but it can be any whole number between 512 and 10,240 MB.
+	// The size of the function's /tmp directory in MB. The default value is 512,
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
@@ -21788,7 +21797,8 @@ type UpdateFunctionConfigurationInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB.
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.
@@ -22998,6 +23008,9 @@ const (
 
 	// RuntimePython311 is a Runtime enum value
 	RuntimePython311 = "python3.11"
+
+	// RuntimeNodejs20X is a Runtime enum value
+	RuntimeNodejs20X = "nodejs20.x"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -23035,6 +23048,7 @@ func Runtime_Values() []string {
 		RuntimeJava17,
 		RuntimeRuby32,
 		RuntimePython311,
+		RuntimeNodejs20X,
 	}
 }
 

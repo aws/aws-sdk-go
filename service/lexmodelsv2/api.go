@@ -13368,6 +13368,9 @@ type AudioLogSetting struct {
 	//
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// The option to enable selective conversation log capture for audio.
+	SelectiveLoggingEnabled *bool `locationName:"selectiveLoggingEnabled" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13418,6 +13421,12 @@ func (s *AudioLogSetting) SetDestination(v *AudioLogDestination) *AudioLogSettin
 // SetEnabled sets the Enabled field's value.
 func (s *AudioLogSetting) SetEnabled(v bool) *AudioLogSetting {
 	s.Enabled = &v
+	return s
+}
+
+// SetSelectiveLoggingEnabled sets the SelectiveLoggingEnabled field's value.
+func (s *AudioLogSetting) SetSelectiveLoggingEnabled(v bool) *AudioLogSetting {
+	s.SelectiveLoggingEnabled = &v
 	return s
 }
 
@@ -40756,6 +40765,9 @@ type TextLogSetting struct {
 	//
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// The option to enable selective conversation log capture for text.
+	SelectiveLoggingEnabled *bool `locationName:"selectiveLoggingEnabled" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -40806,6 +40818,12 @@ func (s *TextLogSetting) SetDestination(v *TextLogDestination) *TextLogSetting {
 // SetEnabled sets the Enabled field's value.
 func (s *TextLogSetting) SetEnabled(v bool) *TextLogSetting {
 	s.Enabled = &v
+	return s
+}
+
+// SetSelectiveLoggingEnabled sets the SelectiveLoggingEnabled field's value.
+func (s *TextLogSetting) SetSelectiveLoggingEnabled(v bool) *TextLogSetting {
+	s.SelectiveLoggingEnabled = &v
 	return s
 }
 

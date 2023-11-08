@@ -1030,6 +1030,7 @@
         "name":{"shape":"String500"},
         "prerequisite":{"shape":"String500"},
         "recommendationId":{"shape":"Uuid"},
+        "recommendationStatus":{"shape":"RecommendationStatus"},
         "referenceId":{"shape":"SpecReferenceId"},
         "type":{"shape":"AlarmType"}
       }
@@ -2705,6 +2706,7 @@
         "terraformSourceName":{"shape":"String255"}
       }
     },
+    "Long":{"type":"long"},
     "LongOptional":{
       "type":"long",
       "box":true
@@ -2859,6 +2861,15 @@
       "type":"list",
       "member":{"shape":"RecommendationItem"}
     },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "Implemented",
+        "Inactive",
+        "NotImplemented",
+        "Excluded"
+      ]
+    },
     "RecommendationTemplate":{
       "type":"structure",
       "required":[
@@ -2975,9 +2986,19 @@
         "score"
       ],
       "members":{
+        "componentScore":{"shape":"ScoringComponentResiliencyScores"},
         "disruptionScore":{"shape":"DisruptionResiliencyScore"},
         "score":{"shape":"Double"}
       }
+    },
+    "ResiliencyScoreType":{
+      "type":"string",
+      "enum":[
+        "Compliance",
+        "Test",
+        "Alarm",
+        "Sop"
+      ]
     },
     "ResolveAppVersionResourcesRequest":{
       "type":"structure",
@@ -3126,6 +3147,20 @@
       "min":0,
       "pattern":"^((https://([^/]+)\\.s3((-|\\.)[^/]+)?\\.amazonaws\\.com(.cn)?)|(s3://([^/]+)))/\\S{1,2000}$"
     },
+    "ScoringComponentResiliencyScore":{
+      "type":"structure",
+      "members":{
+        "excludedCount":{"shape":"Long"},
+        "outstandingCount":{"shape":"Long"},
+        "possibleScore":{"shape":"Double"},
+        "score":{"shape":"Double"}
+      }
+    },
+    "ScoringComponentResiliencyScores":{
+      "type":"map",
+      "key":{"shape":"ResiliencyScoreType"},
+      "value":{"shape":"ScoringComponentResiliencyScore"}
+    },
     "Seconds":{
       "type":"integer",
       "min":0
@@ -3155,6 +3190,7 @@
         "name":{"shape":"DocumentName"},
         "prerequisite":{"shape":"String500"},
         "recommendationId":{"shape":"Uuid"},
+        "recommendationStatus":{"shape":"RecommendationStatus"},
         "referenceId":{"shape":"SpecReferenceId"},
         "serviceType":{"shape":"SopServiceType"}
       }
@@ -3306,6 +3342,7 @@
         "name":{"shape":"DocumentName"},
         "prerequisite":{"shape":"String500"},
         "recommendationId":{"shape":"Uuid"},
+        "recommendationStatus":{"shape":"RecommendationStatus"},
         "referenceId":{"shape":"SpecReferenceId"},
         "risk":{"shape":"TestRisk"},
         "type":{"shape":"TestType"}

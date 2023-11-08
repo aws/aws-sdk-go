@@ -5608,6 +5608,10 @@ type CreateWorkgroupInput struct {
 	// your VPC instead of over the internet.
 	EnhancedVpcRouting *bool `locationName:"enhancedVpcRouting" type:"boolean"`
 
+	// The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve
+	// queries. The max capacity is specified in RPUs.
+	MaxCapacity *int64 `locationName:"maxCapacity" type:"integer"`
+
 	// The name of the namespace to associate with the workgroup.
 	//
 	// NamespaceName is a required field
@@ -5701,6 +5705,12 @@ func (s *CreateWorkgroupInput) SetConfigParameters(v []*ConfigParameter) *Create
 // SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
 func (s *CreateWorkgroupInput) SetEnhancedVpcRouting(v bool) *CreateWorkgroupInput {
 	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *CreateWorkgroupInput) SetMaxCapacity(v int64) *CreateWorkgroupInput {
+	s.MaxCapacity = &v
 	return s
 }
 
@@ -11071,6 +11081,10 @@ type UpdateWorkgroupInput struct {
 	// your VPC.
 	EnhancedVpcRouting *bool `locationName:"enhancedVpcRouting" type:"boolean"`
 
+	// The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve
+	// queries. The max capacity is specified in RPUs.
+	MaxCapacity *int64 `locationName:"maxCapacity" type:"integer"`
+
 	// The custom port to use when connecting to a workgroup. Valid port ranges
 	// are 5431-5455 and 8191-8215. The default is 5439.
 	Port *int64 `locationName:"port" type:"integer"`
@@ -11141,6 +11155,12 @@ func (s *UpdateWorkgroupInput) SetConfigParameters(v []*ConfigParameter) *Update
 // SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
 func (s *UpdateWorkgroupInput) SetEnhancedVpcRouting(v bool) *UpdateWorkgroupInput {
 	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *UpdateWorkgroupInput) SetMaxCapacity(v int64) *UpdateWorkgroupInput {
+	s.MaxCapacity = &v
 	return s
 }
 
@@ -11491,6 +11511,10 @@ type Workgroup struct {
 	// your VPC.
 	EnhancedVpcRouting *bool `locationName:"enhancedVpcRouting" type:"boolean"`
 
+	// The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve
+	// queries. The max capacity is specified in RPUs.
+	MaxCapacity *int64 `locationName:"maxCapacity" type:"integer"`
+
 	// The namespace the workgroup is associated with.
 	NamespaceName *string `locationName:"namespaceName" type:"string"`
 
@@ -11594,6 +11618,12 @@ func (s *Workgroup) SetEndpoint(v *Endpoint) *Workgroup {
 // SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
 func (s *Workgroup) SetEnhancedVpcRouting(v bool) *Workgroup {
 	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *Workgroup) SetMaxCapacity(v int64) *Workgroup {
+	s.MaxCapacity = &v
 	return s
 }
 
