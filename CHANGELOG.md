@@ -1,3 +1,10 @@
+Release v1.47.7 (2023-11-09)
+===
+
+### Service Client Updates
+* `service/sqs`: Updates service API and documentation
+  * This release enables customers to call SQS using AWS JSON-1.0 protocol and bug fix.
+
 Release v1.47.6 (2023-11-08)
 ===
 

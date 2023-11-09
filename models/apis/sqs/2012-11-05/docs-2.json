@@ -661,6 +661,7 @@
         "ListDeadLetterSourceQueuesRequest$QueueUrl": "<p>The URL of a dead-letter queue.</p> <p>Queue URLs and names are case-sensitive.</p>",
         "ListMessageMoveTasksRequest$SourceArn": "<p>The ARN of the queue whose message movement tasks are to be listed.</p>",
         "ListMessageMoveTasksResultEntry$TaskHandle": "<p>An identifier associated with a message movement task. When this field is returned in the response of the <code>ListMessageMoveTasks</code> action, it is only populated for tasks that are in RUNNING status.</p>",
+        "ListMessageMoveTasksResultEntry$Status": "<p>The status of the message movement task. Possible values are: RUNNING, COMPLETED, CANCELLING, CANCELLED, and FAILED.</p>",
         "ListMessageMoveTasksResultEntry$SourceArn": "<p>The ARN of the queue that contains the messages to be moved to another queue.</p>",
         "ListMessageMoveTasksResultEntry$DestinationArn": "<p>The ARN of the destination queue if it has been specified in the <code>StartMessageMoveTask</code> request. If a <code>DestinationArn</code> has not been specified in the <code>StartMessageMoveTask</code> request, this field value will be NULL.</p>",
         "ListMessageMoveTasksResultEntry$FailureReason": "<p>The task failure reason (only included if the task status is FAILED).</p>",
@@ -750,12 +751,6 @@
       "base": null,
       "refs": {
         "TagMap$value": null
-      }
-    },
-    "TaskStatus": {
-      "base": null,
-      "refs": {
-        "ListMessageMoveTasksResultEntry$Status": "<p>The status of the message movement task. Possible values are: RUNNING, COMPLETED, CANCELLING, CANCELLED, and FAILED.</p>"
       }
     },
     "Token": {

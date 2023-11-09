@@ -6158,7 +6158,7 @@ type ListMessageMoveTasksResultEntry struct {
 
 	// The status of the message movement task. Possible values are: RUNNING, COMPLETED,
 	// CANCELLING, CANCELLED, and FAILED.
-	Status *string `type:"string" enum:"TaskStatus"`
+	Status *string `type:"string"`
 
 	// An identifier associated with a message movement task. When this field is
 	// returned in the response of the ListMessageMoveTasks action, it is only populated
@@ -9325,33 +9325,5 @@ func QueueAttributeName_Values() []string {
 		QueueAttributeNameFifoThroughputLimit,
 		QueueAttributeNameRedriveAllowPolicy,
 		QueueAttributeNameSqsManagedSseEnabled,
-	}
-}
-
-const (
-	// TaskStatusRunning is a TaskStatus enum value
-	TaskStatusRunning = "RUNNING"
-
-	// TaskStatusFailed is a TaskStatus enum value
-	TaskStatusFailed = "FAILED"
-
-	// TaskStatusCancelling is a TaskStatus enum value
-	TaskStatusCancelling = "CANCELLING"
-
-	// TaskStatusCancelled is a TaskStatus enum value
-	TaskStatusCancelled = "CANCELLED"
-
-	// TaskStatusCompleted is a TaskStatus enum value
-	TaskStatusCompleted = "COMPLETED"
-)
-
-// TaskStatus_Values returns all elements of the TaskStatus enum
-func TaskStatus_Values() []string {
-	return []string{
-		TaskStatusRunning,
-		TaskStatusFailed,
-		TaskStatusCancelling,
-		TaskStatusCancelled,
-		TaskStatusCompleted,
 	}
 }
