@@ -1,3 +1,22 @@
+Release v1.47.8 (2023-11-09)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Added new ConcurrencyMode feature for AWS CloudFormation StackSets for faster deployments to target accounts.
+* `service/cloudtrail`: Updates service API and documentation
+  * The Insights in Lake feature lets customers enable CloudTrail Insights on a source CloudTrail Lake event data store and create a destination event data store to collect Insights events based on unusual management event activity in the source event data store.
+* `service/comprehend`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * AWS EBS now supports Block Public Access for EBS Snapshots. This release introduces the EnableSnapshotBlockPublicAccess, DisableSnapshotBlockPublicAccess and GetSnapshotBlockPublicAccessState APIs to manage account-level public access settings for EBS Snapshots in an AWS Region.
+* `service/eks`: Updates service API and documentation
+* `service/lambda`: Updates service API
+  * Add Custom runtime on Amazon Linux 2023 (provided.al2023) support to AWS Lambda.
+* `service/logs`: Updates service API, documentation, and paginators
+  * Update to support new APIs for delivery of logs from AWS services.
+* `service/omics`: Updates service API and documentation
+
 Release v1.47.7 (2023-11-09)
 ===
 

@@ -76,6 +76,10 @@ type EKSAPI interface {
 	CreateClusterWithContext(aws.Context, *eks.CreateClusterInput, ...request.Option) (*eks.CreateClusterOutput, error)
 	CreateClusterRequest(*eks.CreateClusterInput) (*request.Request, *eks.CreateClusterOutput)
 
+	CreateEksAnywhereSubscription(*eks.CreateEksAnywhereSubscriptionInput) (*eks.CreateEksAnywhereSubscriptionOutput, error)
+	CreateEksAnywhereSubscriptionWithContext(aws.Context, *eks.CreateEksAnywhereSubscriptionInput, ...request.Option) (*eks.CreateEksAnywhereSubscriptionOutput, error)
+	CreateEksAnywhereSubscriptionRequest(*eks.CreateEksAnywhereSubscriptionInput) (*request.Request, *eks.CreateEksAnywhereSubscriptionOutput)
+
 	CreateFargateProfile(*eks.CreateFargateProfileInput) (*eks.CreateFargateProfileOutput, error)
 	CreateFargateProfileWithContext(aws.Context, *eks.CreateFargateProfileInput, ...request.Option) (*eks.CreateFargateProfileOutput, error)
 	CreateFargateProfileRequest(*eks.CreateFargateProfileInput) (*request.Request, *eks.CreateFargateProfileOutput)
@@ -91,6 +95,10 @@ type EKSAPI interface {
 	DeleteCluster(*eks.DeleteClusterInput) (*eks.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *eks.DeleteClusterInput, ...request.Option) (*eks.DeleteClusterOutput, error)
 	DeleteClusterRequest(*eks.DeleteClusterInput) (*request.Request, *eks.DeleteClusterOutput)
+
+	DeleteEksAnywhereSubscription(*eks.DeleteEksAnywhereSubscriptionInput) (*eks.DeleteEksAnywhereSubscriptionOutput, error)
+	DeleteEksAnywhereSubscriptionWithContext(aws.Context, *eks.DeleteEksAnywhereSubscriptionInput, ...request.Option) (*eks.DeleteEksAnywhereSubscriptionOutput, error)
+	DeleteEksAnywhereSubscriptionRequest(*eks.DeleteEksAnywhereSubscriptionInput) (*request.Request, *eks.DeleteEksAnywhereSubscriptionOutput)
 
 	DeleteFargateProfile(*eks.DeleteFargateProfileInput) (*eks.DeleteFargateProfileOutput, error)
 	DeleteFargateProfileWithContext(aws.Context, *eks.DeleteFargateProfileInput, ...request.Option) (*eks.DeleteFargateProfileOutput, error)
@@ -122,6 +130,10 @@ type EKSAPI interface {
 	DescribeCluster(*eks.DescribeClusterInput) (*eks.DescribeClusterOutput, error)
 	DescribeClusterWithContext(aws.Context, *eks.DescribeClusterInput, ...request.Option) (*eks.DescribeClusterOutput, error)
 	DescribeClusterRequest(*eks.DescribeClusterInput) (*request.Request, *eks.DescribeClusterOutput)
+
+	DescribeEksAnywhereSubscription(*eks.DescribeEksAnywhereSubscriptionInput) (*eks.DescribeEksAnywhereSubscriptionOutput, error)
+	DescribeEksAnywhereSubscriptionWithContext(aws.Context, *eks.DescribeEksAnywhereSubscriptionInput, ...request.Option) (*eks.DescribeEksAnywhereSubscriptionOutput, error)
+	DescribeEksAnywhereSubscriptionRequest(*eks.DescribeEksAnywhereSubscriptionInput) (*request.Request, *eks.DescribeEksAnywhereSubscriptionOutput)
 
 	DescribeFargateProfile(*eks.DescribeFargateProfileInput) (*eks.DescribeFargateProfileOutput, error)
 	DescribeFargateProfileWithContext(aws.Context, *eks.DescribeFargateProfileInput, ...request.Option) (*eks.DescribeFargateProfileOutput, error)
@@ -156,6 +168,10 @@ type EKSAPI interface {
 
 	ListClustersPages(*eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool, ...request.Option) error
+
+	ListEksAnywhereSubscriptions(*eks.ListEksAnywhereSubscriptionsInput) (*eks.ListEksAnywhereSubscriptionsOutput, error)
+	ListEksAnywhereSubscriptionsWithContext(aws.Context, *eks.ListEksAnywhereSubscriptionsInput, ...request.Option) (*eks.ListEksAnywhereSubscriptionsOutput, error)
+	ListEksAnywhereSubscriptionsRequest(*eks.ListEksAnywhereSubscriptionsInput) (*request.Request, *eks.ListEksAnywhereSubscriptionsOutput)
 
 	ListFargateProfiles(*eks.ListFargateProfilesInput) (*eks.ListFargateProfilesOutput, error)
 	ListFargateProfilesWithContext(aws.Context, *eks.ListFargateProfilesInput, ...request.Option) (*eks.ListFargateProfilesOutput, error)
@@ -212,6 +228,10 @@ type EKSAPI interface {
 	UpdateClusterVersion(*eks.UpdateClusterVersionInput) (*eks.UpdateClusterVersionOutput, error)
 	UpdateClusterVersionWithContext(aws.Context, *eks.UpdateClusterVersionInput, ...request.Option) (*eks.UpdateClusterVersionOutput, error)
 	UpdateClusterVersionRequest(*eks.UpdateClusterVersionInput) (*request.Request, *eks.UpdateClusterVersionOutput)
+
+	UpdateEksAnywhereSubscription(*eks.UpdateEksAnywhereSubscriptionInput) (*eks.UpdateEksAnywhereSubscriptionOutput, error)
+	UpdateEksAnywhereSubscriptionWithContext(aws.Context, *eks.UpdateEksAnywhereSubscriptionInput, ...request.Option) (*eks.UpdateEksAnywhereSubscriptionOutput, error)
+	UpdateEksAnywhereSubscriptionRequest(*eks.UpdateEksAnywhereSubscriptionInput) (*request.Request, *eks.UpdateEksAnywhereSubscriptionOutput)
 
 	UpdateNodegroupConfig(*eks.UpdateNodegroupConfigInput) (*eks.UpdateNodegroupConfigOutput, error)
 	UpdateNodegroupConfigWithContext(aws.Context, *eks.UpdateNodegroupConfigInput, ...request.Option) (*eks.UpdateNodegroupConfigOutput, error)

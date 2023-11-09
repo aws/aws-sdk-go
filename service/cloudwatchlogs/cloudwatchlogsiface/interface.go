@@ -68,6 +68,10 @@ type CloudWatchLogsAPI interface {
 	CancelExportTaskWithContext(aws.Context, *cloudwatchlogs.CancelExportTaskInput, ...request.Option) (*cloudwatchlogs.CancelExportTaskOutput, error)
 	CancelExportTaskRequest(*cloudwatchlogs.CancelExportTaskInput) (*request.Request, *cloudwatchlogs.CancelExportTaskOutput)
 
+	CreateDelivery(*cloudwatchlogs.CreateDeliveryInput) (*cloudwatchlogs.CreateDeliveryOutput, error)
+	CreateDeliveryWithContext(aws.Context, *cloudwatchlogs.CreateDeliveryInput, ...request.Option) (*cloudwatchlogs.CreateDeliveryOutput, error)
+	CreateDeliveryRequest(*cloudwatchlogs.CreateDeliveryInput) (*request.Request, *cloudwatchlogs.CreateDeliveryOutput)
+
 	CreateExportTask(*cloudwatchlogs.CreateExportTaskInput) (*cloudwatchlogs.CreateExportTaskOutput, error)
 	CreateExportTaskWithContext(aws.Context, *cloudwatchlogs.CreateExportTaskInput, ...request.Option) (*cloudwatchlogs.CreateExportTaskOutput, error)
 	CreateExportTaskRequest(*cloudwatchlogs.CreateExportTaskInput) (*request.Request, *cloudwatchlogs.CreateExportTaskOutput)
@@ -87,6 +91,22 @@ type CloudWatchLogsAPI interface {
 	DeleteDataProtectionPolicy(*cloudwatchlogs.DeleteDataProtectionPolicyInput) (*cloudwatchlogs.DeleteDataProtectionPolicyOutput, error)
 	DeleteDataProtectionPolicyWithContext(aws.Context, *cloudwatchlogs.DeleteDataProtectionPolicyInput, ...request.Option) (*cloudwatchlogs.DeleteDataProtectionPolicyOutput, error)
 	DeleteDataProtectionPolicyRequest(*cloudwatchlogs.DeleteDataProtectionPolicyInput) (*request.Request, *cloudwatchlogs.DeleteDataProtectionPolicyOutput)
+
+	DeleteDelivery(*cloudwatchlogs.DeleteDeliveryInput) (*cloudwatchlogs.DeleteDeliveryOutput, error)
+	DeleteDeliveryWithContext(aws.Context, *cloudwatchlogs.DeleteDeliveryInput, ...request.Option) (*cloudwatchlogs.DeleteDeliveryOutput, error)
+	DeleteDeliveryRequest(*cloudwatchlogs.DeleteDeliveryInput) (*request.Request, *cloudwatchlogs.DeleteDeliveryOutput)
+
+	DeleteDeliveryDestination(*cloudwatchlogs.DeleteDeliveryDestinationInput) (*cloudwatchlogs.DeleteDeliveryDestinationOutput, error)
+	DeleteDeliveryDestinationWithContext(aws.Context, *cloudwatchlogs.DeleteDeliveryDestinationInput, ...request.Option) (*cloudwatchlogs.DeleteDeliveryDestinationOutput, error)
+	DeleteDeliveryDestinationRequest(*cloudwatchlogs.DeleteDeliveryDestinationInput) (*request.Request, *cloudwatchlogs.DeleteDeliveryDestinationOutput)
+
+	DeleteDeliveryDestinationPolicy(*cloudwatchlogs.DeleteDeliveryDestinationPolicyInput) (*cloudwatchlogs.DeleteDeliveryDestinationPolicyOutput, error)
+	DeleteDeliveryDestinationPolicyWithContext(aws.Context, *cloudwatchlogs.DeleteDeliveryDestinationPolicyInput, ...request.Option) (*cloudwatchlogs.DeleteDeliveryDestinationPolicyOutput, error)
+	DeleteDeliveryDestinationPolicyRequest(*cloudwatchlogs.DeleteDeliveryDestinationPolicyInput) (*request.Request, *cloudwatchlogs.DeleteDeliveryDestinationPolicyOutput)
+
+	DeleteDeliverySource(*cloudwatchlogs.DeleteDeliverySourceInput) (*cloudwatchlogs.DeleteDeliverySourceOutput, error)
+	DeleteDeliverySourceWithContext(aws.Context, *cloudwatchlogs.DeleteDeliverySourceInput, ...request.Option) (*cloudwatchlogs.DeleteDeliverySourceOutput, error)
+	DeleteDeliverySourceRequest(*cloudwatchlogs.DeleteDeliverySourceInput) (*request.Request, *cloudwatchlogs.DeleteDeliverySourceOutput)
 
 	DeleteDestination(*cloudwatchlogs.DeleteDestinationInput) (*cloudwatchlogs.DeleteDestinationOutput, error)
 	DeleteDestinationWithContext(aws.Context, *cloudwatchlogs.DeleteDestinationInput, ...request.Option) (*cloudwatchlogs.DeleteDestinationOutput, error)
@@ -123,6 +143,27 @@ type CloudWatchLogsAPI interface {
 	DescribeAccountPolicies(*cloudwatchlogs.DescribeAccountPoliciesInput) (*cloudwatchlogs.DescribeAccountPoliciesOutput, error)
 	DescribeAccountPoliciesWithContext(aws.Context, *cloudwatchlogs.DescribeAccountPoliciesInput, ...request.Option) (*cloudwatchlogs.DescribeAccountPoliciesOutput, error)
 	DescribeAccountPoliciesRequest(*cloudwatchlogs.DescribeAccountPoliciesInput) (*request.Request, *cloudwatchlogs.DescribeAccountPoliciesOutput)
+
+	DescribeDeliveries(*cloudwatchlogs.DescribeDeliveriesInput) (*cloudwatchlogs.DescribeDeliveriesOutput, error)
+	DescribeDeliveriesWithContext(aws.Context, *cloudwatchlogs.DescribeDeliveriesInput, ...request.Option) (*cloudwatchlogs.DescribeDeliveriesOutput, error)
+	DescribeDeliveriesRequest(*cloudwatchlogs.DescribeDeliveriesInput) (*request.Request, *cloudwatchlogs.DescribeDeliveriesOutput)
+
+	DescribeDeliveriesPages(*cloudwatchlogs.DescribeDeliveriesInput, func(*cloudwatchlogs.DescribeDeliveriesOutput, bool) bool) error
+	DescribeDeliveriesPagesWithContext(aws.Context, *cloudwatchlogs.DescribeDeliveriesInput, func(*cloudwatchlogs.DescribeDeliveriesOutput, bool) bool, ...request.Option) error
+
+	DescribeDeliveryDestinations(*cloudwatchlogs.DescribeDeliveryDestinationsInput) (*cloudwatchlogs.DescribeDeliveryDestinationsOutput, error)
+	DescribeDeliveryDestinationsWithContext(aws.Context, *cloudwatchlogs.DescribeDeliveryDestinationsInput, ...request.Option) (*cloudwatchlogs.DescribeDeliveryDestinationsOutput, error)
+	DescribeDeliveryDestinationsRequest(*cloudwatchlogs.DescribeDeliveryDestinationsInput) (*request.Request, *cloudwatchlogs.DescribeDeliveryDestinationsOutput)
+
+	DescribeDeliveryDestinationsPages(*cloudwatchlogs.DescribeDeliveryDestinationsInput, func(*cloudwatchlogs.DescribeDeliveryDestinationsOutput, bool) bool) error
+	DescribeDeliveryDestinationsPagesWithContext(aws.Context, *cloudwatchlogs.DescribeDeliveryDestinationsInput, func(*cloudwatchlogs.DescribeDeliveryDestinationsOutput, bool) bool, ...request.Option) error
+
+	DescribeDeliverySources(*cloudwatchlogs.DescribeDeliverySourcesInput) (*cloudwatchlogs.DescribeDeliverySourcesOutput, error)
+	DescribeDeliverySourcesWithContext(aws.Context, *cloudwatchlogs.DescribeDeliverySourcesInput, ...request.Option) (*cloudwatchlogs.DescribeDeliverySourcesOutput, error)
+	DescribeDeliverySourcesRequest(*cloudwatchlogs.DescribeDeliverySourcesInput) (*request.Request, *cloudwatchlogs.DescribeDeliverySourcesOutput)
+
+	DescribeDeliverySourcesPages(*cloudwatchlogs.DescribeDeliverySourcesInput, func(*cloudwatchlogs.DescribeDeliverySourcesOutput, bool) bool) error
+	DescribeDeliverySourcesPagesWithContext(aws.Context, *cloudwatchlogs.DescribeDeliverySourcesInput, func(*cloudwatchlogs.DescribeDeliverySourcesOutput, bool) bool, ...request.Option) error
 
 	DescribeDestinations(*cloudwatchlogs.DescribeDestinationsInput) (*cloudwatchlogs.DescribeDestinationsOutput, error)
 	DescribeDestinationsWithContext(aws.Context, *cloudwatchlogs.DescribeDestinationsInput, ...request.Option) (*cloudwatchlogs.DescribeDestinationsOutput, error)
@@ -190,6 +231,22 @@ type CloudWatchLogsAPI interface {
 	GetDataProtectionPolicyWithContext(aws.Context, *cloudwatchlogs.GetDataProtectionPolicyInput, ...request.Option) (*cloudwatchlogs.GetDataProtectionPolicyOutput, error)
 	GetDataProtectionPolicyRequest(*cloudwatchlogs.GetDataProtectionPolicyInput) (*request.Request, *cloudwatchlogs.GetDataProtectionPolicyOutput)
 
+	GetDelivery(*cloudwatchlogs.GetDeliveryInput) (*cloudwatchlogs.GetDeliveryOutput, error)
+	GetDeliveryWithContext(aws.Context, *cloudwatchlogs.GetDeliveryInput, ...request.Option) (*cloudwatchlogs.GetDeliveryOutput, error)
+	GetDeliveryRequest(*cloudwatchlogs.GetDeliveryInput) (*request.Request, *cloudwatchlogs.GetDeliveryOutput)
+
+	GetDeliveryDestination(*cloudwatchlogs.GetDeliveryDestinationInput) (*cloudwatchlogs.GetDeliveryDestinationOutput, error)
+	GetDeliveryDestinationWithContext(aws.Context, *cloudwatchlogs.GetDeliveryDestinationInput, ...request.Option) (*cloudwatchlogs.GetDeliveryDestinationOutput, error)
+	GetDeliveryDestinationRequest(*cloudwatchlogs.GetDeliveryDestinationInput) (*request.Request, *cloudwatchlogs.GetDeliveryDestinationOutput)
+
+	GetDeliveryDestinationPolicy(*cloudwatchlogs.GetDeliveryDestinationPolicyInput) (*cloudwatchlogs.GetDeliveryDestinationPolicyOutput, error)
+	GetDeliveryDestinationPolicyWithContext(aws.Context, *cloudwatchlogs.GetDeliveryDestinationPolicyInput, ...request.Option) (*cloudwatchlogs.GetDeliveryDestinationPolicyOutput, error)
+	GetDeliveryDestinationPolicyRequest(*cloudwatchlogs.GetDeliveryDestinationPolicyInput) (*request.Request, *cloudwatchlogs.GetDeliveryDestinationPolicyOutput)
+
+	GetDeliverySource(*cloudwatchlogs.GetDeliverySourceInput) (*cloudwatchlogs.GetDeliverySourceOutput, error)
+	GetDeliverySourceWithContext(aws.Context, *cloudwatchlogs.GetDeliverySourceInput, ...request.Option) (*cloudwatchlogs.GetDeliverySourceOutput, error)
+	GetDeliverySourceRequest(*cloudwatchlogs.GetDeliverySourceInput) (*request.Request, *cloudwatchlogs.GetDeliverySourceOutput)
+
 	GetLogEvents(*cloudwatchlogs.GetLogEventsInput) (*cloudwatchlogs.GetLogEventsOutput, error)
 	GetLogEventsWithContext(aws.Context, *cloudwatchlogs.GetLogEventsInput, ...request.Option) (*cloudwatchlogs.GetLogEventsOutput, error)
 	GetLogEventsRequest(*cloudwatchlogs.GetLogEventsInput) (*request.Request, *cloudwatchlogs.GetLogEventsOutput)
@@ -224,6 +281,18 @@ type CloudWatchLogsAPI interface {
 	PutDataProtectionPolicy(*cloudwatchlogs.PutDataProtectionPolicyInput) (*cloudwatchlogs.PutDataProtectionPolicyOutput, error)
 	PutDataProtectionPolicyWithContext(aws.Context, *cloudwatchlogs.PutDataProtectionPolicyInput, ...request.Option) (*cloudwatchlogs.PutDataProtectionPolicyOutput, error)
 	PutDataProtectionPolicyRequest(*cloudwatchlogs.PutDataProtectionPolicyInput) (*request.Request, *cloudwatchlogs.PutDataProtectionPolicyOutput)
+
+	PutDeliveryDestination(*cloudwatchlogs.PutDeliveryDestinationInput) (*cloudwatchlogs.PutDeliveryDestinationOutput, error)
+	PutDeliveryDestinationWithContext(aws.Context, *cloudwatchlogs.PutDeliveryDestinationInput, ...request.Option) (*cloudwatchlogs.PutDeliveryDestinationOutput, error)
+	PutDeliveryDestinationRequest(*cloudwatchlogs.PutDeliveryDestinationInput) (*request.Request, *cloudwatchlogs.PutDeliveryDestinationOutput)
+
+	PutDeliveryDestinationPolicy(*cloudwatchlogs.PutDeliveryDestinationPolicyInput) (*cloudwatchlogs.PutDeliveryDestinationPolicyOutput, error)
+	PutDeliveryDestinationPolicyWithContext(aws.Context, *cloudwatchlogs.PutDeliveryDestinationPolicyInput, ...request.Option) (*cloudwatchlogs.PutDeliveryDestinationPolicyOutput, error)
+	PutDeliveryDestinationPolicyRequest(*cloudwatchlogs.PutDeliveryDestinationPolicyInput) (*request.Request, *cloudwatchlogs.PutDeliveryDestinationPolicyOutput)
+
+	PutDeliverySource(*cloudwatchlogs.PutDeliverySourceInput) (*cloudwatchlogs.PutDeliverySourceOutput, error)
+	PutDeliverySourceWithContext(aws.Context, *cloudwatchlogs.PutDeliverySourceInput, ...request.Option) (*cloudwatchlogs.PutDeliverySourceOutput, error)
+	PutDeliverySourceRequest(*cloudwatchlogs.PutDeliverySourceInput) (*request.Request, *cloudwatchlogs.PutDeliverySourceOutput)
 
 	PutDestination(*cloudwatchlogs.PutDestinationInput) (*cloudwatchlogs.PutDestinationOutput, error)
 	PutDestinationWithContext(aws.Context, *cloudwatchlogs.PutDestinationInput, ...request.Option) (*cloudwatchlogs.PutDestinationOutput, error)

@@ -7,8 +7,8 @@
     "BatchDetectKeyPhrases": "<p>Detects the key noun phrases found in a batch of documents.</p>",
     "BatchDetectSentiment": "<p>Inspects a batch of documents and returns an inference of the prevailing sentiment, <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>, in each one.</p>",
     "BatchDetectSyntax": "<p>Inspects the text of a batch of documents for the syntax and part of speech of the words in the document and returns information about them. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
-    "BatchDetectTargetedSentiment": "<p>Inspects a batch of documents and returns a sentiment analysis for each entity identified in the documents.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
-    "ClassifyDocument": "<p>Creates a new document classification request to analyze a single document in real-time, using a previously created and trained custom model and an endpoint.</p> <p>You can input plain text or you can upload a single-page input document (text, PDF, Word, or image). </p> <p>If the system detects errors while processing a page in the input document, the API response includes an entry in <code>Errors</code> that describes the errors.</p> <p>If the system detects a document-level error in your input document, the API returns an <code>InvalidRequestException</code> error response. For details about this exception, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html\"> Errors in semi-structured documents</a> in the Comprehend Developer Guide. </p>",
+    "BatchDetectTargetedSentiment": "<p>Inspects a batch of documents and returns a sentiment analysis for each entity identified in the documents.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
+    "ClassifyDocument": "<p>Creates a classification request to analyze a single document in real-time. <code>ClassifyDocument</code> supports the following model types:</p> <ul> <li> <p>Custom classifier - a custom model that you have created and trained. For input, you can provide plain text, a single-page document (PDF, Word, or image), or Textract API output. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html\">Custom classification</a> in the <i>Amazon Comprehend Developer Guide</i>.</p> </li> <li> <p>Prompt classifier - Amazon Comprehend provides a model for classifying prompts. For input, you provide English plain text input. For prompt classification, the response includes only the <code>Classes</code> field. For more information about prompt classifiers, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/prompt-classification.html\">Prompt classifiers</a> in the <i>Amazon Comprehend Developer Guide</i>.</p> </li> </ul> <p>If the system detects errors while processing a page in the input document, the API response includes an entry in <code>Errors</code> that describes the errors.</p> <p>If the system detects a document-level error in your input document, the API returns an <code>InvalidRequestException</code> error response. For details about this exception, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html\"> Errors in semi-structured documents</a> in the Comprehend Developer Guide. </p>",
     "ContainsPiiEntities": "<p>Analyzes input text for the presence of personally identifiable information (PII) and returns the labels of identified PII entity types such as name, address, bank account number, or phone number.</p>",
     "CreateDataset": "<p>Creates a dataset to upload training or test data for a model associated with a flywheel. For more information about datasets, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html\"> Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
     "CreateDocumentClassifier": "<p>Creates a new document classifier that you can use to categorize documents. To create a classifier, you provide a set of training documents that are labeled with the categories that you want to use. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/training-classifier-model.html\">Training classifier models</a> in the Comprehend Developer Guide. </p>",
@@ -42,7 +42,8 @@
     "DetectPiiEntities": "<p>Inspects the input text for entities that contain personally identifiable information (PII) and returns information about them.</p>",
     "DetectSentiment": "<p>Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>). </p>",
     "DetectSyntax": "<p>Inspects text for syntax and the part of speech of words in the document. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
-    "DetectTargetedSentiment": "<p>Inspects the input text and returns a sentiment analysis for each entity identified in the text.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+    "DetectTargetedSentiment": "<p>Inspects the input text and returns a sentiment analysis for each entity identified in the text.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
+    "DetectToxicContent": "<p>Performs toxicity analysis on the list of text strings that you provide as input. The analysis uses the order of strings in the list to determine context when predicting toxicity. The API response contains a results list that matches the size of the input list. For more information about toxicity detection, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html\">Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i> </p>",
     "ImportModel": "<p>Creates a new custom model that replicates a source custom model that you import. The source model can be in your Amazon Web Services account or another one.</p> <p>If the source model is in another Amazon Web Services account, then it must have a resource-based policy that authorizes you to import it.</p> <p>The source model must be in the same Amazon Web Services Region that you're using when you import. You can't import a model that's in a different Region.</p>",
     "ListDatasets": "<p>List the datasets that you have configured in this Region. For more information about datasets, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html\"> Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
     "ListDocumentClassificationJobs": "<p>Gets a list of the documentation classification jobs that you have submitted.</p>",
@@ -425,7 +426,7 @@
       "refs": {
         "CreateEndpointRequest$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint will be attached.</p>",
         "CreateEndpointResponse$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>",
-        "CreateFlywheelRequest$ActiveModelArn": "<p>To associate an existing model with the flywheel, specify the Amazon Resource Number (ARN) of the model version.</p>",
+        "CreateFlywheelRequest$ActiveModelArn": "<p>To associate an existing model with the flywheel, specify the Amazon Resource Number (ARN) of the model version. Do not set <code>TaskConfig</code> or <code>ModelType</code> if you specify an <code>ActiveModelArn</code>.</p>",
         "CreateFlywheelResponse$ActiveModelArn": "<p>The Amazon Resource Number (ARN) of the active model version.</p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the custom model version that has the policy to delete.</p>",
         "DescribeResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the custom model version that has the resource policy.</p>",
@@ -519,7 +520,8 @@
         "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. The string must contain less than 100 KB of UTF-8 encoded characters.</p>",
         "DetectSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string size is 5 KB.</p>",
         "DetectSyntaxRequest$Text": "<p>A UTF-8 string. The maximum string size is 5 KB.</p>",
-        "DetectTargetedSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string length is 5 KB.</p>"
+        "DetectTargetedSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string length is 5 KB.</p>",
+        "TextSegment$Text": "<p>The text content.</p>"
       }
     },
     "CustomerInputStringList": {
@@ -915,6 +917,16 @@
       "refs": {
       }
     },
+    "DetectToxicContentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectToxicContentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DocumentClass": {
       "base": "<p>Specifies the class that categorizes the document being analyzed</p>",
       "refs": {
@@ -922,9 +934,9 @@
       }
     },
     "DocumentClassificationConfig": {
-      "base": "<p>Configuration required for a custom classification model.</p>",
+      "base": "<p>Configuration required for a document classification model.</p>",
       "refs": {
-        "TaskConfig$DocumentClassificationConfig": "<p>Configuration required for a classification model.</p>"
+        "TaskConfig$DocumentClassificationConfig": "<p>Configuration required for a document classification model.</p>"
       }
     },
     "DocumentClassificationJobFilter": {
@@ -975,19 +987,19 @@
     "DocumentClassifierDocumentTypeFormat": {
       "base": null,
       "refs": {
-        "DocumentClassifierInputDataConfig$DocumentType": "<p>The type of input documents for training the model. Provide plain-text documents to create a plain-text model, and provide semi-structured documents to create a native model.</p>"
+        "DocumentClassifierInputDataConfig$DocumentType": "<p>The type of input documents for training the model. Provide plain-text documents to create a plain-text model, and provide semi-structured documents to create a native document model.</p>"
       }
     },
     "DocumentClassifierDocuments": {
-      "base": "<p>The location of the training documents. This parameter is required in a request to create a native classifier model.</p>",
+      "base": "<p>The location of the training documents. This parameter is required in a request to create a semi-structured document classification model.</p>",
       "refs": {
-        "DocumentClassifierInputDataConfig$Documents": "<p>The S3 location of the training documents. This parameter is required in a request to create a native classifier model.</p>"
+        "DocumentClassifierInputDataConfig$Documents": "<p>The S3 location of the training documents. This parameter is required in a request to create a native document model.</p>"
       }
     },
     "DocumentClassifierEndpointArn": {
       "base": null,
       "refs": {
-        "ClassifyDocumentRequest$EndpointArn": "<p>The Amazon Resource Number (ARN) of the endpoint. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>"
+        "ClassifyDocumentRequest$EndpointArn": "<p>The Amazon Resource Number (ARN) of the endpoint. </p> <p>For prompt classification, Amazon Comprehend provides the endpoint ARN: <code>zzz</code>.</p> <p>For custom classification, you create an endpoint for your custom model. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html\">Using Amazon Comprehend endpoints</a>.</p>"
       }
     },
     "DocumentClassifierFilter": {
@@ -1012,9 +1024,9 @@
       }
     },
     "DocumentClassifierOutputDataConfig": {
-      "base": "<p>Provide the location for output data from a custom classifier job. This field is mandatory if you are training a native classifier model.</p>",
+      "base": "<p>Provide the location for output data from a custom classifier job. This field is mandatory if you are training a native document model.</p>",
       "refs": {
-        "CreateDocumentClassifierRequest$OutputDataConfig": "<p>Specifies the location for the output files from a custom classifier job. This parameter is required for a request that creates a native classifier model.</p>",
+        "CreateDocumentClassifierRequest$OutputDataConfig": "<p>Specifies the location for the output files from a custom classifier job. This parameter is required for a request that creates a native document model.</p>",
         "DocumentClassifierProperties$OutputDataConfig": "<p> Provides output results configuration parameters for custom classifier jobs.</p>"
       }
     },
@@ -1414,7 +1426,9 @@
         "SentimentScore$Neutral": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEUTRAL</code> sentiment.</p>",
         "SentimentScore$Mixed": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>MIXED</code> sentiment.</p>",
         "TargetedSentimentMention$Score": "<p>Model confidence that the entity is relevant. Value range is zero to one, where one is highest confidence.</p>",
-        "TargetedSentimentMention$GroupScore": "<p>The confidence that all the entities mentioned in the group relate to the same entity.</p>"
+        "TargetedSentimentMention$GroupScore": "<p>The confidence that all the entities mentioned in the group relate to the same entity.</p>",
+        "ToxicContent$Score": "<p> Model confidence in the detected content type. Value range is zero to one, where one is highest confidence.</p>",
+        "ToxicLabels$Toxicity": "<p>Overall toxicity score for the string.</p>"
       }
     },
     "FlywheelFilter": {
@@ -1531,7 +1545,7 @@
         "StartKeyPhrasesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions\">Role-based permissions</a>.</p>",
         "StartPiiEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.</p>",
         "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions\">Role-based permissions</a>.</p>",
-        "StartTargetedSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">Role-based permissions</a>.</p>",
+        "StartTargetedSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions\">Role-based permissions</a>.</p>",
         "StartTopicsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions\">Role-based permissions</a>.</p>",
         "TargetedSentimentDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.</p>",
         "TopicsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your job data. </p>",
@@ -1835,7 +1849,7 @@
         "EntityRecognizerProperties$ModelKmsKeyId": "<p>ID for the KMS key that Amazon Comprehend uses to encrypt trained custom models. The ModelKmsKeyId can be either of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
         "ImportModelRequest$ModelKmsKeyId": "<p>ID for the KMS key that Amazon Comprehend uses to encrypt trained custom models. The ModelKmsKeyId can be either of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
         "KeyPhrasesDetectionJobProperties$VolumeKmsKeyId": "<p>ID for the KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
-        "OutputDataConfig$KmsKeyId": "<p>ID for the Amazon Web Services Key Management Service (KMS) key that Amazon Comprehend uses to encrypt the output results from an analysis job. The KmsKeyId can be one of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>KMS Key Alias: <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>ARN of a KMS Key Alias: <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul>",
+        "OutputDataConfig$KmsKeyId": "<p>ID for the Amazon Web Services Key Management Service (KMS) key that Amazon Comprehend uses to encrypt the output results from an analysis job. Specify the Key Id of a symmetric key, because you cannot use an asymmetric key for uploading data to S3.</p> <p>The KmsKeyId can be one of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>KMS Key Alias: <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>ARN of a KMS Key Alias: <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul>",
         "PiiOutputDataConfig$KmsKeyId": "<p>ID for the Amazon Web Services Key Management Service (KMS) key that Amazon Comprehend uses to encrypt the output results from an analysis job.</p>",
         "SentimentDetectionJobProperties$VolumeKmsKeyId": "<p>ID for the Amazon Web Services Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
         "StartDocumentClassificationJobRequest$VolumeKmsKeyId": "<p>ID for the Amazon Web Services Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:</p> <ul> <li> <p>KMS Key ID: <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key: <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
@@ -1890,6 +1904,7 @@
         "DetectPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "DetectTargetedSentimentRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only supported language.</p>",
+        "DetectToxicContentRequest$LanguageCode": "<p>The language of the input text. Currently, English is the only supported language.</p>",
         "DocumentClassifierProperties$LanguageCode": "<p>The language code for the language of the documents that the classifier was trained on.</p>",
         "EntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "EntityRecognizerProperties$LanguageCode": "<p> The language of the input documents. All documents must be in the same language. Only English (\"en\") is currently supported.</p>",
@@ -2058,7 +2073,7 @@
     "ListOfClasses": {
       "base": null,
       "refs": {
-        "ClassifyDocumentResponse$Classes": "<p>The classes used by the document being analyzed. These are used for multi-class trained models. Individual classes are mutually exclusive and each document is expected to have only a single class assigned to it. For example, an animal can be a dog or a cat, but not both at the same time. </p>"
+        "ClassifyDocumentResponse$Classes": "<p>The classes used by the document being analyzed. These are used for multi-class trained models. Individual classes are mutually exclusive and each document is expected to have only a single class assigned to it. For example, an animal can be a dog or a cat, but not both at the same time. </p> <p>For prompt classification, the response includes a single class (<code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher confidence score indicates that the input prompt is undesired in nature.</p>"
       }
     },
     "ListOfDescriptiveMentionIndices": {
@@ -2200,6 +2215,24 @@
         "DetectTargetedSentimentResponse$Entities": "<p>Targeted sentiment analysis for each of the entities identified in the input text.</p>"
       }
     },
+    "ListOfTextSegments": {
+      "base": null,
+      "refs": {
+        "DetectToxicContentRequest$TextSegments": "<p>A list of up to 10 text strings. The maximum size for the list is 10 KB.</p>"
+      }
+    },
+    "ListOfToxicContent": {
+      "base": null,
+      "refs": {
+        "ToxicLabels$Labels": "<p>Array of toxic content types identified in the string.</p>"
+      }
+    },
+    "ListOfToxicLabels": {
+      "base": null,
+      "refs": {
+        "DetectToxicContentResponse$ResultList": "<p>Results of the content moderation analysis. Each entry in the results list contains a list of toxic content types identified in the text, along with a confidence score for each content type. The results list also includes a toxicity score for each entry in the results list. </p>"
+      }
+    },
     "ListOfWarnings": {
       "base": null,
       "refs": {
@@ -2285,7 +2318,7 @@
       }
     },
     "MentionSentiment": {
-      "base": "<p>Contains the sentiment and sentiment score for one mention of an entity.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "base": "<p>Contains the sentiment and sentiment score for one mention of an entity.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
       "refs": {
         "TargetedSentimentMention$MentionSentiment": "<p>Contains the sentiment and sentiment score for the mention.</p>"
       }
@@ -2304,7 +2337,7 @@
     "ModelType": {
       "base": null,
       "refs": {
-        "CreateFlywheelRequest$ModelType": "<p>The model type.</p>",
+        "CreateFlywheelRequest$ModelType": "<p>The model type. You need to set <code>ModelType</code> if you are creating a flywheel for a new model.</p>",
         "FlywheelProperties$ModelType": "<p>Model type of the flywheel's model.</p>",
         "FlywheelSummary$ModelType": "<p>Model type of the flywheel's model.</p>"
       }
@@ -2515,7 +2548,7 @@
         "DocumentClassifierDocuments$S3Uri": "<p>The S3 URI location of the training documents specified in the S3Uri CSV file.</p>",
         "DocumentClassifierDocuments$TestS3Uri": "<p>The S3 URI location of the test documents included in the TestS3Uri CSV file. This field is not required if you do not specify a test CSV file.</p>",
         "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same Region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>",
-        "DocumentClassifierInputDataConfig$TestS3Uri": "<p>This specifies the Amazon S3 location where the test annotations for an entity recognizer are located. The URI must be in the same Amazon Web Services Region as the API endpoint that you are calling. </p>",
+        "DocumentClassifierInputDataConfig$TestS3Uri": "<p>This specifies the Amazon S3 location that contains the test annotations for the document classifier. The URI must be in the same Amazon Web Services Region as the API endpoint that you are calling. </p>",
         "DocumentClassifierOutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object while creating a custom classifier, you specify the Amazon S3 location where you want to write the confusion matrix and other output files. The URI must be in the same Region as the API endpoint that you are calling. The location is used as the prefix for the actual location of this output file.</p> <p>When the custom classifier job is finished, the service creates the output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the confusion matrix.</p>",
         "DocumentClassifierOutputDataConfig$FlywheelStatsS3Prefix": "<p>The Amazon S3 prefix for the data lake location of the flywheel statistics.</p>",
         "EntityRecognizerAnnotations$S3Uri": "<p> Specifies the Amazon S3 location where the annotations for an entity recognizer are located. The URI must be in the same Region as the API endpoint that you are calling.</p>",
@@ -2547,7 +2580,7 @@
     "SemiStructuredDocumentBlob": {
       "base": null,
       "refs": {
-        "ClassifyDocumentRequest$Bytes": "<p>Use the <code>Bytes</code> parameter to input a text, PDF, Word or image file. You can also use the <code>Bytes</code> parameter to input an Amazon Textract <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output file.</p> <p>Provide the input document as a sequence of base64-encoded bytes. If your code uses an Amazon Web Services SDK to classify documents, the SDK may encode the document file bytes for you. </p> <p>The maximum length of this field depends on the input document type. For details, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html\"> Inputs for real-time custom analysis</a> in the Comprehend Developer Guide. </p> <p>If you use the <code>Bytes</code> parameter, do not use the <code>Text</code> parameter.</p>",
+        "ClassifyDocumentRequest$Bytes": "<p>Use the <code>Bytes</code> parameter to input a text, PDF, Word or image file.</p> <p>When you classify a document using a custom model, you can also use the <code>Bytes</code> parameter to input an Amazon Textract <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output file.</p> <p>To classify a document using the prompt classifier, use the <code>Text</code> parameter for input.</p> <p>Provide the input document as a sequence of base64-encoded bytes. If your code uses an Amazon Web Services SDK to classify documents, the SDK may encode the document file bytes for you. </p> <p>The maximum length of this field depends on the input document type. For details, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html\"> Inputs for real-time custom analysis</a> in the Comprehend Developer Guide. </p> <p>If you use the <code>Bytes</code> parameter, do not use the <code>Text</code> parameter.</p>",
         "DetectEntitiesRequest$Bytes": "<p>This field applies only when you use a custom entity recognition model that was trained with PDF annotations. For other cases, enter your text input in the <code>Text</code> field.</p> <p> Use the <code>Bytes</code> parameter to input a text, PDF, Word or image file. Using a plain-text file in the <code>Bytes</code> parameter is equivelent to using the <code>Text</code> parameter (the <code>Entities</code> field in the response is identical).</p> <p>You can also use the <code>Bytes</code> parameter to input an Amazon Textract <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output file.</p> <p>Provide the input document as a sequence of base64-encoded bytes. If your code uses an Amazon Web Services SDK to detect entities, the SDK may encode the document file bytes for you. </p> <p>The maximum length of this field depends on the input document type. For details, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html\"> Inputs for real-time custom analysis</a> in the Comprehend Developer Guide. </p> <p>If you use the <code>Bytes</code> parameter, do not use the <code>Text</code> parameter.</p>"
       }
     },
@@ -2970,7 +3003,7 @@
       }
     },
     "TargetedSentimentEntity": {
-      "base": "<p>Information about one of the entities found by targeted sentiment analysis.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "base": "<p>Information about one of the entities found by targeted sentiment analysis.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
       "refs": {
         "ListOfTargetedSentimentEntities$member": null
       }
@@ -2982,16 +3015,22 @@
       }
     },
     "TargetedSentimentMention": {
-      "base": "<p>Information about one mention of an entity. The mention information includes the location of the mention in the text and the sentiment of the mention.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "base": "<p>Information about one mention of an entity. The mention information includes the location of the mention in the text and the sentiment of the mention.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.</p>",
       "refs": {
         "ListOfMentions$member": null
       }
     },
     "TaskConfig": {
-      "base": "<p>Configuration about the custom classifier associated with the flywheel.</p>",
+      "base": "<p>Configuration about the model associated with a flywheel.</p>",
       "refs": {
-        "CreateFlywheelRequest$TaskConfig": "<p>Configuration about the custom classifier associated with the flywheel.</p>",
-        "FlywheelProperties$TaskConfig": "<p>Configuration about the custom classifier associated with the flywheel.</p>"
+        "CreateFlywheelRequest$TaskConfig": "<p>Configuration about the model associated with the flywheel. You need to set <code>TaskConfig</code> if you are creating a flywheel for a new model.</p>",
+        "FlywheelProperties$TaskConfig": "<p>Configuration about the model associated with a flywheel.</p>"
+      }
+    },
+    "TextSegment": {
+      "base": "<p>One of the of text strings. Each string has a size limit of 1KB.</p>",
+      "refs": {
+        "ListOfTextSegments$member": null
       }
     },
     "TextSizeLimitExceededException": {
@@ -3108,6 +3147,24 @@
         "ListTopicsDetectionJobsResponse$TopicsDetectionJobPropertiesList": "<p>A list containing the properties of each job that is returned.</p>"
       }
     },
+    "ToxicContent": {
+      "base": "<p>Toxic content analysis result for one string. For more information about toxicity detection, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html\">Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i> </p>",
+      "refs": {
+        "ListOfToxicContent$member": null
+      }
+    },
+    "ToxicContentType": {
+      "base": null,
+      "refs": {
+        "ToxicContent$Name": "<p>The name of the toxic content type.</p>"
+      }
+    },
+    "ToxicLabels": {
+      "base": "<p>Toxicity analysis result for one string. For more information about toxicity detection, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html\">Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i> </p>",
+      "refs": {
+        "ListOfToxicLabels$member": null
+      }
+    },
     "UnsupportedLanguageException": {
       "base": "<p>Amazon Comprehend can't process the language of the input text. For custom entity recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are accepted. For a list of supported languages, <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html\">Supported languages</a> in the Comprehend Developer Guide. </p>",
       "refs": {
@@ -3167,8 +3224,8 @@
         "CreateDocumentClassifierRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "CreateEntityRecognizerRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "DataSecurityConfig$VpcConfig": null,
-        "DocumentClassificationJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your document classification job. For more information, see <a href=\"https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
-        "DocumentClassifierProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
+        "DocumentClassificationJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your document classification job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
+        "DocumentClassifierProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "DominantLanguageDetectionJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your dominant language detection job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "EntitiesDetectionJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your entity detection job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "EntityRecognizerProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
@@ -3187,7 +3244,7 @@
       }
     },
     "WarningsListItem": {
-      "base": "<p>The system identified one of the following warnings while processing the input document:</p> <ul> <li> <p>The document to classify is plain text, but the classifier is a native model.</p> </li> <li> <p>The document to classify is semi-structured, but the classifier is a plain-text model.</p> </li> </ul>",
+      "base": "<p>The system identified one of the following warnings while processing the input document:</p> <ul> <li> <p>The document to classify is plain text, but the classifier is a native document model.</p> </li> <li> <p>The document to classify is semi-structured, but the classifier is a plain-text model.</p> </li> </ul>",
       "refs": {
         "ListOfWarnings$member": null
       }

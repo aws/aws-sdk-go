@@ -373,6 +373,8 @@
       "input":{"shape":"GetInsightSelectorsRequest"},
       "output":{"shape":"GetInsightSelectorsResponse"},
       "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterCombinationException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"CloudTrailARNInvalidException"},
@@ -651,6 +653,8 @@
       "input":{"shape":"PutInsightSelectorsRequest"},
       "output":{"shape":"PutInsightSelectorsResponse"},
       "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterCombinationException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"CloudTrailARNInvalidException"},
@@ -950,6 +954,7 @@
         {"shape":"EventDataStoreARNInvalidException"},
         {"shape":"EventDataStoreNotFoundException"},
         {"shape":"InvalidEventSelectorsException"},
+        {"shape":"InvalidInsightSelectorsException"},
         {"shape":"EventDataStoreHasOngoingImportException"},
         {"shape":"InactiveEventDataStoreException"},
         {"shape":"InvalidParameterException"},
@@ -1705,16 +1710,18 @@
     },
     "GetInsightSelectorsRequest":{
       "type":"structure",
-      "required":["TrailName"],
       "members":{
-        "TrailName":{"shape":"String"}
+        "TrailName":{"shape":"String"},
+        "EventDataStore":{"shape":"EventDataStoreArn"}
       }
     },
     "GetInsightSelectorsResponse":{
       "type":"structure",
       "members":{
         "TrailARN":{"shape":"String"},
-        "InsightSelectors":{"shape":"InsightSelectors"}
+        "InsightSelectors":{"shape":"InsightSelectors"},
+        "EventDataStoreArn":{"shape":"EventDataStoreArn"},
+        "InsightsDestination":{"shape":"EventDataStoreArn"}
       }
     },
     "GetQueryResultsRequest":{
@@ -2430,20 +2437,21 @@
     },
     "PutInsightSelectorsRequest":{
       "type":"structure",
-      "required":[
-        "TrailName",
-        "InsightSelectors"
-      ],
+      "required":["InsightSelectors"],
       "members":{
         "TrailName":{"shape":"String"},
-        "InsightSelectors":{"shape":"InsightSelectors"}
+        "InsightSelectors":{"shape":"InsightSelectors"},
+        "EventDataStore":{"shape":"EventDataStoreArn"},
+        "InsightsDestination":{"shape":"EventDataStoreArn"}
       }
     },
     "PutInsightSelectorsResponse":{
       "type":"structure",
       "members":{
         "TrailARN":{"shape":"String"},
-        "InsightSelectors":{"shape":"InsightSelectors"}
+        "InsightSelectors":{"shape":"InsightSelectors"},
+        "EventDataStoreArn":{"shape":"EventDataStoreArn"},
+        "InsightsDestination":{"shape":"EventDataStoreArn"}
       }
     },
     "PutResourcePolicyRequest":{

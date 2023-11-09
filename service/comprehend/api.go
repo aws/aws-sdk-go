@@ -541,7 +541,8 @@ func (c *Comprehend) BatchDetectTargetedSentimentRequest(input *BatchDetectTarge
 // Inspects a batch of documents and returns a sentiment analysis for each entity
 // identified in the documents.
 //
-// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html)
+// in the Amazon Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -637,12 +638,20 @@ func (c *Comprehend) ClassifyDocumentRequest(input *ClassifyDocumentInput) (req 
 
 // ClassifyDocument API operation for Amazon Comprehend.
 //
-// Creates a new document classification request to analyze a single document
-// in real-time, using a previously created and trained custom model and an
-// endpoint.
+// Creates a classification request to analyze a single document in real-time.
+// ClassifyDocument supports the following model types:
 //
-// You can input plain text or you can upload a single-page input document (text,
-// PDF, Word, or image).
+//   - Custom classifier - a custom model that you have created and trained.
+//     For input, you can provide plain text, a single-page document (PDF, Word,
+//     or image), or Textract API output. For more information, see Custom classification
+//     (https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html)
+//     in the Amazon Comprehend Developer Guide.
+//
+//   - Prompt classifier - Amazon Comprehend provides a model for classifying
+//     prompts. For input, you provide English plain text input. For prompt classification,
+//     the response includes only the Classes field. For more information about
+//     prompt classifiers, see Prompt classifiers (https://docs.aws.amazon.com/comprehend/latest/dg/prompt-classification.html)
+//     in the Amazon Comprehend Developer Guide.
 //
 // If the system detects errors while processing a page in the input document,
 // the API response includes an entry in Errors that describes the errors.
@@ -3905,7 +3914,8 @@ func (c *Comprehend) DetectTargetedSentimentRequest(input *DetectTargetedSentime
 // Inspects the input text and returns a sentiment analysis for each entity
 // identified in the text.
 //
-// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html)
+// in the Amazon Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3949,6 +3959,103 @@ func (c *Comprehend) DetectTargetedSentiment(input *DetectTargetedSentimentInput
 // for more information on using Contexts.
 func (c *Comprehend) DetectTargetedSentimentWithContext(ctx aws.Context, input *DetectTargetedSentimentInput, opts ...request.Option) (*DetectTargetedSentimentOutput, error) {
 	req, out := c.DetectTargetedSentimentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDetectToxicContent = "DetectToxicContent"
+
+// DetectToxicContentRequest generates a "aws/request.Request" representing the
+// client's request for the DetectToxicContent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectToxicContent for more information on using the DetectToxicContent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DetectToxicContentRequest method.
+//	req, resp := client.DetectToxicContentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectToxicContent
+func (c *Comprehend) DetectToxicContentRequest(input *DetectToxicContentInput) (req *request.Request, output *DetectToxicContentOutput) {
+	op := &request.Operation{
+		Name:       opDetectToxicContent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectToxicContentInput{}
+	}
+
+	output = &DetectToxicContentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectToxicContent API operation for Amazon Comprehend.
+//
+// Performs toxicity analysis on the list of text strings that you provide as
+// input. The analysis uses the order of strings in the list to determine context
+// when predicting toxicity. The API response contains a results list that matches
+// the size of the input list. For more information about toxicity detection,
+// see Toxicity detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
+// in the Amazon Comprehend Developer Guide
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DetectToxicContent for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TextSizeLimitExceededException
+//     The size of the input text exceeds the limit. Use a smaller document.
+//
+//   - UnsupportedLanguageException
+//     Amazon Comprehend can't process the language of the input text. For custom
+//     entity recognition APIs, only English, Spanish, French, Italian, German,
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectToxicContent
+func (c *Comprehend) DetectToxicContent(input *DetectToxicContentInput) (*DetectToxicContentOutput, error) {
+	req, out := c.DetectToxicContentRequest(input)
+	return out, req.Send()
+}
+
+// DetectToxicContentWithContext is the same as DetectToxicContent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectToxicContent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DetectToxicContentWithContext(ctx aws.Context, input *DetectToxicContentInput, opts ...request.Option) (*DetectToxicContentOutput, error) {
+	req, out := c.DetectToxicContentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10615,9 +10722,14 @@ func (s *ClassifierMetadata) SetNumberOfTrainedDocuments(v int64) *ClassifierMet
 type ClassifyDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Use the Bytes parameter to input a text, PDF, Word or image file. You can
-	// also use the Bytes parameter to input an Amazon Textract DetectDocumentText
-	// or AnalyzeDocument output file.
+	// Use the Bytes parameter to input a text, PDF, Word or image file.
+	//
+	// When you classify a document using a custom model, you can also use the Bytes
+	// parameter to input an Amazon Textract DetectDocumentText or AnalyzeDocument
+	// output file.
+	//
+	// To classify a document using the prompt classifier, use the Text parameter
+	// for input.
 	//
 	// Provide the input document as a sequence of base64-encoded bytes. If your
 	// code uses an Amazon Web Services SDK to classify documents, the SDK may encode
@@ -10635,8 +10747,12 @@ type ClassifyDocumentInput struct {
 	// text from PDF documents and image files.
 	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the endpoint. For information about endpoints,
-	// see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
+	// The Amazon Resource Number (ARN) of the endpoint.
+	//
+	// For prompt classification, Amazon Comprehend provides the endpoint ARN: zzz.
+	//
+	// For custom classification, you create an endpoint for your custom model.
+	// For more information, see Using Amazon Comprehend endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html).
 	//
 	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
@@ -10723,6 +10839,10 @@ type ClassifyDocumentOutput struct {
 	// trained models. Individual classes are mutually exclusive and each document
 	// is expected to have only a single class assigned to it. For example, an animal
 	// can be a dog or a cat, but not both at the same time.
+	//
+	// For prompt classification, the response includes a single class (UNDESIRED_PROMPT),
+	// along with a confidence score. A higher confidence score indicates that the
+	// input prompt is undesired in nature.
 	Classes []*DocumentClass `type:"list"`
 
 	// Extraction information about the document. This field is present in the response
@@ -11195,8 +11315,7 @@ type CreateDocumentClassifierInput struct {
 	ModelPolicy *string `min:"1" type:"string"`
 
 	// Specifies the location for the output files from a custom classifier job.
-	// This parameter is required for a request that creates a native classifier
-	// model.
+	// This parameter is required for a request that creates a native document model.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
 	// Tags to associate with the document classifier. A tag is a key-value pair
@@ -11839,7 +11958,8 @@ type CreateFlywheelInput struct {
 	_ struct{} `type:"structure"`
 
 	// To associate an existing model with the flywheel, specify the Amazon Resource
-	// Number (ARN) of the model version.
+	// Number (ARN) of the model version. Do not set TaskConfig or ModelType if
+	// you specify an ActiveModelArn.
 	ActiveModelArn *string `type:"string"`
 
 	// A unique identifier for the request. If you don't set the client request
@@ -11867,13 +11987,15 @@ type CreateFlywheelInput struct {
 	// FlywheelName is a required field
 	FlywheelName *string `type:"string" required:"true"`
 
-	// The model type.
+	// The model type. You need to set ModelType if you are creating a flywheel
+	// for a new model.
 	ModelType *string `type:"string" enum:"ModelType"`
 
 	// The tags to associate with this flywheel.
 	Tags []*Tag `type:"list"`
 
-	// Configuration about the custom classifier associated with the flywheel.
+	// Configuration about the model associated with the flywheel. You need to set
+	// TaskConfig if you are creating a flywheel for a new model.
 	TaskConfig *TaskConfig `type:"structure"`
 }
 
@@ -15293,6 +15415,118 @@ func (s *DetectTargetedSentimentOutput) SetEntities(v []*TargetedSentimentEntity
 	return s
 }
 
+type DetectToxicContentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input text. Currently, English is the only supported
+	// language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// A list of up to 10 text strings. The maximum size for the list is 10 KB.
+	//
+	// TextSegments is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DetectToxicContentInput's
+	// String and GoString methods.
+	//
+	// TextSegments is a required field
+	TextSegments []*TextSegment `min:"1" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectToxicContentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectToxicContentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectToxicContentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectToxicContentInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.TextSegments == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextSegments"))
+	}
+	if s.TextSegments != nil && len(s.TextSegments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextSegments", 1))
+	}
+	if s.TextSegments != nil {
+		for i, v := range s.TextSegments {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextSegments", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DetectToxicContentInput) SetLanguageCode(v string) *DetectToxicContentInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTextSegments sets the TextSegments field's value.
+func (s *DetectToxicContentInput) SetTextSegments(v []*TextSegment) *DetectToxicContentInput {
+	s.TextSegments = v
+	return s
+}
+
+type DetectToxicContentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Results of the content moderation analysis. Each entry in the results list
+	// contains a list of toxic content types identified in the text, along with
+	// a confidence score for each content type. The results list also includes
+	// a toxicity score for each entry in the results list.
+	ResultList []*ToxicLabels `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectToxicContentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectToxicContentOutput) GoString() string {
+	return s.String()
+}
+
+// SetResultList sets the ResultList field's value.
+func (s *DetectToxicContentOutput) SetResultList(v []*ToxicLabels) *DetectToxicContentOutput {
+	s.ResultList = v
+	return s
+}
+
 // Specifies the class that categorizes the document being analyzed
 type DocumentClass struct {
 	_ struct{} `type:"structure"`
@@ -15344,7 +15578,7 @@ func (s *DocumentClass) SetScore(v float64) *DocumentClass {
 	return s
 }
 
-// Configuration required for a custom classification model.
+// Configuration required for a document classification model.
 type DocumentClassificationConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15544,7 +15778,7 @@ type DocumentClassificationJobProperties struct {
 
 	// Configuration parameters for a private Virtual Private Cloud (VPC) containing
 	// the resources you are using for your document classification job. For more
-	// information, see Amazon VPC (https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html).
+	// information, see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -15651,7 +15885,7 @@ func (s *DocumentClassificationJobProperties) SetVpcConfig(v *VpcConfig) *Docume
 }
 
 // The location of the training documents. This parameter is required in a request
-// to create a native classifier model.
+// to create a semi-structured document classification model.
 type DocumentClassifierDocuments struct {
 	_ struct{} `type:"structure"`
 
@@ -15828,11 +16062,11 @@ type DocumentClassifierInputDataConfig struct {
 
 	// The type of input documents for training the model. Provide plain-text documents
 	// to create a plain-text model, and provide semi-structured documents to create
-	// a native model.
+	// a native document model.
 	DocumentType *string `type:"string" enum:"DocumentClassifierDocumentTypeFormat"`
 
 	// The S3 location of the training documents. This parameter is required in
-	// a request to create a native classifier model.
+	// a request to create a native document model.
 	Documents *DocumentClassifierDocuments `type:"structure"`
 
 	// Indicates the delimiter used to separate each label for training a multi-label
@@ -15854,9 +16088,9 @@ type DocumentClassifierInputDataConfig struct {
 	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
 	S3Uri *string `type:"string"`
 
-	// This specifies the Amazon S3 location where the test annotations for an entity
-	// recognizer are located. The URI must be in the same Amazon Web Services Region
-	// as the API endpoint that you are calling.
+	// This specifies the Amazon S3 location that contains the test annotations
+	// for the document classifier. The URI must be in the same Amazon Web Services
+	// Region as the API endpoint that you are calling.
 	TestS3Uri *string `type:"string"`
 }
 
@@ -15960,7 +16194,7 @@ func (s *DocumentClassifierInputDataConfig) SetTestS3Uri(v string) *DocumentClas
 }
 
 // Provide the location for output data from a custom classifier job. This field
-// is mandatory if you are training a native classifier model.
+// is mandatory if you are training a native document model.
 type DocumentClassifierOutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -16124,7 +16358,7 @@ type DocumentClassifierProperties struct {
 
 	// Configuration parameters for a private Virtual Private Cloud (VPC) containing
 	// the resources you are using for your custom classifier. For more information,
-	// see Amazon VPC (https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html).
+	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -19130,7 +19364,7 @@ type FlywheelProperties struct {
 	// The status of the flywheel.
 	Status *string `type:"string" enum:"FlywheelStatus"`
 
-	// Configuration about the custom classifier associated with the flywheel.
+	// Configuration about the model associated with a flywheel.
 	TaskConfig *TaskConfig `type:"structure"`
 }
 
@@ -22246,7 +22480,8 @@ func (s *ListTopicsDetectionJobsOutput) SetTopicsDetectionJobPropertiesList(v []
 
 // Contains the sentiment and sentiment score for one mention of an entity.
 //
-// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html)
+// in the Amazon Comprehend Developer Guide.
 type MentionSentiment struct {
 	_ struct{} `type:"structure"`
 
@@ -22293,8 +22528,11 @@ type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
 	// ID for the Amazon Web Services Key Management Service (KMS) key that Amazon
-	// Comprehend uses to encrypt the output results from an analysis job. The KmsKeyId
-	// can be one of the following formats:
+	// Comprehend uses to encrypt the output results from an analysis job. Specify
+	// the Key Id of a symmetric key, because you cannot use an asymmetric key for
+	// uploading data to S3.
+	//
+	// The KmsKeyId can be one of the following formats:
 	//
 	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -25454,7 +25692,7 @@ type StartTargetedSentimentDetectionJobInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend
 	// read access to your input data. For more information, see Role-based permissions
-	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -27189,7 +27427,8 @@ func (s *TargetedSentimentDetectionJobProperties) SetVpcConfig(v *VpcConfig) *Ta
 
 // Information about one of the entities found by targeted sentiment analysis.
 //
-// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html)
+// in the Amazon Comprehend Developer Guide.
 type TargetedSentimentEntity struct {
 	_ struct{} `type:"structure"`
 
@@ -27236,7 +27475,8 @@ func (s *TargetedSentimentEntity) SetMentions(v []*TargetedSentimentMention) *Ta
 // Information about one mention of an entity. The mention information includes
 // the location of the mention in the text and the sentiment of the mention.
 //
-// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html)
+// in the Amazon Comprehend Developer Guide.
 type TargetedSentimentMention struct {
 	_ struct{} `type:"structure"`
 
@@ -27325,11 +27565,11 @@ func (s *TargetedSentimentMention) SetType(v string) *TargetedSentimentMention {
 	return s
 }
 
-// Configuration about the custom classifier associated with the flywheel.
+// Configuration about the model associated with a flywheel.
 type TaskConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration required for a classification model.
+	// Configuration required for a document classification model.
 	DocumentClassificationConfig *DocumentClassificationConfig `type:"structure"`
 
 	// Configuration required for an entity recognition model.
@@ -27397,6 +27637,60 @@ func (s *TaskConfig) SetEntityRecognitionConfig(v *EntityRecognitionConfig) *Tas
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *TaskConfig) SetLanguageCode(v string) *TaskConfig {
 	s.LanguageCode = &v
+	return s
+}
+
+// One of the of text strings. Each string has a size limit of 1KB.
+type TextSegment struct {
+	_ struct{} `type:"structure"`
+
+	// The text content.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TextSegment's
+	// String and GoString methods.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextSegment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextSegment) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TextSegment) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TextSegment"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *TextSegment) SetText(v string) *TextSegment {
+	s.Text = &v
 	return s
 }
 
@@ -27896,6 +28190,93 @@ func (s *TopicsDetectionJobProperties) SetVolumeKmsKeyId(v string) *TopicsDetect
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *TopicsDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TopicsDetectionJobProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Toxic content analysis result for one string. For more information about
+// toxicity detection, see Toxicity detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
+// in the Amazon Comprehend Developer Guide
+type ToxicContent struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the toxic content type.
+	Name *string `type:"string" enum:"ToxicContentType"`
+
+	// Model confidence in the detected content type. Value range is zero to one,
+	// where one is highest confidence.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicContent) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ToxicContent) SetName(v string) *ToxicContent {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ToxicContent) SetScore(v float64) *ToxicContent {
+	s.Score = &v
+	return s
+}
+
+// Toxicity analysis result for one string. For more information about toxicity
+// detection, see Toxicity detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
+// in the Amazon Comprehend Developer Guide
+type ToxicLabels struct {
+	_ struct{} `type:"structure"`
+
+	// Array of toxic content types identified in the string.
+	Labels []*ToxicContent `type:"list"`
+
+	// Overall toxicity score for the string.
+	Toxicity *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicLabels) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToxicLabels) GoString() string {
+	return s.String()
+}
+
+// SetLabels sets the Labels field's value.
+func (s *ToxicLabels) SetLabels(v []*ToxicContent) *ToxicLabels {
+	s.Labels = v
+	return s
+}
+
+// SetToxicity sets the Toxicity field's value.
+func (s *ToxicLabels) SetToxicity(v float64) *ToxicLabels {
+	s.Toxicity = &v
 	return s
 }
 
@@ -28442,7 +28823,7 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 // input document:
 //
 //   - The document to classify is plain text, but the classifier is a native
-//     model.
+//     document model.
 //
 //   - The document to classify is semi-structured, but the classifier is a
 //     plain-text model.
@@ -29532,5 +29913,41 @@ func TargetedSentimentEntityType_Values() []string {
 		TargetedSentimentEntityTypeQuantity,
 		TargetedSentimentEntityTypeAttribute,
 		TargetedSentimentEntityTypeOther,
+	}
+}
+
+const (
+	// ToxicContentTypeGraphic is a ToxicContentType enum value
+	ToxicContentTypeGraphic = "GRAPHIC"
+
+	// ToxicContentTypeHarassmentOrAbuse is a ToxicContentType enum value
+	ToxicContentTypeHarassmentOrAbuse = "HARASSMENT_OR_ABUSE"
+
+	// ToxicContentTypeHateSpeech is a ToxicContentType enum value
+	ToxicContentTypeHateSpeech = "HATE_SPEECH"
+
+	// ToxicContentTypeInsult is a ToxicContentType enum value
+	ToxicContentTypeInsult = "INSULT"
+
+	// ToxicContentTypeProfanity is a ToxicContentType enum value
+	ToxicContentTypeProfanity = "PROFANITY"
+
+	// ToxicContentTypeSexual is a ToxicContentType enum value
+	ToxicContentTypeSexual = "SEXUAL"
+
+	// ToxicContentTypeViolenceOrThreat is a ToxicContentType enum value
+	ToxicContentTypeViolenceOrThreat = "VIOLENCE_OR_THREAT"
+)
+
+// ToxicContentType_Values returns all elements of the ToxicContentType enum
+func ToxicContentType_Values() []string {
+	return []string{
+		ToxicContentTypeGraphic,
+		ToxicContentTypeHarassmentOrAbuse,
+		ToxicContentTypeHateSpeech,
+		ToxicContentTypeInsult,
+		ToxicContentTypeProfanity,
+		ToxicContentTypeSexual,
+		ToxicContentTypeViolenceOrThreat,
 	}
 }

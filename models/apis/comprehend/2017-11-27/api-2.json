@@ -659,6 +659,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DetectToxicContent":{
+      "name":"DetectToxicContent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectToxicContentRequest"},
+      "output":{"shape":"DetectToxicContentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ImportModel":{
       "name":"ImportModel",
       "http":{
@@ -2400,6 +2415,23 @@
       },
       "sensitive":true
     },
+    "DetectToxicContentRequest":{
+      "type":"structure",
+      "required":[
+        "TextSegments",
+        "LanguageCode"
+      ],
+      "members":{
+        "TextSegments":{"shape":"ListOfTextSegments"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "DetectToxicContentResponse":{
+      "type":"structure",
+      "members":{
+        "ResultList":{"shape":"ListOfToxicLabels"}
+      }
+    },
     "DocumentClass":{
       "type":"structure",
       "members":{
@@ -2482,7 +2514,7 @@
     "DocumentClassifierEndpointArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:([0-9]{12}|aws):document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "DocumentClassifierFilter":{
       "type":"structure",
@@ -3618,6 +3650,20 @@
       "type":"list",
       "member":{"shape":"TargetedSentimentEntity"}
     },
+    "ListOfTextSegments":{
+      "type":"list",
+      "member":{"shape":"TextSegment"},
+      "min":1,
+      "sensitive":true
+    },
+    "ListOfToxicContent":{
+      "type":"list",
+      "member":{"shape":"ToxicContent"}
+    },
+    "ListOfToxicLabels":{
+      "type":"list",
+      "member":{"shape":"ToxicLabels"}
+    },
     "ListOfWarnings":{
       "type":"list",
       "member":{"shape":"WarningsListItem"}
@@ -4650,6 +4696,13 @@
         "EntityRecognitionConfig":{"shape":"EntityRecognitionConfig"}
       }
     },
+    "TextSegment":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"CustomerInputString"}
+      }
+    },
     "TextSizeLimitExceededException":{
       "type":"structure",
       "members":{
@@ -4709,6 +4762,32 @@
     "TopicsDetectionJobPropertiesList":{
       "type":"list",
       "member":{"shape":"TopicsDetectionJobProperties"}
+    },
+    "ToxicContent":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ToxicContentType"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "ToxicContentType":{
+      "type":"string",
+      "enum":[
+        "GRAPHIC",
+        "HARASSMENT_OR_ABUSE",
+        "HATE_SPEECH",
+        "INSULT",
+        "PROFANITY",
+        "SEXUAL",
+        "VIOLENCE_OR_THREAT"
+      ]
+    },
+    "ToxicLabels":{
+      "type":"structure",
+      "members":{
+        "Labels":{"shape":"ListOfToxicContent"},
+        "Toxicity":{"shape":"Float"}
+      }
     },
     "UnsupportedLanguageException":{
       "type":"structure",

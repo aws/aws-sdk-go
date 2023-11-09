@@ -1409,6 +1409,13 @@
       "max":128,
       "min":1
     },
+    "ConcurrencyMode":{
+      "type":"string",
+      "enum":[
+        "STRICT_FAILURE_TOLERANCE",
+        "SOFT_FAILURE_TOLERANCE"
+      ]
+    },
     "ConfigurationSchema":{
       "type":"string",
       "max":60000,
@@ -3929,7 +3936,8 @@
         "FailureToleranceCount":{"shape":"FailureToleranceCount"},
         "FailureTolerancePercentage":{"shape":"FailureTolerancePercentage"},
         "MaxConcurrentCount":{"shape":"MaxConcurrentCount"},
-        "MaxConcurrentPercentage":{"shape":"MaxConcurrentPercentage"}
+        "MaxConcurrentPercentage":{"shape":"MaxConcurrentPercentage"},
+        "ConcurrencyMode":{"shape":"ConcurrencyMode"}
       }
     },
     "StackSetOperationResultStatus":{

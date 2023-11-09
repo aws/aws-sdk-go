@@ -3393,6 +3393,15 @@
       "input":{"shape":"DisableSerialConsoleAccessRequest"},
       "output":{"shape":"DisableSerialConsoleAccessResult"}
     },
+    "DisableSnapshotBlockPublicAccess":{
+      "name":"DisableSnapshotBlockPublicAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableSnapshotBlockPublicAccessRequest"},
+      "output":{"shape":"DisableSnapshotBlockPublicAccessResult"}
+    },
     "DisableTransitGatewayRouteTablePropagation":{
       "name":"DisableTransitGatewayRouteTablePropagation",
       "http":{
@@ -3650,6 +3659,15 @@
       },
       "input":{"shape":"EnableSerialConsoleAccessRequest"},
       "output":{"shape":"EnableSerialConsoleAccessResult"}
+    },
+    "EnableSnapshotBlockPublicAccess":{
+      "name":"EnableSnapshotBlockPublicAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableSnapshotBlockPublicAccessRequest"},
+      "output":{"shape":"EnableSnapshotBlockPublicAccessResult"}
     },
     "EnableTransitGatewayRouteTablePropagation":{
       "name":"EnableTransitGatewayRouteTablePropagation",
@@ -4008,6 +4026,15 @@
       },
       "input":{"shape":"GetSerialConsoleAccessStatusRequest"},
       "output":{"shape":"GetSerialConsoleAccessStatusResult"}
+    },
+    "GetSnapshotBlockPublicAccessState":{
+      "name":"GetSnapshotBlockPublicAccessState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSnapshotBlockPublicAccessStateRequest"},
+      "output":{"shape":"GetSnapshotBlockPublicAccessStateResult"}
     },
     "GetSpotPlacementScores":{
       "name":"GetSpotPlacementScores",
@@ -19581,6 +19608,21 @@
         }
       }
     },
+    "DisableSnapshotBlockPublicAccessRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableSnapshotBlockPublicAccessResult":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"SnapshotBlockPublicAccessState",
+          "locationName":"state"
+        }
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":["TransitGatewayRouteTableId"],
@@ -20973,6 +21015,23 @@
         "SerialConsoleAccessEnabled":{
           "shape":"Boolean",
           "locationName":"serialConsoleAccessEnabled"
+        }
+      }
+    },
+    "EnableSnapshotBlockPublicAccessRequest":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"SnapshotBlockPublicAccessState"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableSnapshotBlockPublicAccessResult":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"SnapshotBlockPublicAccessState",
+          "locationName":"state"
         }
       }
     },
@@ -23492,6 +23551,21 @@
         "SerialConsoleAccessEnabled":{
           "shape":"Boolean",
           "locationName":"serialConsoleAccessEnabled"
+        }
+      }
+    },
+    "GetSnapshotBlockPublicAccessStateRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetSnapshotBlockPublicAccessStateResult":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"SnapshotBlockPublicAccessState",
+          "locationName":"state"
         }
       }
     },
@@ -39448,6 +39522,14 @@
       "enum":[
         "productCodes",
         "createVolumePermission"
+      ]
+    },
+    "SnapshotBlockPublicAccessState":{
+      "type":"string",
+      "enum":[
+        "block-all-sharing",
+        "block-new-sharing",
+        "unblocked"
       ]
     },
     "SnapshotDetail":{

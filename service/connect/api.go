@@ -46155,6 +46155,9 @@ type ListIntegrationAssociationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the integration.
+	IntegrationArn *string `location:"querystring" locationName:"integrationArn" type:"string"`
+
 	// The integration type.
 	IntegrationType *string `location:"querystring" locationName:"integrationType" type:"string" enum:"IntegrationType"`
 
@@ -46206,6 +46209,12 @@ func (s *ListIntegrationAssociationsInput) Validate() error {
 // SetInstanceId sets the InstanceId field's value.
 func (s *ListIntegrationAssociationsInput) SetInstanceId(v string) *ListIntegrationAssociationsInput {
 	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationArn sets the IntegrationArn field's value.
+func (s *ListIntegrationAssociationsInput) SetIntegrationArn(v string) *ListIntegrationAssociationsInput {
+	s.IntegrationArn = &v
 	return s
 }
 
@@ -67659,6 +67668,9 @@ const (
 
 	// IntegrationTypeApplication is a IntegrationType enum value
 	IntegrationTypeApplication = "APPLICATION"
+
+	// IntegrationTypeFileScanner is a IntegrationType enum value
+	IntegrationTypeFileScanner = "FILE_SCANNER"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
@@ -67671,6 +67683,7 @@ func IntegrationType_Values() []string {
 		IntegrationTypeWisdomKnowledgeBase,
 		IntegrationTypeCasesDomain,
 		IntegrationTypeApplication,
+		IntegrationTypeFileScanner,
 	}
 }
 

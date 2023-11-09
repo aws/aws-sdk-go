@@ -40,6 +40,24 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "CreateDelivery":{
+      "name":"CreateDelivery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDeliveryRequest"},
+      "output":{"shape":"CreateDeliveryResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateExportTask":{
       "name":"CreateExportTask",
       "http":{
@@ -112,6 +130,68 @@
         {"shape":"OperationAbortedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteDelivery":{
+      "name":"DeleteDelivery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeliveryRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteDeliveryDestination":{
+      "name":"DeleteDeliveryDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeliveryDestinationRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteDeliveryDestinationPolicy":{
+      "name":"DeleteDeliveryDestinationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeliveryDestinationPolicyRequest"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteDeliverySource":{
+      "name":"DeleteDeliverySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeliverySourceRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteDestination":{
@@ -238,6 +318,51 @@
         {"shape":"OperationAbortedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DescribeDeliveries":{
+      "name":"DescribeDeliveries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDeliveriesRequest"},
+      "output":{"shape":"DescribeDeliveriesResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeDeliveryDestinations":{
+      "name":"DescribeDeliveryDestinations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDeliveryDestinationsRequest"},
+      "output":{"shape":"DescribeDeliveryDestinationsResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeDeliverySources":{
+      "name":"DescribeDeliverySources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDeliverySourcesRequest"},
+      "output":{"shape":"DescribeDeliverySourcesResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeDestinations":{
@@ -404,6 +529,68 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "GetDelivery":{
+      "name":"GetDelivery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeliveryRequest"},
+      "output":{"shape":"GetDeliveryResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetDeliveryDestination":{
+      "name":"GetDeliveryDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeliveryDestinationRequest"},
+      "output":{"shape":"GetDeliveryDestinationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetDeliveryDestinationPolicy":{
+      "name":"GetDeliveryDestinationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeliveryDestinationPolicyRequest"},
+      "output":{"shape":"GetDeliveryDestinationPolicyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetDeliverySource":{
+      "name":"GetDeliverySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeliverySourceRequest"},
+      "output":{"shape":"GetDeliverySourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetLogEvents":{
       "name":"GetLogEvents",
       "http":{
@@ -520,6 +707,55 @@
         {"shape":"OperationAbortedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "PutDeliveryDestination":{
+      "name":"PutDeliveryDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDeliveryDestinationRequest"},
+      "output":{"shape":"PutDeliveryDestinationResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "PutDeliveryDestinationPolicy":{
+      "name":"PutDeliveryDestinationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDeliveryDestinationPolicyRequest"},
+      "output":{"shape":"PutDeliveryDestinationPolicyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "PutDeliverySource":{
+      "name":"PutDeliverySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDeliverySourceRequest"},
+      "output":{"shape":"PutDeliverySourceResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "PutDestination":{
@@ -738,6 +974,12 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "AccessPolicy":{
       "type":"string",
       "min":1
@@ -798,6 +1040,30 @@
       "max":128,
       "min":36,
       "pattern":"\\S{36,128}"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "CreateDeliveryRequest":{
+      "type":"structure",
+      "required":[
+        "deliverySourceName",
+        "deliveryDestinationArn"
+      ],
+      "members":{
+        "deliverySourceName":{"shape":"DeliverySourceName"},
+        "deliveryDestinationArn":{"shape":"Arn"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateDeliveryResponse":{
+      "type":"structure",
+      "members":{
+        "delivery":{"shape":"Delivery"}
+      }
     },
     "CreateExportTaskRequest":{
       "type":"structure",
@@ -880,6 +1146,34 @@
         "logGroupIdentifier":{"shape":"LogGroupIdentifier"}
       }
     },
+    "DeleteDeliveryDestinationPolicyRequest":{
+      "type":"structure",
+      "required":["deliveryDestinationName"],
+      "members":{
+        "deliveryDestinationName":{"shape":"DeliveryDestinationName"}
+      }
+    },
+    "DeleteDeliveryDestinationRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"DeliveryDestinationName"}
+      }
+    },
+    "DeleteDeliveryRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"DeliveryId"}
+      }
+    },
+    "DeleteDeliverySourceRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"DeliverySourceName"}
+      }
+    },
     "DeleteDestinationRequest":{
       "type":"structure",
       "required":["destinationName"],
@@ -953,6 +1247,89 @@
         "filterName":{"shape":"FilterName"}
       }
     },
+    "Deliveries":{
+      "type":"list",
+      "member":{"shape":"Delivery"}
+    },
+    "Delivery":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"DeliveryId"},
+        "arn":{"shape":"Arn"},
+        "deliverySourceName":{"shape":"DeliverySourceName"},
+        "deliveryDestinationArn":{"shape":"Arn"},
+        "deliveryDestinationType":{"shape":"DeliveryDestinationType"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "DeliveryDestination":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"DeliveryDestinationName"},
+        "arn":{"shape":"Arn"},
+        "deliveryDestinationType":{"shape":"DeliveryDestinationType"},
+        "outputFormat":{"shape":"OutputFormat"},
+        "deliveryDestinationConfiguration":{"shape":"DeliveryDestinationConfiguration"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "DeliveryDestinationConfiguration":{
+      "type":"structure",
+      "required":["destinationResourceArn"],
+      "members":{
+        "destinationResourceArn":{"shape":"Arn"}
+      }
+    },
+    "DeliveryDestinationName":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":"[\\w-]*"
+    },
+    "DeliveryDestinationPolicy":{
+      "type":"string",
+      "max":51200,
+      "min":1
+    },
+    "DeliveryDestinationType":{
+      "type":"string",
+      "enum":[
+        "S3",
+        "CWL",
+        "FH"
+      ]
+    },
+    "DeliveryDestinations":{
+      "type":"list",
+      "member":{"shape":"DeliveryDestination"}
+    },
+    "DeliveryId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[0-9A-Za-z]+$"
+    },
+    "DeliverySource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"DeliverySourceName"},
+        "arn":{"shape":"Arn"},
+        "resourceArns":{"shape":"ResourceArns"},
+        "service":{"shape":"Service"},
+        "logType":{"shape":"LogType"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "DeliverySourceName":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":"[\\w-]*"
+    },
+    "DeliverySources":{
+      "type":"list",
+      "member":{"shape":"DeliverySource"}
+    },
     "Descending":{"type":"boolean"},
     "DescribeAccountPoliciesRequest":{
       "type":"structure",
@@ -967,6 +1344,48 @@
       "type":"structure",
       "members":{
         "accountPolicies":{"shape":"AccountPolicies"}
+      }
+    },
+    "DescribeDeliveriesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeDeliveriesResponse":{
+      "type":"structure",
+      "members":{
+        "deliveries":{"shape":"Deliveries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeDeliveryDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeDeliveryDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "deliveryDestinations":{"shape":"DeliveryDestinations"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeDeliverySourcesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeDeliverySourcesResponse":{
+      "type":"structure",
+      "members":{
+        "deliverySources":{"shape":"DeliverySources"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "DescribeDestinationsRequest":{
@@ -1330,6 +1749,58 @@
         "lastUpdatedTime":{"shape":"Timestamp"}
       }
     },
+    "GetDeliveryDestinationPolicyRequest":{
+      "type":"structure",
+      "required":["deliveryDestinationName"],
+      "members":{
+        "deliveryDestinationName":{"shape":"DeliveryDestinationName"}
+      }
+    },
+    "GetDeliveryDestinationPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "policy":{"shape":"Policy"}
+      }
+    },
+    "GetDeliveryDestinationRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"DeliveryDestinationName"}
+      }
+    },
+    "GetDeliveryDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "deliveryDestination":{"shape":"DeliveryDestination"}
+      }
+    },
+    "GetDeliveryRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"DeliveryId"}
+      }
+    },
+    "GetDeliveryResponse":{
+      "type":"structure",
+      "members":{
+        "delivery":{"shape":"Delivery"}
+      }
+    },
+    "GetDeliverySourceRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"DeliverySourceName"}
+      }
+    },
+    "GetDeliverySourceResponse":{
+      "type":"structure",
+      "members":{
+        "deliverySource":{"shape":"DeliverySource"}
+      }
+    },
     "GetLogEventsRequest":{
       "type":"structure",
       "required":["logStreamName"],
@@ -1579,6 +2050,12 @@
       "type":"list",
       "member":{"shape":"LogStream"}
     },
+    "LogType":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\w]*"
+    },
     "MalformedQueryException":{
       "type":"structure",
       "members":{
@@ -1666,6 +2143,16 @@
         "LastEventTime"
       ]
     },
+    "OutputFormat":{
+      "type":"string",
+      "enum":[
+        "json",
+        "plain",
+        "w3c",
+        "raw",
+        "parquet"
+      ]
+    },
     "OutputLogEvent":{
       "type":"structure",
       "members":{
@@ -1682,6 +2169,12 @@
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "Policy":{
+      "type":"structure",
+      "members":{
+        "deliveryDestinationPolicy":{"shape":"DeliveryDestinationPolicy"}
+      }
     },
     "PolicyDocument":{
       "type":"string",
@@ -1730,6 +2223,62 @@
         "logGroupIdentifier":{"shape":"LogGroupIdentifier"},
         "policyDocument":{"shape":"DataProtectionPolicyDocument"},
         "lastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "PutDeliveryDestinationPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "deliveryDestinationName",
+        "deliveryDestinationPolicy"
+      ],
+      "members":{
+        "deliveryDestinationName":{"shape":"DeliveryDestinationName"},
+        "deliveryDestinationPolicy":{"shape":"DeliveryDestinationPolicy"}
+      }
+    },
+    "PutDeliveryDestinationPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "policy":{"shape":"Policy"}
+      }
+    },
+    "PutDeliveryDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "deliveryDestinationConfiguration"
+      ],
+      "members":{
+        "name":{"shape":"DeliveryDestinationName"},
+        "outputFormat":{"shape":"OutputFormat"},
+        "deliveryDestinationConfiguration":{"shape":"DeliveryDestinationConfiguration"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PutDeliveryDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "deliveryDestination":{"shape":"DeliveryDestination"}
+      }
+    },
+    "PutDeliverySourceRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "resourceArn",
+        "logType"
+      ],
+      "members":{
+        "name":{"shape":"DeliverySourceName"},
+        "resourceArn":{"shape":"Arn"},
+        "logType":{"shape":"LogType"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PutDeliverySourceResponse":{
+      "type":"structure",
+      "members":{
+        "deliverySource":{"shape":"DeliverySource"}
       }
     },
     "PutDestinationPolicyRequest":{
@@ -1970,6 +2519,10 @@
       },
       "exception":true
     },
+    "ResourceArns":{
+      "type":"list",
+      "member":{"shape":"Arn"}
+    },
     "ResourceIdentifier":{
       "type":"string",
       "max":2048,
@@ -2027,6 +2580,18 @@
     "SequenceToken":{
       "type":"string",
       "min":1
+    },
+    "Service":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\w]*"
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "ServiceUnavailableException":{
       "type":"structure",
@@ -2206,6 +2771,12 @@
         "matches":{"shape":"MetricFilterMatches"}
       }
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "Timestamp":{
       "type":"long",
       "min":0
@@ -2249,6 +2820,12 @@
         "resourceArn":{"shape":"AmazonResourceName"},
         "tagKeys":{"shape":"TagKeyList"}
       }
+    },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "Value":{"type":"string"}
   }

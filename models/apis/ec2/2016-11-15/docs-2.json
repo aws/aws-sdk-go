@@ -381,6 +381,7 @@
     "DisableImageDeprecation": "<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisableIpamOrganizationAdminAccount": "<p>Disable the IPAM account. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
     "DisableSerialConsoleAccess": "<p>Disables access to the EC2 serial console of all instances for your account. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "DisableSnapshotBlockPublicAccess": "<p>Disables the <i>block public access for snapshots</i> setting at the account level for the specified Amazon Web Services Region. After you disable block public access for snapshots in a Region, users can publicly share snapshots in that Region.</p> <p>If block public access is enabled in <code>block-all-sharing</code> mode, and you disable block public access, all snapshots that were previously publicly shared are no longer treated as private and they become publicly accessible again.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-public-access-snapshots.html\"> Block public access for snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> .</p> <p/>",
     "DisableTransitGatewayRouteTablePropagation": "<p>Disables the specified resource attachment from propagating routes to the specified propagation route table.</p>",
     "DisableVgwRoutePropagation": "<p>Disables a virtual private gateway (VGW) from propagating routes to a specified route table of a VPC.</p>",
     "DisableVpcClassicLink": "<note> <p>This action is deprecated.</p> </note> <p>Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC that has EC2-Classic instances linked to it.</p>",
@@ -410,6 +411,7 @@
     "EnableIpamOrganizationAdminAccount": "<p>Enable an Organizations member account as the IPAM admin account. You cannot select the Organizations management account as the IPAM admin account. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
     "EnableReachabilityAnalyzerOrganizationSharing": "<p>Establishes a trust relationship between Reachability Analyzer and Organizations. This operation must be performed by the management account for the organization.</p> <p>After you establish a trust relationship, a user in the management account or a delegated administrator account can run a cross-account analysis using resources from the member accounts.</p>",
     "EnableSerialConsoleAccess": "<p>Enables access to the EC2 serial console of all instances for your account. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "EnableSnapshotBlockPublicAccess": "<p>Enables or modifies the <i>block public access for snapshots</i> setting at the account level for the specified Amazon Web Services Region. After you enable block public access for snapshots in a Region, users can no longer request public sharing for snapshots in that Region. Snapshots that are already publicly shared are either treated as private or they remain publicly shared, depending on the <b>State</b> that you specify.</p> <p>If block public access is enabled in <code>block-all-sharing</code> mode, and you change the mode to <code>block-new-sharing</code>, all snapshots that were previously publicly shared are no longer treated as private and they become publicly accessible again.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-public-access-snapshots.html\"> Block public access for snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableTransitGatewayRouteTablePropagation": "<p>Enables the specified attachment to propagate routes to the specified propagation route table.</p>",
     "EnableVgwRoutePropagation": "<p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>",
     "EnableVolumeIO": "<p>Enables I/O operations for a volume that had I/O operations disabled because the data on the volume was potentially inconsistent.</p>",
@@ -450,6 +452,7 @@
     "GetReservedInstancesExchangeQuote": "<p>Returns a quote and exchange information for exchanging one or more specified Convertible Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be performed, the reason is returned in the response. Use <a>AcceptReservedInstancesExchangeQuote</a> to perform the exchange.</p>",
     "GetSecurityGroupsForVpc": "<p>Gets security groups that can be associated by the Amazon Web Services account making the request with network interfaces in the specified VPC.</p>",
     "GetSerialConsoleAccessStatus": "<p>Retrieves the access status of your account to the EC2 serial console of all instances. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "GetSnapshotBlockPublicAccessState": "<p>Gets the current state of <i>block public access for snapshots</i> setting for the account and Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-public-access-snapshots.html\"> Block public access for snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "GetSpotPlacementScores": "<p>Calculates the Spot placement score for a Region or Availability Zone based on the specified target capacity and compute requirements.</p> <p>You can specify your compute requirements either by using <code>InstanceRequirementsWithMetadata</code> and letting Amazon EC2 choose the optimal instance types to fulfill your Spot request, or you can specify the instance types by using <code>InstanceTypes</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the Amazon EC2 User Guide.</p>",
     "GetSubnetCidrReservations": "<p>Gets information about the subnet CIDR reservations.</p>",
     "GetTransitGatewayAttachmentPropagations": "<p>Lists the route tables to which the specified resource attachment propagates routes.</p>",
@@ -2344,6 +2347,7 @@
         "DisableIpamOrganizationAdminAccountResult$Success": "<p>The result of disabling the IPAM account.</p>",
         "DisableSerialConsoleAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableSerialConsoleAccessResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
+        "DisableSnapshotBlockPublicAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVgwRoutePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -2390,6 +2394,7 @@
         "EnableReachabilityAnalyzerOrganizationSharingResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "EnableSerialConsoleAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableSerialConsoleAccessResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
+        "EnableSnapshotBlockPublicAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVgwRoutePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVolumeIORequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2442,6 +2447,7 @@
         "GetSecurityGroupsForVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSerialConsoleAccessStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSerialConsoleAccessStatusResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
+        "GetSnapshotBlockPublicAccessStateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSpotPlacementScoresRequest$SingleAvailabilityZone": "<p>Specify <code>true</code> so that the response returns a list of scored Availability Zones. Otherwise, the response returns a list of scored Regions.</p> <p>A list of scored Availability Zones is useful if you want to launch all of your Spot capacity into a single Availability Zone.</p>",
         "GetSpotPlacementScoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSubnetCidrReservationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -7972,6 +7978,16 @@
       "refs": {
       }
     },
+    "DisableSnapshotBlockPublicAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableSnapshotBlockPublicAccessResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -8749,6 +8765,16 @@
       }
     },
     "EnableSerialConsoleAccessResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableSnapshotBlockPublicAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableSnapshotBlockPublicAccessResult": {
       "base": null,
       "refs": {
       }
@@ -10022,6 +10048,16 @@
       }
     },
     "GetSerialConsoleAccessStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSnapshotBlockPublicAccessStateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSnapshotBlockPublicAccessStateResult": {
       "base": null,
       "refs": {
       }
@@ -18039,6 +18075,15 @@
         "DescribeSnapshotAttributeRequest$Attribute": "<p>The snapshot attribute you would like to view.</p>",
         "ModifySnapshotAttributeRequest$Attribute": "<p>The snapshot attribute to modify. Only volume creation permissions can be modified.</p>",
         "ResetSnapshotAttributeRequest$Attribute": "<p>The attribute to reset. Currently, only the attribute for permission to create volumes can be reset.</p>"
+      }
+    },
+    "SnapshotBlockPublicAccessState": {
+      "base": null,
+      "refs": {
+        "DisableSnapshotBlockPublicAccessResult$State": "<p>Returns <code>unblocked</code> if the request succeeds.</p>",
+        "EnableSnapshotBlockPublicAccessRequest$State": "<p>The mode in which to enable block public access for snapshots for the Region. Specify one of the following values:</p> <ul> <li> <p> <code>block-all-sharing</code> - Prevents all public sharing of snapshots in the Region. Users in the account will no longer be able to request new public sharing. Additionally, snapshots that are already publicly shared are treated as private and they are no longer publicly available.</p> <note> <p>If you enable block public access for snapshots in <code>block-all-sharing</code> mode, it does not change the permissions for snapshots that are already publicly shared. Instead, it prevents these snapshots from be publicly visible and publicly accessible. Therefore, the attributes for these snapshots still indicate that they are publicly shared, even though they are not publicly available.</p> </note> </li> <li> <p> <code>block-new-sharing</code> - Prevents only new public sharing of snapshots in the Region. Users in the account will no longer be able to request new public sharing. However, snapshots that are already publicly shared, remain publicly available.</p> </li> </ul>",
+        "EnableSnapshotBlockPublicAccessResult$State": "<p>The state of block public access for snapshots for the account and Region. Returns either <code>block-all-sharing</code> or <code>block-new-sharing</code> if the request succeeds.</p>",
+        "GetSnapshotBlockPublicAccessStateResult$State": "<p>The current state of block public access for snapshots. Possible values include:</p> <ul> <li> <p> <code>block-all-sharing</code> - All public sharing of snapshots is blocked. Users in the account can't request new public sharing. Additionally, snapshots that were already publicly shared are treated as private and are not publicly available.</p> </li> <li> <p> <code>block-new-sharing</code> - Only new public sharing of snapshots is blocked. Users in the account can't request new public sharing. However, snapshots that were already publicly shared, remain publicly available.</p> </li> <li> <p> <code>unblocked</code> - Public sharing is not blocked. Users can publicly share snapshots.</p> </li> </ul>"
       }
     },
     "SnapshotDetail": {

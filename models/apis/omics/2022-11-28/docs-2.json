@@ -1934,11 +1934,16 @@
         "GetReferenceMetadataResponse$arn": "<p>The reference's ARN.</p>",
         "ImportReadSetSourceItem$referenceArn": "<p>The source's genome reference ARN.</p>",
         "MultipartReadSetUploadListItem$referenceArn": "<p> The source's reference ARN. </p>",
-        "ReadSetFilter$referenceArn": "<p>A genome reference ARN to filter on.</p>",
         "ReadSetListItem$referenceArn": "<p>The read set's genome reference ARN.</p>",
         "ReferenceItem$referenceArn": "<p>The reference's ARN.</p>",
         "ReferenceListItem$arn": "<p>The reference's ARN.</p>",
         "StartReadSetImportJobSourceItem$referenceArn": "<p>The source's reference ARN.</p>"
+      }
+    },
+    "ReferenceArnFilter": {
+      "base": null,
+      "refs": {
+        "ReadSetFilter$referenceArn": "<p>A genome reference ARN to filter on.</p>"
       }
     },
     "ReferenceDescription": {

@@ -224,6 +224,10 @@ type ComprehendAPI interface {
 	DetectTargetedSentimentWithContext(aws.Context, *comprehend.DetectTargetedSentimentInput, ...request.Option) (*comprehend.DetectTargetedSentimentOutput, error)
 	DetectTargetedSentimentRequest(*comprehend.DetectTargetedSentimentInput) (*request.Request, *comprehend.DetectTargetedSentimentOutput)
 
+	DetectToxicContent(*comprehend.DetectToxicContentInput) (*comprehend.DetectToxicContentOutput, error)
+	DetectToxicContentWithContext(aws.Context, *comprehend.DetectToxicContentInput, ...request.Option) (*comprehend.DetectToxicContentOutput, error)
+	DetectToxicContentRequest(*comprehend.DetectToxicContentInput) (*request.Request, *comprehend.DetectToxicContentOutput)
+
 	ImportModel(*comprehend.ImportModelInput) (*comprehend.ImportModelOutput, error)
 	ImportModelWithContext(aws.Context, *comprehend.ImportModelInput, ...request.Option) (*comprehend.ImportModelOutput, error)
 	ImportModelRequest(*comprehend.ImportModelInput) (*request.Request, *comprehend.ImportModelOutput)
