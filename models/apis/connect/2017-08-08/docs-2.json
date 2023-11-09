@@ -287,6 +287,7 @@
         "IntegrationAssociationSummary$IntegrationArn": "<p>The Amazon Resource Name (ARN) for the AppIntegration.</p>",
         "KinesisFirehoseConfig$FirehoseArn": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisStreamConfig$StreamArn": "<p>The Amazon Resource Name (ARN) of the data stream.</p>",
+        "ListIntegrationAssociationsRequest$IntegrationArn": "<p>The Amazon Resource Name (ARN) of the integration.</p>",
         "ListPhoneNumbersSummary$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "ListPhoneNumbersSummary$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through.</p>",
         "ListPhoneNumbersV2Request$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through. If both <code>TargetArn</code> and <code>InstanceId</code> input are not provided, this API lists numbers claimed to all the Amazon Connect instances belonging to your account in the same Amazon Web Services Region as the request.</p>",

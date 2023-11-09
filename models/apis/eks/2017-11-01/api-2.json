@@ -82,6 +82,22 @@
         {"shape":"UnsupportedAvailabilityZoneException"}
       ]
     },
+    "CreateEksAnywhereSubscription":{
+      "name":"CreateEksAnywhereSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/eks-anywhere-subscriptions"
+      },
+      "input":{"shape":"CreateEksAnywhereSubscriptionRequest"},
+      "output":{"shape":"CreateEksAnywhereSubscriptionResponse"},
+      "errors":[
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "CreateFargateProfile":{
       "name":"CreateFargateProfile",
       "http":{
@@ -147,6 +163,21 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteEksAnywhereSubscription":{
+      "name":"DeleteEksAnywhereSubscription",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/eks-anywhere-subscriptions/{id}"
+      },
+      "input":{"shape":"DeleteEksAnywhereSubscriptionRequest"},
+      "output":{"shape":"DeleteEksAnywhereSubscriptionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServerException"}
       ]
     },
     "DeleteFargateProfile":{
@@ -257,6 +288,21 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribeEksAnywhereSubscription":{
+      "name":"DescribeEksAnywhereSubscription",
+      "http":{
+        "method":"GET",
+        "requestUri":"/eks-anywhere-subscriptions/{id}"
+      },
+      "input":{"shape":"DescribeEksAnywhereSubscriptionRequest"},
+      "output":{"shape":"DescribeEksAnywhereSubscriptionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DescribeFargateProfile":{
       "name":"DescribeFargateProfile",
       "http":{
@@ -360,6 +406,21 @@
       },
       "input":{"shape":"ListClustersRequest"},
       "output":{"shape":"ListClustersResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListEksAnywhereSubscriptions":{
+      "name":"ListEksAnywhereSubscriptions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/eks-anywhere-subscriptions"
+      },
+      "input":{"shape":"ListEksAnywhereSubscriptionsRequest"},
+      "output":{"shape":"ListEksAnywhereSubscriptionsResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"ClientException"},
@@ -534,6 +595,22 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "UpdateEksAnywhereSubscription":{
+      "name":"UpdateEksAnywhereSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/eks-anywhere-subscriptions/{id}"
+      },
+      "input":{"shape":"UpdateEksAnywhereSubscriptionRequest"},
+      "output":{"shape":"UpdateEksAnywhereSubscriptionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"}
       ]
@@ -793,6 +870,7 @@
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
         "addonName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
@@ -1000,6 +1078,31 @@
         "cluster":{"shape":"Cluster"}
       }
     },
+    "CreateEksAnywhereSubscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "term"
+      ],
+      "members":{
+        "name":{"shape":"EksAnywhereSubscriptionName"},
+        "term":{"shape":"EksAnywhereSubscriptionTerm"},
+        "licenseQuantity":{"shape":"Integer"},
+        "licenseType":{"shape":"EksAnywhereSubscriptionLicenseType"},
+        "autoRenew":{"shape":"Boolean"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateEksAnywhereSubscriptionResponse":{
+      "type":"structure",
+      "members":{
+        "subscription":{"shape":"EksAnywhereSubscription"}
+      }
+    },
     "CreateFargateProfileRequest":{
       "type":"structure",
       "required":[
@@ -1117,6 +1220,23 @@
       "type":"structure",
       "members":{
         "cluster":{"shape":"Cluster"}
+      }
+    },
+    "DeleteEksAnywhereSubscriptionRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DeleteEksAnywhereSubscriptionResponse":{
+      "type":"structure",
+      "members":{
+        "subscription":{"shape":"EksAnywhereSubscription"}
       }
     },
     "DeleteFargateProfileRequest":{
@@ -1308,6 +1428,23 @@
         "cluster":{"shape":"Cluster"}
       }
     },
+    "DescribeEksAnywhereSubscriptionRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DescribeEksAnywhereSubscriptionResponse":{
+      "type":"structure",
+      "members":{
+        "subscription":{"shape":"EksAnywhereSubscription"}
+      }
+    },
     "DescribeFargateProfileRequest":{
       "type":"structure",
       "required":[
@@ -1439,6 +1576,63 @@
         "update":{"shape":"Update"}
       }
     },
+    "EksAnywhereSubscription":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "arn":{"shape":"String"},
+        "createdAt":{"shape":"Timestamp"},
+        "effectiveDate":{"shape":"Timestamp"},
+        "expirationDate":{"shape":"Timestamp"},
+        "licenseQuantity":{"shape":"Integer"},
+        "licenseType":{"shape":"EksAnywhereSubscriptionLicenseType"},
+        "term":{"shape":"EksAnywhereSubscriptionTerm"},
+        "status":{"shape":"String"},
+        "autoRenew":{"shape":"Boolean"},
+        "licenseArns":{"shape":"StringList"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "EksAnywhereSubscriptionLicenseType":{
+      "type":"string",
+      "enum":["Cluster"]
+    },
+    "EksAnywhereSubscriptionList":{
+      "type":"list",
+      "member":{"shape":"EksAnywhereSubscription"}
+    },
+    "EksAnywhereSubscriptionName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[0-9A-Za-z][A-Za-z0-9\\-_]*"
+    },
+    "EksAnywhereSubscriptionStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "EXPIRING",
+        "EXPIRED",
+        "DELETING"
+      ]
+    },
+    "EksAnywhereSubscriptionStatusValues":{
+      "type":"list",
+      "member":{"shape":"EksAnywhereSubscriptionStatus"}
+    },
+    "EksAnywhereSubscriptionTerm":{
+      "type":"structure",
+      "members":{
+        "duration":{"shape":"Integer"},
+        "unit":{"shape":"EksAnywhereSubscriptionTermUnit"}
+      }
+    },
+    "EksAnywhereSubscriptionTermUnit":{
+      "type":"string",
+      "enum":["MONTHS"]
+    },
     "EncryptionConfig":{
       "type":"structure",
       "members":{
@@ -1562,6 +1756,7 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Integer":{"type":"integer"},
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -1569,6 +1764,7 @@
         "nodegroupName":{"shape":"String"},
         "fargateProfileName":{"shape":"String"},
         "addonName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
@@ -1580,6 +1776,7 @@
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
         "addonName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
@@ -1691,6 +1888,39 @@
       "type":"structure",
       "members":{
         "clusters":{"shape":"StringList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListEksAnywhereSubscriptionsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListEksAnywhereSubscriptionsRequestMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "includeStatus":{
+          "shape":"EksAnywhereSubscriptionStatusValues",
+          "location":"querystring",
+          "locationName":"includeStatus"
+        }
+      }
+    },
+    "ListEksAnywhereSubscriptionsRequestMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListEksAnywhereSubscriptionsResponse":{
+      "type":"structure",
+      "members":{
+        "subscriptions":{"shape":"EksAnywhereSubscriptionList"},
         "nextToken":{"shape":"String"}
       }
     },
@@ -2138,6 +2368,7 @@
       "members":{
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
@@ -2150,6 +2381,7 @@
         "nodegroupName":{"shape":"String"},
         "fargateProfileName":{"shape":"String"},
         "addonName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":404},
@@ -2174,6 +2406,7 @@
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
         "addonName":{"shape":"String"},
+        "subscriptionId":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":500},
@@ -2378,6 +2611,31 @@
       "type":"structure",
       "members":{
         "update":{"shape":"Update"}
+      }
+    },
+    "UpdateEksAnywhereSubscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "id",
+        "autoRenew"
+      ],
+      "members":{
+        "id":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "autoRenew":{"shape":"Boolean"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateEksAnywhereSubscriptionResponse":{
+      "type":"structure",
+      "members":{
+        "subscription":{"shape":"EksAnywhereSubscription"}
       }
     },
     "UpdateLabelsPayload":{

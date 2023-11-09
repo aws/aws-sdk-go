@@ -3865,7 +3865,8 @@
         "java17",
         "ruby3.2",
         "python3.11",
-        "nodejs20.x"
+        "nodejs20.x",
+        "provided.al2023"
       ]
     },
     "RuntimeVersionArn":{

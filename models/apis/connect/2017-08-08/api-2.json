@@ -7973,7 +7973,8 @@
         "WISDOM_ASSISTANT",
         "WISDOM_KNOWLEDGE_BASE",
         "CASES_DOMAIN",
-        "APPLICATION"
+        "APPLICATION",
+        "FILE_SCANNER"
       ]
     },
     "InternalServiceException":{
@@ -8606,6 +8607,11 @@
           "box":true,
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "IntegrationArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"integrationArn"
         }
       }
     },

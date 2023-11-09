@@ -2768,7 +2768,7 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 // Returns the description for the specified stack; if no stack name was specified,
 // then it returns the description for all the stacks created.
 //
-// If the stack doesn't exist, an ValidationError is returned.
+// If the stack doesn't exist, a ValidationError is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8301,6 +8301,8 @@ type CreateChangeSetInput struct {
 	//    action, and specifying this capability. For more information about macros,
 	//    see Using CloudFormation macros to perform custom processing on templates
 	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html).
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	Capabilities []*string `type:"list" enum:"Capability"`
 
 	// The name of the change set. The name must be unique among all change sets
@@ -8383,6 +8385,8 @@ type CreateChangeSetInput struct {
 	// for condition keys in IAM policies for CloudFormation. For more information,
 	// see Controlling access with Identity and Access Management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html)
 	// in the CloudFormation User Guide.
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	ResourceTypes []*string `type:"list"`
 
 	// The resources to import into your stack.
@@ -8714,6 +8718,8 @@ type CreateStackInput struct {
 	//    Be aware that the Lambda function owner can update the function operation
 	//    without CloudFormation being notified. For more information, see Using
 	//    CloudFormation macros to perform custom processing on templates (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html).
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	Capabilities []*string `type:"list" enum:"Capability"`
 
 	// A unique identifier for this CreateStack request. Specify this token if you
@@ -8781,6 +8787,8 @@ type CreateStackInput struct {
 	// all resource types. Identity and Access Management (IAM) uses this parameter
 	// for CloudFormation-specific condition keys in IAM policies. For more information,
 	// see Controlling Access with Identity and Access Management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	ResourceTypes []*string `type:"list"`
 
 	// When set to true, newly created resources are deleted when the operation
@@ -17057,7 +17065,7 @@ type RegisterTypeInput struct {
 	// when invoking the extension.
 	//
 	// For CloudFormation to assume the specified execution role, the role must
-	// contain a trust relationship with the CloudFormation service principle (resources.cloudformation.amazonaws.com).
+	// contain a trust relationship with the CloudFormation service principal (resources.cloudformation.amazonaws.com).
 	// For more information about adding trust relationships, see Modifying a role
 	// trust policy (https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-managingrole_edit-trust-policy)
 	// in the Identity and Access Management User Guide.
@@ -20909,6 +20917,20 @@ func (s *StackSetOperation) SetStatusReason(v string) *StackSetOperation {
 type StackSetOperationPreferences struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how the concurrency level behaves during the operation execution.
+	//
+	//    * STRICT_FAILURE_TOLERANCE: Dynamically lowers the concurrency level to
+	//    ensure the number of failed accounts never exceeds the FailureToleranceCount
+	//    +1. StackSets will set the actual concurrency of your deployment as the
+	//    minimum value between the MaxConcurrentCount and the FailureToleranceCount
+	//    +1. This is the default behavior. If failure tolerance or Maximum concurrent
+	//    accounts are set to percentages, the behavior is similar.
+	//
+	//    * SOFT_FAILURE_TOLERANCE: Always run at the concurrency level set by the
+	//    user in the MaxConcurrentCount or MaxConcurrentPercentage, regardless
+	//    of the number of failures.
+	ConcurrencyMode *string `type:"string" enum:"ConcurrencyMode"`
+
 	// The number of accounts, per Region, for which this operation can fail before
 	// CloudFormation stops the operation in that Region. If the operation is stopped
 	// in a Region, CloudFormation doesn't attempt the operation in any subsequent
@@ -20935,8 +20957,9 @@ type StackSetOperationPreferences struct {
 	FailureTolerancePercentage *int64 `type:"integer"`
 
 	// The maximum number of accounts in which to perform this operation at one
-	// time. This is dependent on the value of FailureToleranceCount.MaxConcurrentCount
-	// is at most one more than the FailureToleranceCount.
+	// time. This can depend on the value of FailureToleranceCount depending on
+	// your ConcurrencyMode. MaxConcurrentCount is at most one more than the FailureToleranceCount
+	// if you're using STRICT_FAILURE_TOLERANCE.
 	//
 	// Note that this setting lets you specify the maximum for operations. For large
 	// deployments, under certain circumstances the actual number of accounts acted
@@ -21006,6 +21029,12 @@ func (s *StackSetOperationPreferences) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConcurrencyMode sets the ConcurrencyMode field's value.
+func (s *StackSetOperationPreferences) SetConcurrencyMode(v string) *StackSetOperationPreferences {
+	s.ConcurrencyMode = &v
+	return s
 }
 
 // SetFailureToleranceCount sets the FailureToleranceCount field's value.
@@ -22624,6 +22653,8 @@ type UpdateStackInput struct {
 	//    Be aware that the Lambda function owner can update the function operation
 	//    without CloudFormation being notified. For more information, see Using
 	//    CloudFormation Macros to Perform Custom Processing on Templates (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html).
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	Capabilities []*string `type:"list" enum:"Capability"`
 
 	// A unique identifier for this UpdateStack request. Specify this token if you
@@ -22667,6 +22698,8 @@ type UpdateStackInput struct {
 	// all resource types. Identity and Access Management (IAM) uses this parameter
 	// for CloudFormation-specific condition keys in IAM policies. For more information,
 	// see Controlling Access with Identity and Access Management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
+	//
+	// Only one of the Capabilities and ResourceType parameters can be specified.
 	ResourceTypes []*string `type:"list"`
 
 	// When set to true, newly created resources are deleted when the operation
@@ -24181,6 +24214,22 @@ const (
 func ChangeType_Values() []string {
 	return []string{
 		ChangeTypeResource,
+	}
+}
+
+const (
+	// ConcurrencyModeStrictFailureTolerance is a ConcurrencyMode enum value
+	ConcurrencyModeStrictFailureTolerance = "STRICT_FAILURE_TOLERANCE"
+
+	// ConcurrencyModeSoftFailureTolerance is a ConcurrencyMode enum value
+	ConcurrencyModeSoftFailureTolerance = "SOFT_FAILURE_TOLERANCE"
+)
+
+// ConcurrencyMode_Values returns all elements of the ConcurrencyMode enum
+func ConcurrencyMode_Values() []string {
+	return []string{
+		ConcurrencyModeStrictFailureTolerance,
+		ConcurrencyModeSoftFailureTolerance,
 	}
 }
 

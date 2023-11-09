@@ -11174,9 +11174,7 @@ type CreateMultipartReadSetUploadInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The ARN of the reference.
-	//
-	// ReferenceArn is a required field
-	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string" required:"true"`
+	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string"`
 
 	// The source's sample ID.
 	//
@@ -11238,9 +11236,6 @@ func (s *CreateMultipartReadSetUploadInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReferenceArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReferenceArn"))
 	}
 	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
@@ -21286,7 +21281,7 @@ type ReadSetFilter struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// A genome reference ARN to filter on.
-	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string"`
+	ReferenceArn *string `locationName:"referenceArn" type:"string"`
 
 	// The read set source's sample ID.
 	SampleId *string `locationName:"sampleId" min:"1" type:"string"`
@@ -21324,9 +21319,6 @@ func (s *ReadSetFilter) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
 	}
 	if s.SampleId != nil && len(*s.SampleId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SampleId", 1))
@@ -23763,9 +23755,7 @@ type StartReadSetImportJobSourceItem struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The source's reference ARN.
-	//
-	// ReferenceArn is a required field
-	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string" required:"true"`
+	ReferenceArn *string `locationName:"referenceArn" min:"1" type:"string"`
 
 	// The source's sample ID.
 	//
@@ -23820,9 +23810,6 @@ func (s *StartReadSetImportJobSourceItem) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReferenceArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReferenceArn"))
 	}
 	if s.ReferenceArn != nil && len(*s.ReferenceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReferenceArn", 1))
@@ -26844,6 +26831,9 @@ const (
 
 	// FileTypeCram is a FileType enum value
 	FileTypeCram = "CRAM"
+
+	// FileTypeUbam is a FileType enum value
+	FileTypeUbam = "UBAM"
 )
 
 // FileType_Values returns all elements of the FileType enum
@@ -26852,6 +26842,7 @@ func FileType_Values() []string {
 		FileTypeFastq,
 		FileTypeBam,
 		FileTypeCram,
+		FileTypeUbam,
 	}
 }
 
