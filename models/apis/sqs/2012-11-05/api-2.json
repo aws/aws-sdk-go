@@ -830,7 +830,7 @@
       "type":"structure",
       "members":{
         "TaskHandle":{"shape":"String"},
-        "Status":{"shape":"TaskStatus"},
+        "Status":{"shape":"String"},
         "SourceArn":{"shape":"String"},
         "DestinationArn":{"shape":"String"},
         "MaxNumberOfMessagesPerSecond":{"shape":"NullableInteger"},
@@ -1251,16 +1251,6 @@
       }
     },
     "TagValue":{"type":"string"},
-    "TaskStatus":{
-      "type":"string",
-      "enum":[
-        "RUNNING",
-        "FAILED",
-        "CANCELLING",
-        "CANCELLED",
-        "COMPLETED"
-      ]
-    },
     "Token":{"type":"string"},
     "TooManyEntriesInBatchRequest":{
       "type":"structure",
