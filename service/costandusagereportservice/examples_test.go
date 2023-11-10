@@ -118,6 +118,8 @@ func ExampleCostandUsageReportService_PutReportDefinition_shared00() {
 				fmt.Println(costandusagereportservice.ErrCodeInternalErrorException, aerr.Error())
 			case costandusagereportservice.ErrCodeValidationException:
 				fmt.Println(costandusagereportservice.ErrCodeValidationException, aerr.Error())
+			case costandusagereportservice.ErrCodeResourceNotFoundException:
+				fmt.Println(costandusagereportservice.ErrCodeResourceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

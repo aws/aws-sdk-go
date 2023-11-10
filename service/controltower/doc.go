@@ -5,7 +5,7 @@
 //
 // These interfaces allow you to apply the AWS library of pre-defined controls
 // to your organizational units, programmatically. In AWS Control Tower, the
-// terms "control" and "guardrail" are synonyms. .
+// terms "control" and "guardrail" are synonyms.
 //
 // To call these APIs, you'll need to know:
 //
@@ -13,6 +13,8 @@
 //
 //   - the ARN associated with the target organizational unit (OU), which we
 //     call the targetIdentifier.
+//
+//   - the ARN associated with a resource that you wish to tag or untag.
 //
 // To get the controlIdentifier for your AWS Control Tower control:
 //
@@ -27,7 +29,7 @@
 //
 // A quick-reference list of control identifers for the AWS Control Tower legacy
 // Strongly recommended and Elective controls is given in Resource identifiers
-// for APIs and guardrails (https://docs.aws.amazon.com/controltower/latest/userguide/control-identifiers.html.html)
+// for APIs and controls (https://docs.aws.amazon.com/controltower/latest/userguide/control-identifiers.html.html)
 // in the Controls reference guide section (https://docs.aws.amazon.com/controltower/latest/userguide/control-identifiers.html)
 // of the AWS Control Tower User Guide. Remember that Mandatory controls cannot
 // be added or removed.

@@ -3127,10 +3127,7 @@ func (c *RDS) CreateIntegrationRequest(input *CreateIntegrationInput) (req *requ
 
 // CreateIntegration API operation for Amazon Relational Database Service.
 //
-// Creates a zero-ETL integration with Amazon Redshift. For more information,
-// see Working with Amazon Aurora zero-ETL integrations with Amazon Redshift
-// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html)
-// in the Amazon Aurora User Guide.
+// Creates a zero-ETL integration with Amazon Redshift.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4958,9 +4955,7 @@ func (c *RDS) DeleteIntegrationRequest(input *DeleteIntegrationInput) (req *requ
 
 // DeleteIntegration API operation for Amazon Relational Database Service.
 //
-// Deletes a zero-ETL integration with Amazon Redshift. For more information,
-// see Deleting Amazon Aurora zero-ETL integrations with Amazon Redshift (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.deleting.html)
-// in the Amazon Aurora User Guide
+// Deletes a zero-ETL integration with Amazon Redshift.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9649,10 +9644,7 @@ func (c *RDS) DescribeIntegrationsRequest(input *DescribeIntegrationsInput) (req
 
 // DescribeIntegrations API operation for Amazon Relational Database Service.
 //
-// Describe one or more zero-ETL integration with Amazon Redshift. For more
-// information, see Viewing and monitoring Amazon Aurora zero-ETL integrations
-// with Amazon Redshift (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.describingmonitoring.html)
-// in the Amazon Aurora User Guide
+// Describe one or more zero-ETL integrations with Amazon Redshift.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20457,8 +20449,8 @@ type CreateCustomDBEngineVersionOutput struct {
 	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// Indicates whether the DB engine version supports Aurora zero-ETL integrations
-	// with Amazon Redshift.
+	// Indicates whether the DB engine version supports zero-ETL integrations with
+	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
 	// Indicates whether the DB engine version supports forwarding write operations
@@ -25942,11 +25934,10 @@ type CreateIntegrationInput struct {
 
 	// The Amazon Web Services Key Management System (Amazon Web Services KMS) key
 	// identifier for the key to use to encrypt the integration. If you don't specify
-	// an encryption key, Aurora uses a default Amazon Web Services owned key.
+	// an encryption key, RDS uses a default Amazon Web Services owned key.
 	KMSKeyId *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Aurora DB cluster to use as the source
-	// for replication.
+	// The Amazon Resource Name (ARN) of the database to use as the source for replication.
 	//
 	// SourceArn is a required field
 	SourceArn *string `min:"1" type:"string" required:"true"`
@@ -26043,10 +26034,7 @@ func (s *CreateIntegrationInput) SetTargetArn(v string) *CreateIntegrationInput 
 	return s
 }
 
-// An Aurora zero-ETL integration with Amazon Redshift. For more information,
-// see Working with Amazon Aurora zero-ETL integrations with Amazon Redshift
-// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html)
-// in the Amazon Aurora User Guide.
+// A zero-ETL integration with Amazon Redshift.
 type CreateIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -26072,8 +26060,7 @@ type CreateIntegrationOutput struct {
 	// identifier for the key used to to encrypt the integration.
 	KMSKeyId *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Aurora DB cluster used as the source
-	// for replication.
+	// The Amazon Resource Name (ARN) of the database used as the source for replication.
 	SourceArn *string `min:"1" type:"string"`
 
 	// The current status of the integration.
@@ -28566,8 +28553,8 @@ type DBEngineVersion struct {
 	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// Indicates whether the DB engine version supports Aurora zero-ETL integrations
-	// with Amazon Redshift.
+	// Indicates whether the DB engine version supports zero-ETL integrations with
+	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
 	// Indicates whether the DB engine version supports forwarding write operations
@@ -32112,8 +32099,8 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// Indicates whether the DB engine version supports Aurora zero-ETL integrations
-	// with Amazon Redshift.
+	// Indicates whether the DB engine version supports zero-ETL integrations with
+	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
 	// Indicates whether the DB engine version supports forwarding write operations
@@ -33827,10 +33814,7 @@ func (s *DeleteIntegrationInput) SetIntegrationIdentifier(v string) *DeleteInteg
 	return s
 }
 
-// An Aurora zero-ETL integration with Amazon Redshift. For more information,
-// see Working with Amazon Aurora zero-ETL integrations with Amazon Redshift
-// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html)
-// in the Amazon Aurora User Guide.
+// A zero-ETL integration with Amazon Redshift.
 type DeleteIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -33856,8 +33840,7 @@ type DeleteIntegrationOutput struct {
 	// identifier for the key used to to encrypt the integration.
 	KMSKeyId *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Aurora DB cluster used as the source
-	// for replication.
+	// The Amazon Resource Name (ARN) of the database used as the source for replication.
 	SourceArn *string `min:"1" type:"string"`
 
 	// The current status of the integration.
@@ -42530,10 +42513,7 @@ func (s *IPRange) SetStatus(v string) *IPRange {
 	return s
 }
 
-// An Aurora zero-ETL integration with Amazon Redshift. For more information,
-// see Working with Amazon Aurora zero-ETL integrations with Amazon Redshift
-// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.html)
-// in the Amazon Aurora User Guide.
+// A zero-ETL integration with Amazon Redshift.
 type Integration struct {
 	_ struct{} `type:"structure"`
 
@@ -42559,8 +42539,7 @@ type Integration struct {
 	// identifier for the key used to to encrypt the integration.
 	KMSKeyId *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Aurora DB cluster used as the source
-	// for replication.
+	// The Amazon Resource Name (ARN) of the database used as the source for replication.
 	SourceArn *string `min:"1" type:"string"`
 
 	// The current status of the integration.
@@ -43508,8 +43487,8 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// Indicates whether the DB engine version supports Aurora zero-ETL integrations
-	// with Amazon Redshift.
+	// Indicates whether the DB engine version supports zero-ETL integrations with
+	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
 	// Indicates whether the DB engine version supports forwarding write operations
@@ -58058,8 +58037,8 @@ type UpgradeTarget struct {
 	// version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
 
-	// Indicates whether the DB engine version supports Aurora zero-ETL integrations
-	// with Amazon Redshift.
+	// Indicates whether the DB engine version supports zero-ETL integrations with
+	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
 	// Indicates whether the target engine version supports forwarding write operations
