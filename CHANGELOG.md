@@ -1,3 +1,23 @@
+Release v1.47.9 (2023-11-10)
+===
+
+### Service Client Updates
+* `service/controltower`: Updates service API and documentation
+* `service/cur`: Updates service API and documentation
+  * This release adds support for tagging and customers can now tag report definitions. Additionally, ReportStatus is now added to report definition to show when the last delivered time stamp and if it succeeded or not.
+* `service/ec2`: Updates service API and documentation
+  * EC2 adds API updates to enable ENA Express at instance launch time.
+* `service/entitlement.marketplace`: Updates service API, documentation, and paginators
+* `service/fms`: Updates service documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes the ability to specify any input source as the primary input for corresponding follow modes, and allows users to specify fit and fill behaviors without resizing content.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for zero-ETL integrations.
+
+### SDK Enhancements
+* `aws/signer/v4`: Add bucket owner header to presigned list.
+  * Add x-amz-expected-bucket-owner header to the list of headers that need to be presigned.
+
 Release v1.47.8 (2023-11-09)
 ===
 

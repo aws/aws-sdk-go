@@ -82,6 +82,18 @@ type ControlTowerAPI interface {
 
 	ListEnabledControlsPages(*controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool) error
 	ListEnabledControlsPagesWithContext(aws.Context, *controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*controltower.ListTagsForResourceInput) (*controltower.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *controltower.ListTagsForResourceInput, ...request.Option) (*controltower.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*controltower.ListTagsForResourceInput) (*request.Request, *controltower.ListTagsForResourceOutput)
+
+	TagResource(*controltower.TagResourceInput) (*controltower.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *controltower.TagResourceInput, ...request.Option) (*controltower.TagResourceOutput, error)
+	TagResourceRequest(*controltower.TagResourceInput) (*request.Request, *controltower.TagResourceOutput)
+
+	UntagResource(*controltower.UntagResourceInput) (*controltower.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *controltower.UntagResourceInput, ...request.Option) (*controltower.UntagResourceOutput, error)
+	UntagResourceRequest(*controltower.UntagResourceInput) (*request.Request, *controltower.UntagResourceOutput)
 }
 
 var _ ControlTowerAPI = (*controltower.ControlTower)(nil)

@@ -235,15 +235,16 @@
       }
     },
     "AudioChannelTag": {
-      "base": "You can add a tag for this mono-channel audio track to mimic its placement in a multi-channel layout. For example, if this track is the left surround channel, choose Left surround (LS).",
+      "base": "Specify the QuickTime audio channel layout tags for the audio channels in this audio track. Enter channel layout tags in the same order as your output's audio channel order. For example, if your output audio track has a left and a right channel, enter Left (L) for the first channel and Right (R) for the second. If your output has multiple single-channel audio tracks, enter a single channel layout tag for each track.",
       "refs": {
-        "AudioChannelTaggingSettings$ChannelTag": "You can add a tag for this mono-channel audio track to mimic its placement in a multi-channel layout. For example, if this track is the left surround channel, choose Left surround (LS)."
+        "AudioChannelTaggingSettings$ChannelTag": "Specify the QuickTime audio channel layout tags for the audio channels in this audio track. Enter channel layout tags in the same order as your output's audio channel order. For example, if your output audio track has a left and a right channel, enter Left (L) for the first channel and Right (R) for the second. If your output has multiple single-channel audio tracks, enter a single channel layout tag for each track.",
+        "__listOfAudioChannelTag$member": null
       }
     },
     "AudioChannelTaggingSettings": {
-      "base": "When you mimic a multi-channel audio layout with multiple mono-channel tracks, you can tag each channel layout manually. For example, you would tag the tracks that contain your left, right, and center audio with Left (L), Right (R), and Center (C), respectively. When you don't specify a value, MediaConvert labels your track as Center (C) by default. To use audio layout tagging, your output must be in a QuickTime (.mov) container; your audio codec must be AAC, WAV, or AIFF; and you must set up your audio track to have only one channel.",
+      "base": "Specify the QuickTime audio channel layout tags for the audio channels in this audio track. When you don't specify a value, MediaConvert labels your track as Center (C) by default. To use Audio layout tagging, your output must be in a QuickTime (MOV) container and your audio codec must be AAC, WAV, or AIFF.",
       "refs": {
-        "AudioDescription$AudioChannelTaggingSettings": "When you mimic a multi-channel audio layout with multiple mono-channel tracks, you can tag each channel layout manually. For example, you would tag the tracks that contain your left, right, and center audio with Left (L), Right (R), and Center (C), respectively. When you don't specify a value, MediaConvert labels your track as Center (C) by default. To use audio layout tagging, your output must be in a QuickTime (.mov) container; your audio codec must be AAC, WAV, or AIFF; and you must set up your audio track to have only one channel."
+        "AudioDescription$AudioChannelTaggingSettings": "Specify the QuickTime audio channel layout tags for the audio channels in this audio track. When you don't specify a value, MediaConvert labels your track as Center (C) by default. To use Audio layout tagging, your output must be in a QuickTime (MOV) container and your audio codec must be AAC, WAV, or AIFF."
       }
     },
     "AudioCodec": {
@@ -1520,9 +1521,9 @@
       }
     },
     "F4vMoovPlacement": {
-      "base": "If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning of the archive as required for progressive downloading. Otherwise it is placed normally at the end.",
+      "base": "To place the MOOV atom at the beginning of your output, which is useful for progressive downloading: Leave blank or choose Progressive download. To place the MOOV at the end of your output: Choose Normal.",
       "refs": {
-        "F4vSettings$MoovPlacement": "If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning of the archive as required for progressive downloading. Otherwise it is placed normally at the end."
+        "F4vSettings$MoovPlacement": "To place the MOOV atom at the beginning of your output, which is useful for progressive downloading: Leave blank or choose Progressive download. To place the MOOV at the end of your output: Choose Normal."
       }
     },
     "F4vSettings": {
@@ -2310,7 +2311,7 @@
       "refs": {
         "Input$TimecodeSource": "Use this Timecode source setting, located under the input settings, to specify how the service counts input video frames. This input frame count affects only the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Choose Embedded to use the timecodes in your input video. Choose Start at zero to start the first frame at zero. Choose Specified start to start the first frame at the timecode that you specify in the setting Start timecode. If you don't specify a value for Timecode source, the service will use Embedded by default. For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
         "InputTemplate$TimecodeSource": "Use this Timecode source setting, located under the input settings, to specify how the service counts input video frames. This input frame count affects only the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Choose Embedded to use the timecodes in your input video. Choose Start at zero to start the first frame at zero. Choose Specified start to start the first frame at the timecode that you specify in the setting Start timecode. If you don't specify a value for Timecode source, the service will use Embedded by default. For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
-        "VideoOverlayInput$TimecodeSource": "Specify the starting timecode for your video overlay. To use the timecode present in your video overlay: Choose Embedded. To use a zerobased timecode: Choose Start at 0. To choose a timecode: Choose Specified start. When you do, enter the starting timecode in Start timecode. If you don't specify a value for Timecode source, MediaConvert uses Embedded by default."
+        "VideoOverlayInput$TimecodeSource": "Specify the timecode source for your video overlay input clips. To use the timecode present in your video overlay: Choose Embedded. To use a zerobased timecode: Choose Start at 0. To choose a timecode: Choose Specified start. When you do, enter the starting timecode in Start timecode. If you don't specify a value for Timecode source, MediaConvert uses Embedded by default."
       }
     },
     "InputVideoGenerator": {
@@ -2705,9 +2706,9 @@
       }
     },
     "Mp4MoovPlacement": {
-      "base": "If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning of the archive as required for progressive downloading. Otherwise it is placed normally at the end.",
+      "base": "To place the MOOV atom at the beginning of your output, which is useful for progressive downloading: Leave blank or choose Progressive download. To place the MOOV at the end of your output: Choose Normal.",
       "refs": {
-        "Mp4Settings$MoovPlacement": "If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning of the archive as required for progressive downloading. Otherwise it is placed normally at the end."
+        "Mp4Settings$MoovPlacement": "To place the MOOV atom at the beginning of your output, which is useful for progressive downloading: Leave blank or choose Progressive download. To place the MOOV at the end of your output: Choose Normal."
       }
     },
     "Mp4Settings": {
@@ -3376,9 +3377,9 @@
       }
     },
     "ScalingBehavior": {
-      "base": "Specify how the service handles outputs that have a different aspect ratio from the input aspect ratio. Choose Stretch to output to have the service stretch your video image to fit. Keep the setting Default to have the service letterbox your video instead. This setting overrides any value that you specify for the setting Selection placement in this output.",
+      "base": "Specify the video Scaling behavior when your output has a different resolution than your input. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-scaling.html",
       "refs": {
-        "VideoDescription$ScalingBehavior": "Specify how the service handles outputs that have a different aspect ratio from the input aspect ratio. Choose Stretch to output to have the service stretch your video image to fit. Keep the setting Default to have the service letterbox your video instead. This setting overrides any value that you specify for the setting Selection placement in this output."
+        "VideoDescription$ScalingBehavior": "Specify the video Scaling behavior when your output has a different resolution than your input. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-scaling.html"
       }
     },
     "SccDestinationFramerate": {
@@ -3673,7 +3674,7 @@
       }
     },
     "VideoOverlay": {
-      "base": "Overlay one or more videos on top of your input video.",
+      "base": "Overlay one or more videos on top of your input video. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-overlays.html",
       "refs": {
         "__listOfVideoOverlay$member": null
       }
@@ -4430,7 +4431,7 @@
     "__integerMin16000Max48000": {
       "base": null,
       "refs": {
-        "OpusSettings$SampleRate": "Optional. Sample rate in hz. Valid values are 16000, 24000, and 48000. The default value is 48000."
+        "OpusSettings$SampleRate": "Optional. Sample rate in Hz. Valid values are 16000, 24000, and 48000. The default value is 48000."
       }
     },
     "__integerMin16Max24": {
@@ -4478,6 +4479,13 @@
         "Mpeg2Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
         "Vc3Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
         "XavcSettings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Frame rate. In this example, specify 23.976."
+      }
+    },
+    "__integerMin1Max150": {
+      "base": null,
+      "refs": {
+        "JobSettings$FollowSource": "Specify the input that MediaConvert references for your default output settings.  MediaConvert uses this input's Resolution, Frame rate, and Pixel aspect ratio for all  outputs that you don't manually specify different output settings for. Enabling this setting will disable \"Follow source\" for all other inputs.  If MediaConvert cannot follow your source, for example if you specify an audio-only input,  MediaConvert uses the first followable input instead. In your JSON job specification, enter an integer from 1 to 150 corresponding  to the order of your inputs.",
+        "JobTemplateSettings$FollowSource": "Specify the input that MediaConvert references for your default output settings.  MediaConvert uses this input's Resolution, Frame rate, and Pixel aspect ratio for all  outputs that you don't manually specify different output settings for. Enabling this setting will disable \"Follow source\" for all other inputs.  If MediaConvert cannot follow your source, for example if you specify an audio-only input,  MediaConvert uses the first followable input instead. In your JSON job specification, enter an integer from 1 to 150 corresponding  to the order of your inputs."
       }
     },
     "__integerMin1Max17895697": {
@@ -4633,8 +4641,8 @@
     "__integerMin22050Max48000": {
       "base": null,
       "refs": {
-        "FlacSettings$SampleRate": "Sample rate in hz.",
-        "Mp3Settings$SampleRate": "Sample rate in hz.",
+        "FlacSettings$SampleRate": "Sample rate in Hz.",
+        "Mp3Settings$SampleRate": "Sample rate in Hz.",
         "VorbisSettings$SampleRate": "Optional. Specify the audio sample rate in Hz. Valid values are 22050, 32000, 44100, and 48000. The default value is 48000."
       }
     },
@@ -4694,7 +4702,7 @@
     "__integerMin32000Max48000": {
       "base": null,
       "refs": {
-        "Mp2Settings$SampleRate": "Sample rate in hz."
+        "Mp2Settings$SampleRate": "Sample rate in Hz."
       }
     },
     "__integerMin32Max8182": {
@@ -4779,7 +4787,7 @@
     "__integerMin8000Max192000": {
       "base": null,
       "refs": {
-        "AiffSettings$SampleRate": "Sample rate in hz.",
+        "AiffSettings$SampleRate": "Sample rate in Hz.",
         "WavSettings$SampleRate": "Sample rate in Hz."
       }
     },
@@ -4901,6 +4909,12 @@
       "base": null,
       "refs": {
         "AutomatedAbrRule$AllowedRenditions": "When customer adds the allowed renditions rule for auto ABR ladder, they are required to add at leat one rendition to allowedRenditions list"
+      }
+    },
+    "__listOfAudioChannelTag": {
+      "base": null,
+      "refs": {
+        "AudioChannelTaggingSettings$ChannelTags": "Specify the QuickTime audio channel layout tags for the audio channels in this audio track. Enter channel layout tags in the same order as your output's audio channel order. For example, if your output audio track has a left and a right channel, enter Left (L) for the first channel and Right (R) for the second. If your output has multiple single-channel audio tracks, enter a single channel layout tag for each track."
       }
     },
     "__listOfAudioDescription": {

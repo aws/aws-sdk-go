@@ -3221,7 +3221,7 @@ type AiffSettings struct {
 	// 1 and even numbers up to 64. For example, 1, 2, 4, 6, and so on, up to 64.
 	Channels *int64 `locationName:"channels" min:"1" type:"integer"`
 
-	// Sample rate in hz.
+	// Sample rate in Hz.
 	SampleRate *int64 `locationName:"sampleRate" min:"8000" type:"integer"`
 }
 
@@ -3496,21 +3496,29 @@ func (s AssociateCertificateOutput) GoString() string {
 	return s.String()
 }
 
-// When you mimic a multi-channel audio layout with multiple mono-channel tracks,
-// you can tag each channel layout manually. For example, you would tag the
-// tracks that contain your left, right, and center audio with Left (L), Right
-// (R), and Center (C), respectively. When you don't specify a value, MediaConvert
-// labels your track as Center (C) by default. To use audio layout tagging,
-// your output must be in a QuickTime (.mov) container; your audio codec must
-// be AAC, WAV, or AIFF; and you must set up your audio track to have only one
-// channel.
+// Specify the QuickTime audio channel layout tags for the audio channels in
+// this audio track. When you don't specify a value, MediaConvert labels your
+// track as Center (C) by default. To use Audio layout tagging, your output
+// must be in a QuickTime (MOV) container and your audio codec must be AAC,
+// WAV, or AIFF.
 type AudioChannelTaggingSettings struct {
 	_ struct{} `type:"structure"`
 
-	// You can add a tag for this mono-channel audio track to mimic its placement
-	// in a multi-channel layout. For example, if this track is the left surround
-	// channel, choose Left surround (LS).
+	// Specify the QuickTime audio channel layout tags for the audio channels in
+	// this audio track. Enter channel layout tags in the same order as your output's
+	// audio channel order. For example, if your output audio track has a left and
+	// a right channel, enter Left (L) for the first channel and Right (R) for the
+	// second. If your output has multiple single-channel audio tracks, enter a
+	// single channel layout tag for each track.
 	ChannelTag *string `locationName:"channelTag" type:"string" enum:"AudioChannelTag"`
+
+	// Specify the QuickTime audio channel layout tags for the audio channels in
+	// this audio track. Enter channel layout tags in the same order as your output's
+	// audio channel order. For example, if your output audio track has a left and
+	// a right channel, enter Left (L) for the first channel and Right (R) for the
+	// second. If your output has multiple single-channel audio tracks, enter a
+	// single channel layout tag for each track.
+	ChannelTags []*string `locationName:"channelTags" type:"list" enum:"AudioChannelTag"`
 }
 
 // String returns the string representation.
@@ -3534,6 +3542,12 @@ func (s AudioChannelTaggingSettings) GoString() string {
 // SetChannelTag sets the ChannelTag field's value.
 func (s *AudioChannelTaggingSettings) SetChannelTag(v string) *AudioChannelTaggingSettings {
 	s.ChannelTag = &v
+	return s
+}
+
+// SetChannelTags sets the ChannelTags field's value.
+func (s *AudioChannelTaggingSettings) SetChannelTags(v []*string) *AudioChannelTaggingSettings {
+	s.ChannelTags = v
 	return s
 }
 
@@ -3758,14 +3772,11 @@ func (s *AudioCodecSettings) SetWavSettings(v *WavSettings) *AudioCodecSettings 
 type AudioDescription struct {
 	_ struct{} `type:"structure"`
 
-	// When you mimic a multi-channel audio layout with multiple mono-channel tracks,
-	// you can tag each channel layout manually. For example, you would tag the
-	// tracks that contain your left, right, and center audio with Left (L), Right
-	// (R), and Center (C), respectively. When you don't specify a value, MediaConvert
-	// labels your track as Center (C) by default. To use audio layout tagging,
-	// your output must be in a QuickTime (.mov) container; your audio codec must
-	// be AAC, WAV, or AIFF; and you must set up your audio track to have only one
-	// channel.
+	// Specify the QuickTime audio channel layout tags for the audio channels in
+	// this audio track. When you don't specify a value, MediaConvert labels your
+	// track as Center (C) by default. To use Audio layout tagging, your output
+	// must be in a QuickTime (MOV) container and your audio codec must be AAC,
+	// WAV, or AIFF.
 	AudioChannelTaggingSettings *AudioChannelTaggingSettings `locationName:"audioChannelTaggingSettings" type:"structure"`
 
 	// Advanced audio normalization settings. Ignore these settings unless you need
@@ -11309,9 +11320,9 @@ func (s *ExtendedDataServices) SetVchipAction(v string) *ExtendedDataServices {
 type F4vSettings struct {
 	_ struct{} `type:"structure"`
 
-	// If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
-	// of the archive as required for progressive downloading. Otherwise it is placed
-	// normally at the end.
+	// To place the MOOV atom at the beginning of your output, which is useful for
+	// progressive downloading: Leave blank or choose Progressive download. To place
+	// the MOOV at the end of your output: Choose Normal.
 	MoovPlacement *string `locationName:"moovPlacement" type:"string" enum:"F4vMoovPlacement"`
 }
 
@@ -11528,7 +11539,7 @@ type FlacSettings struct {
 	// the API, valid values are between 1 and 8.
 	Channels *int64 `locationName:"channels" min:"1" type:"integer"`
 
-	// Sample rate in hz.
+	// Sample rate in Hz.
 	SampleRate *int64 `locationName:"sampleRate" min:"22050" type:"integer"`
 }
 
@@ -16705,6 +16716,16 @@ type JobSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
+	// Specify the input that MediaConvert references for your default output settings.
+	// MediaConvert uses this input's Resolution, Frame rate, and Pixel aspect ratio
+	// for all outputs that you don't manually specify different output settings
+	// for. Enabling this setting will disable "Follow source" for all other inputs.
+	// If MediaConvert cannot follow your source, for example if you specify an
+	// audio-only input, MediaConvert uses the first followable input instead. In
+	// your JSON job specification, enter an integer from 1 to 150 corresponding
+	// to the order of your inputs.
+	FollowSource *int64 `locationName:"followSource" min:"1" type:"integer"`
+
 	// Use Inputs to define source file used in the transcode job. There can be
 	// multiple inputs add in a job. These inputs will be concantenated together
 	// to create the output.
@@ -16780,6 +16801,9 @@ func (s *JobSettings) Validate() error {
 	if s.AdAvailOffset != nil && *s.AdAvailOffset < -1000 {
 		invalidParams.Add(request.NewErrParamMinValue("AdAvailOffset", -1000))
 	}
+	if s.FollowSource != nil && *s.FollowSource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FollowSource", 1))
+	}
 	if s.AvailBlanking != nil {
 		if err := s.AvailBlanking.Validate(); err != nil {
 			invalidParams.AddNested("AvailBlanking", err.(request.ErrInvalidParams))
@@ -16848,6 +16872,12 @@ func (s *JobSettings) SetEsam(v *EsamSettings) *JobSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobSettings {
 	s.ExtendedDataServices = v
+	return s
+}
+
+// SetFollowSource sets the FollowSource field's value.
+func (s *JobSettings) SetFollowSource(v int64) *JobSettings {
+	s.FollowSource = &v
 	return s
 }
 
@@ -17076,6 +17106,16 @@ type JobTemplateSettings struct {
 	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
+	// Specify the input that MediaConvert references for your default output settings.
+	// MediaConvert uses this input's Resolution, Frame rate, and Pixel aspect ratio
+	// for all outputs that you don't manually specify different output settings
+	// for. Enabling this setting will disable "Follow source" for all other inputs.
+	// If MediaConvert cannot follow your source, for example if you specify an
+	// audio-only input, MediaConvert uses the first followable input instead. In
+	// your JSON job specification, enter an integer from 1 to 150 corresponding
+	// to the order of your inputs.
+	FollowSource *int64 `locationName:"followSource" min:"1" type:"integer"`
+
 	// Use Inputs to define the source file used in the transcode job. There can
 	// only be one input in a job template. Using the API, you can include multiple
 	// inputs when referencing a job template.
@@ -17151,6 +17191,9 @@ func (s *JobTemplateSettings) Validate() error {
 	if s.AdAvailOffset != nil && *s.AdAvailOffset < -1000 {
 		invalidParams.Add(request.NewErrParamMinValue("AdAvailOffset", -1000))
 	}
+	if s.FollowSource != nil && *s.FollowSource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FollowSource", 1))
+	}
 	if s.AvailBlanking != nil {
 		if err := s.AvailBlanking.Validate(); err != nil {
 			invalidParams.AddNested("AvailBlanking", err.(request.ErrInvalidParams))
@@ -17219,6 +17262,12 @@ func (s *JobTemplateSettings) SetEsam(v *EsamSettings) *JobTemplateSettings {
 // SetExtendedDataServices sets the ExtendedDataServices field's value.
 func (s *JobTemplateSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobTemplateSettings {
 	s.ExtendedDataServices = v
+	return s
+}
+
+// SetFollowSource sets the FollowSource field's value.
+func (s *JobTemplateSettings) SetFollowSource(v int64) *JobTemplateSettings {
+	s.FollowSource = &v
 	return s
 }
 
@@ -19401,7 +19450,7 @@ type Mp2Settings struct {
 	// you 2. In the API, valid values are 1 and 2.
 	Channels *int64 `locationName:"channels" min:"1" type:"integer"`
 
-	// Sample rate in hz.
+	// Sample rate in Hz.
 	SampleRate *int64 `locationName:"sampleRate" min:"32000" type:"integer"`
 }
 
@@ -19477,7 +19526,7 @@ type Mp3Settings struct {
 	// bitrate (CBR) or a variable bitrate (VBR).
 	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"Mp3RateControlMode"`
 
-	// Sample rate in hz.
+	// Sample rate in Hz.
 	SampleRate *int64 `locationName:"sampleRate" min:"22050" type:"integer"`
 
 	// Required when you set Bitrate control mode to VBR. Specify the audio quality
@@ -19589,9 +19638,9 @@ type Mp4Settings struct {
 	// Inserts a free-space box immediately after the moov box.
 	FreeSpaceBox *string `locationName:"freeSpaceBox" type:"string" enum:"Mp4FreeSpaceBox"`
 
-	// If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
-	// of the archive as required for progressive downloading. Otherwise it is placed
-	// normally at the end.
+	// To place the MOOV atom at the beginning of your output, which is useful for
+	// progressive downloading: Leave blank or choose Progressive download. To place
+	// the MOOV at the end of your output: Choose Normal.
 	MoovPlacement *string `locationName:"moovPlacement" type:"string" enum:"Mp4MoovPlacement"`
 
 	// Overrides the "Major Brand" field in the output file. Usually not necessary
@@ -21348,7 +21397,7 @@ type OpusSettings struct {
 	// values are 1 and 2.
 	Channels *int64 `locationName:"channels" min:"1" type:"integer"`
 
-	// Optional. Sample rate in hz. Valid values are 16000, 24000, and 48000. The
+	// Optional. Sample rate in Hz. Valid values are 16000, 24000, and 48000. The
 	// default value is 48000.
 	SampleRate *int64 `locationName:"sampleRate" min:"16000" type:"integer"`
 }
@@ -25121,11 +25170,8 @@ type VideoDescription struct {
 	// * Choose None to remove all input AFD values from this output.
 	RespondToAfd *string `locationName:"respondToAfd" type:"string" enum:"RespondToAfd"`
 
-	// Specify how the service handles outputs that have a different aspect ratio
-	// from the input aspect ratio. Choose Stretch to output to have the service
-	// stretch your video image to fit. Keep the setting Default to have the service
-	// letterbox your video instead. This setting overrides any value that you specify
-	// for the setting Selection placement in this output.
+	// Specify the video Scaling behavior when your output has a different resolution
+	// than your input. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-scaling.html
 	ScalingBehavior *string `locationName:"scalingBehavior" type:"string" enum:"ScalingBehavior"`
 
 	// Use Sharpness setting to specify the strength of anti-aliasing. This setting
@@ -25344,7 +25390,8 @@ func (s *VideoDetail) SetWidthInPx(v int64) *VideoDetail {
 	return s
 }
 
-// Overlay one or more videos on top of your input video.
+// Overlay one or more videos on top of your input video. For more information,
+// see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-overlays.html
 type VideoOverlay struct {
 	_ struct{} `type:"structure"`
 
@@ -25488,11 +25535,11 @@ type VideoOverlayInput_ struct {
 	// both start and end timecode.
 	InputClippings []*VideoOverlayInputClipping `locationName:"inputClippings" type:"list"`
 
-	// Specify the starting timecode for your video overlay. To use the timecode
-	// present in your video overlay: Choose Embedded. To use a zerobased timecode:
-	// Choose Start at 0. To choose a timecode: Choose Specified start. When you
-	// do, enter the starting timecode in Start timecode. If you don't specify a
-	// value for Timecode source, MediaConvert uses Embedded by default.
+	// Specify the timecode source for your video overlay input clips. To use the
+	// timecode present in your video overlay: Choose Embedded. To use a zerobased
+	// timecode: Choose Start at 0. To choose a timecode: Choose Specified start.
+	// When you do, enter the starting timecode in Start timecode. If you don't
+	// specify a value for Timecode source, MediaConvert uses Embedded by default.
 	TimecodeSource *string `locationName:"timecodeSource" type:"string" enum:"InputTimecodeSource"`
 
 	// Specify the starting timecode for this video overlay. To use this setting,
@@ -27917,9 +27964,12 @@ func AntiAlias_Values() []string {
 	}
 }
 
-// You can add a tag for this mono-channel audio track to mimic its placement
-// in a multi-channel layout. For example, if this track is the left surround
-// channel, choose Left surround (LS).
+// Specify the QuickTime audio channel layout tags for the audio channels in
+// this audio track. Enter channel layout tags in the same order as your output's
+// audio channel order. For example, if your output audio track has a left and
+// a right channel, enter Left (L) for the first channel and Right (R) for the
+// second. If your output has multiple single-channel audio tracks, enter a
+// single channel layout tag for each track.
 const (
 	// AudioChannelTagL is a AudioChannelTag enum value
 	AudioChannelTagL = "L"
@@ -31570,9 +31620,9 @@ func EmbeddedTimecodeOverride_Values() []string {
 	}
 }
 
-// If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
-// of the archive as required for progressive downloading. Otherwise it is placed
-// normally at the end.
+// To place the MOOV atom at the beginning of your output, which is useful for
+// progressive downloading: Leave blank or choose Progressive download. To place
+// the MOOV at the end of your output: Choose Normal.
 const (
 	// F4vMoovPlacementProgressiveDownload is a F4vMoovPlacement enum value
 	F4vMoovPlacementProgressiveDownload = "PROGRESSIVE_DOWNLOAD"
@@ -35401,9 +35451,9 @@ func Mp4FreeSpaceBox_Values() []string {
 	}
 }
 
-// If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
-// of the archive as required for progressive downloading. Otherwise it is placed
-// normally at the end.
+// To place the MOOV atom at the beginning of your output, which is useful for
+// progressive downloading: Leave blank or choose Progressive download. To place
+// the MOOV at the end of your output: Choose Normal.
 const (
 	// Mp4MoovPlacementProgressiveDownload is a Mp4MoovPlacement enum value
 	Mp4MoovPlacementProgressiveDownload = "PROGRESSIVE_DOWNLOAD"
@@ -37065,17 +37115,23 @@ func SampleRangeConversion_Values() []string {
 	}
 }
 
-// Specify how the service handles outputs that have a different aspect ratio
-// from the input aspect ratio. Choose Stretch to output to have the service
-// stretch your video image to fit. Keep the setting Default to have the service
-// letterbox your video instead. This setting overrides any value that you specify
-// for the setting Selection placement in this output.
+// Specify the video Scaling behavior when your output has a different resolution
+// than your input. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/video-scaling.html
 const (
 	// ScalingBehaviorDefault is a ScalingBehavior enum value
 	ScalingBehaviorDefault = "DEFAULT"
 
 	// ScalingBehaviorStretchToOutput is a ScalingBehavior enum value
 	ScalingBehaviorStretchToOutput = "STRETCH_TO_OUTPUT"
+
+	// ScalingBehaviorFit is a ScalingBehavior enum value
+	ScalingBehaviorFit = "FIT"
+
+	// ScalingBehaviorFitNoUpscale is a ScalingBehavior enum value
+	ScalingBehaviorFitNoUpscale = "FIT_NO_UPSCALE"
+
+	// ScalingBehaviorFill is a ScalingBehavior enum value
+	ScalingBehaviorFill = "FILL"
 )
 
 // ScalingBehavior_Values returns all elements of the ScalingBehavior enum
@@ -37083,6 +37139,9 @@ func ScalingBehavior_Values() []string {
 	return []string{
 		ScalingBehaviorDefault,
 		ScalingBehaviorStretchToOutput,
+		ScalingBehaviorFit,
+		ScalingBehaviorFitNoUpscale,
+		ScalingBehaviorFill,
 	}
 }
 

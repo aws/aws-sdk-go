@@ -20653,8 +20653,21 @@
         "EnaSrdUdpSpecification":{"shape":"EnaSrdUdpSpecification"}
       }
     },
+    "EnaSrdSpecificationRequest":{
+      "type":"structure",
+      "members":{
+        "EnaSrdEnabled":{"shape":"Boolean"},
+        "EnaSrdUdpSpecification":{"shape":"EnaSrdUdpSpecificationRequest"}
+      }
+    },
     "EnaSrdSupported":{"type":"boolean"},
     "EnaSrdUdpSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdUdpEnabled":{"shape":"Boolean"}
+      }
+    },
+    "EnaSrdUdpSpecificationRequest":{
       "type":"structure",
       "members":{
         "EnaSrdUdpEnabled":{"shape":"Boolean"}
@@ -25729,6 +25742,28 @@
         }
       }
     },
+    "InstanceAttachmentEnaSrdSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdEnabled"
+        },
+        "EnaSrdUdpSpecification":{
+          "shape":"InstanceAttachmentEnaSrdUdpSpecification",
+          "locationName":"enaSrdUdpSpecification"
+        }
+      }
+    },
+    "InstanceAttachmentEnaSrdUdpSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdUdpEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdUdpEnabled"
+        }
+      }
+    },
     "InstanceAttribute":{
       "type":"structure",
       "members":{
@@ -26551,6 +26586,10 @@
         "NetworkCardIndex":{
           "shape":"Integer",
           "locationName":"networkCardIndex"
+        },
+        "EnaSrdSpecification":{
+          "shape":"InstanceAttachmentEnaSrdSpecification",
+          "locationName":"enaSrdSpecification"
         }
       }
     },
@@ -26627,7 +26666,8 @@
           "locationName":"Ipv6Prefix"
         },
         "Ipv6PrefixCount":{"shape":"Integer"},
-        "PrimaryIpv6":{"shape":"Boolean"}
+        "PrimaryIpv6":{"shape":"Boolean"},
+        "EnaSrdSpecification":{"shape":"EnaSrdSpecificationRequest"}
       }
     },
     "InstanceNetworkInterfaceSpecificationList":{
@@ -29797,6 +29837,28 @@
         "locationName":"item"
       }
     },
+    "LaunchTemplateEnaSrdSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdEnabled"
+        },
+        "EnaSrdUdpSpecification":{
+          "shape":"LaunchTemplateEnaSrdUdpSpecification",
+          "locationName":"enaSrdUdpSpecification"
+        }
+      }
+    },
+    "LaunchTemplateEnaSrdUdpSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdUdpEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdUdpEnabled"
+        }
+      }
+    },
     "LaunchTemplateEnclaveOptions":{
       "type":"structure",
       "members":{
@@ -30057,6 +30119,10 @@
         "PrimaryIpv6":{
           "shape":"Boolean",
           "locationName":"primaryIpv6"
+        },
+        "EnaSrdSpecification":{
+          "shape":"LaunchTemplateEnaSrdSpecification",
+          "locationName":"enaSrdSpecification"
         }
       }
     },
@@ -30098,7 +30164,8 @@
           "locationName":"Ipv6Prefix"
         },
         "Ipv6PrefixCount":{"shape":"Integer"},
-        "PrimaryIpv6":{"shape":"Boolean"}
+        "PrimaryIpv6":{"shape":"Boolean"},
+        "EnaSrdSpecification":{"shape":"EnaSrdSpecificationRequest"}
       }
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecificationRequestList":{

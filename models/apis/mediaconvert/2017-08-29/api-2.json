@@ -1379,6 +1379,10 @@
         "ChannelTag": {
           "shape": "AudioChannelTag",
           "locationName": "channelTag"
+        },
+        "ChannelTags": {
+          "shape": "__listOfAudioChannelTag",
+          "locationName": "channelTags"
         }
       }
     },
@@ -6710,6 +6714,10 @@
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
         },
+        "FollowSource": {
+          "shape": "__integerMin1Max150",
+          "locationName": "followSource"
+        },
         "Inputs": {
           "shape": "__listOfInput",
           "locationName": "inputs"
@@ -6841,6 +6849,10 @@
         "ExtendedDataServices": {
           "shape": "ExtendedDataServices",
           "locationName": "extendedDataServices"
+        },
+        "FollowSource": {
+          "shape": "__integerMin1Max150",
+          "locationName": "followSource"
         },
         "Inputs": {
           "shape": "__listOfInputTemplate",
@@ -9475,7 +9487,10 @@
       "type": "string",
       "enum": [
         "DEFAULT",
-        "STRETCH_TO_OUTPUT"
+        "STRETCH_TO_OUTPUT",
+        "FIT",
+        "FIT_NO_UPSCALE",
+        "FILL"
       ]
     },
     "SccDestinationFramerate": {
@@ -11248,6 +11263,11 @@
       "min": 1,
       "max": 1001
     },
+    "__integerMin1Max150": {
+      "type": "integer",
+      "min": 1,
+      "max": 150
+    },
     "__integerMin1Max17895697": {
       "type": "integer",
       "min": 1,
@@ -11507,6 +11527,12 @@
       "type": "list",
       "member": {
         "shape": "AllowedRenditionSize"
+      }
+    },
+    "__listOfAudioChannelTag": {
+      "type": "list",
+      "member": {
+        "shape": "AudioChannelTag"
       }
     },
     "__listOfAudioDescription": {

@@ -80,8 +80,7 @@
     "Integer": {
       "base": null,
       "refs": {
-        "EntitlementValue$IntegerValue": "<p>The IntegerValue field will be populated with an integer value when the entitlement is an integer type. Otherwise, the field will not be set.</p>",
-        "GetEntitlementsRequest$MaxResults": "<p>The maximum number of items to retrieve from the GetEntitlements operation. For pagination, use the NextToken field in subsequent calls to GetEntitlements.</p>"
+        "EntitlementValue$IntegerValue": "<p>The IntegerValue field will be populated with an integer value when the entitlement is an integer type. Otherwise, the field will not be set.</p>"
       }
     },
     "InternalServiceErrorException": {
@@ -101,6 +100,12 @@
         "Entitlement$CustomerIdentifier": "<p>The customer identifier is a handle to each unique customer in an application. Customer identifiers are obtained through the ResolveCustomer operation in AWS Marketplace Metering Service.</p>",
         "GetEntitlementsRequest$NextToken": "<p>For paginated calls to GetEntitlements, pass the NextToken from the previous GetEntitlementsResult.</p>",
         "GetEntitlementsResult$NextToken": "<p>For paginated results, use NextToken in subsequent calls to GetEntitlements. If the result contains an empty set of entitlements, NextToken might still be present and should be used.</p>"
+      }
+    },
+    "PageSizeInteger": {
+      "base": null,
+      "refs": {
+        "GetEntitlementsRequest$MaxResults": "<p>The maximum number of items to retrieve from the GetEntitlements operation. For pagination, use the NextToken field in subsequent calls to GetEntitlements.</p>"
       }
     },
     "ProductCode": {
