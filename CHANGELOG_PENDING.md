@@ -3,5 +3,5 @@
 ### SDK Enhancements
 
 ### SDK Bugs
-* `aws/defaults`: endpoint credentials provider: add support for dynamic auth token from file and EKS container host in absolute/relative URIs.
-  * Supports upcoming IRSAv2 authentication in EKS.
+* `aws/defaults`: Feature updates to endpoint credentials provider.
+  * Add support for dynamic auth token from file and EKS container host in configured URI.
