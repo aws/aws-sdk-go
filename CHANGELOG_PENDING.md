@@ -3,5 +3,5 @@
 ### SDK Enhancements
 
 ### SDK Bugs
-* `aws/defaults`: Modify http credential provider resolving logic to allow EKS/ECS container host and auth token file.
-  * Fix http cred provider only allows local hosts endpoint and auth token directly set in env var 
+* `aws/defaults`: endpoint credentials provider: add support for dynamic auth token from file and EKS container host in absolute/relative URIs.
+  * Supports upcoming IRSAv2 authentication in EKS.
