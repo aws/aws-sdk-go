@@ -1234,6 +1234,13 @@ type EC2API interface {
 	DescribeInstanceStatusPages(*ec2.DescribeInstanceStatusInput, func(*ec2.DescribeInstanceStatusOutput, bool) bool) error
 	DescribeInstanceStatusPagesWithContext(aws.Context, *ec2.DescribeInstanceStatusInput, func(*ec2.DescribeInstanceStatusOutput, bool) bool, ...request.Option) error
 
+	DescribeInstanceTopology(*ec2.DescribeInstanceTopologyInput) (*ec2.DescribeInstanceTopologyOutput, error)
+	DescribeInstanceTopologyWithContext(aws.Context, *ec2.DescribeInstanceTopologyInput, ...request.Option) (*ec2.DescribeInstanceTopologyOutput, error)
+	DescribeInstanceTopologyRequest(*ec2.DescribeInstanceTopologyInput) (*request.Request, *ec2.DescribeInstanceTopologyOutput)
+
+	DescribeInstanceTopologyPages(*ec2.DescribeInstanceTopologyInput, func(*ec2.DescribeInstanceTopologyOutput, bool) bool) error
+	DescribeInstanceTopologyPagesWithContext(aws.Context, *ec2.DescribeInstanceTopologyInput, func(*ec2.DescribeInstanceTopologyOutput, bool) bool, ...request.Option) error
+
 	DescribeInstanceTypeOfferings(*ec2.DescribeInstanceTypeOfferingsInput) (*ec2.DescribeInstanceTypeOfferingsOutput, error)
 	DescribeInstanceTypeOfferingsWithContext(aws.Context, *ec2.DescribeInstanceTypeOfferingsInput, ...request.Option) (*ec2.DescribeInstanceTypeOfferingsOutput, error)
 	DescribeInstanceTypeOfferingsRequest(*ec2.DescribeInstanceTypeOfferingsInput) (*request.Request, *ec2.DescribeInstanceTypeOfferingsOutput)

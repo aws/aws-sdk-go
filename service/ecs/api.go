@@ -80,8 +80,8 @@ func (c *ECS) CreateCapacityProviderRequest(input *CreateCapacityProviderInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -189,8 +189,8 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -377,8 +377,8 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -489,8 +489,8 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -607,8 +607,8 @@ func (c *ECS) DeleteAccountSettingRequest(input *DeleteAccountSettingInput) (req
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -799,8 +799,8 @@ func (c *ECS) DeleteCapacityProviderRequest(input *DeleteCapacityProviderInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -895,8 +895,8 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1025,8 +1025,8 @@ func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1145,8 +1145,8 @@ func (c *ECS) DeleteTaskDefinitionsRequest(input *DeleteTaskDefinitionsInput) (r
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1240,8 +1240,8 @@ func (c *ECS) DeleteTaskSetRequest(input *DeleteTaskSetInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1366,8 +1366,8 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1478,8 +1478,8 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1567,8 +1567,8 @@ func (c *ECS) DescribeCapacityProvidersRequest(input *DescribeCapacityProvidersI
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1656,8 +1656,8 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *reques
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1746,8 +1746,8 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1839,8 +1839,8 @@ func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *reques
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -1937,8 +1937,8 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2029,8 +2029,8 @@ func (c *ECS) DescribeTaskSetsRequest(input *DescribeTaskSetsInput) (req *reques
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2143,8 +2143,8 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2239,8 +2239,8 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DiscoverPollEndpoint
 func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverPollEndpointOutput, error) {
@@ -2333,8 +2333,8 @@ func (c *ECS) ExecuteCommandRequest(input *ExecuteCommandInput) (req *request.Re
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2444,8 +2444,8 @@ func (c *ECS) GetTaskProtectionRequest(input *GetTaskProtectionInput) (req *requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -2552,8 +2552,8 @@ func (c *ECS) ListAccountSettingsRequest(input *ListAccountSettingsInput) (req *
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2845,8 +2845,8 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -2995,8 +2995,8 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -3146,8 +3146,8 @@ func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Reques
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -3301,8 +3301,8 @@ func (c *ECS) ListServicesByNamespaceRequest(input *ListServicesByNamespaceInput
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -3444,8 +3444,8 @@ func (c *ECS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -3549,8 +3549,8 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -3697,8 +3697,8 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -3847,8 +3847,8 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4040,8 +4040,8 @@ func (c *ECS) PutAccountSettingRequest(input *PutAccountSettingInput) (req *requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4131,8 +4131,8 @@ func (c *ECS) PutAccountSettingDefaultRequest(input *PutAccountSettingDefaultInp
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4334,8 +4334,8 @@ func (c *ECS) PutClusterCapacityProvidersRequest(input *PutClusterCapacityProvid
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4441,8 +4441,8 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4550,8 +4550,8 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4676,8 +4676,8 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4703,6 +4703,17 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //   - BlockedException
 //     Your Amazon Web Services account was blocked. For more information, contact
 //     Amazon Web Services Support (http://aws.amazon.com/contact-us/).
+//
+//   - ConflictException
+//     The RunTask request could not be processed due to conflicts. The provided
+//     clientToken is already in use with a different RunTask request. The resourceIds
+//     are the existing task ARNs which are already associated with the clientToken.
+//
+//     To fix this issue:
+//
+//   - Run RunTask with a unique clientToken.
+//
+//   - Run RunTask with the clientToken and the original set of parameters
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/RunTask
 func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
@@ -4799,8 +4810,8 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -4904,8 +4915,8 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, outpu
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -5000,8 +5011,8 @@ func (c *ECS) SubmitAttachmentStateChangesRequest(input *SubmitAttachmentStateCh
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - AccessDeniedException
 //     You don't have authorization to perform the requested action.
@@ -5095,8 +5106,8 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - AccessDeniedException
 //     You don't have authorization to perform the requested action.
@@ -5186,8 +5197,8 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - AccessDeniedException
 //     You don't have authorization to perform the requested action.
@@ -5282,8 +5293,8 @@ func (c *ECS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -5379,8 +5390,8 @@ func (c *ECS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -5475,8 +5486,8 @@ func (c *ECS) UpdateCapacityProviderRequest(input *UpdateCapacityProviderInput) 
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -5564,8 +5575,8 @@ func (c *ECS) UpdateClusterRequest(input *UpdateClusterInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -5660,8 +5671,8 @@ func (c *ECS) UpdateClusterSettingsRequest(input *UpdateClusterSettingsInput) (r
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -5773,8 +5784,8 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -5931,8 +5942,8 @@ func (c *ECS) UpdateContainerInstancesStateRequest(input *UpdateContainerInstanc
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -6126,8 +6137,8 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -6244,8 +6255,8 @@ func (c *ECS) UpdateServicePrimaryTaskSetRequest(input *UpdateServicePrimaryTask
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -6381,8 +6392,8 @@ func (c *ECS) UpdateTaskProtectionRequest(input *UpdateTaskProtectionInput) (req
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
@@ -6485,8 +6496,8 @@ func (c *ECS) UpdateTaskSetRequest(input *UpdateTaskSetInput) (req *request.Requ
 //   - ClientException
 //     These errors are usually caused by a client action. This client action might
 //     be using an action or resource on behalf of a user that doesn't have permissions
-//     to use the action or resource,. Or, it might be specifying an identifier
-//     that isn't valid.
+//     to use the action or resource. Or, it might be specifying an identifier that
+//     isn't valid.
 //
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
@@ -7402,8 +7413,8 @@ func (s *CapacityProviderStrategyItem) SetWeight(v int64) *CapacityProviderStrat
 
 // These errors are usually caused by a client action. This client action might
 // be using an action or resource on behalf of a user that doesn't have permissions
-// to use the action or resource,. Or, it might be specifying an identifier
-// that isn't valid.
+// to use the action or resource. Or, it might be specifying an identifier that
+// isn't valid.
 type ClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8212,6 +8223,81 @@ func (s *ClusterSetting) SetName(v string) *ClusterSetting {
 func (s *ClusterSetting) SetValue(v string) *ClusterSetting {
 	s.Value = &v
 	return s
+}
+
+// The RunTask request could not be processed due to conflicts. The provided
+// clientToken is already in use with a different RunTask request. The resourceIds
+// are the existing task ARNs which are already associated with the clientToken.
+//
+// To fix this issue:
+//
+//   - Run RunTask with a unique clientToken.
+//
+//   - Run RunTask with the clientToken and the original set of parameters
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The existing task ARNs which are already associated with the clientToken.
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A Docker container that's part of a task.
@@ -10411,7 +10497,8 @@ type CreateServiceInput struct {
 	CapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"capacityProviderStrategy" type:"list"`
 
 	// An identifier that you provide to ensure the idempotency of the request.
-	// It must be unique and is case sensitive. Up to 32 ASCII characters are allowed.
+	// It must be unique and is case sensitive. Up to 36 ASCII characters in the
+	// range of 33-126 (inclusive) are allowed.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that you
@@ -10960,9 +11047,9 @@ type CreateTaskSetInput struct {
 	// of available capacity providers for a cluster after the cluster is created.
 	CapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"capacityProviderStrategy" type:"list"`
 
-	// The identifier that you provide to ensure the idempotency of the request.
-	// It's case sensitive and must be unique. It can be up to 32 ASCII characters
-	// are allowed.
+	// An identifier that you provide to ensure the idempotency of the request.
+	// It must be unique and is case sensitive. Up to 36 ASCII characters in the
+	// range of 33-126 (inclusive) are allowed.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -18214,6 +18301,9 @@ type PortMapping struct {
 	// If you don't set a value for this parameter, then TCP is used. However, Amazon
 	// ECS doesn't add protocol-specific telemetry for TCP.
 	//
+	// appProtocol is immutable in a Service Connect service. Updating this field
+	// requires a service deletion and redeployment.
+	//
 	// Tasks that run in a namespace can use short names to connect to services
 	// in the namespace. Tasks can connect to services across all of the clusters
 	// in the namespace. Tasks connect through a managed proxy container that collects
@@ -18333,7 +18423,8 @@ type PortMapping struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
-	// default is tcp.
+	// default is tcp. protocol is immutable in a Service Connect service. Updating
+	// this field requires a service deletion and redeployment.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 }
 
@@ -20118,6 +20209,12 @@ type RunTaskInput struct {
 	// A capacity provider strategy may contain a maximum of 6 capacity providers.
 	CapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"capacityProviderStrategy" type:"list"`
 
+	// An identifier that you provide to ensure the idempotency of the request.
+	// It must be unique and is case sensitive. Up to 64 characters are allowed.
+	// The valid characters are characters in the range of 33-126, inclusive. For
+	// more information, see Ensuring idempotency (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/ECS_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster to run your
 	// task on. If you do not specify a cluster, the default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
@@ -20218,7 +20315,7 @@ type RunTaskInput struct {
 	// trigger a task to run a batch process job, you could apply a unique identifier
 	// for that job to your task with the startedBy parameter. You can then identify
 	// which tasks belong to that job by filtering the results of a ListTasks call
-	// with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers,
+	// with the startedBy value. Up to 128 letters (uppercase and lowercase), numbers,
 	// hyphens (-), and underscores (_) are allowed.
 	//
 	// If a task is started by an Amazon ECS service, then the startedBy parameter
@@ -20342,6 +20439,12 @@ func (s *RunTaskInput) Validate() error {
 // SetCapacityProviderStrategy sets the CapacityProviderStrategy field's value.
 func (s *RunTaskInput) SetCapacityProviderStrategy(v []*CapacityProviderStrategyItem) *RunTaskInput {
 	s.CapacityProviderStrategy = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RunTaskInput) SetClientToken(v string) *RunTaskInput {
+	s.ClientToken = &v
 	return s
 }
 

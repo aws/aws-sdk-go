@@ -2397,6 +2397,15 @@
       "input":{"shape":"DescribeInstanceStatusRequest"},
       "output":{"shape":"DescribeInstanceStatusResult"}
     },
+    "DescribeInstanceTopology":{
+      "name":"DescribeInstanceTopology",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceTopologyRequest"},
+      "output":{"shape":"DescribeInstanceTopologyResult"}
+    },
     "DescribeInstanceTypeOfferings":{
       "name":"DescribeInstanceTypeOfferings",
       "http":{
@@ -5427,9 +5436,9 @@
     "AcceleratorManufacturer":{
       "type":"string",
       "enum":[
-        "nvidia",
-        "amd",
         "amazon-web-services",
+        "amd",
+        "nvidia",
         "xilinx"
       ]
     },
@@ -5444,14 +5453,14 @@
       "type":"string",
       "enum":[
         "a100",
-        "v100",
+        "inferentia",
+        "k520",
         "k80",
-        "t4",
         "m60",
         "radeon-pro-v520",
+        "t4",
         "vu9p",
-        "inferentia",
-        "k520"
+        "v100"
       ]
     },
     "AcceleratorNameSet":{
@@ -9037,7 +9046,6 @@
       "type":"string",
       "sensitive":true
     },
-    "ClientVpnAssociationId":{"type":"string"},
     "ClientVpnAuthentication":{
       "type":"structure",
       "members":{
@@ -15994,6 +16002,52 @@
         }
       }
     },
+    "DescribeInstanceTopologyGroupNameSet":{
+      "type":"list",
+      "member":{"shape":"PlacementGroupName"}
+    },
+    "DescribeInstanceTopologyInstanceIdSet":{
+      "type":"list",
+      "member":{"shape":"InstanceId"}
+    },
+    "DescribeInstanceTopologyMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "DescribeInstanceTopologyRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeInstanceTopologyMaxResults"},
+        "InstanceIds":{
+          "shape":"DescribeInstanceTopologyInstanceIdSet",
+          "locationName":"InstanceId"
+        },
+        "GroupNames":{
+          "shape":"DescribeInstanceTopologyGroupNameSet",
+          "locationName":"GroupName"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
+      }
+    },
+    "DescribeInstanceTopologyResult":{
+      "type":"structure",
+      "members":{
+        "Instances":{
+          "shape":"InstanceSet",
+          "locationName":"instanceSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeInstanceTypeOfferingsRequest":{
       "type":"structure",
       "members":{
@@ -19711,7 +19765,7 @@
       ],
       "members":{
         "ClientVpnEndpointId":{"shape":"ClientVpnEndpointId"},
-        "AssociationId":{"shape":"ClientVpnAssociationId"},
+        "AssociationId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -22873,6 +22927,10 @@
         "LocalGatewayRouteTableId":{
           "shape":"String",
           "locationName":"localGatewayRouteTableId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -26872,6 +26930,13 @@
         "InstanceRequirements":{"shape":"InstanceRequirementsRequest"}
       }
     },
+    "InstanceSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceTopology",
+        "locationName":"item"
+      }
+    },
     "InstanceSpecification":{
       "type":"structure",
       "required":["InstanceId"],
@@ -27091,6 +27156,35 @@
         "IncludeAllTagsOfInstance":{
           "shape":"Boolean",
           "locationName":"includeAllTagsOfInstance"
+        }
+      }
+    },
+    "InstanceTopology":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        },
+        "NetworkNodes":{
+          "shape":"NetworkNodesList",
+          "locationName":"networkNodeSet"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "ZoneId":{
+          "shape":"String",
+          "locationName":"zoneId"
         }
       }
     },
@@ -34150,6 +34244,13 @@
         "iot_rules_managed",
         "aws_codestar_connections_managed"
       ]
+    },
+    "NetworkNodesList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
     },
     "NetworkPerformance":{"type":"string"},
     "NewDhcpConfiguration":{

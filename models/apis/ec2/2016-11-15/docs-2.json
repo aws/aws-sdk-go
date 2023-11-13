@@ -208,7 +208,7 @@
     "DeleteVpcEndpointConnectionNotifications": "<p>Deletes the specified VPC endpoint connection notifications.</p>",
     "DeleteVpcEndpointServiceConfigurations": "<p>Deletes the specified VPC endpoint service configurations. Before you can delete an endpoint service configuration, you must reject any <code>Available</code> or <code>PendingAcceptance</code> interface endpoint connections that are attached to the service.</p>",
     "DeleteVpcEndpoints": "<p>Deletes the specified VPC endpoints.</p> <p>When you delete a gateway endpoint, we delete the endpoint routes in the route tables for the endpoint.</p> <p>When you delete a Gateway Load Balancer endpoint, we delete its endpoint network interfaces. You can only delete Gateway Load Balancer endpoints when the routes that are associated with the endpoint are deleted.</p> <p>When you delete an interface endpoint, we delete its endpoint network interfaces.</p>",
-    "DeleteVpcPeeringConnection": "<p>Deletes a VPC peering connection. Either the owner of the requester VPC or the owner of the accepter VPC can delete the VPC peering connection if it's in the <code>active</code> state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code> state. You cannot delete a VPC peering connection that's in the <code>failed</code> state.</p>",
+    "DeleteVpcPeeringConnection": "<p>Deletes a VPC peering connection. Either the owner of the requester VPC or the owner of the accepter VPC can delete the VPC peering connection if it's in the <code>active</code> state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code> state. You cannot delete a VPC peering connection that's in the <code>failed</code> or <code>rejected</code> state.</p>",
     "DeleteVpnConnection": "<p>Deletes the specified VPN connection.</p> <p>If you're deleting the VPC and its associated components, we recommend that you detach the virtual private gateway from the VPC and delete the VPC before deleting the VPN connection. If you believe that the tunnel credentials for your VPN connection have been compromised, you can delete the VPN connection and create a new one that has new keys, without needing to delete the VPC or virtual private gateway. If you create a new VPN connection, you must reconfigure the customer gateway device using the new configuration information returned with the new VPN connection ID.</p> <p>For certificate-based authentication, delete all Certificate Manager (ACM) private certificates used for the Amazon Web Services-side tunnel endpoints for the VPN connection before deleting the VPN connection.</p>",
     "DeleteVpnConnectionRoute": "<p>Deletes the specified static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p>",
     "DeleteVpnGateway": "<p>Deletes the specified virtual private gateway. You must first detach the virtual private gateway from the VPC. Note that you don't need to delete the virtual private gateway if you plan to delete and recreate the VPN connection between your VPC and your network.</p>",
@@ -246,7 +246,7 @@
     "DescribeElasticGpus": "<p>Describes the Elastic Graphics accelerator associated with your instances. For more information about Elastic Graphics, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html\">Amazon Elastic Graphics</a>.</p>",
     "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all of your export image tasks.</p>",
     "DescribeExportTasks": "<p>Describes the specified export instance tasks or all of your export instance tasks.</p>",
-    "DescribeFastLaunchImages": "<p>Describe details for Windows AMIs that are configured for faster launching.</p>",
+    "DescribeFastLaunchImages": "<p>Describe details for Windows AMIs that are configured for Windows fast launch.</p>",
     "DescribeFastSnapshotRestores": "<p>Describes the state of fast snapshot restores for your snapshots.</p>",
     "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p> <p>EC2 Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event. EC2 Fleet events are available for 48 hours.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/fleet-monitor.html\">Monitor fleet events using Amazon EventBridge</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#monitor-ec2-fleet\">Monitor your EC2 Fleet</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -270,6 +270,7 @@
     "DescribeInstanceEventNotificationAttributes": "<p>Describes the tag keys that are registered to appear in scheduled event notifications for resources in the current Region.</p>",
     "DescribeInstanceEventWindows": "<p>Describes the specified event windows or all event windows.</p> <p>If you specify event window IDs, the output includes information for only the specified event windows. If you specify filters, the output includes information for only those event windows that meet the filter criteria. If you do not specify event windows IDs or filters, the output includes information for all event windows, which can affect performance. We recommend that you use pagination to ensure that the operation returns quickly and successfully. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeInstanceStatus": "<p>Describes the status of the specified instances or all of your instances. By default, only running instances are described, unless you specifically indicate to return the status of all instances.</p> <p>Instance status includes the following components:</p> <ul> <li> <p> <b>Status checks</b> - Amazon EC2 performs status checks on running EC2 instances to identify hardware and software issues. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html\">Status checks for your instances</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html\">Troubleshoot instances with failed status checks</a> in the <i>Amazon EC2 User Guide</i>.</p> </li> <li> <p> <b>Scheduled events</b> - Amazon EC2 can schedule events (such as reboot, stop, or terminate) for your instances related to hardware issues, software updates, or system maintenance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html\">Scheduled events for your instances</a> in the <i>Amazon EC2 User Guide</i>.</p> </li> <li> <p> <b>Instance state</b> - You can manage your instances from the moment you launch them through their termination. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance lifecycle</a> in the <i>Amazon EC2 User Guide</i>.</p> </li> </ul>",
+    "DescribeInstanceTopology": "<p>Describes a tree-based hierarchy that represents the physical host placement of your EC2 instances within an Availability Zone or Local Zone. You can use this information to determine the relative proximity of your EC2 instances within the Amazon Web Services network to support your tightly coupled workloads.</p> <p class=\"title\"> <b>Limitations</b> </p> <ul> <li> <p>Supported zones</p> <ul> <li> <p>Availability Zone</p> </li> <li> <p>Local Zone</p> </li> </ul> </li> <li> <p>Supported instance types</p> <ul> <li> <p> <code>hpc6a.48xlarge</code> | <code>hpc6id.32xlarge</code> | <code>hpc7a.12xlarge</code> | <code>hpc7a.24xlarge</code> | <code>hpc7a.48xlarge</code> | <code>hpc7a.96xlarge</code> | <code>hpc7g.4xlarge</code> | <code>hpc7g.8xlarge</code> | <code>hpc7g.16xlarge</code> </p> </li> <li> <p> <code>p3dn.24xlarge</code> | <code>p4d.24xlarge</code> | <code>p4de.24xlarge</code> | <code>p5.48xlarge</code> </p> </li> <li> <p> <code>trn1.2xlarge</code> | <code>trn1.32xlarge</code> | <code>trn1n.32xlarge</code> </p> </li> </ul> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-topology.html\">Amazon EC2 instance topology</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeInstanceTypeOfferings": "<p>Returns a list of all instance types offered. The results can be filtered by location (Region or Availability Zone). If no location is specified, the instance types offered in the current Region are returned.</p>",
     "DescribeInstanceTypes": "<p>Describes the details of the instance types that are offered in a location. The results can be filtered by the attributes of the instance types.</p>",
     "DescribeInstances": "<p>Describes the specified instances or all instances.</p> <p>If you specify instance IDs, the output includes information for only the specified instances. If you specify filters, the output includes information for only those instances that meet the filter criteria. If you do not specify instance IDs or filters, the output includes information for all instances, which can affect performance. We recommend that you use pagination to ensure that the operation returns quickly and successfully.</p> <p>If you specify an instance ID that is not valid, an error is returned. If you specify an instance that you do not own, it is not included in the output.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If you describe instances in the rare case where an Availability Zone is experiencing a service disruption and you specify instance IDs that are in the affected zone, or do not specify any instance IDs at all, the call fails. If you describe instances and specify only instance IDs that are in an unaffected zone, the call works normally.</p>",
@@ -374,9 +375,9 @@
     "DisableAddressTransfer": "<p>Disables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DisableAwsNetworkPerformanceMetricSubscription": "<p>Disables Infrastructure Performance metric subscriptions.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "DisableFastLaunch": "<p>Discontinue faster launching for a Windows AMI, and clean up existing pre-provisioned snapshots. When you disable faster launching, the AMI uses the standard launch process for each instance. All pre-provisioned snapshots must be removed before you can enable faster launching again.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
+    "DisableFastLaunch": "<p>Discontinue Windows fast launch for a Windows AMI, and clean up existing pre-provisioned snapshots. After you disable Windows fast launch, the AMI uses the standard launch process for each new instance. Amazon EC2 must remove all pre-provisioned snapshots before you can enable Windows fast launch again.</p> <note> <p>You can only change these settings for Windows AMIs that you own or that have been shared with you.</p> </note>",
     "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
-    "DisableImage": "<p>Sets the AMI state to <code>disabled</code> and removes all launch permissions from the AMI. A disabled AMI can't be used for instance launches.</p> <p>A disabled AMI can't be shared. If a public or shared AMI was previously shared, it is made private. If an AMI was shared with an Amazon Web Services account, organization, or Organizational Unit, they lose access to the disabled AMI. </p> <p>A disabled AMI does not appear in <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImages.html\">DescribeImages</a> API calls by default.</p> <p>Only the AMI owner can disable an AMI.</p> <p>You can re-enable a disabled AMI using <a href=\"http://amazonaws.com/AWSEC2/latest/APIReference/API_EnableImage.html\">EnableImage</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/disable-an-ami.html\">Disable an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "DisableImage": "<p>Sets the AMI state to <code>disabled</code> and removes all launch permissions from the AMI. A disabled AMI can't be used for instance launches.</p> <p>A disabled AMI can't be shared. If an AMI was public or previously shared, it is made private. If an AMI was shared with an Amazon Web Services account, organization, or Organizational Unit, they lose access to the disabled AMI. </p> <p>A disabled AMI does not appear in <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImages.html\">DescribeImages</a> API calls by default.</p> <p>Only the AMI owner can disable an AMI.</p> <p>You can re-enable a disabled AMI using <a href=\"http://amazonaws.com/AWSEC2/latest/APIReference/API_EnableImage.html\">EnableImage</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/disable-an-ami.html\">Disable an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisableImageBlockPublicAccess": "<p>Disables <i>block public access for AMIs</i> at the account level in the specified Amazon Web Services Region. This removes the <i>block public access</i> restriction from your account. With the restriction removed, you can publicly share your AMIs in the specified Amazon Web Services Region.</p> <p>The API can take up to 10 minutes to configure this setting. During this time, if you run <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetImageBlockPublicAccessState.html\">GetImageBlockPublicAccessState</a>, the response will be <code>block-new-sharing</code>. When the API has completed the configuration, the response will be <code>unblocked</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-intro.html#block-public-access-to-amis\">Block public access to your AMIs</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisableImageDeprecation": "<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisableIpamOrganizationAdminAccount": "<p>Disable the IPAM account. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
@@ -403,7 +404,7 @@
     "EnableAddressTransfer": "<p>Enables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "EnableAwsNetworkPerformanceMetricSubscription": "<p>Enables Infrastructure Performance subscriptions.</p>",
     "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are always encrypted, either using the default KMS key or the KMS key that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default KMS key for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
-    "EnableFastLaunch": "<p>When you enable faster launching for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
+    "EnableFastLaunch": "<p>When you enable Windows fast launch for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p> <note> <p>You can only change these settings for Windows AMIs that you own or that have been shared with you.</p> </note>",
     "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html\">Amazon EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableImage": "<p>Re-enables a disabled AMI. The re-enabled AMI is marked as <code>available</code> and can be used for instance launches, appears in describe operations, and can be shared. Amazon Web Services accounts, organizations, and Organizational Units that lost access to the AMI when it was disabled do not regain access automatically. Once the AMI is available, it can be shared with them again.</p> <p>Only the AMI owner can re-enable a disabled AMI.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/disable-an-ami.html\">Disable an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "EnableImageBlockPublicAccess": "<p>Enables <i>block public access for AMIs</i> at the account level in the specified Amazon Web Services Region. This prevents the public sharing of your AMIs. However, if you already have public AMIs, they will remain publicly available.</p> <p>The API can take up to 10 minutes to configure this setting. During this time, if you run <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetImageBlockPublicAccessState.html\">GetImageBlockPublicAccessState</a>, the response will be <code>unblocked</code>. When the API has completed the configuration, the response will be <code>block-new-sharing</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-intro.html#block-public-access-to-amis\">Block public access to your AMIs</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -1893,7 +1894,7 @@
     "BlockDeviceMappingRequestList": {
       "base": null,
       "refs": {
-        "CreateImageRequest$BlockDeviceMappings": "<p>The block device mappings. This parameter cannot be used to modify the encryption status of existing volumes or snapshots. To create an AMI with encrypted snapshots, use the <a>CopyImage</a> action.</p>",
+        "CreateImageRequest$BlockDeviceMappings": "<p>The block device mappings.</p> <p>When using the CreateImage action:</p> <ul> <li> <p>You can't change the volume size using the VolumeSize parameter. If you want a different volume size, you must first change the volume size of the source instance.</p> </li> <li> <p>You can't modify the encryption status of existing volumes or snapshots. To create an AMI with volumes or snapshots that have a different encryption status (for example, where the source volume and snapshots are unencrypted, and you want to create an AMI with encrypted volumes or snapshots), use the <a>CopyImage</a> action.</p> </li> <li> <p>The only option that can be changed for existing mappings or snapshots is <code>DeleteOnTermination</code>.</p> </li> </ul>",
         "RegisterImageRequest$BlockDeviceMappings": "<p>The block device mapping entries.</p> <p>If you specify an Amazon EBS volume using the ID of an Amazon EBS snapshot, you can't specify the encryption state of the volume.</p> <p>If you create an AMI on an Outpost, then all backing snapshots must be on the same Outpost or in the Region of that Outpost. AMIs on an Outpost that include local snapshots can be used to launch instances on the same Outpost only. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\">Amazon EBS local snapshots on Outposts</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "RunInstancesRequest$BlockDeviceMappings": "<p>The block device mapping, which defines the EBS volumes and instance store volumes to attach to the instance at launch. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html\">Block device mappings</a> in the <i>Amazon EC2 User Guide</i>.</p>"
       }
@@ -2223,6 +2224,7 @@
         "DescribeInstanceEventWindowsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceStatusRequest$IncludeAllInstances": "<p>When <code>true</code>, includes the health status for all instances. When <code>false</code>, includes the health status for running instances only.</p> <p>Default: <code>false</code> </p>",
+        "DescribeInstanceTopologyRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceTypeOfferingsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceTypesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2335,7 +2337,7 @@
         "DisableAwsNetworkPerformanceMetricSubscriptionResult$Output": "<p>Indicates whether the unsubscribe action was successful.</p>",
         "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
-        "DisableFastLaunchRequest$Force": "<p>Forces the image settings to turn off faster launching for your Windows AMI. This parameter overrides any errors that are encountered while cleaning up resources in your account.</p>",
+        "DisableFastLaunchRequest$Force": "<p>Forces the image settings to turn off Windows fast launch for your Windows AMI. This parameter overrides any errors that are encountered while cleaning up resources in your account.</p>",
         "DisableFastLaunchRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableImageBlockPublicAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2628,7 +2630,7 @@
         "ModifyVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpnTunnelCertificateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpnTunnelOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "ModifyVpnTunnelOptionsRequest$SkipTunnelReplacement": "<p>Choose whether or not to trigger immediate tunnel replacement.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
+        "ModifyVpnTunnelOptionsRequest$SkipTunnelReplacement": "<p>Choose whether or not to trigger immediate tunnel replacement. This is only applicable when turning on or off <code>EnableTunnelLifecycleControl</code>.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
         "ModifyVpnTunnelOptionsSpecification$EnableTunnelLifecycleControl": "<p>Turn on or off tunnel endpoint lifecycle control feature.</p>",
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2801,17 +2803,17 @@
         "UpdateSecurityGroupRuleDescriptionsEgressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "UpdateSecurityGroupRuleDescriptionsIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsIngressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
-        "VerifiedAccessInstance$FipsEnabled": "<p>Describes whether support for Federal Information Processing Standards (FIPS) is enabled on the instance.</p>",
+        "VerifiedAccessInstance$FipsEnabled": "<p>Indicates whether support for Federal Information Processing Standards (FIPS) is enabled on the instance.</p>",
         "VerifiedAccessLogCloudWatchLogsDestination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogCloudWatchLogsDestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
-        "VerifiedAccessLogOptions$IncludeTrustContext": "<p> Include trust data sent by trust providers into the logs. </p>",
+        "VerifiedAccessLogOptions$IncludeTrustContext": "<p>Indicates whether to include trust data sent by trust providers in the logs.</p>",
         "VerifiedAccessLogS3Destination$Enabled": "<p>Indicates whether logging is enabled.</p>",
         "VerifiedAccessLogS3DestinationOptions$Enabled": "<p>Indicates whether logging is enabled.</p>",
-        "VerifiedAccessLogs$IncludeTrustContext": "<p> Describes current setting for including trust data into the logs. </p>",
+        "VerifiedAccessLogs$IncludeTrustContext": "<p>Indicates whether trust data is included in the logs.</p>",
         "VerifiedAccessSseSpecificationRequest$CustomerManagedKeyEnabled": "<p> Enable or disable the use of customer managed KMS keys for server side encryption. </p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
-        "VerifiedAccessSseSpecificationResponse$CustomerManagedKeyEnabled": "<p> Describes the use of customer managed KMS keys for server side encryption. </p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
+        "VerifiedAccessSseSpecificationResponse$CustomerManagedKeyEnabled": "<p>Indicates whether customer managed KMS keys are in use for server side encryption.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
         "Volume$Encrypted": "<p>Indicates whether the volume is encrypted.</p>",
         "Volume$FastRestored": "<p>Indicates whether the volume was created using fast snapshot restore.</p>",
         "Volume$MultiAttachEnabled": "<p>Indicates whether Amazon EBS Multi-Attach is enabled.</p>",
@@ -3487,12 +3489,6 @@
         "CreateVerifiedAccessTrustProviderOidcOptions$ClientSecret": "<p>The client secret.</p>",
         "ModifyVerifiedAccessTrustProviderOidcOptions$ClientSecret": "<p>The client secret.</p>",
         "OidcOptions$ClientSecret": "<p>The client secret.</p>"
-      }
-    },
-    "ClientVpnAssociationId": {
-      "base": null,
-      "refs": {
-        "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>"
       }
     },
     "ClientVpnAuthentication": {
@@ -5028,7 +5024,7 @@
         "TransitGatewayRouteTable$CreationTime": "<p>The creation time.</p>",
         "TransitGatewayRouteTableAnnouncement$CreationTime": "<p>The timestamp when the transit gateway route table announcement was created.</p>",
         "TransitGatewayVpcAttachment$CreationTime": "<p>The creation time.</p>",
-        "VgwTelemetry$LastStatusChange": "<p>The date and time of the last change in status.</p>",
+        "VgwTelemetry$LastStatusChange": "<p>The date and time of the last change in status. This field is updated when changes in IKE (Phase 1), IPSec (Phase 2), or BGP status are detected.</p>",
         "Volume$CreateTime": "<p>The time stamp when volume creation was initiated.</p>",
         "VolumeAttachment$AttachTime": "<p>The time stamp when the attachment initiated.</p>",
         "VolumeModification$StartTime": "<p>The modification start time.</p>",
@@ -6278,7 +6274,7 @@
       }
     },
     "DescribeFastLaunchImagesSuccessItem": {
-      "base": "<p>Describe details about a fast-launch enabled Windows image that meets the requested criteria. Criteria are defined by the <code>DescribeFastLaunchImages</code> action filters.</p>",
+      "base": "<p>Describe details about a Windows image with Windows fast launch enabled that meets the requested criteria. Criteria are defined by the <code>DescribeFastLaunchImages</code> action filters.</p>",
       "refs": {
         "DescribeFastLaunchImagesSuccessSet$member": null
       }
@@ -6571,6 +6567,34 @@
       }
     },
     "DescribeInstanceStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceTopologyGroupNameSet": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTopologyRequest$GroupNames": "<p>The name of the placement group that each instance is in.</p> <p>Constraints: Maximum 100 explicitly specified placement group names.</p>"
+      }
+    },
+    "DescribeInstanceTopologyInstanceIdSet": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTopologyRequest$InstanceIds": "<p>The instance IDs.</p> <p>Default: Describes all your instances.</p> <p>Constraints: Maximum 100 explicitly specified instance IDs.</p>"
+      }
+    },
+    "DescribeInstanceTopologyMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTopologyRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p> <p>You can't specify this parameter and the instance IDs parameter in the same request.</p> <p>Default: <code>20</code> </p>"
+      }
+    },
+    "DescribeInstanceTopologyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceTopologyResult": {
       "base": null,
       "refs": {
       }
@@ -9102,19 +9126,19 @@
     "FastLaunchImageIdList": {
       "base": null,
       "refs": {
-        "DescribeFastLaunchImagesRequest$ImageIds": "<p>Details for one or more Windows AMI image IDs.</p>"
+        "DescribeFastLaunchImagesRequest$ImageIds": "<p>Specify one or more Windows AMI image IDs for the request.</p>"
       }
     },
     "FastLaunchLaunchTemplateSpecificationRequest": {
-      "base": "<p>Request to create a launch template for a fast-launch enabled Windows AMI.</p> <note> <p>Note - You can specify either the <code>LaunchTemplateName</code> or the <code>LaunchTemplateId</code>, but not both.</p> </note>",
+      "base": "<p>Request to create a launch template for a Windows fast launch enabled AMI.</p> <note> <p>Note - You can specify either the <code>LaunchTemplateName</code> or the <code>LaunchTemplateId</code>, but not both.</p> </note>",
       "refs": {
         "EnableFastLaunchRequest$LaunchTemplate": "<p>The launch template to use when launching Windows instances from pre-provisioned snapshots. Launch template parameters can include either the name or ID of the launch template, but not both.</p>"
       }
     },
     "FastLaunchLaunchTemplateSpecificationResponse": {
-      "base": "<p>Identifies the launch template to use for faster launching of the Windows AMI.</p>",
+      "base": "<p>Identifies the launch template that the AMI uses for Windows fast launch.</p>",
       "refs": {
-        "DescribeFastLaunchImagesSuccessItem$LaunchTemplate": "<p>The launch template that the fast-launch enabled Windows AMI uses when it launches Windows instances from pre-provisioned snapshots.</p>",
+        "DescribeFastLaunchImagesSuccessItem$LaunchTemplate": "<p>The launch template that the Windows fast launch enabled AMI uses when it launches Windows instances from pre-provisioned snapshots.</p>",
         "DisableFastLaunchResult$LaunchTemplate": "<p>The launch template that was used to launch Windows instances from pre-provisioned snapshots.</p>",
         "EnableFastLaunchResult$LaunchTemplate": "<p>The launch template that is used when launching Windows instances from pre-provisioned snapshots.</p>"
       }
@@ -9122,31 +9146,31 @@
     "FastLaunchResourceType": {
       "base": null,
       "refs": {
-        "DescribeFastLaunchImagesSuccessItem$ResourceType": "<p>The resource type that is used for pre-provisioning the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
-        "DisableFastLaunchResult$ResourceType": "<p>The pre-provisioning resource type that must be cleaned after turning off faster launching for the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
-        "EnableFastLaunchResult$ResourceType": "<p>The type of resource that was defined for pre-provisioning the Windows AMI for faster launching.</p>"
+        "DescribeFastLaunchImagesSuccessItem$ResourceType": "<p>The resource type that Amazon EC2 uses for pre-provisioning the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
+        "DisableFastLaunchResult$ResourceType": "<p>The pre-provisioning resource type that must be cleaned after turning off Windows fast launch for the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
+        "EnableFastLaunchResult$ResourceType": "<p>The type of resource that was defined for pre-provisioning the AMI for Windows fast launch.</p>"
       }
     },
     "FastLaunchSnapshotConfigurationRequest": {
-      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a fast-launch enabled Windows AMI.</p>",
+      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a Windows fast launch enabled AMI.</p>",
       "refs": {
-        "EnableFastLaunchRequest$SnapshotConfiguration": "<p>Configuration settings for creating and managing the snapshots that are used for pre-provisioning the Windows AMI for faster launching. The associated <code>ResourceType</code> must be <code>snapshot</code>.</p>"
+        "EnableFastLaunchRequest$SnapshotConfiguration": "<p>Configuration settings for creating and managing the snapshots that are used for pre-provisioning the AMI for Windows fast launch. The associated <code>ResourceType</code> must be <code>snapshot</code>.</p>"
       }
     },
     "FastLaunchSnapshotConfigurationResponse": {
-      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a fast-launch enabled Windows AMI.</p>",
+      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a Windows fast launch enabled Windows AMI.</p>",
       "refs": {
         "DescribeFastLaunchImagesSuccessItem$SnapshotConfiguration": "<p>A group of parameters that are used for pre-provisioning the associated Windows AMI using snapshots.</p>",
-        "DisableFastLaunchResult$SnapshotConfiguration": "<p>Parameters that were used for faster launching for the Windows AMI before faster launching was turned off. This informs the clean-up process.</p>",
+        "DisableFastLaunchResult$SnapshotConfiguration": "<p>Parameters that were used for Windows fast launch for the Windows AMI before Windows fast launch was disabled. This informs the clean-up process.</p>",
         "EnableFastLaunchResult$SnapshotConfiguration": "<p>Settings to create and manage the pre-provisioned snapshots that Amazon EC2 uses for faster launches from the Windows AMI. This property is returned when the associated <code>resourceType</code> is <code>snapshot</code>.</p>"
       }
     },
     "FastLaunchStateCode": {
       "base": null,
       "refs": {
-        "DescribeFastLaunchImagesSuccessItem$State": "<p>The current state of faster launching for the specified Windows AMI.</p>",
-        "DisableFastLaunchResult$State": "<p>The current state of faster launching for the specified Windows AMI.</p>",
-        "EnableFastLaunchResult$State": "<p>The current state of faster launching for the specified Windows AMI.</p>"
+        "DescribeFastLaunchImagesSuccessItem$State": "<p>The current state of Windows fast launch for the specified Windows AMI.</p>",
+        "DisableFastLaunchResult$State": "<p>The current state of Windows fast launch for the specified Windows AMI.</p>",
+        "EnableFastLaunchResult$State": "<p>The current state of Windows fast launch for the specified AMI.</p>"
       }
     },
     "FastSnapshotRestoreStateCode": {
@@ -9198,7 +9222,7 @@
         "DescribeElasticGpusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p> </li> </ul>",
         "DescribeExportImageTasksRequest$Filters": "<p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>",
         "DescribeExportTasksRequest$Filters": "<p>the filters for the export tasks.</p>",
-        "DescribeFastLaunchImagesRequest$Filters": "<p>Use the following filters to streamline results.</p> <ul> <li> <p> <code>resource-type</code> - The resource type for pre-provisioning.</p> </li> <li> <p> <code>launch-template</code> - The launch template that is associated with the pre-provisioned Windows AMI.</p> </li> <li> <p> <code>owner-id</code> - The owner ID for the pre-provisioning resource.</p> </li> <li> <p> <code>state</code> - The current state of fast launching for the Windows AMI.</p> </li> </ul>",
+        "DescribeFastLaunchImagesRequest$Filters": "<p>Use the following filters to streamline results.</p> <ul> <li> <p> <code>resource-type</code> - The resource type for pre-provisioning.</p> </li> <li> <p> <code>owner-id</code> - The owner ID for the pre-provisioning resource.</p> </li> <li> <p> <code>state</code> - The current state of fast launching for the Windows AMI.</p> </li> </ul>",
         "DescribeFastSnapshotRestoresRequest$Filters": "<p>The filters. The possible values are:</p> <ul> <li> <p> <code>availability-zone</code>: The Availability Zone of the snapshot.</p> </li> <li> <p> <code>owner-id</code>: The ID of the Amazon Web Services account that enabled fast snapshot restore on the snapshot.</p> </li> <li> <p> <code>snapshot-id</code>: The ID of the snapshot.</p> </li> <li> <p> <code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code> | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).</p> </li> </ul>",
         "DescribeFleetInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
         "DescribeFleetsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p> </li> </ul>",
@@ -9215,6 +9239,7 @@
         "DescribeInstanceCreditSpecificationsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> </ul>",
         "DescribeInstanceEventWindowsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>dedicated-host-id</code> - The event windows associated with the specified Dedicated Host ID.</p> </li> <li> <p> <code>event-window-name</code> - The event windows associated with the specified names. </p> </li> <li> <p> <code>instance-id</code> - The event windows associated with the specified instance ID.</p> </li> <li> <p> <code>instance-tag</code> - The event windows associated with the specified tag and value.</p> </li> <li> <p> <code>instance-tag-key</code> - The event windows associated with the specified tag key, regardless of the value.</p> </li> <li> <p> <code>instance-tag-value</code> - The event windows associated with the specified tag value, regardless of the key.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the event window. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>CMX</code>, specify <code>tag:Owner</code> for the filter name and <code>CMX</code> for the filter value. </p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the event window. Use this filter to find all event windows that have a tag with a specific key, regardless of the tag value. </p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned to the event window. Use this filter to find all event windows that have a tag with a specific value, regardless of the tag key. </p> </li> </ul>",
         "DescribeInstanceStatusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p> </li> <li> <p> <code>event.description</code> - A description of the event.</p> </li> <li> <p> <code>event.instance-event-id</code> - The ID of the event whose date and time you are modifying.</p> </li> <li> <p> <code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before-deadline</code> - The deadline for starting the event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> <li> <p> <code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> </ul>",
+        "DescribeInstanceTopologyRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The name of the Availability Zone (for example, <code>us-west-2a</code>) or Local Zone (for example, <code>us-west-2-lax-1b</code>) that the instance is in.</p> </li> <li> <p> <code>instance-type</code> - The instance type (for example, <code>p4d.24xlarge</code>) or instance family (for example, <code>p4d*</code>). You can use the <code>*</code> wildcard to match zero or more characters, or the <code>?</code> wildcard to match zero or one character.</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>usw2-az2</code>) or Local Zone (for example, <code>usw2-lax1-az1</code>) that the instance is in.</p> </li> </ul>",
         "DescribeInstanceTypeOfferingsRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>location</code> - This depends on the location type. For example, if the location type is <code>region</code> (default), the location is the Region code (for example, <code>us-east-2</code>.)</p> </li> <li> <p> <code>instance-type</code> - The instance type. For example, <code>c5.2xlarge</code>.</p> </li> </ul>",
         "DescribeInstanceTypesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>auto-recovery-supported</code> - Indicates whether Amazon CloudWatch action based recovery is supported (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>bare-metal</code> - Indicates whether it is a bare metal instance type (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>burstable-performance-supported</code> - Indicates whether the instance type is a burstable performance T instance type (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>current-generation</code> - Indicates whether this instance type is the latest generation instance type of an instance family (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-bandwidth-in-mbps</code> - The baseline bandwidth performance for an EBS-optimized instance type, in Mbps.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-iops</code> - The baseline input/output storage operations per second for an EBS-optimized instance type.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-throughput-in-mbps</code> - The baseline throughput performance for an EBS-optimized instance type, in MB/s.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-bandwidth-in-mbps</code> - The maximum bandwidth performance for an EBS-optimized instance type, in Mbps.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-iops</code> - The maximum input/output storage operations per second for an EBS-optimized instance type.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-throughput-in-mbps</code> - The maximum throughput performance for an EBS-optimized instance type, in MB/s.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-support</code> - Indicates whether the instance type is EBS-optimized (<code>supported</code> | <code>unsupported</code> | <code>default</code>).</p> </li> <li> <p> <code>ebs-info.encryption-support</code> - Indicates whether EBS encryption is supported (<code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>ebs-info.nvme-support</code> - Indicates whether non-volatile memory express (NVMe) is supported for EBS volumes (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>free-tier-eligible</code> - Indicates whether the instance type is eligible to use in the free tier (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hibernation-supported</code> - Indicates whether On-Demand hibernation is supported (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor (<code>nitro</code> | <code>xen</code>).</p> </li> <li> <p> <code>instance-storage-info.disk.count</code> - The number of local disks.</p> </li> <li> <p> <code>instance-storage-info.disk.size-in-gb</code> - The storage size of each instance storage disk, in GB.</p> </li> <li> <p> <code>instance-storage-info.disk.type</code> - The storage technology for the local instance storage disks (<code>hdd</code> | <code>ssd</code>).</p> </li> <li> <p> <code>instance-storage-info.encryption-support</code> - Indicates whether data is encrypted at rest (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>instance-storage-info.nvme-support</code> - Indicates whether non-volatile memory express (NVMe) is supported for instance store (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>instance-storage-info.total-size-in-gb</code> - The total amount of storage available from all local instance storage, in GB.</p> </li> <li> <p> <code>instance-storage-supported</code> - Indicates whether the instance type has local instance storage (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>instance-type</code> - The instance type (for example <code>c5.2xlarge</code> or c5*).</p> </li> <li> <p> <code>memory-info.size-in-mib</code> - The memory size.</p> </li> <li> <p> <code>network-info.efa-info.maximum-efa-interfaces</code> - The maximum number of Elastic Fabric Adapters (EFAs) per instance.</p> </li> <li> <p> <code>network-info.efa-supported</code> - Indicates whether the instance type supports Elastic Fabric Adapter (EFA) (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.ena-support</code> - Indicates whether Elastic Network Adapter (ENA) is supported or required (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>network-info.encryption-in-transit-supported</code> - Indicates whether the instance type automatically encrypts in-transit traffic between instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.ipv4-addresses-per-interface</code> - The maximum number of private IPv4 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-addresses-per-interface</code> - The maximum number of private IPv6 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-supported</code> - Indicates whether the instance type supports IPv6 (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.maximum-network-cards</code> - The maximum number of network cards per instance.</p> </li> <li> <p> <code>network-info.maximum-network-interfaces</code> - The maximum number of network interfaces per instance.</p> </li> <li> <p> <code>network-info.network-performance</code> - The network performance (for example, \"25 Gigabit\").</p> </li> <li> <p> <code>nitro-enclaves-support</code> - Indicates whether Nitro Enclaves is supported (<code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>nitro-tpm-support</code> - Indicates whether NitroTPM is supported (<code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>nitro-tpm-info.supported-versions</code> - The supported NitroTPM version (<code>2.0</code>).</p> </li> <li> <p> <code>processor-info.supported-architecture</code> - The CPU architecture (<code>arm64</code> | <code>i386</code> | <code>x86_64</code>).</p> </li> <li> <p> <code>processor-info.sustained-clock-speed-in-ghz</code> - The CPU clock speed, in GHz.</p> </li> <li> <p> <code>processor-info.supported-features</code> - The supported CPU features (<code>amd-sev-snp</code>).</p> </li> <li> <p> <code>supported-boot-mode</code> - The boot mode (<code>legacy-bios</code> | <code>uefi</code>).</p> </li> <li> <p> <code>supported-root-device-type</code> - The root device type (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>supported-usage-class</code> - The usage class (<code>on-demand</code> | <code>spot</code>).</p> </li> <li> <p> <code>supported-virtualization-type</code> - The virtualization type (<code>hvm</code> | <code>paravirtual</code>).</p> </li> <li> <p> <code>vcpu-info.default-cores</code> - The default number of cores for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-threads-per-core</code> - The default number of threads per core for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-vcpus</code> - The default number of vCPUs for the instance type.</p> </li> <li> <p> <code>vcpu-info.valid-cores</code> - The number of cores that can be configured for the instance type.</p> </li> <li> <p> <code>vcpu-info.valid-threads-per-core</code> - The number of threads per core that can be configured for the instance type. For example, \"1\" or \"1,2\".</p> </li> </ul>",
         "DescribeInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2022-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>boot-mode</code> - The boot mode that was specified by the AMI (<code>legacy-bios</code> | <code>uefi</code> | <code>uefi-preferred</code>).</p> </li> <li> <p> <code>capacity-reservation-id</code> - The ID of the Capacity Reservation into which the instance was launched.</p> </li> <li> <p> <code>capacity-reservation-specification.capacity-reservation-preference</code> - The instance's Capacity Reservation preference (<code>open</code> | <code>none</code>).</p> </li> <li> <p> <code>capacity-reservation-specification.capacity-reservation-target.capacity-reservation-id</code> - The ID of the targeted Capacity Reservation.</p> </li> <li> <p> <code>capacity-reservation-specification.capacity-reservation-target.capacity-reservation-resource-group-arn</code> - The ARN of the targeted Capacity Reservation group.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>current-instance-boot-mode</code> - The boot mode that is used to launch the instance at launch or start (<code>legacy-bios</code> | <code>uefi</code>).</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>ebs-optimized</code> - A Boolean that indicates whether the instance is optimized for Amazon EBS I/O.</p> </li> <li> <p> <code>ena-support</code> - A Boolean that indicates whether the instance is enabled for enhanced networking with ENA.</p> </li> <li> <p> <code>enclave-options.enabled</code> - A Boolean that indicates whether the instance is enabled for Amazon Web Services Nitro Enclaves.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation.</p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>iam-instance-profile.id</code> - The instance profile associated with the instance. Specified as an ID.</p> </li> <li> <p> <code>iam-instance-profile.name</code> - The instance profile associated with the instance. Specified as an name.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance, a Scheduled Instance, or a Capacity Block (<code>spot</code> | <code>scheduled</code> | <code>capacity-block</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>ipv6-address</code> - The IPv6 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>maintenance-options.auto-recovery</code> - The current automatic recovery behavior of the instance (<code>disabled</code> | <code>default</code>).</p> </li> <li> <p> <code>metadata-options.http-endpoint</code> - The status of access to the HTTP metadata endpoint on your instance (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>metadata-options.http-protocol-ipv4</code> - Indicates whether the IPv4 endpoint is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>metadata-options.http-protocol-ipv6</code> - Indicates whether the IPv6 endpoint is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>metadata-options.http-put-response-hop-limit</code> - The HTTP metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-options.instance-metadata-tags</code> - The status of access to instance tags from the instance metadata (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>metadata-options.state</code> - The state of the metadata option changes (<code>pending</code> | <code>applied</code>).</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.association.allocation-id</code> - The allocation ID.</p> </li> <li> <p> <code>network-interface.addresses.association.association-id</code> - The association ID.</p> </li> <li> <p> <code>network-interface.addresses.association.carrier-ip</code> - The carrier IP address.</p> </li> <li> <p> <code>network-interface.addresses.association.customer-owned-ip</code> - The customer-owned IP address.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.public-dns-name</code> - The public DNS name.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.private-dns-name</code> - The private DNS name.</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.association.carrier-ip</code> - The customer-owned IP address.</p> </li> <li> <p> <code>network-interface.association.customer-owned-ip</code> - The customer-owned IP address.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-dns-name</code> - The public DNS name.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.network-card-index</code> - The index of the network card.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.deny-all-igw-traffic</code> - A Boolean that indicates whether a network interface with an IPv6 address is unreachable from the public internet.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv4-prefixes.ipv4-prefix</code> - The IPv4 prefixes that are assigned to the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.is-primary-ipv6</code> - A Boolean that indicates whether this is the primary IPv6 address.</p> </li> <li> <p> <code>network-interface.ipv6-native</code> - A Boolean that indicates whether this is an IPv6 only network interface.</p> </li> <li> <p> <code>network-interface.ipv6-prefixes.ipv6-prefix</code> - The IPv6 prefix assigned to the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.outpost-arn</code> - The ARN of the Outpost.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.private-ip-address</code> - The private IPv4 address.</p> </li> <li> <p> <code>network-interface.public-dns-name</code> - The public DNS name.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by Amazon Web Services.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.tag-key</code> - The key of a tag assigned to the network interface.</p> </li> <li> <p> <code>network-interface.tag-value</code> - The value of a tag assigned to the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>platform-details</code> - The platform (<code>Linux/UNIX</code> | <code>Red Hat BYOL Linux</code> | <code> Red Hat Enterprise Linux</code> | <code>Red Hat Enterprise Linux with HA</code> | <code>Red Hat Enterprise Linux with SQL Server Standard and HA</code> | <code>Red Hat Enterprise Linux with SQL Server Enterprise and HA</code> | <code>Red Hat Enterprise Linux with SQL Server Standard</code> | <code>Red Hat Enterprise Linux with SQL Server Web</code> | <code>Red Hat Enterprise Linux with SQL Server Enterprise</code> | <code>SQL Server Enterprise</code> | <code>SQL Server Standard</code> | <code>SQL Server Web</code> | <code>SUSE Linux</code> | <code>Ubuntu Pro</code> | <code>Windows</code> | <code>Windows BYOL</code> | <code>Windows with SQL Server Enterprise</code> | <code>Windows with SQL Server Standard</code> | <code>Windows with SQL Server Web</code>).</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-dns-name-options.enable-resource-name-dns-a-record</code> - A Boolean that indicates whether to respond to DNS queries for instance hostnames with DNS A records.</p> </li> <li> <p> <code>private-dns-name-options.enable-resource-name-dns-aaaa-record</code> - A Boolean that indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.</p> </li> <li> <p> <code>private-dns-name-options.hostname-type</code> - The type of hostname (<code>ip-name</code> | <code>resource-name</code>).</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>tpm-support</code> - Indicates if the instance is configured for NitroTPM support (<code>v2.0</code>). </p> </li> <li> <p> <code>usage-operation</code> - The usage operation value for the instance (<code>RunInstances</code> | <code>RunInstances:00g0</code> | <code>RunInstances:0010</code> | <code>RunInstances:1010</code> | <code>RunInstances:1014</code> | <code>RunInstances:1110</code> | <code>RunInstances:0014</code> | <code>RunInstances:0210</code> | <code>RunInstances:0110</code> | <code>RunInstances:0100</code> | <code>RunInstances:0004</code> | <code>RunInstances:0200</code> | <code>RunInstances:000g</code> | <code>RunInstances:0g00</code> | <code>RunInstances:0002</code> | <code>RunInstances:0800</code> | <code>RunInstances:0102</code> | <code>RunInstances:0006</code> | <code>RunInstances:0202</code>).</p> </li> <li> <p> <code>usage-operation-update-time</code> - The time that the usage operation was last updated, for example, <code>2022-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
@@ -10642,14 +10667,14 @@
         "CreateReplaceRootVolumeTaskRequest$ImageId": "<p>The ID of the AMI to use to restore the root volume. The specified AMI must have the same product code, billing information, architecture type, and virtualization type as that of the instance.</p> <p>If you want to restore the replacement volume from a specific snapshot, or if you want to restore it to its launch state, omit this parameter.</p>",
         "CreateStoreImageTaskRequest$ImageId": "<p>The ID of the AMI.</p>",
         "DeregisterImageRequest$ImageId": "<p>The ID of the AMI.</p>",
-        "DescribeFastLaunchImagesSuccessItem$ImageId": "<p>The image ID that identifies the fast-launch enabled Windows image.</p>",
+        "DescribeFastLaunchImagesSuccessItem$ImageId": "<p>The image ID that identifies the Windows fast launch enabled image.</p>",
         "DescribeImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
-        "DisableFastLaunchRequest$ImageId": "<p>The ID of the image for which you’re turning off faster launching, and removing pre-provisioned snapshots.</p>",
-        "DisableFastLaunchResult$ImageId": "<p>The ID of the image for which faster-launching has been turned off.</p>",
+        "DisableFastLaunchRequest$ImageId": "<p>Specify the ID of the image for which to disable Windows fast launch.</p>",
+        "DisableFastLaunchResult$ImageId": "<p>The ID of the image for which Windows fast launch was disabled.</p>",
         "DisableImageDeprecationRequest$ImageId": "<p>The ID of the AMI.</p>",
         "DisableImageRequest$ImageId": "<p>The ID of the AMI.</p>",
-        "EnableFastLaunchRequest$ImageId": "<p>The ID of the image for which you’re enabling faster launching.</p>",
-        "EnableFastLaunchResult$ImageId": "<p>The image ID that identifies the Windows AMI for which faster launching was enabled.</p>",
+        "EnableFastLaunchRequest$ImageId": "<p>Specify the ID of the image for which to enable Windows fast launch.</p>",
+        "EnableFastLaunchResult$ImageId": "<p>The image ID that identifies the AMI for which Windows fast launch was enabled.</p>",
         "EnableImageDeprecationRequest$ImageId": "<p>The ID of the AMI.</p>",
         "EnableImageRequest$ImageId": "<p>The ID of the AMI.</p>",
         "ExportImageRequest$ImageId": "<p>The ID of the image.</p>",
@@ -11234,6 +11259,7 @@
         "CreateReplaceRootVolumeTaskRequest$InstanceId": "<p>The ID of the instance for which to replace the root volume.</p>",
         "CreateRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
         "DescribeInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "DescribeInstanceTopologyInstanceIdSet$member": null,
         "DetachClassicLinkVpcRequest$InstanceId": "<p>The ID of the instance to unlink from the VPC.</p>",
         "GetConsoleOutputRequest$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleScreenshotRequest$InstanceId": "<p>The ID of the instance.</p>",
@@ -11549,6 +11575,12 @@
         "GetSpotPlacementScoresRequest$InstanceRequirementsWithMetadata": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <p>If you specify <code>InstanceRequirementsWithMetadata</code>, you can't specify <code>InstanceTypes</code>.</p>"
       }
     },
+    "InstanceSet": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTopologyResult$Instances": "<p>Information about the topology of each instance.</p>"
+      }
+    },
     "InstanceSpecification": {
       "base": "<p>The instance details to specify which volumes should be snapshotted.</p>",
       "refs": {
@@ -11660,6 +11692,12 @@
         "DeregisterInstanceEventNotificationAttributesResult$InstanceTagAttribute": "<p>The resulting set of tag keys.</p>",
         "DescribeInstanceEventNotificationAttributesResult$InstanceTagAttribute": "<p>Information about the registered tag keys.</p>",
         "RegisterInstanceEventNotificationAttributesResult$InstanceTagAttribute": "<p>The resulting set of tag keys.</p>"
+      }
+    },
+    "InstanceTopology": {
+      "base": "<p>Information about the instance topology.</p>",
+      "refs": {
+        "InstanceSet$member": null
       }
     },
     "InstanceType": {
@@ -11834,7 +11872,7 @@
         "DescribeCapacityBlockOfferingsRequest$InstanceCount": "<p>The number of instances for which to reserve capacity.</p>",
         "DescribeCapacityBlockOfferingsRequest$CapacityDurationHours": "<p>The number of hours for which to reserve Capacity Block.</p>",
         "DescribeElasticGpusResult$MaxResults": "<p>The total number of items to return. If the total number of items available is more than the value specified in max-items then a Next-Token will be provided in the output that you can use to resume pagination.</p>",
-        "DescribeFastLaunchImagesSuccessItem$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>",
+        "DescribeFastLaunchImagesSuccessItem$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows fast launch.</p>",
         "DescribeFleetHistoryRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>",
         "DescribeFleetInstancesRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>",
         "DescribeFleetsRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>",
@@ -11869,14 +11907,14 @@
         "DescribeVpcEndpointServicePermissionsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned.</p>",
         "DescribeVpcEndpointServicesRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>",
         "DescribeVpcEndpointsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>",
-        "DisableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>",
+        "DisableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows fast launch.</p>",
         "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>For <code>io1</code> and <code>io2</code> volumes, we guarantee 64,000 IOPS only for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Instances built on the Nitro System</a>. Other instance families guarantee performance up to 32,000 IOPS.</p> <p>This parameter is required for <code>io1</code> and <code>io2</code> volumes. The default for <code>gp3</code> volumes is 3,000 IOPS. This parameter is not supported for <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "EbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>:1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul>",
         "EbsBlockDevice$Throughput": "<p>The throughput that the volume supports, in MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
-        "EnableFastLaunchRequest$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching. Value must be <code>6</code> or greater.</p>",
-        "EnableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>",
-        "FastLaunchSnapshotConfigurationRequest$TargetResourceCount": "<p>The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.</p>",
-        "FastLaunchSnapshotConfigurationResponse$TargetResourceCount": "<p>The number of pre-provisioned snapshots requested to keep on hand for a fast-launch enabled Windows AMI.</p>",
+        "EnableFastLaunchRequest$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows fast launch. Value must be <code>6</code> or greater.</p>",
+        "EnableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows fast launch.</p>",
+        "FastLaunchSnapshotConfigurationRequest$TargetResourceCount": "<p>The number of pre-provisioned snapshots to keep on hand for a Windows fast launch enabled AMI.</p>",
+        "FastLaunchSnapshotConfigurationResponse$TargetResourceCount": "<p>The number of pre-provisioned snapshots requested to keep on hand for a Windows fast launch enabled AMI.</p>",
         "FleetCapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "FleetSpotCapacityRebalance$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
         "FleetSpotCapacityRebalanceRequest$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
@@ -11980,7 +12018,7 @@
         "ModifyVpnTunnelOptionsSpecification$RekeyMarginTimeSeconds": "<p>The margin time, in seconds, before the phase 2 lifetime expires, during which the Amazon Web Services side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for <code>RekeyFuzzPercentage</code>.</p> <p>Constraints: A value between 60 and half of <code>Phase2LifetimeSeconds</code>.</p> <p>Default: <code>540</code> </p>",
         "ModifyVpnTunnelOptionsSpecification$RekeyFuzzPercentage": "<p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p> <p>Constraints: A value between 0 and 100.</p> <p>Default: <code>100</code> </p>",
         "ModifyVpnTunnelOptionsSpecification$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p> <p>Constraints: A value between 64 and 2048.</p> <p>Default: <code>1024</code> </p>",
-        "ModifyVpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p> <p>Constraints: A value greater than or equal to 30.</p> <p>Default: <code>30</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs. A DPD timeout of 40 seconds means that the VPN endpoint will consider the peer dead 30 seconds after the first failed keep-alive.</p> <p>Constraints: A value greater than or equal to 30.</p> <p>Default: <code>40</code> </p>",
         "NetworkAclEntry$RuleNumber": "<p>The rule number for the entry. ACL entries are processed in ascending order by rule number.</p>",
         "NetworkInsightsAccessScopeAnalysis$AnalyzedEniCount": "<p>The number of network interfaces analyzed.</p>",
         "NetworkInsightsPath$DestinationPort": "<p>The destination port.</p>",
@@ -12986,7 +13024,7 @@
       "base": null,
       "refs": {
         "VerifiedAccessSseSpecificationRequest$KmsKeyArn": "<p> The ARN of the KMS key. </p>",
-        "VerifiedAccessSseSpecificationResponse$KmsKeyArn": "<p> Describes the ARN of the KMS key. </p>"
+        "VerifiedAccessSseSpecificationResponse$KmsKeyArn": "<p>The ARN of the KMS key.</p>"
       }
     },
     "KmsKeyId": {
@@ -13237,8 +13275,8 @@
         "DeleteLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template.</p> <p>You must specify either the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>, but not both.</p>",
         "DeleteLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template.</p> <p>You must specify either the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>, but not both.</p>",
         "DescribeLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template.</p> <p>To describe one or more versions of a specified launch template, you must specify either the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>, but not both.</p> <p>To describe all the latest or default launch template versions in your account, you must omit this parameter.</p>",
-        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateId": "<p>The ID of the launch template to use for faster launching for a Windows AMI.</p>",
-        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateId": "<p>The ID of the launch template for faster launching of the associated Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateId": "<p>Specify the ID of the launch template that the AMI should use for Windows fast launch.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateId": "<p>The ID of the launch template that the AMI uses for Windows fast launch.</p>",
         "FleetLaunchTemplateSpecificationRequest$LaunchTemplateId": "<p>The ID of the launch template.</p> <p>You must specify the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>, but not both.</p>",
         "LaunchTemplateIdStringList$member": null,
         "LaunchTemplateSpecification$LaunchTemplateId": "<p>The ID of the launch template.</p> <p>You must specify the <code>LaunchTemplateId</code> or the <code>LaunchTemplateName</code>, but not both.</p>",
@@ -14076,7 +14114,7 @@
         "CreateCapacityReservationFleetResult$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
         "DescribeCapacityBlockOfferingsRequest$StartDateRange": "<p>The earliest start date for the Capacity Block offering.</p>",
         "DescribeCapacityBlockOfferingsRequest$EndDateRange": "<p>The latest end date for the Capacity Block offering.</p>",
-        "DescribeFastLaunchImagesSuccessItem$StateTransitionTime": "<p>The time that faster launching for the Windows AMI changed to the current state.</p>",
+        "DescribeFastLaunchImagesSuccessItem$StateTransitionTime": "<p>The time that Windows fast launch for the AMI changed to the current state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
@@ -14086,14 +14124,14 @@
         "DescribeNetworkInsightsAccessScopeAnalysesRequest$AnalysisStartTimeEnd": "<p>Filters the results based on the start time. The analysis must have started on or before this time.</p>",
         "DescribeNetworkInsightsAnalysesRequest$AnalysisStartTime": "<p>The time when the network insights analyses started.</p>",
         "DescribeNetworkInsightsAnalysesRequest$AnalysisEndTime": "<p>The time when the network insights analyses ended.</p>",
-        "DisableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for faster launching for the Windows AMI.</p>",
+        "DisableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for Windows fast launch for the Windows AMI.</p>",
         "DisableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
         "Ec2InstanceConnectEndpoint$CreatedAt": "<p>The date and time that the EC2 Instance Connect Endpoint was created.</p>",
-        "EnableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for faster launching for the Windows AMI.</p>",
+        "EnableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for Windows fast launch for the AMI.</p>",
         "EnableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "EnableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "EnableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
@@ -15356,6 +15394,12 @@
         "NetworkInterface$InterfaceType": "<p>The type of network interface.</p>"
       }
     },
+    "NetworkNodesList": {
+      "base": null,
+      "refs": {
+        "InstanceTopology$NetworkNodes": "<p>The network nodes. The nodes are hashed based on your account. Instances from different accounts running under the same droplet will return a different hashed list of strings.</p>"
+      }
+    },
     "NetworkPerformance": {
       "base": null,
       "refs": {
@@ -15935,6 +15979,7 @@
       "base": null,
       "refs": {
         "DeletePlacementGroupRequest$GroupName": "<p>The name of the placement group.</p>",
+        "DescribeInstanceTopologyGroupNameSet$member": null,
         "LaunchTemplatePlacementRequest$GroupName": "<p>The name of the placement group for the instance.</p>",
         "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>",
         "Placement$GroupName": "<p>The name of the placement group that the instance is in. If you specify <code>GroupName</code>, you can't specify <code>GroupId</code>.</p>",
@@ -17865,7 +17910,7 @@
     "SecurityGroupIdList": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$SecurityGroupIds": "<p>The IDs of the security groups to associate with the Verified Access endpoint.</p>",
+        "CreateVerifiedAccessEndpointRequest$SecurityGroupIds": "<p>The IDs of the security groups to associate with the Verified Access endpoint. Required if <code>AttachmentType</code> is set to <code>vpc</code>.</p>",
         "VerifiedAccessEndpoint$SecurityGroupIds": "<p>The IDs of the security groups for the endpoint.</p>"
       }
     },
@@ -19107,8 +19152,8 @@
         "DescribeEgressOnlyInternetGatewaysResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeElasticGpusRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeElasticGpusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "DescribeFastLaunchImagesSuccessItem$OwnerId": "<p>The owner ID for the fast-launch enabled Windows AMI.</p>",
-        "DescribeFastLaunchImagesSuccessItem$StateTransitionReason": "<p>The reason that faster launching for the Windows AMI changed to the current state.</p>",
+        "DescribeFastLaunchImagesSuccessItem$OwnerId": "<p>The owner ID for the Windows fast launch enabled AMI.</p>",
+        "DescribeFastLaunchImagesSuccessItem$StateTransitionReason": "<p>The reason that Windows fast launch for the AMI changed to the current state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$AvailabilityZone": "<p>The Availability Zone.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$StateTransitionReason": "<p>The reason for the state transition. The possible values are as follows:</p> <ul> <li> <p> <code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p> </li> <li> <p> <code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p> </li> </ul>",
@@ -19145,6 +19190,8 @@
         "DescribeInstanceEventWindowsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "DescribeInstanceStatusRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeInstanceStatusResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "DescribeInstanceTopologyRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "DescribeInstanceTopologyResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeInstancesRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeInstancesResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeInternetGatewaysRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
@@ -19287,8 +19334,8 @@
         "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
         "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Source": "<p>The source Region or Availability Zone that the metric subscription is disabled for. For example, <code>us-east-1</code>.</p>",
         "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Destination": "<p>The target Region or Availability Zone that the metric subscription is disabled for. For example, <code>eu-north-1</code>.</p>",
-        "DisableFastLaunchResult$OwnerId": "<p>The owner of the Windows AMI for which faster launching was turned off.</p>",
-        "DisableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
+        "DisableFastLaunchResult$OwnerId": "<p>The owner of the Windows AMI for which Windows fast launch was disabled.</p>",
+        "DisableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for Windows fast launch for the Windows AMI.</p>",
         "DisableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "DisableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
         "DisableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
@@ -19299,6 +19346,7 @@
         "DisableFastSnapshotRestoreSuccessItem$OwnerId": "<p>The ID of the Amazon Web Services account that enabled fast snapshot restores on the snapshot.</p>",
         "DisableFastSnapshotRestoreSuccessItem$OwnerAlias": "<p>The Amazon Web Services owner alias that enabled fast snapshot restores on the snapshot. This is intended for future use.</p>",
         "DisableIpamOrganizationAdminAccountRequest$DelegatedAdminAccountId": "<p>The Organizations member account ID that you want to disable as IPAM account.</p>",
+        "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateClientVpnTargetNetworkResult$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
         "DisassociateTrunkInterfaceRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
@@ -19333,9 +19381,9 @@
         "EnableAddressTransferRequest$TransferAccountId": "<p>The ID of the account that you want to transfer the Elastic IP address to.</p>",
         "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Source": "<p>The source Region or Availability Zone that the metric subscription is enabled for. For example, <code>us-east-1</code>.</p>",
         "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Destination": "<p>The target Region or Availability Zone that the metric subscription is enabled for. For example, <code>eu-west-1</code>.</p>",
-        "EnableFastLaunchRequest$ResourceType": "<p>The type of resource to use for pre-provisioning the Windows AMI for faster launching. Supported values include: <code>snapshot</code>, which is the default value.</p>",
-        "EnableFastLaunchResult$OwnerId": "<p>The owner ID for the Windows AMI for which faster launching was enabled.</p>",
-        "EnableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
+        "EnableFastLaunchRequest$ResourceType": "<p>The type of resource to use for pre-provisioning the AMI for Windows fast launch. Supported values include: <code>snapshot</code>, which is the default value.</p>",
+        "EnableFastLaunchResult$OwnerId": "<p>The owner ID for the AMI for which Windows fast launch was enabled.</p>",
+        "EnableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for Windows fast launch for the AMI.</p>",
         "EnableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "EnableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
         "EnableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
@@ -19387,10 +19435,10 @@
         "ExportTransitGatewayRoutesRequest$S3Bucket": "<p>The name of the S3 bucket.</p>",
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
         "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
-        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateName": "<p>The name of the launch template to use for faster launching for a Windows AMI.</p>",
-        "FastLaunchLaunchTemplateSpecificationRequest$Version": "<p>The version of the launch template to use for faster launching for a Windows AMI.</p>",
-        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateName": "<p>The name of the launch template for faster launching of the associated Windows AMI.</p>",
-        "FastLaunchLaunchTemplateSpecificationResponse$Version": "<p>The version of the launch template for faster launching of the associated Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateName": "<p>Specify the name of the launch template that the AMI should use for Windows fast launch.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$Version": "<p>Specify the version of the launch template that the AMI should use for Windows fast launch.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateName": "<p>The name of the launch template that the AMI uses for Windows fast launch.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$Version": "<p>The version of the launch template that the AMI uses for Windows fast launch.</p>",
         "FederatedAuthentication$SamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
         "FederatedAuthentication$SelfServiceSamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "FederatedAuthenticationRequest$SAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
@@ -19443,6 +19491,7 @@
         "GetCoipPoolUsageRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetCoipPoolUsageResult$CoipPoolId": "<p>The ID of the customer-owned address pool.</p>",
         "GetCoipPoolUsageResult$LocalGatewayRouteTableId": "<p>The ID of the local gateway route table.</p>",
+        "GetCoipPoolUsageResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetConsoleOutputResult$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleOutputResult$Output": "<p>The console output, base64-encoded. If you are using a command line tool, the tool decodes the output for you.</p>",
         "GetConsoleScreenshotResult$ImageData": "<p>The data that comprises the image.</p>",
@@ -19669,6 +19718,11 @@
         "InstanceStatus$InstanceId": "<p>The ID of the instance.</p>",
         "InstanceStatusEvent$Description": "<p>A description of the event.</p> <p>After a scheduled event is completed, it can still be described for up to a week. If the event has been completed, this description starts with the following text: [Completed].</p>",
         "InstanceTagKeySet$member": null,
+        "InstanceTopology$InstanceId": "<p>The instance ID.</p>",
+        "InstanceTopology$InstanceType": "<p>The instance type.</p>",
+        "InstanceTopology$GroupName": "<p>The name of the placement group that the instance is in.</p>",
+        "InstanceTopology$AvailabilityZone": "<p>The name of the Availability Zone or Local Zone that the instance is in.</p>",
+        "InstanceTopology$ZoneId": "<p>The ID of the Availability Zone or Local Zone that the instance is in.</p>",
         "InstanceTypeInfoFromInstanceRequirements$InstanceType": "<p>The matching instance type.</p>",
         "InstanceTypes$member": null,
         "InstanceTypesList$member": null,
@@ -19982,6 +20036,7 @@
         "NetworkInterfacePermissionState$StatusMessage": "<p>A status message, if applicable.</p>",
         "NetworkInterfacePrivateIpAddress$PrivateDnsName": "<p>The private DNS name.</p>",
         "NetworkInterfacePrivateIpAddress$PrivateIpAddress": "<p>The private IPv4 address.</p>",
+        "NetworkNodesList$member": null,
         "NewDhcpConfiguration$Key": null,
         "OidcOptions$Issuer": "<p>The OIDC issuer.</p>",
         "OidcOptions$AuthorizationEndpoint": "<p>The OIDC authorization endpoint.</p>",
@@ -20551,14 +20606,14 @@
         "VerifiedAccessLogDeliveryStatus$Message": "<p>The status message.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestination$DeliveryStream": "<p>The ID of the delivery stream.</p>",
         "VerifiedAccessLogKinesisDataFirehoseDestinationOptions$DeliveryStream": "<p>The ID of the delivery stream.</p>",
-        "VerifiedAccessLogOptions$LogVersion": "<p> The logging version to use. </p> <p>Valid values: <code>ocsf-0.1</code> | <code>ocsf-1.0.0-rc.2</code> </p>",
+        "VerifiedAccessLogOptions$LogVersion": "<p>The logging version.</p> <p>Valid values: <code>ocsf-0.1</code> | <code>ocsf-1.0.0-rc.2</code> </p>",
         "VerifiedAccessLogS3Destination$BucketName": "<p>The bucket name.</p>",
         "VerifiedAccessLogS3Destination$Prefix": "<p>The bucket prefix.</p>",
         "VerifiedAccessLogS3Destination$BucketOwner": "<p>The Amazon Web Services account number that owns the bucket.</p>",
         "VerifiedAccessLogS3DestinationOptions$BucketName": "<p>The bucket name.</p>",
         "VerifiedAccessLogS3DestinationOptions$Prefix": "<p>The bucket prefix.</p>",
         "VerifiedAccessLogS3DestinationOptions$BucketOwner": "<p>The ID of the Amazon Web Services account that owns the Amazon S3 bucket.</p>",
-        "VerifiedAccessLogs$LogVersion": "<p> Describes current setting for the logging version. </p>",
+        "VerifiedAccessLogs$LogVersion": "<p>The log version.</p>",
         "VerifiedAccessTrustProvider$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
         "VerifiedAccessTrustProvider$Description": "<p>A description for the Amazon Web Services Verified Access trust provider.</p>",
         "VerifiedAccessTrustProvider$PolicyReferenceName": "<p>The identifier to be used when working with policy rules.</p>",
@@ -22660,9 +22715,9 @@
     "VerifiedAccessEndpoint": {
       "base": "<p>An Amazon Web Services Verified Access endpoint specifies the application that Amazon Web Services Verified Access provides access to. It must be attached to an Amazon Web Services Verified Access group. An Amazon Web Services Verified Access endpoint must also have an attached access policy before you attached it to a group.</p>",
       "refs": {
-        "CreateVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Verified Access endpoint.</p>",
-        "DeleteVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Verified Access endpoint.</p>",
-        "ModifyVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The Verified Access endpoint details.</p>",
+        "CreateVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>Details about the Verified Access endpoint.</p>",
+        "DeleteVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>Details about the Verified Access endpoint.</p>",
+        "ModifyVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>Details about the Verified Access endpoint.</p>",
         "VerifiedAccessEndpointList$member": null
       }
     },
@@ -22698,7 +22753,7 @@
     "VerifiedAccessEndpointList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessEndpointsResult$VerifiedAccessEndpoints": "<p>The ID of the Verified Access endpoint.</p>"
+        "DescribeVerifiedAccessEndpointsResult$VerifiedAccessEndpoints": "<p>Details about the Verified Access endpoints.</p>"
       }
     },
     "VerifiedAccessEndpointLoadBalancerOptions": {
@@ -22757,9 +22812,9 @@
     "VerifiedAccessGroup": {
       "base": "<p>Describes a Verified Access group.</p>",
       "refs": {
-        "CreateVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>The ID of the Verified Access group.</p>",
-        "DeleteVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>The ID of the Verified Access group.</p>",
-        "ModifyVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details of Verified Access group.</p>",
+        "CreateVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details about the Verified Access group.</p>",
+        "DeleteVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details about the Verified Access group.</p>",
+        "ModifyVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details about the Verified Access group.</p>",
         "VerifiedAccessGroupList$member": null
       }
     },
@@ -22785,17 +22840,17 @@
     "VerifiedAccessGroupList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessGroupsResult$VerifiedAccessGroups": "<p>The ID of the Verified Access group.</p>"
+        "DescribeVerifiedAccessGroupsResult$VerifiedAccessGroups": "<p>Details about the Verified Access groups.</p>"
       }
     },
     "VerifiedAccessInstance": {
       "base": "<p>Describes a Verified Access instance.</p>",
       "refs": {
-        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
-        "CreateVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
-        "DeleteVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
-        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
-        "ModifyVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
+        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>Details about the Verified Access instance.</p>",
+        "CreateVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>Details about the Verified Access instance.</p>",
+        "DeleteVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>Details about the Verified Access instance.</p>",
+        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>Details about the Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>Details about the Verified Access instance.</p>",
         "VerifiedAccessInstanceList$member": null
       }
     },
@@ -22824,7 +22879,7 @@
     "VerifiedAccessInstanceList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessInstancesResult$VerifiedAccessInstances": "<p>The IDs of the Verified Access instances.</p>"
+        "DescribeVerifiedAccessInstancesResult$VerifiedAccessInstances": "<p>Details about the Verified Access instances.</p>"
       }
     },
     "VerifiedAccessInstanceLoggingConfiguration": {
@@ -22837,7 +22892,7 @@
     "VerifiedAccessInstanceLoggingConfigurationList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessInstanceLoggingConfigurationsResult$LoggingConfigurations": "<p>The current logging configuration for the Verified Access instances.</p>"
+        "DescribeVerifiedAccessInstanceLoggingConfigurationsResult$LoggingConfigurations": "<p>The logging configuration for the Verified Access instances.</p>"
       }
     },
     "VerifiedAccessLogCloudWatchLogsDestination": {
@@ -22905,32 +22960,32 @@
     "VerifiedAccessSseSpecificationRequest": {
       "base": "<p> Verified Access provides server side encryption by default to data at rest using Amazon Web Services-owned KMS keys. You also have the option of using customer managed KMS keys, which can be specified using the options below. </p>",
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$SseSpecification": "<p> Options for server side encryption. </p>",
-        "CreateVerifiedAccessGroupRequest$SseSpecification": "<p> Options for server side encryption. </p>",
-        "CreateVerifiedAccessTrustProviderRequest$SseSpecification": "<p> Options for server side encryption. </p>",
-        "ModifyVerifiedAccessEndpointPolicyRequest$SseSpecification": "<p> Options for server side encryption. </p>",
-        "ModifyVerifiedAccessGroupPolicyRequest$SseSpecification": "<p> Options for server side encryption. </p>",
-        "ModifyVerifiedAccessTrustProviderRequest$SseSpecification": "<p> Options for server side encryption. </p>"
+        "CreateVerifiedAccessEndpointRequest$SseSpecification": "<p>The options for server side encryption.</p>",
+        "CreateVerifiedAccessGroupRequest$SseSpecification": "<p>The options for server side encryption.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$SseSpecification": "<p>The options for server side encryption.</p>",
+        "ModifyVerifiedAccessEndpointPolicyRequest$SseSpecification": "<p>The options for server side encryption.</p>",
+        "ModifyVerifiedAccessGroupPolicyRequest$SseSpecification": "<p>The options for server side encryption.</p>",
+        "ModifyVerifiedAccessTrustProviderRequest$SseSpecification": "<p>The options for server side encryption.</p>"
       }
     },
     "VerifiedAccessSseSpecificationResponse": {
-      "base": "<p> Describes the options in use for server side encryption. </p>",
+      "base": "<p>The options in use for server side encryption.</p>",
       "refs": {
-        "ModifyVerifiedAccessEndpointPolicyResult$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
-        "ModifyVerifiedAccessGroupPolicyResult$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
-        "VerifiedAccessEndpoint$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
-        "VerifiedAccessGroup$SseSpecification": "<p> Describes the options in use for server side encryption. </p>",
-        "VerifiedAccessTrustProvider$SseSpecification": "<p> Describes the options in use for server side encryption. </p>"
+        "ModifyVerifiedAccessEndpointPolicyResult$SseSpecification": "<p>The options in use for server side encryption.</p>",
+        "ModifyVerifiedAccessGroupPolicyResult$SseSpecification": "<p>The options in use for server side encryption.</p>",
+        "VerifiedAccessEndpoint$SseSpecification": "<p>The options in use for server side encryption.</p>",
+        "VerifiedAccessGroup$SseSpecification": "<p>The options in use for server side encryption.</p>",
+        "VerifiedAccessTrustProvider$SseSpecification": "<p>The options in use for server side encryption.</p>"
       }
     },
     "VerifiedAccessTrustProvider": {
       "base": "<p>Describes a Verified Access trust provider.</p>",
       "refs": {
-        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
-        "CreateVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
-        "DeleteVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
-        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
-        "ModifyVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
+        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>Details about the Verified Access trust provider.</p>",
+        "CreateVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>Details about the Verified Access trust provider.</p>",
+        "DeleteVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>Details about the Verified Access trust provider.</p>",
+        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>Details about the Verified Access trust provider.</p>",
+        "ModifyVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>Details about the Verified Access trust provider.</p>",
         "VerifiedAccessTrustProviderList$member": null
       }
     },
@@ -22965,7 +23020,7 @@
     "VerifiedAccessTrustProviderList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessTrustProvidersResult$VerifiedAccessTrustProviders": "<p>The IDs of the Verified Access trust providers.</p>"
+        "DescribeVerifiedAccessTrustProvidersResult$VerifiedAccessTrustProviders": "<p>Details about the Verified Access trust providers.</p>"
       }
     },
     "VersionDescription": {
