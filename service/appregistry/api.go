@@ -154,6 +154,31 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 // Associates a resource with an application. The resource can be specified
 // by its ARN or name. The application can be specified by ARN, ID, or name.
 //
+// # Minimum permissions
+//
+// You must have the following permissions to associate a resource using the
+// OPTIONS parameter set to APPLY_APPLICATION_TAG.
+//
+//   - tag:GetResources
+//
+//   - tag:TagResources
+//
+// You must also have these additional permissions if you don't use the AWSServiceCatalogAppRegistryFullAccess
+// policy. For more information, see AWSServiceCatalogAppRegistryFullAccess
+// (https://docs.aws.amazon.com/servicecatalog/latest/arguide/full.html) in
+// the AppRegistry Administrator Guide.
+//
+//   - resource-groups:DisassociateResource
+//
+//   - cloudformation:UpdateStack
+//
+//   - cloudformation:DescribeStacks
+//
+// In addition, you must have the tagging permission defined by the Amazon Web
+// Services service that creates the resource. For more information, see TagResources
+// (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_TagResources.html)
+// in the Resource Groups Tagging API Reference.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -694,6 +719,32 @@ func (c *AppRegistry) DisassociateResourceRequest(input *DisassociateResourceInp
 //
 // Disassociates a resource from application. Both the resource and the application
 // can be specified either by ID or name.
+//
+// # Minimum permissions
+//
+// You must have the following permissions to remove a resource that's been
+// associated with an application using the APPLY_APPLICATION_TAG option for
+// AssociateResource (https://docs.aws.amazon.com/servicecatalog/latest/dg/API_app-registry_AssociateResource.html).
+//
+//   - tag:GetResources
+//
+//   - tag:UntagResources
+//
+// You must also have the following permissions if you don't use the AWSServiceCatalogAppRegistryFullAccess
+// policy. For more information, see AWSServiceCatalogAppRegistryFullAccess
+// (https://docs.aws.amazon.com/servicecatalog/latest/arguide/full.html) in
+// the AppRegistry Administrator Guide.
+//
+//   - resource-groups:DisassociateResource
+//
+//   - cloudformation:UpdateStack
+//
+//   - cloudformation:DescribeStacks
+//
+// In addition, you must have the tagging permission defined by the Amazon Web
+// Services service that creates the resource. For more information, see UntagResources
+// (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_UntTagResources.html)
+// in the Resource Groups Tagging API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2462,6 +2513,9 @@ func (s *AppRegistryConfiguration) SetTagQueryConfiguration(v *TagQueryConfigura
 type Application struct {
 	_ struct{} `type:"structure"`
 
+	// A key-value pair that identifies an associated resource.
+	ApplicationTag map[string]*string `locationName:"applicationTag" type:"map"`
+
 	// The Amazon resource name (ARN) that specifies the application across services.
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -2502,6 +2556,12 @@ func (s Application) String() string {
 // value will be replaced with "sensitive".
 func (s Application) GoString() string {
 	return s.String()
+}
+
+// SetApplicationTag sets the ApplicationTag field's value.
+func (s *Application) SetApplicationTag(v map[string]*string) *Application {
+	s.ApplicationTag = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -2625,6 +2685,67 @@ func (s *ApplicationSummary) SetName(v string) *ApplicationSummary {
 	return s
 }
 
+// The result of the application tag that's applied to a resource.
+type ApplicationTagResult struct {
+	_ struct{} `type:"structure"`
+
+	// The application tag is in the process of being applied to a resource, was
+	// successfully applied to a resource, or failed to apply to a resource.
+	ApplicationTagStatus *string `locationName:"applicationTagStatus" type:"string" enum:"ApplicationTagStatus"`
+
+	// The message returned if the call fails.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// A unique pagination token for each page of results. Make the call again with
+	// the returned token to retrieve the next page of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The resources associated with an application
+	Resources []*ResourcesListItem `locationName:"resources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationTagResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationTagResult) GoString() string {
+	return s.String()
+}
+
+// SetApplicationTagStatus sets the ApplicationTagStatus field's value.
+func (s *ApplicationTagResult) SetApplicationTagStatus(v string) *ApplicationTagResult {
+	s.ApplicationTagStatus = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ApplicationTagResult) SetErrorMessage(v string) *ApplicationTagResult {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ApplicationTagResult) SetNextToken(v string) *ApplicationTagResult {
+	s.NextToken = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *ApplicationTagResult) SetResources(v []*ResourcesListItem) *ApplicationTagResult {
+	s.Resources = v
+	return s
+}
+
 type AssociateAttributeGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -2735,12 +2856,15 @@ func (s *AssociateAttributeGroupOutput) SetAttributeGroupArn(v string) *Associat
 }
 
 type AssociateResourceInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
+
+	// Determines whether an application tag is applied or skipped.
+	Options []*string `locationName:"options" type:"list" enum:"AssociationOption"`
 
 	// The name or ID of the resource of which the application will be associated.
 	//
@@ -2805,6 +2929,12 @@ func (s *AssociateResourceInput) SetApplication(v string) *AssociateResourceInpu
 	return s
 }
 
+// SetOptions sets the Options field's value.
+func (s *AssociateResourceInput) SetOptions(v []*string) *AssociateResourceInput {
+	s.Options = v
+	return s
+}
+
 // SetResource sets the Resource field's value.
 func (s *AssociateResourceInput) SetResource(v string) *AssociateResourceInput {
 	s.Resource = &v
@@ -2823,6 +2953,9 @@ type AssociateResourceOutput struct {
 	// The Amazon resource name (ARN) of the application that was augmented with
 	// attributes.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+
+	// Determines whether an application tag is applied or skipped.
+	Options []*string `locationName:"options" type:"list" enum:"AssociationOption"`
 
 	// The Amazon resource name (ARN) that specifies the resource.
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
@@ -2849,6 +2982,12 @@ func (s AssociateResourceOutput) GoString() string {
 // SetApplicationArn sets the ApplicationArn field's value.
 func (s *AssociateResourceOutput) SetApplicationArn(v string) *AssociateResourceOutput {
 	s.ApplicationArn = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *AssociateResourceOutput) SetOptions(v []*string) *AssociateResourceOutput {
+	s.Options = v
 	return s
 }
 
@@ -2966,9 +3105,7 @@ type AttributeGroupDetails struct {
 	// using ListAttributeGroupsForApplication.
 	//
 	// The name of the attribute group.
-	//
-	// Deprecated: This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication.
-	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3857,6 +3994,9 @@ func (s *GetApplicationInput) SetApplication(v string) *GetApplicationInput {
 type GetApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A key-value pair that identifies an associated resource.
+	ApplicationTag map[string]*string `locationName:"applicationTag" type:"map"`
+
 	// The Amazon resource name (ARN) that specifies the application across services.
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -3904,6 +4044,12 @@ func (s GetApplicationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetApplicationOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationTag sets the ApplicationTag field's value.
+func (s *GetApplicationOutput) SetApplicationTag(v map[string]*string) *GetApplicationOutput {
+	s.ApplicationTag = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -3968,10 +4114,22 @@ type GetAssociatedResourceInput struct {
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
 
+	// The maximum number of results to return. If the parameter is omitted, it
+	// defaults to 25. The value is optional.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A unique pagination token for each page of results. Make the call again with
+	// the returned token to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
 	// The name or ID of the resource associated with the application.
 	//
 	// Resource is a required field
 	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
+
+	// States whether an application tag is applied, not applied, in the process
+	// of being applied, or skipped.
+	ResourceTagStatus []*string `location:"querystring" locationName:"resourceTagStatus" min:"1" type:"list" enum:"ResourceItemStatus"`
 
 	// The type of resource associated with the application.
 	//
@@ -4006,11 +4164,20 @@ func (s *GetAssociatedResourceInput) Validate() error {
 	if s.Application != nil && len(*s.Application) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Application", 1))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
 	if s.Resource == nil {
 		invalidParams.Add(request.NewErrParamRequired("Resource"))
 	}
 	if s.Resource != nil && len(*s.Resource) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
+	}
+	if s.ResourceTagStatus != nil && len(s.ResourceTagStatus) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceTagStatus", 1))
 	}
 	if s.ResourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
@@ -4031,9 +4198,27 @@ func (s *GetAssociatedResourceInput) SetApplication(v string) *GetAssociatedReso
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetAssociatedResourceInput) SetMaxResults(v int64) *GetAssociatedResourceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetAssociatedResourceInput) SetNextToken(v string) *GetAssociatedResourceInput {
+	s.NextToken = &v
+	return s
+}
+
 // SetResource sets the Resource field's value.
 func (s *GetAssociatedResourceInput) SetResource(v string) *GetAssociatedResourceInput {
 	s.Resource = &v
+	return s
+}
+
+// SetResourceTagStatus sets the ResourceTagStatus field's value.
+func (s *GetAssociatedResourceInput) SetResourceTagStatus(v []*string) *GetAssociatedResourceInput {
+	s.ResourceTagStatus = v
 	return s
 }
 
@@ -4045,6 +4230,12 @@ func (s *GetAssociatedResourceInput) SetResourceType(v string) *GetAssociatedRes
 
 type GetAssociatedResourceOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The result of the application that's tag applied to a resource.
+	ApplicationTagResult *ApplicationTagResult `locationName:"applicationTagResult" type:"structure"`
+
+	// Determines whether an application tag is applied or skipped.
+	Options []*string `locationName:"options" type:"list" enum:"AssociationOption"`
 
 	// The resource associated with the application.
 	Resource *Resource `locationName:"resource" type:"structure"`
@@ -4066,6 +4257,18 @@ func (s GetAssociatedResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetAssociatedResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationTagResult sets the ApplicationTagResult field's value.
+func (s *GetAssociatedResourceOutput) SetApplicationTagResult(v *ApplicationTagResult) *GetAssociatedResourceOutput {
+	s.ApplicationTagResult = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *GetAssociatedResourceOutput) SetOptions(v []*string) *GetAssociatedResourceOutput {
+	s.Options = v
+	return s
 }
 
 // SetResource sets the Resource field's value.
@@ -4289,6 +4492,9 @@ type Integrations struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the resource group integration.
+	ApplicationTagResourceGroup *ResourceGroup `locationName:"applicationTagResourceGroup" type:"structure"`
+
+	// The information about the resource group integration.
 	ResourceGroup *ResourceGroup `locationName:"resourceGroup" type:"structure"`
 }
 
@@ -4308,6 +4514,12 @@ func (s Integrations) String() string {
 // value will be replaced with "sensitive".
 func (s Integrations) GoString() string {
 	return s.String()
+}
+
+// SetApplicationTagResourceGroup sets the ApplicationTagResourceGroup field's value.
+func (s *Integrations) SetApplicationTagResourceGroup(v *ResourceGroup) *Integrations {
+	s.ApplicationTagResourceGroup = v
+	return s
 }
 
 // SetResourceGroup sets the ResourceGroup field's value.
@@ -5069,7 +5281,7 @@ type Resource struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon resource name (ARN) of the resource.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The time the resource was associated with the application.
 	AssociationTime *time.Time `locationName:"associationTime" type:"timestamp" timestampFormat:"iso8601"`
@@ -5228,6 +5440,9 @@ type ResourceInfo struct {
 	// The name of the resource.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// Determines whether an application tag is applied or skipped.
+	Options []*string `locationName:"options" type:"list" enum:"AssociationOption"`
+
 	// The details related to the resource.
 	ResourceDetails *ResourceDetails `locationName:"resourceDetails" type:"structure"`
 
@@ -5262,6 +5477,12 @@ func (s *ResourceInfo) SetArn(v string) *ResourceInfo {
 // SetName sets the Name field's value.
 func (s *ResourceInfo) SetName(v string) *ResourceInfo {
 	s.Name = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *ResourceInfo) SetOptions(v []*string) *ResourceInfo {
+	s.Options = v
 	return s
 }
 
@@ -5371,6 +5592,65 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The resource in a list of resources.
+type ResourcesListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The message returned if the call fails.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	// The Amazon resource name (ARN) of the resource.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// Provides information about the AppRegistry resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+
+	// The status of the list item.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcesListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcesListItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ResourcesListItem) SetErrorMessage(v string) *ResourcesListItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ResourcesListItem) SetResourceArn(v string) *ResourcesListItem {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourcesListItem) SetResourceType(v string) *ResourcesListItem {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ResourcesListItem) SetStatus(v string) *ResourcesListItem {
+	s.Status = &v
+	return s
 }
 
 // The maximum number of resources per account has been reached.
@@ -6115,6 +6395,42 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// ApplicationTagStatusInProgress is a ApplicationTagStatus enum value
+	ApplicationTagStatusInProgress = "IN_PROGRESS"
+
+	// ApplicationTagStatusSuccess is a ApplicationTagStatus enum value
+	ApplicationTagStatusSuccess = "SUCCESS"
+
+	// ApplicationTagStatusFailure is a ApplicationTagStatus enum value
+	ApplicationTagStatusFailure = "FAILURE"
+)
+
+// ApplicationTagStatus_Values returns all elements of the ApplicationTagStatus enum
+func ApplicationTagStatus_Values() []string {
+	return []string{
+		ApplicationTagStatusInProgress,
+		ApplicationTagStatusSuccess,
+		ApplicationTagStatusFailure,
+	}
+}
+
+const (
+	// AssociationOptionApplyApplicationTag is a AssociationOption enum value
+	AssociationOptionApplyApplicationTag = "APPLY_APPLICATION_TAG"
+
+	// AssociationOptionSkipApplicationTag is a AssociationOption enum value
+	AssociationOptionSkipApplicationTag = "SKIP_APPLICATION_TAG"
+)
+
+// AssociationOption_Values returns all elements of the AssociationOption enum
+func AssociationOption_Values() []string {
+	return []string{
+		AssociationOptionApplyApplicationTag,
+		AssociationOptionSkipApplicationTag,
+	}
+}
+
+const (
 	// ResourceGroupStateCreating is a ResourceGroupState enum value
 	ResourceGroupStateCreating = "CREATING"
 
@@ -6143,6 +6459,30 @@ func ResourceGroupState_Values() []string {
 		ResourceGroupStateUpdating,
 		ResourceGroupStateUpdateComplete,
 		ResourceGroupStateUpdateFailed,
+	}
+}
+
+const (
+	// ResourceItemStatusSuccess is a ResourceItemStatus enum value
+	ResourceItemStatusSuccess = "SUCCESS"
+
+	// ResourceItemStatusFailed is a ResourceItemStatus enum value
+	ResourceItemStatusFailed = "FAILED"
+
+	// ResourceItemStatusInProgress is a ResourceItemStatus enum value
+	ResourceItemStatusInProgress = "IN_PROGRESS"
+
+	// ResourceItemStatusSkipped is a ResourceItemStatus enum value
+	ResourceItemStatusSkipped = "SKIPPED"
+)
+
+// ResourceItemStatus_Values returns all elements of the ResourceItemStatus enum
+func ResourceItemStatus_Values() []string {
+	return []string{
+		ResourceItemStatusSuccess,
+		ResourceItemStatusFailed,
+		ResourceItemStatusInProgress,
+		ResourceItemStatusSkipped,
 	}
 }
 

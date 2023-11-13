@@ -384,7 +384,8 @@
         "description":{"shape":"Description"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "applicationTag":{"shape":"ApplicationTagDefinition"}
       }
     },
     "ApplicationArn":{
@@ -417,6 +418,28 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"}
       }
+    },
+    "ApplicationTagDefinition":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "ApplicationTagResult":{
+      "type":"structure",
+      "members":{
+        "applicationTagStatus":{"shape":"ApplicationTagStatus"},
+        "errorMessage":{"shape":"String"},
+        "resources":{"shape":"ResourcesList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ApplicationTagStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILURE"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -472,19 +495,28 @@
           "shape":"ResourceSpecifier",
           "location":"uri",
           "locationName":"resource"
-        }
+        },
+        "options":{"shape":"Options"}
       }
     },
     "AssociateResourceResponse":{
       "type":"structure",
       "members":{
         "applicationArn":{"shape":"ApplicationArn"},
-        "resourceArn":{"shape":"Arn"}
+        "resourceArn":{"shape":"Arn"},
+        "options":{"shape":"Options"}
       }
     },
     "AssociationCount":{
       "type":"integer",
       "min":0
+    },
+    "AssociationOption":{
+      "type":"string",
+      "enum":[
+        "APPLY_APPLICATION_TAG",
+        "SKIP_APPLICATION_TAG"
+      ]
     },
     "AttributeGroup":{
       "type":"structure",
@@ -507,11 +539,7 @@
       "members":{
         "id":{"shape":"AttributeGroupId"},
         "arn":{"shape":"AttributeGroupArn"},
-        "name":{
-          "shape":"Name",
-          "deprecated":true,
-          "deprecatedMessage":"This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication."
-        },
+        "name":{"shape":"Name"},
         "createdBy":{"shape":"CreatedBy"}
       }
     },
@@ -741,8 +769,15 @@
         "lastUpdateTime":{"shape":"Timestamp"},
         "associatedResourceCount":{"shape":"AssociationCount"},
         "tags":{"shape":"Tags"},
-        "integrations":{"shape":"Integrations"}
+        "integrations":{"shape":"Integrations"},
+        "applicationTag":{"shape":"ApplicationTagDefinition"}
       }
+    },
+    "GetAssociatedResourceFilter":{
+      "type":"list",
+      "member":{"shape":"ResourceItemStatus"},
+      "max":4,
+      "min":1
     },
     "GetAssociatedResourceRequest":{
       "type":"structure",
@@ -766,13 +801,31 @@
           "shape":"ResourceSpecifier",
           "location":"uri",
           "locationName":"resource"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "resourceTagStatus":{
+          "shape":"GetAssociatedResourceFilter",
+          "location":"querystring",
+          "locationName":"resourceTagStatus"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
         }
       }
     },
     "GetAssociatedResourceResponse":{
       "type":"structure",
       "members":{
-        "resource":{"shape":"Resource"}
+        "resource":{"shape":"Resource"},
+        "options":{"shape":"Options"},
+        "applicationTagResult":{"shape":"ApplicationTagResult"}
       }
     },
     "GetAttributeGroupRequest":{
@@ -809,7 +862,8 @@
     "Integrations":{
       "type":"structure",
       "members":{
-        "resourceGroup":{"shape":"ResourceGroup"}
+        "resourceGroup":{"shape":"ResourceGroup"},
+        "applicationTagResourceGroup":{"shape":"ResourceGroup"}
       }
     },
     "InternalServerException":{
@@ -988,6 +1042,10 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "Options":{
+      "type":"list",
+      "member":{"shape":"AssociationOption"}
+    },
     "PutConfigurationRequest":{
       "type":"structure",
       "required":["configuration"],
@@ -999,7 +1057,7 @@
       "type":"structure",
       "members":{
         "name":{"shape":"ResourceSpecifier"},
-        "arn":{"shape":"StackArn"},
+        "arn":{"shape":"Arn"},
         "associationTime":{"shape":"Timestamp"},
         "integrations":{"shape":"ResourceIntegrations"}
       }
@@ -1035,7 +1093,8 @@
         "name":{"shape":"ResourceSpecifier"},
         "arn":{"shape":"Arn"},
         "resourceType":{"shape":"ResourceType"},
-        "resourceDetails":{"shape":"ResourceDetails"}
+        "resourceDetails":{"shape":"ResourceDetails"},
+        "options":{"shape":"Options"}
       }
     },
     "ResourceIntegrations":{
@@ -1043,6 +1102,19 @@
       "members":{
         "resourceGroup":{"shape":"ResourceGroup"}
       }
+    },
+    "ResourceItemStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAILED",
+        "IN_PROGRESS",
+        "SKIPPED"
+      ]
+    },
+    "ResourceItemType":{
+      "type":"string",
+      "pattern":"AWS::[a-zA-Z0-9]+::\\w+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1069,6 +1141,24 @@
       "type":"list",
       "member":{"shape":"ResourceInfo"}
     },
+    "ResourcesList":{
+      "type":"list",
+      "member":{"shape":"ResourcesListItem"}
+    },
+    "ResourcesListItem":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "errorMessage":{"shape":"ResourcesListItemErrorMessage"},
+        "status":{"shape":"String"},
+        "resourceType":{"shape":"ResourceItemType"}
+      }
+    },
+    "ResourcesListItemErrorMessage":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -1076,10 +1166,6 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
-    },
-    "StackArn":{
-      "type":"string",
-      "pattern":"arn:aws[-a-z]*:cloudformation:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:stack/[a-zA-Z][-A-Za-z0-9]{0,127}/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}"
     },
     "String":{"type":"string"},
     "SyncAction":{
@@ -1120,7 +1206,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[a-zA-Z+-=._:/]+"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*)$"
     },
     "TagKeyConfig":{
       "type":"string",

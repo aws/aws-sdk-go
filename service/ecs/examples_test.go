@@ -1147,6 +1147,8 @@ func ExampleECS_RunTask_shared00() {
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
 			case ecs.ErrCodeBlockedException:
 				fmt.Println(ecs.ErrCodeBlockedException, aerr.Error())
+			case ecs.ErrCodeConflictException:
+				fmt.Println(ecs.ErrCodeConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

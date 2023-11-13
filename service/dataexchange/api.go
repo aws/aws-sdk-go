@@ -9231,9 +9231,7 @@ type OriginDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The product ID of the origin of the data set.
-	//
-	// ProductId is a required field
-	ProductId *string `type:"string" required:"true"`
+	ProductId *string `type:"string"`
 }
 
 // String returns the string representation.

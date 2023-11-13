@@ -936,6 +936,11 @@
           "location":"header",
           "locationName":"x-amzn-transcribe-preferred-language"
         },
+        "IdentifyMultipleLanguages":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-identify-multiple-languages"
+        },
         "VocabularyNames":{
           "shape":"VocabularyNames",
           "location":"header",
@@ -1052,6 +1057,11 @@
           "shape":"LanguageCode",
           "location":"header",
           "locationName":"x-amzn-transcribe-preferred-language"
+        },
+        "IdentifyMultipleLanguages":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-identify-multiple-languages"
         },
         "VocabularyNames":{
           "shape":"VocabularyNames",

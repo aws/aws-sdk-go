@@ -9552,9 +9552,7 @@ type GetClusterSessionCredentialsInput struct {
 	// submission on the cluster. The runtime role can be a cross-account IAM role.
 	// The runtime role ARN is a combination of account ID, role name, and role
 	// type using the following format: arn:partition:service:region:account:resource.
-	//
-	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -9580,9 +9578,6 @@ func (s *GetClusterSessionCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetClusterSessionCredentialsInput"}
 	if s.ClusterId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
-	}
-	if s.ExecutionRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
 	}
 	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))

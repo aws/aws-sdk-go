@@ -225,6 +225,12 @@
       "output_token": "NextToken",
       "result_key": "InstanceStatuses"
     },
+    "DescribeInstanceTopology": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Instances"
+    },
     "DescribeInstanceTypeOfferings": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

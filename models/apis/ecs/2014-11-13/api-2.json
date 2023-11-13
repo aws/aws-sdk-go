@@ -631,7 +631,8 @@
         {"shape":"PlatformUnknownException"},
         {"shape":"PlatformTaskDefinitionIncompatibilityException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"BlockedException"}
+        {"shape":"BlockedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "StartTask":{
@@ -1210,6 +1211,13 @@
     "CompatibilityList":{
       "type":"list",
       "member":{"shape":"Compatibility"}
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "resourceIds":{"shape":"ResourceIds"}
+      },
+      "exception":true
     },
     "Connectivity":{
       "type":"string",
@@ -2877,6 +2885,10 @@
         "stringSetValue":{"shape":"StringList"}
       }
     },
+    "ResourceIds":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "ResourceInUseException":{
       "type":"structure",
       "members":{
@@ -2935,7 +2947,11 @@
         "referenceId":{"shape":"String"},
         "startedBy":{"shape":"String"},
         "tags":{"shape":"Tags"},
-        "taskDefinition":{"shape":"String"}
+        "taskDefinition":{"shape":"String"},
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
       }
     },
     "RunTaskResponse":{

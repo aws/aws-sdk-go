@@ -3348,7 +3348,11 @@
         "MaxKBytesPerRead":{"shape":"IntegerOptional"},
         "Username":{"shape":"String"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "LoadTimeout":{"shape":"IntegerOptional"},
+        "WriteBufferSize":{"shape":"IntegerOptional"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "KeepCsvFiles":{"shape":"BooleanOptional"}
       }
     },
     "ImportCertificateMessage":{
@@ -3965,7 +3969,8 @@
         "ServerTimezone":{"shape":"String"},
         "Username":{"shape":"String"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "ExecuteTimeout":{"shape":"IntegerOptional"}
       }
     },
     "MySqlDataProviderSettings":{
@@ -4442,7 +4447,8 @@
         "RecoveryCheckpoint":{"shape":"String"},
         "ReplicationCreateTime":{"shape":"TStamp"},
         "ReplicationUpdateTime":{"shape":"TStamp"},
-        "ReplicationLastStopTime":{"shape":"TStamp"}
+        "ReplicationLastStopTime":{"shape":"TStamp"},
+        "ReplicationDeprovisionTime":{"shape":"TStamp"}
       }
     },
     "ReplicationConfig":{

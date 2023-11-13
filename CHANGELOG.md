@@ -1,3 +1,19 @@
+Release v1.47.10 (2023-11-13)
+===
+
+### Service Client Updates
+* `service/dataexchange`: Updates service API
+* `service/dms`: Updates service API and documentation
+  * Added new Db2 LUW Target endpoint with related endpoint settings. New executeTimeout endpoint setting for mysql endpoint. New ReplicationDeprovisionTime field for serverless describe-replications.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Adds the new EC2 DescribeInstanceTopology API, which you can use to retrieve the network topology of your running instances on select platform types to determine their relative proximity to each other.
+* `service/ecs`: Updates service API and documentation
+  * Adds a Client Token parameter to the ECS RunTask API. The Client Token parameter allows for idempotent RunTask requests.
+* `service/elasticmapreduce`: Updates service API
+  * Updated GetClusterSessionCredentials API  to allow Amazon SageMaker Studio to connect to EMR on EC2 clusters to support IdentityCenter/PEZ integration.
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.47.9 (2023-11-10)
 ===
 
