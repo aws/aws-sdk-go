@@ -1131,6 +1131,11 @@ type RoleCredentials struct {
 	// in the AWS IAM User Guide.
 	AccessKeyId *string `locationName:"accessKeyId" type:"string"`
 
+	// CredentialScope is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RoleCredentials's
+	// String and GoString methods.
+	CredentialScope *string `locationName:"credentialScope" type:"string" sensitive:"true"`
+
 	// The date on which temporary security credentials expire.
 	Expiration *int64 `locationName:"expiration" type:"long"`
 
@@ -1174,6 +1179,12 @@ func (s RoleCredentials) GoString() string {
 // SetAccessKeyId sets the AccessKeyId field's value.
 func (s *RoleCredentials) SetAccessKeyId(v string) *RoleCredentials {
 	s.AccessKeyId = &v
+	return s
+}
+
+// SetCredentialScope sets the CredentialScope field's value.
+func (s *RoleCredentials) SetCredentialScope(v string) *RoleCredentials {
+	s.CredentialScope = &v
 	return s
 }
 

@@ -13,9 +13,10 @@ import (
 
 const (
 	// Static Credentials group
-	accessKeyIDKey  = `aws_access_key_id`     // group required
-	secretAccessKey = `aws_secret_access_key` // group required
-	sessionTokenKey = `aws_session_token`     // optional
+	accessKeyIDKey     = `aws_access_key_id`     // group required
+	secretAccessKey    = `aws_secret_access_key` // group required
+	sessionTokenKey    = `aws_session_token`     // optional
+	credentialScopeKey = `aws_credential_scope`  // optional
 
 	// Assume Role Credentials group
 	roleArnKey             = `role_arn`          // group required
@@ -458,6 +459,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		AccessKeyID:     section.String(accessKeyIDKey),
 		SecretAccessKey: section.String(secretAccessKey),
 		SessionToken:    section.String(sessionTokenKey),
+		CredentialScope: section.String(credentialScopeKey),
 		ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", file.Filename),
 	}
 	if creds.HasKeys() {

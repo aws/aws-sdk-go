@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"reflect"
 	"strconv"
 	"strings"
@@ -207,6 +208,31 @@ func TestSignRequest(t *testing.T) {
 	}
 	if e, a := expectedDate, q.Get("X-Amz-Date"); e != a {
 		t.Errorf("expect\n%v\nactual\n%v\n", e, a)
+	}
+}
+
+func TestSignRequestCredentialScope(t *testing.T) {
+	req, body := buildRequest("iam", "aws-global", "{}")
+	req.URL.Host = "iam.amazonaws.com"
+	signer := buildSigner()
+	signer.ServiceEndpointID = "iam"
+	signer.Credentials = credentials.NewStaticCredentialsFromCreds(credentials.Value{
+		AccessKeyID:     "AKID",
+		SecretAccessKey: "SECRET",
+		SessionToken:    "SESSION",
+		CredentialScope: "us-east-7",
+	})
+	signer.Sign(req, body, "iam", "us-east-1", epochTime()) // us-east-1 is iam's fixed signing region
+
+	expectedHost := "iam.us-east-7.amazonaws.com"
+	expectedPreamble := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-7/iam/aws4_request"
+
+	q := req.Header
+	if e, a := expectedPreamble, q.Get("Authorization"); !strings.HasPrefix(a, e) {
+		t.Errorf("expect prefix\n%v\nactual\n%v\n", e, a)
+	}
+	if e, a := expectedHost, req.URL.Host; e != a {
+		t.Errorf("expect prefix\n%v\nactual\n%v\n", e, a)
 	}
 }
 
@@ -813,4 +839,113 @@ func (r *readerSeekerWrapper) Seek(offset int64, whence int) (int64, error) {
 
 func (r *readerSeekerWrapper) Len() int {
 	return r.r.Len()
+}
+
+func TestHandleCredentialScope(t *testing.T) {
+	cs := []struct {
+		EndpointID string
+		BaseHost   string
+		ExpectHost string
+	}{
+		{
+			EndpointID: "account",
+			BaseHost:   "account.us-east-1.amazonaws.com",
+			ExpectHost: "account.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "billingconductor",
+			BaseHost:   "billingconductor.us-east-1.amazonaws.com",
+			ExpectHost: "billingconductor.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "budgets",
+			BaseHost:   "budgets.amazonaws.com",
+			ExpectHost: "budgets.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "ce",
+			BaseHost:   "ce.us-east-1.amazonaws.com",
+			ExpectHost: "ce.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "chime",
+			BaseHost:   "chime.us-east-1.amazonaws.com",
+			ExpectHost: "chime.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "cloudfront",
+			BaseHost:   "cloudfront.amazonaws.com",
+			ExpectHost: "cloudfront.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "codecatalyst",
+			BaseHost:   "codecatalyst.global.api.aws",
+			ExpectHost: "codecatalyst.scope.api.aws",
+		},
+		{
+			EndpointID: "iam",
+			BaseHost:   "iam.amazonaws.com",
+			ExpectHost: "iam.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "importexport",
+			BaseHost:   "importexport.amazonaws.com",
+			ExpectHost: "importexport.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "networkmanager",
+			BaseHost:   "networkmanager.us-west-2.amazonaws.com",
+			ExpectHost: "networkmanager.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "organizations",
+			BaseHost:   "organizations.us-east-1.amazonaws.com",
+			ExpectHost: "organizations.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "route53",
+			BaseHost:   "route53.us-east-1.amazonaws.com",
+			ExpectHost: "route53.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "route53-recovery-control-config",
+			BaseHost:   "route53-recovery-control-config.us-west-2.amazonaws.com",
+			ExpectHost: "route53-recovery-control-config.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "savingsplans",
+			BaseHost:   "savingsplans.amazonaws.com",
+			ExpectHost: "savingsplans.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "shield",
+			BaseHost:   "shield.us-east-1.amazonaws.com",
+			ExpectHost: "shield.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "support",
+			BaseHost:   "support.us-east-1.amazonaws.com",
+			ExpectHost: "support.scope.amazonaws.com",
+		},
+		{
+			EndpointID: "waf",
+			BaseHost:   "waf.amazonaws.com",
+			ExpectHost: "waf.scope.amazonaws.com",
+		},
+	}
+	for _, c := range cs {
+		t.Run(c.EndpointID, func(t *testing.T) {
+			ctx := &signingCtx{
+				Request: &http.Request{
+					URL: &url.URL{Host: c.BaseHost},
+				},
+			}
+
+			ctx.handleCredentialScope("scope", c.EndpointID)
+			ctx.handleCredentialScope("scope", c.EndpointID) // should be idempotent
+			if ctx.Request.URL.Host != c.ExpectHost {
+				t.Errorf("%v != %v", c.ExpectHost, ctx.Request.URL.Host)
+			}
+		})
+	}
 }

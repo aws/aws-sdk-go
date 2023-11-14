@@ -366,6 +366,7 @@ func (p *AssumeRoleProvider) RetrieveWithContext(ctx credentials.Context) (crede
 		AccessKeyID:     *roleOutput.Credentials.AccessKeyId,
 		SecretAccessKey: *roleOutput.Credentials.SecretAccessKey,
 		SessionToken:    *roleOutput.Credentials.SessionToken,
+		CredentialScope: aws.StringValue(roleOutput.Credentials.CredentialScope),
 		ProviderName:    ProviderName,
 	}, nil
 }

@@ -512,6 +512,17 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			},
 		},
 		{
+			Profile: "complete_creds_with_scope",
+			Expected: sharedConfig{
+				Creds: credentials.Value{
+					AccessKeyID:     "complete_creds_with_scope_akid",
+					SecretAccessKey: "complete_creds_with_scope_secret",
+					CredentialScope: "complete_creds_with_scope_scope",
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+				},
+			},
+		},
+		{
 			Profile: "full_profile",
 			Expected: sharedConfig{
 				Creds: credentials.Value{

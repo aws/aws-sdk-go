@@ -258,6 +258,7 @@
         "AccessKeyId":{"shape":"accessKeyIdType"},
         "SecretAccessKey":{"shape":"accessKeySecretType"},
         "SessionToken":{"shape":"tokenType"},
+        "CredentialScope":{"shape":"tokenType"},
         "Expiration":{"shape":"dateType"}
       }
     },

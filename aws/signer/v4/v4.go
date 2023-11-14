@@ -157,6 +157,79 @@ var allowedQueryHoisting = inclusiveRules{
 	patterns{"X-Amz-"},
 }
 
+type endpointRegionalizer func(string, string) string
+
+// Key corresponds to EndpointsID value in each service, endpoints for these
+// services must be retroactively regionalized if the retrieved credentials are
+// scoped.
+//
+// The "global" endpoint format for these services isn't standardized
+// whatsoever, each endpoint ID is associated with a suitable hostname
+// transform function such that we can just pull that out and use it opaquely.
+//
+// This list is derived from identifying "global" services in our generated
+// endpoints table but we have no knowledge of whether they actually have
+// regional versions for scoped credentials. This knowledge is irrelevant given
+// that the need to do this is confined to scoped credentials (if the global
+// service doesn't have regional deployments, the request will fail either
+// way).
+var globalServices = map[string]endpointRegionalizer{
+	"account":                         replaceStaticRegion("account", "us-east-1"),
+	"billingconductor":                replaceStaticRegion("billingconductor", "us-east-1"),
+	"budgets":                         appendRegion("budgets"),
+	"ce":                              replaceStaticRegion("ce", "us-east-1"),
+	"chime":                           replaceStaticRegion("chime", "us-east-1"),
+	"cloudfront":                      appendRegion("cloudfront"),
+	"codecatalyst":                    replaceStaticRegion("codecatalyst", "global"),
+	"iam":                             appendRegion("iam"),
+	"importexport":                    appendRegion("importexport"),
+	"networkmanager":                  replaceStaticRegion("networkmanager", "us-west-2"),
+	"organizations":                   replaceStaticRegion("organizations", "us-east-1"),
+	"route53":                         replaceStaticRegion("route53", "us-east-1"),
+	"route53-recovery-control-config": replaceStaticRegion("route53-recovery-control-config", "us-west-2"),
+	"savingsplans":                    appendRegion("savingsplans"),
+	"shield":                          replaceStaticRegion("shield", "us-east-1"),
+	"support":                         replaceStaticRegion("support", "us-east-1"),
+	"waf":                             appendRegion("waf"),
+
+	// leaving some services off for now that appear to be global but have odd traits:
+	//   - "health" appears to be at least partionally regional
+	//   - "mturk-requester"'s only region is "sandbox"
+}
+
+// builds a func that replaces a fixed region
+func replaceStaticRegion(prefix, region string) endpointRegionalizer {
+	return func(host, scope string) string {
+		if isRegionalized(host, prefix, scope) {
+			return host
+		}
+
+		return strings.Replace(host, region, scope, 1)
+	}
+}
+
+// builds a func that appends a region after the endpoint prefix
+func appendRegion(prefix string) endpointRegionalizer {
+	fipsPrefix := fmt.Sprintf("%s-fips", prefix)
+
+	return func(host, scope string) string {
+		if isRegionalized(host, prefix, scope) {
+			return host
+		}
+
+		if strings.HasPrefix(host, prefix) {
+			return strings.Replace(host, prefix, fmt.Sprintf("%s.%s", prefix, scope), 1)
+		} else if strings.HasPrefix(host, fipsPrefix) {
+			return strings.Replace(host, fipsPrefix, fmt.Sprintf("%s.%s", fipsPrefix, scope), 1)
+		}
+		return host
+	}
+}
+
+func isRegionalized(host, prefix, region string) bool {
+	return strings.HasPrefix(host, fmt.Sprintf("%s.%s", prefix, region))
+}
+
 // Signer applies AWS v4 signing to given request. Use this to sign requests
 // that need to be signed with AWS V4 Signatures.
 type Signer struct {
@@ -208,6 +281,11 @@ type Signer struct {
 	// UnsignedPayload will prevent signing of the payload. This will only
 	// work for services that have support for this.
 	UnsignedPayload bool
+
+	// Endpoint ID from the partition table,required to detect whether we need
+	// to backfill the region on global services when credential scope is
+	// present
+	ServiceEndpointID string
 }
 
 // NewSigner returns a Signer pointer configured with the credentials and optional
@@ -348,6 +426,10 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 		return http.Header{}, err
 	}
 
+	if len(ctx.credValues.CredentialScope) > 0 {
+		ctx.handleCredentialScope(ctx.credValues.CredentialScope, v4.ServiceEndpointID)
+	}
+
 	ctx.sanitizeHostForHeader()
 	ctx.assignAmzQueryValues()
 	if err := ctx.build(v4.DisableHeaderHoisting); err != nil {
@@ -373,6 +455,17 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	}
 
 	return ctx.SignedHeaderVals, nil
+}
+
+// presence of credential scope has several effects on the request:
+//   - the signing region is overwritten
+//   - "global" services (keyed here by endpoint prefix) must instead be
+//     treated as regional
+func (ctx *signingCtx) handleCredentialScope(scope, endpointID string) {
+	ctx.Region = scope
+	if regionalize, ok := globalServices[endpointID]; ok {
+		ctx.Request.URL.Host = regionalize(ctx.Request.URL.Host, scope)
+	}
 }
 
 func (ctx *signingCtx) sanitizeHostForHeader() {
@@ -474,6 +567,7 @@ func SignSDKRequestWithCurrentTime(req *request.Request, curTimeFn func() time.T
 		// wrapped in a custom io.Closer that we do not want to be stompped
 		// on top of by the signer.
 		v4.DisableRequestBodyOverwrite = true
+		v4.ServiceEndpointID = req.ClientInfo.EndpointID
 	})
 
 	for _, opt := range opts {

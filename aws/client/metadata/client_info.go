@@ -12,4 +12,5 @@ type ClientInfo struct {
 	JSONVersion    string
 	TargetPrefix   string
 	ResolvedRegion string
+	EndpointID     string
 }

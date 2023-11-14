@@ -26,6 +26,11 @@ aws_access_key_id = complete_creds_with_token_akid
 aws_secret_access_key = complete_creds_with_token_secret
 aws_session_token = complete_creds_with_token_token
 
+[complete_creds_with_scope]
+aws_access_key_id = complete_creds_with_scope_akid
+aws_secret_access_key = complete_creds_with_scope_secret
+aws_credential_scope = complete_creds_with_scope_scope
+
 [full_profile]
 aws_access_key_id = full_profile_akid
 aws_secret_access_key = full_profile_secret

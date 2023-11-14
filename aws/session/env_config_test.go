@@ -77,6 +77,19 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 				ProviderName: "EnvConfigCredentials",
 			},
 		},
+		{
+			Env: map[string]string{
+				"AWS_ACCESS_KEY":       "AKID",
+				"AWS_SECRET_KEY":       "SECRET",
+				"AWS_CREDENTIAL_SCOPE": "SCOPE",
+			},
+			Val: credentials.Value{
+				AccessKeyID:     "AKID",
+				SecretAccessKey: "SECRET",
+				CredentialScope: "SCOPE",
+				ProviderName:    "EnvConfigCredentials",
+			},
+		},
 	}
 
 	for i, c := range cases {

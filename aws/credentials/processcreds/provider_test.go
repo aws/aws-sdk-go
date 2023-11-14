@@ -15,6 +15,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/credentials/processcreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/internal/sdktesting"
@@ -533,6 +534,35 @@ func TestProcessProviderAltConstruct(t *testing.T) {
 	}
 	if creds.IsExpired() {
 		t.Errorf("expected %v, got %v", "static credentials/not expired", "expired")
+	}
+}
+
+func TestProcessProviderCredentialScope(t *testing.T) {
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
+
+	cmd := exec.Command(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join([]string{"testdata", "complete.json"}, string(os.PathSeparator))),
+	)
+	provider := processcreds.NewCredentialsCommand(cmd)
+	creds, err := provider.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+
+	expected := credentials.Value{
+		AccessKeyID:     "complete_accesskey",
+		SecretAccessKey: "complete_secretkey",
+		SessionToken:    "complete_sessiontoken",
+		CredentialScope: "complete_credentialscope",
+		ProviderName:    "ProcessProvider",
+	}
+
+	if expected != creds {
+		t.Errorf("expected %v, got %v", expected, creds)
 	}
 }
 

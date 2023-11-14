@@ -2592,6 +2592,8 @@ type Credentials struct {
 	// AccessKeyId is a required field
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
+	CredentialScope *string `type:"string"`
+
 	// The date on which the current credentials expire.
 	//
 	// Expiration is a required field
@@ -2633,6 +2635,12 @@ func (s Credentials) GoString() string {
 // SetAccessKeyId sets the AccessKeyId field's value.
 func (s *Credentials) SetAccessKeyId(v string) *Credentials {
 	s.AccessKeyId = &v
+	return s
+}
+
+// SetCredentialScope sets the CredentialScope field's value.
+func (s *Credentials) SetCredentialScope(v string) *Credentials {
+	s.CredentialScope = &v
 	return s
 }
 

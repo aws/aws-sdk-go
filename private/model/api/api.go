@@ -95,11 +95,11 @@ type Metadata struct {
 	EndpointsID         string
 	ServiceID           string
 
-	NoResolveEndpoint bool
+	NoResolveEndpoint  bool
 	AWSQueryCompatible *awsQueryCompatible
 }
 
-type awsQueryCompatible struct {}
+type awsQueryCompatible struct{}
 
 // ProtocolSettings define how the SDK should handle requests in the context
 // of of a protocol.
@@ -605,6 +605,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 			Endpoint:     endpoint,
 			APIVersion:   "{{ .Metadata.APIVersion }}",
             ResolvedRegion: resolvedRegion,
+			{{ if not .NoConstServiceNames -}}
+				EndpointID: EndpointsID,
+			{{- end }}
 			{{ if and (.Metadata.JSONVersion) (eq .Metadata.Protocol "json") -}}
 				JSONVersion:  "{{ .Metadata.JSONVersion }}",
 			{{- end }}

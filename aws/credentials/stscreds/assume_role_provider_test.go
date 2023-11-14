@@ -12,7 +12,8 @@ import (
 )
 
 type stubSTS struct {
-	TestInput func(*sts.AssumeRoleInput)
+	TestInput       func(*sts.AssumeRoleInput)
+	CredentialScope string
 }
 
 func (s *stubSTS) AssumeRole(input *sts.AssumeRoleInput) (*sts.AssumeRoleOutput, error) {
@@ -26,7 +27,13 @@ func (s *stubSTS) AssumeRole(input *sts.AssumeRoleInput) (*sts.AssumeRoleOutput,
 			AccessKeyId:     input.RoleArn,
 			SecretAccessKey: aws.String("assumedSecretAccessKey"),
 			SessionToken:    aws.String("assumedSessionToken"),
-			Expiration:      &expiry,
+			CredentialScope: func() *string {
+				if len(s.CredentialScope) > 0 {
+					return aws.String(s.CredentialScope)
+				}
+				return nil
+			}(),
+			Expiration: &expiry,
 		},
 	}, nil
 }
@@ -261,6 +268,44 @@ func TestAssumeRoleProvider_RetrieveWithContext(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "", creds.CredentialScope; e != a {
+		t.Errorf("expect no credential scope, got %v", a)
+	}
+}
+
+func TestAssumeRoleProvider_RetrieveWithContext_CredentialScope(t *testing.T) {
+	stub := &stubSTSWithContext{
+		called: make(chan struct{}),
+		stubSTS: stubSTS{
+			CredentialScope: "assumedCredentialScope",
+		},
+	}
+	p := &AssumeRoleProvider{
+		Client:  stub,
+		RoleARN: "roleARN",
+	}
+
+	go func() {
+		stub.called <- struct{}{}
+	}()
+
+	creds, err := p.RetrieveWithContext(aws.BackgroundContext())
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+
+	if e, a := "roleARN", creds.AccessKeyID; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "assumedSecretAccessKey", creds.SecretAccessKey; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "assumedCredentialScope", creds.CredentialScope; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }

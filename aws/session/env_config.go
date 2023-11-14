@@ -214,6 +214,9 @@ var (
 	credSessionEnvKey = []string{
 		"AWS_SESSION_TOKEN",
 	}
+	awsCredentialScopeEnv = []string{
+		"AWS_CREDENTIAL_SCOPE",
+	}
 
 	enableEndpointDiscoveryEnvKey = []string{
 		"AWS_ENABLE_ENDPOINT_DISCOVERY",
@@ -308,6 +311,7 @@ func envConfigLoad(enableSharedConfig bool) (envConfig, error) {
 	setFromEnvVal(&creds.AccessKeyID, credAccessEnvKey)
 	setFromEnvVal(&creds.SecretAccessKey, credSecretEnvKey)
 	setFromEnvVal(&creds.SessionToken, credSessionEnvKey)
+	setFromEnvVal(&creds.CredentialScope, awsCredentialScopeEnv)
 	if creds.HasKeys() {
 		// Require logical grouping of credentials
 		creds.ProviderName = EnvProviderName
