@@ -88,6 +88,10 @@ type ResourceExplorer2API interface {
 	DisassociateDefaultViewWithContext(aws.Context, *resourceexplorer2.DisassociateDefaultViewInput, ...request.Option) (*resourceexplorer2.DisassociateDefaultViewOutput, error)
 	DisassociateDefaultViewRequest(*resourceexplorer2.DisassociateDefaultViewInput) (*request.Request, *resourceexplorer2.DisassociateDefaultViewOutput)
 
+	GetAccountLevelServiceConfiguration(*resourceexplorer2.GetAccountLevelServiceConfigurationInput) (*resourceexplorer2.GetAccountLevelServiceConfigurationOutput, error)
+	GetAccountLevelServiceConfigurationWithContext(aws.Context, *resourceexplorer2.GetAccountLevelServiceConfigurationInput, ...request.Option) (*resourceexplorer2.GetAccountLevelServiceConfigurationOutput, error)
+	GetAccountLevelServiceConfigurationRequest(*resourceexplorer2.GetAccountLevelServiceConfigurationInput) (*request.Request, *resourceexplorer2.GetAccountLevelServiceConfigurationOutput)
+
 	GetDefaultView(*resourceexplorer2.GetDefaultViewInput) (*resourceexplorer2.GetDefaultViewOutput, error)
 	GetDefaultViewWithContext(aws.Context, *resourceexplorer2.GetDefaultViewInput, ...request.Option) (*resourceexplorer2.GetDefaultViewOutput, error)
 	GetDefaultViewRequest(*resourceexplorer2.GetDefaultViewInput) (*request.Request, *resourceexplorer2.GetDefaultViewOutput)
@@ -106,6 +110,13 @@ type ResourceExplorer2API interface {
 
 	ListIndexesPages(*resourceexplorer2.ListIndexesInput, func(*resourceexplorer2.ListIndexesOutput, bool) bool) error
 	ListIndexesPagesWithContext(aws.Context, *resourceexplorer2.ListIndexesInput, func(*resourceexplorer2.ListIndexesOutput, bool) bool, ...request.Option) error
+
+	ListIndexesForMembers(*resourceexplorer2.ListIndexesForMembersInput) (*resourceexplorer2.ListIndexesForMembersOutput, error)
+	ListIndexesForMembersWithContext(aws.Context, *resourceexplorer2.ListIndexesForMembersInput, ...request.Option) (*resourceexplorer2.ListIndexesForMembersOutput, error)
+	ListIndexesForMembersRequest(*resourceexplorer2.ListIndexesForMembersInput) (*request.Request, *resourceexplorer2.ListIndexesForMembersOutput)
+
+	ListIndexesForMembersPages(*resourceexplorer2.ListIndexesForMembersInput, func(*resourceexplorer2.ListIndexesForMembersOutput, bool) bool) error
+	ListIndexesForMembersPagesWithContext(aws.Context, *resourceexplorer2.ListIndexesForMembersInput, func(*resourceexplorer2.ListIndexesForMembersOutput, bool) bool, ...request.Option) error
 
 	ListSupportedResourceTypes(*resourceexplorer2.ListSupportedResourceTypesInput) (*resourceexplorer2.ListSupportedResourceTypesOutput, error)
 	ListSupportedResourceTypesWithContext(aws.Context, *resourceexplorer2.ListSupportedResourceTypesInput, ...request.Option) (*resourceexplorer2.ListSupportedResourceTypesOutput, error)

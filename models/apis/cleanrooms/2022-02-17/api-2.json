@@ -1088,7 +1088,7 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "AnalysisTemplateSummary":{
       "type":"structure",
@@ -1122,7 +1122,7 @@
     },
     "AnalysisTemplateText":{
       "type":"string",
-      "max":15000,
+      "max":90000,
       "min":0
     },
     "BatchGetCollaborationAnalysisTemplateError":{
@@ -1335,7 +1335,7 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "CollaborationName":{
       "type":"string",
@@ -1523,7 +1523,7 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "ConfiguredTableAssociationSummary":{
       "type":"structure",
@@ -1556,7 +1556,7 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "ConfiguredTableSummary":{
       "type":"structure",
@@ -1652,7 +1652,8 @@
         "creatorDisplayName":{"shape":"DisplayName"},
         "dataEncryptionMetadata":{"shape":"DataEncryptionMetadata"},
         "queryLogStatus":{"shape":"CollaborationQueryLogStatus"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "creatorPaymentConfiguration":{"shape":"PaymentConfiguration"}
       }
     },
     "CreateCollaborationOutput":{
@@ -1748,7 +1749,8 @@
         "collaborationIdentifier":{"shape":"CollaborationIdentifier"},
         "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
         "tags":{"shape":"TagMap"},
-        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"}
+        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"},
+        "paymentConfiguration":{"shape":"MembershipPaymentConfiguration"}
       }
     },
     "CreateMembershipOutput":{
@@ -2549,7 +2551,8 @@
       "members":{
         "accountId":{"shape":"AccountId"},
         "memberAbilities":{"shape":"MemberAbilities"},
-        "displayName":{"shape":"DisplayName"}
+        "displayName":{"shape":"DisplayName"},
+        "paymentConfiguration":{"shape":"PaymentConfiguration"}
       }
     },
     "MemberStatus":{
@@ -2569,7 +2572,8 @@
         "displayName",
         "abilities",
         "createTime",
-        "updateTime"
+        "updateTime",
+        "paymentConfiguration"
       ],
       "members":{
         "accountId":{"shape":"AccountId"},
@@ -2579,7 +2583,8 @@
         "createTime":{"shape":"Timestamp"},
         "updateTime":{"shape":"Timestamp"},
         "membershipId":{"shape":"UUID"},
-        "membershipArn":{"shape":"MembershipArn"}
+        "membershipArn":{"shape":"MembershipArn"},
+        "paymentConfiguration":{"shape":"PaymentConfiguration"}
       }
     },
     "MemberSummaryList":{
@@ -2600,7 +2605,8 @@
         "updateTime",
         "status",
         "memberAbilities",
-        "queryLogStatus"
+        "queryLogStatus",
+        "paymentConfiguration"
       ],
       "members":{
         "id":{"shape":"UUID"},
@@ -2615,7 +2621,8 @@
         "status":{"shape":"MembershipStatus"},
         "memberAbilities":{"shape":"MemberAbilities"},
         "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
-        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"}
+        "defaultResultConfiguration":{"shape":"MembershipProtectedQueryResultConfiguration"},
+        "paymentConfiguration":{"shape":"MembershipPaymentConfiguration"}
       }
     },
     "MembershipArn":{
@@ -2628,7 +2635,14 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    },
+    "MembershipPaymentConfiguration":{
+      "type":"structure",
+      "required":["queryCompute"],
+      "members":{
+        "queryCompute":{"shape":"MembershipQueryComputePaymentConfig"}
+      }
     },
     "MembershipProtectedQueryOutputConfiguration":{
       "type":"structure",
@@ -2643,6 +2657,13 @@
       "members":{
         "outputConfiguration":{"shape":"MembershipProtectedQueryOutputConfiguration"},
         "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "MembershipQueryComputePaymentConfig":{
+      "type":"structure",
+      "required":["isResponsible"],
+      "members":{
+        "isResponsible":{"shape":"Boolean"}
       }
     },
     "MembershipQueryLogStatus":{
@@ -2673,7 +2694,8 @@
         "createTime",
         "updateTime",
         "status",
-        "memberAbilities"
+        "memberAbilities",
+        "paymentConfiguration"
       ],
       "members":{
         "id":{"shape":"UUID"},
@@ -2686,7 +2708,8 @@
         "createTime":{"shape":"Timestamp"},
         "updateTime":{"shape":"Timestamp"},
         "status":{"shape":"MembershipStatus"},
-        "memberAbilities":{"shape":"MemberAbilities"}
+        "memberAbilities":{"shape":"MemberAbilities"},
+        "paymentConfiguration":{"shape":"MembershipPaymentConfiguration"}
       }
     },
     "MembershipSummaryList":{
@@ -2734,6 +2757,13 @@
       "max":250,
       "min":0
     },
+    "PaymentConfiguration":{
+      "type":"structure",
+      "required":["queryCompute"],
+      "members":{
+        "queryCompute":{"shape":"QueryComputePaymentConfig"}
+      }
+    },
     "ProtectedQuery":{
       "type":"structure",
       "required":[
@@ -2770,8 +2800,8 @@
     "ProtectedQueryIdentifier":{
       "type":"string",
       "max":36,
-      "min":1,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "min":36,
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "ProtectedQueryMemberOutputList":{
       "type":"list",
@@ -2842,7 +2872,7 @@
     },
     "ProtectedQuerySQLParametersQueryStringString":{
       "type":"string",
-      "max":15000,
+      "max":90000,
       "min":0
     },
     "ProtectedQuerySingleMemberOutput":{
@@ -2894,6 +2924,13 @@
     "ProtectedQueryType":{
       "type":"string",
       "enum":["SQL"]
+    },
+    "QueryComputePaymentConfig":{
+      "type":"structure",
+      "required":["isResponsible"],
+      "members":{
+        "isResponsible":{"shape":"Boolean"}
+      }
     },
     "QueryTables":{
       "type":"list",
@@ -2949,7 +2986,7 @@
       "type":"string",
       "max":512,
       "min":32,
-      "pattern":"arn:aws:iam::[\\w]+:role/[\\w+=,./@-]+"
+      "pattern":"arn:aws:iam::[\\w]+:role/[\\w+=./@-]+"
     },
     "ScalarFunctions":{
       "type":"string",
@@ -3171,7 +3208,7 @@
       "type":"string",
       "max":36,
       "min":36,
-      "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "UntagResourceInput":{
       "type":"structure",

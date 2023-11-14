@@ -11305,6 +11305,27 @@
       "type":"string",
       "sensitive":true
     },
+    "SegmentAttributeName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SegmentAttributeValue":{
+      "type":"structure",
+      "members":{
+        "ValueString":{"shape":"SegmentAttributeValueString"}
+      }
+    },
+    "SegmentAttributeValueString":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "SegmentAttributes":{
+      "type":"map",
+      "key":{"shape":"SegmentAttributeName"},
+      "value":{"shape":"SegmentAttributeValue"}
+    },
     "SendNotificationActionDefinition":{
       "type":"structure",
       "required":[
@@ -11421,7 +11442,8 @@
         "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"},
         "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"},
         "PersistentChat":{"shape":"PersistentChat"},
-        "RelatedContactId":{"shape":"ContactId"}
+        "RelatedContactId":{"shape":"ContactId"},
+        "SegmentAttributes":{"shape":"SegmentAttributes"}
       }
     },
     "StartChatContactResponse":{

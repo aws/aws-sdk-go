@@ -220,6 +220,13 @@ type BackupAPI interface {
 	GetSupportedResourceTypesWithContext(aws.Context, *backup.GetSupportedResourceTypesInput, ...request.Option) (*backup.GetSupportedResourceTypesOutput, error)
 	GetSupportedResourceTypesRequest(*backup.GetSupportedResourceTypesInput) (*request.Request, *backup.GetSupportedResourceTypesOutput)
 
+	ListBackupJobSummaries(*backup.ListBackupJobSummariesInput) (*backup.ListBackupJobSummariesOutput, error)
+	ListBackupJobSummariesWithContext(aws.Context, *backup.ListBackupJobSummariesInput, ...request.Option) (*backup.ListBackupJobSummariesOutput, error)
+	ListBackupJobSummariesRequest(*backup.ListBackupJobSummariesInput) (*request.Request, *backup.ListBackupJobSummariesOutput)
+
+	ListBackupJobSummariesPages(*backup.ListBackupJobSummariesInput, func(*backup.ListBackupJobSummariesOutput, bool) bool) error
+	ListBackupJobSummariesPagesWithContext(aws.Context, *backup.ListBackupJobSummariesInput, func(*backup.ListBackupJobSummariesOutput, bool) bool, ...request.Option) error
+
 	ListBackupJobs(*backup.ListBackupJobsInput) (*backup.ListBackupJobsOutput, error)
 	ListBackupJobsWithContext(aws.Context, *backup.ListBackupJobsInput, ...request.Option) (*backup.ListBackupJobsOutput, error)
 	ListBackupJobsRequest(*backup.ListBackupJobsInput) (*request.Request, *backup.ListBackupJobsOutput)
@@ -261,6 +268,13 @@ type BackupAPI interface {
 
 	ListBackupVaultsPages(*backup.ListBackupVaultsInput, func(*backup.ListBackupVaultsOutput, bool) bool) error
 	ListBackupVaultsPagesWithContext(aws.Context, *backup.ListBackupVaultsInput, func(*backup.ListBackupVaultsOutput, bool) bool, ...request.Option) error
+
+	ListCopyJobSummaries(*backup.ListCopyJobSummariesInput) (*backup.ListCopyJobSummariesOutput, error)
+	ListCopyJobSummariesWithContext(aws.Context, *backup.ListCopyJobSummariesInput, ...request.Option) (*backup.ListCopyJobSummariesOutput, error)
+	ListCopyJobSummariesRequest(*backup.ListCopyJobSummariesInput) (*request.Request, *backup.ListCopyJobSummariesOutput)
+
+	ListCopyJobSummariesPages(*backup.ListCopyJobSummariesInput, func(*backup.ListCopyJobSummariesOutput, bool) bool) error
+	ListCopyJobSummariesPagesWithContext(aws.Context, *backup.ListCopyJobSummariesInput, func(*backup.ListCopyJobSummariesOutput, bool) bool, ...request.Option) error
 
 	ListCopyJobs(*backup.ListCopyJobsInput) (*backup.ListCopyJobsOutput, error)
 	ListCopyJobsWithContext(aws.Context, *backup.ListCopyJobsInput, ...request.Option) (*backup.ListCopyJobsOutput, error)
@@ -331,6 +345,13 @@ type BackupAPI interface {
 
 	ListReportPlansPages(*backup.ListReportPlansInput, func(*backup.ListReportPlansOutput, bool) bool) error
 	ListReportPlansPagesWithContext(aws.Context, *backup.ListReportPlansInput, func(*backup.ListReportPlansOutput, bool) bool, ...request.Option) error
+
+	ListRestoreJobSummaries(*backup.ListRestoreJobSummariesInput) (*backup.ListRestoreJobSummariesOutput, error)
+	ListRestoreJobSummariesWithContext(aws.Context, *backup.ListRestoreJobSummariesInput, ...request.Option) (*backup.ListRestoreJobSummariesOutput, error)
+	ListRestoreJobSummariesRequest(*backup.ListRestoreJobSummariesInput) (*request.Request, *backup.ListRestoreJobSummariesOutput)
+
+	ListRestoreJobSummariesPages(*backup.ListRestoreJobSummariesInput, func(*backup.ListRestoreJobSummariesOutput, bool) bool) error
+	ListRestoreJobSummariesPagesWithContext(aws.Context, *backup.ListRestoreJobSummariesInput, func(*backup.ListRestoreJobSummariesOutput, bool) bool, ...request.Option) error
 
 	ListRestoreJobs(*backup.ListRestoreJobsInput) (*backup.ListRestoreJobsOutput, error)
 	ListRestoreJobsWithContext(aws.Context, *backup.ListRestoreJobsInput, ...request.Option) (*backup.ListRestoreJobsOutput, error)

@@ -55963,6 +55963,52 @@ func (s *SecurityProfilesSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *S
 	return s
 }
 
+// A value for a segment attribute. This is structured as a map where the key
+// is valueString and the value is a string.
+type SegmentAttributeValue struct {
+	_ struct{} `type:"structure"`
+
+	// The value of a segment attribute.
+	ValueString *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SegmentAttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SegmentAttributeValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SegmentAttributeValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SegmentAttributeValue"}
+	if s.ValueString != nil && len(*s.ValueString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueString sets the ValueString field's value.
+func (s *SegmentAttributeValue) SetValueString(v string) *SegmentAttributeValue {
+	s.ValueString = &v
+	return s
+}
+
 // Information about the send notification action.
 type SendNotificationActionDefinition struct {
 	_ struct{} `type:"structure"`
@@ -56401,6 +56447,20 @@ type StartChatContactInput struct {
 	// You cannot provide data for both RelatedContactId and PersistentChat.
 	RelatedContactId *string `min:"1" type:"string"`
 
+	// A set of system defined key-value pairs stored on individual contact segments
+	// using an attribute map. The attributes are standard Amazon Connect attributes.
+	// They can be accessed in flows.
+	//
+	// Attribute keys can include only alphanumeric, -, and _.
+	//
+	// This field can be used to show channel subtype, such as connect:Guide.
+	//
+	// The types application/vnd.amazonaws.connect.message.interactive and application/vnd.amazonaws.connect.message.interactive.response
+	// must be present in the SupportedMessagingContentTypes field of this API in
+	// order to set SegmentAttributes as {"connect:Subtype": {"valueString" : "connect:Guide"
+	// }}.
+	SegmentAttributes map[string]*SegmentAttributeValue `type:"map"`
+
 	// The supported chat message content types. Supported types are text/plain,
 	// text/markdown, application/json, application/vnd.amazonaws.connect.message.interactive,
 	// and application/vnd.amazonaws.connect.message.interactive.response.
@@ -56470,6 +56530,16 @@ func (s *StartChatContactInput) Validate() error {
 			invalidParams.AddNested("PersistentChat", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SegmentAttributes != nil {
+		for i, v := range s.SegmentAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SegmentAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -56528,6 +56598,12 @@ func (s *StartChatContactInput) SetPersistentChat(v *PersistentChat) *StartChatC
 // SetRelatedContactId sets the RelatedContactId field's value.
 func (s *StartChatContactInput) SetRelatedContactId(v string) *StartChatContactInput {
 	s.RelatedContactId = &v
+	return s
+}
+
+// SetSegmentAttributes sets the SegmentAttributes field's value.
+func (s *StartChatContactInput) SetSegmentAttributes(v map[string]*SegmentAttributeValue) *StartChatContactInput {
+	s.SegmentAttributes = v
 	return s
 }
 

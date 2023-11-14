@@ -108,6 +108,10 @@ type GlueAPI interface {
 	BatchGetPartitionWithContext(aws.Context, *glue.BatchGetPartitionInput, ...request.Option) (*glue.BatchGetPartitionOutput, error)
 	BatchGetPartitionRequest(*glue.BatchGetPartitionInput) (*request.Request, *glue.BatchGetPartitionOutput)
 
+	BatchGetTableOptimizer(*glue.BatchGetTableOptimizerInput) (*glue.BatchGetTableOptimizerOutput, error)
+	BatchGetTableOptimizerWithContext(aws.Context, *glue.BatchGetTableOptimizerInput, ...request.Option) (*glue.BatchGetTableOptimizerOutput, error)
+	BatchGetTableOptimizerRequest(*glue.BatchGetTableOptimizerInput) (*request.Request, *glue.BatchGetTableOptimizerOutput)
+
 	BatchGetTriggers(*glue.BatchGetTriggersInput) (*glue.BatchGetTriggersOutput, error)
 	BatchGetTriggersWithContext(aws.Context, *glue.BatchGetTriggersInput, ...request.Option) (*glue.BatchGetTriggersOutput, error)
 	BatchGetTriggersRequest(*glue.BatchGetTriggersInput) (*request.Request, *glue.BatchGetTriggersOutput)
@@ -216,6 +220,10 @@ type GlueAPI interface {
 	CreateTableWithContext(aws.Context, *glue.CreateTableInput, ...request.Option) (*glue.CreateTableOutput, error)
 	CreateTableRequest(*glue.CreateTableInput) (*request.Request, *glue.CreateTableOutput)
 
+	CreateTableOptimizer(*glue.CreateTableOptimizerInput) (*glue.CreateTableOptimizerOutput, error)
+	CreateTableOptimizerWithContext(aws.Context, *glue.CreateTableOptimizerInput, ...request.Option) (*glue.CreateTableOptimizerOutput, error)
+	CreateTableOptimizerRequest(*glue.CreateTableOptimizerInput) (*request.Request, *glue.CreateTableOptimizerOutput)
+
 	CreateTrigger(*glue.CreateTriggerInput) (*glue.CreateTriggerOutput, error)
 	CreateTriggerWithContext(aws.Context, *glue.CreateTriggerInput, ...request.Option) (*glue.CreateTriggerOutput, error)
 	CreateTriggerRequest(*glue.CreateTriggerInput) (*request.Request, *glue.CreateTriggerOutput)
@@ -311,6 +319,10 @@ type GlueAPI interface {
 	DeleteTable(*glue.DeleteTableInput) (*glue.DeleteTableOutput, error)
 	DeleteTableWithContext(aws.Context, *glue.DeleteTableInput, ...request.Option) (*glue.DeleteTableOutput, error)
 	DeleteTableRequest(*glue.DeleteTableInput) (*request.Request, *glue.DeleteTableOutput)
+
+	DeleteTableOptimizer(*glue.DeleteTableOptimizerInput) (*glue.DeleteTableOptimizerOutput, error)
+	DeleteTableOptimizerWithContext(aws.Context, *glue.DeleteTableOptimizerInput, ...request.Option) (*glue.DeleteTableOptimizerOutput, error)
+	DeleteTableOptimizerRequest(*glue.DeleteTableOptimizerInput) (*request.Request, *glue.DeleteTableOptimizerOutput)
 
 	DeleteTableVersion(*glue.DeleteTableVersionInput) (*glue.DeleteTableVersionOutput, error)
 	DeleteTableVersionWithContext(aws.Context, *glue.DeleteTableVersionInput, ...request.Option) (*glue.DeleteTableVersionOutput, error)
@@ -573,6 +585,10 @@ type GlueAPI interface {
 	GetTableWithContext(aws.Context, *glue.GetTableInput, ...request.Option) (*glue.GetTableOutput, error)
 	GetTableRequest(*glue.GetTableInput) (*request.Request, *glue.GetTableOutput)
 
+	GetTableOptimizer(*glue.GetTableOptimizerInput) (*glue.GetTableOptimizerOutput, error)
+	GetTableOptimizerWithContext(aws.Context, *glue.GetTableOptimizerInput, ...request.Option) (*glue.GetTableOptimizerOutput, error)
+	GetTableOptimizerRequest(*glue.GetTableOptimizerInput) (*request.Request, *glue.GetTableOptimizerOutput)
+
 	GetTableVersion(*glue.GetTableVersionInput) (*glue.GetTableVersionOutput, error)
 	GetTableVersionWithContext(aws.Context, *glue.GetTableVersionInput, ...request.Option) (*glue.GetTableVersionOutput, error)
 	GetTableVersionRequest(*glue.GetTableVersionInput) (*request.Request, *glue.GetTableVersionOutput)
@@ -760,6 +776,13 @@ type GlueAPI interface {
 	ListStatements(*glue.ListStatementsInput) (*glue.ListStatementsOutput, error)
 	ListStatementsWithContext(aws.Context, *glue.ListStatementsInput, ...request.Option) (*glue.ListStatementsOutput, error)
 	ListStatementsRequest(*glue.ListStatementsInput) (*request.Request, *glue.ListStatementsOutput)
+
+	ListTableOptimizerRuns(*glue.ListTableOptimizerRunsInput) (*glue.ListTableOptimizerRunsOutput, error)
+	ListTableOptimizerRunsWithContext(aws.Context, *glue.ListTableOptimizerRunsInput, ...request.Option) (*glue.ListTableOptimizerRunsOutput, error)
+	ListTableOptimizerRunsRequest(*glue.ListTableOptimizerRunsInput) (*request.Request, *glue.ListTableOptimizerRunsOutput)
+
+	ListTableOptimizerRunsPages(*glue.ListTableOptimizerRunsInput, func(*glue.ListTableOptimizerRunsOutput, bool) bool) error
+	ListTableOptimizerRunsPagesWithContext(aws.Context, *glue.ListTableOptimizerRunsInput, func(*glue.ListTableOptimizerRunsOutput, bool) bool, ...request.Option) error
 
 	ListTriggers(*glue.ListTriggersInput) (*glue.ListTriggersOutput, error)
 	ListTriggersWithContext(aws.Context, *glue.ListTriggersInput, ...request.Option) (*glue.ListTriggersOutput, error)
@@ -969,6 +992,10 @@ type GlueAPI interface {
 	UpdateTable(*glue.UpdateTableInput) (*glue.UpdateTableOutput, error)
 	UpdateTableWithContext(aws.Context, *glue.UpdateTableInput, ...request.Option) (*glue.UpdateTableOutput, error)
 	UpdateTableRequest(*glue.UpdateTableInput) (*request.Request, *glue.UpdateTableOutput)
+
+	UpdateTableOptimizer(*glue.UpdateTableOptimizerInput) (*glue.UpdateTableOptimizerOutput, error)
+	UpdateTableOptimizerWithContext(aws.Context, *glue.UpdateTableOptimizerInput, ...request.Option) (*glue.UpdateTableOptimizerOutput, error)
+	UpdateTableOptimizerRequest(*glue.UpdateTableOptimizerInput) (*request.Request, *glue.UpdateTableOptimizerOutput)
 
 	UpdateTrigger(*glue.UpdateTriggerInput) (*glue.UpdateTriggerOutput, error)
 	UpdateTriggerWithContext(aws.Context, *glue.UpdateTriggerInput, ...request.Option) (*glue.UpdateTriggerOutput, error)

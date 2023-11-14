@@ -379,10 +379,12 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "DataEncryptionMetadata$allowCleartext": "<p>Indicates whether encrypted tables can contain cleartext data (true) or are to cryptographically process every column (false).</p>",
-        "DataEncryptionMetadata$allowDuplicates": "<p>Indicates whether Fingerprint columns can contain duplicate entries (true) or are to contain only non-repeated values (false).</p>",
-        "DataEncryptionMetadata$allowJoinsOnColumnsWithDifferentNames": "<p>Indicates whether Fingerprint columns can be joined on any other Fingerprint column with a different name (true) or can only be joined on Fingerprint columns of the same name (false).</p>",
-        "DataEncryptionMetadata$preserveNulls": "<p>Indicates whether NULL values are to be copied as NULL to encrypted tables (true) or cryptographically processed (false).</p>"
+        "DataEncryptionMetadata$allowCleartext": "<p>Indicates whether encrypted tables can contain cleartext data (<code>TRUE</code>) or are to cryptographically process every column (<code>FALSE</code>).</p>",
+        "DataEncryptionMetadata$allowDuplicates": "<p>Indicates whether Fingerprint columns can contain duplicate entries (<code>TRUE</code>) or are to contain only non-repeated values (<code>FALSE</code>).</p>",
+        "DataEncryptionMetadata$allowJoinsOnColumnsWithDifferentNames": "<p>Indicates whether Fingerprint columns can be joined on any other Fingerprint column with a different name (<code>TRUE</code>) or can only be joined on Fingerprint columns of the same name (<code>FALSE</code>).</p>",
+        "DataEncryptionMetadata$preserveNulls": "<p>Indicates whether NULL values are to be copied as NULL to encrypted tables (<code>TRUE</code>) or cryptographically processed (<code>FALSE</code>).</p>",
+        "MembershipQueryComputePaymentConfig$isResponsible": "<p>Indicates whether the collaboration member has accepted to pay for query compute costs (<code>TRUE</code>) or has not accepted to pay for query compute costs (<code>FALSE</code>).</p> <p>If the collaboration creator has not specified anyone to pay for query compute costs, then the member who can query is the default payer. </p> <p>An error message is returned for the following reasons: </p> <ul> <li> <p>If you set the value to <code>FALSE</code> but you are responsible to pay for query compute costs. </p> </li> <li> <p>If you set the value to <code>TRUE</code> but you are not responsible to pay for query compute costs. </p> </li> </ul>",
+        "QueryComputePaymentConfig$isResponsible": "<p>Indicates whether the collaboration creator has configured the collaboration member to pay for query compute costs (<code>TRUE</code>) or has not configured the collaboration member to pay for query compute costs (<code>FALSE</code>).</p> <p>Exactly one member can be configured to pay for query compute costs. An error is returned if the collaboration creator sets a <code>TRUE</code> value for more than one member in the collaboration. </p> <p>If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer. An error is returned if the collaboration creator sets a <code>FALSE</code> value for the member who can query.</p>"
       }
     },
     "CleanroomsArn": {
@@ -1120,7 +1122,7 @@
       "refs": {
         "Collaboration$memberStatus": "<p>The status of a member in a collaboration.</p>",
         "CollaborationSummary$memberStatus": "<p>The status of a member in a collaboration.</p>",
-        "MemberSummary$status": "<p>The status of the member. Valid values are `INVITED`, `ACTIVE`, `LEFT`, and `REMOVED`.</p>"
+        "MemberSummary$status": "<p>The status of the member. </p>"
       }
     },
     "MemberSummary": {
@@ -1182,6 +1184,14 @@
         "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
       }
     },
+    "MembershipPaymentConfiguration": {
+      "base": "<p>An object representing the payment responsibilities accepted by the collaboration member.</p>",
+      "refs": {
+        "CreateMembershipInput$paymentConfiguration": "<p>The payment responsibilities accepted by the collaboration member.</p> <p>Not required if the collaboration member has the member ability to run queries. </p> <p>Required if the collaboration member doesn't have the member ability to run queries but is configured as a payer by the collaboration creator. </p>",
+        "Membership$paymentConfiguration": "<p>The payment responsibilities accepted by the collaboration member.</p>",
+        "MembershipSummary$paymentConfiguration": "<p>The payment responsibilities accepted by the collaboration member.</p>"
+      }
+    },
     "MembershipProtectedQueryOutputConfiguration": {
       "base": "<p>Contains configurations for protected query results.</p>",
       "refs": {
@@ -1196,20 +1206,26 @@
         "UpdateMembershipInput$defaultResultConfiguration": "<p>The default protected query result configuration as specified by the member who can receive results.</p>"
       }
     },
+    "MembershipQueryComputePaymentConfig": {
+      "base": "<p>An object representing the payment responsibilities accepted by the collaboration member for query compute costs.</p>",
+      "refs": {
+        "MembershipPaymentConfiguration$queryCompute": "<p>The payment responsibilities accepted by the collaboration member for query compute costs.</p>"
+      }
+    },
     "MembershipQueryLogStatus": {
       "base": null,
       "refs": {
-        "CreateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>",
-        "Membership$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>",
-        "UpdateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>"
+        "CreateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the membership.</p>",
+        "Membership$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the membership.</p>",
+        "UpdateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the membership.</p>"
       }
     },
     "MembershipStatus": {
       "base": null,
       "refs": {
         "ListMembershipsInput$status": "<p>A filter which will return only memberships in the specified status.</p>",
-        "Membership$status": "<p>The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.</p>",
-        "MembershipSummary$status": "<p>The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.</p>"
+        "Membership$status": "<p>The status of the membership.</p>",
+        "MembershipSummary$status": "<p>The status of the membership.</p>"
       }
     },
     "MembershipSummary": {
@@ -1271,6 +1287,14 @@
       "refs": {
         "AnalysisParameter$defaultValue": "<p>Optional. The default value that is applied in the analysis template. The member who can query can override this value in the query editor.</p>",
         "ParameterMap$value": null
+      }
+    },
+    "PaymentConfiguration": {
+      "base": "<p>An object representing the collaboration member's payment responsibilities set by the collaboration creator.</p>",
+      "refs": {
+        "CreateCollaborationInput$creatorPaymentConfiguration": "<p>The collaboration creator's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
+        "MemberSpecification$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't speciﬁed anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
+        "MemberSummary$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p>"
       }
     },
     "ProtectedQuery": {
@@ -1393,6 +1417,12 @@
       "base": null,
       "refs": {
         "StartProtectedQueryInput$type": "<p>The type of the protected query to be started.</p>"
+      }
+    },
+    "QueryComputePaymentConfig": {
+      "base": "<p>An object representing the collaboration member's payment responsibilities set by the collaboration creator for query compute costs.</p>",
+      "refs": {
+        "PaymentConfiguration$queryCompute": "<p>The collaboration member's payment responsibilities set by the collaboration creator for query compute costs.</p>"
       }
     },
     "QueryTables": {

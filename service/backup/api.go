@@ -3717,6 +3717,151 @@ func (c *Backup) GetSupportedResourceTypesWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opListBackupJobSummaries = "ListBackupJobSummaries"
+
+// ListBackupJobSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListBackupJobSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBackupJobSummaries for more information on using the ListBackupJobSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListBackupJobSummariesRequest method.
+//	req, resp := client.ListBackupJobSummariesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupJobSummaries
+func (c *Backup) ListBackupJobSummariesRequest(input *ListBackupJobSummariesInput) (req *request.Request, output *ListBackupJobSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListBackupJobSummaries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/backup-job-summaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBackupJobSummariesInput{}
+	}
+
+	output = &ListBackupJobSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBackupJobSummaries API operation for AWS Backup.
+//
+// This is a request for a summary of backup jobs created or running within
+// the most recent 30 days. You can include parameters AccountID, State, ResourceType,
+// MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.
+//
+// This request returns a summary that contains Region, Account, State, ResourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListBackupJobSummaries for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     Indicates that something is wrong with a parameter's value. For example,
+//     the value is out of range.
+//
+//   - ServiceUnavailableException
+//     The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupJobSummaries
+func (c *Backup) ListBackupJobSummaries(input *ListBackupJobSummariesInput) (*ListBackupJobSummariesOutput, error) {
+	req, out := c.ListBackupJobSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListBackupJobSummariesWithContext is the same as ListBackupJobSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBackupJobSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListBackupJobSummariesWithContext(ctx aws.Context, input *ListBackupJobSummariesInput, opts ...request.Option) (*ListBackupJobSummariesOutput, error) {
+	req, out := c.ListBackupJobSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBackupJobSummariesPages iterates over the pages of a ListBackupJobSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBackupJobSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListBackupJobSummaries operation.
+//	pageNum := 0
+//	err := client.ListBackupJobSummariesPages(params,
+//	    func(page *backup.ListBackupJobSummariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Backup) ListBackupJobSummariesPages(input *ListBackupJobSummariesInput, fn func(*ListBackupJobSummariesOutput, bool) bool) error {
+	return c.ListBackupJobSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBackupJobSummariesPagesWithContext same as ListBackupJobSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListBackupJobSummariesPagesWithContext(ctx aws.Context, input *ListBackupJobSummariesInput, fn func(*ListBackupJobSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBackupJobSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBackupJobSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBackupJobSummariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListBackupJobs = "ListBackupJobs"
 
 // ListBackupJobsRequest generates a "aws/request.Request" representing the
@@ -4590,6 +4735,151 @@ func (c *Backup) ListBackupVaultsPagesWithContext(ctx aws.Context, input *ListBa
 
 	for p.Next() {
 		if !fn(p.Page().(*ListBackupVaultsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCopyJobSummaries = "ListCopyJobSummaries"
+
+// ListCopyJobSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCopyJobSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCopyJobSummaries for more information on using the ListCopyJobSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCopyJobSummariesRequest method.
+//	req, resp := client.ListCopyJobSummariesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListCopyJobSummaries
+func (c *Backup) ListCopyJobSummariesRequest(input *ListCopyJobSummariesInput) (req *request.Request, output *ListCopyJobSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListCopyJobSummaries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/copy-job-summaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCopyJobSummariesInput{}
+	}
+
+	output = &ListCopyJobSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCopyJobSummaries API operation for AWS Backup.
+//
+// This request obtains a list of copy jobs created or running within the the
+// most recent 30 days. You can include parameters AccountID, State, ResourceType,
+// MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.
+//
+// This request returns a summary that contains Region, Account, State, RestourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListCopyJobSummaries for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     Indicates that something is wrong with a parameter's value. For example,
+//     the value is out of range.
+//
+//   - ServiceUnavailableException
+//     The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListCopyJobSummaries
+func (c *Backup) ListCopyJobSummaries(input *ListCopyJobSummariesInput) (*ListCopyJobSummariesOutput, error) {
+	req, out := c.ListCopyJobSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListCopyJobSummariesWithContext is the same as ListCopyJobSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCopyJobSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListCopyJobSummariesWithContext(ctx aws.Context, input *ListCopyJobSummariesInput, opts ...request.Option) (*ListCopyJobSummariesOutput, error) {
+	req, out := c.ListCopyJobSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCopyJobSummariesPages iterates over the pages of a ListCopyJobSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCopyJobSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCopyJobSummaries operation.
+//	pageNum := 0
+//	err := client.ListCopyJobSummariesPages(params,
+//	    func(page *backup.ListCopyJobSummariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Backup) ListCopyJobSummariesPages(input *ListCopyJobSummariesInput, fn func(*ListCopyJobSummariesOutput, bool) bool) error {
+	return c.ListCopyJobSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCopyJobSummariesPagesWithContext same as ListCopyJobSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListCopyJobSummariesPagesWithContext(ctx aws.Context, input *ListCopyJobSummariesInput, fn func(*ListCopyJobSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCopyJobSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCopyJobSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCopyJobSummariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6021,6 +6311,151 @@ func (c *Backup) ListReportPlansPagesWithContext(ctx aws.Context, input *ListRep
 
 	for p.Next() {
 		if !fn(p.Page().(*ListReportPlansOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRestoreJobSummaries = "ListRestoreJobSummaries"
+
+// ListRestoreJobSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRestoreJobSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRestoreJobSummaries for more information on using the ListRestoreJobSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRestoreJobSummariesRequest method.
+//	req, resp := client.ListRestoreJobSummariesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListRestoreJobSummaries
+func (c *Backup) ListRestoreJobSummariesRequest(input *ListRestoreJobSummariesInput) (req *request.Request, output *ListRestoreJobSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListRestoreJobSummaries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/restore-job-summaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRestoreJobSummariesInput{}
+	}
+
+	output = &ListRestoreJobSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRestoreJobSummaries API operation for AWS Backup.
+//
+// This request obtains a summary of restore jobs created or running within
+// the the most recent 30 days. You can include parameters AccountID, State,
+// ResourceType, AggregationPeriod, MaxResults, or NextToken to filter results.
+//
+// This request returns a summary that contains Region, Account, State, RestourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListRestoreJobSummaries for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     Indicates that something is wrong with a parameter's value. For example,
+//     the value is out of range.
+//
+//   - ServiceUnavailableException
+//     The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListRestoreJobSummaries
+func (c *Backup) ListRestoreJobSummaries(input *ListRestoreJobSummariesInput) (*ListRestoreJobSummariesOutput, error) {
+	req, out := c.ListRestoreJobSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListRestoreJobSummariesWithContext is the same as ListRestoreJobSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRestoreJobSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListRestoreJobSummariesWithContext(ctx aws.Context, input *ListRestoreJobSummariesInput, opts ...request.Option) (*ListRestoreJobSummariesOutput, error) {
+	req, out := c.ListRestoreJobSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRestoreJobSummariesPages iterates over the pages of a ListRestoreJobSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRestoreJobSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRestoreJobSummaries operation.
+//	pageNum := 0
+//	err := client.ListRestoreJobSummariesPages(params,
+//	    func(page *backup.ListRestoreJobSummariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Backup) ListRestoreJobSummariesPages(input *ListRestoreJobSummariesInput, fn func(*ListRestoreJobSummariesOutput, bool) bool) error {
+	return c.ListRestoreJobSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRestoreJobSummariesPagesWithContext same as ListRestoreJobSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListRestoreJobSummariesPagesWithContext(ctx aws.Context, input *ListRestoreJobSummariesInput, fn func(*ListRestoreJobSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRestoreJobSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRestoreJobSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRestoreJobSummariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -7992,6 +8427,122 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This is a summary of jobs created or running within the most recent 30 days.
+//
+// The returned summary may contain the following: Region, Account, State, RestourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+type BackupJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID that owns the jobs within the summary.
+	AccountId *string `type:"string"`
+
+	// The value as a number of jobs in a job summary.
+	Count *int64 `type:"integer"`
+
+	// The value of time in number format of a job end time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	EndTime *time.Time `type:"timestamp"`
+
+	// This parameter is the job count for the specified message category.
+	//
+	// Example strings include AccessDenied, Success, and InvalidParameters. See
+	// Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	MessageCategory *string `type:"string"`
+
+	// The Amazon Web Services Regions within the job summary.
+	Region *string `type:"string"`
+
+	// This value is the job count for the specified resource type. The request
+	// GetSupportedResourceTypes returns strings for supported resource types.
+	ResourceType *string `type:"string"`
+
+	// The value of time in number format of a job start time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	StartTime *time.Time `type:"timestamp"`
+
+	// This value is job count for jobs with the specified state.
+	State *string `type:"string" enum:"BackupJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackupJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackupJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *BackupJobSummary) SetAccountId(v string) *BackupJobSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *BackupJobSummary) SetCount(v int64) *BackupJobSummary {
+	s.Count = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *BackupJobSummary) SetEndTime(v time.Time) *BackupJobSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *BackupJobSummary) SetMessageCategory(v string) *BackupJobSummary {
+	s.MessageCategory = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *BackupJobSummary) SetRegion(v string) *BackupJobSummary {
+	s.Region = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *BackupJobSummary) SetResourceType(v string) *BackupJobSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BackupJobSummary) SetStartTime(v time.Time) *BackupJobSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *BackupJobSummary) SetState(v string) *BackupJobSummary {
+	s.State = &v
+	return s
+}
+
 // Contains DeleteAt and MoveToColdStorageAt timestamps, which are used to specify
 // a lifecycle for a recovery point.
 //
@@ -8648,6 +9199,18 @@ type CopyJob struct {
 	// This is a boolean value indicating this is a parent (composite) copy job.
 	IsParent *bool `type:"boolean"`
 
+	// This parameter is the job count for the specified message category.
+	//
+	// Example strings include AccessDenied, Success, and InvalidParameters. See
+	// Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum
+	MessageCategory *string `type:"string"`
+
 	// This is the number of child (nested) copy jobs.
 	NumberOfChildJobs *int64 `type:"long"`
 
@@ -8773,6 +9336,12 @@ func (s *CopyJob) SetIsParent(v bool) *CopyJob {
 	return s
 }
 
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *CopyJob) SetMessageCategory(v string) *CopyJob {
+	s.MessageCategory = &v
+	return s
+}
+
 // SetNumberOfChildJobs sets the NumberOfChildJobs field's value.
 func (s *CopyJob) SetNumberOfChildJobs(v int64) *CopyJob {
 	s.NumberOfChildJobs = &v
@@ -8824,6 +9393,123 @@ func (s *CopyJob) SetState(v string) *CopyJob {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *CopyJob) SetStatusMessage(v string) *CopyJob {
 	s.StatusMessage = &v
+	return s
+}
+
+// This is a summary of copy jobs created or running within the most recent
+// 30 days.
+//
+// The returned summary may contain the following: Region, Account, State, RestourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+type CopyJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID that owns the jobs within the summary.
+	AccountId *string `type:"string"`
+
+	// The value as a number of jobs in a job summary.
+	Count *int64 `type:"integer"`
+
+	// The value of time in number format of a job end time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	EndTime *time.Time `type:"timestamp"`
+
+	// This parameter is the job count for the specified message category.
+	//
+	// Example strings include AccessDenied, Success, and InvalidParameters. See
+	// Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	MessageCategory *string `type:"string"`
+
+	// This is the Amazon Web Services Regions within the job summary.
+	Region *string `type:"string"`
+
+	// This value is the job count for the specified resource type. The request
+	// GetSupportedResourceTypes returns strings for supported resource types
+	ResourceType *string `type:"string"`
+
+	// The value of time in number format of a job start time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	StartTime *time.Time `type:"timestamp"`
+
+	// This value is job count for jobs with the specified state.
+	State *string `type:"string" enum:"CopyJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CopyJobSummary) SetAccountId(v string) *CopyJobSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *CopyJobSummary) SetCount(v int64) *CopyJobSummary {
+	s.Count = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CopyJobSummary) SetEndTime(v time.Time) *CopyJobSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *CopyJobSummary) SetMessageCategory(v string) *CopyJobSummary {
+	s.MessageCategory = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *CopyJobSummary) SetRegion(v string) *CopyJobSummary {
+	s.Region = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *CopyJobSummary) SetResourceType(v string) *CopyJobSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CopyJobSummary) SetStartTime(v time.Time) *CopyJobSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CopyJobSummary) SetState(v string) *CopyJobSummary {
+	s.State = &v
 	return s
 }
 
@@ -10954,6 +11640,13 @@ type DescribeBackupJobOutput struct {
 	// job.
 	IsParent *bool `type:"boolean"`
 
+	// This is the job count for the specified message category.
+	//
+	// Example strings may include AccessDenied, Success, and InvalidParameters.
+	// See Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	MessageCategory *string `type:"string"`
+
 	// This returns the number of child (nested) backup jobs.
 	NumberOfChildJobs *int64 `type:"long"`
 
@@ -11101,6 +11794,12 @@ func (s *DescribeBackupJobOutput) SetIamRoleArn(v string) *DescribeBackupJobOutp
 // SetIsParent sets the IsParent field's value.
 func (s *DescribeBackupJobOutput) SetIsParent(v bool) *DescribeBackupJobOutput {
 	s.IsParent = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *DescribeBackupJobOutput) SetMessageCategory(v string) *DescribeBackupJobOutput {
+	s.MessageCategory = &v
 	return s
 }
 
@@ -14407,6 +15106,18 @@ type Job struct {
 	// This is a boolean value indicating this is a parent (composite) backup job.
 	IsParent *bool `type:"boolean"`
 
+	// This parameter is the job count for the specified message category.
+	//
+	// Example strings include AccessDenied, Success, and InvalidParameters. See
+	// Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	MessageCategory *string `type:"string"`
+
 	// This uniquely identifies a request to Backup to back up a resource. The return
 	// will be the parent (composite) job ID.
 	ParentJobId *string `type:"string"`
@@ -14547,6 +15258,12 @@ func (s *Job) SetIamRoleArn(v string) *Job {
 // SetIsParent sets the IsParent field's value.
 func (s *Job) SetIsParent(v bool) *Job {
 	s.IsParent = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *Job) SetMessageCategory(v string) *Job {
+	s.MessageCategory = &v
 	return s
 }
 
@@ -14824,6 +15541,208 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListBackupJobSummariesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Returns the job count for the specified account.
+	//
+	// If the request is sent from a member account or an account not part of Amazon
+	// Web Services Organizations, jobs within requestor's account will be returned.
+	//
+	// Root, admin, and delegated administrator accounts can use the value ANY to
+	// return job counts from every account in the organization.
+	//
+	// AGGREGATE_ALL aggregates job counts from all accounts within the authenticated
+	// organization, then returns the sum.
+	AccountId *string `location:"querystring" locationName:"AccountId" type:"string"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	// Acceptable values include
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `location:"querystring" locationName:"AggregationPeriod" type:"string" enum:"AggregationPeriod"`
+
+	// This parameter sets the maximum number of items to be returned.
+	//
+	// The value is an integer. Range of accepted values is from 1 to 500.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// This parameter returns the job count for the specified message category.
+	//
+	// Example accepted strings include AccessDenied, Success, and InvalidParameters.
+	// See Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of accepted MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	MessageCategory *string `location:"querystring" locationName:"MessageCategory" type:"string"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// Returns the job count for the specified resource type. Use request GetSupportedResourceTypes
+	// to obtain strings for supported resource types.
+	//
+	// The the value ANY returns count of all resource types.
+	//
+	// AGGREGATE_ALL aggregates job counts for all resource types and returns the
+	// sum.
+	//
+	// The type of Amazon Web Services resource to be backed up; for example, an
+	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database.
+	ResourceType *string `location:"querystring" locationName:"ResourceType" type:"string"`
+
+	// This parameter returns the job count for jobs with the specified state.
+	//
+	// The the value ANY returns count of all states.
+	//
+	// AGGREGATE_ALL aggregates job counts for all states and returns the sum.
+	State *string `location:"querystring" locationName:"State" type:"string" enum:"BackupJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBackupJobSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBackupJobSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBackupJobSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBackupJobSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListBackupJobSummariesInput) SetAccountId(v string) *ListBackupJobSummariesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListBackupJobSummariesInput) SetAggregationPeriod(v string) *ListBackupJobSummariesInput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBackupJobSummariesInput) SetMaxResults(v int64) *ListBackupJobSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *ListBackupJobSummariesInput) SetMessageCategory(v string) *ListBackupJobSummariesInput {
+	s.MessageCategory = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBackupJobSummariesInput) SetNextToken(v string) *ListBackupJobSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListBackupJobSummariesInput) SetResourceType(v string) *ListBackupJobSummariesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListBackupJobSummariesInput) SetState(v string) *ListBackupJobSummariesInput {
+	s.State = &v
+	return s
+}
+
+type ListBackupJobSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `type:"string"`
+
+	// This request returns a summary that contains Region, Account, State, ResourceType,
+	// MessageCategory, StartTime, EndTime, and Count of included jobs.
+	BackupJobSummaries []*BackupJobSummary `type:"list"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBackupJobSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBackupJobSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListBackupJobSummariesOutput) SetAggregationPeriod(v string) *ListBackupJobSummariesOutput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetBackupJobSummaries sets the BackupJobSummaries field's value.
+func (s *ListBackupJobSummariesOutput) SetBackupJobSummaries(v []*BackupJobSummary) *ListBackupJobSummariesOutput {
+	s.BackupJobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBackupJobSummariesOutput) SetNextToken(v string) *ListBackupJobSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListBackupJobsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -14853,6 +15772,13 @@ type ListBackupJobsInput struct {
 
 	// Returns only backup jobs that were created before the specified date.
 	ByCreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp"`
+
+	// This returns a list of backup jobs for the specified message category.
+	//
+	// Example strings may include AccessDenied, Success, and InvalidParameters.
+	// See Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of MessageCategory strings.
+	ByMessageCategory *string `location:"querystring" locationName:"messageCategory" type:"string"`
 
 	// This is a filter to list child (nested) jobs based on parent job ID.
 	ByParentJobId *string `location:"querystring" locationName:"parentJobId" type:"string"`
@@ -14965,6 +15891,12 @@ func (s *ListBackupJobsInput) SetByCreatedAfter(v time.Time) *ListBackupJobsInpu
 // SetByCreatedBefore sets the ByCreatedBefore field's value.
 func (s *ListBackupJobsInput) SetByCreatedBefore(v time.Time) *ListBackupJobsInput {
 	s.ByCreatedBefore = &v
+	return s
+}
+
+// SetByMessageCategory sets the ByMessageCategory field's value.
+func (s *ListBackupJobsInput) SetByMessageCategory(v string) *ListBackupJobsInput {
+	s.ByMessageCategory = &v
 	return s
 }
 
@@ -15610,6 +16542,206 @@ func (s *ListBackupVaultsOutput) SetNextToken(v string) *ListBackupVaultsOutput 
 	return s
 }
 
+type ListCopyJobSummariesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Returns the job count for the specified account.
+	//
+	// If the request is sent from a member account or an account not part of Amazon
+	// Web Services Organizations, jobs within requestor's account will be returned.
+	//
+	// Root, admin, and delegated administrator accounts can use the value ANY to
+	// return job counts from every account in the organization.
+	//
+	// AGGREGATE_ALL aggregates job counts from all accounts within the authenticated
+	// organization, then returns the sum.
+	AccountId *string `location:"querystring" locationName:"AccountId" type:"string"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `location:"querystring" locationName:"AggregationPeriod" type:"string" enum:"AggregationPeriod"`
+
+	// This parameter sets the maximum number of items to be returned.
+	//
+	// The value is an integer. Range of accepted values is from 1 to 500.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// This parameter returns the job count for the specified message category.
+	//
+	// Example accepted strings include AccessDenied, Success, and InvalidParameters.
+	// See Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of accepted MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	MessageCategory *string `location:"querystring" locationName:"MessageCategory" type:"string"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// Returns the job count for the specified resource type. Use request GetSupportedResourceTypes
+	// to obtain strings for supported resource types.
+	//
+	// The the value ANY returns count of all resource types.
+	//
+	// AGGREGATE_ALL aggregates job counts for all resource types and returns the
+	// sum.
+	//
+	// The type of Amazon Web Services resource to be backed up; for example, an
+	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database.
+	ResourceType *string `location:"querystring" locationName:"ResourceType" type:"string"`
+
+	// This parameter returns the job count for jobs with the specified state.
+	//
+	// The the value ANY returns count of all states.
+	//
+	// AGGREGATE_ALL aggregates job counts for all states and returns the sum.
+	State *string `location:"querystring" locationName:"State" type:"string" enum:"CopyJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCopyJobSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCopyJobSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCopyJobSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCopyJobSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListCopyJobSummariesInput) SetAccountId(v string) *ListCopyJobSummariesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListCopyJobSummariesInput) SetAggregationPeriod(v string) *ListCopyJobSummariesInput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCopyJobSummariesInput) SetMaxResults(v int64) *ListCopyJobSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMessageCategory sets the MessageCategory field's value.
+func (s *ListCopyJobSummariesInput) SetMessageCategory(v string) *ListCopyJobSummariesInput {
+	s.MessageCategory = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCopyJobSummariesInput) SetNextToken(v string) *ListCopyJobSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListCopyJobSummariesInput) SetResourceType(v string) *ListCopyJobSummariesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListCopyJobSummariesInput) SetState(v string) *ListCopyJobSummariesInput {
+	s.State = &v
+	return s
+}
+
+type ListCopyJobSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `type:"string"`
+
+	// This return shows a summary that contains Region, Account, State, ResourceType,
+	// MessageCategory, StartTime, EndTime, and Count of included jobs.
+	CopyJobSummaries []*CopyJobSummary `type:"list"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCopyJobSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCopyJobSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListCopyJobSummariesOutput) SetAggregationPeriod(v string) *ListCopyJobSummariesOutput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetCopyJobSummaries sets the CopyJobSummaries field's value.
+func (s *ListCopyJobSummariesOutput) SetCopyJobSummaries(v []*CopyJobSummary) *ListCopyJobSummariesOutput {
+	s.CopyJobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCopyJobSummariesOutput) SetNextToken(v string) *ListCopyJobSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCopyJobsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15634,6 +16766,18 @@ type ListCopyJobsInput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies a source backup vault
 	// to copy from; for example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault.
 	ByDestinationVaultArn *string `location:"querystring" locationName:"destinationVaultArn" type:"string"`
+
+	// This parameter returns the job count for the specified message category.
+	//
+	// Example accepted strings include AccessDenied, Success, and InvalidParameters.
+	// See Monitoring (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html)
+	// for a list of accepted MessageCategory strings.
+	//
+	// The the value ANY returns count of all message categories.
+	//
+	// AGGREGATE_ALL aggregates job counts for all message categories and returns
+	// the sum.
+	ByMessageCategory *string `location:"querystring" locationName:"messageCategory" type:"string"`
 
 	// This is a filter to list child (nested) jobs based on parent job ID.
 	ByParentJobId *string `location:"querystring" locationName:"parentJobId" type:"string"`
@@ -15746,6 +16890,12 @@ func (s *ListCopyJobsInput) SetByCreatedBefore(v time.Time) *ListCopyJobsInput {
 // SetByDestinationVaultArn sets the ByDestinationVaultArn field's value.
 func (s *ListCopyJobsInput) SetByDestinationVaultArn(v string) *ListCopyJobsInput {
 	s.ByDestinationVaultArn = &v
+	return s
+}
+
+// SetByMessageCategory sets the ByMessageCategory field's value.
+func (s *ListCopyJobsInput) SetByMessageCategory(v string) *ListCopyJobsInput {
+	s.ByMessageCategory = &v
 	return s
 }
 
@@ -16914,6 +18064,190 @@ func (s *ListReportPlansOutput) SetNextToken(v string) *ListReportPlansOutput {
 // SetReportPlans sets the ReportPlans field's value.
 func (s *ListReportPlansOutput) SetReportPlans(v []*ReportPlan) *ListReportPlansOutput {
 	s.ReportPlans = v
+	return s
+}
+
+type ListRestoreJobSummariesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Returns the job count for the specified account.
+	//
+	// If the request is sent from a member account or an account not part of Amazon
+	// Web Services Organizations, jobs within requestor's account will be returned.
+	//
+	// Root, admin, and delegated administrator accounts can use the value ANY to
+	// return job counts from every account in the organization.
+	//
+	// AGGREGATE_ALL aggregates job counts from all accounts within the authenticated
+	// organization, then returns the sum.
+	AccountId *string `location:"querystring" locationName:"AccountId" type:"string"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	// Acceptable values include
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `location:"querystring" locationName:"AggregationPeriod" type:"string" enum:"AggregationPeriod"`
+
+	// This parameter sets the maximum number of items to be returned.
+	//
+	// The value is an integer. Range of accepted values is from 1 to 500.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// Returns the job count for the specified resource type. Use request GetSupportedResourceTypes
+	// to obtain strings for supported resource types.
+	//
+	// The the value ANY returns count of all resource types.
+	//
+	// AGGREGATE_ALL aggregates job counts for all resource types and returns the
+	// sum.
+	//
+	// The type of Amazon Web Services resource to be backed up; for example, an
+	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database.
+	ResourceType *string `location:"querystring" locationName:"ResourceType" type:"string"`
+
+	// This parameter returns the job count for jobs with the specified state.
+	//
+	// The the value ANY returns count of all states.
+	//
+	// AGGREGATE_ALL aggregates job counts for all states and returns the sum.
+	State *string `location:"querystring" locationName:"State" type:"string" enum:"RestoreJobState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRestoreJobSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRestoreJobSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRestoreJobSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRestoreJobSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRestoreJobSummariesInput) SetAccountId(v string) *ListRestoreJobSummariesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListRestoreJobSummariesInput) SetAggregationPeriod(v string) *ListRestoreJobSummariesInput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRestoreJobSummariesInput) SetMaxResults(v int64) *ListRestoreJobSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRestoreJobSummariesInput) SetNextToken(v string) *ListRestoreJobSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListRestoreJobSummariesInput) SetResourceType(v string) *ListRestoreJobSummariesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListRestoreJobSummariesInput) SetState(v string) *ListRestoreJobSummariesInput {
+	s.State = &v
+	return s
+}
+
+type ListRestoreJobSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the period that sets the boundaries for returned results.
+	//
+	//    * ONE_DAY for daily job count for the prior 14 days.
+	//
+	//    * SEVEN_DAYS for the aggregated job count for the prior 7 days.
+	//
+	//    * FOURTEEN_DAYS for aggregated job count for prior 14 days.
+	AggregationPeriod *string `type:"string"`
+
+	// The next item following a partial list of returned resources. For example,
+	// if a request is made to return maxResults number of resources, NextToken
+	// allows you to return more items in your list starting at the location pointed
+	// to by the next token.
+	NextToken *string `type:"string"`
+
+	// This return contains a summary that contains Region, Account, State, ResourceType,
+	// MessageCategory, StartTime, EndTime, and Count of included jobs.
+	RestoreJobSummaries []*RestoreJobSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRestoreJobSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRestoreJobSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *ListRestoreJobSummariesOutput) SetAggregationPeriod(v string) *ListRestoreJobSummariesOutput {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRestoreJobSummariesOutput) SetNextToken(v string) *ListRestoreJobSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRestoreJobSummaries sets the RestoreJobSummaries field's value.
+func (s *ListRestoreJobSummariesOutput) SetRestoreJobSummaries(v []*RestoreJobSummary) *ListRestoreJobSummariesOutput {
+	s.RestoreJobSummaries = v
 	return s
 }
 
@@ -19097,6 +20431,105 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// This is a summary of restore jobs created or running within the most recent
+// 30 days.
+//
+// The returned summary may contain the following: Region, Account, State, ResourceType,
+// MessageCategory, StartTime, EndTime, and Count of included jobs.
+type RestoreJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID that owns the jobs within the summary.
+	AccountId *string `type:"string"`
+
+	// The value as a number of jobs in a job summary.
+	Count *int64 `type:"integer"`
+
+	// The value of time in number format of a job end time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services Regions within the job summary.
+	Region *string `type:"string"`
+
+	// This value is the job count for the specified resource type. The request
+	// GetSupportedResourceTypes returns strings for supported resource types.
+	ResourceType *string `type:"string"`
+
+	// The value of time in number format of a job start time.
+	//
+	// This value is the time in Unix format, Coordinated Universal Time (UTC),
+	// and accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	StartTime *time.Time `type:"timestamp"`
+
+	// This value is job count for jobs with the specified state.
+	State *string `type:"string" enum:"RestoreJobState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RestoreJobSummary) SetAccountId(v string) *RestoreJobSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *RestoreJobSummary) SetCount(v int64) *RestoreJobSummary {
+	s.Count = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *RestoreJobSummary) SetEndTime(v time.Time) *RestoreJobSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RestoreJobSummary) SetRegion(v string) *RestoreJobSummary {
+	s.Region = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *RestoreJobSummary) SetResourceType(v string) *RestoreJobSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *RestoreJobSummary) SetStartTime(v time.Time) *RestoreJobSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RestoreJobSummary) SetState(v string) *RestoreJobSummary {
+	s.State = &v
+	return s
 }
 
 // Contains metadata about a restore job.
@@ -21764,6 +23197,78 @@ func (s *VaultListMember) SetNumberOfRecoveryPoints(v int64) *VaultListMember {
 }
 
 const (
+	// AggregationPeriodOneDay is a AggregationPeriod enum value
+	AggregationPeriodOneDay = "ONE_DAY"
+
+	// AggregationPeriodSevenDays is a AggregationPeriod enum value
+	AggregationPeriodSevenDays = "SEVEN_DAYS"
+
+	// AggregationPeriodFourteenDays is a AggregationPeriod enum value
+	AggregationPeriodFourteenDays = "FOURTEEN_DAYS"
+)
+
+// AggregationPeriod_Values returns all elements of the AggregationPeriod enum
+func AggregationPeriod_Values() []string {
+	return []string{
+		AggregationPeriodOneDay,
+		AggregationPeriodSevenDays,
+		AggregationPeriodFourteenDays,
+	}
+}
+
+const (
+	// BackupJobStatusCreated is a BackupJobStatus enum value
+	BackupJobStatusCreated = "CREATED"
+
+	// BackupJobStatusPending is a BackupJobStatus enum value
+	BackupJobStatusPending = "PENDING"
+
+	// BackupJobStatusRunning is a BackupJobStatus enum value
+	BackupJobStatusRunning = "RUNNING"
+
+	// BackupJobStatusAborting is a BackupJobStatus enum value
+	BackupJobStatusAborting = "ABORTING"
+
+	// BackupJobStatusAborted is a BackupJobStatus enum value
+	BackupJobStatusAborted = "ABORTED"
+
+	// BackupJobStatusCompleted is a BackupJobStatus enum value
+	BackupJobStatusCompleted = "COMPLETED"
+
+	// BackupJobStatusFailed is a BackupJobStatus enum value
+	BackupJobStatusFailed = "FAILED"
+
+	// BackupJobStatusExpired is a BackupJobStatus enum value
+	BackupJobStatusExpired = "EXPIRED"
+
+	// BackupJobStatusPartial is a BackupJobStatus enum value
+	BackupJobStatusPartial = "PARTIAL"
+
+	// BackupJobStatusAggregateAll is a BackupJobStatus enum value
+	BackupJobStatusAggregateAll = "AGGREGATE_ALL"
+
+	// BackupJobStatusAny is a BackupJobStatus enum value
+	BackupJobStatusAny = "ANY"
+)
+
+// BackupJobStatus_Values returns all elements of the BackupJobStatus enum
+func BackupJobStatus_Values() []string {
+	return []string{
+		BackupJobStatusCreated,
+		BackupJobStatusPending,
+		BackupJobStatusRunning,
+		BackupJobStatusAborting,
+		BackupJobStatusAborted,
+		BackupJobStatusCompleted,
+		BackupJobStatusFailed,
+		BackupJobStatusExpired,
+		BackupJobStatusPartial,
+		BackupJobStatusAggregateAll,
+		BackupJobStatusAny,
+	}
+}
+
+const (
 	// ConditionTypeStringequals is a ConditionType enum value
 	ConditionTypeStringequals = "STRINGEQUALS"
 )
@@ -21800,6 +23305,58 @@ func CopyJobState_Values() []string {
 		CopyJobStateCompleted,
 		CopyJobStateFailed,
 		CopyJobStatePartial,
+	}
+}
+
+const (
+	// CopyJobStatusCreated is a CopyJobStatus enum value
+	CopyJobStatusCreated = "CREATED"
+
+	// CopyJobStatusRunning is a CopyJobStatus enum value
+	CopyJobStatusRunning = "RUNNING"
+
+	// CopyJobStatusAborting is a CopyJobStatus enum value
+	CopyJobStatusAborting = "ABORTING"
+
+	// CopyJobStatusAborted is a CopyJobStatus enum value
+	CopyJobStatusAborted = "ABORTED"
+
+	// CopyJobStatusCompleting is a CopyJobStatus enum value
+	CopyJobStatusCompleting = "COMPLETING"
+
+	// CopyJobStatusCompleted is a CopyJobStatus enum value
+	CopyJobStatusCompleted = "COMPLETED"
+
+	// CopyJobStatusFailing is a CopyJobStatus enum value
+	CopyJobStatusFailing = "FAILING"
+
+	// CopyJobStatusFailed is a CopyJobStatus enum value
+	CopyJobStatusFailed = "FAILED"
+
+	// CopyJobStatusPartial is a CopyJobStatus enum value
+	CopyJobStatusPartial = "PARTIAL"
+
+	// CopyJobStatusAggregateAll is a CopyJobStatus enum value
+	CopyJobStatusAggregateAll = "AGGREGATE_ALL"
+
+	// CopyJobStatusAny is a CopyJobStatus enum value
+	CopyJobStatusAny = "ANY"
+)
+
+// CopyJobStatus_Values returns all elements of the CopyJobStatus enum
+func CopyJobStatus_Values() []string {
+	return []string{
+		CopyJobStatusCreated,
+		CopyJobStatusRunning,
+		CopyJobStatusAborting,
+		CopyJobStatusAborted,
+		CopyJobStatusCompleting,
+		CopyJobStatusCompleted,
+		CopyJobStatusFailing,
+		CopyJobStatusFailed,
+		CopyJobStatusPartial,
+		CopyJobStatusAggregateAll,
+		CopyJobStatusAny,
 	}
 }
 
@@ -21892,6 +23449,46 @@ func RecoveryPointStatus_Values() []string {
 		RecoveryPointStatusPartial,
 		RecoveryPointStatusDeleting,
 		RecoveryPointStatusExpired,
+	}
+}
+
+const (
+	// RestoreJobStateCreated is a RestoreJobState enum value
+	RestoreJobStateCreated = "CREATED"
+
+	// RestoreJobStatePending is a RestoreJobState enum value
+	RestoreJobStatePending = "PENDING"
+
+	// RestoreJobStateRunning is a RestoreJobState enum value
+	RestoreJobStateRunning = "RUNNING"
+
+	// RestoreJobStateAborted is a RestoreJobState enum value
+	RestoreJobStateAborted = "ABORTED"
+
+	// RestoreJobStateCompleted is a RestoreJobState enum value
+	RestoreJobStateCompleted = "COMPLETED"
+
+	// RestoreJobStateFailed is a RestoreJobState enum value
+	RestoreJobStateFailed = "FAILED"
+
+	// RestoreJobStateAggregateAll is a RestoreJobState enum value
+	RestoreJobStateAggregateAll = "AGGREGATE_ALL"
+
+	// RestoreJobStateAny is a RestoreJobState enum value
+	RestoreJobStateAny = "ANY"
+)
+
+// RestoreJobState_Values returns all elements of the RestoreJobState enum
+func RestoreJobState_Values() []string {
+	return []string{
+		RestoreJobStateCreated,
+		RestoreJobStatePending,
+		RestoreJobStateRunning,
+		RestoreJobStateAborted,
+		RestoreJobStateCompleted,
+		RestoreJobStateFailed,
+		RestoreJobStateAggregateAll,
+		RestoreJobStateAny,
 	}
 }
 

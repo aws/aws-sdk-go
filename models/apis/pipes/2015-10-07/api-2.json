@@ -337,6 +337,25 @@
       "max":1000,
       "min":0
     },
+    "CloudwatchLogGroupArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^(^arn:aws([a-z]|\\-)*:logs:([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}):(\\d{12}):log-group:.+)$"
+    },
+    "CloudwatchLogsLogDestination":{
+      "type":"structure",
+      "members":{
+        "LogGroupArn":{"shape":"CloudwatchLogGroupArn"}
+      }
+    },
+    "CloudwatchLogsLogDestinationParameters":{
+      "type":"structure",
+      "required":["LogGroupArn"],
+      "members":{
+        "LogGroupArn":{"shape":"CloudwatchLogGroupArn"}
+      }
+    },
     "ConflictException":{
       "type":"structure",
       "required":[
@@ -368,6 +387,7 @@
         "DesiredState":{"shape":"RequestedPipeState"},
         "Enrichment":{"shape":"OptionalArn"},
         "EnrichmentParameters":{"shape":"PipeEnrichmentParameters"},
+        "LogConfiguration":{"shape":"PipeLogConfigurationParameters"},
         "Name":{
           "shape":"PipeName",
           "location":"uri",
@@ -454,6 +474,7 @@
         "Enrichment":{"shape":"OptionalArn"},
         "EnrichmentParameters":{"shape":"PipeEnrichmentParameters"},
         "LastModifiedTime":{"shape":"Timestamp"},
+        "LogConfiguration":{"shape":"PipeLogConfiguration"},
         "Name":{"shape":"PipeName"},
         "RoleArn":{"shape":"RoleArn"},
         "Source":{"shape":"ArnOrUrl"},
@@ -633,6 +654,25 @@
       "max":5,
       "min":0
     },
+    "FirehoseArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^(^arn:aws([a-z]|\\-)*:firehose:([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}):(\\d{12}):deliverystream/.+)$"
+    },
+    "FirehoseLogDestination":{
+      "type":"structure",
+      "members":{
+        "DeliveryStreamArn":{"shape":"FirehoseArn"}
+      }
+    },
+    "FirehoseLogDestinationParameters":{
+      "type":"structure",
+      "required":["DeliveryStreamArn"],
+      "members":{
+        "DeliveryStreamArn":{"shape":"FirehoseArn"}
+      }
+    },
     "HeaderKey":{
       "type":"string",
       "max":512,
@@ -650,6 +690,14 @@
       "min":0,
       "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
+    },
+    "IncludeExecutionData":{
+      "type":"list",
+      "member":{"shape":"IncludeExecutionDataOption"}
+    },
+    "IncludeExecutionDataOption":{
+      "type":"string",
+      "enum":["ALL"]
     },
     "InputTemplate":{
       "type":"string",
@@ -804,6 +852,15 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "LogLevel":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "ERROR",
+        "INFO",
+        "TRACE"
+      ]
+    },
     "LogStreamName":{
       "type":"string",
       "max":256,
@@ -908,9 +965,7 @@
     },
     "PathParameterList":{
       "type":"list",
-      "member":{"shape":"PathParameter"},
-      "max":1,
-      "min":0
+      "member":{"shape":"PathParameter"}
     },
     "Pipe":{
       "type":"structure",
@@ -958,6 +1013,27 @@
     "PipeList":{
       "type":"list",
       "member":{"shape":"Pipe"}
+    },
+    "PipeLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "CloudwatchLogsLogDestination":{"shape":"CloudwatchLogsLogDestination"},
+        "FirehoseLogDestination":{"shape":"FirehoseLogDestination"},
+        "IncludeExecutionData":{"shape":"IncludeExecutionData"},
+        "Level":{"shape":"LogLevel"},
+        "S3LogDestination":{"shape":"S3LogDestination"}
+      }
+    },
+    "PipeLogConfigurationParameters":{
+      "type":"structure",
+      "required":["Level"],
+      "members":{
+        "CloudwatchLogsLogDestination":{"shape":"CloudwatchLogsLogDestinationParameters"},
+        "FirehoseLogDestination":{"shape":"FirehoseLogDestinationParameters"},
+        "IncludeExecutionData":{"shape":"IncludeExecutionData"},
+        "Level":{"shape":"LogLevel"},
+        "S3LogDestination":{"shape":"S3LogDestinationParameters"}
+      }
     },
     "PipeName":{
       "type":"string",
@@ -1081,7 +1157,11 @@
         "CREATE_FAILED",
         "UPDATE_FAILED",
         "START_FAILED",
-        "STOP_FAILED"
+        "STOP_FAILED",
+        "DELETE_FAILED",
+        "CREATE_ROLLBACK_FAILED",
+        "DELETE_ROLLBACK_FAILED",
+        "UPDATE_ROLLBACK_FAILED"
       ]
     },
     "PipeStateReason":{
@@ -1330,6 +1410,50 @@
       "min":1,
       "pattern":"^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z0-9+=,.@\\-_/]+$"
     },
+    "S3LogDestination":{
+      "type":"structure",
+      "members":{
+        "BucketName":{"shape":"String"},
+        "BucketOwner":{"shape":"String"},
+        "OutputFormat":{"shape":"S3OutputFormat"},
+        "Prefix":{"shape":"String"}
+      }
+    },
+    "S3LogDestinationParameters":{
+      "type":"structure",
+      "required":[
+        "BucketName",
+        "BucketOwner"
+      ],
+      "members":{
+        "BucketName":{"shape":"S3LogDestinationParametersBucketNameString"},
+        "BucketOwner":{"shape":"S3LogDestinationParametersBucketOwnerString"},
+        "OutputFormat":{"shape":"S3OutputFormat"},
+        "Prefix":{"shape":"S3LogDestinationParametersPrefixString"}
+      }
+    },
+    "S3LogDestinationParametersBucketNameString":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
+    "S3LogDestinationParametersBucketOwnerString":{
+      "type":"string",
+      "pattern":"^\\d{12}$"
+    },
+    "S3LogDestinationParametersPrefixString":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "S3OutputFormat":{
+      "type":"string",
+      "enum":[
+        "json",
+        "plain",
+        "w3c"
+      ]
+    },
     "SageMakerPipelineParameter":{
       "type":"structure",
       "required":[
@@ -1453,6 +1577,7 @@
     "Sqls":{
       "type":"list",
       "member":{"shape":"Sql"},
+      "max":40,
       "min":1
     },
     "StartPipeRequest":{
@@ -1657,6 +1782,7 @@
         "DesiredState":{"shape":"RequestedPipeState"},
         "Enrichment":{"shape":"OptionalArn"},
         "EnrichmentParameters":{"shape":"PipeEnrichmentParameters"},
+        "LogConfiguration":{"shape":"PipeLogConfigurationParameters"},
         "Name":{
           "shape":"PipeName",
           "location":"uri",

@@ -639,6 +639,19 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListBackupJobSummaries":{
+      "name":"ListBackupJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/backup-job-summaries"
+      },
+      "input":{"shape":"ListBackupJobSummariesInput"},
+      "output":{"shape":"ListBackupJobSummariesOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListBackupJobs":{
       "name":"ListBackupJobs",
       "http":{
@@ -731,6 +744,19 @@
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
+    },
+    "ListCopyJobSummaries":{
+      "name":"ListCopyJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/copy-job-summaries"
+      },
+      "input":{"shape":"ListCopyJobSummariesInput"},
+      "output":{"shape":"ListCopyJobSummariesOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
     },
     "ListCopyJobs":{
       "name":"ListCopyJobs",
@@ -869,6 +895,19 @@
       },
       "input":{"shape":"ListReportPlansInput"},
       "output":{"shape":"ListReportPlansOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListRestoreJobSummaries":{
+      "name":"ListRestoreJobSummaries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/restore-job-summaries"
+      },
+      "input":{"shape":"ListRestoreJobSummariesInput"},
+      "output":{"shape":"ListRestoreJobSummariesOutput"},
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServiceUnavailableException"}
@@ -1181,6 +1220,14 @@
       "type":"list",
       "member":{"shape":"AdvancedBackupSetting"}
     },
+    "AggregationPeriod":{
+      "type":"string",
+      "enum":[
+        "ONE_DAY",
+        "SEVEN_DAYS",
+        "FOURTEEN_DAYS"
+      ]
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -1218,7 +1265,8 @@
         "BackupType":{"shape":"string"},
         "ParentJobId":{"shape":"string"},
         "IsParent":{"shape":"boolean"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "MessageCategory":{"shape":"string"}
       }
     },
     "BackupJobChildJobsInState":{
@@ -1239,6 +1287,39 @@
         "EXPIRED",
         "PARTIAL"
       ]
+    },
+    "BackupJobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "PENDING",
+        "RUNNING",
+        "ABORTING",
+        "ABORTED",
+        "COMPLETED",
+        "FAILED",
+        "EXPIRED",
+        "PARTIAL",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
+    "BackupJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"BackupJobStatus"},
+        "ResourceType":{"shape":"ResourceType"},
+        "MessageCategory":{"shape":"MessageCategory"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "BackupJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"BackupJobSummary"}
     },
     "BackupJobsList":{
       "type":"list",
@@ -1596,7 +1677,8 @@
         "CompositeMemberIdentifier":{"shape":"string"},
         "NumberOfChildJobs":{"shape":"Long"},
         "ChildJobsInState":{"shape":"CopyJobChildJobsInState"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "MessageCategory":{"shape":"string"}
       }
     },
     "CopyJobChildJobsInState":{
@@ -1613,6 +1695,39 @@
         "FAILED",
         "PARTIAL"
       ]
+    },
+    "CopyJobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "RUNNING",
+        "ABORTING",
+        "ABORTED",
+        "COMPLETING",
+        "COMPLETED",
+        "FAILING",
+        "FAILED",
+        "PARTIAL",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
+    "CopyJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"CopyJobStatus"},
+        "ResourceType":{"shape":"ResourceType"},
+        "MessageCategory":{"shape":"MessageCategory"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "CopyJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"CopyJobSummary"}
     },
     "CopyJobsList":{
       "type":"list",
@@ -1973,7 +2088,8 @@
         "IsParent":{"shape":"boolean"},
         "NumberOfChildJobs":{"shape":"Long"},
         "ChildJobsInState":{"shape":"BackupJobChildJobsInState"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "MessageCategory":{"shape":"string"}
       }
     },
     "DescribeBackupVaultInput":{
@@ -2581,6 +2697,54 @@
       },
       "exception":true
     },
+    "ListBackupJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"BackupJobStatus",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "MessageCategory":{
+          "shape":"MessageCategory",
+          "location":"querystring",
+          "locationName":"MessageCategory"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListBackupJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "BackupJobSummaries":{"shape":"BackupJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
+        "NextToken":{"shape":"string"}
+      }
+    },
     "ListBackupJobsInput":{
       "type":"structure",
       "members":{
@@ -2643,6 +2807,11 @@
           "shape":"string",
           "location":"querystring",
           "locationName":"parentJobId"
+        },
+        "ByMessageCategory":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"messageCategory"
         }
       }
     },
@@ -2790,6 +2959,54 @@
         "NextToken":{"shape":"string"}
       }
     },
+    "ListCopyJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"CopyJobStatus",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "MessageCategory":{
+          "shape":"MessageCategory",
+          "location":"querystring",
+          "locationName":"MessageCategory"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListCopyJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "CopyJobSummaries":{"shape":"CopyJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
+        "NextToken":{"shape":"string"}
+      }
+    },
     "ListCopyJobsInput":{
       "type":"structure",
       "members":{
@@ -2852,6 +3069,11 @@
           "shape":"string",
           "location":"querystring",
           "locationName":"parentJobId"
+        },
+        "ByMessageCategory":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"messageCategory"
         }
       }
     },
@@ -3148,6 +3370,49 @@
         "NextToken":{"shape":"string"}
       }
     },
+    "ListRestoreJobSummariesInput":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
+        },
+        "State":{
+          "shape":"RestoreJobState",
+          "location":"querystring",
+          "locationName":"State"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "AggregationPeriod":{
+          "shape":"AggregationPeriod",
+          "location":"querystring",
+          "locationName":"AggregationPeriod"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListRestoreJobSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "RestoreJobSummaries":{"shape":"RestoreJobSummaryList"},
+        "AggregationPeriod":{"shape":"string"},
+        "NextToken":{"shape":"string"}
+      }
+    },
     "ListRestoreJobsInput":{
       "type":"structure",
       "members":{
@@ -3239,6 +3504,7 @@
       "max":1000,
       "min":1
     },
+    "MessageCategory":{"type":"string"},
     "Metadata":{
       "type":"map",
       "key":{"shape":"MetadataKey"},
@@ -3404,6 +3670,7 @@
       "type":"list",
       "member":{"shape":"RecoveryPointMember"}
     },
+    "Region":{"type":"string"},
     "ReportDeliveryChannel":{
       "type":"structure",
       "required":["S3BucketName"],
@@ -3521,6 +3788,19 @@
       "member":{"shape":"ResourceType"}
     },
     "RestoreJobId":{"type":"string"},
+    "RestoreJobState":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "PENDING",
+        "RUNNING",
+        "ABORTED",
+        "COMPLETED",
+        "FAILED",
+        "AGGREGATE_ALL",
+        "ANY"
+      ]
+    },
     "RestoreJobStatus":{
       "type":"string",
       "enum":[
@@ -3530,6 +3810,22 @@
         "ABORTED",
         "FAILED"
       ]
+    },
+    "RestoreJobSummary":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"Region"},
+        "AccountId":{"shape":"AccountId"},
+        "State":{"shape":"RestoreJobState"},
+        "ResourceType":{"shape":"ResourceType"},
+        "Count":{"shape":"integer"},
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "RestoreJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"RestoreJobSummary"}
     },
     "RestoreJobsList":{
       "type":"list",

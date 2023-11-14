@@ -193,6 +193,18 @@
         {"shape":"FederationSourceRetryableException"}
       ]
     },
+    "BatchGetTableOptimizer":{
+      "name":"BatchGetTableOptimizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetTableOptimizerRequest"},
+      "output":{"shape":"BatchGetTableOptimizerResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "BatchGetTriggers":{
       "name":"BatchGetTriggers",
       "http":{
@@ -637,6 +649,22 @@
         {"shape":"ResourceNotReadyException"}
       ]
     },
+    "CreateTableOptimizer":{
+      "name":"CreateTableOptimizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTableOptimizerRequest"},
+      "output":{"shape":"CreateTableOptimizerResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreateTrigger":{
       "name":"CreateTrigger",
       "http":{
@@ -1009,6 +1037,21 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"ResourceNotReadyException"}
+      ]
+    },
+    "DeleteTableOptimizer":{
+      "name":"DeleteTableOptimizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTableOptimizerRequest"},
+      "output":{"shape":"DeleteTableOptimizerResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DeleteTableVersion":{
@@ -1824,6 +1867,21 @@
         {"shape":"FederationSourceRetryableException"}
       ]
     },
+    "GetTableOptimizer":{
+      "name":"GetTableOptimizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTableOptimizerRequest"},
+      "output":{"shape":"GetTableOptimizerResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetTableVersion":{
       "name":"GetTableVersion",
       "http":{
@@ -2311,6 +2369,21 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"InvalidInputException"},
         {"shape":"IllegalSessionStateException"}
+      ]
+    },
+    "ListTableOptimizerRuns":{
+      "name":"ListTableOptimizerRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTableOptimizerRunsRequest"},
+      "output":{"shape":"ListTableOptimizerRunsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "ListTriggers":{
@@ -3118,6 +3191,21 @@
         {"shape":"ResourceNotReadyException"}
       ]
     },
+    "UpdateTableOptimizer":{
+      "name":"UpdateTableOptimizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTableOptimizerRequest"},
+      "output":{"shape":"UpdateTableOptimizerResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateTrigger":{
       "name":"UpdateTrigger",
       "http":{
@@ -3337,6 +3425,11 @@
         "Inputs":{"shape":"OneInput"},
         "Mapping":{"shape":"Mappings"}
       }
+    },
+    "ArnString":{
+      "type":"string",
+      "max":2048,
+      "min":20
     },
     "AthenaConnectorSource":{
       "type":"structure",
@@ -3653,6 +3746,47 @@
       "max":1000,
       "min":0
     },
+    "BatchGetTableOptimizerEntries":{
+      "type":"list",
+      "member":{"shape":"BatchGetTableOptimizerEntry"}
+    },
+    "BatchGetTableOptimizerEntry":{
+      "type":"structure",
+      "members":{
+        "catalogId":{"shape":"CatalogIdString"},
+        "databaseName":{"shape":"databaseNameString"},
+        "tableName":{"shape":"tableNameString"},
+        "type":{"shape":"TableOptimizerType"}
+      }
+    },
+    "BatchGetTableOptimizerError":{
+      "type":"structure",
+      "members":{
+        "error":{"shape":"ErrorDetail"},
+        "catalogId":{"shape":"CatalogIdString"},
+        "databaseName":{"shape":"databaseNameString"},
+        "tableName":{"shape":"tableNameString"},
+        "type":{"shape":"TableOptimizerType"}
+      }
+    },
+    "BatchGetTableOptimizerErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetTableOptimizerError"}
+    },
+    "BatchGetTableOptimizerRequest":{
+      "type":"structure",
+      "required":["Entries"],
+      "members":{
+        "Entries":{"shape":"BatchGetTableOptimizerEntries"}
+      }
+    },
+    "BatchGetTableOptimizerResponse":{
+      "type":"structure",
+      "members":{
+        "TableOptimizers":{"shape":"BatchTableOptimizers"},
+        "Failures":{"shape":"BatchGetTableOptimizerErrors"}
+      }
+    },
     "BatchGetTriggersRequest":{
       "type":"structure",
       "required":["TriggerNames"],
@@ -3733,6 +3867,19 @@
     "BatchStopJobRunSuccessfulSubmissionList":{
       "type":"list",
       "member":{"shape":"BatchStopJobRunSuccessfulSubmission"}
+    },
+    "BatchTableOptimizer":{
+      "type":"structure",
+      "members":{
+        "catalogId":{"shape":"CatalogIdString"},
+        "databaseName":{"shape":"databaseNameString"},
+        "tableName":{"shape":"tableNameString"},
+        "tableOptimizer":{"shape":"TableOptimizer"}
+      }
+    },
+    "BatchTableOptimizers":{
+      "type":"list",
+      "member":{"shape":"BatchTableOptimizer"}
     },
     "BatchUpdatePartitionFailureEntry":{
       "type":"structure",
@@ -5326,6 +5473,28 @@
         "Session":{"shape":"Session"}
       }
     },
+    "CreateTableOptimizerRequest":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "DatabaseName",
+        "TableName",
+        "Type",
+        "TableOptimizerConfiguration"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Type":{"shape":"TableOptimizerType"},
+        "TableOptimizerConfiguration":{"shape":"TableOptimizerConfiguration"}
+      }
+    },
+    "CreateTableOptimizerResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateTableRequest":{
       "type":"structure",
       "required":[
@@ -6176,6 +6345,26 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"NameString"}
+      }
+    },
+    "DeleteTableOptimizerRequest":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "DatabaseName",
+        "TableName",
+        "Type"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Type":{"shape":"TableOptimizerType"}
+      }
+    },
+    "DeleteTableOptimizerResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteTableRequest":{
@@ -7772,6 +7961,30 @@
         "Statement":{"shape":"Statement"}
       }
     },
+    "GetTableOptimizerRequest":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "DatabaseName",
+        "TableName",
+        "Type"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Type":{"shape":"TableOptimizerType"}
+      }
+    },
+    "GetTableOptimizerResponse":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "TableOptimizer":{"shape":"TableOptimizer"}
+      }
+    },
     "GetTableRequest":{
       "type":"structure",
       "required":[
@@ -9123,6 +9336,34 @@
         "NextToken":{"shape":"OrchestrationToken"}
       }
     },
+    "ListTableOptimizerRunsRequest":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "DatabaseName",
+        "TableName",
+        "Type"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Type":{"shape":"TableOptimizerType"},
+        "MaxResults":{"shape":"MaxListTableOptimizerRunsTokenResults"},
+        "NextToken":{"shape":"ListTableOptimizerRunsToken"}
+      }
+    },
+    "ListTableOptimizerRunsResponse":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "NextToken":{"shape":"ListTableOptimizerRunsToken"},
+        "TableOptimizerRuns":{"shape":"TableOptimizerRuns"}
+      }
+    },
+    "ListTableOptimizerRunsToken":{"type":"string"},
     "ListTriggersRequest":{
       "type":"structure",
       "members":{
@@ -9314,6 +9555,7 @@
       "min":0
     },
     "MaxConcurrentRuns":{"type":"integer"},
+    "MaxListTableOptimizerRunsTokenResults":{"type":"integer"},
     "MaxResultsNumber":{
       "type":"integer",
       "box":true,
@@ -10400,6 +10642,15 @@
       "min":1
     },
     "RunId":{"type":"string"},
+    "RunMetrics":{
+      "type":"structure",
+      "members":{
+        "NumberOfBytesCompacted":{"shape":"MessageString"},
+        "NumberOfFilesCompacted":{"shape":"MessageString"},
+        "NumberOfDpus":{"shape":"MessageString"},
+        "JobDurationInHour":{"shape":"MessageString"}
+      }
+    },
     "RunStatementRequest":{
       "type":"structure",
       "required":[
@@ -11734,6 +11985,49 @@
       "member":{"shape":"Table"}
     },
     "TableName":{"type":"string"},
+    "TableOptimizer":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"TableOptimizerType"},
+        "configuration":{"shape":"TableOptimizerConfiguration"},
+        "lastRun":{"shape":"TableOptimizerRun"}
+      }
+    },
+    "TableOptimizerConfiguration":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"ArnString"},
+        "enabled":{"shape":"NullableBoolean"}
+      }
+    },
+    "TableOptimizerEventType":{
+      "type":"string",
+      "enum":[
+        "starting",
+        "completed",
+        "failed",
+        "in_progress"
+      ]
+    },
+    "TableOptimizerRun":{
+      "type":"structure",
+      "members":{
+        "eventType":{"shape":"TableOptimizerEventType"},
+        "startTimestamp":{"shape":"TableOptimizerRunTimestamp"},
+        "endTimestamp":{"shape":"TableOptimizerRunTimestamp"},
+        "metrics":{"shape":"RunMetrics"},
+        "error":{"shape":"MessageString"}
+      }
+    },
+    "TableOptimizerRunTimestamp":{"type":"timestamp"},
+    "TableOptimizerRuns":{
+      "type":"list",
+      "member":{"shape":"TableOptimizerRun"}
+    },
+    "TableOptimizerType":{
+      "type":"string",
+      "enum":["compaction"]
+    },
     "TablePrefix":{
       "type":"string",
       "max":128,
@@ -12513,6 +12807,28 @@
         "JobName":{"shape":"NameString"}
       }
     },
+    "UpdateTableOptimizerRequest":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "DatabaseName",
+        "TableName",
+        "Type",
+        "TableOptimizerConfiguration"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Type":{"shape":"TableOptimizerType"},
+        "TableOptimizerConfiguration":{"shape":"TableOptimizerConfiguration"}
+      }
+    },
+    "UpdateTableOptimizerResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateTableRequest":{
       "type":"structure",
       "required":[
@@ -12784,6 +13100,14 @@
         "Version":{"shape":"VersionId"},
         "RowTag":{"shape":"RowTag"}
       }
+    },
+    "databaseNameString":{
+      "type":"string",
+      "min":1
+    },
+    "tableNameString":{
+      "type":"string",
+      "min":1
     }
   }
 }

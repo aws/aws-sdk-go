@@ -1089,6 +1089,84 @@ func (c *Glue) BatchGetPartitionWithContext(ctx aws.Context, input *BatchGetPart
 	return out, req.Send()
 }
 
+const opBatchGetTableOptimizer = "BatchGetTableOptimizer"
+
+// BatchGetTableOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetTableOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetTableOptimizer for more information on using the BatchGetTableOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetTableOptimizerRequest method.
+//	req, resp := client.BatchGetTableOptimizerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetTableOptimizer
+func (c *Glue) BatchGetTableOptimizerRequest(input *BatchGetTableOptimizerInput) (req *request.Request, output *BatchGetTableOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetTableOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetTableOptimizerInput{}
+	}
+
+	output = &BatchGetTableOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetTableOptimizer API operation for AWS Glue.
+//
+// Returns the configuration for the specified table optimizers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation BatchGetTableOptimizer for usage and error information.
+//
+// Returned Error Types:
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetTableOptimizer
+func (c *Glue) BatchGetTableOptimizer(input *BatchGetTableOptimizerInput) (*BatchGetTableOptimizerOutput, error) {
+	req, out := c.BatchGetTableOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetTableOptimizerWithContext is the same as BatchGetTableOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetTableOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) BatchGetTableOptimizerWithContext(ctx aws.Context, input *BatchGetTableOptimizerInput, opts ...request.Option) (*BatchGetTableOptimizerOutput, error) {
+	req, out := c.BatchGetTableOptimizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetTriggers = "BatchGetTriggers"
 
 // BatchGetTriggersRequest generates a "aws/request.Request" representing the
@@ -3641,6 +3719,99 @@ func (c *Glue) CreateTableWithContext(ctx aws.Context, input *CreateTableInput, 
 	return out, req.Send()
 }
 
+const opCreateTableOptimizer = "CreateTableOptimizer"
+
+// CreateTableOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTableOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTableOptimizer for more information on using the CreateTableOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTableOptimizerRequest method.
+//	req, resp := client.CreateTableOptimizerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateTableOptimizer
+func (c *Glue) CreateTableOptimizerRequest(input *CreateTableOptimizerInput) (req *request.Request, output *CreateTableOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opCreateTableOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTableOptimizerInput{}
+	}
+
+	output = &CreateTableOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateTableOptimizer API operation for AWS Glue.
+//
+// Creates a new table optimizer for a specific function. compaction is the
+// only currently supported optimizer type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreateTableOptimizer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateTableOptimizer
+func (c *Glue) CreateTableOptimizer(input *CreateTableOptimizerInput) (*CreateTableOptimizerOutput, error) {
+	req, out := c.CreateTableOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// CreateTableOptimizerWithContext is the same as CreateTableOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTableOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreateTableOptimizerWithContext(ctx aws.Context, input *CreateTableOptimizerInput, opts ...request.Option) (*CreateTableOptimizerOutput, error) {
+	req, out := c.CreateTableOptimizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTrigger = "CreateTrigger"
 
 // CreateTriggerRequest generates a "aws/request.Request" representing the
@@ -5859,6 +6030,96 @@ func (c *Glue) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) 
 // for more information on using Contexts.
 func (c *Glue) DeleteTableWithContext(ctx aws.Context, input *DeleteTableInput, opts ...request.Option) (*DeleteTableOutput, error) {
 	req, out := c.DeleteTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTableOptimizer = "DeleteTableOptimizer"
+
+// DeleteTableOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTableOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTableOptimizer for more information on using the DeleteTableOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTableOptimizerRequest method.
+//	req, resp := client.DeleteTableOptimizerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteTableOptimizer
+func (c *Glue) DeleteTableOptimizerRequest(input *DeleteTableOptimizerInput) (req *request.Request, output *DeleteTableOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTableOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTableOptimizerInput{}
+	}
+
+	output = &DeleteTableOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTableOptimizer API operation for AWS Glue.
+//
+// Deletes an optimizer and all associated metadata for a table. The optimization
+// will no longer be performed on the table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeleteTableOptimizer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteTableOptimizer
+func (c *Glue) DeleteTableOptimizer(input *DeleteTableOptimizerInput) (*DeleteTableOptimizerOutput, error) {
+	req, out := c.DeleteTableOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTableOptimizerWithContext is the same as DeleteTableOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTableOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeleteTableOptimizerWithContext(ctx aws.Context, input *DeleteTableOptimizerInput, opts ...request.Option) (*DeleteTableOptimizerOutput, error) {
+	req, out := c.DeleteTableOptimizerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11536,6 +11797,94 @@ func (c *Glue) GetTableWithContext(ctx aws.Context, input *GetTableInput, opts .
 	return out, req.Send()
 }
 
+const opGetTableOptimizer = "GetTableOptimizer"
+
+// GetTableOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the GetTableOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTableOptimizer for more information on using the GetTableOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTableOptimizerRequest method.
+//	req, resp := client.GetTableOptimizerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTableOptimizer
+func (c *Glue) GetTableOptimizerRequest(input *GetTableOptimizerInput) (req *request.Request, output *GetTableOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opGetTableOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTableOptimizerInput{}
+	}
+
+	output = &GetTableOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTableOptimizer API operation for AWS Glue.
+//
+// Returns the configuration of all optimizers associated with a specified table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetTableOptimizer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTableOptimizer
+func (c *Glue) GetTableOptimizer(input *GetTableOptimizerInput) (*GetTableOptimizerOutput, error) {
+	req, out := c.GetTableOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// GetTableOptimizerWithContext is the same as GetTableOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTableOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetTableOptimizerWithContext(ctx aws.Context, input *GetTableOptimizerInput, opts ...request.Option) (*GetTableOptimizerOutput, error) {
+	req, out := c.GetTableOptimizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetTableVersion = "GetTableVersion"
 
 // GetTableVersionRequest generates a "aws/request.Request" representing the
@@ -15572,6 +15921,151 @@ func (c *Glue) ListStatementsWithContext(ctx aws.Context, input *ListStatementsI
 	return out, req.Send()
 }
 
+const opListTableOptimizerRuns = "ListTableOptimizerRuns"
+
+// ListTableOptimizerRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTableOptimizerRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTableOptimizerRuns for more information on using the ListTableOptimizerRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTableOptimizerRunsRequest method.
+//	req, resp := client.ListTableOptimizerRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListTableOptimizerRuns
+func (c *Glue) ListTableOptimizerRunsRequest(input *ListTableOptimizerRunsInput) (req *request.Request, output *ListTableOptimizerRunsOutput) {
+	op := &request.Operation{
+		Name:       opListTableOptimizerRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTableOptimizerRunsInput{}
+	}
+
+	output = &ListTableOptimizerRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTableOptimizerRuns API operation for AWS Glue.
+//
+// Lists the history of previous optimizer runs for a specific table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListTableOptimizerRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListTableOptimizerRuns
+func (c *Glue) ListTableOptimizerRuns(input *ListTableOptimizerRunsInput) (*ListTableOptimizerRunsOutput, error) {
+	req, out := c.ListTableOptimizerRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListTableOptimizerRunsWithContext is the same as ListTableOptimizerRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTableOptimizerRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListTableOptimizerRunsWithContext(ctx aws.Context, input *ListTableOptimizerRunsInput, opts ...request.Option) (*ListTableOptimizerRunsOutput, error) {
+	req, out := c.ListTableOptimizerRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTableOptimizerRunsPages iterates over the pages of a ListTableOptimizerRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTableOptimizerRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTableOptimizerRuns operation.
+//	pageNum := 0
+//	err := client.ListTableOptimizerRunsPages(params,
+//	    func(page *glue.ListTableOptimizerRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListTableOptimizerRunsPages(input *ListTableOptimizerRunsInput, fn func(*ListTableOptimizerRunsOutput, bool) bool) error {
+	return c.ListTableOptimizerRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTableOptimizerRunsPagesWithContext same as ListTableOptimizerRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListTableOptimizerRunsPagesWithContext(ctx aws.Context, input *ListTableOptimizerRunsInput, fn func(*ListTableOptimizerRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTableOptimizerRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTableOptimizerRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTableOptimizerRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTriggers = "ListTriggers"
 
 // ListTriggersRequest generates a "aws/request.Request" representing the
@@ -17278,6 +17772,8 @@ func (c *Glue) StartDataQualityRuleRecommendationRunRequest(input *StartDataQual
 // know what rules to write. Glue Data Quality analyzes the data and comes up
 // with recommendations for a potential ruleset. You can then triage the ruleset
 // and modify the generated ruleset to your liking.
+//
+// Recommendation runs are automatically deleted after 90 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20464,6 +20960,95 @@ func (c *Glue) UpdateTableWithContext(ctx aws.Context, input *UpdateTableInput, 
 	return out, req.Send()
 }
 
+const opUpdateTableOptimizer = "UpdateTableOptimizer"
+
+// UpdateTableOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTableOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTableOptimizer for more information on using the UpdateTableOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTableOptimizerRequest method.
+//	req, resp := client.UpdateTableOptimizerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateTableOptimizer
+func (c *Glue) UpdateTableOptimizerRequest(input *UpdateTableOptimizerInput) (req *request.Request, output *UpdateTableOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTableOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTableOptimizerInput{}
+	}
+
+	output = &UpdateTableOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateTableOptimizer API operation for AWS Glue.
+//
+// Updates the configuration for an existing table optimizer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation UpdateTableOptimizer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateTableOptimizer
+func (c *Glue) UpdateTableOptimizer(input *UpdateTableOptimizerInput) (*UpdateTableOptimizerOutput, error) {
+	req, out := c.UpdateTableOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTableOptimizerWithContext is the same as UpdateTableOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTableOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) UpdateTableOptimizerWithContext(ctx aws.Context, input *UpdateTableOptimizerInput, opts ...request.Option) (*UpdateTableOptimizerOutput, error) {
+	req, out := c.UpdateTableOptimizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTrigger = "UpdateTrigger"
 
 // UpdateTriggerRequest generates a "aws/request.Request" representing the
@@ -23301,6 +23886,250 @@ func (s *BatchGetPartitionOutput) SetUnprocessedKeys(v []*PartitionValueList) *B
 	return s
 }
 
+// Represents a table optimizer to retrieve in the BatchGetTableOptimizer operation.
+type BatchGetTableOptimizerEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `locationName:"catalogId" min:"1" type:"string"`
+
+	// The name of the database in the catalog in which the table resides.
+	DatabaseName *string `locationName:"databaseName" min:"1" type:"string"`
+
+	// The name of the table.
+	TableName *string `locationName:"tableName" min:"1" type:"string"`
+
+	// The type of table optimizer.
+	Type *string `locationName:"type" type:"string" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetTableOptimizerEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetTableOptimizerEntry"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *BatchGetTableOptimizerEntry) SetCatalogId(v string) *BatchGetTableOptimizerEntry {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *BatchGetTableOptimizerEntry) SetDatabaseName(v string) *BatchGetTableOptimizerEntry {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *BatchGetTableOptimizerEntry) SetTableName(v string) *BatchGetTableOptimizerEntry {
+	s.TableName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BatchGetTableOptimizerEntry) SetType(v string) *BatchGetTableOptimizerEntry {
+	s.Type = &v
+	return s
+}
+
+// Contains details on one of the errors in the error list returned by the BatchGetTableOptimizer
+// operation.
+type BatchGetTableOptimizerError struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `locationName:"catalogId" min:"1" type:"string"`
+
+	// The name of the database in the catalog in which the table resides.
+	DatabaseName *string `locationName:"databaseName" min:"1" type:"string"`
+
+	// An ErrorDetail object containing code and message details about the error.
+	Error *ErrorDetail `locationName:"error" type:"structure"`
+
+	// The name of the table.
+	TableName *string `locationName:"tableName" min:"1" type:"string"`
+
+	// The type of table optimizer.
+	Type *string `locationName:"type" type:"string" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerError) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *BatchGetTableOptimizerError) SetCatalogId(v string) *BatchGetTableOptimizerError {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *BatchGetTableOptimizerError) SetDatabaseName(v string) *BatchGetTableOptimizerError {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *BatchGetTableOptimizerError) SetError(v *ErrorDetail) *BatchGetTableOptimizerError {
+	s.Error = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *BatchGetTableOptimizerError) SetTableName(v string) *BatchGetTableOptimizerError {
+	s.TableName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BatchGetTableOptimizerError) SetType(v string) *BatchGetTableOptimizerError {
+	s.Type = &v
+	return s
+}
+
+type BatchGetTableOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of BatchGetTableOptimizerEntry objects specifying the table optimizers
+	// to retrieve.
+	//
+	// Entries is a required field
+	Entries []*BatchGetTableOptimizerEntry `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetTableOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetTableOptimizerInput"}
+	if s.Entries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entries"))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchGetTableOptimizerInput) SetEntries(v []*BatchGetTableOptimizerEntry) *BatchGetTableOptimizerInput {
+	s.Entries = v
+	return s
+}
+
+type BatchGetTableOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors from the operation.
+	Failures []*BatchGetTableOptimizerError `type:"list"`
+
+	// A list of BatchTableOptimizer objects.
+	TableOptimizers []*BatchTableOptimizer `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetTableOptimizerOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *BatchGetTableOptimizerOutput) SetFailures(v []*BatchGetTableOptimizerError) *BatchGetTableOptimizerOutput {
+	s.Failures = v
+	return s
+}
+
+// SetTableOptimizers sets the TableOptimizers field's value.
+func (s *BatchGetTableOptimizerOutput) SetTableOptimizers(v []*BatchTableOptimizer) *BatchGetTableOptimizerOutput {
+	s.TableOptimizers = v
+	return s
+}
+
 type BatchGetTriggersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23683,6 +24512,67 @@ func (s *BatchStopJobRunSuccessfulSubmission) SetJobName(v string) *BatchStopJob
 // SetJobRunId sets the JobRunId field's value.
 func (s *BatchStopJobRunSuccessfulSubmission) SetJobRunId(v string) *BatchStopJobRunSuccessfulSubmission {
 	s.JobRunId = &v
+	return s
+}
+
+// Contains details for one of the table optimizers returned by the BatchGetTableOptimizer
+// operation.
+type BatchTableOptimizer struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `locationName:"catalogId" min:"1" type:"string"`
+
+	// The name of the database in the catalog in which the table resides.
+	DatabaseName *string `locationName:"databaseName" min:"1" type:"string"`
+
+	// The name of the table.
+	TableName *string `locationName:"tableName" min:"1" type:"string"`
+
+	// A TableOptimizer object that contains details on the configuration and last
+	// run of a table optimzer.
+	TableOptimizer *TableOptimizer `locationName:"tableOptimizer" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTableOptimizer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTableOptimizer) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *BatchTableOptimizer) SetCatalogId(v string) *BatchTableOptimizer {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *BatchTableOptimizer) SetDatabaseName(v string) *BatchTableOptimizer {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *BatchTableOptimizer) SetTableName(v string) *BatchTableOptimizer {
+	s.TableName = &v
+	return s
+}
+
+// SetTableOptimizer sets the TableOptimizer field's value.
+func (s *BatchTableOptimizer) SetTableOptimizer(v *TableOptimizer) *BatchTableOptimizer {
+	s.TableOptimizer = v
 	return s
 }
 
@@ -33224,6 +34114,145 @@ func (s *CreateTableInput) SetTransactionId(v string) *CreateTableInput {
 	return s
 }
 
+type CreateTableOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the database in the catalog in which the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// A TableOptimizerConfiguration object representing the configuration of a
+	// table optimizer.
+	//
+	// TableOptimizerConfiguration is a required field
+	TableOptimizerConfiguration *TableOptimizerConfiguration `type:"structure" required:"true"`
+
+	// The type of table optimizer. Currently, the only valid value is compaction.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTableOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTableOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTableOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTableOptimizerInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TableOptimizerConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableOptimizerConfiguration"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.TableOptimizerConfiguration != nil {
+		if err := s.TableOptimizerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TableOptimizerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *CreateTableOptimizerInput) SetCatalogId(v string) *CreateTableOptimizerInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *CreateTableOptimizerInput) SetDatabaseName(v string) *CreateTableOptimizerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *CreateTableOptimizerInput) SetTableName(v string) *CreateTableOptimizerInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTableOptimizerConfiguration sets the TableOptimizerConfiguration field's value.
+func (s *CreateTableOptimizerInput) SetTableOptimizerConfiguration(v *TableOptimizerConfiguration) *CreateTableOptimizerInput {
+	s.TableOptimizerConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateTableOptimizerInput) SetType(v string) *CreateTableOptimizerInput {
+	s.Type = &v
+	return s
+}
+
+type CreateTableOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTableOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTableOptimizerOutput) GoString() string {
+	return s.String()
+}
+
 type CreateTableOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -37745,6 +38774,125 @@ func (s *DeleteTableInput) SetName(v string) *DeleteTableInput {
 func (s *DeleteTableInput) SetTransactionId(v string) *DeleteTableInput {
 	s.TransactionId = &v
 	return s
+}
+
+type DeleteTableOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the database in the catalog in which the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The type of table optimizer.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTableOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTableOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTableOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTableOptimizerInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DeleteTableOptimizerInput) SetCatalogId(v string) *DeleteTableOptimizerInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeleteTableOptimizerInput) SetDatabaseName(v string) *DeleteTableOptimizerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DeleteTableOptimizerInput) SetTableName(v string) *DeleteTableOptimizerInput {
+	s.TableName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DeleteTableOptimizerInput) SetType(v string) *DeleteTableOptimizerInput {
+	s.Type = &v
+	return s
+}
+
+type DeleteTableOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTableOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTableOptimizerOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteTableOutput struct {
@@ -47407,6 +48555,161 @@ func (s *GetTableInput) SetTransactionId(v string) *GetTableInput {
 	return s
 }
 
+type GetTableOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the database in the catalog in which the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The type of table optimizer.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTableOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTableOptimizerInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetTableOptimizerInput) SetCatalogId(v string) *GetTableOptimizerInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetTableOptimizerInput) SetDatabaseName(v string) *GetTableOptimizerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetTableOptimizerInput) SetTableName(v string) *GetTableOptimizerInput {
+	s.TableName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetTableOptimizerInput) SetType(v string) *GetTableOptimizerInput {
+	s.Type = &v
+	return s
+}
+
+type GetTableOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The name of the database in the catalog in which the table resides.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// The name of the table.
+	TableName *string `min:"1" type:"string"`
+
+	// The optimizer associated with the specified table.
+	TableOptimizer *TableOptimizer `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableOptimizerOutput) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetTableOptimizerOutput) SetCatalogId(v string) *GetTableOptimizerOutput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetTableOptimizerOutput) SetDatabaseName(v string) *GetTableOptimizerOutput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetTableOptimizerOutput) SetTableName(v string) *GetTableOptimizerOutput {
+	s.TableName = &v
+	return s
+}
+
+// SetTableOptimizer sets the TableOptimizer field's value.
+func (s *GetTableOptimizerOutput) SetTableOptimizer(v *TableOptimizer) *GetTableOptimizerOutput {
+	s.TableOptimizer = v
+	return s
+}
+
 type GetTableOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -55194,6 +56497,189 @@ func (s *ListStatementsOutput) SetStatements(v []*Statement) *ListStatementsOutp
 	return s
 }
 
+type ListTableOptimizerRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the database in the catalog in which the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of optimizer runs to return on each call.
+	MaxResults *int64 `type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The type of table optimizer. Currently, the only valid value is compaction.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableOptimizerRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableOptimizerRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTableOptimizerRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTableOptimizerRunsInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ListTableOptimizerRunsInput) SetCatalogId(v string) *ListTableOptimizerRunsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *ListTableOptimizerRunsInput) SetDatabaseName(v string) *ListTableOptimizerRunsInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTableOptimizerRunsInput) SetMaxResults(v int64) *ListTableOptimizerRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableOptimizerRunsInput) SetNextToken(v string) *ListTableOptimizerRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ListTableOptimizerRunsInput) SetTableName(v string) *ListTableOptimizerRunsInput {
+	s.TableName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListTableOptimizerRunsInput) SetType(v string) *ListTableOptimizerRunsInput {
+	s.Type = &v
+	return s
+}
+
+type ListTableOptimizerRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The name of the database in the catalog in which the table resides.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// A continuation token for paginating the returned list of optimizer runs,
+	// returned if the current segment of the list is not the last.
+	NextToken *string `type:"string"`
+
+	// The name of the table.
+	TableName *string `min:"1" type:"string"`
+
+	// A list of the optimizer runs associated with a table.
+	TableOptimizerRuns []*TableOptimizerRun `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableOptimizerRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableOptimizerRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ListTableOptimizerRunsOutput) SetCatalogId(v string) *ListTableOptimizerRunsOutput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *ListTableOptimizerRunsOutput) SetDatabaseName(v string) *ListTableOptimizerRunsOutput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableOptimizerRunsOutput) SetNextToken(v string) *ListTableOptimizerRunsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ListTableOptimizerRunsOutput) SetTableName(v string) *ListTableOptimizerRunsOutput {
+	s.TableName = &v
+	return s
+}
+
+// SetTableOptimizerRuns sets the TableOptimizerRuns field's value.
+func (s *ListTableOptimizerRunsOutput) SetTableOptimizerRuns(v []*TableOptimizerRun) *ListTableOptimizerRunsOutput {
+	s.TableOptimizerRuns = v
+	return s
+}
+
 type ListTriggersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -60633,6 +62119,65 @@ func (s *ResumeWorkflowRunOutput) SetNodeIds(v []*string) *ResumeWorkflowRunOutp
 // SetRunId sets the RunId field's value.
 func (s *ResumeWorkflowRunOutput) SetRunId(v string) *ResumeWorkflowRunOutput {
 	s.RunId = &v
+	return s
+}
+
+// Metrics for the optimizer run.
+type RunMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The duration of the job in hours.
+	JobDurationInHour *string `type:"string"`
+
+	// The number of bytes removed by the compaction job run.
+	NumberOfBytesCompacted *string `type:"string"`
+
+	// The number of DPU hours consumed by the job.
+	NumberOfDpus *string `type:"string"`
+
+	// The number of files removed by the compaction job run.
+	NumberOfFilesCompacted *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunMetrics) GoString() string {
+	return s.String()
+}
+
+// SetJobDurationInHour sets the JobDurationInHour field's value.
+func (s *RunMetrics) SetJobDurationInHour(v string) *RunMetrics {
+	s.JobDurationInHour = &v
+	return s
+}
+
+// SetNumberOfBytesCompacted sets the NumberOfBytesCompacted field's value.
+func (s *RunMetrics) SetNumberOfBytesCompacted(v string) *RunMetrics {
+	s.NumberOfBytesCompacted = &v
+	return s
+}
+
+// SetNumberOfDpus sets the NumberOfDpus field's value.
+func (s *RunMetrics) SetNumberOfDpus(v string) *RunMetrics {
+	s.NumberOfDpus = &v
+	return s
+}
+
+// SetNumberOfFilesCompacted sets the NumberOfFilesCompacted field's value.
+func (s *RunMetrics) SetNumberOfFilesCompacted(v string) *RunMetrics {
+	s.NumberOfFilesCompacted = &v
 	return s
 }
 
@@ -68706,6 +70251,182 @@ func (s *TableInput) SetViewOriginalText(v string) *TableInput {
 	return s
 }
 
+// Contains details about an optimizer associated with a table.
+type TableOptimizer struct {
+	_ struct{} `type:"structure"`
+
+	// A TableOptimizerConfiguration object that was specified when creating or
+	// updating a table optimizer.
+	Configuration *TableOptimizerConfiguration `locationName:"configuration" type:"structure"`
+
+	// A TableOptimizerRun object representing the last run of the table optimizer.
+	LastRun *TableOptimizerRun `locationName:"lastRun" type:"structure"`
+
+	// The type of table optimizer. Currently, the only valid value is compaction.
+	Type *string `locationName:"type" type:"string" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizer) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *TableOptimizer) SetConfiguration(v *TableOptimizerConfiguration) *TableOptimizer {
+	s.Configuration = v
+	return s
+}
+
+// SetLastRun sets the LastRun field's value.
+func (s *TableOptimizer) SetLastRun(v *TableOptimizerRun) *TableOptimizer {
+	s.LastRun = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TableOptimizer) SetType(v string) *TableOptimizer {
+	s.Type = &v
+	return s
+}
+
+// Contains details on the configuration of a table optimizer. You pass this
+// configuration when creating or updating a table optimizer.
+type TableOptimizerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Whether table optimization is enabled.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	// A role passed by the caller which gives the service permission to update
+	// the resources associated with the optimizer on the caller's behalf.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableOptimizerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableOptimizerConfiguration"}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *TableOptimizerConfiguration) SetEnabled(v bool) *TableOptimizerConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TableOptimizerConfiguration) SetRoleArn(v string) *TableOptimizerConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// Contains details for a table optimizer run.
+type TableOptimizerRun struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the epoch timestamp at which the compaction job ended.
+	EndTimestamp *time.Time `locationName:"endTimestamp" type:"timestamp"`
+
+	// An error that occured during the optimizer run.
+	Error *string `locationName:"error" type:"string"`
+
+	// An event type representing the status of the table optimizer run.
+	EventType *string `locationName:"eventType" type:"string" enum:"TableOptimizerEventType"`
+
+	// A RunMetrics object containing metrics for the optimizer run.
+	Metrics *RunMetrics `locationName:"metrics" type:"structure"`
+
+	// Represents the epoch timestamp at which the compaction job was started within
+	// Lake Formation.
+	StartTimestamp *time.Time `locationName:"startTimestamp" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizerRun) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableOptimizerRun) GoString() string {
+	return s.String()
+}
+
+// SetEndTimestamp sets the EndTimestamp field's value.
+func (s *TableOptimizerRun) SetEndTimestamp(v time.Time) *TableOptimizerRun {
+	s.EndTimestamp = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *TableOptimizerRun) SetError(v string) *TableOptimizerRun {
+	s.Error = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *TableOptimizerRun) SetEventType(v string) *TableOptimizerRun {
+	s.EventType = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *TableOptimizerRun) SetMetrics(v *RunMetrics) *TableOptimizerRun {
+	s.Metrics = v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *TableOptimizerRun) SetStartTimestamp(v time.Time) *TableOptimizerRun {
+	s.StartTimestamp = &v
+	return s
+}
+
 // Specifies a version of a table.
 type TableVersion struct {
 	_ struct{} `type:"structure"`
@@ -72804,6 +74525,145 @@ func (s *UpdateTableInput) SetVersionId(v string) *UpdateTableInput {
 	return s
 }
 
+type UpdateTableOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the database in the catalog in which the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// A TableOptimizerConfiguration object representing the configuration of a
+	// table optimizer.
+	//
+	// TableOptimizerConfiguration is a required field
+	TableOptimizerConfiguration *TableOptimizerConfiguration `type:"structure" required:"true"`
+
+	// The type of table optimizer. Currently, the only valid value is compaction.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TableOptimizerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTableOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTableOptimizerInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TableOptimizerConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableOptimizerConfiguration"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.TableOptimizerConfiguration != nil {
+		if err := s.TableOptimizerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TableOptimizerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UpdateTableOptimizerInput) SetCatalogId(v string) *UpdateTableOptimizerInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *UpdateTableOptimizerInput) SetDatabaseName(v string) *UpdateTableOptimizerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateTableOptimizerInput) SetTableName(v string) *UpdateTableOptimizerInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTableOptimizerConfiguration sets the TableOptimizerConfiguration field's value.
+func (s *UpdateTableOptimizerInput) SetTableOptimizerConfiguration(v *TableOptimizerConfiguration) *UpdateTableOptimizerInput {
+	s.TableOptimizerConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateTableOptimizerInput) SetType(v string) *UpdateTableOptimizerInput {
+	s.Type = &v
+	return s
+}
+
+type UpdateTableOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableOptimizerOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateTableOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -76082,6 +77942,42 @@ func StatementState_Values() []string {
 		StatementStateCancelling,
 		StatementStateCancelled,
 		StatementStateError,
+	}
+}
+
+const (
+	// TableOptimizerEventTypeStarting is a TableOptimizerEventType enum value
+	TableOptimizerEventTypeStarting = "starting"
+
+	// TableOptimizerEventTypeCompleted is a TableOptimizerEventType enum value
+	TableOptimizerEventTypeCompleted = "completed"
+
+	// TableOptimizerEventTypeFailed is a TableOptimizerEventType enum value
+	TableOptimizerEventTypeFailed = "failed"
+
+	// TableOptimizerEventTypeInProgress is a TableOptimizerEventType enum value
+	TableOptimizerEventTypeInProgress = "in_progress"
+)
+
+// TableOptimizerEventType_Values returns all elements of the TableOptimizerEventType enum
+func TableOptimizerEventType_Values() []string {
+	return []string{
+		TableOptimizerEventTypeStarting,
+		TableOptimizerEventTypeCompleted,
+		TableOptimizerEventTypeFailed,
+		TableOptimizerEventTypeInProgress,
+	}
+}
+
+const (
+	// TableOptimizerTypeCompaction is a TableOptimizerType enum value
+	TableOptimizerTypeCompaction = "compaction"
+)
+
+// TableOptimizerType_Values returns all elements of the TableOptimizerType enum
+func TableOptimizerType_Values() []string {
+	return []string{
+		TableOptimizerTypeCompaction,
 	}
 }
 
