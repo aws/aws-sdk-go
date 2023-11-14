@@ -7714,6 +7714,13 @@ type CreateCollaborationInput struct {
 	// CreatorMemberAbilities is a required field
 	CreatorMemberAbilities []*string `locationName:"creatorMemberAbilities" type:"list" required:"true" enum:"MemberAbility"`
 
+	// The collaboration creator's payment responsibilities set by the collaboration
+	// creator.
+	//
+	// If the collaboration creator hasn't specified anyone as the member paying
+	// for query compute costs, then the member who can query is the default payer.
+	CreatorPaymentConfiguration *PaymentConfiguration `locationName:"creatorPaymentConfiguration" type:"structure"`
+
 	// The settings for client-side encryption with Cryptographic Computing for
 	// Clean Rooms.
 	DataEncryptionMetadata *DataEncryptionMetadata `locationName:"dataEncryptionMetadata" type:"structure"`
@@ -7794,6 +7801,11 @@ func (s *CreateCollaborationInput) Validate() error {
 	if s.QueryLogStatus == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryLogStatus"))
 	}
+	if s.CreatorPaymentConfiguration != nil {
+		if err := s.CreatorPaymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CreatorPaymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DataEncryptionMetadata != nil {
 		if err := s.DataEncryptionMetadata.Validate(); err != nil {
 			invalidParams.AddNested("DataEncryptionMetadata", err.(request.ErrInvalidParams))
@@ -7825,6 +7837,12 @@ func (s *CreateCollaborationInput) SetCreatorDisplayName(v string) *CreateCollab
 // SetCreatorMemberAbilities sets the CreatorMemberAbilities field's value.
 func (s *CreateCollaborationInput) SetCreatorMemberAbilities(v []*string) *CreateCollaborationInput {
 	s.CreatorMemberAbilities = v
+	return s
+}
+
+// SetCreatorPaymentConfiguration sets the CreatorPaymentConfiguration field's value.
+func (s *CreateCollaborationInput) SetCreatorPaymentConfiguration(v *PaymentConfiguration) *CreateCollaborationInput {
+	s.CreatorPaymentConfiguration = v
 	return s
 }
 
@@ -8336,8 +8354,16 @@ type CreateMembershipInput struct {
 	// who can receive results.
 	DefaultResultConfiguration *MembershipProtectedQueryResultConfiguration `locationName:"defaultResultConfiguration" type:"structure"`
 
+	// The payment responsibilities accepted by the collaboration member.
+	//
+	// Not required if the collaboration member has the member ability to run queries.
+	//
+	// Required if the collaboration member doesn't have the member ability to run
+	// queries but is configured as a payer by the collaboration creator.
+	PaymentConfiguration *MembershipPaymentConfiguration `locationName:"paymentConfiguration" type:"structure"`
+
 	// An indicator as to whether query logging has been enabled or disabled for
-	// the collaboration.
+	// the membership.
 	//
 	// QueryLogStatus is a required field
 	QueryLogStatus *string `locationName:"queryLogStatus" type:"string" required:"true" enum:"MembershipQueryLogStatus"`
@@ -8384,6 +8410,11 @@ func (s *CreateMembershipInput) Validate() error {
 			invalidParams.AddNested("DefaultResultConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PaymentConfiguration != nil {
+		if err := s.PaymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PaymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8400,6 +8431,12 @@ func (s *CreateMembershipInput) SetCollaborationIdentifier(v string) *CreateMemb
 // SetDefaultResultConfiguration sets the DefaultResultConfiguration field's value.
 func (s *CreateMembershipInput) SetDefaultResultConfiguration(v *MembershipProtectedQueryResultConfiguration) *CreateMembershipInput {
 	s.DefaultResultConfiguration = v
+	return s
+}
+
+// SetPaymentConfiguration sets the PaymentConfiguration field's value.
+func (s *CreateMembershipInput) SetPaymentConfiguration(v *MembershipPaymentConfiguration) *CreateMembershipInput {
+	s.PaymentConfiguration = v
 	return s
 }
 
@@ -8452,27 +8489,27 @@ func (s *CreateMembershipOutput) SetMembership(v *Membership) *CreateMembershipO
 type DataEncryptionMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether encrypted tables can contain cleartext data (true) or are
-	// to cryptographically process every column (false).
+	// Indicates whether encrypted tables can contain cleartext data (TRUE) or are
+	// to cryptographically process every column (FALSE).
 	//
 	// AllowCleartext is a required field
 	AllowCleartext *bool `locationName:"allowCleartext" type:"boolean" required:"true"`
 
-	// Indicates whether Fingerprint columns can contain duplicate entries (true)
-	// or are to contain only non-repeated values (false).
+	// Indicates whether Fingerprint columns can contain duplicate entries (TRUE)
+	// or are to contain only non-repeated values (FALSE).
 	//
 	// AllowDuplicates is a required field
 	AllowDuplicates *bool `locationName:"allowDuplicates" type:"boolean" required:"true"`
 
 	// Indicates whether Fingerprint columns can be joined on any other Fingerprint
-	// column with a different name (true) or can only be joined on Fingerprint
-	// columns of the same name (false).
+	// column with a different name (TRUE) or can only be joined on Fingerprint
+	// columns of the same name (FALSE).
 	//
 	// AllowJoinsOnColumnsWithDifferentNames is a required field
 	AllowJoinsOnColumnsWithDifferentNames *bool `locationName:"allowJoinsOnColumnsWithDifferentNames" type:"boolean" required:"true"`
 
 	// Indicates whether NULL values are to be copied as NULL to encrypted tables
-	// (true) or cryptographically processed (false).
+	// (TRUE) or cryptographically processed (FALSE).
 	//
 	// PreserveNulls is a required field
 	PreserveNulls *bool `locationName:"preserveNulls" type:"boolean" required:"true"`
@@ -9773,7 +9810,7 @@ type GetProtectedQueryInput struct {
 	// The identifier for a protected query instance.
 	//
 	// ProtectedQueryIdentifier is a required field
-	ProtectedQueryIdentifier *string `location:"uri" locationName:"protectedQueryIdentifier" min:"1" type:"string" required:"true"`
+	ProtectedQueryIdentifier *string `location:"uri" locationName:"protectedQueryIdentifier" min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -9806,8 +9843,8 @@ func (s *GetProtectedQueryInput) Validate() error {
 	if s.ProtectedQueryIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProtectedQueryIdentifier"))
 	}
-	if s.ProtectedQueryIdentifier != nil && len(*s.ProtectedQueryIdentifier) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ProtectedQueryIdentifier", 1))
+	if s.ProtectedQueryIdentifier != nil && len(*s.ProtectedQueryIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectedQueryIdentifier", 36))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11326,6 +11363,13 @@ type MemberSpecification struct {
 	//
 	// MemberAbilities is a required field
 	MemberAbilities []*string `locationName:"memberAbilities" type:"list" required:"true" enum:"MemberAbility"`
+
+	// The collaboration member's payment responsibilities set by the collaboration
+	// creator.
+	//
+	// If the collaboration creator hasn't speciﬁed anyone as the member paying
+	// for query compute costs, then the member who can query is the default payer.
+	PaymentConfiguration *PaymentConfiguration `locationName:"paymentConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11364,6 +11408,11 @@ func (s *MemberSpecification) Validate() error {
 	if s.MemberAbilities == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberAbilities"))
 	}
+	if s.PaymentConfiguration != nil {
+		if err := s.PaymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PaymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11386,6 +11435,12 @@ func (s *MemberSpecification) SetDisplayName(v string) *MemberSpecification {
 // SetMemberAbilities sets the MemberAbilities field's value.
 func (s *MemberSpecification) SetMemberAbilities(v []*string) *MemberSpecification {
 	s.MemberAbilities = v
+	return s
+}
+
+// SetPaymentConfiguration sets the PaymentConfiguration field's value.
+func (s *MemberSpecification) SetPaymentConfiguration(v *PaymentConfiguration) *MemberSpecification {
+	s.PaymentConfiguration = v
 	return s
 }
 
@@ -11420,8 +11475,13 @@ type MemberSummary struct {
 	// The unique ID for the member's associated membership, if present.
 	MembershipId *string `locationName:"membershipId" min:"36" type:"string"`
 
-	// The status of the member. Valid values are `INVITED`, `ACTIVE`, `LEFT`, and
-	// `REMOVED`.
+	// The collaboration member's payment responsibilities set by the collaboration
+	// creator.
+	//
+	// PaymentConfiguration is a required field
+	PaymentConfiguration *PaymentConfiguration `locationName:"paymentConfiguration" type:"structure" required:"true"`
+
+	// The status of the member.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"MemberStatus"`
@@ -11483,6 +11543,12 @@ func (s *MemberSummary) SetMembershipArn(v string) *MemberSummary {
 // SetMembershipId sets the MembershipId field's value.
 func (s *MemberSummary) SetMembershipId(v string) *MemberSummary {
 	s.MembershipId = &v
+	return s
+}
+
+// SetPaymentConfiguration sets the PaymentConfiguration field's value.
+func (s *MemberSummary) SetPaymentConfiguration(v *PaymentConfiguration) *MemberSummary {
+	s.PaymentConfiguration = v
 	return s
 }
 
@@ -11552,13 +11618,18 @@ type Membership struct {
 	// MemberAbilities is a required field
 	MemberAbilities []*string `locationName:"memberAbilities" type:"list" required:"true" enum:"MemberAbility"`
 
+	// The payment responsibilities accepted by the collaboration member.
+	//
+	// PaymentConfiguration is a required field
+	PaymentConfiguration *MembershipPaymentConfiguration `locationName:"paymentConfiguration" type:"structure" required:"true"`
+
 	// An indicator as to whether query logging has been enabled or disabled for
-	// the collaboration.
+	// the membership.
 	//
 	// QueryLogStatus is a required field
 	QueryLogStatus *string `locationName:"queryLogStatus" type:"string" required:"true" enum:"MembershipQueryLogStatus"`
 
-	// The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.
+	// The status of the membership.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"MembershipStatus"`
@@ -11647,6 +11718,12 @@ func (s *Membership) SetMemberAbilities(v []*string) *Membership {
 	return s
 }
 
+// SetPaymentConfiguration sets the PaymentConfiguration field's value.
+func (s *Membership) SetPaymentConfiguration(v *MembershipPaymentConfiguration) *Membership {
+	s.PaymentConfiguration = v
+	return s
+}
+
 // SetQueryLogStatus sets the QueryLogStatus field's value.
 func (s *Membership) SetQueryLogStatus(v string) *Membership {
 	s.QueryLogStatus = &v
@@ -11662,6 +11739,60 @@ func (s *Membership) SetStatus(v string) *Membership {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *Membership) SetUpdateTime(v time.Time) *Membership {
 	s.UpdateTime = &v
+	return s
+}
+
+// An object representing the payment responsibilities accepted by the collaboration
+// member.
+type MembershipPaymentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The payment responsibilities accepted by the collaboration member for query
+	// compute costs.
+	//
+	// QueryCompute is a required field
+	QueryCompute *MembershipQueryComputePaymentConfig `locationName:"queryCompute" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipPaymentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipPaymentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MembershipPaymentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MembershipPaymentConfiguration"}
+	if s.QueryCompute == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryCompute"))
+	}
+	if s.QueryCompute != nil {
+		if err := s.QueryCompute.Validate(); err != nil {
+			invalidParams.AddNested("QueryCompute", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryCompute sets the QueryCompute field's value.
+func (s *MembershipPaymentConfiguration) SetQueryCompute(v *MembershipQueryComputePaymentConfig) *MembershipPaymentConfiguration {
+	s.QueryCompute = v
 	return s
 }
 
@@ -11778,6 +11909,66 @@ func (s *MembershipProtectedQueryResultConfiguration) SetRoleArn(v string) *Memb
 	return s
 }
 
+// An object representing the payment responsibilities accepted by the collaboration
+// member for query compute costs.
+type MembershipQueryComputePaymentConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the collaboration member has accepted to pay for query
+	// compute costs (TRUE) or has not accepted to pay for query compute costs (FALSE).
+	//
+	// If the collaboration creator has not specified anyone to pay for query compute
+	// costs, then the member who can query is the default payer.
+	//
+	// An error message is returned for the following reasons:
+	//
+	//    * If you set the value to FALSE but you are responsible to pay for query
+	//    compute costs.
+	//
+	//    * If you set the value to TRUE but you are not responsible to pay for
+	//    query compute costs.
+	//
+	// IsResponsible is a required field
+	IsResponsible *bool `locationName:"isResponsible" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipQueryComputePaymentConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MembershipQueryComputePaymentConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MembershipQueryComputePaymentConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MembershipQueryComputePaymentConfig"}
+	if s.IsResponsible == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsResponsible"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsResponsible sets the IsResponsible field's value.
+func (s *MembershipQueryComputePaymentConfig) SetIsResponsible(v bool) *MembershipQueryComputePaymentConfig {
+	s.IsResponsible = &v
+	return s
+}
+
 // The membership object listed by the request.
 type MembershipSummary struct {
 	_ struct{} `type:"structure"`
@@ -11828,7 +12019,12 @@ type MembershipSummary struct {
 	// MemberAbilities is a required field
 	MemberAbilities []*string `locationName:"memberAbilities" type:"list" required:"true" enum:"MemberAbility"`
 
-	// The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.
+	// The payment responsibilities accepted by the collaboration member.
+	//
+	// PaymentConfiguration is a required field
+	PaymentConfiguration *MembershipPaymentConfiguration `locationName:"paymentConfiguration" type:"structure" required:"true"`
+
+	// The status of the membership.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"MembershipStatus"`
@@ -11911,6 +12107,12 @@ func (s *MembershipSummary) SetMemberAbilities(v []*string) *MembershipSummary {
 	return s
 }
 
+// SetPaymentConfiguration sets the PaymentConfiguration field's value.
+func (s *MembershipSummary) SetPaymentConfiguration(v *MembershipPaymentConfiguration) *MembershipSummary {
+	s.PaymentConfiguration = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *MembershipSummary) SetStatus(v string) *MembershipSummary {
 	s.Status = &v
@@ -11920,6 +12122,60 @@ func (s *MembershipSummary) SetStatus(v string) *MembershipSummary {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *MembershipSummary) SetUpdateTime(v time.Time) *MembershipSummary {
 	s.UpdateTime = &v
+	return s
+}
+
+// An object representing the collaboration member's payment responsibilities
+// set by the collaboration creator.
+type PaymentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The collaboration member's payment responsibilities set by the collaboration
+	// creator for query compute costs.
+	//
+	// QueryCompute is a required field
+	QueryCompute *QueryComputePaymentConfig `locationName:"queryCompute" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PaymentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PaymentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PaymentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PaymentConfiguration"}
+	if s.QueryCompute == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryCompute"))
+	}
+	if s.QueryCompute != nil {
+		if err := s.QueryCompute.Validate(); err != nil {
+			invalidParams.AddNested("QueryCompute", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryCompute sets the QueryCompute field's value.
+func (s *PaymentConfiguration) SetQueryCompute(v *QueryComputePaymentConfig) *PaymentConfiguration {
+	s.QueryCompute = v
 	return s
 }
 
@@ -12571,6 +12827,65 @@ func (s *ProtectedQuerySummary) SetMembershipId(v string) *ProtectedQuerySummary
 // SetStatus sets the Status field's value.
 func (s *ProtectedQuerySummary) SetStatus(v string) *ProtectedQuerySummary {
 	s.Status = &v
+	return s
+}
+
+// An object representing the collaboration member's payment responsibilities
+// set by the collaboration creator for query compute costs.
+type QueryComputePaymentConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the collaboration creator has configured the collaboration
+	// member to pay for query compute costs (TRUE) or has not configured the collaboration
+	// member to pay for query compute costs (FALSE).
+	//
+	// Exactly one member can be configured to pay for query compute costs. An error
+	// is returned if the collaboration creator sets a TRUE value for more than
+	// one member in the collaboration.
+	//
+	// If the collaboration creator hasn't specified anyone as the member paying
+	// for query compute costs, then the member who can query is the default payer.
+	// An error is returned if the collaboration creator sets a FALSE value for
+	// the member who can query.
+	//
+	// IsResponsible is a required field
+	IsResponsible *bool `locationName:"isResponsible" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryComputePaymentConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryComputePaymentConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueryComputePaymentConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueryComputePaymentConfig"}
+	if s.IsResponsible == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsResponsible"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsResponsible sets the IsResponsible field's value.
+func (s *QueryComputePaymentConfig) SetIsResponsible(v bool) *QueryComputePaymentConfig {
+	s.IsResponsible = &v
 	return s
 }
 
@@ -13986,7 +14301,7 @@ type UpdateMembershipInput struct {
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
 	// An indicator as to whether query logging has been enabled or disabled for
-	// the collaboration.
+	// the membership.
 	QueryLogStatus *string `locationName:"queryLogStatus" type:"string" enum:"MembershipQueryLogStatus"`
 }
 
@@ -14091,7 +14406,7 @@ type UpdateProtectedQueryInput struct {
 	// The identifier for a protected query instance.
 	//
 	// ProtectedQueryIdentifier is a required field
-	ProtectedQueryIdentifier *string `location:"uri" locationName:"protectedQueryIdentifier" min:"1" type:"string" required:"true"`
+	ProtectedQueryIdentifier *string `location:"uri" locationName:"protectedQueryIdentifier" min:"36" type:"string" required:"true"`
 
 	// The target status of a query. Used to update the execution status of a currently
 	// running query.
@@ -14130,8 +14445,8 @@ func (s *UpdateProtectedQueryInput) Validate() error {
 	if s.ProtectedQueryIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProtectedQueryIdentifier"))
 	}
-	if s.ProtectedQueryIdentifier != nil && len(*s.ProtectedQueryIdentifier) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ProtectedQueryIdentifier", 1))
+	if s.ProtectedQueryIdentifier != nil && len(*s.ProtectedQueryIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectedQueryIdentifier", 36))
 	}
 	if s.TargetStatus == nil {
 		invalidParams.Add(request.NewErrParamRequired("TargetStatus"))

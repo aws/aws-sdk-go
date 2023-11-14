@@ -515,8 +515,10 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 
 // DeleteStateMachine API operation for AWS Step Functions.
 //
-// Deletes a state machine. This is an asynchronous operation: It sets the state
-// machine's status to DELETING and begins the deletion process.
+// Deletes a state machine. This is an asynchronous operation. It sets the state
+// machine's status to DELETING and begins the deletion process. A state machine
+// is deleted only when all its executions are completed. On the next state
+// transition, the state machine's executions are terminated.
 //
 // A qualified state machine ARN can either refer to a Distributed Map state
 // defined within a state machine, a version ARN, or an alias ARN.
@@ -922,8 +924,11 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 //
 // Provides information about a state machine execution, such as the state machine
 // associated with the execution, the execution input and output, and relevant
-// execution metadata. Use this API action to return the Map Run Amazon Resource
-// Name (ARN) if the execution was dispatched by a Map Run.
+// execution metadata. If you've redriven (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html)
+// an execution, you can use this API action to return information about the
+// redrives of that execution. In addition, you can use this API action to return
+// the Map Run Amazon Resource Name (ARN) if the execution was dispatched by
+// a Map Run.
 //
 // If you specify a version or alias ARN when you call the StartExecution API
 // action, DescribeExecution returns that ARN.
@@ -931,7 +936,7 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
 //
-// Executions of an EXPRESS state machinearen't supported by DescribeExecution
+// Executions of an EXPRESS state machine aren't supported by DescribeExecution
 // unless a Map Run dispatched them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1015,7 +1020,9 @@ func (c *SFN) DescribeMapRunRequest(input *DescribeMapRunInput) (req *request.Re
 // DescribeMapRun API operation for AWS Step Functions.
 //
 // Provides information about a Map Run's configuration, progress, and results.
-// For more information, see Examining Map Run (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html)
+// If you've redriven (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html)
+// a Map Run, this API action also returns information about the redrives of
+// that Map Run. For more information, see Examining Map Run (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html)
 // in the Step Functions Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1799,7 +1806,9 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 //
 // Lists all executions of a state machine or a Map Run. You can list all executions
 // related to a state machine by specifying a state machine Amazon Resource
-// Name (ARN), or those related to a Map Run by specifying a Map Run ARN.
+// Name (ARN), or those related to a Map Run by specifying a Map Run ARN. Using
+// this API action, you can also list all redriven (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html)
+// executions.
 //
 // You can also provide a state machine alias (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html)
 // ARN or version (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html)
@@ -2625,6 +2634,139 @@ func (c *SFN) PublishStateMachineVersionWithContext(ctx aws.Context, input *Publ
 	return out, req.Send()
 }
 
+const opRedriveExecution = "RedriveExecution"
+
+// RedriveExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the RedriveExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RedriveExecution for more information on using the RedriveExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RedriveExecutionRequest method.
+//	req, resp := client.RedriveExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/RedriveExecution
+func (c *SFN) RedriveExecutionRequest(input *RedriveExecutionInput) (req *request.Request, output *RedriveExecutionOutput) {
+	op := &request.Operation{
+		Name:       opRedriveExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RedriveExecutionInput{}
+	}
+
+	output = &RedriveExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RedriveExecution API operation for AWS Step Functions.
+//
+// Restarts unsuccessful executions of Standard workflows that didn't complete
+// successfully in the last 14 days. These include failed, aborted, or timed
+// out executions. When you redrive (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html)
+// an execution, it continues the failed execution from the unsuccessful step
+// and uses the same input. Step Functions preserves the results and execution
+// history of the successful steps, and doesn't rerun these steps when you redrive
+// an execution. Redriven executions use the same state machine definition and
+// execution ARN as the original execution attempt.
+//
+// For workflows that include an Inline Map (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html)
+// or Parallel (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html)
+// state, RedriveExecution API action reschedules and redrives only the iterations
+// and branches that failed or aborted.
+//
+// To redrive a workflow that includes a Distributed Map state with failed child
+// workflow executions, you must redrive the parent workflow (https://docs.aws.amazon.com/step-functions/latest/dg/use-dist-map-orchestrate-large-scale-parallel-workloads.html#dist-map-orchestrate-parallel-workloads-key-terms).
+// The parent workflow redrives all the unsuccessful states, including Distributed
+// Map.
+//
+// This API action is not supported by EXPRESS state machines.
+//
+// However, you can restart the unsuccessful executions of Express child workflows
+// in a Distributed Map by redriving its Map Run. When you redrive a Map Run,
+// the Express child workflows are rerun using the StartExecution API action.
+// For more information, see Redriving Map Runs (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html).
+//
+// You can redrive executions if your original execution meets the following
+// conditions:
+//
+//   - The execution status isn't SUCCEEDED.
+//
+//   - Your workflow execution has not exceeded the redrivable period of 14
+//     days. Redrivable period refers to the time during which you can redrive
+//     a given execution. This period starts from the day a state machine completes
+//     its execution.
+//
+//   - The workflow execution has not exceeded the maximum open time of one
+//     year. For more information about state machine quotas, see Quotas related
+//     to state machine executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits-overview.html#service-limits-state-machine-executions).
+//
+//   - The execution event history count is less than 24,999. Redriven executions
+//     append their event history to the existing event history. Make sure your
+//     workflow execution contains less than 24,999 events to accommodate the
+//     ExecutionRedriven history event and at least one other history event.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation RedriveExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ExecutionDoesNotExist
+//     The specified execution does not exist.
+//
+//   - ExecutionNotRedrivable
+//     The execution Amazon Resource Name (ARN) that you specified for executionArn
+//     cannot be redriven.
+//
+//   - ExecutionLimitExceeded
+//     The maximum number of running executions has been reached. Running executions
+//     must end or be stopped before a new execution can be started.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/RedriveExecution
+func (c *SFN) RedriveExecution(input *RedriveExecutionInput) (*RedriveExecutionOutput, error) {
+	req, out := c.RedriveExecutionRequest(input)
+	return out, req.Send()
+}
+
+// RedriveExecutionWithContext is the same as RedriveExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RedriveExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) RedriveExecutionWithContext(ctx aws.Context, input *RedriveExecutionInput, opts ...request.Option) (*RedriveExecutionOutput, error) {
+	req, out := c.RedriveExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendTaskFailure = "SendTaskFailure"
 
 // SendTaskFailureRequest generates a "aws/request.Request" representing the
@@ -2669,7 +2811,8 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 
 // SendTaskFailure API operation for AWS Step Functions.
 //
-// Used by activity workers and task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// Used by activity workers, Task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// pattern, and optionally Task states using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
 // pattern to report that the task identified by the taskToken failed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2682,11 +2825,14 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 // Returned Error Types:
 //
 //   - TaskDoesNotExist
+//     The activity does not exist.
 //
 //   - InvalidToken
 //     The provided token is not valid.
 //
 //   - TaskTimedOut
+//     The task token has either expired or the task associated with the token has
+//     already been closed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailure(input *SendTaskFailureInput) (*SendTaskFailureOutput, error) {
@@ -2754,14 +2900,15 @@ func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *requ
 
 // SendTaskHeartbeat API operation for AWS Step Functions.
 //
-// Used by activity workers and task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// Used by activity workers and Task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// pattern, and optionally Task states using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
 // pattern to report to Step Functions that the task represented by the specified
 // taskToken is still making progress. This action resets the Heartbeat clock.
 // The Heartbeat threshold is specified in the state machine's Amazon States
 // Language definition (HeartbeatSeconds). This action does not in itself create
 // an event in the execution history. However, if the task times out, the execution
 // history contains an ActivityTimedOut entry for activities, or a TaskTimedOut
-// entry for for tasks using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
+// entry for tasks using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
 // or callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
 // pattern.
 //
@@ -2780,11 +2927,14 @@ func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *requ
 // Returned Error Types:
 //
 //   - TaskDoesNotExist
+//     The activity does not exist.
 //
 //   - InvalidToken
 //     The provided token is not valid.
 //
 //   - TaskTimedOut
+//     The task token has either expired or the task associated with the token has
+//     already been closed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat
 func (c *SFN) SendTaskHeartbeat(input *SendTaskHeartbeatInput) (*SendTaskHeartbeatOutput, error) {
@@ -2852,7 +3002,8 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 
 // SendTaskSuccess API operation for AWS Step Functions.
 //
-// Used by activity workers and task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// Used by activity workers, Task states using the callback (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token)
+// pattern, and optionally Task states using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
 // pattern to report that the task identified by the taskToken completed successfully.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2865,6 +3016,7 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 // Returned Error Types:
 //
 //   - TaskDoesNotExist
+//     The activity does not exist.
 //
 //   - InvalidOutput
 //     The provided JSON output data is not valid.
@@ -2873,6 +3025,8 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //     The provided token is not valid.
 //
 //   - TaskTimedOut
+//     The task token has either expired or the task associated with the token has
+//     already been closed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccess(input *SendTaskSuccessInput) (*SendTaskSuccessOutput, error) {
@@ -5568,6 +5722,57 @@ type DescribeExecutionOutput struct {
 	// Provides details about execution input or output.
 	OutputDetails *CloudWatchEventsExecutionDataDetails `locationName:"outputDetails" type:"structure"`
 
+	// The number of times you've redriven an execution. If you have not yet redriven
+	// an execution, the redriveCount is 0. This count is not updated for redrives
+	// that failed to start or are pending to be redriven.
+	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
+
+	// The date the execution was last redriven. If you have not yet redriven an
+	// execution, the redriveDate is null.
+	//
+	// The redriveDate is unavailable if you redrive a Map Run that starts child
+	// workflow executions of type EXPRESS.
+	RedriveDate *time.Time `locationName:"redriveDate" type:"timestamp"`
+
+	// Indicates whether or not an execution can be redriven at a given point in
+	// time.
+	//
+	//    * For executions of type STANDARD, redriveStatus is NOT_REDRIVABLE if
+	//    calling the RedriveExecution API action would return the ExecutionNotRedrivable
+	//    error.
+	//
+	//    * For a Distributed Map that includes child workflows of type STANDARD,
+	//    redriveStatus indicates whether or not the Map Run can redrive child workflow
+	//    executions.
+	//
+	//    * For a Distributed Map that includes child workflows of type EXPRESS,
+	//    redriveStatus indicates whether or not the Map Run can redrive child workflow
+	//    executions. You can redrive failed or timed out EXPRESS workflows only
+	//    if they're a part of a Map Run. When you redrive (https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html)
+	//    the Map Run, these workflows are restarted using the StartExecution API
+	//    action.
+	RedriveStatus *string `locationName:"redriveStatus" type:"string" enum:"ExecutionRedriveStatus"`
+
+	// When redriveStatus is NOT_REDRIVABLE, redriveStatusReason specifies the reason
+	// why an execution cannot be redriven.
+	//
+	//    * For executions of type STANDARD, or for a Distributed Map that includes
+	//    child workflows of type STANDARD, redriveStatusReason can include one
+	//    of the following reasons: State machine is in DELETING status. Execution
+	//    is RUNNING and cannot be redriven. Execution is SUCCEEDED and cannot be
+	//    redriven. Execution was started before the launch of RedriveExecution.
+	//    Execution history event limit exceeded. Execution has exceeded the max
+	//    execution time. Execution redrivable period exceeded.
+	//
+	//    * For a Distributed Map that includes child workflows of type EXPRESS,
+	//    redriveStatusReason is only returned if the child workflows are not redrivable.
+	//    This happens when the child workflow executions have completed successfully.
+	//
+	// RedriveStatusReason is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeExecutionOutput's
+	// String and GoString methods.
+	RedriveStatusReason *string `locationName:"redriveStatusReason" type:"string" sensitive:"true"`
+
 	// The date the execution is started.
 	//
 	// StartDate is a required field
@@ -5675,6 +5880,30 @@ func (s *DescribeExecutionOutput) SetOutput(v string) *DescribeExecutionOutput {
 // SetOutputDetails sets the OutputDetails field's value.
 func (s *DescribeExecutionOutput) SetOutputDetails(v *CloudWatchEventsExecutionDataDetails) *DescribeExecutionOutput {
 	s.OutputDetails = v
+	return s
+}
+
+// SetRedriveCount sets the RedriveCount field's value.
+func (s *DescribeExecutionOutput) SetRedriveCount(v int64) *DescribeExecutionOutput {
+	s.RedriveCount = &v
+	return s
+}
+
+// SetRedriveDate sets the RedriveDate field's value.
+func (s *DescribeExecutionOutput) SetRedriveDate(v time.Time) *DescribeExecutionOutput {
+	s.RedriveDate = &v
+	return s
+}
+
+// SetRedriveStatus sets the RedriveStatus field's value.
+func (s *DescribeExecutionOutput) SetRedriveStatus(v string) *DescribeExecutionOutput {
+	s.RedriveStatus = &v
+	return s
+}
+
+// SetRedriveStatusReason sets the RedriveStatusReason field's value.
+func (s *DescribeExecutionOutput) SetRedriveStatusReason(v string) *DescribeExecutionOutput {
+	s.RedriveStatusReason = &v
 	return s
 }
 
@@ -5802,6 +6031,15 @@ type DescribeMapRunOutput struct {
 	// MaxConcurrency is a required field
 	MaxConcurrency *int64 `locationName:"maxConcurrency" type:"integer" required:"true"`
 
+	// The number of times you've redriven a Map Run. If you have not yet redriven
+	// a Map Run, the redriveCount is 0. This count is not updated for redrives
+	// that failed to start or are pending to be redriven.
+	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
+
+	// The date a Map Run was last redriven. If you have not yet redriven a Map
+	// Run, the redriveDate is null.
+	RedriveDate *time.Time `locationName:"redriveDate" type:"timestamp"`
+
 	// The date when the Map Run was started.
 	//
 	// StartDate is a required field
@@ -5873,6 +6111,18 @@ func (s *DescribeMapRunOutput) SetMapRunArn(v string) *DescribeMapRunOutput {
 // SetMaxConcurrency sets the MaxConcurrency field's value.
 func (s *DescribeMapRunOutput) SetMaxConcurrency(v int64) *DescribeMapRunOutput {
 	s.MaxConcurrency = &v
+	return s
+}
+
+// SetRedriveCount sets the RedriveCount field's value.
+func (s *DescribeMapRunOutput) SetRedriveCount(v int64) *DescribeMapRunOutput {
+	s.RedriveCount = &v
+	return s
+}
+
+// SetRedriveDate sets the RedriveDate field's value.
+func (s *DescribeMapRunOutput) SetRedriveDate(v time.Time) *DescribeMapRunOutput {
+	s.RedriveDate = &v
 	return s
 }
 
@@ -6792,6 +7042,14 @@ type ExecutionListItem struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The number of times you've redriven an execution. If you have not yet redriven
+	// an execution, the redriveCount is 0. This count is not updated for redrives
+	// that failed to start or are pending to be redriven.
+	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
+
+	// The date the execution was last redriven.
+	RedriveDate *time.Time `locationName:"redriveDate" type:"timestamp"`
+
 	// The date the execution started.
 	//
 	// StartDate is a required field
@@ -6870,6 +7128,18 @@ func (s *ExecutionListItem) SetName(v string) *ExecutionListItem {
 	return s
 }
 
+// SetRedriveCount sets the RedriveCount field's value.
+func (s *ExecutionListItem) SetRedriveCount(v int64) *ExecutionListItem {
+	s.RedriveCount = &v
+	return s
+}
+
+// SetRedriveDate sets the RedriveDate field's value.
+func (s *ExecutionListItem) SetRedriveDate(v time.Time) *ExecutionListItem {
+	s.RedriveDate = &v
+	return s
+}
+
 // SetStartDate sets the StartDate field's value.
 func (s *ExecutionListItem) SetStartDate(v time.Time) *ExecutionListItem {
 	s.StartDate = &v
@@ -6903,6 +7173,105 @@ func (s *ExecutionListItem) SetStatus(v string) *ExecutionListItem {
 // SetStopDate sets the StopDate field's value.
 func (s *ExecutionListItem) SetStopDate(v time.Time) *ExecutionListItem {
 	s.StopDate = &v
+	return s
+}
+
+// The execution Amazon Resource Name (ARN) that you specified for executionArn
+// cannot be redriven.
+type ExecutionNotRedrivable struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionNotRedrivable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionNotRedrivable) GoString() string {
+	return s.String()
+}
+
+func newErrorExecutionNotRedrivable(v protocol.ResponseMetadata) error {
+	return &ExecutionNotRedrivable{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ExecutionNotRedrivable) Code() string {
+	return "ExecutionNotRedrivable"
+}
+
+// Message returns the exception's message.
+func (s *ExecutionNotRedrivable) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ExecutionNotRedrivable) OrigErr() error {
+	return nil
+}
+
+func (s *ExecutionNotRedrivable) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ExecutionNotRedrivable) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ExecutionNotRedrivable) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains details about a redriven execution.
+type ExecutionRedrivenEventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of times you've redriven an execution. If you have not yet redriven
+	// an execution, the redriveCount is 0. This count is not updated for redrives
+	// that failed to start or are pending to be redriven.
+	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionRedrivenEventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionRedrivenEventDetails) GoString() string {
+	return s.String()
+}
+
+// SetRedriveCount sets the RedriveCount field's value.
+func (s *ExecutionRedrivenEventDetails) SetRedriveCount(v int64) *ExecutionRedrivenEventDetails {
+	s.RedriveCount = &v
 	return s
 }
 
@@ -7361,6 +7730,9 @@ type HistoryEvent struct {
 	// Contains details about an execution failure event.
 	ExecutionFailedEventDetails *ExecutionFailedEventDetails `locationName:"executionFailedEventDetails" type:"structure"`
 
+	// Contains details about the redrive attempt of an execution.
+	ExecutionRedrivenEventDetails *ExecutionRedrivenEventDetails `locationName:"executionRedrivenEventDetails" type:"structure"`
+
 	// Contains details about the start of the execution.
 	ExecutionStartedEventDetails *ExecutionStartedEventDetails `locationName:"executionStartedEventDetails" type:"structure"`
 
@@ -7410,6 +7782,9 @@ type HistoryEvent struct {
 
 	// Contains error and cause details about a Map Run that failed.
 	MapRunFailedEventDetails *MapRunFailedEventDetails `locationName:"mapRunFailedEventDetails" type:"structure"`
+
+	// Contains details about the redrive attempt of a Map Run.
+	MapRunRedrivenEventDetails *MapRunRedrivenEventDetails `locationName:"mapRunRedrivenEventDetails" type:"structure"`
 
 	// Contains details, such as mapRunArn, and the start date and time of a Map
 	// Run. mapRunArn is the Amazon Resource Name (ARN) of the Map Run that was
@@ -7529,6 +7904,12 @@ func (s *HistoryEvent) SetExecutionFailedEventDetails(v *ExecutionFailedEventDet
 	return s
 }
 
+// SetExecutionRedrivenEventDetails sets the ExecutionRedrivenEventDetails field's value.
+func (s *HistoryEvent) SetExecutionRedrivenEventDetails(v *ExecutionRedrivenEventDetails) *HistoryEvent {
+	s.ExecutionRedrivenEventDetails = v
+	return s
+}
+
 // SetExecutionStartedEventDetails sets the ExecutionStartedEventDetails field's value.
 func (s *HistoryEvent) SetExecutionStartedEventDetails(v *ExecutionStartedEventDetails) *HistoryEvent {
 	s.ExecutionStartedEventDetails = v
@@ -7616,6 +7997,12 @@ func (s *HistoryEvent) SetMapIterationSucceededEventDetails(v *MapIterationEvent
 // SetMapRunFailedEventDetails sets the MapRunFailedEventDetails field's value.
 func (s *HistoryEvent) SetMapRunFailedEventDetails(v *MapRunFailedEventDetails) *HistoryEvent {
 	s.MapRunFailedEventDetails = v
+	return s
+}
+
+// SetMapRunRedrivenEventDetails sets the MapRunRedrivenEventDetails field's value.
+func (s *HistoryEvent) SetMapRunRedrivenEventDetails(v *MapRunRedrivenEventDetails) *HistoryEvent {
+	s.MapRunRedrivenEventDetails = v
 	return s
 }
 
@@ -8709,6 +9096,18 @@ type ListExecutionsInput struct {
 	// pagination token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
+	// Sets a filter to list executions based on whether or not they have been redriven.
+	//
+	// For a Distributed Map, redriveFilter sets a filter to list child workflow
+	// executions based on whether or not they have been redriven.
+	//
+	// If you do not provide a redriveFilter, Step Functions returns a list of both
+	// redriven and non-redriven executions.
+	//
+	// If you provide a state machine ARN in redriveFilter, the API returns a validation
+	// exception.
+	RedriveFilter *string `locationName:"redriveFilter" type:"string" enum:"ExecutionRedriveFilter"`
+
 	// The Amazon Resource Name (ARN) of the state machine whose executions is listed.
 	//
 	// You can specify either a mapRunArn or a stateMachineArn, but not both.
@@ -8776,6 +9175,12 @@ func (s *ListExecutionsInput) SetMaxResults(v int64) *ListExecutionsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListExecutionsInput) SetNextToken(v string) *ListExecutionsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetRedriveFilter sets the RedriveFilter field's value.
+func (s *ListExecutionsInput) SetRedriveFilter(v string) *ListExecutionsInput {
+	s.RedriveFilter = &v
 	return s
 }
 
@@ -9584,11 +9989,23 @@ type MapRunExecutionCounts struct {
 	// Failed is a required field
 	Failed *int64 `locationName:"failed" type:"long" required:"true"`
 
+	// The number of FAILED, ABORTED, or TIMED_OUT child workflow executions that
+	// cannot be redriven because their execution status is terminal. For example,
+	// if your execution event history contains 25,000 entries, or the toleratedFailureCount
+	// or toleratedFailurePercentage for the Distributed Map has exceeded.
+	FailuresNotRedrivable *int64 `locationName:"failuresNotRedrivable" type:"long"`
+
 	// The total number of child workflow executions that were started by a Map
 	// Run, but haven't started executing yet.
 	//
 	// Pending is a required field
 	Pending *int64 `locationName:"pending" type:"long" required:"true"`
+
+	// The number of unsuccessful child workflow executions currently waiting to
+	// be redriven. The status of these child workflow executions could be FAILED,
+	// ABORTED, or TIMED_OUT in the original execution attempt or a previous redrive
+	// attempt.
+	PendingRedrive *int64 `locationName:"pendingRedrive" type:"long"`
 
 	// Returns the count of child workflow executions whose results were written
 	// by ResultWriter. For more information, see ResultWriter (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html)
@@ -9652,9 +10069,21 @@ func (s *MapRunExecutionCounts) SetFailed(v int64) *MapRunExecutionCounts {
 	return s
 }
 
+// SetFailuresNotRedrivable sets the FailuresNotRedrivable field's value.
+func (s *MapRunExecutionCounts) SetFailuresNotRedrivable(v int64) *MapRunExecutionCounts {
+	s.FailuresNotRedrivable = &v
+	return s
+}
+
 // SetPending sets the Pending field's value.
 func (s *MapRunExecutionCounts) SetPending(v int64) *MapRunExecutionCounts {
 	s.Pending = &v
+	return s
+}
+
+// SetPendingRedrive sets the PendingRedrive field's value.
+func (s *MapRunExecutionCounts) SetPendingRedrive(v int64) *MapRunExecutionCounts {
+	s.PendingRedrive = &v
 	return s
 }
 
@@ -9755,11 +10184,22 @@ type MapRunItemCounts struct {
 	// Failed is a required field
 	Failed *int64 `locationName:"failed" type:"long" required:"true"`
 
+	// The number of FAILED, ABORTED, or TIMED_OUT items in child workflow executions
+	// that cannot be redriven because the execution status of those child workflows
+	// is terminal. For example, if your execution event history contains 25,000
+	// entries, or the toleratedFailureCount or toleratedFailurePercentage for the
+	// Distributed Map has exceeded.
+	FailuresNotRedrivable *int64 `locationName:"failuresNotRedrivable" type:"long"`
+
 	// The total number of items to process in child workflow executions that haven't
 	// started running yet.
 	//
 	// Pending is a required field
 	Pending *int64 `locationName:"pending" type:"long" required:"true"`
+
+	// The number of unsuccessful items in child workflow executions currently waiting
+	// to be redriven.
+	PendingRedrive *int64 `locationName:"pendingRedrive" type:"long"`
 
 	// Returns the count of items whose results were written by ResultWriter. For
 	// more information, see ResultWriter (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html)
@@ -9823,9 +10263,21 @@ func (s *MapRunItemCounts) SetFailed(v int64) *MapRunItemCounts {
 	return s
 }
 
+// SetFailuresNotRedrivable sets the FailuresNotRedrivable field's value.
+func (s *MapRunItemCounts) SetFailuresNotRedrivable(v int64) *MapRunItemCounts {
+	s.FailuresNotRedrivable = &v
+	return s
+}
+
 // SetPending sets the Pending field's value.
 func (s *MapRunItemCounts) SetPending(v int64) *MapRunItemCounts {
 	s.Pending = &v
+	return s
+}
+
+// SetPendingRedrive sets the PendingRedrive field's value.
+func (s *MapRunItemCounts) SetPendingRedrive(v int64) *MapRunItemCounts {
+	s.PendingRedrive = &v
 	return s
 }
 
@@ -9932,6 +10384,49 @@ func (s *MapRunListItem) SetStateMachineArn(v string) *MapRunListItem {
 // SetStopDate sets the StopDate field's value.
 func (s *MapRunListItem) SetStopDate(v time.Time) *MapRunListItem {
 	s.StopDate = &v
+	return s
+}
+
+// Contains details about a Map Run that was redriven.
+type MapRunRedrivenEventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a Map Run that was redriven.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
+
+	// The number of times the Map Run has been redriven at this point in the execution's
+	// history including this event. The redrive count for a redriven Map Run is
+	// always greater than 0.
+	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunRedrivenEventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunRedrivenEventDetails) GoString() string {
+	return s.String()
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *MapRunRedrivenEventDetails) SetMapRunArn(v string) *MapRunRedrivenEventDetails {
+	s.MapRunArn = &v
+	return s
+}
+
+// SetRedriveCount sets the RedriveCount field's value.
+func (s *MapRunRedrivenEventDetails) SetRedriveCount(v int64) *MapRunRedrivenEventDetails {
+	s.RedriveCount = &v
 	return s
 }
 
@@ -10190,6 +10685,103 @@ func (s *PublishStateMachineVersionOutput) SetStateMachineVersionArn(v string) *
 	return s
 }
 
+type RedriveExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the Amazon Web Services
+	// SDK automatically generates a client token and uses it for the request to
+	// ensure idempotency. The API uses one of the last 10 client tokens provided.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the execution to be redriven.
+	//
+	// ExecutionArn is a required field
+	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedriveExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedriveExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedriveExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedriveExecutionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ExecutionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionArn"))
+	}
+	if s.ExecutionArn != nil && len(*s.ExecutionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RedriveExecutionInput) SetClientToken(v string) *RedriveExecutionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetExecutionArn sets the ExecutionArn field's value.
+func (s *RedriveExecutionInput) SetExecutionArn(v string) *RedriveExecutionInput {
+	s.ExecutionArn = &v
+	return s
+}
+
+type RedriveExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the execution was last redriven.
+	//
+	// RedriveDate is a required field
+	RedriveDate *time.Time `locationName:"redriveDate" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedriveExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedriveExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRedriveDate sets the RedriveDate field's value.
+func (s *RedriveExecutionOutput) SetRedriveDate(v time.Time) *RedriveExecutionOutput {
+	s.RedriveDate = &v
+	return s
+}
+
 // Could not find the referenced resource.
 type ResourceNotFound struct {
 	_            struct{}                  `type:"structure"`
@@ -10272,8 +10864,8 @@ type RoutingConfigurationListItem struct {
 	// StateMachineVersionArn is a required field
 	StateMachineVersionArn *string `locationName:"stateMachineVersionArn" min:"1" type:"string" required:"true"`
 
-	// The percentage of traffic you want to route to the second state machine version.
-	// The sum of the weights in the routing configuration must be equal to 100.
+	// The percentage of traffic you want to route to a state machine version. The
+	// sum of the weights in the routing configuration must be equal to 100.
 	//
 	// Weight is a required field
 	Weight *int64 `locationName:"weight" type:"integer" required:"true"`
@@ -10680,6 +11272,9 @@ type StartExecutionInput struct {
 	// Web Services account, Region, and state machine for 90 days. For more information,
 	// see Limits Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
 	// in the Step Functions Developer Guide.
+	//
+	// If you don't provide a name for the execution, Step Functions automatically
+	// generates a universally unique identifier (UUID) as the execution name.
 	//
 	// A name must not contain:
 	//
@@ -12029,6 +12624,7 @@ func (s *TaskCredentials) SetRoleArn(v string) *TaskCredentials {
 	return s
 }
 
+// The activity does not exist.
 type TaskDoesNotExist struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12586,6 +13182,8 @@ func (s *TaskSucceededEventDetails) SetResourceType(v string) *TaskSucceededEven
 	return s
 }
 
+// The task token has either expired or the task associated with the token has
+// already been closed.
 type TaskTimedOut struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13376,6 +13974,42 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// ExecutionRedriveFilterRedriven is a ExecutionRedriveFilter enum value
+	ExecutionRedriveFilterRedriven = "REDRIVEN"
+
+	// ExecutionRedriveFilterNotRedriven is a ExecutionRedriveFilter enum value
+	ExecutionRedriveFilterNotRedriven = "NOT_REDRIVEN"
+)
+
+// ExecutionRedriveFilter_Values returns all elements of the ExecutionRedriveFilter enum
+func ExecutionRedriveFilter_Values() []string {
+	return []string{
+		ExecutionRedriveFilterRedriven,
+		ExecutionRedriveFilterNotRedriven,
+	}
+}
+
+const (
+	// ExecutionRedriveStatusRedrivable is a ExecutionRedriveStatus enum value
+	ExecutionRedriveStatusRedrivable = "REDRIVABLE"
+
+	// ExecutionRedriveStatusNotRedrivable is a ExecutionRedriveStatus enum value
+	ExecutionRedriveStatusNotRedrivable = "NOT_REDRIVABLE"
+
+	// ExecutionRedriveStatusRedrivableByMapRun is a ExecutionRedriveStatus enum value
+	ExecutionRedriveStatusRedrivableByMapRun = "REDRIVABLE_BY_MAP_RUN"
+)
+
+// ExecutionRedriveStatus_Values returns all elements of the ExecutionRedriveStatus enum
+func ExecutionRedriveStatus_Values() []string {
+	return []string{
+		ExecutionRedriveStatusRedrivable,
+		ExecutionRedriveStatusNotRedrivable,
+		ExecutionRedriveStatusRedrivableByMapRun,
+	}
+}
+
+const (
 	// ExecutionStatusRunning is a ExecutionStatus enum value
 	ExecutionStatusRunning = "RUNNING"
 
@@ -13390,6 +14024,9 @@ const (
 
 	// ExecutionStatusAborted is a ExecutionStatus enum value
 	ExecutionStatusAborted = "ABORTED"
+
+	// ExecutionStatusPendingRedrive is a ExecutionStatus enum value
+	ExecutionStatusPendingRedrive = "PENDING_REDRIVE"
 )
 
 // ExecutionStatus_Values returns all elements of the ExecutionStatus enum
@@ -13400,6 +14037,7 @@ func ExecutionStatus_Values() []string {
 		ExecutionStatusFailed,
 		ExecutionStatusTimedOut,
 		ExecutionStatusAborted,
+		ExecutionStatusPendingRedrive,
 	}
 }
 
@@ -13580,6 +14218,12 @@ const (
 
 	// HistoryEventTypeMapRunSucceeded is a HistoryEventType enum value
 	HistoryEventTypeMapRunSucceeded = "MapRunSucceeded"
+
+	// HistoryEventTypeExecutionRedriven is a HistoryEventType enum value
+	HistoryEventTypeExecutionRedriven = "ExecutionRedriven"
+
+	// HistoryEventTypeMapRunRedriven is a HistoryEventType enum value
+	HistoryEventTypeMapRunRedriven = "MapRunRedriven"
 )
 
 // HistoryEventType_Values returns all elements of the HistoryEventType enum
@@ -13644,6 +14288,8 @@ func HistoryEventType_Values() []string {
 		HistoryEventTypeMapRunFailed,
 		HistoryEventTypeMapRunStarted,
 		HistoryEventTypeMapRunSucceeded,
+		HistoryEventTypeExecutionRedriven,
+		HistoryEventTypeMapRunRedriven,
 	}
 }
 

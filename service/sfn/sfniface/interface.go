@@ -167,6 +167,10 @@ type SFNAPI interface {
 	PublishStateMachineVersionWithContext(aws.Context, *sfn.PublishStateMachineVersionInput, ...request.Option) (*sfn.PublishStateMachineVersionOutput, error)
 	PublishStateMachineVersionRequest(*sfn.PublishStateMachineVersionInput) (*request.Request, *sfn.PublishStateMachineVersionOutput)
 
+	RedriveExecution(*sfn.RedriveExecutionInput) (*sfn.RedriveExecutionOutput, error)
+	RedriveExecutionWithContext(aws.Context, *sfn.RedriveExecutionInput, ...request.Option) (*sfn.RedriveExecutionOutput, error)
+	RedriveExecutionRequest(*sfn.RedriveExecutionInput) (*request.Request, *sfn.RedriveExecutionOutput)
+
 	SendTaskFailure(*sfn.SendTaskFailureInput) (*sfn.SendTaskFailureOutput, error)
 	SendTaskFailureWithContext(aws.Context, *sfn.SendTaskFailureInput, ...request.Option) (*sfn.SendTaskFailureOutput, error)
 	SendTaskFailureRequest(*sfn.SendTaskFailureInput) (*request.Request, *sfn.SendTaskFailureOutput)

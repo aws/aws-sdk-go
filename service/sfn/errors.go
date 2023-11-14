@@ -59,6 +59,13 @@ const (
 	// must end or be stopped before a new execution can be started.
 	ErrCodeExecutionLimitExceeded = "ExecutionLimitExceeded"
 
+	// ErrCodeExecutionNotRedrivable for service response error code
+	// "ExecutionNotRedrivable".
+	//
+	// The execution Amazon Resource Name (ARN) that you specified for executionArn
+	// cannot be redriven.
+	ErrCodeExecutionNotRedrivable = "ExecutionNotRedrivable"
+
 	// ErrCodeInvalidArn for service response error code
 	// "InvalidArn".
 	//
@@ -159,10 +166,15 @@ const (
 
 	// ErrCodeTaskDoesNotExist for service response error code
 	// "TaskDoesNotExist".
+	//
+	// The activity does not exist.
 	ErrCodeTaskDoesNotExist = "TaskDoesNotExist"
 
 	// ErrCodeTaskTimedOut for service response error code
 	// "TaskTimedOut".
+	//
+	// The task token has either expired or the task associated with the token has
+	// already been closed.
 	ErrCodeTaskTimedOut = "TaskTimedOut"
 
 	// ErrCodeTooManyTags for service response error code
@@ -189,6 +201,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ExecutionAlreadyExists":        newErrorExecutionAlreadyExists,
 	"ExecutionDoesNotExist":         newErrorExecutionDoesNotExist,
 	"ExecutionLimitExceeded":        newErrorExecutionLimitExceeded,
+	"ExecutionNotRedrivable":        newErrorExecutionNotRedrivable,
 	"InvalidArn":                    newErrorInvalidArn,
 	"InvalidDefinition":             newErrorInvalidDefinition,
 	"InvalidExecutionInput":         newErrorInvalidExecutionInput,

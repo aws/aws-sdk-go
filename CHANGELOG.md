@@ -1,3 +1,30 @@
+Release v1.47.11 (2023-11-14)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/cleanrooms`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/glue`: Updates service API, documentation, and paginators
+  * Introduces new storage optimization APIs to support automatic compaction of Apache Iceberg tables.
+* `service/iot`: Updates service API and documentation
+  * This release introduces new attributes in API CreateSecurityProfile, UpdateSecurityProfile and DescribeSecurityProfile to support management of Metrics Export for AWS IoT Device Defender Detect.
+* `service/lambda`: Updates service API
+  * Add Python 3.12 (python3.12) support to AWS Lambda
+* `service/mediatailor`: Updates service API
+* `service/pipes`: Updates service API and documentation
+* `service/resource-explorer-2`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * This release makes Model Registry Inference Specification fields as not required.
+* `service/signer`: Updates service documentation
+  * Documentation updates for AWS Signer
+* `service/states`: Updates service API and documentation
+  * This release adds support to redrive executions in AWS Step Functions with a new RedriveExecution operation.
+
+### SDK Bugs
+* `aws/defaults`: Feature updates to endpoint credentials provider.
+  * Add support for dynamic auth token from file and EKS container host in configured URI.
+
 Release v1.47.10 (2023-11-13)
 ===
 

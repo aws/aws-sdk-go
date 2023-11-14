@@ -14,6 +14,7 @@
     "BatchGetDevEndpoints": "<p>Returns a list of resource metadata for a given list of development endpoint names. After calling the <code>ListDevEndpoints</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetJobs": "<p>Returns a list of resource metadata for a given list of job names. After calling the <code>ListJobs</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags. </p>",
     "BatchGetPartition": "<p>Retrieves partitions in a batch request.</p>",
+    "BatchGetTableOptimizer": "<p>Returns the configuration for the specified table optimizers.</p>",
     "BatchGetTriggers": "<p>Returns a list of resource metadata for a given list of trigger names. After calling the <code>ListTriggers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetWorkflows": "<p>Returns a list of resource metadata for a given list of workflow names. After calling the <code>ListWorkflows</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
@@ -41,6 +42,7 @@
     "CreateSecurityConfiguration": "<p>Creates a new security configuration. A security configuration is a set of security properties that can be used by Glue. You can use a security configuration to encrypt data at rest. For information about using security configurations in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/encryption-security-configuration.html\">Encrypting Data Written by Crawlers, Jobs, and Development Endpoints</a>.</p>",
     "CreateSession": "<p>Creates a new session.</p>",
     "CreateTable": "<p>Creates a new table definition in the Data Catalog.</p>",
+    "CreateTableOptimizer": "<p>Creates a new table optimizer for a specific function. <code>compaction</code> is the only currently supported optimizer type.</p>",
     "CreateTrigger": "<p>Creates a new trigger.</p>",
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "CreateWorkflow": "<p>Creates a new workflow.</p>",
@@ -65,6 +67,7 @@
     "DeleteSecurityConfiguration": "<p>Deletes a specified security configuration.</p>",
     "DeleteSession": "<p>Deletes the session.</p>",
     "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
+    "DeleteTableOptimizer": "<p>Deletes an optimizer and all associated metadata for a table. The optimization will no longer be performed on the table.</p>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
     "DeleteTrigger": "<p>Deletes a specified trigger. If the trigger is not found, no exception is thrown.</p>",
     "DeleteUserDefinedFunction": "<p>Deletes an existing function definition from the Data Catalog.</p>",
@@ -119,6 +122,7 @@
     "GetSession": "<p>Retrieves the session.</p>",
     "GetStatement": "<p>Retrieves the statement.</p>",
     "GetTable": "<p>Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.</p>",
+    "GetTableOptimizer": "<p>Returns the configuration of all optimizers associated with a specified table.</p>",
     "GetTableVersion": "<p>Retrieves a specified version of a table.</p>",
     "GetTableVersions": "<p>Retrieves a list of strings that identify available versions of a specified table.</p>",
     "GetTables": "<p>Retrieves the definitions of some or all of the tables in a given <code>Database</code>.</p>",
@@ -151,6 +155,7 @@
     "ListSchemas": "<p>Returns a list of schemas with minimal details. Schemas in Deleting status will not be included in the results. Empty results will be returned if there are no schemas available.</p> <p>When the <code>RegistryId</code> is not provided, all the schemas across registries will be part of the API response.</p>",
     "ListSessions": "<p>Retrieve a list of sessions.</p>",
     "ListStatements": "<p>Lists statements for the session.</p>",
+    "ListTableOptimizerRuns": "<p>Lists the history of previous optimizer runs for a specific table.</p>",
     "ListTriggers": "<p>Retrieves the names of all trigger resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListWorkflows": "<p>Lists names of workflows created in the account.</p>",
     "PutDataCatalogEncryptionSettings": "<p>Sets the security configuration for a specified catalog. After the configuration has been set, the specified encryption is applied to every catalog write thereafter.</p>",
@@ -167,7 +172,7 @@
     "StartBlueprintRun": "<p>Starts a new run of the specified blueprint.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
-    "StartDataQualityRuleRecommendationRun": "<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p>",
+    "StartDataQualityRuleRecommendationRun": "<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p> <p>Recommendation runs are automatically deleted after 90 days.</p>",
     "StartDataQualityRulesetEvaluationRun": "<p>Once you have a ruleset definition (either recommended or your own), you call this operation to evaluate the ruleset against a data source (Glue table). The evaluation computes results which you can retrieve with the <code>GetDataQualityResult</code> API.</p>",
     "StartExportLabelsTaskRun": "<p>Begins an asynchronous task to export all labeled data for a particular transform. This task is the only label-related API call that is not part of the typical active learning workflow. You typically use <code>StartExportLabelsTaskRun</code> when you want to work with all of your existing labels at the same time, such as when you want to remove or change labels that were previously submitted as truth. This API operation accepts the <code>TransformId</code> whose labels you want to export and an Amazon Simple Storage Service (Amazon S3) path to export the labels to. The operation returns a <code>TaskRunId</code>. You can check on the status of your task run by calling the <code>GetMLTaskRun</code> API.</p>",
     "StartImportLabelsTaskRun": "<p>Enables you to provide additional labels (examples of truth) to be used to teach the machine learning transform and improve its quality. This API operation is generally used as part of the active learning workflow that starts with the <code>StartMLLabelingSetGenerationTaskRun</code> call and that ultimately results in improving the quality of your machine learning transform. </p> <p>After the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, Glue machine learning will have generated a series of questions for humans to answer. (Answering these questions is often called 'labeling' in the machine learning workflows). In the case of the <code>FindMatches</code> transform, these questions are of the form, “What is the correct way to group these rows together into groups composed entirely of matching records?” After the labeling process is finished, users upload their answers/labels with a call to <code>StartImportLabelsTaskRun</code>. After <code>StartImportLabelsTaskRun</code> finishes, all future runs of the machine learning transform use the new and improved labels and perform a higher-quality transformation.</p> <p>By default, <code>StartMLLabelingSetGenerationTaskRun</code> continually learns from and combines all labels that you upload unless you set <code>Replace</code> to true. If you set <code>Replace</code> to true, <code>StartImportLabelsTaskRun</code> deletes and forgets all previously uploaded labels and learns only from the exact set that you upload. Replacing labels can be helpful if you realize that you previously uploaded incorrect labels, and you believe that they are having a negative effect on your transform quality.</p> <p>You can check on the status of your task run by calling the <code>GetMLTaskRun</code> operation. </p>",
@@ -201,6 +206,7 @@
     "UpdateSchema": "<p>Updates the description, compatibility setting, or version checkpoint for a schema set.</p> <p>For updating the compatibility setting, the call will not validate compatibility for the entire set of schema versions with the new compatibility setting. If the value for <code>Compatibility</code> is provided, the <code>VersionNumber</code> (a checkpoint) is also required. The API will validate the checkpoint version number for consistency.</p> <p>If the value for the <code>VersionNumber</code> (checkpoint) is provided, <code>Compatibility</code> is optional and this can be used to set/reset a checkpoint for the schema.</p> <p>This update will happen only if the schema is in the AVAILABLE state.</p>",
     "UpdateSourceControlFromJob": "<p>Synchronizes a job to the source control repository. This operation takes the job artifacts from the Glue internal stores and makes a commit to the remote repository that is configured on the job.</p> <p>This API supports optional parameters which take in the repository information.</p>",
     "UpdateTable": "<p>Updates a metadata table in the Data Catalog.</p>",
+    "UpdateTableOptimizer": "<p>Updates the configuration for an existing table optimizer.</p>",
     "UpdateTrigger": "<p>Updates a trigger definition.</p>",
     "UpdateUserDefinedFunction": "<p>Updates an existing function definition in the Data Catalog.</p>",
     "UpdateWorkflow": "<p>Updates an existing workflow.</p>"
@@ -326,6 +332,12 @@
       "base": "<p>Specifies a transform that maps data property keys in the data source to data property keys in the data target. You can rename keys, modify the data types for keys, and choose which keys to drop from the dataset.</p>",
       "refs": {
         "CodeGenConfigurationNode$ApplyMapping": "<p>Specifies a transform that maps data property keys in the data source to data property keys in the data target. You can rename keys, modify the data types for keys, and choose which keys to drop from the dataset.</p>"
+      }
+    },
+    "ArnString": {
+      "base": null,
+      "refs": {
+        "TableOptimizerConfiguration$roleArn": "<p>A role passed by the caller which gives the service permission to update the resources associated with the optimizer on the caller's behalf.</p>"
       }
     },
     "AthenaConnectorSource": {
@@ -548,6 +560,40 @@
         "BatchGetPartitionResponse$UnprocessedKeys": "<p>A list of the partition values in the request for which partitions were not returned.</p>"
       }
     },
+    "BatchGetTableOptimizerEntries": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerRequest$Entries": "<p>A list of <code>BatchGetTableOptimizerEntry</code> objects specifying the table optimizers to retrieve.</p>"
+      }
+    },
+    "BatchGetTableOptimizerEntry": {
+      "base": "<p>Represents a table optimizer to retrieve in the <code>BatchGetTableOptimizer</code> operation.</p>",
+      "refs": {
+        "BatchGetTableOptimizerEntries$member": null
+      }
+    },
+    "BatchGetTableOptimizerError": {
+      "base": "<p>Contains details on one of the errors in the error list returned by the <code>BatchGetTableOptimizer</code> operation.</p>",
+      "refs": {
+        "BatchGetTableOptimizerErrors$member": null
+      }
+    },
+    "BatchGetTableOptimizerErrors": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerResponse$Failures": "<p>A list of errors from the operation.</p>"
+      }
+    },
+    "BatchGetTableOptimizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetTableOptimizerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchGetTriggersRequest": {
       "base": null,
       "refs": {
@@ -612,6 +658,18 @@
       "base": null,
       "refs": {
         "BatchStopJobRunResponse$SuccessfulSubmissions": "<p>A list of the JobRuns that were successfully submitted for stopping.</p>"
+      }
+    },
+    "BatchTableOptimizer": {
+      "base": "<p>Contains details for one of the table optimizers returned by the <code>BatchGetTableOptimizer</code> operation.</p>",
+      "refs": {
+        "BatchTableOptimizers$member": null
+      }
+    },
+    "BatchTableOptimizers": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerResponse$TableOptimizers": "<p>A list of <code>BatchTableOptimizer</code> objects.</p>"
       }
     },
     "BatchUpdatePartitionFailureEntry": {
@@ -960,11 +1018,15 @@
         "BatchDeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "BatchDeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "BatchGetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the Amazon Web Services account ID is used by default.</p>",
+        "BatchGetTableOptimizerEntry$catalogId": "<p>The Catalog ID of the table.</p>",
+        "BatchGetTableOptimizerError$catalogId": "<p>The Catalog ID of the table.</p>",
+        "BatchTableOptimizer$catalogId": "<p>The Catalog ID of the table.</p>",
         "BatchUpdatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partition is to be updated. Currently, this should be the Amazon Web Services account ID.</p>",
         "CreateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the connection. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "CreateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the database. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "CreatePartitionIndexRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "CreatePartitionRequest$CatalogId": "<p>The Amazon Web Services account ID of the catalog in which the partition is to be created.</p>",
+        "CreateTableOptimizerRequest$CatalogId": "<p>The Catalog ID of the table.</p>",
         "CreateTableRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the Amazon Web Services account ID is used by default.</p>",
         "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "Database$CatalogId": "<p>The ID of the Data Catalog in which the database resides.</p>",
@@ -975,6 +1037,7 @@
         "DeleteDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "DeletePartitionIndexRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "DeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
+        "DeleteTableOptimizerRequest$CatalogId": "<p>The Catalog ID of the table.</p>",
         "DeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "DeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "DeleteUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be deleted is located. If none is supplied, the Amazon Web Services account ID is used by default.</p>",
@@ -989,6 +1052,8 @@
         "GetPartitionIndexesRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "GetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition in question resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetPartitionsRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
+        "GetTableOptimizerRequest$CatalogId": "<p>The Catalog ID of the table.</p>",
+        "GetTableOptimizerResponse$CatalogId": "<p>The Catalog ID of the table.</p>",
         "GetTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetTableVersionsRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
@@ -999,6 +1064,8 @@
         "GetUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be retrieved is located. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetUserDefinedFunctionsRequest$CatalogId": "<p>The ID of the Data Catalog where the functions to be retrieved are located. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "ImportCatalogToGlueRequest$CatalogId": "<p>The ID of the catalog to import. Currently, this should be the Amazon Web Services account ID.</p>",
+        "ListTableOptimizerRunsRequest$CatalogId": "<p>The Catalog ID of the table.</p>",
+        "ListTableOptimizerRunsResponse$CatalogId": "<p>The Catalog ID of the table.</p>",
         "Partition$CatalogId": "<p>The ID of the Data Catalog in which the partition resides.</p>",
         "PutDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to set the security configuration for. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "SearchTablesRequest$CatalogId": "<p>A unique identifier, consisting of <code> <i>account_id</i> </code>.</p>",
@@ -1009,6 +1076,7 @@
         "UpdateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "UpdateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the metadata database resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "UpdatePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be updated resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
+        "UpdateTableOptimizerRequest$CatalogId": "<p>The Catalog ID of the table.</p>",
         "UpdateTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "UpdateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be updated is located. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "UserDefinedFunction$CatalogId": "<p>The ID of the Data Catalog in which the function resides.</p>"
@@ -1813,6 +1881,16 @@
       "refs": {
       }
     },
+    "CreateTableOptimizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTableOptimizerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateTableRequest": {
       "base": null,
       "refs": {
@@ -2498,6 +2576,16 @@
       "refs": {
       }
     },
+    "DeleteTableOptimizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTableOptimizerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteTableRequest": {
       "base": null,
       "refs": {
@@ -2994,6 +3082,7 @@
     "ErrorDetail": {
       "base": "<p>Contains details about an error.</p>",
       "refs": {
+        "BatchGetTableOptimizerError$error": "<p>An <code>ErrorDetail</code> object containing code and message details about the error.</p>",
         "BatchStopJobRunError$ErrorDetail": "<p>Specifies details about the error that was encountered.</p>",
         "BatchUpdatePartitionFailureEntry$ErrorDetail": "<p>The details about the batch update partition error.</p>",
         "ColumnError$Error": "<p>An error message with the reason for the failure of an operation.</p>",
@@ -3946,6 +4035,16 @@
       }
     },
     "GetStatementResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTableOptimizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTableOptimizerResponse": {
       "base": null,
       "refs": {
       }
@@ -5012,6 +5111,23 @@
       "refs": {
       }
     },
+    "ListTableOptimizerRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTableOptimizerRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTableOptimizerRunsToken": {
+      "base": null,
+      "refs": {
+        "ListTableOptimizerRunsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListTableOptimizerRunsResponse$NextToken": "<p>A continuation token for paginating the returned list of optimizer runs, returned if the current segment of the list is not the last.</p>"
+      }
+    },
     "ListTriggersRequest": {
       "base": null,
       "refs": {
@@ -5192,6 +5308,12 @@
         "ExecutionProperty$MaxConcurrentRuns": "<p>The maximum number of concurrent runs allowed for the job. The default is 1. An error is returned when this threshold is reached. The maximum value you can specify is controlled by a service limit.</p>"
       }
     },
+    "MaxListTableOptimizerRunsTokenResults": {
+      "base": null,
+      "refs": {
+        "ListTableOptimizerRunsRequest$MaxResults": "<p>The maximum number of optimizer runs to return on each call.</p>"
+      }
+    },
     "MaxResultsNumber": {
       "base": null,
       "refs": {
@@ -5253,9 +5375,14 @@
         "PermissionTypeMismatchException$Message": "<p>There is a mismatch between the SupportedPermissionType used in the query request and the permissions defined on the target table.</p>",
         "ResourceNotReadyException$Message": "<p>A message describing the problem.</p>",
         "ResourceNumberLimitExceededException$Message": "<p>A message describing the problem.</p>",
+        "RunMetrics$NumberOfBytesCompacted": "<p>The number of bytes removed by the compaction job run.</p>",
+        "RunMetrics$NumberOfFilesCompacted": "<p>The number of files removed by the compaction job run.</p>",
+        "RunMetrics$NumberOfDpus": "<p>The number of DPU hours consumed by the job.</p>",
+        "RunMetrics$JobDurationInHour": "<p>The duration of the job in hours.</p>",
         "SchedulerNotRunningException$Message": "<p>A message describing the problem.</p>",
         "SchedulerRunningException$Message": "<p>A message describing the problem.</p>",
         "SchedulerTransitioningException$Message": "<p>A message describing the problem.</p>",
+        "TableOptimizerRun$error": "<p>An error that occured during the optimizer run.</p>",
         "ValidationException$Message": "<p>A message describing the problem.</p>",
         "VersionMismatchException$Message": "<p>A message describing the problem.</p>"
       }
@@ -5422,6 +5549,8 @@
         "CreateSecurityConfigurationResponse$Name": "<p>The name assigned to the new security configuration.</p>",
         "CreateSessionRequest$Id": "<p>The ID of the session request. </p>",
         "CreateSessionRequest$SecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used with the session </p>",
+        "CreateTableOptimizerRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "CreateTableOptimizerRequest$TableName": "<p>The name of the table.</p>",
         "CreateTableRequest$DatabaseName": "<p>The catalog database in which to create the new table. For Hive compatibility, this name is entirely lowercase.</p>",
         "CreateTriggerRequest$Name": "<p>The name of the trigger.</p>",
         "CreateTriggerRequest$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
@@ -5477,6 +5606,8 @@
         "DeleteSecurityConfigurationRequest$Name": "<p>The name of the security configuration to delete.</p>",
         "DeleteSessionRequest$Id": "<p>The ID of the session to be deleted.</p>",
         "DeleteSessionResponse$Id": "<p>Returns the ID of the deleted session.</p>",
+        "DeleteTableOptimizerRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "DeleteTableOptimizerRequest$TableName": "<p>The name of the table.</p>",
         "DeleteTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTableRequest$Name": "<p>The name of the table to be deleted. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTableVersionRequest$DatabaseName": "<p>The database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -5530,6 +5661,10 @@
         "GetSecurityConfigurationRequest$Name": "<p>The name of the security configuration to retrieve.</p>",
         "GetSessionRequest$Id": "<p>The ID of the session. </p>",
         "GetStatementRequest$SessionId": "<p>The Session ID of the statement.</p>",
+        "GetTableOptimizerRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "GetTableOptimizerRequest$TableName": "<p>The name of the table.</p>",
+        "GetTableOptimizerResponse$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "GetTableOptimizerResponse$TableName": "<p>The name of the table.</p>",
         "GetTableRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "GetTableRequest$Name": "<p>The name of the table for which to retrieve the definition. For Hive compatibility, this name is entirely lowercase.</p>",
         "GetTableVersionRequest$DatabaseName": "<p>The database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -5571,6 +5706,10 @@
         "KeySchemaElement$Name": "<p>The name of a partition key.</p>",
         "ListCrawlsRequest$CrawlerName": "<p>The name of the crawler whose runs you want to retrieve.</p>",
         "ListStatementsRequest$SessionId": "<p>The Session ID of the statements.</p>",
+        "ListTableOptimizerRunsRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "ListTableOptimizerRunsRequest$TableName": "<p>The name of the table.</p>",
+        "ListTableOptimizerRunsResponse$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "ListTableOptimizerRunsResponse$TableName": "<p>The name of the table.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
         "MLUserDataEncryption$KmsKeyId": "<p>The ID for the customer-provided KMS key.</p>",
@@ -5662,6 +5801,8 @@
         "UpdateSourceControlFromJobRequest$BranchName": "<p>An optional branch in the remote repository.</p>",
         "UpdateSourceControlFromJobRequest$Folder": "<p>An optional folder in the remote repository.</p>",
         "UpdateSourceControlFromJobResponse$JobName": "<p>The name of the Glue job.</p>",
+        "UpdateTableOptimizerRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "UpdateTableOptimizerRequest$TableName": "<p>The name of the table.</p>",
         "UpdateTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "UpdateTriggerRequest$Name": "<p>The name of the trigger to update.</p>",
         "UpdateUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function to be updated is located.</p>",
@@ -5921,6 +6062,7 @@
         "InvalidInputException$FromFederationSource": "<p>Indicates whether or not the exception relates to a federated source.</p>",
         "LakeFormationConfiguration$UseLakeFormationCredentials": "<p>Specifies whether to use Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
         "MongoDBTarget$ScanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
+        "TableOptimizerConfiguration$enabled": "<p>Whether table optimization is enabled. </p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "UpdateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "UpdateCsvClassifierRequest$CustomDatatypeConfigured": "<p>Specifies the configuration of custom datatypes.</p>"
@@ -6829,6 +6971,12 @@
         "JobBookmarkEntry$PreviousRunId": "<p>The unique run identifier associated with the previous job run.</p>",
         "JobBookmarkEntry$RunId": "<p>The run ID number.</p>",
         "ResetJobBookmarkRequest$RunId": "<p>The unique run identifier associated with this job run.</p>"
+      }
+    },
+    "RunMetrics": {
+      "base": "<p>Metrics for the optimizer run.</p>",
+      "refs": {
+        "TableOptimizerRun$metrics": "<p>A <code>RunMetrics</code> object containing metrics for the optimizer run.</p>"
       }
     },
     "RunStatementRequest": {
@@ -7748,6 +7896,60 @@
         "MappingEntry$TargetTable": "<p>The target table.</p>"
       }
     },
+    "TableOptimizer": {
+      "base": "<p>Contains details about an optimizer associated with a table.</p>",
+      "refs": {
+        "BatchTableOptimizer$tableOptimizer": "<p>A <code>TableOptimizer</code> object that contains details on the configuration and last run of a table optimzer.</p>",
+        "GetTableOptimizerResponse$TableOptimizer": "<p>The optimizer associated with the specified table.</p>"
+      }
+    },
+    "TableOptimizerConfiguration": {
+      "base": "<p>Contains details on the configuration of a table optimizer. You pass this configuration when creating or updating a table optimizer.</p>",
+      "refs": {
+        "CreateTableOptimizerRequest$TableOptimizerConfiguration": "<p>A <code>TableOptimizerConfiguration</code> object representing the configuration of a table optimizer.</p>",
+        "TableOptimizer$configuration": "<p>A <code>TableOptimizerConfiguration</code> object that was specified when creating or updating a table optimizer.</p>",
+        "UpdateTableOptimizerRequest$TableOptimizerConfiguration": "<p>A <code>TableOptimizerConfiguration</code> object representing the configuration of a table optimizer.</p>"
+      }
+    },
+    "TableOptimizerEventType": {
+      "base": null,
+      "refs": {
+        "TableOptimizerRun$eventType": "<p>An event type representing the status of the table optimizer run.</p>"
+      }
+    },
+    "TableOptimizerRun": {
+      "base": "<p>Contains details for a table optimizer run.</p>",
+      "refs": {
+        "TableOptimizer$lastRun": "<p>A <code>TableOptimizerRun</code> object representing the last run of the table optimizer.</p>",
+        "TableOptimizerRuns$member": null
+      }
+    },
+    "TableOptimizerRunTimestamp": {
+      "base": null,
+      "refs": {
+        "TableOptimizerRun$startTimestamp": "<p>Represents the epoch timestamp at which the compaction job was started within Lake Formation.</p>",
+        "TableOptimizerRun$endTimestamp": "<p>Represents the epoch timestamp at which the compaction job ended.</p>"
+      }
+    },
+    "TableOptimizerRuns": {
+      "base": null,
+      "refs": {
+        "ListTableOptimizerRunsResponse$TableOptimizerRuns": "<p>A list of the optimizer runs associated with a table.</p>"
+      }
+    },
+    "TableOptimizerType": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerEntry$type": "<p>The type of table optimizer.</p>",
+        "BatchGetTableOptimizerError$type": "<p>The type of table optimizer.</p>",
+        "CreateTableOptimizerRequest$Type": "<p>The type of table optimizer. Currently, the only valid value is <code>compaction</code>.</p>",
+        "DeleteTableOptimizerRequest$Type": "<p>The type of table optimizer.</p>",
+        "GetTableOptimizerRequest$Type": "<p>The type of table optimizer.</p>",
+        "ListTableOptimizerRunsRequest$Type": "<p>The type of table optimizer. Currently, the only valid value is <code>compaction</code>.</p>",
+        "TableOptimizer$type": "<p>The type of table optimizer. Currently, the only valid value is <code>compaction</code>.</p>",
+        "UpdateTableOptimizerRequest$Type": "<p>The type of table optimizer. Currently, the only valid value is <code>compaction</code>.</p>"
+      }
+    },
     "TablePrefix": {
       "base": null,
       "refs": {
@@ -8501,6 +8703,16 @@
       "refs": {
       }
     },
+    "UpdateTableOptimizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTableOptimizerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateTableRequest": {
       "base": null,
       "refs": {
@@ -8778,6 +8990,22 @@
       "base": "<p>A classifier for <code>XML</code> content.</p>",
       "refs": {
         "Classifier$XMLClassifier": "<p>A classifier for XML content.</p>"
+      }
+    },
+    "databaseNameString": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerEntry$databaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "BatchGetTableOptimizerError$databaseName": "<p>The name of the database in the catalog in which the table resides.</p>",
+        "BatchTableOptimizer$databaseName": "<p>The name of the database in the catalog in which the table resides.</p>"
+      }
+    },
+    "tableNameString": {
+      "base": null,
+      "refs": {
+        "BatchGetTableOptimizerEntry$tableName": "<p>The name of the table.</p>",
+        "BatchGetTableOptimizerError$tableName": "<p>The name of the table.</p>",
+        "BatchTableOptimizer$tableName": "<p>The name of the table.</p>"
       }
     }
   }

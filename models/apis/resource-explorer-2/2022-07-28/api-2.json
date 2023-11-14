@@ -213,6 +213,9 @@
     "DisassociateDefaultView": {
       "errors": [
         {
+          "shape": "ResourceNotFoundException"
+        },
+        {
           "shape": "InternalServerException"
         },
         {
@@ -232,6 +235,31 @@
       },
       "idempotent": true,
       "name": "DisassociateDefaultView"
+    },
+    "GetAccountLevelServiceConfiguration": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/GetAccountLevelServiceConfiguration",
+        "responseCode": 200
+      },
+      "name": "GetAccountLevelServiceConfiguration",
+      "output": {
+        "shape": "GetAccountLevelServiceConfigurationOutput"
+      }
     },
     "GetDefaultView": {
       "errors": [
@@ -349,6 +377,34 @@
       "name": "ListIndexes",
       "output": {
         "shape": "ListIndexesOutput"
+      }
+    },
+    "ListIndexesForMembers": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/ListIndexesForMembers",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListIndexesForMembersInput"
+      },
+      "name": "ListIndexesForMembers",
+      "output": {
+        "shape": "ListIndexesForMembersOutput"
       }
     },
     "ListSupportedResourceTypes": {
@@ -617,6 +673,13 @@
     }
   },
   "shapes": {
+    "AWSServiceAccessStatus": {
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ],
+      "type": "string"
+    },
     "AccessDeniedException": {
       "error": {
         "httpStatusCode": 403,
@@ -629,6 +692,11 @@
         }
       },
       "type": "structure"
+    },
+    "AccountId": {
+      "max": 2048,
+      "min": 1,
+      "type": "string"
     },
     "AssociateDefaultViewInput": {
       "members": {
@@ -760,6 +828,9 @@
         "IncludedProperties": {
           "shape": "IncludedPropertyList"
         },
+        "Scope": {
+          "shape": "CreateViewInputScopeString"
+        },
         "Tags": {
           "shape": "TagMap"
         },
@@ -773,6 +844,11 @@
       "type": "structure"
     },
     "CreateViewInputClientTokenString": {
+      "max": 2048,
+      "min": 1,
+      "type": "string"
+    },
+    "CreateViewInputScopeString": {
       "max": 2048,
       "min": 1,
       "type": "string"
@@ -830,6 +906,14 @@
       "members": {
         "ViewArn": {
           "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "GetAccountLevelServiceConfigurationOutput": {
+      "members": {
+        "OrgConfiguration": {
+          "shape": "OrgConfiguration"
         }
       },
       "type": "structure"
@@ -970,6 +1054,53 @@
       },
       "type": "structure"
     },
+    "ListIndexesForMembersInput": {
+      "members": {
+        "AccountIdList": {
+          "shape": "ListIndexesForMembersInputAccountIdListList"
+        },
+        "MaxResults": {
+          "shape": "ListIndexesForMembersInputMaxResultsInteger"
+        },
+        "NextToken": {
+          "shape": "ListIndexesForMembersInputNextTokenString"
+        }
+      },
+      "required": [
+        "AccountIdList"
+      ],
+      "type": "structure"
+    },
+    "ListIndexesForMembersInputAccountIdListList": {
+      "max": 10,
+      "member": {
+        "shape": "AccountId"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ListIndexesForMembersInputMaxResultsInteger": {
+      "box": true,
+      "max": 10,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListIndexesForMembersInputNextTokenString": {
+      "max": 2048,
+      "min": 1,
+      "type": "string"
+    },
+    "ListIndexesForMembersOutput": {
+      "members": {
+        "Indexes": {
+          "shape": "MemberIndexList"
+        },
+        "NextToken": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
     "ListIndexesInput": {
       "members": {
         "MaxResults": {
@@ -1079,7 +1210,7 @@
     },
     "ListViewsInputMaxResultsInteger": {
       "box": true,
-      "max": 20,
+      "max": 50,
       "min": 1,
       "type": "integer"
     },
@@ -1097,6 +1228,43 @@
     "Long": {
       "box": true,
       "type": "long"
+    },
+    "MemberIndex": {
+      "members": {
+        "AccountId": {
+          "shape": "String"
+        },
+        "Arn": {
+          "shape": "String"
+        },
+        "Region": {
+          "shape": "String"
+        },
+        "Type": {
+          "shape": "IndexType"
+        }
+      },
+      "type": "structure"
+    },
+    "MemberIndexList": {
+      "member": {
+        "shape": "MemberIndex"
+      },
+      "type": "list"
+    },
+    "OrgConfiguration": {
+      "members": {
+        "AWSServiceAccessStatus": {
+          "shape": "AWSServiceAccessStatus"
+        },
+        "ServiceLinkedRole": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "AWSServiceAccessStatus"
+      ],
+      "type": "structure"
     },
     "QueryString": {
       "max": 1011,
@@ -1300,6 +1468,7 @@
       "member": {
         "shape": "String"
       },
+      "sensitive": true,
       "type": "list"
     },
     "SupportedResourceType": {
@@ -1321,6 +1490,7 @@
       "key": {
         "shape": "String"
       },
+      "sensitive": true,
       "type": "map",
       "value": {
         "shape": "String"

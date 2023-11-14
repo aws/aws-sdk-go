@@ -89,7 +89,7 @@ func (c *ResourceExplorer2) AssociateDefaultViewRequest(input *AssociateDefaultV
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -184,7 +184,7 @@ func (c *ResourceExplorer2) BatchGetViewRequest(input *BatchGetViewInput) (req *
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -314,13 +314,22 @@ func (c *ResourceExplorer2) CreateIndexRequest(input *CreateIndexInput) (req *re
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     The request failed because either you specified parameters that didn’t
-//     match the original request, or you attempted to create a view with a name
-//     that already exists in this Amazon Web Services Region.
+//     If you attempted to create a view, then the request failed because either
+//     you specified parameters that didn’t match the original request, or you
+//     attempted to create a view with a name that already exists in this Amazon
+//     Web Services Region.
+//
+//     If you attempted to create an index, then the request failed because either
+//     you specified parameters that didn't match the original request, or an index
+//     already exists in the current Amazon Web Services Region.
+//
+//     If you attempted to update an index type to AGGREGATOR, then the request
+//     failed because you already have an AGGREGATOR index in a different Amazon
+//     Web Services Region.
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -419,9 +428,18 @@ func (c *ResourceExplorer2) CreateViewRequest(input *CreateViewInput) (req *requ
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     The request failed because either you specified parameters that didn’t
-//     match the original request, or you attempted to create a view with a name
-//     that already exists in this Amazon Web Services Region.
+//     If you attempted to create a view, then the request failed because either
+//     you specified parameters that didn’t match the original request, or you
+//     attempted to create a view with a name that already exists in this Amazon
+//     Web Services Region.
+//
+//     If you attempted to create an index, then the request failed because either
+//     you specified parameters that didn't match the original request, or an index
+//     already exists in the current Amazon Web Services Region.
+//
+//     If you attempted to update an index type to AGGREGATOR, then the request
+//     failed because you already have an AGGREGATOR index in a different Amazon
+//     Web Services Region.
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it exceeds a service quota.
@@ -431,7 +449,7 @@ func (c *ResourceExplorer2) CreateViewRequest(input *CreateViewInput) (req *requ
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -537,7 +555,7 @@ func (c *ResourceExplorer2) DeleteIndexRequest(input *DeleteIndexInput) (req *re
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -641,7 +659,7 @@ func (c *ResourceExplorer2) DeleteViewRequest(input *DeleteViewInput) (req *requ
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -731,6 +749,10 @@ func (c *ResourceExplorer2) DisassociateDefaultViewRequest(input *DisassociateDe
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     You specified a resource that doesn't exist. Check the ID or ARN that you
+//     used to identity the resource, and try again.
+//
 //   - InternalServerException
 //     The request failed because of internal service error. Try your request again
 //     later.
@@ -741,7 +763,7 @@ func (c *ResourceExplorer2) DisassociateDefaultViewRequest(input *DisassociateDe
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -764,6 +786,101 @@ func (c *ResourceExplorer2) DisassociateDefaultView(input *DisassociateDefaultVi
 // for more information on using Contexts.
 func (c *ResourceExplorer2) DisassociateDefaultViewWithContext(ctx aws.Context, input *DisassociateDefaultViewInput, opts ...request.Option) (*DisassociateDefaultViewOutput, error) {
 	req, out := c.DisassociateDefaultViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccountLevelServiceConfiguration = "GetAccountLevelServiceConfiguration"
+
+// GetAccountLevelServiceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccountLevelServiceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccountLevelServiceConfiguration for more information on using the GetAccountLevelServiceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccountLevelServiceConfigurationRequest method.
+//	req, resp := client.GetAccountLevelServiceConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-explorer-2-2022-07-28/GetAccountLevelServiceConfiguration
+func (c *ResourceExplorer2) GetAccountLevelServiceConfigurationRequest(input *GetAccountLevelServiceConfigurationInput) (req *request.Request, output *GetAccountLevelServiceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetAccountLevelServiceConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetAccountLevelServiceConfiguration",
+	}
+
+	if input == nil {
+		input = &GetAccountLevelServiceConfigurationInput{}
+	}
+
+	output = &GetAccountLevelServiceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccountLevelServiceConfiguration API operation for AWS Resource Explorer.
+//
+// Retrieves the status of your account's Amazon Web Services service access,
+// and validates the service linked role required to access the multi-account
+// search feature. Only the management account or a delegated administrator
+// with service access enabled can invoke this API call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Explorer's
+// API operation GetAccountLevelServiceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     You specified a resource that doesn't exist. Check the ID or ARN that you
+//     used to identity the resource, and try again.
+//
+//   - InternalServerException
+//     The request failed because of internal service error. Try your request again
+//     later.
+//
+//   - ThrottlingException
+//     The request failed because you exceeded a rate limit for this operation.
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
+//
+//   - AccessDeniedException
+//     The credentials that you used to call this operation don't have the minimum
+//     required permissions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-explorer-2-2022-07-28/GetAccountLevelServiceConfiguration
+func (c *ResourceExplorer2) GetAccountLevelServiceConfiguration(input *GetAccountLevelServiceConfigurationInput) (*GetAccountLevelServiceConfigurationOutput, error) {
+	req, out := c.GetAccountLevelServiceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetAccountLevelServiceConfigurationWithContext is the same as GetAccountLevelServiceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccountLevelServiceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceExplorer2) GetAccountLevelServiceConfigurationWithContext(ctx aws.Context, input *GetAccountLevelServiceConfigurationInput, opts ...request.Option) (*GetAccountLevelServiceConfigurationOutput, error) {
+	req, out := c.GetAccountLevelServiceConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -839,7 +956,7 @@ func (c *ResourceExplorer2) GetDefaultViewRequest(input *GetDefaultViewInput) (r
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -936,7 +1053,7 @@ func (c *ResourceExplorer2) GetIndexRequest(input *GetIndexInput) (req *request.
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1035,7 +1152,7 @@ func (c *ResourceExplorer2) GetViewRequest(input *GetViewInput) (req *request.Re
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1135,7 +1252,7 @@ func (c *ResourceExplorer2) ListIndexesRequest(input *ListIndexesInput) (req *re
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1214,6 +1331,158 @@ func (c *ResourceExplorer2) ListIndexesPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListIndexesForMembers = "ListIndexesForMembers"
+
+// ListIndexesForMembersRequest generates a "aws/request.Request" representing the
+// client's request for the ListIndexesForMembers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIndexesForMembers for more information on using the ListIndexesForMembers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIndexesForMembersRequest method.
+//	req, resp := client.ListIndexesForMembersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-explorer-2-2022-07-28/ListIndexesForMembers
+func (c *ResourceExplorer2) ListIndexesForMembersRequest(input *ListIndexesForMembersInput) (req *request.Request, output *ListIndexesForMembersOutput) {
+	op := &request.Operation{
+		Name:       opListIndexesForMembers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListIndexesForMembers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIndexesForMembersInput{}
+	}
+
+	output = &ListIndexesForMembersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIndexesForMembers API operation for AWS Resource Explorer.
+//
+// Retrieves a list of a member's indexes in all Amazon Web Services Regions
+// that are currently collecting resource information for Amazon Web Services
+// Resource Explorer. Only the management account or a delegated administrator
+// with service access enabled can invoke this API call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Explorer's
+// API operation ListIndexesForMembers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request failed because of internal service error. Try your request again
+//     later.
+//
+//   - ValidationException
+//     You provided an invalid value for one of the operation's parameters. Check
+//     the syntax for the operation, and try again.
+//
+//   - ThrottlingException
+//     The request failed because you exceeded a rate limit for this operation.
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
+//
+//   - AccessDeniedException
+//     The credentials that you used to call this operation don't have the minimum
+//     required permissions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-explorer-2-2022-07-28/ListIndexesForMembers
+func (c *ResourceExplorer2) ListIndexesForMembers(input *ListIndexesForMembersInput) (*ListIndexesForMembersOutput, error) {
+	req, out := c.ListIndexesForMembersRequest(input)
+	return out, req.Send()
+}
+
+// ListIndexesForMembersWithContext is the same as ListIndexesForMembers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIndexesForMembers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceExplorer2) ListIndexesForMembersWithContext(ctx aws.Context, input *ListIndexesForMembersInput, opts ...request.Option) (*ListIndexesForMembersOutput, error) {
+	req, out := c.ListIndexesForMembersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIndexesForMembersPages iterates over the pages of a ListIndexesForMembers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIndexesForMembers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIndexesForMembers operation.
+//	pageNum := 0
+//	err := client.ListIndexesForMembersPages(params,
+//	    func(page *resourceexplorer2.ListIndexesForMembersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ResourceExplorer2) ListIndexesForMembersPages(input *ListIndexesForMembersInput, fn func(*ListIndexesForMembersOutput, bool) bool) error {
+	return c.ListIndexesForMembersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIndexesForMembersPagesWithContext same as ListIndexesForMembersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceExplorer2) ListIndexesForMembersPagesWithContext(ctx aws.Context, input *ListIndexesForMembersInput, fn func(*ListIndexesForMembersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIndexesForMembersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIndexesForMembersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIndexesForMembersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSupportedResourceTypes = "ListSupportedResourceTypes"
 
 // ListSupportedResourceTypesRequest generates a "aws/request.Request" representing the
@@ -1285,7 +1554,7 @@ func (c *ResourceExplorer2) ListSupportedResourceTypesRequest(input *ListSupport
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1435,7 +1704,7 @@ func (c *ResourceExplorer2) ListTagsForResourceRequest(input *ListTagsForResourc
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1540,7 +1809,7 @@ func (c *ResourceExplorer2) ListViewsRequest(input *ListViewsInput) (req *reques
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1710,7 +1979,7 @@ func (c *ResourceExplorer2) SearchRequest(input *SearchInput) (req *request.Requ
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1854,16 +2123,25 @@ func (c *ResourceExplorer2) TagResourceRequest(input *TagResourceInput) (req *re
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     The request failed because either you specified parameters that didn’t
-//     match the original request, or you attempted to create a view with a name
-//     that already exists in this Amazon Web Services Region.
+//     If you attempted to create a view, then the request failed because either
+//     you specified parameters that didn’t match the original request, or you
+//     attempted to create a view with a name that already exists in this Amazon
+//     Web Services Region.
+//
+//     If you attempted to create an index, then the request failed because either
+//     you specified parameters that didn't match the original request, or an index
+//     already exists in the current Amazon Web Services Region.
+//
+//     If you attempted to update an index type to AGGREGATOR, then the request
+//     failed because you already have an AGGREGATOR index in a different Amazon
+//     Web Services Region.
 //
 //   - UnauthorizedException
 //     The principal making the request isn't permitted to perform the operation.
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -1964,7 +2242,7 @@ func (c *ResourceExplorer2) UntagResourceRequest(input *UntagResourceInput) (req
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -2101,16 +2379,25 @@ func (c *ResourceExplorer2) UpdateIndexTypeRequest(input *UpdateIndexTypeInput) 
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     The request failed because either you specified parameters that didn’t
-//     match the original request, or you attempted to create a view with a name
-//     that already exists in this Amazon Web Services Region.
+//     If you attempted to create a view, then the request failed because either
+//     you specified parameters that didn’t match the original request, or you
+//     attempted to create a view with a name that already exists in this Amazon
+//     Web Services Region.
+//
+//     If you attempted to create an index, then the request failed because either
+//     you specified parameters that didn't match the original request, or an index
+//     already exists in the current Amazon Web Services Region.
+//
+//     If you attempted to update an index type to AGGREGATOR, then the request
+//     failed because you already have an AGGREGATOR index in a different Amazon
+//     Web Services Region.
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it exceeds a service quota.
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -2209,7 +2496,7 @@ func (c *ResourceExplorer2) UpdateViewRequest(input *UpdateViewInput) (req *requ
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
-//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+//     For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 //
 //   - AccessDeniedException
 //     The credentials that you used to call this operation don't have the minimum
@@ -2522,9 +2809,18 @@ func (s *BatchGetViewOutput) SetViews(v []*View) *BatchGetViewOutput {
 	return s
 }
 
-// The request failed because either you specified parameters that didn’t
-// match the original request, or you attempted to create a view with a name
-// that already exists in this Amazon Web Services Region.
+// If you attempted to create a view, then the request failed because either
+// you specified parameters that didn’t match the original request, or you
+// attempted to create a view with a name that already exists in this Amazon
+// Web Services Region.
+//
+// If you attempted to create an index, then the request failed because either
+// you specified parameters that didn't match the original request, or an index
+// already exists in the current Amazon Web Services Region.
+//
+// If you attempted to update an index type to AGGREGATOR, then the request
+// failed because you already have an AGGREGATOR index in a different Amazon
+// Web Services Region.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2594,13 +2890,17 @@ type CreateIndexInput struct {
 	// This value helps ensure idempotency. Resource Explorer uses this value to
 	// prevent the accidental creation of duplicate versions. We recommend that
 	// you generate a UUID-type value (https://wikipedia.org/wiki/Universally_unique_identifier)
-	// to ensure the uniqueness of your views.
+	// to ensure the uniqueness of your index.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The specified tags are attached only to the index created in this Amazon
 	// Web Services Region. The tags aren't attached to any of the resources listed
 	// in the index.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIndexInput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -2726,8 +3026,16 @@ type CreateViewInput struct {
 	// The default is an empty list, with no optional fields included in the results.
 	IncludedProperties []*IncludedProperty `type:"list"`
 
+	// The root ARN of the account, an organizational unit (OU), or an organization
+	// ARN. If left empty, the default is account.
+	Scope *string `min:"1" type:"string"`
+
 	// Tag key and value pairs that are attached to the view.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateViewInput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 
 	// The name of the new view. This name appears in the list of views in Resource
 	// Explorer.
@@ -2763,6 +3071,9 @@ func (s *CreateViewInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateViewInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Scope != nil && len(*s.Scope) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Scope", 1))
 	}
 	if s.ViewName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ViewName"))
@@ -2804,6 +3115,12 @@ func (s *CreateViewInput) SetFilters(v *SearchFilter) *CreateViewInput {
 // SetIncludedProperties sets the IncludedProperties field's value.
 func (s *CreateViewInput) SetIncludedProperties(v []*IncludedProperty) *CreateViewInput {
 	s.IncludedProperties = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *CreateViewInput) SetScope(v string) *CreateViewInput {
+	s.Scope = &v
 	return s
 }
 
@@ -3075,6 +3392,59 @@ func (s DisassociateDefaultViewOutput) GoString() string {
 	return s.String()
 }
 
+type GetAccountLevelServiceConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLevelServiceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLevelServiceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetAccountLevelServiceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the organization, and whether configuration is ENABLED or DISABLED.
+	OrgConfiguration *OrgConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLevelServiceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLevelServiceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetOrgConfiguration sets the OrgConfiguration field's value.
+func (s *GetAccountLevelServiceConfigurationOutput) SetOrgConfiguration(v *OrgConfiguration) *GetAccountLevelServiceConfigurationOutput {
+	s.OrgConfiguration = v
+	return s
+}
+
 type GetDefaultViewInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -3183,7 +3553,11 @@ type GetIndexOutput struct {
 	State *string `type:"string" enum:"IndexState"`
 
 	// Tag key and value pairs that are attached to the index.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetIndexOutput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 
 	// The type of the index in this Region. For information about the aggregator
 	// index and how it differs from a local index, see Turning on cross-Region
@@ -3311,7 +3685,11 @@ type GetViewOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Tag key and value pairs that are attached to the view.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetViewOutput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 
 	// A structure that contains the details for the requested view.
 	View *View `type:"structure"`
@@ -3540,6 +3918,136 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListIndexesForMembersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account IDs will limit the output to only indexes from these accounts.
+	//
+	// AccountIdList is a required field
+	AccountIdList []*string `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results that you want included on each page of the
+	// response. If you do not include this parameter, it defaults to a value appropriate
+	// to the operation. If additional items exist beyond those included in the
+	// current response, the NextToken response element is present and has a value
+	// (is not null). Include that value as the NextToken request parameter in the
+	// next call to the operation to get the next part of the results.
+	//
+	// An API operation can return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The parameter for receiving additional results if you receive a NextToken
+	// response in a previous request. A NextToken response indicates that more
+	// output is available. Set this parameter to the value of the previous call's
+	// NextToken response to indicate where the output should continue from. The
+	// pagination tokens expire after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIndexesForMembersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIndexesForMembersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIndexesForMembersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIndexesForMembersInput"}
+	if s.AccountIdList == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIdList"))
+	}
+	if s.AccountIdList != nil && len(s.AccountIdList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIdList", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIdList sets the AccountIdList field's value.
+func (s *ListIndexesForMembersInput) SetAccountIdList(v []*string) *ListIndexesForMembersInput {
+	s.AccountIdList = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIndexesForMembersInput) SetMaxResults(v int64) *ListIndexesForMembersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIndexesForMembersInput) SetNextToken(v string) *ListIndexesForMembersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIndexesForMembersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the details and status of each index.
+	Indexes []*MemberIndex `type:"list"`
+
+	// If present, indicates that more output is available than is included in the
+	// current response. Use this value in the NextToken request parameter in a
+	// subsequent call to the operation to get the next part of the output. You
+	// should repeat this until the NextToken response element comes back as null.
+	// The pagination tokens expire after 24 hours.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIndexesForMembersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIndexesForMembersOutput) GoString() string {
+	return s.String()
+}
+
+// SetIndexes sets the Indexes field's value.
+func (s *ListIndexesForMembersOutput) SetIndexes(v []*MemberIndex) *ListIndexesForMembersOutput {
+	s.Indexes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIndexesForMembersOutput) SetNextToken(v string) *ListIndexesForMembersOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIndexesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3558,7 +4066,8 @@ type ListIndexesInput struct {
 	// The parameter for receiving additional results if you receive a NextToken
 	// response in a previous request. A NextToken response indicates that more
 	// output is available. Set this parameter to the value of the previous call's
-	// NextToken response to indicate where the output should continue from.
+	// NextToken response to indicate where the output should continue from. The
+	// pagination tokens expire after 24 hours.
 	NextToken *string `min:"1" type:"string"`
 
 	// If specified, limits the response to only information about the index in
@@ -3640,6 +4149,7 @@ type ListIndexesOutput struct {
 	// current response. Use this value in the NextToken request parameter in a
 	// subsequent call to the operation to get the next part of the output. You
 	// should repeat this until the NextToken response element comes back as null.
+	// The pagination tokens expire after 24 hours.
 	NextToken *string `type:"string"`
 }
 
@@ -3691,7 +4201,8 @@ type ListSupportedResourceTypesInput struct {
 	// The parameter for receiving additional results if you receive a NextToken
 	// response in a previous request. A NextToken response indicates that more
 	// output is available. Set this parameter to the value of the previous call's
-	// NextToken response to indicate where the output should continue from.
+	// NextToken response to indicate where the output should continue from. The
+	// pagination tokens expire after 24 hours.
 	NextToken *string `type:"string"`
 }
 
@@ -3745,6 +4256,7 @@ type ListSupportedResourceTypesOutput struct {
 	// current response. Use this value in the NextToken request parameter in a
 	// subsequent call to the operation to get the next part of the output. You
 	// should repeat this until the NextToken response element comes back as null.
+	// The pagination tokens expire after 24 hours.
 	NextToken *string `type:"string"`
 
 	// The list of resource types supported by Resource Explorer.
@@ -3836,7 +4348,11 @@ type ListTagsForResourceOutput struct {
 
 	// The tag key and value pairs that you want to attach to the specified view
 	// or index.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListTagsForResourceOutput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -3881,7 +4397,8 @@ type ListViewsInput struct {
 	// The parameter for receiving additional results if you receive a NextToken
 	// response in a previous request. A NextToken response indicates that more
 	// output is available. Set this parameter to the value of the previous call's
-	// NextToken response to indicate where the output should continue from.
+	// NextToken response to indicate where the output should continue from. The
+	// pagination tokens expire after 24 hours.
 	NextToken *string `type:"string"`
 }
 
@@ -3935,6 +4452,7 @@ type ListViewsOutput struct {
 	// current response. Use this value in the NextToken request parameter in a
 	// subsequent call to the operation to get the next part of the output. You
 	// should repeat this until the NextToken response element comes back as null.
+	// The pagination tokens expire after 24 hours.
 	NextToken *string `type:"string"`
 
 	// The list of views available in the Amazon Web Services Region in which you
@@ -3969,6 +4487,124 @@ func (s *ListViewsOutput) SetNextToken(v string) *ListViewsOutput {
 // SetViews sets the Views field's value.
 func (s *ListViewsOutput) SetViews(v []*string) *ListViewsOutput {
 	s.Views = v
+	return s
+}
+
+// An index is the data store used by Amazon Web Services Resource Explorer
+// to hold information about your Amazon Web Services resources that the service
+// discovers.
+type MemberIndex struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID for the index.
+	AccountId *string `type:"string"`
+
+	// The Amazon resource name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the index.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services Region in which the index exists.
+	Region *string `type:"string"`
+
+	// The type of index. It can be one of the following values:
+	//
+	//    * LOCAL – The index contains information about resources from only the
+	//    same Amazon Web Services Region.
+	//
+	//    * AGGREGATOR – Resource Explorer replicates copies of the indexed information
+	//    about resources in all other Amazon Web Services Regions to the aggregator
+	//    index. This lets search results in the Region with the aggregator index
+	//    to include resources from all Regions in the account where Resource Explorer
+	//    is turned on.
+	Type *string `type:"string" enum:"IndexType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberIndex) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberIndex) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MemberIndex) SetAccountId(v string) *MemberIndex {
+	s.AccountId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *MemberIndex) SetArn(v string) *MemberIndex {
+	s.Arn = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *MemberIndex) SetRegion(v string) *MemberIndex {
+	s.Region = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MemberIndex) SetType(v string) *MemberIndex {
+	s.Type = &v
+	return s
+}
+
+// This is a structure that contains the status of Amazon Web Services service
+// access, and whether you have a valid service-linked role to enable multi-account
+// search for your organization.
+type OrgConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// This value displays whether your Amazon Web Services service access is ENABLED
+	// or DISABLED.
+	//
+	// AWSServiceAccessStatus is a required field
+	AWSServiceAccessStatus *string `type:"string" required:"true" enum:"AWSServiceAccessStatus"`
+
+	// This value shows whether or not you have a valid a service-linked role required
+	// to start the multi-account search feature.
+	ServiceLinkedRole *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrgConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrgConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAWSServiceAccessStatus sets the AWSServiceAccessStatus field's value.
+func (s *OrgConfiguration) SetAWSServiceAccessStatus(v string) *OrgConfiguration {
+	s.AWSServiceAccessStatus = &v
+	return s
+}
+
+// SetServiceLinkedRole sets the ServiceLinkedRole field's value.
+func (s *OrgConfiguration) SetServiceLinkedRole(v string) *OrgConfiguration {
+	s.ServiceLinkedRole = &v
 	return s
 }
 
@@ -4296,7 +4932,8 @@ type SearchInput struct {
 	// The parameter for receiving additional results if you receive a NextToken
 	// response in a previous request. A NextToken response indicates that more
 	// output is available. Set this parameter to the value of the previous call's
-	// NextToken response to indicate where the output should continue from.
+	// NextToken response to indicate where the output should continue from. The
+	// pagination tokens expire after 24 hours.
 	NextToken *string `min:"1" type:"string"`
 
 	// A string that includes keywords and filters that specify the resources that
@@ -4399,6 +5036,7 @@ type SearchOutput struct {
 	// current response. Use this value in the NextToken request parameter in a
 	// subsequent call to the operation to get the next part of the output. You
 	// should repeat this until the NextToken response element comes back as null.
+	// The pagination tokens expire after 24 hours.
 	NextToken *string `min:"1" type:"string"`
 
 	// The list of structures that describe the resources that match the query.
@@ -4580,7 +5218,11 @@ type TagResourceInput struct {
 
 	// A list of tag key and value pairs that you want to attach to the specified
 	// view or index.
-	Tags map[string]*string `type:"map"`
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TagResourceInput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4652,7 +5294,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // The request failed because you exceeded a rate limit for this operation.
-// For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/arexug/mainline/quotas.html).
+// For more information, see Quotas for Resource Explorer (https://docs.aws.amazon.com/resource-explorer/latest/userguide/quotas.html).
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4792,8 +5434,12 @@ type UntagResourceInput struct {
 	// A list of the keys for the tags that you want to remove from the specified
 	// view or index.
 	//
+	// TagKeys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UntagResourceInput's
+	// String and GoString methods.
+	//
 	// TagKeys is a required field
-	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5333,6 +5979,22 @@ func (s *View) SetScope(v string) *View {
 func (s *View) SetViewArn(v string) *View {
 	s.ViewArn = &v
 	return s
+}
+
+const (
+	// AWSServiceAccessStatusEnabled is a AWSServiceAccessStatus enum value
+	AWSServiceAccessStatusEnabled = "ENABLED"
+
+	// AWSServiceAccessStatusDisabled is a AWSServiceAccessStatus enum value
+	AWSServiceAccessStatusDisabled = "DISABLED"
+)
+
+// AWSServiceAccessStatus_Values returns all elements of the AWSServiceAccessStatus enum
+func AWSServiceAccessStatus_Values() []string {
+	return []string{
+		AWSServiceAccessStatusEnabled,
+		AWSServiceAccessStatusDisabled,
+	}
 }
 
 const (

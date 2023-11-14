@@ -931,14 +931,15 @@ func (c *Pipes) UpdatePipeRequest(input *UpdatePipeInput) (req *request.Request,
 
 // UpdatePipe API operation for Amazon EventBridge Pipes.
 //
-// Update an existing pipe. When you call UpdatePipe, only the fields that are
-// included in the request are changed, the rest are unchanged. The exception
-// to this is if you modify any Amazon Web Services-service specific fields
-// in the SourceParameters, EnrichmentParameters, or TargetParameters objects.
-// The fields in these objects are updated atomically as one and override existing
-// values. This is by design and means that if you don't specify an optional
-// field in one of these Parameters objects, that field will be set to its system-default
-// value after the update.
+// Update an existing pipe. When you call UpdatePipe, EventBridge only the updates
+// fields you have specified in the request; the rest remain unchanged. The
+// exception to this is if you modify any Amazon Web Services-service specific
+// fields in the SourceParameters, EnrichmentParameters, or TargetParameters
+// objects. For example, DynamoDBStreamParameters or EventBridgeEventBusParameters.
+// EventBridge updates the fields in these objects atomically as one and overrides
+// existing values. This is by design, and means that if you don't specify an
+// optional field in one of these Parameters objects, EventBridge sets that
+// field to its system-default value during the update.
 //
 // For more information about pipes, see Amazon EventBridge Pipes (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html)
 // in the Amazon EventBridge User Guide.
@@ -1623,6 +1624,90 @@ func (s *CapacityProviderStrategyItem) SetWeight(v int64) *CapacityProviderStrat
 	return s
 }
 
+// The Amazon CloudWatch Logs logging configuration settings for the pipe.
+type CloudwatchLogsLogDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Resource Name (ARN) for the CloudWatch log group
+	// to which EventBridge sends the log records.
+	LogGroupArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudwatchLogsLogDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudwatchLogsLogDestination) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *CloudwatchLogsLogDestination) SetLogGroupArn(v string) *CloudwatchLogsLogDestination {
+	s.LogGroupArn = &v
+	return s
+}
+
+// The Amazon CloudWatch Logs logging configuration settings for the pipe.
+type CloudwatchLogsLogDestinationParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Resource Name (ARN) for the CloudWatch log group
+	// to which EventBridge sends the log records.
+	//
+	// LogGroupArn is a required field
+	LogGroupArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudwatchLogsLogDestinationParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudwatchLogsLogDestinationParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudwatchLogsLogDestinationParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudwatchLogsLogDestinationParameters"}
+	if s.LogGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogGroupArn"))
+	}
+	if s.LogGroupArn != nil && len(*s.LogGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroupArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *CloudwatchLogsLogDestinationParameters) SetLogGroupArn(v string) *CloudwatchLogsLogDestinationParameters {
+	s.LogGroupArn = &v
+	return s
+}
+
 // An action you attempted resulted in an exception.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -1716,6 +1801,9 @@ type CreatePipeInput struct {
 	// The parameters required to set up enrichment on your pipe.
 	EnrichmentParameters *PipeEnrichmentParameters `type:"structure"`
 
+	// The logging configuration settings for the pipe.
+	LogConfiguration *PipeLogConfigurationParameters `type:"structure"`
+
 	// The name of the pipe.
 	//
 	// Name is a required field
@@ -1743,6 +1831,10 @@ type CreatePipeInput struct {
 	Target *string `min:"1" type:"string" required:"true"`
 
 	// The parameters required to set up a target for your pipe.
+	//
+	// For more information about pipe target parameters, including how to use dynamic
+	// path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html)
+	// in the Amazon EventBridge User Guide.
 	TargetParameters *PipeTargetParameters `type:"structure"`
 }
 
@@ -1794,6 +1886,11 @@ func (s *CreatePipeInput) Validate() error {
 	if s.Target != nil && len(*s.Target) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Target", 1))
 	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SourceParameters != nil {
 		if err := s.SourceParameters.Validate(); err != nil {
 			invalidParams.AddNested("SourceParameters", err.(request.ErrInvalidParams))
@@ -1832,6 +1929,12 @@ func (s *CreatePipeInput) SetEnrichment(v string) *CreatePipeInput {
 // SetEnrichmentParameters sets the EnrichmentParameters field's value.
 func (s *CreatePipeInput) SetEnrichmentParameters(v *PipeEnrichmentParameters) *CreatePipeInput {
 	s.EnrichmentParameters = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *CreatePipeInput) SetLogConfiguration(v *PipeLogConfigurationParameters) *CreatePipeInput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -1959,8 +2062,10 @@ func (s *CreatePipeOutput) SetName(v string) *CreatePipeOutput {
 type DeadLetterConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon SQS queue specified as the target for the dead-letter
-	// queue.
+	// The ARN of the specified target for the dead-letter queue.
+	//
+	// For Amazon Kinesis stream and Amazon DynamoDB stream sources, specify either
+	// an Amazon SNS topic or Amazon SQS queue ARN.
 	Arn *string `min:"1" type:"string"`
 }
 
@@ -2208,6 +2313,9 @@ type DescribePipeOutput struct {
 	// (YYYY-MM-DDThh:mm:ss.sTZD).
 	LastModifiedTime *time.Time `type:"timestamp"`
 
+	// The logging configuration settings for the pipe.
+	LogConfiguration *PipeLogConfiguration `type:"structure"`
+
 	// The name of the pipe.
 	Name *string `min:"1" type:"string"`
 
@@ -2230,6 +2338,10 @@ type DescribePipeOutput struct {
 	Target *string `min:"1" type:"string"`
 
 	// The parameters required to set up a target for your pipe.
+	//
+	// For more information about pipe target parameters, including how to use dynamic
+	// path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html)
+	// in the Amazon EventBridge User Guide.
 	TargetParameters *PipeTargetParameters `type:"structure"`
 }
 
@@ -2296,6 +2408,12 @@ func (s *DescribePipeOutput) SetEnrichmentParameters(v *PipeEnrichmentParameters
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribePipeOutput) SetLastModifiedTime(v time.Time) *DescribePipeOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *DescribePipeOutput) SetLogConfiguration(v *PipeLogConfiguration) *DescribePipeOutput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -2965,8 +3083,12 @@ func (s *Filter) SetPattern(v string) *Filter {
 	return s
 }
 
-// The collection of event patterns used to filter events. For more information,
-// see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
+// The collection of event patterns used to filter events.
+//
+// To remove a filter, specify a FilterCriteria object with an empty array of
+// Filter objects.
+//
+// For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
 // in the Amazon EventBridge User Guide.
 type FilterCriteria struct {
 	_ struct{} `type:"structure"`
@@ -2996,6 +3118,90 @@ func (s FilterCriteria) GoString() string {
 // SetFilters sets the Filters field's value.
 func (s *FilterCriteria) SetFilters(v []*Filter) *FilterCriteria {
 	s.Filters = v
+	return s
+}
+
+// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+type FirehoseLogDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery stream
+	// to which EventBridge delivers the pipe log records.
+	DeliveryStreamArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirehoseLogDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirehoseLogDestination) GoString() string {
+	return s.String()
+}
+
+// SetDeliveryStreamArn sets the DeliveryStreamArn field's value.
+func (s *FirehoseLogDestination) SetDeliveryStreamArn(v string) *FirehoseLogDestination {
+	s.DeliveryStreamArn = &v
+	return s
+}
+
+// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+type FirehoseLogDestinationParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery
+	// stream to which EventBridge delivers the pipe log records.
+	//
+	// DeliveryStreamArn is a required field
+	DeliveryStreamArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirehoseLogDestinationParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirehoseLogDestinationParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FirehoseLogDestinationParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FirehoseLogDestinationParameters"}
+	if s.DeliveryStreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamArn"))
+	}
+	if s.DeliveryStreamArn != nil && len(*s.DeliveryStreamArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryStreamArn sets the DeliveryStreamArn field's value.
+func (s *FirehoseLogDestinationParameters) SetDeliveryStreamArn(v string) *FirehoseLogDestinationParameters {
+	s.DeliveryStreamArn = &v
 	return s
 }
 
@@ -3721,6 +3927,8 @@ type PipeEnrichmentParameters struct {
 	// event itself is passed to the enrichment. For more information, see The JavaScript
 	// Object Notation (JSON) Data Interchange Format (http://www.rfc-editor.org/rfc/rfc7159.txt).
 	//
+	// To remove an input template, specify an empty string.
+	//
 	// InputTemplate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PipeEnrichmentParameters's
 	// String and GoString methods.
@@ -3754,6 +3962,208 @@ func (s *PipeEnrichmentParameters) SetHttpParameters(v *PipeEnrichmentHttpParame
 // SetInputTemplate sets the InputTemplate field's value.
 func (s *PipeEnrichmentParameters) SetInputTemplate(v string) *PipeEnrichmentParameters {
 	s.InputTemplate = &v
+	return s
+}
+
+// The logging configuration settings for the pipe.
+type PipeLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon CloudWatch Logs logging configuration settings for the pipe.
+	CloudwatchLogsLogDestination *CloudwatchLogsLogDestination `type:"structure"`
+
+	// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+	FirehoseLogDestination *FirehoseLogDestination `type:"structure"`
+
+	// Whether the execution data (specifically, the payload, awsRequest, and awsResponse
+	// fields) is included in the log messages for this pipe.
+	//
+	// This applies to all log destinations for the pipe.
+	//
+	// For more information, see Including execution data in logs (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data)
+	// in the Amazon EventBridge User Guide.
+	IncludeExecutionData []*string `type:"list" enum:"IncludeExecutionDataOption"`
+
+	// The level of logging detail to include. This applies to all log destinations
+	// for the pipe.
+	Level *string `type:"string" enum:"LogLevel"`
+
+	// The Amazon S3 logging configuration settings for the pipe.
+	S3LogDestination *S3LogDestination `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCloudwatchLogsLogDestination sets the CloudwatchLogsLogDestination field's value.
+func (s *PipeLogConfiguration) SetCloudwatchLogsLogDestination(v *CloudwatchLogsLogDestination) *PipeLogConfiguration {
+	s.CloudwatchLogsLogDestination = v
+	return s
+}
+
+// SetFirehoseLogDestination sets the FirehoseLogDestination field's value.
+func (s *PipeLogConfiguration) SetFirehoseLogDestination(v *FirehoseLogDestination) *PipeLogConfiguration {
+	s.FirehoseLogDestination = v
+	return s
+}
+
+// SetIncludeExecutionData sets the IncludeExecutionData field's value.
+func (s *PipeLogConfiguration) SetIncludeExecutionData(v []*string) *PipeLogConfiguration {
+	s.IncludeExecutionData = v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *PipeLogConfiguration) SetLevel(v string) *PipeLogConfiguration {
+	s.Level = &v
+	return s
+}
+
+// SetS3LogDestination sets the S3LogDestination field's value.
+func (s *PipeLogConfiguration) SetS3LogDestination(v *S3LogDestination) *PipeLogConfiguration {
+	s.S3LogDestination = v
+	return s
+}
+
+// Specifies the logging configuration settings for the pipe.
+//
+// When you call UpdatePipe, EventBridge updates the fields in the PipeLogConfigurationParameters
+// object atomically as one and overrides existing values. This is by design.
+// If you don't specify an optional field in any of the Amazon Web Services
+// service parameters objects (CloudwatchLogsLogDestinationParameters, FirehoseLogDestinationParameters,
+// or S3LogDestinationParameters), EventBridge sets that field to its system-default
+// value during the update.
+//
+// For example, suppose when you created the pipe you specified a Kinesis Data
+// Firehose stream log destination. You then update the pipe to add an Amazon
+// S3 log destination. In addition to specifying the S3LogDestinationParameters
+// for the new log destination, you must also specify the fields in the FirehoseLogDestinationParameters
+// object in order to retain the Kinesis Data Firehose stream log destination.
+//
+// For more information on generating pipe log records, see Log EventBridge
+// Pipes (eventbridge/latest/userguide/eb-pipes-logs.html) in the Amazon EventBridge
+// User Guide.
+type PipeLogConfigurationParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon CloudWatch Logs logging configuration settings for the pipe.
+	CloudwatchLogsLogDestination *CloudwatchLogsLogDestinationParameters `type:"structure"`
+
+	// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+	FirehoseLogDestination *FirehoseLogDestinationParameters `type:"structure"`
+
+	// Specify ON to include the execution data (specifically, the payload and awsRequest
+	// fields) in the log messages for this pipe.
+	//
+	// This applies to all log destinations for the pipe.
+	//
+	// For more information, see Including execution data in logs (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data)
+	// in the Amazon EventBridge User Guide.
+	//
+	// The default is OFF.
+	IncludeExecutionData []*string `type:"list" enum:"IncludeExecutionDataOption"`
+
+	// The level of logging detail to include. This applies to all log destinations
+	// for the pipe.
+	//
+	// For more information, see Specifying EventBridge Pipes log level (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-level)
+	// in the Amazon EventBridge User Guide.
+	//
+	// Level is a required field
+	Level *string `type:"string" required:"true" enum:"LogLevel"`
+
+	// The Amazon S3 logging configuration settings for the pipe.
+	S3LogDestination *S3LogDestinationParameters `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeLogConfigurationParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeLogConfigurationParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipeLogConfigurationParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipeLogConfigurationParameters"}
+	if s.Level == nil {
+		invalidParams.Add(request.NewErrParamRequired("Level"))
+	}
+	if s.CloudwatchLogsLogDestination != nil {
+		if err := s.CloudwatchLogsLogDestination.Validate(); err != nil {
+			invalidParams.AddNested("CloudwatchLogsLogDestination", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FirehoseLogDestination != nil {
+		if err := s.FirehoseLogDestination.Validate(); err != nil {
+			invalidParams.AddNested("FirehoseLogDestination", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3LogDestination != nil {
+		if err := s.S3LogDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3LogDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudwatchLogsLogDestination sets the CloudwatchLogsLogDestination field's value.
+func (s *PipeLogConfigurationParameters) SetCloudwatchLogsLogDestination(v *CloudwatchLogsLogDestinationParameters) *PipeLogConfigurationParameters {
+	s.CloudwatchLogsLogDestination = v
+	return s
+}
+
+// SetFirehoseLogDestination sets the FirehoseLogDestination field's value.
+func (s *PipeLogConfigurationParameters) SetFirehoseLogDestination(v *FirehoseLogDestinationParameters) *PipeLogConfigurationParameters {
+	s.FirehoseLogDestination = v
+	return s
+}
+
+// SetIncludeExecutionData sets the IncludeExecutionData field's value.
+func (s *PipeLogConfigurationParameters) SetIncludeExecutionData(v []*string) *PipeLogConfigurationParameters {
+	s.IncludeExecutionData = v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *PipeLogConfigurationParameters) SetLevel(v string) *PipeLogConfigurationParameters {
+	s.Level = &v
+	return s
+}
+
+// SetS3LogDestination sets the S3LogDestination field's value.
+func (s *PipeLogConfigurationParameters) SetS3LogDestination(v *S3LogDestinationParameters) *PipeLogConfigurationParameters {
+	s.S3LogDestination = v
 	return s
 }
 
@@ -4255,8 +4665,12 @@ type PipeSourceParameters struct {
 	// The parameters for using a DynamoDB stream as a source.
 	DynamoDBStreamParameters *PipeSourceDynamoDBStreamParameters `type:"structure"`
 
-	// The collection of event patterns used to filter events. For more information,
-	// see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
+	// The collection of event patterns used to filter events.
+	//
+	// To remove a filter, specify a FilterCriteria object with an empty array of
+	// Filter objects.
+	//
+	// For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
 	// in the Amazon EventBridge User Guide.
 	FilterCriteria *FilterCriteria `type:"structure"`
 
@@ -5156,8 +5570,6 @@ type PipeTargetEventBridgeEventBusParameters struct {
 	// The URL subdomain of the endpoint. For example, if the URL for Endpoint is
 	// https://abcde.veo.endpoints.event.amazonaws.com, then the EndpointId is abcde.veo.
 	//
-	// When using Java, you must include auth-crt on the class path.
-	//
 	// EndpointId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PipeTargetEventBridgeEventBusParameters's
 	// String and GoString methods.
@@ -5304,7 +5716,7 @@ func (s *PipeTargetHttpParameters) SetQueryStringParameters(v map[string]*string
 	return s
 }
 
-// The parameters for using a Kinesis stream as a source.
+// The parameters for using a Kinesis stream as a target.
 type PipeTargetKinesisStreamParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -5366,18 +5778,19 @@ func (s *PipeTargetKinesisStreamParameters) SetPartitionKey(v string) *PipeTarge
 type PipeTargetLambdaFunctionParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Choose from the following options.
+	// Specify whether to invoke the function synchronously or asynchronously.
 	//
-	//    * RequestResponse (default) - Invoke the function synchronously. Keep
-	//    the connection open until the function returns a response or times out.
-	//    The API response includes the function response and additional data.
+	//    * REQUEST_RESPONSE (default) - Invoke synchronously. This corresponds
+	//    to the RequestResponse option in the InvocationType parameter for the
+	//    Lambda Invoke (https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax)
+	//    API.
 	//
-	//    * Event - Invoke the function asynchronously. Send events that fail multiple
-	//    times to the function's dead-letter queue (if it's configured). The API
-	//    response only includes a status code.
+	//    * FIRE_AND_FORGET - Invoke asynchronously. This corresponds to the Event
+	//    option in the InvocationType parameter for the Lambda Invoke (https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax)
+	//    API.
 	//
-	//    * DryRun - Validate parameter values and verify that the user or role
-	//    has permission to invoke the function.
+	// For more information, see Invocation types (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html#pipes-invocation)
+	// in the Amazon EventBridge User Guide.
 	InvocationType *string `type:"string" enum:"PipeTargetInvocationType"`
 }
 
@@ -5406,6 +5819,10 @@ func (s *PipeTargetLambdaFunctionParameters) SetInvocationType(v string) *PipeTa
 }
 
 // The parameters required to set up a target for your pipe.
+//
+// For more information about pipe target parameters, including how to use dynamic
+// path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html)
+// in the Amazon EventBridge User Guide.
 type PipeTargetParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -5429,25 +5846,27 @@ type PipeTargetParameters struct {
 	// itself is passed to the target. For more information, see The JavaScript
 	// Object Notation (JSON) Data Interchange Format (http://www.rfc-editor.org/rfc/rfc7159.txt).
 	//
+	// To remove an input template, specify an empty string.
+	//
 	// InputTemplate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PipeTargetParameters's
 	// String and GoString methods.
 	InputTemplate *string `type:"string" sensitive:"true"`
 
-	// The parameters for using a Kinesis stream as a source.
+	// The parameters for using a Kinesis stream as a target.
 	KinesisStreamParameters *PipeTargetKinesisStreamParameters `type:"structure"`
 
 	// The parameters for using a Lambda function as a target.
 	LambdaFunctionParameters *PipeTargetLambdaFunctionParameters `type:"structure"`
 
 	// These are custom parameters to be used when the target is a Amazon Redshift
-	// cluster to invoke the Amazon Redshift Data API ExecuteStatement.
+	// cluster to invoke the Amazon Redshift Data API BatchExecuteStatement.
 	RedshiftDataParameters *PipeTargetRedshiftDataParameters `type:"structure"`
 
 	// The parameters for using a SageMaker pipeline as a target.
 	SageMakerPipelineParameters *PipeTargetSageMakerPipelineParameters `type:"structure"`
 
-	// The parameters for using a Amazon SQS stream as a source.
+	// The parameters for using a Amazon SQS stream as a target.
 	SqsQueueParameters *PipeTargetSqsQueueParameters `type:"structure"`
 
 	// The parameters for using a Step Functions state machine as a target.
@@ -5590,7 +6009,7 @@ func (s *PipeTargetParameters) SetStepFunctionStateMachineParameters(v *PipeTarg
 }
 
 // These are custom parameters to be used when the target is a Amazon Redshift
-// cluster to invoke the Amazon Redshift Data API ExecuteStatement.
+// cluster to invoke the Amazon Redshift Data API BatchExecuteStatement.
 type PipeTargetRedshiftDataParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -5611,7 +6030,7 @@ type PipeTargetRedshiftDataParameters struct {
 	DbUser *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name or ARN of the secret that enables access to the database. Required
-	// when authenticating using SageMaker.
+	// when authenticating using Secrets Manager.
 	SecretManagerArn *string `min:"1" type:"string"`
 
 	// The SQL statement text to run.
@@ -5770,7 +6189,7 @@ func (s *PipeTargetSageMakerPipelineParameters) SetPipelineParameterList(v []*Sa
 	return s
 }
 
-// The parameters for using a Amazon SQS stream as a source.
+// The parameters for using a Amazon SQS stream as a target.
 type PipeTargetSqsQueueParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -5825,7 +6244,20 @@ func (s *PipeTargetSqsQueueParameters) SetMessageGroupId(v string) *PipeTargetSq
 type PipeTargetStateMachineParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Specify whether to wait for the state machine to finish or not.
+	// Specify whether to invoke the Step Functions state machine synchronously
+	// or asynchronously.
+	//
+	//    * REQUEST_RESPONSE (default) - Invoke synchronously. For more information,
+	//    see StartSyncExecution (https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartSyncExecution.html)
+	//    in the Step Functions API Reference. REQUEST_RESPONSE is not supported
+	//    for STANDARD state machine workflows.
+	//
+	//    * FIRE_AND_FORGET - Invoke asynchronously. For more information, see StartExecution
+	//    (https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)
+	//    in the Step Functions API Reference.
+	//
+	// For more information, see Invocation types (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html#pipes-invocation)
+	// in the Amazon EventBridge User Guide.
 	InvocationType *string `type:"string" enum:"PipeTargetInvocationType"`
 }
 
@@ -5960,6 +6392,173 @@ func (s *PlacementStrategy) SetField(v string) *PlacementStrategy {
 // SetType sets the Type field's value.
 func (s *PlacementStrategy) SetType(v string) *PlacementStrategy {
 	s.Type = &v
+	return s
+}
+
+// The Amazon S3 logging configuration settings for the pipe.
+type S3LogDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket to which EventBridge delivers the log records
+	// for the pipe.
+	BucketName *string `type:"string"`
+
+	// The Amazon Web Services account that owns the Amazon S3 bucket to which EventBridge
+	// delivers the log records for the pipe.
+	BucketOwner *string `type:"string"`
+
+	// The format EventBridge uses for the log records.
+	//
+	//    * json: JSON
+	//
+	//    * plain: Plain text
+	//
+	//    * w3c: W3C extended logging file format (https://www.w3.org/TR/WD-logfile)
+	OutputFormat *string `type:"string" enum:"S3OutputFormat"`
+
+	// The prefix text with which to begin Amazon S3 log object names.
+	//
+	// For more information, see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html)
+	// in the Amazon Simple Storage Service User Guide.
+	Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3LogDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3LogDestination) GoString() string {
+	return s.String()
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3LogDestination) SetBucketName(v string) *S3LogDestination {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketOwner sets the BucketOwner field's value.
+func (s *S3LogDestination) SetBucketOwner(v string) *S3LogDestination {
+	s.BucketOwner = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *S3LogDestination) SetOutputFormat(v string) *S3LogDestination {
+	s.OutputFormat = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3LogDestination) SetPrefix(v string) *S3LogDestination {
+	s.Prefix = &v
+	return s
+}
+
+// The Amazon S3 logging configuration settings for the pipe.
+type S3LogDestinationParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the Amazon S3 bucket to which EventBridge delivers
+	// the log records for the pipe.
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	// Specifies the Amazon Web Services account that owns the Amazon S3 bucket
+	// to which EventBridge delivers the log records for the pipe.
+	//
+	// BucketOwner is a required field
+	BucketOwner *string `type:"string" required:"true"`
+
+	// How EventBridge should format the log records.
+	//
+	//    * json: JSON
+	//
+	//    * plain: Plain text
+	//
+	//    * w3c: W3C extended logging file format (https://www.w3.org/TR/WD-logfile)
+	OutputFormat *string `type:"string" enum:"S3OutputFormat"`
+
+	// Specifies any prefix text with which to begin Amazon S3 log object names.
+	//
+	// You can use prefixes to organize the data that you store in Amazon S3 buckets.
+	// A prefix is a string of characters at the beginning of the object key name.
+	// A prefix can be any length, subject to the maximum length of the object key
+	// name (1,024 bytes). For more information, see Organizing objects using prefixes
+	// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html)
+	// in the Amazon Simple Storage Service User Guide.
+	Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3LogDestinationParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3LogDestinationParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3LogDestinationParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3LogDestinationParameters"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.BucketOwner == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketOwner"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3LogDestinationParameters) SetBucketName(v string) *S3LogDestinationParameters {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketOwner sets the BucketOwner field's value.
+func (s *S3LogDestinationParameters) SetBucketOwner(v string) *S3LogDestinationParameters {
+	s.BucketOwner = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *S3LogDestinationParameters) SetOutputFormat(v string) *S3LogDestinationParameters {
+	s.OutputFormat = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3LogDestinationParameters) SetPrefix(v string) *S3LogDestinationParameters {
+	s.Prefix = &v
 	return s
 }
 
@@ -6835,6 +7434,9 @@ type UpdatePipeInput struct {
 	// The parameters required to set up enrichment on your pipe.
 	EnrichmentParameters *PipeEnrichmentParameters `type:"structure"`
 
+	// The logging configuration settings for the pipe.
+	LogConfiguration *PipeLogConfigurationParameters `type:"structure"`
+
 	// The name of the pipe.
 	//
 	// Name is a required field
@@ -6852,6 +7454,10 @@ type UpdatePipeInput struct {
 	Target *string `min:"1" type:"string"`
 
 	// The parameters required to set up a target for your pipe.
+	//
+	// For more information about pipe target parameters, including how to use dynamic
+	// path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html)
+	// in the Amazon EventBridge User Guide.
 	TargetParameters *PipeTargetParameters `type:"structure"`
 }
 
@@ -6891,6 +7497,11 @@ func (s *UpdatePipeInput) Validate() error {
 	if s.Target != nil && len(*s.Target) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Target", 1))
 	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SourceParameters != nil {
 		if err := s.SourceParameters.Validate(); err != nil {
 			invalidParams.AddNested("SourceParameters", err.(request.ErrInvalidParams))
@@ -6929,6 +7540,12 @@ func (s *UpdatePipeInput) SetEnrichment(v string) *UpdatePipeInput {
 // SetEnrichmentParameters sets the EnrichmentParameters field's value.
 func (s *UpdatePipeInput) SetEnrichmentParameters(v *PipeEnrichmentParameters) *UpdatePipeInput {
 	s.EnrichmentParameters = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *UpdatePipeInput) SetLogConfiguration(v *PipeLogConfigurationParameters) *UpdatePipeInput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -7432,8 +8049,12 @@ type UpdatePipeSourceParameters struct {
 	// The parameters for using a DynamoDB stream as a source.
 	DynamoDBStreamParameters *UpdatePipeSourceDynamoDBStreamParameters `type:"structure"`
 
-	// The collection of event patterns used to filter events. For more information,
-	// see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
+	// The collection of event patterns used to filter events.
+	//
+	// To remove a filter, specify a FilterCriteria object with an empty array of
+	// Filter objects.
+	//
+	// For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
 	// in the Amazon EventBridge User Guide.
 	FilterCriteria *FilterCriteria `type:"structure"`
 
@@ -7991,6 +8612,18 @@ func EcsResourceRequirementType_Values() []string {
 }
 
 const (
+	// IncludeExecutionDataOptionAll is a IncludeExecutionDataOption enum value
+	IncludeExecutionDataOptionAll = "ALL"
+)
+
+// IncludeExecutionDataOption_Values returns all elements of the IncludeExecutionDataOption enum
+func IncludeExecutionDataOption_Values() []string {
+	return []string{
+		IncludeExecutionDataOptionAll,
+	}
+}
+
+const (
 	// KinesisStreamStartPositionTrimHorizon is a KinesisStreamStartPosition enum value
 	KinesisStreamStartPositionTrimHorizon = "TRIM_HORIZON"
 
@@ -8027,6 +8660,30 @@ func LaunchType_Values() []string {
 		LaunchTypeEc2,
 		LaunchTypeFargate,
 		LaunchTypeExternal,
+	}
+}
+
+const (
+	// LogLevelOff is a LogLevel enum value
+	LogLevelOff = "OFF"
+
+	// LogLevelError is a LogLevel enum value
+	LogLevelError = "ERROR"
+
+	// LogLevelInfo is a LogLevel enum value
+	LogLevelInfo = "INFO"
+
+	// LogLevelTrace is a LogLevel enum value
+	LogLevelTrace = "TRACE"
+)
+
+// LogLevel_Values returns all elements of the LogLevel enum
+func LogLevel_Values() []string {
+	return []string{
+		LogLevelOff,
+		LogLevelError,
+		LogLevelInfo,
+		LogLevelTrace,
 	}
 }
 
@@ -8091,6 +8748,18 @@ const (
 
 	// PipeStateStopFailed is a PipeState enum value
 	PipeStateStopFailed = "STOP_FAILED"
+
+	// PipeStateDeleteFailed is a PipeState enum value
+	PipeStateDeleteFailed = "DELETE_FAILED"
+
+	// PipeStateCreateRollbackFailed is a PipeState enum value
+	PipeStateCreateRollbackFailed = "CREATE_ROLLBACK_FAILED"
+
+	// PipeStateDeleteRollbackFailed is a PipeState enum value
+	PipeStateDeleteRollbackFailed = "DELETE_ROLLBACK_FAILED"
+
+	// PipeStateUpdateRollbackFailed is a PipeState enum value
+	PipeStateUpdateRollbackFailed = "UPDATE_ROLLBACK_FAILED"
 )
 
 // PipeState_Values returns all elements of the PipeState enum
@@ -8107,6 +8776,10 @@ func PipeState_Values() []string {
 		PipeStateUpdateFailed,
 		PipeStateStartFailed,
 		PipeStateStopFailed,
+		PipeStateDeleteFailed,
+		PipeStateCreateRollbackFailed,
+		PipeStateDeleteRollbackFailed,
+		PipeStateUpdateRollbackFailed,
 	}
 }
 
@@ -8207,6 +8880,26 @@ func RequestedPipeStateDescribeResponse_Values() []string {
 		RequestedPipeStateDescribeResponseRunning,
 		RequestedPipeStateDescribeResponseStopped,
 		RequestedPipeStateDescribeResponseDeleted,
+	}
+}
+
+const (
+	// S3OutputFormatJson is a S3OutputFormat enum value
+	S3OutputFormatJson = "json"
+
+	// S3OutputFormatPlain is a S3OutputFormat enum value
+	S3OutputFormatPlain = "plain"
+
+	// S3OutputFormatW3c is a S3OutputFormat enum value
+	S3OutputFormatW3c = "w3c"
+)
+
+// S3OutputFormat_Values returns all elements of the S3OutputFormat enum
+func S3OutputFormat_Values() []string {
+	return []string{
+		S3OutputFormatJson,
+		S3OutputFormatPlain,
+		S3OutputFormatW3c,
 	}
 }
 

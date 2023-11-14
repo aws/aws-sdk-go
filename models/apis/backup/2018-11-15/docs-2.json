@@ -42,12 +42,14 @@
     "GetLegalHold": "<p>This action returns details for a specified legal hold. The details are the body of a legal hold in JSON format, in addition to metadata.</p>",
     "GetRecoveryPointRestoreMetadata": "<p>Returns a set of metadata key-value pairs that were used to create the backup.</p>",
     "GetSupportedResourceTypes": "<p>Returns the Amazon Web Services resource types supported by Backup.</p>",
+    "ListBackupJobSummaries": "<p>This is a request for a summary of backup jobs created or running within the most recent 30 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
     "ListBackupJobs": "<p>Returns a list of existing backup jobs for an authenticated account for the last 30 days. For a longer period of time, consider using these <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">monitoring tools</a>.</p>",
     "ListBackupPlanTemplates": "<p>Returns metadata of your saved backup plan templates, including the template ID, name, and the creation and deletion dates.</p>",
     "ListBackupPlanVersions": "<p>Returns version metadata of your backup plans, including Amazon Resource Names (ARNs), backup plan IDs, creation and deletion dates, plan names, and version IDs.</p>",
     "ListBackupPlans": "<p>Returns a list of all active backup plans for an authenticated account. The list contains information such as Amazon Resource Names (ARNs), plan IDs, creation and deletion dates, version IDs, plan names, and creator request IDs.</p>",
     "ListBackupSelections": "<p>Returns an array containing metadata of the resources associated with the target backup plan.</p>",
     "ListBackupVaults": "<p>Returns a list of recovery point storage containers along with information about them.</p>",
+    "ListCopyJobSummaries": "<p>This request obtains a list of copy jobs created or running within the the most recent 30 days. You can include parameters AccountID, State, ResourceType, MessageCategory, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
     "ListCopyJobs": "<p>Returns metadata about your copy jobs.</p>",
     "ListFrameworks": "<p>Returns a list of all frameworks for an Amazon Web Services account and Amazon Web Services Region.</p>",
     "ListLegalHolds": "<p>This action returns metadata about active and previous legal holds.</p>",
@@ -58,6 +60,7 @@
     "ListRecoveryPointsByResource": "<p>Returns detailed information about all the recovery points of the type specified by a resource Amazon Resource Name (ARN).</p> <note> <p>For Amazon EFS and Amazon EC2, this action only lists recovery points created by Backup.</p> </note>",
     "ListReportJobs": "<p>Returns details about your report jobs.</p>",
     "ListReportPlans": "<p>Returns a list of your report plans. For detailed information about a single report plan, use <code>DescribeReportPlan</code>.</p>",
+    "ListRestoreJobSummaries": "<p>This request obtains a summary of restore jobs created or running within the the most recent 30 days. You can include parameters AccountID, State, ResourceType, AggregationPeriod, MaxResults, or NextToken to filter results.</p> <p>This request returns a summary that contains Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
     "ListRestoreJobs": "<p>Returns a list of jobs that Backup initiated to restore a saved resource, including details about the recovery process.</p>",
     "ListTags": "<p>Returns a list of key-value pairs assigned to a target recovery point, backup plan, or backup vault.</p> <p> <code>ListTags</code> only works for resource types that support full Backup management of their backups. Those resource types are listed in the \"Full Backup management\" section of the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource\"> Feature availability by resource</a> table.</p>",
     "PutBackupVaultAccessPolicy": "<p>Sets a resource-based policy that is used to manage access permissions on the target backup vault. Requires a backup vault name and an access policy document in JSON format.</p>",
@@ -176,16 +179,22 @@
       "base": null,
       "refs": {
         "BackupJob$AccountId": "<p>The account ID that owns the backup job.</p>",
+        "BackupJobSummary$AccountId": "<p>The account ID that owns the jobs within the summary.</p>",
         "CopyJob$AccountId": "<p>The account ID that owns the copy job.</p>",
+        "CopyJobSummary$AccountId": "<p>The account ID that owns the jobs within the summary.</p>",
         "DescribeBackupJobOutput$AccountId": "<p>Returns the account ID that owns the backup job.</p>",
         "DescribeRecoveryPointInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
         "DescribeRestoreJobOutput$AccountId": "<p>Returns the account ID that owns the restore job.</p>",
         "GetRecoveryPointRestoreMetadataInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
+        "ListBackupJobSummariesInput$AccountId": "<p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>",
         "ListBackupJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only backup jobs associated with the specified account ID.</p> <p>If used from an Organizations management account, passing <code>*</code> returns all jobs across the organization.</p>",
+        "ListCopyJobSummariesInput$AccountId": "<p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>",
         "ListCopyJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only copy jobs associated with the specified account ID.</p>",
         "ListProtectedResourcesByBackupVaultInput$BackupVaultAccountId": "<p>This is the list of protected resources by backup vault within the vault(s) you specify by account ID.</p>",
         "ListRecoveryPointsByBackupVaultInput$BackupVaultAccountId": "<p>This parameter will sort the list of recovery points by account ID.</p>",
+        "ListRestoreJobSummariesInput$AccountId": "<p>Returns the job count for the specified account.</p> <p>If the request is sent from a member account or an account not part of Amazon Web Services Organizations, jobs within requestor's account will be returned.</p> <p>Root, admin, and delegated administrator accounts can use the value ANY to return job counts from every account in the organization.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts from all accounts within the authenticated organization, then returns the sum.</p>",
         "ListRestoreJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only restore jobs associated with the specified account ID.</p>",
+        "RestoreJobSummary$AccountId": "<p>The account ID that owns the jobs within the summary.</p>",
         "RestoreJobsListMember$AccountId": "<p>The account ID that owns the restore job.</p>"
       }
     },
@@ -204,6 +213,14 @@
         "CreateBackupPlanOutput$AdvancedBackupSettings": "<p>A list of <code>BackupOptions</code> settings for a resource type. This option is only available for Windows Volume Shadow Copy Service (VSS) backup jobs.</p>",
         "GetBackupPlanOutput$AdvancedBackupSettings": "<p>Contains a list of <code>BackupOptions</code> for each resource type. The list is populated only if the advanced option is set for the backup plan.</p>",
         "UpdateBackupPlanOutput$AdvancedBackupSettings": "<p>Contains a list of <code>BackupOptions</code> for each resource type.</p>"
+      }
+    },
+    "AggregationPeriod": {
+      "base": null,
+      "refs": {
+        "ListBackupJobSummariesInput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <p>Acceptable values include</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>",
+        "ListCopyJobSummariesInput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>",
+        "ListRestoreJobSummariesInput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <p>Acceptable values include</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>"
       }
     },
     "AlreadyExistsException": {
@@ -230,6 +247,25 @@
         "BackupJobChildJobsInState$key": null,
         "DescribeBackupJobOutput$State": "<p>The current state of a backup job.</p>",
         "ListBackupJobsInput$ByState": "<p>Returns only backup jobs that are in the specified state.</p>"
+      }
+    },
+    "BackupJobStatus": {
+      "base": null,
+      "refs": {
+        "BackupJobSummary$State": "<p>This value is job count for jobs with the specified state.</p>",
+        "ListBackupJobSummariesInput$State": "<p>This parameter returns the job count for jobs with the specified state.</p> <p>The the value ANY returns count of all states.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all states and returns the sum.</p>"
+      }
+    },
+    "BackupJobSummary": {
+      "base": "<p>This is a summary of jobs created or running within the most recent 30 days.</p> <p>The returned summary may contain the following: Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
+      "refs": {
+        "BackupJobSummaryList$member": null
+      }
+    },
+    "BackupJobSummaryList": {
+      "base": null,
+      "refs": {
+        "ListBackupJobSummariesOutput$BackupJobSummaries": "<p>This request returns a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>"
       }
     },
     "BackupJobsList": {
@@ -576,6 +612,25 @@
         "CopyJob$State": "<p>The current state of a copy job.</p>",
         "CopyJobChildJobsInState$key": null,
         "ListCopyJobsInput$ByState": "<p>Returns only copy jobs that are in the specified state.</p>"
+      }
+    },
+    "CopyJobStatus": {
+      "base": null,
+      "refs": {
+        "CopyJobSummary$State": "<p>This value is job count for jobs with the specified state.</p>",
+        "ListCopyJobSummariesInput$State": "<p>This parameter returns the job count for jobs with the specified state.</p> <p>The the value ANY returns count of all states.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all states and returns the sum.</p>"
+      }
+    },
+    "CopyJobSummary": {
+      "base": "<p>This is a summary of copy jobs created or running within the most recent 30 days.</p> <p>The returned summary may contain the following: Region, Account, State, RestourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
+      "refs": {
+        "CopyJobSummaryList$member": null
+      }
+    },
+    "CopyJobSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCopyJobSummariesOutput$CopyJobSummaries": "<p>This return shows a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>"
       }
     },
     "CopyJobsList": {
@@ -1095,6 +1150,16 @@
       "refs": {
       }
     },
+    "ListBackupJobSummariesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBackupJobSummariesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListBackupJobsInput": {
       "base": null,
       "refs": {
@@ -1151,6 +1216,16 @@
       }
     },
     "ListBackupVaultsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCopyJobSummariesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCopyJobSummariesOutput": {
       "base": null,
       "refs": {
       }
@@ -1261,6 +1336,16 @@
       "refs": {
       }
     },
+    "ListRestoreJobSummariesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRestoreJobSummariesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListRestoreJobsInput": {
       "base": null,
       "refs": {
@@ -1323,12 +1408,14 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListBackupJobSummariesInput$MaxResults": "<p>This parameter sets the maximum number of items to be returned.</p> <p>The value is an integer. Range of accepted values is from 1 to 500.</p>",
         "ListBackupJobsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListBackupPlanTemplatesInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListBackupPlanVersionsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListBackupPlansInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListBackupSelectionsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListBackupVaultsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
+        "ListCopyJobSummariesInput$MaxResults": "<p>This parameter sets the maximum number of items to be returned.</p> <p>The value is an integer. Range of accepted values is from 1 to 500.</p>",
         "ListCopyJobsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListLegalHoldsInput$MaxResults": "<p>The maximum number of resource list items to be returned.</p>",
         "ListProtectedResourcesByBackupVaultInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
@@ -1338,8 +1425,18 @@
         "ListRecoveryPointsByResourceInput$MaxResults": "<p>The maximum number of items to be returned.</p> <note> <p>Amazon RDS requires a value of at least 20.</p> </note>",
         "ListReportJobsInput$MaxResults": "<p>The number of desired results from 1 to 1000. Optional. If unspecified, the query will return 1 MB of data.</p>",
         "ListReportPlansInput$MaxResults": "<p>The number of desired results from 1 to 1000. Optional. If unspecified, the query will return 1 MB of data.</p>",
+        "ListRestoreJobSummariesInput$MaxResults": "<p>This parameter sets the maximum number of items to be returned.</p> <p>The value is an integer. Range of accepted values is from 1 to 500.</p>",
         "ListRestoreJobsInput$MaxResults": "<p>The maximum number of items to be returned.</p>",
         "ListTagsInput$MaxResults": "<p>The maximum number of items to be returned.</p>"
+      }
+    },
+    "MessageCategory": {
+      "base": null,
+      "refs": {
+        "BackupJobSummary$MessageCategory": "<p>This parameter is the job count for the specified message category.</p> <p>Example strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>",
+        "CopyJobSummary$MessageCategory": "<p>This parameter is the job count for the specified message category.</p> <p>Example strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>",
+        "ListBackupJobSummariesInput$MessageCategory": "<p>This parameter returns the job count for the specified message category.</p> <p>Example accepted strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of accepted MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>",
+        "ListCopyJobSummariesInput$MessageCategory": "<p>This parameter returns the job count for the specified message category.</p> <p>Example accepted strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of accepted MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>"
       }
     },
     "Metadata": {
@@ -1468,6 +1565,14 @@
         "ListRecoveryPointsByLegalHoldOutput$RecoveryPoints": "<p>This is a list of the recovery points returned by <code>ListRecoveryPointsByLegalHold</code>.</p>"
       }
     },
+    "Region": {
+      "base": null,
+      "refs": {
+        "BackupJobSummary$Region": "<p>The Amazon Web Services Regions within the job summary.</p>",
+        "CopyJobSummary$Region": "<p>This is the Amazon Web Services Regions within the job summary.</p>",
+        "RestoreJobSummary$Region": "<p>The Amazon Web Services Regions within the job summary.</p>"
+      }
+    },
     "ReportDeliveryChannel": {
       "base": "<p>Contains information from your report plan about where to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.</p>",
       "refs": {
@@ -1569,20 +1674,26 @@
       "refs": {
         "AdvancedBackupSetting$ResourceType": "<p>Specifies an object containing resource type and backup options. The only supported resource type is Amazon EC2 instances with Windows Volume Shadow Copy Service (VSS). For a CloudFormation example, see the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html\">sample CloudFormation template to enable Windows VSS</a> in the <i>Backup User Guide</i>.</p> <p>Valid values: <code>EC2</code>.</p>",
         "BackupJob$ResourceType": "<p>The type of Amazon Web Services resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups, the only supported resource type is Amazon EC2.</p>",
+        "BackupJobSummary$ResourceType": "<p>This value is the job count for the specified resource type. The request <code>GetSupportedResourceTypes</code> returns strings for supported resource types.</p>",
         "CopyJob$ResourceType": "<p>The type of Amazon Web Services resource to be copied; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
+        "CopyJobSummary$ResourceType": "<p>This value is the job count for the specified resource type. The request <code>GetSupportedResourceTypes</code> returns strings for supported resource types</p>",
         "DescribeBackupJobOutput$ResourceType": "<p>The type of Amazon Web Services resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "DescribeProtectedResourceOutput$ResourceType": "<p>The type of Amazon Web Services resource saved as a recovery point; for example, an Amazon EBS volume or an Amazon RDS database.</p>",
         "DescribeRecoveryPointOutput$ResourceType": "<p>The type of Amazon Web Services resource to save as a recovery point; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "DescribeRestoreJobOutput$ResourceType": "<p>Returns metadata associated with a restore job listed by resource type.</p>",
+        "ListBackupJobSummariesInput$ResourceType": "<p>Returns the job count for the specified resource type. Use request <code>GetSupportedResourceTypes</code> to obtain strings for supported resource types.</p> <p>The the value ANY returns count of all resource types.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all resource types and returns the sum.</p> <p>The type of Amazon Web Services resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "ListBackupJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>Aurora</code> for Amazon Aurora</p> </li> <li> <p> <code>DocumentDB</code> for Amazon DocumentDB (with MongoDB compatibility)</p> </li> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>FSx</code> for Amazon FSx</p> </li> <li> <p> <code>Neptune</code> for Amazon Neptune</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for Storage Gateway</p> </li> <li> <p> <code>S3</code> for Amazon S3</p> </li> <li> <p> <code>VirtualMachine</code> for virtual machines</p> </li> </ul>",
+        "ListCopyJobSummariesInput$ResourceType": "<p>Returns the job count for the specified resource type. Use request <code>GetSupportedResourceTypes</code> to obtain strings for supported resource types.</p> <p>The the value ANY returns count of all resource types.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all resource types and returns the sum.</p> <p>The type of Amazon Web Services resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "ListCopyJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>Aurora</code> for Amazon Aurora</p> </li> <li> <p> <code>DocumentDB</code> for Amazon DocumentDB (with MongoDB compatibility)</p> </li> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>FSx</code> for Amazon FSx</p> </li> <li> <p> <code>Neptune</code> for Amazon Neptune</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for Storage Gateway</p> </li> <li> <p> <code>S3</code> for Amazon S3</p> </li> <li> <p> <code>VirtualMachine</code> for virtual machines</p> </li> </ul>",
         "ListRecoveryPointsByBackupVaultInput$ByResourceType": "<p>Returns only recovery points that match the specified resource type.</p>",
+        "ListRestoreJobSummariesInput$ResourceType": "<p>Returns the job count for the specified resource type. Use request <code>GetSupportedResourceTypes</code> to obtain strings for supported resource types.</p> <p>The the value ANY returns count of all resource types.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all resource types and returns the sum.</p> <p>The type of Amazon Web Services resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "ProtectedResource$ResourceType": "<p>The type of Amazon Web Services resource; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups, the only supported resource type is Amazon EC2.</p>",
         "RecoveryPointByBackupVault$ResourceType": "<p>The type of Amazon Web Services resource saved as a recovery point; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups, the only supported resource type is Amazon EC2.</p>",
         "RecoveryPointMember$ResourceType": "<p>This is the Amazon Web Services resource type that is saved as a recovery point.</p>",
         "ResourceTypeManagementPreference$key": null,
         "ResourceTypeOptInPreference$key": null,
         "ResourceTypes$member": null,
+        "RestoreJobSummary$ResourceType": "<p>This value is the job count for the specified resource type. The request <code>GetSupportedResourceTypes</code> returns strings for supported resource types.</p>",
         "RestoreJobsListMember$ResourceType": "<p>The resource type of the listed restore jobs; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups, the only supported resource type is Amazon EC2.</p>",
         "StartRestoreJobInput$ResourceType": "<p>Starts a job to restore a recovery point for one of the following resources:</p> <ul> <li> <p> <code>Aurora</code> for Amazon Aurora</p> </li> <li> <p> <code>DocumentDB</code> for Amazon DocumentDB (with MongoDB compatibility)</p> </li> <li> <p> <code>CloudFormation</code> for CloudFormation</p> </li> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>FSx</code> for Amazon FSx</p> </li> <li> <p> <code>Neptune</code> for Amazon Neptune</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Redshift</code> for Amazon Redshift</p> </li> <li> <p> <code>Storage Gateway</code> for Storage Gateway</p> </li> <li> <p> <code>S3</code> for Amazon S3</p> </li> <li> <p> <code>Timestream</code> for Amazon Timestream</p> </li> <li> <p> <code>VirtualMachine</code> for virtual machines</p> </li> </ul>"
       }
@@ -1620,12 +1731,31 @@
         "StartRestoreJobOutput$RestoreJobId": "<p>Uniquely identifies the job that restores a recovery point.</p>"
       }
     },
+    "RestoreJobState": {
+      "base": null,
+      "refs": {
+        "ListRestoreJobSummariesInput$State": "<p>This parameter returns the job count for jobs with the specified state.</p> <p>The the value ANY returns count of all states.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all states and returns the sum.</p>",
+        "RestoreJobSummary$State": "<p>This value is job count for jobs with the specified state.</p>"
+      }
+    },
     "RestoreJobStatus": {
       "base": null,
       "refs": {
         "DescribeRestoreJobOutput$Status": "<p>Status code specifying the state of the job that is initiated by Backup to restore a recovery point.</p>",
         "ListRestoreJobsInput$ByStatus": "<p>Returns only restore jobs associated with the specified job status.</p>",
         "RestoreJobsListMember$Status": "<p>A status code specifying the state of the job initiated by Backup to restore a recovery point.</p>"
+      }
+    },
+    "RestoreJobSummary": {
+      "base": "<p>This is a summary of restore jobs created or running within the most recent 30 days.</p> <p>The returned summary may contain the following: Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>",
+      "refs": {
+        "RestoreJobSummaryList$member": null
+      }
+    },
+    "RestoreJobSummaryList": {
+      "base": null,
+      "refs": {
+        "ListRestoreJobSummariesOutput$RestoreJobSummaries": "<p>This return contains a summary that contains Region, Account, State, ResourceType, MessageCategory, StartTime, EndTime, and Count of included jobs.</p>"
       }
     },
     "RestoreJobsList": {
@@ -1845,8 +1975,11 @@
     "integer": {
       "base": null,
       "refs": {
+        "BackupJobSummary$Count": "<p>The value as a number of jobs in a job summary.</p>",
+        "CopyJobSummary$Count": "<p>The value as a number of jobs in a job summary.</p>",
         "Framework$NumberOfControls": "<p>The number of controls contained by the framework.</p>",
-        "ReportSetting$NumberOfFrameworks": "<p>The number of frameworks a report covers.</p>"
+        "ReportSetting$NumberOfFrameworks": "<p>The number of frameworks a report covers.</p>",
+        "RestoreJobSummary$Count": "<p>The value as a number of jobs in a job summary.</p>"
       }
     },
     "long": {
@@ -1871,6 +2004,7 @@
         "BackupJob$BackupType": "<p>Represents the type of backup for a backup job.</p>",
         "BackupJob$ParentJobId": "<p>This uniquely identifies a request to Backup to back up a resource. The return will be the parent (composite) job ID.</p>",
         "BackupJob$ResourceName": "<p>This is the non-unique name of the resource that belongs to the specified backup.</p>",
+        "BackupJob$MessageCategory": "<p>This parameter is the job count for the specified message category.</p> <p>Example strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>",
         "BackupPlanTemplatesListMember$BackupPlanTemplateId": "<p>Uniquely identifies a stored backup plan template.</p>",
         "BackupPlanTemplatesListMember$BackupPlanTemplateName": "<p>The optional display name of a backup plan template.</p>",
         "BackupPlansListMember$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
@@ -1893,6 +2027,7 @@
         "CopyJob$ParentJobId": "<p>This uniquely identifies a request to Backup to copy a resource. The return will be the parent (composite) job ID.</p>",
         "CopyJob$CompositeMemberIdentifier": "<p>This is the identifier of a resource within a composite group, such as nested (child) recovery point belonging to a composite (parent) stack. The ID is transferred from the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html#resources-section-structure-syntax\"> logical ID</a> within a stack.</p>",
         "CopyJob$ResourceName": "<p>This is the non-unique name of the resource that belongs to the specified backup.</p>",
+        "CopyJob$MessageCategory": "<p>This parameter is the job count for the specified message category.</p> <p>Example strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum</p>",
         "CreateBackupPlanInput$CreatorRequestId": "<p>Identifies the request and allows failed requests to be retried without the risk of running the operation twice. If the request includes a <code>CreatorRequestId</code> that matches an existing backup plan, that plan is returned. This parameter is optional.</p> <p>If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.</p>",
         "CreateBackupPlanOutput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
         "CreateBackupPlanOutput$VersionId": "<p>Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most 1,024 bytes long. They cannot be edited.</p>",
@@ -1927,6 +2062,7 @@
         "DescribeBackupJobOutput$BackupType": "<p>Represents the actual backup type selected for a backup job. For example, if a successful Windows Volume Shadow Copy Service (VSS) backup was taken, <code>BackupType</code> returns <code>\"WindowsVSS\"</code>. If <code>BackupType</code> is empty, then the backup type was a regular backup.</p>",
         "DescribeBackupJobOutput$ParentJobId": "<p>This returns the parent (composite) resource backup job ID.</p>",
         "DescribeBackupJobOutput$ResourceName": "<p>This is the non-unique name of the resource that belongs to the specified backup.</p>",
+        "DescribeBackupJobOutput$MessageCategory": "<p>This is the job count for the specified message category.</p> <p>Example strings may include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p>",
         "DescribeBackupVaultInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DescribeBackupVaultInput$BackupVaultAccountId": "<p>This is the account ID of the specified backup vault.</p>",
         "DescribeBackupVaultOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
@@ -1982,8 +2118,12 @@
         "LimitExceededException$Message": null,
         "LimitExceededException$Type": "<p/>",
         "LimitExceededException$Context": "<p/>",
+        "ListBackupJobSummariesInput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListBackupJobSummariesOutput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>",
+        "ListBackupJobSummariesOutput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupJobsInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupJobsInput$ByParentJobId": "<p>This is a filter to list child (nested) jobs based on parent job ID.</p>",
+        "ListBackupJobsInput$ByMessageCategory": "<p>This returns a list of backup jobs for the specified message category.</p> <p>Example strings may include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of MessageCategory strings.</p>",
         "ListBackupJobsOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupPlanTemplatesInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupPlanTemplatesOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
@@ -1997,9 +2137,13 @@
         "ListBackupSelectionsOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupVaultsInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListBackupVaultsOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListCopyJobSummariesInput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListCopyJobSummariesOutput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>",
+        "ListCopyJobSummariesOutput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListCopyJobsInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token. </p>",
         "ListCopyJobsInput$ByDestinationVaultArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a source backup vault to copy from; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>. </p>",
         "ListCopyJobsInput$ByParentJobId": "<p>This is a filter to list child (nested) jobs based on parent job ID.</p>",
+        "ListCopyJobsInput$ByMessageCategory": "<p>This parameter returns the job count for the specified message category.</p> <p>Example accepted strings include <code>AccessDenied</code>, <code>Success</code>, and <code>InvalidParameters</code>. See <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">Monitoring</a> for a list of accepted MessageCategory strings.</p> <p>The the value ANY returns count of all message categories.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all message categories and returns the sum.</p>",
         "ListCopyJobsOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token. </p>",
         "ListFrameworksInput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListFrameworksOutput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
@@ -2022,6 +2166,9 @@
         "ListReportJobsOutput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListReportPlansInput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListReportPlansOutput$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "ListRestoreJobSummariesInput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
+        "ListRestoreJobSummariesOutput$AggregationPeriod": "<p>This is the period that sets the boundaries for returned results.</p> <ul> <li> <p> <code>ONE_DAY</code> for daily job count for the prior 14 days.</p> </li> <li> <p> <code>SEVEN_DAYS</code> for the aggregated job count for the prior 7 days.</p> </li> <li> <p> <code>FOURTEEN_DAYS</code> for aggregated job count for prior 14 days.</p> </li> </ul>",
+        "ListRestoreJobSummariesOutput$NextToken": "<p>The next item following a partial list of returned resources. For example, if a request is made to return <code>maxResults</code> number of resources, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListRestoreJobsInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListRestoreJobsOutput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
         "ListTagsInput$NextToken": "<p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>",
@@ -2103,6 +2250,8 @@
         "BackupJob$CompletionDate": "<p>The date and time a job to create a backup job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "BackupJob$ExpectedCompletionDate": "<p>The date and time a job to back up resources is expected to be completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>ExpectedCompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "BackupJob$StartBy": "<p>Specifies the time in Unix format and Coordinated Universal Time (UTC) when a backup job must be started before it is canceled. The value is calculated by adding the start window to the scheduled time. So if the scheduled time were 6:00 PM and the start window is 2 hours, the <code>StartBy</code> time would be 8:00 PM on the date specified. The value of <code>StartBy</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "BackupJobSummary$StartTime": "<p>The value of time in number format of a job start time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "BackupJobSummary$EndTime": "<p>The value of time in number format of a job end time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "BackupPlansListMember$CreationDate": "<p>The date and time a resource backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "BackupPlansListMember$DeletionDate": "<p>The date and time a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>DeletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "BackupPlansListMember$LastExecutionDate": "<p>The last time a job to back up resources was run with this rule. A date and time, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastExecutionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
@@ -2113,6 +2262,8 @@
         "CalculatedLifecycle$DeleteAt": "<p>A timestamp that specifies when to delete a recovery point.</p>",
         "CopyJob$CreationDate": "<p>The date and time a copy job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CopyJob$CompletionDate": "<p>The date and time a copy job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "CopyJobSummary$StartTime": "<p>The value of time in number format of a job start time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "CopyJobSummary$EndTime": "<p>The value of time in number format of a job end time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupPlanOutput$CreationDate": "<p>The date and time that a backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupVaultOutput$CreationDate": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
@@ -2172,6 +2323,8 @@
         "ReportPlan$CreationTime": "<p>The date and time that a report plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "ReportPlan$LastAttemptedExecutionTime": "<p>The date and time that a report job associated with this report plan last attempted to run, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastAttemptedExecutionTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "ReportPlan$LastSuccessfulExecutionTime": "<p>The date and time that a report job associated with this report plan last successfully ran, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastSuccessfulExecutionTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "RestoreJobSummary$StartTime": "<p>The value of time in number format of a job start time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "RestoreJobSummary$EndTime": "<p>The value of time in number format of a job end time.</p> <p>This value is the time in Unix format, Coordinated Universal Time (UTC), and accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RestoreJobsListMember$CreationDate": "<p>The date and time a restore job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RestoreJobsListMember$CompletionDate": "<p>The date and time a job to restore a recovery point is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "StartBackupJobOutput$CreationDate": "<p>The date and time that a backup job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",

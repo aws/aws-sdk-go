@@ -6,6 +6,12 @@
       "limit_key": "MaxResults",
       "result_key": "Indexes"
     },
+    "ListIndexesForMembers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Indexes"
+    },
     "ListSupportedResourceTypes": {
       "input_token": "NextToken",
       "output_token": "NextToken",

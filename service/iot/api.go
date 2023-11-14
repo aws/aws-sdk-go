@@ -4098,6 +4098,9 @@ func (c *IoT) CreateThingGroupRequest(input *CreateThingGroupInput) (req *reques
 // This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html)
 // for information about authorizing control plane actions.
 //
+// If the ThingGroup that you create has the exact same attributes as an existing
+// ThingGroup, you will get a 200 success response.
+//
 // Requires permission to access the CreateThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
 //
@@ -29758,6 +29761,9 @@ type Behavior struct {
 	// when IoT Device Defender detects that a device is behaving anomalously.
 	Criteria *BehaviorCriteria `locationName:"criteria" type:"structure"`
 
+	// Value indicates exporting metrics related to the behavior when it is true.
+	ExportMetric *bool `locationName:"exportMetric" type:"boolean"`
+
 	// What is measured by the behavior.
 	Metric *string `locationName:"metric" type:"string"`
 
@@ -29823,6 +29829,12 @@ func (s *Behavior) Validate() error {
 // SetCriteria sets the Criteria field's value.
 func (s *Behavior) SetCriteria(v *BehaviorCriteria) *Behavior {
 	s.Criteria = v
+	return s
+}
+
+// SetExportMetric sets the ExportMetric field's value.
+func (s *Behavior) SetExportMetric(v bool) *Behavior {
+	s.ExportMetric = &v
 	return s
 }
 
@@ -36130,6 +36142,9 @@ type CreateSecurityProfileInput struct {
 	// alert.
 	Behaviors []*Behavior `locationName:"behaviors" type:"list"`
 
+	// Specifies the MQTT topic and role ARN required for metric export.
+	MetricsExportConfig *MetricsExportConfig `locationName:"metricsExportConfig" type:"structure"`
+
 	// A description of the security profile.
 	SecurityProfileDescription *string `locationName:"securityProfileDescription" type:"string"`
 
@@ -36199,6 +36214,11 @@ func (s *CreateSecurityProfileInput) Validate() error {
 			}
 		}
 	}
+	if s.MetricsExportConfig != nil {
+		if err := s.MetricsExportConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetricsExportConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -36237,6 +36257,12 @@ func (s *CreateSecurityProfileInput) SetAlertTargets(v map[string]*AlertTarget) 
 // SetBehaviors sets the Behaviors field's value.
 func (s *CreateSecurityProfileInput) SetBehaviors(v []*Behavior) *CreateSecurityProfileInput {
 	s.Behaviors = v
+	return s
+}
+
+// SetMetricsExportConfig sets the MetricsExportConfig field's value.
+func (s *CreateSecurityProfileInput) SetMetricsExportConfig(v *MetricsExportConfig) *CreateSecurityProfileInput {
+	s.MetricsExportConfig = v
 	return s
 }
 
@@ -43157,6 +43183,9 @@ type DescribeSecurityProfileOutput struct {
 	// The time the security profile was last modified.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
+	// Specifies the MQTT topic and role ARN required for metric export.
+	MetricsExportConfig *MetricsExportConfig `locationName:"metricsExportConfig" type:"structure"`
+
 	// The ARN of the security profile.
 	SecurityProfileArn *string `locationName:"securityProfileArn" type:"string"`
 
@@ -43223,6 +43252,12 @@ func (s *DescribeSecurityProfileOutput) SetCreationDate(v time.Time) *DescribeSe
 // SetLastModifiedDate sets the LastModifiedDate field's value.
 func (s *DescribeSecurityProfileOutput) SetLastModifiedDate(v time.Time) *DescribeSecurityProfileOutput {
 	s.LastModifiedDate = &v
+	return s
+}
+
+// SetMetricsExportConfig sets the MetricsExportConfig field's value.
+func (s *DescribeSecurityProfileOutput) SetMetricsExportConfig(v *MetricsExportConfig) *DescribeSecurityProfileOutput {
+	s.MetricsExportConfig = v
 	return s
 }
 
@@ -58169,6 +58204,10 @@ func (s *MetricDimension) SetOperator(v string) *MetricDimension {
 type MetricToRetain struct {
 	_ struct{} `type:"structure"`
 
+	// Value added in both Behavior and AdditionalMetricsToRetainV2 to indicate
+	// if Device Defender Detect should export the corresponding metrics.
+	ExportMetric *bool `locationName:"exportMetric" type:"boolean"`
+
 	// What is measured by the behavior.
 	//
 	// Metric is a required field
@@ -58212,6 +58251,12 @@ func (s *MetricToRetain) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExportMetric sets the ExportMetric field's value.
+func (s *MetricToRetain) SetExportMetric(v bool) *MetricToRetain {
+	s.ExportMetric = &v
+	return s
 }
 
 // SetMetric sets the Metric field's value.
@@ -58303,6 +58348,75 @@ func (s *MetricValue) SetPorts(v []*int64) *MetricValue {
 // SetStrings sets the Strings field's value.
 func (s *MetricValue) SetStrings(v []*string) *MetricValue {
 	s.Strings = v
+	return s
+}
+
+// Set configurations for metrics export.
+type MetricsExportConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The MQTT topic that Device Defender Detect should publish messages to for
+	// metrics export.
+	//
+	// MqttTopic is a required field
+	MqttTopic *string `locationName:"mqttTopic" min:"1" type:"string" required:"true"`
+
+	// This role ARN has permission to publish MQTT messages, after which Device
+	// Defender Detect can assume the role and publish messages on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricsExportConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricsExportConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricsExportConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricsExportConfig"}
+	if s.MqttTopic == nil {
+		invalidParams.Add(request.NewErrParamRequired("MqttTopic"))
+	}
+	if s.MqttTopic != nil && len(*s.MqttTopic) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MqttTopic", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMqttTopic sets the MqttTopic field's value.
+func (s *MetricsExportConfig) SetMqttTopic(v string) *MetricsExportConfig {
+	s.MqttTopic = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *MetricsExportConfig) SetRoleArn(v string) *MetricsExportConfig {
+	s.RoleArn = &v
 	return s
 }
 
@@ -62474,7 +62588,8 @@ type SearchIndexInput struct {
 	// The search index name.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
-	// The maximum number of results to return at one time.
+	// The maximum number of results to return at one time. The response might contain
+	// fewer results but will never contain more.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token used to get the next set of results, or null if there are no additional
@@ -65820,6 +65935,8 @@ type ThingGroupIndexingConfiguration struct {
 	// Fleet Indexing service. This is an optional field. For more information,
 	// see Managed fields (https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field)
 	// in the Amazon Web Services IoT Core Developer Guide.
+	//
+	// You can't modify managed fields by updating fleet indexing configuration.
 	ManagedFields []*Field `locationName:"managedFields" type:"list"`
 
 	// Thing group indexing mode.
@@ -65995,7 +66112,11 @@ type ThingIndexingConfiguration struct {
 	Filter *IndexingFilter `locationName:"filter" type:"structure"`
 
 	// Contains fields that are indexed and whose types are already known by the
-	// Fleet Indexing service.
+	// Fleet Indexing service. This is an optional field. For more information,
+	// see Managed fields (https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field)
+	// in the Amazon Web Services IoT Core Developer Guide.
+	//
+	// You can't modify managed fields by updating fleet indexing configuration.
 	ManagedFields []*Field `locationName:"managedFields" type:"list"`
 
 	// Named shadow indexing mode. Valid values are:
@@ -70427,10 +70548,16 @@ type UpdateSecurityProfileInput struct {
 	// are defined in the current invocation, an exception occurs.
 	DeleteBehaviors *bool `locationName:"deleteBehaviors" type:"boolean"`
 
+	// Set the value as true to delete metrics export related configurations.
+	DeleteMetricsExportConfig *bool `locationName:"deleteMetricsExportConfig" type:"boolean"`
+
 	// The expected version of the security profile. A new version is generated
 	// whenever the security profile is updated. If you specify a value that is
 	// different from the actual version, a VersionConflictException is thrown.
 	ExpectedVersion *int64 `location:"querystring" locationName:"expectedVersion" type:"long"`
+
+	// Specifies the MQTT topic and role ARN required for metric export.
+	MetricsExportConfig *MetricsExportConfig `locationName:"metricsExportConfig" type:"structure"`
 
 	// A description of the security profile.
 	SecurityProfileDescription *string `locationName:"securityProfileDescription" type:"string"`
@@ -70498,6 +70625,11 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 			}
 		}
 	}
+	if s.MetricsExportConfig != nil {
+		if err := s.MetricsExportConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetricsExportConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -70547,9 +70679,21 @@ func (s *UpdateSecurityProfileInput) SetDeleteBehaviors(v bool) *UpdateSecurityP
 	return s
 }
 
+// SetDeleteMetricsExportConfig sets the DeleteMetricsExportConfig field's value.
+func (s *UpdateSecurityProfileInput) SetDeleteMetricsExportConfig(v bool) *UpdateSecurityProfileInput {
+	s.DeleteMetricsExportConfig = &v
+	return s
+}
+
 // SetExpectedVersion sets the ExpectedVersion field's value.
 func (s *UpdateSecurityProfileInput) SetExpectedVersion(v int64) *UpdateSecurityProfileInput {
 	s.ExpectedVersion = &v
+	return s
+}
+
+// SetMetricsExportConfig sets the MetricsExportConfig field's value.
+func (s *UpdateSecurityProfileInput) SetMetricsExportConfig(v *MetricsExportConfig) *UpdateSecurityProfileInput {
+	s.MetricsExportConfig = v
 	return s
 }
 
@@ -70595,6 +70739,9 @@ type UpdateSecurityProfileOutput struct {
 
 	// The time the security profile was last modified.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// Specifies the MQTT topic and role ARN required for metric export.
+	MetricsExportConfig *MetricsExportConfig `locationName:"metricsExportConfig" type:"structure"`
 
 	// The ARN of the security profile that was updated.
 	SecurityProfileArn *string `locationName:"securityProfileArn" type:"string"`
@@ -70660,6 +70807,12 @@ func (s *UpdateSecurityProfileOutput) SetCreationDate(v time.Time) *UpdateSecuri
 // SetLastModifiedDate sets the LastModifiedDate field's value.
 func (s *UpdateSecurityProfileOutput) SetLastModifiedDate(v time.Time) *UpdateSecurityProfileOutput {
 	s.LastModifiedDate = &v
+	return s
+}
+
+// SetMetricsExportConfig sets the MetricsExportConfig field's value.
+func (s *UpdateSecurityProfileOutput) SetMetricsExportConfig(v *MetricsExportConfig) *UpdateSecurityProfileOutput {
+	s.MetricsExportConfig = v
 	return s
 }
 

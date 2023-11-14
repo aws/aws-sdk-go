@@ -44,7 +44,7 @@
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSecurityProfile</a> action.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateStream</a> action.</p>",
     "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThing</a> action.</p>",
-    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThingGroup</a> action.</p>",
+    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> <p>If the <code>ThingGroup</code> that you create has the exact same attributes as an existing <code>ThingGroup</code>, you will get a 200 success response. </p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThingGroup</a> action.</p>",
     "CreateThingType": "<p>Creates a new thing type.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThingType</a> action.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateTopicRule</a> action.</p>",
     "CreateTopicRuleDestination": "<p>Creates a topic rule destination. The destination must be confirmed prior to use.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateTopicRuleDestination</a> action.</p>",
@@ -2418,6 +2418,12 @@
       "refs": {
       }
     },
+    "DeleteMetricsExportConfig": {
+      "base": null,
+      "refs": {
+        "UpdateSecurityProfileRequest$deleteMetricsExportConfig": "<p>Set the value as true to delete metrics export related configurations.</p>"
+      }
+    },
     "DeleteMitigationActionRequest": {
       "base": null,
       "refs": {
@@ -3498,6 +3504,13 @@
         "JobExecutionsRolloutConfig$exponentialRate": "<p>The rate of increase for a job rollout. This parameter allows you to define an exponential rate for a job rollout.</p>"
       }
     },
+    "ExportMetric": {
+      "base": null,
+      "refs": {
+        "Behavior$exportMetric": "<p>Value indicates exporting metrics related to the behavior when it is true.</p>",
+        "MetricToRetain$exportMetric": "<p>Value added in both Behavior and AdditionalMetricsToRetainV2 to indicate if Device Defender Detect should export the corresponding metrics.</p>"
+      }
+    },
     "FailedChecksCount": {
       "base": null,
       "refs": {
@@ -3537,9 +3550,9 @@
     "Fields": {
       "base": null,
       "refs": {
-        "ThingGroupIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service. This is an optional field. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field\">Managed fields</a> in the <i>Amazon Web Services IoT Core Developer Guide</i>.</p>",
+        "ThingGroupIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service. This is an optional field. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field\">Managed fields</a> in the <i>Amazon Web Services IoT Core Developer Guide</i>.</p> <note> <p>You can't modify managed fields by updating fleet indexing configuration.</p> </note>",
         "ThingGroupIndexingConfiguration$customFields": "<p>A list of thing group fields to index. This list cannot contain any managed fields. Use the GetIndexingConfiguration API to get a list of managed fields.</p> <p>Contains custom field names and their data type.</p>",
-        "ThingIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>",
+        "ThingIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service. This is an optional field. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field\">Managed fields</a> in the <i>Amazon Web Services IoT Core Developer Guide</i>.</p> <note> <p>You can't modify managed fields by updating fleet indexing configuration.</p> </note>",
         "ThingIndexingConfiguration$customFields": "<p>Contains custom field names and their data type.</p>"
       }
     },
@@ -5443,6 +5456,15 @@
         "ViolationEvent$metricValue": "<p>The value of the metric (the measurement).</p>"
       }
     },
+    "MetricsExportConfig": {
+      "base": "<p>Set configurations for metrics export.</p>",
+      "refs": {
+        "CreateSecurityProfileRequest$metricsExportConfig": "<p>Specifies the MQTT topic and role ARN required for metric export.</p>",
+        "DescribeSecurityProfileResponse$metricsExportConfig": "<p>Specifies the MQTT topic and role ARN required for metric export.</p>",
+        "UpdateSecurityProfileRequest$metricsExportConfig": "<p>Specifies the MQTT topic and role ARN required for metric export.</p>",
+        "UpdateSecurityProfileResponse$metricsExportConfig": "<p>Specifies the MQTT topic and role ARN required for metric export.</p>"
+      }
+    },
     "Minimum": {
       "base": null,
       "refs": {
@@ -5596,6 +5618,12 @@
       "base": null,
       "refs": {
         "MqttContext$password": "<p>The value of the <code>password</code> key in an MQTT authorization request.</p>"
+      }
+    },
+    "MqttTopic": {
+      "base": null,
+      "refs": {
+        "MetricsExportConfig$mqttTopic": "<p>The MQTT topic that Device Defender Detect should publish messages to for metrics export.</p>"
       }
     },
     "MqttUsername": {
@@ -6437,7 +6465,7 @@
       "base": null,
       "refs": {
         "ListIndicesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
-        "SearchIndexRequest$maxResults": "<p>The maximum number of results to return at one time.</p>"
+        "SearchIndexRequest$maxResults": "<p>The maximum number of results to return at one time. The response might contain fewer results but will never contain more.</p>"
       }
     },
     "QueryString": {
@@ -6930,6 +6958,7 @@
         "DescribeProvisioningTemplateResponse$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
         "EnableIoTLoggingParams$roleArnForLogging": "<p>The Amazon Resource Name (ARN) of the IAM role used for logging.</p>",
+        "MetricsExportConfig$roleArn": "<p>This role ARN has permission to publish MQTT messages, after which Device Defender Detect can assume the role and publish messages on your behalf.</p>",
         "MitigationAction$roleArn": "<p>The IAM role ARN used to apply this mitigation action.</p>",
         "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p> <important> <p>For information about addressing the confused deputy problem, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html\">cross-service confused deputy prevention</a> in the <i>Amazon Web Services IoT Core developer guide</i>.</p> </important>",
         "RegistrationConfig$roleArn": "<p>The ARN of the role.</p>",

@@ -347,6 +347,22 @@
       ],
       "idempotent":true
     },
+    "RedriveExecution":{
+      "name":"RedriveExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RedriveExecutionInput"},
+      "output":{"shape":"RedriveExecutionOutput"},
+      "errors":[
+        {"shape":"ExecutionDoesNotExist"},
+        {"shape":"ExecutionNotRedrivable"},
+        {"shape":"ExecutionLimitExceeded"},
+        {"shape":"InvalidArn"}
+      ],
+      "idempotent":true
+    },
     "SendTaskFailure":{
       "name":"SendTaskFailure",
       "http":{
@@ -642,6 +658,12 @@
       "min":1,
       "pattern":"^(?=.*[a-zA-Z_\\-\\.])[a-zA-Z0-9_\\-\\.]+$"
     },
+    "ClientToken":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[!-~]+"
+    },
     "CloudWatchEventsExecutionDataDetails":{
       "type":"structure",
       "members":{
@@ -845,7 +867,11 @@
         "error":{"shape":"SensitiveError"},
         "cause":{"shape":"SensitiveCause"},
         "stateMachineVersionArn":{"shape":"Arn"},
-        "stateMachineAliasArn":{"shape":"Arn"}
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "redriveCount":{"shape":"RedriveCount"},
+        "redriveDate":{"shape":"Timestamp"},
+        "redriveStatus":{"shape":"ExecutionRedriveStatus"},
+        "redriveStatusReason":{"shape":"SensitiveData"}
       }
     },
     "DescribeMapRunInput":{
@@ -878,7 +904,9 @@
         "toleratedFailurePercentage":{"shape":"ToleratedFailurePercentage"},
         "toleratedFailureCount":{"shape":"ToleratedFailureCount"},
         "itemCounts":{"shape":"MapRunItemCounts"},
-        "executionCounts":{"shape":"MapRunExecutionCounts"}
+        "executionCounts":{"shape":"MapRunExecutionCounts"},
+        "redriveCount":{"shape":"RedriveCount"},
+        "redriveDate":{"shape":"Timestamp"}
       }
     },
     "DescribeStateMachineAliasInput":{
@@ -1024,7 +1052,40 @@
           "box":true
         },
         "stateMachineVersionArn":{"shape":"Arn"},
-        "stateMachineAliasArn":{"shape":"Arn"}
+        "stateMachineAliasArn":{"shape":"Arn"},
+        "redriveCount":{
+          "shape":"RedriveCount",
+          "box":true
+        },
+        "redriveDate":{"shape":"Timestamp"}
+      }
+    },
+    "ExecutionNotRedrivable":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ExecutionRedriveFilter":{
+      "type":"string",
+      "enum":[
+        "REDRIVEN",
+        "NOT_REDRIVEN"
+      ]
+    },
+    "ExecutionRedriveStatus":{
+      "type":"string",
+      "enum":[
+        "REDRIVABLE",
+        "NOT_REDRIVABLE",
+        "REDRIVABLE_BY_MAP_RUN"
+      ]
+    },
+    "ExecutionRedrivenEventDetails":{
+      "type":"structure",
+      "members":{
+        "redriveCount":{"shape":"RedriveCount"}
       }
     },
     "ExecutionStartedEventDetails":{
@@ -1044,7 +1105,8 @@
         "SUCCEEDED",
         "FAILED",
         "TIMED_OUT",
-        "ABORTED"
+        "ABORTED",
+        "PENDING_REDRIVE"
       ]
     },
     "ExecutionSucceededEventDetails":{
@@ -1126,6 +1188,7 @@
         "executionSucceededEventDetails":{"shape":"ExecutionSucceededEventDetails"},
         "executionAbortedEventDetails":{"shape":"ExecutionAbortedEventDetails"},
         "executionTimedOutEventDetails":{"shape":"ExecutionTimedOutEventDetails"},
+        "executionRedrivenEventDetails":{"shape":"ExecutionRedrivenEventDetails"},
         "mapStateStartedEventDetails":{"shape":"MapStateStartedEventDetails"},
         "mapIterationStartedEventDetails":{"shape":"MapIterationEventDetails"},
         "mapIterationSucceededEventDetails":{"shape":"MapIterationEventDetails"},
@@ -1140,7 +1203,8 @@
         "stateEnteredEventDetails":{"shape":"StateEnteredEventDetails"},
         "stateExitedEventDetails":{"shape":"StateExitedEventDetails"},
         "mapRunStartedEventDetails":{"shape":"MapRunStartedEventDetails"},
-        "mapRunFailedEventDetails":{"shape":"MapRunFailedEventDetails"}
+        "mapRunFailedEventDetails":{"shape":"MapRunFailedEventDetails"},
+        "mapRunRedrivenEventDetails":{"shape":"MapRunRedrivenEventDetails"}
       }
     },
     "HistoryEventExecutionDataDetails":{
@@ -1214,7 +1278,9 @@
         "MapRunAborted",
         "MapRunFailed",
         "MapRunStarted",
-        "MapRunSucceeded"
+        "MapRunSucceeded",
+        "ExecutionRedriven",
+        "MapRunRedriven"
       ]
     },
     "Identity":{
@@ -1353,7 +1419,8 @@
         "statusFilter":{"shape":"ExecutionStatus"},
         "maxResults":{"shape":"PageSize"},
         "nextToken":{"shape":"ListExecutionsPageToken"},
-        "mapRunArn":{"shape":"LongArn"}
+        "mapRunArn":{"shape":"LongArn"},
+        "redriveFilter":{"shape":"ExecutionRedriveFilter"}
       }
     },
     "ListExecutionsOutput":{
@@ -1480,6 +1547,7 @@
       "max":2000,
       "min":1
     },
+    "LongObject":{"type":"long"},
     "MapIterationEventDetails":{
       "type":"structure",
       "members":{
@@ -1507,7 +1575,9 @@
         "timedOut":{"shape":"UnsignedLong"},
         "aborted":{"shape":"UnsignedLong"},
         "total":{"shape":"UnsignedLong"},
-        "resultsWritten":{"shape":"UnsignedLong"}
+        "resultsWritten":{"shape":"UnsignedLong"},
+        "failuresNotRedrivable":{"shape":"LongObject"},
+        "pendingRedrive":{"shape":"LongObject"}
       }
     },
     "MapRunFailedEventDetails":{
@@ -1537,7 +1607,9 @@
         "timedOut":{"shape":"UnsignedLong"},
         "aborted":{"shape":"UnsignedLong"},
         "total":{"shape":"UnsignedLong"},
-        "resultsWritten":{"shape":"UnsignedLong"}
+        "resultsWritten":{"shape":"UnsignedLong"},
+        "failuresNotRedrivable":{"shape":"LongObject"},
+        "pendingRedrive":{"shape":"LongObject"}
       }
     },
     "MapRunLabel":{"type":"string"},
@@ -1559,6 +1631,13 @@
         "stateMachineArn":{"shape":"Arn"},
         "startDate":{"shape":"Timestamp"},
         "stopDate":{"shape":"Timestamp"}
+      }
+    },
+    "MapRunRedrivenEventDetails":{
+      "type":"structure",
+      "members":{
+        "mapRunArn":{"shape":"LongArn"},
+        "redriveCount":{"shape":"RedriveCount"}
       }
     },
     "MapRunStartedEventDetails":{
@@ -1627,6 +1706,28 @@
       "members":{
         "creationDate":{"shape":"Timestamp"},
         "stateMachineVersionArn":{"shape":"Arn"}
+      }
+    },
+    "RedriveCount":{
+      "type":"integer",
+      "box":true
+    },
+    "RedriveExecutionInput":{
+      "type":"structure",
+      "required":["executionArn"],
+      "members":{
+        "executionArn":{"shape":"Arn"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "RedriveExecutionOutput":{
+      "type":"structure",
+      "required":["redriveDate"],
+      "members":{
+        "redriveDate":{"shape":"Timestamp"}
       }
     },
     "ResourceNotFound":{
