@@ -2061,6 +2061,7 @@ func ExampleAutoScaling_StartInstanceRefresh_shared00() {
 			},
 			AutoRollback:         aws.Bool(true),
 			InstanceWarmup:       aws.Int64(200),
+			MaxHealthyPercentage: aws.Int64(120),
 			MinHealthyPercentage: aws.Int64(90),
 		},
 	}

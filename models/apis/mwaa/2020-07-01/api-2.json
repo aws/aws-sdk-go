@@ -215,6 +215,12 @@
       "min":1,
       "pattern":"^[0-9a-z.]+$"
     },
+    "CeleryExecutorQueue":{
+      "type":"string",
+      "max":1224,
+      "min":1,
+      "pattern":"^arn:aws(-[a-z]+)?:sqs:[a-z0-9\\-]+:\\d{12}:[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
     "CloudWatchLogGroupArn":{
       "type":"string",
       "max":1224,
@@ -265,6 +271,7 @@
         "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "DagS3Path":{"shape":"RelativePath"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
         "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "KmsKey":{"shape":"KmsKey"},
@@ -354,14 +361,24 @@
       "type":"double",
       "box":true
     },
+    "EndpointManagement":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SERVICE"
+      ]
+    },
     "Environment":{
       "type":"structure",
       "members":{
         "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
         "AirflowVersion":{"shape":"AirflowVersion"},
         "Arn":{"shape":"EnvironmentArn"},
+        "CeleryExecutorQueue":{"shape":"CeleryExecutorQueue"},
         "CreatedAt":{"shape":"CreatedAt"},
         "DagS3Path":{"shape":"RelativePath"},
+        "DatabaseVpcEndpointService":{"shape":"VpcEndpointServiceName"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
         "EnvironmentClass":{"shape":"EnvironmentClass"},
         "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "KmsKey":{"shape":"KmsKey"},
@@ -384,6 +401,7 @@
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WebserverUrl":{"shape":"WebserverUrl"},
+        "WebserverVpcEndpointService":{"shape":"VpcEndpointServiceName"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
       }
     },
@@ -420,7 +438,8 @@
         "UNAVAILABLE",
         "UPDATE_FAILED",
         "ROLLING_BACK",
-        "CREATING_SNAPSHOT"
+        "CREATING_SNAPSHOT",
+        "PENDING"
       ]
     },
     "ErrorCode":{"type":"string"},
@@ -905,6 +924,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "VpcEndpointServiceName":{
+      "type":"string",
+      "max":1224,
+      "min":1,
+      "pattern":"^([a-z.-]+)?com\\.amazonaws\\.vpce\\.[a-z0-9\\-]+\\.[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "WebserverAccessMode":{
       "type":"string",

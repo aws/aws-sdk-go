@@ -655,7 +655,8 @@
       "errors":[
         {"shape":"UnsupportedOperationFault"},
         {"shape":"ClusterNotFoundFault"},
-        {"shape":"CustomCnameAssociationFault"}
+        {"shape":"CustomCnameAssociationFault"},
+        {"shape":"CustomDomainAssociationNotFoundFault"}
       ]
     },
     "DeleteEndpointAccess":{
@@ -1808,7 +1809,8 @@
       "errors":[
         {"shape":"UnsupportedOperationFault"},
         {"shape":"ClusterNotFoundFault"},
-        {"shape":"CustomCnameAssociationFault"}
+        {"shape":"CustomCnameAssociationFault"},
+        {"shape":"CustomDomainAssociationNotFoundFault"}
       ]
     },
     "ModifyEndpointAccess":{
@@ -3554,7 +3556,7 @@
       "type":"string",
       "max":253,
       "min":1,
-      "pattern":"^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+[A-Za-z]{2,6}$"
+      "pattern":"^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$"
     },
     "CustomerStorageMessage":{
       "type":"structure",
@@ -3745,9 +3747,13 @@
     },
     "DeleteCustomDomainAssociationMessage":{
       "type":"structure",
-      "required":["ClusterIdentifier"],
+      "required":[
+        "ClusterIdentifier",
+        "CustomDomainName"
+      ],
       "members":{
-        "ClusterIdentifier":{"shape":"String"}
+        "ClusterIdentifier":{"shape":"String"},
+        "CustomDomainName":{"shape":"CustomDomainNameString"}
       }
     },
     "DeleteEndpointAccessMessage":{
@@ -5530,7 +5536,11 @@
     },
     "ModifyCustomDomainAssociationMessage":{
       "type":"structure",
-      "required":["ClusterIdentifier"],
+      "required":[
+        "CustomDomainName",
+        "CustomDomainCertificateArn",
+        "ClusterIdentifier"
+      ],
       "members":{
         "CustomDomainName":{"shape":"CustomDomainNameString"},
         "CustomDomainCertificateArn":{"shape":"CustomDomainCertificateArnString"},

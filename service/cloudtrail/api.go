@@ -6075,8 +6075,10 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 // Updates an event data store. The required EventDataStore value is an ARN
 // or the ID portion of the ARN. Other parameters are optional, but at least
 // one optional parameter must be specified, or CloudTrail throws an error.
-// RetentionPeriod is in days, and valid values are integers between 90 and
-// 2557. By default, TerminationProtection is enabled.
+// RetentionPeriod is in days, and valid values are integers between 7 and 3653
+// if the BillingMode is set to EXTENDABLE_RETENTION_PRICING, or between 7 and
+// 2557 if BillingMode is set to FIXED_RETENTION_PRICING. By default, TerminationProtection
+// is enabled.
 //
 // For event data stores for CloudTrail events, AdvancedEventSelectors includes
 // or excludes management, data, or Insights events in your event data store.
@@ -8289,6 +8291,26 @@ type CreateEventDataStoreInput struct {
 	// in the CloudTrail User Guide.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
+	// The billing mode for the event data store determines the cost for ingesting
+	// events and the default and maximum retention period for the event data store.
+	//
+	// The following are the possible values:
+	//
+	//    * EXTENDABLE_RETENTION_PRICING - This billing mode is generally recommended
+	//    if you want a flexible retention period of up to 3653 days (about 10 years).
+	//    The default retention period for this billing mode is 366 days.
+	//
+	//    * FIXED_RETENTION_PRICING - This billing mode is recommended if you expect
+	//    to ingest more than 25 TB of event data per month and need a retention
+	//    period of up to 2557 days (about 7 years). The default retention period
+	//    for this billing mode is 2557 days.
+	//
+	// The default value is EXTENDABLE_RETENTION_PRICING.
+	//
+	// For more information about CloudTrail pricing, see CloudTrail Pricing (http://aws.amazon.com/cloudtrail/pricing/)
+	// and Managing CloudTrail Lake costs (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-manage-costs.html).
+	BillingMode *string `type:"string" enum:"BillingMode"`
+
 	// Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail.
 	// The value can be an alias name prefixed by alias/, a fully specified ARN
 	// to an alias, a fully specified ARN to a key, or a globally unique identifier.
@@ -8329,12 +8351,16 @@ type CreateEventDataStoreInput struct {
 	// in Organizations.
 	OrganizationEnabled *bool `type:"boolean"`
 
-	// The retention period of the event data store, in days. You can set a retention
-	// period of up to 2557 days, the equivalent of seven years. CloudTrail Lake
-	// determines whether to retain an event by checking if the eventTime of the
-	// event is within the specified retention period. For example, if you set a
-	// retention period of 90 days, CloudTrail will remove events when the eventTime
-	// is older than 90 days.
+	// The retention period of the event data store, in days. If BillingMode is
+	// set to EXTENDABLE_RETENTION_PRICING, you can set a retention period of up
+	// to 3653 days, the equivalent of 10 years. If BillingMode is set to FIXED_RETENTION_PRICING,
+	// you can set a retention period of up to 2557 days, the equivalent of seven
+	// years.
+	//
+	// CloudTrail Lake determines whether to retain an event by checking if the
+	// eventTime of the event is within the specified retention period. For example,
+	// if you set a retention period of 90 days, CloudTrail will remove events when
+	// the eventTime is older than 90 days.
 	//
 	// If you plan to copy trail events to this event data store, we recommend that
 	// you consider both the age of the events that you want to copy as well as
@@ -8423,6 +8449,12 @@ func (s *CreateEventDataStoreInput) SetAdvancedEventSelectors(v []*AdvancedEvent
 	return s
 }
 
+// SetBillingMode sets the BillingMode field's value.
+func (s *CreateEventDataStoreInput) SetBillingMode(v string) *CreateEventDataStoreInput {
+	s.BillingMode = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateEventDataStoreInput) SetKmsKeyId(v string) *CreateEventDataStoreInput {
 	s.KmsKeyId = &v
@@ -8477,6 +8509,9 @@ type CreateEventDataStoreOutput struct {
 	// The advanced event selectors that were used to select the events for the
 	// data store.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
+
+	// The billing mode for the event data store.
+	BillingMode *string `type:"string" enum:"BillingMode"`
 
 	// The timestamp that shows when the event data store was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
@@ -8540,6 +8575,12 @@ func (s CreateEventDataStoreOutput) GoString() string {
 // SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
 func (s *CreateEventDataStoreOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *CreateEventDataStoreOutput {
 	s.AdvancedEventSelectors = v
+	return s
+}
+
+// SetBillingMode sets the BillingMode field's value.
+func (s *CreateEventDataStoreOutput) SetBillingMode(v string) *CreateEventDataStoreOutput {
+	s.BillingMode = &v
 	return s
 }
 
@@ -10038,8 +10079,7 @@ func (s *Event) SetUsername(v string) *Event {
 
 // A storage lake of event data against which you can run complex SQL-based
 // queries. An event data store can include events that you have logged on your
-// account from the last 90 to 2557 days (about three months to up to seven
-// years). To select events for an event data store, use advanced event selectors
+// account. To select events for an event data store, use advanced event selectors
 // (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).
 type EventDataStore struct {
 	_ struct{} `type:"structure"`
@@ -10848,6 +10888,9 @@ type GetEventDataStoreOutput struct {
 	// The advanced event selectors used to select events for the data store.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
+	// The billing mode for the event data store.
+	BillingMode *string `type:"string" enum:"BillingMode"`
+
 	// The timestamp of the event data store's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
@@ -10906,6 +10949,12 @@ func (s GetEventDataStoreOutput) GoString() string {
 // SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
 func (s *GetEventDataStoreOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *GetEventDataStoreOutput {
 	s.AdvancedEventSelectors = v
+	return s
+}
+
+// SetBillingMode sets the BillingMode field's value.
+func (s *GetEventDataStoreOutput) SetBillingMode(v string) *GetEventDataStoreOutput {
+	s.BillingMode = &v
 	return s
 }
 
@@ -17758,6 +17807,9 @@ type RestoreEventDataStoreOutput struct {
 	// The advanced event selectors that were used to select events.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
+	// The billing mode for the event data store.
+	BillingMode *string `type:"string" enum:"BillingMode"`
+
 	// The timestamp of an event data store's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
@@ -17818,6 +17870,12 @@ func (s RestoreEventDataStoreOutput) GoString() string {
 // SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
 func (s *RestoreEventDataStoreOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *RestoreEventDataStoreOutput {
 	s.AdvancedEventSelectors = v
+	return s
+}
+
+// SetBillingMode sets the BillingMode field's value.
+func (s *RestoreEventDataStoreOutput) SetBillingMode(v string) *RestoreEventDataStoreOutput {
+	s.BillingMode = &v
 	return s
 }
 
@@ -19650,6 +19708,30 @@ type UpdateEventDataStoreInput struct {
 	// store.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
+	//
+	// You can't change the billing mode from EXTENDABLE_RETENTION_PRICING to FIXED_RETENTION_PRICING.
+	// If BillingMode is set to EXTENDABLE_RETENTION_PRICING and you want to use
+	// FIXED_RETENTION_PRICING instead, you'll need to stop ingestion on the event
+	// data store and create a new event data store that uses FIXED_RETENTION_PRICING.
+	//
+	// The billing mode for the event data store determines the cost for ingesting
+	// events and the default and maximum retention period for the event data store.
+	//
+	// The following are the possible values:
+	//
+	//    * EXTENDABLE_RETENTION_PRICING - This billing mode is generally recommended
+	//    if you want a flexible retention period of up to 3653 days (about 10 years).
+	//    The default retention period for this billing mode is 366 days.
+	//
+	//    * FIXED_RETENTION_PRICING - This billing mode is recommended if you expect
+	//    to ingest more than 25 TB of event data per month and need a retention
+	//    period of up to 2557 days (about 7 years). The default retention period
+	//    for this billing mode is 2557 days.
+	//
+	// For more information about CloudTrail pricing, see CloudTrail Pricing (http://aws.amazon.com/cloudtrail/pricing/)
+	// and Managing CloudTrail Lake costs (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-manage-costs.html).
+	BillingMode *string `type:"string" enum:"BillingMode"`
+
 	// The ARN (or the ID suffix of the ARN) of the event data store that you want
 	// to update.
 	//
@@ -19698,12 +19780,16 @@ type UpdateEventDataStoreInput struct {
 	// event data store to an organization event data store.
 	OrganizationEnabled *bool `type:"boolean"`
 
-	// The retention period of the event data store, in days. You can set a retention
-	// period of up to 2557 days, the equivalent of seven years. CloudTrail Lake
-	// determines whether to retain an event by checking if the eventTime of the
-	// event is within the specified retention period. For example, if you set a
-	// retention period of 90 days, CloudTrail will remove events when the eventTime
-	// is older than 90 days.
+	// The retention period of the event data store, in days. If BillingMode is
+	// set to EXTENDABLE_RETENTION_PRICING, you can set a retention period of up
+	// to 3653 days, the equivalent of 10 years. If BillingMode is set to FIXED_RETENTION_PRICING,
+	// you can set a retention period of up to 2557 days, the equivalent of seven
+	// years.
+	//
+	// CloudTrail Lake determines whether to retain an event by checking if the
+	// eventTime of the event is within the specified retention period. For example,
+	// if you set a retention period of 90 days, CloudTrail will remove events when
+	// the eventTime is older than 90 days.
 	//
 	// If you decrease the retention period of an event data store, CloudTrail will
 	// remove any events with an eventTime older than the new retention period.
@@ -19776,6 +19862,12 @@ func (s *UpdateEventDataStoreInput) SetAdvancedEventSelectors(v []*AdvancedEvent
 	return s
 }
 
+// SetBillingMode sets the BillingMode field's value.
+func (s *UpdateEventDataStoreInput) SetBillingMode(v string) *UpdateEventDataStoreInput {
+	s.BillingMode = &v
+	return s
+}
+
 // SetEventDataStore sets the EventDataStore field's value.
 func (s *UpdateEventDataStoreInput) SetEventDataStore(v string) *UpdateEventDataStoreInput {
 	s.EventDataStore = &v
@@ -19823,6 +19915,9 @@ type UpdateEventDataStoreOutput struct {
 
 	// The advanced event selectors that are applied to the event data store.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
+
+	// The billing mode for the event data store.
+	BillingMode *string `type:"string" enum:"BillingMode"`
 
 	// The timestamp that shows when an event data store was first created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
@@ -19882,6 +19977,12 @@ func (s UpdateEventDataStoreOutput) GoString() string {
 // SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
 func (s *UpdateEventDataStoreOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *UpdateEventDataStoreOutput {
 	s.AdvancedEventSelectors = v
+	return s
+}
+
+// SetBillingMode sets the BillingMode field's value.
+func (s *UpdateEventDataStoreOutput) SetBillingMode(v string) *UpdateEventDataStoreOutput {
+	s.BillingMode = &v
 	return s
 }
 
@@ -20312,6 +20413,22 @@ func (s *UpdateTrailOutput) SetSnsTopicName(v string) *UpdateTrailOutput {
 func (s *UpdateTrailOutput) SetTrailARN(v string) *UpdateTrailOutput {
 	s.TrailARN = &v
 	return s
+}
+
+const (
+	// BillingModeExtendableRetentionPricing is a BillingMode enum value
+	BillingModeExtendableRetentionPricing = "EXTENDABLE_RETENTION_PRICING"
+
+	// BillingModeFixedRetentionPricing is a BillingMode enum value
+	BillingModeFixedRetentionPricing = "FIXED_RETENTION_PRICING"
+)
+
+// BillingMode_Values returns all elements of the BillingMode enum
+func BillingMode_Values() []string {
+	return []string{
+		BillingModeExtendableRetentionPricing,
+		BillingModeFixedRetentionPricing,
+	}
 }
 
 const (

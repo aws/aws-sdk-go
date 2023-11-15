@@ -1244,7 +1244,8 @@
         "Context":{"shape":"Context"},
         "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
         "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"},
-        "TrafficSources":{"shape":"TrafficSources"}
+        "TrafficSources":{"shape":"TrafficSources"},
+        "InstanceMaintenancePolicy":{"shape":"InstanceMaintenancePolicy"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1522,7 +1523,8 @@
         "Context":{"shape":"Context"},
         "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
         "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"},
-        "TrafficSources":{"shape":"TrafficSources"}
+        "TrafficSources":{"shape":"TrafficSources"},
+        "InstanceMaintenancePolicy":{"shape":"InstanceMaintenancePolicy"}
       }
     },
     "CreateLaunchConfigurationType":{
@@ -2110,6 +2112,13 @@
       "type":"list",
       "member":{"shape":"XmlStringMaxLen19"}
     },
+    "InstanceMaintenancePolicy":{
+      "type":"structure",
+      "members":{
+        "MinHealthyPercentage":{"shape":"IntPercentResettable"},
+        "MaxHealthyPercentage":{"shape":"IntPercent100To200Resettable"}
+      }
+    },
     "InstanceMetadataEndpointState":{
       "type":"string",
       "enum":[
@@ -2277,6 +2286,21 @@
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "IntPercent100To200":{
+      "type":"integer",
+      "max":200,
+      "min":100
+    },
+    "IntPercent100To200Resettable":{
+      "type":"integer",
+      "max":200,
+      "min":-1
+    },
+    "IntPercentResettable":{
+      "type":"integer",
+      "max":100,
+      "min":-1
     },
     "InvalidNextToken":{
       "type":"structure",
@@ -3057,7 +3081,8 @@
         "AutoRollback":{"shape":"AutoRollback"},
         "ScaleInProtectedInstances":{"shape":"ScaleInProtectedInstances"},
         "StandbyInstances":{"shape":"StandbyInstances"},
-        "AlarmSpecification":{"shape":"AlarmSpecification"}
+        "AlarmSpecification":{"shape":"AlarmSpecification"},
+        "MaxHealthyPercentage":{"shape":"IntPercent100To200"}
       }
     },
     "RefreshStrategy":{
@@ -3520,7 +3545,8 @@
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
         "Context":{"shape":"Context"},
         "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
-        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"},
+        "InstanceMaintenancePolicy":{"shape":"InstanceMaintenancePolicy"}
       }
     },
     "VCpuCountRequest":{

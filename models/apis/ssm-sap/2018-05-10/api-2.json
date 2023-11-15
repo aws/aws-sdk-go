@@ -799,10 +799,7 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{
-          "shape":"MaxResults",
-          "box":true
-        },
+        "MaxResults":{"shape":"MaxResults"},
         "Filters":{"shape":"FilterList"}
       }
     },
@@ -818,10 +815,7 @@
       "members":{
         "ApplicationId":{"shape":"ApplicationId"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{
-          "shape":"MaxResults",
-          "box":true
-        }
+        "MaxResults":{"shape":"MaxResults"}
       }
     },
     "ListComponentsOutput":{
@@ -837,10 +831,7 @@
         "ApplicationId":{"shape":"ApplicationId"},
         "ComponentId":{"shape":"ComponentId"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{
-          "shape":"MaxResults",
-          "box":true
-        }
+        "MaxResults":{"shape":"MaxResults"}
       }
     },
     "ListDatabasesOutput":{
@@ -855,10 +846,7 @@
       "required":["ApplicationId"],
       "members":{
         "ApplicationId":{"shape":"ApplicationId"},
-        "MaxResults":{
-          "shape":"MaxResults",
-          "box":true
-        },
+        "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"},
         "Filters":{"shape":"FilterList"}
       }
@@ -889,6 +877,7 @@
     },
     "MaxResults":{
       "type":"integer",
+      "box":true,
       "max":50,
       "min":1
     },

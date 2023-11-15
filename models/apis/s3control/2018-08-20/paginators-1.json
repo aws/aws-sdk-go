@@ -29,6 +29,10 @@
     "ListStorageLensConfigurations": {
       "input_token": "NextToken",
       "output_token": "NextToken"
+    },
+    "ListStorageLensGroups": {
+      "input_token": "NextToken",
+      "output_token": "NextToken"
     }
   }
 }

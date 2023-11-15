@@ -46988,7 +46988,9 @@ type ModifyDBSnapshotInput struct {
 	//
 	// MySQL
 	//
-	//    * 5.5.46 (supported for 5.1 DB snapshots)
+	// For the list of engine versions that are available for upgrading a DB snapshot,
+	// see Upgrading a MySQL DB snapshot engine version (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-upgrade-snapshot.html)
+	// in the Amazon RDS User Guide.
 	//
 	// Oracle
 	//
@@ -47005,7 +47007,8 @@ type ModifyDBSnapshotInput struct {
 	// PostgreSQL
 	//
 	// For the list of engine versions that are available for upgrading a DB snapshot,
-	// see Upgrading the PostgreSQL DB Engine for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html#USER_UpgradeDBInstance.PostgreSQL.MajorVersion).
+	// see Upgrading a PostgreSQL DB snapshot engine version (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBSnapshot.PostgreSQL.html)
+	// in the Amazon RDS User Guide.
 	EngineVersion *string `type:"string"`
 
 	// The option group to identify with the upgraded DB snapshot.

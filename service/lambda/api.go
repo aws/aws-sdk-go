@@ -23017,6 +23017,9 @@ const (
 
 	// RuntimePython312 is a Runtime enum value
 	RuntimePython312 = "python3.12"
+
+	// RuntimeJava21 is a Runtime enum value
+	RuntimeJava21 = "java21"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -23057,6 +23060,7 @@ func Runtime_Values() []string {
 		RuntimeNodejs20X,
 		RuntimeProvidedAl2023,
 		RuntimePython312,
+		RuntimeJava21,
 	}
 }
 

@@ -3435,6 +3435,9 @@ func (c *Redshift) DeleteCustomDomainAssociationRequest(input *DeleteCustomDomai
 //   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
 //     An error occurred when an attempt was made to change the custom domain association.
 //
+//   - ErrCodeCustomDomainAssociationNotFoundFault "CustomDomainAssociationNotFoundFault"
+//     An error occurred. The custom domain name couldn't be found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteCustomDomainAssociation
 func (c *Redshift) DeleteCustomDomainAssociation(input *DeleteCustomDomainAssociationInput) (*DeleteCustomDomainAssociationOutput, error) {
 	req, out := c.DeleteCustomDomainAssociationRequest(input)
@@ -11773,6 +11776,9 @@ func (c *Redshift) ModifyCustomDomainAssociationRequest(input *ModifyCustomDomai
 //
 //   - ErrCodeCustomCnameAssociationFault "CustomCnameAssociationFault"
 //     An error occurred when an attempt was made to change the custom domain association.
+//
+//   - ErrCodeCustomDomainAssociationNotFoundFault "CustomDomainAssociationNotFoundFault"
+//     An error occurred. The custom domain name couldn't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCustomDomainAssociation
 func (c *Redshift) ModifyCustomDomainAssociation(input *ModifyCustomDomainAssociationInput) (*ModifyCustomDomainAssociationOutput, error) {
@@ -21041,6 +21047,11 @@ type DeleteCustomDomainAssociationInput struct {
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The custom domain name for the custom domain association.
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -21067,6 +21078,12 @@ func (s *DeleteCustomDomainAssociationInput) Validate() error {
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
 	}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
+	}
+	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -21077,6 +21094,12 @@ func (s *DeleteCustomDomainAssociationInput) Validate() error {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *DeleteCustomDomainAssociationInput) SetClusterIdentifier(v string) *DeleteCustomDomainAssociationInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCustomDomainName sets the CustomDomainName field's value.
+func (s *DeleteCustomDomainAssociationInput) SetCustomDomainName(v string) *DeleteCustomDomainAssociationInput {
+	s.CustomDomainName = &v
 	return s
 }
 
@@ -30774,10 +30797,14 @@ type ModifyCustomDomainAssociationInput struct {
 
 	// The certificate Amazon Resource Name (ARN) for the changed custom domain
 	// association.
-	CustomDomainCertificateArn *string `min:"20" type:"string"`
+	//
+	// CustomDomainCertificateArn is a required field
+	CustomDomainCertificateArn *string `min:"20" type:"string" required:"true"`
 
 	// The custom domain name for a changed custom domain association.
-	CustomDomainName *string `min:"1" type:"string"`
+	//
+	// CustomDomainName is a required field
+	CustomDomainName *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -30804,8 +30831,14 @@ func (s *ModifyCustomDomainAssociationInput) Validate() error {
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
 	}
+	if s.CustomDomainCertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainCertificateArn"))
+	}
 	if s.CustomDomainCertificateArn != nil && len(*s.CustomDomainCertificateArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("CustomDomainCertificateArn", 20))
+	}
+	if s.CustomDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainName"))
 	}
 	if s.CustomDomainName != nil && len(*s.CustomDomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CustomDomainName", 1))

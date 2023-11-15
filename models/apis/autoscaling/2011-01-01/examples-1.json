@@ -656,6 +656,7 @@
                 },
                 "AutoRollback": true,
                 "InstanceWarmup": 200,
+                "MaxHealthyPercentage": 120,
                 "MinHealthyPercentage": 90,
                 "ScaleInProtectedInstances": "Ignore",
                 "SkipMatching": false,
@@ -679,6 +680,7 @@
                 },
                 "AutoRollback": true,
                 "InstanceWarmup": 200,
+                "MaxHealthyPercentage": 120,
                 "MinHealthyPercentage": 90,
                 "ScaleInProtectedInstances": "Ignore",
                 "SkipMatching": false,
@@ -1616,6 +1618,7 @@
             },
             "AutoRollback": true,
             "InstanceWarmup": 200,
+            "MaxHealthyPercentage": 120,
             "MinHealthyPercentage": 90
           }
         },

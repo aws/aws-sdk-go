@@ -38,7 +38,12 @@ const opCreateEnvironment = "CreateEnvironment"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *request.Request, output *CreateEnvironmentOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateEnvironment, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateEnvironment,
 		HTTPMethod: "POST",
@@ -89,6 +94,8 @@ func (c *Finspace) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req 
 //     A service limit or quota is exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/CreateEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
 	req, out := c.CreateEnvironmentRequest(input)
 	return out, req.Send()
@@ -103,6 +110,8 @@ func (c *Finspace) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvi
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) CreateEnvironmentWithContext(ctx aws.Context, input *CreateEnvironmentInput, opts ...request.Option) (*CreateEnvironmentOutput, error) {
 	req, out := c.CreateEnvironmentRequest(input)
 	req.SetContext(ctx)
@@ -637,7 +646,12 @@ const opDeleteEnvironment = "DeleteEnvironment"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *request.Request, output *DeleteEnvironmentOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeleteEnvironment, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeleteEnvironment,
 		HTTPMethod: "DELETE",
@@ -684,6 +698,8 @@ func (c *Finspace) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req 
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
 	req, out := c.DeleteEnvironmentRequest(input)
 	return out, req.Send()
@@ -698,6 +714,8 @@ func (c *Finspace) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvi
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) DeleteEnvironmentWithContext(ctx aws.Context, input *DeleteEnvironmentInput, opts ...request.Option) (*DeleteEnvironmentOutput, error) {
 	req, out := c.DeleteEnvironmentRequest(input)
 	req.SetContext(ctx)
@@ -1115,7 +1133,12 @@ const opGetEnvironment = "GetEnvironment"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) GetEnvironmentRequest(input *GetEnvironmentInput) (req *request.Request, output *GetEnvironmentOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetEnvironment, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetEnvironment,
 		HTTPMethod: "GET",
@@ -1158,6 +1181,8 @@ func (c *Finspace) GetEnvironmentRequest(input *GetEnvironmentInput) (req *reque
 //     You do not have sufficient access to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/GetEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, error) {
 	req, out := c.GetEnvironmentRequest(input)
 	return out, req.Send()
@@ -1172,6 +1197,8 @@ func (c *Finspace) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOu
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) GetEnvironmentWithContext(ctx aws.Context, input *GetEnvironmentInput, opts ...request.Option) (*GetEnvironmentOutput, error) {
 	req, out := c.GetEnvironmentRequest(input)
 	req.SetContext(ctx)
@@ -1761,7 +1788,12 @@ const opListEnvironments = "ListEnvironments"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListEnvironments
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *request.Request, output *ListEnvironmentsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListEnvironments, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListEnvironments,
 		HTTPMethod: "GET",
@@ -1798,6 +1830,8 @@ func (c *Finspace) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *r
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/ListEnvironments
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
 	req, out := c.ListEnvironmentsRequest(input)
 	return out, req.Send()
@@ -1812,6 +1846,8 @@ func (c *Finspace) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironm
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) ListEnvironmentsWithContext(ctx aws.Context, input *ListEnvironmentsInput, opts ...request.Option) (*ListEnvironmentsOutput, error) {
 	req, out := c.ListEnvironmentsRequest(input)
 	req.SetContext(ctx)
@@ -2884,7 +2920,12 @@ const opUpdateEnvironment = "UpdateEnvironment"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *UpdateEnvironmentOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, UpdateEnvironment, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opUpdateEnvironment,
 		HTTPMethod: "PUT",
@@ -2930,6 +2971,8 @@ func (c *Finspace) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req 
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/UpdateEnvironment
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvironmentOutput, error) {
 	req, out := c.UpdateEnvironmentRequest(input)
 	return out, req.Send()
@@ -2944,6 +2987,8 @@ func (c *Finspace) UpdateEnvironment(input *UpdateEnvironmentInput) (*UpdateEnvi
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This method will be discontinued.
 func (c *Finspace) UpdateEnvironmentWithContext(ctx aws.Context, input *UpdateEnvironmentInput, opts ...request.Option) (*UpdateEnvironmentOutput, error) {
 	req, out := c.UpdateEnvironmentRequest(input)
 	req.SetContext(ctx)
