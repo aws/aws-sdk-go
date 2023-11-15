@@ -7,12 +7,13 @@
     "CreateBucket": "<note> <p>This action creates an Amazon S3 on Outposts bucket. To create an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">Create Bucket</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Creates a new Outposts bucket. By creating the bucket, you become the bucket owner. To create an Outposts bucket, you must have S3 on Outposts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>Not every string is an acceptable bucket name. For information on bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules\">Working with Amazon S3 Buckets</a>.</p> <p>S3 on Outposts buckets support:</p> <ul> <li> <p>Tags</p> </li> <li> <p>LifecycleConfigurations for deleting expired objects</p> </li> </ul> <p>For a complete list of restrictions and Amazon S3 feature limitations on S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OnOutpostsRestrictionsLimitations.html\"> Amazon S3 on Outposts Restrictions and Limitations</a>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html\">GetBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html\">DeleteBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html\">PutAccessPointPolicy</a> </p> </li> </ul>",
     "CreateJob": "<p>You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects. Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action creates a S3 Batch Operations job.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobOperation.html\">JobOperation</a> </p> </li> </ul>",
     "CreateMultiRegionAccessPoint": "<p>Creates a Multi-Region Access Point and associates it with the specified buckets. For more information about creating Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html\">Creating Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This request is asynchronous, meaning that you might receive a response before the command has completed. When this request provides a response, it provides a token that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.</p> <p>The following actions are related to <code>CreateMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
+    "CreateStorageLensGroup": "<p> Creates a new S3 Storage Lens group and associates it with the specified Amazon Web Services account ID. An S3 Storage Lens group is a custom grouping of objects based on prefix, suffix, object tags, object size, object age, or a combination of these filters. For each Storage Lens group that you’ve created, you can also optionally add Amazon Web Services resource tags. For more information about S3 Storage Lens groups, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups-overview.html\">Working with S3 Storage Lens groups</a>.</p> <p>To use this operation, you must have the permission to perform the <code>s3:CreateStorageLensGroup</code> action. If you’re trying to create a Storage Lens group with Amazon Web Services resource tags, you must also have permission to perform the <code>s3:TagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
     "DeleteAccessPoint": "<p>Deletes the specified access point.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "DeleteAccessPointForObjectLambda": "<p>Deletes the specified Object Lambda Access Point.</p> <p>The following actions are related to <code>DeleteAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
     "DeleteAccessPointPolicy": "<p>Deletes the access point policy for the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html\">PutAccessPointPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html\">GetAccessPointPolicy</a> </p> </li> </ul>",
     "DeleteAccessPointPolicyForObjectLambda": "<p>Removes the resource policy for an Object Lambda Access Point.</p> <p>The following actions are related to <code>DeleteAccessPointPolicyForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html\">GetAccessPointPolicyForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicyForObjectLambda.html\">PutAccessPointPolicyForObjectLambda</a> </p> </li> </ul>",
     "DeleteBucket": "<note> <p>This action deletes an Amazon S3 on Outposts bucket. To delete an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html\">DeleteBucket</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Deletes the Amazon S3 on Outposts bucket. All objects (including all object versions and delete markers) in the bucket must be deleted before the bucket itself can be deleted. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples\">Examples</a> section.</p> <p class=\"title\"> <b>Related Resources</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html\">CreateBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html\">GetBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html\">DeleteObject</a> </p> </li> </ul>",
-    "DeleteBucketLifecycleConfiguration": "<note> <p>This action deletes an Amazon S3 on Outposts bucket's lifecycle configuration. To delete an S3 bucket's lifecycle configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html\">DeleteBucketLifecycle</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Deletes the lifecycle configuration from the specified Outposts bucket. Amazon S3 on Outposts removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 on Outposts no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>To use this action, you must have permission to perform the <code>s3-outposts:DeleteLifecycleConfiguration</code> action. By default, the bucket owner has this permission and the Outposts bucket owner can grant this permission to others.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples\">Examples</a> section.</p> <p>For more information about object expiration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#intro-lifecycle-rules-actions\">Elements to Describe Lifecycle Actions</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html\">PutBucketLifecycleConfiguration</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html\">GetBucketLifecycleConfiguration</a> </p> </li> </ul>",
+    "DeleteBucketLifecycleConfiguration": "<note> <p>This action deletes an Amazon S3 on Outposts bucket's lifecycle configuration. To delete an S3 bucket's lifecycle configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html\">DeleteBucketLifecycle</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Deletes the lifecycle configuration from the specified Outposts bucket. Amazon S3 on Outposts removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 on Outposts no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>To use this operation, you must have permission to perform the <code>s3-outposts:PutLifecycleConfiguration</code> action. By default, the bucket owner has this permission and the Outposts bucket owner can grant this permission to others.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples\">Examples</a> section.</p> <p>For more information about object expiration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#intro-lifecycle-rules-actions\">Elements to Describe Lifecycle Actions</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html\">PutBucketLifecycleConfiguration</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html\">GetBucketLifecycleConfiguration</a> </p> </li> </ul>",
     "DeleteBucketPolicy": "<note> <p>This action deletes an Amazon S3 on Outposts bucket policy. To delete an S3 bucket policy, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html\">DeleteBucketPolicy</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>This implementation of the DELETE action uses the policy subresource to delete the policy of a specified Amazon S3 on Outposts bucket. If you are using an identity other than the root user of the Amazon Web Services account that owns the bucket, the calling identity must have the <code>s3-outposts:DeleteBucketPolicy</code> permissions on the specified Outposts bucket and belong to the bucket owner's account to use this action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>If you don't have <code>DeleteBucketPolicy</code> permissions, Amazon S3 returns a <code>403 Access Denied</code> error. If you have the correct permissions, but you're not using an identity that belongs to the bucket owner's account, Amazon S3 returns a <code>405 Method Not Allowed</code> error. </p> <important> <p>As a security precaution, the root user of the Amazon Web Services account that owns a bucket can always use this action, even if the policy explicitly denies the root user the ability to perform this action.</p> </important> <p>For more information about bucket policies, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html\">Using Bucket Policies and User Policies</a>. </p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteBucketPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html\">GetBucketPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html\">PutBucketPolicy</a> </p> </li> </ul>",
     "DeleteBucketReplication": "<note> <p>This operation deletes an Amazon S3 on Outposts bucket's replication configuration. To delete an S3 bucket's replication configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html\">DeleteBucketReplication</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Deletes the replication configuration from the specified S3 on Outposts bucket.</p> <p>To use this operation, you must have permissions to perform the <code>s3-outposts:PutReplicationConfiguration</code> action. The Outposts bucket owner has this permission by default and can grant it to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html\">Setting up IAM with S3 on Outposts</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html\">Managing access to S3 on Outposts buckets</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests for a replication configuration to all S3 on Outposts systems. Therefore, the replication configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code> or <code>DELETE</code> request might return a more recent result than what's on the Outpost. If an Outpost is offline, the delay in updating the replication configuration on that Outpost can be significant.</p> </note> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples\">Examples</a> section.</p> <p>For information about S3 replication on Outposts configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html\">Replicating objects for S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following operations are related to <code>DeleteBucketReplication</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html\">PutBucketReplication</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html\">GetBucketReplication</a> </p> </li> </ul>",
     "DeleteBucketTagging": "<note> <p>This action deletes an Amazon S3 on Outposts bucket's tags. To delete an S3 bucket tags, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html\">DeleteBucketTagging</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Deletes the tags from the Outposts bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>To use this action, you must have permission to perform the <code>PutBucketTagging</code> action. By default, the bucket owner has this permission and can grant this permission to others. </p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteBucketTagging</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html\">GetBucketTagging</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html\">PutBucketTagging</a> </p> </li> </ul>",
@@ -21,6 +22,7 @@
     "DeletePublicAccessBlock": "<p>Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\"> Using Amazon S3 block public access</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html\">GetPublicAccessBlock</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html\">PutPublicAccessBlock</a> </p> </li> </ul>",
     "DeleteStorageLensConfiguration": "<p>Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "DeleteStorageLensConfigurationTagging": "<p>Deletes the Amazon S3 Storage Lens configuration tags. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
+    "DeleteStorageLensGroup": "<p> Deletes an existing S3 Storage Lens group.</p> <p>To use this operation, you must have the permission to perform the <code>s3:DeleteStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
     "DescribeJob": "<p>Retrieves the configuration parameters and status for a Batch Operations job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "DescribeMultiRegionAccessPointOperation": "<p>Retrieves the status of an asynchronous request to manage a Multi-Region Access Point. For more information about managing Multi-Region Access Points and how asynchronous requests work, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>GetMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
     "GetAccessPoint": "<p>Returns configuration information about the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>GetAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
@@ -44,12 +46,15 @@
     "GetPublicAccessBlock": "<p>Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\"> Using Amazon S3 block public access</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html\">DeletePublicAccessBlock</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html\">PutPublicAccessBlock</a> </p> </li> </ul>",
     "GetStorageLensConfiguration": "<p>Gets the Amazon S3 Storage Lens configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "GetStorageLensConfigurationTagging": "<p>Gets the tags of Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
+    "GetStorageLensGroup": "<p> Retrieves the Storage Lens group configuration details.</p> <p>To use this operation, you must have the permission to perform the <code>s3:GetStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
     "ListAccessPoints": "<p>Returns a list of the access points that are owned by the current account that's associated with the specified bucket. You can retrieve up to 1000 access points per call. If the specified bucket has more than 1,000 access points (or the number specified in <code>maxResults</code>, whichever is less), the response will include a continuation token that you can use to list the additional access points.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>ListAccessPoints</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> </ul>",
     "ListAccessPointsForObjectLambda": "<p>Returns some or all (up to 1,000) access points associated with the Object Lambda Access Point per call. If there are more access points than what can be returned in one call, the response will include a continuation token that you can use to list the additional access points.</p> <p>The following actions are related to <code>ListAccessPointsForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> </ul>",
     "ListJobs": "<p>Lists current S3 Batch Operations jobs and jobs that have ended within the last 30 days for the Amazon Web Services account making the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>Related actions include:</p> <p/> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "ListMultiRegionAccessPoints": "<p>Returns a list of the Multi-Region Access Points currently associated with the specified Amazon Web Services account. Each call can return up to 100 Multi-Region Access Points, the maximum number of Multi-Region Access Points that can be associated with a single account.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>ListMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> </ul>",
     "ListRegionalBuckets": "<p>Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated sender of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples\">Examples</a> section.</p>",
     "ListStorageLensConfigurations": "<p>Gets a list of Amazon S3 Storage Lens configurations. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:ListStorageLensConfigurations</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
+    "ListStorageLensGroups": "<p> Lists all the Storage Lens groups in the specified home Region. </p> <p>To use this operation, you must have the permission to perform the <code>s3:ListStorageLensGroups</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
+    "ListTagsForResource": "<p> This operation allows you to list all the Amazon Web Services resource tags for the specified resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:ListTagsForResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
     "PutAccessPointConfigurationForObjectLambda": "<p>Replaces configuration for an Object Lambda Access Point.</p> <p>The following actions are related to <code>PutAccessPointConfigurationForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointConfigurationForObjectLambda.html\">GetAccessPointConfigurationForObjectLambda</a> </p> </li> </ul>",
     "PutAccessPointPolicy": "<p>Associates an access policy with the specified access point. Each access point can have only one policy, so a request made to this API replaces any existing policy associated with the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>PutAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html\">GetAccessPointPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html\">DeleteAccessPointPolicy</a> </p> </li> </ul>",
     "PutAccessPointPolicyForObjectLambda": "<p>Creates or replaces resource policy for an Object Lambda Access Point. For an example policy, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli\">Creating Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>PutAccessPointPolicyForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicyForObjectLambda.html\">DeleteAccessPointPolicyForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html\">GetAccessPointPolicyForObjectLambda</a> </p> </li> </ul>",
@@ -64,8 +69,11 @@
     "PutStorageLensConfiguration": "<p>Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Working with Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "PutStorageLensConfigurationTagging": "<p>Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "SubmitMultiRegionAccessPointRoutes": "<p>Submits an updated route configuration for a Multi-Region Access Point. This API operation updates the routing status for the specified Regions from active to passive, or from passive to active. A value of <code>0</code> indicates a passive status, which means that traffic won't be routed to the specified Region. A value of <code>100</code> indicates an active status, which means that traffic will be routed to the specified Region. At least one Region must be active at all times.</p> <p>When the routing configuration is changed, any in-progress operations (uploads, copies, deletes, and so on) to formerly active Regions will continue to run to their final completion state (success or failure). The routing configurations of any Regions that aren’t specified remain unchanged.</p> <note> <p>Updated routing configurations might not be immediately applied. It can take up to 2 minutes for your changes to take effect.</p> </note> <p>To submit routing control changes and failover requests, use the Amazon S3 failover control infrastructure endpoints in these five Amazon Web Services Regions:</p> <ul> <li> <p> <code>us-east-1</code> </p> </li> <li> <p> <code>us-west-2</code> </p> </li> <li> <p> <code>ap-southeast-2</code> </p> </li> <li> <p> <code>ap-northeast-1</code> </p> </li> <li> <p> <code>eu-west-1</code> </p> </li> </ul> <note> <p>Your Amazon S3 bucket does not need to be in these five Regions.</p> </note>",
+    "TagResource": "<p> Creates a new Amazon Web Services resource tag or updates an existing resource tag. You can add up to 50 Amazon Web Services resource tags for each S3 resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:TagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
+    "UntagResource": "<p> This operation removes the specified Amazon Web Services resource tags from an S3 resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:UntagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
     "UpdateJobPriority": "<p>Updates an existing S3 Batch Operations job's priority. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
-    "UpdateJobStatus": "<p>Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>"
+    "UpdateJobStatus": "<p>Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
+    "UpdateStorageLensGroup": "<p> Updates the existing Storage Lens group.</p> <p>To use this operation, you must have the permission to perform the <code>s3:UpdateStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>"
   },
   "shapes": {
     "AbortIncompleteMultipartUpload": {
@@ -115,6 +123,7 @@
         "CreateAccessPointRequest$BucketAccountId": "<p>The Amazon Web Services account ID associated with the S3 bucket associated with this access point.</p>",
         "CreateJobRequest$AccountId": "<p>The Amazon Web Services account ID that creates the job.</p>",
         "CreateMultiRegionAccessPointRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point. The owner of the Multi-Region Access Point also must own the underlying buckets.</p>",
+        "CreateStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID that the Storage Lens group is created from and associated with. </p>",
         "DeleteAccessPointForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "DeleteAccessPointPolicyForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "DeleteAccessPointPolicyRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
@@ -129,6 +138,7 @@
         "DeletePublicAccessBlockRequest$AccountId": "<p>The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code> configuration you want to remove.</p>",
         "DeleteStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "DeleteStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
+        "DeleteStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID used to create the Storage Lens group that you're trying to delete. </p>",
         "DescribeJobRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "DescribeMultiRegionAccessPointOperationRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
         "Destination$Account": "<p>The destination bucket owner's account ID. </p>",
@@ -154,12 +164,15 @@
         "GetPublicAccessBlockRequest$AccountId": "<p>The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code> configuration you want to retrieve.</p>",
         "GetStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "GetStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
+        "GetStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID associated with the Storage Lens group that you're trying to retrieve the details for. </p>",
         "ListAccessPointsForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "ListAccessPointsRequest$AccountId": "<p>The Amazon Web Services account ID for the account that owns the specified access points.</p>",
         "ListJobsRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "ListMultiRegionAccessPointsRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
         "ListRegionalBucketsRequest$AccountId": "<p>The Amazon Web Services account ID of the Outposts bucket.</p>",
         "ListStorageLensConfigurationsRequest$AccountId": "<p>The account ID of the requester.</p>",
+        "ListStorageLensGroupsRequest$AccountId": "<p> The Amazon Web Services account ID that owns the Storage Lens groups. </p>",
+        "ListTagsForResourceRequest$AccountId": "<p> The Amazon Web Services account ID of the resource owner. </p>",
         "PutAccessPointConfigurationForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "PutAccessPointPolicyForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "PutAccessPointPolicyRequest$AccountId": "<p>The Amazon Web Services account ID for owner of the bucket associated with the specified access point.</p>",
@@ -179,12 +192,15 @@
         "S3JobManifestGenerator$ExpectedBucketOwner": "<p>The Amazon Web Services account ID that owns the bucket the generated manifest is written to. If provided the generated manifest bucket's owner Amazon Web Services account ID must match this value, else the job fails.</p>",
         "S3ManifestOutputLocation$ExpectedManifestBucketOwner": "<p>The Account ID that owns the bucket the generated manifest is written to.</p>",
         "SubmitMultiRegionAccessPointRoutesRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
+        "TagResourceRequest$AccountId": "<p> The Amazon Web Services account ID that created the S3 resource that you're trying to add tags to. </p>",
+        "UntagResourceRequest$AccountId": "<p> The Amazon Web Services account ID that owns the resource that you're trying to remove the tags from. </p>",
         "UpdateJobPriorityRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
-        "UpdateJobStatusRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>"
+        "UpdateJobStatusRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
+        "UpdateStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID of the Storage Lens group owner. </p>"
       }
     },
     "AccountLevel": {
-      "base": "<p>A container for the account-level Amazon S3 Storage Lens configuration.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
+      "base": "<p>A container element for the account-level Amazon S3 Storage Lens configuration.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
         "StorageLensConfiguration$AccountLevel": "<p>A container for all the account-level configurations of your S3 Storage Lens configuration.</p>"
       }
@@ -192,21 +208,21 @@
     "ActivityMetrics": {
       "base": "<p>The container element for Amazon S3 Storage Lens activity metrics. Activity metrics show details about how your storage is requested, such as requests (for example, All requests, Get requests, Put requests), bytes uploaded or downloaded, and errors.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
-        "AccountLevel$ActivityMetrics": "<p>A container for S3 Storage Lens activity metrics.</p>",
+        "AccountLevel$ActivityMetrics": "<p>A container element for S3 Storage Lens activity metrics.</p>",
         "BucketLevel$ActivityMetrics": "<p>A container for the bucket-level activity metrics for S3 Storage Lens.</p>"
       }
     },
     "AdvancedCostOptimizationMetrics": {
       "base": "<p>The container element for Amazon S3 Storage Lens advanced cost-optimization metrics. Advanced cost-optimization metrics provide insights that you can use to manage and optimize your storage costs, for example, lifecycle rule counts for transitions, expirations, and incomplete multipart uploads.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
-        "AccountLevel$AdvancedCostOptimizationMetrics": "<p>A container for S3 Storage Lens advanced cost-optimization metrics.</p>",
+        "AccountLevel$AdvancedCostOptimizationMetrics": "<p>A container element for S3 Storage Lens advanced cost-optimization metrics.</p>",
         "BucketLevel$AdvancedCostOptimizationMetrics": "<p>A container for bucket-level advanced cost-optimization metrics for S3 Storage Lens.</p>"
       }
     },
     "AdvancedDataProtectionMetrics": {
       "base": "<p>The container element for Amazon S3 Storage Lens advanced data-protection metrics. Advanced data-protection metrics provide insights that you can use to perform audits and protect your data, for example replication rule counts within and across Regions.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
-        "AccountLevel$AdvancedDataProtectionMetrics": "<p>A container for S3 Storage Lens advanced data-protection metrics.</p>",
+        "AccountLevel$AdvancedDataProtectionMetrics": "<p>A container element for S3 Storage Lens advanced data-protection metrics.</p>",
         "BucketLevel$AdvancedDataProtectionMetrics": "<p>A container for bucket-level advanced data-protection metrics for S3 Storage Lens.</p>"
       }
     },
@@ -333,7 +349,7 @@
     "BucketLevel": {
       "base": "<p>A container for the bucket-level configuration for Amazon S3 Storage Lens.</p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
-        "AccountLevel$BucketLevel": "<p>A container for the S3 Storage Lens bucket-level configuration.</p>"
+        "AccountLevel$BucketLevel": "<p>A container element for the S3 Storage Lens bucket-level configuration.</p>"
       }
     },
     "BucketLocationConstraint": {
@@ -423,7 +439,9 @@
       "base": null,
       "refs": {
         "ListStorageLensConfigurationsRequest$NextToken": "<p>A pagination token to request the next page of results.</p>",
-        "ListStorageLensConfigurationsResult$NextToken": "<p>If the request produced more than the maximum number of S3 Storage Lens configuration results, you can pass this value into a subsequent request to retrieve the next page of results.</p>"
+        "ListStorageLensConfigurationsResult$NextToken": "<p>If the request produced more than the maximum number of S3 Storage Lens configuration results, you can pass this value into a subsequent request to retrieve the next page of results.</p>",
+        "ListStorageLensGroupsRequest$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no more results. </p>",
+        "ListStorageLensGroupsResult$NextToken": "<p> If <code>NextToken</code> is returned, there are more Storage Lens groups results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>"
       }
     },
     "CreateAccessPointForObjectLambdaRequest": {
@@ -485,6 +503,11 @@
       }
     },
     "CreateMultiRegionAccessPointResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateStorageLensGroupRequest": {
       "base": null,
       "refs": {
       }
@@ -630,6 +653,11 @@
       "refs": {
       }
     },
+    "DeleteStorageLensGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeJobRequest": {
       "base": null,
       "refs": {
@@ -659,7 +687,7 @@
     "DetailedStatusCodesMetrics": {
       "base": "<p>The container element for Amazon S3 Storage Lens detailed status code metrics. Detailed status code metrics generate metrics for HTTP status codes, such as <code>200 OK</code>, <code>403 Forbidden</code>, <code>503 Service Unavailable</code> and others. </p> <p>For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html\">Assessing your storage activity and usage with S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
-        "AccountLevel$DetailedStatusCodesMetrics": "<p>A container for detailed status code metrics. </p>",
+        "AccountLevel$DetailedStatusCodesMetrics": "<p>A container element for detailed status code metrics. </p>",
         "BucketLevel$DetailedStatusCodesMetrics": "<p>A container for bucket-level detailed status code metrics for S3 Storage Lens.</p>"
       }
     },
@@ -957,6 +985,16 @@
       }
     },
     "GetStorageLensConfigurationTaggingResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStorageLensGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStorageLensGroupResult": {
       "base": null,
       "refs": {
       }
@@ -1396,6 +1434,32 @@
       "refs": {
       }
     },
+    "ListStorageLensGroupEntry": {
+      "base": "<p> Each entry contains a Storage Lens group that exists in the specified home Region. </p>",
+      "refs": {
+        "StorageLensGroupList$member": null
+      }
+    },
+    "ListStorageLensGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStorageLensGroupsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Location": {
       "base": null,
       "refs": {
@@ -1424,6 +1488,46 @@
       "base": null,
       "refs": {
         "S3ManifestOutputLocation$ManifestPrefix": "<p>Prefix identifying one or more objects to which the manifest applies.</p>"
+      }
+    },
+    "MatchAnyPrefix": {
+      "base": null,
+      "refs": {
+        "StorageLensGroupAndOperator$MatchAnyPrefix": "<p> Contains a list of prefixes. At least one prefix must be specified. Up to 10 prefixes are allowed. </p>",
+        "StorageLensGroupFilter$MatchAnyPrefix": "<p> Contains a list of prefixes. At least one prefix must be specified. Up to 10 prefixes are allowed. </p>",
+        "StorageLensGroupOrOperator$MatchAnyPrefix": "<p> Filters objects that match any of the specified prefixes. </p>"
+      }
+    },
+    "MatchAnySuffix": {
+      "base": null,
+      "refs": {
+        "StorageLensGroupAndOperator$MatchAnySuffix": "<p> Contains a list of suffixes. At least one suffix must be specified. Up to 10 suffixes are allowed. </p>",
+        "StorageLensGroupFilter$MatchAnySuffix": "<p> Contains a list of suffixes. At least one suffix must be specified. Up to 10 suffixes are allowed. </p>",
+        "StorageLensGroupOrOperator$MatchAnySuffix": "<p> Filters objects that match any of the specified suffixes. </p>"
+      }
+    },
+    "MatchAnyTag": {
+      "base": null,
+      "refs": {
+        "StorageLensGroupAndOperator$MatchAnyTag": "<p> Contains the list of object tags. At least one object tag must be specified. Up to 10 object tags are allowed. </p>",
+        "StorageLensGroupFilter$MatchAnyTag": "<p> Contains the list of S3 object tags. At least one object tag must be specified. Up to 10 object tags are allowed. </p>",
+        "StorageLensGroupOrOperator$MatchAnyTag": "<p> Filters objects that match any of the specified S3 object tags. </p>"
+      }
+    },
+    "MatchObjectAge": {
+      "base": "<p> A filter condition that specifies the object age range of included objects in days. Only integers are supported. </p>",
+      "refs": {
+        "StorageLensGroupAndOperator$MatchObjectAge": "<p> Contains <code>DaysGreaterThan</code> and <code>DaysLessThan</code> to define the object age range (minimum and maximum number of days). </p>",
+        "StorageLensGroupFilter$MatchObjectAge": "<p> Contains <code>DaysGreaterThan</code> and <code>DaysLessThan</code> to define the object age range (minimum and maximum number of days). </p>",
+        "StorageLensGroupOrOperator$MatchObjectAge": "<p> Filters objects that match the specified object age range. </p>"
+      }
+    },
+    "MatchObjectSize": {
+      "base": "<p> A filter condition that specifies the object size range of included objects in bytes. Only integers are supported. </p>",
+      "refs": {
+        "StorageLensGroupAndOperator$MatchObjectSize": "<p> Contains <code>BytesGreaterThan</code> and <code>BytesLessThan</code> to define the object size range (minimum and maximum number of Bytes). </p>",
+        "StorageLensGroupFilter$MatchObjectSize": "<p> Contains <code>BytesGreaterThan</code> and <code>BytesLessThan</code> to define the object size range (minimum and maximum number of Bytes). </p>",
+        "StorageLensGroupOrOperator$MatchObjectSize": "<p> Filters objects that match the specified object size range. </p>"
       }
     },
     "MaxLength1024String": {
@@ -1651,6 +1755,13 @@
       "refs": {
       }
     },
+    "ObjectAgeValue": {
+      "base": null,
+      "refs": {
+        "MatchObjectAge$DaysGreaterThan": "<p> Specifies the maximum object age in days. Must be a positive whole number, greater than the minimum object age and less than or equal to 2,147,483,647. </p>",
+        "MatchObjectAge$DaysLessThan": "<p> Specifies the minimum object age in days. The value must be a positive whole number, greater than 0 and less than or equal to 2,147,483,647. </p>"
+      }
+    },
     "ObjectCreationTime": {
       "base": null,
       "refs": {
@@ -1796,6 +1907,13 @@
         "LifecycleRuleFilter$ObjectSizeLessThan": "<p>Maximum object size to which the rule applies.</p>"
       }
     },
+    "ObjectSizeValue": {
+      "base": null,
+      "refs": {
+        "MatchObjectSize$BytesGreaterThan": "<p> Specifies the minimum object size in Bytes. The value must be a positive number, greater than 0 and less than 5 TB. </p>",
+        "MatchObjectSize$BytesLessThan": "<p> Specifies the maximum object size in Bytes. The value must be a positive number, greater than the minimum object size and less than 5 TB. </p>"
+      }
+    },
     "OperationName": {
       "base": null,
       "refs": {
@@ -1839,6 +1957,7 @@
       "refs": {
         "LifecycleRuleAndOperator$Prefix": "<p>Prefix identifying one or more objects to which the rule applies.</p>",
         "LifecycleRuleFilter$Prefix": "<p>Prefix identifying one or more objects to which the rule applies.</p> <important> <p>When you're using XML requests, you must replace special characters (such as carriage returns) in object keys with their equivalent XML entity codes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\"> XML-related object key constraints</a> in the <i>Amazon S3 User Guide</i>.</p> </important>",
+        "MatchAnyPrefix$member": null,
         "ReplicationRule$Prefix": "<p>An object key name prefix that identifies the object or objects to which the rule applies. The maximum prefix length is 1,024 characters. To include all objects in an Outposts bucket, specify an empty string.</p> <important> <p>When you're using XML requests, you must replace special characters (such as carriage returns) in object keys with their equivalent XML entity codes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\"> XML-related object key constraints</a> in the <i>Amazon S3 User Guide</i>.</p> </important>",
         "ReplicationRuleAndOperator$Prefix": "<p>An object key name prefix that identifies the subset of objects that the rule applies to.</p>",
         "ReplicationRuleFilter$Prefix": "<p>An object key name prefix that identifies the subset of objects that the rule applies to.</p> <important> <p>When you're using XML requests, you must replace special characters (such as carriage returns) in object keys with their equivalent XML entity codes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\"> XML-related object key constraints</a> in the <i>Amazon S3 User Guide</i>.</p> </important>",
@@ -2147,6 +2266,7 @@
       "base": null,
       "refs": {
         "ListStorageLensConfigurationEntry$HomeRegion": "<p>A container for the S3 Storage Lens home Region. Your metrics data is stored and retained in your designated S3 Storage Lens home Region.</p>",
+        "ListStorageLensGroupEntry$HomeRegion": "<p> Contains the Amazon Web Services Region where the Storage Lens group was created. </p>",
         "Regions$member": null
       }
     },
@@ -2197,7 +2317,7 @@
     "S3ChecksumAlgorithm": {
       "base": null,
       "refs": {
-        "S3CopyObjectOperation$ChecksumAlgorithm": "<p>Indicates the algorithm that you want Amazon S3 to use to create the checksum. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
+        "S3CopyObjectOperation$ChecksumAlgorithm": "<p>Indicates the algorithm that you want Amazon S3 to use to create the checksum. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
       }
     },
     "S3ContentLength": {
@@ -2353,6 +2473,14 @@
         "JobOperation$S3ReplicateObject": "<p>Directs the specified job to invoke <code>ReplicateObject</code> on every object in the job's manifest.</p>"
       }
     },
+    "S3ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you want to list the tags for. </p>",
+        "TagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you're trying to add tags to. </p>",
+        "UntagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you want to remove the resource tags from. </p>"
+      }
+    },
     "S3Retention": {
       "base": "<p>Contains the S3 Object Lock retention mode to be applied to all objects in the S3 Batch Operations job. If you don't provide <code>Mode</code> and <code>RetainUntilDate</code> data types in your operation, you will remove the retention from your objects. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html\">Using S3 Object Lock retention with S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p>",
       "refs": {
@@ -2399,6 +2527,7 @@
       "base": "<p>A container for a key-value name pair.</p>",
       "refs": {
         "LifecycleRuleFilter$Tag": null,
+        "MatchAnyTag$member": null,
         "ReplicationRuleFilter$Tag": null,
         "S3TagSet$member": null
       }
@@ -2524,6 +2653,81 @@
         "S3BucketDestination$Encryption": "<p>The container for the type encryption of the metrics exports in this bucket.</p>"
       }
     },
+    "StorageLensGroup": {
+      "base": "<p>A custom grouping of objects that include filters for prefixes, suffixes, object tags, object size, or object age. You can create an S3 Storage Lens group that includes a single filter or multiple filter conditions. To specify multiple filter conditions, you use <code>AND</code> or <code>OR</code> logical operators. </p>",
+      "refs": {
+        "CreateStorageLensGroupRequest$StorageLensGroup": "<p> The Storage Lens group configuration. </p>",
+        "GetStorageLensGroupResult$StorageLensGroup": "<p> The name of the Storage Lens group that you're trying to retrieve the configuration details for. </p>",
+        "UpdateStorageLensGroupRequest$StorageLensGroup": "<p> The JSON file that contains the Storage Lens group configuration. </p>"
+      }
+    },
+    "StorageLensGroupAndOperator": {
+      "base": "<p> A logical operator that allows multiple filter conditions to be joined for more complex comparisons of Storage Lens group data. </p>",
+      "refs": {
+        "StorageLensGroupFilter$And": "<p>A logical operator that allows multiple filter conditions to be joined for more complex comparisons of Storage Lens group data. Objects must match all of the listed filter conditions that are joined by the <code>And</code> logical operator. Only one of each filter condition is allowed.</p>"
+      }
+    },
+    "StorageLensGroupArn": {
+      "base": null,
+      "refs": {
+        "ListStorageLensGroupEntry$StorageLensGroupArn": "<p> Contains the Amazon Resource Name (ARN) of the Storage Lens group. This property is read-only. </p>",
+        "StorageLensGroup$StorageLensGroupArn": "<p> Contains the Amazon Resource Name (ARN) of the Storage Lens group. This property is read-only. </p>",
+        "StorageLensGroupLevelExclude$member": null,
+        "StorageLensGroupLevelInclude$member": null
+      }
+    },
+    "StorageLensGroupFilter": {
+      "base": "<p>The filter element sets the criteria for the Storage Lens group data that is displayed. For multiple filter conditions, the <code>AND</code> or <code>OR</code> logical operator is used.</p>",
+      "refs": {
+        "StorageLensGroup$Filter": "<p>Sets the criteria for the Storage Lens group data that is displayed. For multiple filter conditions, the <code>AND</code> or <code>OR</code> logical operator is used.</p>"
+      }
+    },
+    "StorageLensGroupLevel": {
+      "base": "<p> Specifies the Storage Lens groups to include in the Storage Lens group aggregation. </p>",
+      "refs": {
+        "AccountLevel$StorageLensGroupLevel": "<p> A container element for S3 Storage Lens groups metrics. </p>"
+      }
+    },
+    "StorageLensGroupLevelExclude": {
+      "base": null,
+      "refs": {
+        "StorageLensGroupLevelSelectionCriteria$Exclude": "<p> Indicates which Storage Lens group ARNs to exclude from the Storage Lens group aggregation. </p>"
+      }
+    },
+    "StorageLensGroupLevelInclude": {
+      "base": null,
+      "refs": {
+        "StorageLensGroupLevelSelectionCriteria$Include": "<p> Indicates which Storage Lens group ARNs to include in the Storage Lens group aggregation. </p>"
+      }
+    },
+    "StorageLensGroupLevelSelectionCriteria": {
+      "base": "<p> Indicates which Storage Lens group ARNs to include or exclude in the Storage Lens group aggregation. You can only attach Storage Lens groups to your Storage Lens dashboard if they're included in your Storage Lens group aggregation. If this value is left null, then all Storage Lens groups are selected. </p>",
+      "refs": {
+        "StorageLensGroupLevel$SelectionCriteria": "<p> Indicates which Storage Lens group ARNs to include or exclude in the Storage Lens group aggregation. If this value is left null, then all Storage Lens groups are selected. </p>"
+      }
+    },
+    "StorageLensGroupList": {
+      "base": null,
+      "refs": {
+        "ListStorageLensGroupsResult$StorageLensGroupList": "<p> The list of Storage Lens groups that exist in the specified home Region. </p>"
+      }
+    },
+    "StorageLensGroupName": {
+      "base": null,
+      "refs": {
+        "DeleteStorageLensGroupRequest$Name": "<p> The name of the Storage Lens group that you're trying to delete. </p>",
+        "GetStorageLensGroupRequest$Name": "<p> The name of the Storage Lens group that you're trying to retrieve the configuration details for. </p>",
+        "ListStorageLensGroupEntry$Name": "<p> Contains the name of the Storage Lens group that exists in the specified home Region. </p>",
+        "StorageLensGroup$Name": "<p> Contains the name of the Storage Lens group. </p>",
+        "UpdateStorageLensGroupRequest$Name": "<p> The name of the Storage Lens group that you want to update. </p>"
+      }
+    },
+    "StorageLensGroupOrOperator": {
+      "base": "<p>A container element for specifying <code>Or</code> rule conditions. The rule conditions determine the subset of objects to which the <code>Or</code> rule applies. Objects can match any of the listed filter conditions, which are joined by the <code>Or</code> logical operator. Only one of each filter condition is allowed.</p>",
+      "refs": {
+        "StorageLensGroupFilter$Or": "<p>A single logical operator that allows multiple filter conditions to be joined. Objects can match any of the listed filter conditions, which are joined by the <code>Or</code> logical operator. Only one of each filter condition is allowed. </p>"
+      }
+    },
     "StorageLensPrefixLevelDelimiter": {
       "base": null,
       "refs": {
@@ -2567,6 +2771,12 @@
       "refs": {
       }
     },
+    "Suffix": {
+      "base": null,
+      "refs": {
+        "MatchAnySuffix$member": null
+      }
+    },
     "SuspendedCause": {
       "base": null,
       "refs": {
@@ -2579,18 +2789,51 @@
         "JobDescriptor$SuspendedDate": "<p>The timestamp when this job was suspended, if it has been suspended.</p>"
       }
     },
+    "Tag": {
+      "base": "<p> An Amazon Web Services resource tag that's associated with your S3 resource. You can add tags to new objects when you upload them, or you can add object tags to existing objects. </p> <note> <p>This data type is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p> The tag key pair of the S3 resource tag that you're trying to remove. </p>"
+      }
+    },
     "TagKeyString": {
       "base": null,
       "refs": {
         "S3Tag$Key": "<p>Key of the tag</p>",
-        "StorageLensTag$Key": "<p/>"
+        "StorageLensTag$Key": "<p/>",
+        "Tag$Key": "<p> The tag key for your Amazon Web Services resource. A tag key can be up to 128 Unicode characters in length and is case-sensitive. System created tags that begin with <code>aws:</code> aren’t supported. </p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateStorageLensGroupRequest$Tags": "<p> The Amazon Web Services resource tags that you're adding to your Storage Lens group. This parameter is optional. </p>",
+        "ListTagsForResourceResult$Tags": "<p> The Amazon Web Services resource tags that are associated with the resource. </p>",
+        "TagResourceRequest$Tags": "<p> The Amazon Web Services resource tags that you want to add to the specified S3 resource. </p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResult": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValueString": {
       "base": null,
       "refs": {
         "S3Tag$Value": "<p>Value of the tag</p>",
-        "StorageLensTag$Value": "<p/>"
+        "StorageLensTag$Value": "<p/>",
+        "Tag$Value": "<p> The tag value for your Amazon Web Services resource. A tag value can be up to 256 Unicode characters in length and is case-sensitive. </p>"
       }
     },
     "Tagging": {
@@ -2644,6 +2887,16 @@
         "Transition$StorageClass": "<p>The storage class to which you want the object to transition.</p>"
       }
     },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateJobPriorityRequest": {
       "base": null,
       "refs": {
@@ -2660,6 +2913,11 @@
       }
     },
     "UpdateJobStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStorageLensGroupRequest": {
       "base": null,
       "refs": {
       }

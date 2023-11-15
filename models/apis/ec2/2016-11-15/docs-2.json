@@ -290,6 +290,7 @@
     "DescribeLocalGatewayVirtualInterfaceGroups": "<p>Describes the specified local gateway virtual interface groups.</p>",
     "DescribeLocalGatewayVirtualInterfaces": "<p>Describes the specified local gateway virtual interfaces.</p>",
     "DescribeLocalGateways": "<p>Describes one or more local gateways. By default, all local gateways are described. Alternatively, you can filter the results.</p>",
+    "DescribeLockedSnapshots": "<p>Describes the lock status for a snapshot.</p>",
     "DescribeManagedPrefixLists": "<p>Describes your managed prefix lists and any Amazon Web Services-managed prefix lists.</p> <p>To view the entries for your prefix list, use <a>GetManagedPrefixListEntries</a>.</p>",
     "DescribeMovingAddresses": "<note> <p>This action is deprecated.</p> </note> <p>Describes your Elastic IP addresses that are being moved from or being restored to the EC2-Classic platform. This request does not return information about any other Elastic IP addresses in your account.</p>",
     "DescribeNatGateways": "<p>Describes one or more of your NAT gateways.</p>",
@@ -476,6 +477,7 @@
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.</p> <p>This API action supports only single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a> instead. To import a disk to a snapshot, use <a>ImportSnapshot</a> instead.</p> <p>This API action is not supported by the Command Line Interface (CLI). For information about using the Amazon EC2 CLI, which is deprecated, see <a href=\"https://awsdocs.s3.amazonaws.com/EC2/ec2-clt.pdf#importing-your-volumes-into-amazon-ebs\">Importing Disks to Amazon EBS</a> in the <i>Amazon EC2 CLI Reference</i> PDF file.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "ListImagesInRecycleBin": "<p>Lists one or more AMIs that are currently in the Recycle Bin. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\">Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ListSnapshotsInRecycleBin": "<p>Lists one or more snapshots that are currently in the Recycle Bin.</p>",
+    "LockSnapshot": "<p>Locks an Amazon EBS snapshot in either <i>governance</i> or <i>compliance</i> mode to protect it against accidental or malicious deletions for a specific duration. A locked snapshot can't be deleted.</p> <p>You can also use this action to modify the lock settings for a snapshot that is already locked. The allowed modifications depend on the lock mode and lock state:</p> <ul> <li> <p>If the snapshot is locked in governance mode, you can modify the lock mode and the lock duration or lock expiration date.</p> </li> <li> <p>If the snapshot is locked in compliance mode and it is in the cooling-off period, you can modify the lock mode and the lock duration or lock expiration date.</p> </li> <li> <p>If the snapshot is locked in compliance mode and the cooling-off period has lapsed, you can only increase the lock duration or extend the lock expiration date.</p> </li> </ul>",
     "ModifyAddressAttribute": "<p>Modifies an attribute of the specified Elastic IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ModifyAvailabilityZoneGroup": "<p>Changes the opt-in status of the Local Zone and Wavelength Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
@@ -604,6 +606,7 @@
     "UnassignIpv6Addresses": "<p>Unassigns one or more IPv6 addresses IPv4 Prefix Delegation prefixes from a network interface.</p>",
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses, or IPv4 Prefix Delegation prefixes from a network interface.</p>",
     "UnassignPrivateNatGatewayAddress": "<p>Unassigns secondary private IPv4 addresses from a private NAT gateway. You cannot unassign your primary private IP. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\">Edit secondary IP address associations</a> in the <i>Amazon VPC User Guide</i>.</p> <p>While unassigning is in progress, you cannot assign/unassign additional IP addresses while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>A private IP address will only be released at the end of MaxDrainDurationSeconds. The private IP addresses stay associated and support the existing connections, but do not support any new connections (new connections are distributed across the remaining assigned private IP address). After the existing connections drain out, the private IP addresses are released.</p> <p/> <p/>",
+    "UnlockSnapshot": "<p>Unlocks a snapshot that is locked in governance mode or that is locked in compliance mode but still in the cooling-off period. You can't unlock a snapshot that is locked in compliance mode after the cooling-off period has expired.</p>",
     "UnmonitorInstances": "<p>Disables detailed monitoring for a running instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring your instances and volumes</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "UpdateSecurityGroupRuleDescriptionsEgress": "<p>Updates the description of an egress (outbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
     "UpdateSecurityGroupRuleDescriptionsIngress": "<p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
@@ -2246,6 +2249,7 @@
         "DescribeLocalGatewayVirtualInterfaceGroupsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeLocalGatewayVirtualInterfacesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeLocalGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeLockedSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeManagedPrefixListsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeMovingAddressesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeNatGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2537,6 +2541,7 @@
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
         "ListImagesInRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ListSnapshotsInRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "LockSnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
@@ -2798,6 +2803,7 @@
         "TransitGatewayRouteTable$DefaultPropagationRouteTable": "<p>Indicates whether this is the default propagation route table for the transit gateway.</p>",
         "TunnelOption$EnableTunnelLifecycleControl": "<p>Status of tunnel endpoint lifecycle control feature.</p>",
         "UnassignPrivateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "UnlockSnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UnmonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsEgressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
@@ -3844,6 +3850,19 @@
       "base": null,
       "refs": {
         "ConversionTask$State": "<p>The state of the conversion task.</p>"
+      }
+    },
+    "CoolOffPeriodRequestHours": {
+      "base": null,
+      "refs": {
+        "LockSnapshotRequest$CoolOffPeriod": "<p>The cooling-off period during which you can unlock the snapshot or modify the lock settings after locking the snapshot in compliance mode, in hours. After the cooling-off period expires, you can't unlock or delete the snapshot, decrease the lock duration, or change the lock mode. You can increase the lock duration after the cooling-off period expires.</p> <p>The cooling-off period is optional when locking a snapshot in compliance mode. If you are locking the snapshot in governance mode, omit this parameter.</p> <p>To lock the snapshot in compliance mode immediately without a cooling-off period, omit this parameter.</p> <p>If you are extending the lock duration for a snapshot that is locked in compliance mode after the cooling-off period has expired, omit this parameter. If you specify a cooling-period in a such a request, the request fails.</p> <p>Allowed values: Min 1, max 72.</p>"
+      }
+    },
+    "CoolOffPeriodResponseHours": {
+      "base": null,
+      "refs": {
+        "LockSnapshotResult$CoolOffPeriod": "<p>The compliance mode cooling-off period, in hours.</p>",
+        "LockedSnapshotsInfo$CoolOffPeriod": "<p>The compliance mode cooling-off period, in hours.</p>"
       }
     },
     "CopyFpgaImageRequest": {
@@ -6801,6 +6820,22 @@
       "refs": {
       }
     },
+    "DescribeLockedSnapshotsMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeLockedSnapshotsRequest$MaxResults": "<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p>"
+      }
+    },
+    "DescribeLockedSnapshotsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLockedSnapshotsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeManagedPrefixListsRequest": {
       "base": null,
       "refs": {
@@ -9259,6 +9294,7 @@
         "DescribeLocalGatewayVirtualInterfaceGroupsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>local-gateway-id</code> - The ID of a local gateway.</p> </li> <li> <p> <code>local-gateway-virtual-interface-group-id</code> - The ID of the virtual interface group.</p> </li> <li> <p> <code>local-gateway-virtual-interface-id</code> - The ID of the virtual interface.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the local gateway virtual interface group.</p> </li> </ul>",
         "DescribeLocalGatewayVirtualInterfacesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>local-address</code> - The local address.</p> </li> <li> <p> <code>local-bgp-asn</code> - The Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the local gateway.</p> </li> <li> <p> <code>local-gateway-id</code> - The ID of the local gateway.</p> </li> <li> <p> <code>local-gateway-virtual-interface-id</code> - The ID of the virtual interface.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the local gateway virtual interface.</p> </li> <li> <p> <code>peer-address</code> - The peer address.</p> </li> <li> <p> <code>peer-bgp-asn</code> - The peer BGP ASN.</p> </li> <li> <p> <code>vlan</code> - The ID of the VLAN.</p> </li> </ul>",
         "DescribeLocalGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>local-gateway-id</code> - The ID of a local gateway.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the local gateway.</p> </li> <li> <p> <code>state</code> - The state of the association.</p> </li> </ul>",
+        "DescribeLockedSnapshotsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>lock-state</code> - The state of the snapshot lock (<code>compliance-cooloff</code> | <code>governance</code> | <code>compliance</code> | <code>expired</code>).</p> </li> </ul>",
         "DescribeManagedPrefixListsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>owner-id</code> - The ID of the prefix list owner.</p> </li> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>prefix-list-name</code> - The name of the prefix list.</p> </li> </ul>",
         "DescribeMovingAddressesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>moving-status</code> - The status of the Elastic IP address (<code>MovingToVpc</code> | <code>RestoringToClassic</code>).</p> </li> </ul>",
         "DescribeNatGatewaysRequest$Filter": "<p>The filters.</p> <ul> <li> <p> <code>nat-gateway-id</code> - The ID of the NAT gateway.</p> </li> <li> <p> <code>state</code> - The state of the NAT gateway (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet in which the NAT gateway resides.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the NAT gateway resides.</p> </li> </ul>",
@@ -13898,6 +13934,41 @@
         "InstanceTypeOffering$LocationType": "<p>The location type.</p>"
       }
     },
+    "LockMode": {
+      "base": null,
+      "refs": {
+        "LockSnapshotRequest$LockMode": "<p>The mode in which to lock the snapshot. Specify one of the following:</p> <ul> <li> <p> <code>governance</code> - Locks the snapshot in governance mode. Snapshots locked in governance mode can't be deleted until one of the following conditions are met:</p> <ul> <li> <p>The lock duration expires.</p> </li> <li> <p>The snapshot is unlocked by a user with the appropriate permissions.</p> </li> </ul> <p>Users with the appropriate IAM permissions can unlock the snapshot, increase or decrease the lock duration, and change the lock mode to <code>compliance</code> at any time.</p> <p>If you lock a snapshot in <code>governance</code> mode, omit <b> CoolOffPeriod</b>.</p> </li> <li> <p> <code>compliance</code> - Locks the snapshot in compliance mode. Snapshots locked in compliance mode can't be unlocked by any user. They can be deleted only after the lock duration expires. Users can't decrease the lock duration or change the lock mode to <code>governance</code>. However, users with appropriate IAM permissions can increase the lock duration at any time.</p> <p>If you lock a snapshot in <code>compliance</code> mode, you can optionally specify <b>CoolOffPeriod</b>.</p> </li> </ul>"
+      }
+    },
+    "LockSnapshotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LockSnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LockState": {
+      "base": null,
+      "refs": {
+        "LockSnapshotResult$LockState": "<p>The state of the snapshot lock. Valid states include:</p> <ul> <li> <p> <code>compliance-cooloff</code> - The snapshot has been locked in compliance mode but it is still within the cooling-off period. The snapshot can't be deleted, but it can be unlocked and the lock settings can be modified by users with appropriate permissions.</p> </li> <li> <p> <code>governance</code> - The snapshot is locked in governance mode. The snapshot can't be deleted, but it can be unlocked and the lock settings can be modified by users with appropriate permissions.</p> </li> <li> <p> <code>compliance</code> - The snapshot is locked in compliance mode and the cooling-off period has expired. The snapshot can't be unlocked or deleted. The lock duration can only be increased by users with appropriate permissions.</p> </li> <li> <p> <code>expired</code> - The snapshot was locked in compliance or governance mode but the lock duration has expired. The snapshot is not locked and can be deleted.</p> </li> </ul>",
+        "LockedSnapshotsInfo$LockState": "<p>The state of the snapshot lock. Valid states include:</p> <ul> <li> <p> <code>compliance-cooloff</code> - The snapshot has been locked in compliance mode but it is still within the cooling-off period. The snapshot can't be deleted, but it can be unlocked and the lock settings can be modified by users with appropriate permissions.</p> </li> <li> <p> <code>governance</code> - The snapshot is locked in governance mode. The snapshot can't be deleted, but it can be unlocked and the lock settings can be modified by users with appropriate permissions.</p> </li> <li> <p> <code>compliance</code> - The snapshot is locked in compliance mode and the cooling-off period has expired. The snapshot can't be unlocked or deleted. The lock duration can only be increased by users with appropriate permissions.</p> </li> <li> <p> <code>expired</code> - The snapshot was locked in compliance or governance mode but the lock duration has expired. The snapshot is not locked and can be deleted.</p> </li> </ul>"
+      }
+    },
+    "LockedSnapshotsInfo": {
+      "base": "<p>Information about a locked snapshot.</p>",
+      "refs": {
+        "LockedSnapshotsInfoList$member": null
+      }
+    },
+    "LockedSnapshotsInfoList": {
+      "base": null,
+      "refs": {
+        "DescribeLockedSnapshotsResult$Snapshots": "<p>Information about the snapshots.</p>"
+      }
+    },
     "LogDestinationType": {
       "base": null,
       "refs": {
@@ -14153,6 +14224,15 @@
         "IpamDiscoveredAccount$LastSuccessfulDiscoveryTime": "<p>The last successful resource discovery time.</p>",
         "IpamDiscoveredResourceCidr$SampleTime": "<p>The last successful resource discovery time.</p>",
         "KeyPairInfo$CreateTime": "<p>If you used Amazon EC2 to create the key pair, this is the date and time when the key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p> <p>If you imported an existing key pair to Amazon EC2, this is the date and time the key was imported, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p>",
+        "LockSnapshotRequest$ExpirationDate": "<p>The date and time at which the snapshot lock is to automatically expire, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p> <p>You must specify either this parameter or <b>LockDuration</b>, but not both.</p>",
+        "LockSnapshotResult$CoolOffPeriodExpiresOn": "<p>The date and time at which the compliance mode cooling-off period expires, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockSnapshotResult$LockCreatedOn": "<p>The date and time at which the snapshot was locked, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockSnapshotResult$LockExpiresOn": "<p>The date and time at which the lock will expire, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockSnapshotResult$LockDurationStartTime": "<p>The date and time at which the lock duration started, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockedSnapshotsInfo$CoolOffPeriodExpiresOn": "<p>The date and time at which the compliance mode cooling-off period expires, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockedSnapshotsInfo$LockCreatedOn": "<p>The date and time at which the snapshot was locked, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
+        "LockedSnapshotsInfo$LockDurationStartTime": "<p>The date and time at which the lock duration started, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p> <p>If you lock a snapshot that is in the <code>pending</code> state, the lock duration starts only once the snapshot enters the <code>completed</code> state.</p>",
+        "LockedSnapshotsInfo$LockExpiresOn": "<p>The date and time at which the lock will expire, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p>",
         "MaintenanceDetails$MaintenanceAutoAppliedAfter": "<p>The timestamp after which Amazon Web Services will automatically apply maintenance.</p>",
         "MaintenanceDetails$LastMaintenanceApplied": "<p>Timestamp of last applied maintenance.</p>",
         "MetricPoint$StartDate": "<p>The start date for the metric point. The starting date for the metric point. The starting time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-10T12:00:00.000Z</code>.</p>",
@@ -17443,6 +17523,19 @@
         "DescribeInstanceEventWindowsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 20 and 500. You cannot specify this parameter and the event window IDs parameter in the same call.</p>"
       }
     },
+    "RetentionPeriodRequestDays": {
+      "base": null,
+      "refs": {
+        "LockSnapshotRequest$LockDuration": "<p>The period of time for which to lock the snapshot, in days. The snapshot lock will automatically expire after this period lapses.</p> <p>You must specify either this parameter or <b>ExpirationDate</b>, but not both.</p> <p>Allowed values: Min: 1, max 36500</p>"
+      }
+    },
+    "RetentionPeriodResponseDays": {
+      "base": null,
+      "refs": {
+        "LockSnapshotResult$LockDuration": "<p>The period of time for which the snapshot is locked, in days.</p>",
+        "LockedSnapshotsInfo$LockDuration": "<p>The period of time for which the snapshot is locked, in days.</p>"
+      }
+    },
     "RevokeClientVpnIngressRequest": {
       "base": null,
       "refs": {
@@ -18204,6 +18297,7 @@
         "ImageDiskContainer$SnapshotId": "<p>The ID of the EBS snapshot to be used for importing the snapshot.</p>",
         "LaunchTemplateEbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "LockSnapshotRequest$SnapshotId": "<p>The ID of the snapshot to lock.</p>",
         "ModifySnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ModifySnapshotTierRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ReplaceRootVolumeTask$SnapshotId": "<p>The ID of the snapshot used to create the replacement root volume.</p>",
@@ -18212,12 +18306,14 @@
         "RestoreSnapshotTierRequest$SnapshotId": "<p>The ID of the snapshot to restore.</p>",
         "ScheduledInstancesEbs$SnapshotId": "<p>The ID of the snapshot.</p>",
         "SnapshotIdStringList$member": null,
-        "SnapshotTierStatus$SnapshotId": "<p>The ID of the snapshot.</p>"
+        "SnapshotTierStatus$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "UnlockSnapshotRequest$SnapshotId": "<p>The ID of the snapshot to unlock.</p>"
       }
     },
     "SnapshotIdStringList": {
       "base": null,
       "refs": {
+        "DescribeLockedSnapshotsRequest$SnapshotIds": "<p>The IDs of the snapshots for which to view the lock status.</p>",
         "DescribeSnapshotsRequest$SnapshotIds": "<p>The snapshot IDs.</p> <p>Default: Describes the snapshots for which you have create volume permissions.</p>",
         "DisableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.</p>",
         "EnableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>. You can specify a snapshot that was shared with you from another Amazon Web Services account.</p>",
@@ -19214,6 +19310,8 @@
         "DescribeLocalGatewayVirtualInterfacesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeLocalGatewaysRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeLocalGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeLockedSnapshotsRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "DescribeLockedSnapshotsResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeMovingAddressesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeMovingAddressesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeNatGatewaysRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
@@ -19890,6 +19988,9 @@
         "LocalGatewayVirtualInterface$OwnerId": "<p>The ID of the Amazon Web Services account that owns the local gateway virtual interface.</p>",
         "LocalGatewayVirtualInterfaceGroup$LocalGatewayId": "<p>The ID of the local gateway.</p>",
         "LocalGatewayVirtualInterfaceGroup$OwnerId": "<p>The ID of the Amazon Web Services account that owns the local gateway virtual interface group.</p>",
+        "LockSnapshotResult$SnapshotId": "<p>The ID of the snapshot</p>",
+        "LockedSnapshotsInfo$OwnerId": "<p>The account ID of the Amazon Web Services account that owns the snapshot.</p>",
+        "LockedSnapshotsInfo$SnapshotId": "<p>The ID of the snapshot.</p>",
         "MaintenanceDetails$PendingMaintenance": "<p>Verify existence of a pending maintenance.</p>",
         "ManagedPrefixList$AddressFamily": "<p>The IP address version.</p>",
         "ManagedPrefixList$StateMessage": "<p>The state message.</p>",
@@ -20553,6 +20654,7 @@
         "TunnelOption$DpdTimeoutAction": "<p>The action to take after a DPD timeout occurs.</p>",
         "TunnelOption$StartupAction": "<p>The action to take when the establishing the VPN tunnels for a VPN connection.</p>",
         "UnassignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "UnlockSnapshotResult$SnapshotId": "<p>The ID of the snapshot.</p>",
         "UnsuccessfulInstanceCreditSpecificationItem$InstanceId": "<p>The ID of the instance.</p>",
         "UnsuccessfulInstanceCreditSpecificationItemError$Message": "<p>The applicable error message.</p>",
         "UnsuccessfulItem$ResourceId": "<p>The ID of the resource.</p>",
@@ -22427,6 +22529,16 @@
         "GetDefaultCreditSpecificationRequest$InstanceFamily": "<p>The instance family.</p>",
         "InstanceFamilyCreditSpecification$InstanceFamily": "<p>The instance family.</p>",
         "ModifyDefaultCreditSpecificationRequest$InstanceFamily": "<p>The instance family.</p>"
+      }
+    },
+    "UnlockSnapshotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UnlockSnapshotResult": {
+      "base": null,
+      "refs": {
       }
     },
     "UnmonitorInstancesRequest": {

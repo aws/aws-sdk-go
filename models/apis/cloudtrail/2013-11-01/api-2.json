@@ -1096,6 +1096,13 @@
       "member":{"shape":"AdvancedFieldSelector"},
       "min":1
     },
+    "BillingMode":{
+      "type":"string",
+      "enum":[
+        "EXTENDABLE_RETENTION_PRICING",
+        "FIXED_RETENTION_PRICING"
+      ]
+    },
     "Boolean":{"type":"boolean"},
     "ByteBuffer":{"type":"blob"},
     "CancelQueryRequest":{
@@ -1246,7 +1253,8 @@
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
         "TagsList":{"shape":"TagsList"},
         "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
-        "StartIngestion":{"shape":"Boolean"}
+        "StartIngestion":{"shape":"Boolean"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "CreateEventDataStoreResponse":{
@@ -1263,7 +1271,8 @@
         "TagsList":{"shape":"TagsList"},
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "CreateTrailRequest":{
@@ -1669,7 +1678,8 @@
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "GetEventSelectorsRequest":{
@@ -2681,12 +2691,13 @@
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "RetentionPeriod":{
       "type":"integer",
-      "max":2557,
+      "max":3653,
       "min":7
     },
     "S3BucketDoesNotExistException":{
@@ -2980,7 +2991,8 @@
         "OrganizationEnabled":{"shape":"Boolean"},
         "RetentionPeriod":{"shape":"RetentionPeriod"},
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "UpdateEventDataStoreResponse":{
@@ -2996,7 +3008,8 @@
         "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
-        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"}
+        "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
+        "BillingMode":{"shape":"BillingMode"}
       }
     },
     "UpdateTrailRequest":{

@@ -108,6 +108,25 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "CreateStorageLensGroup":{
+      "name":"CreateStorageLensGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/storagelensgroup",
+        "responseCode":204
+      },
+      "input":{
+        "shape":"CreateStorageLensGroupRequest",
+        "locationName":"CreateStorageLensGroupRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "DeleteAccessPoint":{
       "name":"DeleteAccessPoint",
       "http":{
@@ -311,6 +330,21 @@
       },
       "input":{"shape":"DeleteStorageLensConfigurationTaggingRequest"},
       "output":{"shape":"DeleteStorageLensConfigurationTaggingResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "DeleteStorageLensGroup":{
+      "name":"DeleteStorageLensGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/storagelensgroup/{name}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteStorageLensGroupRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -682,6 +716,21 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "GetStorageLensGroup":{
+      "name":"GetStorageLensGroup",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/storagelensgroup/{name}"
+      },
+      "input":{"shape":"GetStorageLensGroupRequest"},
+      "output":{"shape":"GetStorageLensGroupResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "ListAccessPoints":{
       "name":"ListAccessPoints",
       "http":{
@@ -771,6 +820,36 @@
       },
       "input":{"shape":"ListStorageLensConfigurationsRequest"},
       "output":{"shape":"ListStorageLensConfigurationsResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "ListStorageLensGroups":{
+      "name":"ListStorageLensGroups",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/storagelensgroup"
+      },
+      "input":{"shape":"ListStorageLensGroupsRequest"},
+      "output":{"shape":"ListStorageLensGroupsResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/tags/{resourceArn+}"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -1027,6 +1106,42 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/tags/{resourceArn+}",
+        "responseCode":204
+      },
+      "input":{
+        "shape":"TagResourceRequest",
+        "locationName":"TagResourceRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"TagResourceResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/tags/{resourceArn+}",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "UpdateJobPriority":{
       "name":"UpdateJobPriority",
       "http":{
@@ -1063,6 +1178,25 @@
         {"shape":"JobStatusException"},
         {"shape":"InternalServiceException"}
       ],
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "UpdateStorageLensGroup":{
+      "name":"UpdateStorageLensGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/storagelensgroup/{name}",
+        "responseCode":204
+      },
+      "input":{
+        "shape":"UpdateStorageLensGroupRequest",
+        "locationName":"UpdateStorageLensGroupRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -1127,7 +1261,8 @@
         "BucketLevel":{"shape":"BucketLevel"},
         "AdvancedCostOptimizationMetrics":{"shape":"AdvancedCostOptimizationMetrics"},
         "AdvancedDataProtectionMetrics":{"shape":"AdvancedDataProtectionMetrics"},
-        "DetailedStatusCodesMetrics":{"shape":"DetailedStatusCodesMetrics"}
+        "DetailedStatusCodesMetrics":{"shape":"DetailedStatusCodesMetrics"},
+        "StorageLensGroupLevel":{"shape":"StorageLensGroupLevel"}
       }
     },
     "ActivityMetrics":{
@@ -1537,6 +1672,24 @@
         "RequestTokenARN":{"shape":"AsyncRequestTokenARN"}
       }
     },
+    "CreateStorageLensGroupRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "StorageLensGroup"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "StorageLensGroup":{"shape":"StorageLensGroup"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "CreationDate":{"type":"timestamp"},
     "CreationTimestamp":{"type":"timestamp"},
     "Date":{"type":"timestamp"},
@@ -1871,6 +2024,27 @@
     "DeleteStorageLensConfigurationTaggingResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteStorageLensGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "AccountId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"StorageLensGroupName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
       }
     },
     "DescribeJobRequest":{
@@ -2620,6 +2794,34 @@
         "Tags":{"shape":"StorageLensTags"}
       }
     },
+    "GetStorageLensGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "AccountId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"StorageLensGroupName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "GetStorageLensGroupResult":{
+      "type":"structure",
+      "members":{
+        "StorageLensGroup":{"shape":"StorageLensGroup"}
+      },
+      "payload":"StorageLensGroup"
+    },
     "GrantFullControl":{"type":"string"},
     "GrantRead":{"type":"string"},
     "GrantReadACP":{"type":"string"},
@@ -3302,6 +3504,71 @@
         "StorageLensConfigurationList":{"shape":"StorageLensConfigurationList"}
       }
     },
+    "ListStorageLensGroupEntry":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "StorageLensGroupArn",
+        "HomeRegion"
+      ],
+      "members":{
+        "Name":{"shape":"StorageLensGroupName"},
+        "StorageLensGroupArn":{"shape":"StorageLensGroupArn"},
+        "HomeRegion":{"shape":"S3AWSRegion"}
+      }
+    },
+    "ListStorageLensGroupsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "NextToken":{
+          "shape":"ContinuationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListStorageLensGroupsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ContinuationToken"},
+        "StorageLensGroupList":{"shape":"StorageLensGroupList"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ResourceArn"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ResourceArn":{
+          "shape":"S3ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResult":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "Location":{"type":"string"},
     "MFA":{"type":"string"},
     "MFADelete":{
@@ -3322,6 +3589,41 @@
       "type":"string",
       "max":512,
       "min":1
+    },
+    "MatchAnyPrefix":{
+      "type":"list",
+      "member":{
+        "shape":"Prefix",
+        "locationName":"Prefix"
+      }
+    },
+    "MatchAnySuffix":{
+      "type":"list",
+      "member":{
+        "shape":"Suffix",
+        "locationName":"Suffix"
+      }
+    },
+    "MatchAnyTag":{
+      "type":"list",
+      "member":{
+        "shape":"S3Tag",
+        "locationName":"Tag"
+      }
+    },
+    "MatchObjectAge":{
+      "type":"structure",
+      "members":{
+        "DaysGreaterThan":{"shape":"ObjectAgeValue"},
+        "DaysLessThan":{"shape":"ObjectAgeValue"}
+      }
+    },
+    "MatchObjectSize":{
+      "type":"structure",
+      "members":{
+        "BytesGreaterThan":{"shape":"ObjectSizeValue"},
+        "BytesLessThan":{"shape":"ObjectSizeValue"}
+      }
     },
     "MaxLength1024String":{
       "type":"string",
@@ -3506,6 +3808,7 @@
       },
       "exception":true
     },
+    "ObjectAgeValue":{"type":"integer"},
     "ObjectCreationTime":{"type":"timestamp"},
     "ObjectLambdaAccessPoint":{
       "type":"structure",
@@ -3637,6 +3940,7 @@
     "ObjectLockEnabledForBucket":{"type":"boolean"},
     "ObjectSizeGreaterThanBytes":{"type":"long"},
     "ObjectSizeLessThanBytes":{"type":"long"},
+    "ObjectSizeValue":{"type":"long"},
     "OperationName":{
       "type":"string",
       "enum":[
@@ -4585,6 +4889,11 @@
       "members":{
       }
     },
+    "S3ResourceArn":{
+      "type":"string",
+      "max":1011,
+      "pattern":"arn:[^:]+:s3:[^:].*"
+    },
     "S3Retention":{
       "type":"structure",
       "members":{
@@ -4780,6 +5089,97 @@
         }
       }
     },
+    "StorageLensGroup":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Filter"
+      ],
+      "members":{
+        "Name":{"shape":"StorageLensGroupName"},
+        "Filter":{"shape":"StorageLensGroupFilter"},
+        "StorageLensGroupArn":{"shape":"StorageLensGroupArn"}
+      }
+    },
+    "StorageLensGroupAndOperator":{
+      "type":"structure",
+      "members":{
+        "MatchAnyPrefix":{"shape":"MatchAnyPrefix"},
+        "MatchAnySuffix":{"shape":"MatchAnySuffix"},
+        "MatchAnyTag":{"shape":"MatchAnyTag"},
+        "MatchObjectAge":{"shape":"MatchObjectAge"},
+        "MatchObjectSize":{"shape":"MatchObjectSize"}
+      }
+    },
+    "StorageLensGroupArn":{
+      "type":"string",
+      "max":1024,
+      "min":4,
+      "pattern":"arn:[a-z\\-]+:s3:[a-z0-9\\-]+:\\d{12}:storage\\-lens\\-group\\/.*"
+    },
+    "StorageLensGroupFilter":{
+      "type":"structure",
+      "members":{
+        "MatchAnyPrefix":{"shape":"MatchAnyPrefix"},
+        "MatchAnySuffix":{"shape":"MatchAnySuffix"},
+        "MatchAnyTag":{"shape":"MatchAnyTag"},
+        "MatchObjectAge":{"shape":"MatchObjectAge"},
+        "MatchObjectSize":{"shape":"MatchObjectSize"},
+        "And":{"shape":"StorageLensGroupAndOperator"},
+        "Or":{"shape":"StorageLensGroupOrOperator"}
+      }
+    },
+    "StorageLensGroupLevel":{
+      "type":"structure",
+      "members":{
+        "SelectionCriteria":{"shape":"StorageLensGroupLevelSelectionCriteria"}
+      }
+    },
+    "StorageLensGroupLevelExclude":{
+      "type":"list",
+      "member":{
+        "shape":"StorageLensGroupArn",
+        "locationName":"Arn"
+      }
+    },
+    "StorageLensGroupLevelInclude":{
+      "type":"list",
+      "member":{
+        "shape":"StorageLensGroupArn",
+        "locationName":"Arn"
+      }
+    },
+    "StorageLensGroupLevelSelectionCriteria":{
+      "type":"structure",
+      "members":{
+        "Include":{"shape":"StorageLensGroupLevelInclude"},
+        "Exclude":{"shape":"StorageLensGroupLevelExclude"}
+      }
+    },
+    "StorageLensGroupList":{
+      "type":"list",
+      "member":{
+        "shape":"ListStorageLensGroupEntry",
+        "locationName":"StorageLensGroup"
+      },
+      "flattened":true
+    },
+    "StorageLensGroupName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\-\\_]+"
+    },
+    "StorageLensGroupOrOperator":{
+      "type":"structure",
+      "members":{
+        "MatchAnyPrefix":{"shape":"MatchAnyPrefix"},
+        "MatchAnySuffix":{"shape":"MatchAnySuffix"},
+        "MatchAnyTag":{"shape":"MatchAnyTag"},
+        "MatchObjectAge":{"shape":"MatchObjectAge"},
+        "MatchObjectSize":{"shape":"MatchObjectSize"}
+      }
+    },
     "StorageLensPrefixLevelDelimiter":{
       "type":"string",
       "max":1
@@ -4841,21 +5241,77 @@
       "members":{
       }
     },
+    "Suffix":{"type":"string"},
     "SuspendedCause":{
       "type":"string",
       "max":1024,
       "min":1
     },
     "SuspendedDate":{"type":"timestamp"},
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKeyString"},
+        "Value":{"shape":"TagValueString"}
+      }
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKeyString"},
+      "max":50,
+      "min":0
+    },
     "TagKeyString":{
       "type":"string",
-      "max":1024,
+      "max":128,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TagList":{
+      "type":"list",
+      "member":{
+        "shape":"Tag",
+        "locationName":"Tag"
+      },
+      "max":50,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ResourceArn":{
+          "shape":"S3ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "TagValueString":{
       "type":"string",
-      "max":1024,
+      "max":256,
+      "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Tagging":{
@@ -4909,6 +5365,38 @@
         "INTELLIGENT_TIERING",
         "DEEP_ARCHIVE"
       ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ResourceArn":{
+          "shape":"S3ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateJobPriorityRequest":{
       "type":"structure",
@@ -4986,6 +5474,29 @@
         "JobId":{"shape":"JobId"},
         "Status":{"shape":"JobStatus"},
         "StatusUpdateReason":{"shape":"JobStatusUpdateReason"}
+      }
+    },
+    "UpdateStorageLensGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "AccountId",
+        "StorageLensGroup"
+      ],
+      "members":{
+        "Name":{
+          "shape":"StorageLensGroupName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "StorageLensGroup":{"shape":"StorageLensGroup"}
       }
     },
     "VersioningConfiguration":{

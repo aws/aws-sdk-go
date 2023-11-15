@@ -1371,6 +1371,10 @@ type EC2API interface {
 	DescribeLocalGatewaysPages(*ec2.DescribeLocalGatewaysInput, func(*ec2.DescribeLocalGatewaysOutput, bool) bool) error
 	DescribeLocalGatewaysPagesWithContext(aws.Context, *ec2.DescribeLocalGatewaysInput, func(*ec2.DescribeLocalGatewaysOutput, bool) bool, ...request.Option) error
 
+	DescribeLockedSnapshots(*ec2.DescribeLockedSnapshotsInput) (*ec2.DescribeLockedSnapshotsOutput, error)
+	DescribeLockedSnapshotsWithContext(aws.Context, *ec2.DescribeLockedSnapshotsInput, ...request.Option) (*ec2.DescribeLockedSnapshotsOutput, error)
+	DescribeLockedSnapshotsRequest(*ec2.DescribeLockedSnapshotsInput) (*request.Request, *ec2.DescribeLockedSnapshotsOutput)
+
 	DescribeManagedPrefixLists(*ec2.DescribeManagedPrefixListsInput) (*ec2.DescribeManagedPrefixListsOutput, error)
 	DescribeManagedPrefixListsWithContext(aws.Context, *ec2.DescribeManagedPrefixListsInput, ...request.Option) (*ec2.DescribeManagedPrefixListsOutput, error)
 	DescribeManagedPrefixListsRequest(*ec2.DescribeManagedPrefixListsInput) (*request.Request, *ec2.DescribeManagedPrefixListsOutput)
@@ -2367,6 +2371,10 @@ type EC2API interface {
 	ListSnapshotsInRecycleBinPages(*ec2.ListSnapshotsInRecycleBinInput, func(*ec2.ListSnapshotsInRecycleBinOutput, bool) bool) error
 	ListSnapshotsInRecycleBinPagesWithContext(aws.Context, *ec2.ListSnapshotsInRecycleBinInput, func(*ec2.ListSnapshotsInRecycleBinOutput, bool) bool, ...request.Option) error
 
+	LockSnapshot(*ec2.LockSnapshotInput) (*ec2.LockSnapshotOutput, error)
+	LockSnapshotWithContext(aws.Context, *ec2.LockSnapshotInput, ...request.Option) (*ec2.LockSnapshotOutput, error)
+	LockSnapshotRequest(*ec2.LockSnapshotInput) (*request.Request, *ec2.LockSnapshotOutput)
+
 	ModifyAddressAttribute(*ec2.ModifyAddressAttributeInput) (*ec2.ModifyAddressAttributeOutput, error)
 	ModifyAddressAttributeWithContext(aws.Context, *ec2.ModifyAddressAttributeInput, ...request.Option) (*ec2.ModifyAddressAttributeOutput, error)
 	ModifyAddressAttributeRequest(*ec2.ModifyAddressAttributeInput) (*request.Request, *ec2.ModifyAddressAttributeOutput)
@@ -2884,6 +2892,10 @@ type EC2API interface {
 	UnassignPrivateNatGatewayAddress(*ec2.UnassignPrivateNatGatewayAddressInput) (*ec2.UnassignPrivateNatGatewayAddressOutput, error)
 	UnassignPrivateNatGatewayAddressWithContext(aws.Context, *ec2.UnassignPrivateNatGatewayAddressInput, ...request.Option) (*ec2.UnassignPrivateNatGatewayAddressOutput, error)
 	UnassignPrivateNatGatewayAddressRequest(*ec2.UnassignPrivateNatGatewayAddressInput) (*request.Request, *ec2.UnassignPrivateNatGatewayAddressOutput)
+
+	UnlockSnapshot(*ec2.UnlockSnapshotInput) (*ec2.UnlockSnapshotOutput, error)
+	UnlockSnapshotWithContext(aws.Context, *ec2.UnlockSnapshotInput, ...request.Option) (*ec2.UnlockSnapshotOutput, error)
+	UnlockSnapshotRequest(*ec2.UnlockSnapshotInput) (*request.Request, *ec2.UnlockSnapshotOutput)
 
 	UnmonitorInstances(*ec2.UnmonitorInstancesInput) (*ec2.UnmonitorInstancesOutput, error)
 	UnmonitorInstancesWithContext(aws.Context, *ec2.UnmonitorInstancesInput, ...request.Option) (*ec2.UnmonitorInstancesOutput, error)

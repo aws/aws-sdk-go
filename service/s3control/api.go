@@ -530,6 +530,97 @@ func (c *S3Control) CreateMultiRegionAccessPointWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opCreateStorageLensGroup = "CreateStorageLensGroup"
+
+// CreateStorageLensGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStorageLensGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStorageLensGroup for more information on using the CreateStorageLensGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStorageLensGroupRequest method.
+//	req, resp := client.CreateStorageLensGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateStorageLensGroup
+func (c *S3Control) CreateStorageLensGroupRequest(input *CreateStorageLensGroupInput) (req *request.Request, output *CreateStorageLensGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateStorageLensGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/storagelensgroup",
+	}
+
+	if input == nil {
+		input = &CreateStorageLensGroupInput{}
+	}
+
+	output = &CreateStorageLensGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateStorageLensGroup API operation for AWS S3 Control.
+//
+// Creates a new S3 Storage Lens group and associates it with the specified
+// Amazon Web Services account ID. An S3 Storage Lens group is a custom grouping
+// of objects based on prefix, suffix, object tags, object size, object age,
+// or a combination of these filters. For each Storage Lens group that you’ve
+// created, you can also optionally add Amazon Web Services resource tags. For
+// more information about S3 Storage Lens groups, see Working with S3 Storage
+// Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups-overview.html).
+//
+// To use this operation, you must have the permission to perform the s3:CreateStorageLensGroup
+// action. If you’re trying to create a Storage Lens group with Amazon Web
+// Services resource tags, you must also have permission to perform the s3:TagResource
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about Storage Lens groups errors, see List of Amazon S3 Storage
+// Lens error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateStorageLensGroup for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateStorageLensGroup
+func (c *S3Control) CreateStorageLensGroup(input *CreateStorageLensGroupInput) (*CreateStorageLensGroupOutput, error) {
+	req, out := c.CreateStorageLensGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateStorageLensGroupWithContext is the same as CreateStorageLensGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStorageLensGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateStorageLensGroupWithContext(ctx aws.Context, input *CreateStorageLensGroupInput, opts ...request.Option) (*CreateStorageLensGroupOutput, error) {
+	req, out := c.CreateStorageLensGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAccessPoint = "DeleteAccessPoint"
 
 // DeleteAccessPointRequest generates a "aws/request.Request" representing the
@@ -1049,7 +1140,7 @@ func (c *S3Control) DeleteBucketLifecycleConfigurationRequest(input *DeleteBucke
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon S3 User Guide.
 //
-// To use this action, you must have permission to perform the s3-outposts:DeleteLifecycleConfiguration
+// To use this operation, you must have permission to perform the s3-outposts:PutLifecycleConfiguration
 // action. By default, the bucket owner has this permission and the Outposts
 // bucket owner can grant this permission to others.
 //
@@ -1876,6 +1967,89 @@ func (c *S3Control) DeleteStorageLensConfigurationTagging(input *DeleteStorageLe
 // for more information on using Contexts.
 func (c *S3Control) DeleteStorageLensConfigurationTaggingWithContext(ctx aws.Context, input *DeleteStorageLensConfigurationTaggingInput, opts ...request.Option) (*DeleteStorageLensConfigurationTaggingOutput, error) {
 	req, out := c.DeleteStorageLensConfigurationTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStorageLensGroup = "DeleteStorageLensGroup"
+
+// DeleteStorageLensGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageLensGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageLensGroup for more information on using the DeleteStorageLensGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStorageLensGroupRequest method.
+//	req, resp := client.DeleteStorageLensGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensGroup
+func (c *S3Control) DeleteStorageLensGroupRequest(input *DeleteStorageLensGroupInput) (req *request.Request, output *DeleteStorageLensGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageLensGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/storagelensgroup/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteStorageLensGroupInput{}
+	}
+
+	output = &DeleteStorageLensGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteStorageLensGroup API operation for AWS S3 Control.
+//
+// Deletes an existing S3 Storage Lens group.
+//
+// To use this operation, you must have the permission to perform the s3:DeleteStorageLensGroup
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about Storage Lens groups errors, see List of Amazon S3 Storage
+// Lens error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteStorageLensGroup for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensGroup
+func (c *S3Control) DeleteStorageLensGroup(input *DeleteStorageLensGroupInput) (*DeleteStorageLensGroupOutput, error) {
+	req, out := c.DeleteStorageLensGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageLensGroupWithContext is the same as DeleteStorageLensGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageLensGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteStorageLensGroupWithContext(ctx aws.Context, input *DeleteStorageLensGroupInput, opts ...request.Option) (*DeleteStorageLensGroupOutput, error) {
+	req, out := c.DeleteStorageLensGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4046,6 +4220,88 @@ func (c *S3Control) GetStorageLensConfigurationTaggingWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opGetStorageLensGroup = "GetStorageLensGroup"
+
+// GetStorageLensGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetStorageLensGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStorageLensGroup for more information on using the GetStorageLensGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetStorageLensGroupRequest method.
+//	req, resp := client.GetStorageLensGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensGroup
+func (c *S3Control) GetStorageLensGroupRequest(input *GetStorageLensGroupInput) (req *request.Request, output *GetStorageLensGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetStorageLensGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/storagelensgroup/{name}",
+	}
+
+	if input == nil {
+		input = &GetStorageLensGroupInput{}
+	}
+
+	output = &GetStorageLensGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetStorageLensGroup API operation for AWS S3 Control.
+//
+// Retrieves the Storage Lens group configuration details.
+//
+// To use this operation, you must have the permission to perform the s3:GetStorageLensGroup
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about Storage Lens groups errors, see List of Amazon S3 Storage
+// Lens error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetStorageLensGroup for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensGroup
+func (c *S3Control) GetStorageLensGroup(input *GetStorageLensGroupInput) (*GetStorageLensGroupOutput, error) {
+	req, out := c.GetStorageLensGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetStorageLensGroupWithContext is the same as GetStorageLensGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStorageLensGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetStorageLensGroupWithContext(ctx aws.Context, input *GetStorageLensGroupInput, opts ...request.Option) (*GetStorageLensGroupOutput, error) {
+	req, out := c.GetStorageLensGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccessPoints = "ListAccessPoints"
 
 // ListAccessPointsRequest generates a "aws/request.Request" representing the
@@ -4931,6 +5187,230 @@ func (c *S3Control) ListStorageLensConfigurationsPagesWithContext(ctx aws.Contex
 	}
 
 	return p.Err()
+}
+
+const opListStorageLensGroups = "ListStorageLensGroups"
+
+// ListStorageLensGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStorageLensGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStorageLensGroups for more information on using the ListStorageLensGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStorageLensGroupsRequest method.
+//	req, resp := client.ListStorageLensGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensGroups
+func (c *S3Control) ListStorageLensGroupsRequest(input *ListStorageLensGroupsInput) (req *request.Request, output *ListStorageLensGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListStorageLensGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/storagelensgroup",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStorageLensGroupsInput{}
+	}
+
+	output = &ListStorageLensGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListStorageLensGroups API operation for AWS S3 Control.
+//
+// Lists all the Storage Lens groups in the specified home Region.
+//
+// To use this operation, you must have the permission to perform the s3:ListStorageLensGroups
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about Storage Lens groups errors, see List of Amazon S3 Storage
+// Lens error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListStorageLensGroups for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensGroups
+func (c *S3Control) ListStorageLensGroups(input *ListStorageLensGroupsInput) (*ListStorageLensGroupsOutput, error) {
+	req, out := c.ListStorageLensGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListStorageLensGroupsWithContext is the same as ListStorageLensGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStorageLensGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListStorageLensGroupsWithContext(ctx aws.Context, input *ListStorageLensGroupsInput, opts ...request.Option) (*ListStorageLensGroupsOutput, error) {
+	req, out := c.ListStorageLensGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStorageLensGroupsPages iterates over the pages of a ListStorageLensGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStorageLensGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStorageLensGroups operation.
+//	pageNum := 0
+//	err := client.ListStorageLensGroupsPages(params,
+//	    func(page *s3control.ListStorageLensGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *S3Control) ListStorageLensGroupsPages(input *ListStorageLensGroupsInput, fn func(*ListStorageLensGroupsOutput, bool) bool) error {
+	return c.ListStorageLensGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStorageLensGroupsPagesWithContext same as ListStorageLensGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListStorageLensGroupsPagesWithContext(ctx aws.Context, input *ListStorageLensGroupsInput, fn func(*ListStorageLensGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStorageLensGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStorageLensGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStorageLensGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListTagsForResource
+func (c *S3Control) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/tags/{resourceArn+}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListTagsForResource API operation for AWS S3 Control.
+//
+// This operation allows you to list all the Amazon Web Services resource tags
+// for the specified resource.
+//
+// To use this operation, you must have the permission to perform the s3:ListTagsForResource
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about S3 Tagging errors, see List of Amazon S3 Tagging error
+// codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
+//
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListTagsForResource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListTagsForResource
+func (c *S3Control) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPutAccessPointConfigurationForObjectLambda = "PutAccessPointConfigurationForObjectLambda"
@@ -6435,6 +6915,178 @@ func (c *S3Control) SubmitMultiRegionAccessPointRoutesWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/TagResource
+func (c *S3Control) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/tags/{resourceArn+}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// TagResource API operation for AWS S3 Control.
+//
+// Creates a new Amazon Web Services resource tag or updates an existing resource
+// tag. You can add up to 50 Amazon Web Services resource tags for each S3 resource.
+//
+// To use this operation, you must have the permission to perform the s3:TagResource
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about S3 Tagging errors, see List of Amazon S3 Tagging error
+// codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
+//
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation TagResource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/TagResource
+func (c *S3Control) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UntagResource
+func (c *S3Control) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/tags/{resourceArn+}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UntagResource API operation for AWS S3 Control.
+//
+// This operation removes the specified Amazon Web Services resource tags from
+// an S3 resource.
+//
+// To use this operation, you must have the permission to perform the s3:UntagResource
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about S3 Tagging errors, see List of Amazon S3 Tagging error
+// codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
+//
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation UntagResource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UntagResource
+func (c *S3Control) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateJobPriority = "UpdateJobPriority"
 
 // UpdateJobPriorityRequest generates a "aws/request.Request" representing the
@@ -6634,6 +7286,89 @@ func (c *S3Control) UpdateJobStatusWithContext(ctx aws.Context, input *UpdateJob
 	return out, req.Send()
 }
 
+const opUpdateStorageLensGroup = "UpdateStorageLensGroup"
+
+// UpdateStorageLensGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStorageLensGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStorageLensGroup for more information on using the UpdateStorageLensGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStorageLensGroupRequest method.
+//	req, resp := client.UpdateStorageLensGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateStorageLensGroup
+func (c *S3Control) UpdateStorageLensGroupRequest(input *UpdateStorageLensGroupInput) (req *request.Request, output *UpdateStorageLensGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStorageLensGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/storagelensgroup/{name}",
+	}
+
+	if input == nil {
+		input = &UpdateStorageLensGroupInput{}
+	}
+
+	output = &UpdateStorageLensGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateStorageLensGroup API operation for AWS S3 Control.
+//
+// Updates the existing Storage Lens group.
+//
+// To use this operation, you must have the permission to perform the s3:UpdateStorageLensGroup
+// action. For more information about the required Storage Lens Groups permissions,
+// see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
+//
+// For information about Storage Lens groups errors, see List of Amazon S3 Storage
+// Lens error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation UpdateStorageLensGroup for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateStorageLensGroup
+func (c *S3Control) UpdateStorageLensGroup(input *UpdateStorageLensGroupInput) (*UpdateStorageLensGroupOutput, error) {
+	req, out := c.UpdateStorageLensGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStorageLensGroupWithContext is the same as UpdateStorageLensGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStorageLensGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) UpdateStorageLensGroupWithContext(ctx aws.Context, input *UpdateStorageLensGroupInput, opts ...request.Option) (*UpdateStorageLensGroupOutput, error) {
+	req, out := c.UpdateStorageLensGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The container for abort incomplete multipart upload
 type AbortIncompleteMultipartUpload struct {
 	_ struct{} `type:"structure"`
@@ -6817,7 +7552,7 @@ func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
 	return s
 }
 
-// A container for the account-level Amazon S3 Storage Lens configuration.
+// A container element for the account-level Amazon S3 Storage Lens configuration.
 //
 // For more information about S3 Storage Lens, see Assessing your storage activity
 // and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
@@ -6827,22 +7562,25 @@ func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
 type AccountLevel struct {
 	_ struct{} `type:"structure"`
 
-	// A container for S3 Storage Lens activity metrics.
+	// A container element for S3 Storage Lens activity metrics.
 	ActivityMetrics *ActivityMetrics `type:"structure"`
 
-	// A container for S3 Storage Lens advanced cost-optimization metrics.
+	// A container element for S3 Storage Lens advanced cost-optimization metrics.
 	AdvancedCostOptimizationMetrics *AdvancedCostOptimizationMetrics `type:"structure"`
 
-	// A container for S3 Storage Lens advanced data-protection metrics.
+	// A container element for S3 Storage Lens advanced data-protection metrics.
 	AdvancedDataProtectionMetrics *AdvancedDataProtectionMetrics `type:"structure"`
 
-	// A container for the S3 Storage Lens bucket-level configuration.
+	// A container element for the S3 Storage Lens bucket-level configuration.
 	//
 	// BucketLevel is a required field
 	BucketLevel *BucketLevel `type:"structure" required:"true"`
 
-	// A container for detailed status code metrics.
+	// A container element for detailed status code metrics.
 	DetailedStatusCodesMetrics *DetailedStatusCodesMetrics `type:"structure"`
+
+	// A container element for S3 Storage Lens groups metrics.
+	StorageLensGroupLevel *StorageLensGroupLevel `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6908,6 +7646,12 @@ func (s *AccountLevel) SetBucketLevel(v *BucketLevel) *AccountLevel {
 // SetDetailedStatusCodesMetrics sets the DetailedStatusCodesMetrics field's value.
 func (s *AccountLevel) SetDetailedStatusCodesMetrics(v *DetailedStatusCodesMetrics) *AccountLevel {
 	s.DetailedStatusCodesMetrics = v
+	return s
+}
+
+// SetStorageLensGroupLevel sets the StorageLensGroupLevel field's value.
+func (s *AccountLevel) SetStorageLensGroupLevel(v *StorageLensGroupLevel) *AccountLevel {
+	s.StorageLensGroupLevel = v
 	return s
 }
 
@@ -8543,6 +9287,123 @@ func (s CreateMultiRegionAccessPointOutput) GoString() string {
 func (s *CreateMultiRegionAccessPointOutput) SetRequestTokenARN(v string) *CreateMultiRegionAccessPointOutput {
 	s.RequestTokenARN = &v
 	return s
+}
+
+type CreateStorageLensGroupInput struct {
+	_ struct{} `locationName:"CreateStorageLensGroupRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID that the Storage Lens group is created
+	// from and associated with.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Storage Lens group configuration.
+	//
+	// StorageLensGroup is a required field
+	StorageLensGroup *StorageLensGroup `type:"structure" required:"true"`
+
+	// The Amazon Web Services resource tags that you're adding to your Storage
+	// Lens group. This parameter is optional.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageLensGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageLensGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStorageLensGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStorageLensGroupInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.StorageLensGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageLensGroup"))
+	}
+	if s.StorageLensGroup != nil {
+		if err := s.StorageLensGroup.Validate(); err != nil {
+			invalidParams.AddNested("StorageLensGroup", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateStorageLensGroupInput) SetAccountId(v string) *CreateStorageLensGroupInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetStorageLensGroup sets the StorageLensGroup field's value.
+func (s *CreateStorageLensGroupInput) SetStorageLensGroup(v *StorageLensGroup) *CreateStorageLensGroupInput {
+	s.StorageLensGroup = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStorageLensGroupInput) SetTags(v []*Tag) *CreateStorageLensGroupInput {
+	s.Tags = v
+	return s
+}
+
+func (s *CreateStorageLensGroupInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateStorageLensGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageLensGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageLensGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAccessPointForObjectLambdaInput struct {
@@ -10337,6 +11198,101 @@ func (s DeleteStorageLensConfigurationTaggingOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStorageLensGroupInput struct {
+	_ struct{} `locationName:"DeleteStorageLensGroupRequest" type:"structure"`
+
+	// The Amazon Web Services account ID used to create the Storage Lens group
+	// that you're trying to delete.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Storage Lens group that you're trying to delete.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageLensGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageLensGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageLensGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageLensGroupInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteStorageLensGroupInput) SetAccountId(v string) *DeleteStorageLensGroupInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteStorageLensGroupInput) SetName(v string) *DeleteStorageLensGroupInput {
+	s.Name = &v
+	return s
+}
+
+func (s *DeleteStorageLensGroupInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteStorageLensGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageLensGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageLensGroupOutput) GoString() string {
 	return s.String()
 }
 
@@ -13702,6 +14658,112 @@ func (s *GetStorageLensConfigurationTaggingOutput) SetTags(v []*StorageLensTag) 
 	return s
 }
 
+type GetStorageLensGroupInput struct {
+	_ struct{} `locationName:"GetStorageLensGroupRequest" type:"structure"`
+
+	// The Amazon Web Services account ID associated with the Storage Lens group
+	// that you're trying to retrieve the details for.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Storage Lens group that you're trying to retrieve the configuration
+	// details for.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageLensGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageLensGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStorageLensGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStorageLensGroupInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetStorageLensGroupInput) SetAccountId(v string) *GetStorageLensGroupInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetStorageLensGroupInput) SetName(v string) *GetStorageLensGroupInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetStorageLensGroupInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetStorageLensGroupOutput struct {
+	_ struct{} `type:"structure" payload:"StorageLensGroup"`
+
+	// The name of the Storage Lens group that you're trying to retrieve the configuration
+	// details for.
+	StorageLensGroup *StorageLensGroup `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageLensGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageLensGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageLensGroup sets the StorageLensGroup field's value.
+func (s *GetStorageLensGroupOutput) SetStorageLensGroup(v *StorageLensGroup) *GetStorageLensGroupOutput {
+	s.StorageLensGroup = v
+	return s
+}
+
 // A container for what Amazon S3 Storage Lens configuration includes.
 type Include struct {
 	_ struct{} `type:"structure"`
@@ -16097,6 +17159,365 @@ func (s *ListStorageLensConfigurationsOutput) SetNextToken(v string) *ListStorag
 // SetStorageLensConfigurationList sets the StorageLensConfigurationList field's value.
 func (s *ListStorageLensConfigurationsOutput) SetStorageLensConfigurationList(v []*ListStorageLensConfigurationEntry) *ListStorageLensConfigurationsOutput {
 	s.StorageLensConfigurationList = v
+	return s
+}
+
+// Each entry contains a Storage Lens group that exists in the specified home
+// Region.
+type ListStorageLensGroupEntry struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the Amazon Web Services Region where the Storage Lens group was
+	// created.
+	//
+	// HomeRegion is a required field
+	HomeRegion *string `min:"5" type:"string" required:"true"`
+
+	// Contains the name of the Storage Lens group that exists in the specified
+	// home Region.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Contains the Amazon Resource Name (ARN) of the Storage Lens group. This property
+	// is read-only.
+	//
+	// StorageLensGroupArn is a required field
+	StorageLensGroupArn *string `min:"4" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupEntry) GoString() string {
+	return s.String()
+}
+
+// SetHomeRegion sets the HomeRegion field's value.
+func (s *ListStorageLensGroupEntry) SetHomeRegion(v string) *ListStorageLensGroupEntry {
+	s.HomeRegion = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListStorageLensGroupEntry) SetName(v string) *ListStorageLensGroupEntry {
+	s.Name = &v
+	return s
+}
+
+// SetStorageLensGroupArn sets the StorageLensGroupArn field's value.
+func (s *ListStorageLensGroupEntry) SetStorageLensGroupArn(v string) *ListStorageLensGroupEntry {
+	s.StorageLensGroupArn = &v
+	return s
+}
+
+type ListStorageLensGroupsInput struct {
+	_ struct{} `locationName:"ListStorageLensGroupsRequest" type:"structure"`
+
+	// The Amazon Web Services account ID that owns the Storage Lens groups.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStorageLensGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStorageLensGroupsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListStorageLensGroupsInput) SetAccountId(v string) *ListStorageLensGroupsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageLensGroupsInput) SetNextToken(v string) *ListStorageLensGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListStorageLensGroupsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListStorageLensGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If NextToken is returned, there are more Storage Lens groups results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged. Each pagination token expires after 24 hours.
+	NextToken *string `type:"string"`
+
+	// The list of Storage Lens groups that exist in the specified home Region.
+	StorageLensGroupList []*ListStorageLensGroupEntry `locationNameList:"StorageLensGroup" type:"list" flattened:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageLensGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageLensGroupsOutput) SetNextToken(v string) *ListStorageLensGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageLensGroupList sets the StorageLensGroupList field's value.
+func (s *ListStorageLensGroupsOutput) SetStorageLensGroupList(v []*ListStorageLensGroupEntry) *ListStorageLensGroupsOutput {
+	s.StorageLensGroupList = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `locationName:"ListTagsForResourceRequest" type:"structure"`
+
+	// The Amazon Web Services account ID of the resource owner.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the S3 resource that you want to list the
+	// tags for.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListTagsForResourceInput) SetAccountId(v string) *ListTagsForResourceInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+func (s *ListTagsForResourceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services resource tags that are associated with the resource.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+// A filter condition that specifies the object age range of included objects
+// in days. Only integers are supported.
+type MatchObjectAge struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum object age in days. Must be a positive whole number,
+	// greater than the minimum object age and less than or equal to 2,147,483,647.
+	DaysGreaterThan *int64 `type:"integer"`
+
+	// Specifies the minimum object age in days. The value must be a positive whole
+	// number, greater than 0 and less than or equal to 2,147,483,647.
+	DaysLessThan *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchObjectAge) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchObjectAge) GoString() string {
+	return s.String()
+}
+
+// SetDaysGreaterThan sets the DaysGreaterThan field's value.
+func (s *MatchObjectAge) SetDaysGreaterThan(v int64) *MatchObjectAge {
+	s.DaysGreaterThan = &v
+	return s
+}
+
+// SetDaysLessThan sets the DaysLessThan field's value.
+func (s *MatchObjectAge) SetDaysLessThan(v int64) *MatchObjectAge {
+	s.DaysLessThan = &v
+	return s
+}
+
+// A filter condition that specifies the object size range of included objects
+// in bytes. Only integers are supported.
+type MatchObjectSize struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the minimum object size in Bytes. The value must be a positive
+	// number, greater than 0 and less than 5 TB.
+	BytesGreaterThan *int64 `type:"long"`
+
+	// Specifies the maximum object size in Bytes. The value must be a positive
+	// number, greater than the minimum object size and less than 5 TB.
+	BytesLessThan *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchObjectSize) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchObjectSize) GoString() string {
+	return s.String()
+}
+
+// SetBytesGreaterThan sets the BytesGreaterThan field's value.
+func (s *MatchObjectSize) SetBytesGreaterThan(v int64) *MatchObjectSize {
+	s.BytesGreaterThan = &v
+	return s
+}
+
+// SetBytesLessThan sets the BytesLessThan field's value.
+func (s *MatchObjectSize) SetBytesLessThan(v int64) *MatchObjectSize {
+	s.BytesLessThan = &v
 	return s
 }
 
@@ -20030,7 +21451,7 @@ type S3CopyObjectOperation struct {
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
 	// Indicates the algorithm that you want Amazon S3 to use to create the checksum.
-	// For more information, see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml)
+	// For more information, see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html)
 	// in the Amazon S3 User Guide.
 	ChecksumAlgorithm *string `type:"string" enum:"S3ChecksumAlgorithm"`
 
@@ -21957,6 +23378,485 @@ func (s *StorageLensDataExportEncryption) SetSSES3(v *SSES3) *StorageLensDataExp
 	return s
 }
 
+// A custom grouping of objects that include filters for prefixes, suffixes,
+// object tags, object size, or object age. You can create an S3 Storage Lens
+// group that includes a single filter or multiple filter conditions. To specify
+// multiple filter conditions, you use AND or OR logical operators.
+type StorageLensGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the criteria for the Storage Lens group data that is displayed. For
+	// multiple filter conditions, the AND or OR logical operator is used.
+	//
+	// Filter is a required field
+	Filter *StorageLensGroupFilter `type:"structure" required:"true"`
+
+	// Contains the name of the Storage Lens group.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Contains the Amazon Resource Name (ARN) of the Storage Lens group. This property
+	// is read-only.
+	StorageLensGroupArn *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroup) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensGroup) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensGroup"}
+	if s.Filter == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StorageLensGroupArn != nil && len(*s.StorageLensGroupArn) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageLensGroupArn", 4))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *StorageLensGroup) SetFilter(v *StorageLensGroupFilter) *StorageLensGroup {
+	s.Filter = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StorageLensGroup) SetName(v string) *StorageLensGroup {
+	s.Name = &v
+	return s
+}
+
+// SetStorageLensGroupArn sets the StorageLensGroupArn field's value.
+func (s *StorageLensGroup) SetStorageLensGroupArn(v string) *StorageLensGroup {
+	s.StorageLensGroupArn = &v
+	return s
+}
+
+// A logical operator that allows multiple filter conditions to be joined for
+// more complex comparisons of Storage Lens group data.
+type StorageLensGroupAndOperator struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a list of prefixes. At least one prefix must be specified. Up to
+	// 10 prefixes are allowed.
+	MatchAnyPrefix []*string `locationNameList:"Prefix" type:"list"`
+
+	// Contains a list of suffixes. At least one suffix must be specified. Up to
+	// 10 suffixes are allowed.
+	MatchAnySuffix []*string `locationNameList:"Suffix" type:"list"`
+
+	// Contains the list of object tags. At least one object tag must be specified.
+	// Up to 10 object tags are allowed.
+	MatchAnyTag []*S3Tag `locationNameList:"Tag" type:"list"`
+
+	// Contains DaysGreaterThan and DaysLessThan to define the object age range
+	// (minimum and maximum number of days).
+	MatchObjectAge *MatchObjectAge `type:"structure"`
+
+	// Contains BytesGreaterThan and BytesLessThan to define the object size range
+	// (minimum and maximum number of Bytes).
+	MatchObjectSize *MatchObjectSize `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupAndOperator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupAndOperator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensGroupAndOperator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensGroupAndOperator"}
+	if s.MatchAnyTag != nil {
+		for i, v := range s.MatchAnyTag {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MatchAnyTag", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchAnyPrefix sets the MatchAnyPrefix field's value.
+func (s *StorageLensGroupAndOperator) SetMatchAnyPrefix(v []*string) *StorageLensGroupAndOperator {
+	s.MatchAnyPrefix = v
+	return s
+}
+
+// SetMatchAnySuffix sets the MatchAnySuffix field's value.
+func (s *StorageLensGroupAndOperator) SetMatchAnySuffix(v []*string) *StorageLensGroupAndOperator {
+	s.MatchAnySuffix = v
+	return s
+}
+
+// SetMatchAnyTag sets the MatchAnyTag field's value.
+func (s *StorageLensGroupAndOperator) SetMatchAnyTag(v []*S3Tag) *StorageLensGroupAndOperator {
+	s.MatchAnyTag = v
+	return s
+}
+
+// SetMatchObjectAge sets the MatchObjectAge field's value.
+func (s *StorageLensGroupAndOperator) SetMatchObjectAge(v *MatchObjectAge) *StorageLensGroupAndOperator {
+	s.MatchObjectAge = v
+	return s
+}
+
+// SetMatchObjectSize sets the MatchObjectSize field's value.
+func (s *StorageLensGroupAndOperator) SetMatchObjectSize(v *MatchObjectSize) *StorageLensGroupAndOperator {
+	s.MatchObjectSize = v
+	return s
+}
+
+// The filter element sets the criteria for the Storage Lens group data that
+// is displayed. For multiple filter conditions, the AND or OR logical operator
+// is used.
+type StorageLensGroupFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A logical operator that allows multiple filter conditions to be joined for
+	// more complex comparisons of Storage Lens group data. Objects must match all
+	// of the listed filter conditions that are joined by the And logical operator.
+	// Only one of each filter condition is allowed.
+	And *StorageLensGroupAndOperator `type:"structure"`
+
+	// Contains a list of prefixes. At least one prefix must be specified. Up to
+	// 10 prefixes are allowed.
+	MatchAnyPrefix []*string `locationNameList:"Prefix" type:"list"`
+
+	// Contains a list of suffixes. At least one suffix must be specified. Up to
+	// 10 suffixes are allowed.
+	MatchAnySuffix []*string `locationNameList:"Suffix" type:"list"`
+
+	// Contains the list of S3 object tags. At least one object tag must be specified.
+	// Up to 10 object tags are allowed.
+	MatchAnyTag []*S3Tag `locationNameList:"Tag" type:"list"`
+
+	// Contains DaysGreaterThan and DaysLessThan to define the object age range
+	// (minimum and maximum number of days).
+	MatchObjectAge *MatchObjectAge `type:"structure"`
+
+	// Contains BytesGreaterThan and BytesLessThan to define the object size range
+	// (minimum and maximum number of Bytes).
+	MatchObjectSize *MatchObjectSize `type:"structure"`
+
+	// A single logical operator that allows multiple filter conditions to be joined.
+	// Objects can match any of the listed filter conditions, which are joined by
+	// the Or logical operator. Only one of each filter condition is allowed.
+	Or *StorageLensGroupOrOperator `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensGroupFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensGroupFilter"}
+	if s.And != nil {
+		if err := s.And.Validate(); err != nil {
+			invalidParams.AddNested("And", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MatchAnyTag != nil {
+		for i, v := range s.MatchAnyTag {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MatchAnyTag", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Or != nil {
+		if err := s.Or.Validate(); err != nil {
+			invalidParams.AddNested("Or", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnd sets the And field's value.
+func (s *StorageLensGroupFilter) SetAnd(v *StorageLensGroupAndOperator) *StorageLensGroupFilter {
+	s.And = v
+	return s
+}
+
+// SetMatchAnyPrefix sets the MatchAnyPrefix field's value.
+func (s *StorageLensGroupFilter) SetMatchAnyPrefix(v []*string) *StorageLensGroupFilter {
+	s.MatchAnyPrefix = v
+	return s
+}
+
+// SetMatchAnySuffix sets the MatchAnySuffix field's value.
+func (s *StorageLensGroupFilter) SetMatchAnySuffix(v []*string) *StorageLensGroupFilter {
+	s.MatchAnySuffix = v
+	return s
+}
+
+// SetMatchAnyTag sets the MatchAnyTag field's value.
+func (s *StorageLensGroupFilter) SetMatchAnyTag(v []*S3Tag) *StorageLensGroupFilter {
+	s.MatchAnyTag = v
+	return s
+}
+
+// SetMatchObjectAge sets the MatchObjectAge field's value.
+func (s *StorageLensGroupFilter) SetMatchObjectAge(v *MatchObjectAge) *StorageLensGroupFilter {
+	s.MatchObjectAge = v
+	return s
+}
+
+// SetMatchObjectSize sets the MatchObjectSize field's value.
+func (s *StorageLensGroupFilter) SetMatchObjectSize(v *MatchObjectSize) *StorageLensGroupFilter {
+	s.MatchObjectSize = v
+	return s
+}
+
+// SetOr sets the Or field's value.
+func (s *StorageLensGroupFilter) SetOr(v *StorageLensGroupOrOperator) *StorageLensGroupFilter {
+	s.Or = v
+	return s
+}
+
+// Specifies the Storage Lens groups to include in the Storage Lens group aggregation.
+type StorageLensGroupLevel struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates which Storage Lens group ARNs to include or exclude in the Storage
+	// Lens group aggregation. If this value is left null, then all Storage Lens
+	// groups are selected.
+	SelectionCriteria *StorageLensGroupLevelSelectionCriteria `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupLevel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupLevel) GoString() string {
+	return s.String()
+}
+
+// SetSelectionCriteria sets the SelectionCriteria field's value.
+func (s *StorageLensGroupLevel) SetSelectionCriteria(v *StorageLensGroupLevelSelectionCriteria) *StorageLensGroupLevel {
+	s.SelectionCriteria = v
+	return s
+}
+
+// Indicates which Storage Lens group ARNs to include or exclude in the Storage
+// Lens group aggregation. You can only attach Storage Lens groups to your Storage
+// Lens dashboard if they're included in your Storage Lens group aggregation.
+// If this value is left null, then all Storage Lens groups are selected.
+type StorageLensGroupLevelSelectionCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates which Storage Lens group ARNs to exclude from the Storage Lens
+	// group aggregation.
+	Exclude []*string `locationNameList:"Arn" type:"list"`
+
+	// Indicates which Storage Lens group ARNs to include in the Storage Lens group
+	// aggregation.
+	Include []*string `locationNameList:"Arn" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupLevelSelectionCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupLevelSelectionCriteria) GoString() string {
+	return s.String()
+}
+
+// SetExclude sets the Exclude field's value.
+func (s *StorageLensGroupLevelSelectionCriteria) SetExclude(v []*string) *StorageLensGroupLevelSelectionCriteria {
+	s.Exclude = v
+	return s
+}
+
+// SetInclude sets the Include field's value.
+func (s *StorageLensGroupLevelSelectionCriteria) SetInclude(v []*string) *StorageLensGroupLevelSelectionCriteria {
+	s.Include = v
+	return s
+}
+
+// A container element for specifying Or rule conditions. The rule conditions
+// determine the subset of objects to which the Or rule applies. Objects can
+// match any of the listed filter conditions, which are joined by the Or logical
+// operator. Only one of each filter condition is allowed.
+type StorageLensGroupOrOperator struct {
+	_ struct{} `type:"structure"`
+
+	// Filters objects that match any of the specified prefixes.
+	MatchAnyPrefix []*string `locationNameList:"Prefix" type:"list"`
+
+	// Filters objects that match any of the specified suffixes.
+	MatchAnySuffix []*string `locationNameList:"Suffix" type:"list"`
+
+	// Filters objects that match any of the specified S3 object tags.
+	MatchAnyTag []*S3Tag `locationNameList:"Tag" type:"list"`
+
+	// Filters objects that match the specified object age range.
+	MatchObjectAge *MatchObjectAge `type:"structure"`
+
+	// Filters objects that match the specified object size range.
+	MatchObjectSize *MatchObjectSize `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupOrOperator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageLensGroupOrOperator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensGroupOrOperator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensGroupOrOperator"}
+	if s.MatchAnyTag != nil {
+		for i, v := range s.MatchAnyTag {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MatchAnyTag", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchAnyPrefix sets the MatchAnyPrefix field's value.
+func (s *StorageLensGroupOrOperator) SetMatchAnyPrefix(v []*string) *StorageLensGroupOrOperator {
+	s.MatchAnyPrefix = v
+	return s
+}
+
+// SetMatchAnySuffix sets the MatchAnySuffix field's value.
+func (s *StorageLensGroupOrOperator) SetMatchAnySuffix(v []*string) *StorageLensGroupOrOperator {
+	s.MatchAnySuffix = v
+	return s
+}
+
+// SetMatchAnyTag sets the MatchAnyTag field's value.
+func (s *StorageLensGroupOrOperator) SetMatchAnyTag(v []*S3Tag) *StorageLensGroupOrOperator {
+	s.MatchAnyTag = v
+	return s
+}
+
+// SetMatchObjectAge sets the MatchObjectAge field's value.
+func (s *StorageLensGroupOrOperator) SetMatchObjectAge(v *MatchObjectAge) *StorageLensGroupOrOperator {
+	s.MatchObjectAge = v
+	return s
+}
+
+// SetMatchObjectSize sets the MatchObjectSize field's value.
+func (s *StorageLensGroupOrOperator) SetMatchObjectSize(v *MatchObjectSize) *StorageLensGroupOrOperator {
+	s.MatchObjectSize = v
+	return s
+}
+
 type StorageLensTag struct {
 	_ struct{} `type:"structure"`
 
@@ -22136,6 +24036,198 @@ func (s SubmitMultiRegionAccessPointRoutesOutput) GoString() string {
 	return s.String()
 }
 
+// An Amazon Web Services resource tag that's associated with your S3 resource.
+// You can add tags to new objects when you upload them, or you can add object
+// tags to existing objects.
+//
+// This data type is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key for your Amazon Web Services resource. A tag key can be up to
+	// 128 Unicode characters in length and is case-sensitive. System created tags
+	// that begin with aws: aren’t supported.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The tag value for your Amazon Web Services resource. A tag value can be up
+	// to 256 Unicode characters in length and is case-sensitive.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `locationName:"TagResourceRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID that created the S3 resource that you're
+	// trying to add tags to.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the S3 resource that you're trying to add
+	// tags to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The Amazon Web Services resource tags that you want to add to the specified
+	// S3 resource.
+	//
+	// Tags is a required field
+	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *TagResourceInput) SetAccountId(v string) *TagResourceInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+func (s *TagResourceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 type Tagging struct {
 	_ struct{} `type:"structure"`
 
@@ -22245,6 +24337,116 @@ func (s *Transition) SetDays(v int64) *Transition {
 func (s *Transition) SetStorageClass(v string) *Transition {
 	s.StorageClass = &v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `locationName:"UntagResourceRequest" type:"structure"`
+
+	// The Amazon Web Services account ID that owns the resource that you're trying
+	// to remove the tags from.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the S3 resource that you want to remove
+	// the resource tags from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The tag key pair of the S3 resource tag that you're trying to remove.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UntagResourceInput) SetAccountId(v string) *UntagResourceInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+func (s *UntagResourceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateJobPriorityInput struct {
@@ -22525,6 +24727,119 @@ func (s *UpdateJobStatusOutput) SetStatus(v string) *UpdateJobStatusOutput {
 func (s *UpdateJobStatusOutput) SetStatusUpdateReason(v string) *UpdateJobStatusOutput {
 	s.StatusUpdateReason = &v
 	return s
+}
+
+type UpdateStorageLensGroupInput struct {
+	_ struct{} `locationName:"UpdateStorageLensGroupRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID of the Storage Lens group owner.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Storage Lens group that you want to update.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The JSON file that contains the Storage Lens group configuration.
+	//
+	// StorageLensGroup is a required field
+	StorageLensGroup *StorageLensGroup `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageLensGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageLensGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStorageLensGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStorageLensGroupInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StorageLensGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageLensGroup"))
+	}
+	if s.StorageLensGroup != nil {
+		if err := s.StorageLensGroup.Validate(); err != nil {
+			invalidParams.AddNested("StorageLensGroup", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdateStorageLensGroupInput) SetAccountId(v string) *UpdateStorageLensGroupInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateStorageLensGroupInput) SetName(v string) *UpdateStorageLensGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetStorageLensGroup sets the StorageLensGroup field's value.
+func (s *UpdateStorageLensGroupInput) SetStorageLensGroup(v *StorageLensGroup) *UpdateStorageLensGroupInput {
+	s.StorageLensGroup = v
+	return s
+}
+
+func (s *UpdateStorageLensGroupInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type UpdateStorageLensGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageLensGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageLensGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the versioning state of an Amazon S3 on Outposts bucket. For more

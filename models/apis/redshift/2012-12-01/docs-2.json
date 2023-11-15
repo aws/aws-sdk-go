@@ -974,6 +974,7 @@
       "refs": {
         "CreateCustomDomainAssociationMessage$CustomDomainName": "<p>The custom domain name for a custom domain association.</p>",
         "CreateCustomDomainAssociationResult$CustomDomainName": "<p>The custom domain name for the association result.</p>",
+        "DeleteCustomDomainAssociationMessage$CustomDomainName": "<p>The custom domain name for the custom domain association.</p>",
         "DescribeCustomDomainAssociationsMessage$CustomDomainName": "<p>The custom domain name for the custom domain association.</p>",
         "ModifyCustomDomainAssociationMessage$CustomDomainName": "<p>The custom domain name for a changed custom domain association.</p>",
         "ModifyCustomDomainAssociationResult$CustomDomainName": "<p>The custom domain name associated with the result for the changed custom domain association.</p>"

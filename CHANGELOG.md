@@ -1,3 +1,30 @@
+Release v1.47.12 (2023-11-15)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API, documentation, and examples
+  * This release introduces Instance Maintenance Policy, a new EC2 Auto Scaling capability that allows customers to define whether instances are launched before or after existing instances are terminated during instance replacement operations.
+* `service/cloudtrail`: Updates service API and documentation
+  * The Lake Repricing feature lets customers configure a BillingMode for an event data store. The BillingMode determines the cost for ingesting and storing events and the default and maximum retention period for the event data store.
+* `service/ec2`: Updates service API and documentation
+  * AWS EBS now supports Snapshot Lock, giving users the ability to lock an EBS Snapshot to prohibit deletion of the snapshot. This release introduces the LockSnapshot, UnlockSnapshot & DescribeLockedSnapshots APIs to manage lock configuration for snapshots. The release also includes the dl2q_24xlarge.
+* `service/finspace`: Updates service API
+* `service/finspace-data`: Updates service API
+* `service/lambda`: Updates service API
+  * Add Java 21 (java21) support to AWS Lambda
+* `service/mwaa`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for support for upgrading RDS for MySQL snapshots from version 5.7 to version 8.0.
+* `service/redshift`: Updates service API and documentation
+  * The custom domain name SDK for Amazon Redshift provisioned clusters is updated with additional required parameters for modify and delete operations. Additionally, users can provide domain names with longer top-level domains.
+* `service/s3control`: Updates service API, documentation, and paginators
+  * Add 5 APIs to create, update, get, list, delete S3 Storage Lens group(eg. CreateStorageLensGroup), 3 APIs for tagging(TagResource,UntagResource,ListTagsForResource), and update to StorageLensConfiguration to allow metrics to be aggregated on Storage Lens groups.
+* `service/ssm-sap`: Updates service API
+
+### SDK Bugs
+* Don't generate cloudwatchlogs event streams tests for now.
+  * The test harness does not handle event stream APIs with a host prefix at this time.
+
 Release v1.47.11 (2023-11-14)
 ===
 

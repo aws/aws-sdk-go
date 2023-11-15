@@ -1210,7 +1210,7 @@ type CreateEnvironmentInput struct {
 	// it defaults to the latest version. For more information, see Apache Airflow
 	// versions on Amazon Managed Workflows for Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
 	//
-	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2.
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
@@ -1218,6 +1218,17 @@ type CreateEnvironmentInput struct {
 	//
 	// DagS3Path is a required field
 	DagS3Path *string `min:"1" type:"string" required:"true"`
+
+	// Defines whether the VPC endpoints configured for the environment are created,
+	// and managed, by the customer or by Amazon MWAA. If set to SERVICE, Amazon
+	// MWAA will create and manage the required VPC endpoints in your VPC. If set
+	// to CUSTOMER, you must create, and manage, the VPC endpoints for your VPC.
+	// If you choose to create an environment in a shared VPC, you must set this
+	// value to CUSTOMER. In a shared VPC deployment, the environment will remain
+	// in PENDING status until you create the VPC endpoints. If you do not take
+	// action to create the endpoints within 72 hours, the status will change to
+	// CREATE_FAILED. You can delete the failed environment and create a new one.
+	EndpointManagement *string `type:"string" enum:"EndpointManagement"`
 
 	// The environment class type. Valid values: mw1.small, mw1.medium, mw1.large.
 	// For more information, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
@@ -1329,8 +1340,8 @@ type CreateEnvironmentInput struct {
 	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The Apache Airflow Web server access mode. For more information, see Apache
-	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
+	// Defines the access mode for the Apache Airflow web server. For more information,
+	// see Apache Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
 	// The day and time of the week in Coordinated Universal Time (UTC) 24-hour
@@ -1459,6 +1470,12 @@ func (s *CreateEnvironmentInput) SetAirflowVersion(v string) *CreateEnvironmentI
 // SetDagS3Path sets the DagS3Path field's value.
 func (s *CreateEnvironmentInput) SetDagS3Path(v string) *CreateEnvironmentInput {
 	s.DagS3Path = &v
+	return s
+}
+
+// SetEndpointManagement sets the EndpointManagement field's value.
+func (s *CreateEnvironmentInput) SetEndpointManagement(v string) *CreateEnvironmentInput {
+	s.EndpointManagement = &v
 	return s
 }
 
@@ -1857,6 +1874,12 @@ type Environment struct {
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment.
 	Arn *string `min:"1" type:"string"`
 
+	// The queue ARN for the environment's Celery Executor (https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/executor/celery.html).
+	// Amazon MWAA uses a Celery Executor to distribute tasks across multiple workers.
+	// When you create an environment in a shared VPC, you must provide access to
+	// the Celery Executor queue from your VPC.
+	CeleryExecutorQueue *string `min:"1" type:"string"`
+
 	// The day and time the environment was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
@@ -1864,6 +1887,15 @@ type Environment struct {
 	// s3://mwaa-environment/dags. For more information, see Adding or updating
 	// DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
 	DagS3Path *string `min:"1" type:"string"`
+
+	// The VPC endpoint for the environment's Amazon RDS database.
+	DatabaseVpcEndpointService *string `min:"1" type:"string"`
+
+	// Defines whether the VPC endpoints configured for the environment are created,
+	// and managed, by the customer or by Amazon MWAA. If set to SERVICE, Amazon
+	// MWAA will create and manage the required VPC endpoints in your VPC. If set
+	// to CUSTOMER, you must create, and manage, the VPC endpoints in your VPC.
+	EndpointManagement *string `type:"string" enum:"EndpointManagement"`
 
 	// The environment class type. Valid values: mw1.small, mw1.medium, mw1.large.
 	// For more information, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
@@ -1967,7 +1999,9 @@ type Environment struct {
 	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
 	StartupScriptS3Path *string `type:"string"`
 
-	// The status of the Amazon MWAA environment. Valid values:
+	// The status of the Amazon MWAA environment.
+	//
+	// Valid values:
 	//
 	//    * CREATING - Indicates the request to create the environment is in progress.
 	//
@@ -1983,6 +2017,10 @@ type Environment struct {
 	//
 	//    * AVAILABLE - Indicates the request was successful and the environment
 	//    is ready to use.
+	//
+	//    * PENDING - Indicates the request was successful, but the process to create
+	//    the environment is paused until you create the required VPC endpoints
+	//    in your VPC. After you create the VPC endpoints, the process resumes.
 	//
 	//    * UPDATING - Indicates the request to update the environment is in progress.
 	//
@@ -2011,13 +2049,16 @@ type Environment struct {
 	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The Apache Airflow Web server access mode. For more information, see Apache
+	// The Apache Airflow web server access mode. For more information, see Apache
 	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
 	// The Apache Airflow Web server host name for the Amazon MWAA environment.
 	// For more information, see Accessing the Apache Airflow UI (https://docs.aws.amazon.com/mwaa/latest/userguide/access-airflow-ui.html).
 	WebserverUrl *string `min:"1" type:"string"`
+
+	// The VPC endpoint for the environment's web server.
+	WebserverVpcEndpointService *string `min:"1" type:"string"`
 
 	// The day and time of the week in Coordinated Universal Time (UTC) 24-hour
 	// standard time that weekly maintenance updates are scheduled. For example:
@@ -2061,6 +2102,12 @@ func (s *Environment) SetArn(v string) *Environment {
 	return s
 }
 
+// SetCeleryExecutorQueue sets the CeleryExecutorQueue field's value.
+func (s *Environment) SetCeleryExecutorQueue(v string) *Environment {
+	s.CeleryExecutorQueue = &v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Environment) SetCreatedAt(v time.Time) *Environment {
 	s.CreatedAt = &v
@@ -2070,6 +2117,18 @@ func (s *Environment) SetCreatedAt(v time.Time) *Environment {
 // SetDagS3Path sets the DagS3Path field's value.
 func (s *Environment) SetDagS3Path(v string) *Environment {
 	s.DagS3Path = &v
+	return s
+}
+
+// SetDatabaseVpcEndpointService sets the DatabaseVpcEndpointService field's value.
+func (s *Environment) SetDatabaseVpcEndpointService(v string) *Environment {
+	s.DatabaseVpcEndpointService = &v
+	return s
+}
+
+// SetEndpointManagement sets the EndpointManagement field's value.
+func (s *Environment) SetEndpointManagement(v string) *Environment {
+	s.EndpointManagement = &v
 	return s
 }
 
@@ -2202,6 +2261,12 @@ func (s *Environment) SetWebserverAccessMode(v string) *Environment {
 // SetWebserverUrl sets the WebserverUrl field's value.
 func (s *Environment) SetWebserverUrl(v string) *Environment {
 	s.WebserverUrl = &v
+	return s
+}
+
+// SetWebserverVpcEndpointService sets the WebserverVpcEndpointService field's value.
+func (s *Environment) SetWebserverVpcEndpointService(v string) *Environment {
+	s.WebserverVpcEndpointService = &v
 	return s
 }
 
@@ -3978,6 +4043,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// EndpointManagementCustomer is a EndpointManagement enum value
+	EndpointManagementCustomer = "CUSTOMER"
+
+	// EndpointManagementService is a EndpointManagement enum value
+	EndpointManagementService = "SERVICE"
+)
+
+// EndpointManagement_Values returns all elements of the EndpointManagement enum
+func EndpointManagement_Values() []string {
+	return []string{
+		EndpointManagementCustomer,
+		EndpointManagementService,
+	}
+}
+
+const (
 	// EnvironmentStatusCreating is a EnvironmentStatus enum value
 	EnvironmentStatusCreating = "CREATING"
 
@@ -4007,6 +4088,9 @@ const (
 
 	// EnvironmentStatusCreatingSnapshot is a EnvironmentStatus enum value
 	EnvironmentStatusCreatingSnapshot = "CREATING_SNAPSHOT"
+
+	// EnvironmentStatusPending is a EnvironmentStatus enum value
+	EnvironmentStatusPending = "PENDING"
 )
 
 // EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
@@ -4022,6 +4106,7 @@ func EnvironmentStatus_Values() []string {
 		EnvironmentStatusUpdateFailed,
 		EnvironmentStatusRollingBack,
 		EnvironmentStatusCreatingSnapshot,
+		EnvironmentStatusPending,
 	}
 }
 

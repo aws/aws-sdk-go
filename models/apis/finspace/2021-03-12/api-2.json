@@ -28,7 +28,9 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This method will be discontinued."
     },
     "CreateKxChangeset":{
       "name":"CreateKxChangeset",
@@ -137,7 +139,9 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This method will be discontinued."
     },
     "DeleteKxCluster":{
       "name":"DeleteKxCluster",
@@ -219,7 +223,9 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This method will be discontinued."
     },
     "GetKxChangeset":{
       "name":"GetKxChangeset",
@@ -329,7 +335,9 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This method will be discontinued."
     },
     "ListKxChangesets":{
       "name":"ListKxChangesets",
@@ -483,7 +491,9 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This method will be discontinued."
     },
     "UpdateKxClusterCodeConfiguration":{
       "name":"UpdateKxClusterCodeConfiguration",

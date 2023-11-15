@@ -80,6 +80,10 @@ type S3ControlAPI interface {
 	CreateMultiRegionAccessPointWithContext(aws.Context, *s3control.CreateMultiRegionAccessPointInput, ...request.Option) (*s3control.CreateMultiRegionAccessPointOutput, error)
 	CreateMultiRegionAccessPointRequest(*s3control.CreateMultiRegionAccessPointInput) (*request.Request, *s3control.CreateMultiRegionAccessPointOutput)
 
+	CreateStorageLensGroup(*s3control.CreateStorageLensGroupInput) (*s3control.CreateStorageLensGroupOutput, error)
+	CreateStorageLensGroupWithContext(aws.Context, *s3control.CreateStorageLensGroupInput, ...request.Option) (*s3control.CreateStorageLensGroupOutput, error)
+	CreateStorageLensGroupRequest(*s3control.CreateStorageLensGroupInput) (*request.Request, *s3control.CreateStorageLensGroupOutput)
+
 	DeleteAccessPoint(*s3control.DeleteAccessPointInput) (*s3control.DeleteAccessPointOutput, error)
 	DeleteAccessPointWithContext(aws.Context, *s3control.DeleteAccessPointInput, ...request.Option) (*s3control.DeleteAccessPointOutput, error)
 	DeleteAccessPointRequest(*s3control.DeleteAccessPointInput) (*request.Request, *s3control.DeleteAccessPointOutput)
@@ -135,6 +139,10 @@ type S3ControlAPI interface {
 	DeleteStorageLensConfigurationTagging(*s3control.DeleteStorageLensConfigurationTaggingInput) (*s3control.DeleteStorageLensConfigurationTaggingOutput, error)
 	DeleteStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.DeleteStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.DeleteStorageLensConfigurationTaggingOutput, error)
 	DeleteStorageLensConfigurationTaggingRequest(*s3control.DeleteStorageLensConfigurationTaggingInput) (*request.Request, *s3control.DeleteStorageLensConfigurationTaggingOutput)
+
+	DeleteStorageLensGroup(*s3control.DeleteStorageLensGroupInput) (*s3control.DeleteStorageLensGroupOutput, error)
+	DeleteStorageLensGroupWithContext(aws.Context, *s3control.DeleteStorageLensGroupInput, ...request.Option) (*s3control.DeleteStorageLensGroupOutput, error)
+	DeleteStorageLensGroupRequest(*s3control.DeleteStorageLensGroupInput) (*request.Request, *s3control.DeleteStorageLensGroupOutput)
 
 	DescribeJob(*s3control.DescribeJobInput) (*s3control.DescribeJobOutput, error)
 	DescribeJobWithContext(aws.Context, *s3control.DescribeJobInput, ...request.Option) (*s3control.DescribeJobOutput, error)
@@ -228,6 +236,10 @@ type S3ControlAPI interface {
 	GetStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.GetStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.GetStorageLensConfigurationTaggingOutput, error)
 	GetStorageLensConfigurationTaggingRequest(*s3control.GetStorageLensConfigurationTaggingInput) (*request.Request, *s3control.GetStorageLensConfigurationTaggingOutput)
 
+	GetStorageLensGroup(*s3control.GetStorageLensGroupInput) (*s3control.GetStorageLensGroupOutput, error)
+	GetStorageLensGroupWithContext(aws.Context, *s3control.GetStorageLensGroupInput, ...request.Option) (*s3control.GetStorageLensGroupOutput, error)
+	GetStorageLensGroupRequest(*s3control.GetStorageLensGroupInput) (*request.Request, *s3control.GetStorageLensGroupOutput)
+
 	ListAccessPoints(*s3control.ListAccessPointsInput) (*s3control.ListAccessPointsOutput, error)
 	ListAccessPointsWithContext(aws.Context, *s3control.ListAccessPointsInput, ...request.Option) (*s3control.ListAccessPointsOutput, error)
 	ListAccessPointsRequest(*s3control.ListAccessPointsInput) (*request.Request, *s3control.ListAccessPointsOutput)
@@ -269,6 +281,17 @@ type S3ControlAPI interface {
 
 	ListStorageLensConfigurationsPages(*s3control.ListStorageLensConfigurationsInput, func(*s3control.ListStorageLensConfigurationsOutput, bool) bool) error
 	ListStorageLensConfigurationsPagesWithContext(aws.Context, *s3control.ListStorageLensConfigurationsInput, func(*s3control.ListStorageLensConfigurationsOutput, bool) bool, ...request.Option) error
+
+	ListStorageLensGroups(*s3control.ListStorageLensGroupsInput) (*s3control.ListStorageLensGroupsOutput, error)
+	ListStorageLensGroupsWithContext(aws.Context, *s3control.ListStorageLensGroupsInput, ...request.Option) (*s3control.ListStorageLensGroupsOutput, error)
+	ListStorageLensGroupsRequest(*s3control.ListStorageLensGroupsInput) (*request.Request, *s3control.ListStorageLensGroupsOutput)
+
+	ListStorageLensGroupsPages(*s3control.ListStorageLensGroupsInput, func(*s3control.ListStorageLensGroupsOutput, bool) bool) error
+	ListStorageLensGroupsPagesWithContext(aws.Context, *s3control.ListStorageLensGroupsInput, func(*s3control.ListStorageLensGroupsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*s3control.ListTagsForResourceInput) (*s3control.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *s3control.ListTagsForResourceInput, ...request.Option) (*s3control.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*s3control.ListTagsForResourceInput) (*request.Request, *s3control.ListTagsForResourceOutput)
 
 	PutAccessPointConfigurationForObjectLambda(*s3control.PutAccessPointConfigurationForObjectLambdaInput) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
 	PutAccessPointConfigurationForObjectLambdaWithContext(aws.Context, *s3control.PutAccessPointConfigurationForObjectLambdaInput, ...request.Option) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
@@ -326,6 +349,14 @@ type S3ControlAPI interface {
 	SubmitMultiRegionAccessPointRoutesWithContext(aws.Context, *s3control.SubmitMultiRegionAccessPointRoutesInput, ...request.Option) (*s3control.SubmitMultiRegionAccessPointRoutesOutput, error)
 	SubmitMultiRegionAccessPointRoutesRequest(*s3control.SubmitMultiRegionAccessPointRoutesInput) (*request.Request, *s3control.SubmitMultiRegionAccessPointRoutesOutput)
 
+	TagResource(*s3control.TagResourceInput) (*s3control.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *s3control.TagResourceInput, ...request.Option) (*s3control.TagResourceOutput, error)
+	TagResourceRequest(*s3control.TagResourceInput) (*request.Request, *s3control.TagResourceOutput)
+
+	UntagResource(*s3control.UntagResourceInput) (*s3control.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *s3control.UntagResourceInput, ...request.Option) (*s3control.UntagResourceOutput, error)
+	UntagResourceRequest(*s3control.UntagResourceInput) (*request.Request, *s3control.UntagResourceOutput)
+
 	UpdateJobPriority(*s3control.UpdateJobPriorityInput) (*s3control.UpdateJobPriorityOutput, error)
 	UpdateJobPriorityWithContext(aws.Context, *s3control.UpdateJobPriorityInput, ...request.Option) (*s3control.UpdateJobPriorityOutput, error)
 	UpdateJobPriorityRequest(*s3control.UpdateJobPriorityInput) (*request.Request, *s3control.UpdateJobPriorityOutput)
@@ -333,6 +364,10 @@ type S3ControlAPI interface {
 	UpdateJobStatus(*s3control.UpdateJobStatusInput) (*s3control.UpdateJobStatusOutput, error)
 	UpdateJobStatusWithContext(aws.Context, *s3control.UpdateJobStatusInput, ...request.Option) (*s3control.UpdateJobStatusOutput, error)
 	UpdateJobStatusRequest(*s3control.UpdateJobStatusInput) (*request.Request, *s3control.UpdateJobStatusOutput)
+
+	UpdateStorageLensGroup(*s3control.UpdateStorageLensGroupInput) (*s3control.UpdateStorageLensGroupOutput, error)
+	UpdateStorageLensGroupWithContext(aws.Context, *s3control.UpdateStorageLensGroupInput, ...request.Option) (*s3control.UpdateStorageLensGroupOutput, error)
+	UpdateStorageLensGroupRequest(*s3control.UpdateStorageLensGroupInput) (*request.Request, *s3control.UpdateStorageLensGroupOutput)
 }
 
 var _ S3ControlAPI = (*s3control.S3Control)(nil)

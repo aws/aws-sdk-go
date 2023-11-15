@@ -2577,6 +2577,15 @@
       "input":{"shape":"DescribeLocalGatewaysRequest"},
       "output":{"shape":"DescribeLocalGatewaysResult"}
     },
+    "DescribeLockedSnapshots":{
+      "name":"DescribeLockedSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLockedSnapshotsRequest"},
+      "output":{"shape":"DescribeLockedSnapshotsResult"}
+    },
     "DescribeManagedPrefixLists":{
       "name":"DescribeManagedPrefixLists",
       "http":{
@@ -4243,6 +4252,15 @@
       "input":{"shape":"ListSnapshotsInRecycleBinRequest"},
       "output":{"shape":"ListSnapshotsInRecycleBinResult"}
     },
+    "LockSnapshot":{
+      "name":"LockSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"LockSnapshotRequest"},
+      "output":{"shape":"LockSnapshotResult"}
+    },
     "ModifyAddressAttribute":{
       "name":"ModifyAddressAttribute",
       "http":{
@@ -5374,6 +5392,15 @@
       },
       "input":{"shape":"UnassignPrivateNatGatewayAddressRequest"},
       "output":{"shape":"UnassignPrivateNatGatewayAddressResult"}
+    },
+    "UnlockSnapshot":{
+      "name":"UnlockSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UnlockSnapshotRequest"},
+      "output":{"shape":"UnlockSnapshotResult"}
     },
     "UnmonitorInstances":{
       "name":"UnmonitorInstances",
@@ -9713,6 +9740,12 @@
         "completed"
       ]
     },
+    "CoolOffPeriodRequestHours":{
+      "type":"integer",
+      "max":72,
+      "min":1
+    },
+    "CoolOffPeriodResponseHours":{"type":"integer"},
     "CopyFpgaImageRequest":{
       "type":"structure",
       "required":[
@@ -16622,6 +16655,40 @@
         "LocalGateways":{
           "shape":"LocalGatewaySet",
           "locationName":"localGatewaySet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLockedSnapshotsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "DescribeLockedSnapshotsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DescribeLockedSnapshotsMaxResults"},
+        "NextToken":{"shape":"String"},
+        "SnapshotIds":{
+          "shape":"SnapshotIdStringList",
+          "locationName":"SnapshotId"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLockedSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "Snapshots":{
+          "shape":"LockedSnapshotsInfoList",
+          "locationName":"snapshotSet"
         },
         "NextToken":{
           "shape":"String",
@@ -27961,7 +28028,8 @@
         "r7i.12xlarge",
         "r7i.16xlarge",
         "r7i.24xlarge",
-        "r7i.48xlarge"
+        "r7i.48xlarge",
+        "dl2q.24xlarge"
       ]
     },
     "InstanceTypeHypervisor":{
@@ -31151,6 +31219,122 @@
         "availability-zone-id",
         "outpost"
       ]
+    },
+    "LockMode":{
+      "type":"string",
+      "enum":[
+        "compliance",
+        "governance"
+      ]
+    },
+    "LockSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "SnapshotId",
+        "LockMode"
+      ],
+      "members":{
+        "SnapshotId":{"shape":"SnapshotId"},
+        "DryRun":{"shape":"Boolean"},
+        "LockMode":{"shape":"LockMode"},
+        "CoolOffPeriod":{"shape":"CoolOffPeriodRequestHours"},
+        "LockDuration":{"shape":"RetentionPeriodRequestDays"},
+        "ExpirationDate":{"shape":"MillisecondDateTime"}
+      }
+    },
+    "LockSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "LockState":{
+          "shape":"LockState",
+          "locationName":"lockState"
+        },
+        "LockDuration":{
+          "shape":"RetentionPeriodResponseDays",
+          "locationName":"lockDuration"
+        },
+        "CoolOffPeriod":{
+          "shape":"CoolOffPeriodResponseHours",
+          "locationName":"coolOffPeriod"
+        },
+        "CoolOffPeriodExpiresOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"coolOffPeriodExpiresOn"
+        },
+        "LockCreatedOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockCreatedOn"
+        },
+        "LockExpiresOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockExpiresOn"
+        },
+        "LockDurationStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockDurationStartTime"
+        }
+      }
+    },
+    "LockState":{
+      "type":"string",
+      "enum":[
+        "compliance",
+        "governance",
+        "compliance-cooloff",
+        "expired"
+      ]
+    },
+    "LockedSnapshotsInfo":{
+      "type":"structure",
+      "members":{
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "LockState":{
+          "shape":"LockState",
+          "locationName":"lockState"
+        },
+        "LockDuration":{
+          "shape":"RetentionPeriodResponseDays",
+          "locationName":"lockDuration"
+        },
+        "CoolOffPeriod":{
+          "shape":"CoolOffPeriodResponseHours",
+          "locationName":"coolOffPeriod"
+        },
+        "CoolOffPeriodExpiresOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"coolOffPeriodExpiresOn"
+        },
+        "LockCreatedOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockCreatedOn"
+        },
+        "LockDurationStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockDurationStartTime"
+        },
+        "LockExpiresOn":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lockExpiresOn"
+        }
+      }
+    },
+    "LockedSnapshotsInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"LockedSnapshotsInfo",
+        "locationName":"item"
+      }
     },
     "LogDestinationType":{
       "type":"string",
@@ -38113,6 +38297,12 @@
       "max":500,
       "min":20
     },
+    "RetentionPeriodRequestDays":{
+      "type":"integer",
+      "max":36500,
+      "min":1
+    },
+    "RetentionPeriodResponseDays":{"type":"integer"},
     "RevokeClientVpnIngressRequest":{
       "type":"structure",
       "required":[
@@ -43651,6 +43841,23 @@
         "t3a",
         "t4g"
       ]
+    },
+    "UnlockSnapshotRequest":{
+      "type":"structure",
+      "required":["SnapshotId"],
+      "members":{
+        "SnapshotId":{"shape":"SnapshotId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "UnlockSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        }
+      }
     },
     "UnmonitorInstancesRequest":{
       "type":"structure",
