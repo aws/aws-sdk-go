@@ -238,7 +238,7 @@ func TestNewSessionWithOptions_OverrideProfile(t *testing.T) {
 	if v := creds.SessionToken; len(v) != 0 {
 		t.Errorf("expect empty, got %v", v)
 	}
-	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+	if e, a := "SharedCredentialsProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
@@ -275,7 +275,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigEnable(t *testing.T) {
 	if v := creds.SessionToken; len(v) != 0 {
 		t.Errorf("expect empty, got %v", v)
 	}
-	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+	if e, a := "SharedCredentialsProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
@@ -312,7 +312,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigDisable(t *testing.T) {
 	if v := creds.SessionToken; len(v) != 0 {
 		t.Errorf("expect empty, got %v", v)
 	}
-	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+	if e, a := "SharedCredentialsProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
@@ -349,7 +349,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigFiles(t *testing.T) {
 	if v := creds.SessionToken; len(v) != 0 {
 		t.Errorf("expect empty, got %v", v)
 	}
-	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+	if e, a := "SharedCredentialsProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
@@ -372,7 +372,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 			OutCreds: credentials.Value{
 				AccessKeyID:     "full_profile_akid",
 				SecretAccessKey: "full_profile_secret",
-				ProviderName:    "SharedConfigCredentials",
+				ProviderName:    "SharedCredentialsProvider",
 			},
 		},
 		"env creds with env profile": {
@@ -405,7 +405,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 			OutCreds: credentials.Value{
 				AccessKeyID:     "full_profile_akid",
 				SecretAccessKey: "full_profile_secret",
-				ProviderName:    "SharedConfigCredentials",
+				ProviderName:    "SharedCredentialsProvider",
 			},
 		},
 		"cfg and cred file with opt profile": {
@@ -420,7 +420,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 			OutCreds: credentials.Value{
 				AccessKeyID:     "shared_config_akid",
 				SecretAccessKey: "shared_config_secret",
-				ProviderName:    "SharedConfigCredentials",
+				ProviderName:    "SharedCredentialsProvider",
 			},
 		},
 	}

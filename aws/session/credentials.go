@@ -3,6 +3,7 @@ package session
 import (
 	"fmt"
 	"os"
+	"regexp"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,6 +18,12 @@ import (
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
+
+// sharedCfgCredProviderNameRE is a regex that describes the ProviderName of
+// credentials retrieved via sharedConfig. This will be used to extract the
+// resolved filename and section fields that indicate where the credentials
+// came from.
+var sharedCfgCredProviderNameRE = regexp.MustCompile("SharedConfigCredentials: filename=(.*?),section=(.*?)$")
 
 // CredentialsProviderOptions specifies additional options for configuring
 // credentials providers.
@@ -113,10 +120,19 @@ func resolveCredsFromProfile(cfg *aws.Config,
 		)
 
 	case sharedCfg.Creds.HasKeys():
-		// Static Credentials from Shared Config/Credentials file.
-		creds = credentials.NewStaticCredentialsFromCreds(
-			sharedCfg.Creds,
-		)
+		// Credentials from Shared Config/Credentials file. We will use a
+		// SharedCredentialsProvider that has the ability to re-read the file
+		// if the credential was marked as expired.
+		matches := sharedCfgCredProviderNameRE.FindStringSubmatch(sharedCfg.Creds.ProviderName)
+		if len(matches) == 3 {
+			filename, profile := matches[1], matches[2]
+			creds = credentials.NewSharedCredentials(filename, profile)
+		} else {
+			// sharedCfg.Creds must be populated via SharedConfigCredentials,
+			// so this case is not possible. Use a static credential regardless
+			// to maintain the existing behavior.
+			creds = credentials.NewStaticCredentialsFromCreds(sharedCfg.Creds)
+		}
 
 	case len(sharedCfg.CredentialSource) != 0:
 		creds, err = resolveCredsFromSource(cfg, envCfg,

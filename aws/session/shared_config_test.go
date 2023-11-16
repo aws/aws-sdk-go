@@ -52,7 +52,7 @@ func TestLoadSharedConfig(t *testing.T) {
 				Creds: credentials.Value{
 					AccessKeyID:     "shared_config_akid",
 					SecretAccessKey: "shared_config_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=config_file_load_order", testConfigFilename),
 				},
 			},
 		},
@@ -65,7 +65,7 @@ func TestLoadSharedConfig(t *testing.T) {
 				Creds: credentials.Value{
 					AccessKeyID:     "shared_config_other_akid",
 					SecretAccessKey: "shared_config_other_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigOtherFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=config_file_load_order", testConfigOtherFilename),
 				},
 			},
 		},
@@ -81,7 +81,7 @@ func TestLoadSharedConfig(t *testing.T) {
 					Creds: credentials.Value{
 						AccessKeyID:     "complete_creds_akid",
 						SecretAccessKey: "complete_creds_secret",
-						ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+						ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=complete_creds", testConfigFilename),
 					},
 				},
 			},
@@ -113,7 +113,7 @@ func TestLoadSharedConfig(t *testing.T) {
 					Creds: credentials.Value{
 						AccessKeyID:     "assume_role_w_creds_akid",
 						SecretAccessKey: "assume_role_w_creds_secret",
-						ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+						ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=assume_role_w_creds", testConfigFilename),
 					},
 				},
 			},
@@ -161,7 +161,7 @@ func TestLoadSharedConfig(t *testing.T) {
 						Creds: credentials.Value{
 							AccessKeyID:     "complete_creds_akid",
 							SecretAccessKey: "complete_creds_secret",
-							ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+							ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=complete_creds", testConfigFilename),
 						},
 					},
 				},
@@ -252,7 +252,7 @@ func TestLoadSharedConfig(t *testing.T) {
 					AccessKeyID:     "sso_and_static_akid",
 					SecretAccessKey: "sso_and_static_secret",
 					SessionToken:    "sso_and_static_token",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=profile sso_and_static", testConfigFilename),
 				},
 				SSOAccountID: "012345678901",
 				SSORegion:    "us-west-2",
@@ -496,7 +496,7 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 				Creds: credentials.Value{
 					AccessKeyID:     "complete_creds_akid",
 					SecretAccessKey: "complete_creds_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=complete_creds", testConfigFilename),
 				},
 			},
 		},
@@ -507,7 +507,7 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 					AccessKeyID:     "complete_creds_with_token_akid",
 					SecretAccessKey: "complete_creds_with_token_secret",
 					SessionToken:    "complete_creds_with_token_token",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=complete_creds_with_token", testConfigFilename),
 				},
 			},
 		},
@@ -517,7 +517,7 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 				Creds: credentials.Value{
 					AccessKeyID:     "full_profile_akid",
 					SecretAccessKey: "full_profile_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=full_profile", testConfigFilename),
 				},
 				Region: "full_profile_region",
 			},

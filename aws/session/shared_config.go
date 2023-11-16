@@ -378,10 +378,12 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile s
 // example if a config file only includes aws_access_key_id but no
 // aws_secret_access_key the aws_access_key_id will be ignored.
 func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, exOpts bool) error {
-	section, ok := file.IniData.GetSection(profile)
+	sectionName := profile
+	section, ok := file.IniData.GetSection(sectionName)
 	if !ok {
 		// Fallback to to alternate profile name: profile <name>
-		section, ok = file.IniData.GetSection(fmt.Sprintf("profile %s", profile))
+		sectionName = fmt.Sprintf("profile %s", profile)
+		section, ok = file.IniData.GetSection(sectionName)
 		if !ok {
 			return SharedConfigProfileNotExistsError{Profile: profile, Err: nil}
 		}
@@ -458,7 +460,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		AccessKeyID:     section.String(accessKeyIDKey),
 		SecretAccessKey: section.String(secretAccessKey),
 		SessionToken:    section.String(sessionTokenKey),
-		ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", file.Filename),
+		ProviderName:    fmt.Sprintf("SharedConfigCredentials: filename=%s,section=%s", file.Filename, sectionName),
 	}
 	if creds.HasKeys() {
 		cfg.Creds = creds

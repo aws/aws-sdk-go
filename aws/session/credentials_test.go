@@ -633,7 +633,7 @@ func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 	if e, a := "assume_role_w_creds_secret", creds.SecretAccessKey; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+	if e, a := "SharedCredentialsProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
