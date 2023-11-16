@@ -1674,6 +1674,108 @@ func (c *QuickSight) CreateRefreshScheduleWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateRoleMembership = "CreateRoleMembership"
+
+// CreateRoleMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRoleMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRoleMembership for more information on using the CreateRoleMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateRoleMembershipRequest method.
+//	req, resp := client.CreateRoleMembershipRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateRoleMembership
+func (c *QuickSight) CreateRoleMembershipRequest(input *CreateRoleMembershipInput) (req *request.Request, output *CreateRoleMembershipOutput) {
+	op := &request.Operation{
+		Name:       opCreateRoleMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}",
+	}
+
+	if input == nil {
+		input = &CreateRoleMembershipInput{}
+	}
+
+	output = &CreateRoleMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRoleMembership API operation for Amazon QuickSight.
+//
+// Use CreateRoleMembership to add an existing Amazon QuickSight group to an
+// existing role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateRoleMembership for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateRoleMembership
+func (c *QuickSight) CreateRoleMembership(input *CreateRoleMembershipInput) (*CreateRoleMembershipOutput, error) {
+	req, out := c.CreateRoleMembershipRequest(input)
+	return out, req.Send()
+}
+
+// CreateRoleMembershipWithContext is the same as CreateRoleMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRoleMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateRoleMembershipWithContext(ctx aws.Context, input *CreateRoleMembershipInput, opts ...request.Option) (*CreateRoleMembershipOutput, error) {
+	req, out := c.CreateRoleMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTemplate = "CreateTemplate"
 
 // CreateTemplateRequest generates a "aws/request.Request" representing the
@@ -3851,6 +3953,208 @@ func (c *QuickSight) DeleteRefreshSchedule(input *DeleteRefreshScheduleInput) (*
 // for more information on using Contexts.
 func (c *QuickSight) DeleteRefreshScheduleWithContext(ctx aws.Context, input *DeleteRefreshScheduleInput, opts ...request.Option) (*DeleteRefreshScheduleOutput, error) {
 	req, out := c.DeleteRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRoleCustomPermission = "DeleteRoleCustomPermission"
+
+// DeleteRoleCustomPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRoleCustomPermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRoleCustomPermission for more information on using the DeleteRoleCustomPermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRoleCustomPermissionRequest method.
+//	req, resp := client.DeleteRoleCustomPermissionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRoleCustomPermission
+func (c *QuickSight) DeleteRoleCustomPermissionRequest(input *DeleteRoleCustomPermissionInput) (req *request.Request, output *DeleteRoleCustomPermissionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRoleCustomPermission,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission",
+	}
+
+	if input == nil {
+		input = &DeleteRoleCustomPermissionInput{}
+	}
+
+	output = &DeleteRoleCustomPermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteRoleCustomPermission API operation for Amazon QuickSight.
+//
+// Removes custom permissions from the role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteRoleCustomPermission for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRoleCustomPermission
+func (c *QuickSight) DeleteRoleCustomPermission(input *DeleteRoleCustomPermissionInput) (*DeleteRoleCustomPermissionOutput, error) {
+	req, out := c.DeleteRoleCustomPermissionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRoleCustomPermissionWithContext is the same as DeleteRoleCustomPermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRoleCustomPermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteRoleCustomPermissionWithContext(ctx aws.Context, input *DeleteRoleCustomPermissionInput, opts ...request.Option) (*DeleteRoleCustomPermissionOutput, error) {
+	req, out := c.DeleteRoleCustomPermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRoleMembership = "DeleteRoleMembership"
+
+// DeleteRoleMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRoleMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRoleMembership for more information on using the DeleteRoleMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRoleMembershipRequest method.
+//	req, resp := client.DeleteRoleMembershipRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRoleMembership
+func (c *QuickSight) DeleteRoleMembershipRequest(input *DeleteRoleMembershipInput) (req *request.Request, output *DeleteRoleMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRoleMembership,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}",
+	}
+
+	if input == nil {
+		input = &DeleteRoleMembershipInput{}
+	}
+
+	output = &DeleteRoleMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteRoleMembership API operation for Amazon QuickSight.
+//
+// Removes a group from a role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteRoleMembership for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRoleMembership
+func (c *QuickSight) DeleteRoleMembership(input *DeleteRoleMembershipInput) (*DeleteRoleMembershipOutput, error) {
+	req, out := c.DeleteRoleMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRoleMembershipWithContext is the same as DeleteRoleMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRoleMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteRoleMembershipWithContext(ctx aws.Context, input *DeleteRoleMembershipInput, opts ...request.Option) (*DeleteRoleMembershipOutput, error) {
+	req, out := c.DeleteRoleMembershipRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7714,6 +8018,107 @@ func (c *QuickSight) DescribeRefreshSchedule(input *DescribeRefreshScheduleInput
 // for more information on using Contexts.
 func (c *QuickSight) DescribeRefreshScheduleWithContext(ctx aws.Context, input *DescribeRefreshScheduleInput, opts ...request.Option) (*DescribeRefreshScheduleOutput, error) {
 	req, out := c.DescribeRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRoleCustomPermission = "DescribeRoleCustomPermission"
+
+// DescribeRoleCustomPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRoleCustomPermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRoleCustomPermission for more information on using the DescribeRoleCustomPermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRoleCustomPermissionRequest method.
+//	req, resp := client.DescribeRoleCustomPermissionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeRoleCustomPermission
+func (c *QuickSight) DescribeRoleCustomPermissionRequest(input *DescribeRoleCustomPermissionInput) (req *request.Request, output *DescribeRoleCustomPermissionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRoleCustomPermission,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission",
+	}
+
+	if input == nil {
+		input = &DescribeRoleCustomPermissionInput{}
+	}
+
+	output = &DescribeRoleCustomPermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRoleCustomPermission API operation for Amazon QuickSight.
+//
+// Describes all custom permissions that are mapped to a role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeRoleCustomPermission for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeRoleCustomPermission
+func (c *QuickSight) DescribeRoleCustomPermission(input *DescribeRoleCustomPermissionInput) (*DescribeRoleCustomPermissionOutput, error) {
+	req, out := c.DescribeRoleCustomPermissionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRoleCustomPermissionWithContext is the same as DescribeRoleCustomPermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRoleCustomPermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeRoleCustomPermissionWithContext(ctx aws.Context, input *DescribeRoleCustomPermissionInput, opts ...request.Option) (*DescribeRoleCustomPermissionOutput, error) {
+	req, out := c.DescribeRoleCustomPermissionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12038,6 +12443,170 @@ func (c *QuickSight) ListRefreshSchedulesWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListRoleMemberships = "ListRoleMemberships"
+
+// ListRoleMembershipsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRoleMemberships operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRoleMemberships for more information on using the ListRoleMemberships
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRoleMembershipsRequest method.
+//	req, resp := client.ListRoleMembershipsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListRoleMemberships
+func (c *QuickSight) ListRoleMembershipsRequest(input *ListRoleMembershipsInput) (req *request.Request, output *ListRoleMembershipsOutput) {
+	op := &request.Operation{
+		Name:       opListRoleMemberships,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRoleMembershipsInput{}
+	}
+
+	output = &ListRoleMembershipsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRoleMemberships API operation for Amazon QuickSight.
+//
+// Lists all groups that are associated with a role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListRoleMemberships for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListRoleMemberships
+func (c *QuickSight) ListRoleMemberships(input *ListRoleMembershipsInput) (*ListRoleMembershipsOutput, error) {
+	req, out := c.ListRoleMembershipsRequest(input)
+	return out, req.Send()
+}
+
+// ListRoleMembershipsWithContext is the same as ListRoleMemberships with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRoleMemberships for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListRoleMembershipsWithContext(ctx aws.Context, input *ListRoleMembershipsInput, opts ...request.Option) (*ListRoleMembershipsOutput, error) {
+	req, out := c.ListRoleMembershipsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRoleMembershipsPages iterates over the pages of a ListRoleMemberships operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRoleMemberships method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRoleMemberships operation.
+//	pageNum := 0
+//	err := client.ListRoleMembershipsPages(params,
+//	    func(page *quicksight.ListRoleMembershipsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListRoleMembershipsPages(input *ListRoleMembershipsInput, fn func(*ListRoleMembershipsOutput, bool) bool) error {
+	return c.ListRoleMembershipsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRoleMembershipsPagesWithContext same as ListRoleMembershipsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListRoleMembershipsPagesWithContext(ctx aws.Context, input *ListRoleMembershipsInput, fn func(*ListRoleMembershipsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRoleMembershipsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRoleMembershipsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRoleMembershipsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -17441,6 +18010,107 @@ func (c *QuickSight) UpdateRefreshScheduleWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+const opUpdateRoleCustomPermission = "UpdateRoleCustomPermission"
+
+// UpdateRoleCustomPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoleCustomPermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoleCustomPermission for more information on using the UpdateRoleCustomPermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRoleCustomPermissionRequest method.
+//	req, resp := client.UpdateRoleCustomPermissionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateRoleCustomPermission
+func (c *QuickSight) UpdateRoleCustomPermissionRequest(input *UpdateRoleCustomPermissionInput) (req *request.Request, output *UpdateRoleCustomPermissionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoleCustomPermission,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/custom-permission",
+	}
+
+	if input == nil {
+		input = &UpdateRoleCustomPermissionInput{}
+	}
+
+	output = &UpdateRoleCustomPermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRoleCustomPermission API operation for Amazon QuickSight.
+//
+// Updates the custom permissions that are associated with a role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateRoleCustomPermission for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateRoleCustomPermission
+func (c *QuickSight) UpdateRoleCustomPermission(input *UpdateRoleCustomPermissionInput) (*UpdateRoleCustomPermissionOutput, error) {
+	req, out := c.UpdateRoleCustomPermissionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoleCustomPermissionWithContext is the same as UpdateRoleCustomPermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoleCustomPermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateRoleCustomPermissionWithContext(ctx aws.Context, input *UpdateRoleCustomPermissionInput, opts ...request.Option) (*UpdateRoleCustomPermissionOutput, error) {
+	req, out := c.UpdateRoleCustomPermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -19259,9 +19929,6 @@ type Analysis struct {
 	// The descriptive name of the analysis.
 	Name *string `min:"1" type:"string"`
 
-	// An array of analysis level configurations.
-	Options *AssetOptions `type:"structure"`
-
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -19330,12 +19997,6 @@ func (s *Analysis) SetLastUpdatedTime(v time.Time) *Analysis {
 // SetName sets the Name field's value.
 func (s *Analysis) SetName(v string) *Analysis {
 	s.Name = &v
-	return s
-}
-
-// SetOptions sets the Options field's value.
-func (s *Analysis) SetOptions(v *AssetOptions) *Analysis {
-	s.Options = v
 	return s
 }
 
@@ -20642,7 +21303,9 @@ type AssetBundleExportJobAnalysisOverrideProperties struct {
 
 	// The ARN of the specific Analysis resource whose override properties are configured
 	// in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of Analysis resource properties to generate variables for in the returned
 	// CloudFormation template.
@@ -20672,6 +21335,9 @@ func (s AssetBundleExportJobAnalysisOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobAnalysisOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobAnalysisOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -20704,7 +21370,9 @@ type AssetBundleExportJobDashboardOverrideProperties struct {
 
 	// The ARN of the specific Dashboard resource whose override properties are
 	// configured in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of Dashboard resource properties to generate variables for in the
 	// returned CloudFormation template.
@@ -20734,6 +21402,9 @@ func (s AssetBundleExportJobDashboardOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobDashboardOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDashboardOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -20766,7 +21437,9 @@ type AssetBundleExportJobDataSetOverrideProperties struct {
 
 	// The ARN of the specific DataSet resource whose override properties are configured
 	// in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of DataSet resource properties to generate variables for in the returned
 	// CloudFormation template.
@@ -20796,6 +21469,9 @@ func (s AssetBundleExportJobDataSetOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobDataSetOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDataSetOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -20828,7 +21504,9 @@ type AssetBundleExportJobDataSourceOverrideProperties struct {
 
 	// The ARN of the specific DataSource resource whose override properties are
 	// configured in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of DataSource resource properties to generate variables for in the
 	// returned CloudFormation template.
@@ -20858,6 +21536,9 @@ func (s AssetBundleExportJobDataSourceOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobDataSourceOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobDataSourceOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -20940,7 +21621,9 @@ type AssetBundleExportJobRefreshScheduleOverrideProperties struct {
 
 	// The ARN of the specific RefreshSchedule resource whose override properties
 	// are configured in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of RefreshSchedule resource properties to generate variables for in
 	// the returned CloudFormation template.
@@ -20970,6 +21653,9 @@ func (s AssetBundleExportJobRefreshScheduleOverrideProperties) GoString() string
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobRefreshScheduleOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobRefreshScheduleOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -21051,6 +21737,14 @@ type AssetBundleExportJobSummary struct {
 	// asset bundle.
 	IncludeAllDependencies *bool `type:"boolean"`
 
+	// The flag that determines the inclusion of permissions associated with each
+	// resource ARN.
+	IncludePermissions *bool `type:"boolean"`
+
+	// The flag that determines the inclusion of tags associated with each resource
+	// ARN.
+	IncludeTags *bool `type:"boolean"`
+
 	// The current status of the export job.
 	JobStatus *string `type:"string" enum:"AssetBundleExportJobStatus"`
 }
@@ -21103,6 +21797,18 @@ func (s *AssetBundleExportJobSummary) SetIncludeAllDependencies(v bool) *AssetBu
 	return s
 }
 
+// SetIncludePermissions sets the IncludePermissions field's value.
+func (s *AssetBundleExportJobSummary) SetIncludePermissions(v bool) *AssetBundleExportJobSummary {
+	s.IncludePermissions = &v
+	return s
+}
+
+// SetIncludeTags sets the IncludeTags field's value.
+func (s *AssetBundleExportJobSummary) SetIncludeTags(v bool) *AssetBundleExportJobSummary {
+	s.IncludeTags = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *AssetBundleExportJobSummary) SetJobStatus(v string) *AssetBundleExportJobSummary {
 	s.JobStatus = &v
@@ -21116,7 +21822,9 @@ type AssetBundleExportJobThemeOverrideProperties struct {
 
 	// The ARN of the specific Theme resource whose override properties are configured
 	// in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of Theme resource properties to generate variables for in the returned
 	// CloudFormation template.
@@ -21146,6 +21854,9 @@ func (s AssetBundleExportJobThemeOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobThemeOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobThemeOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -21178,7 +21889,9 @@ type AssetBundleExportJobVPCConnectionOverrideProperties struct {
 
 	// The ARN of the specific VPCConnection resource whose override properties
 	// are configured in this structure.
-	Arn *string `type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
 
 	// A list of VPCConnection resource properties to generate variables for in
 	// the returned CloudFormation template.
@@ -21208,6 +21921,9 @@ func (s AssetBundleExportJobVPCConnectionOverrideProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssetBundleExportJobVPCConnectionOverrideProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssetBundleExportJobVPCConnectionOverrideProperties"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
 	if s.Properties == nil {
 		invalidParams.Add(request.NewErrParamRequired("Properties"))
 	}
@@ -21230,6 +21946,82 @@ func (s *AssetBundleExportJobVPCConnectionOverrideProperties) SetArn(v string) *
 // SetProperties sets the Properties field's value.
 func (s *AssetBundleExportJobVPCConnectionOverrideProperties) SetProperties(v []*string) *AssetBundleExportJobVPCConnectionOverrideProperties {
 	s.Properties = v
+	return s
+}
+
+// The option to relax the validation that is required to export each asset.
+// When StrictModeForAllResource is set to true, validation is skipped for specific
+// UI errors.
+type AssetBundleExportJobValidationStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether to export resources under strict or
+	// lenient mode.
+	StrictModeForAllResources *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobValidationStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobValidationStrategy) GoString() string {
+	return s.String()
+}
+
+// SetStrictModeForAllResources sets the StrictModeForAllResources field's value.
+func (s *AssetBundleExportJobValidationStrategy) SetStrictModeForAllResources(v bool) *AssetBundleExportJobValidationStrategy {
+	s.StrictModeForAllResources = &v
+	return s
+}
+
+// Describes a warning that occurred during an Asset Bundle export job.
+type AssetBundleExportJobWarning struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource whose processing caused a warning.
+	Arn *string `type:"string"`
+
+	// A description of the warning.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobWarning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleExportJobWarning) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleExportJobWarning) SetArn(v string) *AssetBundleExportJobWarning {
+	s.Arn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AssetBundleExportJobWarning) SetMessage(v string) *AssetBundleExportJobWarning {
+	s.Message = &v
 	return s
 }
 
@@ -21292,6 +22084,156 @@ func (s *AssetBundleImportJobAnalysisOverrideParameters) SetName(v string) *Asse
 	return s
 }
 
+// An object that contains a list of permissions to be applied to a list of
+// analysis IDs.
+type AssetBundleImportJobAnalysisOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of analysis IDs that you want to apply overrides to. You can use *
+	// to override all analyses in this asset bundle.
+	//
+	// AnalysisIds is a required field
+	AnalysisIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of permissions for the analyses that you want to apply overrides to.
+	//
+	// Permissions is a required field
+	Permissions *AssetBundleResourcePermissions `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobAnalysisOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobAnalysisOverridePermissions"}
+	if s.AnalysisIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisIds"))
+	}
+	if s.AnalysisIds != nil && len(s.AnalysisIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisIds", 1))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisIds sets the AnalysisIds field's value.
+func (s *AssetBundleImportJobAnalysisOverridePermissions) SetAnalysisIds(v []*string) *AssetBundleImportJobAnalysisOverridePermissions {
+	s.AnalysisIds = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleImportJobAnalysisOverridePermissions) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleImportJobAnalysisOverridePermissions {
+	s.Permissions = v
+	return s
+}
+
+// An object that contains a list of tags to be assigned to a list of analysis
+// IDs.
+type AssetBundleImportJobAnalysisOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of analysis IDs that you want to apply overrides to. You can use *
+	// to override all analyses in this asset bundle.
+	//
+	// AnalysisIds is a required field
+	AnalysisIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of tags for the analyses that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobAnalysisOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobAnalysisOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobAnalysisOverrideTags"}
+	if s.AnalysisIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisIds"))
+	}
+	if s.AnalysisIds != nil && len(s.AnalysisIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisIds", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisIds sets the AnalysisIds field's value.
+func (s *AssetBundleImportJobAnalysisOverrideTags) SetAnalysisIds(v []*string) *AssetBundleImportJobAnalysisOverrideTags {
+	s.AnalysisIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobAnalysisOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobAnalysisOverrideTags {
+	s.Tags = v
+	return s
+}
+
 // The override parameters for a single dashboard that is being imported.
 type AssetBundleImportJobDashboardOverrideParameters struct {
 	_ struct{} `type:"structure"`
@@ -21351,6 +22293,167 @@ func (s *AssetBundleImportJobDashboardOverrideParameters) SetName(v string) *Ass
 	return s
 }
 
+// An object that contains a list of permissions to be applied to a list of
+// dashboard IDs.
+type AssetBundleImportJobDashboardOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of dashboard IDs that you want to apply overrides to. You can use
+	// * to override all dashboards in this asset bundle.
+	//
+	// DashboardIds is a required field
+	DashboardIds []*string `min:"1" type:"list" required:"true"`
+
+	// A structure that contains the link sharing configurations that you want to
+	// apply overrides to.
+	LinkSharingConfiguration *AssetBundleResourceLinkSharingConfiguration `type:"structure"`
+
+	// A list of permissions for the dashboards that you want to apply overrides
+	// to.
+	Permissions *AssetBundleResourcePermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDashboardOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDashboardOverridePermissions"}
+	if s.DashboardIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardIds"))
+	}
+	if s.DashboardIds != nil && len(s.DashboardIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardIds", 1))
+	}
+	if s.LinkSharingConfiguration != nil {
+		if err := s.LinkSharingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LinkSharingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardIds sets the DashboardIds field's value.
+func (s *AssetBundleImportJobDashboardOverridePermissions) SetDashboardIds(v []*string) *AssetBundleImportJobDashboardOverridePermissions {
+	s.DashboardIds = v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *AssetBundleImportJobDashboardOverridePermissions) SetLinkSharingConfiguration(v *AssetBundleResourceLinkSharingConfiguration) *AssetBundleImportJobDashboardOverridePermissions {
+	s.LinkSharingConfiguration = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleImportJobDashboardOverridePermissions) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleImportJobDashboardOverridePermissions {
+	s.Permissions = v
+	return s
+}
+
+// An object that contains a list of tags to be assigned to a list of dashboard
+// IDs.
+type AssetBundleImportJobDashboardOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of dashboard IDs that you want to apply overrides to. You can use
+	// * to override all dashboards in this asset bundle.
+	//
+	// DashboardIds is a required field
+	DashboardIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of tags for the dashboards that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDashboardOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDashboardOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDashboardOverrideTags"}
+	if s.DashboardIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardIds"))
+	}
+	if s.DashboardIds != nil && len(s.DashboardIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardIds", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardIds sets the DashboardIds field's value.
+func (s *AssetBundleImportJobDashboardOverrideTags) SetDashboardIds(v []*string) *AssetBundleImportJobDashboardOverrideTags {
+	s.DashboardIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobDashboardOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobDashboardOverrideTags {
+	s.Tags = v
+	return s
+}
+
 // The override parameters for a single dataset that is being imported.
 type AssetBundleImportJobDataSetOverrideParameters struct {
 	_ struct{} `type:"structure"`
@@ -21407,6 +22510,156 @@ func (s *AssetBundleImportJobDataSetOverrideParameters) SetDataSetId(v string) *
 // SetName sets the Name field's value.
 func (s *AssetBundleImportJobDataSetOverrideParameters) SetName(v string) *AssetBundleImportJobDataSetOverrideParameters {
 	s.Name = &v
+	return s
+}
+
+// An object that contains a list of permissions to be applied to a list of
+// dataset IDs.
+type AssetBundleImportJobDataSetOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of dataset IDs that you want to apply overrides to. You can use *
+	// to override all datasets in this asset bundle.
+	//
+	// DataSetIds is a required field
+	DataSetIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of permissions for the datasets that you want to apply overrides to.
+	//
+	// Permissions is a required field
+	Permissions *AssetBundleResourcePermissions `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSetOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSetOverridePermissions"}
+	if s.DataSetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetIds"))
+	}
+	if s.DataSetIds != nil && len(s.DataSetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetIds", 1))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetIds sets the DataSetIds field's value.
+func (s *AssetBundleImportJobDataSetOverridePermissions) SetDataSetIds(v []*string) *AssetBundleImportJobDataSetOverridePermissions {
+	s.DataSetIds = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleImportJobDataSetOverridePermissions) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleImportJobDataSetOverridePermissions {
+	s.Permissions = v
+	return s
+}
+
+// An object that contains a list of tags to be assigned to a list of dataset
+// IDs.
+type AssetBundleImportJobDataSetOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of dataset IDs that you want to apply overrides to. You can use *
+	// to override all datasets in this asset bundle.
+	//
+	// DataSetIds is a required field
+	DataSetIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of tags for the datasets that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSetOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSetOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSetOverrideTags"}
+	if s.DataSetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetIds"))
+	}
+	if s.DataSetIds != nil && len(s.DataSetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetIds", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetIds sets the DataSetIds field's value.
+func (s *AssetBundleImportJobDataSetOverrideTags) SetDataSetIds(v []*string) *AssetBundleImportJobDataSetOverrideTags {
+	s.DataSetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobDataSetOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobDataSetOverrideTags {
+	s.Tags = v
 	return s
 }
 
@@ -21655,6 +22908,157 @@ func (s *AssetBundleImportJobDataSourceOverrideParameters) SetSslProperties(v *S
 // SetVpcConnectionProperties sets the VpcConnectionProperties field's value.
 func (s *AssetBundleImportJobDataSourceOverrideParameters) SetVpcConnectionProperties(v *VpcConnectionProperties) *AssetBundleImportJobDataSourceOverrideParameters {
 	s.VpcConnectionProperties = v
+	return s
+}
+
+// An object that contains a list of permissions to be applied to a list of
+// data source IDs.
+type AssetBundleImportJobDataSourceOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of data source IDs that you want to apply overrides to. You can use
+	// * to override all data sources in this asset bundle.
+	//
+	// DataSourceIds is a required field
+	DataSourceIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of permissions for the data source that you want to apply overrides
+	// to.
+	//
+	// Permissions is a required field
+	Permissions *AssetBundleResourcePermissions `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSourceOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSourceOverridePermissions"}
+	if s.DataSourceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceIds"))
+	}
+	if s.DataSourceIds != nil && len(s.DataSourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceIds", 1))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceIds sets the DataSourceIds field's value.
+func (s *AssetBundleImportJobDataSourceOverridePermissions) SetDataSourceIds(v []*string) *AssetBundleImportJobDataSourceOverridePermissions {
+	s.DataSourceIds = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleImportJobDataSourceOverridePermissions) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleImportJobDataSourceOverridePermissions {
+	s.Permissions = v
+	return s
+}
+
+// An object that contains a list of tags to be assigned to a list of data source
+// IDs.
+type AssetBundleImportJobDataSourceOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of data source IDs that you want to apply overrides to. You can use
+	// * to override all data sources in this asset bundle.
+	//
+	// DataSourceIds is a required field
+	DataSourceIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of tags for the data source that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobDataSourceOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobDataSourceOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobDataSourceOverrideTags"}
+	if s.DataSourceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceIds"))
+	}
+	if s.DataSourceIds != nil && len(s.DataSourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceIds", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceIds sets the DataSourceIds field's value.
+func (s *AssetBundleImportJobDataSourceOverrideTags) SetDataSourceIds(v []*string) *AssetBundleImportJobDataSourceOverrideTags {
+	s.DataSourceIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobDataSourceOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobDataSourceOverrideTags {
+	s.Tags = v
 	return s
 }
 
@@ -21913,6 +23317,361 @@ func (s *AssetBundleImportJobOverrideParameters) SetVPCConnections(v []*AssetBun
 	return s
 }
 
+// A structure that contains the override permission configurations that modify
+// the permissions for specified resources before the resource is imported.
+type AssetBundleImportJobOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of permissions overrides for any Analysis resources that are present
+	// in the asset bundle that is imported.
+	Analyses []*AssetBundleImportJobAnalysisOverridePermissions `min:"1" type:"list"`
+
+	// A list of permissions overrides for any Dashboard resources that are present
+	// in the asset bundle that is imported.
+	Dashboards []*AssetBundleImportJobDashboardOverridePermissions `min:"1" type:"list"`
+
+	// A list of permissions overrides for any DataSet resources that are present
+	// in the asset bundle that is imported.
+	DataSets []*AssetBundleImportJobDataSetOverridePermissions `min:"1" type:"list"`
+
+	// A list of permissions overrides for any DataSource resources that are present
+	// in the asset bundle that is imported.
+	DataSources []*AssetBundleImportJobDataSourceOverridePermissions `min:"1" type:"list"`
+
+	// A list of permissions overrides for any Theme resources that are present
+	// in the asset bundle that is imported.
+	Themes []*AssetBundleImportJobThemeOverridePermissions `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobOverridePermissions"}
+	if s.Analyses != nil && len(s.Analyses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Analyses", 1))
+	}
+	if s.Dashboards != nil && len(s.Dashboards) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dashboards", 1))
+	}
+	if s.DataSets != nil && len(s.DataSets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSets", 1))
+	}
+	if s.DataSources != nil && len(s.DataSources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSources", 1))
+	}
+	if s.Themes != nil && len(s.Themes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Themes", 1))
+	}
+	if s.Analyses != nil {
+		for i, v := range s.Analyses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Analyses", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Dashboards != nil {
+		for i, v := range s.Dashboards {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dashboards", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSets != nil {
+		for i, v := range s.DataSets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSources != nil {
+		for i, v := range s.DataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Themes != nil {
+		for i, v := range s.Themes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Themes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyses sets the Analyses field's value.
+func (s *AssetBundleImportJobOverridePermissions) SetAnalyses(v []*AssetBundleImportJobAnalysisOverridePermissions) *AssetBundleImportJobOverridePermissions {
+	s.Analyses = v
+	return s
+}
+
+// SetDashboards sets the Dashboards field's value.
+func (s *AssetBundleImportJobOverridePermissions) SetDashboards(v []*AssetBundleImportJobDashboardOverridePermissions) *AssetBundleImportJobOverridePermissions {
+	s.Dashboards = v
+	return s
+}
+
+// SetDataSets sets the DataSets field's value.
+func (s *AssetBundleImportJobOverridePermissions) SetDataSets(v []*AssetBundleImportJobDataSetOverridePermissions) *AssetBundleImportJobOverridePermissions {
+	s.DataSets = v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AssetBundleImportJobOverridePermissions) SetDataSources(v []*AssetBundleImportJobDataSourceOverridePermissions) *AssetBundleImportJobOverridePermissions {
+	s.DataSources = v
+	return s
+}
+
+// SetThemes sets the Themes field's value.
+func (s *AssetBundleImportJobOverridePermissions) SetThemes(v []*AssetBundleImportJobThemeOverridePermissions) *AssetBundleImportJobOverridePermissions {
+	s.Themes = v
+	return s
+}
+
+// A structure that contains the override tag configuration that modify the
+// tags that are assigned to specified resources before the resource is imported.
+type AssetBundleImportJobOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tag overrides for any Analysis resources that are present in the
+	// asset bundle that is imported.
+	Analyses []*AssetBundleImportJobAnalysisOverrideTags `min:"1" type:"list"`
+
+	// A list of tag overrides for any Dashboard resources that are present in the
+	// asset bundle that is imported.
+	Dashboards []*AssetBundleImportJobDashboardOverrideTags `min:"1" type:"list"`
+
+	// A list of tag overrides for any DataSet resources that are present in the
+	// asset bundle that is imported.
+	DataSets []*AssetBundleImportJobDataSetOverrideTags `min:"1" type:"list"`
+
+	// A list of tag overrides for any DataSource resources that are present in
+	// the asset bundle that is imported.
+	DataSources []*AssetBundleImportJobDataSourceOverrideTags `min:"1" type:"list"`
+
+	// A list of tag overrides for any Theme resources that are present in the asset
+	// bundle that is imported.
+	Themes []*AssetBundleImportJobThemeOverrideTags `min:"1" type:"list"`
+
+	// A list of tag overrides for any VPCConnection resources that are present
+	// in the asset bundle that is imported.
+	VPCConnections []*AssetBundleImportJobVPCConnectionOverrideTags `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobOverrideTags"}
+	if s.Analyses != nil && len(s.Analyses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Analyses", 1))
+	}
+	if s.Dashboards != nil && len(s.Dashboards) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dashboards", 1))
+	}
+	if s.DataSets != nil && len(s.DataSets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSets", 1))
+	}
+	if s.DataSources != nil && len(s.DataSources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSources", 1))
+	}
+	if s.Themes != nil && len(s.Themes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Themes", 1))
+	}
+	if s.VPCConnections != nil && len(s.VPCConnections) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnections", 1))
+	}
+	if s.Analyses != nil {
+		for i, v := range s.Analyses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Analyses", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Dashboards != nil {
+		for i, v := range s.Dashboards {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dashboards", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSets != nil {
+		for i, v := range s.DataSets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DataSources != nil {
+		for i, v := range s.DataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Themes != nil {
+		for i, v := range s.Themes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Themes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VPCConnections != nil {
+		for i, v := range s.VPCConnections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VPCConnections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyses sets the Analyses field's value.
+func (s *AssetBundleImportJobOverrideTags) SetAnalyses(v []*AssetBundleImportJobAnalysisOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.Analyses = v
+	return s
+}
+
+// SetDashboards sets the Dashboards field's value.
+func (s *AssetBundleImportJobOverrideTags) SetDashboards(v []*AssetBundleImportJobDashboardOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.Dashboards = v
+	return s
+}
+
+// SetDataSets sets the DataSets field's value.
+func (s *AssetBundleImportJobOverrideTags) SetDataSets(v []*AssetBundleImportJobDataSetOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.DataSets = v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *AssetBundleImportJobOverrideTags) SetDataSources(v []*AssetBundleImportJobDataSourceOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.DataSources = v
+	return s
+}
+
+// SetThemes sets the Themes field's value.
+func (s *AssetBundleImportJobOverrideTags) SetThemes(v []*AssetBundleImportJobThemeOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.Themes = v
+	return s
+}
+
+// SetVPCConnections sets the VPCConnections field's value.
+func (s *AssetBundleImportJobOverrideTags) SetVPCConnections(v []*AssetBundleImportJobVPCConnectionOverrideTags) *AssetBundleImportJobOverrideTags {
+	s.VPCConnections = v
+	return s
+}
+
+// An optional parameter that overrides the validation strategy for all analyses
+// and dashboards before the resource is imported.
+type AssetBundleImportJobOverrideValidationStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether to import all analyses and dashboards
+	// under strict or lenient mode.
+	StrictModeForAllResources *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideValidationStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobOverrideValidationStrategy) GoString() string {
+	return s.String()
+}
+
+// SetStrictModeForAllResources sets the StrictModeForAllResources field's value.
+func (s *AssetBundleImportJobOverrideValidationStrategy) SetStrictModeForAllResources(v bool) *AssetBundleImportJobOverrideValidationStrategy {
+	s.StrictModeForAllResources = &v
+	return s
+}
+
 // A list of overrides for a specific RefreshsSchedule resource that is present
 // in the asset bundle that is imported.
 type AssetBundleImportJobRefreshScheduleOverrideParameters struct {
@@ -22151,6 +23910,156 @@ func (s *AssetBundleImportJobThemeOverrideParameters) SetThemeId(v string) *Asse
 	return s
 }
 
+// An object that contains a list of permissions to be applied to a list of
+// theme IDs.
+type AssetBundleImportJobThemeOverridePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of permissions for the themes that you want to apply overrides to.
+	//
+	// Permissions is a required field
+	Permissions *AssetBundleResourcePermissions `type:"structure" required:"true"`
+
+	// A list of theme IDs that you want to apply overrides to. You can use * to
+	// override all themes in this asset bundle.
+	//
+	// ThemeIds is a required field
+	ThemeIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverridePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverridePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobThemeOverridePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobThemeOverridePermissions"}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.ThemeIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThemeIds"))
+	}
+	if s.ThemeIds != nil && len(s.ThemeIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThemeIds", 1))
+	}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleImportJobThemeOverridePermissions) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleImportJobThemeOverridePermissions {
+	s.Permissions = v
+	return s
+}
+
+// SetThemeIds sets the ThemeIds field's value.
+func (s *AssetBundleImportJobThemeOverridePermissions) SetThemeIds(v []*string) *AssetBundleImportJobThemeOverridePermissions {
+	s.ThemeIds = v
+	return s
+}
+
+// An object that contains a list of tags to be assigned to a list of theme
+// IDs.
+type AssetBundleImportJobThemeOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags for the themes that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+
+	// A list of theme IDs that you want to apply overrides to. You can use * to
+	// override all themes in this asset bundle.
+	//
+	// ThemeIds is a required field
+	ThemeIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobThemeOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobThemeOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobThemeOverrideTags"}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ThemeIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThemeIds"))
+	}
+	if s.ThemeIds != nil && len(s.ThemeIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThemeIds", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobThemeOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobThemeOverrideTags {
+	s.Tags = v
+	return s
+}
+
+// SetThemeIds sets the ThemeIds field's value.
+func (s *AssetBundleImportJobThemeOverrideTags) SetThemeIds(v []*string) *AssetBundleImportJobThemeOverrideTags {
+	s.ThemeIds = v
+	return s
+}
+
 // The override parameters for a single VPC connection that is imported.
 type AssetBundleImportJobVPCConnectionOverrideParameters struct {
 	_ struct{} `type:"structure"`
@@ -22262,6 +24171,85 @@ func (s *AssetBundleImportJobVPCConnectionOverrideParameters) SetVPCConnectionId
 	return s
 }
 
+// An object that contains a list of tags to be assigned to a list of VPC connection
+// IDs.
+type AssetBundleImportJobVPCConnectionOverrideTags struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags for the VPC connections that you want to apply overrides to.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+
+	// A list of VPC connection IDs that you want to apply overrides to. You can
+	// use * to override all VPC connections in this asset bundle.
+	//
+	// VPCConnectionIds is a required field
+	VPCConnectionIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobVPCConnectionOverrideTags) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobVPCConnectionOverrideTags) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleImportJobVPCConnectionOverrideTags) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleImportJobVPCConnectionOverrideTags"}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VPCConnectionIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionIds"))
+	}
+	if s.VPCConnectionIds != nil && len(s.VPCConnectionIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionIds", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideTags) SetTags(v []*Tag) *AssetBundleImportJobVPCConnectionOverrideTags {
+	s.Tags = v
+	return s
+}
+
+// SetVPCConnectionIds sets the VPCConnectionIds field's value.
+func (s *AssetBundleImportJobVPCConnectionOverrideTags) SetVPCConnectionIds(v []*string) *AssetBundleImportJobVPCConnectionOverrideTags {
+	s.VPCConnectionIds = v
+	return s
+}
+
 // The source of the asset bundle zip file that contains the data that you want
 // to import. The file must be in QUICKSIGHT_JSON format.
 type AssetBundleImportSource struct {
@@ -22329,7 +24317,11 @@ type AssetBundleImportSourceDescription struct {
 	// at the start of the import job. This URL is valid for five minutes after
 	// issuance. Call DescribeAssetBundleExportJob again for a fresh URL if needed.
 	// The downloaded asset bundle is a .qs zip file.
-	Body *string `type:"string"`
+	//
+	// Body is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssetBundleImportSourceDescription's
+	// String and GoString methods.
+	Body *string `type:"string" sensitive:"true"`
 
 	// The Amazon S3 URI that you provided at the start of the import job.
 	S3Uri *string `type:"string"`
@@ -22362,6 +24354,123 @@ func (s *AssetBundleImportSourceDescription) SetBody(v string) *AssetBundleImpor
 // SetS3Uri sets the S3Uri field's value.
 func (s *AssetBundleImportSourceDescription) SetS3Uri(v string) *AssetBundleImportSourceDescription {
 	s.S3Uri = &v
+	return s
+}
+
+// A structure that contains the configuration of a shared link to an Amazon
+// QuickSight dashboard.
+type AssetBundleResourceLinkSharingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of link sharing permissions for the dashboards that you want to apply
+	// overrides to.
+	Permissions *AssetBundleResourcePermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleResourceLinkSharingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleResourceLinkSharingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleResourceLinkSharingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleResourceLinkSharingConfiguration"}
+	if s.Permissions != nil {
+		if err := s.Permissions.Validate(); err != nil {
+			invalidParams.AddNested("Permissions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AssetBundleResourceLinkSharingConfiguration) SetPermissions(v *AssetBundleResourcePermissions) *AssetBundleResourceLinkSharingConfiguration {
+	s.Permissions = v
+	return s
+}
+
+// A structure that contains the permissions for the resource that you want
+// to override in an asset bundle import job.
+type AssetBundleResourcePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IAM actions to grant permissions on.
+	//
+	// Actions is a required field
+	Actions []*string `min:"1" type:"list" required:"true"`
+
+	// A list of principals to grant permissions on.
+	//
+	// Principals is a required field
+	Principals []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleResourcePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleResourcePermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssetBundleResourcePermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssetBundleResourcePermissions"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.Principals == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principals"))
+	}
+	if s.Principals != nil && len(s.Principals) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Principals", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *AssetBundleResourcePermissions) SetActions(v []*string) *AssetBundleResourcePermissions {
+	s.Actions = v
+	return s
+}
+
+// SetPrincipals sets the Principals field's value.
+func (s *AssetBundleResourcePermissions) SetPrincipals(v []*string) *AssetBundleResourcePermissions {
+	s.Principals = v
 	return s
 }
 
@@ -23941,6 +26050,68 @@ func (s *BarChartVisual) SetTitle(v *VisualTitleLabelOptions) *BarChartVisual {
 // SetVisualId sets the VisualId field's value.
 func (s *BarChartVisual) SetVisualId(v string) *BarChartVisual {
 	s.VisualId = &v
+	return s
+}
+
+// The parameters that are required to connect to a Google BigQuery data source.
+type BigQueryParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The storage location where you create a Google BigQuery data source.
+	DataSetRegion *string `min:"1" type:"string"`
+
+	// The Google Cloud Platform project ID where your datasource was created.
+	//
+	// ProjectId is a required field
+	ProjectId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BigQueryParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BigQueryParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BigQueryParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BigQueryParameters"}
+	if s.DataSetRegion != nil && len(*s.DataSetRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetRegion", 1))
+	}
+	if s.ProjectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectId"))
+	}
+	if s.ProjectId != nil && len(*s.ProjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetRegion sets the DataSetRegion field's value.
+func (s *BigQueryParameters) SetDataSetRegion(v string) *BigQueryParameters {
+	s.DataSetRegion = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *BigQueryParameters) SetProjectId(v string) *BigQueryParameters {
+	s.ProjectId = &v
 	return s
 }
 
@@ -28742,27 +30913,37 @@ type CreateAccountSubscriptionInput struct {
 	// is the selected authentication method of the new Amazon QuickSight account.
 	ActiveDirectoryName *string `type:"string"`
 
-	// The admin group associated with your Active Directory. This field is required
-	// if ACTIVE_DIRECTORY is the selected authentication method of the new Amazon
-	// QuickSight account. For more information about using Active Directory in
-	// Amazon QuickSight, see Using Active Directory with Amazon QuickSight Enterprise
-	// Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// The admin group associated with your Active Directory or IAM Identity Center
+	// account. This field is required if ACTIVE_DIRECTORY or IAM_IDENTITY_CENTER
+	// is the selected authentication method of the new Amazon QuickSight account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	AdminGroup []*string `type:"list"`
 
 	// The method that you want to use to authenticate your Amazon QuickSight account.
-	// Currently, the valid values for this parameter are IAM_AND_QUICKSIGHT, IAM_ONLY,
-	// and ACTIVE_DIRECTORY.
 	//
 	// If you choose ACTIVE_DIRECTORY, provide an ActiveDirectoryName and an AdminGroup
 	// associated with your Active Directory.
 	//
+	// If you choose IAM_IDENTITY_CENTER, provide an AdminGroup associated with
+	// your IAM Identity Center account.
+	//
 	// AuthenticationMethod is a required field
 	AuthenticationMethod *string `type:"string" required:"true" enum:"AuthenticationMethodOption"`
 
-	// The author group associated with your Active Directory. For more information
-	// about using Active Directory in Amazon QuickSight, see Using Active Directory
-	// with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// The author group associated with your Active Directory or IAM Identity Center
+	// account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	AuthorGroup []*string `type:"list"`
 
@@ -28818,9 +30999,14 @@ type CreateAccountSubscriptionInput struct {
 	// NotificationEmail is a required field
 	NotificationEmail *string `type:"string" required:"true"`
 
-	// The reader group associated with your Active Direcrtory. For more information
-	// about using Active Directory in Amazon QuickSight, see Using Active Directory
-	// with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// The reader group associated with your Active Directory or IAM Identity Center
+	// account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	ReaderGroup []*string `type:"list"`
 
@@ -29413,6 +31599,9 @@ type CreateDashboardInput struct {
 	// folders.
 	FolderArns []*string `type:"list"`
 
+	// A structure that contains the permissions of a shareable link to the dashboard.
+	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
+
 	// The display name of the dashboard.
 	//
 	// Name is a required field
@@ -29519,6 +31708,11 @@ func (s *CreateDashboardInput) Validate() error {
 			invalidParams.AddNested("Definition", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LinkSharingConfiguration != nil {
+		if err := s.LinkSharingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LinkSharingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Parameters != nil {
 		if err := s.Parameters.Validate(); err != nil {
 			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
@@ -29588,6 +31782,12 @@ func (s *CreateDashboardInput) SetDefinition(v *DashboardVersionDefinition) *Cre
 // SetFolderArns sets the FolderArns field's value.
 func (s *CreateDashboardInput) SetFolderArns(v []*string) *CreateDashboardInput {
 	s.FolderArns = v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *CreateDashboardInput) SetLinkSharingConfiguration(v *LinkSharingConfiguration) *CreateDashboardInput {
+	s.LinkSharingConfiguration = v
 	return s
 }
 
@@ -31761,6 +33961,148 @@ func (s *CreateRefreshScheduleOutput) SetScheduleId(v string) *CreateRefreshSche
 
 // SetStatus sets the Status field's value.
 func (s *CreateRefreshScheduleOutput) SetStatus(v int64) *CreateRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateRoleMembershipInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that you want to create a group
+	// in. The Amazon Web Services account ID that you provide must be the same
+	// Amazon Web Services account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the group that you want to add to the role.
+	//
+	// MemberName is a required field
+	MemberName *string `location:"uri" locationName:"MemberName" min:"1" type:"string" required:"true"`
+
+	// The namespace that the role belongs to.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The role that you want to add a group to.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRoleMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRoleMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRoleMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRoleMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MemberName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberName"))
+	}
+	if s.MemberName != nil && len(*s.MemberName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberName", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateRoleMembershipInput) SetAwsAccountId(v string) *CreateRoleMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMemberName sets the MemberName field's value.
+func (s *CreateRoleMembershipInput) SetMemberName(v string) *CreateRoleMembershipInput {
+	s.MemberName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CreateRoleMembershipInput) SetNamespace(v string) *CreateRoleMembershipInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateRoleMembershipInput) SetRole(v string) *CreateRoleMembershipInput {
+	s.Role = &v
+	return s
+}
+
+type CreateRoleMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRoleMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRoleMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateRoleMembershipOutput) SetRequestId(v string) *CreateRoleMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateRoleMembershipOutput) SetStatus(v int64) *CreateRoleMembershipOutput {
 	s.Status = &v
 	return s
 }
@@ -35008,9 +37350,6 @@ type DashboardVersion struct {
 	// Errors associated with this dashboard version.
 	Errors []*DashboardError `min:"1" type:"list"`
 
-	// An array of analysis level configurations.
-	Options *AssetOptions `type:"structure"`
-
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -35073,12 +37412,6 @@ func (s *DashboardVersion) SetDescription(v string) *DashboardVersion {
 // SetErrors sets the Errors field's value.
 func (s *DashboardVersion) SetErrors(v []*DashboardError) *DashboardVersion {
 	s.Errors = v
-	return s
-}
-
-// SetOptions sets the Options field's value.
-func (s *DashboardVersion) SetOptions(v *AssetOptions) *DashboardVersion {
-	s.Options = v
 	return s
 }
 
@@ -37445,6 +39778,9 @@ type DataSourceParameters struct {
 	// The parameters for IoT Analytics.
 	AwsIotAnalyticsParameters *AwsIotAnalyticsParameters `type:"structure"`
 
+	// The parameters that are required to connect to a Google BigQuery data source.
+	BigQueryParameters *BigQueryParameters `type:"structure"`
+
 	// The parameters that are required to connect to a Databricks data source.
 	DatabricksParameters *DatabricksParameters `type:"structure"`
 
@@ -37552,6 +39888,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AwsIotAnalyticsParameters != nil {
 		if err := s.AwsIotAnalyticsParameters.Validate(); err != nil {
 			invalidParams.AddNested("AwsIotAnalyticsParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BigQueryParameters != nil {
+		if err := s.BigQueryParameters.Validate(); err != nil {
+			invalidParams.AddNested("BigQueryParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.DatabricksParameters != nil {
@@ -37689,6 +40030,12 @@ func (s *DataSourceParameters) SetAuroraPostgreSqlParameters(v *AuroraPostgreSql
 // SetAwsIotAnalyticsParameters sets the AwsIotAnalyticsParameters field's value.
 func (s *DataSourceParameters) SetAwsIotAnalyticsParameters(v *AwsIotAnalyticsParameters) *DataSourceParameters {
 	s.AwsIotAnalyticsParameters = v
+	return s
+}
+
+// SetBigQueryParameters sets the BigQueryParameters field's value.
+func (s *DataSourceParameters) SetBigQueryParameters(v *BigQueryParameters) *DataSourceParameters {
+	s.BigQueryParameters = v
 	return s
 }
 
@@ -41801,6 +44148,273 @@ func (s *DeleteRefreshScheduleOutput) SetStatus(v int64) *DeleteRefreshScheduleO
 	return s
 }
 
+type DeleteRoleCustomPermissionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
+	// QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace that includes the role.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The role that you want to remove permissions from.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleCustomPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleCustomPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRoleCustomPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRoleCustomPermissionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteRoleCustomPermissionInput) SetAwsAccountId(v string) *DeleteRoleCustomPermissionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeleteRoleCustomPermissionInput) SetNamespace(v string) *DeleteRoleCustomPermissionInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *DeleteRoleCustomPermissionInput) SetRole(v string) *DeleteRoleCustomPermissionInput {
+	s.Role = &v
+	return s
+}
+
+type DeleteRoleCustomPermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleCustomPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleCustomPermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteRoleCustomPermissionOutput) SetRequestId(v string) *DeleteRoleCustomPermissionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteRoleCustomPermissionOutput) SetStatus(v int64) *DeleteRoleCustomPermissionOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteRoleMembershipInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that you want to create a group
+	// in. The Amazon Web Services account ID that you provide must be the same
+	// Amazon Web Services account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the group.
+	//
+	// MemberName is a required field
+	MemberName *string `location:"uri" locationName:"MemberName" min:"1" type:"string" required:"true"`
+
+	// The namespace that contains the role.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The role that you want to remove permissions from.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRoleMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRoleMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MemberName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberName"))
+	}
+	if s.MemberName != nil && len(*s.MemberName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberName", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteRoleMembershipInput) SetAwsAccountId(v string) *DeleteRoleMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMemberName sets the MemberName field's value.
+func (s *DeleteRoleMembershipInput) SetMemberName(v string) *DeleteRoleMembershipInput {
+	s.MemberName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeleteRoleMembershipInput) SetNamespace(v string) *DeleteRoleMembershipInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *DeleteRoleMembershipInput) SetRole(v string) *DeleteRoleMembershipInput {
+	s.Role = &v
+	return s
+}
+
+type DeleteRoleMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRoleMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteRoleMembershipOutput) SetRequestId(v string) *DeleteRoleMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteRoleMembershipOutput) SetStatus(v int64) *DeleteRoleMembershipOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteTemplateAliasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -43959,7 +46573,11 @@ type DescribeAssetBundleExportJobOutput struct {
 	//
 	// This URL can't be used in a StartAssetBundleImportJob API call and should
 	// only be used for download purposes.
-	DownloadUrl *string `type:"string"`
+	//
+	// DownloadUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeAssetBundleExportJobOutput's
+	// String and GoString methods.
+	DownloadUrl *string `type:"string" sensitive:"true"`
 
 	// An array of error records that describes any failures that occurred during
 	// the export job processing.
@@ -43977,6 +46595,12 @@ type DescribeAssetBundleExportJobOutput struct {
 	// The include dependencies flag.
 	IncludeAllDependencies *bool `type:"boolean"`
 
+	// The include permissions flag.
+	IncludePermissions *bool `type:"boolean"`
+
+	// The include tags flag.
+	IncludeTags *bool `type:"boolean"`
+
 	// Indicates the status of a job through its queuing and execution.
 	//
 	// Poll this DescribeAssetBundleExportApi until JobStatus is either SUCCESSFUL
@@ -43991,6 +46615,17 @@ type DescribeAssetBundleExportJobOutput struct {
 
 	// The HTTP status of the response.
 	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The validation strategy that is used to export the analysis or dashboard.
+	ValidationStrategy *AssetBundleExportJobValidationStrategy `type:"structure"`
+
+	// An array of warning records that describe the analysis or dashboard that
+	// is exported. This array includes UI errors that can be skipped during the
+	// validation process.
+	//
+	// This property only appears if StrictModeForAllResources in ValidationStrategy
+	// is set to FALSE.
+	Warnings []*AssetBundleExportJobWarning `type:"list"`
 }
 
 // String returns the string representation.
@@ -44065,6 +46700,18 @@ func (s *DescribeAssetBundleExportJobOutput) SetIncludeAllDependencies(v bool) *
 	return s
 }
 
+// SetIncludePermissions sets the IncludePermissions field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetIncludePermissions(v bool) *DescribeAssetBundleExportJobOutput {
+	s.IncludePermissions = &v
+	return s
+}
+
+// SetIncludeTags sets the IncludeTags field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetIncludeTags(v bool) *DescribeAssetBundleExportJobOutput {
+	s.IncludeTags = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *DescribeAssetBundleExportJobOutput) SetJobStatus(v string) *DescribeAssetBundleExportJobOutput {
 	s.JobStatus = &v
@@ -44086,6 +46733,18 @@ func (s *DescribeAssetBundleExportJobOutput) SetResourceArns(v []*string) *Descr
 // SetStatus sets the Status field's value.
 func (s *DescribeAssetBundleExportJobOutput) SetStatus(v int64) *DescribeAssetBundleExportJobOutput {
 	s.Status = &v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetValidationStrategy(v *AssetBundleExportJobValidationStrategy) *DescribeAssetBundleExportJobOutput {
+	s.ValidationStrategy = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *DescribeAssetBundleExportJobOutput) SetWarnings(v []*AssetBundleExportJobWarning) *DescribeAssetBundleExportJobOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -44200,8 +46859,21 @@ type DescribeAssetBundleImportJobOutput struct {
 	//    * FAILED_ROLLBACK_ERROR
 	JobStatus *string `type:"string" enum:"AssetBundleImportJobStatus"`
 
-	// Optional overrides to be applied to the resource configuration before import.
+	// Optional overrides that are applied to the resource configuration before
+	// import.
 	OverrideParameters *AssetBundleImportJobOverrideParameters `type:"structure"`
+
+	// Optional permission overrides that are applied to the resource configuration
+	// before import.
+	OverridePermissions *AssetBundleImportJobOverridePermissions `type:"structure"`
+
+	// Optional tag overrides that are applied to the resource configuration before
+	// import.
+	OverrideTags *AssetBundleImportJobOverrideTags `type:"structure"`
+
+	// An optional validation strategy override for all analyses and dashboards
+	// to be applied to the resource configuration before import.
+	OverrideValidationStrategy *AssetBundleImportJobOverrideValidationStrategy `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
@@ -44286,6 +46958,24 @@ func (s *DescribeAssetBundleImportJobOutput) SetJobStatus(v string) *DescribeAss
 // SetOverrideParameters sets the OverrideParameters field's value.
 func (s *DescribeAssetBundleImportJobOutput) SetOverrideParameters(v *AssetBundleImportJobOverrideParameters) *DescribeAssetBundleImportJobOutput {
 	s.OverrideParameters = v
+	return s
+}
+
+// SetOverridePermissions sets the OverridePermissions field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetOverridePermissions(v *AssetBundleImportJobOverridePermissions) *DescribeAssetBundleImportJobOutput {
+	s.OverridePermissions = v
+	return s
+}
+
+// SetOverrideTags sets the OverrideTags field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetOverrideTags(v *AssetBundleImportJobOverrideTags) *DescribeAssetBundleImportJobOutput {
+	s.OverrideTags = v
+	return s
+}
+
+// SetOverrideValidationStrategy sets the OverrideValidationStrategy field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetOverrideValidationStrategy(v *AssetBundleImportJobOverrideValidationStrategy) *DescribeAssetBundleImportJobOutput {
+	s.OverrideValidationStrategy = v
 	return s
 }
 
@@ -47224,6 +49914,140 @@ func (s *DescribeRefreshScheduleOutput) SetRequestId(v string) *DescribeRefreshS
 
 // SetStatus sets the Status field's value.
 func (s *DescribeRefreshScheduleOutput) SetStatus(v int64) *DescribeRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeRoleCustomPermissionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that you want to create a group
+	// in. The Amazon Web Services account ID that you provide must be the same
+	// Amazon Web Services account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace that contains the role.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The name of the role whose permissions you want described.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRoleCustomPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRoleCustomPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRoleCustomPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRoleCustomPermissionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeRoleCustomPermissionInput) SetAwsAccountId(v string) *DescribeRoleCustomPermissionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeRoleCustomPermissionInput) SetNamespace(v string) *DescribeRoleCustomPermissionInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *DescribeRoleCustomPermissionInput) SetRole(v string) *DescribeRoleCustomPermissionInput {
+	s.Role = &v
+	return s
+}
+
+type DescribeRoleCustomPermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom permission that is described.
+	CustomPermissionsName *string `min:"1" type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRoleCustomPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRoleCustomPermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomPermissionsName sets the CustomPermissionsName field's value.
+func (s *DescribeRoleCustomPermissionOutput) SetCustomPermissionsName(v string) *DescribeRoleCustomPermissionOutput {
+	s.CustomPermissionsName = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeRoleCustomPermissionOutput) SetRequestId(v string) *DescribeRoleCustomPermissionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeRoleCustomPermissionOutput) SetStatus(v int64) *DescribeRoleCustomPermissionOutput {
 	s.Status = &v
 	return s
 }
@@ -62785,6 +65609,29 @@ func (s LinkSharingConfiguration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LinkSharingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LinkSharingConfiguration"}
+	if s.Permissions != nil && len(s.Permissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Permissions", 1))
+	}
+	if s.Permissions != nil {
+		for i, v := range s.Permissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Permissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetPermissions sets the Permissions field's value.
 func (s *LinkSharingConfiguration) SetPermissions(v []*ResourcePermission) *LinkSharingConfiguration {
 	s.Permissions = v
@@ -65148,6 +67995,170 @@ func (s *ListRefreshSchedulesOutput) SetRequestId(v string) *ListRefreshSchedule
 
 // SetStatus sets the Status field's value.
 func (s *ListRefreshSchedulesOutput) SetStatus(v int64) *ListRefreshSchedulesOutput {
+	s.Status = &v
+	return s
+}
+
+type ListRoleMembershipsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that you want to create a group
+	// in. The Amazon Web Services account ID that you provide must be the same
+	// Amazon Web Services account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The namespace that includes the role.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	// The name of the role.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRoleMembershipsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRoleMembershipsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRoleMembershipsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRoleMembershipsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListRoleMembershipsInput) SetAwsAccountId(v string) *ListRoleMembershipsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRoleMembershipsInput) SetMaxResults(v int64) *ListRoleMembershipsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ListRoleMembershipsInput) SetNamespace(v string) *ListRoleMembershipsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoleMembershipsInput) SetNextToken(v string) *ListRoleMembershipsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *ListRoleMembershipsInput) SetRole(v string) *ListRoleMembershipsInput {
+	s.Role = &v
+	return s
+}
+
+type ListRoleMembershipsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of groups associated with a role
+	MembersList []*string `type:"list"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRoleMembershipsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRoleMembershipsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMembersList sets the MembersList field's value.
+func (s *ListRoleMembershipsOutput) SetMembersList(v []*string) *ListRoleMembershipsOutput {
+	s.MembersList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoleMembershipsOutput) SetNextToken(v string) *ListRoleMembershipsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListRoleMembershipsOutput) SetRequestId(v string) *ListRoleMembershipsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListRoleMembershipsOutput) SetStatus(v int64) *ListRoleMembershipsOutput {
 	s.Status = &v
 	return s
 }
@@ -83970,6 +86981,16 @@ type StartAssetBundleExportJobInput struct {
 	// dashboard is also exported.
 	IncludeAllDependencies *bool `type:"boolean"`
 
+	// A Boolean that determines whether all permissions for each resource ARN are
+	// exported with the job. If you set IncludePermissions to TRUE, any permissions
+	// associated with each resource are exported.
+	IncludePermissions *bool `type:"boolean"`
+
+	// A Boolean that determines whether all tags for each resource ARN are exported
+	// with the job. If you set IncludeTags to TRUE, any tags associated with each
+	// resource are exported.
+	IncludeTags *bool `type:"boolean"`
+
 	// An array of resource ARNs to export. The following resources are supported.
 	//
 	//    * Analysis
@@ -83991,6 +87012,13 @@ type StartAssetBundleExportJobInput struct {
 	//
 	// ResourceArns is a required field
 	ResourceArns []*string `min:"1" type:"list" required:"true"`
+
+	// An optional parameter that determines which validation strategy to use for
+	// the export job. If StrictModeForAllResources is set to TRUE, strict validation
+	// for every error is enforced. If it is set to FALSE, validation is skipped
+	// for specific UI errors that are shown as warnings. The default value for
+	// StrictModeForAllResources is FALSE.
+	ValidationStrategy *AssetBundleExportJobValidationStrategy `type:"structure"`
 }
 
 // String returns the string representation.
@@ -84077,9 +87105,27 @@ func (s *StartAssetBundleExportJobInput) SetIncludeAllDependencies(v bool) *Star
 	return s
 }
 
+// SetIncludePermissions sets the IncludePermissions field's value.
+func (s *StartAssetBundleExportJobInput) SetIncludePermissions(v bool) *StartAssetBundleExportJobInput {
+	s.IncludePermissions = &v
+	return s
+}
+
+// SetIncludeTags sets the IncludeTags field's value.
+func (s *StartAssetBundleExportJobInput) SetIncludeTags(v bool) *StartAssetBundleExportJobInput {
+	s.IncludeTags = &v
+	return s
+}
+
 // SetResourceArns sets the ResourceArns field's value.
 func (s *StartAssetBundleExportJobInput) SetResourceArns(v []*string) *StartAssetBundleExportJobInput {
 	s.ResourceArns = v
+	return s
+}
+
+// SetValidationStrategy sets the ValidationStrategy field's value.
+func (s *StartAssetBundleExportJobInput) SetValidationStrategy(v *AssetBundleExportJobValidationStrategy) *StartAssetBundleExportJobInput {
+	s.ValidationStrategy = v
 	return s
 }
 
@@ -84172,8 +87218,21 @@ type StartAssetBundleImportJobInput struct {
 	// account in an inconsistent state.
 	FailureAction *string `type:"string" enum:"AssetBundleImportFailureAction"`
 
-	// Optional overrides to be applied to the resource configuration before import.
+	// Optional overrides that are applied to the resource configuration before
+	// import.
 	OverrideParameters *AssetBundleImportJobOverrideParameters `type:"structure"`
+
+	// Optional permission overrides that are applied to the resource configuration
+	// before import.
+	OverridePermissions *AssetBundleImportJobOverridePermissions `type:"structure"`
+
+	// Optional tag overrides that are applied to the resource configuration before
+	// import.
+	OverrideTags *AssetBundleImportJobOverrideTags `type:"structure"`
+
+	// An optional validation strategy override for all analyses and dashboards
+	// that is applied to the resource configuration before import.
+	OverrideValidationStrategy *AssetBundleImportJobOverrideValidationStrategy `type:"structure"`
 }
 
 // String returns the string representation.
@@ -84217,6 +87276,16 @@ func (s *StartAssetBundleImportJobInput) Validate() error {
 			invalidParams.AddNested("OverrideParameters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OverridePermissions != nil {
+		if err := s.OverridePermissions.Validate(); err != nil {
+			invalidParams.AddNested("OverridePermissions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OverrideTags != nil {
+		if err := s.OverrideTags.Validate(); err != nil {
+			invalidParams.AddNested("OverrideTags", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -84251,6 +87320,24 @@ func (s *StartAssetBundleImportJobInput) SetFailureAction(v string) *StartAssetB
 // SetOverrideParameters sets the OverrideParameters field's value.
 func (s *StartAssetBundleImportJobInput) SetOverrideParameters(v *AssetBundleImportJobOverrideParameters) *StartAssetBundleImportJobInput {
 	s.OverrideParameters = v
+	return s
+}
+
+// SetOverridePermissions sets the OverridePermissions field's value.
+func (s *StartAssetBundleImportJobInput) SetOverridePermissions(v *AssetBundleImportJobOverridePermissions) *StartAssetBundleImportJobInput {
+	s.OverridePermissions = v
+	return s
+}
+
+// SetOverrideTags sets the OverrideTags field's value.
+func (s *StartAssetBundleImportJobInput) SetOverrideTags(v *AssetBundleImportJobOverrideTags) *StartAssetBundleImportJobInput {
+	s.OverrideTags = v
+	return s
+}
+
+// SetOverrideValidationStrategy sets the OverrideValidationStrategy field's value.
+func (s *StartAssetBundleImportJobInput) SetOverrideValidationStrategy(v *AssetBundleImportJobOverrideValidationStrategy) *StartAssetBundleImportJobInput {
+	s.OverrideValidationStrategy = v
 	return s
 }
 
@@ -87683,9 +90770,6 @@ type TemplateVersion struct {
 	// Errors associated with this template version.
 	Errors []*TemplateError `min:"1" type:"list"`
 
-	// An array of analysis level configurations.
-	Options *AssetOptions `type:"structure"`
-
 	// A list of the associated sheets with the unique identifier and name of each
 	// sheet.
 	Sheets []*Sheet `type:"list"`
@@ -87757,12 +90841,6 @@ func (s *TemplateVersion) SetDescription(v string) *TemplateVersion {
 // SetErrors sets the Errors field's value.
 func (s *TemplateVersion) SetErrors(v []*TemplateError) *TemplateVersion {
 	s.Errors = v
-	return s
-}
-
-// SetOptions sets the Options field's value.
-func (s *TemplateVersion) SetOptions(v *AssetOptions) *TemplateVersion {
-	s.Options = v
 	return s
 }
 
@@ -96513,6 +99591,148 @@ func (s *UpdateRefreshScheduleOutput) SetStatus(v int64) *UpdateRefreshScheduleO
 	return s
 }
 
+type UpdateRoleCustomPermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the Amazon Web Services account that you want to create a group
+	// in. The Amazon Web Services account ID that you provide must be the same
+	// Amazon Web Services account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the custom permission that you want to update the role with.
+	//
+	// CustomPermissionsName is a required field
+	CustomPermissionsName *string `min:"1" type:"string" required:"true"`
+
+	// The namespace that contains the role that you want to update.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The name of role tht you want to update.
+	//
+	// Role is a required field
+	Role *string `location:"uri" locationName:"Role" type:"string" required:"true" enum:"Role"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoleCustomPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoleCustomPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoleCustomPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoleCustomPermissionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.CustomPermissionsName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomPermissionsName"))
+	}
+	if s.CustomPermissionsName != nil && len(*s.CustomPermissionsName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomPermissionsName", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateRoleCustomPermissionInput) SetAwsAccountId(v string) *UpdateRoleCustomPermissionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetCustomPermissionsName sets the CustomPermissionsName field's value.
+func (s *UpdateRoleCustomPermissionInput) SetCustomPermissionsName(v string) *UpdateRoleCustomPermissionInput {
+	s.CustomPermissionsName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdateRoleCustomPermissionInput) SetNamespace(v string) *UpdateRoleCustomPermissionInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *UpdateRoleCustomPermissionInput) SetRole(v string) *UpdateRoleCustomPermissionInput {
+	s.Role = &v
+	return s
+}
+
+type UpdateRoleCustomPermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoleCustomPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRoleCustomPermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateRoleCustomPermissionOutput) SetRequestId(v string) *UpdateRoleCustomPermissionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateRoleCustomPermissionOutput) SetStatus(v int64) *UpdateRoleCustomPermissionOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -99138,7 +102358,7 @@ func (s *VPCConnectionSummary) SetVPCId(v string) *VPCConnectionSummary {
 type ValidationStrategy struct {
 	_ struct{} `type:"structure"`
 
-	// The mode of validation for the asset to be creaed or updated. When you set
+	// The mode of validation for the asset to be created or updated. When you set
 	// this value to STRICT, strict validation for every error is enforced. When
 	// you set this value to LENIENT, validation is skipped for specific UI errors.
 	//
@@ -102634,6 +105854,15 @@ const (
 
 	// DataSourceTypeDatabricks is a DataSourceType enum value
 	DataSourceTypeDatabricks = "DATABRICKS"
+
+	// DataSourceTypeStarburst is a DataSourceType enum value
+	DataSourceTypeStarburst = "STARBURST"
+
+	// DataSourceTypeTrino is a DataSourceType enum value
+	DataSourceTypeTrino = "TRINO"
+
+	// DataSourceTypeBigquery is a DataSourceType enum value
+	DataSourceTypeBigquery = "BIGQUERY"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -102665,6 +105894,9 @@ func DataSourceType_Values() []string {
 		DataSourceTypeAmazonOpensearch,
 		DataSourceTypeExasol,
 		DataSourceTypeDatabricks,
+		DataSourceTypeStarburst,
+		DataSourceTypeTrino,
+		DataSourceTypeBigquery,
 	}
 }
 
@@ -104961,6 +108193,26 @@ func ResourceStatus_Values() []string {
 		ResourceStatusUpdateSuccessful,
 		ResourceStatusUpdateFailed,
 		ResourceStatusDeleted,
+	}
+}
+
+const (
+	// RoleAdmin is a Role enum value
+	RoleAdmin = "ADMIN"
+
+	// RoleAuthor is a Role enum value
+	RoleAuthor = "AUTHOR"
+
+	// RoleReader is a Role enum value
+	RoleReader = "READER"
+)
+
+// Role_Values returns all elements of the Role enum
+func Role_Values() []string {
+	return []string{
+		RoleAdmin,
+		RoleAuthor,
+		RoleReader,
 	}
 }
 

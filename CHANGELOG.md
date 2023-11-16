@@ -1,3 +1,37 @@
+Release v1.47.13 (2023-11-16)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Enable use of tenant-specific PublicSigningKeyUrl from device trust providers and onboard jumpcloud as a new device trust provider.
+* `service/fsx`: Updates service API and documentation
+* `service/glue`: Updates service API, documentation, and paginators
+  * Introduces new column statistics APIs to support statistics generation for tables within the Glue Data Catalog.
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/iot`: Updates service API and documentation
+  * GA release the ability to index and search devices based on their GeoLocation data. With GeoQueries you can narrow your search to retrieve devices located in the desired geographic boundary.
+* `service/ivs-realtime`: Updates service API, documentation, and paginators
+* `service/kafka`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Adds support for logging configuration in Lambda Functions. Customers will have more control how their function logs are captured and to which cloud watch log group they are delivered also.
+* `service/macie2`: Updates service API and documentation
+* `service/mediapackage`: Updates service API and documentation
+  * DRM_TOP_LEVEL_COMPACT allows placing content protection elements at the MPD level and referenced at the AdaptationSet level
+* `service/pinpoint-sms-voice-v2`: Updates service API, documentation, and paginators
+* `service/polly`: Updates service API and documentation
+  * Add new engine - long-form - dedicated for longer content, such as news articles, training materials, or marketing videos.
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Custom permission support for QuickSight roles; Three new datasources STARBURST, TRINO, BIGQUERY; Lenient mode changes the default behavior to allow for exporting and importing with certain UI allowed errors, Support for permissions and tags export and import.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Studio now supports Trainium instance types - trn1.2xlarge, trn1.32xlarge, trn1n.32xlarge.
+* `service/ssm`: Updates service API and documentation
+  * This release introduces the ability to filter automation execution steps which have parent steps. In addition, runbook variable information is returned by GetAutomationExecution and parent step information is returned by the DescribeAutomationStepExecutions API.
+* `service/ssm-incidents`: Updates service API, documentation, and paginators
+* `service/sso-admin`: Updates service API, documentation, and paginators
+* `service/transfer`: Updates service API and documentation
+  * Introduced S3StorageOptions for servers to enable directory listing optimizations and added Type fields to logical directory mappings.
+
 Release v1.47.12 (2023-11-15)
 ===
 

@@ -1305,6 +1305,17 @@
         "ConsumerGroupId":{"shape":"URI"}
       }
     },
+    "ApplicationLogLevel":{
+      "type":"string",
+      "enum":[
+        "TRACE",
+        "DEBUG",
+        "INFO",
+        "WARN",
+        "ERROR",
+        "FATAL"
+      ]
+    },
     "Architecture":{
       "type":"string",
       "enum":[
@@ -1535,7 +1546,8 @@
         "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
         "Architectures":{"shape":"ArchitecturesList"},
         "EphemeralStorage":{"shape":"EphemeralStorage"},
-        "SnapStart":{"shape":"SnapStart"}
+        "SnapStart":{"shape":"SnapStart"},
+        "LoggingConfig":{"shape":"LoggingConfig"}
       }
     },
     "CreateFunctionUrlConfigRequest":{
@@ -2072,7 +2084,8 @@
         "Architectures":{"shape":"ArchitecturesList"},
         "EphemeralStorage":{"shape":"EphemeralStorage"},
         "SnapStart":{"shape":"SnapStartResponse"},
-        "RuntimeVersionConfig":{"shape":"RuntimeVersionConfig"}
+        "RuntimeVersionConfig":{"shape":"RuntimeVersionConfig"},
+        "LoggingConfig":{"shape":"LoggingConfig"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -3299,12 +3312,34 @@
       "max":160,
       "pattern":"^/mnt/[a-zA-Z0-9-_.]+$"
     },
+    "LogFormat":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "Text"
+      ]
+    },
+    "LogGroup":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_/#A-Za-z0-9]+"
+    },
     "LogType":{
       "type":"string",
       "enum":[
         "None",
         "Tail"
       ]
+    },
+    "LoggingConfig":{
+      "type":"structure",
+      "members":{
+        "LogFormat":{"shape":"LogFormat"},
+        "ApplicationLogLevel":{"shape":"ApplicationLogLevel"},
+        "SystemLogLevel":{"shape":"SystemLogLevel"},
+        "LogGroup":{"shape":"LogGroup"}
+      }
     },
     "Long":{"type":"long"},
     "MasterRegion":{
@@ -4101,6 +4136,14 @@
       "member":{"shape":"SubnetId"},
       "max":16
     },
+    "SystemLogLevel":{
+      "type":"string",
+      "enum":[
+        "DEBUG",
+        "INFO",
+        "WARN"
+      ]
+    },
     "TagKey":{"type":"string"},
     "TagKeyList":{
       "type":"list",
@@ -4347,7 +4390,8 @@
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
         "ImageConfig":{"shape":"ImageConfig"},
         "EphemeralStorage":{"shape":"EphemeralStorage"},
-        "SnapStart":{"shape":"SnapStart"}
+        "SnapStart":{"shape":"SnapStart"},
+        "LoggingConfig":{"shape":"LoggingConfig"}
       }
     },
     "UpdateFunctionEventInvokeConfigRequest":{

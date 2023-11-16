@@ -1228,6 +1228,32 @@
         {"shape":"GlueEncryptionException"}
       ]
     },
+    "GetColumnStatisticsTaskRun":{
+      "name":"GetColumnStatisticsTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetColumnStatisticsTaskRunRequest"},
+      "output":{"shape":"GetColumnStatisticsTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "GetColumnStatisticsTaskRuns":{
+      "name":"GetColumnStatisticsTaskRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetColumnStatisticsTaskRunsRequest"},
+      "output":{"shape":"GetColumnStatisticsTaskRunsResponse"},
+      "errors":[
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "GetConnection":{
       "name":"GetConnection",
       "http":{
@@ -2153,6 +2179,18 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "ListColumnStatisticsTaskRuns":{
+      "name":"ListColumnStatisticsTaskRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListColumnStatisticsTaskRunsRequest"},
+      "output":{"shape":"ListColumnStatisticsTaskRunsResponse"},
+      "errors":[
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "ListCrawlers":{
       "name":"ListCrawlers",
       "http":{
@@ -2606,6 +2644,23 @@
         {"shape":"IllegalBlueprintStateException"}
       ]
     },
+    "StartColumnStatisticsTaskRun":{
+      "name":"StartColumnStatisticsTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartColumnStatisticsTaskRunRequest"},
+      "output":{"shape":"StartColumnStatisticsTaskRunResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ColumnStatisticsTaskRunningException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "StartCrawler":{
       "name":"StartCrawler",
       "http":{
@@ -2782,6 +2837,21 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"},
         {"shape":"ConcurrentRunsExceededException"}
+      ]
+    },
+    "StopColumnStatisticsTaskRun":{
+      "name":"StopColumnStatisticsTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopColumnStatisticsTaskRunRequest"},
+      "output":{"shape":"StopColumnStatisticsTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ColumnStatisticsTaskNotRunningException"},
+        {"shape":"ColumnStatisticsTaskStoppingException"},
+        {"shape":"OperationTimeoutException"}
       ]
     },
     "StopCrawler":{
@@ -4518,6 +4588,10 @@
       "type":"list",
       "member":{"shape":"Column"}
     },
+    "ColumnNameList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
     "ColumnNameString":{
       "type":"string",
       "max":1024,
@@ -4578,6 +4652,70 @@
     "ColumnStatisticsList":{
       "type":"list",
       "member":{"shape":"ColumnStatistics"}
+    },
+    "ColumnStatisticsState":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "STOPPED"
+      ]
+    },
+    "ColumnStatisticsTaskNotRunningException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "ColumnStatisticsTaskRun":{
+      "type":"structure",
+      "members":{
+        "CustomerId":{"shape":"AccountId"},
+        "ColumnStatisticsTaskRunId":{"shape":"HashString"},
+        "DatabaseName":{"shape":"DatabaseName"},
+        "TableName":{"shape":"TableName"},
+        "ColumnNameList":{"shape":"ColumnNameList"},
+        "CatalogID":{"shape":"CatalogIdString"},
+        "Role":{"shape":"Role"},
+        "SampleSize":{"shape":"SampleSizePercentage"},
+        "SecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"},
+        "NumberOfWorkers":{"shape":"PositiveInteger"},
+        "WorkerType":{"shape":"NameString"},
+        "Status":{"shape":"ColumnStatisticsState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "ErrorMessage":{"shape":"DescriptionString"},
+        "DPUSeconds":{"shape":"NonNegativeDouble"}
+      }
+    },
+    "ColumnStatisticsTaskRunIdList":{
+      "type":"list",
+      "member":{"shape":"HashString"},
+      "max":100,
+      "min":0
+    },
+    "ColumnStatisticsTaskRunningException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "ColumnStatisticsTaskRunsList":{
+      "type":"list",
+      "member":{"shape":"ColumnStatisticsTaskRun"}
+    },
+    "ColumnStatisticsTaskStoppingException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
     },
     "ColumnStatisticsType":{
       "type":"string",
@@ -7220,6 +7358,39 @@
         "Errors":{"shape":"ColumnErrors"}
       }
     },
+    "GetColumnStatisticsTaskRunRequest":{
+      "type":"structure",
+      "required":["ColumnStatisticsTaskRunId"],
+      "members":{
+        "ColumnStatisticsTaskRunId":{"shape":"HashString"}
+      }
+    },
+    "GetColumnStatisticsTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsTaskRun":{"shape":"ColumnStatisticsTaskRun"}
+      }
+    },
+    "GetColumnStatisticsTaskRunsRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName"
+      ],
+      "members":{
+        "DatabaseName":{"shape":"DatabaseName"},
+        "TableName":{"shape":"NameString"},
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetColumnStatisticsTaskRunsResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsTaskRuns":{"shape":"ColumnStatisticsTaskRunsList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "GetConnectionRequest":{
       "type":"structure",
       "required":["Name"],
@@ -9101,6 +9272,20 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "ListColumnStatisticsTaskRunsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListColumnStatisticsTaskRunsResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsTaskRunIds":{"shape":"ColumnStatisticsTaskRunIdList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListCrawlersRequest":{
       "type":"structure",
       "members":{
@@ -10167,6 +10352,10 @@
       "box":true,
       "min":10
     },
+    "PositiveInteger":{
+      "type":"integer",
+      "min":1
+    },
     "PositiveLong":{
       "type":"long",
       "box":true,
@@ -10998,6 +11187,11 @@
       "type":"list",
       "member":{"shape":"S3Target"}
     },
+    "SampleSizePercentage":{
+      "type":"double",
+      "max":100,
+      "min":0
+    },
     "ScalaCode":{"type":"string"},
     "Schedule":{
       "type":"structure",
@@ -11554,6 +11748,29 @@
         "RunId":{"shape":"IdString"}
       }
     },
+    "StartColumnStatisticsTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "Role"
+      ],
+      "members":{
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "ColumnNameList":{"shape":"ColumnNameList"},
+        "Role":{"shape":"NameString"},
+        "SampleSize":{"shape":"SampleSizePercentage"},
+        "CatalogID":{"shape":"NameString"},
+        "SecurityConfiguration":{"shape":"NameString"}
+      }
+    },
+    "StartColumnStatisticsTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsTaskRunId":{"shape":"HashString"}
+      }
+    },
     "StartCrawlerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -11801,6 +12018,22 @@
         "CANCELLED",
         "ERROR"
       ]
+    },
+    "StopColumnStatisticsTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName"
+      ],
+      "members":{
+        "DatabaseName":{"shape":"DatabaseName"},
+        "TableName":{"shape":"NameString"}
+      }
+    },
+    "StopColumnStatisticsTaskRunResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "StopCrawlerRequest":{
       "type":"structure",

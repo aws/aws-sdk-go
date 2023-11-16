@@ -2739,7 +2739,8 @@
         "Runbooks":{"shape":"Runbooks"},
         "OpsItemId":{"shape":"String"},
         "AssociationId":{"shape":"String"},
-        "ChangeRequestName":{"shape":"ChangeRequestName"}
+        "ChangeRequestName":{"shape":"ChangeRequestName"},
+        "Variables":{"shape":"AutomationParameterMap"}
       }
     },
     "AutomationExecutionFilter":{
@@ -2865,7 +2866,8 @@
         "ChangeCalendarOverrideApproved",
         "ChangeCalendarOverrideRejected",
         "CompletedWithSuccess",
-        "CompletedWithFailure"
+        "CompletedWithFailure",
+        "Exited"
       ]
     },
     "AutomationParameterKey":{
@@ -8529,6 +8531,19 @@
       "max":50,
       "min":1
     },
+    "ParentStepDetails":{
+      "type":"structure",
+      "members":{
+        "StepExecutionId":{"shape":"String"},
+        "StepName":{"shape":"String"},
+        "Action":{"shape":"AutomationActionName"},
+        "Iteration":{
+          "shape":"Integer",
+          "box":true
+        },
+        "IteratorValue":{"shape":"String"}
+      }
+    },
     "Patch":{
       "type":"structure",
       "members":{
@@ -10135,7 +10150,8 @@
           "shape":"TargetLocation",
           "box":true
         },
-        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"},
+        "ParentStepDetails":{"shape":"ParentStepDetails"}
       }
     },
     "StepExecutionFilter":{
@@ -10157,7 +10173,10 @@
         "StepExecutionStatus",
         "StepExecutionId",
         "StepName",
-        "Action"
+        "Action",
+        "ParentStepExecutionId",
+        "ParentStepIteration",
+        "ParentStepIteratorValue"
       ]
     },
     "StepExecutionFilterList":{

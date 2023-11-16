@@ -220,7 +220,8 @@
       "type":"string",
       "enum":[
         "standard",
-        "neural"
+        "neural",
+        "long-form"
       ]
     },
     "EngineList":{

@@ -3765,7 +3765,8 @@
         "AutoImportPolicy":{"shape":"AutoImportPolicyType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
         "LogConfiguration":{"shape":"LustreLogCreateConfiguration"},
-        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"},
+        "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"}
       }
     },
     "UpdateFileSystemOntapConfiguration":{

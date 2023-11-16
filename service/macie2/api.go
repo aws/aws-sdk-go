@@ -16090,13 +16090,16 @@ func (s GetRevealConfigurationInput) GoString() string {
 type GetRevealConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the configuration settings for retrieving occurrences of sensitive
-	// data reported by findings, and the status of the configuration for an Amazon
-	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an Key Management Service (KMS) key. Otherwise, an error
-	// occurs. Macie uses the specified key to encrypt the sensitive data that you
-	// retrieve.
+	// Specifies the status of the Amazon Macie configuration for retrieving occurrences
+	// of sensitive data reported by findings, and the Key Management Service (KMS)
+	// key to use to encrypt sensitive data that's retrieved. When you enable the
+	// configuration for the first time, your request must specify an KMS key. Otherwise,
+	// an error occurs.
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure"`
+
+	// Provides information about the access method and settings that are used to
+	// retrieve occurrences of sensitive data reported by findings.
+	RetrievalConfiguration *RetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -16120,6 +16123,12 @@ func (s GetRevealConfigurationOutput) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *GetRevealConfigurationOutput) SetConfiguration(v *RevealConfiguration) *GetRevealConfigurationOutput {
 	s.Configuration = v
+	return s
+}
+
+// SetRetrievalConfiguration sets the RetrievalConfiguration field's value.
+func (s *GetRevealConfigurationOutput) SetRetrievalConfiguration(v *RetrievalConfiguration) *GetRevealConfigurationOutput {
+	s.RetrievalConfiguration = v
 	return s
 }
 
@@ -20095,12 +20104,63 @@ func (s *ResourcesAffected) SetS3Object(v *S3Object) *ResourcesAffected {
 	return s
 }
 
-// Specifies the configuration settings for retrieving occurrences of sensitive
-// data reported by findings, and the status of the configuration for an Amazon
-// Macie account. When you enable the configuration for the first time, your
-// request must specify an Key Management Service (KMS) key. Otherwise, an error
-// occurs. Macie uses the specified key to encrypt the sensitive data that you
-// retrieve.
+// Provides information about the access method and settings that are used to
+// retrieve occurrences of sensitive data reported by findings.
+type RetrievalConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	ExternalId *string `locationName:"externalId" type:"string"`
+
+	// The access method to use when retrieving occurrences of sensitive data reported
+	// by findings. Valid values are:
+	//
+	// RetrievalMode is a required field
+	RetrievalMode *string `locationName:"retrievalMode" type:"string" required:"true" enum:"RetrievalMode"`
+
+	RoleName *string `locationName:"roleName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *RetrievalConfiguration) SetExternalId(v string) *RetrievalConfiguration {
+	s.ExternalId = &v
+	return s
+}
+
+// SetRetrievalMode sets the RetrievalMode field's value.
+func (s *RetrievalConfiguration) SetRetrievalMode(v string) *RetrievalConfiguration {
+	s.RetrievalMode = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *RetrievalConfiguration) SetRoleName(v string) *RetrievalConfiguration {
+	s.RoleName = &v
+	return s
+}
+
+// Specifies the status of the Amazon Macie configuration for retrieving occurrences
+// of sensitive data reported by findings, and the Key Management Service (KMS)
+// key to use to encrypt sensitive data that's retrieved. When you enable the
+// configuration for the first time, your request must specify an KMS key. Otherwise,
+// an error occurs.
 type RevealConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23839,21 +23899,101 @@ func (s UpdateResourceProfileOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies the configuration settings for retrieving occurrences of sensitive
+// Specifies the access method and settings to use when retrieving occurrences
+// of sensitive data reported by findings. If your request specifies an Identity
+// and Access Management (IAM) role to assume when retrieving the sensitive
+// data, Amazon Macie verifies that the role exists and the attached policies
+// are configured correctly. If there's an issue, Macie returns an error. For
+// information about addressing the issue, see Retrieving sensitive data samples
+// with findings (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd.html)
+// in the Amazon Macie User Guide.
+type UpdateRetrievalConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The access method to use when retrieving occurrences of sensitive data reported
+	// by findings. Valid values are:
+	//
+	// RetrievalMode is a required field
+	RetrievalMode *string `locationName:"retrievalMode" type:"string" required:"true" enum:"RetrievalMode"`
+
+	RoleName *string `locationName:"roleName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRetrievalConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRetrievalConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRetrievalConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRetrievalConfiguration"}
+	if s.RetrievalMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetrievalMode"))
+	}
+	if s.RoleName != nil && len(*s.RoleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetrievalMode sets the RetrievalMode field's value.
+func (s *UpdateRetrievalConfiguration) SetRetrievalMode(v string) *UpdateRetrievalConfiguration {
+	s.RetrievalMode = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *UpdateRetrievalConfiguration) SetRoleName(v string) *UpdateRetrievalConfiguration {
+	s.RoleName = &v
+	return s
+}
+
+// Specifies configuration settings for retrieving occurrences of sensitive
 // data reported by findings, and the status of the configuration for an Amazon
-// Macie account.
+// Macie account. If you don't specify retrievalConfiguration values for an
+// existing configuration, Macie sets the access method to CALLER_CREDENTIALS.
+// If your current access method is ASSUME_ROLE, Macie also deletes the external
+// ID and role name currently specified for the configuration. To keep these
+// settings for an existing configuration, specify the current retrievalConfiguration
+// values in your request.
 type UpdateRevealConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the configuration settings for retrieving occurrences of sensitive
-	// data reported by findings, and the status of the configuration for an Amazon
-	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an Key Management Service (KMS) key. Otherwise, an error
-	// occurs. Macie uses the specified key to encrypt the sensitive data that you
-	// retrieve.
+	// Specifies the status of the Amazon Macie configuration for retrieving occurrences
+	// of sensitive data reported by findings, and the Key Management Service (KMS)
+	// key to use to encrypt sensitive data that's retrieved. When you enable the
+	// configuration for the first time, your request must specify an KMS key. Otherwise,
+	// an error occurs.
 	//
 	// Configuration is a required field
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure" required:"true"`
+
+	// Specifies the access method and settings to use when retrieving occurrences
+	// of sensitive data reported by findings. If your request specifies an Identity
+	// and Access Management (IAM) role to assume when retrieving the sensitive
+	// data, Amazon Macie verifies that the role exists and the attached policies
+	// are configured correctly. If there's an issue, Macie returns an error. For
+	// information about addressing the issue, see Retrieving sensitive data samples
+	// with findings (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd.html)
+	// in the Amazon Macie User Guide.
+	RetrievalConfiguration *UpdateRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -23885,6 +24025,11 @@ func (s *UpdateRevealConfigurationInput) Validate() error {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RetrievalConfiguration != nil {
+		if err := s.RetrievalConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RetrievalConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -23898,19 +24043,28 @@ func (s *UpdateRevealConfigurationInput) SetConfiguration(v *RevealConfiguration
 	return s
 }
 
+// SetRetrievalConfiguration sets the RetrievalConfiguration field's value.
+func (s *UpdateRevealConfigurationInput) SetRetrievalConfiguration(v *UpdateRetrievalConfiguration) *UpdateRevealConfigurationInput {
+	s.RetrievalConfiguration = v
+	return s
+}
+
 // Provides information about updated configuration settings for retrieving
 // occurrences of sensitive data reported by findings, and the status of the
 // configuration for an Amazon Macie account.
 type UpdateRevealConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the configuration settings for retrieving occurrences of sensitive
-	// data reported by findings, and the status of the configuration for an Amazon
-	// Macie account. When you enable the configuration for the first time, your
-	// request must specify an Key Management Service (KMS) key. Otherwise, an error
-	// occurs. Macie uses the specified key to encrypt the sensitive data that you
-	// retrieve.
+	// Specifies the status of the Amazon Macie configuration for retrieving occurrences
+	// of sensitive data reported by findings, and the Key Management Service (KMS)
+	// key to use to encrypt sensitive data that's retrieved. When you enable the
+	// configuration for the first time, your request must specify an KMS key. Otherwise,
+	// an error occurs.
 	Configuration *RevealConfiguration `locationName:"configuration" type:"structure"`
+
+	// Provides information about the access method and settings that are used to
+	// retrieve occurrences of sensitive data reported by findings.
+	RetrievalConfiguration *RetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -23934,6 +24088,12 @@ func (s UpdateRevealConfigurationOutput) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *UpdateRevealConfigurationOutput) SetConfiguration(v *RevealConfiguration) *UpdateRevealConfigurationOutput {
 	s.Configuration = v
+	return s
+}
+
+// SetRetrievalConfiguration sets the RetrievalConfiguration field's value.
+func (s *UpdateRevealConfigurationOutput) SetRetrievalConfiguration(v *RetrievalConfiguration) *UpdateRevealConfigurationOutput {
+	s.RetrievalConfiguration = v
 	return s
 }
 
@@ -25416,6 +25576,24 @@ func RelationshipStatus_Values() []string {
 	}
 }
 
+// The access method to use when retrieving occurrences of sensitive data reported
+// by findings. Valid values are:
+const (
+	// RetrievalModeCallerCredentials is a RetrievalMode enum value
+	RetrievalModeCallerCredentials = "CALLER_CREDENTIALS"
+
+	// RetrievalModeAssumeRole is a RetrievalMode enum value
+	RetrievalModeAssumeRole = "ASSUME_ROLE"
+)
+
+// RetrievalMode_Values returns all elements of the RetrievalMode enum
+func RetrievalMode_Values() []string {
+	return []string{
+		RetrievalModeCallerCredentials,
+		RetrievalModeAssumeRole,
+	}
+}
+
 // The status of a request to retrieve occurrences of sensitive data reported
 // by a finding. Possible values are:
 const (
@@ -25763,6 +25941,24 @@ const (
 
 	// UnavailabilityReasonCodeObjectUnavailable is a UnavailabilityReasonCode enum value
 	UnavailabilityReasonCodeObjectUnavailable = "OBJECT_UNAVAILABLE"
+
+	// UnavailabilityReasonCodeAccountNotInOrganization is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeAccountNotInOrganization = "ACCOUNT_NOT_IN_ORGANIZATION"
+
+	// UnavailabilityReasonCodeMissingGetMemberPermission is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeMissingGetMemberPermission = "MISSING_GET_MEMBER_PERMISSION"
+
+	// UnavailabilityReasonCodeRoleTooPermissive is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeRoleTooPermissive = "ROLE_TOO_PERMISSIVE"
+
+	// UnavailabilityReasonCodeMemberRoleTooPermissive is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeMemberRoleTooPermissive = "MEMBER_ROLE_TOO_PERMISSIVE"
+
+	// UnavailabilityReasonCodeInvalidResultSignature is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeInvalidResultSignature = "INVALID_RESULT_SIGNATURE"
+
+	// UnavailabilityReasonCodeResultNotSigned is a UnavailabilityReasonCode enum value
+	UnavailabilityReasonCodeResultNotSigned = "RESULT_NOT_SIGNED"
 )
 
 // UnavailabilityReasonCode_Values returns all elements of the UnavailabilityReasonCode enum
@@ -25773,6 +25969,12 @@ func UnavailabilityReasonCode_Values() []string {
 		UnavailabilityReasonCodeUnsupportedFindingType,
 		UnavailabilityReasonCodeInvalidClassificationResult,
 		UnavailabilityReasonCodeObjectUnavailable,
+		UnavailabilityReasonCodeAccountNotInOrganization,
+		UnavailabilityReasonCodeMissingGetMemberPermission,
+		UnavailabilityReasonCodeRoleTooPermissive,
+		UnavailabilityReasonCodeMemberRoleTooPermissive,
+		UnavailabilityReasonCodeInvalidResultSignature,
+		UnavailabilityReasonCodeResultNotSigned,
 	}
 }
 

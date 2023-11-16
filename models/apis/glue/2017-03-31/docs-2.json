@@ -80,6 +80,8 @@
     "GetClassifiers": "<p>Lists all classifier objects in the Data Catalog.</p>",
     "GetColumnStatisticsForPartition": "<p>Retrieves partition statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>GetPartition</code>.</p>",
     "GetColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>GetTable</code>.</p>",
+    "GetColumnStatisticsTaskRun": "<p>Get the associated metadata/information for a task run, given a task run ID.</p>",
+    "GetColumnStatisticsTaskRuns": "<p>Retrieves information about all runs associated with the specified table.</p>",
     "GetConnection": "<p>Retrieves a connection definition from the Data Catalog.</p>",
     "GetConnections": "<p>Retrieves a list of connection definitions from the Data Catalog.</p>",
     "GetCrawler": "<p>Retrieves metadata for a specified crawler.</p>",
@@ -140,6 +142,7 @@
     "GetWorkflowRuns": "<p>Retrieves metadata for all runs of a given workflow.</p>",
     "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to Glue.</p>",
     "ListBlueprints": "<p>Lists all the blueprint names in an account.</p>",
+    "ListColumnStatisticsTaskRuns": "<p>List all task runs for a particular account.</p>",
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListCrawls": "<p>Returns all the crawls of a specified crawler. Returns only the crawls that have occurred since the launch date of the crawler history feature, and only retains up to 12 months of crawls. Older crawls will not be returned.</p> <p>You may use this API to:</p> <ul> <li> <p>Retrive all the crawls of a specified crawler.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler within a limited count.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler in a specific time range.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler with a particular state, crawl ID, or DPU hour value.</p> </li> </ul>",
     "ListCustomEntityTypes": "<p>Lists all the custom patterns that have been created.</p>",
@@ -170,6 +173,7 @@
     "RunStatement": "<p>Executes the statement.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
     "StartBlueprintRun": "<p>Starts a new run of the specified blueprint.</p>",
+    "StartColumnStatisticsTaskRun": "<p>Starts a column statistics task run, for a specified table and columns.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
     "StartDataQualityRuleRecommendationRun": "<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p> <p>Recommendation runs are automatically deleted after 90 days.</p>",
@@ -181,6 +185,7 @@
     "StartMLLabelingSetGenerationTaskRun": "<p>Starts the active learning workflow for your machine learning transform to improve the transform's quality by generating label sets and adding labels.</p> <p>When the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, Glue will have generated a \"labeling set\" or a set of questions for humans to answer.</p> <p>In the case of the <code>FindMatches</code> transform, these questions are of the form, “What is the correct way to group these rows together into groups composed entirely of matching records?” </p> <p>After the labeling process is finished, you can upload your labels with a call to <code>StartImportLabelsTaskRun</code>. After <code>StartImportLabelsTaskRun</code> finishes, all future runs of the machine learning transform will use the new and improved labels and perform a higher-quality transformation.</p>",
     "StartTrigger": "<p>Starts an existing trigger. See <a href=\"https://docs.aws.amazon.com/glue/latest/dg/trigger-job.html\">Triggering Jobs</a> for information about how different types of trigger are started.</p>",
     "StartWorkflowRun": "<p>Starts a new run of the specified workflow.</p>",
+    "StopColumnStatisticsTaskRun": "<p>Stops a task run for the specified table.</p>",
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
     "StopCrawlerSchedule": "<p>Sets the schedule state of the specified crawler to <code>NOT_SCHEDULED</code>, but does not stop the crawler if it is already running.</p>",
     "StopSession": "<p>Stops the session.</p>",
@@ -220,6 +225,7 @@
     "AccountId": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$CustomerId": "<p>The Amazon Web Services account ID.</p>",
         "LakeFormationConfiguration$AccountId": "<p>Required for cross account crawls. For same account crawls as the target data, this can be left as null.</p>"
       }
     },
@@ -1022,6 +1028,7 @@
         "BatchGetTableOptimizerError$catalogId": "<p>The Catalog ID of the table.</p>",
         "BatchTableOptimizer$catalogId": "<p>The Catalog ID of the table.</p>",
         "BatchUpdatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partition is to be updated. Currently, this should be the Amazon Web Services account ID.</p>",
+        "ColumnStatisticsTaskRun$CatalogID": "<p>The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.</p>",
         "CreateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the connection. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "CreateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the database. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "CreatePartitionIndexRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
@@ -1294,6 +1301,13 @@
         "TableInput$PartitionKeys": "<p>A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.</p> <p>When you create a table used by Amazon Athena, and you do not specify any <code>partitionKeys</code>, you must at least set the value of <code>partitionKeys</code> to an empty list. For example:</p> <p> <code>\"PartitionKeys\": []</code> </p>"
       }
     },
+    "ColumnNameList": {
+      "base": null,
+      "refs": {
+        "ColumnStatisticsTaskRun$ColumnNameList": "<p>A list of the column names. If none is supplied, all column names for the table will be used by default.</p>",
+        "StartColumnStatisticsTaskRunRequest$ColumnNameList": "<p>A list of the column names to generate statistics. If none is supplied, all column names for the table will be used by default.</p>"
+      }
+    },
     "ColumnNameString": {
       "base": null,
       "refs": {
@@ -1346,6 +1360,46 @@
       "refs": {
         "GetColumnStatisticsForPartitionResponse$ColumnStatisticsList": "<p>List of ColumnStatistics that failed to be retrieved.</p>",
         "GetColumnStatisticsForTableResponse$ColumnStatisticsList": "<p>List of ColumnStatistics.</p>"
+      }
+    },
+    "ColumnStatisticsState": {
+      "base": null,
+      "refs": {
+        "ColumnStatisticsTaskRun$Status": "<p>The status of the task run.</p>"
+      }
+    },
+    "ColumnStatisticsTaskNotRunningException": {
+      "base": "<p>An exception thrown when you try to stop a task run when there is no task running.</p>",
+      "refs": {
+      }
+    },
+    "ColumnStatisticsTaskRun": {
+      "base": "<p>The object that shows the details of the column stats run.</p>",
+      "refs": {
+        "ColumnStatisticsTaskRunsList$member": null,
+        "GetColumnStatisticsTaskRunResponse$ColumnStatisticsTaskRun": "<p>A <code>ColumnStatisticsTaskRun</code> object representing the details of the column stats run.</p>"
+      }
+    },
+    "ColumnStatisticsTaskRunIdList": {
+      "base": null,
+      "refs": {
+        "ListColumnStatisticsTaskRunsResponse$ColumnStatisticsTaskRunIds": "<p>A list of column statistics task run IDs.</p>"
+      }
+    },
+    "ColumnStatisticsTaskRunningException": {
+      "base": "<p>An exception thrown when you try to start another job while running a column stats generation job.</p>",
+      "refs": {
+      }
+    },
+    "ColumnStatisticsTaskRunsList": {
+      "base": null,
+      "refs": {
+        "GetColumnStatisticsTaskRunsResponse$ColumnStatisticsTaskRuns": "<p>A list of column statistics task runs.</p>"
+      }
+    },
+    "ColumnStatisticsTaskStoppingException": {
+      "base": "<p>An exception thrown when you try to stop a task run.</p>",
+      "refs": {
       }
     },
     "ColumnStatisticsType": {
@@ -1657,6 +1711,7 @@
     "CrawlerSecurityConfiguration": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$SecurityConfiguration": "<p>Name of the security configuration that is used to encrypt CloudWatch logs for the column stats task run.</p>",
         "Crawler$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>",
         "CreateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>",
         "UpdateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>"
@@ -2334,8 +2389,11 @@
     "DatabaseName": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$DatabaseName": "<p>The database where the table resides.</p>",
         "Crawler$DatabaseName": "<p>The name of the database in which the crawler's output is stored.</p>",
         "CreateCrawlerRequest$DatabaseName": "<p>The Glue database where results are written, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>",
+        "GetColumnStatisticsTaskRunsRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
+        "StopColumnStatisticsTaskRunRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
         "UpdateCrawlerRequest$DatabaseName": "<p>The Glue database where results are stored, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>"
       }
     },
@@ -2657,6 +2715,7 @@
     "DescriptionString": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$ErrorMessage": "<p>The error message for the job.</p>",
         "Connection$Description": "<p>The description of the connection.</p>",
         "ConnectionInput$Description": "<p>The description of the connection.</p>",
         "Crawl$ErrorMessage": "<p>The error message associated with the crawl.</p>",
@@ -3617,6 +3676,26 @@
       "refs": {
       }
     },
+    "GetColumnStatisticsTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsTaskRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsTaskRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetConnectionRequest": {
       "base": null,
       "refs": {
@@ -4405,6 +4484,8 @@
         "CancelMLTaskRunRequest$TaskRunId": "<p>A unique identifier for the task run.</p>",
         "CancelMLTaskRunResponse$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
         "CancelMLTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
+        "ColumnStatisticsTaskRun$ColumnStatisticsTaskRunId": "<p>The identifier for the particular column statistics task run.</p>",
+        "ColumnStatisticsTaskRunIdList$member": null,
         "CreateDataQualityRulesetRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
         "CreateMLTransformResponse$TransformId": "<p>A unique identifier that is generated for the transform.</p>",
         "DataQualityResult$ResultId": "<p>A unique result ID for the data quality result.</p>",
@@ -4423,6 +4504,7 @@
         "DeleteResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when this policy was set.</p>",
         "FindMatchesTaskRunProperties$JobId": "<p>The job ID for the Find Matches task run.</p>",
         "FindMatchesTaskRunProperties$JobRunId": "<p>The job run ID for the Find Matches task run.</p>",
+        "GetColumnStatisticsTaskRunRequest$ColumnStatisticsTaskRunId": "<p>The identifier for the particular column statistics task run.</p>",
         "GetDataQualityResultRequest$ResultId": "<p>A unique result ID for the data quality result.</p>",
         "GetDataQualityResultResponse$ResultId": "<p>A unique result ID for the data quality result.</p>",
         "GetDataQualityResultResponse$JobRunId": "<p>The job run ID associated with the data quality result, if any.</p>",
@@ -4444,6 +4526,7 @@
         "MLTransform$TransformId": "<p>The unique transform ID that is generated for the machine learning transform. The ID is guaranteed to be unique and does not change.</p>",
         "PutResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when the previous policy was set using <code>PutResourcePolicy</code>. Its purpose is to prevent concurrent modifications of a policy. Do not use this parameter if no previous policy has been set.</p>",
         "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>",
+        "StartColumnStatisticsTaskRunResponse$ColumnStatisticsTaskRunId": "<p>The identifier for the column statistics task run.</p>",
         "StartDataQualityRuleRecommendationRunRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
         "StartDataQualityRuleRecommendationRunResponse$RunId": "<p>The unique run identifier associated with this run.</p>",
         "StartDataQualityRulesetEvaluationRunRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
@@ -4961,6 +5044,16 @@
       "refs": {
       }
     },
+    "ListColumnStatisticsTaskRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListColumnStatisticsTaskRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCrawlersRequest": {
       "base": null,
       "refs": {
@@ -5350,6 +5443,9 @@
         "AlreadyExistsException$Message": "<p>A message describing the problem.</p>",
         "BlueprintRun$ErrorMessage": "<p>Indicates any errors that are seen while running the blueprint.</p>",
         "BlueprintRun$RollbackErrorMessage": "<p>If there are any errors while creating the entities of a workflow, we try to roll back the created entities until that point and delete them. This attribute indicates the errors seen while trying to delete the entities that are created.</p>",
+        "ColumnStatisticsTaskNotRunningException$Message": "<p>A message describing the problem.</p>",
+        "ColumnStatisticsTaskRunningException$Message": "<p>A message describing the problem.</p>",
+        "ColumnStatisticsTaskStoppingException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentModificationException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentRunsExceededException$Message": "<p>A message describing the problem.</p>",
         "ConditionCheckFailureException$Message": "<p>A message describing the problem.</p>",
@@ -5512,8 +5608,10 @@
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
         "ColumnError$ColumnName": "<p>The name of the column that failed.</p>",
         "ColumnImportance$ColumnName": "<p>The name of a column.</p>",
+        "ColumnNameList$member": null,
         "ColumnRowFilter$ColumnName": "<p>A string containing the name of the column.</p>",
         "ColumnStatistics$ColumnName": "<p>Name of column which statistics belong to.</p>",
+        "ColumnStatisticsTaskRun$WorkerType": "<p>The type of workers being used for generating stats. The default is <code>g.1x</code>.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
         "Connection$Name": "<p>The name of the connection definition.</p>",
@@ -5637,6 +5735,7 @@
         "GetColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
         "GetColumnStatisticsForTableRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
         "GetColumnStatisticsForTableRequest$TableName": "<p>The name of the partitions' table.</p>",
+        "GetColumnStatisticsTaskRunsRequest$TableName": "<p>The name of the table.</p>",
         "GetConnectionRequest$Name": "<p>The name of the connection definition to retrieve.</p>",
         "GetCrawlerRequest$Name": "<p>The name of the crawler to retrieve metadata for.</p>",
         "GetCustomEntityTypeRequest$Name": "<p>The name of the custom pattern that you want to retrieve.</p>",
@@ -5738,6 +5837,11 @@
         "Session$SecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used with the session.</p>",
         "SessionCommand$Name": "<p>Specifies the name of the SessionCommand. Can be 'glueetl' or 'gluestreaming'.</p>",
         "SessionIdList$member": null,
+        "StartColumnStatisticsTaskRunRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
+        "StartColumnStatisticsTaskRunRequest$TableName": "<p>The name of the table to generate statistics.</p>",
+        "StartColumnStatisticsTaskRunRequest$Role": "<p>The IAM role that the service assumes to generate statistics.</p>",
+        "StartColumnStatisticsTaskRunRequest$CatalogID": "<p>The ID of the Data Catalog where the table reside. If none is supplied, the Amazon Web Services account ID is used by default.</p>",
+        "StartColumnStatisticsTaskRunRequest$SecurityConfiguration": "<p>Name of the security configuration that is used to encrypt CloudWatch logs for the column stats task run.</p>",
         "StartCrawlerRequest$Name": "<p>Name of the crawler to start.</p>",
         "StartCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler to schedule.</p>",
         "StartDataQualityRuleRecommendationRunRequest$CreatedRulesetName": "<p>A name for the ruleset.</p>",
@@ -5746,6 +5850,7 @@
         "StartTriggerRequest$Name": "<p>The name of the trigger to start.</p>",
         "StartTriggerResponse$Name": "<p>The name of the trigger that was started.</p>",
         "StartWorkflowRunRequest$Name": "<p>The name of the workflow to start.</p>",
+        "StopColumnStatisticsTaskRunRequest$TableName": "<p>The name of the table.</p>",
         "StopCrawlerRequest$Name": "<p>Name of the crawler to stop.</p>",
         "StopCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule state to set.</p>",
         "StopSessionRequest$Id": "<p>The ID of the session to be stopped.</p>",
@@ -5955,6 +6060,7 @@
       "base": null,
       "refs": {
         "BinaryColumnStatisticsData$AverageLength": "<p>The average bit sequence length in the column.</p>",
+        "ColumnStatisticsTaskRun$DPUSeconds": "<p>The calculated DPU usage in seconds for all autoscaled workers.</p>",
         "CrawlerHistory$DPUHour": "<p>The number of data processing units (DPU) used in hours for the crawl.</p>",
         "CrawlerMetrics$TimeLeftSeconds": "<p>The estimated time left to complete a running crawl.</p>",
         "CrawlerMetrics$LastRuntimeSeconds": "<p>The duration of the crawler's most recent run, in seconds.</p>",
@@ -6326,6 +6432,7 @@
       "refs": {
         "GetBlueprintRunsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetClassifiersRequest$MaxResults": "<p>The size of the list to return (optional).</p>",
+        "GetColumnStatisticsTaskRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetConnectionsRequest$MaxResults": "<p>The maximum number of connections to return in one response.</p>",
         "GetCrawlerMetricsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetCrawlersRequest$MaxResults": "<p>The number of crawlers to return on each call.</p>",
@@ -6341,6 +6448,7 @@
         "GetUnfilteredPartitionsMetadataRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
         "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListColumnStatisticsTaskRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlsRequest$MaxResults": "<p>The maximum number of results to return. The default is 20, and maximum is 100.</p>",
         "ListCustomEntityTypesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
@@ -6573,6 +6681,12 @@
       "base": null,
       "refs": {
         "StreamingDataPreviewOptions$PollingTime": "<p>The polling time in milliseconds.</p>"
+      }
+    },
+    "PositiveInteger": {
+      "base": null,
+      "refs": {
+        "ColumnStatisticsTaskRun$NumberOfWorkers": "<p>The number of workers used to generate column statistics. The job is preconfigured to autoscale up to 25 instances.</p>"
       }
     },
     "PositiveLong": {
@@ -6920,6 +7034,7 @@
     "Role": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$Role": "<p>The IAM role that the service assumes to generate statistics.</p>",
         "Crawler$Role": "<p>The Amazon Resource Name (ARN) of an IAM role that's used to access customer resources, such as Amazon Simple Storage Service (Amazon S3) data.</p>",
         "CreateCrawlerRequest$Role": "<p>The IAM role or Amazon Resource Name (ARN) of an IAM role used by the new crawler to access customer resources.</p>",
         "UpdateCrawlerRequest$Role": "<p>The IAM role or Amazon Resource Name (ARN) of an IAM role that is used by the new crawler to access customer resources.</p>"
@@ -7130,6 +7245,13 @@
       "base": null,
       "refs": {
         "CrawlerTargets$S3Targets": "<p>Specifies Amazon Simple Storage Service (Amazon S3) targets.</p>"
+      }
+    },
+    "SampleSizePercentage": {
+      "base": null,
+      "refs": {
+        "ColumnStatisticsTaskRun$SampleSize": "<p>The percentage of rows used to generate statistics. If none is supplied, the entire table will be used to generate stats.</p>",
+        "StartColumnStatisticsTaskRunRequest$SampleSize": "<p>The percentage of rows used to generate statistics. If none is supplied, the entire table will be used to generate stats.</p>"
       }
     },
     "ScalaCode": {
@@ -7610,6 +7732,16 @@
       "refs": {
       }
     },
+    "StartColumnStatisticsTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartColumnStatisticsTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartCrawlerRequest": {
       "base": null,
       "refs": {
@@ -7764,6 +7896,16 @@
         "StatementOutput$Status": "<p>The status of the code execution output.</p>"
       }
     },
+    "StopColumnStatisticsTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopColumnStatisticsTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StopCrawlerRequest": {
       "base": null,
       "refs": {
@@ -7892,6 +8034,7 @@
     "TableName": {
       "base": null,
       "refs": {
+        "ColumnStatisticsTaskRun$TableName": "<p>The name of the table for which column statistics is generated.</p>",
         "MappingEntry$SourceTable": "<p>The name of the source table.</p>",
         "MappingEntry$TargetTable": "<p>The target table.</p>"
       }
@@ -8136,6 +8279,10 @@
       "refs": {
         "CatalogImportStatus$ImportTime": "<p>The time that the migration was started.</p>",
         "ColumnStatistics$AnalyzedTime": "<p>The timestamp of when column statistics were generated.</p>",
+        "ColumnStatisticsTaskRun$CreationTime": "<p>The time that this task was created.</p>",
+        "ColumnStatisticsTaskRun$LastUpdated": "<p>The last point in time when this task was modified.</p>",
+        "ColumnStatisticsTaskRun$StartTime": "<p>The start time of the task.</p>",
+        "ColumnStatisticsTaskRun$EndTime": "<p>The end time of the task.</p>",
         "Connection$CreationTime": "<p>The time that this connection definition was created.</p>",
         "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
         "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
@@ -8251,6 +8398,8 @@
       "refs": {
         "GetClassifiersRequest$NextToken": "<p>An optional continuation token.</p>",
         "GetClassifiersResponse$NextToken": "<p>A continuation token.</p>",
+        "GetColumnStatisticsTaskRunsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "GetColumnStatisticsTaskRunsResponse$NextToken": "<p>A continuation token, if not all task runs have yet been returned.</p>",
         "GetConnectionsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetConnectionsResponse$NextToken": "<p>A continuation token, if the list of connections returned does not include the last of the filtered connections.</p>",
         "GetCrawlerMetricsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
@@ -8273,6 +8422,8 @@
         "GetUnfilteredPartitionsMetadataResponse$NextToken": "<p>A continuation token, if the returned list of partitions does not include the last one.</p>",
         "GetUserDefinedFunctionsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetUserDefinedFunctionsResponse$NextToken": "<p>A continuation token, if the list of functions returned does not include the last requested function.</p>",
+        "ListColumnStatisticsTaskRunsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListColumnStatisticsTaskRunsResponse$NextToken": "<p>A continuation token, if not all task run IDs have yet been returned.</p>",
         "ListCrawlersRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListCrawlersResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
         "ListCrawlsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",

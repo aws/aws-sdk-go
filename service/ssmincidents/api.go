@@ -13,6 +13,103 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchGetIncidentFindings = "BatchGetIncidentFindings"
+
+// BatchGetIncidentFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetIncidentFindings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetIncidentFindings for more information on using the BatchGetIncidentFindings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetIncidentFindingsRequest method.
+//	req, resp := client.BatchGetIncidentFindingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/BatchGetIncidentFindings
+func (c *SSMIncidents) BatchGetIncidentFindingsRequest(input *BatchGetIncidentFindingsInput) (req *request.Request, output *BatchGetIncidentFindingsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetIncidentFindings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/batchGetIncidentFindings",
+	}
+
+	if input == nil {
+		input = &BatchGetIncidentFindingsInput{}
+	}
+
+	output = &BatchGetIncidentFindingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetIncidentFindings API operation for AWS Systems Manager Incident Manager.
+//
+// Retrieves details about all specified findings for an incident, including
+// descriptive details about each finding. A finding represents a recent application
+// environment change made by an CodeDeploy deployment or an CloudFormation
+// stack creation or update that can be investigated as a potential cause of
+// the incident.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager Incident Manager's
+// API operation BatchGetIncidentFindings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/BatchGetIncidentFindings
+func (c *SSMIncidents) BatchGetIncidentFindings(input *BatchGetIncidentFindingsInput) (*BatchGetIncidentFindingsOutput, error) {
+	req, out := c.BatchGetIncidentFindingsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetIncidentFindingsWithContext is the same as BatchGetIncidentFindings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetIncidentFindings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) BatchGetIncidentFindingsWithContext(ctx aws.Context, input *BatchGetIncidentFindingsInput, opts ...request.Option) (*BatchGetIncidentFindingsOutput, error) {
+	req, out := c.BatchGetIncidentFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationSet = "CreateReplicationSet"
 
 // CreateReplicationSetRequest generates a "aws/request.Request" representing the
@@ -1294,6 +1391,160 @@ func (c *SSMIncidents) GetTimelineEventWithContext(ctx aws.Context, input *GetTi
 	return out, req.Send()
 }
 
+const opListIncidentFindings = "ListIncidentFindings"
+
+// ListIncidentFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIncidentFindings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIncidentFindings for more information on using the ListIncidentFindings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIncidentFindingsRequest method.
+//	req, resp := client.ListIncidentFindingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentFindings
+func (c *SSMIncidents) ListIncidentFindingsRequest(input *ListIncidentFindingsInput) (req *request.Request, output *ListIncidentFindingsOutput) {
+	op := &request.Operation{
+		Name:       opListIncidentFindings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listIncidentFindings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIncidentFindingsInput{}
+	}
+
+	output = &ListIncidentFindingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIncidentFindings API operation for AWS Systems Manager Incident Manager.
+//
+// Retrieves a list of the IDs of findings, plus their last modified times,
+// that have been identified for a specified incident. A finding represents
+// a recent application environment change made by an CloudFormation stack creation
+// or update or an CodeDeploy deployment that can be investigated as a potential
+// cause of the incident.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager Incident Manager's
+// API operation ListIncidentFindings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which doesn't exist.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this operation.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-incidents-2018-05-10/ListIncidentFindings
+func (c *SSMIncidents) ListIncidentFindings(input *ListIncidentFindingsInput) (*ListIncidentFindingsOutput, error) {
+	req, out := c.ListIncidentFindingsRequest(input)
+	return out, req.Send()
+}
+
+// ListIncidentFindingsWithContext is the same as ListIncidentFindings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIncidentFindings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) ListIncidentFindingsWithContext(ctx aws.Context, input *ListIncidentFindingsInput, opts ...request.Option) (*ListIncidentFindingsOutput, error) {
+	req, out := c.ListIncidentFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIncidentFindingsPages iterates over the pages of a ListIncidentFindings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIncidentFindings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIncidentFindings operation.
+//	pageNum := 0
+//	err := client.ListIncidentFindingsPages(params,
+//	    func(page *ssmincidents.ListIncidentFindingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SSMIncidents) ListIncidentFindingsPages(input *ListIncidentFindingsInput, fn func(*ListIncidentFindingsOutput, bool) bool) error {
+	return c.ListIncidentFindingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIncidentFindingsPagesWithContext same as ListIncidentFindingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSMIncidents) ListIncidentFindingsPagesWithContext(ctx aws.Context, input *ListIncidentFindingsInput, fn func(*ListIncidentFindingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIncidentFindingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIncidentFindingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIncidentFindingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIncidentRecords = "ListIncidentRecords"
 
 // ListIncidentRecordsRequest generates a "aws/request.Request" representing the
@@ -1926,7 +2177,7 @@ func (c *SSMIncidents) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS Systems Manager Incident Manager.
 //
-// Lists the tags that are attached to the specified response plan.
+// Lists the tags that are attached to the specified response plan or incident.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3339,6 +3590,170 @@ func (s *AutomationExecution) SetSsmExecutionArn(v string) *AutomationExecution 
 	return s
 }
 
+// Details about an error returned for a BatchGetIncidentFindings operation.
+type BatchGetIncidentFindingsError struct {
+	_ struct{} `type:"structure"`
+
+	// The code associated with an error that was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true"`
+
+	// The ID of a specified finding for which an error was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// FindingId is a required field
+	FindingId *string `locationName:"findingId" type:"string" required:"true"`
+
+	// The description for an error that was returned for a BatchGetIncidentFindings
+	// operation.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchGetIncidentFindingsError) SetCode(v string) *BatchGetIncidentFindingsError {
+	s.Code = &v
+	return s
+}
+
+// SetFindingId sets the FindingId field's value.
+func (s *BatchGetIncidentFindingsError) SetFindingId(v string) *BatchGetIncidentFindingsError {
+	s.FindingId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchGetIncidentFindingsError) SetMessage(v string) *BatchGetIncidentFindingsError {
+	s.Message = &v
+	return s
+}
+
+type BatchGetIncidentFindingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IDs of findings for which you want to view details.
+	//
+	// FindingIds is a required field
+	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the incident for which you want to view
+	// finding details.
+	//
+	// IncidentRecordArn is a required field
+	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetIncidentFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetIncidentFindingsInput"}
+	if s.FindingIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
+	}
+	if s.IncidentRecordArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncidentRecordArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingIds sets the FindingIds field's value.
+func (s *BatchGetIncidentFindingsInput) SetFindingIds(v []*string) *BatchGetIncidentFindingsInput {
+	s.FindingIds = v
+	return s
+}
+
+// SetIncidentRecordArn sets the IncidentRecordArn field's value.
+func (s *BatchGetIncidentFindingsInput) SetIncidentRecordArn(v string) *BatchGetIncidentFindingsInput {
+	s.IncidentRecordArn = &v
+	return s
+}
+
+type BatchGetIncidentFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors encountered during the operation.
+	//
+	// Errors is a required field
+	Errors []*BatchGetIncidentFindingsError `locationName:"errors" type:"list" required:"true"`
+
+	// Information about the requested findings.
+	//
+	// Findings is a required field
+	Findings []*Finding `locationName:"findings" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetIncidentFindingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetIncidentFindingsOutput) SetErrors(v []*BatchGetIncidentFindingsError) *BatchGetIncidentFindingsOutput {
+	s.Errors = v
+	return s
+}
+
+// SetFindings sets the Findings field's value.
+func (s *BatchGetIncidentFindingsOutput) SetFindings(v []*Finding) *BatchGetIncidentFindingsOutput {
+	s.Findings = v
+	return s
+}
+
 // The Chatbot chat channel used for collaboration during an incident.
 type ChatChannel struct {
 	_ struct{} `type:"structure"`
@@ -3392,6 +3807,131 @@ func (s *ChatChannel) SetChatbotSns(v []*string) *ChatChannel {
 // SetEmpty sets the Empty field's value.
 func (s *ChatChannel) SetEmpty(v *EmptyChatChannel) *ChatChannel {
 	s.Empty = v
+	return s
+}
+
+// Information about an CloudFormation stack creation or update that occurred
+// around the time of an incident and could be a potential cause of the incident.
+type CloudFormationStackUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for when the CloudFormation stack creation or update ended.
+	// Not reported for deployments that are still in progress.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the CloudFormation stack involved in the
+	// update.
+	//
+	// StackArn is a required field
+	StackArn *string `locationName:"stackArn" type:"string" required:"true"`
+
+	// The timestamp for when the CloudFormation stack creation or update began.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudFormationStackUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudFormationStackUpdate) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CloudFormationStackUpdate) SetEndTime(v time.Time) *CloudFormationStackUpdate {
+	s.EndTime = &v
+	return s
+}
+
+// SetStackArn sets the StackArn field's value.
+func (s *CloudFormationStackUpdate) SetStackArn(v string) *CloudFormationStackUpdate {
+	s.StackArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CloudFormationStackUpdate) SetStartTime(v time.Time) *CloudFormationStackUpdate {
+	s.StartTime = &v
+	return s
+}
+
+// Information about a CodeDeploy deployment that occurred around the time of
+// an incident and could be a possible cause of the incident.
+type CodeDeployDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the CodeDeploy deployment group associated
+	// with the deployment.
+	//
+	// DeploymentGroupArn is a required field
+	DeploymentGroupArn *string `locationName:"deploymentGroupArn" type:"string" required:"true"`
+
+	// The ID of the CodeDeploy deployment.
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
+
+	// The timestamp for when the CodeDeploy deployment ended. Not reported for
+	// deployments that are still in progress.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The timestamp for when the CodeDeploy deployment began.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeDeployDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeDeployDeployment) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentGroupArn sets the DeploymentGroupArn field's value.
+func (s *CodeDeployDeployment) SetDeploymentGroupArn(v string) *CodeDeployDeployment {
+	s.DeploymentGroupArn = &v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *CodeDeployDeployment) SetDeploymentId(v string) *CodeDeployDeployment {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CodeDeployDeployment) SetEndTime(v time.Time) *CodeDeployDeployment {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CodeDeployDeployment) SetStartTime(v time.Time) *CodeDeployDeployment {
+	s.StartTime = &v
 	return s
 }
 
@@ -3841,12 +4381,17 @@ type CreateTimelineEventInput struct {
 	// a related item.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
-	// The time that the event occurred.
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
-	// The type of event. You can create timeline events of type Custom Event.
+	// The type of event. You can create timeline events of type Custom Event and
+	// Note.
+	//
+	// To make a Note-type event appear on the Incident notes panel in the console,
+	// specify eventType as Noteand enter the Amazon Resource Name (ARN) of the
+	// incident as the value for eventReference.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
@@ -4510,17 +5055,17 @@ type EventSummary struct {
 	// A list of references in a TimelineEvent.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
-	// The time that the event occurred.
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
-	// The type of event. The timeline event must be Custom Event.
+	// The type of event. The timeline event must be Custom Event or Note.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The time that the timeline event was last updated.
+	// The timestamp for when the timeline event was last updated.
 	//
 	// EventUpdatedTime is a required field
 	EventUpdatedTime *time.Time `locationName:"eventUpdatedTime" type:"timestamp" required:"true"`
@@ -4644,6 +5189,161 @@ func (s *Filter) SetCondition(v *Condition) *Filter {
 // SetKey sets the Key field's value.
 func (s *Filter) SetKey(v string) *Filter {
 	s.Key = &v
+	return s
+}
+
+// Information about a specific CodeDeploy deployment or CloudFormation stack
+// creation or update that occurred around the time of a reported incident.
+// These activities can be investigated as a potential cause of the incident.
+type Finding struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for when a finding was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
+
+	// Details about the finding.
+	Details *FindingDetails `locationName:"details" type:"structure"`
+
+	// The ID assigned to the finding.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The timestamp for when the finding was most recently updated with additional
+	// information.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Finding) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Finding) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Finding) SetCreationTime(v time.Time) *Finding {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *Finding) SetDetails(v *FindingDetails) *Finding {
+	s.Details = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Finding) SetId(v string) *Finding {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Finding) SetLastModifiedTime(v time.Time) *Finding {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// Extended textual information about the finding.
+type FindingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the CloudFormation stack creation or update associated
+	// with the finding.
+	CloudFormationStackUpdate *CloudFormationStackUpdate `locationName:"cloudFormationStackUpdate" type:"structure"`
+
+	// Information about the CodeDeploy deployment associated with the finding.
+	CodeDeployDeployment *CodeDeployDeployment `locationName:"codeDeployDeployment" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudFormationStackUpdate sets the CloudFormationStackUpdate field's value.
+func (s *FindingDetails) SetCloudFormationStackUpdate(v *CloudFormationStackUpdate) *FindingDetails {
+	s.CloudFormationStackUpdate = v
+	return s
+}
+
+// SetCodeDeployDeployment sets the CodeDeployDeployment field's value.
+func (s *FindingDetails) SetCodeDeployDeployment(v *CodeDeployDeployment) *FindingDetails {
+	s.CodeDeployDeployment = v
+	return s
+}
+
+// Identifying information about the finding.
+type FindingSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the finding.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The timestamp for when the finding was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *FindingSummary) SetId(v string) *FindingSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FindingSummary) SetLastModifiedTime(v time.Time) *FindingSummary {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -4811,7 +5511,8 @@ type GetResourcePoliciesInput struct {
 	// The maximum number of resource policies to display for each page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the response plan with the attached resource
@@ -4876,7 +5577,8 @@ func (s *GetResourcePoliciesInput) SetResourceArn(v string) *GetResourcePolicies
 type GetResourcePoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details about the resource policy attached to the response plan.
@@ -5173,7 +5875,7 @@ type IncidentRecord struct {
 	// The chat channel used for collaboration during an incident.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// The time that Incident Manager created the incident record.
+	// The timestamp for when Incident Manager created the incident record.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
@@ -5185,6 +5887,18 @@ type IncidentRecord struct {
 	DedupeString *string `locationName:"dedupeString" type:"string" required:"true"`
 
 	// The impact of the incident on customers and applications.
+	//
+	// Supported impact codes
+	//
+	//    * 1 - Critical
+	//
+	//    * 2 - High
+	//
+	//    * 3 - Medium
+	//
+	//    * 4 - Low
+	//
+	//    * 5 - No Impact
 	//
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
@@ -5199,7 +5913,7 @@ type IncidentRecord struct {
 	// LastModifiedBy is a required field
 	LastModifiedBy *string `locationName:"lastModifiedBy" type:"string" required:"true"`
 
-	// The time at which the incident was most recently modified.
+	// The timestamp for when the incident was most recently modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
@@ -5207,7 +5921,8 @@ type IncidentRecord struct {
 	// The Amazon SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
-	// The time at which the incident was resolved. This appears as a timeline event.
+	// The timestamp for when the incident was resolved. This appears as a timeline
+	// event.
 	ResolvedTime *time.Time `locationName:"resolvedTime" type:"timestamp"`
 
 	// The current status of the incident.
@@ -5402,7 +6117,7 @@ type IncidentRecordSummary struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The time the incident was created.
+	// The timestamp for when the incident was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
@@ -5417,7 +6132,7 @@ type IncidentRecordSummary struct {
 	// IncidentRecordSource is a required field
 	IncidentRecordSource *IncidentRecordSource `locationName:"incidentRecordSource" type:"structure" required:"true"`
 
-	// The time the incident was resolved.
+	// The timestamp for when the incident was resolved.
 	ResolvedTime *time.Time `locationName:"resolvedTime" type:"timestamp"`
 
 	// The current status of the incident.
@@ -5497,11 +6212,34 @@ func (s *IncidentRecordSummary) SetTitle(v string) *IncidentRecordSummary {
 type IncidentTemplate struct {
 	_ struct{} `type:"structure"`
 
-	// Used to stop Incident Manager from creating multiple incident records for
-	// the same incident.
+	// The string Incident Manager uses to prevent the same root cause from creating
+	// multiple incidents in the same account.
+	//
+	// A deduplication string is a term or phrase the system uses to check for duplicate
+	// incidents. If you specify a deduplication string, Incident Manager searches
+	// for open incidents that contain the same string in the dedupeString field
+	// when it creates the incident. If a duplicate is detected, Incident Manager
+	// deduplicates the newer incident into the existing incident.
+	//
+	// By default, Incident Manager automatically deduplicates multiple incidents
+	// created by the same Amazon CloudWatch alarm or Amazon EventBridge event.
+	// You don't have to enter your own deduplication string to prevent duplication
+	// for these resource types.
 	DedupeString *string `locationName:"dedupeString" type:"string"`
 
 	// The impact of the incident on your customers and applications.
+	//
+	// Supported impact codes
+	//
+	//    * 1 - Critical
+	//
+	//    * 2 - High
+	//
+	//    * 3 - Medium
+	//
+	//    * 4 - Low
+	//
+	//    * 5 - No Impact
 	//
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
@@ -5853,6 +6591,119 @@ func (s *ItemValue) SetUrl(v string) *ItemValue {
 	return s
 }
 
+type ListIncidentFindingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the incident for which you want to view
+	// associated findings.
+	//
+	// IncidentRecordArn is a required field
+	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
+
+	// The maximum number of findings to retrieve per call.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIncidentFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIncidentFindingsInput"}
+	if s.IncidentRecordArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncidentRecordArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncidentRecordArn sets the IncidentRecordArn field's value.
+func (s *ListIncidentFindingsInput) SetIncidentRecordArn(v string) *ListIncidentFindingsInput {
+	s.IncidentRecordArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIncidentFindingsInput) SetMaxResults(v int64) *ListIncidentFindingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIncidentFindingsInput) SetNextToken(v string) *ListIncidentFindingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIncidentFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of findings that represent deployments that might be the potential
+	// cause of the incident.
+	//
+	// Findings is a required field
+	Findings []*FindingSummary `locationName:"findings" type:"list" required:"true"`
+
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIncidentFindingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindings sets the Findings field's value.
+func (s *ListIncidentFindingsOutput) SetFindings(v []*FindingSummary) *ListIncidentFindingsOutput {
+	s.Findings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIncidentFindingsOutput) SetNextToken(v string) *ListIncidentFindingsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIncidentRecordsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5881,7 +6732,8 @@ type ListIncidentRecordsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5952,7 +6804,8 @@ type ListIncidentRecordsOutput struct {
 	// IncidentRecordSummaries is a required field
 	IncidentRecordSummaries []*IncidentRecordSummary `locationName:"incidentRecordSummaries" type:"list" required:"true"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5998,7 +6851,8 @@ type ListRelatedItemsInput struct {
 	// The maximum number of related items per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -6057,7 +6911,8 @@ func (s *ListRelatedItemsInput) SetNextToken(v string) *ListRelatedItemsInput {
 type ListRelatedItemsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details about each related item.
@@ -6102,7 +6957,8 @@ type ListReplicationSetsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -6152,7 +7008,8 @@ func (s *ListReplicationSetsInput) SetNextToken(v string) *ListReplicationSetsIn
 type ListReplicationSetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the list replication set.
@@ -6197,7 +7054,8 @@ type ListResponsePlansInput struct {
 	// The maximum number of response plans per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -6247,7 +7105,8 @@ func (s *ListResponsePlansInput) SetNextToken(v string) *ListResponsePlansInput 
 type ListResponsePlansOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Details of each response plan.
@@ -6289,7 +7148,7 @@ func (s *ListResponsePlansOutput) SetResponsePlanSummaries(v []*ResponsePlanSumm
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the response plan.
+	// The Amazon Resource Name (ARN) of the response plan or incident.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -6338,7 +7197,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags for the response plan.
+	// A list of tags for the response plan or incident.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
@@ -6374,6 +7233,8 @@ type ListTimelineEventsInput struct {
 	// Filters the timeline events based on the provided conditional values. You
 	// can filter timeline events with the following keys:
 	//
+	//    * eventReference
+	//
 	//    * eventTime
 	//
 	//    * eventType
@@ -6398,7 +7259,8 @@ type ListTimelineEventsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token for the next set of items to return. (You received this
+	// token from a previous call.)
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Sort timeline events by the specified key value pair.
@@ -6496,7 +7358,8 @@ type ListTimelineEventsOutput struct {
 	// EventSummaries is a required field
 	EventSummaries []*EventSummary `locationName:"eventSummaries" type:"list" required:"true"`
 
-	// The pagination token to continue to the next page of results.
+	// The pagination token to use when requesting the next set of items. If there
+	// are no additional items to return, the string is null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -6887,8 +7750,8 @@ type RegionInfo struct {
 	// Information displayed about the status of the Amazon Web Services Region.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The most recent date and time that Incident Manager updated the Amazon Web
-	// Services Region's status.
+	// The timestamp for when Incident Manager updated the status of the Amazon
+	// Web Services Region.
 	//
 	// StatusUpdateDateTime is a required field
 	StatusUpdateDateTime *time.Time `locationName:"statusUpdateDateTime" type:"timestamp" required:"true"`
@@ -7595,19 +8458,17 @@ type StartIncidentInput struct {
 	// Defines the impact to the customers. Providing an impact overwrites the impact
 	// provided by a response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 1 - Critical impact, this typically relates to full application failure
-	//    that impacts many to all customers.
+	//    * 1 - Critical
 	//
-	//    * 2 - High impact, partial application failure with impact to many customers.
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact, the application is providing reduced service to customers.
+	//    * 3 - Medium
 	//
-	//    * 4 - Low impact, customer might aren't impacted by the problem yet.
+	//    * 4 - Low
 	//
-	//    * 5 - No impact, customers aren't currently impacted but urgent action
-	//    is needed to avoid impact.
+	//    * 5 - No Impact
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
 	// Add related items to the incident for other responders to use. Related items
@@ -7927,18 +8788,18 @@ type TimelineEvent struct {
 	// A list of references in a TimelineEvent.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
-	// The time that the event occurred.
+	// The timestamp for when the event occurred.
 	//
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
 	// The type of event that occurred. Currently Incident Manager supports only
-	// the Custom Event type.
+	// the Custom Event and Note types.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The time that the timeline event was last updated.
+	// The timestamp for when the timeline event was last updated.
 	//
 	// EventUpdatedTime is a required field
 	EventUpdatedTime *time.Time `locationName:"eventUpdatedTime" type:"timestamp" required:"true"`
@@ -8025,7 +8886,7 @@ type TriggerDetails struct {
 	// Source is a required field
 	Source *string `locationName:"source" type:"string" required:"true"`
 
-	// The time that the incident was detected.
+	// The timestamp for when the incident was detected.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
@@ -8292,19 +9153,17 @@ type UpdateIncidentRecordInput struct {
 	// provide an impact for an incident, it overwrites the impact provided by the
 	// response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 1 - Critical impact, full application failure that impacts many to all
-	//    customers.
+	//    * 1 - Critical
 	//
-	//    * 2 - High impact, partial application failure with impact to many customers.
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact, the application is providing reduced service to customers.
+	//    * 3 - Medium
 	//
-	//    * 4 - Low impact, customer aren't impacted by the problem yet.
+	//    * 4 - Low
 	//
-	//    * 5 - No impact, customers aren't currently impacted but urgent action
-	//    is needed to avoid impact.
+	//    * 5 - No Impact
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
 	// The Amazon SNS targets that Incident Manager notifies when a client updates
@@ -8734,17 +9593,17 @@ type UpdateResponsePlanInput struct {
 	// Defines the impact to the customers. Providing an impact overwrites the impact
 	// provided by a response plan.
 	//
-	// Possible impacts:
+	// Supported impact codes
 	//
-	//    * 5 - Severe impact
+	//    * 1 - Critical
 	//
-	//    * 4 - High impact
+	//    * 2 - High
 	//
-	//    * 3 - Medium impact
+	//    * 3 - Medium
 	//
-	//    * 2 - Low impact
+	//    * 4 - Low
 	//
-	//    * 1 - No impact
+	//    * 5 - No Impact
 	IncidentTemplateImpact *int64 `locationName:"incidentTemplateImpact" min:"1" type:"integer"`
 
 	// The Amazon SNS targets that are notified when updates are made to an incident.
@@ -8955,10 +9814,10 @@ type UpdateTimelineEventInput struct {
 	// action removes any existing references and enters only new references.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
-	// The time that the event occurred.
+	// The timestamp for when the event occurred.
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp"`
 
-	// The type of event. You can update events of type Custom Event.
+	// The type of event. You can update events of type Custom Event and Note.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the incident that includes the timeline

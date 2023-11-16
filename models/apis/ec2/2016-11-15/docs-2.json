@@ -14753,6 +14753,12 @@
       "refs": {
       }
     },
+    "ModifyVerifiedAccessTrustProviderDeviceOptions": {
+      "base": "<p>Modifies the configuration of the specified device-based Amazon Web Services Verified Access trust provider.</p>",
+      "refs": {
+        "ModifyVerifiedAccessTrustProviderRequest$DeviceOptions": "<p>The options for a device-based trust provider. This parameter is required when the provider type is <code>device</code>.</p>"
+      }
+    },
     "ModifyVerifiedAccessTrustProviderOidcOptions": {
       "base": "<p>Options for an OpenID Connect-compatible user-identity trust provider.</p>",
       "refs": {
@@ -19149,6 +19155,7 @@
         "CreateVerifiedAccessInstanceRequest$Description": "<p>A description for the Verified Access instance.</p>",
         "CreateVerifiedAccessInstanceRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateVerifiedAccessTrustProviderDeviceOptions$TenantId": "<p>The ID of the tenant application with the device-identity provider.</p>",
+        "CreateVerifiedAccessTrustProviderDeviceOptions$PublicSigningKeyUrl": "<p> The URL Amazon Web Services Verified Access will use to verify the authenticity of the device tokens. </p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$Issuer": "<p>The OIDC issuer.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$AuthorizationEndpoint": "<p>The OIDC authorization endpoint.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",
@@ -19425,6 +19432,7 @@
         "DetachVerifiedAccessTrustProviderRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "DetachVolumeRequest$Device": "<p>The device name.</p>",
         "DeviceOptions$TenantId": "<p>The ID of the tenant application with the device-identity provider.</p>",
+        "DeviceOptions$PublicSigningKeyUrl": "<p> The URL Amazon Web Services Verified Access will use to verify the authenticity of the device tokens. </p>",
         "DhcpConfiguration$Key": "<p>The name of a DHCP option.</p>",
         "DhcpOptions$DhcpOptionsId": "<p>The ID of the set of DHCP options.</p>",
         "DhcpOptions$OwnerId": "<p>The ID of the Amazon Web Services account that owns the DHCP options set.</p>",
@@ -20054,6 +20062,7 @@
         "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyVerifiedAccessInstanceRequest$Description": "<p>A description for the Verified Access instance.</p>",
         "ModifyVerifiedAccessInstanceRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
+        "ModifyVerifiedAccessTrustProviderDeviceOptions$PublicSigningKeyUrl": "<p> The URL Amazon Web Services Verified Access will use to verify the authenticity of the device tokens. </p>",
         "ModifyVerifiedAccessTrustProviderOidcOptions$Issuer": "<p>The OIDC issuer.</p>",
         "ModifyVerifiedAccessTrustProviderOidcOptions$AuthorizationEndpoint": "<p>The OIDC authorization endpoint.</p>",
         "ModifyVerifiedAccessTrustProviderOidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",

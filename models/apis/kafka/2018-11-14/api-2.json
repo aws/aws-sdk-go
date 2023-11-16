@@ -1971,6 +1971,10 @@
         "StorageMode" : {
           "shape" : "StorageMode",
           "locationName" : "storageMode"
+        },
+        "CustomerActionStatus": {
+          "shape": "CustomerActionStatus",
+          "locationName": "customerActionStatus"
         }
       }
     },
@@ -3523,6 +3527,10 @@
         }
       }
     },
+    "CustomerActionStatus": {
+      "type": "string",
+      "enum": [ "CRITICAL_ACTION_REQUIRED", "ACTION_RECOMMENDED", "NONE" ]
+    },
     "DescribeClusterV2Request": {
       "type": "structure",
       "members": {
@@ -3810,6 +3818,11 @@
           "shape" : "StorageMode",
           "locationName" : "storageMode",
           "documentation": "\n            <p>This controls storage mode for supported storage tiers.</p>\n         "
+        },
+        "CustomerActionStatus": {
+          "shape": "CustomerActionStatus",
+          "locationName": "customerActionStatus",
+          "documentation": "\n            <p>Determines if there is an action required from the customer.</p>\n         "
         }
       },
       "required": [

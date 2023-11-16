@@ -7285,6 +7285,227 @@ func (c *Glue) GetColumnStatisticsForTableWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetColumnStatisticsTaskRun = "GetColumnStatisticsTaskRun"
+
+// GetColumnStatisticsTaskRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetColumnStatisticsTaskRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetColumnStatisticsTaskRun for more information on using the GetColumnStatisticsTaskRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetColumnStatisticsTaskRunRequest method.
+//	req, resp := client.GetColumnStatisticsTaskRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetColumnStatisticsTaskRun
+func (c *Glue) GetColumnStatisticsTaskRunRequest(input *GetColumnStatisticsTaskRunInput) (req *request.Request, output *GetColumnStatisticsTaskRunOutput) {
+	op := &request.Operation{
+		Name:       opGetColumnStatisticsTaskRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetColumnStatisticsTaskRunInput{}
+	}
+
+	output = &GetColumnStatisticsTaskRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetColumnStatisticsTaskRun API operation for AWS Glue.
+//
+// Get the associated metadata/information for a task run, given a task run
+// ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetColumnStatisticsTaskRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetColumnStatisticsTaskRun
+func (c *Glue) GetColumnStatisticsTaskRun(input *GetColumnStatisticsTaskRunInput) (*GetColumnStatisticsTaskRunOutput, error) {
+	req, out := c.GetColumnStatisticsTaskRunRequest(input)
+	return out, req.Send()
+}
+
+// GetColumnStatisticsTaskRunWithContext is the same as GetColumnStatisticsTaskRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetColumnStatisticsTaskRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetColumnStatisticsTaskRunWithContext(ctx aws.Context, input *GetColumnStatisticsTaskRunInput, opts ...request.Option) (*GetColumnStatisticsTaskRunOutput, error) {
+	req, out := c.GetColumnStatisticsTaskRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetColumnStatisticsTaskRuns = "GetColumnStatisticsTaskRuns"
+
+// GetColumnStatisticsTaskRunsRequest generates a "aws/request.Request" representing the
+// client's request for the GetColumnStatisticsTaskRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetColumnStatisticsTaskRuns for more information on using the GetColumnStatisticsTaskRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetColumnStatisticsTaskRunsRequest method.
+//	req, resp := client.GetColumnStatisticsTaskRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetColumnStatisticsTaskRuns
+func (c *Glue) GetColumnStatisticsTaskRunsRequest(input *GetColumnStatisticsTaskRunsInput) (req *request.Request, output *GetColumnStatisticsTaskRunsOutput) {
+	op := &request.Operation{
+		Name:       opGetColumnStatisticsTaskRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetColumnStatisticsTaskRunsInput{}
+	}
+
+	output = &GetColumnStatisticsTaskRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetColumnStatisticsTaskRuns API operation for AWS Glue.
+//
+// Retrieves information about all runs associated with the specified table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetColumnStatisticsTaskRuns for usage and error information.
+//
+// Returned Error Types:
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetColumnStatisticsTaskRuns
+func (c *Glue) GetColumnStatisticsTaskRuns(input *GetColumnStatisticsTaskRunsInput) (*GetColumnStatisticsTaskRunsOutput, error) {
+	req, out := c.GetColumnStatisticsTaskRunsRequest(input)
+	return out, req.Send()
+}
+
+// GetColumnStatisticsTaskRunsWithContext is the same as GetColumnStatisticsTaskRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetColumnStatisticsTaskRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetColumnStatisticsTaskRunsWithContext(ctx aws.Context, input *GetColumnStatisticsTaskRunsInput, opts ...request.Option) (*GetColumnStatisticsTaskRunsOutput, error) {
+	req, out := c.GetColumnStatisticsTaskRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetColumnStatisticsTaskRunsPages iterates over the pages of a GetColumnStatisticsTaskRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetColumnStatisticsTaskRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetColumnStatisticsTaskRuns operation.
+//	pageNum := 0
+//	err := client.GetColumnStatisticsTaskRunsPages(params,
+//	    func(page *glue.GetColumnStatisticsTaskRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) GetColumnStatisticsTaskRunsPages(input *GetColumnStatisticsTaskRunsInput, fn func(*GetColumnStatisticsTaskRunsOutput, bool) bool) error {
+	return c.GetColumnStatisticsTaskRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetColumnStatisticsTaskRunsPagesWithContext same as GetColumnStatisticsTaskRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetColumnStatisticsTaskRunsPagesWithContext(ctx aws.Context, input *GetColumnStatisticsTaskRunsInput, fn func(*GetColumnStatisticsTaskRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetColumnStatisticsTaskRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetColumnStatisticsTaskRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetColumnStatisticsTaskRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetConnection = "GetConnection"
 
 // GetConnectionRequest generates a "aws/request.Request" representing the
@@ -13837,6 +14058,141 @@ func (c *Glue) ListBlueprintsPagesWithContext(ctx aws.Context, input *ListBluepr
 	return p.Err()
 }
 
+const opListColumnStatisticsTaskRuns = "ListColumnStatisticsTaskRuns"
+
+// ListColumnStatisticsTaskRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListColumnStatisticsTaskRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListColumnStatisticsTaskRuns for more information on using the ListColumnStatisticsTaskRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListColumnStatisticsTaskRunsRequest method.
+//	req, resp := client.ListColumnStatisticsTaskRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListColumnStatisticsTaskRuns
+func (c *Glue) ListColumnStatisticsTaskRunsRequest(input *ListColumnStatisticsTaskRunsInput) (req *request.Request, output *ListColumnStatisticsTaskRunsOutput) {
+	op := &request.Operation{
+		Name:       opListColumnStatisticsTaskRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListColumnStatisticsTaskRunsInput{}
+	}
+
+	output = &ListColumnStatisticsTaskRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListColumnStatisticsTaskRuns API operation for AWS Glue.
+//
+// List all task runs for a particular account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListColumnStatisticsTaskRuns for usage and error information.
+//
+// Returned Error Types:
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListColumnStatisticsTaskRuns
+func (c *Glue) ListColumnStatisticsTaskRuns(input *ListColumnStatisticsTaskRunsInput) (*ListColumnStatisticsTaskRunsOutput, error) {
+	req, out := c.ListColumnStatisticsTaskRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListColumnStatisticsTaskRunsWithContext is the same as ListColumnStatisticsTaskRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListColumnStatisticsTaskRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListColumnStatisticsTaskRunsWithContext(ctx aws.Context, input *ListColumnStatisticsTaskRunsInput, opts ...request.Option) (*ListColumnStatisticsTaskRunsOutput, error) {
+	req, out := c.ListColumnStatisticsTaskRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListColumnStatisticsTaskRunsPages iterates over the pages of a ListColumnStatisticsTaskRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListColumnStatisticsTaskRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListColumnStatisticsTaskRuns operation.
+//	pageNum := 0
+//	err := client.ListColumnStatisticsTaskRunsPages(params,
+//	    func(page *glue.ListColumnStatisticsTaskRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListColumnStatisticsTaskRunsPages(input *ListColumnStatisticsTaskRunsInput, fn func(*ListColumnStatisticsTaskRunsOutput, bool) bool) error {
+	return c.ListColumnStatisticsTaskRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListColumnStatisticsTaskRunsPagesWithContext same as ListColumnStatisticsTaskRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListColumnStatisticsTaskRunsPagesWithContext(ctx aws.Context, input *ListColumnStatisticsTaskRunsInput, fn func(*ListColumnStatisticsTaskRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListColumnStatisticsTaskRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListColumnStatisticsTaskRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListColumnStatisticsTaskRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCrawlers = "ListCrawlers"
 
 // ListCrawlersRequest generates a "aws/request.Request" representing the
@@ -17545,6 +17901,101 @@ func (c *Glue) StartBlueprintRunWithContext(ctx aws.Context, input *StartBluepri
 	return out, req.Send()
 }
 
+const opStartColumnStatisticsTaskRun = "StartColumnStatisticsTaskRun"
+
+// StartColumnStatisticsTaskRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartColumnStatisticsTaskRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartColumnStatisticsTaskRun for more information on using the StartColumnStatisticsTaskRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartColumnStatisticsTaskRunRequest method.
+//	req, resp := client.StartColumnStatisticsTaskRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartColumnStatisticsTaskRun
+func (c *Glue) StartColumnStatisticsTaskRunRequest(input *StartColumnStatisticsTaskRunInput) (req *request.Request, output *StartColumnStatisticsTaskRunOutput) {
+	op := &request.Operation{
+		Name:       opStartColumnStatisticsTaskRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartColumnStatisticsTaskRunInput{}
+	}
+
+	output = &StartColumnStatisticsTaskRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartColumnStatisticsTaskRun API operation for AWS Glue.
+//
+// Starts a column statistics task run, for a specified table and columns.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StartColumnStatisticsTaskRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - ColumnStatisticsTaskRunningException
+//     An exception thrown when you try to start another job while running a column
+//     stats generation job.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - ResourceNumberLimitExceededException
+//     A resource numerical limit was exceeded.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartColumnStatisticsTaskRun
+func (c *Glue) StartColumnStatisticsTaskRun(input *StartColumnStatisticsTaskRunInput) (*StartColumnStatisticsTaskRunOutput, error) {
+	req, out := c.StartColumnStatisticsTaskRunRequest(input)
+	return out, req.Send()
+}
+
+// StartColumnStatisticsTaskRunWithContext is the same as StartColumnStatisticsTaskRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartColumnStatisticsTaskRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StartColumnStatisticsTaskRunWithContext(ctx aws.Context, input *StartColumnStatisticsTaskRunInput, opts ...request.Option) (*StartColumnStatisticsTaskRunOutput, error) {
+	req, out := c.StartColumnStatisticsTaskRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartCrawler = "StartCrawler"
 
 // StartCrawlerRequest generates a "aws/request.Request" representing the
@@ -18607,6 +19058,96 @@ func (c *Glue) StartWorkflowRun(input *StartWorkflowRunInput) (*StartWorkflowRun
 // for more information on using Contexts.
 func (c *Glue) StartWorkflowRunWithContext(ctx aws.Context, input *StartWorkflowRunInput, opts ...request.Option) (*StartWorkflowRunOutput, error) {
 	req, out := c.StartWorkflowRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopColumnStatisticsTaskRun = "StopColumnStatisticsTaskRun"
+
+// StopColumnStatisticsTaskRunRequest generates a "aws/request.Request" representing the
+// client's request for the StopColumnStatisticsTaskRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopColumnStatisticsTaskRun for more information on using the StopColumnStatisticsTaskRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopColumnStatisticsTaskRunRequest method.
+//	req, resp := client.StopColumnStatisticsTaskRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StopColumnStatisticsTaskRun
+func (c *Glue) StopColumnStatisticsTaskRunRequest(input *StopColumnStatisticsTaskRunInput) (req *request.Request, output *StopColumnStatisticsTaskRunOutput) {
+	op := &request.Operation{
+		Name:       opStopColumnStatisticsTaskRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopColumnStatisticsTaskRunInput{}
+	}
+
+	output = &StopColumnStatisticsTaskRunOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopColumnStatisticsTaskRun API operation for AWS Glue.
+//
+// Stops a task run for the specified table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StopColumnStatisticsTaskRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - ColumnStatisticsTaskNotRunningException
+//     An exception thrown when you try to stop a task run when there is no task
+//     running.
+//
+//   - ColumnStatisticsTaskStoppingException
+//     An exception thrown when you try to stop a task run.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StopColumnStatisticsTaskRun
+func (c *Glue) StopColumnStatisticsTaskRun(input *StopColumnStatisticsTaskRunInput) (*StopColumnStatisticsTaskRunOutput, error) {
+	req, out := c.StopColumnStatisticsTaskRunRequest(input)
+	return out, req.Send()
+}
+
+// StopColumnStatisticsTaskRunWithContext is the same as StopColumnStatisticsTaskRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopColumnStatisticsTaskRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StopColumnStatisticsTaskRunWithContext(ctx aws.Context, input *StopColumnStatisticsTaskRunInput, opts ...request.Option) (*StopColumnStatisticsTaskRunOutput, error) {
+	req, out := c.StopColumnStatisticsTaskRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -28381,6 +28922,393 @@ func (s *ColumnStatisticsError) SetColumnStatistics(v *ColumnStatistics) *Column
 func (s *ColumnStatisticsError) SetError(v *ErrorDetail) *ColumnStatisticsError {
 	s.Error = v
 	return s
+}
+
+// An exception thrown when you try to stop a task run when there is no task
+// running.
+type ColumnStatisticsTaskNotRunningException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskNotRunningException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskNotRunningException) GoString() string {
+	return s.String()
+}
+
+func newErrorColumnStatisticsTaskNotRunningException(v protocol.ResponseMetadata) error {
+	return &ColumnStatisticsTaskNotRunningException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ColumnStatisticsTaskNotRunningException) Code() string {
+	return "ColumnStatisticsTaskNotRunningException"
+}
+
+// Message returns the exception's message.
+func (s *ColumnStatisticsTaskNotRunningException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ColumnStatisticsTaskNotRunningException) OrigErr() error {
+	return nil
+}
+
+func (s *ColumnStatisticsTaskNotRunningException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ColumnStatisticsTaskNotRunningException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ColumnStatisticsTaskNotRunningException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The object that shows the details of the column stats run.
+type ColumnStatisticsTaskRun struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Data Catalog where the table resides. If none is supplied,
+	// the Amazon Web Services account ID is used by default.
+	CatalogID *string `min:"1" type:"string"`
+
+	// A list of the column names. If none is supplied, all column names for the
+	// table will be used by default.
+	ColumnNameList []*string `type:"list"`
+
+	// The identifier for the particular column statistics task run.
+	ColumnStatisticsTaskRunId *string `min:"1" type:"string"`
+
+	// The time that this task was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services account ID.
+	CustomerId *string `type:"string"`
+
+	// The calculated DPU usage in seconds for all autoscaled workers.
+	DPUSeconds *float64 `type:"double"`
+
+	// The database where the table resides.
+	DatabaseName *string `type:"string"`
+
+	// The end time of the task.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The error message for the job.
+	ErrorMessage *string `type:"string"`
+
+	// The last point in time when this task was modified.
+	LastUpdated *time.Time `type:"timestamp"`
+
+	// The number of workers used to generate column statistics. The job is preconfigured
+	// to autoscale up to 25 instances.
+	NumberOfWorkers *int64 `min:"1" type:"integer"`
+
+	// The IAM role that the service assumes to generate statistics.
+	Role *string `type:"string"`
+
+	// The percentage of rows used to generate statistics. If none is supplied,
+	// the entire table will be used to generate stats.
+	SampleSize *float64 `type:"double"`
+
+	// Name of the security configuration that is used to encrypt CloudWatch logs
+	// for the column stats task run.
+	SecurityConfiguration *string `type:"string"`
+
+	// The start time of the task.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the task run.
+	Status *string `type:"string" enum:"ColumnStatisticsState"`
+
+	// The name of the table for which column statistics is generated.
+	TableName *string `type:"string"`
+
+	// The type of workers being used for generating stats. The default is g.1x.
+	WorkerType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskRun) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskRun) GoString() string {
+	return s.String()
+}
+
+// SetCatalogID sets the CatalogID field's value.
+func (s *ColumnStatisticsTaskRun) SetCatalogID(v string) *ColumnStatisticsTaskRun {
+	s.CatalogID = &v
+	return s
+}
+
+// SetColumnNameList sets the ColumnNameList field's value.
+func (s *ColumnStatisticsTaskRun) SetColumnNameList(v []*string) *ColumnStatisticsTaskRun {
+	s.ColumnNameList = v
+	return s
+}
+
+// SetColumnStatisticsTaskRunId sets the ColumnStatisticsTaskRunId field's value.
+func (s *ColumnStatisticsTaskRun) SetColumnStatisticsTaskRunId(v string) *ColumnStatisticsTaskRun {
+	s.ColumnStatisticsTaskRunId = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ColumnStatisticsTaskRun) SetCreationTime(v time.Time) *ColumnStatisticsTaskRun {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCustomerId sets the CustomerId field's value.
+func (s *ColumnStatisticsTaskRun) SetCustomerId(v string) *ColumnStatisticsTaskRun {
+	s.CustomerId = &v
+	return s
+}
+
+// SetDPUSeconds sets the DPUSeconds field's value.
+func (s *ColumnStatisticsTaskRun) SetDPUSeconds(v float64) *ColumnStatisticsTaskRun {
+	s.DPUSeconds = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *ColumnStatisticsTaskRun) SetDatabaseName(v string) *ColumnStatisticsTaskRun {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ColumnStatisticsTaskRun) SetEndTime(v time.Time) *ColumnStatisticsTaskRun {
+	s.EndTime = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ColumnStatisticsTaskRun) SetErrorMessage(v string) *ColumnStatisticsTaskRun {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ColumnStatisticsTaskRun) SetLastUpdated(v time.Time) *ColumnStatisticsTaskRun {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *ColumnStatisticsTaskRun) SetNumberOfWorkers(v int64) *ColumnStatisticsTaskRun {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *ColumnStatisticsTaskRun) SetRole(v string) *ColumnStatisticsTaskRun {
+	s.Role = &v
+	return s
+}
+
+// SetSampleSize sets the SampleSize field's value.
+func (s *ColumnStatisticsTaskRun) SetSampleSize(v float64) *ColumnStatisticsTaskRun {
+	s.SampleSize = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *ColumnStatisticsTaskRun) SetSecurityConfiguration(v string) *ColumnStatisticsTaskRun {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ColumnStatisticsTaskRun) SetStartTime(v time.Time) *ColumnStatisticsTaskRun {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ColumnStatisticsTaskRun) SetStatus(v string) *ColumnStatisticsTaskRun {
+	s.Status = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ColumnStatisticsTaskRun) SetTableName(v string) *ColumnStatisticsTaskRun {
+	s.TableName = &v
+	return s
+}
+
+// SetWorkerType sets the WorkerType field's value.
+func (s *ColumnStatisticsTaskRun) SetWorkerType(v string) *ColumnStatisticsTaskRun {
+	s.WorkerType = &v
+	return s
+}
+
+// An exception thrown when you try to start another job while running a column
+// stats generation job.
+type ColumnStatisticsTaskRunningException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskRunningException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskRunningException) GoString() string {
+	return s.String()
+}
+
+func newErrorColumnStatisticsTaskRunningException(v protocol.ResponseMetadata) error {
+	return &ColumnStatisticsTaskRunningException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ColumnStatisticsTaskRunningException) Code() string {
+	return "ColumnStatisticsTaskRunningException"
+}
+
+// Message returns the exception's message.
+func (s *ColumnStatisticsTaskRunningException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ColumnStatisticsTaskRunningException) OrigErr() error {
+	return nil
+}
+
+func (s *ColumnStatisticsTaskRunningException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ColumnStatisticsTaskRunningException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ColumnStatisticsTaskRunningException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An exception thrown when you try to stop a task run.
+type ColumnStatisticsTaskStoppingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskStoppingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnStatisticsTaskStoppingException) GoString() string {
+	return s.String()
+}
+
+func newErrorColumnStatisticsTaskStoppingException(v protocol.ResponseMetadata) error {
+	return &ColumnStatisticsTaskStoppingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ColumnStatisticsTaskStoppingException) Code() string {
+	return "ColumnStatisticsTaskStoppingException"
+}
+
+// Message returns the exception's message.
+func (s *ColumnStatisticsTaskStoppingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ColumnStatisticsTaskStoppingException) OrigErr() error {
+	return nil
+}
+
+func (s *ColumnStatisticsTaskStoppingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ColumnStatisticsTaskStoppingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ColumnStatisticsTaskStoppingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Two processes are trying to modify a resource simultaneously.
@@ -43196,6 +44124,211 @@ func (s *GetColumnStatisticsForTableOutput) SetErrors(v []*ColumnError) *GetColu
 	return s
 }
 
+type GetColumnStatisticsTaskRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the particular column statistics task run.
+	//
+	// ColumnStatisticsTaskRunId is a required field
+	ColumnStatisticsTaskRunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetColumnStatisticsTaskRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetColumnStatisticsTaskRunInput"}
+	if s.ColumnStatisticsTaskRunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ColumnStatisticsTaskRunId"))
+	}
+	if s.ColumnStatisticsTaskRunId != nil && len(*s.ColumnStatisticsTaskRunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnStatisticsTaskRunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnStatisticsTaskRunId sets the ColumnStatisticsTaskRunId field's value.
+func (s *GetColumnStatisticsTaskRunInput) SetColumnStatisticsTaskRunId(v string) *GetColumnStatisticsTaskRunInput {
+	s.ColumnStatisticsTaskRunId = &v
+	return s
+}
+
+type GetColumnStatisticsTaskRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A ColumnStatisticsTaskRun object representing the details of the column stats
+	// run.
+	ColumnStatisticsTaskRun *ColumnStatisticsTaskRun `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnStatisticsTaskRun sets the ColumnStatisticsTaskRun field's value.
+func (s *GetColumnStatisticsTaskRunOutput) SetColumnStatisticsTaskRun(v *ColumnStatisticsTaskRun) *GetColumnStatisticsTaskRunOutput {
+	s.ColumnStatisticsTaskRun = v
+	return s
+}
+
+type GetColumnStatisticsTaskRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database where the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// The maximum size of the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetColumnStatisticsTaskRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetColumnStatisticsTaskRunsInput"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetColumnStatisticsTaskRunsInput) SetDatabaseName(v string) *GetColumnStatisticsTaskRunsInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetColumnStatisticsTaskRunsInput) SetMaxResults(v int64) *GetColumnStatisticsTaskRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetColumnStatisticsTaskRunsInput) SetNextToken(v string) *GetColumnStatisticsTaskRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetColumnStatisticsTaskRunsInput) SetTableName(v string) *GetColumnStatisticsTaskRunsInput {
+	s.TableName = &v
+	return s
+}
+
+type GetColumnStatisticsTaskRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of column statistics task runs.
+	ColumnStatisticsTaskRuns []*ColumnStatisticsTaskRun `type:"list"`
+
+	// A continuation token, if not all task runs have yet been returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetColumnStatisticsTaskRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnStatisticsTaskRuns sets the ColumnStatisticsTaskRuns field's value.
+func (s *GetColumnStatisticsTaskRunsOutput) SetColumnStatisticsTaskRuns(v []*ColumnStatisticsTaskRun) *GetColumnStatisticsTaskRunsOutput {
+	s.ColumnStatisticsTaskRuns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetColumnStatisticsTaskRunsOutput) SetNextToken(v string) *GetColumnStatisticsTaskRunsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -54823,6 +55956,99 @@ func (s *ListBlueprintsOutput) SetBlueprints(v []*string) *ListBlueprintsOutput 
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListBlueprintsOutput) SetNextToken(v string) *ListBlueprintsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListColumnStatisticsTaskRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListColumnStatisticsTaskRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListColumnStatisticsTaskRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListColumnStatisticsTaskRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListColumnStatisticsTaskRunsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListColumnStatisticsTaskRunsInput) SetMaxResults(v int64) *ListColumnStatisticsTaskRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListColumnStatisticsTaskRunsInput) SetNextToken(v string) *ListColumnStatisticsTaskRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListColumnStatisticsTaskRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of column statistics task run IDs.
+	ColumnStatisticsTaskRunIds []*string `type:"list"`
+
+	// A continuation token, if not all task run IDs have yet been returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListColumnStatisticsTaskRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListColumnStatisticsTaskRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnStatisticsTaskRunIds sets the ColumnStatisticsTaskRunIds field's value.
+func (s *ListColumnStatisticsTaskRunsOutput) SetColumnStatisticsTaskRunIds(v []*string) *ListColumnStatisticsTaskRunsOutput {
+	s.ColumnStatisticsTaskRunIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListColumnStatisticsTaskRunsOutput) SetNextToken(v string) *ListColumnStatisticsTaskRunsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -67296,6 +68522,166 @@ func (s *StartBlueprintRunOutput) SetRunId(v string) *StartBlueprintRunOutput {
 	return s
 }
 
+type StartColumnStatisticsTaskRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Data Catalog where the table reside. If none is supplied, the
+	// Amazon Web Services account ID is used by default.
+	CatalogID *string `min:"1" type:"string"`
+
+	// A list of the column names to generate statistics. If none is supplied, all
+	// column names for the table will be used by default.
+	ColumnNameList []*string `type:"list"`
+
+	// The name of the database where the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The IAM role that the service assumes to generate statistics.
+	//
+	// Role is a required field
+	Role *string `min:"1" type:"string" required:"true"`
+
+	// The percentage of rows used to generate statistics. If none is supplied,
+	// the entire table will be used to generate stats.
+	SampleSize *float64 `type:"double"`
+
+	// Name of the security configuration that is used to encrypt CloudWatch logs
+	// for the column stats task run.
+	SecurityConfiguration *string `min:"1" type:"string"`
+
+	// The name of the table to generate statistics.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartColumnStatisticsTaskRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartColumnStatisticsTaskRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartColumnStatisticsTaskRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartColumnStatisticsTaskRunInput"}
+	if s.CatalogID != nil && len(*s.CatalogID) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogID", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 1))
+	}
+	if s.SecurityConfiguration != nil && len(*s.SecurityConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityConfiguration", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogID sets the CatalogID field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetCatalogID(v string) *StartColumnStatisticsTaskRunInput {
+	s.CatalogID = &v
+	return s
+}
+
+// SetColumnNameList sets the ColumnNameList field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetColumnNameList(v []*string) *StartColumnStatisticsTaskRunInput {
+	s.ColumnNameList = v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetDatabaseName(v string) *StartColumnStatisticsTaskRunInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetRole(v string) *StartColumnStatisticsTaskRunInput {
+	s.Role = &v
+	return s
+}
+
+// SetSampleSize sets the SampleSize field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetSampleSize(v float64) *StartColumnStatisticsTaskRunInput {
+	s.SampleSize = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetSecurityConfiguration(v string) *StartColumnStatisticsTaskRunInput {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *StartColumnStatisticsTaskRunInput) SetTableName(v string) *StartColumnStatisticsTaskRunInput {
+	s.TableName = &v
+	return s
+}
+
+type StartColumnStatisticsTaskRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the column statistics task run.
+	ColumnStatisticsTaskRunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartColumnStatisticsTaskRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartColumnStatisticsTaskRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnStatisticsTaskRunId sets the ColumnStatisticsTaskRunId field's value.
+func (s *StartColumnStatisticsTaskRunOutput) SetColumnStatisticsTaskRunId(v string) *StartColumnStatisticsTaskRunOutput {
+	s.ColumnStatisticsTaskRunId = &v
+	return s
+}
+
 type StartCrawlerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -68828,6 +70214,91 @@ func (s *StatementOutput_) SetStatus(v string) *StatementOutput_ {
 func (s *StatementOutput_) SetTraceback(v []*string) *StatementOutput_ {
 	s.Traceback = v
 	return s
+}
+
+type StopColumnStatisticsTaskRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database where the table resides.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopColumnStatisticsTaskRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopColumnStatisticsTaskRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopColumnStatisticsTaskRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopColumnStatisticsTaskRunInput"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *StopColumnStatisticsTaskRunInput) SetDatabaseName(v string) *StopColumnStatisticsTaskRunInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *StopColumnStatisticsTaskRunInput) SetTableName(v string) *StopColumnStatisticsTaskRunInput {
+	s.TableName = &v
+	return s
+}
+
+type StopColumnStatisticsTaskRunOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopColumnStatisticsTaskRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopColumnStatisticsTaskRunOutput) GoString() string {
+	return s.String()
 }
 
 type StopCrawlerInput struct {
@@ -76106,6 +77577,34 @@ func CloudWatchEncryptionMode_Values() []string {
 	return []string{
 		CloudWatchEncryptionModeDisabled,
 		CloudWatchEncryptionModeSseKms,
+	}
+}
+
+const (
+	// ColumnStatisticsStateStarting is a ColumnStatisticsState enum value
+	ColumnStatisticsStateStarting = "STARTING"
+
+	// ColumnStatisticsStateRunning is a ColumnStatisticsState enum value
+	ColumnStatisticsStateRunning = "RUNNING"
+
+	// ColumnStatisticsStateSucceeded is a ColumnStatisticsState enum value
+	ColumnStatisticsStateSucceeded = "SUCCEEDED"
+
+	// ColumnStatisticsStateFailed is a ColumnStatisticsState enum value
+	ColumnStatisticsStateFailed = "FAILED"
+
+	// ColumnStatisticsStateStopped is a ColumnStatisticsState enum value
+	ColumnStatisticsStateStopped = "STOPPED"
+)
+
+// ColumnStatisticsState_Values returns all elements of the ColumnStatisticsState enum
+func ColumnStatisticsState_Values() []string {
+	return []string{
+		ColumnStatisticsStateStarting,
+		ColumnStatisticsStateRunning,
+		ColumnStatisticsStateSucceeded,
+		ColumnStatisticsStateFailed,
+		ColumnStatisticsStateStopped,
 	}
 }
 

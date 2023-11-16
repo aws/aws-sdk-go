@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Interactive Video Service RealTime.
 //	func myFunc(svc ivsrealtimeiface.IVSRealTimeAPI) bool {
-//	    // Make svc.CreateParticipantToken request
+//	    // Make svc.CreateEncoderConfiguration request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockIVSRealTimeClient struct {
 //	    ivsrealtimeiface.IVSRealTimeAPI
 //	}
-//	func (m *mockIVSRealTimeClient) CreateParticipantToken(input *ivsrealtime.CreateParticipantTokenInput) (*ivsrealtime.CreateParticipantTokenOutput, error) {
+//	func (m *mockIVSRealTimeClient) CreateEncoderConfiguration(input *ivsrealtime.CreateEncoderConfigurationInput) (*ivsrealtime.CreateEncoderConfigurationOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type IVSRealTimeAPI interface {
+	CreateEncoderConfiguration(*ivsrealtime.CreateEncoderConfigurationInput) (*ivsrealtime.CreateEncoderConfigurationOutput, error)
+	CreateEncoderConfigurationWithContext(aws.Context, *ivsrealtime.CreateEncoderConfigurationInput, ...request.Option) (*ivsrealtime.CreateEncoderConfigurationOutput, error)
+	CreateEncoderConfigurationRequest(*ivsrealtime.CreateEncoderConfigurationInput) (*request.Request, *ivsrealtime.CreateEncoderConfigurationOutput)
+
 	CreateParticipantToken(*ivsrealtime.CreateParticipantTokenInput) (*ivsrealtime.CreateParticipantTokenOutput, error)
 	CreateParticipantTokenWithContext(aws.Context, *ivsrealtime.CreateParticipantTokenInput, ...request.Option) (*ivsrealtime.CreateParticipantTokenOutput, error)
 	CreateParticipantTokenRequest(*ivsrealtime.CreateParticipantTokenInput) (*request.Request, *ivsrealtime.CreateParticipantTokenOutput)
@@ -68,13 +72,33 @@ type IVSRealTimeAPI interface {
 	CreateStageWithContext(aws.Context, *ivsrealtime.CreateStageInput, ...request.Option) (*ivsrealtime.CreateStageOutput, error)
 	CreateStageRequest(*ivsrealtime.CreateStageInput) (*request.Request, *ivsrealtime.CreateStageOutput)
 
+	CreateStorageConfiguration(*ivsrealtime.CreateStorageConfigurationInput) (*ivsrealtime.CreateStorageConfigurationOutput, error)
+	CreateStorageConfigurationWithContext(aws.Context, *ivsrealtime.CreateStorageConfigurationInput, ...request.Option) (*ivsrealtime.CreateStorageConfigurationOutput, error)
+	CreateStorageConfigurationRequest(*ivsrealtime.CreateStorageConfigurationInput) (*request.Request, *ivsrealtime.CreateStorageConfigurationOutput)
+
+	DeleteEncoderConfiguration(*ivsrealtime.DeleteEncoderConfigurationInput) (*ivsrealtime.DeleteEncoderConfigurationOutput, error)
+	DeleteEncoderConfigurationWithContext(aws.Context, *ivsrealtime.DeleteEncoderConfigurationInput, ...request.Option) (*ivsrealtime.DeleteEncoderConfigurationOutput, error)
+	DeleteEncoderConfigurationRequest(*ivsrealtime.DeleteEncoderConfigurationInput) (*request.Request, *ivsrealtime.DeleteEncoderConfigurationOutput)
+
 	DeleteStage(*ivsrealtime.DeleteStageInput) (*ivsrealtime.DeleteStageOutput, error)
 	DeleteStageWithContext(aws.Context, *ivsrealtime.DeleteStageInput, ...request.Option) (*ivsrealtime.DeleteStageOutput, error)
 	DeleteStageRequest(*ivsrealtime.DeleteStageInput) (*request.Request, *ivsrealtime.DeleteStageOutput)
 
+	DeleteStorageConfiguration(*ivsrealtime.DeleteStorageConfigurationInput) (*ivsrealtime.DeleteStorageConfigurationOutput, error)
+	DeleteStorageConfigurationWithContext(aws.Context, *ivsrealtime.DeleteStorageConfigurationInput, ...request.Option) (*ivsrealtime.DeleteStorageConfigurationOutput, error)
+	DeleteStorageConfigurationRequest(*ivsrealtime.DeleteStorageConfigurationInput) (*request.Request, *ivsrealtime.DeleteStorageConfigurationOutput)
+
 	DisconnectParticipant(*ivsrealtime.DisconnectParticipantInput) (*ivsrealtime.DisconnectParticipantOutput, error)
 	DisconnectParticipantWithContext(aws.Context, *ivsrealtime.DisconnectParticipantInput, ...request.Option) (*ivsrealtime.DisconnectParticipantOutput, error)
 	DisconnectParticipantRequest(*ivsrealtime.DisconnectParticipantInput) (*request.Request, *ivsrealtime.DisconnectParticipantOutput)
+
+	GetComposition(*ivsrealtime.GetCompositionInput) (*ivsrealtime.GetCompositionOutput, error)
+	GetCompositionWithContext(aws.Context, *ivsrealtime.GetCompositionInput, ...request.Option) (*ivsrealtime.GetCompositionOutput, error)
+	GetCompositionRequest(*ivsrealtime.GetCompositionInput) (*request.Request, *ivsrealtime.GetCompositionOutput)
+
+	GetEncoderConfiguration(*ivsrealtime.GetEncoderConfigurationInput) (*ivsrealtime.GetEncoderConfigurationOutput, error)
+	GetEncoderConfigurationWithContext(aws.Context, *ivsrealtime.GetEncoderConfigurationInput, ...request.Option) (*ivsrealtime.GetEncoderConfigurationOutput, error)
+	GetEncoderConfigurationRequest(*ivsrealtime.GetEncoderConfigurationInput) (*request.Request, *ivsrealtime.GetEncoderConfigurationOutput)
 
 	GetParticipant(*ivsrealtime.GetParticipantInput) (*ivsrealtime.GetParticipantOutput, error)
 	GetParticipantWithContext(aws.Context, *ivsrealtime.GetParticipantInput, ...request.Option) (*ivsrealtime.GetParticipantOutput, error)
@@ -87,6 +111,24 @@ type IVSRealTimeAPI interface {
 	GetStageSession(*ivsrealtime.GetStageSessionInput) (*ivsrealtime.GetStageSessionOutput, error)
 	GetStageSessionWithContext(aws.Context, *ivsrealtime.GetStageSessionInput, ...request.Option) (*ivsrealtime.GetStageSessionOutput, error)
 	GetStageSessionRequest(*ivsrealtime.GetStageSessionInput) (*request.Request, *ivsrealtime.GetStageSessionOutput)
+
+	GetStorageConfiguration(*ivsrealtime.GetStorageConfigurationInput) (*ivsrealtime.GetStorageConfigurationOutput, error)
+	GetStorageConfigurationWithContext(aws.Context, *ivsrealtime.GetStorageConfigurationInput, ...request.Option) (*ivsrealtime.GetStorageConfigurationOutput, error)
+	GetStorageConfigurationRequest(*ivsrealtime.GetStorageConfigurationInput) (*request.Request, *ivsrealtime.GetStorageConfigurationOutput)
+
+	ListCompositions(*ivsrealtime.ListCompositionsInput) (*ivsrealtime.ListCompositionsOutput, error)
+	ListCompositionsWithContext(aws.Context, *ivsrealtime.ListCompositionsInput, ...request.Option) (*ivsrealtime.ListCompositionsOutput, error)
+	ListCompositionsRequest(*ivsrealtime.ListCompositionsInput) (*request.Request, *ivsrealtime.ListCompositionsOutput)
+
+	ListCompositionsPages(*ivsrealtime.ListCompositionsInput, func(*ivsrealtime.ListCompositionsOutput, bool) bool) error
+	ListCompositionsPagesWithContext(aws.Context, *ivsrealtime.ListCompositionsInput, func(*ivsrealtime.ListCompositionsOutput, bool) bool, ...request.Option) error
+
+	ListEncoderConfigurations(*ivsrealtime.ListEncoderConfigurationsInput) (*ivsrealtime.ListEncoderConfigurationsOutput, error)
+	ListEncoderConfigurationsWithContext(aws.Context, *ivsrealtime.ListEncoderConfigurationsInput, ...request.Option) (*ivsrealtime.ListEncoderConfigurationsOutput, error)
+	ListEncoderConfigurationsRequest(*ivsrealtime.ListEncoderConfigurationsInput) (*request.Request, *ivsrealtime.ListEncoderConfigurationsOutput)
+
+	ListEncoderConfigurationsPages(*ivsrealtime.ListEncoderConfigurationsInput, func(*ivsrealtime.ListEncoderConfigurationsOutput, bool) bool) error
+	ListEncoderConfigurationsPagesWithContext(aws.Context, *ivsrealtime.ListEncoderConfigurationsInput, func(*ivsrealtime.ListEncoderConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListParticipantEvents(*ivsrealtime.ListParticipantEventsInput) (*ivsrealtime.ListParticipantEventsOutput, error)
 	ListParticipantEventsWithContext(aws.Context, *ivsrealtime.ListParticipantEventsInput, ...request.Option) (*ivsrealtime.ListParticipantEventsOutput, error)
@@ -116,9 +158,24 @@ type IVSRealTimeAPI interface {
 	ListStagesPages(*ivsrealtime.ListStagesInput, func(*ivsrealtime.ListStagesOutput, bool) bool) error
 	ListStagesPagesWithContext(aws.Context, *ivsrealtime.ListStagesInput, func(*ivsrealtime.ListStagesOutput, bool) bool, ...request.Option) error
 
+	ListStorageConfigurations(*ivsrealtime.ListStorageConfigurationsInput) (*ivsrealtime.ListStorageConfigurationsOutput, error)
+	ListStorageConfigurationsWithContext(aws.Context, *ivsrealtime.ListStorageConfigurationsInput, ...request.Option) (*ivsrealtime.ListStorageConfigurationsOutput, error)
+	ListStorageConfigurationsRequest(*ivsrealtime.ListStorageConfigurationsInput) (*request.Request, *ivsrealtime.ListStorageConfigurationsOutput)
+
+	ListStorageConfigurationsPages(*ivsrealtime.ListStorageConfigurationsInput, func(*ivsrealtime.ListStorageConfigurationsOutput, bool) bool) error
+	ListStorageConfigurationsPagesWithContext(aws.Context, *ivsrealtime.ListStorageConfigurationsInput, func(*ivsrealtime.ListStorageConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*ivsrealtime.ListTagsForResourceInput) (*ivsrealtime.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *ivsrealtime.ListTagsForResourceInput, ...request.Option) (*ivsrealtime.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*ivsrealtime.ListTagsForResourceInput) (*request.Request, *ivsrealtime.ListTagsForResourceOutput)
+
+	StartComposition(*ivsrealtime.StartCompositionInput) (*ivsrealtime.StartCompositionOutput, error)
+	StartCompositionWithContext(aws.Context, *ivsrealtime.StartCompositionInput, ...request.Option) (*ivsrealtime.StartCompositionOutput, error)
+	StartCompositionRequest(*ivsrealtime.StartCompositionInput) (*request.Request, *ivsrealtime.StartCompositionOutput)
+
+	StopComposition(*ivsrealtime.StopCompositionInput) (*ivsrealtime.StopCompositionOutput, error)
+	StopCompositionWithContext(aws.Context, *ivsrealtime.StopCompositionInput, ...request.Option) (*ivsrealtime.StopCompositionOutput, error)
+	StopCompositionRequest(*ivsrealtime.StopCompositionInput) (*request.Request, *ivsrealtime.StopCompositionOutput)
 
 	TagResource(*ivsrealtime.TagResourceInput) (*ivsrealtime.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *ivsrealtime.TagResourceInput, ...request.Option) (*ivsrealtime.TagResourceOutput, error)

@@ -3166,7 +3166,9 @@ type DashPackage struct {
 	// Determines the position of some tags in the Media Presentation Description
 	// (MPD). When set to FULL, elements like SegmentTemplate and ContentProtection
 	// are included in each Representation. When set to COMPACT, duplicate elements
-	// are combined and presented at the AdaptationSet level.
+	// are combined and presented at the AdaptationSet level. When set to DRM_TOP_LEVEL_COMPACT,
+	// content protection elements are placed the MPD level and referenced at the
+	// AdaptationSet level.
 	ManifestLayout *string `locationName:"manifestLayout" type:"string" enum:"ManifestLayout"`
 
 	// Time window (in seconds) contained in each manifest.
@@ -7170,6 +7172,9 @@ const (
 
 	// ManifestLayoutCompact is a ManifestLayout enum value
 	ManifestLayoutCompact = "COMPACT"
+
+	// ManifestLayoutDrmTopLevelCompact is a ManifestLayout enum value
+	ManifestLayoutDrmTopLevelCompact = "DRM_TOP_LEVEL_COMPACT"
 )
 
 // ManifestLayout_Values returns all elements of the ManifestLayout enum
@@ -7177,6 +7182,7 @@ func ManifestLayout_Values() []string {
 	return []string{
 		ManifestLayoutFull,
 		ManifestLayoutCompact,
+		ManifestLayoutDrmTopLevelCompact,
 	}
 }
 

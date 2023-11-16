@@ -10,6 +10,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetColumnStatisticsTaskRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetConnections": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -108,6 +113,11 @@
       "output_token": "NextToken"
     },
     "ListBlueprints": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListColumnStatisticsTaskRuns": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

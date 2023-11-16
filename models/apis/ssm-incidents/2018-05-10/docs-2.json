@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Systems Manager Incident Manager is an incident management console designed to help users mitigate and recover from incidents affecting their Amazon Web Services-hosted applications. An incident is any unplanned interruption or reduction in quality of services. </p> <p>Incident Manager increases incident resolution by notifying responders of impact, highlighting relevant troubleshooting data, and providing collaboration tools to get services back up and running. To achieve the primary goal of reducing the time-to-resolution of critical incidents, Incident Manager automates response plans and enables responder team escalation. </p>",
   "operations": {
+    "BatchGetIncidentFindings": "<p>Retrieves details about all specified findings for an incident, including descriptive details about each finding. A finding represents a recent application environment change made by an CodeDeploy deployment or an CloudFormation stack creation or update that can be investigated as a potential cause of the incident.</p>",
     "CreateReplicationSet": "<p>A replication set replicates and encrypts your data to the provided Regions with the provided KMS key. </p>",
     "CreateResponsePlan": "<p>Creates a response plan that automates the initial response to incidents. A response plan engages contacts, starts chat channel collaboration, and initiates runbooks at the beginning of an incident.</p>",
     "CreateTimelineEvent": "<p>Creates a custom timeline event on the incident details page of an incident record. Incident Manager automatically creates timeline events that mark key moments during an incident. You can create custom timeline events to mark important events that Incident Manager can detect automatically.</p>",
@@ -15,11 +16,12 @@
     "GetResourcePolicies": "<p>Retrieves the resource policies attached to the specified response plan.</p>",
     "GetResponsePlan": "<p>Retrieves the details of the specified response plan.</p>",
     "GetTimelineEvent": "<p>Retrieves a timeline event based on its ID and incident record.</p>",
+    "ListIncidentFindings": "<p>Retrieves a list of the IDs of findings, plus their last modified times, that have been identified for a specified incident. A finding represents a recent application environment change made by an CloudFormation stack creation or update or an CodeDeploy deployment that can be investigated as a potential cause of the incident.</p>",
     "ListIncidentRecords": "<p>Lists all incident records in your account. Use this command to retrieve the Amazon Resource Name (ARN) of the incident record you want to update. </p>",
     "ListRelatedItems": "<p>List all related items for an incident record.</p>",
     "ListReplicationSets": "<p>Lists details about the replication set configured in your account. </p>",
     "ListResponsePlans": "<p>Lists all response plans in your account.</p>",
-    "ListTagsForResource": "<p>Lists the tags that are attached to the specified response plan.</p>",
+    "ListTagsForResource": "<p>Lists the tags that are attached to the specified response plan or incident.</p>",
     "ListTimelineEvents": "<p>Lists timeline events for the specified incident record.</p>",
     "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan. The resource policy is used to share the response plan using Resource Access Manager (RAM). For more information about cross-account sharing, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-manager-cross-account-cross-region.html\">Cross-Region and cross-account incident management</a>.</p>",
     "StartIncident": "<p>Used to start an incident from CloudWatch alarms, EventBridge events, or manually. </p>",
@@ -62,6 +64,9 @@
       "base": null,
       "refs": {
         "AutomationExecution$ssmExecutionArn": "<p>The Amazon Resource Name (ARN) of the automation process.</p>",
+        "BatchGetIncidentFindingsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident for which you want to view finding details.</p>",
+        "CloudFormationStackUpdate$stackArn": "<p>The Amazon Resource Name (ARN) of the CloudFormation stack involved in the update.</p>",
+        "CodeDeployDeployment$deploymentGroupArn": "<p>The Amazon Resource Name (ARN) of the CodeDeploy deployment group associated with the deployment.</p>",
         "CreateReplicationSetOutput$arn": "<p>The Amazon Resource Name (ARN) of the replication set. </p>",
         "CreateResponsePlanOutput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
         "CreateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record that the action adds the incident to.</p>",
@@ -85,6 +90,7 @@
         "IncidentRecordSource$resourceArn": "<p>The resource that caused the incident to be created.</p>",
         "IncidentRecordSummary$arn": "<p>The Amazon Resource Name (ARN) of the incident.</p>",
         "ItemValue$arn": "<p>The Amazon Resource Name (ARN) of the related item, if the related item is an Amazon resource.</p>",
+        "ListIncidentFindingsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident for which you want to view associated findings.</p>",
         "ListRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the listed related items.</p>",
         "ListTimelineEventsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
         "NotificationTargetItem$snsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
@@ -124,6 +130,28 @@
         "IncidentRecord$automationExecutions": "<p>The runbook, or automation document, that's run at the beginning of the incident.</p>"
       }
     },
+    "BatchGetIncidentFindingsError": {
+      "base": "<p>Details about an error returned for a <a>BatchGetIncidentFindings</a> operation.</p>",
+      "refs": {
+        "BatchGetIncidentFindingsErrorList$member": null
+      }
+    },
+    "BatchGetIncidentFindingsErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetIncidentFindingsOutput$errors": "<p>A list of errors encountered during the operation.</p>"
+      }
+    },
+    "BatchGetIncidentFindingsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetIncidentFindingsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -161,6 +189,24 @@
         "UpdateReplicationSetInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "UpdateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
         "UpdateTimelineEventInput$clientToken": "<p>A token that ensures that a client calls the operation only once with the specified details.</p>"
+      }
+    },
+    "CloudFormationStackUpdate": {
+      "base": "<p>Information about an CloudFormation stack creation or update that occurred around the time of an incident and could be a potential cause of the incident.</p>",
+      "refs": {
+        "FindingDetails$cloudFormationStackUpdate": "<p>Information about the CloudFormation stack creation or update associated with the finding.</p>"
+      }
+    },
+    "CodeDeployDeployment": {
+      "base": "<p>Information about a CodeDeploy deployment that occurred around the time of an incident and could be a possible cause of the incident.</p>",
+      "refs": {
+        "FindingDetails$codeDeployDeployment": "<p>Information about the CodeDeploy deployment associated with the finding.</p>"
+      }
+    },
+    "CodeDeployDeploymentDeploymentIdString": {
+      "base": null,
+      "refs": {
+        "CodeDeployDeployment$deploymentId": "<p>The ID of the CodeDeploy deployment.</p>"
       }
     },
     "Condition": {
@@ -208,7 +254,7 @@
       "base": null,
       "refs": {
         "IncidentRecord$dedupeString": "<p>The string Incident Manager uses to prevent duplicate incidents from being created by the same incident in the same account.</p>",
-        "IncidentTemplate$dedupeString": "<p>Used to stop Incident Manager from creating multiple incident records for the same incident. </p>",
+        "IncidentTemplate$dedupeString": "<p>The string Incident Manager uses to prevent the same root cause from creating multiple incidents in the same account.</p> <p>A deduplication string is a term or phrase the system uses to check for duplicate incidents. If you specify a deduplication string, Incident Manager searches for open incidents that contain the same string in the <code>dedupeString</code> field when it creates the incident. If a duplicate is detected, Incident Manager deduplicates the newer incident into the existing incident.</p> <note> <p>By default, Incident Manager automatically deduplicates multiple incidents created by the same Amazon CloudWatch alarm or Amazon EventBridge event. You don't have to enter your own deduplication string to prevent duplication for these resource types.</p> </note>",
         "UpdateResponsePlanInput$incidentTemplateDedupeString": "<p>The string Incident Manager uses to prevent duplicate incidents from being created by the same incident in the same account.</p>"
       }
     },
@@ -363,7 +409,52 @@
       "base": null,
       "refs": {
         "ListIncidentRecordsInput$filters": "<p>Filters the list of incident records you want to search through. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul> <p>Note the following when when you use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all incident records.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns incident records that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns incident records that match any of the values provided.</p> </li> </ul>",
-        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events with the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
+        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events with the following keys:</p> <ul> <li> <p> <code>eventReference</code> </p> </li> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
+      }
+    },
+    "Finding": {
+      "base": "<p>Information about a specific CodeDeploy deployment or CloudFormation stack creation or update that occurred around the time of a reported incident. These activities can be investigated as a potential cause of the incident.</p>",
+      "refs": {
+        "FindingList$member": null
+      }
+    },
+    "FindingDetails": {
+      "base": "<p>Extended textual information about the finding.</p>",
+      "refs": {
+        "Finding$details": "<p>Details about the finding.</p>"
+      }
+    },
+    "FindingId": {
+      "base": null,
+      "refs": {
+        "BatchGetIncidentFindingsError$findingId": "<p>The ID of a specified finding for which an error was returned for a <code>BatchGetIncidentFindings</code> operation.</p>",
+        "Finding$id": "<p>The ID assigned to the finding.</p>",
+        "FindingIdList$member": null,
+        "FindingSummary$id": "<p>The ID of the finding.</p>"
+      }
+    },
+    "FindingIdList": {
+      "base": null,
+      "refs": {
+        "BatchGetIncidentFindingsInput$findingIds": "<p>A list of IDs of findings for which you want to view details.</p>"
+      }
+    },
+    "FindingList": {
+      "base": null,
+      "refs": {
+        "BatchGetIncidentFindingsOutput$findings": "<p>Information about the requested findings.</p>"
+      }
+    },
+    "FindingSummary": {
+      "base": "<p>Identifying information about the finding.</p>",
+      "refs": {
+        "FindingSummaryList$member": null
+      }
+    },
+    "FindingSummaryList": {
+      "base": null,
+      "refs": {
+        "ListIncidentFindingsOutput$findings": "<p>A list of findings that represent deployments that might be the potential cause of the incident.</p>"
       }
     },
     "GeneratedId": {
@@ -426,12 +517,12 @@
     "Impact": {
       "base": null,
       "refs": {
-        "IncidentRecord$impact": "<p>The impact of the incident on customers and applications.</p>",
+        "IncidentRecord$impact": "<p>The impact of the incident on customers and applications.</p> <p class=\"title\"> <b>Supported impact codes</b> </p> <ul> <li> <p> <code>1</code> - Critical</p> </li> <li> <p> <code>2</code> - High</p> </li> <li> <p> <code>3</code> - Medium</p> </li> <li> <p> <code>4</code> - Low</p> </li> <li> <p> <code>5</code> - No Impact</p> </li> </ul>",
         "IncidentRecordSummary$impact": "<p>Defines the impact to customers and applications.</p>",
-        "IncidentTemplate$impact": "<p>The impact of the incident on your customers and applications. </p>",
-        "StartIncidentInput$impact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, this typically relates to full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer might aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
-        "UpdateIncidentRecordInput$impact": "<p>Defines the impact of the incident to customers and applications. If you provide an impact for an incident, it overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
-        "UpdateResponsePlanInput$incidentTemplateImpact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>5</code> - Severe impact</p> </li> <li> <p> <code>4</code> - High impact</p> </li> <li> <p> <code>3</code> - Medium impact</p> </li> <li> <p> <code>2</code> - Low impact</p> </li> <li> <p> <code>1</code> - No impact</p> </li> </ul>"
+        "IncidentTemplate$impact": "<p>The impact of the incident on your customers and applications.</p> <p class=\"title\"> <b>Supported impact codes</b> </p> <ul> <li> <p> <code>1</code> - Critical</p> </li> <li> <p> <code>2</code> - High</p> </li> <li> <p> <code>3</code> - Medium</p> </li> <li> <p> <code>4</code> - Low</p> </li> <li> <p> <code>5</code> - No Impact</p> </li> </ul>",
+        "StartIncidentInput$impact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Supported impact codes</b> </p> <ul> <li> <p> <code>1</code> - Critical</p> </li> <li> <p> <code>2</code> - High</p> </li> <li> <p> <code>3</code> - Medium</p> </li> <li> <p> <code>4</code> - Low</p> </li> <li> <p> <code>5</code> - No Impact</p> </li> </ul>",
+        "UpdateIncidentRecordInput$impact": "<p>Defines the impact of the incident to customers and applications. If you provide an impact for an incident, it overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Supported impact codes</b> </p> <ul> <li> <p> <code>1</code> - Critical</p> </li> <li> <p> <code>2</code> - High</p> </li> <li> <p> <code>3</code> - Medium</p> </li> <li> <p> <code>4</code> - Low</p> </li> <li> <p> <code>5</code> - No Impact</p> </li> </ul>",
+        "UpdateResponsePlanInput$incidentTemplateImpact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Supported impact codes</b> </p> <ul> <li> <p> <code>1</code> - Critical</p> </li> <li> <p> <code>2</code> - High</p> </li> <li> <p> <code>3</code> - Medium</p> </li> <li> <p> <code>4</code> - Low</p> </li> <li> <p> <code>5</code> - No Impact</p> </li> </ul>"
       }
     },
     "IncidentRecord": {
@@ -551,6 +642,22 @@
         "ItemIdentifier$value": "<p>Details about the related item.</p>"
       }
     },
+    "ListIncidentFindingsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIncidentFindingsInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListIncidentFindingsInput$maxResults": "<p>The maximum number of findings to retrieve per call.</p>"
+      }
+    },
+    "ListIncidentFindingsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListIncidentRecordsInput": {
       "base": null,
       "refs": {
@@ -631,18 +738,20 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "GetResourcePoliciesInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "GetResourcePoliciesOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListIncidentRecordsInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListIncidentRecordsOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListRelatedItemsInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListRelatedItemsOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListReplicationSetsInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListReplicationSetsOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListResponsePlansInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListResponsePlansOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListTimelineEventsInput$nextToken": "<p>The pagination token to continue to the next page of results.</p>",
-        "ListTimelineEventsOutput$nextToken": "<p>The pagination token to continue to the next page of results.</p>"
+        "GetResourcePoliciesInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "GetResourcePoliciesOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListIncidentFindingsInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListIncidentFindingsOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListIncidentRecordsInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListIncidentRecordsOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListRelatedItemsInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListRelatedItemsOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListReplicationSetsInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListReplicationSetsOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListResponsePlansInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListResponsePlansOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>",
+        "ListTimelineEventsInput$nextToken": "<p>The pagination token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListTimelineEventsOutput$nextToken": "<p>The pagination token to use when requesting the next set of items. If there are no additional items to return, the string is null.</p>"
       }
     },
     "NotificationTargetItem": {
@@ -987,8 +1096,10 @@
     "String": {
       "base": null,
       "refs": {
+        "BatchGetIncidentFindingsError$code": "<p>The code associated with an error that was returned for a <code>BatchGetIncidentFindings</code> operation.</p>",
+        "BatchGetIncidentFindingsError$message": "<p>The description for an error that was returned for a <code>BatchGetIncidentFindings</code> operation.</p>",
         "ConflictException$resourceIdentifier": "<p>The identifier of the requested resource</p>",
-        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan or incident.</p>",
         "RegionInfo$statusMessage": "<p>Information displayed about the status of the Amazon Web Services Region.</p>",
         "ResourceNotFoundException$resourceIdentifier": "<p>The identifier for the requested resource</p>",
         "ResourcePolicy$ramResourceShareRegion": "<p>The Amazon Web Services Region that policy allows resources to be used in.</p>",
@@ -1031,7 +1142,7 @@
         "CreateReplicationSetInput$tags": "<p>A list of tags to add to the replication set.</p>",
         "CreateResponsePlanInput$tags": "<p>A list of tags that you are adding to the response plan.</p>",
         "IncidentTemplate$incidentTags": "<p>Tags to assign to the template. When the <code>StartIncident</code> API action is called, Incident Manager assigns the tags specified in the template to the incident.</p>",
-        "ListTagsForResourceResponse$tags": "<p>A list of tags for the response plan.</p>",
+        "ListTagsForResourceResponse$tags": "<p>A list of tags for the response plan or incident.</p>",
         "TagResourceRequest$tags": "<p>A list of tags to add to the response plan.</p>"
       }
     },
@@ -1078,33 +1189,40 @@
     "TimelineEventType": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventType": "<p>The type of event. You can create timeline events of type <code>Custom Event</code>.</p>",
-        "EventSummary$eventType": "<p>The type of event. The timeline event must be <code>Custom Event</code>.</p>",
-        "TimelineEvent$eventType": "<p>The type of event that occurred. Currently Incident Manager supports only the <code>Custom Event</code> type.</p>",
-        "UpdateTimelineEventInput$eventType": "<p>The type of event. You can update events of type <code>Custom Event</code>.</p>"
+        "CreateTimelineEventInput$eventType": "<p>The type of event. You can create timeline events of type <code>Custom Event</code> and <code>Note</code>.</p> <p>To make a Note-type event appear on the <i>Incident notes</i> panel in the console, specify <code>eventType</code> as <code>Note</code>and enter the Amazon Resource Name (ARN) of the incident as the value for <code>eventReference</code>.</p>",
+        "EventSummary$eventType": "<p>The type of event. The timeline event must be <code>Custom Event</code> or <code>Note</code>.</p>",
+        "TimelineEvent$eventType": "<p>The type of event that occurred. Currently Incident Manager supports only the <code>Custom Event</code> and <code>Note</code> types.</p>",
+        "UpdateTimelineEventInput$eventType": "<p>The type of event. You can update events of type <code>Custom Event</code> and <code>Note</code>.</p>"
       }
     },
     "Timestamp": {
       "base": null,
       "refs": {
+        "CloudFormationStackUpdate$endTime": "<p>The timestamp for when the CloudFormation stack creation or update ended. Not reported for deployments that are still in progress.</p>",
+        "CloudFormationStackUpdate$startTime": "<p>The timestamp for when the CloudFormation stack creation or update began.</p>",
+        "CodeDeployDeployment$endTime": "<p>The timestamp for when the CodeDeploy deployment ended. Not reported for deployments that are still in progress.</p>",
+        "CodeDeployDeployment$startTime": "<p>The timestamp for when the CodeDeploy deployment began.</p>",
         "Condition$after": "<p>After the specified timestamp.</p>",
         "Condition$before": "<p>Before the specified timestamp</p>",
         "ConflictException$retryAfter": "<p>If present in the output, the operation can be retried after this time</p>",
-        "CreateTimelineEventInput$eventTime": "<p>The time that the event occurred.</p>",
-        "EventSummary$eventTime": "<p>The time that the event occurred.</p>",
-        "EventSummary$eventUpdatedTime": "<p>The time that the timeline event was last updated.</p>",
-        "IncidentRecord$creationTime": "<p>The time that Incident Manager created the incident record.</p>",
-        "IncidentRecord$lastModifiedTime": "<p>The time at which the incident was most recently modified.</p>",
-        "IncidentRecord$resolvedTime": "<p>The time at which the incident was resolved. This appears as a timeline event.</p>",
-        "IncidentRecordSummary$creationTime": "<p>The time the incident was created.</p>",
-        "IncidentRecordSummary$resolvedTime": "<p>The time the incident was resolved.</p>",
-        "RegionInfo$statusUpdateDateTime": "<p>The most recent date and time that Incident Manager updated the Amazon Web Services Region's status.</p>",
+        "CreateTimelineEventInput$eventTime": "<p>The timestamp for when the event occurred.</p>",
+        "EventSummary$eventTime": "<p>The timestamp for when the event occurred.</p>",
+        "EventSummary$eventUpdatedTime": "<p>The timestamp for when the timeline event was last updated.</p>",
+        "Finding$creationTime": "<p>The timestamp for when a finding was created.</p>",
+        "Finding$lastModifiedTime": "<p>The timestamp for when the finding was most recently updated with additional information.</p>",
+        "FindingSummary$lastModifiedTime": "<p>The timestamp for when the finding was last updated.</p>",
+        "IncidentRecord$creationTime": "<p>The timestamp for when Incident Manager created the incident record.</p>",
+        "IncidentRecord$lastModifiedTime": "<p>The timestamp for when the incident was most recently modified.</p>",
+        "IncidentRecord$resolvedTime": "<p>The timestamp for when the incident was resolved. This appears as a timeline event.</p>",
+        "IncidentRecordSummary$creationTime": "<p>The timestamp for when the incident was created.</p>",
+        "IncidentRecordSummary$resolvedTime": "<p>The timestamp for when the incident was resolved.</p>",
+        "RegionInfo$statusUpdateDateTime": "<p>The timestamp for when Incident Manager updated the status of the Amazon Web Services Region.</p>",
         "ReplicationSet$createdTime": "<p>When the replication set was created.</p>",
         "ReplicationSet$lastModifiedTime": "<p>When the replication set was last updated.</p>",
-        "TimelineEvent$eventTime": "<p>The time that the event occurred.</p>",
-        "TimelineEvent$eventUpdatedTime": "<p>The time that the timeline event was last updated.</p>",
-        "TriggerDetails$timestamp": "<p>The time that the incident was detected.</p>",
-        "UpdateTimelineEventInput$eventTime": "<p>The time that the event occurred.</p>"
+        "TimelineEvent$eventTime": "<p>The timestamp for when the event occurred.</p>",
+        "TimelineEvent$eventUpdatedTime": "<p>The timestamp for when the timeline event was last updated.</p>",
+        "TriggerDetails$timestamp": "<p>The timestamp for when the incident was detected.</p>",
+        "UpdateTimelineEventInput$eventTime": "<p>The timestamp for when the event occurred.</p>"
       }
     },
     "TriggerDetails": {

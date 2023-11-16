@@ -7725,6 +7725,14 @@ type CreateServerInput struct {
 	//    must be Amazon S3.
 	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
+	// Specifies whether or not performance for your Amazon S3 directories is optimized.
+	// This is disabled by default.
+	//
+	// By default, home directory mappings have a TYPE of DIRECTORY. If you enable
+	// this option, you would then need to explicitly set the HomeDirectoryMapEntry
+	// Type to FILE if you want a mapping to have a file target.
+	S3StorageOptions *S3StorageOptions `type:"structure"`
+
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
@@ -7890,6 +7898,12 @@ func (s *CreateServerInput) SetProtocolDetails(v *ProtocolDetails) *CreateServer
 // SetProtocols sets the Protocols field's value.
 func (s *CreateServerInput) SetProtocols(v []*string) *CreateServerInput {
 	s.Protocols = v
+	return s
+}
+
+// SetS3StorageOptions sets the S3StorageOptions field's value.
+func (s *CreateServerInput) SetS3StorageOptions(v *S3StorageOptions) *CreateServerInput {
+	s.S3StorageOptions = v
 	return s
 }
 
@@ -11617,6 +11631,14 @@ type DescribedServer struct {
 	//    must be Amazon S3.
 	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
+	// Specifies whether or not performance for your Amazon S3 directories is optimized.
+	// This is disabled by default.
+	//
+	// By default, home directory mappings have a TYPE of DIRECTORY. If you enable
+	// this option, you would then need to explicitly set the HomeDirectoryMapEntry
+	// Type to FILE if you want a mapping to have a file target.
+	S3StorageOptions *S3StorageOptions `type:"structure"`
+
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
@@ -11759,6 +11781,12 @@ func (s *DescribedServer) SetProtocolDetails(v *ProtocolDetails) *DescribedServe
 // SetProtocols sets the Protocols field's value.
 func (s *DescribedServer) SetProtocols(v []*string) *DescribedServer {
 	s.Protocols = v
+	return s
+}
+
+// SetS3StorageOptions sets the S3StorageOptions field's value.
+func (s *DescribedServer) SetS3StorageOptions(v *S3StorageOptions) *DescribedServer {
+	s.S3StorageOptions = v
 	return s
 }
 
@@ -12447,10 +12475,18 @@ type HomeDirectoryMapEntry struct {
 	// Entry is a required field
 	Entry *string `type:"string" required:"true"`
 
-	// Represents the map target that is used in a HomeDirectorymapEntry.
+	// Represents the map target that is used in a HomeDirectoryMapEntry.
 	//
 	// Target is a required field
 	Target *string `type:"string" required:"true"`
+
+	// Specifies the type of mapping. Set the type to FILE if you want the mapping
+	// to point to a file, or DIRECTORY for the directory to point to a directory.
+	//
+	// By default, home directory mappings have a Type of DIRECTORY when you create
+	// a Transfer Family server. You would need to explicitly set Type to FILE if
+	// you want a mapping to have a file target.
+	Type *string `type:"string" enum:"MapType"`
 }
 
 // String returns the string representation.
@@ -12496,6 +12532,12 @@ func (s *HomeDirectoryMapEntry) SetEntry(v string) *HomeDirectoryMapEntry {
 // SetTarget sets the Target field's value.
 func (s *HomeDirectoryMapEntry) SetTarget(v string) *HomeDirectoryMapEntry {
 	s.Target = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *HomeDirectoryMapEntry) SetType(v string) *HomeDirectoryMapEntry {
+	s.Type = &v
 	return s
 }
 
@@ -16118,6 +16160,43 @@ func (s *S3InputFileLocation) SetKey(v string) *S3InputFileLocation {
 	return s
 }
 
+// The Amazon S3 storage options that are configured for your server.
+type S3StorageOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether or not performance for your Amazon S3 directories is optimized.
+	// This is disabled by default.
+	//
+	// By default, home directory mappings have a TYPE of DIRECTORY. If you enable
+	// this option, you would then need to explicitly set the HomeDirectoryMapEntry
+	// Type to FILE if you want a mapping to have a file target.
+	DirectoryListingOptimization *string `type:"string" enum:"DirectoryListingOptimization"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3StorageOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3StorageOptions) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryListingOptimization sets the DirectoryListingOptimization field's value.
+func (s *S3StorageOptions) SetDirectoryListingOptimization(v string) *S3StorageOptions {
+	s.DirectoryListingOptimization = &v
+	return s
+}
+
 // Specifies the key-value pair that are assigned to a file during the execution
 // of a Tagging step.
 type S3Tag struct {
@@ -18660,6 +18739,14 @@ type UpdateServerInput struct {
 	//    must be Amazon S3.
 	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
+	// Specifies whether or not performance for your Amazon S3 directories is optimized.
+	// This is disabled by default.
+	//
+	// By default, home directory mappings have a TYPE of DIRECTORY. If you enable
+	// this option, you would then need to explicitly set the HomeDirectoryMapEntry
+	// Type to FILE if you want a mapping to have a file target.
+	S3StorageOptions *S3StorageOptions `type:"structure"`
+
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
@@ -18815,6 +18902,12 @@ func (s *UpdateServerInput) SetProtocolDetails(v *ProtocolDetails) *UpdateServer
 // SetProtocols sets the Protocols field's value.
 func (s *UpdateServerInput) SetProtocols(v []*string) *UpdateServerInput {
 	s.Protocols = v
+	return s
+}
+
+// SetS3StorageOptions sets the S3StorageOptions field's value.
+func (s *UpdateServerInput) SetS3StorageOptions(v *S3StorageOptions) *UpdateServerInput {
+	s.S3StorageOptions = v
 	return s
 }
 
@@ -19601,6 +19694,24 @@ func CustomStepStatus_Values() []string {
 	}
 }
 
+// Indicates whether optimization to directory listing on S3 servers is used.
+// Disabled by default for compatibility.
+const (
+	// DirectoryListingOptimizationEnabled is a DirectoryListingOptimization enum value
+	DirectoryListingOptimizationEnabled = "ENABLED"
+
+	// DirectoryListingOptimizationDisabled is a DirectoryListingOptimization enum value
+	DirectoryListingOptimizationDisabled = "DISABLED"
+)
+
+// DirectoryListingOptimization_Values returns all elements of the DirectoryListingOptimization enum
+func DirectoryListingOptimization_Values() []string {
+	return []string{
+		DirectoryListingOptimizationEnabled,
+		DirectoryListingOptimizationDisabled,
+	}
+}
+
 const (
 	// DomainS3 is a Domain enum value
 	DomainS3 = "S3"
@@ -19792,6 +19903,22 @@ func IdentityProviderType_Values() []string {
 		IdentityProviderTypeApiGateway,
 		IdentityProviderTypeAwsDirectoryService,
 		IdentityProviderTypeAwsLambda,
+	}
+}
+
+const (
+	// MapTypeFile is a MapType enum value
+	MapTypeFile = "FILE"
+
+	// MapTypeDirectory is a MapType enum value
+	MapTypeDirectory = "DIRECTORY"
+)
+
+// MapType_Values returns all elements of the MapType enum
+func MapType_Values() []string {
+	return []string{
+		MapTypeFile,
+		MapTypeDirectory,
 	}
 }
 

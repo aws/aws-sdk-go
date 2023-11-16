@@ -4703,6 +4703,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - LustreRootSquashConfiguration
 //
+//   - PerUnitStorageThroughput
+//
 //   - StorageCapacity
 //
 //   - WeeklyMaintenanceStartTime
@@ -5237,7 +5239,7 @@ type AdministrativeAction struct {
 	//    completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
 	//    to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
 	//    in the Amazon FSx for Windows File Server User Guide, Managing storage
-	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	//    capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
 	//    in the Amazon FSx for Lustre User Guide, and Managing storage capacity
 	//    and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
 	//    in the Amazon FSx for NetApp ONTAP User Guide.
@@ -21433,6 +21435,20 @@ type UpdateFileSystemLustreConfiguration struct {
 	// Logs.
 	LogConfiguration *LustreLogCreateConfiguration `type:"structure"`
 
+	// The throughput of an Amazon FSx for Lustre Persistent SSD-based file system,
+	// measured in megabytes per second per tebibyte (MB/s/TiB). You can increase
+	// or decrease your file system's throughput. Valid values depend on the deployment
+	// type of the file system, as follows:
+	//
+	//    * For PERSISTENT_1 SSD-based deployment types, valid values are 50, 100,
+	//    and 200 MB/s/TiB.
+	//
+	//    * For PERSISTENT_2 SSD-based deployment types, valid values are 125, 250,
+	//    500, and 1000 MB/s/TiB.
+	//
+	// For more information, see Managing throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-throughput-capacity.html).
+	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
+
 	// The Lustre root squash configuration used when updating an Amazon FSx for
 	// Lustre file system. When enabled, root squash restricts root-level access
 	// from clients that try to access your file system as a root user.
@@ -21467,6 +21483,9 @@ func (s *UpdateFileSystemLustreConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemLustreConfiguration"}
 	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.PerUnitStorageThroughput != nil && *s.PerUnitStorageThroughput < 12 {
+		invalidParams.Add(request.NewErrParamMinValue("PerUnitStorageThroughput", 12))
 	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
@@ -21515,6 +21534,12 @@ func (s *UpdateFileSystemLustreConfiguration) SetDataCompressionType(v string) *
 // SetLogConfiguration sets the LogConfiguration field's value.
 func (s *UpdateFileSystemLustreConfiguration) SetLogConfiguration(v *LustreLogCreateConfiguration) *UpdateFileSystemLustreConfiguration {
 	s.LogConfiguration = v
+	return s
+}
+
+// SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetPerUnitStorageThroughput(v int64) *UpdateFileSystemLustreConfiguration {
+	s.PerUnitStorageThroughput = &v
 	return s
 }
 
@@ -21734,7 +21759,7 @@ type UpdateFileSystemOpenZFSConfiguration struct {
 	// as follows:
 	//
 	//    * For MULTI_AZ_1 and SINGLE_AZ_2, valid values are 160, 320, 640, 1280,
-	//    2560, 3840, 5120, 7680, or 10240 MBps.
+	//    2560, 3840, 5120, 7680, or 10240 MB/s.
 	//
 	//    * For SINGLE_AZ_1, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
 	//    or 4096 MB/s.
@@ -23589,7 +23614,7 @@ func ActiveDirectoryErrorType_Values() []string {
 //     completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
 //     to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
 //     in the Amazon FSx for Windows File Server User Guide, Managing storage
-//     and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+//     capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
 //     in the Amazon FSx for Lustre User Guide, and Managing storage capacity
 //     and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
 //     in the Amazon FSx for NetApp ONTAP User Guide.

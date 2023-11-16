@@ -13,6 +13,23 @@
     "uid":"ssm-incidents-2018-05-10"
   },
   "operations":{
+    "BatchGetIncidentFindings":{
+      "name":"BatchGetIncidentFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/batchGetIncidentFindings",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetIncidentFindingsInput"},
+      "output":{"shape":"BatchGetIncidentFindingsOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateReplicationSet":{
       "name":"CreateReplicationSet",
       "http":{
@@ -231,6 +248,23 @@
       },
       "input":{"shape":"GetTimelineEventInput"},
       "output":{"shape":"GetTimelineEventOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListIncidentFindings":{
+      "name":"ListIncidentFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listIncidentFindings",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIncidentFindingsInput"},
+      "output":{"shape":"ListIncidentFindingsOutput"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
@@ -583,6 +617,45 @@
       "max":100,
       "min":0
     },
+    "BatchGetIncidentFindingsError":{
+      "type":"structure",
+      "required":[
+        "code",
+        "findingId",
+        "message"
+      ],
+      "members":{
+        "code":{"shape":"String"},
+        "findingId":{"shape":"FindingId"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetIncidentFindingsErrorList":{
+      "type":"list",
+      "member":{"shape":"BatchGetIncidentFindingsError"}
+    },
+    "BatchGetIncidentFindingsInput":{
+      "type":"structure",
+      "required":[
+        "findingIds",
+        "incidentRecordArn"
+      ],
+      "members":{
+        "findingIds":{"shape":"FindingIdList"},
+        "incidentRecordArn":{"shape":"Arn"}
+      }
+    },
+    "BatchGetIncidentFindingsOutput":{
+      "type":"structure",
+      "required":[
+        "errors",
+        "findings"
+      ],
+      "members":{
+        "errors":{"shape":"BatchGetIncidentFindingsErrorList"},
+        "findings":{"shape":"FindingList"}
+      }
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -602,6 +675,37 @@
       "min":1
     },
     "ClientToken":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "CloudFormationStackUpdate":{
+      "type":"structure",
+      "required":[
+        "stackArn",
+        "startTime"
+      ],
+      "members":{
+        "endTime":{"shape":"Timestamp"},
+        "stackArn":{"shape":"Arn"},
+        "startTime":{"shape":"Timestamp"}
+      }
+    },
+    "CodeDeployDeployment":{
+      "type":"structure",
+      "required":[
+        "deploymentGroupArn",
+        "deploymentId",
+        "startTime"
+      ],
+      "members":{
+        "deploymentGroupArn":{"shape":"Arn"},
+        "deploymentId":{"shape":"CodeDeployDeploymentDeploymentIdString"},
+        "endTime":{"shape":"Timestamp"},
+        "startTime":{"shape":"Timestamp"}
+      }
+    },
+    "CodeDeployDeploymentDeploymentIdString":{
       "type":"string",
       "max":128,
       "min":0
@@ -886,6 +990,60 @@
       "type":"list",
       "member":{"shape":"Filter"},
       "max":5,
+      "min":0
+    },
+    "Finding":{
+      "type":"structure",
+      "required":[
+        "creationTime",
+        "id",
+        "lastModifiedTime"
+      ],
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "details":{"shape":"FindingDetails"},
+        "id":{"shape":"FindingId"},
+        "lastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "FindingDetails":{
+      "type":"structure",
+      "members":{
+        "cloudFormationStackUpdate":{"shape":"CloudFormationStackUpdate"},
+        "codeDeployDeployment":{"shape":"CodeDeployDeployment"}
+      },
+      "union":true
+    },
+    "FindingId":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "FindingIdList":{
+      "type":"list",
+      "member":{"shape":"FindingId"},
+      "max":20,
+      "min":0
+    },
+    "FindingList":{
+      "type":"list",
+      "member":{"shape":"Finding"}
+    },
+    "FindingSummary":{
+      "type":"structure",
+      "required":[
+        "id",
+        "lastModifiedTime"
+      ],
+      "members":{
+        "id":{"shape":"FindingId"},
+        "lastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "FindingSummaryList":{
+      "type":"list",
+      "member":{"shape":"FindingSummary"},
+      "max":100,
       "min":0
     },
     "GeneratedId":{
@@ -1185,6 +1343,29 @@
         "url":{"shape":"Url"}
       },
       "union":true
+    },
+    "ListIncidentFindingsInput":{
+      "type":"structure",
+      "required":["incidentRecordArn"],
+      "members":{
+        "incidentRecordArn":{"shape":"Arn"},
+        "maxResults":{"shape":"ListIncidentFindingsInputMaxResultsInteger"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIncidentFindingsInputMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":20,
+      "min":1
+    },
+    "ListIncidentFindingsOutput":{
+      "type":"structure",
+      "required":["findings"],
+      "members":{
+        "findings":{"shape":"FindingSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListIncidentRecordsInput":{
       "type":"structure",

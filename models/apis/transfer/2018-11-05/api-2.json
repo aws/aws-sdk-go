@@ -963,7 +963,7 @@
       "type":"string",
       "max":1600,
       "min":20,
-      "pattern":"arn:.*"
+      "pattern":"arn:\\S+"
     },
     "As2ConnectorConfig":{
       "type":"structure",
@@ -1210,7 +1210,8 @@
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "Tags":{"shape":"Tags"},
         "WorkflowDetails":{"shape":"WorkflowDetails"},
-        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"},
+        "S3StorageOptions":{"shape":"S3StorageOptions"}
       }
     },
     "CreateServerResponse":{
@@ -1731,7 +1732,8 @@
         "Tags":{"shape":"Tags"},
         "UserCount":{"shape":"UserCount"},
         "WorkflowDetails":{"shape":"WorkflowDetails"},
-        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"},
+        "S3StorageOptions":{"shape":"S3StorageOptions"}
       }
     },
     "DescribedUser":{
@@ -1773,6 +1775,13 @@
       "max":12,
       "min":12,
       "pattern":"d-[0-9a-f]{10}"
+    },
+    "DirectoryListingOptimization":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "Domain":{
       "type":"string",
@@ -1931,7 +1940,7 @@
       "type":"string",
       "max":1024,
       "min":0,
-      "pattern":"$|/.*"
+      "pattern":"(|/.*)"
     },
     "HomeDirectoryMapEntry":{
       "type":"structure",
@@ -1941,13 +1950,14 @@
       ],
       "members":{
         "Entry":{"shape":"MapEntry"},
-        "Target":{"shape":"MapTarget"}
+        "Target":{"shape":"MapTarget"},
+        "Type":{"shape":"MapType"}
       }
     },
     "HomeDirectoryMappings":{
       "type":"list",
       "member":{"shape":"HomeDirectoryMapEntry"},
-      "max":50,
+      "max":50000,
       "min":1
     },
     "HomeDirectoryType":{
@@ -2482,6 +2492,13 @@
       "min":0,
       "pattern":"/.*"
     },
+    "MapType":{
+      "type":"string",
+      "enum":[
+        "FILE",
+        "DIRECTORY"
+      ]
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -2522,7 +2539,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"$|arn:.*role/.*"
+      "pattern":"(|arn:.*role/\\S+)"
     },
     "OnPartialUploadWorkflowDetails":{
       "type":"list",
@@ -2663,7 +2680,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:.*role/.*"
+      "pattern":"arn:.*role/\\S+"
     },
     "S3Bucket":{
       "type":"string",
@@ -2698,6 +2715,12 @@
       "max":1024,
       "min":0,
       "pattern":"[\\P{M}\\p{M}]*"
+    },
+    "S3StorageOptions":{
+      "type":"structure",
+      "members":{
+        "DirectoryListingOptimization":{"shape":"DirectoryListingOptimization"}
+      }
     },
     "S3Tag":{
       "type":"structure",
@@ -3243,7 +3266,8 @@
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "ServerId":{"shape":"ServerId"},
         "WorkflowDetails":{"shape":"WorkflowDetails"},
-        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"}
+        "StructuredLogDestinations":{"shape":"StructuredLogDestinations"},
+        "S3StorageOptions":{"shape":"S3StorageOptions"}
       }
     },
     "UpdateServerResponse":{

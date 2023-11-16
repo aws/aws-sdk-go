@@ -31,7 +31,7 @@
       "name":"DeleteLifecyclePolicy",
       "http":{
         "method":"DELETE",
-        "requestUri":"/policies/{policyId}/"
+        "requestUri":"/policies/{policyId}"
       },
       "input":{"shape":"DeleteLifecyclePolicyRequest"},
       "output":{"shape":"DeleteLifecyclePolicyResponse"},
@@ -60,7 +60,7 @@
       "name":"GetLifecyclePolicy",
       "http":{
         "method":"GET",
-        "requestUri":"/policies/{policyId}/"
+        "requestUri":"/policies/{policyId}"
       },
       "input":{"shape":"GetLifecyclePolicyRequest"},
       "output":{"shape":"GetLifecyclePolicyResponse"},
@@ -197,20 +197,30 @@
       "max":1000,
       "min":1
     },
+    "CreateInterval":{
+      "type":"integer",
+      "min":1
+    },
     "CreateLifecyclePolicyRequest":{
       "type":"structure",
       "required":[
         "ExecutionRoleArn",
         "Description",
-        "State",
-        "PolicyDetails"
+        "State"
       ],
       "members":{
         "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "Description":{"shape":"PolicyDescription"},
         "State":{"shape":"SettablePolicyStateValues"},
         "PolicyDetails":{"shape":"PolicyDetails"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "DefaultPolicy":{"shape":"DefaultPolicyTypeValues"},
+        "CreateInterval":{"shape":"CreateInterval"},
+        "RetainInterval":{"shape":"RetainInterval"},
+        "CopyTags":{"shape":"CopyTagsNullable"},
+        "ExtendDeletion":{"shape":"ExtendDeletion"},
+        "CrossRegionCopyTargets":{"shape":"CrossRegionCopyTargetList"},
+        "Exclusions":{"shape":"Exclusions"}
       }
     },
     "CreateLifecyclePolicyResponse":{
@@ -287,6 +297,34 @@
       "max":3,
       "min":0
     },
+    "CrossRegionCopyTarget":{
+      "type":"structure",
+      "members":{
+        "TargetRegion":{"shape":"TargetRegion"}
+      }
+    },
+    "CrossRegionCopyTargetList":{
+      "type":"list",
+      "member":{"shape":"CrossRegionCopyTarget"},
+      "max":3,
+      "min":0
+    },
+    "DefaultPoliciesTypeValues":{
+      "type":"string",
+      "enum":[
+        "VOLUME",
+        "INSTANCE",
+        "ALL"
+      ]
+    },
+    "DefaultPolicy":{"type":"boolean"},
+    "DefaultPolicyTypeValues":{
+      "type":"string",
+      "enum":[
+        "VOLUME",
+        "INSTANCE"
+      ]
+    },
     "DeleteLifecyclePolicyRequest":{
       "type":"structure",
       "required":["PolicyId"],
@@ -358,11 +396,32 @@
       "enum":["shareSnapshot"]
     },
     "ExcludeBootVolume":{"type":"boolean"},
+    "ExcludeBootVolumes":{"type":"boolean"},
     "ExcludeDataVolumeTagList":{
       "type":"list",
       "member":{"shape":"Tag"},
       "max":50,
       "min":0
+    },
+    "ExcludeTagsList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":50,
+      "min":0
+    },
+    "ExcludeVolumeTypesList":{
+      "type":"list",
+      "member":{"shape":"VolumeTypeValues"},
+      "max":6,
+      "min":0
+    },
+    "Exclusions":{
+      "type":"structure",
+      "members":{
+        "ExcludeBootVolumes":{"shape":"ExcludeBootVolumes"},
+        "ExcludeVolumeTypes":{"shape":"ExcludeVolumeTypesList"},
+        "ExcludeTags":{"shape":"ExcludeTagsList"}
+      }
     },
     "ExecuteOperationOnScriptFailure":{"type":"boolean"},
     "ExecutionHandler":{
@@ -381,6 +440,7 @@
       "min":0,
       "pattern":"arn:aws(-[a-z]{1,3}){0,2}:iam::\\d+:role/.*"
     },
+    "ExtendDeletion":{"type":"boolean"},
     "FastRestoreRule":{
       "type":"structure",
       "required":["AvailabilityZones"],
@@ -418,6 +478,11 @@
           "shape":"TagsToAddFilterList",
           "location":"querystring",
           "locationName":"tagsToAdd"
+        },
+        "DefaultPolicyType":{
+          "shape":"DefaultPoliciesTypeValues",
+          "location":"querystring",
+          "locationName":"defaultPolicyType"
         }
       }
     },
@@ -492,7 +557,8 @@
         "DateModified":{"shape":"Timestamp"},
         "PolicyDetails":{"shape":"PolicyDetails"},
         "Tags":{"shape":"TagMap"},
-        "PolicyArn":{"shape":"PolicyArn"}
+        "PolicyArn":{"shape":"PolicyArn"},
+        "DefaultPolicy":{"shape":"DefaultPolicy"}
       }
     },
     "LifecyclePolicySummary":{
@@ -502,7 +568,8 @@
         "Description":{"shape":"PolicyDescription"},
         "State":{"shape":"GettablePolicyStateValues"},
         "Tags":{"shape":"TagMap"},
-        "PolicyType":{"shape":"PolicyTypeValues"}
+        "PolicyType":{"shape":"PolicyTypeValues"},
+        "DefaultPolicy":{"shape":"DefaultPolicy"}
       }
     },
     "LifecyclePolicySummaryList":{
@@ -579,18 +646,33 @@
         "Schedules":{"shape":"ScheduleList"},
         "Parameters":{"shape":"Parameters"},
         "EventSource":{"shape":"EventSource"},
-        "Actions":{"shape":"ActionList"}
+        "Actions":{"shape":"ActionList"},
+        "PolicyLanguage":{"shape":"PolicyLanguageValues"},
+        "ResourceType":{"shape":"ResourceTypeValues"},
+        "CreateInterval":{"shape":"CreateInterval"},
+        "RetainInterval":{"shape":"RetainInterval"},
+        "CopyTags":{"shape":"CopyTagsNullable"},
+        "CrossRegionCopyTargets":{"shape":"CrossRegionCopyTargetList"},
+        "ExtendDeletion":{"shape":"ExtendDeletion"},
+        "Exclusions":{"shape":"Exclusions"}
       }
     },
     "PolicyId":{
       "type":"string",
       "max":64,
       "min":0,
-      "pattern":"policy-[A-Za-z0-9]+"
+      "pattern":"policy-[a-f0-9]+"
     },
     "PolicyIdList":{
       "type":"list",
       "member":{"shape":"PolicyId"}
+    },
+    "PolicyLanguageValues":{
+      "type":"string",
+      "enum":[
+        "SIMPLIFIED",
+        "STANDARD"
+      ]
     },
     "PolicyTypeValues":{
       "type":"string",
@@ -635,6 +717,10 @@
       "type":"list",
       "member":{"shape":"ResourceTypeValues"},
       "max":1,
+      "min":1
+    },
+    "RetainInterval":{
+      "type":"integer",
       "min":1
     },
     "RetainRule":{
@@ -933,7 +1019,13 @@
         "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "State":{"shape":"SettablePolicyStateValues"},
         "Description":{"shape":"PolicyDescription"},
-        "PolicyDetails":{"shape":"PolicyDetails"}
+        "PolicyDetails":{"shape":"PolicyDetails"},
+        "CreateInterval":{"shape":"CreateInterval"},
+        "RetainInterval":{"shape":"RetainInterval"},
+        "CopyTags":{"shape":"CopyTagsNullable"},
+        "ExtendDeletion":{"shape":"ExtendDeletion"},
+        "CrossRegionCopyTargets":{"shape":"CrossRegionCopyTargetList"},
+        "Exclusions":{"shape":"Exclusions"}
       }
     },
     "UpdateLifecyclePolicyResponse":{
@@ -946,6 +1038,7 @@
       "member":{"shape":"Tag"},
       "max":45,
       "min":0
-    }
+    },
+    "VolumeTypeValues":{"type":"string"}
   }
 }

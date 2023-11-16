@@ -102,6 +102,12 @@
       "limit_key": "MaxResults",
       "result_key": "Namespaces"
     },
+    "ListRoleMemberships": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "MembersList"
+    },
     "ListTemplateAliases": {
       "input_token": "NextToken",
       "output_token": "NextToken",

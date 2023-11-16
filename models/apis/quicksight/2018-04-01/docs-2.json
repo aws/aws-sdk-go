@@ -17,6 +17,7 @@
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion for a dataset. You can manually refresh datasets in an Enterprise edition account 32 times in a 24-hour period. You can manually refresh datasets in a Standard edition account 8 times in a 24-hour period. Each 24-hour period is measured starting 24 hours before the current date and time.</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateNamespace": "<p>(Enterprise edition only) Creates a new namespace for you to use with Amazon QuickSight.</p> <p>A namespace allows you to isolate the Amazon QuickSight users and groups that are registered for that namespace. Users that access the namespace can share assets only with other users or groups in the same namespace. They can't see users and groups in other namespaces. You can create a namespace after your Amazon Web Services account is subscribed to Amazon QuickSight. The namespace must be unique within the Amazon Web Services account. By default, there is a limit of 100 namespaces per Amazon Web Services account. To increase your limit, create a ticket with Amazon Web Services Support. </p>",
     "CreateRefreshSchedule": "<p>Creates a refresh schedule for a dataset. You can create up to 5 different schedules for a single dataset.</p>",
+    "CreateRoleMembership": "<p>Use <code>CreateRoleMembership</code> to add an existing Amazon QuickSight group to an existing role.</p>",
     "CreateTemplate": "<p>Creates a template either from a <code>TemplateDefinition</code> or from an existing Amazon QuickSight analysis or template. You can use the resulting template to create additional dashboards, templates, or analyses.</p> <p>A <i>template</i> is an entity in Amazon QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
@@ -38,6 +39,8 @@
     "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAM policy assignment.</p>",
     "DeleteNamespace": "<p>Deletes a namespace and the users and groups that are associated with the namespace. This is an asynchronous process. Assets including dashboards, analyses, datasets and data sources are not deleted. To delete these assets, you use the API operations for the relevant asset. </p>",
     "DeleteRefreshSchedule": "<p>Deletes a refresh schedule from a dataset.</p>",
+    "DeleteRoleCustomPermission": "<p>Removes custom permissions from the role.</p>",
+    "DeleteRoleMembership": "<p>Removes a group from a role.</p>",
     "DeleteTemplate": "<p>Deletes a template.</p>",
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
     "DeleteTheme": "<p>Deletes a theme.</p>",
@@ -75,6 +78,7 @@
     "DescribeIpRestriction": "<p>Provides a summary and status of IP rules.</p>",
     "DescribeNamespace": "<p>Describes the current namespace.</p>",
     "DescribeRefreshSchedule": "<p>Provides a summary of a refresh schedule.</p>",
+    "DescribeRoleCustomPermission": "<p>Describes all custom permissions that are mapped to a role.</p>",
     "DescribeTemplate": "<p>Describes a template's metadata.</p>",
     "DescribeTemplateAlias": "<p>Describes the template alias for a template.</p>",
     "DescribeTemplateDefinition": "<p>Provides a detailed description of the definition of a template.</p> <note> <p>If you do not need to know details about the content of a template, for instance if you are trying to check the status of a recently created or updated template, use the <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeTemplate.html\"> <code>DescribeTemplate</code> </a> instead. </p> </note>",
@@ -108,6 +112,7 @@
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
     "ListNamespaces": "<p>Lists the namespaces for the specified Amazon Web Services account. This operation doesn't list deleted namespaces.</p>",
     "ListRefreshSchedules": "<p>Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules. </p>",
+    "ListRoleMemberships": "<p>Lists all groups that are associated with a role.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
     "ListTemplateAliases": "<p>Lists all the aliases of a template.</p>",
     "ListTemplateVersions": "<p>Lists all the versions of the templates in the current Amazon QuickSight account.</p>",
@@ -152,6 +157,7 @@
     "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
+    "UpdateRoleCustomPermission": "<p>Updates the custom permissions that are associated with a role.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -201,6 +207,7 @@
     "ActionList": {
       "base": null,
       "refs": {
+        "AssetBundleResourcePermissions$Actions": "<p>A list of IAM actions to grant permissions on.</p>",
         "ResourcePermission$Actions": "<p>The IAM action to grant or revoke permissions on.</p>"
       }
     },
@@ -496,6 +503,7 @@
         "AssetBundleExportJobSummary$Arn": "<p>The ARN of the export job.</p>",
         "AssetBundleExportJobThemeOverrideProperties$Arn": "<p>The ARN of the specific <code>Theme</code> resource whose override properties are configured in this structure.</p>",
         "AssetBundleExportJobVPCConnectionOverrideProperties$Arn": "<p>The ARN of the specific <code>VPCConnection</code> resource whose override properties are configured in this structure.</p>",
+        "AssetBundleExportJobWarning$Arn": "<p>The ARN of the resource whose processing caused a warning.</p>",
         "AssetBundleImportJobError$Arn": "<p>The ARN of the resource whose processing caused an error.</p>",
         "AssetBundleImportJobSummary$Arn": "<p>The ARN of the import job.</p>",
         "AssetBundleResourceArns$member": null,
@@ -884,6 +892,25 @@
         "AssetBundleExportJobVPCConnectionOverrideProperties$Properties": "<p>A list of <code>VPCConnection</code> resource properties to generate variables for in the returned CloudFormation template.</p>"
       }
     },
+    "AssetBundleExportJobValidationStrategy": {
+      "base": "<p>The option to relax the validation that is required to export each asset. When <code>StrictModeForAllResource</code> is set to true, validation is skipped for specific UI errors.</p>",
+      "refs": {
+        "DescribeAssetBundleExportJobResponse$ValidationStrategy": "<p>The validation strategy that is used to export the analysis or dashboard.</p>",
+        "StartAssetBundleExportJobRequest$ValidationStrategy": "<p>An optional parameter that determines which validation strategy to use for the export job. If <code>StrictModeForAllResources</code> is set to <code>TRUE</code>, strict validation for every error is enforced. If it is set to <code>FALSE</code>, validation is skipped for specific UI errors that are shown as warnings. The default value for <code>StrictModeForAllResources</code> is <code>FALSE</code>.</p>"
+      }
+    },
+    "AssetBundleExportJobWarning": {
+      "base": "<p>Describes a warning that occurred during an Asset Bundle export job.</p>",
+      "refs": {
+        "AssetBundleExportJobWarningList$member": null
+      }
+    },
+    "AssetBundleExportJobWarningList": {
+      "base": null,
+      "refs": {
+        "DescribeAssetBundleExportJobResponse$Warnings": "<p>An array of warning records that describe the analysis or dashboard that is exported. This array includes UI errors that can be skipped during the validation process.</p> <p>This property only appears if <code>StrictModeForAllResources</code> in <code>ValidationStrategy</code> is set to <code>FALSE</code>.</p>"
+      }
+    },
     "AssetBundleImportBodyBlob": {
       "base": null,
       "refs": {
@@ -910,6 +937,30 @@
         "AssetBundleImportJobOverrideParameters$Analyses": "<p>A list of overrides for any <code>Analysis</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
+    "AssetBundleImportJobAnalysisOverridePermissions": {
+      "base": "<p>An object that contains a list of permissions to be applied to a list of analysis IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobAnalysisOverridePermissionsList$member": null
+      }
+    },
+    "AssetBundleImportJobAnalysisOverridePermissionsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverridePermissions$Analyses": "<p>A list of permissions overrides for any <code>Analysis</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobAnalysisOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of analysis IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobAnalysisOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobAnalysisOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$Analyses": "<p>A list of tag overrides for any <code>Analysis</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
     "AssetBundleImportJobDashboardOverrideParameters": {
       "base": "<p>The override parameters for a single dashboard that is being imported.</p>",
       "refs": {
@@ -922,6 +973,30 @@
         "AssetBundleImportJobOverrideParameters$Dashboards": "<p>A list of overrides for any <code>Dashboard</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
+    "AssetBundleImportJobDashboardOverridePermissions": {
+      "base": "<p>An object that contains a list of permissions to be applied to a list of dashboard IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDashboardOverridePermissionsList$member": null
+      }
+    },
+    "AssetBundleImportJobDashboardOverridePermissionsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverridePermissions$Dashboards": "<p>A list of permissions overrides for any <code>Dashboard</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDashboardOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of dashboard IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDashboardOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobDashboardOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$Dashboards": "<p>A list of tag overrides for any <code>Dashboard</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
     "AssetBundleImportJobDataSetOverrideParameters": {
       "base": "<p>The override parameters for a single dataset that is being imported.</p>",
       "refs": {
@@ -932,6 +1007,30 @@
       "base": null,
       "refs": {
         "AssetBundleImportJobOverrideParameters$DataSets": "<p>A list of overrides for any <code>DataSet</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSetOverridePermissions": {
+      "base": "<p>An object that contains a list of permissions to be applied to a list of dataset IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSetOverridePermissionsList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSetOverridePermissionsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverridePermissions$DataSets": "<p>A list of permissions overrides for any <code>DataSet</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSetOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of dataset IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSetOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSetOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$DataSets": "<p>A list of tag overrides for any <code>DataSet</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
     "AssetBundleImportJobDataSourceCredentialPair": {
@@ -958,6 +1057,30 @@
         "AssetBundleImportJobOverrideParameters$DataSources": "<p> A list of overrides for any <code>DataSource</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
+    "AssetBundleImportJobDataSourceOverridePermissions": {
+      "base": "<p>An object that contains a list of permissions to be applied to a list of data source IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSourceOverridePermissionsList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSourceOverridePermissionsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverridePermissions$DataSources": "<p>A list of permissions overrides for any <code>DataSource</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of data source IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobDataSourceOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobDataSourceOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$DataSources": "<p>A list of tag overrides for any <code>DataSource</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
     "AssetBundleImportJobError": {
       "base": "<p>Describes an error that occurred within an Asset Bundle import execution.</p>",
       "refs": {
@@ -974,8 +1097,29 @@
     "AssetBundleImportJobOverrideParameters": {
       "base": "<p>A list of overrides that modify the asset bundle resource configuration before the resource is imported.</p>",
       "refs": {
-        "DescribeAssetBundleImportJobResponse$OverrideParameters": "<p>Optional overrides to be applied to the resource configuration before import.</p>",
-        "StartAssetBundleImportJobRequest$OverrideParameters": "<p>Optional overrides to be applied to the resource configuration before import.</p>"
+        "DescribeAssetBundleImportJobResponse$OverrideParameters": "<p>Optional overrides that are applied to the resource configuration before import.</p>",
+        "StartAssetBundleImportJobRequest$OverrideParameters": "<p>Optional overrides that are applied to the resource configuration before import.</p>"
+      }
+    },
+    "AssetBundleImportJobOverridePermissions": {
+      "base": "<p>A structure that contains the override permission configurations that modify the permissions for specified resources before the resource is imported.</p>",
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$OverridePermissions": "<p>Optional permission overrides that are applied to the resource configuration before import.</p>",
+        "StartAssetBundleImportJobRequest$OverridePermissions": "<p>Optional permission overrides that are applied to the resource configuration before import.</p>"
+      }
+    },
+    "AssetBundleImportJobOverrideTags": {
+      "base": "<p>A structure that contains the override tag configuration that modify the tags that are assigned to specified resources before the resource is imported.</p>",
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$OverrideTags": "<p>Optional tag overrides that are applied to the resource configuration before import.</p>",
+        "StartAssetBundleImportJobRequest$OverrideTags": "<p>Optional tag overrides that are applied to the resource configuration before import.</p>"
+      }
+    },
+    "AssetBundleImportJobOverrideValidationStrategy": {
+      "base": "<p>An optional parameter that overrides the validation strategy for all analyses and dashboards before the resource is imported.</p>",
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$OverrideValidationStrategy": "<p>An optional validation strategy override for all analyses and dashboards to be applied to the resource configuration before import.</p>",
+        "StartAssetBundleImportJobRequest$OverrideValidationStrategy": "<p>An optional validation strategy override for all analyses and dashboards that is applied to the resource configuration before import. </p>"
       }
     },
     "AssetBundleImportJobRefreshScheduleOverrideParameters": {
@@ -1027,6 +1171,30 @@
         "AssetBundleImportJobOverrideParameters$Themes": "<p>A list of overrides for any <code>Theme</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
+    "AssetBundleImportJobThemeOverridePermissions": {
+      "base": "<p>An object that contains a list of permissions to be applied to a list of theme IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobThemeOverridePermissionsList$member": null
+      }
+    },
+    "AssetBundleImportJobThemeOverridePermissionsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverridePermissions$Themes": "<p>A list of permissions overrides for any <code>Theme</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobThemeOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of theme IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobThemeOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobThemeOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$Themes": "<p>A list of tag overrides for any <code>Theme</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
     "AssetBundleImportJobVPCConnectionOverrideParameters": {
       "base": "<p>The override parameters for a single VPC connection that is imported.</p>",
       "refs": {
@@ -1037,6 +1205,18 @@
       "base": null,
       "refs": {
         "AssetBundleImportJobOverrideParameters$VPCConnections": "<p>A list of overrides for any <code>VPCConnection</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobVPCConnectionOverrideTags": {
+      "base": "<p>An object that contains a list of tags to be assigned to a list of VPC connection IDs.</p>",
+      "refs": {
+        "AssetBundleImportJobVPCConnectionOverrideTagsList$member": null
+      }
+    },
+    "AssetBundleImportJobVPCConnectionOverrideTagsList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobOverrideTags$VPCConnections": "<p>A list of tag overrides for any <code>VPCConnection</code> resources that are present in the asset bundle that is imported.</p>"
       }
     },
     "AssetBundleImportSource": {
@@ -1051,6 +1231,12 @@
         "DescribeAssetBundleImportJobResponse$AssetBundleImportSource": "<p>The source of the asset bundle zip file that contains the data that is imported by the job.</p>"
       }
     },
+    "AssetBundlePrincipalList": {
+      "base": null,
+      "refs": {
+        "AssetBundleResourcePermissions$Principals": "<p>A list of principals to grant permissions on.</p>"
+      }
+    },
     "AssetBundleResourceArns": {
       "base": null,
       "refs": {
@@ -1058,14 +1244,50 @@
         "StartAssetBundleExportJobRequest$ResourceArns": "<p>An array of resource ARNs to export. The following resources are supported.</p> <ul> <li> <p> <code>Analysis</code> </p> </li> <li> <p> <code>Dashboard</code> </p> </li> <li> <p> <code>DataSet</code> </p> </li> <li> <p> <code>DataSource</code> </p> </li> <li> <p> <code>RefreshSchedule</code> </p> </li> <li> <p> <code>Theme</code> </p> </li> <li> <p> <code>VPCConnection</code> </p> </li> </ul> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>"
       }
     },
+    "AssetBundleResourceLinkSharingConfiguration": {
+      "base": "<p>A structure that contains the configuration of a shared link to an Amazon QuickSight dashboard.</p>",
+      "refs": {
+        "AssetBundleImportJobDashboardOverridePermissions$LinkSharingConfiguration": "<p>A structure that contains the link sharing configurations that you want to apply overrides to.</p>"
+      }
+    },
+    "AssetBundleResourcePermissions": {
+      "base": "<p>A structure that contains the permissions for the resource that you want to override in an asset bundle import job.</p>",
+      "refs": {
+        "AssetBundleImportJobAnalysisOverridePermissions$Permissions": "<p>A list of permissions for the analyses that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDashboardOverridePermissions$Permissions": "<p>A list of permissions for the dashboards that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDataSetOverridePermissions$Permissions": "<p>A list of permissions for the datasets that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDataSourceOverridePermissions$Permissions": "<p>A list of permissions for the data source that you want to apply overrides to.</p>",
+        "AssetBundleImportJobThemeOverridePermissions$Permissions": "<p>A list of permissions for the themes that you want to apply overrides to.</p>",
+        "AssetBundleResourceLinkSharingConfiguration$Permissions": "<p>A list of link sharing permissions for the dashboards that you want to apply overrides to.</p>"
+      }
+    },
+    "AssetBundleRestrictiveResourceId": {
+      "base": null,
+      "refs": {
+        "AssetBundleRestrictiveResourceIdList$member": null
+      }
+    },
+    "AssetBundleRestrictiveResourceIdList": {
+      "base": null,
+      "refs": {
+        "AssetBundleImportJobAnalysisOverridePermissions$AnalysisIds": "<p>A list of analysis IDs that you want to apply overrides to. You can use <code>*</code> to override all analyses in this asset bundle.</p>",
+        "AssetBundleImportJobAnalysisOverrideTags$AnalysisIds": "<p>A list of analysis IDs that you want to apply overrides to. You can use <code>*</code> to override all analyses in this asset bundle.</p>",
+        "AssetBundleImportJobDashboardOverridePermissions$DashboardIds": "<p>A list of dashboard IDs that you want to apply overrides to. You can use <code>*</code> to override all dashboards in this asset bundle.</p>",
+        "AssetBundleImportJobDashboardOverrideTags$DashboardIds": "<p>A list of dashboard IDs that you want to apply overrides to. You can use <code>*</code> to override all dashboards in this asset bundle.</p>",
+        "AssetBundleImportJobDataSetOverridePermissions$DataSetIds": "<p>A list of dataset IDs that you want to apply overrides to. You can use <code>*</code> to override all datasets in this asset bundle.</p>",
+        "AssetBundleImportJobDataSetOverrideTags$DataSetIds": "<p>A list of dataset IDs that you want to apply overrides to. You can use <code>*</code> to override all datasets in this asset bundle.</p>",
+        "AssetBundleImportJobDataSourceOverridePermissions$DataSourceIds": "<p>A list of data source IDs that you want to apply overrides to. You can use <code>*</code> to override all data sources in this asset bundle.</p>",
+        "AssetBundleImportJobDataSourceOverrideTags$DataSourceIds": "<p>A list of data source IDs that you want to apply overrides to. You can use <code>*</code> to override all data sources in this asset bundle.</p>",
+        "AssetBundleImportJobThemeOverridePermissions$ThemeIds": "<p>A list of theme IDs that you want to apply overrides to. You can use <code>*</code> to override all themes in this asset bundle.</p>",
+        "AssetBundleImportJobThemeOverrideTags$ThemeIds": "<p>A list of theme IDs that you want to apply overrides to. You can use <code>*</code> to override all themes in this asset bundle.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideTags$VPCConnectionIds": "<p>A list of VPC connection IDs that you want to apply overrides to. You can use <code>*</code> to override all VPC connections in this asset bundle.</p>"
+      }
+    },
     "AssetOptions": {
       "base": "<p>An array of analysis level configurations.</p>",
       "refs": {
-        "Analysis$Options": null,
         "AnalysisDefinition$Options": "<p>An array of option definitions for an analysis.</p>",
-        "DashboardVersion$Options": null,
         "DashboardVersionDefinition$Options": "<p>An array of option definitions for a dashboard.</p>",
-        "TemplateVersion$Options": null,
         "TemplateVersionDefinition$Options": "<p>An array of option definitions for a template.</p>"
       }
     },
@@ -1108,7 +1330,7 @@
     "AuthenticationMethodOption": {
       "base": null,
       "refs": {
-        "CreateAccountSubscriptionRequest$AuthenticationMethod": "<p>The method that you want to use to authenticate your Amazon QuickSight account. Currently, the valid values for this parameter are <code>IAM_AND_QUICKSIGHT</code>, <code>IAM_ONLY</code>, and <code>ACTIVE_DIRECTORY</code>.</p> <p>If you choose <code>ACTIVE_DIRECTORY</code>, provide an <code>ActiveDirectoryName</code> and an <code>AdminGroup</code> associated with your Active Directory.</p>"
+        "CreateAccountSubscriptionRequest$AuthenticationMethod": "<p>The method that you want to use to authenticate your Amazon QuickSight account.</p> <p>If you choose <code>ACTIVE_DIRECTORY</code>, provide an <code>ActiveDirectoryName</code> and an <code>AdminGroup</code> associated with your Active Directory.</p> <p>If you choose <code>IAM_IDENTITY_CENTER</code>, provide an <code>AdminGroup</code> associated with your IAM Identity Center account.</p>"
       }
     },
     "AuthorSpecifiedAggregation": {
@@ -1145,6 +1367,7 @@
         "CreateIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create the Amazon QuickSight namespace in.</p>",
         "CreateRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "CreateRoleMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you creating an alias for.</p>",
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme for the new theme alias.</p>",
@@ -1166,6 +1389,8 @@
         "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The Amazon Web Services account ID where you want to delete the IAM policy assignment.</p>",
         "DeleteNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete the Amazon QuickSight namespace from.</p>",
         "DeleteRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DeleteRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "DeleteRoleMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the item to delete.</p>",
         "DeleteTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're deleting.</p>",
         "DeleteThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme alias to delete.</p>",
@@ -1208,6 +1433,7 @@
         "DescribeIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "DescribeNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.</p>",
         "DescribeRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DescribeRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DescribeTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're describing.</p>",
         "DescribeTemplateDefinitionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template. You must be using the Amazon Web Services account that the template is in.</p>",
         "DescribeTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're describing.</p>",
@@ -1241,6 +1467,7 @@
         "ListIngestionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListNamespacesRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespaces that you want to list.</p>",
         "ListRefreshSchedulesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "ListRoleMembershipsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListTemplateAliasesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template aliases that you're listing.</p>",
         "ListTemplateVersionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the templates that you're listing.</p>",
         "ListTemplatesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the templates that you're listing.</p>",
@@ -1284,6 +1511,7 @@
         "UpdateIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdatePublicSharingSettingsRequest$AwsAccountId": "<p>The Amazon Web Services account ID associated with your Amazon QuickSight subscription.</p>",
         "UpdateRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "UpdateRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're updating.</p>",
@@ -1455,6 +1683,12 @@
         "GeospatialMapStyleOptions$BaseMapStyle": "<p>The base map style of the geospatial map.</p>"
       }
     },
+    "BigQueryParameters": {
+      "base": "<p>The parameters that are required to connect to a Google BigQuery data source.</p>",
+      "refs": {
+        "DataSourceParameters$BigQueryParameters": "<p>The parameters that are required to connect to a Google BigQuery data source.</p>"
+      }
+    },
     "BinCountLimit": {
       "base": null,
       "refs": {
@@ -1516,6 +1750,10 @@
         "AccountSettings$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubsctiption</code> request. A <code>False</code> value will allow the ccount to be deleted. </p>",
         "AssetBundleExportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
         "AssetBundleExportJobSummary$IncludeAllDependencies": "<p>The flag that determines the inclusion of resource dependencies in the returned asset bundle.</p>",
+        "AssetBundleExportJobSummary$IncludePermissions": "<p>The flag that determines the inclusion of permissions associated with each resource ARN.</p>",
+        "AssetBundleExportJobSummary$IncludeTags": "<p>The flag that determines the inclusion of tags associated with each resource ARN.</p>",
+        "AssetBundleExportJobValidationStrategy$StrictModeForAllResources": "<p>A Boolean value that indicates whether to export resources under strict or lenient mode.</p>",
+        "AssetBundleImportJobOverrideValidationStrategy$StrictModeForAllResources": "<p>A Boolean value that indicates whether to import all analyses and dashboards under strict or lenient mode.</p>",
         "BookmarksConfigurations$Enabled": "<p>A Boolean value that determines whether a user can bookmark an embedded dashboard.</p>",
         "BorderStyle$Show": "<p>The option to enable display of borders for visuals.</p>",
         "DataSetSummary$RowLevelPermissionTagConfigurationApplied": "<p>Whether or not the row level permission tags are applied.</p>",
@@ -1524,6 +1762,8 @@
         "DataSetUsageConfiguration$DisableUseAsImportedSource": "<p>An option that controls whether a child dataset that's stored in QuickSight can use this dataset as a source.</p>",
         "DeleteAnalysisRequest$ForceDeleteWithoutRecovery": "<p>This option defaults to the value <code>NoForceDeleteWithoutRecovery</code>. To immediately delete the analysis, add the <code>ForceDeleteWithoutRecovery</code> option. You can't restore an analysis after it's deleted. </p>",
         "DescribeAssetBundleExportJobResponse$IncludeAllDependencies": "<p>The include dependencies flag.</p>",
+        "DescribeAssetBundleExportJobResponse$IncludePermissions": "<p>The include permissions flag.</p>",
+        "DescribeAssetBundleExportJobResponse$IncludeTags": "<p>The include tags flag.</p>",
         "DisplayFormatOptions$UseBlankCellFormat": "<p>A Boolean value that indicates whether to use blank cell format.</p>",
         "DisplayFormatOptions$UseGrouping": "<p>A Boolean value that indicates whether to use grouping.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
@@ -1538,6 +1778,8 @@
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and data source resource that is a dependency of the dashboard is also exported.</p>",
+        "StartAssetBundleExportJobRequest$IncludePermissions": "<p>A Boolean that determines whether all permissions for each resource ARN are exported with the job. If you set <code>IncludePermissions</code> to <code>TRUE</code>, any permissions associated with each resource are exported. </p>",
+        "StartAssetBundleExportJobRequest$IncludeTags": "<p> A Boolean that determines whether all tags for each resource ARN are exported with the job. If you set <code>IncludeTags</code> to <code>TRUE</code>, any tags associated with each resource are exported.</p>",
         "StatePersistenceConfigurations$Enabled": "<p>Determines if a Amazon QuickSight dashboard's state persistence settings are turned on or off.</p>",
         "TimeRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "TimeRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
@@ -2498,6 +2740,16 @@
       "refs": {
       }
     },
+    "CreateRoleMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRoleMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateTemplateAliasRequest": {
       "base": null,
       "refs": {
@@ -3088,6 +3340,12 @@
       "refs": {
         "DescribeDataSetRefreshPropertiesResponse$DataSetRefreshProperties": "<p>The dataset refresh properties.</p>",
         "PutDataSetRefreshPropertiesRequest$DataSetRefreshProperties": "<p>The dataset refresh properties.</p>"
+      }
+    },
+    "DataSetRegion": {
+      "base": null,
+      "refs": {
+        "BigQueryParameters$DataSetRegion": "<p>The storage location where you create a Google BigQuery data source.</p>"
       }
     },
     "DataSetSchema": {
@@ -3718,6 +3976,26 @@
       "refs": {
       }
     },
+    "DeleteRoleCustomPermissionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoleCustomPermissionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoleMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoleMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteTemplateAliasRequest": {
       "base": null,
       "refs": {
@@ -4090,6 +4368,16 @@
       }
     },
     "DescribeRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRoleCustomPermissionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRoleCustomPermissionResponse": {
       "base": null,
       "refs": {
       }
@@ -5508,8 +5796,10 @@
       "refs": {
         "CreateGroupMembershipRequest$GroupName": "<p>The name of the group that you want to add the user to.</p>",
         "CreateGroupRequest$GroupName": "<p>A name for the group that you want to create.</p>",
+        "CreateRoleMembershipRequest$MemberName": "<p>The name of the group that you want to add to the role.</p>",
         "DeleteGroupMembershipRequest$GroupName": "<p>The name of the group that you want to delete the user from.</p>",
         "DeleteGroupRequest$GroupName": "<p>The name of the group that you want to delete.</p>",
+        "DeleteRoleMembershipRequest$MemberName": "<p>The name of the group.</p>",
         "DescribeGroupMembershipRequest$GroupName": "<p>The name of the group that you want to search.</p>",
         "DescribeGroupRequest$GroupName": "<p>The name of the group that you want to describe.</p>",
         "Group$GroupName": "<p>The name of the group.</p>",
@@ -5532,9 +5822,10 @@
     "GroupsList": {
       "base": null,
       "refs": {
-        "CreateAccountSubscriptionRequest$AdminGroup": "<p>The admin group associated with your Active Directory. This field is required if <code>ACTIVE_DIRECTORY</code> is the selected authentication method of the new Amazon QuickSight account. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
-        "CreateAccountSubscriptionRequest$AuthorGroup": "<p>The author group associated with your Active Directory. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
-        "CreateAccountSubscriptionRequest$ReaderGroup": "<p>The reader group associated with your Active Direcrtory. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+        "CreateAccountSubscriptionRequest$AdminGroup": "<p>The admin group associated with your Active Directory or IAM Identity Center account. This field is required if <code>ACTIVE_DIRECTORY</code> or <code>IAM_IDENTITY_CENTER</code> is the selected authentication method of the new Amazon QuickSight account.</p> <p>For more information about using IAM Identity Center in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html\">Using IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
+        "CreateAccountSubscriptionRequest$AuthorGroup": "<p>The author group associated with your Active Directory or IAM Identity Center account.</p> <p>For more information about using IAM Identity Center in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html\">Using IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
+        "CreateAccountSubscriptionRequest$ReaderGroup": "<p>The reader group associated with your Active Directory or IAM Identity Center account.</p> <p>For more information about using IAM Identity Center in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html\">Using IAM Identity Center with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide. For more information about using Active Directory in Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html\">Using Active Directory with Amazon QuickSight Enterprise Edition</a> in the Amazon QuickSight User Guide.</p>",
+        "ListRoleMembershipsResponse$MembersList": "<p>The list of groups associated with a role</p>"
       }
     },
     "GrowthRateComputation": {
@@ -6419,6 +6710,7 @@
     "LinkSharingConfiguration": {
       "base": "<p>A structure that contains the configuration of a shareable link to the dashboard.</p>",
       "refs": {
+        "CreateDashboardRequest$LinkSharingConfiguration": "<p>A structure that contains the permissions of a shareable link to the dashboard.</p>",
         "DescribeDashboardPermissionsResponse$LinkSharingConfiguration": "<p>A structure that contains the configuration of a shareable link that grants access to the dashboard. Your users can use the link to view and interact with the dashboard, if the dashboard has been shared with them. For more information about sharing dashboards, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/sharing-a-dashboard.html\">Sharing Dashboards</a>.</p>",
         "UpdateDashboardPermissionsResponse$LinkSharingConfiguration": "<p>Updates the permissions of a shared link to an Amazon QuickSight dashboard.</p>"
       }
@@ -6599,6 +6891,16 @@
       }
     },
     "ListRefreshSchedulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRoleMembershipsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRoleMembershipsResponse": {
       "base": null,
       "refs": {
       }
@@ -6877,6 +7179,7 @@
         "ListIAMPolicyAssignmentsForUserRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListIAMPolicyAssignmentsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListNamespacesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListRoleMembershipsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListTemplateAliasesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListTemplateVersionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListTemplatesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
@@ -7058,11 +7361,14 @@
         "CreateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "CreateNamespaceRequest$Namespace": "<p>The name that you want to use to describe the new namespace.</p>",
         "CreateNamespaceResponse$Name": "<p>The name of the new namespace that you created.</p>",
+        "CreateRoleMembershipRequest$Namespace": "<p>The namespace that the role belongs to.</p>",
         "DeleteAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you're deleting the customizations from.</p>",
         "DeleteGroupMembershipRequest$Namespace": "<p>The namespace of the group that you want to remove a user from.</p>",
         "DeleteGroupRequest$Namespace": "<p>The namespace of the group that you want to delete.</p>",
         "DeleteIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "DeleteNamespaceRequest$Namespace": "<p>The namespace that you want to delete.</p>",
+        "DeleteRoleCustomPermissionRequest$Namespace": "<p>The namespace that includes the role.</p>",
+        "DeleteRoleMembershipRequest$Namespace": "<p>The namespace that contains the role.</p>",
         "DeleteUserByPrincipalIdRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DeleteUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DescribeAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you want to describe Amazon QuickSight customizations for.</p>",
@@ -7073,6 +7379,7 @@
         "DescribeGroupRequest$Namespace": "<p>The namespace of the group that you want described.</p>",
         "DescribeIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "DescribeNamespaceRequest$Namespace": "<p>The namespace that you want to describe.</p>",
+        "DescribeRoleCustomPermissionRequest$Namespace": "<p>The namespace that contains the role.</p>",
         "DescribeUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "GenerateEmbedUrlForAnonymousUserRequest$Namespace": "<p>The Amazon QuickSight namespace that the anonymous user virtually belongs to. If you are not using an Amazon QuickSight custom namespace, set this to <code>default</code>.</p>",
         "GetDashboardEmbedUrlRequest$Namespace": "<p>The Amazon QuickSight namespace that contains the dashboard IDs in this request. If you're not using a custom namespace, set <code>Namespace = default</code>.</p>",
@@ -7080,6 +7387,7 @@
         "ListGroupsRequest$Namespace": "<p>The namespace that you want a list of groups from.</p>",
         "ListIAMPolicyAssignmentsForUserRequest$Namespace": "<p>The namespace of the assignment.</p>",
         "ListIAMPolicyAssignmentsRequest$Namespace": "<p>The namespace for the assignments.</p>",
+        "ListRoleMembershipsRequest$Namespace": "<p>The namespace that includes the role.</p>",
         "ListUserGroupsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "ListUsersRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "NamespaceInfoV2$Name": "<p>The name of the error.</p>",
@@ -7091,6 +7399,7 @@
         "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. IAM users that register for the first time with Amazon QuickSight provide an email address that becomes associated with the default namespace. </p>",
         "UpdateGroupRequest$Namespace": "<p>The namespace of the group that you want to update.</p>",
         "UpdateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace of the assignment.</p>",
+        "UpdateRoleCustomPermissionRequest$Namespace": "<p>The namespace that contains the role that you want to update.</p>",
         "UpdateUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>"
       }
     },
@@ -7189,6 +7498,7 @@
         "AnalysisError$Message": "<p>The message associated with the analysis error.</p>",
         "AssetBundleExportJobError$Type": "<p>The specific error type of the error that occurred.</p>",
         "AssetBundleExportJobError$Message": "<p>A description of the error.</p>",
+        "AssetBundleExportJobWarning$Message": "<p>A description of the warning.</p>",
         "AssetBundleImportJobError$Type": "<p>The specific error type or the error that occurred.</p>",
         "AssetBundleImportJobError$Message": "<p>A description of the error.</p>",
         "DashboardError$Message": "<p>Message.</p>",
@@ -8018,6 +8328,7 @@
     "Principal": {
       "base": null,
       "refs": {
+        "AssetBundlePrincipalList$member": null,
         "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p> </li> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p> </li> <li> <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across Amazon Web Services accounts. (This is less common.) </p> </li> </ul>"
       }
     },
@@ -8031,6 +8342,12 @@
       "base": "<p>The options that determine the presentation of the progress bar of a KPI visual.</p>",
       "refs": {
         "KPIOptions$ProgressBar": "<p>The options that determine the presentation of the progress bar of a KPI visual.</p>"
+      }
+    },
+    "ProjectId": {
+      "base": null,
+      "refs": {
+        "BigQueryParameters$ProjectId": "<p>The Google Cloud Platform project ID where your datasource was created.</p>"
       }
     },
     "ProjectOperation": {
@@ -8627,6 +8944,17 @@
         "UpdateFolderResponse$FolderId": "<p>The ID of the folder.</p>"
       }
     },
+    "Role": {
+      "base": null,
+      "refs": {
+        "CreateRoleMembershipRequest$Role": "<p>The role that you want to add a group to.</p>",
+        "DeleteRoleCustomPermissionRequest$Role": "<p>The role that you want to remove permissions from.</p>",
+        "DeleteRoleMembershipRequest$Role": "<p>The role that you want to remove permissions from.</p>",
+        "DescribeRoleCustomPermissionRequest$Role": "<p>The name of the role whose permissions you want described.</p>",
+        "ListRoleMembershipsRequest$Role": "<p>The name of the role.</p>",
+        "UpdateRoleCustomPermissionRequest$Role": "<p>The name of role tht you want to update.</p>"
+      }
+    },
     "RoleArn": {
       "base": null,
       "refs": {
@@ -8641,7 +8969,9 @@
     "RoleName": {
       "base": null,
       "refs": {
+        "DescribeRoleCustomPermissionResponse$CustomPermissionsName": "<p>The name of the custom permission that is described.</p>",
         "RegisterUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
+        "UpdateRoleCustomPermissionRequest$CustomPermissionsName": "<p>The name of the custom permission that you want to update the role with.</p>",
         "UpdateUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
         "User$CustomPermissionsName": "<p>The custom permissions profile associated with this user.</p>"
       }
@@ -9091,6 +9421,8 @@
     "SensitiveS3Uri": {
       "base": null,
       "refs": {
+        "AssetBundleImportSourceDescription$Body": "<p>An HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for five minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
+        "DescribeAssetBundleExportJobResponse$DownloadUrl": "<p>The URL to download the exported asset bundle data from.</p> <p>This URL is available only after the job has succeeded. This URL is valid for 5 minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed.</p> <p>The downloaded asset bundle is a zip file named <code>assetbundle-{jobId}.qs</code>. The file has a <code>.qs</code> extension.</p> <p>This URL can't be used in a <code>StartAssetBundleImportJob</code> API call and should only be used for download purposes.</p>",
         "SnapshotJobS3Result$S3Uri": "<p>The Amazon S3 Uri.</p>"
       }
     },
@@ -10010,6 +10342,7 @@
         "CreateIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateRoleMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10031,6 +10364,8 @@
         "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteRoleCustomPermissionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteRoleMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10068,6 +10403,7 @@
         "DescribeIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "DescribeNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeRoleCustomPermissionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateDefinitionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10101,6 +10437,7 @@
         "ListIngestionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListNamespacesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListRefreshSchedulesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListRoleMembershipsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTagsForResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplateAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplateVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10145,6 +10482,7 @@
         "UpdateIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "UpdatePublicSharingSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateRoleCustomPermissionResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10174,7 +10512,6 @@
         "AnalysisSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example <code>\"Value\"</code>. An example is <code>\"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
         "AssetBundleImportJobRefreshScheduleOverrideParameters$ScheduleId": "<p>A partial identifier for the specific <code>RefreshSchedule</code> resource being overridden. This structure is used together with the <code>DataSetId</code> structure.</p>",
         "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
-        "AssetBundleImportSourceDescription$Body": "<p>An HTTPS download URL for the provided asset bundle that you optionally provided at the start of the import job. This URL is valid for five minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed. The downloaded asset bundle is a <code>.qs</code> zip file.</p>",
         "AssetOptions$Timezone": "<p>Determines the timezone for the analysis.</p>",
         "AttributeAggregationFunction$ValueForMultipleValues": "<p>Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple values for the field used by the aggregation, the value for this property will be returned instead. Defaults to '*'.</p>",
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
@@ -10218,6 +10555,7 @@
         "CreateNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
+        "CreateRoleMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10247,6 +10585,8 @@
         "DeleteRefreshScheduleRequest$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "DeleteRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
+        "DeleteRoleCustomPermissionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteRoleMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10264,7 +10604,6 @@
         "DescribeAnalysisDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "DescribeAssetBundleExportJobResponse$DownloadUrl": "<p>The URL to download the exported asset bundle data from.</p> <p>This URL is available only after the job has succeeded. This URL is valid for 5 minutes after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL if needed.</p> <p>The downloaded asset bundle is a zip file named <code>assetbundle-{jobId}.qs</code>. The file has a <code>.qs</code> extension.</p> <p>This URL can't be used in a <code>StartAssetBundleImportJob</code> API call and should only be used for download purposes.</p>",
         "DescribeDashboardDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10289,6 +10628,7 @@
         "DescribeNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeRefreshScheduleRequest$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "DescribeRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeRoleCustomPermissionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10380,6 +10720,9 @@
         "ListNamespacesResponse$NextToken": "<p>A unique pagination token that can be used in a subsequent request. Receiving <code>NextToken</code> in your response inticates that there is more data that can be returned. To receive the data, make another <code>ListNamespaces</code> API call with the returned token to retrieve the next page of data. Each token is valid for 24 hours. If you try to make a <code>ListNamespaces</code> API call with an expired token, you will receive a <code>HTTP 400 InvalidNextTokenException</code> error.</p>",
         "ListNamespacesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListRefreshSchedulesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListRoleMembershipsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListRoleMembershipsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListRoleMembershipsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTagsForResourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTemplateAliasesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTemplateAliasesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10515,6 +10858,7 @@
         "UpdatePublicSharingSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
+        "UpdateRoleCustomPermissionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10958,6 +11302,12 @@
     "TagList": {
       "base": null,
       "refs": {
+        "AssetBundleImportJobAnalysisOverrideTags$Tags": "<p>A list of tags for the analyses that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDashboardOverrideTags$Tags": "<p>A list of tags for the dashboards that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDataSetOverrideTags$Tags": "<p>A list of tags for the datasets that you want to apply overrides to.</p>",
+        "AssetBundleImportJobDataSourceOverrideTags$Tags": "<p>A list of tags for the data source that you want to apply overrides to.</p>",
+        "AssetBundleImportJobThemeOverrideTags$Tags": "<p>A list of tags for the themes that you want to apply overrides to.</p>",
+        "AssetBundleImportJobVPCConnectionOverrideTags$Tags": "<p>A list of tags for the VPC connections that you want to apply overrides to.</p>",
         "CreateAccountCustomizationRequest$Tags": "<p>A list of the tags that you want to attach to this resource.</p>",
         "CreateAnalysisRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the analysis.</p>",
         "CreateDashboardRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dashboard.</p>",
@@ -12084,6 +12434,16 @@
         "UpdateTopicPermissionsRequest$RevokePermissions": "<p>The resource permissions that you want to revoke from the topic.</p>"
       }
     },
+    "UpdateRoleCustomPermissionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRoleCustomPermissionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateTemplateAliasRequest": {
       "base": null,
       "refs": {
@@ -12307,7 +12667,7 @@
     "ValidationStrategyMode": {
       "base": null,
       "refs": {
-        "ValidationStrategy$Mode": "<p>The mode of validation for the asset to be creaed or updated. When you set this value to <code>STRICT</code>, strict validation for every error is enforced. When you set this value to <code>LENIENT</code>, validation is skipped for specific UI errors.</p>"
+        "ValidationStrategy$Mode": "<p>The mode of validation for the asset to be created or updated. When you set this value to <code>STRICT</code>, strict validation for every error is enforced. When you set this value to <code>LENIENT</code>, validation is skipped for specific UI errors.</p>"
       }
     },
     "ValueWhenUnsetOption": {

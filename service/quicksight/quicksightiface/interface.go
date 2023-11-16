@@ -120,6 +120,10 @@ type QuickSightAPI interface {
 	CreateRefreshScheduleWithContext(aws.Context, *quicksight.CreateRefreshScheduleInput, ...request.Option) (*quicksight.CreateRefreshScheduleOutput, error)
 	CreateRefreshScheduleRequest(*quicksight.CreateRefreshScheduleInput) (*request.Request, *quicksight.CreateRefreshScheduleOutput)
 
+	CreateRoleMembership(*quicksight.CreateRoleMembershipInput) (*quicksight.CreateRoleMembershipOutput, error)
+	CreateRoleMembershipWithContext(aws.Context, *quicksight.CreateRoleMembershipInput, ...request.Option) (*quicksight.CreateRoleMembershipOutput, error)
+	CreateRoleMembershipRequest(*quicksight.CreateRoleMembershipInput) (*request.Request, *quicksight.CreateRoleMembershipOutput)
+
 	CreateTemplate(*quicksight.CreateTemplateInput) (*quicksight.CreateTemplateOutput, error)
 	CreateTemplateWithContext(aws.Context, *quicksight.CreateTemplateInput, ...request.Option) (*quicksight.CreateTemplateOutput, error)
 	CreateTemplateRequest(*quicksight.CreateTemplateInput) (*request.Request, *quicksight.CreateTemplateOutput)
@@ -203,6 +207,14 @@ type QuickSightAPI interface {
 	DeleteRefreshSchedule(*quicksight.DeleteRefreshScheduleInput) (*quicksight.DeleteRefreshScheduleOutput, error)
 	DeleteRefreshScheduleWithContext(aws.Context, *quicksight.DeleteRefreshScheduleInput, ...request.Option) (*quicksight.DeleteRefreshScheduleOutput, error)
 	DeleteRefreshScheduleRequest(*quicksight.DeleteRefreshScheduleInput) (*request.Request, *quicksight.DeleteRefreshScheduleOutput)
+
+	DeleteRoleCustomPermission(*quicksight.DeleteRoleCustomPermissionInput) (*quicksight.DeleteRoleCustomPermissionOutput, error)
+	DeleteRoleCustomPermissionWithContext(aws.Context, *quicksight.DeleteRoleCustomPermissionInput, ...request.Option) (*quicksight.DeleteRoleCustomPermissionOutput, error)
+	DeleteRoleCustomPermissionRequest(*quicksight.DeleteRoleCustomPermissionInput) (*request.Request, *quicksight.DeleteRoleCustomPermissionOutput)
+
+	DeleteRoleMembership(*quicksight.DeleteRoleMembershipInput) (*quicksight.DeleteRoleMembershipOutput, error)
+	DeleteRoleMembershipWithContext(aws.Context, *quicksight.DeleteRoleMembershipInput, ...request.Option) (*quicksight.DeleteRoleMembershipOutput, error)
+	DeleteRoleMembershipRequest(*quicksight.DeleteRoleMembershipInput) (*request.Request, *quicksight.DeleteRoleMembershipOutput)
 
 	DeleteTemplate(*quicksight.DeleteTemplateInput) (*quicksight.DeleteTemplateOutput, error)
 	DeleteTemplateWithContext(aws.Context, *quicksight.DeleteTemplateInput, ...request.Option) (*quicksight.DeleteTemplateOutput, error)
@@ -357,6 +369,10 @@ type QuickSightAPI interface {
 	DescribeRefreshSchedule(*quicksight.DescribeRefreshScheduleInput) (*quicksight.DescribeRefreshScheduleOutput, error)
 	DescribeRefreshScheduleWithContext(aws.Context, *quicksight.DescribeRefreshScheduleInput, ...request.Option) (*quicksight.DescribeRefreshScheduleOutput, error)
 	DescribeRefreshScheduleRequest(*quicksight.DescribeRefreshScheduleInput) (*request.Request, *quicksight.DescribeRefreshScheduleOutput)
+
+	DescribeRoleCustomPermission(*quicksight.DescribeRoleCustomPermissionInput) (*quicksight.DescribeRoleCustomPermissionOutput, error)
+	DescribeRoleCustomPermissionWithContext(aws.Context, *quicksight.DescribeRoleCustomPermissionInput, ...request.Option) (*quicksight.DescribeRoleCustomPermissionOutput, error)
+	DescribeRoleCustomPermissionRequest(*quicksight.DescribeRoleCustomPermissionInput) (*request.Request, *quicksight.DescribeRoleCustomPermissionOutput)
 
 	DescribeTemplate(*quicksight.DescribeTemplateInput) (*quicksight.DescribeTemplateOutput, error)
 	DescribeTemplateWithContext(aws.Context, *quicksight.DescribeTemplateInput, ...request.Option) (*quicksight.DescribeTemplateOutput, error)
@@ -534,6 +550,13 @@ type QuickSightAPI interface {
 	ListRefreshSchedules(*quicksight.ListRefreshSchedulesInput) (*quicksight.ListRefreshSchedulesOutput, error)
 	ListRefreshSchedulesWithContext(aws.Context, *quicksight.ListRefreshSchedulesInput, ...request.Option) (*quicksight.ListRefreshSchedulesOutput, error)
 	ListRefreshSchedulesRequest(*quicksight.ListRefreshSchedulesInput) (*request.Request, *quicksight.ListRefreshSchedulesOutput)
+
+	ListRoleMemberships(*quicksight.ListRoleMembershipsInput) (*quicksight.ListRoleMembershipsOutput, error)
+	ListRoleMembershipsWithContext(aws.Context, *quicksight.ListRoleMembershipsInput, ...request.Option) (*quicksight.ListRoleMembershipsOutput, error)
+	ListRoleMembershipsRequest(*quicksight.ListRoleMembershipsInput) (*request.Request, *quicksight.ListRoleMembershipsOutput)
+
+	ListRoleMembershipsPages(*quicksight.ListRoleMembershipsInput, func(*quicksight.ListRoleMembershipsOutput, bool) bool) error
+	ListRoleMembershipsPagesWithContext(aws.Context, *quicksight.ListRoleMembershipsInput, func(*quicksight.ListRoleMembershipsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*quicksight.ListTagsForResourceInput) (*quicksight.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *quicksight.ListTagsForResourceInput, ...request.Option) (*quicksight.ListTagsForResourceOutput, error)
@@ -755,6 +778,10 @@ type QuickSightAPI interface {
 	UpdateRefreshSchedule(*quicksight.UpdateRefreshScheduleInput) (*quicksight.UpdateRefreshScheduleOutput, error)
 	UpdateRefreshScheduleWithContext(aws.Context, *quicksight.UpdateRefreshScheduleInput, ...request.Option) (*quicksight.UpdateRefreshScheduleOutput, error)
 	UpdateRefreshScheduleRequest(*quicksight.UpdateRefreshScheduleInput) (*request.Request, *quicksight.UpdateRefreshScheduleOutput)
+
+	UpdateRoleCustomPermission(*quicksight.UpdateRoleCustomPermissionInput) (*quicksight.UpdateRoleCustomPermissionOutput, error)
+	UpdateRoleCustomPermissionWithContext(aws.Context, *quicksight.UpdateRoleCustomPermissionInput, ...request.Option) (*quicksight.UpdateRoleCustomPermissionOutput, error)
+	UpdateRoleCustomPermissionRequest(*quicksight.UpdateRoleCustomPermissionInput) (*request.Request, *quicksight.UpdateRoleCustomPermissionOutput)
 
 	UpdateTemplate(*quicksight.UpdateTemplateInput) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateWithContext(aws.Context, *quicksight.UpdateTemplateInput, ...request.Option) (*quicksight.UpdateTemplateOutput, error)
