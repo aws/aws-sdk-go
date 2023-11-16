@@ -48,6 +48,48 @@
       "limit_key": "MaxResults",
       "result_key": "Pools"
     },
+    "DescribeRegistrationAttachments": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationAttachments"
+    },
+    "DescribeRegistrationFieldDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationFieldDefinitions"
+    },
+    "DescribeRegistrationFieldValues": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationFieldValues"
+    },
+    "DescribeRegistrationSectionDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationSectionDefinitions"
+    },
+    "DescribeRegistrationTypeDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationTypeDefinitions"
+    },
+    "DescribeRegistrationVersions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationVersions"
+    },
+    "DescribeRegistrations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Registrations"
+    },
     "DescribeSenderIds": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -60,11 +102,23 @@
       "limit_key": "MaxResults",
       "result_key": "SpendLimits"
     },
+    "DescribeVerifiedDestinationNumbers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "VerifiedDestinationNumbers"
+    },
     "ListPoolOriginationIdentities": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "OriginationIdentities"
+    },
+    "ListRegistrationAssociations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "RegistrationAssociations"
     }
   }
 }

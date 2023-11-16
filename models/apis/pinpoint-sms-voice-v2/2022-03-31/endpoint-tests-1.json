@@ -1,36 +1,10 @@
 {
     "testCases": [
         {
-            "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.af-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "af-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.ap-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.ap-northeast-1.amazonaws.com"
+                    "url": "https://sms-voice.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -40,36 +14,10 @@
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-3 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.ap-northeast-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-3",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.ap-south-1.amazonaws.com"
+                    "url": "https://sms-voice.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +30,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.ap-southeast-1.amazonaws.com"
+                    "url": "https://sms-voice.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +43,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.ap-southeast-2.amazonaws.com"
+                    "url": "https://sms-voice.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +56,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.ca-central-1.amazonaws.com"
+                    "url": "https://sms-voice.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -121,7 +69,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.eu-central-1.amazonaws.com"
+                    "url": "https://sms-voice.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -131,36 +79,10 @@
             }
         },
         {
-            "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.eu-north-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-north-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.eu-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.eu-west-1.amazonaws.com"
+                    "url": "https://sms-voice.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +95,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.eu-west-2.amazonaws.com"
+                    "url": "https://sms-voice.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -183,119 +105,15 @@
             }
         },
         {
-            "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.eu-west-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-3",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region me-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.me-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "me-south-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.sa-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "sa-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-east-1.amazonaws.com"
+                    "url": "https://sms-voice.us-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.us-east-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-2",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-east-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-2",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -303,25 +121,12 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-west-2.amazonaws.com"
+                    "url": "https://sms-voice.us-west-2.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-west-2",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-2",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -329,7 +134,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.us-east-1.api.aws"
+                    "url": "https://sms-voice-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -339,10 +144,23 @@
             }
         },
         {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://sms-voice-fips.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-east-1.api.aws"
+                    "url": "https://sms-voice.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -352,36 +170,10 @@
             }
         },
         {
-            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.cn-north-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-north-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue.cn-northwest-1.amazonaws.com.cn"
-                }
-            },
-            "params": {
-                "Region": "cn-northwest-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://sms-voice-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -394,7 +186,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://sms-voice-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -407,7 +199,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://sms-voice.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -417,28 +209,15 @@
             }
         },
         {
-            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-gov-east-1.amazonaws.com"
+                    "url": "https://sms-voice.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
-                "Region": "us-gov-east-1",
+                "Region": "cn-north-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-gov-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -446,25 +225,12 @@
             "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-gov-west-1.amazonaws.com"
+                    "url": "https://sms-voice.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-gov-west-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://glue-fips.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -472,7 +238,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.us-gov-east-1.api.aws"
+                    "url": "https://sms-voice-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -482,16 +248,42 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://sms-voice-fips.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-gov-east-1.api.aws"
+                    "url": "https://sms-voice.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://sms-voice.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
             }
         },
         {
@@ -509,7 +301,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://sms-voice-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -533,7 +325,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://sms-voice.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -557,7 +349,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://sms-voice-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -581,7 +373,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://glue.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://sms-voice.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

@@ -1921,7 +1921,8 @@
     "ManifestLayout": {
       "enum": [
         "FULL",
-        "COMPACT"
+        "COMPACT",
+        "DRM_TOP_LEVEL_COMPACT"
       ],
       "type": "string"
     },

@@ -8328,6 +8328,17 @@
     "FunctionArn":{"type":"string"},
     "GenerationId":{"type":"string"},
     "GenericLongValue":{"type":"long"},
+    "GeoLocationTarget":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"TargetFieldName"},
+        "order":{"shape":"TargetFieldOrder"}
+      }
+    },
+    "GeoLocationsFilter":{
+      "type":"list",
+      "member":{"shape":"GeoLocationTarget"}
+    },
     "GetBehaviorModelTrainingSummariesRequest":{
       "type":"structure",
       "members":{
@@ -8824,7 +8835,8 @@
     "IndexingFilter":{
       "type":"structure",
       "members":{
-        "namedShadowNames":{"shape":"NamedShadowNamesFilter"}
+        "namedShadowNames":{"shape":"NamedShadowNamesFilter"},
+        "geoLocations":{"shape":"GeoLocationsFilter"}
       }
     },
     "InlineDocument":{"type":"string"},
@@ -12736,7 +12748,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z0-9:_-]+"
+      "pattern":"[$a-zA-Z0-9:_-]+"
     },
     "SigV4Authorization":{
       "type":"structure",
@@ -13139,6 +13151,14 @@
     "TargetAuditCheckNames":{
       "type":"list",
       "member":{"shape":"AuditCheckName"}
+    },
+    "TargetFieldName":{"type":"string"},
+    "TargetFieldOrder":{
+      "type":"string",
+      "enum":[
+        "LatLon",
+        "LonLat"
+      ]
     },
     "TargetSelection":{
       "type":"string",

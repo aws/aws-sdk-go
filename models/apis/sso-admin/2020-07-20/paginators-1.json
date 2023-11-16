@@ -18,11 +18,57 @@
       "limit_key": "MaxResults",
       "result_key": "AccountAssignments"
     },
+    "ListAccountAssignmentsForPrincipal": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "AccountAssignments"
+    },
     "ListAccountsForProvisionedPermissionSet": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "AccountIds"
+    },
+    "ListApplicationAccessScopes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Scopes"
+    },
+    "ListApplicationAssignments": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ApplicationAssignments"
+    },
+    "ListApplicationAssignmentsForPrincipal": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ApplicationAssignments"
+    },
+    "ListApplicationAuthenticationMethods": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "AuthenticationMethods"
+    },
+    "ListApplicationGrants": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "Grants"
+    },
+    "ListApplicationProviders": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ApplicationProviders"
+    },
+    "ListApplications": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Applications"
     },
     "ListCustomerManagedPolicyReferencesInPermissionSet": {
       "input_token": "NextToken",
@@ -64,6 +110,12 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "result_key": "Tags"
+    },
+    "ListTrustedTokenIssuers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "TrustedTokenIssuers"
     }
   }
 }

@@ -32,6 +32,25 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "CancelLifecycleExecution":{
+      "name":"CancelLifecycleExecution",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CancelLifecycleExecution"
+      },
+      "input":{"shape":"CancelLifecycleExecutionRequest"},
+      "output":{"shape":"CancelLifecycleExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "CreateComponent":{
       "name":"CreateComponent",
       "http":{
@@ -182,6 +201,27 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateLifecyclePolicy":{
+      "name":"CreateLifecyclePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CreateLifecyclePolicy"
+      },
+      "input":{"shape":"CreateLifecyclePolicyRequest"},
+      "output":{"shape":"CreateLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteComponent":{
       "name":"DeleteComponent",
       "http":{
@@ -303,6 +343,24 @@
         {"shape":"ClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceDependencyException"}
+      ]
+    },
+    "DeleteLifecyclePolicy":{
+      "name":"DeleteLifecyclePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/DeleteLifecyclePolicy"
+      },
+      "input":{"shape":"DeleteLifecyclePolicyRequest"},
+      "output":{"shape":"DeleteLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceDependencyException"}
@@ -486,6 +544,40 @@
       },
       "input":{"shape":"GetInfrastructureConfigurationRequest"},
       "output":{"shape":"GetInfrastructureConfigurationResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetLifecycleExecution":{
+      "name":"GetLifecycleExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetLifecycleExecution"
+      },
+      "input":{"shape":"GetLifecycleExecutionRequest"},
+      "output":{"shape":"GetLifecycleExecutionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetLifecyclePolicy":{
+      "name":"GetLifecyclePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetLifecyclePolicy"
+      },
+      "input":{"shape":"GetLifecyclePolicyRequest"},
+      "output":{"shape":"GetLifecyclePolicyResponse"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ClientException"},
@@ -800,6 +892,60 @@
         {"shape":"CallRateLimitExceededException"}
       ]
     },
+    "ListLifecycleExecutionResources":{
+      "name":"ListLifecycleExecutionResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecycleExecutionResources"
+      },
+      "input":{"shape":"ListLifecycleExecutionResourcesRequest"},
+      "output":{"shape":"ListLifecycleExecutionResourcesResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListLifecycleExecutions":{
+      "name":"ListLifecycleExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecycleExecutions"
+      },
+      "input":{"shape":"ListLifecycleExecutionsRequest"},
+      "output":{"shape":"ListLifecycleExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListLifecyclePolicies":{
+      "name":"ListLifecyclePolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListLifecyclePolicies"
+      },
+      "input":{"shape":"ListLifecyclePoliciesRequest"},
+      "output":{"shape":"ListLifecyclePoliciesResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -946,6 +1092,26 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "StartResourceStateUpdate":{
+      "name":"StartResourceStateUpdate",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/StartResourceStateUpdate"
+      },
+      "input":{"shape":"StartResourceStateUpdateRequest"},
+      "output":{"shape":"StartResourceStateUpdateResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -1030,6 +1196,26 @@
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "UpdateLifecyclePolicy":{
+      "name":"UpdateLifecyclePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/UpdateLifecyclePolicy"
+      },
+      "input":{"shape":"UpdateLifecyclePolicyRequest"},
+      "output":{"shape":"UpdateLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     }
   },
@@ -1128,6 +1314,26 @@
         "requestId":{"shape":"NonEmptyString"},
         "clientToken":{"shape":"ClientToken"},
         "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"}
+      }
+    },
+    "CancelLifecycleExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "lifecycleExecutionId",
+        "clientToken"
+      ],
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CancelLifecycleExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
       }
     },
     "ClientException":{
@@ -1617,6 +1823,38 @@
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
       }
     },
+    "CreateLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "executionRole",
+        "resourceType",
+        "policyDetails",
+        "resourceSelection",
+        "clientToken"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "clientToken":{"shape":"ClientToken"},
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
+      }
+    },
     "CvssScore":{
       "type":"structure",
       "members":{
@@ -1778,6 +2016,23 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
+      }
+    },
+    "DeleteLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":["lifecyclePolicyArn"],
+      "members":{
+        "lifecyclePolicyArn":{
+          "shape":"LifecyclePolicyArn",
+          "location":"querystring",
+          "locationName":"lifecyclePolicyArn"
+        }
+      }
+    },
+    "DeleteLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
       }
     },
     "DiskImageFormat":{
@@ -2162,6 +2417,40 @@
         "infrastructureConfiguration":{"shape":"InfrastructureConfiguration"}
       }
     },
+    "GetLifecycleExecutionRequest":{
+      "type":"structure",
+      "required":["lifecycleExecutionId"],
+      "members":{
+        "lifecycleExecutionId":{
+          "shape":"LifecycleExecutionId",
+          "location":"querystring",
+          "locationName":"lifecycleExecutionId"
+        }
+      }
+    },
+    "GetLifecycleExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecution":{"shape":"LifecycleExecution"}
+      }
+    },
+    "GetLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":["lifecyclePolicyArn"],
+      "members":{
+        "lifecyclePolicyArn":{
+          "shape":"LifecyclePolicyArn",
+          "location":"querystring",
+          "locationName":"lifecyclePolicyArn"
+        }
+      }
+    },
+    "GetLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicy":{"shape":"LifecyclePolicy"}
+      }
+    },
     "GetWorkflowExecutionRequest":{
       "type":"structure",
       "required":["workflowExecutionId"],
@@ -2265,7 +2554,9 @@
         "buildType":{"shape":"BuildType"},
         "imageSource":{"shape":"ImageSource"},
         "scanState":{"shape":"ImageScanState"},
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "deprecationTime":{"shape":"DateTimeTimestamp"},
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
       }
     },
     "ImageAggregation":{
@@ -2286,7 +2577,7 @@
     },
     "ImageBuilderArn":{
       "type":"string",
-      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline|workflow\\/(?:build|test|distribution))/[a-z0-9-_]+(?:/(?:(?:x|[0-9]+)\\.(?:x|[0-9]+)\\.(?:x|[0-9]+))(?:/[0-9]+)?)?$"
+      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline|lifecycle-policy|workflow\\/(?:build|test|distribution))/[a-z0-9-_]+(?:/(?:(?:x|[0-9]+)\\.(?:x|[0-9]+)\\.(?:x|[0-9]+))(?:/[0-9]+)?)?$"
     },
     "ImagePackage":{
       "type":"structure",
@@ -2487,7 +2778,8 @@
         "CANCELLED",
         "FAILED",
         "DEPRECATED",
-        "DELETED"
+        "DELETED",
+        "DISABLED"
       ]
     },
     "ImageSummary":{
@@ -2505,7 +2797,9 @@
         "outputResources":{"shape":"OutputResources"},
         "tags":{"shape":"TagMap"},
         "buildType":{"shape":"BuildType"},
-        "imageSource":{"shape":"ImageSource"}
+        "imageSource":{"shape":"ImageSource"},
+        "deprecationTime":{"shape":"DateTimeTimestamp"},
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
       }
     },
     "ImageSummaryList":{
@@ -2810,6 +3104,300 @@
       "max":50,
       "min":1
     },
+    "LifecycleExecution":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"},
+        "resourcesImpactedSummary":{"shape":"LifecycleExecutionResourcesImpactedSummary"},
+        "state":{"shape":"LifecycleExecutionState"},
+        "startTime":{"shape":"DateTimeTimestamp"},
+        "endTime":{"shape":"DateTimeTimestamp"}
+      }
+    },
+    "LifecycleExecutionId":{
+      "type":"string",
+      "pattern":"^lce-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "LifecycleExecutionResource":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"NonEmptyString"},
+        "resourceId":{"shape":"NonEmptyString"},
+        "state":{"shape":"LifecycleExecutionResourceState"},
+        "action":{"shape":"LifecycleExecutionResourceAction"},
+        "region":{"shape":"NonEmptyString"},
+        "snapshots":{"shape":"LifecycleExecutionSnapshotResourceList"},
+        "imageUris":{"shape":"StringList"}
+      }
+    },
+    "LifecycleExecutionResourceAction":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"LifecycleExecutionResourceActionName"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionResourceActionName":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETE",
+        "DEPRECATE",
+        "DISABLE"
+      ]
+    },
+    "LifecycleExecutionResourceList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecutionResource"}
+    },
+    "LifecycleExecutionResourceState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"LifecycleExecutionResourceStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionResourceStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "IN_PROGRESS",
+        "SKIPPED",
+        "SUCCESS"
+      ]
+    },
+    "LifecycleExecutionResourcesImpactedSummary":{
+      "type":"structure",
+      "members":{
+        "hasImpactedResources":{"shape":"Boolean"}
+      }
+    },
+    "LifecycleExecutionSnapshotResource":{
+      "type":"structure",
+      "members":{
+        "snapshotId":{"shape":"NonEmptyString"},
+        "state":{"shape":"LifecycleExecutionResourceState"}
+      }
+    },
+    "LifecycleExecutionSnapshotResourceList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecutionSnapshotResource"}
+    },
+    "LifecycleExecutionState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"LifecycleExecutionStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "LifecycleExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "CANCELLED",
+        "CANCELLING",
+        "FAILED",
+        "SUCCESS"
+      ]
+    },
+    "LifecycleExecutionsList":{
+      "type":"list",
+      "member":{"shape":"LifecycleExecution"}
+    },
+    "LifecyclePolicy":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"LifecyclePolicyArn"},
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "dateCreated":{"shape":"DateTimeTimestamp"},
+        "dateUpdated":{"shape":"DateTimeTimestamp"},
+        "dateLastRun":{"shape":"DateTimeTimestamp"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):lifecycle-policy/[a-z0-9-_]+$"
+    },
+    "LifecyclePolicyDetail":{
+      "type":"structure",
+      "required":[
+        "action",
+        "filter"
+      ],
+      "members":{
+        "action":{"shape":"LifecyclePolicyDetailAction"},
+        "filter":{"shape":"LifecyclePolicyDetailFilter"},
+        "exclusionRules":{"shape":"LifecyclePolicyDetailExclusionRules"}
+      }
+    },
+    "LifecyclePolicyDetailAction":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"LifecyclePolicyDetailActionType"},
+        "includeResources":{"shape":"LifecyclePolicyDetailActionIncludeResources"}
+      }
+    },
+    "LifecyclePolicyDetailActionIncludeResources":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"Boolean"},
+        "snapshots":{"shape":"Boolean"},
+        "containers":{"shape":"Boolean"}
+      }
+    },
+    "LifecyclePolicyDetailActionType":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "DEPRECATE",
+        "DISABLE"
+      ]
+    },
+    "LifecyclePolicyDetailExclusionRules":{
+      "type":"structure",
+      "members":{
+        "tagMap":{"shape":"TagMap"},
+        "amis":{"shape":"LifecyclePolicyDetailExclusionRulesAmis"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmis":{
+      "type":"structure",
+      "members":{
+        "isPublic":{"shape":"Boolean"},
+        "regions":{"shape":"StringList"},
+        "sharedAccounts":{"shape":"AccountList"},
+        "lastLaunched":{"shape":"LifecyclePolicyDetailExclusionRulesAmisLastLaunched"},
+        "tagMap":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmisLastLaunched":{
+      "type":"structure",
+      "required":[
+        "value",
+        "unit"
+      ],
+      "members":{
+        "value":{"shape":"LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue"},
+        "unit":{"shape":"LifecyclePolicyTimeUnit"}
+      }
+    },
+    "LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue":{
+      "type":"integer",
+      "max":365,
+      "min":1
+    },
+    "LifecyclePolicyDetailFilter":{
+      "type":"structure",
+      "required":[
+        "type",
+        "value"
+      ],
+      "members":{
+        "type":{"shape":"LifecyclePolicyDetailFilterType"},
+        "value":{"shape":"LifecyclePolicyDetailFilterValue"},
+        "unit":{"shape":"LifecyclePolicyTimeUnit"},
+        "retainAtLeast":{"shape":"LifecyclePolicyDetailFilterRetainAtLeast"}
+      }
+    },
+    "LifecyclePolicyDetailFilterRetainAtLeast":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "LifecyclePolicyDetailFilterType":{
+      "type":"string",
+      "enum":[
+        "AGE",
+        "COUNT"
+      ]
+    },
+    "LifecyclePolicyDetailFilterValue":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "LifecyclePolicyDetails":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicyDetail"},
+      "max":3,
+      "min":1
+    },
+    "LifecyclePolicyResourceSelection":{
+      "type":"structure",
+      "members":{
+        "recipes":{"shape":"LifecyclePolicyResourceSelectionRecipes"},
+        "tagMap":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicyResourceSelectionRecipe":{
+      "type":"structure",
+      "required":[
+        "name",
+        "semanticVersion"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "semanticVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "LifecyclePolicyResourceSelectionRecipes":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicyResourceSelectionRecipe"},
+      "max":50,
+      "min":1
+    },
+    "LifecyclePolicyResourceType":{
+      "type":"string",
+      "enum":[
+        "AMI_IMAGE",
+        "CONTAINER_IMAGE"
+      ]
+    },
+    "LifecyclePolicyStatus":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "LifecyclePolicySummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"LifecyclePolicyArn"},
+        "name":{"shape":"ResourceName"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "dateCreated":{"shape":"DateTimeTimestamp"},
+        "dateUpdated":{"shape":"DateTimeTimestamp"},
+        "dateLastRun":{"shape":"DateTimeTimestamp"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "LifecyclePolicySummaryList":{
+      "type":"list",
+      "member":{"shape":"LifecyclePolicySummary"}
+    },
+    "LifecyclePolicyTimeUnit":{
+      "type":"string",
+      "enum":[
+        "DAYS",
+        "WEEKS",
+        "MONTHS",
+        "YEARS"
+      ]
+    },
     "ListComponentBuildVersionsRequest":{
       "type":"structure",
       "required":["componentVersionArn"],
@@ -3067,6 +3655,65 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListLifecycleExecutionResourcesRequest":{
+      "type":"structure",
+      "required":["lifecycleExecutionId"],
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "parentResourceId":{"shape":"NonEmptyString"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecycleExecutionResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "lifecycleExecutionState":{"shape":"LifecycleExecutionState"},
+        "resources":{"shape":"LifecycleExecutionResourceList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecycleExecutionsRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"},
+        "resourceArn":{"shape":"ImageBuilderArn"}
+      }
+    },
+    "ListLifecycleExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutions":{"shape":"LifecycleExecutionsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecyclePoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"FilterList"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLifecyclePoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicySummaryList":{"shape":"LifecyclePolicySummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -3138,7 +3785,6 @@
     },
     "MaxParallelLaunches":{
       "type":"integer",
-      "max":10000,
       "min":1
     },
     "NonEmptyString":{
@@ -3376,6 +4022,35 @@
       "max":30000,
       "min":1
     },
+    "ResourceState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ResourceStatus"}
+      }
+    },
+    "ResourceStateUpdateExclusionRules":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"LifecyclePolicyDetailExclusionRulesAmis"}
+      }
+    },
+    "ResourceStateUpdateIncludeResources":{
+      "type":"structure",
+      "members":{
+        "amis":{"shape":"Boolean"},
+        "snapshots":{"shape":"Boolean"},
+        "containers":{"shape":"Boolean"}
+      }
+    },
+    "ResourceStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETED",
+        "DEPRECATED",
+        "DISABLED"
+      ]
+    },
     "ResourceTagMap":{
       "type":"map",
       "key":{"shape":"TagKey"},
@@ -3387,6 +4062,12 @@
       "type":"integer",
       "max":25,
       "min":1
+    },
+    "RoleNameOrArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(?:arn:aws(?:-[a-z]+)*:iam::[0-9]{12}:role/)?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "S3ExportConfiguration":{
       "type":"structure",
@@ -3480,6 +4161,33 @@
         "requestId":{"shape":"NonEmptyString"},
         "clientToken":{"shape":"ClientToken"},
         "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"}
+      }
+    },
+    "StartResourceStateUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "state",
+        "clientToken"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ImageBuildVersionArn"},
+        "state":{"shape":"ResourceState"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "includeResources":{"shape":"ResourceStateUpdateIncludeResources"},
+        "exclusionRules":{"shape":"ResourceStateUpdateExclusionRules"},
+        "updateAt":{"shape":"DateTimeTimestamp"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartResourceStateUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "resourceArn":{"shape":"ImageBuildVersionArn"}
       }
     },
     "StringList":{
@@ -3671,6 +4379,36 @@
         "requestId":{"shape":"NonEmptyString"},
         "clientToken":{"shape":"ClientToken"},
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"}
+      }
+    },
+    "UpdateLifecyclePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "lifecyclePolicyArn",
+        "executionRole",
+        "resourceType",
+        "policyDetails",
+        "resourceSelection",
+        "clientToken"
+      ],
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"},
+        "description":{"shape":"NonEmptyString"},
+        "status":{"shape":"LifecyclePolicyStatus"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "resourceType":{"shape":"LifecyclePolicyResourceType"},
+        "policyDetails":{"shape":"LifecyclePolicyDetails"},
+        "resourceSelection":{"shape":"LifecyclePolicyResourceSelection"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateLifecyclePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
       }
     },
     "Uri":{"type":"string"},

@@ -33620,8 +33620,8 @@ type CreateJobInput struct {
 	// The package version Amazon Resource Names (ARNs) that are installed on the
 	// device when the job successfully completes.
 	//
-	// Note:The following Length Constraints relates to a single string. Up to five
-	// strings are allowed.
+	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
+	// version ARNs are allowed.
 	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
 
 	// The job document. Required if you don't specify a value for documentSource.
@@ -33950,8 +33950,8 @@ type CreateJobTemplateInput struct {
 	// The package version Amazon Resource Names (ARNs) that are installed on the
 	// device when the job successfully completes.
 	//
-	// Note:The following Length Constraints relates to a single string. Up to five
-	// strings are allowed.
+	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
+	// version ARNs are allowed.
 	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
 
 	// The job document. Required if you don't specify a value for documentSource.
@@ -42170,8 +42170,8 @@ type DescribeJobTemplateOutput struct {
 	// The package version Amazon Resource Names (ARNs) that are installed on the
 	// device when the job successfully completes.
 	//
-	// Note:The following Length Constraints relates to a single string. Up to five
-	// strings are allowed.
+	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
+	// version ARNs are allowed.
 	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
 
 	// The job document.
@@ -45850,6 +45850,50 @@ func (s *FleetMetricNameAndArn) SetMetricName(v string) *FleetMetricNameAndArn {
 	return s
 }
 
+// A geolocation target that you select to index. Each geolocation target contains
+// a name and order key-value pair that specifies the geolocation target fields.
+type GeoLocationTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the geolocation target field. If the target field is part of
+	// a named shadow, you must select the named shadow using the namedShadow filter.
+	Name *string `locationName:"name" type:"string"`
+
+	// The order of the geolocation target field. This field is optional. The default
+	// value is LatLon.
+	Order *string `locationName:"order" type:"string" enum:"TargetFieldOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeoLocationTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeoLocationTarget) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *GeoLocationTarget) SetName(v string) *GeoLocationTarget {
+	s.Name = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *GeoLocationTarget) SetOrder(v string) *GeoLocationTarget {
+	s.Order = &v
+	return s
+}
+
 type GetBehaviorModelTrainingSummariesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -48311,12 +48355,29 @@ func (s *IndexNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides additional filters for specific data sources. Named shadow is the
-// only data source that currently supports and requires a filter. To add named
-// shadows to your fleet indexing configuration, set namedShadowIndexingMode
-// to be ON and specify your shadow names in filter.
+// Provides additional selections for named shadows and geolocation data.
+//
+// To add named shadows to your fleet indexing configuration, set namedShadowIndexingMode
+// to be ON and specify your shadow names in namedShadowNames filter.
+//
+// To add geolocation data to your fleet indexing configuration:
+//
+//   - If you store geolocation data in a class/unnamed shadow, set thingIndexingMode
+//     to be REGISTRY_AND_SHADOW and specify your geolocation data in geoLocations
+//     filter.
+//
+//   - If you store geolocation data in a named shadow, set namedShadowIndexingMode
+//     to be ON, add the shadow name in namedShadowNames filter, and specify
+//     your geolocation data in geoLocations filter. For more information, see
+//     Managing fleet indexing (https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html).
 type IndexingFilter struct {
 	_ struct{} `type:"structure"`
+
+	// The list of geolocation targets that you select to index. The default maximum
+	// number of geolocation targets for indexing is 1. To increase the limit, see
+	// Amazon Web Services IoT Device Management Quotas (https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits)
+	// in the Amazon Web Services General Reference.
+	GeoLocations []*GeoLocationTarget `locationName:"geoLocations" type:"list"`
 
 	// The shadow names that you select to index. The default maximum number of
 	// shadow names for indexing is 10. To increase the limit, see Amazon Web Services
@@ -48341,6 +48402,12 @@ func (s IndexingFilter) String() string {
 // value will be replaced with "sensitive".
 func (s IndexingFilter) GoString() string {
 	return s.String()
+}
+
+// SetGeoLocations sets the GeoLocations field's value.
+func (s *IndexingFilter) SetGeoLocations(v []*GeoLocationTarget) *IndexingFilter {
+	s.GeoLocations = v
+	return s
 }
 
 // SetNamedShadowNames sets the NamedShadowNames field's value.
@@ -49182,8 +49249,8 @@ type Job struct {
 	// The package version Amazon Resource Names (ARNs) that are installed on the
 	// device when the job successfully completes.
 	//
-	// Note:The following Length Constraints relates to a single string. Up to five
-	// strings are allowed.
+	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
+	// version ARNs are allowed.
 	DestinationPackageVersions []*string `locationName:"destinationPackageVersions" type:"list"`
 
 	// A key-value map that pairs the patterns that need to be replaced in a managed
@@ -62588,8 +62655,8 @@ type SearchIndexInput struct {
 	// The search index name.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
-	// The maximum number of results to return at one time. The response might contain
-	// fewer results but will never contain more.
+	// The maximum number of results to return per page at one time. The response
+	// might contain fewer results but will never contain more.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token used to get the next set of results, or null if there are no additional
@@ -66105,10 +66172,21 @@ type ThingIndexingConfiguration struct {
 	// Detect. (https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html)
 	DeviceDefenderIndexingMode *string `locationName:"deviceDefenderIndexingMode" type:"string" enum:"DeviceDefenderIndexingMode"`
 
-	// Provides additional filters for specific data sources. Named shadow is the
-	// only data source that currently supports and requires a filter. To add named
-	// shadows to your fleet indexing configuration, set namedShadowIndexingMode
-	// to be ON and specify your shadow names in filter.
+	// Provides additional selections for named shadows and geolocation data.
+	//
+	// To add named shadows to your fleet indexing configuration, set namedShadowIndexingMode
+	// to be ON and specify your shadow names in namedShadowNames filter.
+	//
+	// To add geolocation data to your fleet indexing configuration:
+	//
+	//    * If you store geolocation data in a class/unnamed shadow, set thingIndexingMode
+	//    to be REGISTRY_AND_SHADOW and specify your geolocation data in geoLocations
+	//    filter.
+	//
+	//    * If you store geolocation data in a named shadow, set namedShadowIndexingMode
+	//    to be ON, add the shadow name in namedShadowNames filter, and specify
+	//    your geolocation data in geoLocations filter. For more information, see
+	//    Managing fleet indexing (https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html).
 	Filter *IndexingFilter `locationName:"filter" type:"structure"`
 
 	// Contains fields that are indexed and whose types are already known by the
@@ -73769,6 +73847,22 @@ func Status_Values() []string {
 		StatusFailed,
 		StatusCancelled,
 		StatusCancelling,
+	}
+}
+
+const (
+	// TargetFieldOrderLatLon is a TargetFieldOrder enum value
+	TargetFieldOrderLatLon = "LatLon"
+
+	// TargetFieldOrderLonLat is a TargetFieldOrder enum value
+	TargetFieldOrderLonLat = "LonLat"
+)
+
+// TargetFieldOrder_Values returns all elements of the TargetFieldOrder enum
+func TargetFieldOrder_Values() []string {
+	return []string{
+		TargetFieldOrderLatLon,
+		TargetFieldOrderLonLat,
 	}
 }
 

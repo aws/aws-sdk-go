@@ -77,6 +77,24 @@
       "limit_key": "maxResults",
       "result_key": "infrastructureConfigurationSummaryList"
     },
+    "ListLifecycleExecutionResources": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "resources"
+    },
+    "ListLifecycleExecutions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "lifecycleExecutions"
+    },
+    "ListLifecyclePolicies": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "lifecyclePolicySummaryList"
+    },
     "ListWorkflowExecutions": {
       "input_token": "nextToken",
       "output_token": "nextToken",

@@ -6586,6 +6586,9 @@ type ClusterInfo struct {
 	// version is KTVPDKIKX0DER.
 	CurrentVersion *string `locationName:"currentVersion" type:"string"`
 
+	// Determines if there is an action required from the customer.
+	CustomerActionStatus *string `locationName:"customerActionStatus" type:"string" enum:"CustomerActionStatus"`
+
 	// Includes all encryption-related information.
 	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
 
@@ -6689,6 +6692,12 @@ func (s *ClusterInfo) SetCurrentBrokerSoftwareInfo(v *BrokerSoftwareInfo) *Clust
 // SetCurrentVersion sets the CurrentVersion field's value.
 func (s *ClusterInfo) SetCurrentVersion(v string) *ClusterInfo {
 	s.CurrentVersion = &v
+	return s
+}
+
+// SetCustomerActionStatus sets the CustomerActionStatus field's value.
+func (s *ClusterInfo) SetCustomerActionStatus(v string) *ClusterInfo {
+	s.CustomerActionStatus = &v
 	return s
 }
 
@@ -13141,6 +13150,9 @@ type Provisioned struct {
 	// Kafka brokers in the cluster.
 	CurrentBrokerSoftwareInfo *BrokerSoftwareInfo `locationName:"currentBrokerSoftwareInfo" type:"structure"`
 
+	// Determines if there is an action required from the customer.
+	CustomerActionStatus *string `locationName:"customerActionStatus" type:"string" enum:"CustomerActionStatus"`
+
 	// Includes all encryption-related information.
 	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
 
@@ -13202,6 +13214,12 @@ func (s *Provisioned) SetClientAuthentication(v *ClientAuthentication) *Provisio
 // SetCurrentBrokerSoftwareInfo sets the CurrentBrokerSoftwareInfo field's value.
 func (s *Provisioned) SetCurrentBrokerSoftwareInfo(v *BrokerSoftwareInfo) *Provisioned {
 	s.CurrentBrokerSoftwareInfo = v
+	return s
+}
+
+// SetCustomerActionStatus sets the CustomerActionStatus field's value.
+func (s *Provisioned) SetCustomerActionStatus(v string) *Provisioned {
+	s.CustomerActionStatus = &v
 	return s
 }
 
@@ -17308,6 +17326,27 @@ func ConfigurationState_Values() []string {
 		ConfigurationStateActive,
 		ConfigurationStateDeleting,
 		ConfigurationStateDeleteFailed,
+	}
+}
+
+// A type of an action required from the customer.
+const (
+	// CustomerActionStatusCriticalActionRequired is a CustomerActionStatus enum value
+	CustomerActionStatusCriticalActionRequired = "CRITICAL_ACTION_REQUIRED"
+
+	// CustomerActionStatusActionRecommended is a CustomerActionStatus enum value
+	CustomerActionStatusActionRecommended = "ACTION_RECOMMENDED"
+
+	// CustomerActionStatusNone is a CustomerActionStatus enum value
+	CustomerActionStatusNone = "NONE"
+)
+
+// CustomerActionStatus_Values returns all elements of the CustomerActionStatus enum
+func CustomerActionStatus_Values() []string {
+	return []string{
+		CustomerActionStatusCriticalActionRequired,
+		CustomerActionStatusActionRecommended,
+		CustomerActionStatusNone,
 	}
 }
 

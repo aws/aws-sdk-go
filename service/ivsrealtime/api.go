@@ -13,6 +13,96 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateEncoderConfiguration = "CreateEncoderConfiguration"
+
+// CreateEncoderConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEncoderConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEncoderConfiguration for more information on using the CreateEncoderConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEncoderConfigurationRequest method.
+//	req, resp := client.CreateEncoderConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/CreateEncoderConfiguration
+func (c *IVSRealTime) CreateEncoderConfigurationRequest(input *CreateEncoderConfigurationInput) (req *request.Request, output *CreateEncoderConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateEncoderConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateEncoderConfiguration",
+	}
+
+	if input == nil {
+		input = &CreateEncoderConfigurationInput{}
+	}
+
+	output = &CreateEncoderConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEncoderConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Creates an EncoderConfiguration object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation CreateEncoderConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/CreateEncoderConfiguration
+func (c *IVSRealTime) CreateEncoderConfiguration(input *CreateEncoderConfigurationInput) (*CreateEncoderConfigurationOutput, error) {
+	req, out := c.CreateEncoderConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateEncoderConfigurationWithContext is the same as CreateEncoderConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEncoderConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) CreateEncoderConfigurationWithContext(ctx aws.Context, input *CreateEncoderConfigurationInput, opts ...request.Option) (*CreateEncoderConfigurationOutput, error) {
+	req, out := c.CreateEncoderConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateParticipantToken = "CreateParticipantToken"
 
 // CreateParticipantTokenRequest generates a "aws/request.Request" representing the
@@ -187,6 +277,189 @@ func (c *IVSRealTime) CreateStageWithContext(ctx aws.Context, input *CreateStage
 	return out, req.Send()
 }
 
+const opCreateStorageConfiguration = "CreateStorageConfiguration"
+
+// CreateStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStorageConfiguration for more information on using the CreateStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStorageConfigurationRequest method.
+//	req, resp := client.CreateStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/CreateStorageConfiguration
+func (c *IVSRealTime) CreateStorageConfigurationRequest(input *CreateStorageConfigurationInput) (req *request.Request, output *CreateStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &CreateStorageConfigurationInput{}
+	}
+
+	output = &CreateStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStorageConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Creates a new storage configuration, used to enable recording to Amazon S3.
+// When a StorageConfiguration is created, IVS will modify the S3 bucketPolicy
+// of the provided bucket. This will ensure that IVS has sufficient permissions
+// to write content to the provided bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation CreateStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/CreateStorageConfiguration
+func (c *IVSRealTime) CreateStorageConfiguration(input *CreateStorageConfigurationInput) (*CreateStorageConfigurationOutput, error) {
+	req, out := c.CreateStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateStorageConfigurationWithContext is the same as CreateStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) CreateStorageConfigurationWithContext(ctx aws.Context, input *CreateStorageConfigurationInput, opts ...request.Option) (*CreateStorageConfigurationOutput, error) {
+	req, out := c.CreateStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEncoderConfiguration = "DeleteEncoderConfiguration"
+
+// DeleteEncoderConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEncoderConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEncoderConfiguration for more information on using the DeleteEncoderConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEncoderConfigurationRequest method.
+//	req, resp := client.DeleteEncoderConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeleteEncoderConfiguration
+func (c *IVSRealTime) DeleteEncoderConfigurationRequest(input *DeleteEncoderConfigurationInput) (req *request.Request, output *DeleteEncoderConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEncoderConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteEncoderConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteEncoderConfigurationInput{}
+	}
+
+	output = &DeleteEncoderConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEncoderConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Deletes an EncoderConfiguration resource. Ensures that no Compositions are
+// using this template; otherwise, returns an error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation DeleteEncoderConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeleteEncoderConfiguration
+func (c *IVSRealTime) DeleteEncoderConfiguration(input *DeleteEncoderConfigurationInput) (*DeleteEncoderConfigurationOutput, error) {
+	req, out := c.DeleteEncoderConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEncoderConfigurationWithContext is the same as DeleteEncoderConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEncoderConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) DeleteEncoderConfigurationWithContext(ctx aws.Context, input *DeleteEncoderConfigurationInput, opts ...request.Option) (*DeleteEncoderConfigurationOutput, error) {
+	req, out := c.DeleteEncoderConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStage = "DeleteStage"
 
 // DeleteStageRequest generates a "aws/request.Request" representing the
@@ -274,6 +547,100 @@ func (c *IVSRealTime) DeleteStageWithContext(ctx aws.Context, input *DeleteStage
 	return out, req.Send()
 }
 
+const opDeleteStorageConfiguration = "DeleteStorageConfiguration"
+
+// DeleteStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageConfiguration for more information on using the DeleteStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStorageConfigurationRequest method.
+//	req, resp := client.DeleteStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeleteStorageConfiguration
+func (c *IVSRealTime) DeleteStorageConfigurationRequest(input *DeleteStorageConfigurationInput) (req *request.Request, output *DeleteStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteStorageConfigurationInput{}
+	}
+
+	output = &DeleteStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStorageConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Deletes the storage configuration for the specified ARN.
+//
+// If you try to delete a storage configuration that is used by a Composition,
+// you will get an error (409 ConflictException). To avoid this, for all Compositions
+// that reference the storage configuration, first use StopComposition and wait
+// for it to complete, then use DeleteStorageConfiguration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation DeleteStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeleteStorageConfiguration
+func (c *IVSRealTime) DeleteStorageConfiguration(input *DeleteStorageConfigurationInput) (*DeleteStorageConfigurationOutput, error) {
+	req, out := c.DeleteStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageConfigurationWithContext is the same as DeleteStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) DeleteStorageConfigurationWithContext(ctx aws.Context, input *DeleteStorageConfigurationInput, opts ...request.Option) (*DeleteStorageConfigurationOutput, error) {
+	req, out := c.DeleteStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisconnectParticipant = "DisconnectParticipant"
 
 // DisconnectParticipantRequest generates a "aws/request.Request" representing the
@@ -355,6 +722,182 @@ func (c *IVSRealTime) DisconnectParticipant(input *DisconnectParticipantInput) (
 // for more information on using Contexts.
 func (c *IVSRealTime) DisconnectParticipantWithContext(ctx aws.Context, input *DisconnectParticipantInput, opts ...request.Option) (*DisconnectParticipantOutput, error) {
 	req, out := c.DisconnectParticipantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetComposition = "GetComposition"
+
+// GetCompositionRequest generates a "aws/request.Request" representing the
+// client's request for the GetComposition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetComposition for more information on using the GetComposition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCompositionRequest method.
+//	req, resp := client.GetCompositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetComposition
+func (c *IVSRealTime) GetCompositionRequest(input *GetCompositionInput) (req *request.Request, output *GetCompositionOutput) {
+	op := &request.Operation{
+		Name:       opGetComposition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetComposition",
+	}
+
+	if input == nil {
+		input = &GetCompositionInput{}
+	}
+
+	output = &GetCompositionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetComposition API operation for Amazon Interactive Video Service RealTime.
+//
+// Get information about the specified Composition resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetComposition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetComposition
+func (c *IVSRealTime) GetComposition(input *GetCompositionInput) (*GetCompositionOutput, error) {
+	req, out := c.GetCompositionRequest(input)
+	return out, req.Send()
+}
+
+// GetCompositionWithContext is the same as GetComposition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetComposition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetCompositionWithContext(ctx aws.Context, input *GetCompositionInput, opts ...request.Option) (*GetCompositionOutput, error) {
+	req, out := c.GetCompositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEncoderConfiguration = "GetEncoderConfiguration"
+
+// GetEncoderConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetEncoderConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEncoderConfiguration for more information on using the GetEncoderConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEncoderConfigurationRequest method.
+//	req, resp := client.GetEncoderConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetEncoderConfiguration
+func (c *IVSRealTime) GetEncoderConfigurationRequest(input *GetEncoderConfigurationInput) (req *request.Request, output *GetEncoderConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetEncoderConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetEncoderConfiguration",
+	}
+
+	if input == nil {
+		input = &GetEncoderConfigurationInput{}
+	}
+
+	output = &GetEncoderConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEncoderConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets information about the specified EncoderConfiguration resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetEncoderConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetEncoderConfiguration
+func (c *IVSRealTime) GetEncoderConfiguration(input *GetEncoderConfigurationInput) (*GetEncoderConfigurationOutput, error) {
+	req, out := c.GetEncoderConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetEncoderConfigurationWithContext is the same as GetEncoderConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEncoderConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetEncoderConfigurationWithContext(ctx aws.Context, input *GetEncoderConfigurationInput, opts ...request.Option) (*GetEncoderConfigurationOutput, error) {
+	req, out := c.GetEncoderConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -604,6 +1147,382 @@ func (c *IVSRealTime) GetStageSessionWithContext(ctx aws.Context, input *GetStag
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetStorageConfiguration = "GetStorageConfiguration"
+
+// GetStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStorageConfiguration for more information on using the GetStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetStorageConfigurationRequest method.
+//	req, resp := client.GetStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetStorageConfiguration
+func (c *IVSRealTime) GetStorageConfigurationRequest(input *GetStorageConfigurationInput) (req *request.Request, output *GetStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &GetStorageConfigurationInput{}
+	}
+
+	output = &GetStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStorageConfiguration API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets the storage configuration for the specified ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetStorageConfiguration
+func (c *IVSRealTime) GetStorageConfiguration(input *GetStorageConfigurationInput) (*GetStorageConfigurationOutput, error) {
+	req, out := c.GetStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetStorageConfigurationWithContext is the same as GetStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetStorageConfigurationWithContext(ctx aws.Context, input *GetStorageConfigurationInput, opts ...request.Option) (*GetStorageConfigurationOutput, error) {
+	req, out := c.GetStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListCompositions = "ListCompositions"
+
+// ListCompositionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCompositions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCompositions for more information on using the ListCompositions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCompositionsRequest method.
+//	req, resp := client.ListCompositionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListCompositions
+func (c *IVSRealTime) ListCompositionsRequest(input *ListCompositionsInput) (req *request.Request, output *ListCompositionsOutput) {
+	op := &request.Operation{
+		Name:       opListCompositions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListCompositions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCompositionsInput{}
+	}
+
+	output = &ListCompositionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCompositions API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets summary information about all Compositions in your account, in the AWS
+// region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListCompositions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListCompositions
+func (c *IVSRealTime) ListCompositions(input *ListCompositionsInput) (*ListCompositionsOutput, error) {
+	req, out := c.ListCompositionsRequest(input)
+	return out, req.Send()
+}
+
+// ListCompositionsWithContext is the same as ListCompositions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCompositions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListCompositionsWithContext(ctx aws.Context, input *ListCompositionsInput, opts ...request.Option) (*ListCompositionsOutput, error) {
+	req, out := c.ListCompositionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCompositionsPages iterates over the pages of a ListCompositions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCompositions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCompositions operation.
+//	pageNum := 0
+//	err := client.ListCompositionsPages(params,
+//	    func(page *ivsrealtime.ListCompositionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListCompositionsPages(input *ListCompositionsInput, fn func(*ListCompositionsOutput, bool) bool) error {
+	return c.ListCompositionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCompositionsPagesWithContext same as ListCompositionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListCompositionsPagesWithContext(ctx aws.Context, input *ListCompositionsInput, fn func(*ListCompositionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCompositionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCompositionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCompositionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEncoderConfigurations = "ListEncoderConfigurations"
+
+// ListEncoderConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEncoderConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEncoderConfigurations for more information on using the ListEncoderConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEncoderConfigurationsRequest method.
+//	req, resp := client.ListEncoderConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListEncoderConfigurations
+func (c *IVSRealTime) ListEncoderConfigurationsRequest(input *ListEncoderConfigurationsInput) (req *request.Request, output *ListEncoderConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListEncoderConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListEncoderConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEncoderConfigurationsInput{}
+	}
+
+	output = &ListEncoderConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEncoderConfigurations API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets summary information about all EncoderConfigurations in your account,
+// in the AWS region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListEncoderConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListEncoderConfigurations
+func (c *IVSRealTime) ListEncoderConfigurations(input *ListEncoderConfigurationsInput) (*ListEncoderConfigurationsOutput, error) {
+	req, out := c.ListEncoderConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListEncoderConfigurationsWithContext is the same as ListEncoderConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEncoderConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListEncoderConfigurationsWithContext(ctx aws.Context, input *ListEncoderConfigurationsInput, opts ...request.Option) (*ListEncoderConfigurationsOutput, error) {
+	req, out := c.ListEncoderConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEncoderConfigurationsPages iterates over the pages of a ListEncoderConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEncoderConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEncoderConfigurations operation.
+//	pageNum := 0
+//	err := client.ListEncoderConfigurationsPages(params,
+//	    func(page *ivsrealtime.ListEncoderConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListEncoderConfigurationsPages(input *ListEncoderConfigurationsInput, fn func(*ListEncoderConfigurationsOutput, bool) bool) error {
+	return c.ListEncoderConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEncoderConfigurationsPagesWithContext same as ListEncoderConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListEncoderConfigurationsPagesWithContext(ctx aws.Context, input *ListEncoderConfigurationsInput, fn func(*ListEncoderConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEncoderConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEncoderConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEncoderConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListParticipantEvents = "ListParticipantEvents"
@@ -1158,6 +2077,150 @@ func (c *IVSRealTime) ListStagesPagesWithContext(ctx aws.Context, input *ListSta
 	return p.Err()
 }
 
+const opListStorageConfigurations = "ListStorageConfigurations"
+
+// ListStorageConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStorageConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStorageConfigurations for more information on using the ListStorageConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStorageConfigurationsRequest method.
+//	req, resp := client.ListStorageConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListStorageConfigurations
+func (c *IVSRealTime) ListStorageConfigurationsRequest(input *ListStorageConfigurationsInput) (req *request.Request, output *ListStorageConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListStorageConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListStorageConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStorageConfigurationsInput{}
+	}
+
+	output = &ListStorageConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStorageConfigurations API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets summary information about all storage configurations in your account,
+// in the AWS region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListStorageConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListStorageConfigurations
+func (c *IVSRealTime) ListStorageConfigurations(input *ListStorageConfigurationsInput) (*ListStorageConfigurationsOutput, error) {
+	req, out := c.ListStorageConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListStorageConfigurationsWithContext is the same as ListStorageConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStorageConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListStorageConfigurationsWithContext(ctx aws.Context, input *ListStorageConfigurationsInput, opts ...request.Option) (*ListStorageConfigurationsOutput, error) {
+	req, out := c.ListStorageConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStorageConfigurationsPages iterates over the pages of a ListStorageConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStorageConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStorageConfigurations operation.
+//	pageNum := 0
+//	err := client.ListStorageConfigurationsPages(params,
+//	    func(page *ivsrealtime.ListStorageConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListStorageConfigurationsPages(input *ListStorageConfigurationsInput, fn func(*ListStorageConfigurationsOutput, bool) bool) error {
+	return c.ListStorageConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStorageConfigurationsPagesWithContext same as ListStorageConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListStorageConfigurationsPagesWithContext(ctx aws.Context, input *ListStorageConfigurationsInput, fn func(*ListStorageConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStorageConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStorageConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStorageConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1235,6 +2298,203 @@ func (c *IVSRealTime) ListTagsForResource(input *ListTagsForResourceInput) (*Lis
 // for more information on using Contexts.
 func (c *IVSRealTime) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartComposition = "StartComposition"
+
+// StartCompositionRequest generates a "aws/request.Request" representing the
+// client's request for the StartComposition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartComposition for more information on using the StartComposition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCompositionRequest method.
+//	req, resp := client.StartCompositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/StartComposition
+func (c *IVSRealTime) StartCompositionRequest(input *StartCompositionInput) (req *request.Request, output *StartCompositionOutput) {
+	op := &request.Operation{
+		Name:       opStartComposition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartComposition",
+	}
+
+	if input == nil {
+		input = &StartCompositionInput{}
+	}
+
+	output = &StartCompositionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartComposition API operation for Amazon Interactive Video Service RealTime.
+//
+// Starts a Composition from a stage based on the configuration provided in
+// the request.
+//
+// A Composition is an ephemeral resource that exists after this endpoint returns
+// successfully. Composition stops and the resource is deleted:
+//
+//   - When StopComposition is called.
+//
+//   - After a 1-minute timeout, when all participants are disconnected from
+//     the stage.
+//
+//   - After a 1-minute timeout, if there are no participants in the stage
+//     when StartComposition is called.
+//
+//   - When broadcasting to the IVS channel fails and all retries are exhausted.
+//
+//   - When broadcasting is disconnected and all attempts to reconnect are
+//     exhausted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation StartComposition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/StartComposition
+func (c *IVSRealTime) StartComposition(input *StartCompositionInput) (*StartCompositionOutput, error) {
+	req, out := c.StartCompositionRequest(input)
+	return out, req.Send()
+}
+
+// StartCompositionWithContext is the same as StartComposition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartComposition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) StartCompositionWithContext(ctx aws.Context, input *StartCompositionInput, opts ...request.Option) (*StartCompositionOutput, error) {
+	req, out := c.StartCompositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopComposition = "StopComposition"
+
+// StopCompositionRequest generates a "aws/request.Request" representing the
+// client's request for the StopComposition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopComposition for more information on using the StopComposition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopCompositionRequest method.
+//	req, resp := client.StopCompositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/StopComposition
+func (c *IVSRealTime) StopCompositionRequest(input *StopCompositionInput) (req *request.Request, output *StopCompositionOutput) {
+	op := &request.Operation{
+		Name:       opStopComposition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StopComposition",
+	}
+
+	if input == nil {
+		input = &StopCompositionInput{}
+	}
+
+	output = &StopCompositionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopComposition API operation for Amazon Interactive Video Service RealTime.
+//
+// Stops and deletes a Composition resource. Any broadcast from the Composition
+// resource is stopped.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation StopComposition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - InternalServerException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/StopComposition
+func (c *IVSRealTime) StopComposition(input *StopCompositionInput) (*StopCompositionOutput, error) {
+	req, out := c.StopCompositionRequest(input)
+	return out, req.Send()
+}
+
+// StopCompositionWithContext is the same as StopComposition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopComposition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) StopCompositionWithContext(ctx aws.Context, input *StopCompositionInput, opts ...request.Option) (*StopCompositionOutput, error) {
+	req, out := c.StopCompositionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1558,6 +2818,283 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Object specifying a channel as a destination.
+type ChannelDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the channel to use for broadcasting. The channel and stage resources
+	// must be in the same AWS account and region. The channel must be offline (not
+	// broadcasting).
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// ARN of the EncoderConfiguration resource. The encoder configuration and stage
+	// resources must be in the same AWS account and region.
+	EncoderConfigurationArn *string `locationName:"encoderConfigurationArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChannelDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChannelDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChannelDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChannelDestinationConfiguration"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 1))
+	}
+	if s.EncoderConfigurationArn != nil && len(*s.EncoderConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EncoderConfigurationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelDestinationConfiguration) SetChannelArn(v string) *ChannelDestinationConfiguration {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetEncoderConfigurationArn sets the EncoderConfigurationArn field's value.
+func (s *ChannelDestinationConfiguration) SetEncoderConfigurationArn(v string) *ChannelDestinationConfiguration {
+	s.EncoderConfigurationArn = &v
+	return s
+}
+
+// Object specifying a Composition resource.
+type Composition struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the Composition resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Array of Destination objects. A Composition can contain either one destination
+	// (channel or s3) or two (one channel and one s3).
+	//
+	// Destinations is a required field
+	Destinations []*Destination `locationName:"destinations" min:"1" type:"list" required:"true"`
+
+	// UTC time of the Composition end. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Layout object to configure composition parameters.
+	//
+	// Layout is a required field
+	Layout *LayoutConfiguration `locationName:"layout" type:"structure" required:"true"`
+
+	// ARN of the stage used as input
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+
+	// UTC time of the Composition start. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// State of the Composition.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"CompositionState"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Composition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Composition) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Composition) SetArn(v string) *Composition {
+	s.Arn = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *Composition) SetDestinations(v []*Destination) *Composition {
+	s.Destinations = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Composition) SetEndTime(v time.Time) *Composition {
+	s.EndTime = &v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *Composition) SetLayout(v *LayoutConfiguration) *Composition {
+	s.Layout = v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *Composition) SetStageArn(v string) *Composition {
+	s.StageArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Composition) SetStartTime(v time.Time) *Composition {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Composition) SetState(v string) *Composition {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Composition) SetTags(v map[string]*string) *Composition {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a Composition.
+type CompositionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the Composition resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Array of Destination objects.
+	//
+	// Destinations is a required field
+	Destinations []*DestinationSummary `locationName:"destinations" min:"1" type:"list" required:"true"`
+
+	// UTC time of the Composition end. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// ARN of the attached stage.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+
+	// UTC time of the Composition start. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// State of the Composition resource.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"CompositionState"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompositionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CompositionSummary) SetArn(v string) *CompositionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *CompositionSummary) SetDestinations(v []*DestinationSummary) *CompositionSummary {
+	s.Destinations = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CompositionSummary) SetEndTime(v time.Time) *CompositionSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *CompositionSummary) SetStageArn(v string) *CompositionSummary {
+	s.StageArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CompositionSummary) SetStartTime(v time.Time) *CompositionSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CompositionSummary) SetState(v string) *CompositionSummary {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CompositionSummary) SetTags(v map[string]*string) *CompositionSummary {
+	s.Tags = v
+	return s
+}
+
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1622,6 +3159,106 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateEncoderConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional name to identify the resource.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps,
+	// 30 fps.
+	Video *Video `locationName:"video" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEncoderConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEncoderConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEncoderConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEncoderConfigurationInput"}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEncoderConfigurationInput) SetName(v string) *CreateEncoderConfigurationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEncoderConfigurationInput) SetTags(v map[string]*string) *CreateEncoderConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *CreateEncoderConfigurationInput) SetVideo(v *Video) *CreateEncoderConfigurationInput {
+	s.Video = v
+	return s
+}
+
+type CreateEncoderConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The EncoderConfiguration that was created.
+	EncoderConfiguration *EncoderConfiguration `locationName:"encoderConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEncoderConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEncoderConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncoderConfiguration sets the EncoderConfiguration field's value.
+func (s *CreateEncoderConfigurationOutput) SetEncoderConfiguration(v *EncoderConfiguration) *CreateEncoderConfigurationOutput {
+	s.EncoderConfiguration = v
+	return s
 }
 
 type CreateParticipantTokenInput struct {
@@ -1864,6 +3501,182 @@ func (s *CreateStageOutput) SetStage(v *Stage) *CreateStageOutput {
 	return s
 }
 
+type CreateStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Storage configuration name. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// A complex type that contains a storage configuration for where recorded video
+	// will be stored.
+	//
+	// S3 is a required field
+	S3 *S3StorageConfiguration `locationName:"s3" type:"structure" required:"true"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStorageConfigurationInput"}
+	if s.S3 == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3"))
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateStorageConfigurationInput) SetName(v string) *CreateStorageConfigurationInput {
+	s.Name = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *CreateStorageConfigurationInput) SetS3(v *S3StorageConfiguration) *CreateStorageConfigurationInput {
+	s.S3 = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStorageConfigurationInput) SetTags(v map[string]*string) *CreateStorageConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The StorageConfiguration that was created.
+	StorageConfiguration *StorageConfiguration `locationName:"storageConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageConfiguration sets the StorageConfiguration field's value.
+func (s *CreateStorageConfigurationOutput) SetStorageConfiguration(v *StorageConfiguration) *CreateStorageConfigurationOutput {
+	s.StorageConfiguration = v
+	return s
+}
+
+type DeleteEncoderConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the EncoderConfiguration.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEncoderConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEncoderConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEncoderConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEncoderConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteEncoderConfigurationInput) SetArn(v string) *DeleteEncoderConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type DeleteEncoderConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEncoderConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEncoderConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1933,6 +3746,331 @@ func (s DeleteStageOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteStageOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the storage configuration to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteStorageConfigurationInput) SetArn(v string) *DeleteStorageConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type DeleteStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// Object specifying the status of a Destination.
+type Destination struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration used to create this destination.
+	//
+	// Configuration is a required field
+	Configuration *DestinationConfiguration `locationName:"configuration" type:"structure" required:"true"`
+
+	// Optional details regarding the status of the destination.
+	Detail *DestinationDetail `locationName:"detail" type:"structure"`
+
+	// UTC time of the destination end. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for this destination, assigned by IVS.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// UTC time of the destination start. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// State of the Composition Destination.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"DestinationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *Destination) SetConfiguration(v *DestinationConfiguration) *Destination {
+	s.Configuration = v
+	return s
+}
+
+// SetDetail sets the Detail field's value.
+func (s *Destination) SetDetail(v *DestinationDetail) *Destination {
+	s.Detail = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Destination) SetEndTime(v time.Time) *Destination {
+	s.EndTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Destination) SetId(v string) *Destination {
+	s.Id = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Destination) SetStartTime(v time.Time) *Destination {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Destination) SetState(v string) *Destination {
+	s.State = &v
+	return s
+}
+
+// Complex data type that defines destination-configuration objects.
+type DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An IVS channel to be used for broadcasting, for server-side composition.
+	// Either a channel or an s3 must be specified.
+	Channel *ChannelDestinationConfiguration `locationName:"channel" type:"structure"`
+
+	// Name that can be specified to help identify the destination.
+	Name *string `locationName:"name" type:"string"`
+
+	// An S3 storage configuration to be used for recording video data. Either a
+	// channel or an s3 must be specified.
+	S3 *S3DestinationConfiguration `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DestinationConfiguration"}
+	if s.Channel != nil {
+		if err := s.Channel.Validate(); err != nil {
+			invalidParams.AddNested("Channel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannel sets the Channel field's value.
+func (s *DestinationConfiguration) SetChannel(v *ChannelDestinationConfiguration) *DestinationConfiguration {
+	s.Channel = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DestinationConfiguration) SetName(v string) *DestinationConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *DestinationConfiguration) SetS3(v *S3DestinationConfiguration) *DestinationConfiguration {
+	s.S3 = v
+	return s
+}
+
+// Complex data type that defines destination-detail objects.
+type DestinationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// An S3 detail object to return information about the S3 destination.
+	S3 *S3Detail `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationDetail) GoString() string {
+	return s.String()
+}
+
+// SetS3 sets the S3 field's value.
+func (s *DestinationDetail) SetS3(v *S3Detail) *DestinationDetail {
+	s.S3 = v
+	return s
+}
+
+// Summary information about a Destination.
+type DestinationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// UTC time of the destination end. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for this destination, assigned by IVS.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// UTC time of the destination start. This is an ISO 8601 timestamp; note that
+	// this is returned as a string.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// State of the Composition Destination.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"DestinationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationSummary) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DestinationSummary) SetEndTime(v time.Time) *DestinationSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DestinationSummary) SetId(v string) *DestinationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DestinationSummary) SetStartTime(v time.Time) *DestinationSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *DestinationSummary) SetState(v string) *DestinationSummary {
+	s.State = &v
+	return s
 }
 
 type DisconnectParticipantInput struct {
@@ -2030,6 +4168,128 @@ func (s DisconnectParticipantOutput) GoString() string {
 	return s.String()
 }
 
+// Settings for transcoding.
+type EncoderConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the EncoderConfiguration resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Optional name to identify the resource.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps,
+	// 30 fps
+	Video *Video `locationName:"video" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncoderConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncoderConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EncoderConfiguration) SetArn(v string) *EncoderConfiguration {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EncoderConfiguration) SetName(v string) *EncoderConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EncoderConfiguration) SetTags(v map[string]*string) *EncoderConfiguration {
+	s.Tags = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *EncoderConfiguration) SetVideo(v *Video) *EncoderConfiguration {
+	s.Video = v
+	return s
+}
+
+// Summary information about an EncoderConfiguration.
+type EncoderConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the EncoderConfiguration resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Optional name to identify the resource.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncoderConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncoderConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EncoderConfigurationSummary) SetArn(v string) *EncoderConfigurationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EncoderConfigurationSummary) SetName(v string) *EncoderConfigurationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EncoderConfigurationSummary) SetTags(v map[string]*string) *EncoderConfigurationSummary {
+	s.Tags = v
+	return s
+}
+
 // An occurrence during a stage session.
 type Event struct {
 	_ struct{} `type:"structure"`
@@ -2107,6 +4367,166 @@ func (s *Event) SetParticipantId(v string) *Event {
 // SetRemoteParticipantId sets the RemoteParticipantId field's value.
 func (s *Event) SetRemoteParticipantId(v string) *Event {
 	s.RemoteParticipantId = &v
+	return s
+}
+
+type GetCompositionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the Composition resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCompositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCompositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCompositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCompositionInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetCompositionInput) SetArn(v string) *GetCompositionInput {
+	s.Arn = &v
+	return s
+}
+
+type GetCompositionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Composition that was returned.
+	Composition *Composition `locationName:"composition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCompositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCompositionOutput) GoString() string {
+	return s.String()
+}
+
+// SetComposition sets the Composition field's value.
+func (s *GetCompositionOutput) SetComposition(v *Composition) *GetCompositionOutput {
+	s.Composition = v
+	return s
+}
+
+type GetEncoderConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the EncoderConfiguration resource.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncoderConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncoderConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEncoderConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEncoderConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetEncoderConfigurationInput) SetArn(v string) *GetEncoderConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type GetEncoderConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The EncoderConfiguration that was returned.
+	EncoderConfiguration *EncoderConfiguration `locationName:"encoderConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncoderConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEncoderConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncoderConfiguration sets the EncoderConfiguration field's value.
+func (s *GetEncoderConfigurationOutput) SetEncoderConfiguration(v *EncoderConfiguration) *GetEncoderConfigurationOutput {
+	s.EncoderConfiguration = v
 	return s
 }
 
@@ -2399,6 +4819,121 @@ func (s *GetStageSessionOutput) SetStageSession(v *StageSession) *GetStageSessio
 	return s
 }
 
+type GetStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the storage configuration to be retrieved.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStorageConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetStorageConfigurationInput) SetArn(v string) *GetStorageConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type GetStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The StorageConfiguration that was returned.
+	StorageConfiguration *StorageConfiguration `locationName:"storageConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageConfiguration sets the StorageConfiguration field's value.
+func (s *GetStorageConfigurationOutput) SetStorageConfiguration(v *StorageConfiguration) *GetStorageConfigurationOutput {
+	s.StorageConfiguration = v
+	return s
+}
+
+// Configuration information specific to Grid layout, for server-side composition.
+// See "Layouts" in Server-Side Composition (https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/server-side-composition.html).
+type GridConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// This attribute name identifies the featured slot. A participant with this
+	// attribute set to "true" (as a string value) in ParticipantTokenConfiguration
+	// is placed in the featured slot.
+	FeaturedParticipantAttribute *string `locationName:"featuredParticipantAttribute" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GridConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GridConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetFeaturedParticipantAttribute sets the FeaturedParticipantAttribute field's value.
+func (s *GridConfiguration) SetFeaturedParticipantAttribute(v string) *GridConfiguration {
+	s.FeaturedParticipantAttribute = &v
+	return s
+}
+
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2465,14 +5000,265 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration information of supported layouts for server-side composition.
+type LayoutConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration related to grid layout. Default: Grid layout.
+	Grid *GridConfiguration `locationName:"grid" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LayoutConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LayoutConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetGrid sets the Grid field's value.
+func (s *LayoutConfiguration) SetGrid(v *GridConfiguration) *LayoutConfiguration {
+	s.Grid = v
+	return s
+}
+
+type ListCompositionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the Composition list to match the specified EncoderConfiguration
+	// attached to at least one of its output.
+	FilterByEncoderConfigurationArn *string `locationName:"filterByEncoderConfigurationArn" min:"1" type:"string"`
+
+	// Filters the Composition list to match the specified Stage ARN.
+	FilterByStageArn *string `locationName:"filterByStageArn" min:"1" type:"string"`
+
+	// Maximum number of results to return. Default: 100.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first Composition to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCompositionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCompositionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCompositionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCompositionsInput"}
+	if s.FilterByEncoderConfigurationArn != nil && len(*s.FilterByEncoderConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterByEncoderConfigurationArn", 1))
+	}
+	if s.FilterByStageArn != nil && len(*s.FilterByStageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterByStageArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterByEncoderConfigurationArn sets the FilterByEncoderConfigurationArn field's value.
+func (s *ListCompositionsInput) SetFilterByEncoderConfigurationArn(v string) *ListCompositionsInput {
+	s.FilterByEncoderConfigurationArn = &v
+	return s
+}
+
+// SetFilterByStageArn sets the FilterByStageArn field's value.
+func (s *ListCompositionsInput) SetFilterByStageArn(v string) *ListCompositionsInput {
+	s.FilterByStageArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCompositionsInput) SetMaxResults(v int64) *ListCompositionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCompositionsInput) SetNextToken(v string) *ListCompositionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCompositionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of the matching Compositions (summary information only).
+	//
+	// Compositions is a required field
+	Compositions []*CompositionSummary `locationName:"compositions" type:"list" required:"true"`
+
+	// If there are more compositions than maxResults, use nextToken in the request
+	// to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCompositionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCompositionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompositions sets the Compositions field's value.
+func (s *ListCompositionsOutput) SetCompositions(v []*CompositionSummary) *ListCompositionsOutput {
+	s.Compositions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCompositionsOutput) SetNextToken(v string) *ListCompositionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEncoderConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of results to return. Default: 100.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first encoder configuration to retrieve. This is used for pagination;
+	// see the nextToken response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEncoderConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEncoderConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEncoderConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEncoderConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEncoderConfigurationsInput) SetMaxResults(v int64) *ListEncoderConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEncoderConfigurationsInput) SetNextToken(v string) *ListEncoderConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEncoderConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of the matching EncoderConfigurations (summary information only).
+	//
+	// EncoderConfigurations is a required field
+	EncoderConfigurations []*EncoderConfigurationSummary `locationName:"encoderConfigurations" type:"list" required:"true"`
+
+	// If there are more encoder configurations than maxResults, use nextToken in
+	// the request to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEncoderConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEncoderConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncoderConfigurations sets the EncoderConfigurations field's value.
+func (s *ListEncoderConfigurationsOutput) SetEncoderConfigurations(v []*EncoderConfigurationSummary) *ListEncoderConfigurationsOutput {
+	s.EncoderConfigurations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEncoderConfigurationsOutput) SetNextToken(v string) *ListEncoderConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListParticipantEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Maximum number of results to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The first participant to retrieve. This is used for pagination; see the nextToken
-	// response field.
+	// The first participant event to retrieve. This is used for pagination; see
+	// the nextToken response field.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Unique identifier for this participant. This is assigned by IVS and returned
@@ -2576,7 +5362,7 @@ type ListParticipantEventsOutput struct {
 	// Events is a required field
 	Events []*Event `locationName:"events" type:"list" required:"true"`
 
-	// If there are more rooms than maxResults, use nextToken in the request to
+	// If there are more events than maxResults, use nextToken in the request to
 	// get the next set.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -2736,8 +5522,8 @@ func (s *ListParticipantsInput) SetStageArn(v string) *ListParticipantsInput {
 type ListParticipantsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If there are more rooms than maxResults, use nextToken in the request to
-	// get the next set.
+	// If there are more participants than maxResults, use nextToken in the request
+	// to get the next set.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// List of the matching participants (summary information only).
@@ -2782,8 +5568,8 @@ type ListStageSessionsInput struct {
 	// Maximum number of results to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The first stage to retrieve. This is used for pagination; see the nextToken
-	// response field.
+	// The first stage session to retrieve. This is used for pagination; see the
+	// nextToken response field.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Stage ARN.
@@ -2850,8 +5636,8 @@ func (s *ListStageSessionsInput) SetStageArn(v string) *ListStageSessionsInput {
 type ListStageSessionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If there are more rooms than maxResults, use nextToken in the request to
-	// get the next set.
+	// If there are more stage sessions than maxResults, use nextToken in the request
+	// to get the next set.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// List of matching stage sessions.
@@ -2947,7 +5733,7 @@ func (s *ListStagesInput) SetNextToken(v string) *ListStagesInput {
 type ListStagesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If there are more rooms than maxResults, use nextToken in the request to
+	// If there are more stages than maxResults, use nextToken in the request to
 	// get the next set.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -2984,6 +5770,104 @@ func (s *ListStagesOutput) SetNextToken(v string) *ListStagesOutput {
 // SetStages sets the Stages field's value.
 func (s *ListStagesOutput) SetStages(v []*StageSummary) *ListStagesOutput {
 	s.Stages = v
+	return s
+}
+
+type ListStorageConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of storage configurations to return. Default: your service
+	// quota or 100, whichever is smaller.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first storage configuration to retrieve. This is used for pagination;
+	// see the nextToken response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStorageConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStorageConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStorageConfigurationsInput) SetMaxResults(v int64) *ListStorageConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageConfigurationsInput) SetNextToken(v string) *ListStorageConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStorageConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more storage configurations than maxResults, use nextToken in
+	// the request to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of the matching storage configurations.
+	//
+	// StorageConfigurations is a required field
+	StorageConfigurations []*StorageConfigurationSummary `locationName:"storageConfigurations" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageConfigurationsOutput) SetNextToken(v string) *ListStorageConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageConfigurations sets the StorageConfigurations field's value.
+func (s *ListStorageConfigurationsOutput) SetStorageConfigurations(v []*StorageConfigurationSummary) *ListStorageConfigurationsOutput {
+	s.StorageConfigurations = v
 	return s
 }
 
@@ -3526,6 +6410,38 @@ func (s *PendingVerification) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object representing a configuration to record a stage stream.
+type RecordingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The recording format for storing a recording in Amazon S3.
+	Format *string `locationName:"format" type:"string" enum:"RecordingConfigurationFormat"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetFormat sets the Format field's value.
+func (s *RecordingConfiguration) SetFormat(v string) *RecordingConfiguration {
+	s.Format = &v
+	return s
+}
+
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3590,6 +6506,173 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A complex type that describes an S3 location where recorded videos will be
+// stored.
+type S3DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// ARNs of the EncoderConfiguration resource. The encoder configuration and
+	// stage resources must be in the same AWS account and region.
+	//
+	// EncoderConfigurationArns is a required field
+	EncoderConfigurationArns []*string `locationName:"encoderConfigurationArns" min:"1" type:"list" required:"true"`
+
+	// Array of maps, each of the form string:string (key:value). This is an optional
+	// customer specification, currently used only to specify the recording format
+	// for storing a recording in Amazon S3.
+	RecordingConfiguration *RecordingConfiguration `locationName:"recordingConfiguration" type:"structure"`
+
+	// ARN of the StorageConfiguration where recorded videos will be stored.
+	//
+	// StorageConfigurationArn is a required field
+	StorageConfigurationArn *string `locationName:"storageConfigurationArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DestinationConfiguration"}
+	if s.EncoderConfigurationArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncoderConfigurationArns"))
+	}
+	if s.EncoderConfigurationArns != nil && len(s.EncoderConfigurationArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EncoderConfigurationArns", 1))
+	}
+	if s.StorageConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageConfigurationArn"))
+	}
+	if s.StorageConfigurationArn != nil && len(*s.StorageConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageConfigurationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncoderConfigurationArns sets the EncoderConfigurationArns field's value.
+func (s *S3DestinationConfiguration) SetEncoderConfigurationArns(v []*string) *S3DestinationConfiguration {
+	s.EncoderConfigurationArns = v
+	return s
+}
+
+// SetRecordingConfiguration sets the RecordingConfiguration field's value.
+func (s *S3DestinationConfiguration) SetRecordingConfiguration(v *RecordingConfiguration) *S3DestinationConfiguration {
+	s.RecordingConfiguration = v
+	return s
+}
+
+// SetStorageConfigurationArn sets the StorageConfigurationArn field's value.
+func (s *S3DestinationConfiguration) SetStorageConfigurationArn(v string) *S3DestinationConfiguration {
+	s.StorageConfigurationArn = &v
+	return s
+}
+
+// Complex data type that defines S3Detail objects.
+type S3Detail struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 bucket prefix under which the recording is stored.
+	//
+	// RecordingPrefix is a required field
+	RecordingPrefix *string `locationName:"recordingPrefix" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Detail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Detail) GoString() string {
+	return s.String()
+}
+
+// SetRecordingPrefix sets the RecordingPrefix field's value.
+func (s *S3Detail) SetRecordingPrefix(v string) *S3Detail {
+	s.RecordingPrefix = &v
+	return s
+}
+
+// A complex type that describes an S3 location where recorded videos will be
+// stored.
+type S3StorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Location (S3 bucket name) where recorded videos will be stored. Note that
+	// the StorageConfiguration and S3 bucket must be in the same region as the
+	// Composition.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3StorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3StorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3StorageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3StorageConfiguration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3StorageConfiguration) SetBucketName(v string) *S3StorageConfiguration {
+	s.BucketName = &v
+	return s
 }
 
 type ServiceQuotaExceededException struct {
@@ -3889,6 +6972,348 @@ func (s *StageSummary) SetName(v string) *StageSummary {
 
 // SetTags sets the Tags field's value.
 func (s *StageSummary) SetTags(v map[string]*string) *StageSummary {
+	s.Tags = v
+	return s
+}
+
+type StartCompositionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Array of destination configuration.
+	//
+	// Destinations is a required field
+	Destinations []*DestinationConfiguration `locationName:"destinations" min:"1" type:"list" required:"true"`
+
+	// Idempotency token.
+	IdempotencyToken *string `locationName:"idempotencyToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Layout object to configure composition parameters.
+	Layout *LayoutConfiguration `locationName:"layout" type:"structure"`
+
+	// ARN of the stage to be used for compositing.
+	//
+	// StageArn is a required field
+	StageArn *string `locationName:"stageArn" min:"1" type:"string" required:"true"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCompositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCompositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCompositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCompositionInput"}
+	if s.Destinations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destinations"))
+	}
+	if s.Destinations != nil && len(s.Destinations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destinations", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.StageArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageArn"))
+	}
+	if s.StageArn != nil && len(*s.StageArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageArn", 1))
+	}
+	if s.Destinations != nil {
+		for i, v := range s.Destinations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Destinations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *StartCompositionInput) SetDestinations(v []*DestinationConfiguration) *StartCompositionInput {
+	s.Destinations = v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *StartCompositionInput) SetIdempotencyToken(v string) *StartCompositionInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *StartCompositionInput) SetLayout(v *LayoutConfiguration) *StartCompositionInput {
+	s.Layout = v
+	return s
+}
+
+// SetStageArn sets the StageArn field's value.
+func (s *StartCompositionInput) SetStageArn(v string) *StartCompositionInput {
+	s.StageArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartCompositionInput) SetTags(v map[string]*string) *StartCompositionInput {
+	s.Tags = v
+	return s
+}
+
+type StartCompositionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Composition that was created.
+	Composition *Composition `locationName:"composition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCompositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCompositionOutput) GoString() string {
+	return s.String()
+}
+
+// SetComposition sets the Composition field's value.
+func (s *StartCompositionOutput) SetComposition(v *Composition) *StartCompositionOutput {
+	s.Composition = v
+	return s
+}
+
+type StopCompositionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the Composition.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCompositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCompositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopCompositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopCompositionInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *StopCompositionInput) SetArn(v string) *StopCompositionInput {
+	s.Arn = &v
+	return s
+}
+
+type StopCompositionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCompositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCompositionOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that describes a location where recorded videos will be stored.
+type StorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the storage configuration.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Name of the storage configuration.
+	Name *string `locationName:"name" type:"string"`
+
+	// An S3 destination configuration where recorded videos will be stored.
+	S3 *S3StorageConfiguration `locationName:"s3" type:"structure"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StorageConfiguration) SetArn(v string) *StorageConfiguration {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StorageConfiguration) SetName(v string) *StorageConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *StorageConfiguration) SetS3(v *S3StorageConfiguration) *StorageConfiguration {
+	s.S3 = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StorageConfiguration) SetTags(v map[string]*string) *StorageConfiguration {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a storage configuration.
+type StorageConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the storage configuration.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Name of the storage configuration.
+	Name *string `locationName:"name" type:"string"`
+
+	// An S3 destination configuration where recorded videos will be stored.
+	S3 *S3StorageConfiguration `locationName:"s3" type:"structure"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StorageConfigurationSummary) SetArn(v string) *StorageConfigurationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StorageConfigurationSummary) SetName(v string) *StorageConfigurationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *StorageConfigurationSummary) SetS3(v *S3StorageConfiguration) *StorageConfigurationSummary {
+	s.S3 = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StorageConfigurationSummary) SetTags(v map[string]*string) *StorageConfigurationSummary {
 	s.Tags = v
 	return s
 }
@@ -4227,6 +7652,151 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Settings for video.
+type Video struct {
+	_ struct{} `type:"structure"`
+
+	// Bitrate for generated output, in bps. Default: 2500000.
+	Bitrate *int64 `locationName:"bitrate" min:"1" type:"integer"`
+
+	// Video frame rate, in fps. Default: 30.
+	Framerate *float64 `locationName:"framerate" min:"1" type:"float"`
+
+	// Video-resolution height. Note that the maximum value is determined by width
+	// times height, such that the maximum total pixels is 2073600 (1920x1080 or
+	// 1080x1920). Default: 720.
+	Height *int64 `locationName:"height" min:"1" type:"integer"`
+
+	// Video-resolution width. Note that the maximum value is determined by width
+	// times height, such that the maximum total pixels is 2073600 (1920x1080 or
+	// 1080x1920). Default: 1280.
+	Width *int64 `locationName:"width" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Video) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Video) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Video) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Video"}
+	if s.Bitrate != nil && *s.Bitrate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Bitrate", 1))
+	}
+	if s.Framerate != nil && *s.Framerate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Framerate", 1))
+	}
+	if s.Height != nil && *s.Height < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Height", 1))
+	}
+	if s.Width != nil && *s.Width < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Width", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBitrate sets the Bitrate field's value.
+func (s *Video) SetBitrate(v int64) *Video {
+	s.Bitrate = &v
+	return s
+}
+
+// SetFramerate sets the Framerate field's value.
+func (s *Video) SetFramerate(v float64) *Video {
+	s.Framerate = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *Video) SetHeight(v int64) *Video {
+	s.Height = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *Video) SetWidth(v int64) *Video {
+	s.Width = &v
+	return s
+}
+
+const (
+	// CompositionStateStarting is a CompositionState enum value
+	CompositionStateStarting = "STARTING"
+
+	// CompositionStateActive is a CompositionState enum value
+	CompositionStateActive = "ACTIVE"
+
+	// CompositionStateStopping is a CompositionState enum value
+	CompositionStateStopping = "STOPPING"
+
+	// CompositionStateFailed is a CompositionState enum value
+	CompositionStateFailed = "FAILED"
+
+	// CompositionStateStopped is a CompositionState enum value
+	CompositionStateStopped = "STOPPED"
+)
+
+// CompositionState_Values returns all elements of the CompositionState enum
+func CompositionState_Values() []string {
+	return []string{
+		CompositionStateStarting,
+		CompositionStateActive,
+		CompositionStateStopping,
+		CompositionStateFailed,
+		CompositionStateStopped,
+	}
+}
+
+const (
+	// DestinationStateStarting is a DestinationState enum value
+	DestinationStateStarting = "STARTING"
+
+	// DestinationStateActive is a DestinationState enum value
+	DestinationStateActive = "ACTIVE"
+
+	// DestinationStateStopping is a DestinationState enum value
+	DestinationStateStopping = "STOPPING"
+
+	// DestinationStateReconnecting is a DestinationState enum value
+	DestinationStateReconnecting = "RECONNECTING"
+
+	// DestinationStateFailed is a DestinationState enum value
+	DestinationStateFailed = "FAILED"
+
+	// DestinationStateStopped is a DestinationState enum value
+	DestinationStateStopped = "STOPPED"
+)
+
+// DestinationState_Values returns all elements of the DestinationState enum
+func DestinationState_Values() []string {
+	return []string{
+		DestinationStateStarting,
+		DestinationStateActive,
+		DestinationStateStopping,
+		DestinationStateReconnecting,
+		DestinationStateFailed,
+		DestinationStateStopped,
+	}
+}
+
 const (
 	// EventErrorCodeInsufficientCapabilities is a EventErrorCode enum value
 	EventErrorCodeInsufficientCapabilities = "INSUFFICIENT_CAPABILITIES"
@@ -4320,5 +7890,17 @@ func ParticipantTokenCapability_Values() []string {
 	return []string{
 		ParticipantTokenCapabilityPublish,
 		ParticipantTokenCapabilitySubscribe,
+	}
+}
+
+const (
+	// RecordingConfigurationFormatHls is a RecordingConfigurationFormat enum value
+	RecordingConfigurationFormatHls = "HLS"
+)
+
+// RecordingConfigurationFormat_Values returns all elements of the RecordingConfigurationFormat enum
+func RecordingConfigurationFormat_Values() []string {
+	return []string{
+		RecordingConfigurationFormatHls,
 	}
 }

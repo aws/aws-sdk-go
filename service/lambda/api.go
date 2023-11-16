@@ -3488,10 +3488,6 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 //
 // Invokes a function asynchronously.
 //
-// If you do use the InvokeAsync action, note that it doesn't support the use
-// of X-Ray active tracing. Trace ID is not propagated to the function, even
-// if X-Ray active tracing is turned on.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9231,8 +9227,7 @@ type CreateFunctionInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB. For more information,
-	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
+	// but can be any whole number between 512 and 10,240 MB.
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.
@@ -9280,6 +9275,9 @@ type CreateFunctionInput struct {
 	// to add to the function's execution environment. Specify each layer by its
 	// ARN, including the version.
 	Layers []*string `type:"list"`
+
+	// The function's Amazon CloudWatch Logs configuration settings.
+	LoggingConfig *LoggingConfig `type:"structure"`
 
 	// The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console)
 	// at runtime. Increasing the function memory also increases its CPU allocation.
@@ -9392,6 +9390,11 @@ func (s *CreateFunctionInput) Validate() error {
 			}
 		}
 	}
+	if s.LoggingConfig != nil {
+		if err := s.LoggingConfig.Validate(); err != nil {
+			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9474,6 +9477,12 @@ func (s *CreateFunctionInput) SetKMSKeyArn(v string) *CreateFunctionInput {
 // SetLayers sets the Layers field's value.
 func (s *CreateFunctionInput) SetLayers(v []*string) *CreateFunctionInput {
 	s.Layers = v
+	return s
+}
+
+// SetLoggingConfig sets the LoggingConfig field's value.
+func (s *CreateFunctionInput) SetLoggingConfig(v *LoggingConfig) *CreateFunctionInput {
+	s.LoggingConfig = v
 	return s
 }
 
@@ -11418,8 +11427,7 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 }
 
 // The size of the function's /tmp directory in MB. The default value is 512,
-// but can be any whole number between 512 and 10,240 MB. For more information,
-// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
+// but it can be any whole number between 512 and 10,240 MB.
 type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
@@ -12098,9 +12106,8 @@ type FunctionConfiguration struct {
 	// Omitted from CloudTrail logs.
 	Environment *EnvironmentResponse `type:"structure"`
 
-	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB. For more information,
-	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
+	// The size of the function’s /tmp directory in MB. The default value is 512,
+	// but it can be any whole number between 512 and 10,240 MB.
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
@@ -12140,6 +12147,9 @@ type FunctionConfiguration struct {
 
 	// The function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 	Layers []*Layer `type:"list"`
+
+	// The function's Amazon CloudWatch Logs configuration settings.
+	LoggingConfig *LoggingConfig `type:"structure"`
 
 	// For Lambda@Edge functions, the ARN of the main function.
 	MasterArn *string `type:"string"`
@@ -12326,6 +12336,12 @@ func (s *FunctionConfiguration) SetLastUpdateStatusReasonCode(v string) *Functio
 // SetLayers sets the Layers field's value.
 func (s *FunctionConfiguration) SetLayers(v []*Layer) *FunctionConfiguration {
 	s.Layers = v
+	return s
+}
+
+// SetLoggingConfig sets the LoggingConfig field's value.
+func (s *FunctionConfiguration) SetLoggingConfig(v *LoggingConfig) *FunctionConfiguration {
+	s.LoggingConfig = v
 	return s
 }
 
@@ -17898,6 +17914,86 @@ func (s *ListVersionsByFunctionOutput) SetVersions(v []*FunctionConfiguration) *
 	return s
 }
 
+// The function's Amazon CloudWatch Logs configuration settings.
+type LoggingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Set this property to filter the application logs for your function that Lambda
+	// sends to CloudWatch. Lambda only sends application logs at the selected level
+	// and lower.
+	ApplicationLogLevel *string `type:"string" enum:"ApplicationLogLevel"`
+
+	// The format in which Lambda sends your function's application and system logs
+	// to CloudWatch. Select between plain text and structured JSON.
+	LogFormat *string `type:"string" enum:"LogFormat"`
+
+	// The name of the Amazon CloudWatch log group the function sends logs to. By
+	// default, Lambda functions send logs to a default log group named /aws/lambda/<function
+	// name>. To use a different log group, enter an existing log group or enter
+	// a new log group name.
+	LogGroup *string `min:"1" type:"string"`
+
+	// Set this property to filter the system logs for your function that Lambda
+	// sends to CloudWatch. Lambda only sends system logs at the selected level
+	// and lower.
+	SystemLogLevel *string `type:"string" enum:"SystemLogLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggingConfig"}
+	if s.LogGroup != nil && len(*s.LogGroup) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroup", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationLogLevel sets the ApplicationLogLevel field's value.
+func (s *LoggingConfig) SetApplicationLogLevel(v string) *LoggingConfig {
+	s.ApplicationLogLevel = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *LoggingConfig) SetLogFormat(v string) *LoggingConfig {
+	s.LogFormat = &v
+	return s
+}
+
+// SetLogGroup sets the LogGroup field's value.
+func (s *LoggingConfig) SetLogGroup(v string) *LoggingConfig {
+	s.LogGroup = &v
+	return s
+}
+
+// SetSystemLogLevel sets the SystemLogLevel field's value.
+func (s *LoggingConfig) SetSystemLogLevel(v string) *LoggingConfig {
+	s.SystemLogLevel = &v
+	return s
+}
+
 // A destination for events that failed processing.
 type OnFailure struct {
 	_ struct{} `type:"structure"`
@@ -21797,8 +21893,7 @@ type UpdateFunctionConfigurationInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB. For more information,
-	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
+	// but can be any whole number between 512 and 10,240 MB.
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.
@@ -21846,6 +21941,9 @@ type UpdateFunctionConfigurationInput struct {
 	// to add to the function's execution environment. Specify each layer by its
 	// ARN, including the version.
 	Layers []*string `type:"list"`
+
+	// The function's Amazon CloudWatch Logs configuration settings.
+	LoggingConfig *LoggingConfig `type:"structure"`
 
 	// The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console)
 	// at runtime. Increasing the function memory also increases its CPU allocation.
@@ -21936,6 +22034,11 @@ func (s *UpdateFunctionConfigurationInput) Validate() error {
 			}
 		}
 	}
+	if s.LoggingConfig != nil {
+		if err := s.LoggingConfig.Validate(); err != nil {
+			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -22000,6 +22103,12 @@ func (s *UpdateFunctionConfigurationInput) SetKMSKeyArn(v string) *UpdateFunctio
 // SetLayers sets the Layers field's value.
 func (s *UpdateFunctionConfigurationInput) SetLayers(v []*string) *UpdateFunctionConfigurationInput {
 	s.Layers = v
+	return s
+}
+
+// SetLoggingConfig sets the LoggingConfig field's value.
+func (s *UpdateFunctionConfigurationInput) SetLoggingConfig(v *LoggingConfig) *UpdateFunctionConfigurationInput {
+	s.LoggingConfig = v
 	return s
 }
 
@@ -22577,6 +22686,38 @@ func (s *VpcConfigResponse) SetVpcId(v string) *VpcConfigResponse {
 }
 
 const (
+	// ApplicationLogLevelTrace is a ApplicationLogLevel enum value
+	ApplicationLogLevelTrace = "TRACE"
+
+	// ApplicationLogLevelDebug is a ApplicationLogLevel enum value
+	ApplicationLogLevelDebug = "DEBUG"
+
+	// ApplicationLogLevelInfo is a ApplicationLogLevel enum value
+	ApplicationLogLevelInfo = "INFO"
+
+	// ApplicationLogLevelWarn is a ApplicationLogLevel enum value
+	ApplicationLogLevelWarn = "WARN"
+
+	// ApplicationLogLevelError is a ApplicationLogLevel enum value
+	ApplicationLogLevelError = "ERROR"
+
+	// ApplicationLogLevelFatal is a ApplicationLogLevel enum value
+	ApplicationLogLevelFatal = "FATAL"
+)
+
+// ApplicationLogLevel_Values returns all elements of the ApplicationLogLevel enum
+func ApplicationLogLevel_Values() []string {
+	return []string{
+		ApplicationLogLevelTrace,
+		ApplicationLogLevelDebug,
+		ApplicationLogLevelInfo,
+		ApplicationLogLevelWarn,
+		ApplicationLogLevelError,
+		ApplicationLogLevelFatal,
+	}
+}
+
+const (
 	// ArchitectureX8664 is a Architecture enum value
 	ArchitectureX8664 = "x86_64"
 
@@ -22841,6 +22982,22 @@ func LastUpdateStatusReasonCode_Values() []string {
 		LastUpdateStatusReasonCodeInvalidRuntime,
 		LastUpdateStatusReasonCodeInvalidZipFileException,
 		LastUpdateStatusReasonCodeFunctionError,
+	}
+}
+
+const (
+	// LogFormatJson is a LogFormat enum value
+	LogFormatJson = "JSON"
+
+	// LogFormatText is a LogFormat enum value
+	LogFormatText = "Text"
+)
+
+// LogFormat_Values returns all elements of the LogFormat enum
+func LogFormat_Values() []string {
+	return []string{
+		LogFormatJson,
+		LogFormatText,
 	}
 }
 
@@ -23261,6 +23418,26 @@ func StateReasonCode_Values() []string {
 		StateReasonCodeInvalidRuntime,
 		StateReasonCodeInvalidZipFileException,
 		StateReasonCodeFunctionError,
+	}
+}
+
+const (
+	// SystemLogLevelDebug is a SystemLogLevel enum value
+	SystemLogLevelDebug = "DEBUG"
+
+	// SystemLogLevelInfo is a SystemLogLevel enum value
+	SystemLogLevelInfo = "INFO"
+
+	// SystemLogLevelWarn is a SystemLogLevel enum value
+	SystemLogLevelWarn = "WARN"
+)
+
+// SystemLogLevel_Values returns all elements of the SystemLogLevel enum
+func SystemLogLevel_Values() []string {
+	return []string{
+		SystemLogLevelDebug,
+		SystemLogLevelInfo,
+		SystemLogLevelWarn,
 	}
 }
 

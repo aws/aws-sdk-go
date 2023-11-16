@@ -20,8 +20,15 @@
 //   - A participant object represents participants (people) in the stage and
 //     contains information about them. When a token is created, it includes
 //     a participant ID; when a participant uses that token to join a stage,
-//     the participant is associated with that participant ID There is a 1:1
+//     the participant is associated with that participant ID. There is a 1:1
 //     mapping between participant tokens and participants.
+//
+//   - Server-side composition: The composition process composites participants
+//     of a stage into a single video and forwards it to a set of outputs (e.g.,
+//     IVS channels). Composition endpoints support this process.
+//
+//   - Server-side composition: A composition controls the look of the outputs,
+//     including how participants are positioned in the video.
 //
 // # Resources
 //
@@ -81,6 +88,49 @@
 //   - ListStageSessions — Gets all sessions for a specified stage.
 //
 //   - UpdateStage — Updates a stage’s configuration.
+//
+// Composition Endpoints
+//
+//   - GetComposition — Gets information about the specified Composition
+//     resource.
+//
+//   - ListCompositions — Gets summary information about all Compositions
+//     in your account, in the AWS region where the API request is processed.
+//
+//   - StartComposition — Starts a Composition from a stage based on the
+//     configuration provided in the request.
+//
+//   - StopComposition — Stops and deletes a Composition resource. Any broadcast
+//     from the Composition resource is stopped.
+//
+// EncoderConfiguration Endpoints
+//
+//   - CreateEncoderConfiguration — Creates an EncoderConfiguration object.
+//
+//   - DeleteEncoderConfiguration — Deletes an EncoderConfiguration resource.
+//     Ensures that no Compositions are using this template; otherwise, returns
+//     an error.
+//
+//   - GetEncoderConfiguration — Gets information about the specified EncoderConfiguration
+//     resource.
+//
+//   - ListEncoderConfigurations — Gets summary information about all EncoderConfigurations
+//     in your account, in the AWS region where the API request is processed.
+//
+// StorageConfiguration Endpoints
+//
+//   - CreateStorageConfiguration — Creates a new storage configuration,
+//     used to enable recording to Amazon S3.
+//
+//   - DeleteStorageConfiguration — Deletes the storage configuration for
+//     the specified ARN.
+//
+//   - GetStorageConfiguration — Gets the storage configuration for the specified
+//     ARN.
+//
+//   - ListStorageConfigurations — Gets summary information about all storage
+//     configurations in your account, in the AWS region where the API request
+//     is processed.
 //
 // Tags Endpoints
 //

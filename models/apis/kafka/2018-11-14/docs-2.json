@@ -347,6 +347,13 @@
       "base" : "<p>Response body for CreateVpcConnection</p>",
       "refs" : { }
     },
+    "CustomerActionStatus" : {
+      "base" : "<p>A type of an action required from the customer.</p>",
+      "refs" : {
+        "ClusterInfo$CustomerActionStatus" : "<p>Determines if there is an action required from the customer.</p>",
+        "Provisioned$CustomerActionStatus" : "<p>Determines if there is an action required from the customer.</p>"
+      }
+    },
     "DeleteClusterResponse" : {
       "base" : "<p>Returns information about the deleted cluster.</p>",
       "refs" : { }

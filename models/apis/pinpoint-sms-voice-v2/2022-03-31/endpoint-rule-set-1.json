@@ -169,7 +169,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm-incidents-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://sms-voice-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -221,7 +221,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm-incidents-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://sms-voice-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -273,7 +273,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://ssm-incidents.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://sms-voice.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -293,7 +293,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://ssm-incidents.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://sms-voice.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

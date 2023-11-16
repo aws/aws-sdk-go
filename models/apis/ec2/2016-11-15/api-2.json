@@ -12250,7 +12250,8 @@
     "CreateVerifiedAccessTrustProviderDeviceOptions":{
       "type":"structure",
       "members":{
-        "TenantId":{"shape":"String"}
+        "TenantId":{"shape":"String"},
+        "PublicSigningKeyUrl":{"shape":"String"}
       }
     },
     "CreateVerifiedAccessTrustProviderOidcOptions":{
@@ -19312,6 +19313,10 @@
         "TenantId":{
           "shape":"String",
           "locationName":"tenantId"
+        },
+        "PublicSigningKeyUrl":{
+          "shape":"String",
+          "locationName":"publicSigningKeyUrl"
         }
       }
     },
@@ -19319,7 +19324,8 @@
       "type":"string",
       "enum":[
         "jamf",
-        "crowdstrike"
+        "crowdstrike",
+        "jumpcloud"
       ]
     },
     "DeviceType":{
@@ -32840,6 +32846,12 @@
         }
       }
     },
+    "ModifyVerifiedAccessTrustProviderDeviceOptions":{
+      "type":"structure",
+      "members":{
+        "PublicSigningKeyUrl":{"shape":"String"}
+      }
+    },
     "ModifyVerifiedAccessTrustProviderOidcOptions":{
       "type":"structure",
       "members":{
@@ -32858,6 +32870,7 @@
       "members":{
         "VerifiedAccessTrustProviderId":{"shape":"VerifiedAccessTrustProviderId"},
         "OidcOptions":{"shape":"ModifyVerifiedAccessTrustProviderOidcOptions"},
+        "DeviceOptions":{"shape":"ModifyVerifiedAccessTrustProviderDeviceOptions"},
         "Description":{"shape":"String"},
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{

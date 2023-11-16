@@ -378,6 +378,17 @@ type GlueAPI interface {
 	GetColumnStatisticsForTableWithContext(aws.Context, *glue.GetColumnStatisticsForTableInput, ...request.Option) (*glue.GetColumnStatisticsForTableOutput, error)
 	GetColumnStatisticsForTableRequest(*glue.GetColumnStatisticsForTableInput) (*request.Request, *glue.GetColumnStatisticsForTableOutput)
 
+	GetColumnStatisticsTaskRun(*glue.GetColumnStatisticsTaskRunInput) (*glue.GetColumnStatisticsTaskRunOutput, error)
+	GetColumnStatisticsTaskRunWithContext(aws.Context, *glue.GetColumnStatisticsTaskRunInput, ...request.Option) (*glue.GetColumnStatisticsTaskRunOutput, error)
+	GetColumnStatisticsTaskRunRequest(*glue.GetColumnStatisticsTaskRunInput) (*request.Request, *glue.GetColumnStatisticsTaskRunOutput)
+
+	GetColumnStatisticsTaskRuns(*glue.GetColumnStatisticsTaskRunsInput) (*glue.GetColumnStatisticsTaskRunsOutput, error)
+	GetColumnStatisticsTaskRunsWithContext(aws.Context, *glue.GetColumnStatisticsTaskRunsInput, ...request.Option) (*glue.GetColumnStatisticsTaskRunsOutput, error)
+	GetColumnStatisticsTaskRunsRequest(*glue.GetColumnStatisticsTaskRunsInput) (*request.Request, *glue.GetColumnStatisticsTaskRunsOutput)
+
+	GetColumnStatisticsTaskRunsPages(*glue.GetColumnStatisticsTaskRunsInput, func(*glue.GetColumnStatisticsTaskRunsOutput, bool) bool) error
+	GetColumnStatisticsTaskRunsPagesWithContext(aws.Context, *glue.GetColumnStatisticsTaskRunsInput, func(*glue.GetColumnStatisticsTaskRunsOutput, bool) bool, ...request.Option) error
+
 	GetConnection(*glue.GetConnectionInput) (*glue.GetConnectionOutput, error)
 	GetConnectionWithContext(aws.Context, *glue.GetConnectionInput, ...request.Option) (*glue.GetConnectionOutput, error)
 	GetConnectionRequest(*glue.GetConnectionInput) (*request.Request, *glue.GetConnectionOutput)
@@ -678,6 +689,13 @@ type GlueAPI interface {
 	ListBlueprintsPages(*glue.ListBlueprintsInput, func(*glue.ListBlueprintsOutput, bool) bool) error
 	ListBlueprintsPagesWithContext(aws.Context, *glue.ListBlueprintsInput, func(*glue.ListBlueprintsOutput, bool) bool, ...request.Option) error
 
+	ListColumnStatisticsTaskRuns(*glue.ListColumnStatisticsTaskRunsInput) (*glue.ListColumnStatisticsTaskRunsOutput, error)
+	ListColumnStatisticsTaskRunsWithContext(aws.Context, *glue.ListColumnStatisticsTaskRunsInput, ...request.Option) (*glue.ListColumnStatisticsTaskRunsOutput, error)
+	ListColumnStatisticsTaskRunsRequest(*glue.ListColumnStatisticsTaskRunsInput) (*request.Request, *glue.ListColumnStatisticsTaskRunsOutput)
+
+	ListColumnStatisticsTaskRunsPages(*glue.ListColumnStatisticsTaskRunsInput, func(*glue.ListColumnStatisticsTaskRunsOutput, bool) bool) error
+	ListColumnStatisticsTaskRunsPagesWithContext(aws.Context, *glue.ListColumnStatisticsTaskRunsInput, func(*glue.ListColumnStatisticsTaskRunsOutput, bool) bool, ...request.Option) error
+
 	ListCrawlers(*glue.ListCrawlersInput) (*glue.ListCrawlersOutput, error)
 	ListCrawlersWithContext(aws.Context, *glue.ListCrawlersInput, ...request.Option) (*glue.ListCrawlersOutput, error)
 	ListCrawlersRequest(*glue.ListCrawlersInput) (*request.Request, *glue.ListCrawlersOutput)
@@ -849,6 +867,10 @@ type GlueAPI interface {
 	StartBlueprintRunWithContext(aws.Context, *glue.StartBlueprintRunInput, ...request.Option) (*glue.StartBlueprintRunOutput, error)
 	StartBlueprintRunRequest(*glue.StartBlueprintRunInput) (*request.Request, *glue.StartBlueprintRunOutput)
 
+	StartColumnStatisticsTaskRun(*glue.StartColumnStatisticsTaskRunInput) (*glue.StartColumnStatisticsTaskRunOutput, error)
+	StartColumnStatisticsTaskRunWithContext(aws.Context, *glue.StartColumnStatisticsTaskRunInput, ...request.Option) (*glue.StartColumnStatisticsTaskRunOutput, error)
+	StartColumnStatisticsTaskRunRequest(*glue.StartColumnStatisticsTaskRunInput) (*request.Request, *glue.StartColumnStatisticsTaskRunOutput)
+
 	StartCrawler(*glue.StartCrawlerInput) (*glue.StartCrawlerOutput, error)
 	StartCrawlerWithContext(aws.Context, *glue.StartCrawlerInput, ...request.Option) (*glue.StartCrawlerOutput, error)
 	StartCrawlerRequest(*glue.StartCrawlerInput) (*request.Request, *glue.StartCrawlerOutput)
@@ -892,6 +914,10 @@ type GlueAPI interface {
 	StartWorkflowRun(*glue.StartWorkflowRunInput) (*glue.StartWorkflowRunOutput, error)
 	StartWorkflowRunWithContext(aws.Context, *glue.StartWorkflowRunInput, ...request.Option) (*glue.StartWorkflowRunOutput, error)
 	StartWorkflowRunRequest(*glue.StartWorkflowRunInput) (*request.Request, *glue.StartWorkflowRunOutput)
+
+	StopColumnStatisticsTaskRun(*glue.StopColumnStatisticsTaskRunInput) (*glue.StopColumnStatisticsTaskRunOutput, error)
+	StopColumnStatisticsTaskRunWithContext(aws.Context, *glue.StopColumnStatisticsTaskRunInput, ...request.Option) (*glue.StopColumnStatisticsTaskRunOutput, error)
+	StopColumnStatisticsTaskRunRequest(*glue.StopColumnStatisticsTaskRunInput) (*request.Request, *glue.StopColumnStatisticsTaskRunOutput)
 
 	StopCrawler(*glue.StopCrawlerInput) (*glue.StopCrawlerOutput, error)
 	StopCrawlerWithContext(aws.Context, *glue.StopCrawlerInput, ...request.Option) (*glue.StopCrawlerOutput, error)

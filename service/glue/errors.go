@@ -20,6 +20,26 @@ const (
 	// A resource to be created or added already exists.
 	ErrCodeAlreadyExistsException = "AlreadyExistsException"
 
+	// ErrCodeColumnStatisticsTaskNotRunningException for service response error code
+	// "ColumnStatisticsTaskNotRunningException".
+	//
+	// An exception thrown when you try to stop a task run when there is no task
+	// running.
+	ErrCodeColumnStatisticsTaskNotRunningException = "ColumnStatisticsTaskNotRunningException"
+
+	// ErrCodeColumnStatisticsTaskRunningException for service response error code
+	// "ColumnStatisticsTaskRunningException".
+	//
+	// An exception thrown when you try to start another job while running a column
+	// stats generation job.
+	ErrCodeColumnStatisticsTaskRunningException = "ColumnStatisticsTaskRunningException"
+
+	// ErrCodeColumnStatisticsTaskStoppingException for service response error code
+	// "ColumnStatisticsTaskStoppingException".
+	//
+	// An exception thrown when you try to stop a task run.
+	ErrCodeColumnStatisticsTaskStoppingException = "ColumnStatisticsTaskStoppingException"
+
 	// ErrCodeConcurrentModificationException for service response error code
 	// "ConcurrentModificationException".
 	//
@@ -202,6 +222,9 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":                   newErrorAccessDeniedException,
 	"AlreadyExistsException":                  newErrorAlreadyExistsException,
+	"ColumnStatisticsTaskNotRunningException": newErrorColumnStatisticsTaskNotRunningException,
+	"ColumnStatisticsTaskRunningException":    newErrorColumnStatisticsTaskRunningException,
+	"ColumnStatisticsTaskStoppingException":   newErrorColumnStatisticsTaskStoppingException,
 	"ConcurrentModificationException":         newErrorConcurrentModificationException,
 	"ConcurrentRunsExceededException":         newErrorConcurrentRunsExceededException,
 	"ConditionCheckFailureException":          newErrorConditionCheckFailureException,

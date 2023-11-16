@@ -2980,10 +2980,10 @@
     "DestinationPackageVersions": {
       "base": null,
       "refs": {
-        "CreateJobRequest$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single string. Up to five strings are allowed.</p>",
-        "CreateJobTemplateRequest$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single string. Up to five strings are allowed.</p>",
-        "DescribeJobTemplateResponse$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single string. Up to five strings are allowed.</p>",
-        "Job$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single string. Up to five strings are allowed.</p>"
+        "CreateJobRequest$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package version ARNs are allowed.</p>",
+        "CreateJobTemplateRequest$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package version ARNs are allowed.</p>",
+        "DescribeJobTemplateResponse$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package version ARNs are allowed.</p>",
+        "Job$destinationPackageVersions": "<p>The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes. </p> <p> <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package version ARNs are allowed.</p>"
       }
     },
     "DetachPolicyRequest": {
@@ -3724,6 +3724,18 @@
         "DetectMitigationActionsTaskStatistics$actionsFailed": "<p> The actions that failed. </p>"
       }
     },
+    "GeoLocationTarget": {
+      "base": "<p>A geolocation target that you select to index. Each geolocation target contains a <code>name</code> and <code>order</code> key-value pair that specifies the geolocation target fields.</p>",
+      "refs": {
+        "GeoLocationsFilter$member": null
+      }
+    },
+    "GeoLocationsFilter": {
+      "base": null,
+      "refs": {
+        "IndexingFilter$geoLocations": "<p>The list of geolocation targets that you select to index. The default maximum number of geolocation targets for indexing is <code>1</code>. To increase the limit, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits\">Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon Web Services General Reference</i>.</p>"
+      }
+    },
     "GetBehaviorModelTrainingSummariesRequest": {
       "base": null,
       "refs": {
@@ -4097,9 +4109,9 @@
       }
     },
     "IndexingFilter": {
-      "base": "<p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>",
+      "base": "<p>Provides additional selections for named shadows and geolocation data. </p> <p>To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be ON and specify your shadow names in <code>namedShadowNames</code> filter.</p> <p>To add geolocation data to your fleet indexing configuration: </p> <ul> <li> <p>If you store geolocation data in a class/unnamed shadow, set <code>thingIndexingMode</code> to be <code>REGISTRY_AND_SHADOW</code> and specify your geolocation data in <code>geoLocations</code> filter. </p> </li> <li> <p>If you store geolocation data in a named shadow, set <code>namedShadowIndexingMode</code> to be <code>ON</code>, add the shadow name in <code>namedShadowNames</code> filter, and specify your geolocation data in <code>geoLocations</code> filter. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html\">Managing fleet indexing</a>.</p> </li> </ul>",
       "refs": {
-        "ThingIndexingConfiguration$filter": "<p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>"
+        "ThingIndexingConfiguration$filter": "<p>Provides additional selections for named shadows and geolocation data. </p> <p>To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be ON and specify your shadow names in <code>namedShadowNames</code> filter.</p> <p>To add geolocation data to your fleet indexing configuration: </p> <ul> <li> <p>If you store geolocation data in a class/unnamed shadow, set <code>thingIndexingMode</code> to be <code>REGISTRY_AND_SHADOW</code> and specify your geolocation data in <code>geoLocations</code> filter. </p> </li> <li> <p>If you store geolocation data in a named shadow, set <code>namedShadowIndexingMode</code> to be <code>ON</code>, add the shadow name in <code>namedShadowNames</code> filter, and specify your geolocation data in <code>geoLocations</code> filter. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html\">Managing fleet indexing</a>.</p> </li> </ul>"
       }
     },
     "InlineDocument": {
@@ -6465,7 +6477,7 @@
       "base": null,
       "refs": {
         "ListIndicesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
-        "SearchIndexRequest$maxResults": "<p>The maximum number of results to return at one time. The response might contain fewer results but will never contain more.</p>"
+        "SearchIndexRequest$maxResults": "<p>The maximum number of results to return per page at one time. The response might contain fewer results but will never contain more.</p>"
       }
     },
     "QueryString": {
@@ -7851,6 +7863,18 @@
         "DescribeScheduledAuditResponse$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
         "StartOnDemandAuditTaskRequest$targetCheckNames": "<p>Which checks are performed during the audit. The checks you specify must be enabled for your account or an exception occurs. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.</p>",
         "UpdateScheduledAuditRequest$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>"
+      }
+    },
+    "TargetFieldName": {
+      "base": null,
+      "refs": {
+        "GeoLocationTarget$name": "<p>The <code>name</code> of the geolocation target field. If the target field is part of a named shadow, you must select the named shadow using the <code>namedShadow</code> filter.</p>"
+      }
+    },
+    "TargetFieldOrder": {
+      "base": null,
+      "refs": {
+        "GeoLocationTarget$order": "<p>The <code>order</code> of the geolocation target field. This field is optional. The default value is <code>LatLon</code>.</p>"
       }
     },
     "TargetSelection": {
