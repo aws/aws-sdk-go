@@ -1152,7 +1152,11 @@
         "DefaultS3Location":{"shape":"XmlString"},
         "IdpAuthUrl":{"shape":"XmlString"},
         "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TrustedIdentityPropagationEnabled":{"shape":"BooleanObject"},
+        "IdcUserAssignment":{"shape":"IdcUserAssignment"},
+        "IdcInstanceArn":{"shape":"ArnType"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "CreateStudioOutput":{
@@ -1535,6 +1539,13 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$"
+    },
+    "IdcUserAssignment":{
+      "type":"string",
+      "enum":[
+        "REQUIRED",
+        "OPTIONAL"
+      ]
     },
     "IdentityType":{
       "type":"string",
@@ -3136,7 +3147,11 @@
         "DefaultS3Location":{"shape":"XmlString"},
         "IdpAuthUrl":{"shape":"XmlString"},
         "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "IdcInstanceArn":{"shape":"ArnType"},
+        "TrustedIdentityPropagationEnabled":{"shape":"BooleanObject"},
+        "IdcUserAssignment":{"shape":"IdcUserAssignment"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "StudioSummary":{
@@ -3252,7 +3267,8 @@
         "Name":{"shape":"XmlStringMaxLen256"},
         "Description":{"shape":"XmlStringMaxLen256"},
         "SubnetIds":{"shape":"SubnetIdList"},
-        "DefaultS3Location":{"shape":"XmlString"}
+        "DefaultS3Location":{"shape":"XmlString"},
+        "EncryptionKeyArn":{"shape":"XmlString"}
       }
     },
     "UpdateStudioSessionMappingInput":{

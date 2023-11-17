@@ -67739,6 +67739,9 @@ const (
 	// IntegrationTypeWisdomKnowledgeBase is a IntegrationType enum value
 	IntegrationTypeWisdomKnowledgeBase = "WISDOM_KNOWLEDGE_BASE"
 
+	// IntegrationTypeWisdomQuickResponses is a IntegrationType enum value
+	IntegrationTypeWisdomQuickResponses = "WISDOM_QUICK_RESPONSES"
+
 	// IntegrationTypeCasesDomain is a IntegrationType enum value
 	IntegrationTypeCasesDomain = "CASES_DOMAIN"
 
@@ -67757,6 +67760,7 @@ func IntegrationType_Values() []string {
 		IntegrationTypePinpointApp,
 		IntegrationTypeWisdomAssistant,
 		IntegrationTypeWisdomKnowledgeBase,
+		IntegrationTypeWisdomQuickResponses,
 		IntegrationTypeCasesDomain,
 		IntegrationTypeApplication,
 		IntegrationTypeFileScanner,
@@ -67812,9 +67816,6 @@ func LexVersion_Values() []string {
 }
 
 const (
-	// ListFlowAssociationResourceTypeSmsPhoneNumber is a ListFlowAssociationResourceType enum value
-	ListFlowAssociationResourceTypeSmsPhoneNumber = "SMS_PHONE_NUMBER"
-
 	// ListFlowAssociationResourceTypeVoicePhoneNumber is a ListFlowAssociationResourceType enum value
 	ListFlowAssociationResourceTypeVoicePhoneNumber = "VOICE_PHONE_NUMBER"
 )
@@ -67822,7 +67823,6 @@ const (
 // ListFlowAssociationResourceType_Values returns all elements of the ListFlowAssociationResourceType enum
 func ListFlowAssociationResourceType_Values() []string {
 	return []string{
-		ListFlowAssociationResourceTypeSmsPhoneNumber,
 		ListFlowAssociationResourceTypeVoicePhoneNumber,
 	}
 }

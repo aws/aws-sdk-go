@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Verified Permissions.
 //	func myFunc(svc verifiedpermissionsiface.VerifiedPermissionsAPI) bool {
-//	    // Make svc.CreateIdentitySource request
+//	    // Make svc.BatchIsAuthorized request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockVerifiedPermissionsClient struct {
 //	    verifiedpermissionsiface.VerifiedPermissionsAPI
 //	}
-//	func (m *mockVerifiedPermissionsClient) CreateIdentitySource(input *verifiedpermissions.CreateIdentitySourceInput) (*verifiedpermissions.CreateIdentitySourceOutput, error) {
+//	func (m *mockVerifiedPermissionsClient) BatchIsAuthorized(input *verifiedpermissions.BatchIsAuthorizedInput) (*verifiedpermissions.BatchIsAuthorizedOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type VerifiedPermissionsAPI interface {
+	BatchIsAuthorized(*verifiedpermissions.BatchIsAuthorizedInput) (*verifiedpermissions.BatchIsAuthorizedOutput, error)
+	BatchIsAuthorizedWithContext(aws.Context, *verifiedpermissions.BatchIsAuthorizedInput, ...request.Option) (*verifiedpermissions.BatchIsAuthorizedOutput, error)
+	BatchIsAuthorizedRequest(*verifiedpermissions.BatchIsAuthorizedInput) (*request.Request, *verifiedpermissions.BatchIsAuthorizedOutput)
+
 	CreateIdentitySource(*verifiedpermissions.CreateIdentitySourceInput) (*verifiedpermissions.CreateIdentitySourceOutput, error)
 	CreateIdentitySourceWithContext(aws.Context, *verifiedpermissions.CreateIdentitySourceInput, ...request.Option) (*verifiedpermissions.CreateIdentitySourceOutput, error)
 	CreateIdentitySourceRequest(*verifiedpermissions.CreateIdentitySourceInput) (*request.Request, *verifiedpermissions.CreateIdentitySourceOutput)

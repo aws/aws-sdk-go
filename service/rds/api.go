@@ -806,6 +806,10 @@ func (c *RDS) CopyDBClusterParameterGroupRequest(input *CopyDBClusterParameterGr
 //
 // Copies the specified DB cluster parameter group.
 //
+// You can't copy a default DB cluster parameter group. Instead, create a new
+// custom DB cluster parameter group, which copies the default parameters and
+// values for the specified DB cluster parameter group family.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1023,6 +1027,10 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 // CopyDBParameterGroup API operation for Amazon Relational Database Service.
 //
 // Copies the specified DB parameter group.
+//
+// You can't copy a default DB parameter group. Instead, create a new custom
+// DB parameter group, which copies the default parameters and values for the
+// specified DB parameter group family.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1576,6 +1584,10 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //   - ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
 //     The requested operation can't be performed while the cluster is in this state.
 //
+//   - ErrCodeInvalidDBSubnetGroupFault "InvalidDBSubnetGroupFault"
+//     The DBSubnetGroup doesn't belong to the same VPC as that of an existing cross-region
+//     read replica of the same source instance.
+//
 //   - ErrCodeInvalidDBSubnetGroupStateFault "InvalidDBSubnetGroupStateFault"
 //     The DB subnet group cannot be deleted because it's in use.
 //
@@ -1613,6 +1625,9 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //
 //   - ErrCodeDomainNotFoundFault "DomainNotFoundFault"
 //     Domain doesn't refer to an existing Active Directory domain.
+//
+//   - ErrCodeOptionGroupNotFoundFault "OptionGroupNotFoundFault"
+//     The specified option group could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBCluster
 func (c *RDS) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutput, error) {
@@ -11893,6 +11908,9 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 //   - ErrCodeStorageTypeNotAvailableFault "StorageTypeNotAvailableFault"
 //     The aurora-iopt1 storage type isn't available, because you modified the DB
 //     cluster to use this storage type less than one month ago.
+//
+//   - ErrCodeOptionGroupNotFoundFault "OptionGroupNotFoundFault"
+//     The specified option group could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBCluster
 func (c *RDS) ModifyDBCluster(input *ModifyDBClusterInput) (*ModifyDBClusterOutput, error) {
@@ -26909,6 +26927,9 @@ type DBCluster struct {
 	// The current state of this DB cluster.
 	Status *string `type:"string"`
 
+	// Reserved for future use.
+	StatusInfos []*DBClusterStatusInfo `locationNameList:"DBClusterStatusInfo" type:"list"`
+
 	// Indicates whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
@@ -27364,6 +27385,12 @@ func (s *DBCluster) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingCo
 // SetStatus sets the Status field's value.
 func (s *DBCluster) SetStatus(v string) *DBCluster {
 	s.Status = &v
+	return s
+}
+
+// SetStatusInfos sets the StatusInfos field's value.
+func (s *DBCluster) SetStatusInfos(v []*DBClusterStatusInfo) *DBCluster {
+	s.StatusInfos = v
 	return s
 }
 
@@ -28431,6 +28458,65 @@ func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotAttributes(v []*
 // SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
 func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotIdentifier(v string) *DBClusterSnapshotAttributesResult {
 	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// Reserved for future use.
+type DBClusterStatusInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Reserved for future use.
+	Message *string `type:"string"`
+
+	// Reserved for future use.
+	Normal *bool `type:"boolean"`
+
+	// Reserved for future use.
+	Status *string `type:"string"`
+
+	// Reserved for future use.
+	StatusType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBClusterStatusInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBClusterStatusInfo) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DBClusterStatusInfo) SetMessage(v string) *DBClusterStatusInfo {
+	s.Message = &v
+	return s
+}
+
+// SetNormal sets the Normal field's value.
+func (s *DBClusterStatusInfo) SetNormal(v bool) *DBClusterStatusInfo {
+	s.Normal = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterStatusInfo) SetStatus(v string) *DBClusterStatusInfo {
+	s.Status = &v
+	return s
+}
+
+// SetStatusType sets the StatusType field's value.
+func (s *DBClusterStatusInfo) SetStatusType(v string) *DBClusterStatusInfo {
+	s.StatusType = &v
 	return s
 }
 
@@ -49937,6 +50023,9 @@ type RdsCustomClusterConfiguration struct {
 	InterconnectSubnetId *string `type:"string"`
 
 	// Reserved for future use.
+	ReplicaMode *string `type:"string" enum:"ReplicaMode"`
+
+	// Reserved for future use.
 	TransitGatewayMulticastDomainId *string `type:"string"`
 }
 
@@ -49961,6 +50050,12 @@ func (s RdsCustomClusterConfiguration) GoString() string {
 // SetInterconnectSubnetId sets the InterconnectSubnetId field's value.
 func (s *RdsCustomClusterConfiguration) SetInterconnectSubnetId(v string) *RdsCustomClusterConfiguration {
 	s.InterconnectSubnetId = &v
+	return s
+}
+
+// SetReplicaMode sets the ReplicaMode field's value.
+func (s *RdsCustomClusterConfiguration) SetReplicaMode(v string) *RdsCustomClusterConfiguration {
+	s.ReplicaMode = &v
 	return s
 }
 

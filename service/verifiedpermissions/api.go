@@ -13,6 +13,156 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opBatchIsAuthorized = "BatchIsAuthorized"
+
+// BatchIsAuthorizedRequest generates a "aws/request.Request" representing the
+// client's request for the BatchIsAuthorized operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchIsAuthorized for more information on using the BatchIsAuthorized
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchIsAuthorizedRequest method.
+//	req, resp := client.BatchIsAuthorizedRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorized
+func (c *VerifiedPermissions) BatchIsAuthorizedRequest(input *BatchIsAuthorizedInput) (req *request.Request, output *BatchIsAuthorizedOutput) {
+	op := &request.Operation{
+		Name:       opBatchIsAuthorized,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchIsAuthorizedInput{}
+	}
+
+	output = &BatchIsAuthorizedOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchIsAuthorized API operation for Amazon Verified Permissions.
+//
+// Makes a series of decisions about multiple authorization requests for one
+// principal or resource. Each request contains the equivalent content of an
+// IsAuthorized request: principal, action, resource, and context. Either the
+// principal or the resource parameter must be identical across all requests.
+// For example, Verified Permissions won't evaluate a pair of requests where
+// bob views photo1 and alice views photo2. Authorization of bob to view photo1
+// and photo2, or bob and alice to view photo1, are valid batches.
+//
+// The request is evaluated against all policies in the specified policy store
+// that match the entities that you declare. The result of the decisions is
+// a series of Allow or Deny responses, along with the IDs of the policies that
+// produced each decision.
+//
+// The entities of a BatchIsAuthorized API request can contain up to 100 principals
+// and up to 100 resources. The requests of a BatchIsAuthorized API request
+// can contain up to 30 requests.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Verified Permissions's
+// API operation BatchIsAuthorized for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request failed because one or more input parameters don't satisfy their
+//     constraint requirements. The output is provided as a list of fields and a
+//     reason for each field that isn't valid.
+//
+//     The possible reasons include the following:
+//
+//   - UnrecognizedEntityType The policy includes an entity type that isn't
+//     found in the schema.
+//
+//   - UnrecognizedActionId The policy includes an action id that isn't found
+//     in the schema.
+//
+//   - InvalidActionApplication The policy includes an action that, according
+//     to the schema, doesn't support the specified principal and resource.
+//
+//   - UnexpectedType The policy included an operand that isn't a valid type
+//     for the specified operation.
+//
+//   - IncompatibleTypes The types of elements included in a set, or the types
+//     of expressions used in an if...then...else clause aren't compatible in
+//     this context.
+//
+//   - MissingAttribute The policy attempts to access a record or entity attribute
+//     that isn't specified in the schema. Test for the existence of the attribute
+//     first before attempting to access its value. For more information, see
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
+//     in the Cedar Policy Language Guide.
+//
+//   - UnsafeOptionalAttributeAccess The policy attempts to access a record
+//     or entity attribute that is optional and isn't guaranteed to be present.
+//     Test for the existence of the attribute first before attempting to access
+//     its value. For more information, see the has (presence of attribute test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
+//     in the Cedar Policy Language Guide.
+//
+//   - ImpossiblePolicy Cedar has determined that a policy condition always
+//     evaluates to false. If the policy is always false, it can never apply
+//     to any query, and so it can never affect an authorization decision.
+//
+//   - WrongNumberArguments The policy references an extension type with the
+//     wrong number of arguments.
+//
+//   - FunctionArgumentValidationError Cedar couldn't parse the argument passed
+//     to an extension type. For example, a string that is to be parsed as an
+//     IPv4 address can contain only digits and the period character.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The request failed because it references a resource that doesn't exist.
+//
+//   - ThrottlingException
+//     The request failed because it exceeded a throttling quota.
+//
+//   - InternalServerException
+//     The request failed because of an internal error. Try your request again later
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorized
+func (c *VerifiedPermissions) BatchIsAuthorized(input *BatchIsAuthorizedInput) (*BatchIsAuthorizedOutput, error) {
+	req, out := c.BatchIsAuthorizedRequest(input)
+	return out, req.Send()
+}
+
+// BatchIsAuthorizedWithContext is the same as BatchIsAuthorized with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchIsAuthorized for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VerifiedPermissions) BatchIsAuthorizedWithContext(ctx aws.Context, input *BatchIsAuthorizedInput, opts ...request.Option) (*BatchIsAuthorizedOutput, error) {
+	req, out := c.BatchIsAuthorizedRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIdentitySource = "CreateIdentitySource"
 
 // CreateIdentitySourceRequest generates a "aws/request.Request" representing the
@@ -3781,7 +3931,8 @@ func (s *AccessDeniedException) RequestID() string {
 // Contains information about an action for a request for which an authorization
 // decision is made.
 //
-// This data type is used as an request parameter to the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html)
+// This data type is used as a request parameter to the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html),
+// BatchIsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html),
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 //
@@ -3866,7 +4017,8 @@ func (s *ActionIdentifier) SetActionType(v string) *ActionIdentifier {
 // authorization decision is made.
 //
 // This data type is used as a member of the ContextDefinition (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ContextDefinition.html)
-// structure which is uses as a request parameter for the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html)
+// structure which is uses as a request parameter for the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html),
+// BatchIsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html),
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 type AttributeValue struct {
@@ -4007,6 +4159,302 @@ func (s *AttributeValue) SetSet(v []*AttributeValue) *AttributeValue {
 // SetString_ sets the String_ field's value.
 func (s *AttributeValue) SetString_(v string) *AttributeValue {
 	s.String_ = &v
+	return s
+}
+
+type BatchIsAuthorizedInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the list of resources and principals and their associated attributes
+	// that Verified Permissions can examine when evaluating the policies.
+	//
+	// You can include only principal and resource entities in this parameter; you
+	// can't include actions. You must specify actions in the schema.
+	Entities *EntitiesDefinition `locationName:"entities" type:"structure"`
+
+	// Specifies the ID of the policy store. Policies in this policy store will
+	// be used to make the authorization decisions for the input.
+	//
+	// PolicyStoreId is a required field
+	PolicyStoreId *string `locationName:"policyStoreId" min:"1" type:"string" required:"true"`
+
+	// An array of up to 30 requests that you want Verified Permissions to evaluate.
+	//
+	// Requests is a required field
+	Requests []*BatchIsAuthorizedInputItem `locationName:"requests" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchIsAuthorizedInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchIsAuthorizedInput"}
+	if s.PolicyStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyStoreId"))
+	}
+	if s.PolicyStoreId != nil && len(*s.PolicyStoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyStoreId", 1))
+	}
+	if s.Requests == nil {
+		invalidParams.Add(request.NewErrParamRequired("Requests"))
+	}
+	if s.Requests != nil && len(s.Requests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Requests", 1))
+	}
+	if s.Entities != nil {
+		if err := s.Entities.Validate(); err != nil {
+			invalidParams.AddNested("Entities", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Requests != nil {
+		for i, v := range s.Requests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Requests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntities sets the Entities field's value.
+func (s *BatchIsAuthorizedInput) SetEntities(v *EntitiesDefinition) *BatchIsAuthorizedInput {
+	s.Entities = v
+	return s
+}
+
+// SetPolicyStoreId sets the PolicyStoreId field's value.
+func (s *BatchIsAuthorizedInput) SetPolicyStoreId(v string) *BatchIsAuthorizedInput {
+	s.PolicyStoreId = &v
+	return s
+}
+
+// SetRequests sets the Requests field's value.
+func (s *BatchIsAuthorizedInput) SetRequests(v []*BatchIsAuthorizedInputItem) *BatchIsAuthorizedInput {
+	s.Requests = v
+	return s
+}
+
+// An authorization request that you include in a BatchIsAuthorized API request.
+type BatchIsAuthorizedInputItem struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the requested action to be authorized. For example, is the principal
+	// authorized to perform this action on the resource?
+	Action *ActionIdentifier `locationName:"action" type:"structure"`
+
+	// Specifies additional context that can be used to make more granular authorization
+	// decisions.
+	Context *ContextDefinition `locationName:"context" type:"structure"`
+
+	// Specifies the principal for which the authorization decision is to be made.
+	Principal *EntityIdentifier `locationName:"principal" type:"structure"`
+
+	// Specifies the resource for which the authorization decision is to be made.
+	Resource *EntityIdentifier `locationName:"resource" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedInputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedInputItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchIsAuthorizedInputItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchIsAuthorizedInputItem"}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Context != nil {
+		if err := s.Context.Validate(); err != nil {
+			invalidParams.AddNested("Context", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Principal != nil {
+		if err := s.Principal.Validate(); err != nil {
+			invalidParams.AddNested("Principal", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *BatchIsAuthorizedInputItem) SetAction(v *ActionIdentifier) *BatchIsAuthorizedInputItem {
+	s.Action = v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *BatchIsAuthorizedInputItem) SetContext(v *ContextDefinition) *BatchIsAuthorizedInputItem {
+	s.Context = v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *BatchIsAuthorizedInputItem) SetPrincipal(v *EntityIdentifier) *BatchIsAuthorizedInputItem {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *BatchIsAuthorizedInputItem) SetResource(v *EntityIdentifier) *BatchIsAuthorizedInputItem {
+	s.Resource = v
+	return s
+}
+
+type BatchIsAuthorizedOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A series of Allow or Deny decisions for each request, and the policies that
+	// produced them.
+	//
+	// Results is a required field
+	Results []*BatchIsAuthorizedOutputItem `locationName:"results" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedOutput) GoString() string {
+	return s.String()
+}
+
+// SetResults sets the Results field's value.
+func (s *BatchIsAuthorizedOutput) SetResults(v []*BatchIsAuthorizedOutputItem) *BatchIsAuthorizedOutput {
+	s.Results = v
+	return s
+}
+
+// The decision, based on policy evaluation, from an individual authorization
+// request in a BatchIsAuthorized API request.
+type BatchIsAuthorizedOutputItem struct {
+	_ struct{} `type:"structure"`
+
+	// An authorization decision that indicates if the authorization request should
+	// be allowed or denied.
+	//
+	// Decision is a required field
+	Decision *string `locationName:"decision" type:"string" required:"true" enum:"Decision"`
+
+	// The list of determining policies used to make the authorization decision.
+	// For example, if there are two matching policies, where one is a forbid and
+	// the other is a permit, then the forbid policy will be the determining policy.
+	// In the case of multiple matching permit policies then there would be multiple
+	// determining policies. In the case that no policies match, and hence the response
+	// is DENY, there would be no determining policies.
+	//
+	// DeterminingPolicies is a required field
+	DeterminingPolicies []*DeterminingPolicyItem `locationName:"determiningPolicies" type:"list" required:"true"`
+
+	// Errors that occurred while making an authorization decision, for example,
+	// a policy references an Entity or entity Attribute that does not exist in
+	// the slice.
+	//
+	// Errors is a required field
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+
+	// The authorization request that initiated the decision.
+	//
+	// Request is a required field
+	Request *BatchIsAuthorizedInputItem `locationName:"request" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedOutputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedOutputItem) GoString() string {
+	return s.String()
+}
+
+// SetDecision sets the Decision field's value.
+func (s *BatchIsAuthorizedOutputItem) SetDecision(v string) *BatchIsAuthorizedOutputItem {
+	s.Decision = &v
+	return s
+}
+
+// SetDeterminingPolicies sets the DeterminingPolicies field's value.
+func (s *BatchIsAuthorizedOutputItem) SetDeterminingPolicies(v []*DeterminingPolicyItem) *BatchIsAuthorizedOutputItem {
+	s.DeterminingPolicies = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchIsAuthorizedOutputItem) SetErrors(v []*EvaluationErrorItem) *BatchIsAuthorizedOutputItem {
+	s.Errors = v
+	return s
+}
+
+// SetRequest sets the Request field's value.
+func (s *BatchIsAuthorizedOutputItem) SetRequest(v *BatchIsAuthorizedInputItem) *BatchIsAuthorizedOutputItem {
+	s.Request = v
 	return s
 }
 
@@ -4218,11 +4666,12 @@ func (s *ConflictException) RequestID() string {
 // evaluates this information in an authorization request as part of the when
 // and unless clauses in a policy.
 //
-// This data type is used as a request parameter for the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html)
+// This data type is used as a request parameter for the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html),
+// BatchIsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html),
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 //
-// Example: "context":{"Context":{"<KeyName1>":{"boolean":true},"<KeyName2>":{"long":1234}}}
+// Example: "context":{"contextMap":{"<KeyName1>":{"boolean":true},"<KeyName2>":{"long":1234}}}
 type ContextDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -4230,7 +4679,7 @@ type ContextDefinition struct {
 	// request. Each attribute in this array must include a map of a data type and
 	// its value.
 	//
-	// Example: "Context":{"<KeyName1>":{"boolean":true},"<KeyName2>":{"long":1234}}
+	// Example: "contextMap":{"<KeyName1>":{"boolean":true},"<KeyName2>":{"long":1234}}
 	ContextMap map[string]*AttributeValue `locationName:"contextMap" type:"map"`
 }
 
@@ -5311,7 +5760,8 @@ func (s DeletePolicyTemplateOutput) GoString() string {
 // decision.
 //
 // This data type is used as an element in a response parameter for the IsAuthorized
-// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html)
+// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html),
+// BatchIsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html),
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 //
@@ -5662,7 +6112,8 @@ func (s *EntityReference) SetUnspecified(v bool) *EntityReference {
 
 // Contains a description of an evaluation error.
 //
-// This data type is used as a request parameter in the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html)
+// This data type is a response parameter of the IsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html),
+// BatchIsAuthorized (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html),
 // and IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
 // operations.
 type EvaluationErrorItem struct {

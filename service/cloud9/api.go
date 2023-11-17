@@ -1601,7 +1601,7 @@ type CreateEnvironmentEC2Input struct {
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
 	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
 	//
-	// From November 20, 2023, you will be required to include the imageId parameter
+	// From December 04, 2023, you will be required to include the imageId parameter
 	// for the CreateEnvironmentEC2 action. This change will be reflected across
 	// all direct methods of communicating with the API, such as Amazon Web Services
 	// SDK, Amazon Web Services CLI and Amazon Web Services CloudFormation. This

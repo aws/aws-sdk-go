@@ -24,6 +24,7 @@
     "CreateEventSubscription": "<p>Creates an Amazon Redshift event notification subscription. This action requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the source type, and lists of Amazon Redshift source IDs, event categories, and event severities. Notifications will be sent for all events you want that match those criteria. For example, you can specify source type = cluster, source ID = my-cluster-1 and mycluster2, event categories = Availability, Backup, and severity = ERROR. The subscription will only send notifications for those ERROR events in the Availability and Backup categories for the specified clusters.</p> <p>If you specify both the source type and source IDs, such as source type = cluster and source identifier = my-cluster-1, notifications will be sent for all the cluster events for my-cluster-1. If you specify a source type but do not specify a source identifier, you will receive notice of the events for the objects of that type in your Amazon Web Services account. If you do not specify either the SourceType nor the SourceIdentifier, you will be notified of events generated from all Amazon Redshift sources belonging to your Amazon Web Services account. You must specify a source type if you specify a source ID.</p>",
     "CreateHsmClientCertificate": "<p>Creates an HSM client certificate that an Amazon Redshift cluster will use to connect to the client's HSM in order to store and retrieve the keys used to encrypt the cluster databases.</p> <p>The command returns a public key, which you must store in the HSM. In addition to creating the HSM certificate, you must create an Amazon Redshift HSM configuration that provides a cluster the information needed to store and use encryption keys in the HSM. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html#working-with-HSM\">Hardware Security Modules</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "CreateHsmConfiguration": "<p>Creates an HSM configuration that contains the information required by an Amazon Redshift cluster to store and use database encryption keys in a Hardware Security Module (HSM). After creating the HSM configuration, you can specify it as a parameter when creating a cluster. The cluster will then store its encryption keys in the HSM.</p> <p>In addition to creating an HSM configuration, you must also create an HSM client certificate. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html\">Hardware Security Modules</a> in the Amazon Redshift Cluster Management Guide.</p>",
+    "CreateRedshiftIdcApplication": "<p>Creates an Amazon Redshift application for use with IAM Identity Center.</p>",
     "CreateScheduledAction": "<p>Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action. For example, you can create a schedule of when to run the <code>ResizeCluster</code> API operation. </p>",
     "CreateSnapshotCopyGrant": "<p>Creates a snapshot copy grant that permits Amazon Redshift to use an encrypted symmetric key from Key Management Service (KMS) to encrypt copied snapshots in a destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "CreateSnapshotSchedule": "<p>Create a snapshot schedule that can be associated to a cluster and which overrides the default system backup schedule. </p>",
@@ -42,6 +43,7 @@
     "DeleteHsmClientCertificate": "<p>Deletes the specified HSM client certificate.</p>",
     "DeleteHsmConfiguration": "<p>Deletes the specified Amazon Redshift HSM configuration.</p>",
     "DeletePartner": "<p>Deletes a partner integration from a cluster. Data can still flow to the cluster until the integration is deleted at the partner's website.</p>",
+    "DeleteRedshiftIdcApplication": "<p>Deletes an Amazon Redshift IAM Identity Center application.</p>",
     "DeleteResourcePolicy": "<p>Deletes the resource policy for a specified resource.</p>",
     "DeleteScheduledAction": "<p>Deletes a scheduled action. </p>",
     "DeleteSnapshotCopyGrant": "<p>Deletes the specified snapshot copy grant.</p>",
@@ -76,6 +78,7 @@
     "DescribeNodeConfigurationOptions": "<p>Returns properties of possible node configurations such as node type, number of nodes, and disk usage for the specified action type.</p>",
     "DescribeOrderableClusterOptions": "<p>Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific Amazon Web Services Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribePartners": "<p>Returns information about the partner integrations defined for a cluster.</p>",
+    "DescribeRedshiftIdcApplications": "<p>Lists the Amazon Redshift IAM Identity Center applications.</p>",
     "DescribeReservedNodeExchangeStatus": "<p>Returns exchange status details and associated metadata for a reserved-node exchange. Statuses include such values as in progress and requested.</p>",
     "DescribeReservedNodeOfferings": "<p>Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeReservedNodes": "<p>Returns the descriptions of the reserved nodes.</p>",
@@ -111,6 +114,7 @@
     "ModifyCustomDomainAssociation": "<p>Contains information for changing a custom domain association.</p>",
     "ModifyEndpointAccess": "<p>Modifies a Redshift-managed VPC endpoint.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing Amazon Redshift event notification subscription.</p>",
+    "ModifyRedshiftIdcApplication": "<p>Changes an existing Amazon Redshift IAM Identity Center application.</p>",
     "ModifyScheduledAction": "<p>Modifies a scheduled action. </p>",
     "ModifySnapshotCopyRetentionPeriod": "<p>Modifies the number of days to retain snapshots in the destination Amazon Web Services Region after they are copied from the source Amazon Web Services Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period. </p>",
     "ModifySnapshotSchedule": "<p>Modifies a snapshot schedule. Any schedule associated with a cluster is modified asynchronously.</p>",
@@ -339,6 +343,26 @@
     "AuthorizeSnapshotAccessResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "AuthorizedAudienceList": {
+      "base": null,
+      "refs": {
+        "AuthorizedTokenIssuer$AuthorizedAudiencesList": "<p>The list of audiences for the authorized token issuer for integrating Amazon Redshift with IDC Identity Center.</p>"
+      }
+    },
+    "AuthorizedTokenIssuer": {
+      "base": "<p>The authorized token issuer for the Amazon Redshift IAM Identity Center application.</p>",
+      "refs": {
+        "AuthorizedTokenIssuerList$member": null
+      }
+    },
+    "AuthorizedTokenIssuerList": {
+      "base": null,
+      "refs": {
+        "CreateRedshiftIdcApplicationMessage$AuthorizedTokenIssuerList": "<p>The token issuer list for the Amazon Redshift IAM Identity Center application instance.</p>",
+        "ModifyRedshiftIdcApplicationMessage$AuthorizedTokenIssuerList": "<p>The authorized token issuer list for the Amazon Redshift IAM Identity Center application to change.</p>",
+        "RedshiftIdcApplication$AuthorizedTokenIssuerList": "<p>The authorized token issuer list for the Amazon Redshift IAM Identity Center application.</p>"
       }
     },
     "AvailabilityZone": {
@@ -914,6 +938,16 @@
       "refs": {
       }
     },
+    "CreateRedshiftIdcApplicationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRedshiftIdcApplicationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateScheduledActionMessage": {
       "base": null,
       "refs": {
@@ -1141,6 +1175,11 @@
       "refs": {
       }
     },
+    "DeleteRedshiftIdcApplicationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteResourcePolicyMessage": {
       "base": null,
       "refs": {
@@ -1168,6 +1207,11 @@
     },
     "DeleteUsageLimitMessage": {
       "base": null,
+      "refs": {
+      }
+    },
+    "DependentServiceAccessDeniedFault": {
+      "base": "<p>A dependent service denied access for the integration.</p>",
       "refs": {
       }
     },
@@ -1347,6 +1391,16 @@
       }
     },
     "DescribePartnersOutputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRedshiftIdcApplicationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRedshiftIdcApplicationsResult": {
       "base": null,
       "refs": {
       }
@@ -1794,6 +1848,22 @@
         "RestoreFromClusterSnapshotMessage$IamRoles": "<p>A list of Identity and Access Management (IAM) roles that can be used by the cluster to access other Amazon Web Services services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. </p> <p>The maximum number of IAM roles that you can associate is subject to a quota. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html\">Quotas and limits</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>"
       }
     },
+    "IdcDisplayNameString": {
+      "base": null,
+      "refs": {
+        "CreateRedshiftIdcApplicationMessage$IdcDisplayName": "<p>The display name for the Amazon Redshift IAM Identity Center application instance. It appears in the console.</p>",
+        "ModifyRedshiftIdcApplicationMessage$IdcDisplayName": "<p>The display name for the Amazon Redshift IAM Identity Center application to change. It appears on the console.</p>",
+        "RedshiftIdcApplication$IdcDisplayName": "<p>The display name for the Amazon Redshift IAM Identity Center application. It appears on the console.</p>"
+      }
+    },
+    "IdentityNamespaceString": {
+      "base": null,
+      "refs": {
+        "CreateRedshiftIdcApplicationMessage$IdentityNamespace": "<p>The namespace for the Amazon Redshift IAM Identity Center application instance. It determines which managed application verifies the connection token.</p>",
+        "ModifyRedshiftIdcApplicationMessage$IdentityNamespace": "<p>The namespace for the Amazon Redshift IAM Identity Center application to change. It determines which managed application verifies the connection token.</p>",
+        "RedshiftIdcApplication$IdentityNamespace": "<p>The identity namespace for the Amazon Redshift IAM Identity Center application. It determines which managed application verifies the connection token.</p>"
+      }
+    },
     "ImportTablesCompleted": {
       "base": null,
       "refs": {
@@ -1907,6 +1977,7 @@
         "DescribeInboundIntegrationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeNodeConfigurationOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>500</code> </p> <p>Constraints: minimum 100, maximum 500.</p>",
         "DescribeOrderableClusterOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeRedshiftIdcApplicationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "DescribeReservedNodeExchangeStatusInputMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>Marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "DescribeReservedNodeOfferingsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
@@ -2119,6 +2190,24 @@
       "refs": {
       }
     },
+    "LakeFormationQuery": {
+      "base": "<p>The Lake Formation scope.</p>",
+      "refs": {
+        "LakeFormationScopeUnion$LakeFormationQuery": "<p>The Lake Formation scope.</p>"
+      }
+    },
+    "LakeFormationScopeUnion": {
+      "base": "<p>A list of scopes set up for Lake Formation integration.</p>",
+      "refs": {
+        "LakeFormationServiceIntegrations$member": null
+      }
+    },
+    "LakeFormationServiceIntegrations": {
+      "base": null,
+      "refs": {
+        "ServiceIntegrationsUnion$LakeFormation": "<p>A list of scopes set up for Lake Formation integration.</p>"
+      }
+    },
     "LimitExceededFault": {
       "base": "<p>The encryption key has exceeded its grant limit in Amazon Web Services KMS.</p>",
       "refs": {
@@ -2297,6 +2386,16 @@
       }
     },
     "ModifyEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyRedshiftIdcApplicationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyRedshiftIdcApplicationResult": {
       "base": null,
       "refs": {
       }
@@ -2574,6 +2673,42 @@
       "refs": {
         "ReservedNode$RecurringCharges": "<p>The recurring charges for the reserved node.</p>",
         "ReservedNodeOffering$RecurringCharges": "<p>The charge to your account regardless of whether you are creating any clusters using the node offering. Recurring charges are only in effect for heavy-utilization reserved nodes.</p>"
+      }
+    },
+    "RedshiftIdcApplication": {
+      "base": "<p>Contains properties for the Redshift IDC application.</p>",
+      "refs": {
+        "CreateRedshiftIdcApplicationResult$RedshiftIdcApplication": null,
+        "ModifyRedshiftIdcApplicationResult$RedshiftIdcApplication": null,
+        "RedshiftIdcApplicationList$member": null
+      }
+    },
+    "RedshiftIdcApplicationAlreadyExistsFault": {
+      "base": "<p>The application you attempted to add already exists.</p>",
+      "refs": {
+      }
+    },
+    "RedshiftIdcApplicationList": {
+      "base": null,
+      "refs": {
+        "DescribeRedshiftIdcApplicationsResult$RedshiftIdcApplications": "<p>The list of Amazon Redshift IAM Identity Center applications.</p>"
+      }
+    },
+    "RedshiftIdcApplicationName": {
+      "base": null,
+      "refs": {
+        "CreateRedshiftIdcApplicationMessage$RedshiftIdcApplicationName": "<p>The name of the Redshift application in IAM Identity Center.</p>",
+        "RedshiftIdcApplication$RedshiftIdcApplicationName": "<p>The name of the Redshift application in IAM Identity Center.</p>"
+      }
+    },
+    "RedshiftIdcApplicationNotExistsFault": {
+      "base": "<p>The application you attempted to find doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "RedshiftIdcApplicationQuotaExceededFault": {
+      "base": "<p>The maximum number of Redshift IAM Identity Center applications was exceeded.</p>",
+      "refs": {
       }
     },
     "RejectDataShareMessage": {
@@ -2966,6 +3101,26 @@
         "PendingModifiedValues$MasterUserPassword": "<p>The pending or in-progress change of the admin user password for the cluster.</p>"
       }
     },
+    "ServiceAuthorization": {
+      "base": null,
+      "refs": {
+        "LakeFormationQuery$Authorization": "<p>Determines whether the query scope is enabled or disabled.</p>"
+      }
+    },
+    "ServiceIntegrationList": {
+      "base": null,
+      "refs": {
+        "CreateRedshiftIdcApplicationMessage$ServiceIntegrations": "<p>A collection of service integrations for the Redshift IAM Identity Center application.</p>",
+        "ModifyRedshiftIdcApplicationMessage$ServiceIntegrations": "<p>A collection of service integrations associated with the application.</p>",
+        "RedshiftIdcApplication$ServiceIntegrations": "<p>A list of service integrations for the Redshift IAM Identity Center application.</p>"
+      }
+    },
+    "ServiceIntegrationsUnion": {
+      "base": "<p>A list of service integrations.</p>",
+      "refs": {
+        "ServiceIntegrationList$member": null
+      }
+    },
     "Snapshot": {
       "base": "<p>Describes a snapshot.</p>",
       "refs": {
@@ -3155,6 +3310,8 @@
         "AuthorizeSnapshotAccessMessage$SnapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot to authorize access to.</p>",
         "AuthorizeSnapshotAccessMessage$SnapshotClusterIdentifier": "<p>The identifier of the cluster the snapshot was created from. This parameter is required if your IAM user has a policy containing a snapshot resource element that specifies anything other than * for the cluster name.</p>",
         "AuthorizeSnapshotAccessMessage$AccountWithRestoreAccess": "<p>The identifier of the Amazon Web Services account authorized to restore the specified snapshot.</p> <p>To share a snapshot with Amazon Web Services Support, specify amazon-redshift-support.</p>",
+        "AuthorizedAudienceList$member": null,
+        "AuthorizedTokenIssuer$TrustedTokenIssuerArn": "<p>The ARN for the authorized token issuer for integrating Amazon Redshift with IDC Identity Center.</p>",
         "AvailabilityZone$Name": "<p>The name of the availability zone.</p>",
         "CancelResizeMessage$ClusterIdentifier": "<p>The unique identifier for the cluster that you want to cancel a resize operation for.</p>",
         "CertificateAssociation$CustomDomainName": "<p>The custom domain name for the certificate association.</p>",
@@ -3254,6 +3411,7 @@
         "CreateClusterMessage$LoadSampleData": "<p>A flag that specifies whether to load sample data once the cluster is created.</p>",
         "CreateClusterMessage$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret. You can only use this parameter if <code>ManageMasterPassword</code> is true.</p>",
         "CreateClusterMessage$IpAddressType": "<p>The IP address types that the cluster supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
+        "CreateClusterMessage$RedshiftIdcApplicationArn": "<p>The Amazon resource name (ARN) of the Amazon Redshift IAM Identity Center application.</p>",
         "CreateClusterParameterGroupMessage$ParameterGroupName": "<p>The name of the cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique withing your Amazon Web Services account.</p> </li> </ul> <note> <p>This value is stored as a lower-case string.</p> </note>",
         "CreateClusterParameterGroupMessage$ParameterGroupFamily": "<p>The Amazon Redshift engine version to which the cluster parameter group applies. The cluster engine version determines the set of parameters.</p> <p>To get a list of valid parameter group family names, you can call <a>DescribeClusterParameterGroups</a>. By default, Amazon Redshift returns a list of all the parameter groups that are owned by your Amazon Web Services account, including the default parameter groups for each Amazon Redshift engine version. The parameter group family names associated with the default parameter groups provide you the valid values. For example, a valid family name is \"redshift-1.0\". </p>",
         "CreateClusterParameterGroupMessage$Description": "<p>A description of the parameter group.</p>",
@@ -3281,6 +3439,8 @@
         "CreateHsmConfigurationMessage$HsmPartitionName": "<p>The name of the partition in the HSM where the Amazon Redshift clusters will store their database encryption keys.</p>",
         "CreateHsmConfigurationMessage$HsmPartitionPassword": "<p>The password required to access the HSM partition.</p>",
         "CreateHsmConfigurationMessage$HsmServerPublicCertificate": "<p>The HSMs public certificate file. When using Cloud HSM, the file name is server.pem.</p>",
+        "CreateRedshiftIdcApplicationMessage$IdcInstanceArn": "<p>The Amazon resource name (ARN) of the IAM Identity Center instance where Amazon Redshift creates a new managed application.</p>",
+        "CreateRedshiftIdcApplicationMessage$IamRoleArn": "<p>The IAM role ARN for the Amazon Redshift IAM Identity Center application instance. It has the required permissions to be assumed and invoke the IDC Identity Center API.</p>",
         "CreateScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action. The name must be unique within an account. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
         "CreateScheduledActionMessage$Schedule": "<p>The schedule in <code>at( )</code> or <code>cron( )</code> format. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
         "CreateScheduledActionMessage$IamRole": "<p>The IAM role to assume to run the target action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
@@ -3316,6 +3476,7 @@
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon Redshift event notification subscription to be deleted.</p>",
         "DeleteHsmClientCertificateMessage$HsmClientCertificateIdentifier": "<p>The identifier of the HSM client certificate to be deleted.</p>",
         "DeleteHsmConfigurationMessage$HsmConfigurationIdentifier": "<p>The identifier of the Amazon Redshift HSM configuration to be deleted.</p>",
+        "DeleteRedshiftIdcApplicationMessage$RedshiftIdcApplicationArn": "<p>The ARN for a deleted Amazon Redshift IAM Identity Center application.</p>",
         "DeleteResourcePolicyMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource of which its resource policy is deleted.</p>",
         "DeleteScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action to delete. </p>",
         "DeleteSnapshotCopyGrantMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant to delete.</p>",
@@ -3387,6 +3548,9 @@
         "DescribeOrderableClusterOptionsMessage$ClusterVersion": "<p>The version filter value. Specify this parameter to show only the available offerings matching the specified version.</p> <p>Default: All versions.</p> <p>Constraints: Must be one of the version returned from <a>DescribeClusterVersions</a>.</p>",
         "DescribeOrderableClusterOptionsMessage$NodeType": "<p>The node type filter value. Specify this parameter to show only the available offerings matching the specified node type.</p>",
         "DescribeOrderableClusterOptionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeOrderableClusterOptions</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
+        "DescribeRedshiftIdcApplicationsMessage$RedshiftIdcApplicationArn": "<p>The ARN for the Redshift application that integrates with IAM Identity Center.</p>",
+        "DescribeRedshiftIdcApplicationsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request. </p>",
+        "DescribeRedshiftIdcApplicationsResult$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request. </p>",
         "DescribeReservedNodeExchangeStatusInputMessage$ReservedNodeId": "<p>The identifier of the source reserved node in a reserved-node exchange request.</p>",
         "DescribeReservedNodeExchangeStatusInputMessage$ReservedNodeExchangeRequestId": "<p>The identifier of the reserved-node exchange request.</p>",
         "DescribeReservedNodeExchangeStatusInputMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeReservedNodeExchangeStatus</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the <code>MaxRecords</code> parameter. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
@@ -3542,6 +3706,8 @@
         "ModifyEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic to be used by the event notification subscription.</p>",
         "ModifyEventSubscriptionMessage$SourceType": "<p>The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your Amazon Web Services account. You must specify a source type in order to specify source IDs.</p> <p>Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot, and scheduled-action.</p>",
         "ModifyEventSubscriptionMessage$Severity": "<p>Specifies the Amazon Redshift event severity to be published by the event notification subscription.</p> <p>Values: ERROR, INFO</p>",
+        "ModifyRedshiftIdcApplicationMessage$RedshiftIdcApplicationArn": "<p>The ARN for the Redshift application that integrates with IAM Identity Center.</p>",
+        "ModifyRedshiftIdcApplicationMessage$IamRoleArn": "<p>The IAM role ARN associated with the Amazon Redshift IAM Identity Center application to change. It has the required permissions to be assumed and invoke the IDC Identity Center API.</p>",
         "ModifyScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action to modify. </p>",
         "ModifyScheduledActionMessage$Schedule": "<p>A modified schedule in either <code>at( )</code> or <code>cron( )</code> format. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
         "ModifyScheduledActionMessage$IamRole": "<p>A different IAM role to assume to run the target action. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
@@ -3580,6 +3746,11 @@
         "PutResourcePolicyMessage$Policy": "<p>The content of the resource policy being updated.</p>",
         "RebootClusterMessage$ClusterIdentifier": "<p>The cluster identifier.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency at which the recurring charge amount is applied.</p>",
+        "RedshiftIdcApplication$IdcInstanceArn": "<p>The ARN for the IAM Identity Center instance that Redshift integrates with.</p>",
+        "RedshiftIdcApplication$RedshiftIdcApplicationArn": "<p>The ARN for the Redshift application that integrates with IAM Identity Center.</p>",
+        "RedshiftIdcApplication$IamRoleArn": "<p>The ARN for the Amazon Redshift IAM Identity Center application. It has the required permissions to be assumed and invoke the IDC Identity Center API.</p>",
+        "RedshiftIdcApplication$IdcManagedApplicationArn": "<p>The ARN for the Amazon Redshift IAM Identity Center application.</p>",
+        "RedshiftIdcApplication$IdcOnboardStatus": "<p>The onboarding status for the Amazon Redshift IAM Identity Center application.</p>",
         "RejectDataShareMessage$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare to reject.</p>",
         "ReservedNode$ReservedNodeId": "<p>The unique identifier for the reservation.</p>",
         "ReservedNode$ReservedNodeOfferingId": "<p>The identifier for the reserved node offering.</p>",

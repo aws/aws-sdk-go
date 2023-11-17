@@ -1778,7 +1778,11 @@ type CreateChatTokenInput struct {
 	// Application-provided attributes to encode into the token and attach to a
 	// chat session. Map keys and values can contain UTF-8 encoded text. The maximum
 	// length of this field is 1 KB total.
-	Attributes map[string]*string `locationName:"attributes" type:"map"`
+	//
+	// Attributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateChatTokenInput's
+	// String and GoString methods.
+	Attributes map[string]*string `locationName:"attributes" type:"map" sensitive:"true"`
 
 	// Set of capabilities that the user is allowed to perform in the room. Default:
 	// None (the capability to view messages is implicitly included in all requests).
@@ -1797,8 +1801,12 @@ type CreateChatTokenInput struct {
 	// Application-provided ID that uniquely identifies the user associated with
 	// this token. This can be any UTF-8 encoded text.
 	//
+	// UserId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateChatTokenInput's
+	// String and GoString methods.
+	//
 	// UserId is a required field
-	UserId *string `locationName:"userId" min:"1" type:"string" required:"true"`
+	UserId *string `locationName:"userId" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -1882,7 +1890,11 @@ type CreateChatTokenOutput struct {
 	SessionExpirationTime *time.Time `locationName:"sessionExpirationTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The issued client token, encrypted.
-	Token *string `locationName:"token" type:"string"`
+	//
+	// Token is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateChatTokenOutput's
+	// String and GoString methods.
+	Token *string `locationName:"token" type:"string" sensitive:"true"`
 
 	// Time after which the token is no longer valid and cannot be used to connect
 	// to a room. This is an ISO 8601 timestamp; note that this is returned as a
@@ -2666,8 +2678,12 @@ type DisconnectUserInput struct {
 
 	// ID of the user (connection) to disconnect from the room.
 	//
+	// UserId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DisconnectUserInput's
+	// String and GoString methods.
+	//
 	// UserId is a required field
-	UserId *string `locationName:"userId" min:"1" type:"string" required:"true"`
+	UserId *string `locationName:"userId" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

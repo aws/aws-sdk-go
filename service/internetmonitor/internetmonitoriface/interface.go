@@ -76,6 +76,17 @@ type InternetMonitorAPI interface {
 	GetMonitorWithContext(aws.Context, *internetmonitor.GetMonitorInput, ...request.Option) (*internetmonitor.GetMonitorOutput, error)
 	GetMonitorRequest(*internetmonitor.GetMonitorInput) (*request.Request, *internetmonitor.GetMonitorOutput)
 
+	GetQueryResults(*internetmonitor.GetQueryResultsInput) (*internetmonitor.GetQueryResultsOutput, error)
+	GetQueryResultsWithContext(aws.Context, *internetmonitor.GetQueryResultsInput, ...request.Option) (*internetmonitor.GetQueryResultsOutput, error)
+	GetQueryResultsRequest(*internetmonitor.GetQueryResultsInput) (*request.Request, *internetmonitor.GetQueryResultsOutput)
+
+	GetQueryResultsPages(*internetmonitor.GetQueryResultsInput, func(*internetmonitor.GetQueryResultsOutput, bool) bool) error
+	GetQueryResultsPagesWithContext(aws.Context, *internetmonitor.GetQueryResultsInput, func(*internetmonitor.GetQueryResultsOutput, bool) bool, ...request.Option) error
+
+	GetQueryStatus(*internetmonitor.GetQueryStatusInput) (*internetmonitor.GetQueryStatusOutput, error)
+	GetQueryStatusWithContext(aws.Context, *internetmonitor.GetQueryStatusInput, ...request.Option) (*internetmonitor.GetQueryStatusOutput, error)
+	GetQueryStatusRequest(*internetmonitor.GetQueryStatusInput) (*request.Request, *internetmonitor.GetQueryStatusOutput)
+
 	ListHealthEvents(*internetmonitor.ListHealthEventsInput) (*internetmonitor.ListHealthEventsOutput, error)
 	ListHealthEventsWithContext(aws.Context, *internetmonitor.ListHealthEventsInput, ...request.Option) (*internetmonitor.ListHealthEventsOutput, error)
 	ListHealthEventsRequest(*internetmonitor.ListHealthEventsInput) (*request.Request, *internetmonitor.ListHealthEventsOutput)
@@ -93,6 +104,14 @@ type InternetMonitorAPI interface {
 	ListTagsForResource(*internetmonitor.ListTagsForResourceInput) (*internetmonitor.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *internetmonitor.ListTagsForResourceInput, ...request.Option) (*internetmonitor.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*internetmonitor.ListTagsForResourceInput) (*request.Request, *internetmonitor.ListTagsForResourceOutput)
+
+	StartQuery(*internetmonitor.StartQueryInput) (*internetmonitor.StartQueryOutput, error)
+	StartQueryWithContext(aws.Context, *internetmonitor.StartQueryInput, ...request.Option) (*internetmonitor.StartQueryOutput, error)
+	StartQueryRequest(*internetmonitor.StartQueryInput) (*request.Request, *internetmonitor.StartQueryOutput)
+
+	StopQuery(*internetmonitor.StopQueryInput) (*internetmonitor.StopQueryOutput, error)
+	StopQueryWithContext(aws.Context, *internetmonitor.StopQueryInput, ...request.Option) (*internetmonitor.StopQueryOutput, error)
+	StopQueryRequest(*internetmonitor.StopQueryInput) (*request.Request, *internetmonitor.StopQueryOutput)
 
 	TagResource(*internetmonitor.TagResourceInput) (*internetmonitor.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *internetmonitor.TagResourceInput, ...request.Option) (*internetmonitor.TagResourceOutput, error)

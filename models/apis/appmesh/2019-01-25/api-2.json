@@ -863,10 +863,7 @@
       "required":["validation"],
       "members":{
         "certificate":{"shape":"ClientTlsCertificate"},
-        "enforce":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "enforce":{"shape":"Boolean"},
         "ports":{"shape":"PortSet"},
         "validation":{"shape":"TlsValidationContext"}
       }
@@ -1975,6 +1972,7 @@
     },
     "HealthCheckThreshold":{
       "type":"integer",
+      "box":true,
       "max":10,
       "min":2
     },
@@ -2689,14 +2687,17 @@
     },
     "MaxConnections":{
       "type":"integer",
+      "box":true,
       "min":1
     },
     "MaxPendingRequests":{
       "type":"integer",
+      "box":true,
       "min":1
     },
     "MaxRequests":{
       "type":"integer",
+      "box":true,
       "min":1
     },
     "MaxRetries":{
@@ -2831,6 +2832,7 @@
     },
     "PortNumber":{
       "type":"integer",
+      "box":true,
       "max":65535,
       "min":1
     },
@@ -3497,10 +3499,7 @@
       "required":["validation"],
       "members":{
         "certificate":{"shape":"VirtualGatewayClientTlsCertificate"},
-        "enforce":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "enforce":{"shape":"Boolean"},
         "ports":{"shape":"PortSet"},
         "validation":{"shape":"VirtualGatewayTlsValidationContext"}
       }
@@ -3581,6 +3580,7 @@
     },
     "VirtualGatewayHealthCheckThreshold":{
       "type":"integer",
+      "box":true,
       "max":10,
       "min":2
     },
@@ -3602,10 +3602,7 @@
       "required":["maxConnections"],
       "members":{
         "maxConnections":{"shape":"MaxConnections"},
-        "maxPendingRequests":{
-          "shape":"MaxPendingRequests",
-          "box":true
-        }
+        "maxPendingRequests":{"shape":"MaxPendingRequests"}
       }
     },
     "VirtualGatewayList":{
@@ -3853,10 +3850,7 @@
       "required":["maxConnections"],
       "members":{
         "maxConnections":{"shape":"MaxConnections"},
-        "maxPendingRequests":{
-          "shape":"MaxPendingRequests",
-          "box":true
-        }
+        "maxPendingRequests":{"shape":"MaxPendingRequests"}
       }
     },
     "VirtualNodeList":{

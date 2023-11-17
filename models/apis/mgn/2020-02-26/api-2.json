@@ -2202,6 +2202,7 @@
     },
     "Iops":{
       "type":"long",
+      "box":true,
       "max":64000,
       "min":100
     },
@@ -2729,6 +2730,7 @@
     },
     "MaxResultsType":{
       "type":"integer",
+      "box":true,
       "max":1000,
       "min":1
     },
@@ -2758,6 +2760,7 @@
     },
     "OrderType":{
       "type":"integer",
+      "box":true,
       "max":10000,
       "min":1001
     },
@@ -3399,6 +3402,7 @@
     },
     "StrictlyPositiveInteger":{
       "type":"integer",
+      "box":true,
       "min":1
     },
     "SubnetID":{
@@ -3524,6 +3528,7 @@
     },
     "Throughput":{
       "type":"long",
+      "box":true,
       "max":1000,
       "min":125
     },

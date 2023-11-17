@@ -954,9 +954,6 @@ func (c *KinesisVideo) DescribeMediaStorageConfigurationRequest(input *DescribeM
 
 // DescribeMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
 //
-// This API is related to WebRTC Ingestion (https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html)
-// and is only available in the us-west-2 region.
-//
 // Returns the most current information about the channel. Specify the ChannelName
 // or ChannelARN in the input.
 //
@@ -2671,8 +2668,6 @@ func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInpu
 // retention period, specify the Operation parameter in the request body. In
 // the request, you must specify either the StreamName or the StreamARN.
 //
-// The retention period that you specify replaces the current value.
-//
 // This operation requires permission for the KinesisVideo:UpdateDataRetention
 // action.
 //
@@ -2902,17 +2897,15 @@ func (c *KinesisVideo) UpdateMediaStorageConfigurationRequest(input *UpdateMedia
 
 // UpdateMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
 //
-// This API is related to WebRTC Ingestion (https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html)
-// and is only available in the us-west-2 region.
-//
 // Associates a SignalingChannel to a stream to store the media. There are two
-// signaling modes that can specified :
+// signaling modes that you can specify :
 //
-//   - If the StorageStatus is disabled, no data will be stored, and the StreamARN
+//   - If StorageStatus is enabled, the data will be stored in the StreamARN
+//     provided. In order for WebRTC Ingestion to work, the stream must have
+//     data retention enabled.
+//
+//   - If StorageStatus is disabled, no data will be stored, and the StreamARN
 //     parameter will not be needed.
-//
-//   - If the StorageStatus is enabled, the data will be stored in the StreamARN
-//     provided.
 //
 // If StorageStatus is enabled, direct peer-to-peer (master-viewer) connections
 // no longer occur. Peers connect directly to the storage session. You must
@@ -6844,6 +6837,13 @@ func (s *MediaSourceConfig) SetMediaUriType(v string) *MediaSourceConfig {
 
 // A structure that encapsulates, or contains, the media storage configuration
 // properties.
+//
+//   - If StorageStatus is enabled, the data will be stored in the StreamARN
+//     provided. In order for WebRTC Ingestion to work, the stream must have
+//     data retention enabled.
+//
+//   - If StorageStatus is disabled, no data will be stored, and the StreamARN
+//     parameter will not be needed.
 type MediaStorageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6852,7 +6852,7 @@ type MediaStorageConfiguration struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"MediaStorageConfigurationStatus"`
 
-	// The Amazon Resource Name (ARN) of the stream
+	// The Amazon Resource Name (ARN) of the stream.
 	StreamARN *string `min:"1" type:"string"`
 }
 
@@ -8512,8 +8512,11 @@ type UpdateDataRetentionInput struct {
 	// CurrentVersion is a required field
 	CurrentVersion *string `min:"1" type:"string" required:"true"`
 
-	// The retention period, in hours. The value you specify replaces the current
-	// value. The maximum value for this parameter is 87600 (ten years).
+	// The number of hours to adjust the current retention by. The value you specify
+	// is added to or subtracted from the current value, depending on the operation.
+	//
+	// The minimum value for data retention is 0 and the maximum value is 87600
+	// (ten years).
 	//
 	// DataRetentionChangeInHours is a required field
 	DataRetentionChangeInHours *int64 `min:"1" type:"integer" required:"true"`

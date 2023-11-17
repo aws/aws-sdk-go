@@ -2529,6 +2529,33 @@
       "type":"list",
       "member":{"shape":"SourceRevision"}
     },
+    "SourceRevisionOverride":{
+      "type":"structure",
+      "required":[
+        "actionName",
+        "revisionType",
+        "revisionValue"
+      ],
+      "members":{
+        "actionName":{"shape":"ActionName"},
+        "revisionType":{"shape":"SourceRevisionType"},
+        "revisionValue":{"shape":"Revision"}
+      }
+    },
+    "SourceRevisionOverrideList":{
+      "type":"list",
+      "member":{"shape":"SourceRevisionOverride"},
+      "max":50,
+      "min":0
+    },
+    "SourceRevisionType":{
+      "type":"string",
+      "enum":[
+        "COMMIT_ID",
+        "IMAGE_DIGEST",
+        "S3_OBJECT_VERSION_ID"
+      ]
+    },
     "StageActionDeclarationList":{
       "type":"list",
       "member":{"shape":"ActionDeclaration"}
@@ -2632,7 +2659,8 @@
         "clientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "sourceRevisions":{"shape":"SourceRevisionOverrideList"}
       }
     },
     "StartPipelineExecutionOutput":{

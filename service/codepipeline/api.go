@@ -9023,6 +9023,11 @@ func (s *GetThirdPartyJobDetailsOutput) SetJobDetails(v *ThirdPartyJobDetails) *
 // You can specify the Git configuration trigger type for all third-party Git-based
 // source actions that are supported by the CodeStarSourceConnection action
 // type.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
 type GitConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -11711,6 +11716,11 @@ type PipelineDeclaration struct {
 	//
 	// For information about which type of pipeline to choose, see What type of
 	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	//
+	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+	// in the CodePipeline User Guide.
 	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
 
 	// The Amazon Resource Name (ARN) for CodePipeline to use to either perform
@@ -12459,6 +12469,11 @@ type PipelineSummary struct {
 	//
 	// For information about which type of pipeline to choose, see What type of
 	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
+	//
+	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+	// in the CodePipeline User Guide.
 	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
 
 	// The date and time of the last update to the pipeline, in timestamp format.
@@ -12524,6 +12539,11 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 //
 // When a trigger configuration is specified, default change detection for repository
 // and branch commits is disabled.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
 type PipelineTriggerDeclaration struct {
 	_ struct{} `type:"structure"`
 
@@ -12592,6 +12612,11 @@ func (s *PipelineTriggerDeclaration) SetProviderType(v string) *PipelineTriggerD
 }
 
 // A pipeline-level variable used for a pipeline execution.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
 type PipelineVariable struct {
 	_ struct{} `type:"structure"`
 
@@ -12659,6 +12684,11 @@ func (s *PipelineVariable) SetValue(v string) *PipelineVariable {
 }
 
 // A variable declared at the pipeline level.
+//
+// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
+// are not currently supported for CloudFormation and CDK resources in CodePipeline.
+// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
+// in the CodePipeline User Guide.
 type PipelineVariableDeclaration struct {
 	_ struct{} `type:"structure"`
 
@@ -14381,6 +14411,92 @@ func (s *SourceRevision) SetRevisionUrl(v string) *SourceRevision {
 	return s
 }
 
+// A list that allows you to specify, or override, the source revision for a
+// pipeline execution that's being started. A source revision is the version
+// with all the changes to your application code, or source artifact, for the
+// pipeline execution.
+type SourceRevisionOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the action where the override will be applied.
+	//
+	// ActionName is a required field
+	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
+
+	// The type of source revision, based on the source provider. For example, the
+	// revision type for the CodeCommit action provider is the commit ID.
+	//
+	// RevisionType is a required field
+	RevisionType *string `locationName:"revisionType" type:"string" required:"true" enum:"SourceRevisionType"`
+
+	// The source revision, or version of your source artifact, with the changes
+	// that you want to run in the pipeline execution.
+	//
+	// RevisionValue is a required field
+	RevisionValue *string `locationName:"revisionValue" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceRevisionOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceRevisionOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceRevisionOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceRevisionOverride"}
+	if s.ActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionName"))
+	}
+	if s.ActionName != nil && len(*s.ActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionName", 1))
+	}
+	if s.RevisionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionType"))
+	}
+	if s.RevisionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionValue"))
+	}
+	if s.RevisionValue != nil && len(*s.RevisionValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *SourceRevisionOverride) SetActionName(v string) *SourceRevisionOverride {
+	s.ActionName = &v
+	return s
+}
+
+// SetRevisionType sets the RevisionType field's value.
+func (s *SourceRevisionOverride) SetRevisionType(v string) *SourceRevisionOverride {
+	s.RevisionType = &v
+	return s
+}
+
+// SetRevisionValue sets the RevisionValue field's value.
+func (s *SourceRevisionOverride) SetRevisionValue(v string) *SourceRevisionOverride {
+	s.RevisionValue = &v
+	return s
+}
+
 // Represents information about a stage to a job worker.
 type StageContext struct {
 	_ struct{} `type:"structure"`
@@ -14765,6 +14881,12 @@ type StartPipelineExecutionInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// A list that allows you to specify, or override, the source revision for a
+	// pipeline execution that's being started. A source revision is the version
+	// with all the changes to your application code, or source artifact, for the
+	// pipeline execution.
+	SourceRevisions []*SourceRevisionOverride `locationName:"sourceRevisions" type:"list"`
+
 	// A list that overrides pipeline variables for a pipeline execution that's
 	// being started. Variable names must match [A-Za-z0-9@\-_]+, and the values
 	// can be anything except an empty string.
@@ -14804,6 +14926,16 @@ func (s *StartPipelineExecutionInput) Validate() error {
 	if s.Variables != nil && len(s.Variables) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Variables", 1))
 	}
+	if s.SourceRevisions != nil {
+		for i, v := range s.SourceRevisions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourceRevisions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Variables != nil {
 		for i, v := range s.Variables {
 			if v == nil {
@@ -14830,6 +14962,12 @@ func (s *StartPipelineExecutionInput) SetClientRequestToken(v string) *StartPipe
 // SetName sets the Name field's value.
 func (s *StartPipelineExecutionInput) SetName(v string) *StartPipelineExecutionInput {
 	s.Name = &v
+	return s
+}
+
+// SetSourceRevisions sets the SourceRevisions field's value.
+func (s *StartPipelineExecutionInput) SetSourceRevisions(v []*SourceRevisionOverride) *StartPipelineExecutionInput {
+	s.SourceRevisions = v
 	return s
 }
 
@@ -16472,6 +16610,26 @@ func PipelineType_Values() []string {
 	return []string{
 		PipelineTypeV1,
 		PipelineTypeV2,
+	}
+}
+
+const (
+	// SourceRevisionTypeCommitId is a SourceRevisionType enum value
+	SourceRevisionTypeCommitId = "COMMIT_ID"
+
+	// SourceRevisionTypeImageDigest is a SourceRevisionType enum value
+	SourceRevisionTypeImageDigest = "IMAGE_DIGEST"
+
+	// SourceRevisionTypeS3ObjectVersionId is a SourceRevisionType enum value
+	SourceRevisionTypeS3ObjectVersionId = "S3_OBJECT_VERSION_ID"
+)
+
+// SourceRevisionType_Values returns all elements of the SourceRevisionType enum
+func SourceRevisionType_Values() []string {
+	return []string{
+		SourceRevisionTypeCommitId,
+		SourceRevisionTypeImageDigest,
+		SourceRevisionTypeS3ObjectVersionId,
 	}
 }
 

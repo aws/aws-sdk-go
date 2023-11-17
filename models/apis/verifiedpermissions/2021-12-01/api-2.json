@@ -13,6 +13,22 @@
     "uid":"verifiedpermissions-2021-12-01"
   },
   "operations":{
+    "BatchIsAuthorized":{
+      "name":"BatchIsAuthorized",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchIsAuthorizedInput"},
+      "output":{"shape":"BatchIsAuthorizedOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateIdentitySource":{
       "name":"CreateIdentitySource",
       "http":{
@@ -471,6 +487,58 @@
         "record":{"shape":"RecordAttribute"}
       },
       "union":true
+    },
+    "BatchIsAuthorizedInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "requests"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "entities":{"shape":"EntitiesDefinition"},
+        "requests":{"shape":"BatchIsAuthorizedInputList"}
+      }
+    },
+    "BatchIsAuthorizedInputItem":{
+      "type":"structure",
+      "members":{
+        "principal":{"shape":"EntityIdentifier"},
+        "action":{"shape":"ActionIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "context":{"shape":"ContextDefinition"}
+      }
+    },
+    "BatchIsAuthorizedInputList":{
+      "type":"list",
+      "member":{"shape":"BatchIsAuthorizedInputItem"},
+      "min":1
+    },
+    "BatchIsAuthorizedOutput":{
+      "type":"structure",
+      "required":["results"],
+      "members":{
+        "results":{"shape":"BatchIsAuthorizedOutputList"}
+      }
+    },
+    "BatchIsAuthorizedOutputItem":{
+      "type":"structure",
+      "required":[
+        "request",
+        "decision",
+        "determiningPolicies",
+        "errors"
+      ],
+      "members":{
+        "request":{"shape":"BatchIsAuthorizedInputItem"},
+        "decision":{"shape":"Decision"},
+        "determiningPolicies":{"shape":"DeterminingPolicyList"},
+        "errors":{"shape":"EvaluationErrorList"}
+      }
+    },
+    "BatchIsAuthorizedOutputList":{
+      "type":"list",
+      "member":{"shape":"BatchIsAuthorizedOutputItem"}
     },
     "Boolean":{
       "type":"boolean",
@@ -1408,7 +1476,7 @@
     },
     "SchemaJson":{
       "type":"string",
-      "max":10000,
+      "max":100000,
       "min":1,
       "sensitive":true
     },

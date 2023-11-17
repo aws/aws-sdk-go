@@ -296,6 +296,7 @@
         {"shape":"DBSubnetGroupNotFoundFault"},
         {"shape":"InvalidVPCNetworkStateFault"},
         {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBSubnetGroupFault"},
         {"shape":"InvalidDBSubnetGroupStateFault"},
         {"shape":"InvalidSubnet"},
         {"shape":"InvalidDBInstanceStateFault"},
@@ -306,7 +307,8 @@
         {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"},
         {"shape":"GlobalClusterNotFoundFault"},
         {"shape":"InvalidGlobalClusterStateFault"},
-        {"shape":"DomainNotFoundFault"}
+        {"shape":"DomainNotFoundFault"},
+        {"shape":"OptionGroupNotFoundFault"}
       ]
     },
     "CreateDBClusterEndpoint":{
@@ -1756,7 +1758,8 @@
         {"shape":"DBClusterAlreadyExistsFault"},
         {"shape":"DBInstanceAlreadyExistsFault"},
         {"shape":"DomainNotFoundFault"},
-        {"shape":"StorageTypeNotAvailableFault"}
+        {"shape":"StorageTypeNotAvailableFault"},
+        {"shape":"OptionGroupNotFoundFault"}
       ]
     },
     "ModifyDBClusterEndpoint":{
@@ -3919,6 +3922,7 @@
         "PreferredMaintenanceWindow":{"shape":"String"},
         "ReplicationSourceIdentifier":{"shape":"String"},
         "ReadReplicaIdentifiers":{"shape":"ReadReplicaIdentifierList"},
+        "StatusInfos":{"shape":"DBClusterStatusInfoList"},
         "DBClusterMembers":{"shape":"DBClusterMemberList"},
         "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"},
         "HostedZoneId":{"shape":"String"},
@@ -4413,6 +4417,22 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBClusterStatusInfo":{
+      "type":"structure",
+      "members":{
+        "StatusType":{"shape":"String"},
+        "Normal":{"shape":"Boolean"},
+        "Status":{"shape":"String"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "DBClusterStatusInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"DBClusterStatusInfo",
+        "locationName":"DBClusterStatusInfo"
+      }
     },
     "DBEngineVersion":{
       "type":"structure",
@@ -8147,7 +8167,8 @@
       "type":"structure",
       "members":{
         "InterconnectSubnetId":{"shape":"String"},
-        "TransitGatewayMulticastDomainId":{"shape":"String"}
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "ReplicaMode":{"shape":"ReplicaMode"}
       }
     },
     "ReadReplicaDBClusterIdentifierList":{

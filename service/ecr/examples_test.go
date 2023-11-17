@@ -87,6 +87,10 @@ func ExampleECR_BatchGetImage_shared00() {
 				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
 			case ecr.ErrCodeRepositoryNotFoundException:
 				fmt.Println(ecr.ErrCodeRepositoryNotFoundException, aerr.Error())
+			case ecr.ErrCodeLimitExceededException:
+				fmt.Println(ecr.ErrCodeLimitExceededException, aerr.Error())
+			case ecr.ErrCodeUnableToGetUpstreamImageException:
+				fmt.Println(ecr.ErrCodeUnableToGetUpstreamImageException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

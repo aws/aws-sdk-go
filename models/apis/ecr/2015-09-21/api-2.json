@@ -53,7 +53,9 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnableToGetUpstreamImageException"}
       ]
     },
     "BatchGetRepositoryScanningConfiguration":{
@@ -105,7 +107,10 @@
         {"shape":"ValidationException"},
         {"shape":"PullThroughCacheRuleAlreadyExistsException"},
         {"shape":"UnsupportedUpstreamRegistryException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"UnableToAccessSecretException"},
+        {"shape":"SecretNotFoundException"},
+        {"shape":"UnableToDecryptSecretValueException"}
       ]
     },
     "CreateRepository":{
@@ -320,7 +325,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"LayersNotFoundException"},
         {"shape":"LayerInaccessibleException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnableToGetUpstreamLayerException"}
       ]
     },
     "GetLifecyclePolicy":{
@@ -630,6 +636,24 @@
         {"shape":"ServerException"}
       ]
     },
+    "UpdatePullThroughCacheRule":{
+      "name":"UpdatePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePullThroughCacheRuleRequest"},
+      "output":{"shape":"UpdatePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnableToAccessSecretException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"},
+        {"shape":"SecretNotFoundException"},
+        {"shape":"UnableToDecryptSecretValueException"}
+      ]
+    },
     "UploadLayerPart":{
       "name":"UploadLayerPart",
       "http":{
@@ -646,6 +670,21 @@
         {"shape":"UploadNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"KmsException"}
+      ]
+    },
+    "ValidatePullThroughCacheRule":{
+      "name":"ValidatePullThroughCacheRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ValidatePullThroughCacheRuleRequest"},
+      "output":{"shape":"ValidatePullThroughCacheRuleResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"},
+        {"shape":"PullThroughCacheRuleNotFoundException"}
       ]
     }
   },
@@ -822,7 +861,9 @@
       "members":{
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "upstreamRegistryUrl":{"shape":"Url"},
-        "registryId":{"shape":"RegistryId"}
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "credentialArn":{"shape":"CredentialArn"}
       }
     },
     "CreatePullThroughCacheRuleResponse":{
@@ -831,7 +872,9 @@
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "upstreamRegistryUrl":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
-        "registryId":{"shape":"RegistryId"}
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "credentialArn":{"shape":"CredentialArn"}
       }
     },
     "CreateRepositoryRequest":{
@@ -853,6 +896,12 @@
       }
     },
     "CreationTimestamp":{"type":"timestamp"},
+    "CredentialArn":{
+      "type":"string",
+      "max":612,
+      "min":50,
+      "pattern":"^arn:aws:secretsmanager:[a-zA-Z0-9-:]+:secret:ecr\\-pullthroughcache\\/[a-zA-Z0-9\\/_+=.@-]+$"
+    },
     "CvssScore":{
       "type":"structure",
       "members":{
@@ -919,7 +968,8 @@
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "upstreamRegistryUrl":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
-        "registryId":{"shape":"RegistryId"}
+        "registryId":{"shape":"RegistryId"},
+        "credentialArn":{"shape":"CredentialArn"}
       }
     },
     "DeleteRegistryPolicyRequest":{
@@ -1342,7 +1392,10 @@
         "ImageNotFound",
         "MissingDigestAndTag",
         "ImageReferencedByManifestList",
-        "KmsError"
+        "KmsError",
+        "UpstreamAccessDenied",
+        "UpstreamTooManyRequests",
+        "UpstreamUnavailable"
       ]
     },
     "ImageFailureList":{
@@ -1512,6 +1565,7 @@
       },
       "exception":true
     },
+    "IsPTCRuleValid":{"type":"boolean"},
     "KmsError":{"type":"string"},
     "KmsException":{
       "type":"structure",
@@ -1744,6 +1798,7 @@
     },
     "Metric":{"type":"string"},
     "NextToken":{"type":"string"},
+    "PTCValidateFailure":{"type":"string"},
     "PackageManager":{"type":"string"},
     "PackageVulnerabilityDetails":{
       "type":"structure",
@@ -1772,7 +1827,10 @@
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "upstreamRegistryUrl":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
-        "registryId":{"shape":"RegistryId"}
+        "registryId":{"shape":"RegistryId"},
+        "credentialArn":{"shape":"CredentialArn"},
+        "upstreamRegistry":{"shape":"UpstreamRegistry"},
+        "updatedAt":{"shape":"UpdatedTimestamp"}
       }
     },
     "PullThroughCacheRuleAlreadyExistsException":{
@@ -1795,9 +1853,9 @@
     },
     "PullThroughCacheRuleRepositoryPrefix":{
       "type":"string",
-      "max":20,
+      "max":30,
       "min":2,
-      "pattern":"[a-z0-9]+(?:[._-][a-z0-9]+)*"
+      "pattern":"(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*"
     },
     "PullThroughCacheRuleRepositoryPrefixList":{
       "type":"list",
@@ -2272,6 +2330,13 @@
       }
     },
     "ScoringVector":{"type":"string"},
+    "SecretNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "ServerException":{
       "type":"structure",
       "members":{
@@ -2407,6 +2472,34 @@
       "exception":true
     },
     "Type":{"type":"string"},
+    "UnableToAccessSecretException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToDecryptSecretValueException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToGetUpstreamImageException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnableToGetUpstreamLayerException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "UnsupportedImageTypeException":{
       "type":"structure",
       "members":{
@@ -2437,6 +2530,28 @@
       "members":{
       }
     },
+    "UpdatePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":[
+        "ecrRepositoryPrefix",
+        "credentialArn"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
+    "UpdatePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"},
+        "updatedAt":{"shape":"UpdatedTimestamp"},
+        "credentialArn":{"shape":"CredentialArn"}
+      }
+    },
+    "UpdatedTimestamp":{"type":"timestamp"},
     "UploadId":{
       "type":"string",
       "pattern":"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
@@ -2475,7 +2590,37 @@
       },
       "exception":true
     },
+    "UpstreamRegistry":{
+      "type":"string",
+      "enum":[
+        "ecr-public",
+        "quay",
+        "k8s",
+        "docker-hub",
+        "github-container-registry",
+        "azure-container-registry"
+      ]
+    },
     "Url":{"type":"string"},
+    "ValidatePullThroughCacheRuleRequest":{
+      "type":"structure",
+      "required":["ecrRepositoryPrefix"],
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "ValidatePullThroughCacheRuleResponse":{
+      "type":"structure",
+      "members":{
+        "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
+        "registryId":{"shape":"RegistryId"},
+        "upstreamRegistryUrl":{"shape":"Url"},
+        "credentialArn":{"shape":"CredentialArn"},
+        "isValid":{"shape":"IsPTCRuleValid"},
+        "failure":{"shape":"PTCValidateFailure"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{

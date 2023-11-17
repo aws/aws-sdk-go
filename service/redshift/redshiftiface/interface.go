@@ -148,6 +148,10 @@ type RedshiftAPI interface {
 	CreateHsmConfigurationWithContext(aws.Context, *redshift.CreateHsmConfigurationInput, ...request.Option) (*redshift.CreateHsmConfigurationOutput, error)
 	CreateHsmConfigurationRequest(*redshift.CreateHsmConfigurationInput) (*request.Request, *redshift.CreateHsmConfigurationOutput)
 
+	CreateRedshiftIdcApplication(*redshift.CreateRedshiftIdcApplicationInput) (*redshift.CreateRedshiftIdcApplicationOutput, error)
+	CreateRedshiftIdcApplicationWithContext(aws.Context, *redshift.CreateRedshiftIdcApplicationInput, ...request.Option) (*redshift.CreateRedshiftIdcApplicationOutput, error)
+	CreateRedshiftIdcApplicationRequest(*redshift.CreateRedshiftIdcApplicationInput) (*request.Request, *redshift.CreateRedshiftIdcApplicationOutput)
+
 	CreateScheduledAction(*redshift.CreateScheduledActionInput) (*redshift.CreateScheduledActionOutput, error)
 	CreateScheduledActionWithContext(aws.Context, *redshift.CreateScheduledActionInput, ...request.Option) (*redshift.CreateScheduledActionOutput, error)
 	CreateScheduledActionRequest(*redshift.CreateScheduledActionInput) (*request.Request, *redshift.CreateScheduledActionOutput)
@@ -219,6 +223,10 @@ type RedshiftAPI interface {
 	DeletePartner(*redshift.DeletePartnerInput) (*redshift.DeletePartnerOutput, error)
 	DeletePartnerWithContext(aws.Context, *redshift.DeletePartnerInput, ...request.Option) (*redshift.DeletePartnerOutput, error)
 	DeletePartnerRequest(*redshift.DeletePartnerInput) (*request.Request, *redshift.DeletePartnerOutput)
+
+	DeleteRedshiftIdcApplication(*redshift.DeleteRedshiftIdcApplicationInput) (*redshift.DeleteRedshiftIdcApplicationOutput, error)
+	DeleteRedshiftIdcApplicationWithContext(aws.Context, *redshift.DeleteRedshiftIdcApplicationInput, ...request.Option) (*redshift.DeleteRedshiftIdcApplicationOutput, error)
+	DeleteRedshiftIdcApplicationRequest(*redshift.DeleteRedshiftIdcApplicationInput) (*request.Request, *redshift.DeleteRedshiftIdcApplicationOutput)
 
 	DeleteResourcePolicy(*redshift.DeleteResourcePolicyInput) (*redshift.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyWithContext(aws.Context, *redshift.DeleteResourcePolicyInput, ...request.Option) (*redshift.DeleteResourcePolicyOutput, error)
@@ -425,6 +433,13 @@ type RedshiftAPI interface {
 	DescribePartnersWithContext(aws.Context, *redshift.DescribePartnersInput, ...request.Option) (*redshift.DescribePartnersOutput, error)
 	DescribePartnersRequest(*redshift.DescribePartnersInput) (*request.Request, *redshift.DescribePartnersOutput)
 
+	DescribeRedshiftIdcApplications(*redshift.DescribeRedshiftIdcApplicationsInput) (*redshift.DescribeRedshiftIdcApplicationsOutput, error)
+	DescribeRedshiftIdcApplicationsWithContext(aws.Context, *redshift.DescribeRedshiftIdcApplicationsInput, ...request.Option) (*redshift.DescribeRedshiftIdcApplicationsOutput, error)
+	DescribeRedshiftIdcApplicationsRequest(*redshift.DescribeRedshiftIdcApplicationsInput) (*request.Request, *redshift.DescribeRedshiftIdcApplicationsOutput)
+
+	DescribeRedshiftIdcApplicationsPages(*redshift.DescribeRedshiftIdcApplicationsInput, func(*redshift.DescribeRedshiftIdcApplicationsOutput, bool) bool) error
+	DescribeRedshiftIdcApplicationsPagesWithContext(aws.Context, *redshift.DescribeRedshiftIdcApplicationsInput, func(*redshift.DescribeRedshiftIdcApplicationsOutput, bool) bool, ...request.Option) error
+
 	DescribeReservedNodeExchangeStatus(*redshift.DescribeReservedNodeExchangeStatusInput) (*redshift.DescribeReservedNodeExchangeStatusOutput, error)
 	DescribeReservedNodeExchangeStatusWithContext(aws.Context, *redshift.DescribeReservedNodeExchangeStatusInput, ...request.Option) (*redshift.DescribeReservedNodeExchangeStatusOutput, error)
 	DescribeReservedNodeExchangeStatusRequest(*redshift.DescribeReservedNodeExchangeStatusInput) (*request.Request, *redshift.DescribeReservedNodeExchangeStatusOutput)
@@ -597,6 +612,10 @@ type RedshiftAPI interface {
 	ModifyEventSubscription(*redshift.ModifyEventSubscriptionInput) (*redshift.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionWithContext(aws.Context, *redshift.ModifyEventSubscriptionInput, ...request.Option) (*redshift.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionRequest(*redshift.ModifyEventSubscriptionInput) (*request.Request, *redshift.ModifyEventSubscriptionOutput)
+
+	ModifyRedshiftIdcApplication(*redshift.ModifyRedshiftIdcApplicationInput) (*redshift.ModifyRedshiftIdcApplicationOutput, error)
+	ModifyRedshiftIdcApplicationWithContext(aws.Context, *redshift.ModifyRedshiftIdcApplicationInput, ...request.Option) (*redshift.ModifyRedshiftIdcApplicationOutput, error)
+	ModifyRedshiftIdcApplicationRequest(*redshift.ModifyRedshiftIdcApplicationInput) (*request.Request, *redshift.ModifyRedshiftIdcApplicationOutput)
 
 	ModifyScheduledAction(*redshift.ModifyScheduledActionInput) (*redshift.ModifyScheduledActionOutput, error)
 	ModifyScheduledActionWithContext(aws.Context, *redshift.ModifyScheduledActionInput, ...request.Option) (*redshift.ModifyScheduledActionOutput, error)

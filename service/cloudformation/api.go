@@ -7985,6 +7985,9 @@ type ChangeSetSummary struct {
 	// creating it or in an OBSOLETE state because the stack was already updated.
 	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
 
+	// Indicates if the stack set imports resources that already exist.
+	ImportExistingResources *bool `type:"boolean"`
+
 	// Specifies the current setting of IncludeNestedStacks for the change set.
 	IncludeNestedStacks *bool `type:"boolean"`
 
@@ -8054,6 +8057,12 @@ func (s *ChangeSetSummary) SetDescription(v string) *ChangeSetSummary {
 // SetExecutionStatus sets the ExecutionStatus field's value.
 func (s *ChangeSetSummary) SetExecutionStatus(v string) *ChangeSetSummary {
 	s.ExecutionStatus = &v
+	return s
+}
+
+// SetImportExistingResources sets the ImportExistingResources field's value.
+func (s *ChangeSetSummary) SetImportExistingResources(v bool) *ChangeSetSummary {
+	s.ImportExistingResources = &v
 	return s
 }
 
@@ -8339,6 +8348,17 @@ type CreateChangeSetInput struct {
 	// A description to help you identify this change set.
 	Description *string `min:"1" type:"string"`
 
+	// Indicates if the stack set imports resources that already exist.
+	//
+	// This parameter can only import resources that have custom names in templates.
+	// For more information, see name type (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html)
+	// in the CloudFormation User Guide. To import resources that do not accept
+	// custom names, such as EC2 instances, use the resource import feature instead.
+	// For more information, see Bringing existing resources into CloudFormation
+	// management (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import.html)
+	// in the CloudFormation User Guide.
+	ImportExistingResources *bool `type:"boolean"`
+
 	// Creates a change set for the all nested stacks specified in the template.
 	// The default behavior of this action is set to False. To include nested sets
 	// in a change set, specify True.
@@ -8549,6 +8569,12 @@ func (s *CreateChangeSetInput) SetClientToken(v string) *CreateChangeSetInput {
 // SetDescription sets the Description field's value.
 func (s *CreateChangeSetInput) SetDescription(v string) *CreateChangeSetInput {
 	s.Description = &v
+	return s
+}
+
+// SetImportExistingResources sets the ImportExistingResources field's value.
+func (s *CreateChangeSetInput) SetImportExistingResources(v bool) *CreateChangeSetInput {
+	s.ImportExistingResources = &v
 	return s
 }
 
@@ -10833,6 +10859,14 @@ type DescribeChangeSetOutput struct {
 	// creating it or in an OBSOLETE state because the stack was already updated.
 	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
 
+	// Indicates if the stack set imports resources that already exist.
+	//
+	// This parameter can only import resources that have custom names (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html)
+	// in templates. To import resources that do not accept custom names, such as
+	// EC2 instances, use the resource import (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import.html)
+	// feature instead.
+	ImportExistingResources *bool `type:"boolean"`
+
 	// Verifies if IncludeNestedStacks is set to True.
 	IncludeNestedStacks *bool `type:"boolean"`
 
@@ -10958,6 +10992,12 @@ func (s *DescribeChangeSetOutput) SetDescription(v string) *DescribeChangeSetOut
 // SetExecutionStatus sets the ExecutionStatus field's value.
 func (s *DescribeChangeSetOutput) SetExecutionStatus(v string) *DescribeChangeSetOutput {
 	s.ExecutionStatus = &v
+	return s
+}
+
+// SetImportExistingResources sets the ImportExistingResources field's value.
+func (s *DescribeChangeSetOutput) SetImportExistingResources(v bool) *DescribeChangeSetOutput {
+	s.ImportExistingResources = &v
 	return s
 }
 
@@ -20919,16 +20959,19 @@ type StackSetOperationPreferences struct {
 
 	// Specifies how the concurrency level behaves during the operation execution.
 	//
-	//    * STRICT_FAILURE_TOLERANCE: Dynamically lowers the concurrency level to
-	//    ensure the number of failed accounts never exceeds the FailureToleranceCount
-	//    +1. StackSets will set the actual concurrency of your deployment as the
-	//    minimum value between the MaxConcurrentCount and the FailureToleranceCount
-	//    +1. This is the default behavior. If failure tolerance or Maximum concurrent
-	//    accounts are set to percentages, the behavior is similar.
+	//    * STRICT_FAILURE_TOLERANCE: This option dynamically lowers the concurrency
+	//    level to ensure the number of failed accounts never exceeds the value
+	//    of FailureToleranceCount +1. The initial actual concurrency is set to
+	//    the lower of either the value of the MaxConcurrentCount, or the value
+	//    of MaxConcurrentCount +1. The actual concurrency is then reduced proportionally
+	//    by the number of failures. This is the default behavior. If failure tolerance
+	//    or Maximum concurrent accounts are set to percentages, the behavior is
+	//    similar.
 	//
-	//    * SOFT_FAILURE_TOLERANCE: Always run at the concurrency level set by the
-	//    user in the MaxConcurrentCount or MaxConcurrentPercentage, regardless
-	//    of the number of failures.
+	//    * SOFT_FAILURE_TOLERANCE: This option decouples FailureToleranceCount
+	//    from the actual concurrency. This allows stack set operations to run at
+	//    the concurrency level set by the MaxConcurrentCount value, or MaxConcurrentPercentage,
+	//    regardless of the number of failures.
 	ConcurrencyMode *string `type:"string" enum:"ConcurrencyMode"`
 
 	// The number of accounts, per Region, for which this operation can fail before

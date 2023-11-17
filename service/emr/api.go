@@ -59,7 +59,7 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 // Adds an instance fleet to a running cluster.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x.
+// 4.8.0 and later, excluding 5.0.x.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -411,13 +411,12 @@ func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request,
 // CancelSteps API operation for Amazon EMR.
 //
 // Cancels a pending step or steps in a running cluster. Available only in Amazon
-// EMR versions 4.8.0 and higher, excluding version 5.0.0. A maximum of 256
-// steps are allowed in each CancelSteps request. CancelSteps is idempotent
-// but asynchronous; it does not guarantee that a step will be canceled, even
-// if the request is successfully submitted. When you use Amazon EMR releases
-// 5.28.0 and higher, you can cancel steps that are in a PENDING or RUNNING
-// state. In earlier versions of Amazon EMR, you can only cancel steps that
-// are in a PENDING state.
+// EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps
+// are allowed in each CancelSteps request. CancelSteps is idempotent but asynchronous;
+// it does not guarantee that a step will be canceled, even if the request is
+// successfully submitted. When you use Amazon EMR releases 5.28.0 and later,
+// you can cancel steps that are in a PENDING or RUNNING state. In earlier versions
+// of Amazon EMR, you can only cancel steps that are in a PENDING state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2315,7 +2314,7 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 // Lists all available details about the instance fleets in a cluster.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3817,7 +3816,7 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 // ClusterID. The call either succeeds or fails atomically.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4061,7 +4060,7 @@ func (c *EMR) PutAutoTerminationPolicyRequest(input *PutAutoTerminationPolicyInp
 // PutAutoTerminationPolicy API operation for Amazon EMR.
 //
 // Auto-termination is supported in Amazon EMR releases 5.30.0 and 6.1.0 and
-// higher. For more information, see Using an auto-termination policy (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-auto-termination-policy.html).
+// later. For more information, see Using an auto-termination policy (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-auto-termination-policy.html).
 //
 // Creates or updates an auto-termination policy for an Amazon EMR cluster.
 // An auto-termination policy defines the amount of idle time in seconds after
@@ -4639,7 +4638,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 // results.
 //
 // The instance fleets configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions. The RunJobFlow request can contain
+// 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain
 // InstanceFleets parameters or InstanceGroups parameters, but not both.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5738,7 +5737,7 @@ func (s AddTagsOutput) GoString() string {
 	return s.String()
 }
 
-// With Amazon EMR release version 4.0 and higher, the only accepted parameter
+// With Amazon EMR release version 4.0 and later, the only accepted parameter
 // is the application name. To pass arguments to applications, you use configuration
 // classifications specified using configuration JSON objects. For more information,
 // see Configuring Applications (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-configure-apps.html).
@@ -6294,7 +6293,7 @@ func (s *BootstrapActionDetail) SetBootstrapActionConfig(v *BootstrapActionConfi
 }
 
 // Specification of the status of a CancelSteps request. Available only in Amazon
-// EMR version 4.8.0 and higher, excluding version 5.0.0.
+// EMR version 4.8.0 and later, excluding version 5.0.0.
 type CancelStepsInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -6611,26 +6610,27 @@ type Cluster struct {
 	// The Amazon Resource Name of the cluster.
 	ClusterArn *string `min:"20" type:"string"`
 
-	// Applies only to Amazon EMR releases 4.x and higher. The list of configurations
+	// Applies only to Amazon EMR releases 4.x and later. The list of configurations
 	// that are supplied to the Amazon EMR cluster.
 	Configurations []*Configuration `type:"list"`
 
-	// Available only in Amazon EMR releases 5.7.0 and higher. The ID of a custom
+	// Available only in Amazon EMR releases 5.7.0 and later. The ID of a custom
 	// Amazon EBS-backed Linux AMI if the cluster uses a custom AMI.
 	CustomAmiId *string `type:"string"`
 
-	// The IOPS, of the Amazon EBS root device volume for the Linux AMI that each
-	// Amazon EC2 instance uses. Available in Amazon EMR releases 6.15.0 and higher.
+	// The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used
+	// for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and
+	// later.
 	EbsRootVolumeIops *int64 `type:"integer"`
 
-	// The size, in GiB, of the Amazon EBS root device volume for the Linux AMI
-	// that each Amazon EC2 instance uses. Available in Amazon EMR releases 4.x
-	// and higher.
+	// The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that
+	// is used for each Amazon EC2 instance. Available in Amazon EMR releases 4.x
+	// and later.
 	EbsRootVolumeSize *int64 `type:"integer"`
 
-	// The throughput, in MiB/s, of the Amazon EBS root device volume for the Linux
-	// AMI that each Amazon EC2 instance uses. Available in Amazon EMR releases
-	// 6.15.0 and higher.
+	// The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux
+	// AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases
+	// 6.15.0 and later.
 	EbsRootVolumeThroughput *int64 `type:"integer"`
 
 	// Provides information about the Amazon EC2 instances in a cluster grouped
@@ -6643,7 +6643,7 @@ type Cluster struct {
 
 	//
 	// The instance fleet configuration is available only in Amazon EMR releases
-	// 4.8.0 and higher, excluding 5.0.x versions.
+	// 4.8.0 and later, excluding 5.0.x versions.
 	//
 	// The instance group configuration of the cluster. A value of INSTANCE_GROUP
 	// indicates a uniform instance group configuration. A value of INSTANCE_FLEET
@@ -6657,7 +6657,7 @@ type Cluster struct {
 	KerberosAttributes *KerberosAttributes `type:"structure"`
 
 	// The KMS key used for encrypting log files. This attribute is only available
-	// with Amazon EMR 5.30.0 and higher, excluding Amazon EMR 6.0.0.
+	// with Amazon EMR 5.30.0 and later, excluding Amazon EMR 6.0.0.
 	LogEncryptionKmsKeyId *string `type:"string"`
 
 	// The path to the Amazon S3 location where logs for this cluster are stored.
@@ -6695,7 +6695,7 @@ type Cluster struct {
 	// For more information about Amazon EMR release versions and included application
 	// versions and features, see https://docs.aws.amazon.com/emr/latest/ReleaseGuide/
 	// (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/). The release label
-	// applies only to Amazon EMR releases version 4.0 and higher. Earlier versions
+	// applies only to Amazon EMR releases version 4.0 and later. Earlier versions
 	// use AmiVersion.
 	ReleaseLabel *string `type:"string"`
 
@@ -6714,13 +6714,13 @@ type Cluster struct {
 	// scale-in activity occurs or an instance group is resized. TERMINATE_AT_INSTANCE_HOUR
 	// indicates that Amazon EMR terminates nodes at the instance-hour boundary,
 	// regardless of when the request to terminate the instance was submitted. This
-	// option is only available with Amazon EMR 5.1.0 and higher and is the default
+	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
 	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
 	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
 	// With either behavior, Amazon EMR removes the least active nodes first and
 	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
-	// is available only in Amazon EMR releases 4.1.0 and higher, and is the default
+	// is available only in Amazon EMR releases 4.1.0 and later, and is the default
 	// for versions of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
 
@@ -7372,7 +7372,7 @@ func (s *ComputeLimits) SetUnitType(v string) *ComputeLimits {
 	return s
 }
 
-// Amazon EMR releases 4.x or higher.
+// Amazon EMR releases 4.x or later.
 //
 // An optional configuration specification to be used when provisioning cluster
 // instances, which can include configurations for applications and software
@@ -7553,12 +7553,24 @@ type CreateStudioInput struct {
 	// A detailed description of the Amazon EMR Studio.
 	Description *string `type:"string"`
 
+	// The KMS key identifier (ARN) used to encrypt Amazon EMR Studio workspace
+	// and notebook files when backed up to Amazon S3.
+	EncryptionKeyArn *string `type:"string"`
+
 	// The ID of the Amazon EMR Studio Engine security group. The Engine security
 	// group allows inbound network traffic from the Workspace security group, and
 	// it must be in the same VPC specified by VpcId.
 	//
 	// EngineSecurityGroupId is a required field
 	EngineSecurityGroupId *string `type:"string" required:"true"`
+
+	// The ARN of the IAM Identity Center instance to create the Studio application.
+	IdcInstanceArn *string `min:"20" type:"string"`
+
+	// Specifies whether IAM Identity Center user assignment is REQUIRED or OPTIONAL.
+	// If the value is set to REQUIRED, users must be explicitly assigned to the
+	// Studio application to access the Studio.
+	IdcUserAssignment *string `type:"string" enum:"IdcUserAssignment"`
 
 	// The authentication endpoint of your identity provider (IdP). Specify this
 	// value when you use IAM authentication and want to let federated users log
@@ -7595,6 +7607,10 @@ type CreateStudioInput struct {
 	// key-value pairs that consist of a required key string with a maximum of 128
 	// characters, and an optional value string with a maximum of 256 characters.
 	Tags []*Tag `type:"list"`
+
+	// A Boolean indicating whether to enable Trusted identity propagation for the
+	// Studio. The default value is false.
+	TrustedIdentityPropagationEnabled *bool `type:"boolean"`
 
 	// The IAM user role that users and groups assume when logged in to an Amazon
 	// EMR Studio. Only specify a UserRole when you use IAM Identity Center authentication.
@@ -7646,6 +7662,9 @@ func (s *CreateStudioInput) Validate() error {
 	if s.EngineSecurityGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EngineSecurityGroupId"))
 	}
+	if s.IdcInstanceArn != nil && len(*s.IdcInstanceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IdcInstanceArn", 20))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -7686,9 +7705,27 @@ func (s *CreateStudioInput) SetDescription(v string) *CreateStudioInput {
 	return s
 }
 
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *CreateStudioInput) SetEncryptionKeyArn(v string) *CreateStudioInput {
+	s.EncryptionKeyArn = &v
+	return s
+}
+
 // SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
 func (s *CreateStudioInput) SetEngineSecurityGroupId(v string) *CreateStudioInput {
 	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdcInstanceArn sets the IdcInstanceArn field's value.
+func (s *CreateStudioInput) SetIdcInstanceArn(v string) *CreateStudioInput {
+	s.IdcInstanceArn = &v
+	return s
+}
+
+// SetIdcUserAssignment sets the IdcUserAssignment field's value.
+func (s *CreateStudioInput) SetIdcUserAssignment(v string) *CreateStudioInput {
+	s.IdcUserAssignment = &v
 	return s
 }
 
@@ -7725,6 +7762,12 @@ func (s *CreateStudioInput) SetSubnetIds(v []*string) *CreateStudioInput {
 // SetTags sets the Tags field's value.
 func (s *CreateStudioInput) SetTags(v []*Tag) *CreateStudioInput {
 	s.Tags = v
+	return s
+}
+
+// SetTrustedIdentityPropagationEnabled sets the TrustedIdentityPropagationEnabled field's value.
+func (s *CreateStudioInput) SetTrustedIdentityPropagationEnabled(v bool) *CreateStudioInput {
+	s.TrustedIdentityPropagationEnabled = &v
 	return s
 }
 
@@ -9488,8 +9531,8 @@ type GetBlockPublicAccessConfigurationOutput struct {
 	// that allow inbound traffic from 0.0.0.0/0 or ::/0 on a port, unless the port
 	// is specified as an exception using PermittedPublicSecurityGroupRuleRanges
 	// in the BlockPublicAccessConfiguration. By default, Port 22 (SSH) is an exception,
-	// and public access is allowed on this port. To change this, update the block
-	// public access configuration to remove the exception.
+	// and public access is allowed on this port. You can change this by updating
+	// the block public access configuration to remove the exception.
 	//
 	// For accounts that created clusters in a Region before November 25, 2019,
 	// block public access is disabled by default in that Region. To use this feature,
@@ -10120,7 +10163,7 @@ func (s *Instance) SetStatus(v *InstanceStatus) *Instance {
 // Spot Instances, which are provisioned to meet a defined target capacity.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleet struct {
 	_ struct{} `type:"structure"`
 
@@ -10284,7 +10327,7 @@ func (s *InstanceFleet) SetTargetSpotCapacity(v int64) *InstanceFleet {
 // The configuration that defines an instance fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleetConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10439,7 +10482,7 @@ func (s *InstanceFleetConfig) SetTargetSpotCapacity(v int64) *InstanceFleetConfi
 // Configuration parameters for an instance fleet modification request.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleetModifyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10524,8 +10567,8 @@ func (s *InstanceFleetModifyConfig) SetTargetSpotCapacity(v int64) *InstanceFlee
 // the defined duration, provisioning timeout behavior, and allocation strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions. On-Demand and Spot instance allocation
-// strategies are available in Amazon EMR releases 5.12.1 and higher.
+// 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot instance allocation
+// strategies are available in Amazon EMR releases 5.12.1 and later.
 type InstanceFleetProvisioningSpecifications struct {
 	_ struct{} `type:"structure"`
 
@@ -10533,8 +10576,8 @@ type InstanceFleetProvisioningSpecifications struct {
 	// determines the allocation strategy.
 	//
 	// The instance fleet configuration is available only in Amazon EMR releases
-	// 4.8.0 and higher, excluding 5.0.x versions. On-Demand Instances allocation
-	// strategy is available in Amazon EMR releases 5.12.1 and higher.
+	// 4.8.0 and later, excluding 5.0.x versions. On-Demand Instances allocation
+	// strategy is available in Amazon EMR releases 5.12.1 and later.
 	OnDemandSpecification *OnDemandProvisioningSpecification `type:"structure"`
 
 	// The launch specification for Spot instances in the fleet, which determines
@@ -10658,7 +10701,7 @@ func (s *InstanceFleetResizingSpecifications) SetSpotResizeSpecification(v *Spot
 // Provides status change reason details for the instance fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleetStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -10702,7 +10745,7 @@ func (s *InstanceFleetStateChangeReason) SetMessage(v string) *InstanceFleetStat
 // The status of the instance fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleetStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -10777,7 +10820,7 @@ func (s *InstanceFleetStatus) SetTimeline(v *InstanceFleetTimeline) *InstanceFle
 // of creation, the time it became ready to run jobs, and the time of termination.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceFleetTimeline struct {
 	_ struct{} `type:"structure"`
 
@@ -10844,7 +10887,7 @@ type InstanceGroup struct {
 	BidPrice *string `type:"string"`
 
 	//
-	// Amazon EMR releases 4.x or higher.
+	// Amazon EMR releases 4.x or later.
 	//
 	// The list of configurations supplied for an Amazon EMR cluster instance group.
 	// You can specify a separate configuration for each instance group (master,
@@ -11045,7 +11088,7 @@ type InstanceGroupConfig struct {
 	BidPrice *string `type:"string"`
 
 	//
-	// Amazon EMR releases 4.x or higher.
+	// Amazon EMR releases 4.x or later.
 	//
 	// The list of configurations supplied for an Amazon EMR cluster instance group.
 	// You can specify a separate configuration for each instance group (master,
@@ -11803,7 +11846,7 @@ func (s *InstanceTimeline) SetReadyDateTime(v time.Time) *InstanceTimeline {
 // type configurations for a fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceTypeConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -11926,7 +11969,7 @@ func (s *InstanceTypeConfig) SetWeightedCapacity(v int64) *InstanceTypeConfig {
 // The configuration specification for each instance type in an instance fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions.
 type InstanceTypeSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -12234,7 +12277,7 @@ type JobFlowDetail struct {
 	_ struct{} `type:"structure"`
 
 	// Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases
-	// 4.0 and higher, ReleaseLabel is used. To specify a custom AMI, use CustomAmiID.
+	// 4.0 and later, ReleaseLabel is used. To specify a custom AMI, use CustomAmiID.
 	AmiVersion *string `type:"string"`
 
 	// An IAM role for automatic scaling policies. The default role is EMR_AutoScaling_DefaultRole.
@@ -12266,7 +12309,7 @@ type JobFlowDetail struct {
 	JobFlowRole *string `type:"string"`
 
 	// The KMS key used for encrypting log files. This attribute is only available
-	// with Amazon EMR 5.30.0 and higher, excluding 6.0.0.
+	// with Amazon EMR 5.30.0 and later, excluding 6.0.0.
 	LogEncryptionKmsKeyId *string `type:"string"`
 
 	// The location in Amazon S3 where log files for the job are stored.
@@ -12281,13 +12324,13 @@ type JobFlowDetail struct {
 	// scale-in activity occurs or an instance group is resized. TERMINATE_AT_INSTANCE_HOUR
 	// indicates that Amazon EMR terminates nodes at the instance-hour boundary,
 	// regardless of when the request to terminate the instance was submitted. This
-	// option is only available with Amazon EMR 5.1.0 and higher and is the default
+	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
 	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
 	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
 	// With either behavior, Amazon EMR removes the least active nodes first and
 	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
-	// available only in Amazon EMR releases 4.1.0 and higher, and is the default
+	// available only in Amazon EMR releases 4.1.0 and later, and is the default
 	// for releases of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
 
@@ -12538,7 +12581,7 @@ type JobFlowInstancesConfig struct {
 	// instances in the optimal subnet.
 	//
 	// The instance fleet configuration is available only in Amazon EMR releases
-	// 4.8.0 and higher, excluding 5.0.x versions.
+	// 4.8.0 and later, excluding 5.0.x versions.
 	Ec2SubnetIds []*string `type:"list"`
 
 	// The identifier of the Amazon EC2 security group for the master node. If you
@@ -12562,7 +12605,7 @@ type JobFlowInstancesConfig struct {
 
 	//
 	// The instance fleet configuration is available only in Amazon EMR releases
-	// 4.8.0 and higher, excluding 5.0.x versions.
+	// 4.8.0 and later, excluding 5.0.x versions.
 	//
 	// Describes the Amazon EC2 instances and instance configurations for clusters
 	// that use the instance fleet configuration.
@@ -15196,8 +15239,8 @@ func (s *OnDemandCapacityReservationOptions) SetUsageStrategy(v string) *OnDeman
 // determines the allocation strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions. On-Demand Instances allocation
-// strategy is available in Amazon EMR releases 5.12.1 and higher.
+// 4.8.0 and later, excluding 5.0.x versions. On-Demand Instances allocation
+// strategy is available in Amazon EMR releases 5.12.1 and later.
 type OnDemandProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -15487,7 +15530,7 @@ type PlacementType struct {
 	// uniform instance groups.
 	//
 	// The instance fleet configuration is available only in Amazon EMR releases
-	// 4.8.0 and higher, excluding 5.0.x versions.
+	// 4.8.0 and later, excluding 5.0.x versions.
 	AvailabilityZones []*string `type:"list"`
 }
 
@@ -16333,10 +16376,10 @@ type RunJobFlowInput struct {
 	AdditionalInfo *string `type:"string"`
 
 	// Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases
-	// 4.0 and higher, ReleaseLabel is used. To specify a custom AMI, use CustomAmiID.
+	// 4.0 and later, ReleaseLabel is used. To specify a custom AMI, use CustomAmiID.
 	AmiVersion *string `type:"string"`
 
-	// Applies to Amazon EMR releases 4.0 and higher. A case-insensitive list of
+	// Applies to Amazon EMR releases 4.0 and later. A case-insensitive list of
 	// applications for Amazon EMR to install and configure when launching the cluster.
 	// For a list of applications available for each Amazon EMR release version,
 	// see the Amazon EMRRelease Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/).
@@ -16356,11 +16399,11 @@ type RunJobFlowInput struct {
 	// A list of bootstrap actions to run before Hadoop starts on the cluster nodes.
 	BootstrapActions []*BootstrapActionConfig `type:"list"`
 
-	// For Amazon EMR releases 4.0 and higher. The list of configurations supplied
+	// For Amazon EMR releases 4.0 and later. The list of configurations supplied
 	// for the Amazon EMR cluster that you are creating.
 	Configurations []*Configuration `type:"list"`
 
-	// Available only in Amazon EMR releases 5.7.0 and higher. The ID of a custom
+	// Available only in Amazon EMR releases 5.7.0 and later. The ID of a custom
 	// Amazon EBS-backed Linux AMI. If specified, Amazon EMR uses this AMI when
 	// it launches cluster Amazon EC2 instances. For more information about custom
 	// AMIs in Amazon EMR, see Using a Custom AMI (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-custom-ami.html)
@@ -16374,18 +16417,19 @@ type RunJobFlowInput struct {
 	// about finding an AMI ID, see Finding a Linux AMI (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html).
 	CustomAmiId *string `type:"string"`
 
-	// The IOPS for the Amazon EBS root device volume for the Linux AMI that each
-	// Amazon EC2 instance uses. Available in Amazon EMR releases 6.15.0 and higher.
+	// The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used
+	// for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and
+	// later.
 	EbsRootVolumeIops *int64 `type:"integer"`
 
-	// The size, in GiB, of the Amazon EBS root device volume for the Linux AMI
-	// that each Amazon EC2 instance uses. Available in Amazon EMR releases 4.x
-	// and higher.
+	// The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that
+	// is used for each Amazon EC2 instance. Available in Amazon EMR releases 4.x
+	// and later.
 	EbsRootVolumeSize *int64 `type:"integer"`
 
-	// The throughput, in MiB/s, of the Amazon EBS root device volume for the Linux
-	// AMI that each Amazon EC2 instance uses. Available in Amazon EMR releases
-	// 6.15.0 and higher.
+	// The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux
+	// AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases
+	// 6.15.0 and later.
 	EbsRootVolumeThroughput *int64 `type:"integer"`
 
 	// A specification of the number and type of Amazon EC2 instances.
@@ -16407,7 +16451,7 @@ type RunJobFlowInput struct {
 
 	// The KMS key used for encrypting log files. If a value is not provided, the
 	// logs remain encrypted by AES-256. This attribute is only available with Amazon
-	// EMR releases 5.30.0 and higher, excluding Amazon EMR 6.0.0.
+	// EMR releases 5.30.0 and later, excluding Amazon EMR 6.0.0.
 	LogEncryptionKmsKeyId *string `type:"string"`
 
 	// The location in Amazon S3 to write the log files of the job flow. If a value
@@ -16423,7 +16467,7 @@ type RunJobFlowInput struct {
 	Name *string `type:"string" required:"true"`
 
 	//
-	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and higher,
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and later,
 	// use Applications.
 	//
 	// A list of strings that indicates third-party software to use with the job
@@ -16465,7 +16509,7 @@ type RunJobFlowInput struct {
 	// For more information about Amazon EMR release versions and included application
 	// versions and features, see https://docs.aws.amazon.com/emr/latest/ReleaseGuide/
 	// (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/). The release label
-	// applies only to Amazon EMR releases version 4.0 and higher. Earlier versions
+	// applies only to Amazon EMR releases version 4.0 and later. Earlier versions
 	// use AmiVersion.
 	ReleaseLabel *string `type:"string"`
 
@@ -16480,13 +16524,13 @@ type RunJobFlowInput struct {
 	// automatic scale-in activity occurs or an instance group is resized. TERMINATE_AT_INSTANCE_HOUR
 	// indicates that Amazon EMR terminates nodes at the instance-hour boundary,
 	// regardless of when the request to terminate the instance was submitted. This
-	// option is only available with Amazon EMR 5.1.0 and higher and is the default
+	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
 	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
 	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
 	// With either behavior, Amazon EMR removes the least active nodes first and
 	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
-	// available only in Amazon EMR releases 4.1.0 and higher, and is the default
+	// available only in Amazon EMR releases 4.1.0 and later, and is the default
 	// for releases of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
 
@@ -16506,7 +16550,7 @@ type RunJobFlowInput struct {
 	Steps []*StepConfig `type:"list"`
 
 	//
-	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and higher,
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and later,
 	// use Applications.
 	//
 	// A list of strings that indicates third-party software to use. For more information,
@@ -17748,8 +17792,8 @@ func (s *SimplifiedApplication) SetVersion(v string) *SimplifiedApplication {
 // strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR releases
-// 4.8.0 and higher, excluding 5.0.x versions. Spot Instance allocation strategy
-// is available in Amazon EMR releases 5.12.1 and higher.
+// 4.8.0 and later, excluding 5.0.x versions. Spot Instance allocation strategy
+// is available in Amazon EMR releases 5.12.1 and later.
 //
 // Spot Instances with a defined duration (also known as Spot blocks) are no
 // longer available to new customers from July 1, 2021. For customers who have
@@ -18739,10 +18783,23 @@ type Studio struct {
 	// The detailed description of the Amazon EMR Studio.
 	Description *string `type:"string"`
 
+	// The KMS key identifier (ARN) used to encrypt Amazon EMR Studio workspace
+	// and notebook files when backed up to Amazon S3.
+	EncryptionKeyArn *string `type:"string"`
+
 	// The ID of the Engine security group associated with the Amazon EMR Studio.
 	// The Engine security group allows inbound network traffic from resources in
 	// the Workspace security group.
 	EngineSecurityGroupId *string `type:"string"`
+
+	// The ARN of the IAM Identity Center instance the Studio application belongs
+	// to.
+	IdcInstanceArn *string `min:"20" type:"string"`
+
+	// Indicates whether the Studio has REQUIRED or OPTIONAL IAM Identity Center
+	// user assignment. If the value is set to REQUIRED, users must be explicitly
+	// assigned to the Studio application to access the Studio.
+	IdcUserAssignment *string `type:"string" enum:"IdcUserAssignment"`
 
 	// Your identity provider's authentication endpoint. Amazon EMR Studio redirects
 	// federated users to this endpoint for authentication when logging in to a
@@ -18769,6 +18826,10 @@ type Studio struct {
 
 	// A list of tags associated with the Amazon EMR Studio.
 	Tags []*Tag `type:"list"`
+
+	// Indicates whether the Studio has Trusted identity propagation enabled. The
+	// default value is false.
+	TrustedIdentityPropagationEnabled *bool `type:"boolean"`
 
 	// The unique access URL of the Amazon EMR Studio.
 	Url *string `type:"string"`
@@ -18828,9 +18889,27 @@ func (s *Studio) SetDescription(v string) *Studio {
 	return s
 }
 
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *Studio) SetEncryptionKeyArn(v string) *Studio {
+	s.EncryptionKeyArn = &v
+	return s
+}
+
 // SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
 func (s *Studio) SetEngineSecurityGroupId(v string) *Studio {
 	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdcInstanceArn sets the IdcInstanceArn field's value.
+func (s *Studio) SetIdcInstanceArn(v string) *Studio {
+	s.IdcInstanceArn = &v
+	return s
+}
+
+// SetIdcUserAssignment sets the IdcUserAssignment field's value.
+func (s *Studio) SetIdcUserAssignment(v string) *Studio {
+	s.IdcUserAssignment = &v
 	return s
 }
 
@@ -18882,6 +18961,12 @@ func (s *Studio) SetTags(v []*Tag) *Studio {
 	return s
 }
 
+// SetTrustedIdentityPropagationEnabled sets the TrustedIdentityPropagationEnabled field's value.
+func (s *Studio) SetTrustedIdentityPropagationEnabled(v bool) *Studio {
+	s.TrustedIdentityPropagationEnabled = &v
+	return s
+}
+
 // SetUrl sets the Url field's value.
 func (s *Studio) SetUrl(v string) *Studio {
 	s.Url = &v
@@ -18907,8 +18992,8 @@ func (s *Studio) SetWorkspaceSecurityGroupId(v string) *Studio {
 }
 
 // Details for an Amazon EMR Studio, including ID, Name, VPC, and Description.
-// The details do not include subnets, IAM roles, security groups, or tags associated
-// with the Studio.
+// To fetch additional details such as subnets, IAM roles, security groups,
+// and tags for the Studio, use the DescribeStudio API.
 type StudioSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -19292,6 +19377,10 @@ type UpdateStudioInput struct {
 	// A detailed description to assign to the Amazon EMR Studio.
 	Description *string `type:"string"`
 
+	// The KMS key identifier (ARN) used to encrypt Amazon EMR Studio workspace
+	// and notebook files when backed up to Amazon S3.
+	EncryptionKeyArn *string `type:"string"`
+
 	// A descriptive name for the Amazon EMR Studio.
 	Name *string `type:"string"`
 
@@ -19348,6 +19437,12 @@ func (s *UpdateStudioInput) SetDefaultS3Location(v string) *UpdateStudioInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateStudioInput) SetDescription(v string) *UpdateStudioInput {
 	s.Description = &v
+	return s
+}
+
+// SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
+func (s *UpdateStudioInput) SetEncryptionKeyArn(v string) *UpdateStudioInput {
+	s.EncryptionKeyArn = &v
 	return s
 }
 
@@ -19898,6 +19993,22 @@ const (
 func ExecutionEngineType_Values() []string {
 	return []string{
 		ExecutionEngineTypeEmr,
+	}
+}
+
+const (
+	// IdcUserAssignmentRequired is a IdcUserAssignment enum value
+	IdcUserAssignmentRequired = "REQUIRED"
+
+	// IdcUserAssignmentOptional is a IdcUserAssignment enum value
+	IdcUserAssignmentOptional = "OPTIONAL"
+)
+
+// IdcUserAssignment_Values returns all elements of the IdcUserAssignment enum
+func IdcUserAssignment_Values() []string {
+	return []string{
+		IdcUserAssignmentRequired,
+		IdcUserAssignmentOptional,
 	}
 }
 

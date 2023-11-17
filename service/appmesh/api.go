@@ -8001,8 +8001,8 @@ type FileAccessLog struct {
 	// as Amazon CloudWatch Logs. You can also specify a path in the Envoy container's
 	// file system to write the files to disk.
 	//
-	//    <note> <p>The Envoy process must have write permissions to the path that
-	//    you specify here. Otherwise, Envoy fails to bootstrap properly.</p> </note>
+	// The Envoy process must have write permissions to the path that you specify
+	// here. Otherwise, Envoy fails to bootstrap properly.
 	//
 	// Path is a required field
 	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
@@ -8806,7 +8806,7 @@ type GrpcGatewayRouteMatch struct {
 	// The gateway route metadata to be matched on.
 	Metadata []*GrpcGatewayRouteMetadata `locationName:"metadata" min:"1" type:"list"`
 
-	// The port number to match from the request.
+	// The gateway route port to be matched on.
 	Port *int64 `locationName:"port" min:"1" type:"integer"`
 
 	// The fully qualified domain name for the service to match from the request.

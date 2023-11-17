@@ -5194,6 +5194,9 @@ type CreateNamespaceInput struct {
 	// NamespaceName is a required field
 	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string" required:"true"`
 
+	// The ARN for the Redshift application that integrates with IAM Identity Center.
+	RedshiftIdcApplicationArn *string `locationName:"redshiftIdcApplicationArn" min:"1" type:"string"`
+
 	// A list of tag instances.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
@@ -5224,6 +5227,9 @@ func (s *CreateNamespaceInput) Validate() error {
 	}
 	if s.NamespaceName != nil && len(*s.NamespaceName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("NamespaceName", 3))
+	}
+	if s.RedshiftIdcApplicationArn != nil && len(*s.RedshiftIdcApplicationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RedshiftIdcApplicationArn", 1))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -5299,6 +5305,12 @@ func (s *CreateNamespaceInput) SetManageAdminPassword(v bool) *CreateNamespaceIn
 // SetNamespaceName sets the NamespaceName field's value.
 func (s *CreateNamespaceInput) SetNamespaceName(v string) *CreateNamespaceInput {
 	s.NamespaceName = &v
+	return s
+}
+
+// SetRedshiftIdcApplicationArn sets the RedshiftIdcApplicationArn field's value.
+func (s *CreateNamespaceInput) SetRedshiftIdcApplicationArn(v string) *CreateNamespaceInput {
+	s.RedshiftIdcApplicationArn = &v
 	return s
 }
 
