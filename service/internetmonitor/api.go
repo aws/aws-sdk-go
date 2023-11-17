@@ -402,6 +402,264 @@ func (c *InternetMonitor) GetMonitorWithContext(ctx aws.Context, input *GetMonit
 	return out, req.Send()
 }
 
+const opGetQueryResults = "GetQueryResults"
+
+// GetQueryResultsRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueryResults operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQueryResults for more information on using the GetQueryResults
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetQueryResultsRequest method.
+//	req, resp := client.GetQueryResultsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults
+func (c *InternetMonitor) GetQueryResultsRequest(input *GetQueryResultsInput) (req *request.Request, output *GetQueryResultsOutput) {
+	op := &request.Operation{
+		Name:       opGetQueryResults,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Results",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetQueryResultsInput{}
+	}
+
+	output = &GetQueryResultsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetQueryResults API operation for Amazon CloudWatch Internet Monitor.
+//
+// Return the data for a query with the Amazon CloudWatch Internet Monitor query
+// interface. Specify the query that you want to return results for by providing
+// a QueryId and a monitor name.
+//
+// For more information about using the query interface, including examples,
+// see Using the Amazon CloudWatch Internet Monitor query interface (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html)
+// in the Amazon CloudWatch Internet Monitor User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Internet Monitor's
+// API operation GetQueryResults for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error occurred.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeded a service quota.
+//
+//   - ValidationException
+//     Invalid request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryResults
+func (c *InternetMonitor) GetQueryResults(input *GetQueryResultsInput) (*GetQueryResultsOutput, error) {
+	req, out := c.GetQueryResultsRequest(input)
+	return out, req.Send()
+}
+
+// GetQueryResultsWithContext is the same as GetQueryResults with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQueryResults for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InternetMonitor) GetQueryResultsWithContext(ctx aws.Context, input *GetQueryResultsInput, opts ...request.Option) (*GetQueryResultsOutput, error) {
+	req, out := c.GetQueryResultsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetQueryResultsPages iterates over the pages of a GetQueryResults operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetQueryResults method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetQueryResults operation.
+//	pageNum := 0
+//	err := client.GetQueryResultsPages(params,
+//	    func(page *internetmonitor.GetQueryResultsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *InternetMonitor) GetQueryResultsPages(input *GetQueryResultsInput, fn func(*GetQueryResultsOutput, bool) bool) error {
+	return c.GetQueryResultsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetQueryResultsPagesWithContext same as GetQueryResultsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InternetMonitor) GetQueryResultsPagesWithContext(ctx aws.Context, input *GetQueryResultsInput, fn func(*GetQueryResultsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetQueryResultsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetQueryResultsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetQueryResultsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetQueryStatus = "GetQueryStatus"
+
+// GetQueryStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueryStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQueryStatus for more information on using the GetQueryStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetQueryStatusRequest method.
+//	req, resp := client.GetQueryStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus
+func (c *InternetMonitor) GetQueryStatusRequest(input *GetQueryStatusInput) (req *request.Request, output *GetQueryStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetQueryStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Status",
+	}
+
+	if input == nil {
+		input = &GetQueryStatusInput{}
+	}
+
+	output = &GetQueryStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetQueryStatus API operation for Amazon CloudWatch Internet Monitor.
+//
+// Returns the current status of a query for the Amazon CloudWatch Internet
+// Monitor query interface, for a specified query ID and monitor. When you run
+// a query, check the status to make sure that the query has SUCCEEDED before
+// you review the results.
+//
+//   - QUEUED: The query is scheduled to run.
+//
+//   - RUNNING: The query is in progress but not complete.
+//
+//   - SUCCEEDED: The query completed sucessfully.
+//
+//   - FAILED: The query failed due to an error.
+//
+//   - CANCELED: The query was canceled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Internet Monitor's
+// API operation GetQueryStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error occurred.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeded a service quota.
+//
+//   - ValidationException
+//     Invalid request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/GetQueryStatus
+func (c *InternetMonitor) GetQueryStatus(input *GetQueryStatusInput) (*GetQueryStatusOutput, error) {
+	req, out := c.GetQueryStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetQueryStatusWithContext is the same as GetQueryStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQueryStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InternetMonitor) GetQueryStatusWithContext(ctx aws.Context, input *GetQueryStatusInput, opts ...request.Option) (*GetQueryStatusOutput, error) {
+	req, out := c.GetQueryStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListHealthEvents = "ListHealthEvents"
 
 // ListHealthEventsRequest generates a "aws/request.Request" representing the
@@ -785,6 +1043,196 @@ func (c *InternetMonitor) ListTagsForResource(input *ListTagsForResourceInput) (
 // for more information on using Contexts.
 func (c *InternetMonitor) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartQuery = "StartQuery"
+
+// StartQueryRequest generates a "aws/request.Request" representing the
+// client's request for the StartQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartQuery for more information on using the StartQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartQueryRequest method.
+//	req, resp := client.StartQueryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery
+func (c *InternetMonitor) StartQueryRequest(input *StartQueryInput) (req *request.Request, output *StartQueryOutput) {
+	op := &request.Operation{
+		Name:       opStartQuery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20210603/Monitors/{MonitorName}/Queries",
+	}
+
+	if input == nil {
+		input = &StartQueryInput{}
+	}
+
+	output = &StartQueryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartQuery API operation for Amazon CloudWatch Internet Monitor.
+//
+// Start a query to return data for a specific query type for the Amazon CloudWatch
+// Internet Monitor query interface. Specify a time period for the data that
+// you want returned by using StartTime and EndTime. You filter the query results
+// to return by providing parameters that you specify with FilterParameters.
+//
+// For more information about using the query interface, including examples,
+// see Using the Amazon CloudWatch Internet Monitor query interface (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html)
+// in the Amazon CloudWatch Internet Monitor User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Internet Monitor's
+// API operation StartQuery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error occurred.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeded a service quota.
+//
+//   - ValidationException
+//     Invalid request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StartQuery
+func (c *InternetMonitor) StartQuery(input *StartQueryInput) (*StartQueryOutput, error) {
+	req, out := c.StartQueryRequest(input)
+	return out, req.Send()
+}
+
+// StartQueryWithContext is the same as StartQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InternetMonitor) StartQueryWithContext(ctx aws.Context, input *StartQueryInput, opts ...request.Option) (*StartQueryOutput, error) {
+	req, out := c.StartQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopQuery = "StopQuery"
+
+// StopQueryRequest generates a "aws/request.Request" representing the
+// client's request for the StopQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopQuery for more information on using the StopQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopQueryRequest method.
+//	req, resp := client.StopQueryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery
+func (c *InternetMonitor) StopQueryRequest(input *StopQueryInput) (req *request.Request, output *StopQueryOutput) {
+	op := &request.Operation{
+		Name:       opStopQuery,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}",
+	}
+
+	if input == nil {
+		input = &StopQueryInput{}
+	}
+
+	output = &StopQueryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopQuery API operation for Amazon CloudWatch Internet Monitor.
+//
+// Stop a query that is progress for a specific monitor.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Internet Monitor's
+// API operation StopQuery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error occurred.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeded a service quota.
+//
+//   - ValidationException
+//     Invalid request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03/StopQuery
+func (c *InternetMonitor) StopQuery(input *StopQueryInput) (*StopQueryOutput, error) {
+	req, out := c.StopQueryRequest(input)
+	return out, req.Send()
+}
+
+// StopQueryWithContext is the same as StopQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InternetMonitor) StopQueryWithContext(ctx aws.Context, input *StopQueryInput, opts ...request.Option) (*StopQueryOutput, error) {
+	req, out := c.StopQueryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1643,10 +2091,81 @@ func (s DeleteMonitorOutput) GoString() string {
 	return s.String()
 }
 
+// A filter that you use with the results of a Amazon CloudWatch Internet Monitor
+// query that you created and ran. The query sets up a repository of data that
+// is a subset of your application's Internet Monitor data. FilterParameter
+// is a string that defines how you want to filter the repository of data to
+// return a set of results, based on your criteria.
+//
+// The filter parameters that you can specify depend on the query type that
+// you used to create the repository, since each query type returns a different
+// set of Internet Monitor data.
+//
+// For each filter, you specify a field (such as city), an operator (such as
+// not_equals, and a value or array of values (such as ["Seattle", "Redmond"]).
+// Separate values in the array with commas.
+//
+// For more information about specifying filter parameters, see Using the Amazon
+// CloudWatch Internet Monitor query interface (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html)
+// in the Amazon CloudWatch Internet Monitor User Guide.
+type FilterParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A data field that you want to filter, to further scope your application's
+	// Internet Monitor data in a repository that you created by running a query.
+	// A field might be city, for example. The field must be one of the fields that
+	// was returned by the specific query that you used to create the repository.
+	Field *string `type:"string"`
+
+	// The operator to use with the filter field and a value, such as not_equals.
+	Operator *string `type:"string" enum:"Operator"`
+
+	// One or more values to be used, together with the specified operator, to filter
+	// data for a query. For example, you could specify an array of values such
+	// as ["Seattle", "Redmond"]. Values in the array are separated by commas.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterParameter) GoString() string {
+	return s.String()
+}
+
+// SetField sets the Field field's value.
+func (s *FilterParameter) SetField(v string) *FilterParameter {
+	s.Field = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *FilterParameter) SetOperator(v string) *FilterParameter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *FilterParameter) SetValues(v []*string) *FilterParameter {
+	s.Values = v
+	return s
+}
+
 type GetHealthEventInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The internally generated identifier of a health event. Because EventID contains
+	// The internally-generated identifier of a health event. Because EventID contains
 	// the forward slash (“/”) character, you must URL-encode the EventID field
 	// in the request URL.
 	//
@@ -1726,7 +2245,7 @@ type GetHealthEventOutput struct {
 	// EventArn is a required field
 	EventArn *string `min:"20" type:"string" required:"true"`
 
-	// The internally generated identifier of a health event.
+	// The internally-generated identifier of a health event.
 	//
 	// EventId is a required field
 	EventId *string `min:"1" type:"string" required:"true"`
@@ -2077,6 +2596,253 @@ func (s *GetMonitorOutput) SetTrafficPercentageToMonitor(v int64) *GetMonitorOut
 	return s
 }
 
+type GetQueryResultsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The number of query results that you want to return with this call.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The name of the monitor to return data for.
+	//
+	// MonitorName is a required field
+	MonitorName *string `location:"uri" locationName:"MonitorName" min:"1" type:"string" required:"true"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The ID of the query that you want to return data results for. A QueryId is
+	// an internally-generated identifier for a specific query.
+	//
+	// QueryId is a required field
+	QueryId *string `location:"uri" locationName:"QueryId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryResultsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryResultsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQueryResultsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQueryResultsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetQueryResultsInput) SetMaxResults(v int64) *GetQueryResultsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *GetQueryResultsInput) SetMonitorName(v string) *GetQueryResultsInput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetQueryResultsInput) SetNextToken(v string) *GetQueryResultsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetQueryResultsInput) SetQueryId(v string) *GetQueryResultsInput {
+	s.QueryId = &v
+	return s
+}
+
+type GetQueryResultsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The data results that the query returns. Data is returned in arrays, aligned
+	// with the Fields for the query, which creates a repository of Amazon CloudWatch
+	// Internet Monitor information for your application. Then, you can filter the
+	// information in the repository by using FilterParameters that you define.
+	//
+	// Data is a required field
+	Data [][]*string `type:"list" required:"true"`
+
+	// The fields that the query returns data for. Fields are name-data type pairs,
+	// such as availability_score-float.
+	//
+	// Fields is a required field
+	Fields []*QueryField `type:"list" required:"true"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryResultsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryResultsOutput) GoString() string {
+	return s.String()
+}
+
+// SetData sets the Data field's value.
+func (s *GetQueryResultsOutput) SetData(v [][]*string) *GetQueryResultsOutput {
+	s.Data = v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *GetQueryResultsOutput) SetFields(v []*QueryField) *GetQueryResultsOutput {
+	s.Fields = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetQueryResultsOutput) SetNextToken(v string) *GetQueryResultsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetQueryStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the monitor.
+	//
+	// MonitorName is a required field
+	MonitorName *string `location:"uri" locationName:"MonitorName" min:"1" type:"string" required:"true"`
+
+	// The ID of the query that you want to return the status for. A QueryId is
+	// an internally-generated dentifier for a specific query.
+	//
+	// QueryId is a required field
+	QueryId *string `location:"uri" locationName:"QueryId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQueryStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQueryStatusInput"}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *GetQueryStatusInput) SetMonitorName(v string) *GetQueryStatusInput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetQueryStatusInput) SetQueryId(v string) *GetQueryStatusInput {
+	s.QueryId = &v
+	return s
+}
+
+type GetQueryStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current status for a query.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"QueryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetQueryStatusOutput) SetStatus(v string) *GetQueryStatusOutput {
+	s.Status = &v
+	return s
+}
+
 // Information about a health event created in a monitor in Amazon CloudWatch
 // Internet Monitor.
 type HealthEvent struct {
@@ -2094,7 +2860,7 @@ type HealthEvent struct {
 	// EventArn is a required field
 	EventArn *string `min:"20" type:"string" required:"true"`
 
-	// The internally generated identifier of a specific network traffic impairment
+	// The internally-generated identifier of a specific network traffic impairment
 	// health event.
 	//
 	// EventId is a required field
@@ -3133,6 +3899,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 // issue before Internet Monitor creates an event when a threshold is crossed
 // for a local health score.
 //
+// If you don't set a local health event threshold, the default value is 60%.
+//
 // For more information, see Change health event thresholds (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-overview.html#IMUpdateThresholdFromOverview)
 // in the Internet Monitor section of the CloudWatch User Guide.
 type LocalHealthEventsConfig struct {
@@ -3144,6 +3912,9 @@ type LocalHealthEventsConfig struct {
 	// The minimum percentage of overall traffic for an application that must be
 	// impacted by an issue before Internet Monitor creates an event when a threshold
 	// is crossed for a local health score.
+	//
+	// If you don't set a minimum traffic impact threshold, the default value is
+	// 0.01%.
 	MinTrafficImpact *float64 `type:"double"`
 
 	// The status of whether Internet Monitor creates a health event based on a
@@ -3535,6 +4306,53 @@ func (s *PerformanceMeasurement) SetRoundTripTime(v *RoundTripTime) *Performance
 	return s
 }
 
+// Defines a field to query for your application's Amazon CloudWatch Internet
+// Monitor data. You create a data repository by running a query of a specific
+// type. Each QueryType includes a specific set of fields and datatypes to retrieve
+// data for.
+type QueryField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a field to query your application's Amazon CloudWatch Internet
+	// Monitor data for, such as availability_score.
+	Name *string `type:"string"`
+
+	// The data type for a query field, which must correspond to the field you're
+	// defining for QueryField. For example, if the query field name is availability_score,
+	// the data type is float.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryField) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *QueryField) SetName(v string) *QueryField {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *QueryField) SetType(v string) *QueryField {
+	s.Type = &v
+	return s
+}
+
 // The request specifies a resource that doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -3717,6 +4535,249 @@ func (s *S3Config) SetBucketPrefix(v string) *S3Config {
 func (s *S3Config) SetLogDeliveryStatus(v string) *S3Config {
 	s.LogDeliveryStatus = &v
 	return s
+}
+
+type StartQueryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp that is the end of the period that you want to retrieve data
+	// for with your query.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The FilterParameters field that you use with Amazon CloudWatch Internet Monitor
+	// queries is a string the defines how you want a query to be filtered. The
+	// filter parameters that you can specify depend on the query type, since each
+	// query type returns a different set of Internet Monitor data.
+	//
+	// For more information about specifying filter parameters, see Using the Amazon
+	// CloudWatch Internet Monitor query interface (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html)
+	// in the Amazon CloudWatch Internet Monitor User Guide.
+	FilterParameters []*FilterParameter `type:"list"`
+
+	// The name of the monitor to query.
+	//
+	// MonitorName is a required field
+	MonitorName *string `location:"uri" locationName:"MonitorName" min:"1" type:"string" required:"true"`
+
+	// The type of query to run. The following are the three types of queries that
+	// you can run using the Internet Monitor query interface:
+	//
+	//    * MEASUREMENTS: TBD definition
+	//
+	//    * TOP_LOCATIONS: TBD definition
+	//
+	//    * TOP_LOCATION_DETAILS: TBD definition
+	//
+	// For lists of the fields returned with each query type and more information
+	// about how each type of query is performed, see Using the Amazon CloudWatch
+	// Internet Monitor query interface (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html)
+	// in the Amazon CloudWatch Internet Monitor User Guide.
+	//
+	// QueryType is a required field
+	QueryType *string `type:"string" required:"true" enum:"QueryType"`
+
+	// The timestamp that is the beginning of the period that you want to retrieve
+	// data for with your query.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartQueryInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.QueryType == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryType"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *StartQueryInput) SetEndTime(v time.Time) *StartQueryInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFilterParameters sets the FilterParameters field's value.
+func (s *StartQueryInput) SetFilterParameters(v []*FilterParameter) *StartQueryInput {
+	s.FilterParameters = v
+	return s
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *StartQueryInput) SetMonitorName(v string) *StartQueryInput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetQueryType sets the QueryType field's value.
+func (s *StartQueryInput) SetQueryType(v string) *StartQueryInput {
+	s.QueryType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StartQueryInput) SetStartTime(v time.Time) *StartQueryInput {
+	s.StartTime = &v
+	return s
+}
+
+type StartQueryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The internally-generated identifier of a specific query.
+	//
+	// QueryId is a required field
+	QueryId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *StartQueryOutput) SetQueryId(v string) *StartQueryOutput {
+	s.QueryId = &v
+	return s
+}
+
+type StopQueryInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the monitor.
+	//
+	// MonitorName is a required field
+	MonitorName *string `location:"uri" locationName:"MonitorName" min:"1" type:"string" required:"true"`
+
+	// The ID of the query that you want to stop. A QueryId is an internally-generated
+	// identifier for a specific query.
+	//
+	// QueryId is a required field
+	QueryId *string `location:"uri" locationName:"QueryId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopQueryInput"}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *StopQueryInput) SetMonitorName(v string) *StopQueryInput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *StopQueryInput) SetQueryId(v string) *StopQueryInput {
+	s.QueryId = &v
+	return s
+}
+
+type StopQueryOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopQueryOutput) GoString() string {
+	return s.String()
 }
 
 type TagResourceInput struct {
@@ -4418,6 +5479,70 @@ func MonitorProcessingStatusCode_Values() []string {
 		MonitorProcessingStatusCodeInsufficientData,
 		MonitorProcessingStatusCodeFaultService,
 		MonitorProcessingStatusCodeFaultAccessCloudwatch,
+	}
+}
+
+const (
+	// OperatorEquals is a Operator enum value
+	OperatorEquals = "EQUALS"
+
+	// OperatorNotEquals is a Operator enum value
+	OperatorNotEquals = "NOT_EQUALS"
+)
+
+// Operator_Values returns all elements of the Operator enum
+func Operator_Values() []string {
+	return []string{
+		OperatorEquals,
+		OperatorNotEquals,
+	}
+}
+
+const (
+	// QueryStatusQueued is a QueryStatus enum value
+	QueryStatusQueued = "QUEUED"
+
+	// QueryStatusRunning is a QueryStatus enum value
+	QueryStatusRunning = "RUNNING"
+
+	// QueryStatusSucceeded is a QueryStatus enum value
+	QueryStatusSucceeded = "SUCCEEDED"
+
+	// QueryStatusFailed is a QueryStatus enum value
+	QueryStatusFailed = "FAILED"
+
+	// QueryStatusCanceled is a QueryStatus enum value
+	QueryStatusCanceled = "CANCELED"
+)
+
+// QueryStatus_Values returns all elements of the QueryStatus enum
+func QueryStatus_Values() []string {
+	return []string{
+		QueryStatusQueued,
+		QueryStatusRunning,
+		QueryStatusSucceeded,
+		QueryStatusFailed,
+		QueryStatusCanceled,
+	}
+}
+
+const (
+	// QueryTypeMeasurements is a QueryType enum value
+	QueryTypeMeasurements = "MEASUREMENTS"
+
+	// QueryTypeTopLocations is a QueryType enum value
+	QueryTypeTopLocations = "TOP_LOCATIONS"
+
+	// QueryTypeTopLocationDetails is a QueryType enum value
+	QueryTypeTopLocationDetails = "TOP_LOCATION_DETAILS"
+)
+
+// QueryType_Values returns all elements of the QueryType enum
+func QueryType_Values() []string {
+	return []string{
+		QueryTypeMeasurements,
+		QueryTypeTopLocations,
+		QueryTypeTopLocationDetails,
 	}
 }
 

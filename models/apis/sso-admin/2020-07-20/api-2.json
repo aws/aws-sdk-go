@@ -3758,6 +3758,12 @@
         },
         "JwtBearer": {
           "shape": "JwtBearerGrant"
+        },
+        "RefreshToken": {
+          "shape": "RefreshTokenGrant"
+        },
+        "TokenExchange": {
+          "shape": "TokenExchangeGrant"
         }
       },
       "type": "structure",
@@ -4938,6 +4944,10 @@
       "min": 1,
       "type": "list"
     },
+    "RefreshTokenGrant": {
+      "members": {},
+      "type": "structure"
+    },
     "RelayState": {
       "max": 240,
       "min": 1,
@@ -5171,6 +5181,10 @@
       "min": 0,
       "pattern": "^[-a-zA-Z0-9+=/_]*$",
       "type": "string"
+    },
+    "TokenExchangeGrant": {
+      "members": {},
+      "type": "structure"
     },
     "TokenIssuerAudience": {
       "max": 512,

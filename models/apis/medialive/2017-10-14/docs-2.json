@@ -24,6 +24,7 @@
     "DeleteReservation": "Delete an expired reservation.",
     "DeleteSchedule": "Delete all schedule actions on a channel.",
     "DeleteTags": "Removes tags for a resource",
+    "DescribeAccountConfiguration": "Describe account configuration",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
     "DescribeInputDevice": "Gets the details for the input device",
@@ -34,7 +35,6 @@
     "DescribeOffering": "Get details for an offering.",
     "DescribeReservation": "Get details for a reservation.",
     "DescribeSchedule": "Get a channel schedule",
-    "DescribeAccountConfiguration": "Get account configuration",
     "DescribeThumbnails": "Describe the latest thumbnails data.",
     "ListChannels": "Produces list of channels that have been created",
     "ListInputDeviceTransfers": "List input devices that are currently being transferred. List input devices that you are transferring from your AWS account or input devices that another AWS account is transferring to you.",
@@ -49,7 +49,6 @@
     "PurchaseOffering": "Purchase an offering and create a reservation.",
     "RebootInputDevice": "Send a reboot command to the specified input device. The device will begin rebooting within a few seconds of sending the command. When the reboot is complete, the device\u2019s connection status will change to connected.",
     "RejectInputDeviceTransfer": "Reject the transfer of the specified input device to your AWS account.",
-    "UpdateAccountConfiguration": "Update account configuration",
     "StartChannel": "Starts an existing channel",
     "StartInputDevice": "Start an input device that is attached to a MediaConnect flow. (There is no need to start a device that is attached to a MediaLive input; MediaLive starts the device when the channel starts.)",
     "StartInputDeviceMaintenanceWindow": "Start a maintenance window for the specified input device. Starting a maintenance window will give the device up to two hours to install software. If the device was streaming prior to the maintenance, it will resume streaming when the software is fully installed. Devices automatically install updates while they are powered on and their MediaLive channels are stopped. A maintenance window allows you to update a device without having to stop MediaLive channels that use the device. The device must remain powered on and connected to the internet for the duration of the maintenance.",
@@ -58,6 +57,7 @@
     "StopInputDevice": "Stop an input device that is attached to a MediaConnect flow. (There is no need to stop a device that is attached to a MediaLive input; MediaLive automatically stops the device when the channel stops.)",
     "StopMultiplex": "Stops a running multiplex. If the multiplex isn't running, this action has no effect.",
     "TransferInputDevice": "Start an input device transfer to another AWS account. After you make the request, the other account must accept or reject the transfer.",
+    "UpdateAccountConfiguration": "Update account configuration",
     "UpdateChannel": "Updates a channel.",
     "UpdateChannelClass": "Changes the class of the channel.",
     "UpdateInput": "Updates an input.",
@@ -218,7 +218,7 @@
     "ArchiveS3LogUploads": {
       "base": "Archive S3 Log Uploads",
       "refs": {
-        "ArchiveS3Settings$LogUploads": "When set to enabled, each upload to CDN or server will be logged."
+        "ArchiveS3Settings$LogUploads": "This field is unused and deprecated."
       }
     },
     "ArchiveS3Settings": {
@@ -723,6 +723,16 @@
       "refs": {
       }
     },
+    "DescribeAccountConfigurationResultModel": {
+      "base": "The account's configuration.",
+      "refs": {
+      }
+    },
+    "DescribeThumbnailsResultModel": {
+      "base": "Thumbnail details for all the pipelines of a running channel.",
+      "refs": {
+      }
+    },
     "DeviceSettingsSyncState": {
       "base": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration.",
       "refs": {
@@ -1038,6 +1048,12 @@
         "FeatureActivations$InputPrepareScheduleActions": "Enables the Input Prepare feature. You can create Input Prepare actions in the schedule only if this feature is enabled.\nIf you disable the feature on an existing schedule, make sure that you first delete all input prepare actions from the schedule."
       }
     },
+    "FeatureActivationsOutputStaticImageOverlayScheduleActions": {
+      "base": "Feature Activations Output Static Image Overlay Schedule Actions",
+      "refs": {
+        "FeatureActivations$OutputStaticImageOverlayScheduleActions": "Enables the output static image overlay feature. Enabling this feature allows you to send channel schedule updates\nto display/clear/modify image overlays on an output-by-output bases."
+      }
+    },
     "FecOutputIncludeFec": {
       "base": "Fec Output Include Fec",
       "refs": {
@@ -1132,7 +1148,7 @@
     "FrameCaptureS3LogUploads": {
       "base": "Frame Capture S3 Log Uploads",
       "refs": {
-        "FrameCaptureS3Settings$LogUploads": "When set to enabled, each upload to CDN or server will be logged."
+        "FrameCaptureS3Settings$LogUploads": "This field is unused and deprecated."
       }
     },
     "FrameCaptureS3Settings": {
@@ -1149,16 +1165,6 @@
     },
     "GatewayTimeoutException": {
       "base": null,
-      "refs": {
-      }
-    },
-    "DescribeAccountConfigurationResultModel": {
-      "base": "The account's configuration.",
-      "refs": {
-      }
-    },
-    "DescribeThumbnailsResultModel": {
-      "base": "Thumbnail details for all the pipelines of a running channel.",
       "refs": {
       }
     },
@@ -1616,7 +1622,7 @@
     "HlsS3LogUploads": {
       "base": "Hls S3 Log Uploads",
       "refs": {
-        "HlsS3Settings$LogUploads": "When set to enabled, each fragment upload to CDN or server will be logged."
+        "HlsS3Settings$LogUploads": "This field is unused and deprecated."
       }
     },
     "HlsS3Settings": {
@@ -1927,6 +1933,7 @@
         "DvbSubDestinationSettings$Font": "External font file used for caption burn-in. File extension must be 'ttf' or 'tte'.  Although the user can select output fonts for many different types of input captions, embedded, STL and teletext sources use a strict grid system. Using external fonts with these caption sources could cause unexpected display of proportional fonts.  All burn-in and DVB-Sub font settings must match.",
         "InputLossBehavior$InputLossImageSlate": "When input loss image type is \"slate\" these fields specify the parameters for accessing the slate.",
         "StaticImageActivateScheduleActionSettings$Image": "The location and filename of the image file to overlay on the video. The file must be a 32-bit BMP, PNG, or TGA file, and must not be larger (in pixels) than the input video.",
+        "StaticImageOutputActivateScheduleActionSettings$Image": "The location and filename of the image file to overlay on the video. The file must be a 32-bit BMP, PNG, or TGA file, and must not be larger (in pixels) than the input video.",
         "StaticKeySettings$KeyProviderServer": "The URL of the license server used for protecting content."
       }
     },
@@ -3187,16 +3194,6 @@
         "Scte35DeliveryRestrictions$WebDeliveryAllowedFlag": "Corresponds to SCTE-35 web_delivery_allowed_flag parameter."
       }
     },
-    "UpdateAccountConfigurationRequestModel": {
-      "base": "The desired new account configuration.",
-      "refs": {
-      }
-    },
-    "UpdateAccountConfigurationResultModel": {
-      "base": "The account's updated configuration.",
-      "refs": {
-      }
-    },
     "SmoothGroupAudioOnlyTimecodeControl": {
       "base": "Smooth Group Audio Only Timecode Control",
       "refs": {
@@ -3279,6 +3276,18 @@
       "base": "Settings for the action to deactivate the image in a specific layer.",
       "refs": {
         "ScheduleActionSettings$StaticImageDeactivateSettings": "Action to deactivate a static image overlay"
+      }
+    },
+    "StaticImageOutputActivateScheduleActionSettings": {
+      "base": "Settings for the action to activate a static image.",
+      "refs": {
+        "ScheduleActionSettings$StaticImageOutputActivateSettings": "Action to activate a static image overlay in one or more specified outputs"
+      }
+    },
+    "StaticImageOutputDeactivateScheduleActionSettings": {
+      "base": "Settings for the action to deactivate the image in a specific layer.",
+      "refs": {
+        "ScheduleActionSettings$StaticImageOutputDeactivateSettings": "Action to deactivate a static image overlay in one or more specified outputs"
       }
     },
     "StaticKeySettings": {
@@ -3382,7 +3391,7 @@
     "ThumbnailState": {
       "base": "Thumbnail State",
       "refs": {
-        "ThumbnailConfiguration$State": "Whether Thumbnail is enabled."
+        "ThumbnailConfiguration$State": "Enables the thumbnail feature. The feature generates thumbnails of the incoming video in each pipeline in the channel. AUTO turns the feature on, DISABLE turns the feature off."
       }
     },
     "ThumbnailType": {
@@ -3478,6 +3487,16 @@
     },
     "UnprocessableEntityException": {
       "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAccountConfigurationRequestModel": {
+      "base": "The desired new account configuration.",
+      "refs": {
+      }
+    },
+    "UpdateAccountConfigurationResultModel": {
+      "base": "The account's updated configuration.",
       "refs": {
       }
     },
@@ -3735,6 +3754,24 @@
         "NielsenNaesIiNw$Sid": "Enter the Nielsen Source ID (SID) to include in the watermark"
       }
     },
+    "__doubleMin250Max5000": {
+      "base": null,
+      "refs": {
+        "AbWatermarkingCustomProfile$EmbeddingFrequency": "The frequency with which watermarks will be embedded, in milliseconds."
+      }
+    },
+    "__doubleMin32Max46": {
+      "base": null,
+      "refs": {
+        "AbWatermarkingCustomProfile$TargetPsnr": "The target PSNR of the watermarked frame"
+      }
+    },
+    "__doubleMinNegative1Max5": {
+      "base": null,
+      "refs": {
+        "AbWatermarkingCustomProfile$SceneCut": "The number of frames after scene-cut to embed the watermark"
+      }
+    },
     "__doubleMinNegative59Max0": {
       "base": null,
       "refs": {
@@ -3822,6 +3859,12 @@
         "StaticImageActivateScheduleActionSettings$ImageX": "Placement of the left edge of the overlay relative to the left edge of the video frame, in pixels. 0 (the default) is the left edge of the frame. If the placement causes the overlay to extend beyond the right edge of the underlying video, then the overlay is cropped on the right.",
         "StaticImageActivateScheduleActionSettings$ImageY": "Placement of the top edge of the overlay relative to the top edge of the video frame, in pixels. 0 (the default) is the top edge of the frame. If the placement causes the overlay to extend beyond the bottom edge of the underlying video, then the overlay is cropped on the bottom.",
         "StaticImageDeactivateScheduleActionSettings$FadeOut": "The time in milliseconds for the image to fade out. Default is 0 (no fade-out).",
+        "StaticImageOutputActivateScheduleActionSettings$Duration": "The duration in milliseconds for the image to remain on the video. If omitted or set to 0 the duration is unlimited and the image will remain until it is explicitly deactivated.",
+        "StaticImageOutputActivateScheduleActionSettings$FadeIn": "The time in milliseconds for the image to fade in. The fade-in starts at the start time of the overlay. Default is 0 (no fade-in).",
+        "StaticImageOutputActivateScheduleActionSettings$FadeOut": "Applies only if a duration is specified. The time in milliseconds for the image to fade out. The fade-out starts when the duration time is hit, so it effectively extends the duration. Default is 0 (no fade-out).",
+        "StaticImageOutputActivateScheduleActionSettings$ImageX": "Placement of the left edge of the overlay relative to the left edge of the video frame, in pixels. 0 (the default) is the left edge of the frame. If the placement causes the overlay to extend beyond the right edge of the underlying video, then the overlay is cropped on the right.",
+        "StaticImageOutputActivateScheduleActionSettings$ImageY": "Placement of the top edge of the overlay relative to the top edge of the video frame, in pixels. 0 (the default) is the top edge of the frame. If the placement causes the overlay to extend beyond the bottom edge of the underlying video, then the overlay is cropped on the bottom.",
+        "StaticImageOutputDeactivateScheduleActionSettings$FadeOut": "The time in milliseconds for the image to fade out. Default is 0 (no fade-out).",
         "UdpGroupSettings$TimedMetadataId3Period": "Timed Metadata interval in seconds."
       }
     },
@@ -3837,6 +3880,7 @@
       "refs": {
         "H264Settings$BufFillPct": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "StaticImageActivateScheduleActionSettings$Opacity": "Opacity of image where 0 is transparent and 100 is fully opaque. Default is 100.",
+        "StaticImageOutputActivateScheduleActionSettings$Opacity": "Opacity of image where 0 is transparent and 100 is fully opaque. Default is 100.",
         "VideoDescription$Sharpness": "Changes the strength of the anti-alias filter used for scaling. 0 is the softest setting, 100 is the sharpest. A setting of 50 is recommended for most content."
       }
     },
@@ -3884,6 +3928,11 @@
         "HlsMediaStoreSettings$RestartDelay": "If a streaming output fails, number of seconds to wait until a restart is initiated. A value of 0 means never restart.",
         "HlsWebdavSettings$RestartDelay": "If a streaming output fails, number of seconds to wait until a restart is initiated. A value of 0 means never restart.",
         "InputChannelLevel$InputChannel": "The index of the input channel used as a source."
+      }
+    },
+    "__integerMin0Max2000": {
+      "base": null,
+      "refs": {
       }
     },
     "__integerMin0Max255": {
@@ -3964,7 +4013,9 @@
         "H264Settings$GopNumBFrames": "Number of B-frames between reference frames.",
         "Mpeg2Settings$GopNumBFrames": "Relates to the GOP structure. The number of B-frames between reference frames. If you do not know what a B-frame is, use the default.",
         "StaticImageActivateScheduleActionSettings$Layer": "The number of the layer, 0 to 7. There are 8 layers that can be overlaid on the video, each layer with a different image. The layers are in Z order, which means that overlays with higher values of layer are inserted on top of overlays with lower values of layer. Default is 0.",
-        "StaticImageDeactivateScheduleActionSettings$Layer": "The image overlay layer to deactivate, 0 to 7. Default is 0."
+        "StaticImageDeactivateScheduleActionSettings$Layer": "The image overlay layer to deactivate, 0 to 7. Default is 0.",
+        "StaticImageOutputActivateScheduleActionSettings$Layer": "The number of the layer, 0 to 7. There are 8 layers that can be overlaid on the video, each layer with a different image. The layers are in Z order, which means that overlays with higher values of layer are inserted on top of overlays with lower values of layer. Default is 0.",
+        "StaticImageOutputDeactivateScheduleActionSettings$Layer": "The image overlay layer to deactivate, 0 to 7. Default is 0."
       }
     },
     "__integerMin0Max8191": {
@@ -3999,7 +4050,9 @@
         "RtmpOutputSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying a connection to the Flash Media server if the connection is lost.",
         "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through.",
         "StaticImageActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
-        "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay."
+        "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay.",
+        "StaticImageOutputActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
+        "StaticImageOutputActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay."
       }
     },
     "__integerMin100": {
@@ -4548,6 +4601,7 @@
         "Input$InputPartnerIds": "A list of IDs for all Inputs which are partners of this one.",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputDevice$MedialiveInputArns": "An array of the ARNs for the MediaLive inputs attached to the device. Returned only if the outputType is MEDIALIVE_INPUT.",
+        "InputDeviceAttachmentConfiguration$Inputs": "The ARN of each input attached to the device. Only present when state is ATTACHED_EML_INPUT",
         "InputDeviceNetworkSettings$DnsAddresses": "The DNS addresses of the input device.",
         "InputDeviceSummary$MedialiveInputArns": "An array of the ARNs for the MediaLive inputs attached to the device. Returned only if the outputType is MEDIALIVE_INPUT.",
         "InputPrepareScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
@@ -4559,6 +4613,8 @@
         "MultiplexSummary$AvailabilityZones": "A list of availability zones for the multiplex.",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
+        "StaticImageOutputActivateScheduleActionSettings$OutputNames": "The name(s) of the output(s) the activation should apply to.",
+        "StaticImageOutputDeactivateScheduleActionSettings$OutputNames": "The name(s) of the output(s) the deactivation should apply to.",
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "VpcOutputSettings$PublicAddressAllocationIds": "List of public address allocation ids to associate with ENIs that will be created in Output VPC.\nMust specify one for SINGLE_PIPELINE, two for STANDARD channels\n",
         "VpcOutputSettings$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC network interfaces.\nIf none are specified then the VPC default security group will be used\n",
@@ -4677,8 +4733,11 @@
         "InputAttachment$InputAttachmentName": "User-specified name for the attachment. This is required if the user wants to use this input in an input switch action.",
         "InputAttachment$InputId": "The ID of the input",
         "InputDestination$Ip": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input.\n",
+        "InputDestination$NetworkRouteCidr": "This is the networkRouteCidr of the on-prem push input. This is required for inputs of this type so that\nthe encoder can properly route in the input.\n",
         "InputDestination$Port": "The port number for the input.",
         "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
+        "InputDestinationRequest$NetworkRouteCidr": "If the push input has an input location of ON-PREM it's a requirement to specify what the route of the input\nis going to be on the customer local network.\n",
+        "InputDestinationRequest$StaticIpAddress": "If the push input has an input location of ON-PREM it's a requirement to specify what the ip address\nof the input is going to be on the customer local network.\n",
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
         "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.\n",
         "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.\n",
@@ -4688,7 +4747,19 @@
         "InputDevice$MacAddress": "The network MAC address of the input device.",
         "InputDevice$Name": "A name that you specify for the input device.",
         "InputDevice$SerialNumber": "The unique serial number of the input device.",
+        "InputDeviceConfigurableFlowSettings$FlowArn": "The unique ARN of the flow.",
+        "InputDeviceConfigurableFlowSettings$RoleArn": "The ARN of the role used to access EMX and Secrets Manager on behalf of the customer.",
+        "InputDeviceConfigurableFlowSettings$SecretArn": "The ARN of the secret used to encrypt the stream.",
+        "InputDeviceConfigurableFlowSettings$SourceName": "The name of the flow source to stream to.",
+        "InputDeviceConfigurableSettings$InputResolution": "Choose the resolution of the Link device's source (HD or UHD). Make sure the resolution matches the current source from the device. This value determines MediaLive resource allocation and billing for this input. Only UHD devices can specify this parameter.",
         "InputDeviceConfigurationValidationError$Message": "The error message.",
+        "InputDeviceFlowSettings$EncryptedSecret": "The secret used to encrypt the stream.",
+        "InputDeviceFlowSettings$EndpointUri": "The endpoint to stream to.",
+        "InputDeviceFlowSettings$FlowArn": "The unique ARN of the flow.",
+        "InputDeviceFlowSettings$RoleArn": "The ARN of the role used to access EMX and Secrets Manager on behalf of the customer.",
+        "InputDeviceFlowSettings$SecretArn": "The ARN of the secret used to encrypt the stream.",
+        "InputDeviceFlowSettings$SourceName": "The name of the flow source to stream to.",
+        "InputDeviceFlowSettings$StreamId": "The id of the stream.",
         "InputDeviceMediaConnectConfigurableSettings$FlowArn": "The ARN of the MediaConnect flow to attach this device to.",
         "InputDeviceMediaConnectConfigurableSettings$RoleArn": "The ARN for the role that MediaLive assumes to access the attached flow and secret. For more information about how to create this role, see the MediaLive user guide.",
         "InputDeviceMediaConnectConfigurableSettings$SecretArn": "The ARN for the secret that holds the encryption key to encrypt the content output by the device.",
@@ -4701,6 +4772,7 @@
         "InputDeviceNetworkSettings$IpAddress": "The IP address of the input device.",
         "InputDeviceNetworkSettings$SubnetMask": "The subnet mask of the input device.",
         "InputDeviceRequest$Id": "The unique ID for the device.",
+        "InputDeviceSettings$AvailabilityZone": "The currently assigned availability zone of the input device.",
         "InputDeviceSettings$Id": "The unique ID for the device.",
         "InputDeviceSummary$Arn": "The unique ARN of the input device.",
         "InputDeviceSummary$AvailabilityZone": "The Availability Zone associated with this input device.",
@@ -4708,6 +4780,7 @@
         "InputDeviceSummary$MacAddress": "The network MAC address of the input device.",
         "InputDeviceSummary$Name": "A name that you specify for the input device.",
         "InputDeviceSummary$SerialNumber": "The unique serial number of the input device.",
+        "InputDeviceUhdSettings$InputResolution": "The resolution of the Link device's source (HD or UHD). This value determines MediaLive resource allocation and billing for this input.",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "InputPrepareScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be prepared by this action. If no name is provided, the action will stop the most recent prepare (if any) when activated.",

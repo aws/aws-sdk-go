@@ -1369,7 +1369,8 @@
         "Description":{"shape":"Description"},
         "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
         "ParentChangeSetId":{"shape":"ChangeSetId"},
-        "RootChangeSetId":{"shape":"ChangeSetId"}
+        "RootChangeSetId":{"shape":"ChangeSetId"},
+        "ImportExistingResources":{"shape":"ImportExistingResources"}
       }
     },
     "ChangeSetType":{
@@ -1467,7 +1468,8 @@
         "ChangeSetType":{"shape":"ChangeSetType"},
         "ResourcesToImport":{"shape":"ResourcesToImport"},
         "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
-        "OnStackFailure":{"shape":"OnStackFailure"}
+        "OnStackFailure":{"shape":"OnStackFailure"},
+        "ImportExistingResources":{"shape":"ImportExistingResources"}
       }
     },
     "CreateChangeSetOutput":{
@@ -1758,7 +1760,8 @@
         "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
         "ParentChangeSetId":{"shape":"ChangeSetId"},
         "RootChangeSetId":{"shape":"ChangeSetId"},
-        "OnStackFailure":{"shape":"OnStackFailure"}
+        "OnStackFailure":{"shape":"OnStackFailure"},
+        "ImportExistingResources":{"shape":"ImportExistingResources"}
       }
     },
     "DescribeOrganizationsAccessInput":{
@@ -2312,6 +2315,7 @@
         "Bitbucket"
       ]
     },
+    "ImportExistingResources":{"type":"boolean"},
     "ImportStacksToStackSetInput":{
       "type":"structure",
       "required":["StackSetName"],

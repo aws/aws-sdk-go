@@ -23,15 +23,16 @@
     "AssociateEnclaveCertificateIamRole": "<p>Associates an Identity and Access Management (IAM) role with an Certificate Manager (ACM) certificate. This enables the certificate to be used by the ACM for Nitro Enclaves application inside an enclave. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html\">Certificate Manager for Nitro Enclaves</a> in the <i>Amazon Web Services Nitro Enclaves User Guide</i>.</p> <p>When the IAM role is associated with the ACM certificate, the certificate, certificate chain, and encrypted private key are placed in an Amazon S3 location that only the associated IAM role can access. The private key of the certificate is encrypted with an Amazon Web Services managed key that has an attached attestation-based key policy.</p> <p>To enable the IAM role to access the Amazon S3 object, you must grant it permission to call <code>s3:GetObject</code> on the Amazon S3 bucket returned by the command. To enable the IAM role to access the KMS key, you must grant it permission to call <code>kms:Decrypt</code> on the KMS key returned by the command. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html#add-policy\"> Grant the role permission to access the certificate and encryption key</a> in the <i>Amazon Web Services Nitro Enclaves User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
     "AssociateInstanceEventWindow": "<p>Associates one or more targets with an event window. Only one type of target (instance IDs, Dedicated Host IDs, or tags) can be specified with an event window.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "AssociateIpamByoasn": "<p>Associates your Autonomous System Number (ASN) with a BYOIP CIDR that you own in the same Amazon Web Services Region. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p> <p>After the association succeeds, the ASN is eligible for advertisement. You can view the association with <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeByoipCidrs.html\">DescribeByoipCidrs</a>. You can advertise the CIDR with <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AdvertiseByoipCidr.html\">AdvertiseByoipCidr</a>.</p>",
     "AssociateIpamResourceDiscovery": "<p>Associates an IPAM resource discovery with an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>",
     "AssociateNatGatewayAddress": "<p>Associates Elastic IP addresses (EIPs) and private IPv4 addresses with a public NAT gateway. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with\">Work with NAT gateways</a> in the <i>Amazon VPC User Guide</i>.</p> <p>By default, you can associate up to 2 Elastic IP addresses per public NAT gateway. You can increase the limit by requesting a quota adjustment. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-eips\">Elastic IP address quotas</a> in the <i>Amazon VPC User Guide</i>.</p> <important> <p>When you associate an EIP or secondary EIPs with a public NAT gateway, the network border group of the EIPs must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. If it's not the same, the EIP will fail to associate. You can see the network border group for the subnet's AZ by viewing the details of the subnet. Similarly, you can view the network border group of an EIP by viewing the details of the EIP address. For more information about network border groups and EIPs, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip\">Allocate an Elastic IP address</a> in the <i>Amazon VPC User Guide</i>. </p> </important>",
     "AssociateRouteTable": "<p>Associates a subnet in your VPC or an internet gateway or virtual private gateway attached to your VPC with a route table in your VPC. This association causes traffic from the subnet or gateway to be routed according to the routes in the route table. The action returns an association ID, which you need in order to disassociate the route table later. A route table can be associated with multiple subnets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon VPC User Guide</i>.</p>",
-    "AssociateSubnetCidrBlock": "<p>Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR block with your subnet. An IPv6 CIDR block must have a prefix length of /64.</p>",
+    "AssociateSubnetCidrBlock": "<p>Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR block with your subnet.</p>",
     "AssociateTransitGatewayMulticastDomain": "<p>Associates the specified subnets and transit gateway attachments with the specified transit gateway multicast domain.</p> <p>The transit gateway attachment must be in the available state before you can add a resource. Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html\">DescribeTransitGatewayAttachments</a> to see the state of the attachment.</p>",
     "AssociateTransitGatewayPolicyTable": "<p>Associates the specified transit gateway attachment with a transit gateway policy table.</p>",
     "AssociateTransitGatewayRouteTable": "<p>Associates the specified attachment with the specified transit gateway route table. You can associate only one route table with an attachment.</p>",
-    "AssociateTrunkInterface": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Associates a branch network interface with a trunk network interface.</p> <p>Before you create the association, run the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html\">create-network-interface</a> command and set <code>--interface-type</code> to <code>trunk</code>. You must also create a network interface for each branch network interface that you want to associate with the trunk network interface.</p>",
-    "AssociateVpcCidrBlock": "<p>Associates a CIDR block with your VPC. You can associate a secondary IPv4 CIDR block, an Amazon-provided IPv6 CIDR block, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">BYOIP</a>). The IPv6 CIDR block size is fixed at /56.</p> <p>You must specify one of the following in the request: an IPv4 CIDR block, an IPv6 pool, or an Amazon-provided IPv6 CIDR block.</p> <p>For more information about associating CIDR blocks with your VPC and applicable restrictions, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html\">IP addressing for your VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
+    "AssociateTrunkInterface": "<p>Associates a branch network interface with a trunk network interface.</p> <p>Before you create the association, run the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html\">create-network-interface</a> command and set <code>--interface-type</code> to <code>trunk</code>. You must also create a network interface for each branch network interface that you want to associate with the trunk network interface.</p>",
+    "AssociateVpcCidrBlock": "<p>Associates a CIDR block with your VPC. You can associate a secondary IPv4 CIDR block, an Amazon-provided IPv6 CIDR block, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">BYOIP</a>). </p> <p>You must specify one of the following in the request: an IPv4 CIDR block, an IPv6 pool, or an Amazon-provided IPv6 CIDR block.</p> <p>For more information about associating CIDR blocks with your VPC and applicable restrictions, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html\">IP addressing for your VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
     "AttachClassicLinkVpc": "<note> <p>This action is deprecated.</p> </note> <p>Links an EC2-Classic instance to a ClassicLink-enabled VPC through one or more of the VPC security groups. You cannot link an EC2-Classic instance to more than one VPC at a time. You can only link an instance that's in the <code>running</code> state. An instance is automatically unlinked from a VPC when it's stopped - you can link it to the VPC again when you restart it.</p> <p>After you've linked an instance, you cannot change the VPC security groups that are associated with it. To change the security groups, you must first unlink the instance, and then link it again.</p> <p>Linking your instance to a VPC is sometimes referred to as <i>attaching</i> your instance.</p>",
     "AttachInternetGateway": "<p>Attaches an internet gateway or a virtual private gateway to a VPC, enabling connectivity between the internet and the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html\">Internet gateways</a> in the <i>Amazon VPC User Guide</i>.</p>",
     "AttachNetworkInterface": "<p>Attaches a network interface to an instance.</p>",
@@ -107,7 +108,7 @@
     "CreateSnapshots": "<p>Creates crash-consistent snapshots of multiple EBS volumes and stores the data in S3. Volumes are chosen by specifying an instance. Any attached volumes will produce one snapshot each that is crash-consistent across the instance.</p> <p>You can include all of the volumes currently attached to the instance, or you can exclude the root volume or specific data (non-root) volumes from the multi-volume snapshot set.</p> <p>You can create multi-volume snapshots of instances in a Region and instances on an Outpost. If you create snapshots from an instance in a Region, the snapshots must be stored in the same Region as the instance. If you create snapshots from an instance on an Outpost, the snapshots can be stored on the same Outpost as the instance, or in the Region for that Outpost.</p>",
     "CreateSpotDatafeedSubscription": "<p>Creates a data feed for Spot Instances, enabling you to view Spot Instance usage logs. You can create one data feed per Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance data feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "CreateStoreImageTask": "<p>Stores an AMI as a single object in an Amazon S3 bucket.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>",
-    "CreateSubnet": "<p>Creates a subnet in the specified VPC. For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.</p> <p>A subnet CIDR block must not overlap the CIDR block of an existing subnet in the VPC. After you create a subnet, you can't change its CIDR block.</p> <p>The allowed size for an IPv4 subnet is between a /28 netmask (16 IP addresses) and a /16 netmask (65,536 IP addresses). Amazon Web Services reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for your use.</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can associate an IPv6 CIDR block with a subnet when you create it. The allowed block size for an IPv6 subnet is a /64 netmask.</p> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>When you stop an instance in a subnet, it retains its private IPv4 address. It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html\">Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
+    "CreateSubnet": "<p>Creates a subnet in the specified VPC. For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.</p> <p>A subnet CIDR block must not overlap the CIDR block of an existing subnet in the VPC. After you create a subnet, you can't change its CIDR block.</p> <p>The allowed size for an IPv4 subnet is between a /28 netmask (16 IP addresses) and a /16 netmask (65,536 IP addresses). Amazon Web Services reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for your use.</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can associate an IPv6 CIDR block with a subnet when you create it. </p> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>When you stop an instance in a subnet, it retains its private IPv4 address. It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html\">Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
     "CreateSubnetCidrReservation": "<p>Creates a subnet CIDR reservation. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/subnet-cidr-reservation.html\">Subnet CIDR reservations</a> in the <i>Amazon Virtual Private Cloud User Guide</i> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\">Assign prefixes to network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateTags": "<p>Adds or overwrites only the specified tags for the specified Amazon EC2 resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value. Tag keys must be unique per resource.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about creating IAM policies that control users' access to resources based on tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html\">Supported resource-level permissions for Amazon EC2 API actions</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateTrafficMirrorFilter": "<p>Creates a Traffic Mirror filter.</p> <p>A Traffic Mirror filter is a set of rules that defines the traffic to mirror.</p> <p>By default, no traffic is mirrored. To mirror traffic, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorFilterRule.htm\">CreateTrafficMirrorFilterRule</a> to add Traffic Mirror rules to the filter. The rules you add define what traffic gets mirrored. You can also use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyTrafficMirrorFilterNetworkServices.html\">ModifyTrafficMirrorFilterNetworkServices</a> to mirror supported network services.</p>",
@@ -130,7 +131,7 @@
     "CreateVerifiedAccessInstance": "<p>An Amazon Web Services Verified Access instance is a regional entity that evaluates application requests and grants access only when your security requirements are met.</p>",
     "CreateVerifiedAccessTrustProvider": "<p>A trust provider is a third-party entity that creates, maintains, and manages identity information for users and devices. When an application request is made, the identity information sent by the trust provider is evaluated by Verified Access before allowing or denying the application request.</p>",
     "CreateVolume": "<p>Creates an EBS volume that can be attached to an instance in the same Availability Zone.</p> <p>You can create a new empty volume or restore a volume from an EBS snapshot. Any Amazon Web Services Marketplace product codes from the snapshot are propagated to the volume.</p> <p>You can create encrypted volumes. Encrypted volumes must be attached to instances that support Amazon EBS encryption. Volumes that are created from encrypted snapshots are also automatically encrypted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can tag your volumes during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html\">Create an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateVpc": "<p>Creates a VPC with the specified CIDR blocks. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html\">IP addressing for your VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.</p> <p>You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided IPv6 CIDR block from Amazon's pool of IPv6 addresses, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">BYOIP</a>).</p> <p>By default, each instance that you launch in the VPC has the default DHCP options, which include only a default DNS server that we provide (AmazonProvidedDNS). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP option sets</a> in the <i>Amazon VPC User Guide</i>.</p> <p>You can specify the instance tenancy value for the VPC when you create it. You can't change this value for the VPC after you create it. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "CreateVpc": "<p>Creates a VPC with the specified CIDR blocks. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html\">IP addressing for your VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.</p> <p>You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided IPv6 CIDR block from Amazon's pool of IPv6 addresses or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">BYOIP</a>).</p> <p>By default, each instance that you launch in the VPC has the default DHCP options, which include only a default DNS server that we provide (AmazonProvidedDNS). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP option sets</a> in the <i>Amazon VPC User Guide</i>.</p> <p>You can specify the instance tenancy value for the VPC when you create it. You can't change this value for the VPC after you create it. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreateVpcEndpoint": "<p>Creates a VPC endpoint. A VPC endpoint provides a private connection between the specified VPC and the specified endpoint service. You can use an endpoint service provided by Amazon Web Services, an Amazon Web Services Marketplace Partner, or another Amazon Web Services account. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/privatelink/\">Amazon Web Services PrivateLink User Guide</a>.</p>",
     "CreateVpcEndpointConnectionNotification": "<p>Creates a connection notification for a specified VPC endpoint or VPC endpoint service. A connection notification notifies you of specific endpoint events. You must create an SNS topic to receive notifications. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html\">Create a Topic</a> in the <i>Amazon Simple Notification Service Developer Guide</i>.</p> <p>You can create a connection notification for interface endpoints only.</p>",
     "CreateVpcEndpointServiceConfiguration": "<p>Creates a VPC endpoint service to which service consumers (Amazon Web Services accounts, users, and IAM roles) can connect.</p> <p>Before you create an endpoint service, you must create one of the following for your service:</p> <ul> <li> <p>A <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/\">Network Load Balancer</a>. Service consumers connect to your service using an interface endpoint.</p> </li> <li> <p>A <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/\">Gateway Load Balancer</a>. Service consumers connect to your service using a Gateway Load Balancer endpoint.</p> </li> </ul> <p>If you set the private DNS name, you must prove that you own the private DNS domain name.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/privatelink/\">Amazon Web Services PrivateLink Guide</a>.</p>",
@@ -213,6 +214,7 @@
     "DeleteVpnConnectionRoute": "<p>Deletes the specified static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p>",
     "DeleteVpnGateway": "<p>Deletes the specified virtual private gateway. You must first detach the virtual private gateway from the VPC. Note that you don't need to delete the virtual private gateway if you plan to delete and recreate the VPN connection between your VPC and your network.</p>",
     "DeprovisionByoipCidr": "<p>Releases the specified address range that you provisioned for use with your Amazon Web Services resources through bring your own IP addresses (BYOIP) and deletes the corresponding address pool.</p> <p>Before you can release an address range, you must stop advertising it using <a>WithdrawByoipCidr</a> and you must not have any IP addresses allocated from its address range.</p>",
+    "DeprovisionIpamByoasn": "<p>Deprovisions your Autonomous System Number (ASN) from your Amazon Web Services account. This action can only be called after any BYOIP CIDR associations are removed from your Amazon Web Services account with <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DisassociateIpamByoasn.html\">DisassociateIpamByoasn</a>. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p>",
     "DeprovisionIpamPoolCidr": "<p>Deprovision a CIDR provisioned from an IPAM pool. If you deprovision a CIDR from a pool that has a source pool, the CIDR is recycled back into the source pool. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/depro-pool-cidr-ipam.html\">Deprovision pool CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "DeprovisionPublicIpv4PoolCidr": "<p>Deprovision a CIDR from a public IPv4 pool.</p>",
     "DeregisterImage": "<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances.</p> <p>If you deregister an AMI that matches a Recycle Bin retention rule, the AMI is retained in the Recycle Bin for the specified retention period. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\">Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>",
@@ -275,6 +277,7 @@
     "DescribeInstanceTypes": "<p>Describes the details of the instance types that are offered in a location. The results can be filtered by the attributes of the instance types.</p>",
     "DescribeInstances": "<p>Describes the specified instances or all instances.</p> <p>If you specify instance IDs, the output includes information for only the specified instances. If you specify filters, the output includes information for only those instances that meet the filter criteria. If you do not specify instance IDs or filters, the output includes information for all instances, which can affect performance. We recommend that you use pagination to ensure that the operation returns quickly and successfully.</p> <p>If you specify an instance ID that is not valid, an error is returned. If you specify an instance that you do not own, it is not included in the output.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If you describe instances in the rare case where an Availability Zone is experiencing a service disruption and you specify instance IDs that are in the affected zone, or do not specify any instance IDs at all, the call fails. If you describe instances and specify only instance IDs that are in an unaffected zone, the call works normally.</p>",
     "DescribeInternetGateways": "<p>Describes one or more of your internet gateways.</p>",
+    "DescribeIpamByoasn": "<p>Describes your Autonomous System Numbers (ASNs), their provisioning statuses, and the BYOIP CIDRs with which they are associated. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p>",
     "DescribeIpamPools": "<p>Get information about your IPAM pools.</p>",
     "DescribeIpamResourceDiscoveries": "<p>Describes IPAM resource discoveries. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>",
     "DescribeIpamResourceDiscoveryAssociations": "<p>Describes resource discovery association with an Amazon VPC IPAM. An associated resource discovery is a resource discovery that has been associated with an IPAM..</p>",
@@ -344,7 +347,7 @@
     "DescribeTransitGatewayRouteTables": "<p>Describes one or more transit gateway route tables. By default, all transit gateway route tables are described. Alternatively, you can filter the results.</p>",
     "DescribeTransitGatewayVpcAttachments": "<p>Describes one or more VPC attachments. By default, all VPC attachments are described. Alternatively, you can filter the results.</p>",
     "DescribeTransitGateways": "<p>Describes one or more transit gateways. By default, all transit gateways are described. Alternatively, you can filter the results.</p>",
-    "DescribeTrunkInterfaceAssociations": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Describes one or more network interface trunk associations.</p>",
+    "DescribeTrunkInterfaceAssociations": "<p>Describes one or more network interface trunk associations.</p>",
     "DescribeVerifiedAccessEndpoints": "<p>Describes the specified Amazon Web Services Verified Access endpoints.</p>",
     "DescribeVerifiedAccessGroups": "<p>Describes the specified Verified Access groups.</p>",
     "DescribeVerifiedAccessInstanceLoggingConfigurations": "<p>Describes the specified Amazon Web Services Verified Access instances.</p>",
@@ -393,6 +396,7 @@
     "DisassociateEnclaveCertificateIamRole": "<p>Disassociates an IAM role from an Certificate Manager (ACM) certificate. Disassociating an IAM role from an ACM certificate removes the Amazon S3 object that contains the certificate, certificate chain, and encrypted private key from the Amazon S3 bucket. It also revokes the IAM role's permission to use the KMS key used to encrypt the private key. This effectively revokes the role's permission to use the certificate.</p>",
     "DisassociateIamInstanceProfile": "<p>Disassociates an IAM instance profile from a running or stopped instance.</p> <p>Use <a>DescribeIamInstanceProfileAssociations</a> to get the association ID.</p>",
     "DisassociateInstanceEventWindow": "<p>Disassociates one or more targets from an event window.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "DisassociateIpamByoasn": "<p>Remove the association between your Autonomous System Number (ASN) and your BYOIP CIDR. You may want to use this action to disassociate an ASN from a CIDR or if you want to swap ASNs. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p>",
     "DisassociateIpamResourceDiscovery": "<p>Disassociates a resource discovery from an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>",
     "DisassociateNatGatewayAddress": "<p>Disassociates secondary Elastic IP addresses (EIPs) from a public NAT gateway. You cannot disassociate your primary EIP. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\">Edit secondary IP address associations</a> in the <i>Amazon VPC User Guide</i>.</p> <p>While disassociating is in progress, you cannot associate/disassociate additional EIPs while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>An EIP is released only at the end of MaxDrainDurationSeconds. It stays associated and supports the existing connections but does not support any new connections (new connections are distributed across the remaining associated EIPs). As the existing connections drain out, the EIPs (and the corresponding private IP addresses mapped to them) are released.</p>",
     "DisassociateRouteTable": "<p>Disassociates a subnet or gateway from a route table.</p> <p>After you perform this action, the subnet no longer uses the routes in the route table. Instead, it uses the routes in the VPC's main route table. For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon VPC User Guide</i>.</p>",
@@ -400,7 +404,7 @@
     "DisassociateTransitGatewayMulticastDomain": "<p>Disassociates the specified subnets from the transit gateway multicast domain. </p>",
     "DisassociateTransitGatewayPolicyTable": "<p>Removes the association between an an attachment and a policy table.</p>",
     "DisassociateTransitGatewayRouteTable": "<p>Disassociates a resource attachment from a transit gateway route table.</p>",
-    "DisassociateTrunkInterface": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Removes an association between a branch network interface with a trunk network interface.</p>",
+    "DisassociateTrunkInterface": "<p>Removes an association between a branch network interface with a trunk network interface.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
     "EnableAddressTransfer": "<p>Enables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "EnableAwsNetworkPerformanceMetricSubscription": "<p>Enables Infrastructure Performance subscriptions.</p>",
@@ -441,6 +445,7 @@
     "GetInstanceUefiData": "<p>A binary representation of the UEFI variable store. Only non-volatile variables are stored. This is a base64 encoded and zlib compressed binary value that must be properly encoded.</p> <p>When you use <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html\">register-image</a> to create an AMI, you can create an exact copy of your variable store by passing the UEFI data in the <code>UefiData</code> parameter. You can modify the UEFI data by using the <a href=\"https://github.com/awslabs/python-uefivars\">python-uefivars tool</a> on GitHub. You can use the tool to convert the UEFI data into a human-readable format (JSON), which you can inspect and modify, and then convert back into the binary format to use with register-image.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\">UEFI Secure Boot</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetIpamAddressHistory": "<p>Retrieve historical information about a CIDR within an IPAM scope. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html\">View the history of IP addresses</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "GetIpamDiscoveredAccounts": "<p>Gets IPAM discovered accounts. A discovered account is an Amazon Web Services account that is monitored under a resource discovery. If you have integrated IPAM with Amazon Web Services Organizations, all accounts in the organization are discovered accounts. Only the IPAM account can get all discovered accounts in the organization.</p>",
+    "GetIpamDiscoveredPublicAddresses": "<p>Gets the public IP addresses that have been discovered by IPAM.</p>",
     "GetIpamDiscoveredResourceCidrs": "<p>Returns the resource CIDRs that are monitored as part of a resource discovery. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses. </p>",
     "GetIpamPoolAllocations": "<p>Get a list of all the CIDR allocations in an IPAM pool. The Region you use should be the IPAM pool locale. The locale is the Amazon Web Services Region where this IPAM pool is available for allocations.</p> <note> <p>If you use this action after <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AllocateIpamPoolCidr.html\">AllocateIpamPoolCidr</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ReleaseIpamPoolAllocation.html\">ReleaseIpamPoolAllocation</a>, note that all EC2 API actions follow an <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency\">eventual consistency</a> model.</p> </note>",
     "GetIpamPoolCidrs": "<p>Get the CIDRs provisioned to an IPAM pool.</p>",
@@ -546,6 +551,7 @@
     "MoveAddressToVpc": "<note> <p>This action is deprecated.</p> </note> <p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform.</p>",
     "MoveByoipCidrToIpam": "<p>Move a BYOIPv4 CIDR to IPAM from a public IPv4 pool.</p> <p>If you already have a BYOIPv4 CIDR with Amazon Web Services, you can move the CIDR to IPAM from a public IPv4 pool. You cannot move an IPv6 CIDR to IPAM. If you are bringing a new IP address to Amazon Web Services for the first time, complete the steps in <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoip-ipam.html\">Tutorial: BYOIP address CIDRs to IPAM</a>.</p>",
     "ProvisionByoipCidr": "<p>Provisions an IPv4 or IPv6 address range for use with your Amazon Web Services resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>Amazon Web Services verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring your own IP addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your IPv4 address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
+    "ProvisionIpamByoasn": "<p>Provisions your Autonomous System Number (ASN) for use in your Amazon Web Services account. This action requires authorization context for Amazon to bring the ASN to an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p>",
     "ProvisionIpamPoolCidr": "<p>Provision a CIDR to an IPAM pool. You can use this action to provision new CIDRs to a top-level pool or to transfer a CIDR from a top-level pool to a pool within it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/prov-cidr-ipam.html\">Provision CIDRs to pools</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
     "ProvisionPublicIpv4PoolCidr": "<p>Provision a CIDR to a public IPv4 pool.</p> <p>For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "PurchaseCapacityBlock": "<p>Purchase the Capacity Block for use with your account. With Capacity Blocks you ensure GPU capacity is available for machine learning (ML) workloads. You must specify the ID of the Capacity Block offering you are purchasing.</p>",
@@ -1257,6 +1263,38 @@
         "StartNetworkInsightsAnalysisRequest$FilterInArns": "<p>The Amazon Resource Names (ARN) of the resources that the path must traverse.</p>"
       }
     },
+    "AsnAssociation": {
+      "base": "<p>An Autonomous System Number (ASN) and BYOIP CIDR association.</p>",
+      "refs": {
+        "AsnAssociationSet$member": null,
+        "AssociateIpamByoasnResult$AsnAssociation": "<p>The ASN and BYOIP CIDR association.</p>",
+        "DisassociateIpamByoasnResult$AsnAssociation": "<p>An ASN and BYOIP CIDR association.</p>"
+      }
+    },
+    "AsnAssociationSet": {
+      "base": null,
+      "refs": {
+        "ByoipCidr$AsnAssociations": "<p>The BYOIP CIDR associations with ASNs.</p>"
+      }
+    },
+    "AsnAssociationState": {
+      "base": null,
+      "refs": {
+        "AsnAssociation$State": "<p>The association's state.</p>"
+      }
+    },
+    "AsnAuthorizationContext": {
+      "base": "<p>Provides authorization for Amazon to bring an Autonomous System Number (ASN) to a specific Amazon Web Services account using bring your own ASN (BYOASN). For details on the format of the message and signature, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoasn.html\">Tutorial: Bring your ASN to IPAM</a> in the <i>Amazon VPC IPAM guide</i>.</p>",
+      "refs": {
+        "ProvisionIpamByoasnRequest$AsnAuthorizationContext": "<p>An ASN authorization context.</p>"
+      }
+    },
+    "AsnState": {
+      "base": null,
+      "refs": {
+        "Byoasn$State": "<p>The provisioning state of the BYOASN.</p>"
+      }
+    },
     "AssetId": {
       "base": null,
       "refs": {
@@ -1363,6 +1401,16 @@
       }
     },
     "AssociateInstanceEventWindowResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateIpamByoasnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateIpamByoasnResult": {
       "base": null,
       "refs": {
       }
@@ -1926,6 +1974,7 @@
         "AssociateDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateEnclaveCertificateIamRoleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AssociateIpamByoasnRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1933,7 +1982,7 @@
         "AssociateTransitGatewayPolicyTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTrunkInterfaceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "AssociateVpcCidrBlockRequest$AmazonProvidedIpv6CidrBlock": "<p>Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IPv6 addresses, or the size of the CIDR block.</p>",
+        "AssociateVpcCidrBlockRequest$AmazonProvidedIpv6CidrBlock": "<p>Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IPv6 addresses or the size of the CIDR block.</p>",
         "AttachClassicLinkVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AttachClassicLinkVpcResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "AttachInternetGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2105,6 +2154,7 @@
         "DeleteInstanceEventWindowRequest$ForceDelete": "<p>Specify <code>true</code> to force delete the event window. Use the force delete parameter if the event window is currently associated with targets.</p>",
         "DeleteInternetGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteIpamPoolRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteIpamPoolRequest$Cascade": "<p>Enables you to quickly delete an IPAM pool and all resources within that pool, including provisioned CIDRs, allocations, and other pools.</p> <important> <p>You can only use this option to delete pools in the private scope or pools in the public scope with a source resource. A source resource is a resource used to provision CIDRs to a resource planning pool.</p> </important>",
         "DeleteIpamRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteIpamRequest$Cascade": "<p>Enables you to quickly delete an IPAM, private scopes, pools in private scopes, and any allocations in the pools in private scopes. You cannot delete the IPAM with this option if there is a pool in your public scope. If you use this option, IPAM does the following:</p> <ul> <li> <p>Deallocates any CIDRs allocated to VPC resources (such as VPCs) in pools in private scopes.</p> <note> <p>No VPC resources are deleted as a result of enabling this option. The CIDR associated with the resource will no longer be allocated from an IPAM pool, but the CIDR itself will remain unchanged.</p> </note> </li> <li> <p>Deprovisions all IPv4 CIDRs provisioned to IPAM pools in private scopes.</p> </li> <li> <p>Deletes all IPAM pools in private scopes.</p> </li> <li> <p>Deletes all non-default private scopes in the IPAM.</p> </li> <li> <p>Deletes the default public and private scopes and the IPAM.</p> </li> </ul>",
         "DeleteIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2171,6 +2221,7 @@
         "DeleteVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeprovisionByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeprovisionIpamByoasnRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeprovisionIpamPoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeprovisionPublicIpv4PoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeregisterImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2232,6 +2283,7 @@
         "DescribeInstanceTypesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInternetGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeIpamByoasnRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeIpamPoolsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeIpamResourceDiscoveriesRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeIpamResourceDiscoveryAssociationsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2364,6 +2416,7 @@
         "DisassociateEnclaveCertificateIamRoleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateEnclaveCertificateIamRoleResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisassociateInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisassociateIpamByoasnRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2440,6 +2493,7 @@
         "GetInstanceUefiDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamAddressHistoryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamDiscoveredAccountsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamPoolAllocationsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamPoolCidrsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2673,6 +2727,7 @@
         "ProvisionByoipCidrRequest$PubliclyAdvertisable": "<p>(IPv6 only) Indicate whether the address range will be publicly advertised to the internet.</p> <p>Default: true</p>",
         "ProvisionByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ProvisionByoipCidrRequest$MultiRegion": "<p>Reserved.</p>",
+        "ProvisionIpamByoasnRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ProvisionIpamPoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ProvisionPublicIpv4PoolCidrRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseCapacityBlockRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2930,6 +2985,20 @@
       "base": null,
       "refs": {
         "InstanceTypeInfo$BurstablePerformanceSupported": "<p>Indicates whether the instance type is a burstable performance T instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a>.</p>"
+      }
+    },
+    "Byoasn": {
+      "base": "<p>The Autonomous System Number (ASN) and BYOIP CIDR association.</p>",
+      "refs": {
+        "ByoasnSet$member": null,
+        "DeprovisionIpamByoasnResult$Byoasn": "<p>An ASN and BYOIP CIDR association.</p>",
+        "ProvisionIpamByoasnResult$Byoasn": "<p>An ASN and BYOIP CIDR association.</p>"
+      }
+    },
+    "ByoasnSet": {
+      "base": null,
+      "refs": {
+        "DescribeIpamByoasnResult$Byoasns": "<p>ASN and BYOIP CIDR associations.</p>"
       }
     },
     "ByoipCidr": {
@@ -3809,6 +3878,33 @@
       "base": null,
       "refs": {
         "ConnectionNotification$ConnectionNotificationType": "<p>The type of notification.</p>"
+      }
+    },
+    "ConnectionTrackingConfiguration": {
+      "base": "<p>A security group connection tracking configuration that enables you to set the idle timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "NetworkInterface$ConnectionTrackingConfiguration": "<p>A security group connection tracking configuration that enables you to set the timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
+    "ConnectionTrackingSpecification": {
+      "base": "<p>A security group connection tracking specification that enables you to set the idle timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$ConnectionTrackingSpecification": "<p>A security group connection tracking specification that enables you to set the timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
+    "ConnectionTrackingSpecificationRequest": {
+      "base": "<p>A security group connection tracking specification request that enables you to set the idle timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "CreateNetworkInterfaceRequest$ConnectionTrackingSpecification": "<p>A connection tracking specification for the network interface.</p>",
+        "InstanceNetworkInterfaceSpecification$ConnectionTrackingSpecification": "<p>A security group connection tracking specification that enables you to set the timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$ConnectionTrackingSpecification": "<p>A security group connection tracking specification that enables you to set the timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "ModifyNetworkInterfaceAttributeRequest$ConnectionTrackingSpecification": "<p>A connection tracking specification.</p>"
+      }
+    },
+    "ConnectionTrackingSpecificationResponse": {
+      "base": "<p>A security group connection tracking specification response that enables you to set the idle timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "InstanceNetworkInterface$ConnectionTrackingConfiguration": "<p>A security group connection tracking configuration that enables you to set the timeout for connection tracking on an Elastic network interface. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts\">Connection tracking timeouts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "ConnectivityType": {
@@ -5843,6 +5939,16 @@
       "refs": {
       }
     },
+    "DeprovisionIpamByoasnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeprovisionIpamByoasnResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeprovisionIpamPoolCidrRequest": {
       "base": null,
       "refs": {
@@ -6660,6 +6766,22 @@
       }
     },
     "DescribeInternetGatewaysResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeIpamByoasnMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeIpamByoasnRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "DescribeIpamByoasnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeIpamByoasnResult": {
       "base": null,
       "refs": {
       }
@@ -8133,6 +8255,16 @@
       "refs": {
       }
     },
+    "DisassociateIpamByoasnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateIpamByoasnResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateIpamResourceDiscoveryRequest": {
       "base": null,
       "refs": {
@@ -9362,6 +9494,7 @@
         "ExportTransitGatewayRoutesRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>attachment.transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p> </li> <li> <p> <code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p> </li> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route (<code>active</code> | <code>blackhole</code>).</p> </li> <li> <p> <code>transit-gateway-route-destination-cidr-block</code> - The CIDR range.</p> </li> <li> <p> <code>type</code> - The type of route (<code>propagated</code> | <code>static</code>).</p> </li> </ul>",
         "GetCoipPoolUsageRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>coip-address-usage.allocation-id</code> - The allocation ID of the address.</p> </li> <li> <p> <code>coip-address-usage.aws-account-id</code> - The ID of the Amazon Web Services account that is using the customer-owned IP address.</p> </li> <li> <p> <code>coip-address-usage.aws-service</code> - The Amazon Web Services service that is using the customer-owned IP address.</p> </li> <li> <p> <code>coip-address-usage.co-ip</code> - The customer-owned IP address.</p> </li> </ul>",
         "GetIpamDiscoveredAccountsRequest$Filters": "<p>Discovered account filters.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$Filters": "<p>Filters.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$Filters": "<p>Filters.</p>",
         "GetIpamPoolAllocationsRequest$Filters": "<p>One or more filters for the request. For more information about filtering, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html\">Filtering CLI output</a>.</p>",
         "GetIpamPoolCidrsRequest$Filters": "<p>One or more filters for the request. For more information about filtering, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html\">Filtering CLI output</a>.</p>",
@@ -9980,6 +10113,16 @@
       }
     },
     "GetIpamDiscoveredAccountsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIpamDiscoveredPublicAddressesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIpamDiscoveredPublicAddressesResult": {
       "base": null,
       "refs": {
       }
@@ -11877,6 +12020,18 @@
         "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ClientVpnEndpoint$VpnPort": "<p>The port number for the Client VPN endpoint.</p>",
         "ClientVpnEndpoint$SessionTimeoutHours": "<p>The maximum VPN session duration time in hours.</p> <p>Valid values: <code>8 | 10 | 12 | 24</code> </p> <p>Default value: <code>24</code> </p>",
+        "ConnectionTrackingConfiguration$TcpEstablishedTimeout": "<p>Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.</p>",
+        "ConnectionTrackingConfiguration$UdpStreamTimeout": "<p>Timeout (in seconds) for idle UDP flows classified as streams which have seen more than one request-response transaction. Min: 60 seconds. Max: 180 seconds (3 minutes). Default: 180 seconds.</p>",
+        "ConnectionTrackingConfiguration$UdpTimeout": "<p>Timeout (in seconds) for idle UDP flows that have seen traffic only in a single direction or a single request-response transaction. Min: 30 seconds. Max: 60 seconds. Default: 30 seconds.</p>",
+        "ConnectionTrackingSpecification$TcpEstablishedTimeout": "<p>Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.</p>",
+        "ConnectionTrackingSpecification$UdpTimeout": "<p>Timeout (in seconds) for idle UDP flows that have seen traffic only in a single direction or a single request-response transaction. Min: 30 seconds. Max: 60 seconds. Default: 30 seconds.</p>",
+        "ConnectionTrackingSpecification$UdpStreamTimeout": "<p>Timeout (in seconds) for idle UDP flows classified as streams which have seen more than one request-response transaction. Min: 60 seconds. Max: 180 seconds (3 minutes). Default: 180 seconds.</p>",
+        "ConnectionTrackingSpecificationRequest$TcpEstablishedTimeout": "<p>Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.</p>",
+        "ConnectionTrackingSpecificationRequest$UdpStreamTimeout": "<p>Timeout (in seconds) for idle UDP flows classified as streams which have seen more than one request-response transaction. Min: 60 seconds. Max: 180 seconds (3 minutes). Default: 180 seconds.</p>",
+        "ConnectionTrackingSpecificationRequest$UdpTimeout": "<p>Timeout (in seconds) for idle UDP flows that have seen traffic only in a single direction or a single request-response transaction. Min: 30 seconds. Max: 60 seconds. Default: 30 seconds.</p>",
+        "ConnectionTrackingSpecificationResponse$TcpEstablishedTimeout": "<p>Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.</p>",
+        "ConnectionTrackingSpecificationResponse$UdpStreamTimeout": "<p>Timeout (in seconds) for idle UDP flows classified as streams which have seen more than one request-response transaction. Min: 60 seconds. Max: 180 seconds (3 minutes). Default: 180 seconds.</p>",
+        "ConnectionTrackingSpecificationResponse$UdpTimeout": "<p>Timeout (in seconds) for idle UDP flows that have seen traffic only in a single direction or a single request-response transaction. Min: 30 seconds. Max: 60 seconds. Default: 30 seconds.</p>",
         "CpuOptions$CoreCount": "<p>The number of CPU cores for the instance.</p>",
         "CpuOptions$ThreadsPerCore": "<p>The number of threads per CPU core.</p>",
         "CpuOptionsRequest$CoreCount": "<p>The number of CPU cores for the instance.</p>",
@@ -12410,6 +12565,18 @@
         "GetIpamDiscoveredAccountsResult$IpamDiscoveredAccounts": "<p>Discovered accounts.</p>"
       }
     },
+    "IpamDiscoveredPublicAddress": {
+      "base": "<p>A public IP Address discovered by IPAM.</p>",
+      "refs": {
+        "IpamDiscoveredPublicAddressSet$member": null
+      }
+    },
+    "IpamDiscoveredPublicAddressSet": {
+      "base": null,
+      "refs": {
+        "GetIpamDiscoveredPublicAddressesResult$IpamDiscoveredPublicAddresses": "<p>IPAM discovered public addresses.</p>"
+      }
+    },
     "IpamDiscoveredResourceCidr": {
       "base": "<p>An IPAM discovered resource CIDR. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses. The discovered resource CIDR is the IP address range in CIDR notation that is associated with the resource.</p>",
       "refs": {
@@ -12438,12 +12605,15 @@
       "base": null,
       "refs": {
         "AssociateIpamResourceDiscoveryRequest$IpamId": "<p>An IPAM ID.</p>",
+        "Byoasn$IpamId": "<p>An IPAM ID.</p>",
         "CreateIpamScopeRequest$IpamId": "<p>The ID of the IPAM for which you're creating this scope.</p>",
         "DeleteIpamRequest$IpamId": "<p>The ID of the IPAM to delete.</p>",
+        "DeprovisionIpamByoasnRequest$IpamId": "<p>The IPAM ID.</p>",
         "Ipam$IpamId": "<p>The ID of the IPAM.</p>",
         "IpamResourceCidr$IpamId": "<p>The IPAM ID for an IPAM resource.</p>",
         "IpamResourceDiscoveryAssociation$IpamId": "<p>The IPAM ID.</p>",
-        "ModifyIpamRequest$IpamId": "<p>The ID of the IPAM you want to modify.</p>"
+        "ModifyIpamRequest$IpamId": "<p>The ID of the IPAM you want to modify.</p>",
+        "ProvisionIpamByoasnRequest$IpamId": "<p>An IPAM ID.</p>"
       }
     },
     "IpamManagementState": {
@@ -12461,6 +12631,7 @@
         "DescribeIpamScopesRequest$MaxResults": "<p>The maximum number of results to return in the request.</p>",
         "DescribeIpamsRequest$MaxResults": "<p>The maximum number of results to return in the request.</p>",
         "GetIpamDiscoveredAccountsRequest$MaxResults": "<p>The maximum number of discovered accounts to return in one page of results.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$MaxResults": "<p>The maximum number of IPAM discovered public addresses to return in one page of results.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$MaxResults": "<p>The maximum number of discovered resource CIDRs to return in one page of results.</p>",
         "GetIpamPoolCidrsRequest$MaxResults": "<p>The maximum number of results to return in the request.</p>",
         "GetIpamResourceCidrsRequest$MaxResults": "<p>The maximum number of results to return in the request.</p>"
@@ -12514,6 +12685,12 @@
       "refs": {
         "AllocateIpamPoolCidrResult$IpamPoolAllocation": "<p>Information about the allocation created.</p>",
         "IpamPoolAllocationSet$member": null
+      }
+    },
+    "IpamPoolAllocationAllowedCidrs": {
+      "base": null,
+      "refs": {
+        "AllocateIpamPoolCidrRequest$AllowedCidrs": "<p>Include a particular CIDR range that can be returned by the pool. Allowed CIDRs are only allowed if using netmask length for allocation.</p>"
       }
     },
     "IpamPoolAllocationDisallowedCidrs": {
@@ -12591,9 +12768,12 @@
       "base": null,
       "refs": {
         "AllocateIpamPoolCidrRequest$IpamPoolId": "<p>The ID of the IPAM pool from which you would like to allocate a CIDR.</p>",
+        "AssociateSubnetCidrBlockRequest$Ipv6IpamPoolId": "<p>An IPv6 IPAM pool ID.</p>",
         "AssociateVpcCidrBlockRequest$Ipv4IpamPoolId": "<p>Associate a CIDR allocated from an IPv4 IPAM pool to a VPC. For more information about Amazon VPC IP Address Manager (IPAM), see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
         "AssociateVpcCidrBlockRequest$Ipv6IpamPoolId": "<p>Associates a CIDR allocated from an IPv6 IPAM pool to a VPC. For more information about Amazon VPC IP Address Manager (IPAM), see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
         "CreateIpamPoolRequest$SourceIpamPoolId": "<p>The ID of the source IPAM pool. Use this option to create a pool within an existing pool. Note that the CIDR you provision for the pool within the source pool must be available in the source pool's CIDR range.</p>",
+        "CreateSubnetRequest$Ipv4IpamPoolId": "<p>An IPv4 IPAM pool ID for the subnet.</p>",
+        "CreateSubnetRequest$Ipv6IpamPoolId": "<p>An IPv6 IPAM pool ID for the subnet.</p>",
         "CreateVpcRequest$Ipv4IpamPoolId": "<p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
         "CreateVpcRequest$Ipv6IpamPoolId": "<p>The ID of an IPv6 IPAM pool which will be used to allocate this VPC an IPv6 CIDR. IPAM is a VPC feature that you can use to automate your IP address management workflows including assigning, tracking, troubleshooting, and auditing IP addresses across Amazon Web Services Regions and accounts throughout your Amazon Web Services Organization. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
         "DeleteIpamPoolRequest$IpamPoolId": "<p>The ID of the pool to delete.</p>",
@@ -12624,10 +12804,77 @@
         "DescribeIpamPoolsResult$IpamPools": "<p>Information about the IPAM pools.</p>"
       }
     },
+    "IpamPoolSourceResource": {
+      "base": "<p>The resource used to provision CIDRs to a resource planning pool.</p>",
+      "refs": {
+        "IpamPool$SourceResource": null
+      }
+    },
+    "IpamPoolSourceResourceRequest": {
+      "base": "<p>The resource used to provision CIDRs to a resource planning pool.</p>",
+      "refs": {
+        "CreateIpamPoolRequest$SourceResource": "<p>The resource used to provision CIDRs to a resource planning pool.</p>"
+      }
+    },
+    "IpamPoolSourceResourceType": {
+      "base": null,
+      "refs": {
+        "IpamPoolSourceResource$ResourceType": "<p>The source resource type.</p>",
+        "IpamPoolSourceResourceRequest$ResourceType": "<p>The source resource type.</p>"
+      }
+    },
     "IpamPoolState": {
       "base": null,
       "refs": {
         "IpamPool$State": "<p>The state of the IPAM pool.</p>"
+      }
+    },
+    "IpamPublicAddressAssociationStatus": {
+      "base": null,
+      "refs": {
+        "IpamDiscoveredPublicAddress$AssociationStatus": "<p>The association status.</p>"
+      }
+    },
+    "IpamPublicAddressAwsService": {
+      "base": null,
+      "refs": {
+        "IpamDiscoveredPublicAddress$Service": "<p>The Amazon Web Services service associated with the IP address.</p>"
+      }
+    },
+    "IpamPublicAddressSecurityGroup": {
+      "base": "<p>The security group that the resource with the public IP address is in.</p>",
+      "refs": {
+        "IpamPublicAddressSecurityGroupList$member": null
+      }
+    },
+    "IpamPublicAddressSecurityGroupList": {
+      "base": null,
+      "refs": {
+        "IpamDiscoveredPublicAddress$SecurityGroups": "<p>Security groups associated with the resource that the IP address is assigned to.</p>"
+      }
+    },
+    "IpamPublicAddressTag": {
+      "base": "<p>A tag for a public IP address discovered by IPAM.</p>",
+      "refs": {
+        "IpamPublicAddressTagList$member": null
+      }
+    },
+    "IpamPublicAddressTagList": {
+      "base": null,
+      "refs": {
+        "IpamPublicAddressTags$EipTags": "<p>Tags for an Elastic IP address.</p>"
+      }
+    },
+    "IpamPublicAddressTags": {
+      "base": "<p>Tags for a public IP address discovered by IPAM.</p>",
+      "refs": {
+        "IpamDiscoveredPublicAddress$Tags": "<p>Tags associated with the IP address.</p>"
+      }
+    },
+    "IpamPublicAddressType": {
+      "base": null,
+      "refs": {
+        "IpamDiscoveredPublicAddress$AddressType": "<p>The IP address type.</p>"
       }
     },
     "IpamResourceCidr": {
@@ -12686,8 +12933,10 @@
         "AssociateIpamResourceDiscoveryRequest$IpamResourceDiscoveryId": "<p>A resource discovery ID.</p>",
         "DeleteIpamResourceDiscoveryRequest$IpamResourceDiscoveryId": "<p>The IPAM resource discovery ID.</p>",
         "GetIpamDiscoveredAccountsRequest$IpamResourceDiscoveryId": "<p>A resource discovery ID.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$IpamResourceDiscoveryId": "<p>An IPAM resource discovery ID.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$IpamResourceDiscoveryId": "<p>A resource discovery ID.</p>",
         "Ipam$DefaultResourceDiscoveryId": "<p>The IPAM's default resource discovery ID.</p>",
+        "IpamDiscoveredPublicAddress$IpamResourceDiscoveryId": "<p>The resource discovery ID.</p>",
         "IpamDiscoveredResourceCidr$IpamResourceDiscoveryId": "<p>The resource discovery ID.</p>",
         "IpamResourceDiscovery$IpamResourceDiscoveryId": "<p>The resource discovery ID.</p>",
         "IpamResourceDiscoveryAssociation$IpamResourceDiscoveryId": "<p>The resource discovery ID.</p>",
@@ -12782,6 +13031,14 @@
       "base": null,
       "refs": {
         "Ipam$State": "<p>The state of the IPAM.</p>"
+      }
+    },
+    "IpamTier": {
+      "base": null,
+      "refs": {
+        "CreateIpamRequest$Tier": "<p>IPAM is offered in a Free Tier and an Advanced Tier. For more information about the features available in each tier and the costs associated with the tiers, see <a href=\"http://aws.amazon.com/vpc/pricing/\">Amazon VPC pricing &gt; IPAM tab</a>.</p>",
+        "Ipam$Tier": "<p>IPAM is offered in a Free Tier and an Advanced Tier. For more information about the features available in each tier and the costs associated with the tiers, see <a href=\"http://aws.amazon.com/vpc/pricing/\">Amazon VPC pricing &gt; IPAM tab</a>.</p>",
+        "ModifyIpamRequest$Tier": "<p>IPAM is offered in a Free Tier and an Advanced Tier. For more information about the features available in each tier and the costs associated with the tiers, see <a href=\"http://aws.amazon.com/vpc/pricing/\">Amazon VPC pricing &gt; IPAM tab</a>.</p>"
       }
     },
     "Ipv4PoolCoipId": {
@@ -14215,6 +14472,7 @@
         "GetAwsNetworkPerformanceDataRequest$EndTime": "<p>The ending time for the performance data request. The end time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-12T12:00:00.000Z</code>.</p>",
         "GetIpamAddressHistoryRequest$StartTime": "<p>The start of the time period for which you are looking for history. If you omit this option, it will default to the value of EndTime.</p>",
         "GetIpamAddressHistoryRequest$EndTime": "<p>The end of the time period for which you are looking for history. If you omit this option, it will default to the current time.</p>",
+        "GetIpamDiscoveredPublicAddressesResult$OldestSampleTime": "<p>The oldest successful resource discovery time.</p>",
         "ImageRecycleBinInfo$RecycleBinEnterTime": "<p>The date and time when the AMI entered the Recycle Bin.</p>",
         "ImageRecycleBinInfo$RecycleBinExitTime": "<p>The date and time when the AMI is to be permanently deleted from the Recycle Bin.</p>",
         "Instance$UsageOperationUpdateTime": "<p>The time that the usage operation was last updated.</p>",
@@ -14222,6 +14480,7 @@
         "IpamAddressHistoryRecord$SampledEndTime": "<p>Sampled end time of the resource-to-CIDR association within the IPAM scope. Changes are picked up in periodic snapshots, so the end time may have occurred before this specific time.</p>",
         "IpamDiscoveredAccount$LastAttemptedDiscoveryTime": "<p>The last attempted resource discovery time.</p>",
         "IpamDiscoveredAccount$LastSuccessfulDiscoveryTime": "<p>The last successful resource discovery time.</p>",
+        "IpamDiscoveredPublicAddress$SampleTime": "<p>The last successful resource discovery time.</p>",
         "IpamDiscoveredResourceCidr$SampleTime": "<p>The last successful resource discovery time.</p>",
         "KeyPairInfo$CreateTime": "<p>If you used Amazon EC2 to create the key pair, this is the date and time when the key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p> <p>If you imported an existing key pair to Amazon EC2, this is the date and time the key was imported, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p>",
         "LockSnapshotRequest$ExpirationDate": "<p>The date and time at which the snapshot lock is to automatically expire, in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>).</p> <p>You must specify either this parameter or <b>LockDuration</b>, but not both.</p>",
@@ -15046,8 +15305,11 @@
     "NetmaskLength": {
       "base": null,
       "refs": {
+        "AssociateSubnetCidrBlockRequest$Ipv6NetmaskLength": "<p>An IPv6 netmask length.</p>",
         "AssociateVpcCidrBlockRequest$Ipv4NetmaskLength": "<p>The netmask length of the IPv4 CIDR you would like to associate from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
         "AssociateVpcCidrBlockRequest$Ipv6NetmaskLength": "<p>The netmask length of the IPv6 CIDR you would like to associate from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
+        "CreateSubnetRequest$Ipv4NetmaskLength": "<p>An IPv4 netmask length for the subnet.</p>",
+        "CreateSubnetRequest$Ipv6NetmaskLength": "<p>An IPv6 netmask length for the subnet.</p>",
         "CreateVpcRequest$Ipv4NetmaskLength": "<p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
         "CreateVpcRequest$Ipv6NetmaskLength": "<p>The netmask length of the IPv6 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>"
       }
@@ -15537,6 +15799,7 @@
         "DescribeInstanceTypeOfferingsResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeInstanceTypesRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeInstanceTypesResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "DescribeIpamByoasnRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeIpamPoolsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeIpamPoolsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeIpamResourceDiscoveriesRequest$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
@@ -15575,6 +15838,8 @@
         "GetIpamAddressHistoryResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetIpamDiscoveredAccountsRequest$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
         "GetIpamDiscoveredAccountsResult$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetIpamDiscoveredPublicAddressesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
         "GetIpamDiscoveredResourceCidrsResult$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
         "GetIpamPoolAllocationsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -16120,7 +16385,7 @@
         "Image$Platform": "<p>This value is set to <code>windows</code> for Windows AMIs; otherwise, it is blank.</p>",
         "ImportInstanceRequest$Platform": "<p>The instance operating system.</p>",
         "ImportInstanceTaskDetails$Platform": "<p>The instance operating system.</p>",
-        "Instance$Platform": "<p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>"
+        "Instance$Platform": "<p>The platform. This value is <code>windows</code> for Windows instances; otherwise, it is empty.</p>"
       }
     },
     "PoolCidrBlock": {
@@ -16514,6 +16779,16 @@
       }
     },
     "ProvisionByoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ProvisionIpamByoasnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ProvisionIpamByoasnResult": {
       "base": null,
       "refs": {
       }
@@ -18789,6 +19064,7 @@
         "AddressTransfer$AllocationId": "<p>The allocation ID of an Elastic IP address.</p>",
         "AddressTransfer$TransferAccountId": "<p>The ID of the account that you want to transfer the Elastic IP address to.</p>",
         "AdvertiseByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.</p>",
+        "AdvertiseByoipCidrRequest$Asn": "<p>The public 2-byte or 4-byte ASN that you want to advertise.</p>",
         "AllocateAddressRequest$NetworkBorderGroup": "<p> A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\">DescribeAvailabilityZones</a> to view the network border groups.</p>",
         "AllocateAddressRequest$CustomerOwnedIpv4Pool": "<p>The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.</p>",
         "AllocateAddressResult$PublicIp": "<p>The Elastic IP address.</p>",
@@ -18837,6 +19113,11 @@
         "AnalysisSecurityGroupRule$SecurityGroupId": "<p>The security group ID.</p>",
         "AnalysisSecurityGroupRule$PrefixListId": "<p>The prefix list ID.</p>",
         "AnalysisSecurityGroupRule$Protocol": "<p>The protocol name.</p>",
+        "AsnAssociation$Asn": "<p>The association's ASN.</p>",
+        "AsnAssociation$Cidr": "<p>The association's CIDR.</p>",
+        "AsnAssociation$StatusMessage": "<p>The association's status message.</p>",
+        "AsnAuthorizationContext$Message": "<p>The authorization context's message.</p>",
+        "AsnAuthorizationContext$Signature": "<p>The authorization context's signature.</p>",
         "AssignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignPrivateIpAddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignedPrivateIpAddress$PrivateIpAddress": "<p>The private IP address assigned to the network interface.</p>",
@@ -18847,9 +19128,11 @@
         "AssociateEnclaveCertificateIamRoleResult$CertificateS3BucketName": "<p>The name of the Amazon S3 bucket to which the certificate was uploaded.</p>",
         "AssociateEnclaveCertificateIamRoleResult$CertificateS3ObjectKey": "<p>The Amazon S3 object key where the certificate, certificate chain, and encrypted private key bundle are stored. The object key is formatted as follows: <code>role_arn</code>/<code>certificate_arn</code>.</p>",
         "AssociateEnclaveCertificateIamRoleResult$EncryptionKmsKeyId": "<p>The ID of the KMS key used to encrypt the private key of the certificate.</p>",
+        "AssociateIpamByoasnRequest$Asn": "<p>A public 2-byte or 4-byte ASN.</p>",
+        "AssociateIpamByoasnRequest$Cidr": "<p>The BYOIP CIDR you want to associate with an ASN.</p>",
         "AssociateIpamResourceDiscoveryRequest$ClientToken": "<p>A client token.</p>",
         "AssociateRouteTableResult$AssociationId": "<p>The route table association ID. This ID is required for disassociating the route table.</p>",
-        "AssociateSubnetCidrBlockRequest$Ipv6CidrBlock": "<p>The IPv6 CIDR block for your subnet. The subnet must have a /64 prefix length.</p>",
+        "AssociateSubnetCidrBlockRequest$Ipv6CidrBlock": "<p>The IPv6 CIDR block for your subnet.</p>",
         "AssociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
         "AssociateTrunkInterfaceRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "AssociateTrunkInterfaceResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
@@ -18902,6 +19185,8 @@
         "BundleTask$Progress": "<p>The level of task completion, as a percent (for example, 20%).</p>",
         "BundleTaskError$Code": "<p>The error code.</p>",
         "BundleTaskError$Message": "<p>The error message.</p>",
+        "Byoasn$Asn": "<p>A public 2-byte or 4-byte ASN.</p>",
+        "Byoasn$StatusMessage": "<p>The status message.</p>",
         "ByoipCidr$Cidr": "<p>The address range, in CIDR notation.</p>",
         "ByoipCidr$Description": "<p>The description of the address range.</p>",
         "ByoipCidr$StatusMessage": "<p>Upon success, contains the ID of the address pool. Otherwise, contains an error message.</p>",
@@ -19121,7 +19406,7 @@
         "CreateSubnetRequest$AvailabilityZone": "<p>The Availability Zone or Local Zone for the subnet.</p> <p>Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet.</p> <p>To create a subnet in a Local Zone, set this value to the Local Zone ID, for example <code>us-west-2-lax-1a</code>. For information about the Regions that support Local Zones, see <a href=\"http://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/\">Local Zones locations</a>.</p> <p>To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.</p>",
         "CreateSubnetRequest$AvailabilityZoneId": "<p>The AZ ID or the Local Zone ID of the subnet.</p>",
         "CreateSubnetRequest$CidrBlock": "<p>The IPv4 network range for the subnet, in CIDR notation. For example, <code>10.0.0.0/24</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p> <p>This parameter is not supported for an IPv6 only subnet.</p>",
-        "CreateSubnetRequest$Ipv6CidrBlock": "<p>The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length.</p> <p>This parameter is required for an IPv6 only subnet.</p>",
+        "CreateSubnetRequest$Ipv6CidrBlock": "<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.</p>",
         "CreateSubnetRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.</p>",
         "CreateTrafficMirrorFilterRequest$Description": "<p>The description of the Traffic Mirror filter.</p>",
         "CreateTrafficMirrorFilterRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
@@ -19226,6 +19511,7 @@
         "DeleteVerifiedAccessTrustProviderRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "DeleteVpnConnectionRouteRequest$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer network.</p>",
         "DeprovisionByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>",
+        "DeprovisionIpamByoasnRequest$Asn": "<p>An ASN.</p>",
         "DeprovisionIpamPoolCidrRequest$Cidr": "<p>The CIDR which you want to deprovision from the pool.</p>",
         "DeprovisionPublicIpv4PoolCidrRequest$Cidr": "<p>The CIDR you want to deprovision from the pool. Enter the CIDR you want to deprovision with a netmask of <code>/32</code>. You must rerun this command for each IP address in the CIDR range. If your CIDR is a <code>/24</code>, you will have to run this command to deprovision each of the 256 IP addresses in the <code>/24</code> CIDR.</p>",
         "DeprovisionedAddressSet$member": null,
@@ -19299,6 +19585,7 @@
         "DescribeInstancesResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeInternetGatewaysRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeInternetGatewaysResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "DescribeIpamByoasnResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeLaunchTemplateVersionsRequest$MinVersion": "<p>The version number after which to describe launch template versions.</p>",
         "DescribeLaunchTemplateVersionsRequest$MaxVersion": "<p>The version number up to which to describe launch template versions.</p>",
         "DescribeLaunchTemplateVersionsRequest$NextToken": "<p>The token to request the next page of results.</p>",
@@ -19454,6 +19741,8 @@
         "DisableIpamOrganizationAdminAccountRequest$DelegatedAdminAccountId": "<p>The Organizations member account ID that you want to disable as IPAM account.</p>",
         "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateClientVpnTargetNetworkResult$AssociationId": "<p>The ID of the target network association.</p>",
+        "DisassociateIpamByoasnRequest$Asn": "<p>A public 2-byte or 4-byte ASN.</p>",
+        "DisassociateIpamByoasnRequest$Cidr": "<p>A BYOIP CIDR.</p>",
         "DisassociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
         "DisassociateTrunkInterfaceRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "DisassociateTrunkInterfaceResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
@@ -19616,6 +19905,7 @@
         "GetIpamAddressHistoryRequest$Cidr": "<p>The CIDR you want the history of. The CIDR can be an IPv4 or IPv6 IP address range. If you enter a /16 IPv4 CIDR, you will get records that match it exactly. You will not get records for any subnets within the /16 CIDR.</p>",
         "GetIpamAddressHistoryRequest$VpcId": "<p>The ID of the VPC you want your history records filtered by.</p>",
         "GetIpamDiscoveredAccountsRequest$DiscoveryRegion": "<p>The Amazon Web Services Region that the account information is returned from.</p>",
+        "GetIpamDiscoveredPublicAddressesRequest$AddressRegion": "<p>The Amazon Web Services Region for the IP address.</p>",
         "GetIpamDiscoveredResourceCidrsRequest$ResourceRegion": "<p>A resource Region.</p>",
         "GetIpamResourceCidrsRequest$ResourceId": "<p>The ID of the resource.</p>",
         "GetIpamResourceCidrsRequest$ResourceOwner": "<p>The ID of the Amazon Web Services account that owns the resource.</p>",
@@ -19845,6 +20135,7 @@
         "Ipam$OwnerId": "<p>The Amazon Web Services account ID of the owner of the IPAM.</p>",
         "Ipam$IpamRegion": "<p>The Amazon Web Services Region of the IPAM.</p>",
         "Ipam$Description": "<p>The description for the IPAM.</p>",
+        "Ipam$StateMessage": "<p>The state message.</p>",
         "IpamAddressHistoryRecord$ResourceOwnerId": "<p>The ID of the resource owner.</p>",
         "IpamAddressHistoryRecord$ResourceRegion": "<p>The Amazon Web Services Region of the resource.</p>",
         "IpamAddressHistoryRecord$ResourceId": "<p>The ID of the resource.</p>",
@@ -19855,6 +20146,18 @@
         "IpamCidrAuthorizationContext$Signature": "<p>The signed authorization message for the prefix and account.</p>",
         "IpamDiscoveredAccount$AccountId": "<p>The account ID.</p>",
         "IpamDiscoveredAccount$DiscoveryRegion": "<p>The Amazon Web Services Region that the account information is returned from. An account can be discovered in multiple regions and will have a separate discovered account for each Region.</p>",
+        "IpamDiscoveredPublicAddress$AddressRegion": "<p>The Region of the resource the IP address is assigned to.</p>",
+        "IpamDiscoveredPublicAddress$Address": "<p>The IP address.</p>",
+        "IpamDiscoveredPublicAddress$AddressOwnerId": "<p>The ID of the owner of the resource the IP address is assigned to.</p>",
+        "IpamDiscoveredPublicAddress$AddressAllocationId": "<p>The allocation ID of the resource the IP address is assigned to.</p>",
+        "IpamDiscoveredPublicAddress$ServiceResource": "<p>The resource ARN or ID.</p>",
+        "IpamDiscoveredPublicAddress$VpcId": "<p>The ID of the VPC that the resource with the assigned IP address is in.</p>",
+        "IpamDiscoveredPublicAddress$SubnetId": "<p>The ID of the subnet that the resource with the assigned IP address is in.</p>",
+        "IpamDiscoveredPublicAddress$PublicIpv4PoolId": "<p>The ID of the public IPv4 pool that the resource with the assigned IP address is from.</p>",
+        "IpamDiscoveredPublicAddress$NetworkInterfaceId": "<p>The network interface ID of the resource with the assigned IP address.</p>",
+        "IpamDiscoveredPublicAddress$NetworkInterfaceDescription": "<p>The description of the network interface that IP address is assigned to.</p>",
+        "IpamDiscoveredPublicAddress$InstanceId": "<p>The instance ID of the instance the assigned IP address is assigned to.</p>",
+        "IpamDiscoveredPublicAddress$NetworkBorderGroup": "<p>The network border group that the resource that the IP address is assigned to is in.</p>",
         "IpamDiscoveredResourceCidr$ResourceRegion": "<p>The resource Region.</p>",
         "IpamDiscoveredResourceCidr$ResourceId": "<p>The resource ID.</p>",
         "IpamDiscoveredResourceCidr$ResourceOwnerId": "<p>The resource owner ID.</p>",
@@ -19865,16 +20168,27 @@
         "IpamPool$OwnerId": "<p>The Amazon Web Services account ID of the owner of the IPAM pool.</p>",
         "IpamPool$IpamRegion": "<p>The Amazon Web Services Region of the IPAM pool.</p>",
         "IpamPool$Locale": "<p>The locale of the IPAM pool. In IPAM, the locale is the Amazon Web Services Region where you want to make an IPAM pool available for allocations. Only resources in the same Region as the locale of the pool can get IP address allocations from the pool. You can only allocate a CIDR for a VPC, for example, from an IPAM pool that shares a locale with the VPC’s Region. Note that once you choose a Locale for a pool, you cannot modify it. If you choose an Amazon Web Services Region for locale that has not been configured as an operating Region for the IPAM, you'll get an error.</p>",
-        "IpamPool$StateMessage": "<p>A message related to the failed creation of an IPAM pool.</p>",
+        "IpamPool$StateMessage": "<p>The state message.</p>",
         "IpamPool$Description": "<p>The description of the IPAM pool.</p>",
         "IpamPoolAllocation$Cidr": "<p>The CIDR for the allocation. A CIDR is a representation of an IP address and its associated network mask (or netmask) and refers to a range of IP addresses. An IPv4 CIDR example is <code>10.24.34.0/23</code>. An IPv6 CIDR example is <code>2001:DB8::/32</code>.</p>",
         "IpamPoolAllocation$Description": "<p>A description of the pool allocation.</p>",
         "IpamPoolAllocation$ResourceId": "<p>The ID of the resource.</p>",
         "IpamPoolAllocation$ResourceRegion": "<p>The Amazon Web Services Region of the resource.</p>",
         "IpamPoolAllocation$ResourceOwner": "<p>The owner of the resource.</p>",
+        "IpamPoolAllocationAllowedCidrs$member": null,
         "IpamPoolAllocationDisallowedCidrs$member": null,
         "IpamPoolCidr$Cidr": "<p>The CIDR provisioned to the IPAM pool. A CIDR is a representation of an IP address and its associated network mask (or netmask) and refers to a range of IP addresses. An IPv4 CIDR example is <code>10.24.34.0/23</code>. An IPv6 CIDR example is <code>2001:DB8::/32</code>.</p>",
         "IpamPoolCidrFailureReason$Message": "<p>A message related to why an IPAM pool CIDR failed to be provisioned.</p>",
+        "IpamPoolSourceResource$ResourceId": "<p>The source resource ID.</p>",
+        "IpamPoolSourceResource$ResourceRegion": "<p>The source resource Region.</p>",
+        "IpamPoolSourceResource$ResourceOwner": "<p>The source resource owner.</p>",
+        "IpamPoolSourceResourceRequest$ResourceId": "<p>The source resource ID.</p>",
+        "IpamPoolSourceResourceRequest$ResourceRegion": "<p>The source resource Region.</p>",
+        "IpamPoolSourceResourceRequest$ResourceOwner": "<p>The source resource owner.</p>",
+        "IpamPublicAddressSecurityGroup$GroupName": "<p>The security group's name.</p>",
+        "IpamPublicAddressSecurityGroup$GroupId": "<p>The security group's ID.</p>",
+        "IpamPublicAddressTag$Key": "<p>The tag's key.</p>",
+        "IpamPublicAddressTag$Value": "<p>The tag's value.</p>",
         "IpamResourceCidr$ResourceRegion": "<p>The Amazon Web Services Region for an IPAM resource.</p>",
         "IpamResourceCidr$ResourceOwnerId": "<p>The Amazon Web Services account number of the owner of an IPAM resource.</p>",
         "IpamResourceCidr$ResourceId": "<p>The ID of an IPAM resource.</p>",
@@ -20209,6 +20523,7 @@
         "PropagatingVgw$GatewayId": "<p>The ID of the virtual private gateway.</p>",
         "ProvisionByoipCidrRequest$Cidr": "<p>The public IPv4 or IPv6 address range, in CIDR notation. The most specific IPv4 prefix that you can specify is /24. The most specific IPv6 prefix you can specify is /56. The address range cannot overlap with another address range that you've brought to this or another Region.</p>",
         "ProvisionByoipCidrRequest$Description": "<p>A description for the address range and the address pool.</p>",
+        "ProvisionIpamByoasnRequest$Asn": "<p>A public 2-byte or 4-byte ASN.</p>",
         "ProvisionIpamPoolCidrRequest$Cidr": "<p>The CIDR you want to assign to the IPAM pool. Either \"NetmaskLength\" or \"Cidr\" is required. This value will be null if you specify \"NetmaskLength\" and will be filled in during the provisioning process.</p>",
         "ProvisionIpamPoolCidrRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ProvisionedBandwidth$Provisioned": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
@@ -22454,7 +22769,7 @@
       }
     },
     "TrunkInterfaceAssociation": {
-      "base": "<note> <p>Currently available in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Information about an association between a branch network interface with a trunk network interface.</p>",
+      "base": "<p>Information about an association between a branch network interface with a trunk network interface.</p>",
       "refs": {
         "AssociateTrunkInterfaceResult$InterfaceAssociation": "<p>Information about the association between the trunk network interface and branch network interface.</p>",
         "TrunkInterfaceAssociationList$member": null

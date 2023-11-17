@@ -1,3 +1,56 @@
+Release v1.48.0 (2023-11-17)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/athena`: Updates service API and documentation
+  * Adding SerivicePreProcessing time metric
+* `service/cloud9`: Updates service documentation and examples
+  * A minor doc only update related to changing the date of an API change.
+* `service/cloudformation`: Updates service API and documentation
+  * This release adds a new flag ImportExistingResources to CreateChangeSet. Specify this parameter on a CREATE- or UPDATE-type change set to import existing resources with custom names instead of recreating them.
+* `service/codepipeline`: Updates service API and documentation
+  * CodePipeline now supports overriding source revisions to achieve manual re-deploy of a past revision
+* `service/codestar-connections`: Updates service API, documentation, and paginators
+* `service/connect`: Updates service API
+* `service/dlm`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds new features for Amazon VPC IP Address Manager (IPAM) Allowing a choice between Free and Advanced Tiers, viewing public IP address insights across regions and in Amazon Cloudwatch, use IPAM to plan your subnet IPs within a VPC and bring your own autonomous system number to IPAM.
+* `service/ecr`: Updates service API and documentation
+  * Documentation and operational updates for Amazon ECR, adding support for pull through cache rules for upstream registries that require authentication.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Launch support for IAM Identity Center Trusted Identity Propagation and workspace storage encryption using AWS KMS in EMR Studio
+* `service/eventbridge`: Updates service API and documentation
+* `service/internetmonitor`: Updates service API, documentation, and paginators
+* `service/ivs`: Updates service API
+* `service/ivschat`: Updates service API
+* `service/kinesisvideo`: Updates service documentation
+  * Docs only build to bring up-to-date with public docs.
+* `service/location`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * MediaLive has now added support for per-output static image overlay.
+* `service/mgn`: Updates service API
+* `service/osis`: Updates service API and documentation
+* `service/pipes`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for option groups and replica enhancements to Amazon RDS Custom.
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Updated SDK for Amazon Redshift, which you can use to configure a connection with IAM Identity Center to manage access to databases. With these, you can create a connection through a managed application. You can also change a managed application, delete it, or get information about an existing one.
+* `service/redshift-serverless`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Removes all default 0 values for numbers and false values for booleans
+* `service/sso-admin`: Updates service API and documentation
+* `service/sso-oidc`: Updates service API, documentation, and examples
+* `service/sts`: Updates service documentation
+  * API updates for the AWS Security Token Service
+* `service/trustedadvisor`: Adds new service
+* `service/verifiedpermissions`: Updates service API and documentation
+* `service/wisdom`: Updates service API, documentation, and paginators
+
+### SDK Features
+* `service/macie`: Deprecate Macie
+  * This change removes the macie service, since it is deprecated.
+
 Release v1.47.13 (2023-11-16)
 ===
 

@@ -222,6 +222,12 @@ const (
 	// An error occurred. The custom domain name couldn't be found.
 	ErrCodeCustomDomainAssociationNotFoundFault = "CustomDomainAssociationNotFoundFault"
 
+	// ErrCodeDependentServiceAccessDeniedFault for service response error code
+	// "DependentServiceAccessDenied".
+	//
+	// A dependent service denied access for the integration.
+	ErrCodeDependentServiceAccessDeniedFault = "DependentServiceAccessDenied"
+
 	// ErrCodeDependentServiceRequestThrottlingFault for service response error code
 	// "DependentServiceRequestThrottlingFault".
 	//
@@ -599,6 +605,24 @@ const (
 	//
 	// The name of the partner was not found.
 	ErrCodePartnerNotFoundFault = "PartnerNotFound"
+
+	// ErrCodeRedshiftIdcApplicationAlreadyExistsFault for service response error code
+	// "RedshiftIdcApplicationAlreadyExists".
+	//
+	// The application you attempted to add already exists.
+	ErrCodeRedshiftIdcApplicationAlreadyExistsFault = "RedshiftIdcApplicationAlreadyExists"
+
+	// ErrCodeRedshiftIdcApplicationNotExistsFault for service response error code
+	// "RedshiftIdcApplicationNotExists".
+	//
+	// The application you attempted to find doesn't exist.
+	ErrCodeRedshiftIdcApplicationNotExistsFault = "RedshiftIdcApplicationNotExists"
+
+	// ErrCodeRedshiftIdcApplicationQuotaExceededFault for service response error code
+	// "RedshiftIdcApplicationQuotaExceeded".
+	//
+	// The maximum number of Redshift IAM Identity Center applications was exceeded.
+	ErrCodeRedshiftIdcApplicationQuotaExceededFault = "RedshiftIdcApplicationQuotaExceeded"
 
 	// ErrCodeReservedNodeAlreadyExistsFault for service response error code
 	// "ReservedNodeAlreadyExists".

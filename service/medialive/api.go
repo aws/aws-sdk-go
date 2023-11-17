@@ -2063,7 +2063,7 @@ func (c *MediaLive) DescribeAccountConfigurationRequest(input *DescribeAccountCo
 
 // DescribeAccountConfiguration API operation for AWS Elemental MediaLive.
 //
-// # Get account configuration
+// # Describe account configuration
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6715,6 +6715,9 @@ func (s AcceptInputDeviceTransferOutput) GoString() string {
 type AccountConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the KMS key to use for all features that use key encryption. Specify
+	// the ARN of a KMS key that you have created. Or leave blank to use the key
+	// that MediaLive creates and manages for you.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 }
 
@@ -16141,6 +16144,11 @@ type FeatureActivations struct {
 	// an existing schedule, make sure that you first delete all input prepare actions
 	// from the schedule.
 	InputPrepareScheduleActions *string `locationName:"inputPrepareScheduleActions" type:"string" enum:"FeatureActivationsInputPrepareScheduleActions"`
+
+	// Enables the output static image overlay feature. Enabling this feature allows
+	// you to send channel schedule updatesto display/clear/modify image overlays
+	// on an output-by-output bases.
+	OutputStaticImageOverlayScheduleActions *string `locationName:"outputStaticImageOverlayScheduleActions" type:"string" enum:"FeatureActivationsOutputStaticImageOverlayScheduleActions"`
 }
 
 // String returns the string representation.
@@ -16164,6 +16172,12 @@ func (s FeatureActivations) GoString() string {
 // SetInputPrepareScheduleActions sets the InputPrepareScheduleActions field's value.
 func (s *FeatureActivations) SetInputPrepareScheduleActions(v string) *FeatureActivations {
 	s.InputPrepareScheduleActions = &v
+	return s
+}
+
+// SetOutputStaticImageOverlayScheduleActions sets the OutputStaticImageOverlayScheduleActions field's value.
+func (s *FeatureActivations) SetOutputStaticImageOverlayScheduleActions(v string) *FeatureActivations {
+	s.OutputStaticImageOverlayScheduleActions = &v
 	return s
 }
 
@@ -28206,6 +28220,12 @@ type ScheduleActionSettings struct {
 
 	// Action to deactivate a static image overlay
 	StaticImageDeactivateSettings *StaticImageDeactivateScheduleActionSettings `locationName:"staticImageDeactivateSettings" type:"structure"`
+
+	// Action to activate a static image overlay in one or more specified outputs
+	StaticImageOutputActivateSettings *StaticImageOutputActivateScheduleActionSettings `locationName:"staticImageOutputActivateSettings" type:"structure"`
+
+	// Action to deactivate a static image overlay in one or more specified outputs
+	StaticImageOutputDeactivateSettings *StaticImageOutputDeactivateScheduleActionSettings `locationName:"staticImageOutputDeactivateSettings" type:"structure"`
 }
 
 // String returns the string representation.
@@ -28272,6 +28292,16 @@ func (s *ScheduleActionSettings) Validate() error {
 	if s.StaticImageActivateSettings != nil {
 		if err := s.StaticImageActivateSettings.Validate(); err != nil {
 			invalidParams.AddNested("StaticImageActivateSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StaticImageOutputActivateSettings != nil {
+		if err := s.StaticImageOutputActivateSettings.Validate(); err != nil {
+			invalidParams.AddNested("StaticImageOutputActivateSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StaticImageOutputDeactivateSettings != nil {
+		if err := s.StaticImageOutputDeactivateSettings.Validate(); err != nil {
+			invalidParams.AddNested("StaticImageOutputDeactivateSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -28356,6 +28386,18 @@ func (s *ScheduleActionSettings) SetStaticImageActivateSettings(v *StaticImageAc
 // SetStaticImageDeactivateSettings sets the StaticImageDeactivateSettings field's value.
 func (s *ScheduleActionSettings) SetStaticImageDeactivateSettings(v *StaticImageDeactivateScheduleActionSettings) *ScheduleActionSettings {
 	s.StaticImageDeactivateSettings = v
+	return s
+}
+
+// SetStaticImageOutputActivateSettings sets the StaticImageOutputActivateSettings field's value.
+func (s *ScheduleActionSettings) SetStaticImageOutputActivateSettings(v *StaticImageOutputActivateScheduleActionSettings) *ScheduleActionSettings {
+	s.StaticImageOutputActivateSettings = v
+	return s
+}
+
+// SetStaticImageOutputDeactivateSettings sets the StaticImageOutputDeactivateSettings field's value.
+func (s *ScheduleActionSettings) SetStaticImageOutputDeactivateSettings(v *StaticImageOutputDeactivateScheduleActionSettings) *ScheduleActionSettings {
+	s.StaticImageOutputDeactivateSettings = v
 	return s
 }
 
@@ -30136,6 +30178,245 @@ func (s *StaticImageDeactivateScheduleActionSettings) SetLayer(v int64) *StaticI
 	return s
 }
 
+// Settings for the action to activate a static image.
+type StaticImageOutputActivateScheduleActionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The duration in milliseconds for the image to remain on the video. If omitted
+	// or set to 0 the duration is unlimited and the image will remain until it
+	// is explicitly deactivated.
+	Duration *int64 `locationName:"duration" type:"integer"`
+
+	// The time in milliseconds for the image to fade in. The fade-in starts at
+	// the start time of the overlay. Default is 0 (no fade-in).
+	FadeIn *int64 `locationName:"fadeIn" type:"integer"`
+
+	// Applies only if a duration is specified. The time in milliseconds for the
+	// image to fade out. The fade-out starts when the duration time is hit, so
+	// it effectively extends the duration. Default is 0 (no fade-out).
+	FadeOut *int64 `locationName:"fadeOut" type:"integer"`
+
+	// The height of the image when inserted into the video, in pixels. The overlay
+	// will be scaled up or down to the specified height. Leave blank to use the
+	// native height of the overlay.
+	Height *int64 `locationName:"height" min:"1" type:"integer"`
+
+	// The location and filename of the image file to overlay on the video. The
+	// file must be a 32-bit BMP, PNG, or TGA file, and must not be larger (in pixels)
+	// than the input video.
+	//
+	// Image is a required field
+	Image *InputLocation `locationName:"image" type:"structure" required:"true"`
+
+	// Placement of the left edge of the overlay relative to the left edge of the
+	// video frame, in pixels. 0 (the default) is the left edge of the frame. If
+	// the placement causes the overlay to extend beyond the right edge of the underlying
+	// video, then the overlay is cropped on the right.
+	ImageX *int64 `locationName:"imageX" type:"integer"`
+
+	// Placement of the top edge of the overlay relative to the top edge of the
+	// video frame, in pixels. 0 (the default) is the top edge of the frame. If
+	// the placement causes the overlay to extend beyond the bottom edge of the
+	// underlying video, then the overlay is cropped on the bottom.
+	ImageY *int64 `locationName:"imageY" type:"integer"`
+
+	// The number of the layer, 0 to 7. There are 8 layers that can be overlaid
+	// on the video, each layer with a different image. The layers are in Z order,
+	// which means that overlays with higher values of layer are inserted on top
+	// of overlays with lower values of layer. Default is 0.
+	Layer *int64 `locationName:"layer" type:"integer"`
+
+	// Opacity of image where 0 is transparent and 100 is fully opaque. Default
+	// is 100.
+	Opacity *int64 `locationName:"opacity" type:"integer"`
+
+	// The name(s) of the output(s) the activation should apply to.
+	//
+	// OutputNames is a required field
+	OutputNames []*string `locationName:"outputNames" type:"list" required:"true"`
+
+	// The width of the image when inserted into the video, in pixels. The overlay
+	// will be scaled up or down to the specified width. Leave blank to use the
+	// native width of the overlay.
+	Width *int64 `locationName:"width" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StaticImageOutputActivateScheduleActionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StaticImageOutputActivateScheduleActionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StaticImageOutputActivateScheduleActionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StaticImageOutputActivateScheduleActionSettings"}
+	if s.Height != nil && *s.Height < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Height", 1))
+	}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.OutputNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputNames"))
+	}
+	if s.Width != nil && *s.Width < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Width", 1))
+	}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDuration sets the Duration field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetDuration(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.Duration = &v
+	return s
+}
+
+// SetFadeIn sets the FadeIn field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetFadeIn(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.FadeIn = &v
+	return s
+}
+
+// SetFadeOut sets the FadeOut field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetFadeOut(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.FadeOut = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetHeight(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.Height = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetImage(v *InputLocation) *StaticImageOutputActivateScheduleActionSettings {
+	s.Image = v
+	return s
+}
+
+// SetImageX sets the ImageX field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetImageX(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.ImageX = &v
+	return s
+}
+
+// SetImageY sets the ImageY field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetImageY(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.ImageY = &v
+	return s
+}
+
+// SetLayer sets the Layer field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetLayer(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.Layer = &v
+	return s
+}
+
+// SetOpacity sets the Opacity field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetOpacity(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.Opacity = &v
+	return s
+}
+
+// SetOutputNames sets the OutputNames field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetOutputNames(v []*string) *StaticImageOutputActivateScheduleActionSettings {
+	s.OutputNames = v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *StaticImageOutputActivateScheduleActionSettings) SetWidth(v int64) *StaticImageOutputActivateScheduleActionSettings {
+	s.Width = &v
+	return s
+}
+
+// Settings for the action to deactivate the image in a specific layer.
+type StaticImageOutputDeactivateScheduleActionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The time in milliseconds for the image to fade out. Default is 0 (no fade-out).
+	FadeOut *int64 `locationName:"fadeOut" type:"integer"`
+
+	// The image overlay layer to deactivate, 0 to 7. Default is 0.
+	Layer *int64 `locationName:"layer" type:"integer"`
+
+	// The name(s) of the output(s) the deactivation should apply to.
+	//
+	// OutputNames is a required field
+	OutputNames []*string `locationName:"outputNames" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StaticImageOutputDeactivateScheduleActionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StaticImageOutputDeactivateScheduleActionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StaticImageOutputDeactivateScheduleActionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StaticImageOutputDeactivateScheduleActionSettings"}
+	if s.OutputNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFadeOut sets the FadeOut field's value.
+func (s *StaticImageOutputDeactivateScheduleActionSettings) SetFadeOut(v int64) *StaticImageOutputDeactivateScheduleActionSettings {
+	s.FadeOut = &v
+	return s
+}
+
+// SetLayer sets the Layer field's value.
+func (s *StaticImageOutputDeactivateScheduleActionSettings) SetLayer(v int64) *StaticImageOutputDeactivateScheduleActionSettings {
+	s.Layer = &v
+	return s
+}
+
+// SetOutputNames sets the OutputNames field's value.
+func (s *StaticImageOutputDeactivateScheduleActionSettings) SetOutputNames(v []*string) *StaticImageOutputDeactivateScheduleActionSettings {
+	s.OutputNames = v
+	return s
+}
+
 // Static Key Settings
 type StaticKeySettings struct {
 	_ struct{} `type:"structure"`
@@ -30871,7 +31152,9 @@ func (s *Thumbnail) SetTimeStamp(v time.Time) *Thumbnail {
 type ThumbnailConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Whether Thumbnail is enabled.
+	// Enables the thumbnail feature. The feature generates thumbnails of the incoming
+	// video in each pipeline in the channel. AUTO turns the feature on, DISABLE
+	// turns the feature off.
 	//
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"ThumbnailState"`
@@ -34997,6 +35280,23 @@ func FeatureActivationsInputPrepareScheduleActions_Values() []string {
 	return []string{
 		FeatureActivationsInputPrepareScheduleActionsDisabled,
 		FeatureActivationsInputPrepareScheduleActionsEnabled,
+	}
+}
+
+// Feature Activations Output Static Image Overlay Schedule Actions
+const (
+	// FeatureActivationsOutputStaticImageOverlayScheduleActionsDisabled is a FeatureActivationsOutputStaticImageOverlayScheduleActions enum value
+	FeatureActivationsOutputStaticImageOverlayScheduleActionsDisabled = "DISABLED"
+
+	// FeatureActivationsOutputStaticImageOverlayScheduleActionsEnabled is a FeatureActivationsOutputStaticImageOverlayScheduleActions enum value
+	FeatureActivationsOutputStaticImageOverlayScheduleActionsEnabled = "ENABLED"
+)
+
+// FeatureActivationsOutputStaticImageOverlayScheduleActions_Values returns all elements of the FeatureActivationsOutputStaticImageOverlayScheduleActions enum
+func FeatureActivationsOutputStaticImageOverlayScheduleActions_Values() []string {
+	return []string{
+		FeatureActivationsOutputStaticImageOverlayScheduleActionsDisabled,
+		FeatureActivationsOutputStaticImageOverlayScheduleActionsEnabled,
 	}
 }
 

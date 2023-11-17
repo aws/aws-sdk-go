@@ -261,7 +261,8 @@
         {"shape":"SnapshotScheduleNotFoundFault"},
         {"shape":"InvalidRetentionPeriodFault"},
         {"shape":"Ipv6CidrBlockNotFoundFault"},
-        {"shape":"UnsupportedOperationFault"}
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"RedshiftIdcApplicationNotExistsFault"}
       ]
     },
     "CreateClusterParameterGroup":{
@@ -443,6 +444,25 @@
         {"shape":"HsmConfigurationQuotaExceededFault"},
         {"shape":"TagLimitExceededFault"},
         {"shape":"InvalidTagFault"}
+      ]
+    },
+    "CreateRedshiftIdcApplication":{
+      "name":"CreateRedshiftIdcApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRedshiftIdcApplicationMessage"},
+      "output":{
+        "shape":"CreateRedshiftIdcApplicationResult",
+        "resultWrapper":"CreateRedshiftIdcApplicationResult"
+      },
+      "errors":[
+        {"shape":"RedshiftIdcApplicationAlreadyExistsFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceAccessDeniedFault"},
+        {"shape":"RedshiftIdcApplicationQuotaExceededFault"}
       ]
     },
     "CreateScheduledAction":{
@@ -730,6 +750,20 @@
         {"shape":"ClusterNotFoundFault"},
         {"shape":"UnauthorizedPartnerIntegrationFault"},
         {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "DeleteRedshiftIdcApplication":{
+      "name":"DeleteRedshiftIdcApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRedshiftIdcApplicationMessage"},
+      "errors":[
+        {"shape":"RedshiftIdcApplicationNotExistsFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceAccessDeniedFault"}
       ]
     },
     "DeleteResourcePolicy":{
@@ -1230,6 +1264,24 @@
         {"shape":"ClusterNotFoundFault"},
         {"shape":"UnauthorizedPartnerIntegrationFault"},
         {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "DescribeRedshiftIdcApplications":{
+      "name":"DescribeRedshiftIdcApplications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRedshiftIdcApplicationsMessage"},
+      "output":{
+        "shape":"DescribeRedshiftIdcApplicationsResult",
+        "resultWrapper":"DescribeRedshiftIdcApplicationsResult"
+      },
+      "errors":[
+        {"shape":"RedshiftIdcApplicationNotExistsFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceAccessDeniedFault"}
       ]
     },
     "DescribeReservedNodeExchangeStatus":{
@@ -1854,6 +1906,24 @@
         {"shape":"SubscriptionSeverityNotFoundFault"},
         {"shape":"SourceNotFoundFault"},
         {"shape":"InvalidSubscriptionStateFault"}
+      ]
+    },
+    "ModifyRedshiftIdcApplication":{
+      "name":"ModifyRedshiftIdcApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyRedshiftIdcApplicationMessage"},
+      "output":{
+        "shape":"ModifyRedshiftIdcApplicationResult",
+        "resultWrapper":"ModifyRedshiftIdcApplicationResult"
+      },
+      "errors":[
+        {"shape":"RedshiftIdcApplicationNotExistsFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceAccessDeniedFault"}
       ]
     },
     "ModifyScheduledAction":{
@@ -2536,6 +2606,21 @@
       "members":{
         "Snapshot":{"shape":"Snapshot"}
       }
+    },
+    "AuthorizedAudienceList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "AuthorizedTokenIssuer":{
+      "type":"structure",
+      "members":{
+        "TrustedTokenIssuerArn":{"shape":"String"},
+        "AuthorizedAudiencesList":{"shape":"AuthorizedAudienceList"}
+      }
+    },
+    "AuthorizedTokenIssuerList":{
+      "type":"list",
+      "member":{"shape":"AuthorizedTokenIssuer"}
     },
     "AvailabilityZone":{
       "type":"structure",
@@ -3258,7 +3343,8 @@
         "ManageMasterPassword":{"shape":"BooleanOptional"},
         "MasterPasswordSecretKmsKeyId":{"shape":"String"},
         "IpAddressType":{"shape":"String"},
-        "MultiAZ":{"shape":"BooleanOptional"}
+        "MultiAZ":{"shape":"BooleanOptional"},
+        "RedshiftIdcApplicationArn":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -3441,6 +3527,30 @@
       "type":"structure",
       "members":{
         "HsmConfiguration":{"shape":"HsmConfiguration"}
+      }
+    },
+    "CreateRedshiftIdcApplicationMessage":{
+      "type":"structure",
+      "required":[
+        "IdcInstanceArn",
+        "RedshiftIdcApplicationName",
+        "IdcDisplayName",
+        "IamRoleArn"
+      ],
+      "members":{
+        "IdcInstanceArn":{"shape":"String"},
+        "RedshiftIdcApplicationName":{"shape":"RedshiftIdcApplicationName"},
+        "IdentityNamespace":{"shape":"IdentityNamespaceString"},
+        "IdcDisplayName":{"shape":"IdcDisplayNameString"},
+        "IamRoleArn":{"shape":"String"},
+        "AuthorizedTokenIssuerList":{"shape":"AuthorizedTokenIssuerList"},
+        "ServiceIntegrations":{"shape":"ServiceIntegrationList"}
+      }
+    },
+    "CreateRedshiftIdcApplicationResult":{
+      "type":"structure",
+      "members":{
+        "RedshiftIdcApplication":{"shape":"RedshiftIdcApplication"}
       }
     },
     "CreateScheduledActionMessage":{
@@ -3784,6 +3894,13 @@
         "HsmConfigurationIdentifier":{"shape":"String"}
       }
     },
+    "DeleteRedshiftIdcApplicationMessage":{
+      "type":"structure",
+      "required":["RedshiftIdcApplicationArn"],
+      "members":{
+        "RedshiftIdcApplicationArn":{"shape":"String"}
+      }
+    },
     "DeleteResourcePolicyMessage":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -3829,6 +3946,17 @@
       "members":{
         "UsageLimitId":{"shape":"String"}
       }
+    },
+    "DependentServiceAccessDeniedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DependentServiceAccessDenied",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
     },
     "DependentServiceRequestThrottlingFault":{
       "type":"structure",
@@ -4162,6 +4290,21 @@
       "type":"structure",
       "members":{
         "PartnerIntegrationInfoList":{"shape":"PartnerIntegrationInfoList"}
+      }
+    },
+    "DescribeRedshiftIdcApplicationsMessage":{
+      "type":"structure",
+      "members":{
+        "RedshiftIdcApplicationArn":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeRedshiftIdcApplicationsResult":{
+      "type":"structure",
+      "members":{
+        "RedshiftIdcApplications":{"shape":"RedshiftIdcApplicationList"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeReservedNodeExchangeStatusInputMessage":{
@@ -4844,6 +4987,18 @@
         "locationName":"IamRoleArn"
       }
     },
+    "IdcDisplayNameString":{
+      "type":"string",
+      "max":127,
+      "min":1,
+      "pattern":"[\\w+=,.@-]+"
+    },
+    "IdentityNamespaceString":{
+      "type":"string",
+      "max":127,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_+.#@$-]+$"
+    },
     "ImportTablesCompleted":{
       "type":"list",
       "member":{"shape":"String"}
@@ -5305,6 +5460,24 @@
       },
       "exception":true
     },
+    "LakeFormationQuery":{
+      "type":"structure",
+      "required":["Authorization"],
+      "members":{
+        "Authorization":{"shape":"ServiceAuthorization"}
+      }
+    },
+    "LakeFormationScopeUnion":{
+      "type":"structure",
+      "members":{
+        "LakeFormationQuery":{"shape":"LakeFormationQuery"}
+      },
+      "union":true
+    },
+    "LakeFormationServiceIntegrations":{
+      "type":"list",
+      "member":{"shape":"LakeFormationScopeUnion"}
+    },
     "LimitExceededFault":{
       "type":"structure",
       "members":{
@@ -5581,6 +5754,24 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
+    "ModifyRedshiftIdcApplicationMessage":{
+      "type":"structure",
+      "required":["RedshiftIdcApplicationArn"],
+      "members":{
+        "RedshiftIdcApplicationArn":{"shape":"String"},
+        "IdentityNamespace":{"shape":"IdentityNamespaceString"},
+        "IamRoleArn":{"shape":"String"},
+        "IdcDisplayName":{"shape":"IdcDisplayNameString"},
+        "AuthorizedTokenIssuerList":{"shape":"AuthorizedTokenIssuerList"},
+        "ServiceIntegrations":{"shape":"ServiceIntegrationList"}
+      }
+    },
+    "ModifyRedshiftIdcApplicationResult":{
+      "type":"structure",
+      "members":{
+        "RedshiftIdcApplication":{"shape":"RedshiftIdcApplication"}
       }
     },
     "ModifyScheduledActionMessage":{
@@ -5972,6 +6163,65 @@
         "shape":"RecurringCharge",
         "locationName":"RecurringCharge"
       }
+    },
+    "RedshiftIdcApplication":{
+      "type":"structure",
+      "members":{
+        "IdcInstanceArn":{"shape":"String"},
+        "RedshiftIdcApplicationName":{"shape":"RedshiftIdcApplicationName"},
+        "RedshiftIdcApplicationArn":{"shape":"String"},
+        "IdentityNamespace":{"shape":"IdentityNamespaceString"},
+        "IdcDisplayName":{"shape":"IdcDisplayNameString"},
+        "IamRoleArn":{"shape":"String"},
+        "IdcManagedApplicationArn":{"shape":"String"},
+        "IdcOnboardStatus":{"shape":"String"},
+        "AuthorizedTokenIssuerList":{"shape":"AuthorizedTokenIssuerList"},
+        "ServiceIntegrations":{"shape":"ServiceIntegrationList"}
+      },
+      "wrapper":true
+    },
+    "RedshiftIdcApplicationAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"RedshiftIdcApplicationAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "RedshiftIdcApplicationList":{
+      "type":"list",
+      "member":{"shape":"RedshiftIdcApplication"}
+    },
+    "RedshiftIdcApplicationName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[a-z][a-z0-9]*(-[a-z0-9]+)*"
+    },
+    "RedshiftIdcApplicationNotExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"RedshiftIdcApplicationNotExists",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "RedshiftIdcApplicationQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"RedshiftIdcApplicationQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "RejectDataShareMessage":{
       "type":"structure",
@@ -6635,6 +6885,24 @@
     "SensitiveString":{
       "type":"string",
       "sensitive":true
+    },
+    "ServiceAuthorization":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ServiceIntegrationList":{
+      "type":"list",
+      "member":{"shape":"ServiceIntegrationsUnion"}
+    },
+    "ServiceIntegrationsUnion":{
+      "type":"structure",
+      "members":{
+        "LakeFormation":{"shape":"LakeFormationServiceIntegrations"}
+      },
+      "union":true
     },
     "Snapshot":{
       "type":"structure",

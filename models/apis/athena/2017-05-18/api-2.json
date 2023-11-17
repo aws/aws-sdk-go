@@ -2583,6 +2583,7 @@
         "DataManifestLocation":{"shape":"String"},
         "TotalExecutionTimeInMillis":{"shape":"Long"},
         "QueryQueueTimeInMillis":{"shape":"Long"},
+        "ServicePreProcessingTimeInMillis":{"shape":"Long"},
         "QueryPlanningTimeInMillis":{"shape":"Long"},
         "ServiceProcessingTimeInMillis":{"shape":"Long"},
         "ResultReuseInformation":{"shape":"ResultReuseInformation"}
@@ -2619,6 +2620,7 @@
       "type":"structure",
       "members":{
         "QueryQueueTimeInMillis":{"shape":"Long"},
+        "ServicePreProcessingTimeInMillis":{"shape":"Long"},
         "QueryPlanningTimeInMillis":{"shape":"Long"},
         "EngineExecutionTimeInMillis":{"shape":"Long"},
         "ServiceProcessingTimeInMillis":{"shape":"Long"},

@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon Verified Permissions is a permissions management service from Amazon Web Services. You can use Verified Permissions to manage permissions for your application, and authorize user access based on those permissions. Using Verified Permissions, application developers can grant access based on information about the users, resources, and requested actions. You can also evaluate additional information like group membership, attributes of the resources, and session context, such as time of request and IP addresses. Verified Permissions manages these permissions by letting you create and store authorization policies for your applications, such as consumer-facing web sites and enterprise business systems.</p> <p>Verified Permissions uses Cedar as the policy language to express your permission requirements. Cedar supports both role-based access control (RBAC) and attribute-based access control (ABAC) authorization models.</p> <p>For more information about configuring, administering, and using Amazon Verified Permissions in your applications, see the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/userguide/\">Amazon Verified Permissions User Guide</a>.</p> <p>For more information about the Cedar policy language, see the <a href=\"https://docs.cedarpolicy.com/\">Cedar Policy Language Guide</a>.</p> <important> <p>When you write Cedar policies that reference principals, resources and actions, you can define the unique identifiers used for each of those elements. We strongly recommend that you follow these best practices:</p> <ul> <li> <p> <b>Use values like universally unique identifiers (UUIDs) for all principal and resource identifiers.</b> </p> <p>For example, if user <code>jane</code> leaves the company, and you later let someone else use the name <code>jane</code>, then that new user automatically gets access to everything granted by policies that still reference <code>User::\"jane\"</code>. Cedar can’t distinguish between the new user and the old. This applies to both principal and resource identifiers. Always use identifiers that are guaranteed unique and never reused to ensure that you don’t unintentionally grant access because of the presence of an old identifier in a policy.</p> <p>Where you use a UUID for an entity, we recommend that you follow it with the // comment specifier and the ‘friendly’ name of your entity. This helps to make your policies easier to understand. For example: principal == User::\"a1b2c3d4-e5f6-a1b2-c3d4-EXAMPLE11111\", // alice</p> </li> <li> <p> <b>Do not include personally identifying, confidential, or sensitive information as part of the unique identifier for your principals or resources.</b> These identifiers are included in log entries shared in CloudTrail trails.</p> </li> </ul> </important> <p>Several operations return structures that appear similar, but have different purposes. As new functionality is added to the product, the structure used in a parameter of one operation might need to change in a way that wouldn't make sense for the same parameter in a different operation. To help you understand the purpose of each, the following naming convention is used for the structures:</p> <ul> <li> <p>Parameter type structures that end in <code>Detail</code> are used in <code>Get</code> operations.</p> </li> <li> <p>Parameter type structures that end in <code>Item</code> are used in <code>List</code> operations.</p> </li> <li> <p>Parameter type structures that use neither suffix are used in the mutating (create and update) operations.</p> </li> </ul>",
   "operations": {
+    "BatchIsAuthorized": "<p>Makes a series of decisions about multiple authorization requests for one principal or resource. Each request contains the equivalent content of an <code>IsAuthorized</code> request: principal, action, resource, and context. Either the <code>principal</code> or the <code>resource</code> parameter must be identical across all requests. For example, Verified Permissions won't evaluate a pair of requests where <code>bob</code> views <code>photo1</code> and <code>alice</code> views <code>photo2</code>. Authorization of <code>bob</code> to view <code>photo1</code> and <code>photo2</code>, or <code>bob</code> and <code>alice</code> to view <code>photo1</code>, are valid batches. </p> <p>The request is evaluated against all policies in the specified policy store that match the entities that you declare. The result of the decisions is a series of <code>Allow</code> or <code>Deny</code> responses, along with the IDs of the policies that produced each decision.</p> <p>The <code>entities</code> of a <code>BatchIsAuthorized</code> API request can contain up to 100 principals and up to 100 resources. The <code>requests</code> of a <code>BatchIsAuthorized</code> API request can contain up to 30 requests.</p>",
     "CreateIdentitySource": "<p>Creates a reference to an Amazon Cognito user pool as an external identity provider (IdP). </p> <p>After you create an identity source, you can use the identities provided by the IdP as proxies for the principal in authorization queries that use the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operation. These identities take the form of tokens that contain claims about the user, such as IDs, attributes and group memberships. Amazon Cognito provides both identity tokens and access tokens, and Verified Permissions can use either or both. Any combination of identity and access tokens results in the same Cedar principal. Verified Permissions automatically translates the information about the identities into the standard Cedar attributes that can be evaluated by your policies. Because the Amazon Cognito identity and access tokens can contain different information, the tokens you choose to use determine which principal attributes are available to access when evaluating Cedar policies.</p> <important> <p>If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or that deleted user continue to be usable until they expire.</p> </important> <note> <p>To reference a user from this identity source in your Cedar policies, use the following syntax.</p> <p> <i>IdentityType::\"&lt;CognitoUserPoolIdentifier&gt;|&lt;CognitoClientId&gt;</i> </p> <p>Where <code>IdentityType</code> is the string that you provide to the <code>PrincipalEntityType</code> parameter for this operation. The <code>CognitoUserPoolId</code> and <code>CognitoClientId</code> are defined by the Amazon Cognito user pool.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to be propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "CreatePolicy": "<p>Creates a Cedar policy and saves it in the specified policy store. You can create either a static policy or a policy linked to a policy template.</p> <ul> <li> <p>To create a static policy, provide the Cedar policy text in the <code>StaticPolicy</code> section of the <code>PolicyDefinition</code>.</p> </li> <li> <p>To create a policy that is dynamically linked to a policy template, specify the policy template ID and the principal and resource to associate with this policy in the <code>templateLinked</code> section of the <code>PolicyDefinition</code>. If the policy template is ever updated, any policies linked to the policy template automatically use the updated template.</p> </li> </ul> <note> <p>Creating a policy causes it to be validated against the schema in the policy store. If the policy doesn't pass validation, the operation fails and the policy isn't stored.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to be propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "CreatePolicyStore": "<p>Creates a policy store. A policy store is a container for policy resources.</p> <note> <p>Although <a href=\"https://docs.cedarpolicy.com/schema/schema.html#namespace\">Cedar supports multiple namespaces</a>, Verified Permissions currently supports only one namespace per policy store.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to be propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
@@ -40,8 +41,9 @@
       }
     },
     "ActionIdentifier": {
-      "base": "<p>Contains information about an action for a request for which an authorization decision is made.</p> <p>This data type is used as an request parameter to the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>{ \"actionId\": \"&lt;action name&gt;\", \"actionType\": \"Action\" }</code> </p>",
+      "base": "<p>Contains information about an action for a request for which an authorization decision is made.</p> <p>This data type is used as a request parameter to the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html\">BatchIsAuthorized</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>{ \"actionId\": \"&lt;action name&gt;\", \"actionType\": \"Action\" }</code> </p>",
       "refs": {
+        "BatchIsAuthorizedInputItem$action": "<p>Specifies the requested action to be authorized. For example, is the principal authorized to perform this action on the resource?</p>",
         "IsAuthorizedInput$action": "<p>Specifies the requested action to be authorized. For example, is the principal authorized to perform this action on the resource?</p>",
         "IsAuthorizedWithTokenInput$action": "<p>Specifies the requested action to be authorized. Is the specified principal authorized to perform this action on the specified resource.</p>"
       }
@@ -53,12 +55,47 @@
       }
     },
     "AttributeValue": {
-      "base": "<p>The value of an attribute.</p> <p>Contains information about the runtime context for a request for which an authorization decision is made. </p> <p>This data type is used as a member of the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ContextDefinition.html\">ContextDefinition</a> structure which is uses as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p>",
+      "base": "<p>The value of an attribute.</p> <p>Contains information about the runtime context for a request for which an authorization decision is made. </p> <p>This data type is used as a member of the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ContextDefinition.html\">ContextDefinition</a> structure which is uses as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html\">BatchIsAuthorized</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p>",
       "refs": {
         "ContextMap$value": null,
         "EntityAttributes$value": null,
         "RecordAttribute$value": null,
         "SetAttribute$member": null
+      }
+    },
+    "BatchIsAuthorizedInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchIsAuthorizedInputItem": {
+      "base": "<p>An authorization request that you include in a <code>BatchIsAuthorized</code> API request.</p>",
+      "refs": {
+        "BatchIsAuthorizedInputList$member": null,
+        "BatchIsAuthorizedOutputItem$request": "<p>The authorization request that initiated the decision.</p>"
+      }
+    },
+    "BatchIsAuthorizedInputList": {
+      "base": null,
+      "refs": {
+        "BatchIsAuthorizedInput$requests": "<p>An array of up to 30 requests that you want Verified Permissions to evaluate.</p>"
+      }
+    },
+    "BatchIsAuthorizedOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchIsAuthorizedOutputItem": {
+      "base": "<p>The decision, based on policy evaluation, from an individual authorization request in a <code>BatchIsAuthorized</code> API request.</p>",
+      "refs": {
+        "BatchIsAuthorizedOutputList$member": null
+      }
+    },
+    "BatchIsAuthorizedOutputList": {
+      "base": null,
+      "refs": {
+        "BatchIsAuthorizedOutput$results": "<p>A series of <code>Allow</code> or <code>Deny</code> decisions for each request, and the policies that produced them.</p>"
       }
     },
     "Boolean": {
@@ -106,8 +143,9 @@
       }
     },
     "ContextDefinition": {
-      "base": "<p>Contains additional details about the context of the request. Verified Permissions evaluates this information in an authorization request as part of the <code>when</code> and <code>unless</code> clauses in a policy.</p> <p>This data type is used as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>\"context\":{\"Context\":{\"&lt;KeyName1&gt;\":{\"boolean\":true},\"&lt;KeyName2&gt;\":{\"long\":1234}}}</code> </p>",
+      "base": "<p>Contains additional details about the context of the request. Verified Permissions evaluates this information in an authorization request as part of the <code>when</code> and <code>unless</code> clauses in a policy.</p> <p>This data type is used as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html\">BatchIsAuthorized</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>\"context\":{\"contextMap\":{\"&lt;KeyName1&gt;\":{\"boolean\":true},\"&lt;KeyName2&gt;\":{\"long\":1234}}}</code> </p>",
       "refs": {
+        "BatchIsAuthorizedInputItem$context": "<p>Specifies additional context that can be used to make more granular authorization decisions.</p>",
         "IsAuthorizedInput$context": "<p>Specifies additional context that can be used to make more granular authorization decisions.</p>",
         "IsAuthorizedWithTokenInput$context": "<p>Specifies additional context that can be used to make more granular authorization decisions.</p>"
       }
@@ -115,7 +153,7 @@
     "ContextMap": {
       "base": null,
       "refs": {
-        "ContextDefinition$contextMap": "<p>An list of attributes that are needed to successfully evaluate an authorization request. Each attribute in this array must include a map of a data type and its value.</p> <p>Example: <code>\"Context\":{\"&lt;KeyName1&gt;\":{\"boolean\":true},\"&lt;KeyName2&gt;\":{\"long\":1234}}</code> </p>"
+        "ContextDefinition$contextMap": "<p>An list of attributes that are needed to successfully evaluate an authorization request. Each attribute in this array must include a map of a data type and its value.</p> <p>Example: <code>\"contextMap\":{\"&lt;KeyName1&gt;\":{\"boolean\":true},\"&lt;KeyName2&gt;\":{\"long\":1234}}</code> </p>"
       }
     },
     "CreateIdentitySourceInput": {
@@ -161,6 +199,7 @@
     "Decision": {
       "base": null,
       "refs": {
+        "BatchIsAuthorizedOutputItem$decision": "<p>An authorization decision that indicates if the authorization request should be allowed or denied.</p>",
         "IsAuthorizedOutput$decision": "<p>An authorization decision that indicates if the authorization request should be allowed or denied.</p>",
         "IsAuthorizedWithTokenOutput$decision": "<p>An authorization decision that indicates if the authorization request should be allowed or denied.</p>"
       }
@@ -206,7 +245,7 @@
       }
     },
     "DeterminingPolicyItem": {
-      "base": "<p>Contains information about one of the policies that determined an authorization decision.</p> <p>This data type is used as an element in a response parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>\"determiningPolicies\":[{\"policyId\":\"SPEXAMPLEabcdefg111111\"}]</code> </p>",
+      "base": "<p>Contains information about one of the policies that determined an authorization decision.</p> <p>This data type is used as an element in a response parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html\">BatchIsAuthorized</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p> <p>Example: <code>\"determiningPolicies\":[{\"policyId\":\"SPEXAMPLEabcdefg111111\"}]</code> </p>",
       "refs": {
         "DeterminingPolicyList$member": null
       }
@@ -214,6 +253,7 @@
     "DeterminingPolicyList": {
       "base": null,
       "refs": {
+        "BatchIsAuthorizedOutputItem$determiningPolicies": "<p>The list of determining policies used to make the authorization decision. For example, if there are two matching policies, where one is a forbid and the other is a permit, then the forbid policy will be the determining policy. In the case of multiple matching permit policies then there would be multiple determining policies. In the case that no policies match, and hence the response is DENY, there would be no determining policies.</p>",
         "IsAuthorizedOutput$determiningPolicies": "<p>The list of determining policies used to make the authorization decision. For example, if there are two matching policies, where one is a forbid and the other is a permit, then the forbid policy will be the determining policy. In the case of multiple matching permit policies then there would be multiple determining policies. In the case that no policies match, and hence the response is DENY, there would be no determining policies.</p>",
         "IsAuthorizedWithTokenOutput$determiningPolicies": "<p>The list of determining policies used to make the authorization decision. For example, if there are multiple matching policies, where at least one is a forbid policy, then because forbid always overrides permit the forbid policies are the determining policies. If all matching policies are permit policies, then those policies are the determining policies. When no policies match and the response is the default DENY, there are no determining policies.</p>"
       }
@@ -228,6 +268,7 @@
     "EntitiesDefinition": {
       "base": "<p>Contains the list of entities to be considered during an authorization request. This includes all principals, resources, and actions required to successfully evaluate the request.</p> <p>This data type is used as a field in the response parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p>",
       "refs": {
+        "BatchIsAuthorizedInput$entities": "<p>Specifies the list of resources and principals and their associated attributes that Verified Permissions can examine when evaluating the policies. </p> <note> <p>You can include only principal and resource entities in this parameter; you can't include actions. You must specify actions in the schema.</p> </note>",
         "IsAuthorizedInput$entities": "<p>Specifies the list of resources and principals and their associated attributes that Verified Permissions can examine when evaluating the policies. </p> <note> <p>You can include only principal and resource entities in this parameter; you can't include actions. You must specify actions in the schema.</p> </note>",
         "IsAuthorizedWithTokenInput$entities": "<p>Specifies the list of resources and their associated attributes that Verified Permissions can examine when evaluating the policies. </p> <note> <p>You can include only resource and action entities in this parameter; you can't include principals.</p> <ul> <li> <p>The <code>IsAuthorizedWithToken</code> operation takes principal attributes from <b> <i>only</i> </b> the <code>identityToken</code> or <code>accessToken</code> passed to the operation.</p> </li> <li> <p>For action entities, you can include only their <code>Identifier</code> and <code>EntityType</code>. </p> </li> </ul> </note>"
       }
@@ -248,6 +289,8 @@
       "base": "<p>Contains the identifier of an entity, including its ID and type.</p> <p>This data type is used as a request parameter for <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> operation, and as a response parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreatePolicy.html\">CreatePolicy</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetPolicy.html\">GetPolicy</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicy.html\">UpdatePolicy</a> operations.</p> <p>Example: <code>{\"entityId\":\"<i>string</i>\",\"entityType\":\"<i>string</i>\"}</code> </p>",
       "refs": {
         "AttributeValue$entityIdentifier": "<p>An attribute value of type <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_EntityIdentifier.html\">EntityIdentifier</a>.</p> <p>Example: <code>\"entityIdentifier\": { \"entityId\": \"&lt;id&gt;\", \"entityType\": \"&lt;entity type&gt;\"}</code> </p>",
+        "BatchIsAuthorizedInputItem$principal": "<p>Specifies the principal for which the authorization decision is to be made.</p>",
+        "BatchIsAuthorizedInputItem$resource": "<p>Specifies the resource for which the authorization decision is to be made.</p>",
         "CreatePolicyOutput$principal": "<p>The principal specified in the new policy's scope. This response element isn't present when <code>principal</code> isn't specified in the policy content.</p>",
         "CreatePolicyOutput$resource": "<p>The resource specified in the new policy's scope. This response element isn't present when the <code>resource</code> isn't specified in the policy content.</p>",
         "EntityItem$identifier": "<p>The identifier of the entity.</p>",
@@ -296,7 +339,7 @@
       }
     },
     "EvaluationErrorItem": {
-      "base": "<p>Contains a description of an evaluation error.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p>",
+      "base": "<p>Contains a description of an evaluation error.</p> <p>This data type is a response parameter of the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html\">BatchIsAuthorized</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operations.</p>",
       "refs": {
         "EvaluationErrorList$member": null
       }
@@ -304,6 +347,7 @@
     "EvaluationErrorList": {
       "base": null,
       "refs": {
+        "BatchIsAuthorizedOutputItem$errors": "<p>Errors that occurred while making an authorization decision, for example, a policy references an Entity or entity Attribute that does not exist in the slice.</p>",
         "IsAuthorizedOutput$errors": "<p>Errors that occurred while making an authorization decision, for example, a policy references an Entity or entity Attribute that does not exist in the slice.</p>",
         "IsAuthorizedWithTokenOutput$errors": "<p>Errors that occurred while making an authorization decision. For example, a policy references an entity or entity attribute that does not exist in the slice.</p>"
       }
@@ -601,6 +645,7 @@
     "PolicyStoreId": {
       "base": null,
       "refs": {
+        "BatchIsAuthorizedInput$policyStoreId": "<p>Specifies the ID of the policy store. Policies in this policy store will be used to make the authorization decisions for the input.</p>",
         "CreateIdentitySourceInput$policyStoreId": "<p>Specifies the ID of the policy store in which you want to store this identity source. Only policies and requests made using this policy store can reference identities from the identity provider configured in the new identity source.</p>",
         "CreateIdentitySourceOutput$policyStoreId": "<p>The ID of the policy store that contains the identity source.</p>",
         "CreatePolicyInput$policyStoreId": "<p>Specifies the <code>PolicyStoreId</code> of the policy store you want to store the policy in.</p>",

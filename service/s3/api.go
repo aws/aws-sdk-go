@@ -10246,7 +10246,7 @@ func (c *S3) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput) (req 
 // or an object, it checks the PublicAccessBlock configuration for both the
 // bucket (or the bucket that contains the object) and the bucket owner's account.
 // If the PublicAccessBlock configurations are different between the bucket
-// and the account, S3 uses the most restrictive combination of the bucket-level
+// and the account, Amazon S3 uses the most restrictive combination of the bucket-level
 // and account-level settings.
 //
 // For more information about when Amazon S3 considers a bucket or an object

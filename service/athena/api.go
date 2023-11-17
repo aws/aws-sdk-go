@@ -589,10 +589,6 @@ func (c *Athena) CreateNamedQueryRequest(input *CreateNamedQueryInput) (req *req
 // Creates a named query in the specified workgroup. Requires that you have
 // access to the workgroup.
 //
-// For code samples using the Amazon Web Services SDK for Java, see Examples
-// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1201,10 +1197,6 @@ func (c *Athena) DeleteNamedQueryRequest(input *DeleteNamedQueryInput) (req *req
 //
 // Deletes the named query if you have access to the workgroup in which the
 // query was saved.
-//
-// For code samples using the Amazon Web Services SDK for Java, see Examples
-// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4297,10 +4289,6 @@ func (c *Athena) ListNamedQueriesRequest(input *ListNamedQueriesInput) (req *req
 // workgroup. Requires that you have access to the specified workgroup. If a
 // workgroup is not specified, lists the saved queries for the primary workgroup.
 //
-// For code samples using the Amazon Web Services SDK for Java, see Examples
-// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4758,13 +4746,9 @@ func (c *Athena) ListQueryExecutionsRequest(input *ListQueryExecutionsInput) (re
 // ListQueryExecutions API operation for Amazon Athena.
 //
 // Provides a list of available query execution IDs for the queries in the specified
-// workgroup. If a workgroup is not specified, returns a list of query execution
-// IDs for the primary workgroup. Requires you to have access to the workgroup
-// in which the queries ran.
-//
-// For code samples using the Amazon Web Services SDK for Java, see Examples
-// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
+// workgroup. Athena keeps a query history for 45 days. If a workgroup is not
+// specified, returns a list of query execution IDs for the primary workgroup.
+// Requires you to have access to the workgroup in which the queries ran.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5568,6 +5552,11 @@ func (c *Athena) StartCalculationExecutionRequest(input *StartCalculationExecuti
 // Submits calculations for execution within a session. You can supply the code
 // to run as an inline code block within the request.
 //
+// The request syntax requires the StartCalculationExecutionRequest$CodeBlock
+// parameter or the CalculationConfiguration$CodeBlock parameter, but not both.
+// Because CalculationConfiguration$CodeBlock is deprecated, use the StartCalculationExecutionRequest$CodeBlock
+// parameter instead.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5936,10 +5925,6 @@ func (c *Athena) StopQueryExecutionRequest(input *StopQueryExecutionInput) (req 
 //
 // Stops a query execution. Requires you to have access to the workgroup in
 // which the query ran.
-//
-// For code samples using the Amazon Web Services SDK for Java, see Examples
-// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8197,11 +8182,7 @@ type CreateDataCatalogInput struct {
 	//    is the account ID of the Amazon Web Services account to which the Glue
 	//    Data Catalog belongs. catalog-id=catalog_id The GLUE data catalog type
 	//    also applies to the default AwsDataCatalog that already exists in your
-	//    account, of which you can have only one and cannot modify. Queries that
-	//    specify a Glue Data Catalog other than the default AwsDataCatalog must
-	//    be run on Athena engine version 2. In Regions where Athena engine version
-	//    2 is not available, creating new Glue data catalogs results in an INVALID_INPUT
-	//    error.
+	//    account, of which you can have only one and cannot modify.
 	Parameters map[string]*string `type:"map"`
 
 	// A list of comma separated tags to add to the data catalog that is created.
@@ -8920,12 +8901,14 @@ func (s CreateWorkGroupOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
-// This setting does not apply to Athena SQL workgroups.
+// Specifies the customer managed KMS key that is used to encrypt the user's
+// data stores in Athena. When an Amazon Web Services managed key is used, this
+// value is null. This setting does not apply to Athena SQL workgroups.
 type CustomerContentEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS key that is used to encrypt the user's data stores in Athena.
+	// The customer managed KMS key that is used to encrypt the user's data stores
+	// in Athena.
 	//
 	// KmsKey is a required field
 	KmsKey *string `min:"1" type:"string" required:"true"`
@@ -9007,9 +8990,7 @@ type DataCatalog struct {
 	//    is the account ID of the Amazon Web Services account to which the Glue
 	//    catalog belongs. catalog-id=catalog_id The GLUE data catalog type also
 	//    applies to the default AwsDataCatalog that already exists in your account,
-	//    of which you can have only one and cannot modify. Queries that specify
-	//    a Glue Data Catalog other than the default AwsDataCatalog must be run
-	//    on Athena engine version 2.
+	//    of which you can have only one and cannot modify.
 	Parameters map[string]*string `type:"map"`
 
 	// The type of data catalog to create: LAMBDA for a federated catalog, HIVE
@@ -14594,6 +14575,10 @@ type QueryExecutionStatistics struct {
 	// the query.
 	ResultReuseInformation *ResultReuseInformation `type:"structure"`
 
+	// The number of milliseconds that Athena took to preprocess the query before
+	// submitting the query to the query engine.
+	ServicePreProcessingTimeInMillis *int64 `type:"long"`
+
 	// The number of milliseconds that Athena took to finalize and publish the query
 	// results after the query engine finished running the query.
 	ServiceProcessingTimeInMillis *int64 `type:"long"`
@@ -14653,6 +14638,12 @@ func (s *QueryExecutionStatistics) SetQueryQueueTimeInMillis(v int64) *QueryExec
 // SetResultReuseInformation sets the ResultReuseInformation field's value.
 func (s *QueryExecutionStatistics) SetResultReuseInformation(v *ResultReuseInformation) *QueryExecutionStatistics {
 	s.ResultReuseInformation = v
+	return s
+}
+
+// SetServicePreProcessingTimeInMillis sets the ServicePreProcessingTimeInMillis field's value.
+func (s *QueryExecutionStatistics) SetServicePreProcessingTimeInMillis(v int64) *QueryExecutionStatistics {
+	s.ServicePreProcessingTimeInMillis = &v
 	return s
 }
 
@@ -14880,6 +14871,10 @@ type QueryRuntimeStatisticsTimeline struct {
 	// add the query back to the queue.
 	QueryQueueTimeInMillis *int64 `type:"long"`
 
+	// The number of milliseconds that Athena spends on preprocessing before it
+	// submits the query to the engine.
+	ServicePreProcessingTimeInMillis *int64 `type:"long"`
+
 	// The number of milliseconds that Athena took to finalize and publish the query
 	// results after the query engine finished running the query.
 	ServiceProcessingTimeInMillis *int64 `type:"long"`
@@ -14921,6 +14916,12 @@ func (s *QueryRuntimeStatisticsTimeline) SetQueryPlanningTimeInMillis(v int64) *
 // SetQueryQueueTimeInMillis sets the QueryQueueTimeInMillis field's value.
 func (s *QueryRuntimeStatisticsTimeline) SetQueryQueueTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
 	s.QueryQueueTimeInMillis = &v
+	return s
+}
+
+// SetServicePreProcessingTimeInMillis sets the ServicePreProcessingTimeInMillis field's value.
+func (s *QueryRuntimeStatisticsTimeline) SetServicePreProcessingTimeInMillis(v int64) *QueryRuntimeStatisticsTimeline {
+	s.ServicePreProcessingTimeInMillis = &v
 	return s
 }
 
@@ -15767,7 +15768,8 @@ type SessionConfiguration struct {
 	// encryption option used (for example, SSE_KMS or CSE_KMS) and key information.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
-	// The ARN of the execution role used for the session.
+	// The ARN of the execution role used in a Spark session to access user resources.
+	// This property applies only to Spark-enabled workgroups.
 	ExecutionRole *string `min:"20" type:"string"`
 
 	// The idle timeout in seconds for the session.
@@ -16034,7 +16036,8 @@ type StartCalculationExecutionInput struct {
 	// Services CLI, you must provide this token or the action will fail.
 	ClientRequestToken *string `min:"32" type:"string"`
 
-	// A string that contains the code of the calculation.
+	// A string that contains the code of the calculation. Use this parameter instead
+	// of CalculationConfiguration$CodeBlock, which is deprecated.
 	CodeBlock *string `type:"string"`
 
 	// A description of the calculation.
@@ -18253,7 +18256,8 @@ type WorkGroupConfiguration struct {
 	// regardless of this setting.
 	EngineVersion *EngineVersion `type:"structure"`
 
-	// Role used in a session for accessing the user's resources.
+	// Role used in a Spark session for accessing the user's resources. This property
+	// applies only to Spark-enabled workgroups.
 	ExecutionRole *string `min:"20" type:"string"`
 
 	// Indicates that the Amazon CloudWatch metrics are enabled for the workgroup.
@@ -18407,8 +18411,9 @@ type WorkGroupConfigurationUpdates struct {
 	// is allowed to scan.
 	BytesScannedCutoffPerQuery *int64 `min:"1e+07" type:"long"`
 
-	// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
-	// This setting does not apply to Athena SQL workgroups.
+	// Specifies the customer managed KMS key that is used to encrypt the user's
+	// data stores in Athena. When an Amazon Web Services managed key is used, this
+	// value is null. This setting does not apply to Athena SQL workgroups.
 	CustomerContentEncryptionConfiguration *CustomerContentEncryptionConfiguration `type:"structure"`
 
 	// Enforces a minimal level of encryption for the workgroup for query and calculation
@@ -18432,7 +18437,8 @@ type WorkGroupConfigurationUpdates struct {
 	// workgroup run on the preview engine regardless of this setting.
 	EngineVersion *EngineVersion `type:"structure"`
 
-	// Contains the ARN of the execution role for the workgroup
+	// The ARN of the execution role used to access user resources. This property
+	// applies only to Spark-enabled workgroups.
 	ExecutionRole *string `min:"20" type:"string"`
 
 	// Indicates whether this workgroup enables publishing metrics to Amazon CloudWatch.

@@ -23,7 +23,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceAlreadyExistsException"}
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeletePipeline":{
@@ -235,6 +236,13 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "BufferOptions":{
+      "type":"structure",
+      "required":["PersistentBufferEnabled"],
+      "members":{
+        "PersistentBufferEnabled":{"shape":"Boolean"}
+      }
+    },
     "ChangeProgressStage":{
       "type":"structure",
       "members":{
@@ -308,6 +316,8 @@
         "PipelineConfigurationBody":{"shape":"PipelineConfigurationBody"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "VpcOptions":{"shape":"VpcOptions"},
+        "BufferOptions":{"shape":"BufferOptions"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -331,6 +341,13 @@
     "DeletePipelineResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "EncryptionAtRestOptions":{
+      "type":"structure",
+      "required":["KmsKeyArn"],
+      "members":{
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "GetPipelineBlueprintRequest":{
@@ -402,6 +419,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":7
     },
     "LimitExceededException":{
       "type":"structure",
@@ -498,7 +520,11 @@
         "LastUpdatedAt":{"shape":"Timestamp"},
         "IngestEndpointUrls":{"shape":"IngestEndpointUrlsList"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
-        "VpcEndpoints":{"shape":"VpcEndpointsList"}
+        "VpcEndpoints":{"shape":"VpcEndpointsList"},
+        "BufferOptions":{"shape":"BufferOptions"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
+        "ServiceVpcEndpoints":{"shape":"ServiceVpcEndpointsList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PipelineArn":{
@@ -566,7 +592,8 @@
         "MinUnits":{"shape":"PipelineUnits"},
         "MaxUnits":{"shape":"PipelineUnits"},
         "CreatedAt":{"shape":"Timestamp"},
-        "LastUpdatedAt":{"shape":"Timestamp"}
+        "LastUpdatedAt":{"shape":"Timestamp"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PipelineSummaryList":{
@@ -575,7 +602,6 @@
     },
     "PipelineUnits":{
       "type":"integer",
-      "max":96,
       "min":1
     },
     "ResourceAlreadyExistsException":{
@@ -603,6 +629,17 @@
       "member":{"shape":"SecurityGroupId"},
       "max":12,
       "min":1
+    },
+    "ServiceVpcEndpoint":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{"shape":"VpcEndpointServiceName"},
+        "VpcEndpointId":{"shape":"String"}
+      }
+    },
+    "ServiceVpcEndpointsList":{
+      "type":"list",
+      "member":{"shape":"ServiceVpcEndpoint"}
     },
     "StartPipelineRequest":{
       "type":"structure",
@@ -735,7 +772,9 @@
         "MinUnits":{"shape":"PipelineUnits"},
         "MaxUnits":{"shape":"PipelineUnits"},
         "PipelineConfigurationBody":{"shape":"PipelineConfigurationBody"},
-        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"},
+        "BufferOptions":{"shape":"BufferOptions"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"}
       }
     },
     "UpdatePipelineResponse":{
@@ -782,6 +821,10 @@
         "VpcId":{"shape":"String"},
         "VpcOptions":{"shape":"VpcOptions"}
       }
+    },
+    "VpcEndpointServiceName":{
+      "type":"string",
+      "enum":["OPENSEARCH_SERVERLESS"]
     },
     "VpcEndpointsList":{
       "type":"list",

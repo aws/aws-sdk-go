@@ -1166,7 +1166,10 @@
     },
     "AccessPointArn":{"type":"string"},
     "AccountId":{"type":"string"},
-    "AllowQuotedRecordDelimiter":{"type":"boolean"},
+    "AllowQuotedRecordDelimiter":{
+      "type":"boolean",
+      "box":true
+    },
     "AllowedHeader":{"type":"string"},
     "AllowedHeaders":{
       "type":"list",
@@ -1289,7 +1292,10 @@
         "authenticated-read"
       ]
     },
-    "BucketKeyEnabled":{"type":"boolean"},
+    "BucketKeyEnabled":{
+      "type":"boolean",
+      "box":true
+    },
     "BucketLifecycleConfiguration":{
       "type":"structure",
       "required":["Rules"],
@@ -1362,10 +1368,22 @@
         "locationName":"Bucket"
       }
     },
-    "BypassGovernanceRetention":{"type":"boolean"},
-    "BytesProcessed":{"type":"long"},
-    "BytesReturned":{"type":"long"},
-    "BytesScanned":{"type":"long"},
+    "BypassGovernanceRetention":{
+      "type":"boolean",
+      "box":true
+    },
+    "BytesProcessed":{
+      "type":"long",
+      "box":true
+    },
+    "BytesReturned":{
+      "type":"long",
+      "box":true
+    },
+    "BytesScanned":{
+      "type":"long",
+      "box":true
+    },
     "CORSConfiguration":{
       "type":"structure",
       "required":["CORSRules"],
@@ -1653,7 +1671,10 @@
         "KeyPrefixEquals":{"shape":"KeyPrefixEquals"}
       }
     },
-    "ConfirmRemoveSelfBucketAccess":{"type":"boolean"},
+    "ConfirmRemoveSelfBucketAccess":{
+      "type":"boolean",
+      "box":true
+    },
     "ContentDisposition":{"type":"string"},
     "ContentEncoding":{"type":"string"},
     "ContentLanguage":{"type":"string"},
@@ -2278,8 +2299,14 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
-    "Days":{"type":"integer"},
-    "DaysAfterInitiation":{"type":"integer"},
+    "Days":{
+      "type":"integer",
+      "box":true
+    },
+    "DaysAfterInitiation":{
+      "type":"integer",
+      "box":true
+    },
     "DefaultRetention":{
       "type":"structure",
       "members":{
@@ -2792,7 +2819,10 @@
     "DisplayName":{"type":"string"},
     "ETag":{"type":"string"},
     "EmailAddress":{"type":"string"},
-    "EnableRequestProgress":{"type":"boolean"},
+    "EnableRequestProgress":{
+      "type":"boolean",
+      "box":true
+    },
     "EncodingType":{
       "type":"string",
       "enum":["url"]
@@ -2812,7 +2842,10 @@
         "ReplicaKmsKeyID":{"shape":"ReplicaKmsKeyID"}
       }
     },
-    "End":{"type":"long"},
+    "End":{
+      "type":"long",
+      "box":true
+    },
     "EndEvent":{
       "type":"structure",
       "members":{
@@ -2906,7 +2939,10 @@
         "Disabled"
       ]
     },
-    "ExpiredObjectDeleteMarker":{"type":"boolean"},
+    "ExpiredObjectDeleteMarker":{
+      "type":"boolean",
+      "box":true
+    },
     "Expires":{"type":"timestamp"},
     "ExposeHeader":{"type":"string"},
     "ExposeHeaders":{
@@ -2919,7 +2955,10 @@
       "type":"string",
       "enum":["SQL"]
     },
-    "FetchOwner":{"type":"boolean"},
+    "FetchOwner":{
+      "type":"boolean",
+      "box":true
+    },
     "FieldDelimiter":{"type":"string"},
     "FileHeaderInfo":{
       "type":"string",
@@ -4022,7 +4061,10 @@
         }
       }
     },
-    "GetObjectResponseStatusCode":{"type":"integer"},
+    "GetObjectResponseStatusCode":{
+      "type":"integer",
+      "box":true
+    },
     "GetObjectRetentionOutput":{
       "type":"structure",
       "members":{
@@ -4575,7 +4617,10 @@
       "member":{"shape":"IntelligentTieringConfiguration"},
       "flattened":true
     },
-    "IntelligentTieringDays":{"type":"integer"},
+    "IntelligentTieringDays":{
+      "type":"integer",
+      "box":true
+    },
     "IntelligentTieringFilter":{
       "type":"structure",
       "members":{
@@ -4722,11 +4767,26 @@
         "Frequency":{"shape":"InventoryFrequency"}
       }
     },
-    "IsEnabled":{"type":"boolean"},
-    "IsLatest":{"type":"boolean"},
-    "IsPublic":{"type":"boolean"},
-    "IsRestoreInProgress":{"type":"boolean"},
-    "IsTruncated":{"type":"boolean"},
+    "IsEnabled":{
+      "type":"boolean",
+      "box":true
+    },
+    "IsLatest":{
+      "type":"boolean",
+      "box":true
+    },
+    "IsPublic":{
+      "type":"boolean",
+      "box":true
+    },
+    "IsRestoreInProgress":{
+      "type":"boolean",
+      "box":true
+    },
+    "IsTruncated":{
+      "type":"boolean",
+      "box":true
+    },
     "JSONInput":{
       "type":"structure",
       "members":{
@@ -5429,7 +5489,10 @@
       ]
     },
     "Marker":{"type":"string"},
-    "MaxAgeSeconds":{"type":"integer"},
+    "MaxAgeSeconds":{
+      "type":"integer",
+      "box":true
+    },
     "MaxKeys":{"type":"integer"},
     "MaxParts":{"type":"integer"},
     "MaxUploads":{"type":"integer"},
@@ -5505,7 +5568,10 @@
         "Disabled"
       ]
     },
-    "Minutes":{"type":"integer"},
+    "Minutes":{
+      "type":"integer",
+      "box":true
+    },
     "MissingMeta":{"type":"integer"},
     "MultipartUpload":{
       "type":"structure",
@@ -5527,7 +5593,10 @@
     },
     "NextKeyMarker":{"type":"string"},
     "NextMarker":{"type":"string"},
-    "NextPartNumberMarker":{"type":"integer"},
+    "NextPartNumberMarker":{
+      "type":"integer",
+      "box":true
+    },
     "NextToken":{"type":"string"},
     "NextUploadIdMarker":{"type":"string"},
     "NextVersionIdMarker":{"type":"string"},
@@ -5683,7 +5752,10 @@
       "type":"string",
       "enum":["Enabled"]
     },
-    "ObjectLockEnabledForBucket":{"type":"boolean"},
+    "ObjectLockEnabledForBucket":{
+      "type":"boolean",
+      "box":true
+    },
     "ObjectLockLegalHold":{
       "type":"structure",
       "members":{
@@ -5754,9 +5826,18 @@
         "ChecksumSHA256":{"shape":"ChecksumSHA256"}
       }
     },
-    "ObjectSize":{"type":"long"},
-    "ObjectSizeGreaterThanBytes":{"type":"long"},
-    "ObjectSizeLessThanBytes":{"type":"long"},
+    "ObjectSize":{
+      "type":"long",
+      "box":true
+    },
+    "ObjectSizeGreaterThanBytes":{
+      "type":"long",
+      "box":true
+    },
+    "ObjectSizeLessThanBytes":{
+      "type":"long",
+      "box":true
+    },
     "ObjectStorageClass":{
       "type":"string",
       "enum":[
@@ -5876,7 +5957,10 @@
       "member":{"shape":"Part"},
       "flattened":true
     },
-    "PartsCount":{"type":"integer"},
+    "PartsCount":{
+      "type":"integer",
+      "box":true
+    },
     "PartsList":{
       "type":"list",
       "member":{"shape":"ObjectPart"},
@@ -5910,7 +5994,10 @@
       }
     },
     "Prefix":{"type":"string"},
-    "Priority":{"type":"integer"},
+    "Priority":{
+      "type":"integer",
+      "box":true
+    },
     "Progress":{
       "type":"structure",
       "members":{
@@ -7347,7 +7434,10 @@
       "member":{"shape":"QueueConfiguration"},
       "flattened":true
     },
-    "Quiet":{"type":"boolean"},
+    "Quiet":{
+      "type":"boolean",
+      "box":true
+    },
     "QuoteCharacter":{"type":"string"},
     "QuoteEscapeCharacter":{"type":"string"},
     "QuoteFields":{
@@ -7843,9 +7933,18 @@
       "member":{"shape":"ServerSideEncryptionRule"},
       "flattened":true
     },
-    "Setting":{"type":"boolean"},
-    "Size":{"type":"long"},
-    "SkipValidation":{"type":"boolean"},
+    "Setting":{
+      "type":"boolean",
+      "box":true
+    },
+    "Size":{
+      "type":"long",
+      "box":true
+    },
+    "SkipValidation":{
+      "type":"boolean",
+      "box":true
+    },
     "SourceSelectionCriteria":{
       "type":"structure",
       "members":{
@@ -7867,7 +7966,10 @@
         "Disabled"
       ]
     },
-    "Start":{"type":"long"},
+    "Start":{
+      "type":"long",
+      "box":true
+    },
     "StartAfter":{"type":"string"},
     "Stats":{
       "type":"structure",
@@ -7935,7 +8037,10 @@
         "Value":{"shape":"Value"}
       }
     },
-    "TagCount":{"type":"integer"},
+    "TagCount":{
+      "type":"integer",
+      "box":true
+    },
     "TagSet":{
       "type":"list",
       "member":{
@@ -8388,7 +8493,10 @@
       }
     },
     "Value":{"type":"string"},
-    "VersionCount":{"type":"integer"},
+    "VersionCount":{
+      "type":"integer",
+      "box":true
+    },
     "VersionIdMarker":{"type":"string"},
     "VersioningConfiguration":{
       "type":"structure",
@@ -8620,7 +8728,10 @@
       },
       "payload":"Body"
     },
-    "Years":{"type":"integer"}
+    "Years":{
+      "type":"integer",
+      "box":true
+    }
   },
   "clientContextParams":{
     "Accelerate":{

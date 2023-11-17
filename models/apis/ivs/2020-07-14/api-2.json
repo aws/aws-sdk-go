@@ -1008,26 +1008,31 @@
     },
     "MaxChannelResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
     "MaxPlaybackKeyPairResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
     "MaxRecordingConfigurationResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
     "MaxStreamKeyResults":{
       "type":"integer",
+      "box":true,
       "max":50,
       "min":1
     },
     "MaxStreamResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
@@ -1461,6 +1466,7 @@
     },
     "TargetIntervalSeconds":{
       "type":"long",
+      "box":true,
       "max":60,
       "min":1
     },

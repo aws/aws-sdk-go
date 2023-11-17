@@ -84,6 +84,9 @@ func (c *OSIS) CreatePipelineRequest(input *CreatePipelineInput) (req *request.R
 //   - ResourceAlreadyExistsException
 //     You attempted to create a resource that already exists.
 //
+//   - ResourceNotFoundException
+//     You attempted to access or delete a resource that does not exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/osis-2022-01-01/CreatePipeline
 func (c *OSIS) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
@@ -1418,6 +1421,54 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Options that specify the configuration of a persistent buffer. To configure
+// how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.
+type BufferOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether persistent buffering should be enabled.
+	//
+	// PersistentBufferEnabled is a required field
+	PersistentBufferEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BufferOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BufferOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BufferOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BufferOptions"}
+	if s.PersistentBufferEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("PersistentBufferEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPersistentBufferEnabled sets the PersistentBufferEnabled field's value.
+func (s *BufferOptions) SetPersistentBufferEnabled(v bool) *BufferOptions {
+	s.PersistentBufferEnabled = &v
+	return s
+}
+
 // Progress details for a specific stage of a pipeline configuration change.
 type ChangeProgressStage struct {
 	_ struct{} `type:"structure"`
@@ -1655,6 +1706,13 @@ func (s *ConflictException) RequestID() string {
 type CreatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
+	// Key-value pairs to configure persistent buffering for the pipeline.
+	BufferOptions *BufferOptions `type:"structure"`
+
+	// Key-value pairs to configure encryption for data that is written to a persistent
+	// buffer.
+	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
+
 	// Key-value pairs to configure log publishing.
 	LogPublishingOptions *LogPublishingOptions `type:"structure"`
 
@@ -1736,6 +1794,16 @@ func (s *CreatePipelineInput) Validate() error {
 	if s.PipelineName != nil && len(*s.PipelineName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 3))
 	}
+	if s.BufferOptions != nil {
+		if err := s.BufferOptions.Validate(); err != nil {
+			invalidParams.AddNested("BufferOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionAtRestOptions != nil {
+		if err := s.EncryptionAtRestOptions.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionAtRestOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LogPublishingOptions != nil {
 		if err := s.LogPublishingOptions.Validate(); err != nil {
 			invalidParams.AddNested("LogPublishingOptions", err.(request.ErrInvalidParams))
@@ -1761,6 +1829,18 @@ func (s *CreatePipelineInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBufferOptions sets the BufferOptions field's value.
+func (s *CreatePipelineInput) SetBufferOptions(v *BufferOptions) *CreatePipelineInput {
+	s.BufferOptions = v
+	return s
+}
+
+// SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
+func (s *CreatePipelineInput) SetEncryptionAtRestOptions(v *EncryptionAtRestOptions) *CreatePipelineInput {
+	s.EncryptionAtRestOptions = v
+	return s
 }
 
 // SetLogPublishingOptions sets the LogPublishingOptions field's value.
@@ -1905,6 +1985,57 @@ func (s DeletePipelineOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeletePipelineOutput) GoString() string {
 	return s.String()
+}
+
+// Options to control how OpenSearch encrypts all data-at-rest.
+type EncryptionAtRestOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the KMS key used to encrypt data-at-rest in OpenSearch Ingestion.
+	// By default, data is encrypted using an AWS owned key.
+	//
+	// KmsKeyArn is a required field
+	KmsKeyArn *string `min:"7" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionAtRestOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionAtRestOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionAtRestOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionAtRestOptions"}
+	if s.KmsKeyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyArn"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *EncryptionAtRestOptions) SetKmsKeyArn(v string) *EncryptionAtRestOptions {
+	s.KmsKeyArn = &v
+	return s
 }
 
 type GetPipelineBlueprintInput struct {
@@ -2634,8 +2765,15 @@ func (s *LogPublishingOptions) SetIsLoggingEnabled(v bool) *LogPublishingOptions
 type Pipeline struct {
 	_ struct{} `type:"structure"`
 
+	// Options that specify the configuration of a persistent buffer. To configure
+	// how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.
+	BufferOptions *BufferOptions `type:"structure"`
+
 	// The date and time when the pipeline was created.
 	CreatedAt *time.Time `type:"timestamp"`
+
+	// Options to control how OpenSearch encrypts all data-at-rest.
+	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
 	// The ingestion endpoints for the pipeline, which you can send data to.
 	IngestEndpointUrls []*string `type:"list"`
@@ -2661,11 +2799,18 @@ type Pipeline struct {
 	// The name of the pipeline.
 	PipelineName *string `type:"string"`
 
+	// A list of VPC endpoints that OpenSearch Ingestion has created to other AWS
+	// services.
+	ServiceVpcEndpoints []*ServiceVpcEndpoint `type:"list"`
+
 	// The current status of the pipeline.
 	Status *string `type:"string" enum:"PipelineStatus"`
 
 	// The reason for the current status of the pipeline.
 	StatusReason *PipelineStatusReason `type:"structure"`
+
+	// A list of tags associated with the given pipeline.
+	Tags []*Tag `type:"list"`
 
 	// The VPC interface endpoints that have access to the pipeline.
 	VpcEndpoints []*VpcEndpoint `type:"list"`
@@ -2689,9 +2834,21 @@ func (s Pipeline) GoString() string {
 	return s.String()
 }
 
+// SetBufferOptions sets the BufferOptions field's value.
+func (s *Pipeline) SetBufferOptions(v *BufferOptions) *Pipeline {
+	s.BufferOptions = v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Pipeline) SetCreatedAt(v time.Time) *Pipeline {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
+func (s *Pipeline) SetEncryptionAtRestOptions(v *EncryptionAtRestOptions) *Pipeline {
+	s.EncryptionAtRestOptions = v
 	return s
 }
 
@@ -2743,6 +2900,12 @@ func (s *Pipeline) SetPipelineName(v string) *Pipeline {
 	return s
 }
 
+// SetServiceVpcEndpoints sets the ServiceVpcEndpoints field's value.
+func (s *Pipeline) SetServiceVpcEndpoints(v []*ServiceVpcEndpoint) *Pipeline {
+	s.ServiceVpcEndpoints = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Pipeline) SetStatus(v string) *Pipeline {
 	s.Status = &v
@@ -2752,6 +2915,12 @@ func (s *Pipeline) SetStatus(v string) *Pipeline {
 // SetStatusReason sets the StatusReason field's value.
 func (s *Pipeline) SetStatusReason(v *PipelineStatusReason) *Pipeline {
 	s.StatusReason = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Pipeline) SetTags(v []*Tag) *Pipeline {
+	s.Tags = v
 	return s
 }
 
@@ -2893,6 +3062,9 @@ type PipelineSummary struct {
 
 	// Information about a pipeline's current status.
 	StatusReason *PipelineStatusReason `type:"structure"`
+
+	// A list of tags associated with the given pipeline.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation.
@@ -2958,6 +3130,12 @@ func (s *PipelineSummary) SetStatus(v string) *PipelineSummary {
 // SetStatusReason sets the StatusReason field's value.
 func (s *PipelineSummary) SetStatusReason(v *PipelineStatusReason) *PipelineSummary {
 	s.StatusReason = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PipelineSummary) SetTags(v []*Tag) *PipelineSummary {
+	s.Tags = v
 	return s
 }
 
@@ -3087,6 +3265,48 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A container for information about VPC endpoints that were created to other
+// services
+type ServiceVpcEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the service for which a VPC endpoint was created.
+	ServiceName *string `type:"string" enum:"VpcEndpointServiceName"`
+
+	// The ID of the VPC endpoint that was created.
+	VpcEndpointId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVpcEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVpcEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ServiceVpcEndpoint) SetServiceName(v string) *ServiceVpcEndpoint {
+	s.ServiceName = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *ServiceVpcEndpoint) SetVpcEndpointId(v string) *ServiceVpcEndpoint {
+	s.VpcEndpointId = &v
+	return s
 }
 
 type StartPipelineInput struct {
@@ -3498,6 +3718,13 @@ func (s UntagResourceOutput) GoString() string {
 type UpdatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
+	// Key-value pairs to configure persistent buffering for the pipeline.
+	BufferOptions *BufferOptions `type:"structure"`
+
+	// Key-value pairs to configure encryption for data that is written to a persistent
+	// buffer.
+	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
+
 	// Key-value pairs to configure log publishing.
 	LogPublishingOptions *LogPublishingOptions `type:"structure"`
 
@@ -3554,6 +3781,16 @@ func (s *UpdatePipelineInput) Validate() error {
 	if s.PipelineName != nil && len(*s.PipelineName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 3))
 	}
+	if s.BufferOptions != nil {
+		if err := s.BufferOptions.Validate(); err != nil {
+			invalidParams.AddNested("BufferOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionAtRestOptions != nil {
+		if err := s.EncryptionAtRestOptions.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionAtRestOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LogPublishingOptions != nil {
 		if err := s.LogPublishingOptions.Validate(); err != nil {
 			invalidParams.AddNested("LogPublishingOptions", err.(request.ErrInvalidParams))
@@ -3564,6 +3801,18 @@ func (s *UpdatePipelineInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBufferOptions sets the BufferOptions field's value.
+func (s *UpdatePipelineInput) SetBufferOptions(v *BufferOptions) *UpdatePipelineInput {
+	s.BufferOptions = v
+	return s
+}
+
+// SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
+func (s *UpdatePipelineInput) SetEncryptionAtRestOptions(v *EncryptionAtRestOptions) *UpdatePipelineInput {
+	s.EncryptionAtRestOptions = v
+	return s
 }
 
 // SetLogPublishingOptions sets the LogPublishingOptions field's value.
@@ -4023,5 +4272,17 @@ func PipelineStatus_Values() []string {
 		PipelineStatusStartFailed,
 		PipelineStatusStopping,
 		PipelineStatusStopped,
+	}
+}
+
+const (
+	// VpcEndpointServiceNameOpensearchServerless is a VpcEndpointServiceName enum value
+	VpcEndpointServiceNameOpensearchServerless = "OPENSEARCH_SERVERLESS"
+)
+
+// VpcEndpointServiceName_Values returns all elements of the VpcEndpointServiceName enum
+func VpcEndpointServiceName_Values() []string {
+	return []string{
+		VpcEndpointServiceNameOpensearchServerless,
 	}
 }

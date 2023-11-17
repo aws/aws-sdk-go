@@ -26,8 +26,17 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "BufferOptions$PersistentBufferEnabled": "<p>Whether persistent buffering should be enabled.</p>",
         "LogPublishingOptions$IsLoggingEnabled": "<p>Whether logs should be published.</p>",
         "ValidatePipelineResponse$isValid": "<p>A boolean indicating whether or not the pipeline configuration is valid.</p>"
+      }
+    },
+    "BufferOptions": {
+      "base": "<p>Options that specify the configuration of a persistent buffer. To configure how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.</p>",
+      "refs": {
+        "CreatePipelineRequest$BufferOptions": "<p>Key-value pairs to configure persistent buffering for the pipeline.</p>",
+        "Pipeline$BufferOptions": null,
+        "UpdatePipelineRequest$BufferOptions": "<p>Key-value pairs to configure persistent buffering for the pipeline.</p>"
       }
     },
     "ChangeProgressStage": {
@@ -97,6 +106,14 @@
       "refs": {
       }
     },
+    "EncryptionAtRestOptions": {
+      "base": "<p>Options to control how OpenSearch encrypts all data-at-rest.</p>",
+      "refs": {
+        "CreatePipelineRequest$EncryptionAtRestOptions": "<p>Key-value pairs to configure encryption for data that is written to a persistent buffer.</p>",
+        "Pipeline$EncryptionAtRestOptions": null,
+        "UpdatePipelineRequest$EncryptionAtRestOptions": "<p>Key-value pairs to configure encryption for data that is written to a persistent buffer.</p>"
+      }
+    },
     "GetPipelineBlueprintRequest": {
       "base": null,
       "refs": {
@@ -149,6 +166,12 @@
     "InvalidPaginationTokenException": {
       "base": "<p>An invalid pagination token provided in the request.</p>",
       "refs": {
+      }
+    },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "EncryptionAtRestOptions$KmsKeyArn": "<p>The ARN of the KMS key used to encrypt data-at-rest in OpenSearch Ingestion. By default, data is encrypted using an AWS owned key.</p>"
       }
     },
     "LimitExceededException": {
@@ -330,6 +353,18 @@
         "VpcOptions$SecurityGroupIds": "<p>A list of security groups associated with the VPC endpoint.</p>"
       }
     },
+    "ServiceVpcEndpoint": {
+      "base": "<p>A container for information about VPC endpoints that were created to other services</p>",
+      "refs": {
+        "ServiceVpcEndpointsList$member": null
+      }
+    },
+    "ServiceVpcEndpointsList": {
+      "base": null,
+      "refs": {
+        "Pipeline$ServiceVpcEndpoints": "<p>A list of VPC endpoints that OpenSearch Ingestion has created to other AWS services.</p>"
+      }
+    },
     "StartPipelineRequest": {
       "base": null,
       "refs": {
@@ -364,6 +399,7 @@
         "PipelineBlueprint$PipelineConfigurationBody": "<p>The YAML configuration of the blueprint.</p>",
         "PipelineBlueprintSummary$BlueprintName": "<p>The name of the blueprint.</p>",
         "PipelineStatusReason$Description": "<p>A description of why a pipeline has a certain status.</p>",
+        "ServiceVpcEndpoint$VpcEndpointId": "<p>The ID of the VPC endpoint that was created.</p>",
         "StringList$member": null,
         "ValidationMessage$Message": "<p>The validation message.</p>",
         "VpcEndpoint$VpcEndpointId": "<p>The unique identifier of the endpoint.</p>",
@@ -405,6 +441,8 @@
       "refs": {
         "CreatePipelineRequest$Tags": "<p>List of tags to add to the pipeline upon creation.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the given pipeline.</p>",
+        "Pipeline$Tags": "<p>A list of tags associated with the given pipeline.</p>",
+        "PipelineSummary$Tags": "<p>A list of tags associated with the given pipeline.</p>",
         "TagResourceRequest$Tags": "<p>The list of key-value tags to add to the pipeline.</p>"
       }
     },
@@ -486,6 +524,12 @@
       "base": "<p>An OpenSearch Ingestion-managed VPC endpoint that will access one or more pipelines.</p>",
       "refs": {
         "VpcEndpointsList$member": null
+      }
+    },
+    "VpcEndpointServiceName": {
+      "base": null,
+      "refs": {
+        "ServiceVpcEndpoint$ServiceName": "<p>The name of the service for which a VPC endpoint was created.</p>"
       }
     },
     "VpcEndpointsList": {

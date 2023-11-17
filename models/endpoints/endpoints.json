@@ -15349,6 +15349,7 @@
             "deprecated" : true,
             "hostname" : "servicecatalog-appregistry-fips.us-west-2.amazonaws.com"
           },
+          "il-central-1" : { },
           "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },

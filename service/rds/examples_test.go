@@ -596,6 +596,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeInvalidVPCNetworkStateFault, aerr.Error())
 			case rds.ErrCodeInvalidDBClusterStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
+			case rds.ErrCodeInvalidDBSubnetGroupFault:
+				fmt.Println(rds.ErrCodeInvalidDBSubnetGroupFault, aerr.Error())
 			case rds.ErrCodeInvalidDBSubnetGroupStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBSubnetGroupStateFault, aerr.Error())
 			case rds.ErrCodeInvalidSubnet:
@@ -618,6 +620,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeInvalidGlobalClusterStateFault, aerr.Error())
 			case rds.ErrCodeDomainNotFoundFault:
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
+			case rds.ErrCodeOptionGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -665,6 +669,8 @@ func ExampleRDS_CreateDBCluster_shared01() {
 				fmt.Println(rds.ErrCodeInvalidVPCNetworkStateFault, aerr.Error())
 			case rds.ErrCodeInvalidDBClusterStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
+			case rds.ErrCodeInvalidDBSubnetGroupFault:
+				fmt.Println(rds.ErrCodeInvalidDBSubnetGroupFault, aerr.Error())
 			case rds.ErrCodeInvalidDBSubnetGroupStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBSubnetGroupStateFault, aerr.Error())
 			case rds.ErrCodeInvalidSubnet:
@@ -687,6 +693,8 @@ func ExampleRDS_CreateDBCluster_shared01() {
 				fmt.Println(rds.ErrCodeInvalidGlobalClusterStateFault, aerr.Error())
 			case rds.ErrCodeDomainNotFoundFault:
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
+			case rds.ErrCodeOptionGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2985,6 +2993,8 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeStorageTypeNotAvailableFault:
 				fmt.Println(rds.ErrCodeStorageTypeNotAvailableFault, aerr.Error())
+			case rds.ErrCodeOptionGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

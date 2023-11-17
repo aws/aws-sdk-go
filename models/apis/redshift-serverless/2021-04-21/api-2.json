@@ -837,6 +837,7 @@
         "logExports":{"shape":"LogExportList"},
         "manageAdminPassword":{"shape":"Boolean"},
         "namespaceName":{"shape":"NamespaceName"},
+        "redshiftIdcApplicationArn":{"shape":"RedshiftIdcApplicationArn"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1565,6 +1566,11 @@
     "RecoveryPointList":{
       "type":"list",
       "member":{"shape":"RecoveryPoint"}
+    },
+    "RedshiftIdcApplicationArn":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "ResourceNotFoundException":{
       "type":"structure",

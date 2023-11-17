@@ -9426,11 +9426,13 @@ func (s *AuthenticationMethodItem) SetAuthenticationMethodType(v string) *Authen
 	return s
 }
 
-// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+// A structure that defines configuration settings for an application that supports
+// the OAuth 2.0 Authorization Code Grant.
 type AuthorizationCodeGrant struct {
 	_ struct{} `type:"structure"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// A list of URIs that are valid locations to redirect a user's browser after
+	// the user is authorized.
 	RedirectUris []*string `min:"1" type:"list"`
 }
 
@@ -13757,15 +13759,25 @@ func (s *GetPermissionsBoundaryForPermissionSetOutput) SetPermissionsBoundary(v 
 	return s
 }
 
-// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+// The Grant union represents the set of possible configuration options for
+// the selected grant type. Exactly one member of the union must be specified,
+// and must match the grant type selected.
 type Grant struct {
 	_ struct{} `type:"structure"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// Configuration options for the authorization_code grant type.
 	AuthorizationCode *AuthorizationCodeGrant `type:"structure"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// Configuration options for the urn:ietf:params:oauth:grant-type:jwt-bearer
+	// grant type.
 	JwtBearer *JwtBearerGrant `type:"structure"`
+
+	// Configuration options for the refresh_token grant type.
+	RefreshToken *RefreshTokenGrant `type:"structure"`
+
+	// Configuration options for the urn:ietf:params:oauth:grant-type:token-exchange
+	// grant type.
+	TokenExchange *TokenExchangeGrant `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13818,16 +13830,28 @@ func (s *Grant) SetJwtBearer(v *JwtBearerGrant) *Grant {
 	return s
 }
 
-// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+// SetRefreshToken sets the RefreshToken field's value.
+func (s *Grant) SetRefreshToken(v *RefreshTokenGrant) *Grant {
+	s.RefreshToken = v
+	return s
+}
+
+// SetTokenExchange sets the TokenExchange field's value.
+func (s *Grant) SetTokenExchange(v *TokenExchangeGrant) *Grant {
+	s.TokenExchange = v
+	return s
+}
+
+// A structure that defines a single grant and its configuration.
 type GrantItem struct {
 	_ struct{} `type:"structure"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// The configuration structure for the selected grant.
 	//
 	// Grant is a required field
 	Grant *Grant `type:"structure" required:"true"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// The type of the selected grant.
 	//
 	// GrantType is a required field
 	GrantType *string `type:"string" required:"true" enum:"GrantType"`
@@ -14069,11 +14093,13 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+// A structure that defines configuration settings for an application that supports
+// the JWT Bearer Token Authorization Grant.
 type JwtBearerGrant struct {
 	_ struct{} `type:"structure"`
 
-	// ~~~[ TODO: ADD DESCRIPTION HERE ]~~~
+	// A list of allowed token issuers trusted by the Identity Center instances
+	// for this application.
 	AuthorizedTokenIssuers []*AuthorizedTokenIssuer `min:"1" type:"list"`
 }
 
@@ -18149,6 +18175,30 @@ func (s PutPermissionsBoundaryToPermissionSetOutput) GoString() string {
 	return s.String()
 }
 
+// A structure that defines configuration settings for an application that supports
+// the OAuth 2.0 Refresh Token Grant.
+type RefreshTokenGrant struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshTokenGrant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshTokenGrant) GoString() string {
+	return s.String()
+}
+
 // Indicates that a requested resource is not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -18705,6 +18755,30 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure that defines configuration settings for an application that supports
+// the OAuth 2.0 Token Exchange Grant.
+type TokenExchangeGrant struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TokenExchangeGrant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TokenExchangeGrant) GoString() string {
+	return s.String()
+}
+
 // A structure that describes the configuration of a trusted token issuer. The
 // structure and available settings are determined by the type of the trusted
 // token issuer.
@@ -19078,6 +19152,8 @@ func (s UpdateApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// A structure that describes the options for the access portal associated with
+// an application that can be updated.
 type UpdateApplicationPortalOptions struct {
 	_ struct{} `type:"structure"`
 

@@ -765,6 +765,12 @@
         "ListRecoveryPointsResponse$recoveryPoints": "<p>The returned recovery point objects.</p>"
       }
     },
+    "RedshiftIdcApplicationArn": {
+      "base": null,
+      "refs": {
+        "CreateNamespaceRequest$redshiftIdcApplicationArn": "<p>The ARN for the Redshift application that integrates with IAM Identity Center.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The resource could not be found.</p>",
       "refs": {

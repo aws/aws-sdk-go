@@ -844,6 +844,40 @@
         }
       ]
     },
+    "DescribeAccountConfiguration": {
+      "name": "DescribeAccountConfiguration",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/accountConfiguration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeAccountConfigurationRequest"
+      },
+      "output": {
+        "shape": "DescribeAccountConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DescribeChannel": {
       "name": "DescribeChannel",
       "http": {
@@ -1205,40 +1239,6 @@
         },
         {
           "shape": "NotFoundException"
-        },
-        {
-          "shape": "GatewayTimeoutException"
-        },
-        {
-          "shape": "TooManyRequestsException"
-        }
-      ]
-    },
-    "DescribeAccountConfiguration": {
-      "name": "DescribeAccountConfiguration",
-      "http": {
-        "method": "GET",
-        "requestUri": "/prod/accountConfiguration",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "DescribeAccountConfigurationRequest"
-      },
-      "output": {
-        "shape": "DescribeAccountConfigurationResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "BadGatewayException"
         },
         {
           "shape": "GatewayTimeoutException"
@@ -1751,43 +1751,6 @@
         }
       ]
     },
-    "UpdateAccountConfiguration": {
-      "name": "UpdateAccountConfiguration",
-      "http": {
-        "method": "PUT",
-        "requestUri": "/prod/accountConfiguration",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "UpdateAccountConfigurationRequest"
-      },
-      "output": {
-        "shape": "UpdateAccountConfigurationResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "UnprocessableEntityException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "BadGatewayException"
-        },
-        {
-          "shape": "GatewayTimeoutException"
-        },
-        {
-          "shape": "TooManyRequestsException"
-        }
-      ]
-    },
     "StartChannel": {
       "name": "StartChannel",
       "http": {
@@ -2108,6 +2071,43 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateAccountConfiguration": {
+      "name": "UpdateAccountConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/accountConfiguration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateAccountConfigurationRequest"
+      },
+      "output": {
+        "shape": "UpdateAccountConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -2647,7 +2647,7 @@
     "AccountConfiguration": {
       "type": "structure",
       "members": {
-        "kmsKeyId": {
+        "KmsKeyId": {
           "shape": "__string",
           "locationName": "kmsKeyId"
         }
@@ -5004,6 +5004,29 @@
         "ResourceArn"
       ]
     },
+    "DescribeAccountConfigurationRequest": {
+      "type": "structure",
+      "members": {
+      }
+    },
+    "DescribeAccountConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
+      }
+    },
+    "DescribeAccountConfigurationResultModel": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
+      }
+    },
     "DescribeChannelRequest": {
       "type": "structure",
       "members": {
@@ -5640,6 +5663,49 @@
         "ScheduleActions": {
           "shape": "__listOfScheduleAction",
           "locationName": "scheduleActions"
+        }
+      }
+    },
+    "DescribeThumbnailsRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "channelId"
+        },
+        "PipelineId": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "pipelineId"
+        },
+        "ThumbnailType": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "thumbnailType"
+        }
+      },
+      "required": [
+        "ThumbnailType",
+        "PipelineId",
+        "ChannelId"
+      ]
+    },
+    "DescribeThumbnailsResponse": {
+      "type": "structure",
+      "members": {
+        "ThumbnailDetails": {
+          "shape": "__listOfThumbnailDetail",
+          "locationName": "thumbnailDetails"
+        }
+      }
+    },
+    "DescribeThumbnailsResultModel": {
+      "type": "structure",
+      "members": {
+        "ThumbnailDetails": {
+          "shape": "__listOfThumbnailDetail",
+          "locationName": "thumbnailDetails"
         }
       }
     },
@@ -6375,10 +6441,21 @@
         "InputPrepareScheduleActions": {
           "shape": "FeatureActivationsInputPrepareScheduleActions",
           "locationName": "inputPrepareScheduleActions"
+        },
+        "OutputStaticImageOverlayScheduleActions": {
+          "shape": "FeatureActivationsOutputStaticImageOverlayScheduleActions",
+          "locationName": "outputStaticImageOverlayScheduleActions"
         }
       }
     },
     "FeatureActivationsInputPrepareScheduleActions": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "FeatureActivationsOutputStaticImageOverlayScheduleActions": {
       "type": "string",
       "enum": [
         "DISABLED",
@@ -6595,72 +6672,6 @@
       "exception": true,
       "error": {
         "httpStatusCode": 504
-      }
-    },
-    "DescribeAccountConfigurationRequest": {
-      "type": "structure",
-      "members": {
-      }
-    },
-    "DescribeAccountConfigurationResponse": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
-    "DescribeAccountConfigurationResultModel": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
-    "DescribeThumbnailsRequest": {
-      "type": "structure",
-      "members": {
-        "ChannelId": {
-          "shape": "__string",
-          "location": "uri",
-          "locationName": "channelId"
-        },
-        "PipelineId": {
-          "shape": "__string",
-          "location": "querystring",
-          "locationName": "pipelineId"
-        },
-        "ThumbnailType": {
-          "shape": "__string",
-          "location": "querystring",
-          "locationName": "thumbnailType"
-        }
-      },
-      "required": [
-        "ThumbnailType",
-        "PipelineId",
-        "ChannelId"
-      ]
-    },
-    "DescribeThumbnailsResponse": {
-      "type": "structure",
-      "members": {
-        "ThumbnailDetails": {
-          "shape": "__listOfThumbnailDetail",
-          "locationName": "thumbnailDetails"
-        }
-      }
-    },
-    "DescribeThumbnailsResultModel": {
-      "type": "structure",
-      "members": {
-        "ThumbnailDetails": {
-          "shape": "__listOfThumbnailDetail",
-          "locationName": "thumbnailDetails"
-        }
       }
     },
     "GlobalConfiguration": {
@@ -11908,6 +11919,14 @@
         "StaticImageDeactivateSettings": {
           "shape": "StaticImageDeactivateScheduleActionSettings",
           "locationName": "staticImageDeactivateSettings"
+        },
+        "StaticImageOutputActivateSettings": {
+          "shape": "StaticImageOutputActivateScheduleActionSettings",
+          "locationName": "staticImageOutputActivateSettings"
+        },
+        "StaticImageOutputDeactivateSettings": {
+          "shape": "StaticImageOutputDeactivateScheduleActionSettings",
+          "locationName": "staticImageOutputDeactivateSettings"
         }
       }
     },
@@ -12269,42 +12288,6 @@
         "WEB_DELIVERY_ALLOWED"
       ]
     },
-    "UpdateAccountConfigurationRequest": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
-    "UpdateAccountConfigurationRequestModel": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
-    "UpdateAccountConfigurationResponse": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
-    "UpdateAccountConfigurationResultModel": {
-      "type": "structure",
-      "members": {
-        "AccountConfiguration": {
-          "shape": "AccountConfiguration",
-          "locationName": "accountConfiguration"
-        }
-      }
-    },
     "SmoothGroupAudioOnlyTimecodeControl": {
       "type": "string",
       "enum": [
@@ -12644,6 +12627,79 @@
           "locationName": "layer"
         }
       }
+    },
+    "StaticImageOutputActivateScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Duration": {
+          "shape": "__integerMin0",
+          "locationName": "duration"
+        },
+        "FadeIn": {
+          "shape": "__integerMin0",
+          "locationName": "fadeIn"
+        },
+        "FadeOut": {
+          "shape": "__integerMin0",
+          "locationName": "fadeOut"
+        },
+        "Height": {
+          "shape": "__integerMin1",
+          "locationName": "height"
+        },
+        "Image": {
+          "shape": "InputLocation",
+          "locationName": "image"
+        },
+        "ImageX": {
+          "shape": "__integerMin0",
+          "locationName": "imageX"
+        },
+        "ImageY": {
+          "shape": "__integerMin0",
+          "locationName": "imageY"
+        },
+        "Layer": {
+          "shape": "__integerMin0Max7",
+          "locationName": "layer"
+        },
+        "Opacity": {
+          "shape": "__integerMin0Max100",
+          "locationName": "opacity"
+        },
+        "OutputNames": {
+          "shape": "__listOf__string",
+          "locationName": "outputNames"
+        },
+        "Width": {
+          "shape": "__integerMin1",
+          "locationName": "width"
+        }
+      },
+      "required": [
+        "OutputNames",
+        "Image"
+      ]
+    },
+    "StaticImageOutputDeactivateScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "FadeOut": {
+          "shape": "__integerMin0",
+          "locationName": "fadeOut"
+        },
+        "Layer": {
+          "shape": "__integerMin0Max7",
+          "locationName": "layer"
+        },
+        "OutputNames": {
+          "shape": "__listOf__string",
+          "locationName": "outputNames"
+        }
+      },
+      "required": [
+        "OutputNames"
+      ]
     },
     "StaticKeySettings": {
       "type": "structure",
@@ -13232,6 +13288,42 @@
       "exception": true,
       "error": {
         "httpStatusCode": 422
+      }
+    },
+    "UpdateAccountConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
+      }
+    },
+    "UpdateAccountConfigurationRequestModel": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
+      }
+    },
+    "UpdateAccountConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
+      }
+    },
+    "UpdateAccountConfigurationResultModel": {
+      "type": "structure",
+      "members": {
+        "AccountConfiguration": {
+          "shape": "AccountConfiguration",
+          "locationName": "accountConfiguration"
+        }
       }
     },
     "UpdateChannel": {
@@ -14076,6 +14168,15 @@
     "__doubleMin1Max65535": {
       "type": "double"
     },
+    "__doubleMin250Max5000": {
+      "type": "double"
+    },
+    "__doubleMin32Max46": {
+      "type": "double"
+    },
+    "__doubleMinNegative1Max5": {
+      "type": "double"
+    },
     "__doubleMinNegative59Max0": {
       "type": "double"
     },
@@ -14125,6 +14226,11 @@
       "type": "integer",
       "min": 0,
       "max": 15
+    },
+    "__integerMin0Max2000": {
+      "type": "integer",
+      "min": 0,
+      "max": 2000
     },
     "__integerMin0Max255": {
       "type": "integer",

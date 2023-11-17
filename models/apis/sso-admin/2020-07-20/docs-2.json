@@ -381,9 +381,9 @@
       }
     },
     "AuthorizationCodeGrant": {
-      "base": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+      "base": "<p>A structure that defines configuration settings for an application that supports the OAuth 2.0 Authorization Code Grant.</p>",
       "refs": {
-        "Grant$AuthorizationCode": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>"
+        "Grant$AuthorizationCode": "<p>Configuration options for the <code>authorization_code</code> grant type.</p>"
       }
     },
     "AuthorizedTokenIssuer": {
@@ -395,7 +395,7 @@
     "AuthorizedTokenIssuers": {
       "base": null,
       "refs": {
-        "JwtBearerGrant$AuthorizedTokenIssuers": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>"
+        "JwtBearerGrant$AuthorizedTokenIssuers": "<p>A list of allowed token issuers trusted by the Identity Center instances for this application.</p>"
       }
     },
     "ClaimAttributePath": {
@@ -843,15 +843,15 @@
       }
     },
     "Grant": {
-      "base": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+      "base": "<p>The Grant union represents the set of possible configuration options for the selected grant type. Exactly one member of the union must be specified, and must match the grant type selected.</p>",
       "refs": {
         "GetApplicationGrantResponse$Grant": "<p>A structure that describes the requested grant.</p>",
-        "GrantItem$Grant": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+        "GrantItem$Grant": "<p>The configuration structure for the selected grant.</p>",
         "PutApplicationGrantRequest$Grant": "<p>Specifies a structure that describes the grant to update.</p>"
       }
     },
     "GrantItem": {
-      "base": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+      "base": "<p>A structure that defines a single grant and its configuration.</p>",
       "refs": {
         "Grants$member": null
       }
@@ -861,7 +861,7 @@
       "refs": {
         "DeleteApplicationGrantRequest$GrantType": "<p>Specifies the type of grant to delete from the application.</p>",
         "GetApplicationGrantRequest$GrantType": "<p>Specifies the type of grant.</p>",
-        "GrantItem$GrantType": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+        "GrantItem$GrantType": "<p>The type of the selected grant.</p>",
         "PutApplicationGrantRequest$GrantType": "<p>Specifies the type of grant to update.</p>"
       }
     },
@@ -1010,9 +1010,9 @@
       }
     },
     "JwtBearerGrant": {
-      "base": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>",
+      "base": "<p>A structure that defines configuration settings for an application that supports the JWT Bearer Token Authorization Grant.</p>",
       "refs": {
-        "Grant$JwtBearer": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>"
+        "Grant$JwtBearer": "<p>Configuration options for the <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code> grant type.</p>"
       }
     },
     "ListAccountAssignmentCreationStatusRequest": {
@@ -1536,7 +1536,13 @@
     "RedirectUris": {
       "base": null,
       "refs": {
-        "AuthorizationCodeGrant$RedirectUris": "<p>~~~[ TODO: ADD DESCRIPTION HERE ]~~~</p>"
+        "AuthorizationCodeGrant$RedirectUris": "<p>A list of URIs that are valid locations to redirect a user's browser after the user is authorized.</p>"
+      }
+    },
+    "RefreshTokenGrant": {
+      "base": "<p>A structure that defines configuration settings for an application that supports the OAuth 2.0 Refresh Token Grant.</p>",
+      "refs": {
+        "Grant$RefreshToken": "<p>Configuration options for the <code>refresh_token</code> grant type.</p>"
       }
     },
     "RelayState": {
@@ -1781,6 +1787,12 @@
         "ListTrustedTokenIssuersResponse$NextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>"
       }
     },
+    "TokenExchangeGrant": {
+      "base": "<p>A structure that defines configuration settings for an application that supports the OAuth 2.0 Token Exchange Grant.</p>",
+      "refs": {
+        "Grant$TokenExchange": "<p>Configuration options for the <code>urn:ietf:params:oauth:grant-type:token-exchange</code> grant type.</p>"
+      }
+    },
     "TokenIssuerAudience": {
       "base": null,
       "refs": {
@@ -1882,7 +1894,7 @@
       }
     },
     "UpdateApplicationPortalOptions": {
-      "base": "<p/>",
+      "base": "<p>A structure that describes the options for the access portal associated with an application that can be updated.</p>",
       "refs": {
         "UpdateApplicationRequest$PortalOptions": "<p>A structure that describes the options for the portal associated with an application.</p>"
       }
