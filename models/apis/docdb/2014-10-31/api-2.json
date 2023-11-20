@@ -1149,7 +1149,8 @@
         "PreSignedUrl":{"shape":"String"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"}
+        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"},
+        "StorageType":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -1321,7 +1322,8 @@
         "CloneGroupId":{"shape":"String"},
         "ClusterCreateTime":{"shape":"TStamp"},
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
-        "DeletionProtection":{"shape":"Boolean"}
+        "DeletionProtection":{"shape":"Boolean"},
+        "StorageType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1470,7 +1472,8 @@
         "StorageEncrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
         "DBClusterSnapshotArn":{"shape":"String"},
-        "SourceDBClusterSnapshotArn":{"shape":"String"}
+        "SourceDBClusterSnapshotArn":{"shape":"String"},
+        "StorageType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2527,7 +2530,8 @@
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "StorageType":{"shape":"String"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -2648,7 +2652,8 @@
         "DBInstanceClass":{"shape":"String"},
         "LicenseModel":{"shape":"String"},
         "AvailabilityZones":{"shape":"AvailabilityZoneList"},
-        "Vpc":{"shape":"Boolean"}
+        "Vpc":{"shape":"Boolean"},
+        "StorageType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2864,7 +2869,8 @@
         "KmsKeyId":{"shape":"String"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "DBClusterParameterGroupName":{"shape":"String"}
+        "DBClusterParameterGroupName":{"shape":"String"},
+        "StorageType":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -2891,7 +2897,8 @@
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "StorageType":{"shape":"String"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

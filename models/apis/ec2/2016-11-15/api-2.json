@@ -12346,6 +12346,7 @@
       "type":"structure",
       "members":{
         "DnsSupport":{"shape":"DnsSupportValue"},
+        "SecurityGroupReferencingSupport":{"shape":"SecurityGroupReferencingSupportValue"},
         "Ipv6Support":{"shape":"Ipv6SupportValue"},
         "ApplianceModeSupport":{"shape":"ApplianceModeSupportValue"}
       }
@@ -33168,6 +33169,7 @@
         "RemoveTransitGatewayCidrBlocks":{"shape":"TransitGatewayCidrBlockStringList"},
         "VpnEcmpSupport":{"shape":"VpnEcmpSupportValue"},
         "DnsSupport":{"shape":"DnsSupportValue"},
+        "SecurityGroupReferencingSupport":{"shape":"SecurityGroupReferencingSupportValue"},
         "AutoAcceptSharedAttachments":{"shape":"AutoAcceptSharedAttachmentsValue"},
         "DefaultRouteTableAssociation":{"shape":"DefaultRouteTableAssociationValue"},
         "AssociationDefaultRouteTableId":{"shape":"TransitGatewayRouteTableId"},
@@ -33233,6 +33235,7 @@
       "type":"structure",
       "members":{
         "DnsSupport":{"shape":"DnsSupportValue"},
+        "SecurityGroupReferencingSupport":{"shape":"SecurityGroupReferencingSupportValue"},
         "Ipv6Support":{"shape":"Ipv6SupportValue"},
         "ApplianceModeSupport":{"shape":"ApplianceModeSupportValue"}
       }
@@ -40058,6 +40061,10 @@
         "VpcPeeringConnectionId":{
           "shape":"String",
           "locationName":"vpcPeeringConnectionId"
+        },
+        "TransitGatewayId":{
+          "shape":"String",
+          "locationName":"transitGatewayId"
         }
       }
     },
@@ -40067,6 +40074,13 @@
         "shape":"SecurityGroupReference",
         "locationName":"item"
       }
+    },
+    "SecurityGroupReferencingSupportValue":{
+      "type":"string",
+      "enum":[
+        "enable",
+        "disable"
+      ]
     },
     "SecurityGroupRule":{
       "type":"structure",
@@ -43496,6 +43510,10 @@
           "shape":"DnsSupportValue",
           "locationName":"dnsSupport"
         },
+        "SecurityGroupReferencingSupport":{
+          "shape":"SecurityGroupReferencingSupportValue",
+          "locationName":"securityGroupReferencingSupport"
+        },
         "MulticastSupport":{
           "shape":"MulticastSupportValue",
           "locationName":"multicastSupport"
@@ -43815,6 +43833,7 @@
         "DefaultRouteTablePropagation":{"shape":"DefaultRouteTablePropagationValue"},
         "VpnEcmpSupport":{"shape":"VpnEcmpSupportValue"},
         "DnsSupport":{"shape":"DnsSupportValue"},
+        "SecurityGroupReferencingSupport":{"shape":"SecurityGroupReferencingSupportValue"},
         "MulticastSupport":{"shape":"MulticastSupportValue"},
         "TransitGatewayCidrBlocks":{"shape":"TransitGatewayCidrBlockStringList"}
       }
@@ -44199,6 +44218,10 @@
         "DnsSupport":{
           "shape":"DnsSupportValue",
           "locationName":"dnsSupport"
+        },
+        "SecurityGroupReferencingSupport":{
+          "shape":"SecurityGroupReferencingSupportValue",
+          "locationName":"securityGroupReferencingSupport"
         },
         "Ipv6Support":{
           "shape":"Ipv6SupportValue",
