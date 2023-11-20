@@ -6636,6 +6636,20 @@ type CreateDBClusterInput struct {
 	// Specifies whether the cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// The storage type to associate with the DB cluster.
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	//
+	// When you create a DocumentDB DB cluster with the storage type set to iopt1,
+	// the storage type is returned in the response. The storage type isn't returned
+	// when you set it to standard.
+	StorageType *string `type:"string"`
+
 	// The tags to be assigned to the cluster.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -6797,6 +6811,12 @@ func (s *CreateDBClusterInput) SetSourceRegion(v string) *CreateDBClusterInput {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *CreateDBClusterInput) SetStorageEncrypted(v bool) *CreateDBClusterInput {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *CreateDBClusterInput) SetStorageType(v string) *CreateDBClusterInput {
+	s.StorageType = &v
 	return s
 }
 
@@ -7885,6 +7905,18 @@ type DBCluster struct {
 	// Specifies whether the cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Storage type associated with your cluster
+	//
+	// Storage type associated with your cluster
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	StorageType *string `type:"string"`
+
 	// Provides a list of virtual private cloud (VPC) security groups that the cluster
 	// belongs to.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
@@ -8091,6 +8123,12 @@ func (s *DBCluster) SetStatus(v string) *DBCluster {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBCluster) SetStorageEncrypted(v bool) *DBCluster {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBCluster) SetStorageType(v string) *DBCluster {
+	s.StorageType = &v
 	return s
 }
 
@@ -8333,6 +8371,16 @@ type DBClusterSnapshot struct {
 	// Specifies whether the cluster snapshot is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Storage type associated with your cluster snapshot
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	StorageType *string `type:"string"`
+
 	// Provides the virtual private cloud (VPC) ID that is associated with the cluster
 	// snapshot.
 	VpcId *string `type:"string"`
@@ -8449,6 +8497,12 @@ func (s *DBClusterSnapshot) SetStatus(v string) *DBClusterSnapshot {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBClusterSnapshot) SetStorageEncrypted(v bool) *DBClusterSnapshot {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBClusterSnapshot) SetStorageType(v string) *DBClusterSnapshot {
+	s.StorageType = &v
 	return s
 }
 
@@ -12910,6 +12964,16 @@ type ModifyDBClusterInput struct {
 	// Constraints: Minimum 30-minute window.
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// The storage type to associate with the DB cluster.
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	StorageType *string `type:"string"`
+
 	// A list of virtual private cloud (VPC) security groups that the cluster will
 	// belong to.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
@@ -13021,6 +13085,12 @@ func (s *ModifyDBClusterInput) SetPreferredBackupWindow(v string) *ModifyDBClust
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *ModifyDBClusterInput) SetPreferredMaintenanceWindow(v string) *ModifyDBClusterInput {
 	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *ModifyDBClusterInput) SetStorageType(v string) *ModifyDBClusterInput {
+	s.StorageType = &v
 	return s
 }
 
@@ -13909,6 +13979,9 @@ type OrderableDBInstanceOption struct {
 	// The license model for an instance.
 	LicenseModel *string `type:"string"`
 
+	// The storage type to associate with the DB cluster
+	StorageType *string `type:"string"`
+
 	// Indicates whether an instance is in a virtual private cloud (VPC).
 	Vpc *bool `type:"boolean"`
 }
@@ -13958,6 +14031,12 @@ func (s *OrderableDBInstanceOption) SetEngineVersion(v string) *OrderableDBInsta
 // SetLicenseModel sets the LicenseModel field's value.
 func (s *OrderableDBInstanceOption) SetLicenseModel(v string) *OrderableDBInstanceOption {
 	s.LicenseModel = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *OrderableDBInstanceOption) SetStorageType(v string) *OrderableDBInstanceOption {
+	s.StorageType = &v
 	return s
 }
 
@@ -14993,6 +15072,16 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
+	// The storage type to associate with the DB cluster.
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	StorageType *string `type:"string"`
+
 	// The tags to be assigned to the restored cluster.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -15101,6 +15190,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetPort(v int64) *RestoreDBClusterFr
 // SetSnapshotIdentifier sets the SnapshotIdentifier field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetSnapshotIdentifier(v string) *RestoreDBClusterFromSnapshotInput {
 	s.SnapshotIdentifier = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetStorageType(v string) *RestoreDBClusterFromSnapshotInput {
+	s.StorageType = &v
 	return s
 }
 
@@ -15255,6 +15350,16 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// SourceDBClusterIdentifier is a required field
 	SourceDBClusterIdentifier *string `type:"string" required:"true"`
 
+	// The storage type to associate with the DB cluster.
+	//
+	// For information on storage types for Amazon DocumentDB clusters, see Cluster
+	// storage configurations in the Amazon DocumentDB Developer Guide.
+	//
+	// Valid values for storage type - standard | iopt1
+	//
+	// Default value is standard
+	StorageType *string `type:"string"`
+
 	// The tags to be assigned to the restored cluster.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -15355,6 +15460,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetRestoreType(v string) *RestoreDB
 // SetSourceDBClusterIdentifier sets the SourceDBClusterIdentifier field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetSourceDBClusterIdentifier(v string) *RestoreDBClusterToPointInTimeInput {
 	s.SourceDBClusterIdentifier = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetStorageType(v string) *RestoreDBClusterToPointInTimeInput {
+	s.StorageType = &v
 	return s
 }
 

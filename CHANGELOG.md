@@ -1,3 +1,13 @@
+Release v1.48.1 (2023-11-20)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API, documentation, and paginators
+* `service/docdb`: Updates service API and documentation
+  * Amazon DocumentDB updates for new cluster storage configuration: Amazon DocumentDB I/O-Optimized.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Security group referencing over Transit gateways, enabling you to simplify Security group management and control of instance-to-instance traffic across VPCs that are connected by Transit gateway.
+
 Release v1.48.0 (2023-11-17)
 ===
 
