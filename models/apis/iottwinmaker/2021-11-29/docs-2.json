@@ -3,8 +3,10 @@
   "service": "<p>IoT TwinMaker is a service with which you can build operational digital twins of physical systems. IoT TwinMaker overlays measurements and analysis from real-world sensors, cameras, and enterprise applications so you can create data visualizations to monitor your physical factory, building, or industrial plant. You can use this real-world data to monitor operations and diagnose and repair errors.</p>",
   "operations": {
     "BatchPutPropertyValues": "<p>Sets values for multiple time series properties.</p>",
+    "CancelMetadataTransferJob": "<p>Cancels the metadata transfer job.</p>",
     "CreateComponentType": "<p>Creates a component type.</p>",
     "CreateEntity": "<p>Creates an entity.</p>",
+    "CreateMetadataTransferJob": "<p>Creates a new metadata transfer job.</p>",
     "CreateScene": "<p>Creates a scene.</p>",
     "CreateSyncJob": "<p>This action creates a SyncJob.</p>",
     "CreateWorkspace": "<p>Creates a workplace.</p>",
@@ -13,9 +15,10 @@
     "DeleteScene": "<p>Deletes a scene.</p>",
     "DeleteSyncJob": "<p>Delete the SyncJob.</p>",
     "DeleteWorkspace": "<p>Deletes a workspace.</p>",
-    "ExecuteQuery": "<p>Run queries to access information from your knowledge graph of entities within individual workspaces.</p>",
+    "ExecuteQuery": "<p>Run queries to access information from your knowledge graph of entities within individual workspaces.</p> <note> <p>The ExecuteQuery action only works with <a href=\"https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html\">Amazon Web Services Java SDK2</a>. ExecuteQuery will not work with any Amazon Web Services Java SDK version &lt; 2.x.</p> </note>",
     "GetComponentType": "<p>Retrieves information about a component type.</p>",
     "GetEntity": "<p>Retrieves information about an entity.</p>",
+    "GetMetadataTransferJob": "<p>Gets a nmetadata transfer job.</p>",
     "GetPricingPlan": "<p>Gets the pricing plan.</p>",
     "GetPropertyValue": "<p>Gets the property values for a component, component type, entity, or workspace.</p> <p>You must specify a value for either <code>componentName</code>, <code>componentTypeId</code>, <code>entityId</code>, or <code>workspaceId</code>.</p>",
     "GetPropertyValueHistory": "<p>Retrieves information about the history of a time series property value for a component, component type, entity, or workspace.</p> <p>You must specify a value for <code>workspaceId</code>. For entity-specific queries, specify values for <code>componentName</code> and <code>entityId</code>. For cross-entity quries, specify a value for <code>componentTypeId</code>.</p>",
@@ -23,7 +26,10 @@
     "GetSyncJob": "<p>Gets the SyncJob.</p>",
     "GetWorkspace": "<p>Retrieves information about a workspace.</p>",
     "ListComponentTypes": "<p>Lists all component types in a workspace.</p>",
+    "ListComponents": "<p>This API lists the components of an entity.</p>",
     "ListEntities": "<p>Lists all entities in a workspace.</p>",
+    "ListMetadataTransferJobs": "<p>Lists the metadata transfer jobs.</p>",
+    "ListProperties": "<p>This API lists the properties of a component.</p>",
     "ListScenes": "<p>Lists all scenes in a workspace.</p>",
     "ListSyncJobs": "<p>List all SyncJobs.</p>",
     "ListSyncResources": "<p>Lists the sync resources.</p>",
@@ -69,16 +75,24 @@
       "base": null,
       "refs": {
         "ComponentPropertyGroupResponse$isInherited": "<p>A Boolean value that specifies whether the property group is inherited from a parent entity</p>",
+        "ComponentResponse$areAllPropertiesReturned": "<p>This flag notes whether all properties of the component are returned in the API response. The maximum number of properties returned is 800.</p>",
+        "ComponentResponse$areAllCompositeComponentsReturned": "<p>This flag notes whether all <code>compositeComponents</code> are returned in the API response.</p>",
+        "CompositeComponentTypeResponse$isInherited": "<p>This boolean indicates whether this <code>compositeComponentType</code> is inherited from its parent.</p>",
         "CreateComponentTypeRequest$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>",
         "DataConnector$isNative": "<p>A Boolean value that specifies whether the data connector is native to IoT TwinMaker.</p>",
         "DataValue$booleanValue": "<p>A Boolean value.</p>",
         "DeleteEntityRequest$isRecursive": "<p>A Boolean value that specifies whether the operation deletes child entities.</p>",
-        "EntitySummary$hasChildEntities": "<p>A Boolean value that specifies whether the entity has child entities or not.</p>",
+        "EntitySummary$hasChildEntities": "<p>An <b>eventual</b> Boolean value that specifies whether the entity has child entities or not.</p>",
+        "FilterByAsset$includeOffspring": "<p>Includes sub-assets.[need description hekp for this]</p>",
+        "FilterByAsset$includeAssetModel": "<p>Boolean to include the asset model.</p>",
+        "FilterByAssetModel$includeOffspring": "<p>Include asset offspring. [need desc.]</p>",
+        "FilterByAssetModel$includeAssets": "<p>Bolean to include assets.</p>",
         "FunctionResponse$isInherited": "<p>Indicates whether this function is inherited.</p>",
         "GetComponentTypeResponse$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>",
         "GetComponentTypeResponse$isAbstract": "<p>A Boolean value that specifies whether the component type is abstract.</p>",
         "GetComponentTypeResponse$isSchemaInitialized": "<p>A Boolean value that specifies whether the component type has a schema initializer and that the schema initializer has run.</p>",
         "GetEntityResponse$hasChildEntities": "<p>A Boolean value that specifies whether the entity has associated child entities.</p>",
+        "GetEntityResponse$areAllComponentsReturned": "<p>This flag notes whether all components are returned in the API response. The maximum number of components returned is 30.</p>",
         "ListComponentTypesFilter$isAbstract": "<p>A Boolean value that specifies whether the component types in the list are abstract.</p>",
         "PropertyDefinitionRequest$isRequiredInEntity": "<p>A Boolean value that specifies whether the property is required.</p>",
         "PropertyDefinitionRequest$isExternalId": "<p>A Boolean value that specifies whether the property ID comes from an external data store.</p>",
@@ -92,6 +106,8 @@
         "PropertyDefinitionResponse$isFinal": "<p>A Boolean value that specifies whether the property definition can be updated.</p>",
         "PropertyDefinitionResponse$isInherited": "<p>A Boolean value that specifies whether the property definition is inherited from a parent entity.</p>",
         "PropertyGroupResponse$isInherited": "<p>A Boolean value that specifies whether the property group is inherited from a parent entity</p>",
+        "PropertyResponse$areAllPropertyValuesReturned": "<p>This flag notes whether all values of a list or map type property are returned in the API response. The maximum number of values per property returned is 50.</p>",
+        "PropertySummary$areAllPropertyValuesReturned": "<p>This flag notes whether all values of a list or map type property are returned in the API response. The maximum number of values per property returned is 50.</p>",
         "UpdateComponentTypeRequest$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>"
       }
     },
@@ -105,6 +121,16 @@
       "base": null,
       "refs": {
         "PricingBundles$member": null
+      }
+    },
+    "CancelMetadataTransferJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelMetadataTransferJobResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ColumnDescription": {
@@ -131,6 +157,19 @@
         "ColumnDescription$type": "<p>The type of the column description.</p>"
       }
     },
+    "ComponentPath": {
+      "base": null,
+      "refs": {
+        "ComponentSummary$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>",
+        "CompositeComponentUpdatesMapRequest$key": null,
+        "CompositeComponentsMapRequest$key": null,
+        "EntityPropertyReference$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>",
+        "GetPropertyValueHistoryRequest$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>",
+        "GetPropertyValueRequest$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>",
+        "ListComponentsRequest$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>",
+        "ListPropertiesRequest$componentPath": "<p>This string specifies the path to the composite component, starting from the top-level component.</p>"
+      }
+    },
     "ComponentPropertyGroupRequest": {
       "base": "<p>The component property group request.</p>",
       "refs": {
@@ -141,7 +180,9 @@
       "base": null,
       "refs": {
         "ComponentRequest$propertyGroups": "<p>The property groups.</p>",
-        "ComponentUpdateRequest$propertyGroupUpdates": "<p>The property group updates.</p>"
+        "ComponentUpdateRequest$propertyGroupUpdates": "<p>The property group updates.</p>",
+        "CompositeComponentRequest$propertyGroups": "<p>The property groups.</p>",
+        "CompositeComponentUpdateRequest$propertyGroupUpdates": "<p>The property group updates.</p>"
       }
     },
     "ComponentPropertyGroupResponse": {
@@ -153,7 +194,8 @@
     "ComponentPropertyGroupResponses": {
       "base": null,
       "refs": {
-        "ComponentResponse$propertyGroups": "<p>The property groups.</p>"
+        "ComponentResponse$propertyGroups": "<p>The property groups.</p>",
+        "ComponentSummary$propertyGroups": "<p>The property groups.</p>"
       }
     },
     "ComponentRequest": {
@@ -168,16 +210,33 @@
         "ComponentsMap$value": null
       }
     },
+    "ComponentSummaries": {
+      "base": null,
+      "refs": {
+        "ListComponentsResponse$componentSummaries": "<p>A list of objects that contain information about the components.</p>"
+      }
+    },
+    "ComponentSummary": {
+      "base": "<p>An object that returns information about a component summary.</p>",
+      "refs": {
+        "ComponentSummaries$member": null,
+        "CompositeComponentResponse$value": null
+      }
+    },
     "ComponentTypeId": {
       "base": null,
       "refs": {
         "ComponentRequest$componentTypeId": "<p>The ID of the component type.</p>",
         "ComponentResponse$componentTypeId": "<p>The ID of the component type.</p>",
+        "ComponentSummary$componentTypeId": "<p>The ID of the component type.</p>",
         "ComponentTypeSummary$componentTypeId": "<p>The ID of the component type.</p>",
         "ComponentUpdateRequest$componentTypeId": "<p>The ID of the component type.</p>",
+        "CompositeComponentTypeRequest$componentTypeId": "<p>This is the <code>componentTypeId</code> that the <code>compositeComponentType</code> refers to.</p>",
+        "CompositeComponentTypeResponse$componentTypeId": "<p>This is the <code>componentTypeId</code> that this <code>compositeComponentType</code> refers to.</p>",
         "CreateComponentTypeRequest$componentTypeId": "<p>The ID of the component type.</p>",
         "DeleteComponentTypeRequest$componentTypeId": "<p>The ID of the component type to delete.</p>",
         "ExtendsFrom$member": null,
+        "FilterByComponentType$componentTypeId": "<p>The component type Id.</p>",
         "GetComponentTypeRequest$componentTypeId": "<p>The ID of the component type.</p>",
         "GetComponentTypeResponse$componentTypeId": "<p>The ID of the component type.</p>",
         "GetPropertyValueHistoryRequest$componentTypeId": "<p>The ID of the component type.</p>",
@@ -219,7 +278,8 @@
     "ComponentUpdateType": {
       "base": null,
       "refs": {
-        "ComponentUpdateRequest$updateType": "<p>The update type of the component update request.</p>"
+        "ComponentUpdateRequest$updateType": "<p>The update type of the component update request.</p>",
+        "CompositeComponentUpdateRequest$updateType": "<p>The update type of the component update request.</p>"
       }
     },
     "ComponentUpdatesMapRequest": {
@@ -238,6 +298,61 @@
       "base": null,
       "refs": {
         "CreateEntityRequest$components": "<p>An object that maps strings to the components in the entity. Each string in the mapping must be unique to this object.</p>"
+      }
+    },
+    "CompositeComponentRequest": {
+      "base": "<p>An object that sets information about the composite component update request.</p>",
+      "refs": {
+        "CompositeComponentsMapRequest$value": null
+      }
+    },
+    "CompositeComponentResponse": {
+      "base": null,
+      "refs": {
+        "ComponentResponse$compositeComponents": "<p>This lists objects that contain information about the <code>compositeComponents</code>.</p>"
+      }
+    },
+    "CompositeComponentTypeRequest": {
+      "base": "<p>An object that sets information about the composite component types of a component type.</p>",
+      "refs": {
+        "CompositeComponentTypesRequest$value": null
+      }
+    },
+    "CompositeComponentTypeResponse": {
+      "base": "<p>An object that returns information about the composite component types of a component type.</p>",
+      "refs": {
+        "CompositeComponentTypesResponse$value": null
+      }
+    },
+    "CompositeComponentTypesRequest": {
+      "base": null,
+      "refs": {
+        "CreateComponentTypeRequest$compositeComponentTypes": "<p>This is an object that maps strings to <code>compositeComponentTypes</code> of the <code>componentType</code>. <code>CompositeComponentType</code> is referenced by <code>componentTypeId</code>.</p>",
+        "UpdateComponentTypeRequest$compositeComponentTypes": "<p>This is an object that maps strings to <code>compositeComponentTypes</code> of the <code>componentType</code>. <code>CompositeComponentType</code> is referenced by <code>componentTypeId</code>.</p>"
+      }
+    },
+    "CompositeComponentTypesResponse": {
+      "base": null,
+      "refs": {
+        "GetComponentTypeResponse$compositeComponentTypes": "<p>This is an object that maps strings to <code>compositeComponentTypes</code> of the <code>componentType</code>. <code>CompositeComponentType</code> is referenced by <code>componentTypeId</code>.</p>"
+      }
+    },
+    "CompositeComponentUpdateRequest": {
+      "base": "<p>An object that sets information about the composite component update request.</p>",
+      "refs": {
+        "CompositeComponentUpdatesMapRequest$value": null
+      }
+    },
+    "CompositeComponentUpdatesMapRequest": {
+      "base": null,
+      "refs": {
+        "UpdateEntityRequest$compositeComponentUpdates": "<p>This is an object that maps strings to <code>compositeComponent</code> updates in the request. Each key of the map represents the <code>componentPath</code> of the <code>compositeComponent</code>.</p>"
+      }
+    },
+    "CompositeComponentsMapRequest": {
+      "base": null,
+      "refs": {
+        "CreateEntityRequest$compositeComponents": "<p>This is an object that maps strings to <code>compositeComponent</code> updates in the request. Each key of the map represents the <code>componentPath</code> of the <code>compositeComponent</code>.</p>"
       }
     },
     "Configuration": {
@@ -278,6 +393,16 @@
       }
     },
     "CreateEntityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMetadataTransferJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMetadataTransferJobResponse": {
       "base": null,
       "refs": {
       }
@@ -338,6 +463,7 @@
         "PropertyLatestValue$propertyValue": "<p>The value of the property.</p>",
         "PropertyRequest$value": "<p>The value of the property.</p>",
         "PropertyResponse$value": "<p>The value of the property.</p>",
+        "PropertySummary$value": "<p>This is the value for the property.</p>",
         "PropertyTableValue$value": null,
         "PropertyValue$value": "<p>An object that specifies a value for a time series property.</p>"
       }
@@ -410,15 +536,20 @@
       "refs": {
         "ComponentRequest$description": "<p>The description of the component request.</p>",
         "ComponentResponse$description": "<p>The description of the component type.</p>",
+        "ComponentSummary$description": "<p>The description of the component request.</p>",
         "ComponentTypeSummary$description": "<p>The description of the component type.</p>",
         "ComponentUpdateRequest$description": "<p>The description of the component type.</p>",
+        "CompositeComponentRequest$description": "<p>The description of the component type.</p>",
+        "CompositeComponentUpdateRequest$description": "<p>The description of the component type.</p>",
         "CreateComponentTypeRequest$description": "<p>The description of the component type.</p>",
         "CreateEntityRequest$description": "<p>The description of the entity.</p>",
+        "CreateMetadataTransferJobRequest$description": "<p>The metadata transfer job description.</p>",
         "CreateSceneRequest$description": "<p>The description for this scene.</p>",
         "CreateWorkspaceRequest$description": "<p>The description of the workspace.</p>",
         "EntitySummary$description": "<p>The description of the entity.</p>",
         "GetComponentTypeResponse$description": "<p>The description of the component type.</p>",
         "GetEntityResponse$description": "<p>The description of the entity.</p>",
+        "GetMetadataTransferJobResponse$description": "<p>The metadata transfer job description.</p>",
         "GetSceneResponse$description": "<p>The description of the scene.</p>",
         "GetWorkspaceResponse$description": "<p>The description of the workspace.</p>",
         "SceneSummary$description": "<p>The scene description.</p>",
@@ -427,6 +558,20 @@
         "UpdateSceneRequest$description": "<p>The description of this scene.</p>",
         "UpdateWorkspaceRequest$description": "<p>The description of the workspace.</p>",
         "WorkspaceSummary$description": "<p>The description of the workspace.</p>"
+      }
+    },
+    "DestinationConfiguration": {
+      "base": "<p>The [link to action] metadata transfer job destination configuration.</p>",
+      "refs": {
+        "CreateMetadataTransferJobRequest$destination": "<p>The metadata transfer job destination.</p>",
+        "GetMetadataTransferJobResponse$destination": "<p>The metadata transfer job's destination.</p>"
+      }
+    },
+    "DestinationType": {
+      "base": null,
+      "refs": {
+        "DestinationConfiguration$type": "<p>The destination type.</p>",
+        "ListMetadataTransferJobsRequest$destinationType": "<p>The metadata transfer job's destination type.</p>"
       }
     },
     "Double": {
@@ -443,10 +588,13 @@
         "DeleteEntityRequest$entityId": "<p>The ID of the entity to delete.</p>",
         "EntityPropertyReference$entityId": "<p>The ID of the entity.</p>",
         "EntitySummary$entityId": "<p>The ID of the entity.</p>",
+        "FilterByEntity$entityId": "<p>The entity Id.</p>",
         "GetEntityRequest$entityId": "<p>The ID of the entity.</p>",
         "GetEntityResponse$entityId": "<p>The ID of the entity.</p>",
         "GetPropertyValueHistoryRequest$entityId": "<p>The ID of the entity.</p>",
         "GetPropertyValueRequest$entityId": "<p>The ID of the entity whose property values the operation returns.</p>",
+        "ListComponentsRequest$entityId": "<p>The ID for the entity whose metadata (component/properties) is returned by the operation.</p>",
+        "ListPropertiesRequest$entityId": "<p>The ID for the entity whose metadata (component/properties) is returned by the operation.</p>",
         "RelationshipValue$targetEntityId": "<p>The ID of the target entity associated with this relationship value.</p>",
         "UpdateEntityRequest$entityId": "<p>The ID of the entity.</p>"
       }
@@ -495,6 +643,7 @@
     "ErrorDetails": {
       "base": "<p>The error details.</p>",
       "refs": {
+        "MetadataTransferJobStatus$error": "<p>The metadata transfer job error.</p>",
         "Status$error": "<p>The error message.</p>",
         "SyncJobStatus$error": "<p>The SyncJob error.</p>",
         "SyncResourceStatus$error": "<p>The status error.</p>"
@@ -565,6 +714,30 @@
         "EntityPropertyReference$externalIdProperty": "<p>A mapping of external IDs to property names. External IDs uniquely identify properties from external data stores.</p>"
       }
     },
+    "FilterByAsset": {
+      "base": "<p>Filter by asset. [TwinMaker asset]</p>",
+      "refs": {
+        "IotSiteWiseSourceConfigurationFilter$filterByAsset": "<p>Filter by asset.</p>"
+      }
+    },
+    "FilterByAssetModel": {
+      "base": "<p>Filter by asset model.</p>",
+      "refs": {
+        "IotSiteWiseSourceConfigurationFilter$filterByAssetModel": "<p>Filter by asset model.</p>"
+      }
+    },
+    "FilterByComponentType": {
+      "base": "<p>Filter by component type.</p>",
+      "refs": {
+        "IotTwinMakerSourceConfigurationFilter$filterByComponentType": "<p>Filter by component type.</p>"
+      }
+    },
+    "FilterByEntity": {
+      "base": "<p>Vilter by entity.</p>",
+      "refs": {
+        "IotTwinMakerSourceConfigurationFilter$filterByEntity": "<p>Filter by entity.</p>"
+      }
+    },
     "FunctionRequest": {
       "base": "<p>The function request body.</p>",
       "refs": {
@@ -612,6 +785,16 @@
       }
     },
     "GetEntityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataTransferJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataTransferJobResponse": {
       "base": null,
       "refs": {
       }
@@ -689,8 +872,12 @@
       "base": null,
       "refs": {
         "BatchPutPropertyValuesRequest$workspaceId": "<p>The ID of the workspace that contains the properties to set.</p>",
+        "CancelMetadataTransferJobRequest$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
+        "CancelMetadataTransferJobResponse$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
         "CreateComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "CreateEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity.</p>",
+        "CreateMetadataTransferJobRequest$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
+        "CreateMetadataTransferJobResponse$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
         "CreateSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
         "CreateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "CreateSyncJobRequest$workspaceId": "<p>The workspace ID.</p>",
@@ -706,6 +893,8 @@
         "GetComponentTypeResponse$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "GetEntityRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetEntityResponse$workspaceId": "<p>The ID of the workspace.</p>",
+        "GetMetadataTransferJobRequest$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
+        "GetMetadataTransferJobResponse$metadataTransferJobId": "<p>The metadata transfer job Id.</p>",
         "GetPropertyValueHistoryRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetPropertyValueRequest$workspaceId": "<p>The ID of the workspace whose values the operation returns.</p>",
         "GetSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
@@ -717,10 +906,14 @@
         "GetWorkspaceResponse$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesResponse$workspaceId": "<p>The ID of the workspace.</p>",
+        "ListComponentsRequest$workspaceId": "<p>The workspace ID.</p>",
         "ListEntitiesRequest$workspaceId": "<p>The ID of the workspace.</p>",
+        "ListMetadataTransferJobsFilter$workspaceId": "<p>The workspace Id.</p>",
+        "ListPropertiesRequest$workspaceId": "<p>The workspace ID.</p>",
         "ListScenesRequest$workspaceId": "<p>The ID of the workspace that contains the scenes.</p>",
         "ListSyncJobsRequest$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
         "ListSyncResourcesRequest$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
+        "MetadataTransferJobSummary$metadataTransferJobId": "<p>The metadata transfer job summary Id.</p>",
         "SceneSummary$sceneId": "<p>The ID of the scene.</p>",
         "SyncJobSummary$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
         "SyncResourceFilter$resourceId": "<p>The sync resource filter resource ID.</p>",
@@ -745,7 +938,12 @@
     "Integer": {
       "base": null,
       "refs": {
-        "DataValue$integerValue": "<p>An integer value.</p>"
+        "DataValue$integerValue": "<p>An integer value.</p>",
+        "MetadataTransferJobProgress$totalCount": "<p>The total count. [of what]</p>",
+        "MetadataTransferJobProgress$succeededCount": "<p>The succeeded count.</p>",
+        "MetadataTransferJobProgress$skippedCount": "<p>The skipped count.</p>",
+        "MetadataTransferJobProgress$failedCount": "<p>The failed count.</p>",
+        "MetadataTransferJobStatus$queuedPosition": "<p>The queued position.</p>"
       }
     },
     "InternalServerException": {
@@ -771,6 +969,48 @@
         "InterpolationParameters$intervalInSeconds": "<p>The interpolation time interval in seconds.</p>"
       }
     },
+    "IotSiteWiseSourceConfiguration": {
+      "base": "<p>The metadata transfer job AWS IoT SiteWise source configuration.</p>",
+      "refs": {
+        "SourceConfiguration$iotSiteWiseConfiguration": "<p>The source configuration IoT SiteWise configuration.</p>"
+      }
+    },
+    "IotSiteWiseSourceConfigurationFilter": {
+      "base": "<p>The AWS IoT SiteWise soucre configuration filter.[need held with desc here]</p>",
+      "refs": {
+        "IotSiteWiseSourceConfigurationFilters$member": null
+      }
+    },
+    "IotSiteWiseSourceConfigurationFilters": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseSourceConfiguration$filters": "<p>The AWS IoT SiteWise soucre configuration filters.</p>"
+      }
+    },
+    "IotTwinMakerDestinationConfiguration": {
+      "base": "<p>The metadata transfer job AWS IoT TwinMaker destination configuration.</p>",
+      "refs": {
+        "DestinationConfiguration$iotTwinMakerConfiguration": "<p>The metadata transfer job Amazon Web Services IoT TwinMaker configuration.</p>"
+      }
+    },
+    "IotTwinMakerSourceConfiguration": {
+      "base": "<p>The metadata transfer job AWS IoT TwinMaker source configuration.</p>",
+      "refs": {
+        "SourceConfiguration$iotTwinMakerConfiguration": "<p>The source configuration IoT TwinMaker configuration.</p>"
+      }
+    },
+    "IotTwinMakerSourceConfigurationFilter": {
+      "base": "<p>The metadata transfer job AWS IoT TwinMaker source configuration filter.</p>",
+      "refs": {
+        "IotTwinMakerSourceConfigurationFilters$member": null
+      }
+    },
+    "IotTwinMakerSourceConfigurationFilters": {
+      "base": null,
+      "refs": {
+        "IotTwinMakerSourceConfiguration$filters": "<p>The metadata transfer job AWS IoT TwinMaker source configuration filters.</p>"
+      }
+    },
     "LambdaArn": {
       "base": null,
       "refs": {
@@ -781,6 +1021,19 @@
       "base": "<p>The Lambda function.</p>",
       "refs": {
         "DataConnector$lambda": "<p>The Lambda function associated with this data connector.</p>"
+      }
+    },
+    "LinkedService": {
+      "base": null,
+      "refs": {
+        "LinkedServices$member": null
+      }
+    },
+    "LinkedServices": {
+      "base": null,
+      "refs": {
+        "GetWorkspaceResponse$linkedServices": "<p>A list of services that are linked to the workspace.</p>",
+        "WorkspaceSummary$linkedServices": "<p>A list of services that are linked to the workspace.</p>"
       }
     },
     "ListComponentTypesFilter": {
@@ -805,6 +1058,16 @@
       "refs": {
       }
     },
+    "ListComponentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListEntitiesFilter": {
       "base": "<p>An object that filters items in a list of entities.</p>",
       "refs": {
@@ -823,6 +1086,38 @@
       }
     },
     "ListEntitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetadataTransferJobsFilter": {
+      "base": "<p>The ListMetadataTransferJobs filter.</p>",
+      "refs": {
+        "ListMetadataTransferJobsFilters$member": null
+      }
+    },
+    "ListMetadataTransferJobsFilters": {
+      "base": null,
+      "refs": {
+        "ListMetadataTransferJobsRequest$filters": "<p>An object that filters metadata transfer jobs.</p>"
+      }
+    },
+    "ListMetadataTransferJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetadataTransferJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPropertiesResponse": {
       "base": null,
       "refs": {
       }
@@ -891,12 +1186,51 @@
         "GetPropertyValueRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListComponentTypesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListComponentTypesResponse$maxResults": "<p>Specifies the maximum number of results to display.</p>",
+        "ListComponentsRequest$maxResults": "<p>The maximum number of results returned at one time. The default is 25.</p>",
         "ListEntitiesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
+        "ListMetadataTransferJobsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
+        "ListPropertiesRequest$maxResults": "<p>The maximum number of results returned at one time. The default is 25.</p>",
         "ListScenesRequest$maxResults": "<p>Specifies the maximum number of results to display.</p>",
         "ListSyncJobsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 50.</p> <p>Valid Range: Minimum value of 0. Maximum value of 200.</p>",
         "ListSyncResourcesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 50.</p> <p>Valid Range: Minimum value of 0. Maximum value of 200.</p>",
         "ListTagsForResourceRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListWorkspacesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
+      }
+    },
+    "MetadataTransferJobProgress": {
+      "base": "<p>The metadata transfer job's progress.</p>",
+      "refs": {
+        "CancelMetadataTransferJobResponse$progress": "<p>The metadata transfer job's progress.</p>",
+        "GetMetadataTransferJobResponse$progress": "<p>The metadata transfer job's progress.</p>",
+        "MetadataTransferJobSummary$progress": "<p>The metadata transfer job summary progess.</p>"
+      }
+    },
+    "MetadataTransferJobState": {
+      "base": null,
+      "refs": {
+        "ListMetadataTransferJobsFilter$state": "<p>The filter state.</p>",
+        "MetadataTransferJobStatus$state": "<p>The metadata transfer job state.</p>"
+      }
+    },
+    "MetadataTransferJobStatus": {
+      "base": "<p>The metadata transfer job status.</p>",
+      "refs": {
+        "CancelMetadataTransferJobResponse$status": "<p>The metadata transfer job's status.</p>",
+        "CreateMetadataTransferJobResponse$status": "<p>The metadata transfer job response status.</p>",
+        "GetMetadataTransferJobResponse$status": "<p>The metadata transfer job's status.</p>",
+        "MetadataTransferJobSummary$status": "<p>The metadata transfer job summary status.</p>"
+      }
+    },
+    "MetadataTransferJobSummaries": {
+      "base": null,
+      "refs": {
+        "ListMetadataTransferJobsResponse$metadataTransferJobSummaries": "<p>The metadata transfer job summaries.</p>"
+      }
+    },
+    "MetadataTransferJobSummary": {
+      "base": "<p>The metadata transfer job summary.</p>",
+      "refs": {
+        "MetadataTransferJobSummaries$member": null
       }
     },
     "Name": {
@@ -905,9 +1239,13 @@
         "ComponentPropertyGroupRequests$key": null,
         "ComponentPropertyGroupResponses$key": null,
         "ComponentResponse$componentName": "<p>The name of the component.</p>",
+        "ComponentSummary$componentName": "<p>The name of the component.</p>",
         "ComponentUpdatesMapRequest$key": null,
         "ComponentsMap$key": null,
         "ComponentsMapRequest$key": null,
+        "CompositeComponentResponse$key": null,
+        "CompositeComponentTypesRequest$key": null,
+        "CompositeComponentTypesResponse$key": null,
         "Configuration$key": null,
         "EntityPropertyReference$componentName": "<p>The name of the component.</p>",
         "EntityPropertyReference$propertyName": "<p>The name of the property.</p>",
@@ -917,6 +1255,7 @@
         "GetPropertyValueHistoryRequest$componentName": "<p>The name of the component.</p>",
         "GetPropertyValueRequest$componentName": "<p>The name of the component whose property values the operation returns.</p>",
         "GetPropertyValueRequest$propertyGroupName": "<p>The property group name.</p>",
+        "ListPropertiesRequest$componentName": "<p>The name of the component whose properties are returned by the operation.</p>",
         "PropertyDefinitionsRequest$key": null,
         "PropertyDefinitionsResponse$key": null,
         "PropertyGroupsRequest$key": null,
@@ -925,6 +1264,7 @@
         "PropertyNames$member": null,
         "PropertyRequests$key": null,
         "PropertyResponses$key": null,
+        "PropertySummary$propertyName": "<p>This is the name of the property.</p>",
         "PropertyTableValue$key": null,
         "RelationshipValue$targetComponentName": "<p>The name of the target component associated with the relationship value.</p>",
         "RequiredProperties$member": null,
@@ -942,8 +1282,14 @@
         "GetPropertyValueResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListComponentTypesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListComponentTypesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListComponentsRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListComponentsResponse$nextToken": "<p>The string that specifies the next page of component results.</p>",
         "ListEntitiesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListEntitiesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListMetadataTransferJobsRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListMetadataTransferJobsResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListPropertiesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListPropertiesResponse$nextToken": "<p>The string that specifies the next page of property results.</p>",
         "ListScenesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListScenesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListSyncJobsRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
@@ -1042,7 +1388,8 @@
       "base": "<p>An object that contains response data from a property definition request.</p>",
       "refs": {
         "PropertyDefinitionsResponse$value": null,
-        "PropertyResponse$definition": "<p>An object that specifies information about a property.</p>"
+        "PropertyResponse$definition": "<p>An object that specifies information about a property.</p>",
+        "PropertySummary$definition": "<p>This is the schema for the property.</p>"
       }
     },
     "PropertyDefinitionsRequest": {
@@ -1140,7 +1487,9 @@
       "base": null,
       "refs": {
         "ComponentRequest$properties": "<p>An object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.</p>",
-        "ComponentUpdateRequest$propertyUpdates": "<p>An object that maps strings to the properties to set in the component type update. Each string in the mapping must be unique to this object.</p>"
+        "ComponentUpdateRequest$propertyUpdates": "<p>An object that maps strings to the properties to set in the component type update. Each string in the mapping must be unique to this object.</p>",
+        "CompositeComponentRequest$properties": "<p>This is an object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.</p>",
+        "CompositeComponentUpdateRequest$propertyUpdates": "<p>An object that maps strings to the properties to set in the component type update. Each string in the mapping must be unique to this object.</p>"
       }
     },
     "PropertyResponse": {
@@ -1153,6 +1502,18 @@
       "base": null,
       "refs": {
         "ComponentResponse$properties": "<p>An object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.</p>"
+      }
+    },
+    "PropertySummaries": {
+      "base": null,
+      "refs": {
+        "ListPropertiesResponse$propertySummaries": "<p>A list of objects that contain information about the properties.</p>"
+      }
+    },
+    "PropertySummary": {
+      "base": "<p>This is an object that contains the information of a property.</p>",
+      "refs": {
+        "PropertySummaries$member": null
       }
     },
     "PropertyTableValue": {
@@ -1208,7 +1569,7 @@
     "QueryServiceMaxResults": {
       "base": null,
       "refs": {
-        "ExecuteQueryRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
+        "ExecuteQueryRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 50.</p>"
       }
     },
     "QueryStatement": {
@@ -1251,6 +1612,7 @@
       "refs": {
         "CreateSyncJobRequest$syncRole": "<p>The SyncJob IAM role. This IAM role is used by the SyncJob to read from the syncSource, and create, update, or delete the corresponding resources.</p>",
         "CreateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>",
+        "GetMetadataTransferJobResponse$metadataTransferJobRole": "<p>The metadata transfer job's role.</p>",
         "GetSyncJobResponse$syncRole": "<p>The sync IAM role.</p>",
         "GetWorkspaceResponse$role": "<p>The ARN of the execution role associated with the workspace.</p>",
         "UpdateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>"
@@ -1274,11 +1636,36 @@
         "ExecuteQueryResponse$rows": "<p>Represents a single row in the query results.</p>"
       }
     },
+    "S3DestinationConfiguration": {
+      "base": "<p>The S3 destination configuration.</p>",
+      "refs": {
+        "DestinationConfiguration$s3Configuration": "<p>The metadata transfer job S3 configuration. [need to add S3 entity]</p>"
+      }
+    },
+    "S3DestinationLocation": {
+      "base": null,
+      "refs": {
+        "S3DestinationConfiguration$location": "<p>The S3 destination configuration location.</p>"
+      }
+    },
     "S3Location": {
       "base": null,
       "refs": {
         "CreateWorkspaceRequest$s3Location": "<p>The ARN of the S3 bucket where resources associated with the workspace are stored.</p>",
-        "GetWorkspaceResponse$s3Location": "<p>The ARN of the S3 bucket where resources associated with the workspace are stored.</p>"
+        "GetWorkspaceResponse$s3Location": "<p>The ARN of the S3 bucket where resources associated with the workspace are stored.</p>",
+        "UpdateWorkspaceRequest$s3Location": "<p>The ARN of the S3 bucket where resources associated with the workspace are stored.</p>"
+      }
+    },
+    "S3SourceConfiguration": {
+      "base": "<p>The S3 destination source configuration.</p>",
+      "refs": {
+        "SourceConfiguration$s3Configuration": "<p>The source configuration S3 configuration.</p>"
+      }
+    },
+    "S3SourceLocation": {
+      "base": null,
+      "refs": {
+        "S3SourceConfiguration$location": "<p>The S3 destination source configuration location.</p>"
       }
     },
     "S3Url": {
@@ -1362,6 +1749,33 @@
       "refs": {
       }
     },
+    "SiteWiseExternalId": {
+      "base": null,
+      "refs": {
+        "FilterByAsset$assetExternalId": "<p>The external-Id property of an asset. </p>",
+        "FilterByAssetModel$assetModelExternalId": "<p>The external-Id property of an asset model.</p>"
+      }
+    },
+    "SourceConfiguration": {
+      "base": "<p>The source configuration.</p>",
+      "refs": {
+        "SourceConfigurations$member": null
+      }
+    },
+    "SourceConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateMetadataTransferJobRequest$sources": "<p>The metadata transfer job sources.</p>",
+        "GetMetadataTransferJobResponse$sources": "<p>The metadata transfer job's sources.</p>"
+      }
+    },
+    "SourceType": {
+      "base": null,
+      "refs": {
+        "ListMetadataTransferJobsRequest$sourceType": "<p>The metadata transfer job's source type.</p>",
+        "SourceConfiguration$type": "<p>The source configuration type.</p>"
+      }
+    },
     "State": {
       "base": null,
       "refs": {
@@ -1378,6 +1792,7 @@
       "base": "<p>An object that represents the status of an entity, component, component type, or workspace.</p>",
       "refs": {
         "ComponentResponse$status": "<p>The status of the component type.</p>",
+        "ComponentSummary$status": "<p>The status of the component type.</p>",
         "ComponentTypeSummary$status": "<p>The current status of the component type.</p>",
         "EntitySummary$status": "<p>The current status of the entity.</p>",
         "GetComponentTypeResponse$status": "<p>The current status of the component type.</p>",
@@ -1390,11 +1805,13 @@
         "BatchPutPropertyError$errorCode": "<p>The error code.</p>",
         "BatchPutPropertyError$errorMessage": "<p>The error message.</p>",
         "ComponentResponse$definedIn": "<p>The name of the property definition set in the request.</p>",
+        "ComponentSummary$definedIn": "<p>The name of the property definition set in the request.</p>",
         "DataType$unitOfMeasure": "<p>The unit of measure used in this data type.</p>",
         "DataValue$stringValue": "<p>A string value.</p>",
         "DataValueMap$key": null,
         "ExternalIdProperty$key": null,
         "ExternalIdProperty$value": null,
+        "GetMetadataTransferJobResponse$reportUrl": "<p>The metadata transfer job's report URL.</p>",
         "ListComponentTypesFilter$namespace": "<p>The namespace to which the component types in the list belong.</p>",
         "ListEntitiesFilter$externalId": "<p>The external-Id property of a component. The external-Id property is the primary key of an external storage system.</p>",
         "OrderBy$propertyName": "<p>The property name.</p>",
@@ -1479,6 +1896,7 @@
       "base": null,
       "refs": {
         "ComponentResponse$syncSource": "<p>The syncSource of the sync job, if this entity was created by a sync job.</p>",
+        "ComponentSummary$syncSource": "<p>The <code>syncSource</code> of the sync job, if this entity was created by a sync job.</p>",
         "CreateSyncJobRequest$syncSource": "<p>The sync source.</p> <note> <p>Currently the only supported syncSoource is <code>SITEWISE </code>.</p> </note>",
         "DeleteSyncJobRequest$syncSource": "<p>The sync source.</p> <note> <p>Currently the only supported syncSource is <code>SITEWISE </code>.</p> </note>",
         "GetComponentTypeResponse$syncSource": "<p>The syncSource of the SyncJob, if this entity was created by a SyncJob.</p>",
@@ -1564,10 +1982,12 @@
     "Timestamp": {
       "base": "<p>supports epoch seconds value</p>",
       "refs": {
+        "CancelMetadataTransferJobResponse$updateDateTime": "<p>Used to update the DateTime property.</p>",
         "ComponentTypeSummary$creationDateTime": "<p>The date and time when the component type was created.</p>",
         "ComponentTypeSummary$updateDateTime": "<p>The date and time when the component type was last updated.</p>",
         "CreateComponentTypeResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "CreateEntityResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
+        "CreateMetadataTransferJobResponse$creationDateTime": "<p>The The metadata transfer job creation DateTime property.</p>",
         "CreateSceneResponse$creationDateTime": "<p>The date and time when the scene was created.</p>",
         "CreateSyncJobResponse$creationDateTime": "<p>The date and time for the SyncJob creation.</p>",
         "CreateWorkspaceResponse$creationDateTime": "<p>The date and time when the workspace was created.</p>",
@@ -1577,6 +1997,8 @@
         "GetComponentTypeResponse$updateDateTime": "<p>The date and time when the component was last updated.</p>",
         "GetEntityResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "GetEntityResponse$updateDateTime": "<p>The date and time when the entity was last updated.</p>",
+        "GetMetadataTransferJobResponse$creationDateTime": "<p>The metadata transfer job's creation DateTime property.</p>",
+        "GetMetadataTransferJobResponse$updateDateTime": "<p>The metadata transfer job's update DateTime property.</p>",
         "GetPropertyValueHistoryRequest$startDateTime": "<p>The date and time of the earliest property value to return.</p>",
         "GetPropertyValueHistoryRequest$endDateTime": "<p>The date and time of the latest property value to return.</p>",
         "GetSceneResponse$creationDateTime": "<p>The date and time when the scene was created.</p>",
@@ -1585,6 +2007,8 @@
         "GetSyncJobResponse$updateDateTime": "<p>The update date and time.</p>",
         "GetWorkspaceResponse$creationDateTime": "<p>The date and time when the workspace was created.</p>",
         "GetWorkspaceResponse$updateDateTime": "<p>The date and time when the workspace was last updated.</p>",
+        "MetadataTransferJobSummary$creationDateTime": "<p>The metadata transfer job summary creation DateTime object.</p>",
+        "MetadataTransferJobSummary$updateDateTime": "<p>The metadata transfer job summary update DateTime object</p>",
         "PricingPlan$effectiveDateTime": "<p>The effective date and time of the pricing plan.</p>",
         "PricingPlan$updateDateTime": "<p>The set date and time for updating a pricing plan.</p>",
         "PropertyValue$timestamp": "<p>The timestamp of a value for a time series property.</p>",
@@ -1608,19 +2032,25 @@
     "TwinMakerArn": {
       "base": null,
       "refs": {
+        "CancelMetadataTransferJobResponse$arn": "<p>The metadata transfer job ARN.</p>",
         "ComponentTypeSummary$arn": "<p>The ARN of the component type.</p>",
         "CreateComponentTypeResponse$arn": "<p>The ARN of the component type.</p>",
         "CreateEntityResponse$arn": "<p>The ARN of the entity.</p>",
+        "CreateMetadataTransferJobResponse$arn": "<p>The metadata transfer job ARN.</p>",
         "CreateSceneResponse$arn": "<p>The ARN of the scene.</p>",
         "CreateSyncJobResponse$arn": "<p>The SyncJob ARN.</p>",
         "CreateWorkspaceResponse$arn": "<p>The ARN of the workspace.</p>",
         "EntitySummary$arn": "<p>The ARN of the entity.</p>",
         "GetComponentTypeResponse$arn": "<p>The ARN of the component type.</p>",
         "GetEntityResponse$arn": "<p>The ARN of the entity.</p>",
+        "GetMetadataTransferJobResponse$arn": "<p>The metadata transfer job ARN.</p>",
         "GetSceneResponse$arn": "<p>The ARN of the scene.</p>",
         "GetSyncJobResponse$arn": "<p>The sync job ARN.</p>",
         "GetWorkspaceResponse$arn": "<p>The ARN of the workspace.</p>",
+        "IotTwinMakerDestinationConfiguration$workspace": "<p>The IoT TwinMaker workspace.</p>",
+        "IotTwinMakerSourceConfiguration$workspace": "<p>The IoT TwinMaker workspace.</p>",
         "ListTagsForResourceRequest$resourceARN": "<p>The ARN of the resource.</p>",
+        "MetadataTransferJobSummary$arn": "<p>The metadata transfer job summary ARN.</p>",
         "SceneSummary$arn": "<p>The ARN of the scene.</p>",
         "SyncJobSummary$arn": "<p>The SyncJob summary ARN.</p>",
         "TagResourceRequest$resourceARN": "<p>The ARN of the resource.</p>",
@@ -1701,6 +2131,13 @@
       "refs": {
       }
     },
+    "Uuid": {
+      "base": null,
+      "refs": {
+        "FilterByAsset$assetId": "<p>Filter by asset Id.</p>",
+        "FilterByAssetModel$assetModelId": "<p>The asset model Id.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>Failed</p>",
       "refs": {
@@ -1716,6 +2153,12 @@
       "base": null,
       "refs": {
         "PropertyValueHistory$values": "<p>A list of objects that contain information about the values in the history of a time series property.</p>"
+      }
+    },
+    "WorkspaceDeleteMessage": {
+      "base": null,
+      "refs": {
+        "DeleteWorkspaceResponse$message": "<p>The string that specifies the delete result for the workspace.</p>"
       }
     },
     "WorkspaceSummaries": {

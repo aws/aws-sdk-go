@@ -1,3 +1,18 @@
+Release v1.48.2 (2023-11-21)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API, documentation, paginators, and examples
+  * This release adds support for CloudFront KeyValueStore, a globally managed key value datastore associated with CloudFront Functions.
+* `service/cloudfront-keyvaluestore`: Adds new service
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/inspector-scan`: Adds new service
+* `service/iotsitewise`: Updates service API, documentation, and paginators
+* `service/iottwinmaker`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service API, documentation, and examples
+  * Add support for automatic date based partitioning in S3 Server Access Logs.
+
 Release v1.48.1 (2023-11-20)
 ===
 

@@ -14,6 +14,12 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ExecuteQuery": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "rows"
+    },
     "GetAssetPropertyAggregates": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -37,6 +43,18 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "accessPolicySummaries"
+    },
+    "ListActions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "actionSummaries"
+    },
+    "ListAssetModelCompositeModels": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "assetModelCompositeModelSummaries"
     },
     "ListAssetModelProperties": {
       "input_token": "nextToken",
@@ -79,6 +97,12 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "jobSummaries"
+    },
+    "ListCompositionRelationships": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "compositionRelationshipSummaries"
     },
     "ListDashboards": {
       "input_token": "nextToken",

@@ -20,7 +20,22 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListComponents": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListEntities": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListMetadataTransferJobs": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListProperties": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

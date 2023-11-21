@@ -14,6 +14,7 @@
     "CreateFunction": "<p>Creates a CloudFront function.</p> <p>To create a function, you provide the function code and some configuration information about the function. The response contains an Amazon Resource Name (ARN) that uniquely identifies the function.</p> <p>When you create a function, it's in the <code>DEVELOPMENT</code> stage. In this stage, you can test the function with <code>TestFunction</code>, and update it with <code>UpdateFunction</code>.</p> <p>When you're ready to use your function with a CloudFront distribution, use <code>PublishFunction</code> to copy the function from the <code>DEVELOPMENT</code> stage to <code>LIVE</code>. When it's live, you can attach the function to a distribution's cache behavior, using the function's ARN.</p>",
     "CreateInvalidation": "<p>Create a new invalidation.</p>",
     "CreateKeyGroup": "<p>Creates a key group that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p> <p>To create a key group, you must specify at least one public key for the key group. After you create a key group, you can reference it from one or more cache behaviors. When you reference a key group in a cache behavior, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+    "CreateKeyValueStore": "<p>Specifies the Key Value Store resource to add to your account. In your account, the Key Value Store names must be unique. You can also import Key Value Store data in JSON format from an S3 bucket by providing a valid <code>ImportSource</code> that you own.</p>",
     "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginAccessControl": "<p>Creates a new origin access control in CloudFront. After you create an origin access control, you can add it to an origin in a CloudFront distribution so that CloudFront sends authenticated (signed) requests to the origin.</p> <p>This makes it possible to block public access to the origin, allowing viewers (users) to access the origin's content only through CloudFront.</p> <p>For more information about using a CloudFront origin access control, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-origin.html\">Restricting access to an Amazon Web Services origin</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can't find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -30,6 +31,7 @@
     "DeleteFieldLevelEncryptionProfile": "<p>Remove a field-level encryption profile.</p>",
     "DeleteFunction": "<p>Deletes a CloudFront function.</p> <p>You cannot delete a function if it's associated with a cache behavior. First, update your distributions to remove the function association from all cache behaviors, then delete the function.</p> <p>To delete a function, you must provide the function's name and version (<code>ETag</code> value). To get these values, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "DeleteKeyGroup": "<p>Deletes a key group.</p> <p>You cannot delete a key group that is referenced in a cache behavior. First update your distributions to remove the key group from all cache behaviors, then delete the key group.</p> <p>To delete a key group, you must provide the key group's identifier and version. To get these values, use <code>ListKeyGroups</code> followed by <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
+    "DeleteKeyValueStore": "<p>Specifies the Key Value Store to delete.</p>",
     "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
     "DeleteOriginAccessControl": "<p>Deletes a CloudFront origin access control.</p> <p>You cannot delete an origin access control if it's in use. First, update all distributions to remove the origin access control from all origins, then delete the origin access control.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it's attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy's identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
@@ -38,6 +40,7 @@
     "DeleteResponseHeadersPolicy": "<p>Deletes a response headers policy.</p> <p>You cannot delete a response headers policy if it's attached to a cache behavior. First update your distributions to remove the response headers policy from all cache behaviors, then delete the response headers policy.</p> <p>To delete a response headers policy, you must provide the policy's identifier and version. To get these values, you can use <code>ListResponseHeadersPolicies</code> or <code>GetResponseHeadersPolicy</code>.</p>",
     "DeleteStreamingDistribution": "<p>Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.</p> <p> <b>To delete an RTMP distribution using the CloudFront API</b>:</p> <ol> <li> <p>Disable the RTMP distribution.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to get the current configuration and the <code>Etag</code> header for the distribution. </p> </li> <li> <p>Update the XML document that was returned in the response to your <code>GET Streaming Distribution Config</code> request to change the value of <code>Enabled</code> to <code>false</code>.</p> </li> <li> <p>Submit a <code>PUT Streaming Distribution Config</code> request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to the <code>PUT Streaming Distribution Config</code> request to confirm that the distribution was successfully disabled.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> <li> <p>Submit a <code>DELETE Streaming Distribution</code> request. Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to your <code>DELETE Streaming Distribution</code> request to confirm that the distribution was successfully deleted.</p> </li> </ol> <p>For information about deleting a distribution using the CloudFront console, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html\">Deleting a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "DescribeFunction": "<p>Gets configuration information and metadata about a CloudFront function, but not the function's code. To get a function's code, use <code>GetFunction</code>.</p> <p>To get configuration information and metadata about a function, you must provide the function's name and stage. To get these values, you can use <code>ListFunctions</code>.</p>",
+    "DescribeKeyValueStore": "<p>Specifies the Key Value Store and its configuration.</p>",
     "GetCachePolicy": "<p>Gets a cache policy, including the following metadata:</p> <ul> <li> <p>The policy's identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get a cache policy, you must provide the policy's identifier. If the cache policy is attached to a distribution's cache behavior, you can get the policy's identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
     "GetCachePolicyConfig": "<p>Gets a cache policy configuration.</p> <p>To get a cache policy configuration, you must provide the policy's identifier. If the cache policy is attached to a distribution's cache behavior, you can get the policy's identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
     "GetCloudFrontOriginAccessIdentity": "<p>Get the information about an origin access identity.</p>",
@@ -82,6 +85,7 @@
     "ListFunctions": "<p>Gets a list of all CloudFront functions in your Amazon Web Services account.</p> <p>You can optionally apply a filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListInvalidations": "<p>Lists invalidation batches.</p>",
     "ListKeyGroups": "<p>Gets a list of key groups.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListKeyValueStores": "<p>Specifies the Key Value Stores to list.</p>",
     "ListOriginAccessControls": "<p>Gets the list of CloudFront origin access controls in this Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send another request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the next request.</p>",
     "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListPublicKeys": "<p>List all public keys that have been added to CloudFront for this account.</p>",
@@ -102,6 +106,7 @@
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile.</p>",
     "UpdateFunction": "<p>Updates a CloudFront function.</p> <p>You can update a function's code or the comment that describes the function. You cannot update a function's name.</p> <p>To update a function, you provide the function's name and version (<code>ETag</code> value) along with the updated function code. To get the name and version, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "UpdateKeyGroup": "<p>Updates a key group.</p> <p>When you update a key group, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a key group:</p> <ol> <li> <p>Get the current key group with <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p> </li> <li> <p>Locally modify the fields in the key group that you want to update. For example, add or remove public key IDs.</p> </li> <li> <p>Call <code>UpdateKeyGroup</code> with the entire key group object, including the fields that you modified and those that you didn't.</p> </li> </ol>",
+    "UpdateKeyValueStore": "<p>Specifies the Key Value Store to update.</p>",
     "UpdateOriginAccessControl": "<p>Updates a CloudFront origin access control.</p>",
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn't.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
@@ -324,6 +329,11 @@
     },
     "CannotChangeImmutablePublicKeyFields": {
       "base": "<p>You can't change the value of a public key.</p>",
+      "refs": {
+      }
+    },
+    "CannotDeleteEntityWhileInUse": {
+      "base": "<p>The Key Value Store entity cannot be deleted while it is in use.</p>",
       "refs": {
       }
     },
@@ -621,6 +631,16 @@
       "refs": {
       }
     },
+    "CreateKeyValueStoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKeyValueStoreResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMonitoringSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -779,6 +799,11 @@
       "refs": {
       }
     },
+    "DeleteKeyValueStoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteMonitoringSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -825,6 +850,16 @@
       }
     },
     "DescribeFunctionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeKeyValueStoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeKeyValueStoreResult": {
       "base": null,
       "refs": {
       }
@@ -934,6 +969,26 @@
         "UpdateRealtimeLogConfigRequest$EndPoints": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>"
       }
     },
+    "EntityAlreadyExists": {
+      "base": "<p>The Key Value Store entity already exists. You must provide a unique Key Value Store entity.</p>",
+      "refs": {
+      }
+    },
+    "EntityLimitExceeded": {
+      "base": "<p>The Key Value Store entity limit has been exceeded.</p>",
+      "refs": {
+      }
+    },
+    "EntityNotFound": {
+      "base": "<p>The Key Value Store entity was not found.</p>",
+      "refs": {
+      }
+    },
+    "EntitySizeLimitExceeded": {
+      "base": "<p>The Key Value Store entity size limit was exceeded.</p>",
+      "refs": {
+      }
+    },
     "EventType": {
       "base": null,
       "refs": {
@@ -969,7 +1024,7 @@
       }
     },
     "FieldLevelEncryptionList": {
-      "base": "<p>List of field-level encrpytion configurations.</p>",
+      "base": "<p>List of field-level encryption configurations.</p>",
       "refs": {
         "ListFieldLevelEncryptionConfigsResult$FieldLevelEncryptionList": "<p>Returns a list of all field-level encryption configurations that have been created in CloudFront for this account.</p>"
       }
@@ -1160,7 +1215,7 @@
     "FunctionRuntime": {
       "base": null,
       "refs": {
-        "FunctionConfig$Runtime": "<p>The function's runtime environment verion.</p>"
+        "FunctionConfig$Runtime": "<p>The function's runtime environment version.</p>"
       }
     },
     "FunctionSizeLimitExceeded": {
@@ -1534,6 +1589,18 @@
       "refs": {
       }
     },
+    "ImportSource": {
+      "base": "<p>The import source for the Key Value Store.</p>",
+      "refs": {
+        "CreateKeyValueStoreRequest$ImportSource": "<p>The S3 bucket that provides the source for the import. The source must be in a valid JSON format.</p>"
+      }
+    },
+    "ImportSourceType": {
+      "base": null,
+      "refs": {
+        "ImportSource$SourceType": "<p>The source type of the import source for the Key Value Store.</p>"
+      }
+    },
     "InconsistentQuantities": {
       "base": "<p>The value of <code>Quantity</code> and the size of <code>Items</code> don't match.</p>",
       "refs": {
@@ -1773,6 +1840,67 @@
         "Signer$KeyPairIds": "<p>A list of CloudFront key pair identifiers.</p>"
       }
     },
+    "KeyValueStore": {
+      "base": "<p>The Key Value Store. Use this to separate data from function code, allowing you to update data without having to publish a new version of a function. The Key Value Store holds keys and their corresponding values.</p>",
+      "refs": {
+        "CreateKeyValueStoreResult$KeyValueStore": "<p>The resulting Key Value Store.</p>",
+        "DescribeKeyValueStoreResult$KeyValueStore": "<p>The resulting Key Value Store.</p>",
+        "KeyValueStoreSummaryList$member": null,
+        "UpdateKeyValueStoreResult$KeyValueStore": "<p>The resulting Key Value Store to update.</p>"
+      }
+    },
+    "KeyValueStoreARN": {
+      "base": null,
+      "refs": {
+        "KeyValueStoreAssociation$KeyValueStoreARN": "<p>The Amazon Resource Name (ARN) of the Key Value Store association.</p>"
+      }
+    },
+    "KeyValueStoreAssociation": {
+      "base": "<p>The Key Value Store association.</p>",
+      "refs": {
+        "KeyValueStoreAssociationList$member": null
+      }
+    },
+    "KeyValueStoreAssociationList": {
+      "base": null,
+      "refs": {
+        "KeyValueStoreAssociations$Items": "<p>The items of the Key Value Store association.</p>"
+      }
+    },
+    "KeyValueStoreAssociations": {
+      "base": "<p>The Key Value Store associations.</p>",
+      "refs": {
+        "FunctionConfig$KeyValueStoreAssociations": "<p>The configuration for the Key Value Store associations.</p>"
+      }
+    },
+    "KeyValueStoreComment": {
+      "base": null,
+      "refs": {
+        "CreateKeyValueStoreRequest$Comment": "<p>The comment of the Key Value Store.</p>",
+        "UpdateKeyValueStoreRequest$Comment": "<p>The comment of the Key Value Store to update.</p>"
+      }
+    },
+    "KeyValueStoreList": {
+      "base": "<p>The Key Value Store list.</p>",
+      "refs": {
+        "ListKeyValueStoresResult$KeyValueStoreList": "<p>The resulting Key Value Stores list.</p>"
+      }
+    },
+    "KeyValueStoreName": {
+      "base": null,
+      "refs": {
+        "CreateKeyValueStoreRequest$Name": "<p>The name of the Key Value Store. The maximum length of the name is 32 characters.</p>",
+        "DeleteKeyValueStoreRequest$Name": "<p>The name of the Key Value Store.</p>",
+        "DescribeKeyValueStoreRequest$Name": "<p>The name of the Key Value Store.</p>",
+        "UpdateKeyValueStoreRequest$Name": "<p>The name of the Key Value Store to update.</p>"
+      }
+    },
+    "KeyValueStoreSummaryList": {
+      "base": null,
+      "refs": {
+        "KeyValueStoreList$Items": "<p>The items of the Key Value Store list.</p>"
+      }
+    },
     "KinesisStreamConfig": {
       "base": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>",
       "refs": {
@@ -1960,6 +2088,16 @@
       }
     },
     "ListKeyGroupsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKeyValueStoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKeyValueStoresResult": {
       "base": null,
       "refs": {
       }
@@ -2169,7 +2307,7 @@
       }
     },
     "Origin": {
-      "base": "<p>An origin.</p> <p>An origin is the location where content is stored, and from which CloudFront gets content to serve to viewers. To specify an origin:</p> <ul> <li> <p>Use <code>S3OriginConfig</code> to specify an Amazon S3 bucket that is not configured with static website hosting.</p> </li> <li> <p>Use <code>CustomOriginConfig</code> to specify all other kinds of origins, including:</p> <ul> <li> <p>An Amazon S3 bucket that is configured with static website hosting</p> </li> <li> <p>An Elastic Load Balancing load balancer</p> </li> <li> <p>An AWS Elemental MediaPackage endpoint</p> </li> <li> <p>An AWS Elemental MediaStore container</p> </li> <li> <p>Any other HTTP server, running on an Amazon EC2 instance or any other kind of host</p> </li> </ul> </li> </ul> <p>For the current maximum number of origins that you can specify per distribution, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-web-distributions\">General Quotas on Web Distributions</a> in the <i>Amazon CloudFront Developer Guide</i> (quotas were formerly referred to as limits).</p>",
+      "base": "<p>An origin.</p> <p>An origin is the location where content is stored, and from which CloudFront gets content to serve to viewers. To specify an origin:</p> <ul> <li> <p>Use <code>S3OriginConfig</code> to specify an Amazon S3 bucket that is not configured with static website hosting.</p> </li> <li> <p>Use <code>CustomOriginConfig</code> to specify all other kinds of origins, including:</p> <ul> <li> <p>An Amazon S3 bucket that is configured with static website hosting</p> </li> <li> <p>An Elastic Load Balancing load balancer</p> </li> <li> <p>An Elemental MediaPackage endpoint</p> </li> <li> <p>An Elemental MediaStore container</p> </li> <li> <p>Any other HTTP server, running on an Amazon EC2 instance or any other kind of host</p> </li> </ul> </li> </ul> <p>For the current maximum number of origins that you can specify per distribution, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-web-distributions\">General Quotas on Web Distributions</a> in the <i>Amazon CloudFront Developer Guide</i> (quotas were formerly referred to as limits).</p>",
       "refs": {
         "OriginList$member": null
       }
@@ -2253,7 +2391,7 @@
       }
     },
     "OriginGroup": {
-      "base": "<p>An origin group includes two origins (a primary origin and a second origin to failover to) and a failover criteria that you specify. You create an origin group to support origin failover in CloudFront. When you create or update a distribution, you can specifiy the origin group instead of a single origin, and CloudFront will failover from the primary origin to the second origin under the failover conditions that you've chosen.</p>",
+      "base": "<p>An origin group includes two origins (a primary origin and a second origin to failover to) and a failover criteria that you specify. You create an origin group to support origin failover in CloudFront. When you create or update a distribution, you can specify the origin group instead of a single origin, and CloudFront will failover from the primary origin to the second origin under the failover conditions that you've chosen.</p>",
       "refs": {
         "OriginGroupList$member": null
       }
@@ -3429,6 +3567,16 @@
       "refs": {
       }
     },
+    "UpdateKeyValueStoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKeyValueStoreResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateOriginAccessControlRequest": {
       "base": null,
       "refs": {
@@ -3624,6 +3772,9 @@
         "KeyGroupList$MaxItems": "<p>The maximum number of key groups requested.</p>",
         "KeyGroupList$Quantity": "<p>The number of key groups returned in the response.</p>",
         "KeyPairIds$Quantity": "<p>The number of key pair identifiers in the list.</p>",
+        "KeyValueStoreAssociations$Quantity": "<p>The quantity of Key Value Store associations.</p>",
+        "KeyValueStoreList$MaxItems": "<p>The maximum number of items in the Key Value Store list.</p>",
+        "KeyValueStoreList$Quantity": "<p>The quantity of the Key Value Store list.</p>",
         "LambdaFunctionAssociations$Quantity": "<p>The number of Lambda@Edge function associations for this cache behavior.</p>",
         "Origin$ConnectionAttempts": "<p>The number of times that CloudFront attempts to connect to the origin. The minimum number is 1, the maximum is 3, and the default (if you don't specify otherwise) is 3.</p> <p>For a custom origin (including an Amazon S3 bucket that's configured with static website hosting), this value also specifies the number of times that CloudFront attempts to get a response from the origin, in the case of an <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout\">Origin Response Timeout</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-attempts\">Origin Connection Attempts</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "Origin$ConnectionTimeout": "<p>The number of seconds that CloudFront waits when trying to establish a connection to the origin. The minimum timeout is 1 second, the maximum is 10 seconds, and the default (if you don't specify otherwise) is 10 seconds.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-timeout\">Origin Connection Timeout</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -3723,6 +3874,7 @@
         "CachePolicyInUse$Message": null,
         "CachePolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing cache policies where you left off.</p>",
         "CannotChangeImmutablePublicKeyFields$Message": null,
+        "CannotDeleteEntityWhileInUse$Message": null,
         "CloudFrontOriginAccessIdentity$Id": "<p>The ID for the origin access identity, for example, <code>E74FTE3AJFJ256A</code>. </p>",
         "CloudFrontOriginAccessIdentity$S3CanonicalUserId": "<p>The Amazon S3 canonical user ID for the origin access identity, used when giving the origin access identity read permission to an object in Amazon S3.</p>",
         "CloudFrontOriginAccessIdentityAlreadyExists$Message": null,
@@ -3772,6 +3924,8 @@
         "CreateInvalidationResult$Location": "<p>The fully qualified URI of the distribution and invalidation batch request, including the <code>Invalidation ID</code>.</p>",
         "CreateKeyGroupResult$Location": "<p>The URL of the key group.</p>",
         "CreateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
+        "CreateKeyValueStoreResult$ETag": "<p>The ETag in the resulting Key Value Store.</p>",
+        "CreateKeyValueStoreResult$Location": "<p>The location of the resulting Key Value Store.</p>",
         "CreateMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are enabling metrics for.</p>",
         "CreateOriginAccessControlResult$Location": "<p>The URL of the origin access control.</p>",
         "CreateOriginAccessControlResult$ETag": "<p>The version identifier for the current version of the origin access control.</p>",
@@ -3810,6 +3964,7 @@
         "DeleteFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are deleting, which you can get using <code>DescribeFunction</code>.</p>",
         "DeleteKeyGroupRequest$Id": "<p>The identifier of the key group that you are deleting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
         "DeleteKeyGroupRequest$IfMatch": "<p>The version of the key group that you are deleting. The version is the key group's <code>ETag</code> value. To get the <code>ETag</code>, use <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
+        "DeleteKeyValueStoreRequest$IfMatch": "<p>The Key Value Store to delete, if a match occurs.</p>",
         "DeleteMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are disabling metrics for.</p>",
         "DeleteOriginAccessControlRequest$Id": "<p>The unique identifier of the origin access control that you are deleting.</p>",
         "DeleteOriginAccessControlRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the origin access control that you are deleting.</p>",
@@ -3825,6 +3980,7 @@
         "DeleteStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when you disabled the streaming distribution. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DescribeFunctionRequest$Name": "<p>The name of the function that you are getting information about.</p>",
         "DescribeFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
+        "DescribeKeyValueStoreResult$ETag": "<p>The ETag of the resulting Key Value Store.</p>",
         "Distribution$Id": "<p>The distribution's identifier. For example: <code>E1U5RQF7T870K0</code>.</p>",
         "Distribution$ARN": "<p>The distribution's Amazon Resource Name (ARN).</p>",
         "Distribution$Status": "<p>The distribution's status. When the status is <code>Deployed</code>, the distribution's information is fully propagated to all CloudFront edge locations.</p>",
@@ -3849,6 +4005,10 @@
         "EncryptionEntity$PublicKeyId": "<p>The public key associated with a set of field-level encryption patterns, to be used when encrypting the fields that match the patterns.</p>",
         "EncryptionEntity$ProviderId": "<p>The provider associated with the public key being used for encryption. This value must also be provided with the private key for applications to be able to decrypt data.</p>",
         "EndPoint$StreamType": "<p>The type of data stream where you are sending real-time log data. The only valid value is <code>Kinesis</code>.</p>",
+        "EntityAlreadyExists$Message": null,
+        "EntityLimitExceeded$Message": null,
+        "EntityNotFound$Message": null,
+        "EntitySizeLimitExceeded$Message": null,
         "FieldLevelEncryption$Id": "<p>The configuration ID for a field-level encryption configuration which includes a set of profiles that specify certain selected data fields to be encrypted by specific public keys.</p>",
         "FieldLevelEncryptionConfig$CallerReference": "<p>A unique number that ensures the request can't be replayed.</p>",
         "FieldLevelEncryptionConfig$Comment": "<p>An optional comment about the configuration. The comment cannot be longer than 128 characters.</p>",
@@ -3939,6 +4099,7 @@
         "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior$Message": null,
         "IllegalOriginAccessConfiguration$Message": null,
         "IllegalUpdate$Message": null,
+        "ImportSource$SourceARN": "<p>The Amazon Resource Name (ARN) of the import source for the Key Value Store.</p>",
         "InconsistentQuantities$Message": null,
         "InvalidArgument$Message": null,
         "InvalidDefaultRootObject$Message": null,
@@ -3980,6 +4141,12 @@
         "KeyGroupConfig$Comment": "<p>A comment to describe the key group. The comment cannot be longer than 128 characters.</p>",
         "KeyGroupList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing key groups.</p>",
         "KeyPairIdList$member": null,
+        "KeyValueStore$Name": "<p>The name of the Key Value Store.</p>",
+        "KeyValueStore$Id": "<p>The unique Id for the Key Value Store.</p>",
+        "KeyValueStore$Comment": "<p>A comment for the Key Value Store.</p>",
+        "KeyValueStore$ARN": "<p>The Amazon Resource Name (ARN) of the Key Value Store.</p>",
+        "KeyValueStore$Status": "<p>The status of the Key Value Store.</p>",
+        "KeyValueStoreList$NextMarker": "<p>The next marker associated with the Key Value Store list.</p>",
         "KinesisStreamConfig$RoleARN": "<p>The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFront can use to send real-time log data to your Kinesis data stream.</p> <p>For more information the IAM role, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-iam-role\">Real-time log configuration IAM role</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "KinesisStreamConfig$StreamARN": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you are sending real-time log data.</p>",
         "ListCachePoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of cache policies. The response includes cache policies in the list that occur after the marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code> from the current page's response.</p>",
@@ -4021,6 +4188,9 @@
         "ListInvalidationsRequest$MaxItems": "<p>The maximum number of invalidation batches that you want in the response body.</p>",
         "ListKeyGroupsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of key groups. The response includes key groups in the list that occur after the marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code> from the current page's response.</p>",
         "ListKeyGroupsRequest$MaxItems": "<p>The maximum number of key groups that you want in the response.</p>",
+        "ListKeyValueStoresRequest$Marker": "<p>The marker associated with the Key Value Stores list.</p>",
+        "ListKeyValueStoresRequest$MaxItems": "<p>The maximum number of items in the Key Value Stores list.</p>",
+        "ListKeyValueStoresRequest$Status": "<p>The status of the request for the Key Value Stores list.</p>",
         "ListOriginAccessControlsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of origin access controls. The response includes the items in the list that occur after the marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code> from the current page's response.</p>",
         "ListOriginAccessControlsRequest$MaxItems": "<p>The maximum number of origin access controls that you want in the response.</p>",
         "ListOriginRequestPoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of origin request policies. The response includes origin request policies in the list that occur after the marker. To get the next page of the list, set this field's value to the value of <code>NextMarker</code> from the current page's response.</p>",
@@ -4230,6 +4400,8 @@
         "UpdateKeyGroupRequest$Id": "<p>The identifier of the key group that you are updating.</p>",
         "UpdateKeyGroupRequest$IfMatch": "<p>The version of the key group that you are updating. The version is the key group's <code>ETag</code> value.</p>",
         "UpdateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
+        "UpdateKeyValueStoreRequest$IfMatch": "<p>The Key Value Store to update, if a match occurs.</p>",
+        "UpdateKeyValueStoreResult$ETag": "<p>The ETag of the resulting Key Value Store.</p>",
         "UpdateOriginAccessControlRequest$Id": "<p>The unique identifier of the origin access control that you are updating.</p>",
         "UpdateOriginAccessControlRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the origin access control that you are updating.</p>",
         "UpdateOriginAccessControlResult$ETag": "<p>The new version of the origin access control after it has been updated.</p>",
@@ -4261,13 +4433,14 @@
         "DistributionSummary$LastModifiedTime": "<p>The date and time the distribution was last modified.</p>",
         "FieldLevelEncryption$LastModifiedTime": "<p>The last time the field-level encryption configuration was changed.</p>",
         "FieldLevelEncryptionProfile$LastModifiedTime": "<p>The last time the field-level encryption profile was updated.</p>",
-        "FieldLevelEncryptionProfileSummary$LastModifiedTime": "<p>The time when the the field-level encryption profile summary was last updated.</p>",
+        "FieldLevelEncryptionProfileSummary$LastModifiedTime": "<p>The time when the field-level encryption profile summary was last updated.</p>",
         "FieldLevelEncryptionSummary$LastModifiedTime": "<p>The last time that the summary of field-level encryption items was modified.</p>",
         "FunctionMetadata$CreatedTime": "<p>The date and time when the function was created.</p>",
         "FunctionMetadata$LastModifiedTime": "<p>The date and time when the function was most recently updated.</p>",
         "Invalidation$CreateTime": "<p>The date and time the invalidation request was first made.</p>",
         "InvalidationSummary$CreateTime": "<p>The time that an invalidation request was created.</p>",
         "KeyGroup$LastModifiedTime": "<p>The date and time when the key group was last modified.</p>",
+        "KeyValueStore$LastModifiedTime": "<p>The last-modified time of the Key Value Store.</p>",
         "OriginRequestPolicy$LastModifiedTime": "<p>The date and time when the origin request policy was last modified.</p>",
         "PublicKey$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",
         "PublicKeySummary$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",

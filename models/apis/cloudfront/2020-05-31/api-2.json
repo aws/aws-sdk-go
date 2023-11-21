@@ -414,6 +414,27 @@
         {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
     },
+    "CreateKeyValueStore":{
+      "name":"CreateKeyValueStore2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/key-value-store/",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateKeyValueStoreRequest",
+        "locationName":"CreateKeyValueStoreRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"CreateKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"EntityLimitExceeded"},
+        {"shape":"EntityAlreadyExists"},
+        {"shape":"EntitySizeLimitExceeded"},
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "CreateMonitoringSubscription":{
       "name":"CreateMonitoringSubscription2020_05_31",
       "http":{
@@ -699,6 +720,23 @@
         {"shape":"ResourceInUse"}
       ]
     },
+    "DeleteKeyValueStore":{
+      "name":"DeleteKeyValueStore2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/key-value-store/{Name}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteKeyValueStoreRequest"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"EntityNotFound"},
+        {"shape":"CannotDeleteEntityWhileInUse"},
+        {"shape":"PreconditionFailed"}
+      ],
+      "idempotent":true
+    },
     "DeleteMonitoringSubscription":{
       "name":"DeleteMonitoringSubscription2020_05_31",
       "http":{
@@ -826,6 +864,20 @@
       "errors":[
         {"shape":"NoSuchFunctionExists"},
         {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "DescribeKeyValueStore":{
+      "name":"DescribeKeyValueStore2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-value-store/{Name}"
+      },
+      "input":{"shape":"DescribeKeyValueStoreRequest"},
+      "output":{"shape":"DescribeKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"EntityNotFound"}
       ]
     },
     "GetCachePolicy":{
@@ -1411,6 +1463,19 @@
         {"shape":"InvalidArgument"}
       ]
     },
+    "ListKeyValueStores":{
+      "name":"ListKeyValueStores2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-value-store"
+      },
+      "input":{"shape":"ListKeyValueStoresRequest"},
+      "output":{"shape":"ListKeyValueStoresResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "ListOriginAccessControls":{
       "name":"ListOriginAccessControls2020_05_31",
       "http":{
@@ -1860,6 +1925,27 @@
         {"shape":"InvalidArgument"},
         {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
+    },
+    "UpdateKeyValueStore":{
+      "name":"UpdateKeyValueStore2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/key-value-store/{Name}"
+      },
+      "input":{
+        "shape":"UpdateKeyValueStoreRequest",
+        "locationName":"UpdateKeyValueStoreRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"UpdateKeyValueStoreResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"EntityNotFound"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"PreconditionFailed"}
+      ],
+      "idempotent":true
     },
     "UpdateOriginAccessControl":{
       "name":"UpdateOriginAccessControl2020_05_31",
@@ -2333,6 +2419,14 @@
         "Message":{"shape":"string"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "CannotDeleteEntityWhileInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
       "exception":true
     },
     "CertificateSource":{
@@ -2936,6 +3030,32 @@
       },
       "payload":"KeyGroup"
     },
+    "CreateKeyValueStoreRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"KeyValueStoreName"},
+        "Comment":{"shape":"KeyValueStoreComment"},
+        "ImportSource":{"shape":"ImportSource"}
+      }
+    },
+    "CreateKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        },
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        }
+      },
+      "payload":"KeyValueStore"
+    },
     "CreateMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":[
@@ -3377,6 +3497,25 @@
         }
       }
     },
+    "DeleteKeyValueStoreRequest":{
+      "type":"structure",
+      "required":[
+        "IfMatch",
+        "Name"
+      ],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
     "DeleteMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":["DistributionId"],
@@ -3507,6 +3646,29 @@
         }
       },
       "payload":"FunctionSummary"
+    },
+    "DescribeKeyValueStoreRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
+    "DescribeKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyValueStore"
     },
     "Distribution":{
       "type":"structure",
@@ -3724,6 +3886,38 @@
     "EndPointList":{
       "type":"list",
       "member":{"shape":"EndPoint"}
+    },
+    "EntityAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "EntityLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "EntityNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "EntitySizeLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":413},
+      "exception":true
     },
     "EventType":{
       "type":"string",
@@ -3993,7 +4187,8 @@
       ],
       "members":{
         "Comment":{"shape":"string"},
-        "Runtime":{"shape":"FunctionRuntime"}
+        "Runtime":{"shape":"FunctionRuntime"},
+        "KeyValueStoreAssociations":{"shape":"KeyValueStoreAssociations"}
       }
     },
     "FunctionEventObject":{
@@ -4815,6 +5010,21 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ImportSource":{
+      "type":"structure",
+      "required":[
+        "SourceType",
+        "SourceARN"
+      ],
+      "members":{
+        "SourceType":{"shape":"ImportSourceType"},
+        "SourceARN":{"shape":"string"}
+      }
+    },
+    "ImportSourceType":{
+      "type":"string",
+      "enum":["S3"]
+    },
     "InconsistentQuantities":{
       "type":"structure",
       "members":{
@@ -5189,6 +5399,81 @@
       "members":{
         "Quantity":{"shape":"integer"},
         "Items":{"shape":"KeyPairIdList"}
+      }
+    },
+    "KeyValueStore":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Id",
+        "Comment",
+        "ARN",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "Name":{"shape":"string"},
+        "Id":{"shape":"string"},
+        "Comment":{"shape":"string"},
+        "ARN":{"shape":"string"},
+        "Status":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"}
+      }
+    },
+    "KeyValueStoreARN":{
+      "type":"string",
+      "max":85,
+      "pattern":"arn:aws:cloudfront::[0-9]{12}:key-value-store\\/[0-9a-fA-F-]{36}$"
+    },
+    "KeyValueStoreAssociation":{
+      "type":"structure",
+      "required":["KeyValueStoreARN"],
+      "members":{
+        "KeyValueStoreARN":{"shape":"KeyValueStoreARN"}
+      }
+    },
+    "KeyValueStoreAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"KeyValueStoreAssociation",
+        "locationName":"KeyValueStoreAssociation"
+      }
+    },
+    "KeyValueStoreAssociations":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KeyValueStoreAssociationList"}
+      }
+    },
+    "KeyValueStoreComment":{
+      "type":"string",
+      "max":128
+    },
+    "KeyValueStoreList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KeyValueStoreSummaryList"}
+      }
+    },
+    "KeyValueStoreName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]{1,64}$"
+    },
+    "KeyValueStoreSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"KeyValueStore",
+        "locationName":"KeyValueStore"
       }
     },
     "KinesisStreamConfig":{
@@ -5635,6 +5920,33 @@
         "KeyGroupList":{"shape":"KeyGroupList"}
       },
       "payload":"KeyGroupList"
+    },
+    "ListKeyValueStoresRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        },
+        "Status":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Status"
+        }
+      }
+    },
+    "ListKeyValueStoresResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStoreList":{"shape":"KeyValueStoreList"}
+      },
+      "payload":"KeyValueStoreList"
     },
     "ListOriginAccessControlsRequest":{
       "type":"structure",
@@ -8207,6 +8519,39 @@
         }
       },
       "payload":"KeyGroup"
+    },
+    "UpdateKeyValueStoreRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Comment",
+        "IfMatch"
+      ],
+      "members":{
+        "Name":{
+          "shape":"KeyValueStoreName",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "Comment":{"shape":"KeyValueStoreComment"},
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "UpdateKeyValueStoreResult":{
+      "type":"structure",
+      "members":{
+        "KeyValueStore":{"shape":"KeyValueStore"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyValueStore"
     },
     "UpdateOriginAccessControlRequest":{
       "type":"structure",
