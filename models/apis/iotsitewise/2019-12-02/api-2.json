@@ -206,6 +206,26 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "CreateAssetModelCompositeModel":{
+      "name":"CreateAssetModelCompositeModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/asset-models/{assetModelId}/composite-models",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateAssetModelCompositeModelRequest"},
+      "output":{"shape":"CreateAssetModelCompositeModelResponse"},
+      "errors":[
+        {"shape":"ConflictingOperationException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "CreateBulkImportJob":{
       "name":"CreateBulkImportJob",
       "http":{
@@ -351,6 +371,24 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "DeleteAssetModelCompositeModel":{
+      "name":"DeleteAssetModelCompositeModel",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteAssetModelCompositeModelRequest"},
+      "output":{"shape":"DeleteAssetModelCompositeModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictingOperationException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "DeleteDashboard":{
       "name":"DeleteDashboard",
       "http":{
@@ -451,6 +489,22 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
+    "DescribeAction":{
+      "name":"DescribeAction",
+      "http":{
+        "method":"GET",
+        "requestUri":"/actions/{actionId}"
+      },
+      "input":{"shape":"DescribeActionRequest"},
+      "output":{"shape":"DescribeActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "DescribeAsset":{
       "name":"DescribeAsset",
       "http":{
@@ -467,6 +521,22 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "DescribeAssetCompositeModel":{
+      "name":"DescribeAssetCompositeModel",
+      "http":{
+        "method":"GET",
+        "requestUri":"/assets/{assetId}/composite-models/{assetCompositeModelId}"
+      },
+      "input":{"shape":"DescribeAssetCompositeModelRequest"},
+      "output":{"shape":"DescribeAssetCompositeModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "DescribeAssetModel":{
       "name":"DescribeAssetModel",
       "http":{
@@ -475,6 +545,22 @@
       },
       "input":{"shape":"DescribeAssetModelRequest"},
       "output":{"shape":"DescribeAssetModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
+    "DescribeAssetModelCompositeModel":{
+      "name":"DescribeAssetModelCompositeModel",
+      "http":{
+        "method":"GET",
+        "requestUri":"/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}"
+      },
+      "input":{"shape":"DescribeAssetModelCompositeModelRequest"},
+      "output":{"shape":"DescribeAssetModelCompositeModelResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -695,6 +781,44 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "ExecuteAction":{
+      "name":"ExecuteAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/actions",
+        "responseCode":202
+      },
+      "input":{"shape":"ExecuteActionRequest"},
+      "output":{"shape":"ExecuteActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictingOperationException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
+    "ExecuteQuery":{
+      "name":"ExecuteQuery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queries/execution"
+      },
+      "input":{"shape":"ExecuteQueryRequest"},
+      "output":{"shape":"ExecuteQueryResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"QueryTimeoutException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "endpoint":{"hostPrefix":"data."}
+    },
     "GetAssetPropertyAggregates":{
       "name":"GetAssetPropertyAggregates",
       "http":{
@@ -778,6 +902,38 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"monitor."}
+    },
+    "ListActions":{
+      "name":"ListActions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/actions"
+      },
+      "input":{"shape":"ListActionsRequest"},
+      "output":{"shape":"ListActionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
+    "ListAssetModelCompositeModels":{
+      "name":"ListAssetModelCompositeModels",
+      "http":{
+        "method":"GET",
+        "requestUri":"/asset-models/{assetModelId}/composite-models"
+      },
+      "input":{"shape":"ListAssetModelCompositeModelsRequest"},
+      "output":{"shape":"ListAssetModelCompositeModelsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
     },
     "ListAssetModelProperties":{
       "name":"ListAssetModelProperties",
@@ -889,6 +1045,22 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"data."}
+    },
+    "ListCompositionRelationships":{
+      "name":"ListCompositionRelationships",
+      "http":{
+        "method":"GET",
+        "requestUri":"/asset-models/{assetModelId}/composition-relationships"
+      },
+      "input":{"shape":"ListCompositionRelationshipsRequest"},
+      "output":{"shape":"ListCompositionRelationshipsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
     },
     "ListDashboards":{
       "name":"ListDashboards",
@@ -1152,6 +1324,26 @@
       ],
       "endpoint":{"hostPrefix":"api."}
     },
+    "UpdateAssetModelCompositeModel":{
+      "name":"UpdateAssetModelCompositeModel",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateAssetModelCompositeModelRequest"},
+      "output":{"shape":"UpdateAssetModelCompositeModelResponse"},
+      "errors":[
+        {"shape":"ConflictingOperationException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "UpdateAssetProperty":{
       "name":"UpdateAssetProperty",
       "http":{
@@ -1261,7 +1453,15 @@
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":".*"
+      "pattern":"^arn:aws(-cn|-us-gov)?:[a-zA-Z0-9-:\\/_\\.]+$"
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "AccessPolicySummaries":{
       "type":"list",
@@ -1284,6 +1484,47 @@
         "lastUpdateDate":{"shape":"Timestamp"}
       }
     },
+    "ActionDefinition":{
+      "type":"structure",
+      "required":[
+        "actionDefinitionId",
+        "actionName",
+        "actionType"
+      ],
+      "members":{
+        "actionDefinitionId":{"shape":"ID"},
+        "actionName":{"shape":"Name"},
+        "actionType":{"shape":"Name"}
+      }
+    },
+    "ActionDefinitions":{
+      "type":"list",
+      "member":{"shape":"ActionDefinition"}
+    },
+    "ActionPayload":{
+      "type":"structure",
+      "required":["stringValue"],
+      "members":{
+        "stringValue":{"shape":"ActionPayloadString"}
+      }
+    },
+    "ActionPayloadString":{
+      "type":"string",
+      "pattern":"[^\\u0000-\\u001F\\u007F]+"
+    },
+    "ActionSummaries":{
+      "type":"list",
+      "member":{"shape":"ActionSummary"}
+    },
+    "ActionSummary":{
+      "type":"structure",
+      "members":{
+        "actionId":{"shape":"ID"},
+        "actionDefinitionId":{"shape":"ID"},
+        "targetResource":{"shape":"TargetResource"}
+      }
+    },
+    "AdaptiveIngestion":{"type":"boolean"},
     "AggregateType":{
       "type":"string",
       "enum":[
@@ -1353,7 +1594,41 @@
         "description":{"shape":"Description"},
         "type":{"shape":"Name"},
         "properties":{"shape":"AssetProperties"},
-        "id":{"shape":"ID"}
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"}
+      }
+    },
+    "AssetCompositeModelPath":{
+      "type":"list",
+      "member":{"shape":"AssetCompositeModelPathSegment"}
+    },
+    "AssetCompositeModelPathSegment":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"}
+      }
+    },
+    "AssetCompositeModelSummaries":{
+      "type":"list",
+      "member":{"shape":"AssetCompositeModelSummary"}
+    },
+    "AssetCompositeModelSummary":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "type",
+        "description",
+        "path"
+      ],
+      "members":{
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"},
+        "name":{"shape":"Name"},
+        "type":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "path":{"shape":"AssetCompositeModelPath"}
       }
     },
     "AssetCompositeModels":{
@@ -1387,7 +1662,8 @@
       "required":["name"],
       "members":{
         "id":{"shape":"ID"},
-        "name":{"shape":"Name"}
+        "name":{"shape":"Name"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetHierarchyInfo":{
@@ -1412,7 +1688,8 @@
         "description":{"shape":"Description"},
         "type":{"shape":"Name"},
         "properties":{"shape":"AssetModelProperties"},
-        "id":{"shape":"ID"}
+        "id":{"shape":"CustomID"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelCompositeModelDefinition":{
@@ -1425,12 +1702,45 @@
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
         "type":{"shape":"Name"},
-        "properties":{"shape":"AssetModelPropertyDefinitions"}
+        "properties":{"shape":"AssetModelPropertyDefinitions"},
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelCompositeModelDefinitions":{
       "type":"list",
       "member":{"shape":"AssetModelCompositeModelDefinition"}
+    },
+    "AssetModelCompositeModelPath":{
+      "type":"list",
+      "member":{"shape":"AssetModelCompositeModelPathSegment"}
+    },
+    "AssetModelCompositeModelPathSegment":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"}
+      }
+    },
+    "AssetModelCompositeModelSummaries":{
+      "type":"list",
+      "member":{"shape":"AssetModelCompositeModelSummary"}
+    },
+    "AssetModelCompositeModelSummary":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "type"
+      ],
+      "members":{
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"},
+        "name":{"shape":"Name"},
+        "type":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "path":{"shape":"AssetModelCompositeModelPath"}
+      }
     },
     "AssetModelCompositeModels":{
       "type":"list",
@@ -1447,9 +1757,10 @@
         "childAssetModelId"
       ],
       "members":{
-        "id":{"shape":"ID"},
+        "id":{"shape":"CustomID"},
         "name":{"shape":"Name"},
-        "childAssetModelId":{"shape":"ID"}
+        "childAssetModelId":{"shape":"CustomID"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelHierarchyDefinition":{
@@ -1460,7 +1771,9 @@
       ],
       "members":{
         "name":{"shape":"Name"},
-        "childAssetModelId":{"shape":"ID"}
+        "childAssetModelId":{"shape":"CustomID"},
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelHierarchyDefinitions":{
@@ -1479,12 +1792,14 @@
         "type"
       ],
       "members":{
-        "id":{"shape":"ID"},
+        "id":{"shape":"CustomID"},
         "name":{"shape":"Name"},
         "dataType":{"shape":"PropertyDataType"},
         "dataTypeSpec":{"shape":"Name"},
         "unit":{"shape":"PropertyUnit"},
-        "type":{"shape":"PropertyType"}
+        "type":{"shape":"PropertyType"},
+        "path":{"shape":"AssetModelPropertyPath"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelPropertyDefinition":{
@@ -1499,12 +1814,25 @@
         "dataType":{"shape":"PropertyDataType"},
         "dataTypeSpec":{"shape":"Name"},
         "unit":{"shape":"PropertyUnit"},
-        "type":{"shape":"PropertyType"}
+        "type":{"shape":"PropertyType"},
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelPropertyDefinitions":{
       "type":"list",
       "member":{"shape":"AssetModelPropertyDefinition"}
+    },
+    "AssetModelPropertyPath":{
+      "type":"list",
+      "member":{"shape":"AssetModelPropertyPathSegment"}
+    },
+    "AssetModelPropertyPathSegment":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"}
+      }
     },
     "AssetModelPropertySummaries":{
       "type":"list",
@@ -1524,7 +1852,9 @@
         "dataTypeSpec":{"shape":"Name"},
         "unit":{"shape":"PropertyUnit"},
         "type":{"shape":"PropertyType"},
-        "assetModelCompositeModelId":{"shape":"ID"}
+        "assetModelCompositeModelId":{"shape":"ID"},
+        "path":{"shape":"AssetModelPropertyPath"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetModelState":{
@@ -1568,8 +1898,17 @@
         "description":{"shape":"Description"},
         "creationDate":{"shape":"Timestamp"},
         "lastUpdateDate":{"shape":"Timestamp"},
-        "status":{"shape":"AssetModelStatus"}
+        "status":{"shape":"AssetModelStatus"},
+        "assetModelType":{"shape":"AssetModelType"},
+        "externalId":{"shape":"ExternalId"}
       }
+    },
+    "AssetModelType":{
+      "type":"string",
+      "enum":[
+        "ASSET_MODEL",
+        "COMPONENT_MODEL"
+      ]
     },
     "AssetProperties":{
       "type":"list",
@@ -1589,7 +1928,9 @@
         "notification":{"shape":"PropertyNotification"},
         "dataType":{"shape":"PropertyDataType"},
         "dataTypeSpec":{"shape":"Name"},
-        "unit":{"shape":"PropertyUnit"}
+        "unit":{"shape":"PropertyUnit"},
+        "path":{"shape":"AssetPropertyPath"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetPropertyAlias":{
@@ -1598,18 +1939,32 @@
       "min":1,
       "pattern":"[^\\u0000-\\u001F\\u007F]+"
     },
+    "AssetPropertyPath":{
+      "type":"list",
+      "member":{"shape":"AssetPropertyPathSegment"}
+    },
+    "AssetPropertyPathSegment":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"}
+      }
+    },
     "AssetPropertySummaries":{
       "type":"list",
       "member":{"shape":"AssetPropertySummary"}
     },
     "AssetPropertySummary":{
       "type":"structure",
+      "required":["id"],
       "members":{
         "id":{"shape":"ID"},
         "alias":{"shape":"PropertyAlias"},
         "unit":{"shape":"PropertyUnit"},
         "notification":{"shape":"PropertyNotification"},
-        "assetCompositeModelId":{"shape":"ID"}
+        "assetCompositeModelId":{"shape":"ID"},
+        "path":{"shape":"AssetPropertyPath"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssetPropertyValue":{
@@ -1691,7 +2046,8 @@
         "lastUpdateDate":{"shape":"Timestamp"},
         "status":{"shape":"AssetStatus"},
         "hierarchies":{"shape":"AssetHierarchies"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "AssociateAssetsRequest":{
@@ -1703,12 +2059,12 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
-        "hierarchyId":{"shape":"ID"},
-        "childAssetId":{"shape":"ID"},
+        "hierarchyId":{"shape":"CustomID"},
+        "childAssetId":{"shape":"CustomID"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1729,12 +2085,12 @@
           "locationName":"alias"
         },
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"propertyId"
         },
@@ -1769,7 +2125,8 @@
         "lastUpdateDate":{"shape":"Timestamp"},
         "status":{"shape":"AssetStatus"},
         "hierarchies":{"shape":"AssetHierarchies"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "Attribute":{
@@ -2273,6 +2630,13 @@
       "min":36,
       "pattern":"\\S{36,64}"
     },
+    "ColumnInfo":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "type":{"shape":"ColumnType"}
+      }
+    },
     "ColumnName":{
       "type":"string",
       "enum":[
@@ -2290,6 +2654,16 @@
       "type":"list",
       "member":{"shape":"ColumnName"}
     },
+    "ColumnType":{
+      "type":"structure",
+      "members":{
+        "scalarType":{"shape":"ScalarType"}
+      }
+    },
+    "ColumnsList":{
+      "type":"list",
+      "member":{"shape":"ColumnInfo"}
+    },
     "CompositeModelProperty":{
       "type":"structure",
       "required":[
@@ -2301,7 +2675,41 @@
         "name":{"shape":"Name"},
         "type":{"shape":"Name"},
         "assetProperty":{"shape":"Property"},
+        "id":{"shape":"ID"},
+        "externalId":{"shape":"ExternalId"}
+      }
+    },
+    "CompositionDetails":{
+      "type":"structure",
+      "members":{
+        "compositionRelationship":{"shape":"CompositionRelationship"}
+      }
+    },
+    "CompositionRelationship":{
+      "type":"list",
+      "member":{"shape":"CompositionRelationshipItem"}
+    },
+    "CompositionRelationshipItem":{
+      "type":"structure",
+      "members":{
         "id":{"shape":"ID"}
+      }
+    },
+    "CompositionRelationshipSummaries":{
+      "type":"list",
+      "member":{"shape":"CompositionRelationshipSummary"}
+    },
+    "CompositionRelationshipSummary":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelId",
+        "assetModelCompositeModelType"
+      ],
+      "members":{
+        "assetModelId":{"shape":"ID"},
+        "assetModelCompositeModelId":{"shape":"ID"},
+        "assetModelCompositeModelType":{"shape":"Name"}
       }
     },
     "ComputeLocation":{
@@ -2387,6 +2795,46 @@
         "accessPolicyArn":{"shape":"ARN"}
       }
     },
+    "CreateAssetModelCompositeModelRequest":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelName",
+        "assetModelCompositeModelType"
+      ],
+      "members":{
+        "assetModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "parentAssetModelCompositeModelId":{"shape":"CustomID"},
+        "assetModelCompositeModelExternalId":{"shape":"ExternalId"},
+        "assetModelCompositeModelId":{"shape":"ID"},
+        "assetModelCompositeModelDescription":{"shape":"Description"},
+        "assetModelCompositeModelName":{"shape":"Name"},
+        "assetModelCompositeModelType":{"shape":"Name"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "composedAssetModelId":{"shape":"CustomID"},
+        "assetModelCompositeModelProperties":{"shape":"AssetModelPropertyDefinitions"}
+      }
+    },
+    "CreateAssetModelCompositeModelResponse":{
+      "type":"structure",
+      "required":[
+        "assetModelCompositeModelId",
+        "assetModelCompositeModelPath",
+        "assetModelStatus"
+      ],
+      "members":{
+        "assetModelCompositeModelId":{"shape":"ID"},
+        "assetModelCompositeModelPath":{"shape":"AssetModelCompositeModelPath"},
+        "assetModelStatus":{"shape":"AssetModelStatus"}
+      }
+    },
     "CreateAssetModelRequest":{
       "type":"structure",
       "required":["assetModelName"],
@@ -2400,7 +2848,10 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "assetModelId":{"shape":"ID"},
+        "assetModelExternalId":{"shape":"ExternalId"},
+        "assetModelType":{"shape":"AssetModelType"}
       }
     },
     "CreateAssetModelResponse":{
@@ -2424,13 +2875,15 @@
       ],
       "members":{
         "assetName":{"shape":"Name"},
-        "assetModelId":{"shape":"ID"},
+        "assetModelId":{"shape":"CustomID"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
         },
         "tags":{"shape":"TagMap"},
-        "assetDescription":{"shape":"Description"}
+        "assetDescription":{"shape":"Description"},
+        "assetId":{"shape":"ID"},
+        "assetExternalId":{"shape":"ExternalId"}
       }
     },
     "CreateAssetResponse":{
@@ -2460,7 +2913,9 @@
         "jobRoleArn":{"shape":"ARN"},
         "files":{"shape":"Files"},
         "errorReportLocation":{"shape":"ErrorReportLocation"},
-        "jobConfiguration":{"shape":"JobConfiguration"}
+        "jobConfiguration":{"shape":"JobConfiguration"},
+        "adaptiveIngestion":{"shape":"AdaptiveIngestion"},
+        "deleteFilesAfterImport":{"shape":"DeleteFilesAfterImport"}
       }
     },
     "CreateBulkImportJobResponse":{
@@ -2599,9 +3054,16 @@
     },
     "Csv":{
       "type":"structure",
+      "required":["columnNames"],
       "members":{
         "columnNames":{"shape":"ColumnNames"}
       }
+    },
+    "CustomID":{
+      "type":"string",
+      "max":139,
+      "min":13,
+      "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$|^externalId:[a-zA-Z0-9][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9]+"
     },
     "CustomerManagedS3Storage":{
       "type":"structure",
@@ -2638,10 +3100,21 @@
         "lastUpdateDate":{"shape":"Timestamp"}
       }
     },
+    "Datum":{
+      "type":"structure",
+      "members":{
+        "scalarValue":{"shape":"ScalarValue"},
+        "arrayValue":{"shape":"DatumList"},
+        "rowValue":{"shape":"Row"},
+        "nullValue":{"shape":"NullableBoolean"}
+      }
+    },
+    "DatumList":{
+      "type":"list",
+      "member":{"shape":"Datum"}
+    },
     "DefaultValue":{
       "type":"string",
-      "max":1024,
-      "min":1,
       "pattern":"[^\\u0000-\\u001F\\u007F]+"
     },
     "DeleteAccessPolicyRequest":{
@@ -2666,12 +3139,44 @@
       "members":{
       }
     },
+    "DeleteAssetModelCompositeModelRequest":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelId"
+      ],
+      "members":{
+        "assetModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "assetModelCompositeModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelCompositeModelId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeleteAssetModelCompositeModelResponse":{
+      "type":"structure",
+      "required":["assetModelStatus"],
+      "members":{
+        "assetModelStatus":{"shape":"AssetModelStatus"}
+      }
+    },
     "DeleteAssetModelRequest":{
       "type":"structure",
       "required":["assetModelId"],
       "members":{
         "assetModelId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetModelId"
         },
@@ -2695,7 +3200,7 @@
       "required":["assetId"],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
@@ -2736,6 +3241,7 @@
       "members":{
       }
     },
+    "DeleteFilesAfterImport":{"type":"boolean"},
     "DeleteGatewayRequest":{
       "type":"structure",
       "required":["gatewayId"],
@@ -2802,12 +3308,12 @@
           "locationName":"alias"
         },
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"propertyId"
         },
@@ -2849,12 +3355,129 @@
         "accessPolicyLastUpdateDate":{"shape":"Timestamp"}
       }
     },
+    "DescribeActionRequest":{
+      "type":"structure",
+      "required":["actionId"],
+      "members":{
+        "actionId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"actionId"
+        }
+      }
+    },
+    "DescribeActionResponse":{
+      "type":"structure",
+      "required":[
+        "actionId",
+        "targetResource",
+        "actionDefinitionId",
+        "actionPayload",
+        "executionTime"
+      ],
+      "members":{
+        "actionId":{"shape":"ID"},
+        "targetResource":{"shape":"TargetResource"},
+        "actionDefinitionId":{"shape":"ID"},
+        "actionPayload":{"shape":"ActionPayload"},
+        "executionTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeAssetCompositeModelRequest":{
+      "type":"structure",
+      "required":[
+        "assetId",
+        "assetCompositeModelId"
+      ],
+      "members":{
+        "assetId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetId"
+        },
+        "assetCompositeModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetCompositeModelId"
+        }
+      }
+    },
+    "DescribeAssetCompositeModelResponse":{
+      "type":"structure",
+      "required":[
+        "assetId",
+        "assetCompositeModelId",
+        "assetCompositeModelPath",
+        "assetCompositeModelName",
+        "assetCompositeModelDescription",
+        "assetCompositeModelType",
+        "assetCompositeModelProperties",
+        "assetCompositeModelSummaries"
+      ],
+      "members":{
+        "assetId":{"shape":"ID"},
+        "assetCompositeModelId":{"shape":"ID"},
+        "assetCompositeModelExternalId":{"shape":"ExternalId"},
+        "assetCompositeModelPath":{"shape":"AssetCompositeModelPath"},
+        "assetCompositeModelName":{"shape":"Name"},
+        "assetCompositeModelDescription":{"shape":"Description"},
+        "assetCompositeModelType":{"shape":"Name"},
+        "assetCompositeModelProperties":{"shape":"AssetProperties"},
+        "assetCompositeModelSummaries":{"shape":"AssetCompositeModelSummaries"},
+        "actionDefinitions":{"shape":"ActionDefinitions"}
+      }
+    },
+    "DescribeAssetModelCompositeModelRequest":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelId"
+      ],
+      "members":{
+        "assetModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "assetModelCompositeModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelCompositeModelId"
+        }
+      }
+    },
+    "DescribeAssetModelCompositeModelResponse":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelId",
+        "assetModelCompositeModelPath",
+        "assetModelCompositeModelName",
+        "assetModelCompositeModelDescription",
+        "assetModelCompositeModelType",
+        "assetModelCompositeModelProperties",
+        "assetModelCompositeModelSummaries"
+      ],
+      "members":{
+        "assetModelId":{"shape":"ID"},
+        "assetModelCompositeModelId":{"shape":"ID"},
+        "assetModelCompositeModelExternalId":{"shape":"ExternalId"},
+        "assetModelCompositeModelPath":{"shape":"AssetModelCompositeModelPath"},
+        "assetModelCompositeModelName":{"shape":"Name"},
+        "assetModelCompositeModelDescription":{"shape":"Description"},
+        "assetModelCompositeModelType":{"shape":"Name"},
+        "assetModelCompositeModelProperties":{"shape":"AssetModelProperties"},
+        "compositionDetails":{"shape":"CompositionDetails"},
+        "assetModelCompositeModelSummaries":{"shape":"AssetModelCompositeModelSummaries"},
+        "actionDefinitions":{"shape":"ActionDefinitions"}
+      }
+    },
     "DescribeAssetModelRequest":{
       "type":"structure",
       "required":["assetModelId"],
       "members":{
         "assetModelId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetModelId"
         },
@@ -2888,7 +3511,10 @@
         "assetModelCompositeModels":{"shape":"AssetModelCompositeModels"},
         "assetModelCreationDate":{"shape":"Timestamp"},
         "assetModelLastUpdateDate":{"shape":"Timestamp"},
-        "assetModelStatus":{"shape":"AssetModelStatus"}
+        "assetModelStatus":{"shape":"AssetModelStatus"},
+        "assetModelType":{"shape":"AssetModelType"},
+        "assetModelCompositeModelSummaries":{"shape":"AssetModelCompositeModelSummaries"},
+        "assetModelExternalId":{"shape":"ExternalId"}
       }
     },
     "DescribeAssetPropertyRequest":{
@@ -2899,12 +3525,12 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"propertyId"
         }
@@ -2922,7 +3548,8 @@
         "assetName":{"shape":"Name"},
         "assetModelId":{"shape":"ID"},
         "assetProperty":{"shape":"Property"},
-        "compositeModel":{"shape":"CompositeModelProperty"}
+        "compositeModel":{"shape":"CompositeModelProperty"},
+        "assetExternalId":{"shape":"ExternalId"}
       }
     },
     "DescribeAssetRequest":{
@@ -2930,7 +3557,7 @@
       "required":["assetId"],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
@@ -2965,7 +3592,9 @@
         "assetCreationDate":{"shape":"Timestamp"},
         "assetLastUpdateDate":{"shape":"Timestamp"},
         "assetStatus":{"shape":"AssetStatus"},
-        "assetDescription":{"shape":"Description"}
+        "assetDescription":{"shape":"Description"},
+        "assetCompositeModelSummaries":{"shape":"AssetCompositeModelSummaries"},
+        "assetExternalId":{"shape":"ExternalId"}
       }
     },
     "DescribeBulkImportJobRequest":{
@@ -3001,7 +3630,9 @@
         "errorReportLocation":{"shape":"ErrorReportLocation"},
         "jobConfiguration":{"shape":"JobConfiguration"},
         "jobCreationDate":{"shape":"Timestamp"},
-        "jobLastUpdateDate":{"shape":"Timestamp"}
+        "jobLastUpdateDate":{"shape":"Timestamp"},
+        "adaptiveIngestion":{"shape":"AdaptiveIngestion"},
+        "deleteFilesAfterImport":{"shape":"DeleteFilesAfterImport"}
       }
     },
     "DescribeDashboardRequest":{
@@ -3221,7 +3852,9 @@
         "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "configurationStatus":{"shape":"ConfigurationStatus"},
-        "lastUpdateDate":{"shape":"Timestamp"}
+        "lastUpdateDate":{"shape":"Timestamp"},
+        "warmTier":{"shape":"WarmTierState"},
+        "warmTierRetentionPeriod":{"shape":"WarmTierRetentionPeriod"}
       }
     },
     "DescribeTimeSeriesRequest":{
@@ -3233,12 +3866,12 @@
           "locationName":"alias"
         },
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"propertyId"
         }
@@ -3303,12 +3936,12 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
-        "hierarchyId":{"shape":"ID"},
-        "childAssetId":{"shape":"ID"},
+        "hierarchyId":{"shape":"CustomID"},
+        "childAssetId":{"shape":"CustomID"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -3329,12 +3962,12 @@
           "locationName":"alias"
         },
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"propertyId"
         },
@@ -3403,6 +4036,53 @@
     },
     "ExceptionMessage":{"type":"string"},
     "ExcludeProperties":{"type":"boolean"},
+    "ExecuteActionRequest":{
+      "type":"structure",
+      "required":[
+        "targetResource",
+        "actionDefinitionId",
+        "actionPayload"
+      ],
+      "members":{
+        "targetResource":{"shape":"TargetResource"},
+        "actionDefinitionId":{"shape":"ID"},
+        "actionPayload":{"shape":"ActionPayload"},
+        "clientToken":{"shape":"ClientToken"}
+      }
+    },
+    "ExecuteActionResponse":{
+      "type":"structure",
+      "required":["actionId"],
+      "members":{
+        "actionId":{"shape":"ID"}
+      }
+    },
+    "ExecuteQueryMaxResults":{
+      "type":"integer",
+      "min":1
+    },
+    "ExecuteQueryNextToken":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
+    "ExecuteQueryRequest":{
+      "type":"structure",
+      "required":["queryStatement"],
+      "members":{
+        "queryStatement":{"shape":"QueryStatement"},
+        "nextToken":{"shape":"ExecuteQueryNextToken"},
+        "maxResults":{"shape":"ExecuteQueryMaxResults"}
+      }
+    },
+    "ExecuteQueryResponse":{
+      "type":"structure",
+      "members":{
+        "columns":{"shape":"ColumnsList"},
+        "rows":{"shape":"Rows"},
+        "nextToken":{"shape":"ExecuteQueryNextToken"}
+      }
+    },
     "Expression":{
       "type":"string",
       "max":1024,
@@ -3423,6 +4103,12 @@
       "type":"list",
       "member":{"shape":"ExpressionVariable"}
     },
+    "ExternalId":{
+      "type":"string",
+      "max":128,
+      "min":2,
+      "pattern":"[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+"
+    },
     "File":{
       "type":"structure",
       "required":[
@@ -3438,7 +4124,8 @@
     "FileFormat":{
       "type":"structure",
       "members":{
-        "csv":{"shape":"Csv"}
+        "csv":{"shape":"Csv"},
+        "parquet":{"shape":"Parquet"}
       }
     },
     "Files":{
@@ -4012,6 +4699,75 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListActionsRequest":{
+      "type":"structure",
+      "required":[
+        "targetResourceType",
+        "targetResourceId"
+      ],
+      "members":{
+        "targetResourceType":{
+          "shape":"TargetResourceType",
+          "location":"querystring",
+          "locationName":"targetResourceType"
+        },
+        "targetResourceId":{
+          "shape":"CustomID",
+          "location":"querystring",
+          "locationName":"targetResourceId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListActionsResponse":{
+      "type":"structure",
+      "required":[
+        "actionSummaries",
+        "nextToken"
+      ],
+      "members":{
+        "actionSummaries":{"shape":"ActionSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAssetModelCompositeModelsRequest":{
+      "type":"structure",
+      "required":["assetModelId"],
+      "members":{
+        "assetModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAssetModelCompositeModelsResponse":{
+      "type":"structure",
+      "required":["assetModelCompositeModelSummaries"],
+      "members":{
+        "assetModelCompositeModelSummaries":{"shape":"AssetModelCompositeModelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListAssetModelPropertiesFilter":{
       "type":"string",
       "enum":[
@@ -4024,7 +4780,7 @@
       "required":["assetModelId"],
       "members":{
         "assetModelId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetModelId"
         },
@@ -4065,6 +4821,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "assetModelTypes":{
+          "shape":"ListAssetModelsTypeFilter",
+          "location":"querystring",
+          "locationName":"assetModelTypes"
         }
       }
     },
@@ -4075,6 +4836,10 @@
         "assetModelSummaries":{"shape":"AssetModelSummaries"},
         "nextToken":{"shape":"NextToken"}
       }
+    },
+    "ListAssetModelsTypeFilter":{
+      "type":"list",
+      "member":{"shape":"AssetModelType"}
     },
     "ListAssetPropertiesFilter":{
       "type":"string",
@@ -4088,7 +4853,7 @@
       "required":["assetId"],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
@@ -4125,7 +4890,7 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
@@ -4175,7 +4940,7 @@
           "locationName":"maxResults"
         },
         "assetModelId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetModelId"
         },
@@ -4199,12 +4964,12 @@
       "required":["assetId"],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
         "hierarchyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"hierarchyId"
         },
@@ -4270,6 +5035,35 @@
       "required":["jobSummaries"],
       "members":{
         "jobSummaries":{"shape":"JobSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCompositionRelationshipsRequest":{
+      "type":"structure",
+      "required":["assetModelId"],
+      "members":{
+        "assetModelId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListCompositionRelationshipsResponse":{
+      "type":"structure",
+      "required":["compositionRelationshipSummaries"],
+      "members":{
+        "compositionRelationshipSummaries":{"shape":"CompositionRelationshipSummaries"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -4436,7 +5230,7 @@
           "locationName":"maxResults"
         },
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"querystring",
           "locationName":"assetId"
         },
@@ -4572,6 +5366,10 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "NullableBoolean":{
+      "type":"boolean",
+      "box":true
+    },
     "NumberOfDays":{
       "type":"integer",
       "min":30
@@ -4585,6 +5383,11 @@
       "type":"integer",
       "max":999999999,
       "min":0
+    },
+    "Parquet":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Permission":{
       "type":"string",
@@ -4686,7 +5489,9 @@
         "notification":{"shape":"PropertyNotification"},
         "dataType":{"shape":"PropertyDataType"},
         "unit":{"shape":"PropertyUnit"},
-        "type":{"shape":"PropertyType"}
+        "type":{"shape":"PropertyType"},
+        "path":{"shape":"AssetPropertyPath"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "PropertyAlias":{
@@ -4799,7 +5604,9 @@
         "storageType":{"shape":"StorageType"},
         "multiLayerStorage":{"shape":"MultiLayerStorage"},
         "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
-        "retentionPeriod":{"shape":"RetentionPeriod"}
+        "retentionPeriod":{"shape":"RetentionPeriod"},
+        "warmTier":{"shape":"WarmTierState"},
+        "warmTierRetentionPeriod":{"shape":"WarmTierRetentionPeriod"}
       }
     },
     "PutStorageConfigurationResponse":{
@@ -4813,7 +5620,9 @@
         "multiLayerStorage":{"shape":"MultiLayerStorage"},
         "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
-        "configurationStatus":{"shape":"ConfigurationStatus"}
+        "configurationStatus":{"shape":"ConfigurationStatus"},
+        "warmTier":{"shape":"WarmTierState"},
+        "warmTierRetentionPeriod":{"shape":"WarmTierRetentionPeriod"}
       }
     },
     "Qualities":{
@@ -4829,6 +5638,19 @@
         "BAD",
         "UNCERTAIN"
       ]
+    },
+    "QueryStatement":{
+      "type":"string",
+      "min":1,
+      "pattern":"^[\\s\\S]+$"
+    },
+    "QueryTimeoutException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "Resolution":{
       "type":"string",
@@ -4883,12 +5705,34 @@
         "unlimited":{"shape":"Unlimited"}
       }
     },
+    "Row":{
+      "type":"structure",
+      "required":["data"],
+      "members":{
+        "data":{"shape":"DatumList"}
+      }
+    },
+    "Rows":{
+      "type":"list",
+      "member":{"shape":"Row"}
+    },
     "SSOApplicationId":{
       "type":"string",
       "max":64,
       "min":1,
       "pattern":"^[!-~]*"
     },
+    "ScalarType":{
+      "type":"string",
+      "enum":[
+        "BOOLEAN",
+        "INT",
+        "DOUBLE",
+        "TIMESTAMP",
+        "STRING"
+      ]
+    },
+    "ScalarValue":{"type":"string"},
     "ServiceUnavailableException":{
       "type":"structure",
       "required":["message"],
@@ -4949,6 +5793,17 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "TargetResource":{
+      "type":"structure",
+      "required":["assetId"],
+      "members":{
+        "assetId":{"shape":"CustomID"}
+      }
+    },
+    "TargetResourceType":{
+      "type":"string",
+      "enum":["ASSET"]
     },
     "ThrottlingException":{
       "type":"structure",
@@ -5124,6 +5979,45 @@
       "members":{
       }
     },
+    "UpdateAssetModelCompositeModelRequest":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "assetModelCompositeModelId",
+        "assetModelCompositeModelName"
+      ],
+      "members":{
+        "assetModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "assetModelCompositeModelId":{
+          "shape":"CustomID",
+          "location":"uri",
+          "locationName":"assetModelCompositeModelId"
+        },
+        "assetModelCompositeModelExternalId":{"shape":"ExternalId"},
+        "assetModelCompositeModelDescription":{"shape":"Description"},
+        "assetModelCompositeModelName":{"shape":"Name"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "assetModelCompositeModelProperties":{"shape":"AssetModelProperties"}
+      }
+    },
+    "UpdateAssetModelCompositeModelResponse":{
+      "type":"structure",
+      "required":[
+        "assetModelCompositeModelPath",
+        "assetModelStatus"
+      ],
+      "members":{
+        "assetModelCompositeModelPath":{"shape":"AssetModelCompositeModelPath"},
+        "assetModelStatus":{"shape":"AssetModelStatus"}
+      }
+    },
     "UpdateAssetModelRequest":{
       "type":"structure",
       "required":[
@@ -5132,7 +6026,7 @@
       ],
       "members":{
         "assetModelId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetModelId"
         },
@@ -5144,7 +6038,8 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "assetModelExternalId":{"shape":"ExternalId"}
       }
     },
     "UpdateAssetModelResponse":{
@@ -5162,12 +6057,12 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
         "propertyId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"propertyId"
         },
@@ -5188,7 +6083,7 @@
       ],
       "members":{
         "assetId":{
-          "shape":"ID",
+          "shape":"CustomID",
           "location":"uri",
           "locationName":"assetId"
         },
@@ -5197,7 +6092,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "assetDescription":{"shape":"Description"}
+        "assetDescription":{"shape":"Description"},
+        "assetExternalId":{"shape":"ExternalId"}
       }
     },
     "UpdateAssetResponse":{
@@ -5349,6 +6245,14 @@
         "id":{"shape":"IdentityId"}
       }
     },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "VariableName":{
       "type":"string",
       "max":64,
@@ -5357,10 +6261,10 @@
     },
     "VariableValue":{
       "type":"structure",
-      "required":["propertyId"],
       "members":{
         "propertyId":{"shape":"Macro"},
-        "hierarchyId":{"shape":"Macro"}
+        "hierarchyId":{"shape":"Macro"},
+        "propertyPath":{"shape":"AssetModelPropertyPath"}
       }
     },
     "Variant":{
@@ -5371,6 +6275,21 @@
         "doubleValue":{"shape":"PropertyValueDoubleValue"},
         "booleanValue":{"shape":"PropertyValueBooleanValue"}
       }
-    }
+    },
+    "WarmTierRetentionPeriod":{
+      "type":"structure",
+      "members":{
+        "numberOfDays":{"shape":"NumberOfDays"},
+        "unlimited":{"shape":"Unlimited"}
+      }
+    },
+    "WarmTierState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "errorMessage":{"type":"string"}
   }
 }

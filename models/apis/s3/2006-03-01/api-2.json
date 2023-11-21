@@ -5470,7 +5470,8 @@
       "members":{
         "TargetBucket":{"shape":"TargetBucket"},
         "TargetGrants":{"shape":"TargetGrants"},
-        "TargetPrefix":{"shape":"TargetPrefix"}
+        "TargetPrefix":{"shape":"TargetPrefix"},
+        "TargetObjectKeyFormat":{"shape":"TargetObjectKeyFormat"}
       }
     },
     "MFA":{"type":"string"},
@@ -5952,6 +5953,20 @@
     },
     "PartNumber":{"type":"integer"},
     "PartNumberMarker":{"type":"integer"},
+    "PartitionDateSource":{
+      "type":"string",
+      "enum":[
+        "EventTime",
+        "DeliveryTime"
+      ]
+    },
+    "PartitionedPrefix":{
+      "type":"structure",
+      "members":{
+        "PartitionDateSource":{"shape":"PartitionDateSource"}
+      },
+      "locationName":"PartitionedPrefix"
+    },
     "Parts":{
       "type":"list",
       "member":{"shape":"Part"},
@@ -7937,6 +7952,12 @@
       "type":"boolean",
       "box":true
     },
+    "SimplePrefix":{
+      "type":"structure",
+      "members":{
+      },
+      "locationName":"SimplePrefix"
+    },
     "Size":{
       "type":"long",
       "box":true
@@ -8076,6 +8097,19 @@
       "member":{
         "shape":"TargetGrant",
         "locationName":"Grant"
+      }
+    },
+    "TargetObjectKeyFormat":{
+      "type":"structure",
+      "members":{
+        "SimplePrefix":{
+          "shape":"SimplePrefix",
+          "locationName":"SimplePrefix"
+        },
+        "PartitionedPrefix":{
+          "shape":"PartitionedPrefix",
+          "locationName":"PartitionedPrefix"
+        }
       }
     },
     "TargetPrefix":{"type":"string"},

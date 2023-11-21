@@ -64,6 +64,10 @@ type IoTTwinMakerAPI interface {
 	BatchPutPropertyValuesWithContext(aws.Context, *iottwinmaker.BatchPutPropertyValuesInput, ...request.Option) (*iottwinmaker.BatchPutPropertyValuesOutput, error)
 	BatchPutPropertyValuesRequest(*iottwinmaker.BatchPutPropertyValuesInput) (*request.Request, *iottwinmaker.BatchPutPropertyValuesOutput)
 
+	CancelMetadataTransferJob(*iottwinmaker.CancelMetadataTransferJobInput) (*iottwinmaker.CancelMetadataTransferJobOutput, error)
+	CancelMetadataTransferJobWithContext(aws.Context, *iottwinmaker.CancelMetadataTransferJobInput, ...request.Option) (*iottwinmaker.CancelMetadataTransferJobOutput, error)
+	CancelMetadataTransferJobRequest(*iottwinmaker.CancelMetadataTransferJobInput) (*request.Request, *iottwinmaker.CancelMetadataTransferJobOutput)
+
 	CreateComponentType(*iottwinmaker.CreateComponentTypeInput) (*iottwinmaker.CreateComponentTypeOutput, error)
 	CreateComponentTypeWithContext(aws.Context, *iottwinmaker.CreateComponentTypeInput, ...request.Option) (*iottwinmaker.CreateComponentTypeOutput, error)
 	CreateComponentTypeRequest(*iottwinmaker.CreateComponentTypeInput) (*request.Request, *iottwinmaker.CreateComponentTypeOutput)
@@ -71,6 +75,10 @@ type IoTTwinMakerAPI interface {
 	CreateEntity(*iottwinmaker.CreateEntityInput) (*iottwinmaker.CreateEntityOutput, error)
 	CreateEntityWithContext(aws.Context, *iottwinmaker.CreateEntityInput, ...request.Option) (*iottwinmaker.CreateEntityOutput, error)
 	CreateEntityRequest(*iottwinmaker.CreateEntityInput) (*request.Request, *iottwinmaker.CreateEntityOutput)
+
+	CreateMetadataTransferJob(*iottwinmaker.CreateMetadataTransferJobInput) (*iottwinmaker.CreateMetadataTransferJobOutput, error)
+	CreateMetadataTransferJobWithContext(aws.Context, *iottwinmaker.CreateMetadataTransferJobInput, ...request.Option) (*iottwinmaker.CreateMetadataTransferJobOutput, error)
+	CreateMetadataTransferJobRequest(*iottwinmaker.CreateMetadataTransferJobInput) (*request.Request, *iottwinmaker.CreateMetadataTransferJobOutput)
 
 	CreateScene(*iottwinmaker.CreateSceneInput) (*iottwinmaker.CreateSceneOutput, error)
 	CreateSceneWithContext(aws.Context, *iottwinmaker.CreateSceneInput, ...request.Option) (*iottwinmaker.CreateSceneOutput, error)
@@ -119,6 +127,10 @@ type IoTTwinMakerAPI interface {
 	GetEntityWithContext(aws.Context, *iottwinmaker.GetEntityInput, ...request.Option) (*iottwinmaker.GetEntityOutput, error)
 	GetEntityRequest(*iottwinmaker.GetEntityInput) (*request.Request, *iottwinmaker.GetEntityOutput)
 
+	GetMetadataTransferJob(*iottwinmaker.GetMetadataTransferJobInput) (*iottwinmaker.GetMetadataTransferJobOutput, error)
+	GetMetadataTransferJobWithContext(aws.Context, *iottwinmaker.GetMetadataTransferJobInput, ...request.Option) (*iottwinmaker.GetMetadataTransferJobOutput, error)
+	GetMetadataTransferJobRequest(*iottwinmaker.GetMetadataTransferJobInput) (*request.Request, *iottwinmaker.GetMetadataTransferJobOutput)
+
 	GetPricingPlan(*iottwinmaker.GetPricingPlanInput) (*iottwinmaker.GetPricingPlanOutput, error)
 	GetPricingPlanWithContext(aws.Context, *iottwinmaker.GetPricingPlanInput, ...request.Option) (*iottwinmaker.GetPricingPlanOutput, error)
 	GetPricingPlanRequest(*iottwinmaker.GetPricingPlanInput) (*request.Request, *iottwinmaker.GetPricingPlanOutput)
@@ -156,12 +168,33 @@ type IoTTwinMakerAPI interface {
 	ListComponentTypesPages(*iottwinmaker.ListComponentTypesInput, func(*iottwinmaker.ListComponentTypesOutput, bool) bool) error
 	ListComponentTypesPagesWithContext(aws.Context, *iottwinmaker.ListComponentTypesInput, func(*iottwinmaker.ListComponentTypesOutput, bool) bool, ...request.Option) error
 
+	ListComponents(*iottwinmaker.ListComponentsInput) (*iottwinmaker.ListComponentsOutput, error)
+	ListComponentsWithContext(aws.Context, *iottwinmaker.ListComponentsInput, ...request.Option) (*iottwinmaker.ListComponentsOutput, error)
+	ListComponentsRequest(*iottwinmaker.ListComponentsInput) (*request.Request, *iottwinmaker.ListComponentsOutput)
+
+	ListComponentsPages(*iottwinmaker.ListComponentsInput, func(*iottwinmaker.ListComponentsOutput, bool) bool) error
+	ListComponentsPagesWithContext(aws.Context, *iottwinmaker.ListComponentsInput, func(*iottwinmaker.ListComponentsOutput, bool) bool, ...request.Option) error
+
 	ListEntities(*iottwinmaker.ListEntitiesInput) (*iottwinmaker.ListEntitiesOutput, error)
 	ListEntitiesWithContext(aws.Context, *iottwinmaker.ListEntitiesInput, ...request.Option) (*iottwinmaker.ListEntitiesOutput, error)
 	ListEntitiesRequest(*iottwinmaker.ListEntitiesInput) (*request.Request, *iottwinmaker.ListEntitiesOutput)
 
 	ListEntitiesPages(*iottwinmaker.ListEntitiesInput, func(*iottwinmaker.ListEntitiesOutput, bool) bool) error
 	ListEntitiesPagesWithContext(aws.Context, *iottwinmaker.ListEntitiesInput, func(*iottwinmaker.ListEntitiesOutput, bool) bool, ...request.Option) error
+
+	ListMetadataTransferJobs(*iottwinmaker.ListMetadataTransferJobsInput) (*iottwinmaker.ListMetadataTransferJobsOutput, error)
+	ListMetadataTransferJobsWithContext(aws.Context, *iottwinmaker.ListMetadataTransferJobsInput, ...request.Option) (*iottwinmaker.ListMetadataTransferJobsOutput, error)
+	ListMetadataTransferJobsRequest(*iottwinmaker.ListMetadataTransferJobsInput) (*request.Request, *iottwinmaker.ListMetadataTransferJobsOutput)
+
+	ListMetadataTransferJobsPages(*iottwinmaker.ListMetadataTransferJobsInput, func(*iottwinmaker.ListMetadataTransferJobsOutput, bool) bool) error
+	ListMetadataTransferJobsPagesWithContext(aws.Context, *iottwinmaker.ListMetadataTransferJobsInput, func(*iottwinmaker.ListMetadataTransferJobsOutput, bool) bool, ...request.Option) error
+
+	ListProperties(*iottwinmaker.ListPropertiesInput) (*iottwinmaker.ListPropertiesOutput, error)
+	ListPropertiesWithContext(aws.Context, *iottwinmaker.ListPropertiesInput, ...request.Option) (*iottwinmaker.ListPropertiesOutput, error)
+	ListPropertiesRequest(*iottwinmaker.ListPropertiesInput) (*request.Request, *iottwinmaker.ListPropertiesOutput)
+
+	ListPropertiesPages(*iottwinmaker.ListPropertiesInput, func(*iottwinmaker.ListPropertiesOutput, bool) bool) error
+	ListPropertiesPagesWithContext(aws.Context, *iottwinmaker.ListPropertiesInput, func(*iottwinmaker.ListPropertiesOutput, bool) bool, ...request.Option) error
 
 	ListScenes(*iottwinmaker.ListScenesInput) (*iottwinmaker.ListScenesOutput, error)
 	ListScenesWithContext(aws.Context, *iottwinmaker.ListScenesInput, ...request.Option) (*iottwinmaker.ListScenesOutput, error)

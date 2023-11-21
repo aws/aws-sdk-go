@@ -21,6 +21,12 @@
       "output_token": "InvalidationList.NextMarker",
       "result_key": "InvalidationList.Items"
     },
+    "ListKeyValueStores": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "KeyValueStoreList.NextMarker",
+      "result_key": "KeyValueStoreList.Items"
+    },
     "ListStreamingDistributions": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
