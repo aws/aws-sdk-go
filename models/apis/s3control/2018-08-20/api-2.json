@@ -3033,7 +3033,17 @@
         },
         "CreatedAfter":{"shape":"ObjectCreationTime"},
         "CreatedBefore":{"shape":"ObjectCreationTime"},
-        "ObjectReplicationStatuses":{"shape":"ReplicationStatusFilterList"}
+        "ObjectReplicationStatuses":{"shape":"ReplicationStatusFilterList"},
+        "KeyNameConstraint":{"shape":"KeyNameConstraint"},
+        "ObjectSizeGreaterThanBytes":{
+          "shape":"ObjectSizeGreaterThanBytes",
+          "box":true
+        },
+        "ObjectSizeLessThanBytes":{
+          "shape":"ObjectSizeLessThanBytes",
+          "box":true
+        },
+        "MatchAnyStorageClass":{"shape":"StorageClassList"}
       }
     },
     "JobManifestLocation":{
@@ -3219,6 +3229,14 @@
     "JobTotalNumberOfTasks":{
       "type":"long",
       "min":0
+    },
+    "KeyNameConstraint":{
+      "type":"structure",
+      "members":{
+        "MatchAnyPrefix":{"shape":"NonEmptyMaxLength1024StringList"},
+        "MatchAnySuffix":{"shape":"NonEmptyMaxLength1024StringList"},
+        "MatchAnySubstring":{"shape":"NonEmptyMaxLength1024StringList"}
+      }
     },
     "KmsKeyArnString":{
       "type":"string",
@@ -3760,6 +3778,10 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "NonEmptyMaxLength1024StringList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyMaxLength1024String"}
     },
     "NonEmptyMaxLength2048String":{
       "type":"string",
@@ -5029,6 +5051,10 @@
         "Enabled",
         "Disabled"
       ]
+    },
+    "StorageClassList":{
+      "type":"list",
+      "member":{"shape":"S3StorageClass"}
     },
     "StorageLensArn":{
       "type":"string",
