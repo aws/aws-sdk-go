@@ -1,3 +1,14 @@
+Release v1.48.3 (2023-11-22)
+===
+
+### Service Client Updates
+* `service/kinesis`: Updates service API and documentation
+  * This release adds support for resource based policies on streams and consumers.
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations now manages buckets or prefixes in a single step.
+* `service/sagemaker`: Updates service API and documentation
+  * This feature adds the end user license agreement status as a model access configuration parameter.
+
 Release v1.48.2 (2023-11-21)
 ===
 

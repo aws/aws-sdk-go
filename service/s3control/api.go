@@ -15278,21 +15278,38 @@ func (s *JobManifestGenerator) SetS3JobManifestGenerator(v *S3JobManifestGenerat
 type JobManifestGeneratorFilter struct {
 	_ struct{} `type:"structure"`
 
-	// If provided, the generated manifest should include only source bucket objects
-	// that were created after this time.
+	// If provided, the generated manifest includes only source bucket objects that
+	// were created after this time.
 	CreatedAfter *time.Time `type:"timestamp"`
 
-	// If provided, the generated manifest should include only source bucket objects
-	// that were created before this time.
+	// If provided, the generated manifest includes only source bucket objects that
+	// were created before this time.
 	CreatedBefore *time.Time `type:"timestamp"`
 
 	// Include objects in the generated manifest only if they are eligible for replication
 	// according to the Replication configuration on the source bucket.
 	EligibleForReplication *bool `type:"boolean"`
 
-	// If provided, the generated manifest should include only source bucket objects
-	// that have one of the specified Replication statuses.
+	// If provided, the generated manifest includes only source bucket objects whose
+	// object keys match the string constraints specified for MatchAnyPrefix, MatchAnySuffix,
+	// and MatchAnySubstring.
+	KeyNameConstraint *KeyNameConstraint `type:"structure"`
+
+	// If provided, the generated manifest includes only source bucket objects that
+	// are stored with the specified storage class.
+	MatchAnyStorageClass []*string `type:"list" enum:"S3StorageClass"`
+
+	// If provided, the generated manifest includes only source bucket objects that
+	// have one of the specified Replication statuses.
 	ObjectReplicationStatuses []*string `type:"list" enum:"ReplicationStatus"`
+
+	// If provided, the generated manifest includes only source bucket objects whose
+	// file size is greater than the specified number of bytes.
+	ObjectSizeGreaterThanBytes *int64 `type:"long"`
+
+	// If provided, the generated manifest includes only source bucket objects whose
+	// file size is less than the specified number of bytes.
+	ObjectSizeLessThanBytes *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -15331,9 +15348,33 @@ func (s *JobManifestGeneratorFilter) SetEligibleForReplication(v bool) *JobManif
 	return s
 }
 
+// SetKeyNameConstraint sets the KeyNameConstraint field's value.
+func (s *JobManifestGeneratorFilter) SetKeyNameConstraint(v *KeyNameConstraint) *JobManifestGeneratorFilter {
+	s.KeyNameConstraint = v
+	return s
+}
+
+// SetMatchAnyStorageClass sets the MatchAnyStorageClass field's value.
+func (s *JobManifestGeneratorFilter) SetMatchAnyStorageClass(v []*string) *JobManifestGeneratorFilter {
+	s.MatchAnyStorageClass = v
+	return s
+}
+
 // SetObjectReplicationStatuses sets the ObjectReplicationStatuses field's value.
 func (s *JobManifestGeneratorFilter) SetObjectReplicationStatuses(v []*string) *JobManifestGeneratorFilter {
 	s.ObjectReplicationStatuses = v
+	return s
+}
+
+// SetObjectSizeGreaterThanBytes sets the ObjectSizeGreaterThanBytes field's value.
+func (s *JobManifestGeneratorFilter) SetObjectSizeGreaterThanBytes(v int64) *JobManifestGeneratorFilter {
+	s.ObjectSizeGreaterThanBytes = &v
+	return s
+}
+
+// SetObjectSizeLessThanBytes sets the ObjectSizeLessThanBytes field's value.
+func (s *JobManifestGeneratorFilter) SetObjectSizeLessThanBytes(v int64) *JobManifestGeneratorFilter {
+	s.ObjectSizeLessThanBytes = &v
 	return s
 }
 
@@ -15820,6 +15861,61 @@ func (s JobTimers) GoString() string {
 // SetElapsedTimeInActiveSeconds sets the ElapsedTimeInActiveSeconds field's value.
 func (s *JobTimers) SetElapsedTimeInActiveSeconds(v int64) *JobTimers {
 	s.ElapsedTimeInActiveSeconds = &v
+	return s
+}
+
+// If provided, the generated manifest includes only source bucket objects whose
+// object keys match the string constraints specified for MatchAnyPrefix, MatchAnySuffix,
+// and MatchAnySubstring.
+type KeyNameConstraint struct {
+	_ struct{} `type:"structure"`
+
+	// If provided, the generated manifest includes objects where the specified
+	// string appears at the start of the object key string.
+	MatchAnyPrefix []*string `type:"list"`
+
+	// If provided, the generated manifest includes objects where the specified
+	// string appears anywhere within the object key string.
+	MatchAnySubstring []*string `type:"list"`
+
+	// If provided, the generated manifest includes objects where the specified
+	// string appears at the end of the object key string.
+	MatchAnySuffix []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyNameConstraint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyNameConstraint) GoString() string {
+	return s.String()
+}
+
+// SetMatchAnyPrefix sets the MatchAnyPrefix field's value.
+func (s *KeyNameConstraint) SetMatchAnyPrefix(v []*string) *KeyNameConstraint {
+	s.MatchAnyPrefix = v
+	return s
+}
+
+// SetMatchAnySubstring sets the MatchAnySubstring field's value.
+func (s *KeyNameConstraint) SetMatchAnySubstring(v []*string) *KeyNameConstraint {
+	s.MatchAnySubstring = v
+	return s
+}
+
+// SetMatchAnySuffix sets the MatchAnySuffix field's value.
+func (s *KeyNameConstraint) SetMatchAnySuffix(v []*string) *KeyNameConstraint {
+	s.MatchAnySuffix = v
 	return s
 }
 

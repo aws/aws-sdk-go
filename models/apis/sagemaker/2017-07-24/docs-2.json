@@ -314,6 +314,12 @@
         "TransformOutput$Accept": "<p>The MIME type used to specify the output data. Amazon SageMaker uses the MIME type with each http call to transfer data from the transform job.</p>"
       }
     },
+    "AcceptEula": {
+      "base": null,
+      "refs": {
+        "ModelAccessConfig$AcceptEula": "<p>Specifies agreement to the model end-user license agreement (EULA). The <code>AcceptEula</code> value must be explicitly defined as <code>True</code> in order to accept the EULA that this model requires. You are responsible for reviewing and complying with any applicable license terms and making sure they are acceptable for your use case before downloading or using a model.</p>"
+      }
+    },
     "AccountId": {
       "base": null,
       "refs": {
@@ -8438,7 +8444,7 @@
     "MaxPendingTimeInSeconds": {
       "base": "Maximum job scheduler pending time in seconds.",
       "refs": {
-        "StoppingCondition$MaxPendingTimeInSeconds": "<p>The maximum pending time in seconds.</p>"
+        "StoppingCondition$MaxPendingTimeInSeconds": "<p>The maximum length of time, in seconds, that a training or compilation job can be pending before it is stopped.</p>"
       }
     },
     "MaxPercentageOfInputDatasetLabeled": {
@@ -8691,6 +8697,12 @@
       "base": "<p>The properties of a model as returned by the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html\">Search</a> API.</p>",
       "refs": {
         "ModelDashboardModel$Model": "<p>A model displayed in the Model Dashboard.</p>"
+      }
+    },
+    "ModelAccessConfig": {
+      "base": "<p>The access configuration file for the ML model. You can explicitly accept the model end-user license agreement (EULA) within the <code>ModelAccessConfig</code>. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula\">End-user license agreements</a>.</p>",
+      "refs": {
+        "S3ModelDataSource$ModelAccessConfig": "<p>Specifies the access configuration file for the ML model. You can explicitly accept the model end-user license agreement (EULA) within the <code>ModelAccessConfig</code>. You are responsible for reviewing and complying with any applicable license terms and making sure they are acceptable for your use case before downloading or using a model.</p>"
       }
     },
     "ModelApprovalStatus": {
@@ -12643,7 +12655,7 @@
     "SingleSignOnApplicationArn": {
       "base": null,
       "refs": {
-        "DescribeDomainResponse$SingleSignOnApplicationArn": "<p>The ARN of the associated Amazon Web Services Single Sign-On application for this Domain.</p>"
+        "DescribeDomainResponse$SingleSignOnApplicationArn": "<p>The ARN of the application managed by SageMaker in IAM Identity Center. This value is only returned for domains created after September 19, 2023.</p>"
       }
     },
     "SingleSignOnUserIdentifier": {

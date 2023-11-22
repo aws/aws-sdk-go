@@ -1318,6 +1318,12 @@
         "JobProgressSummary$TotalNumberOfTasks": "<p/>"
       }
     },
+    "KeyNameConstraint": {
+      "base": "<p>If provided, the generated manifest includes only source bucket objects whose object keys match the string constraints specified for <code>MatchAnyPrefix</code>, <code>MatchAnySuffix</code>, and <code>MatchAnySubstring</code>.</p>",
+      "refs": {
+        "JobManifestGeneratorFilter$KeyNameConstraint": "<p>If provided, the generated manifest includes only source bucket objects whose object keys match the string constraints specified for <code>MatchAnyPrefix</code>, <code>MatchAnySuffix</code>, and <code>MatchAnySubstring</code>.</p>"
+      }
+    },
     "KmsKeyArnString": {
       "base": null,
       "refs": {
@@ -1688,6 +1694,7 @@
         "ListMultiRegionAccessPointsResult$NextToken": "<p>If the specified bucket has more Multi-Region Access Points than can be returned in one call to this action, this field contains a continuation token. You can use this token tin subsequent calls to this action to retrieve additional Multi-Region Access Points.</p>",
         "ListRegionalBucketsRequest$NextToken": "<p/>",
         "ListRegionalBucketsResult$NextToken": "<p> <code>NextToken</code> is sent when <code>isTruncated</code> is true, which means there are more buckets that can be listed. The next list requests to Amazon S3 can be continued with this <code>NextToken</code>. <code>NextToken</code> is obfuscated and is not a real key.</p>",
+        "NonEmptyMaxLength1024StringList$member": null,
         "S3CopyObjectOperation$TargetKeyPrefix": "<p>Specifies the folder prefix that you want the objects to be copied into. For example, to copy objects into a folder named <code>Folder1</code> in the destination bucket, set the <code>TargetKeyPrefix</code> property to <code>Folder1</code>.</p>",
         "S3Grantee$Identifier": "<p/>",
         "S3Grantee$DisplayName": "<p/>",
@@ -1700,6 +1707,14 @@
         "S3ObjectOwner$ID": "<p/>",
         "S3ObjectOwner$DisplayName": "<p/>",
         "S3UserMetadata$key": null
+      }
+    },
+    "NonEmptyMaxLength1024StringList": {
+      "base": null,
+      "refs": {
+        "KeyNameConstraint$MatchAnyPrefix": "<p>If provided, the generated manifest includes objects where the specified string appears at the start of the object key string.</p>",
+        "KeyNameConstraint$MatchAnySuffix": "<p>If provided, the generated manifest includes objects where the specified string appears at the end of the object key string.</p>",
+        "KeyNameConstraint$MatchAnySubstring": "<p>If provided, the generated manifest includes objects where the specified string appears anywhere within the object key string.</p>"
       }
     },
     "NonEmptyMaxLength2048String": {
@@ -1765,8 +1780,8 @@
     "ObjectCreationTime": {
       "base": null,
       "refs": {
-        "JobManifestGeneratorFilter$CreatedAfter": "<p>If provided, the generated manifest should include only source bucket objects that were created after this time.</p>",
-        "JobManifestGeneratorFilter$CreatedBefore": "<p>If provided, the generated manifest should include only source bucket objects that were created before this time.</p>"
+        "JobManifestGeneratorFilter$CreatedAfter": "<p>If provided, the generated manifest includes only source bucket objects that were created after this time.</p>",
+        "JobManifestGeneratorFilter$CreatedBefore": "<p>If provided, the generated manifest includes only source bucket objects that were created before this time.</p>"
       }
     },
     "ObjectLambdaAccessPoint": {
@@ -1896,6 +1911,7 @@
     "ObjectSizeGreaterThanBytes": {
       "base": null,
       "refs": {
+        "JobManifestGeneratorFilter$ObjectSizeGreaterThanBytes": "<p>If provided, the generated manifest includes only source bucket objects whose file size is greater than the specified number of bytes.</p>",
         "LifecycleRuleAndOperator$ObjectSizeGreaterThan": "<p>Minimum object size to which the rule applies.</p>",
         "LifecycleRuleFilter$ObjectSizeGreaterThan": "<p>Minimum object size to which the rule applies.</p>"
       }
@@ -1903,6 +1919,7 @@
     "ObjectSizeLessThanBytes": {
       "base": null,
       "refs": {
+        "JobManifestGeneratorFilter$ObjectSizeLessThanBytes": "<p>If provided, the generated manifest includes only source bucket objects whose file size is less than the specified number of bytes.</p>",
         "LifecycleRuleAndOperator$ObjectSizeLessThan": "<p>Maximum object size to which the rule applies.</p>",
         "LifecycleRuleFilter$ObjectSizeLessThan": "<p>Maximum object size to which the rule applies.</p>"
       }
@@ -2209,7 +2226,7 @@
     "ReplicationStatusFilterList": {
       "base": null,
       "refs": {
-        "JobManifestGeneratorFilter$ObjectReplicationStatuses": "<p>If provided, the generated manifest should include only source bucket objects that have one of the specified Replication statuses.</p>"
+        "JobManifestGeneratorFilter$ObjectReplicationStatuses": "<p>If provided, the generated manifest includes only source bucket objects that have one of the specified Replication statuses.</p>"
       }
     },
     "ReplicationStorageClass": {
@@ -2520,7 +2537,8 @@
     "S3StorageClass": {
       "base": null,
       "refs": {
-        "S3CopyObjectOperation$StorageClass": "<p/>"
+        "S3CopyObjectOperation$StorageClass": "<p/>",
+        "StorageClassList$member": null
       }
     },
     "S3Tag": {
@@ -2613,6 +2631,12 @@
       "base": null,
       "refs": {
         "SseKmsEncryptedObjects$Status": "<p>Specifies whether Amazon S3 replicates objects that are created with server-side encryption by using an KMS key stored in Key Management Service.</p>"
+      }
+    },
+    "StorageClassList": {
+      "base": null,
+      "refs": {
+        "JobManifestGeneratorFilter$MatchAnyStorageClass": "<p>If provided, the generated manifest includes only source bucket objects that are stored with the specified storage class.</p>"
       }
     },
     "StorageLensArn": {

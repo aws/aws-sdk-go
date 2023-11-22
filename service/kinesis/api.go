@@ -68,8 +68,9 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *requ
 // Adds or updates tags for the specified Kinesis data stream. You can assign
 // up to 50 tags to a data stream.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // If tags have already been assigned to the stream, AddTagsToStream overwrites
 // any existing tags that correspond to the specified tag keys.
@@ -307,8 +308,9 @@ func (c *Kinesis) DecreaseStreamRetentionPeriodRequest(input *DecreaseStreamRete
 // of time data records are accessible after they are added to the stream. The
 // minimum value of a stream's retention period is 24 hours.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // This operation may result in lost data. For example, if the stream's retention
 // period is 48 hours and is decreased to 24 hours, any data already in the
@@ -364,6 +366,107 @@ func (c *Kinesis) DecreaseStreamRetentionPeriodWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DeleteResourcePolicy
+func (c *Kinesis) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for Amazon Kinesis.
+//
+// Delete a policy for the specified data stream or consumer. Request patterns
+// can be one of the following:
+//
+//   - Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
+//
+//   - Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Specifies that you do not have the permissions required to perform this operation.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found. The stream might not be specified
+//     correctly.
+//
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
+//
+//   - InvalidArgumentException
+//     A specified parameter exceeds its restrictions, is not supported, or can't
+//     be used. For more information, see the returned message.
+//
+//   - ResourceInUseException
+//     The resource is not available for this operation. For successful operation,
+//     the resource must be in the ACTIVE state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DeleteResourcePolicy
+func (c *Kinesis) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kinesis) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStream = "DeleteStream"
 
 // DeleteStreamRequest generates a "aws/request.Request" representing the
@@ -413,8 +516,9 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *request.Re
 // the stream. If an application attempts to operate on a deleted stream, it
 // receives the exception ResourceNotFoundException.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // If the stream is in the ACTIVE state, you can delete it. After a DeleteStream
 // request, the specified stream is in the DELETING state until Kinesis Data
@@ -720,8 +824,9 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *reques
 // and the ListShards API to list the shards in a specified data stream and
 // obtain information about each shard.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // The information returned includes the stream name, Amazon Resource Name (ARN),
 // creation time, enhanced metric configuration, and shard map. The shard map
@@ -891,6 +996,9 @@ func (c *Kinesis) DescribeStreamConsumerRequest(input *DescribeStreamConsumerInp
 //
 // This operation has a limit of 20 transactions per second per stream.
 //
+// When making a cross-account call with DescribeStreamConsumer, make sure to
+// provide the ARN of the consumer.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -980,8 +1088,9 @@ func (c *Kinesis) DescribeStreamSummaryRequest(input *DescribeStreamSummaryInput
 // Provides a summarized description of the specified Kinesis data stream without
 // the shard list.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // The information returned includes the stream name, Amazon Resource Name (ARN),
 // status, record retention period, approximate creation time, monitoring, encryption
@@ -1080,8 +1189,9 @@ func (c *Kinesis) DisableEnhancedMonitoringRequest(input *DisableEnhancedMonitor
 //
 // Disables enhanced monitoring.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1178,8 +1288,9 @@ func (c *Kinesis) EnableEnhancedMonitoringRequest(input *EnableEnhancedMonitorin
 //
 // Enables enhanced Kinesis data stream monitoring for shard-level metrics.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1276,8 +1387,9 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *request.Reques
 //
 // Gets data records from a Kinesis data stream's shard.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// in addition to the ShardIterator parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Specify a shard iterator using the ShardIterator parameter. The shard iterator
 // specifies the position in the shard from which you want to start reading
@@ -1416,6 +1528,102 @@ func (c *Kinesis) GetRecordsWithContext(ctx aws.Context, input *GetRecordsInput,
 	return out, req.Send()
 }
 
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetResourcePolicy
+func (c *Kinesis) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for Amazon Kinesis.
+//
+// Returns a policy attached to the specified data stream or consumer. Request
+// patterns can be one of the following:
+//
+//   - Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
+//
+//   - Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Specifies that you do not have the permissions required to perform this operation.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found. The stream might not be specified
+//     correctly.
+//
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
+//
+//   - InvalidArgumentException
+//     A specified parameter exceeds its restrictions, is not supported, or can't
+//     be used. For more information, see the returned message.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetResourcePolicy
+func (c *Kinesis) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kinesis) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetShardIterator = "GetShardIterator"
 
 // GetShardIteratorRequest generates a "aws/request.Request" representing the
@@ -1462,8 +1670,9 @@ func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *re
 // Gets an Amazon Kinesis shard iterator. A shard iterator expires 5 minutes
 // after it is returned to the requester.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // A shard iterator specifies the shard position from which to start reading
 // data records sequentially. The position is specified using the sequence number
@@ -1600,8 +1809,9 @@ func (c *Kinesis) IncreaseStreamRetentionPeriodRequest(input *IncreaseStreamRete
 // of time data records are accessible after they are added to the stream. The
 // maximum value of a stream's retention period is 8760 hours (365 days).
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // If you choose a longer stream retention period, this operation increases
 // the time period during which records that have not yet expired are accessible.
@@ -1707,8 +1917,9 @@ func (c *Kinesis) ListShardsRequest(input *ListShardsInput) (req *request.Reques
 // Lists the shards in a stream and provides information about each shard. This
 // operation has a limit of 1000 transactions per second per data stream.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // This action does not list expired shards. For information about expired shards,
 // see Data Routing, Data Persistence, and Shard State after a Reshard (https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-after-resharding.html#kinesis-using-sdk-java-resharding-data-routing).
@@ -2132,8 +2343,9 @@ func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *
 // Lists the tags for the specified Kinesis data stream. This operation has
 // a limit of five transactions per second per account.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2236,8 +2448,9 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *request.Requ
 // the single child shard receives data for all hash key values covered by the
 // two parent shards.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // MergeShards is called when there is a need to reduce the overall capacity
 // of a stream because of excess capacity that is not being used. You must specify
@@ -2369,8 +2582,9 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request,
 // one record at a time. Each shard can support writes up to 1,000 records per
 // second, up to a maximum data write total of 1 MiB per second.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // You must specify the name of the stream that captures, stores, and transports
 // the data; a partition key; and the data blob itself.
@@ -2533,8 +2747,9 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 // (also referred to as a PutRecords request). Use this operation to send data
 // into the stream for data ingestion and processing.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Each PutRecords request can support up to 500 records. Each record in the
 // request can be as large as 1 MiB, up to a limit of 5 MiB for the entire request,
@@ -2669,6 +2884,118 @@ func (c *Kinesis) PutRecords(input *PutRecordsInput) (*PutRecordsOutput, error) 
 // for more information on using Contexts.
 func (c *Kinesis) PutRecordsWithContext(ctx aws.Context, input *PutRecordsInput, opts ...request.Option) (*PutRecordsOutput, error) {
 	req, out := c.PutRecordsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutResourcePolicy
+func (c *Kinesis) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutResourcePolicy API operation for Amazon Kinesis.
+//
+// Attaches a resource-based policy to a data stream or registered consumer.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the resource, the calling identity must have the PutResourcePolicy
+// permissions on the specified Kinesis Data Streams resource and belong to
+// the owner's account in order to use this operation. If you don't have PutResourcePolicy
+// permissions, Amazon Kinesis Data Streams returns a 403 Access Denied error.
+// If you receive a ResourceNotFoundException, check to see if you passed a
+// valid stream or consumer resource.
+//
+// Request patterns can be one of the following:
+//
+//   - Data stream pattern: arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+
+//
+//   - Consumer pattern: ^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+
+//
+// For more information, see Controlling Access to Amazon Kinesis Data Streams
+// Resources Using IAM (https://docs.aws.amazon.com/streams/latest/dev/controlling-access.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Specifies that you do not have the permissions required to perform this operation.
+//
+//   - ResourceNotFoundException
+//     The requested resource could not be found. The stream might not be specified
+//     correctly.
+//
+//   - LimitExceededException
+//     The requested resource exceeds the maximum number allowed, or the number
+//     of concurrent stream requests exceeds the maximum number allowed.
+//
+//   - InvalidArgumentException
+//     A specified parameter exceeds its restrictions, is not supported, or can't
+//     be used. For more information, see the returned message.
+//
+//   - ResourceInUseException
+//     The resource is not available for this operation. For successful operation,
+//     the resource must be in the ACTIVE state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutResourcePolicy
+func (c *Kinesis) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kinesis) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2829,8 +3156,9 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 // Removes tags from the specified Kinesis data stream. Removed tags are deleted
 // and cannot be recovered after this operation successfully completes.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // If you specify a tag that does not exist, it is ignored.
 //
@@ -2937,8 +3265,9 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *request.Reques
 // API is only supported for the data streams with the provisioned capacity
 // mode.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // You can also use SplitShard when a shard appears to be approaching its maximum
 // utilization; for example, the producers sending data into the specific shard
@@ -3083,6 +3412,10 @@ func (c *Kinesis) StartStreamEncryptionRequest(input *StartStreamEncryptionInput
 // Enables or updates server-side encryption using an Amazon Web Services KMS
 // key for a specified stream.
 //
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
+//
 // Starting encryption is an asynchronous operation. Upon receiving the request,
 // Kinesis Data Streams returns immediately and sets the status of the stream
 // to UPDATING. After the update is complete, Kinesis Data Streams sets the
@@ -3099,9 +3432,6 @@ func (c *Kinesis) StartStreamEncryptionRequest(input *StartStreamEncryptionInput
 // before all records written to the stream are encrypted. After you enable
 // encryption, you can verify that encryption is applied by inspecting the API
 // response from PutRecord or PutRecords.
-//
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3225,8 +3555,9 @@ func (c *Kinesis) StopStreamEncryptionRequest(input *StopStreamEncryptionInput) 
 //
 // Disables server-side encryption for a specified stream.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Stopping encryption is an asynchronous operation. Upon receiving the request,
 // Kinesis Data Streams returns immediately and sets the status of the stream
@@ -3678,8 +4009,9 @@ func (c *Kinesis) UpdateShardCountRequest(input *UpdateShardCountInput) (req *re
 // shards. This API is only supported for the data streams with the provisioned
 // capacity mode.
 //
-// When invoking this API, it is recommended you use the StreamARN input parameter
-// rather than the StreamName input parameter.
+// When invoking this API, you must use either the StreamARN or the StreamName
+// parameter, or both. It is recommended that you use the StreamARN input parameter
+// when you invoke this API.
 //
 // Updating the shard count is an asynchronous operation. Upon receiving the
 // request, Kinesis Data Streams returns immediately and sets the status of
@@ -3713,6 +4045,8 @@ func (c *Kinesis) UpdateShardCountRequest(input *UpdateShardCountInput) (req *re
 //     less than 10000 shards
 //
 //   - Scale up to more than the shard limit for your account
+//
+//   - Make over 10 TPS. TPS over 10 will trigger the LimitExceededException
 //
 // For the default limits for an Amazon Web Services account, see Streams Limits
 // (https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
@@ -4441,6 +4775,77 @@ func (s DecreaseStreamRetentionPeriodOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DecreaseStreamRetentionPeriodOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the data stream or consumer.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *DeleteResourcePolicyInput) SetResourceARN(v string) *DeleteResourcePolicyInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
 	return s.String()
 }
 
@@ -5615,6 +6020,88 @@ func (s *GetRecordsOutput) SetNextShardIterator(v string) *GetRecordsOutput {
 // SetRecords sets the Records field's value.
 func (s *GetRecordsOutput) SetRecords(v []*Record) *GetRecordsOutput {
 	s.Records = v
+	return s
+}
+
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the data stream or consumer.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *GetResourcePolicyInput) SetResourceARN(v string) *GetResourcePolicyInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the resource policy. This is formatted as a JSON string.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
+	s.Policy = &v
 	return s
 }
 
@@ -8034,6 +8521,92 @@ func (s *PutRecordsResultEntry) SetSequenceNumber(v string) *PutRecordsResultEnt
 func (s *PutRecordsResultEntry) SetShardId(v string) *PutRecordsResultEntry {
 	s.ShardId = &v
 	return s
+}
+
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the resource policy. It must include the identity of the principal
+	// and the actions allowed on this resource. This is formatted as a JSON string.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the data stream or consumer.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutResourcePolicyInput) SetPolicy(v string) *PutResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *PutResourcePolicyInput) SetResourceARN(v string) *PutResourcePolicyInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
 }
 
 // The unit of data of the Kinesis data stream, which is composed of a sequence

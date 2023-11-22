@@ -3405,6 +3405,7 @@
       "max":256,
       "pattern":".*"
     },
+    "AcceptEula":{"type":"boolean"},
     "AccountId":{
       "type":"string",
       "pattern":"^\\d+$"
@@ -14780,6 +14781,13 @@
         "DeploymentRecommendation":{"shape":"DeploymentRecommendation"}
       }
     },
+    "ModelAccessConfig":{
+      "type":"structure",
+      "required":["AcceptEula"],
+      "members":{
+        "AcceptEula":{"shape":"AcceptEula"}
+      }
+    },
     "ModelApprovalStatus":{
       "type":"string",
       "enum":[
@@ -18584,7 +18592,8 @@
       "members":{
         "S3Uri":{"shape":"S3ModelUri"},
         "S3DataType":{"shape":"S3ModelDataType"},
-        "CompressionType":{"shape":"ModelCompressionType"}
+        "CompressionType":{"shape":"ModelCompressionType"},
+        "ModelAccessConfig":{"shape":"ModelAccessConfig"}
       }
     },
     "S3ModelDataType":{
