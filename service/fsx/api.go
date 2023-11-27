@@ -356,6 +356,100 @@ func (c *FSx) CopyBackupWithContext(ctx aws.Context, input *CopyBackupInput, opt
 	return out, req.Send()
 }
 
+const opCopySnapshotAndUpdateVolume = "CopySnapshotAndUpdateVolume"
+
+// CopySnapshotAndUpdateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CopySnapshotAndUpdateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CopySnapshotAndUpdateVolume for more information on using the CopySnapshotAndUpdateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CopySnapshotAndUpdateVolumeRequest method.
+//	req, resp := client.CopySnapshotAndUpdateVolumeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopySnapshotAndUpdateVolume
+func (c *FSx) CopySnapshotAndUpdateVolumeRequest(input *CopySnapshotAndUpdateVolumeInput) (req *request.Request, output *CopySnapshotAndUpdateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opCopySnapshotAndUpdateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CopySnapshotAndUpdateVolumeInput{}
+	}
+
+	output = &CopySnapshotAndUpdateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CopySnapshotAndUpdateVolume API operation for Amazon FSx.
+//
+// Updates an existing volume by using a snapshot from another Amazon FSx for
+// OpenZFS file system. For more information, see on-demand data replication
+// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/on-demand-replication.html)
+// in the Amazon FSx for OpenZFS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CopySnapshotAndUpdateVolume for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+//   - ServiceLimitExceeded
+//     An error indicating that a particular service limit was exceeded. You can
+//     increase some service limits by contacting Amazon Web Services Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CopySnapshotAndUpdateVolume
+func (c *FSx) CopySnapshotAndUpdateVolume(input *CopySnapshotAndUpdateVolumeInput) (*CopySnapshotAndUpdateVolumeOutput, error) {
+	req, out := c.CopySnapshotAndUpdateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// CopySnapshotAndUpdateVolumeWithContext is the same as CopySnapshotAndUpdateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CopySnapshotAndUpdateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CopySnapshotAndUpdateVolumeWithContext(ctx aws.Context, input *CopySnapshotAndUpdateVolumeInput, opts ...request.Option) (*CopySnapshotAndUpdateVolumeOutput, error) {
+	req, out := c.CopySnapshotAndUpdateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateBackup = "CreateBackup"
 
 // CreateBackupRequest generates a "aws/request.Request" representing the
@@ -3257,6 +3351,91 @@ func (c *FSx) DescribeFileSystemsPagesWithContext(ctx aws.Context, input *Descri
 	return p.Err()
 }
 
+const opDescribeSharedVpcConfiguration = "DescribeSharedVpcConfiguration"
+
+// DescribeSharedVpcConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSharedVpcConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSharedVpcConfiguration for more information on using the DescribeSharedVpcConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSharedVpcConfigurationRequest method.
+//	req, resp := client.DescribeSharedVpcConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSharedVpcConfiguration
+func (c *FSx) DescribeSharedVpcConfigurationRequest(input *DescribeSharedVpcConfigurationInput) (req *request.Request, output *DescribeSharedVpcConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSharedVpcConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSharedVpcConfigurationInput{}
+	}
+
+	output = &DescribeSharedVpcConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSharedVpcConfiguration API operation for Amazon FSx.
+//
+// Indicates whether participant accounts in your organization can create Amazon
+// FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by
+// a virtual private cloud (VPC) owner. For more information, see the Amazon
+// FSx for NetApp ONTAP User Guide (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeSharedVpcConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeSharedVpcConfiguration
+func (c *FSx) DescribeSharedVpcConfiguration(input *DescribeSharedVpcConfigurationInput) (*DescribeSharedVpcConfigurationOutput, error) {
+	req, out := c.DescribeSharedVpcConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSharedVpcConfigurationWithContext is the same as DescribeSharedVpcConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSharedVpcConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeSharedVpcConfigurationWithContext(ctx aws.Context, input *DescribeSharedVpcConfigurationInput, opts ...request.Option) (*DescribeSharedVpcConfigurationOutput, error) {
+	req, out := c.DescribeSharedVpcConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSnapshots = "DescribeSnapshots"
 
 // DescribeSnapshotsRequest generates a "aws/request.Request" representing the
@@ -3754,8 +3933,8 @@ func (c *FSx) DisassociateFileSystemAliasesRequest(input *DisassociateFileSystem
 // Use this action to disassociate, or remove, one or more Domain Name Service
 // (DNS) aliases from an Amazon FSx for Windows File Server file system. If
 // you attempt to disassociate a DNS alias that is not associated with the file
-// system, Amazon FSx responds with a 400 Bad Request. For more information,
-// see Working with DNS Aliases (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html).
+// system, Amazon FSx responds with an HTTP status code 400 (Bad Request). For
+// more information, see Working with DNS Aliases (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html).
 //
 // The system generated response showing the DNS aliases that Amazon FSx is
 // attempting to disassociate from the file system. Use the API operation to
@@ -4721,11 +4900,15 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - FsxAdminPassword
 //
+//   - HAPairs
+//
 //   - RemoveRouteTableIds
 //
 //   - StorageCapacity
 //
 //   - ThroughputCapacity
+//
+//   - ThroughputCapacityPerHAPair
 //
 //   - WeeklyMaintenanceStartTime
 //
@@ -4804,6 +4987,102 @@ func (c *FSx) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemO
 // for more information on using Contexts.
 func (c *FSx) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSystemInput, opts ...request.Option) (*UpdateFileSystemOutput, error) {
 	req, out := c.UpdateFileSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSharedVpcConfiguration = "UpdateSharedVpcConfiguration"
+
+// UpdateSharedVpcConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSharedVpcConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSharedVpcConfiguration for more information on using the UpdateSharedVpcConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSharedVpcConfigurationRequest method.
+//	req, resp := client.UpdateSharedVpcConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSharedVpcConfiguration
+func (c *FSx) UpdateSharedVpcConfigurationRequest(input *UpdateSharedVpcConfigurationInput) (req *request.Request, output *UpdateSharedVpcConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSharedVpcConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSharedVpcConfigurationInput{}
+	}
+
+	output = &UpdateSharedVpcConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSharedVpcConfiguration API operation for Amazon FSx.
+//
+// Configures whether participant accounts in your organization can create Amazon
+// FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by
+// a virtual private cloud (VPC) owner. For more information, see the Amazon
+// FSx for NetApp ONTAP User Guide (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html).
+//
+// We strongly recommend that participant-created Multi-AZ file systems in the
+// shared VPC are deleted before you disable this feature. Once the feature
+// is disabled, these file systems will enter a MISCONFIGURED state and behave
+// like Single-AZ file systems. For more information, see Important considerations
+// before disabling shared VPC support for Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html#disabling-maz-vpc-sharing).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateSharedVpcConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     A generic error indicating a failure with a client request.
+//
+//   - IncompatibleParameterError
+//     The error returned when a second request is received with the same client
+//     request token but different parameters settings. A client request token should
+//     always uniquely identify a single request.
+//
+//   - InternalServerError
+//     A generic error indicating a server-side failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateSharedVpcConfiguration
+func (c *FSx) UpdateSharedVpcConfiguration(input *UpdateSharedVpcConfigurationInput) (*UpdateSharedVpcConfigurationOutput, error) {
+	req, out := c.UpdateSharedVpcConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSharedVpcConfigurationWithContext is the same as UpdateSharedVpcConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSharedVpcConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateSharedVpcConfigurationWithContext(ctx aws.Context, input *UpdateSharedVpcConfigurationInput, opts ...request.Option) (*UpdateSharedVpcConfigurationOutput, error) {
+	req, out := c.UpdateSharedVpcConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5211,7 +5490,7 @@ func (s *ActiveDirectoryError) RequestID() string {
 }
 
 // Describes a specific Amazon FSx administrative action for the current Windows,
-// Lustre, or OpenZFS file system.
+// Lustre, OpenZFS, or ONTAP file system or volume.
 type AdministrativeAction struct {
 	_ struct{} `type:"structure"`
 
@@ -5267,9 +5546,8 @@ type AdministrativeAction struct {
 	//    has been completed successfully, the parent FILE_SYSTEM_UPDATE action
 	//    status changes to COMPLETED.
 	//
-	//    * VOLUME_UPDATE - A volume update to an Amazon FSx for NetApp ONTAP or
-	//    Amazon FSx for OpenZFS volume initiated from the Amazon FSx console, API
-	//    (UpdateVolume), or CLI (update-volume).
+	//    * VOLUME_UPDATE - A volume update to an Amazon FSx for OpenZFS volume
+	//    initiated from the Amazon FSx console, API (UpdateVolume), or CLI (update-volume).
 	//
 	//    * VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
 	//    state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
@@ -5280,6 +5558,15 @@ type AdministrativeAction struct {
 	//
 	//    * RELEASE_NFS_V3_LOCKS - Tracks the release of Network File System (NFS)
 	//    V3 locks on an Amazon FSx for OpenZFS file system.
+	//
+	//    * VOLUME_INITIALIZE_WITH_SNAPSHOT - A volume is being created from a snapshot
+	//    on a different FSx for OpenZFS file system. You can initiate this from
+	//    the Amazon FSx console, API (CreateVolume), or CLI (create-volume) when
+	//    using the using the FULL_COPY strategy.
+	//
+	//    * VOLUME_UPDATE_WITH_SNAPSHOT - A volume is being updated from a snapshot
+	//    on a different FSx for OpenZFS file system. You can initiate this from
+	//    the Amazon FSx console, API (CopySnapshotAndUpdateVolume), or CLI (copy-snapshot-and-update-volume).
 	AdministrativeActionType *string `type:"string" enum:"AdministrativeActionType"`
 
 	// Provides information about a failed administrative action.
@@ -5289,10 +5576,14 @@ type AdministrativeAction struct {
 	// Does not apply to any other administrative action type.
 	ProgressPercent *int64 `type:"integer"`
 
+	// The remaining bytes to transfer for the FSx for OpenZFS snapshot that you're
+	// copying.
+	RemainingTransferBytes *int64 `type:"long"`
+
 	// The time that the administrative action request was received.
 	RequestTime *time.Time `type:"timestamp"`
 
-	// Describes the status of the administrative action, as follows:
+	// The status of the administrative action, as follows:
 	//
 	//    * FAILED - Amazon FSx failed to process the administrative action successfully.
 	//
@@ -5307,16 +5598,19 @@ type AdministrativeAction struct {
 	//    now performing the storage-optimization process.
 	Status *string `type:"string" enum:"Status"`
 
-	// Describes the target value for the administration action, provided in the
-	// UpdateFileSystem operation. Returned for FILE_SYSTEM_UPDATE administrative
-	// actions.
+	// The target value for the administration action, provided in the UpdateFileSystem
+	// operation. Returned for FILE_SYSTEM_UPDATE administrative actions.
 	TargetFileSystemValues *FileSystem `type:"structure"`
 
 	// A snapshot of an Amazon FSx for OpenZFS volume.
 	TargetSnapshotValues *Snapshot `type:"structure"`
 
-	// Describes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
+	// Describes an Amazon FSx volume.
 	TargetVolumeValues *Volume `type:"structure"`
+
+	// The number of bytes that have transferred for the FSx for OpenZFS snapshot
+	// that you're copying.
+	TotalTransferBytes *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -5355,6 +5649,12 @@ func (s *AdministrativeAction) SetProgressPercent(v int64) *AdministrativeAction
 	return s
 }
 
+// SetRemainingTransferBytes sets the RemainingTransferBytes field's value.
+func (s *AdministrativeAction) SetRemainingTransferBytes(v int64) *AdministrativeAction {
+	s.RemainingTransferBytes = &v
+	return s
+}
+
 // SetRequestTime sets the RequestTime field's value.
 func (s *AdministrativeAction) SetRequestTime(v time.Time) *AdministrativeAction {
 	s.RequestTime = &v
@@ -5382,6 +5682,12 @@ func (s *AdministrativeAction) SetTargetSnapshotValues(v *Snapshot) *Administrat
 // SetTargetVolumeValues sets the TargetVolumeValues field's value.
 func (s *AdministrativeAction) SetTargetVolumeValues(v *Volume) *AdministrativeAction {
 	s.TargetVolumeValues = v
+	return s
+}
+
+// SetTotalTransferBytes sets the TotalTransferBytes field's value.
+func (s *AdministrativeAction) SetTotalTransferBytes(v int64) *AdministrativeAction {
+	s.TotalTransferBytes = &v
 	return s
 }
 
@@ -5414,6 +5720,64 @@ func (s AdministrativeActionFailureDetails) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *AdministrativeActionFailureDetails) SetMessage(v string) *AdministrativeActionFailureDetails {
 	s.Message = &v
+	return s
+}
+
+// Used to specify configuration options for a volume’s storage aggregate
+// or aggregates.
+type AggregateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of aggregates that this volume resides on. Aggregates are storage
+	// pools which make up your primary storage tier. Each high-availability (HA)
+	// pair has one aggregate. The names of the aggregates map to the names of the
+	// aggregates in the ONTAP CLI and REST API. For FlexVols, there will always
+	// be a single entry.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The strings in the value of Aggregates are not are not formatted as
+	//    aggrX, where X is a number between 1 and 6.
+	//
+	//    * The value of Aggregates contains aggregates that are not present.
+	//
+	//    * One or more of the aggregates supplied are too close to the volume limit
+	//    to support adding more volumes.
+	Aggregates []*string `type:"list"`
+
+	// The total number of constituents this FlexGroup volume has. Not applicable
+	// for FlexVols.
+	TotalConstituents *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregateConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAggregates sets the Aggregates field's value.
+func (s *AggregateConfiguration) SetAggregates(v []*string) *AggregateConfiguration {
+	s.Aggregates = v
+	return s
+}
+
+// SetTotalConstituents sets the TotalConstituents field's value.
+func (s *AggregateConfiguration) SetTotalConstituents(v int64) *AggregateConfiguration {
+	s.TotalConstituents = &v
 	return s
 }
 
@@ -5878,7 +6242,7 @@ type Backup struct {
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"BackupType"`
 
-	// Describes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
+	// Describes an Amazon FSx volume.
 	Volume *Volume `type:"structure"`
 }
 
@@ -6736,6 +7100,240 @@ func (s CopyBackupOutput) GoString() string {
 // SetBackup sets the Backup field's value.
 func (s *CopyBackupOutput) SetBackup(v *Backup) *CopyBackupOutput {
 	s.Backup = v
+	return s
+}
+
+type CopySnapshotAndUpdateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies the strategy to use when copying data from a snapshot to the volume.
+	//
+	//    * FULL_COPY - Copies all data from the snapshot to the volume.
+	//
+	//    * INCREMENTAL_COPY - Copies only the snapshot data that's changed since
+	//    the previous replication.
+	//
+	// CLONE isn't a valid copy strategy option for the CopySnapshotAndUpdateVolume
+	// operation.
+	CopyStrategy *string `type:"string" enum:"OpenZFSCopyStrategy"`
+
+	// Confirms that you want to delete data on the destination volume that wasn’t
+	// there during the previous snapshot replication.
+	//
+	// Your replication will fail if you don’t include an option for a specific
+	// type of data and that data is on your destination. For example, if you don’t
+	// include DELETE_INTERMEDIATE_SNAPSHOTS and there are intermediate snapshots
+	// on the destination, you can’t copy the snapshot.
+	//
+	//    * DELETE_INTERMEDIATE_SNAPSHOTS - Deletes snapshots on the destination
+	//    volume that aren’t on the source volume.
+	//
+	//    * DELETE_CLONED_VOLUMES - Deletes snapshot clones on the destination volume
+	//    that aren't on the source volume.
+	//
+	//    * DELETE_INTERMEDIATE_DATA - Overwrites snapshots on the destination volume
+	//    that don’t match the source snapshot that you’re copying.
+	Options []*string `type:"list" enum:"UpdateOpenZFSVolumeOption"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	//
+	// SourceSnapshotARN is a required field
+	SourceSnapshotARN *string `min:"8" type:"string" required:"true"`
+
+	// Specifies the ID of the volume that you are copying the snapshot to.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopySnapshotAndUpdateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopySnapshotAndUpdateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.SourceSnapshotARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceSnapshotARN"))
+	}
+	if s.SourceSnapshotARN != nil && len(*s.SourceSnapshotARN) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceSnapshotARN", 8))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetClientRequestToken(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCopyStrategy sets the CopyStrategy field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetCopyStrategy(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.CopyStrategy = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetOptions(v []*string) *CopySnapshotAndUpdateVolumeInput {
+	s.Options = v
+	return s
+}
+
+// SetSourceSnapshotARN sets the SourceSnapshotARN field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetSourceSnapshotARN(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.SourceSnapshotARN = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CopySnapshotAndUpdateVolumeInput) SetVolumeId(v string) *CopySnapshotAndUpdateVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+type CopySnapshotAndUpdateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of administrative actions for the file system that are in process
+	// or waiting to be processed. Administrative actions describe changes to the
+	// Amazon FSx system.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
+	// The lifecycle state of the destination volume.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// The ID of the volume that you copied the snapshot to.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopySnapshotAndUpdateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetAdministrativeActions(v []*AdministrativeAction) *CopySnapshotAndUpdateVolumeOutput {
+	s.AdministrativeActions = v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetLifecycle(v string) *CopySnapshotAndUpdateVolumeOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CopySnapshotAndUpdateVolumeOutput) SetVolumeId(v string) *CopySnapshotAndUpdateVolumeOutput {
+	s.VolumeId = &v
+	return s
+}
+
+// Used to specify the configuration options for a volume's storage aggregate
+// or aggregates.
+type CreateAggregateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Used to specify the names of aggregates on which the volume will be created.
+	Aggregates []*string `type:"list"`
+
+	// Used to explicitly set the number of constituents within the FlexGroup per
+	// storage aggregate. This field is optional when creating a FlexGroup volume.
+	// If unspecified, the default value will be 8. This field cannot be provided
+	// when creating a FlexVol volume.
+	ConstituentsPerAggregate *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAggregateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAggregateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAggregateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAggregateConfiguration"}
+	if s.ConstituentsPerAggregate != nil && *s.ConstituentsPerAggregate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ConstituentsPerAggregate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregates sets the Aggregates field's value.
+func (s *CreateAggregateConfiguration) SetAggregates(v []*string) *CreateAggregateConfiguration {
+	s.Aggregates = v
+	return s
+}
+
+// SetConstituentsPerAggregate sets the ConstituentsPerAggregate field's value.
+func (s *CreateAggregateConfiguration) SetConstituentsPerAggregate(v int64) *CreateAggregateConfiguration {
+	s.ConstituentsPerAggregate = &v
 	return s
 }
 
@@ -7721,7 +8319,7 @@ type CreateFileSystemFromBackupInput struct {
 	//
 	// If used to create a file system other than OpenZFS, you must provide a value
 	// that matches the backup's StorageCapacity value. If you provide any other
-	// value, Amazon FSx responds with a 400 Bad Request.
+	// value, Amazon FSx responds with with an HTTP status code 400 Bad Request.
 	StorageCapacity *int64 `type:"integer"`
 
 	// Sets the storage type for the Windows or OpenZFS file system that you're
@@ -8035,7 +8633,9 @@ type CreateFileSystemInput struct {
 	//    and increments of 3600 GiB.
 	//
 	// FSx for ONTAP file systems - The amount of storage capacity that you can
-	// configure is from 1024 GiB up to 196,608 GiB (192 TiB).
+	// configure depends on the value of the HAPairs property. The minimum value
+	// is calculated as 1,024 * HAPairs and the maxium is calculated as 524,288
+	// * HAPairs..
 	//
 	// FSx for OpenZFS file systems - The amount of storage capacity that you can
 	// configure is from 64 GiB up to 524,288 GiB (512 TiB).
@@ -8612,6 +9212,9 @@ type CreateFileSystemOntapConfiguration struct {
 	//
 	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
 	//
+	//    * SINGLE_AZ_2 - A file system configured with multiple high-availability
+	//    (HA) pairs for Single-AZ redundancy.
+	//
 	// For information about the use cases for Multi-AZ and Single-AZ deployments,
 	// refer to Choosing a file system deployment type (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html).
 	//
@@ -8639,6 +9242,21 @@ type CreateFileSystemOntapConfiguration struct {
 	// String and GoString methods.
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
+	// Specifies how many high-availability (HA) pairs the file system will have.
+	// The default value is 1. The value of this property affects the values of
+	// StorageCapacity, Iops, and ThroughputCapacity. For more information, see
+	// High-availability (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
+	// in the FSx for ONTAP user guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of HAPairs is less than 1 or greater than 6.
+	//
+	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
+	//    is SINGLE_AZ_1 or MULTI_AZ_1.
+	HAPairs *int64 `min:"1" type:"integer"`
+
 	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
 	// in which you want the preferred file server to be located.
 	PreferredSubnetId *string `min:"15" type:"string"`
@@ -8650,11 +9268,43 @@ type CreateFileSystemOntapConfiguration struct {
 	// default route table.
 	RouteTableIds []*string `type:"list"`
 
-	// Sets the throughput capacity for the file system that you're creating. Valid
-	// values are 128, 256, 512, 1024, 2048, and 4096 MBps.
+	// Sets the throughput capacity for the file system that you're creating in
+	// megabytes per second (MBps). For more information, see Managing throughput
+	// capacity (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html)
+	// in the FSx for ONTAP User Guide.
 	//
-	// ThroughputCapacity is a required field
-	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of ThroughputCapacity when divided by the value of HAPairs
+	//    is outside of the valid range for ThroughputCapacity.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair, rather than the total
+	// throughput for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value
+	//
+	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
 	//
@@ -8702,14 +9352,17 @@ func (s *CreateFileSystemOntapConfiguration) Validate() error {
 	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
 		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
 	}
+	if s.HAPairs != nil && *s.HAPairs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("HAPairs", 1))
+	}
 	if s.PreferredSubnetId != nil && len(*s.PreferredSubnetId) < 15 {
 		invalidParams.Add(request.NewErrParamMinLen("PreferredSubnetId", 15))
 	}
-	if s.ThroughputCapacity == nil {
-		invalidParams.Add(request.NewErrParamRequired("ThroughputCapacity"))
-	}
 	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
 		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.ThroughputCapacityPerHAPair != nil && *s.ThroughputCapacityPerHAPair < 128 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacityPerHAPair", 128))
 	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
@@ -8757,6 +9410,12 @@ func (s *CreateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *Crea
 	return s
 }
 
+// SetHAPairs sets the HAPairs field's value.
+func (s *CreateFileSystemOntapConfiguration) SetHAPairs(v int64) *CreateFileSystemOntapConfiguration {
+	s.HAPairs = &v
+	return s
+}
+
 // SetPreferredSubnetId sets the PreferredSubnetId field's value.
 func (s *CreateFileSystemOntapConfiguration) SetPreferredSubnetId(v string) *CreateFileSystemOntapConfiguration {
 	s.PreferredSubnetId = &v
@@ -8772,6 +9431,12 @@ func (s *CreateFileSystemOntapConfiguration) SetRouteTableIds(v []*string) *Crea
 // SetThroughputCapacity sets the ThroughputCapacity field's value.
 func (s *CreateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *CreateFileSystemOntapConfiguration {
 	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *CreateFileSystemOntapConfiguration) SetThroughputCapacityPerHAPair(v int64) *CreateFileSystemOntapConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
 	return s
 }
 
@@ -9304,6 +9969,10 @@ func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 type CreateOntapVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Use to specify configuration options for a volume’s storage aggregate or
+	// aggregates.
+	AggregateConfiguration *CreateAggregateConfiguration `type:"structure"`
+
 	// A boolean flag indicating whether tags for the volume should be copied to
 	// backups. This value defaults to false. If it's set to true, all tags for
 	// the volume are copied to all automatic and user-initiated backups where the
@@ -9349,10 +10018,13 @@ type CreateOntapVolumeConfiguration struct {
 	//    and users consist of both NFS and SMB clients.
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
+
 	// Specifies the size of the volume, in megabytes (MB), that you are creating.
 	//
-	// SizeInMegabytes is a required field
-	SizeInMegabytes *int64 `type:"integer" required:"true"`
+	// Deprecated: This property is deprecated, use SizeInBytes instead
+	SizeInMegabytes *int64 `deprecated:"true" type:"integer"`
 
 	// Specifies the SnapLock configuration for an FSx for ONTAP volume.
 	SnaplockConfiguration *CreateSnaplockConfiguration `type:"structure"`
@@ -9407,6 +10079,11 @@ type CreateOntapVolumeConfiguration struct {
 	//    * NONE - keeps a volume's data in the primary storage tier, preventing
 	//    it from being moved to the capacity pool tier.
 	TieringPolicy *TieringPolicy `type:"structure"`
+
+	// Use to specify the style of an ONTAP volume. For more information about FlexVols
+	// and FlexGroups, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html)
+	// in Amazon FSx for NetApp ONTAP User Guide.
+	VolumeStyle *string `type:"string" enum:"VolumeStyle"`
 }
 
 // String returns the string representation.
@@ -9433,9 +10110,6 @@ func (s *CreateOntapVolumeConfiguration) Validate() error {
 	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
 	}
-	if s.SizeInMegabytes == nil {
-		invalidParams.Add(request.NewErrParamRequired("SizeInMegabytes"))
-	}
 	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
 	}
@@ -9444,6 +10118,11 @@ func (s *CreateOntapVolumeConfiguration) Validate() error {
 	}
 	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
 		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+	if s.AggregateConfiguration != nil {
+		if err := s.AggregateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AggregateConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SnaplockConfiguration != nil {
 		if err := s.SnaplockConfiguration.Validate(); err != nil {
@@ -9460,6 +10139,12 @@ func (s *CreateOntapVolumeConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAggregateConfiguration sets the AggregateConfiguration field's value.
+func (s *CreateOntapVolumeConfiguration) SetAggregateConfiguration(v *CreateAggregateConfiguration) *CreateOntapVolumeConfiguration {
+	s.AggregateConfiguration = v
+	return s
 }
 
 // SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
@@ -9483,6 +10168,12 @@ func (s *CreateOntapVolumeConfiguration) SetOntapVolumeType(v string) *CreateOnt
 // SetSecurityStyle sets the SecurityStyle field's value.
 func (s *CreateOntapVolumeConfiguration) SetSecurityStyle(v string) *CreateOntapVolumeConfiguration {
 	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *CreateOntapVolumeConfiguration) SetSizeInBytes(v int64) *CreateOntapVolumeConfiguration {
+	s.SizeInBytes = &v
 	return s
 }
 
@@ -9522,19 +10213,32 @@ func (s *CreateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *Cre
 	return s
 }
 
-// The snapshot configuration to use when creating an OpenZFS volume from a
-// snapshot.
+// SetVolumeStyle sets the VolumeStyle field's value.
+func (s *CreateOntapVolumeConfiguration) SetVolumeStyle(v string) *CreateOntapVolumeConfiguration {
+	s.VolumeStyle = &v
+	return s
+}
+
+// The snapshot configuration to use when creating an Amazon FSx for OpenZFS
+// volume from a snapshot.
 type CreateOpenZFSOriginSnapshotConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The strategy used when copying data from the snapshot to the new volume.
+	// Specifies the strategy used when copying data from the snapshot to the new
+	// volume.
 	//
 	//    * CLONE - The new volume references the data in the origin snapshot. Cloning
 	//    a snapshot is faster than copying data from the snapshot to a new volume
 	//    and doesn't consume disk throughput. However, the origin snapshot can't
 	//    be deleted if there is a volume using its copied data.
 	//
-	//    * FULL_COPY - Copies all data from the snapshot to the new volume.
+	//    * FULL_COPY - Copies all data from the snapshot to the new volume. Specify
+	//    this option to create the volume from a snapshot on another FSx for OpenZFS
+	//    file system.
+	//
+	// The INCREMENTAL_COPY option is only for updating an existing volume by using
+	// a snapshot from another FSx for OpenZFS file system. For more information,
+	// see CopySnapshotAndUpdateVolume (https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html).
 	//
 	// CopyStrategy is a required field
 	CopyStrategy *string `type:"string" required:"true" enum:"OpenZFSCopyStrategy"`
@@ -13836,6 +14540,60 @@ func (s *DescribeFileSystemsOutput) SetNextToken(v string) *DescribeFileSystemsO
 	return s
 }
 
+type DescribeSharedVpcConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DescribeSharedVpcConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSharedVpcConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *DescribeSharedVpcConfigurationOutput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *DescribeSharedVpcConfigurationOutput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
+	return s
+}
+
 type DescribeSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14321,6 +15079,14 @@ type DiskIopsConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The total number of SSD IOPS provisioned for the file system.
+	//
+	// The minimum and maximum values for this property depend on the value of HAPairs
+	// and StorageCapacity. The minimum value is calculated as StorageCapacity *
+	// 3 * HAPairs (3 IOPS per GB of StorageCapacity). The maximum value is calculated
+	// as 200,000 * HAPairs.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) if the value
+	// of Iops is outside of the minimum or maximum values.
 	Iops *int64 `type:"long"`
 
 	// Specifies whether the file system is using the AUTOMATIC setting of SSD IOPS
@@ -15345,6 +16111,9 @@ type FileSystem struct {
 	ResourceARN *string `min:"8" type:"string"`
 
 	// The storage capacity of the file system in gibibytes (GiB).
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) if the value
+	// of StorageCapacity is outside of the minimum or maximum values.
 	StorageCapacity *int64 `type:"integer"`
 
 	// The type of storage the file system is using. If set to SSD, the file system
@@ -17407,6 +18176,9 @@ type OntapFileSystemConfiguration struct {
 	//
 	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
 	//
+	//    * SINGLE_AZ_2 - A file system configured with multiple high-availability
+	//    (HA) pairs for Single-AZ redundancy.
+	//
 	// For information about the use cases for Multi-AZ and Single-AZ deployments,
 	// refer to Choosing Multi-AZ or Single-AZ file system deployment (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"OntapDeploymentType"`
@@ -17437,6 +18209,21 @@ type OntapFileSystemConfiguration struct {
 	// String and GoString methods.
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
+	// Specifies how many high-availability (HA) file server pairs the file system
+	// will have. The default value is 1. The value of this property affects the
+	// values of StorageCapacity, Iops, and ThroughputCapacity. For more information,
+	// see High-availability (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
+	// in the FSx for ONTAP user guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of HAPairs is less than 1 or greater than 6.
+	//
+	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
+	//    is SINGLE_AZ_1 or MULTI_AZ_1.
+	HAPairs *int64 `min:"1" type:"integer"`
+
 	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
 	// private cloud (VPC). For more information, see VPC and subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
 	// in the Amazon VPC User Guide.
@@ -17449,6 +18236,34 @@ type OntapFileSystemConfiguration struct {
 	// The sustained throughput of an Amazon FSx file system in Megabytes per second
 	// (MBps).
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair. When the value of HAPairs
+	// is equal to 1, the value of ThroughputCapacityPerHAPair is the total throughput
+	// for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
+	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
+	//    6).
+	//
+	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
 	//
@@ -17523,6 +18338,12 @@ func (s *OntapFileSystemConfiguration) SetFsxAdminPassword(v string) *OntapFileS
 	return s
 }
 
+// SetHAPairs sets the HAPairs field's value.
+func (s *OntapFileSystemConfiguration) SetHAPairs(v int64) *OntapFileSystemConfiguration {
+	s.HAPairs = &v
+	return s
+}
+
 // SetPreferredSubnetId sets the PreferredSubnetId field's value.
 func (s *OntapFileSystemConfiguration) SetPreferredSubnetId(v string) *OntapFileSystemConfiguration {
 	s.PreferredSubnetId = &v
@@ -17541,6 +18362,12 @@ func (s *OntapFileSystemConfiguration) SetThroughputCapacity(v int64) *OntapFile
 	return s
 }
 
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *OntapFileSystemConfiguration) SetThroughputCapacityPerHAPair(v int64) *OntapFileSystemConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
+	return s
+}
+
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *OntapFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *OntapFileSystemConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
@@ -17550,6 +18377,10 @@ func (s *OntapFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *
 // The configuration of an Amazon FSx for NetApp ONTAP volume.
 type OntapVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// This structure specifies configuration options for a volume’s storage aggregate
+	// or aggregates.
+	AggregateConfiguration *AggregateConfiguration `type:"structure"`
 
 	// A boolean flag indicating whether tags for the volume should be copied to
 	// backups. This value defaults to false. If it's set to true, all tags for
@@ -17595,6 +18426,9 @@ type OntapVolumeConfiguration struct {
 
 	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
 
 	// The configured size of the volume, in megabytes (MBs).
 	SizeInMegabytes *int64 `type:"integer"`
@@ -17644,6 +18478,11 @@ type OntapVolumeConfiguration struct {
 
 	// The volume's universally unique identifier (UUID).
 	UUID *string `type:"string"`
+
+	// Use to specify the style of an ONTAP volume. For more information about FlexVols
+	// and FlexGroups, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html)
+	// in Amazon FSx for NetApp ONTAP User Guide.
+	VolumeStyle *string `type:"string" enum:"VolumeStyle"`
 }
 
 // String returns the string representation.
@@ -17662,6 +18501,12 @@ func (s OntapVolumeConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s OntapVolumeConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetAggregateConfiguration sets the AggregateConfiguration field's value.
+func (s *OntapVolumeConfiguration) SetAggregateConfiguration(v *AggregateConfiguration) *OntapVolumeConfiguration {
+	s.AggregateConfiguration = v
+	return s
 }
 
 // SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
@@ -17691,6 +18536,12 @@ func (s *OntapVolumeConfiguration) SetOntapVolumeType(v string) *OntapVolumeConf
 // SetSecurityStyle sets the SecurityStyle field's value.
 func (s *OntapVolumeConfiguration) SetSecurityStyle(v string) *OntapVolumeConfiguration {
 	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *OntapVolumeConfiguration) SetSizeInBytes(v int64) *OntapVolumeConfiguration {
+	s.SizeInBytes = &v
 	return s
 }
 
@@ -17739,6 +18590,12 @@ func (s *OntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *OntapVolu
 // SetUUID sets the UUID field's value.
 func (s *OntapVolumeConfiguration) SetUUID(v string) *OntapVolumeConfiguration {
 	s.UUID = &v
+	return s
+}
+
+// SetVolumeStyle sets the VolumeStyle field's value.
+func (s *OntapVolumeConfiguration) SetVolumeStyle(v string) *OntapVolumeConfiguration {
+	s.VolumeStyle = &v
 	return s
 }
 
@@ -18194,8 +19051,8 @@ func (s *OpenZFSNfsExport) SetClientConfigurations(v []*OpenZFSClientConfigurati
 	return s
 }
 
-// The snapshot configuration to use when creating an OpenZFS volume from a
-// snapshot.
+// The snapshot configuration used when creating an Amazon FSx for OpenZFS volume
+// from a snapshot.
 type OpenZFSOriginSnapshotConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -18207,6 +19064,10 @@ type OpenZFSOriginSnapshotConfiguration struct {
 	//    be deleted if there is a volume using its copied data.
 	//
 	//    * FULL_COPY - Copies all data from the snapshot to the new volume.
+	//
+	// The INCREMENTAL_COPY option is only for updating an existing volume by using
+	// a snapshot from another FSx for OpenZFS file system. For more information,
+	// see CopySnapshotAndUpdateVolume (https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html).
 	CopyStrategy *string `type:"string" enum:"OpenZFSCopyStrategy"`
 
 	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
@@ -18352,9 +19213,18 @@ type OpenZFSVolumeConfiguration struct {
 	// snapshots should be deleted when a volume is restored from snapshot.
 	DeleteClonedVolumes *bool `type:"boolean"`
 
+	// A Boolean value indicating whether snapshot data that differs between the
+	// current state and the specified snapshot should be overwritten when a volume
+	// is restored from a snapshot.
+	DeleteIntermediateData *bool `type:"boolean"`
+
 	// A Boolean value indicating whether snapshots between the current state and
 	// the specified snapshot should be deleted when a volume is restored from snapshot.
 	DeleteIntermediateSnaphots *bool `type:"boolean"`
+
+	// The ID of the snapshot that's being copied or was most recently copied to
+	// the destination volume.
+	DestinationSnapshot *string `min:"11" type:"string"`
 
 	// The configuration object for mounting a Network File System (NFS) file system.
 	NfsExports []*OpenZFSNfsExport `type:"list"`
@@ -18377,6 +19247,13 @@ type OpenZFSVolumeConfiguration struct {
 
 	// Specifies the ID of the snapshot to which the volume was restored.
 	RestoreToSnapshot *string `min:"11" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	SourceSnapshotARN *string `min:"8" type:"string"`
 
 	// The maximum amount of storage in gibibtyes (GiB) that the volume can use
 	// from its parent. You can specify a quota larger than the storage on the parent
@@ -18430,9 +19307,21 @@ func (s *OpenZFSVolumeConfiguration) SetDeleteClonedVolumes(v bool) *OpenZFSVolu
 	return s
 }
 
+// SetDeleteIntermediateData sets the DeleteIntermediateData field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteIntermediateData(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteIntermediateData = &v
+	return s
+}
+
 // SetDeleteIntermediateSnaphots sets the DeleteIntermediateSnaphots field's value.
 func (s *OpenZFSVolumeConfiguration) SetDeleteIntermediateSnaphots(v bool) *OpenZFSVolumeConfiguration {
 	s.DeleteIntermediateSnaphots = &v
+	return s
+}
+
+// SetDestinationSnapshot sets the DestinationSnapshot field's value.
+func (s *OpenZFSVolumeConfiguration) SetDestinationSnapshot(v string) *OpenZFSVolumeConfiguration {
+	s.DestinationSnapshot = &v
 	return s
 }
 
@@ -18469,6 +19358,12 @@ func (s *OpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSVolumeCon
 // SetRestoreToSnapshot sets the RestoreToSnapshot field's value.
 func (s *OpenZFSVolumeConfiguration) SetRestoreToSnapshot(v string) *OpenZFSVolumeConfiguration {
 	s.RestoreToSnapshot = &v
+	return s
+}
+
+// SetSourceSnapshotARN sets the SourceSnapshotARN field's value.
+func (s *OpenZFSVolumeConfiguration) SetSourceSnapshotARN(v string) *OpenZFSVolumeConfiguration {
+	s.SourceSnapshotARN = &v
 	return s
 }
 
@@ -21598,11 +22493,42 @@ type UpdateFileSystemOntapConfiguration struct {
 	RemoveRouteTableIds []*string `type:"list"`
 
 	// Enter a new value to change the amount of throughput capacity for the file
-	// system. Throughput capacity is measured in megabytes per second (MBps). Valid
-	// values are 128, 256, 512, 1024, 2048, and 4096 MBps. For more information,
-	// see Managing throughput capacity (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html)
+	// system in megabytes per second (MBps). For more information, see Managing
+	// throughput capacity (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html)
 	// in the FSx for ONTAP User Guide.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value.
+	//
+	//    * The value of ThroughputCapacity when divided by the value of HAPairs
+	//    is outside of the valid range for ThroughputCapacity.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// Use to choose the throughput capacity per HA pair, rather than the total
+	// throughput for the file system.
+	//
+	// This field and ThroughputCapacity cannot be defined in the same API call,
+	// but one is required.
+	//
+	// This field and ThroughputCapacity are the same for file systems with one
+	// HA pair.
+	//
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
+	//    2048, or 4096 MBps.
+	//
+	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//
+	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
+	// conditions:
+	//
+	// The value of ThroughputCapacity and ThroughputCapacityPerHAPair are not the
+	// same value.
+	//
+	// The value of ThroughputCapacityPerHAPair is not a valid value.
+	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
 	//
@@ -21646,6 +22572,9 @@ func (s *UpdateFileSystemOntapConfiguration) Validate() error {
 	}
 	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
 		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.ThroughputCapacityPerHAPair != nil && *s.ThroughputCapacityPerHAPair < 128 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacityPerHAPair", 128))
 	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
@@ -21696,6 +22625,12 @@ func (s *UpdateFileSystemOntapConfiguration) SetRemoveRouteTableIds(v []*string)
 // SetThroughputCapacity sets the ThroughputCapacity field's value.
 func (s *UpdateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *UpdateFileSystemOntapConfiguration {
 	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetThroughputCapacityPerHAPair sets the ThroughputCapacityPerHAPair field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetThroughputCapacityPerHAPair(v int64) *UpdateFileSystemOntapConfiguration {
+	s.ThroughputCapacityPerHAPair = &v
 	return s
 }
 
@@ -22058,6 +22993,9 @@ type UpdateOntapVolumeConfiguration struct {
 	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
+	// The configured size of the volume, in bytes.
+	SizeInBytes *int64 `type:"long"`
+
 	// Specifies the size of the volume in megabytes.
 	SizeInMegabytes *int64 `type:"integer"`
 
@@ -22153,6 +23091,12 @@ func (s *UpdateOntapVolumeConfiguration) SetJunctionPath(v string) *UpdateOntapV
 // SetSecurityStyle sets the SecurityStyle field's value.
 func (s *UpdateOntapVolumeConfiguration) SetSecurityStyle(v string) *UpdateOntapVolumeConfiguration {
 	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSizeInBytes(v int64) *UpdateOntapVolumeConfiguration {
+	s.SizeInBytes = &v
 	return s
 }
 
@@ -22331,6 +23275,97 @@ func (s *UpdateOpenZFSVolumeConfiguration) SetStorageCapacityReservationGiB(v in
 // SetUserAndGroupQuotas sets the UserAndGroupQuotas field's value.
 func (s *UpdateOpenZFSVolumeConfiguration) SetUserAndGroupQuotas(v []*OpenZFSUserOrGroupQuota) *UpdateOpenZFSVolumeConfiguration {
 	s.UserAndGroupQuotas = v
+	return s
+}
+
+type UpdateSharedVpcConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 63 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets. Set to true to enable or false to disable.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSharedVpcConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSharedVpcConfigurationInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.EnableFsxRouteTableUpdatesFromParticipantAccounts != nil && len(*s.EnableFsxRouteTableUpdatesFromParticipantAccounts) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("EnableFsxRouteTableUpdatesFromParticipantAccounts", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateSharedVpcConfigurationInput) SetClientRequestToken(v string) *UpdateSharedVpcConfigurationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *UpdateSharedVpcConfigurationInput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *UpdateSharedVpcConfigurationInput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
+	return s
+}
+
+type UpdateSharedVpcConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether participant accounts can create FSx for ONTAP Multi-AZ
+	// file systems in shared subnets.
+	EnableFsxRouteTableUpdatesFromParticipantAccounts *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSharedVpcConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnableFsxRouteTableUpdatesFromParticipantAccounts sets the EnableFsxRouteTableUpdatesFromParticipantAccounts field's value.
+func (s *UpdateSharedVpcConfigurationOutput) SetEnableFsxRouteTableUpdatesFromParticipantAccounts(v string) *UpdateSharedVpcConfigurationOutput {
+	s.EnableFsxRouteTableUpdatesFromParticipantAccounts = &v
 	return s
 }
 
@@ -22876,7 +23911,7 @@ func (s *UpdateVolumeOutput) SetVolume(v *Volume) *UpdateVolumeOutput {
 	return s
 }
 
-// Describes an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS volume.
+// Describes an Amazon FSx volume.
 type Volume struct {
 	_ struct{} `type:"structure"`
 
@@ -23642,9 +24677,8 @@ func ActiveDirectoryErrorType_Values() []string {
 //     has been completed successfully, the parent FILE_SYSTEM_UPDATE action
 //     status changes to COMPLETED.
 //
-//   - VOLUME_UPDATE - A volume update to an Amazon FSx for NetApp ONTAP or
-//     Amazon FSx for OpenZFS volume initiated from the Amazon FSx console, API
-//     (UpdateVolume), or CLI (update-volume).
+//   - VOLUME_UPDATE - A volume update to an Amazon FSx for OpenZFS volume
+//     initiated from the Amazon FSx console, API (UpdateVolume), or CLI (update-volume).
 //
 //   - VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
 //     state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
@@ -23655,6 +24689,15 @@ func ActiveDirectoryErrorType_Values() []string {
 //
 //   - RELEASE_NFS_V3_LOCKS - Tracks the release of Network File System (NFS)
 //     V3 locks on an Amazon FSx for OpenZFS file system.
+//
+//   - VOLUME_INITIALIZE_WITH_SNAPSHOT - A volume is being created from a snapshot
+//     on a different FSx for OpenZFS file system. You can initiate this from
+//     the Amazon FSx console, API (CreateVolume), or CLI (create-volume) when
+//     using the using the FULL_COPY strategy.
+//
+//   - VOLUME_UPDATE_WITH_SNAPSHOT - A volume is being updated from a snapshot
+//     on a different FSx for OpenZFS file system. You can initiate this from
+//     the Amazon FSx console, API (CopySnapshotAndUpdateVolume), or CLI (copy-snapshot-and-update-volume).
 const (
 	// AdministrativeActionTypeFileSystemUpdate is a AdministrativeActionType enum value
 	AdministrativeActionTypeFileSystemUpdate = "FILE_SYSTEM_UPDATE"
@@ -23691,6 +24734,12 @@ const (
 
 	// AdministrativeActionTypeMisconfiguredStateRecovery is a AdministrativeActionType enum value
 	AdministrativeActionTypeMisconfiguredStateRecovery = "MISCONFIGURED_STATE_RECOVERY"
+
+	// AdministrativeActionTypeVolumeUpdateWithSnapshot is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeUpdateWithSnapshot = "VOLUME_UPDATE_WITH_SNAPSHOT"
+
+	// AdministrativeActionTypeVolumeInitializeWithSnapshot is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeInitializeWithSnapshot = "VOLUME_INITIALIZE_WITH_SNAPSHOT"
 )
 
 // AdministrativeActionType_Values returns all elements of the AdministrativeActionType enum
@@ -23708,6 +24757,8 @@ func AdministrativeActionType_Values() []string {
 		AdministrativeActionTypeIopsOptimization,
 		AdministrativeActionTypeStorageTypeOptimization,
 		AdministrativeActionTypeMisconfiguredStateRecovery,
+		AdministrativeActionTypeVolumeUpdateWithSnapshot,
+		AdministrativeActionTypeVolumeInitializeWithSnapshot,
 	}
 }
 
@@ -24343,6 +25394,9 @@ const (
 
 	// OntapDeploymentTypeSingleAz1 is a OntapDeploymentType enum value
 	OntapDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
+
+	// OntapDeploymentTypeSingleAz2 is a OntapDeploymentType enum value
+	OntapDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
 )
 
 // OntapDeploymentType_Values returns all elements of the OntapDeploymentType enum
@@ -24350,6 +25404,7 @@ func OntapDeploymentType_Values() []string {
 	return []string{
 		OntapDeploymentTypeMultiAz1,
 		OntapDeploymentTypeSingleAz1,
+		OntapDeploymentTypeSingleAz2,
 	}
 }
 
@@ -24379,6 +25434,9 @@ const (
 
 	// OpenZFSCopyStrategyFullCopy is a OpenZFSCopyStrategy enum value
 	OpenZFSCopyStrategyFullCopy = "FULL_COPY"
+
+	// OpenZFSCopyStrategyIncrementalCopy is a OpenZFSCopyStrategy enum value
+	OpenZFSCopyStrategyIncrementalCopy = "INCREMENTAL_COPY"
 )
 
 // OpenZFSCopyStrategy_Values returns all elements of the OpenZFSCopyStrategy enum
@@ -24386,6 +25444,7 @@ func OpenZFSCopyStrategy_Values() []string {
 	return []string{
 		OpenZFSCopyStrategyClone,
 		OpenZFSCopyStrategyFullCopy,
+		OpenZFSCopyStrategyIncrementalCopy,
 	}
 }
 
@@ -24860,6 +25919,26 @@ func Unit_Values() []string {
 }
 
 const (
+	// UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots = "DELETE_INTERMEDIATE_SNAPSHOTS"
+
+	// UpdateOpenZFSVolumeOptionDeleteClonedVolumes is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteClonedVolumes = "DELETE_CLONED_VOLUMES"
+
+	// UpdateOpenZFSVolumeOptionDeleteIntermediateData is a UpdateOpenZFSVolumeOption enum value
+	UpdateOpenZFSVolumeOptionDeleteIntermediateData = "DELETE_INTERMEDIATE_DATA"
+)
+
+// UpdateOpenZFSVolumeOption_Values returns all elements of the UpdateOpenZFSVolumeOption enum
+func UpdateOpenZFSVolumeOption_Values() []string {
+	return []string{
+		UpdateOpenZFSVolumeOptionDeleteIntermediateSnapshots,
+		UpdateOpenZFSVolumeOptionDeleteClonedVolumes,
+		UpdateOpenZFSVolumeOptionDeleteIntermediateData,
+	}
+}
+
+const (
 	// VolumeFilterNameFileSystemId is a VolumeFilterName enum value
 	VolumeFilterNameFileSystemId = "file-system-id"
 
@@ -24908,6 +25987,22 @@ func VolumeLifecycle_Values() []string {
 		VolumeLifecycleMisconfigured,
 		VolumeLifecyclePending,
 		VolumeLifecycleAvailable,
+	}
+}
+
+const (
+	// VolumeStyleFlexvol is a VolumeStyle enum value
+	VolumeStyleFlexvol = "FLEXVOL"
+
+	// VolumeStyleFlexgroup is a VolumeStyle enum value
+	VolumeStyleFlexgroup = "FLEXGROUP"
+)
+
+// VolumeStyle_Values returns all elements of the VolumeStyle enum
+func VolumeStyle_Values() []string {
+	return []string{
+		VolumeStyleFlexvol,
+		VolumeStyleFlexgroup,
 	}
 }
 

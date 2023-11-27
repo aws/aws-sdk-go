@@ -13,21 +13,44 @@
     "DisableOrganizationAdminAccount": "<p>Removes the Detective administrator account in the current Region. Deletes the organization behavior graph.</p> <p>Can only be called by the organization management account.</p> <p>Removing the Detective administrator account does not affect the delegated administrator account for Detective in Organizations.</p> <p>To remove the delegated administrator account in Organizations, use the Organizations API. Removing the delegated administrator account also removes the Detective administrator account in all Regions, except for Regions where the Detective administrator account is the organization management account.</p>",
     "DisassociateMembership": "<p>Removes the member account from the specified behavior graph. This operation can only be called by an invited member account that has the <code>ENABLED</code> status.</p> <p> <code>DisassociateMembership</code> cannot be called by an organization account in the organization behavior graph. For the organization behavior graph, the Detective administrator account determines which organization accounts to enable or disable as member accounts.</p>",
     "EnableOrganizationAdminAccount": "<p>Designates the Detective administrator account for the organization in the current Region.</p> <p>If the account does not have Detective enabled, then enables Detective for that account and creates a new behavior graph.</p> <p>Can only be called by the organization management account.</p> <p>If the organization has a delegated administrator account in Organizations, then the Detective administrator account must be either the delegated administrator account or the organization management account.</p> <p>If the organization does not have a delegated administrator account in Organizations, then you can choose any account in the organization. If you choose an account other than the organization management account, Detective calls Organizations to make that account the delegated administrator account for Detective. The organization management account cannot be the delegated administrator account.</p>",
+    "GetInvestigation": "<p>Returns the investigation results of an investigation for a behavior graph. </p>",
     "GetMembers": "<p>Returns the membership details for specified member accounts for a behavior graph.</p>",
     "ListDatasourcePackages": "<p>Lists data source packages in the behavior graph.</p>",
     "ListGraphs": "<p>Returns the list of behavior graphs that the calling account is an administrator account of. This operation can only be called by an administrator account.</p> <p>Because an account can currently only be the administrator of one behavior graph within a Region, the results always contain a single behavior graph.</p>",
+    "ListIndicators": "<p>Get the indicators from an investigation</p>",
+    "ListInvestigations": "<p>List all Investigations.</p>",
     "ListInvitations": "<p>Retrieves the list of open and accepted behavior graph invitations for the member account. This operation can only be called by an invited member account.</p> <p>Open invitations are invitations that the member account has not responded to.</p> <p>The results do not include behavior graphs for which the member account declined the invitation. The results also do not include behavior graphs that the member account resigned from or was removed from.</p>",
     "ListMembers": "<p>Retrieves the list of member accounts for a behavior graph.</p> <p>For invited accounts, the results do not include member accounts that were removed from the behavior graph.</p> <p>For the organization behavior graph, the results do not include organization accounts that the Detective administrator account has not enabled as member accounts.</p>",
     "ListOrganizationAdminAccounts": "<p>Returns information about the Detective administrator account for an organization. Can only be called by the organization management account.</p>",
     "ListTagsForResource": "<p>Returns the tag values that are assigned to a behavior graph.</p>",
     "RejectInvitation": "<p>Rejects an invitation to contribute the account data to a behavior graph. This operation must be called by an invited member account that has the <code>INVITED</code> status.</p> <p> <code>RejectInvitation</code> cannot be called by an organization account in the organization behavior graph. In the organization behavior graph, organization accounts do not receive an invitation.</p>",
+    "StartInvestigation": "<p>initiate an investigation on an entity in a graph</p>",
     "StartMonitoringMember": "<p>Sends a request to enable data ingest for a member account that has a status of <code>ACCEPTED_BUT_DISABLED</code>.</p> <p>For valid member accounts, the status is updated as follows.</p> <ul> <li> <p>If Detective enabled the member account, then the new status is <code>ENABLED</code>.</p> </li> <li> <p>If Detective cannot enable the member account, the status remains <code>ACCEPTED_BUT_DISABLED</code>. </p> </li> </ul>",
     "TagResource": "<p>Applies tag values to a behavior graph.</p>",
     "UntagResource": "<p>Removes tags from a behavior graph.</p>",
     "UpdateDatasourcePackages": "<p>Starts a data source packages for the behavior graph.</p>",
+    "UpdateInvestigationState": "<p>Update the state of an investigation.</p>",
     "UpdateOrganizationConfiguration": "<p>Updates the configuration for the Organizations integration in the current Region. Can only be called by the Detective administrator account for the organization.</p>"
   },
   "shapes": {
+    "APIFailureCount": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$APIFailureCount": "<p>The total number of failed API requests.</p>"
+      }
+    },
+    "APIName": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$APIName": "<p>The name of the API where the TTP was observed.</p>"
+      }
+    },
+    "APISuccessCount": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$APISuccessCount": "<p>The total number of successful API requests.</p>"
+      }
+    },
     "AcceptInvitationRequest": {
       "base": null,
       "refs": {
@@ -90,6 +113,21 @@
       "base": null,
       "refs": {
         "ListOrganizationAdminAccountsResponse$Administrators": "<p>The list of Detective administrator accounts.</p>"
+      }
+    },
+    "AiPaginationToken": {
+      "base": null,
+      "refs": {
+        "ListIndicatorsRequest$NextToken": "<p>List if there are more results available. The value of nextToken is a unique pagination token for each page. Repeat the call using the returned token to retrieve the next page. Keep all other arguments unchanged.</p> <p>Each pagination token expires after 24 hours. Using an expired pagination token will return a Validation Exception error.</p>",
+        "ListIndicatorsResponse$NextToken": "<p>List if there are more results available. The value of nextToken is a unique pagination token for each page. Repeat the call using the returned token to retrieve the next page. Keep all other arguments unchanged.</p> <p>Each pagination token expires after 24 hours. Using an expired pagination token will return a Validation Exception error.</p>",
+        "ListInvestigationsRequest$NextToken": "<p>List if there are more results available. The value of nextToken is a unique pagination token for each page. Repeat the call using the returned token to retrieve the next page. Keep all other arguments unchanged.</p> <p>Each pagination token expires after 24 hours. Using an expired pagination token will return a Validation Exception error.</p>",
+        "ListInvestigationsResponse$NextToken": "<p>List if there are more results available. The value of nextToken is a unique pagination token for each page. Repeat the call using the returned token to retrieve the next page. Keep all other arguments unchanged.</p> <p>Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.</p>"
+      }
+    },
+    "Aso": {
+      "base": null,
+      "refs": {
+        "NewAsoDetail$Aso": "<p>Details about the new Autonomous System Organization (ASO).</p>"
       }
     },
     "BatchGetGraphMemberDatasourcesRequest": {
@@ -206,6 +244,12 @@
         "VolumeUsageByDatasourcePackage$value": null
       }
     },
+    "DateFilter": {
+      "base": "<p>Contains details on the time range used to filter data.</p>",
+      "refs": {
+        "FilterCriteria$CreatedTime": "<p>Filter the investigation results based on when the investigation was created.</p>"
+      }
+    },
     "DeleteGraphRequest": {
       "base": null,
       "refs": {
@@ -254,6 +298,22 @@
       "refs": {
       }
     },
+    "EntityArn": {
+      "base": null,
+      "refs": {
+        "GetInvestigationResponse$EntityArn": "<p>The unique Amazon Resource Name (ARN) of the IAM user and IAM role.</p>",
+        "InvestigationDetail$EntityArn": "<p>The unique Amazon Resource Name (ARN) of the IAM user and IAM role.</p>",
+        "RelatedFindingDetail$Arn": "<p>The ARN of the related finding.</p>",
+        "StartInvestigationRequest$EntityArn": "<p>The unique Amazon Resource Name (ARN) of the IAM user and IAM role.</p>"
+      }
+    },
+    "EntityType": {
+      "base": null,
+      "refs": {
+        "GetInvestigationResponse$EntityType": "<p>Type of entity. For example, Amazon Web Services accounts, such as IAM user and role.</p>",
+        "InvestigationDetail$EntityType": "<p>Type of entity. For example, Amazon Web Services accounts, such as IAM user and role.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -280,6 +340,34 @@
         "ServiceQuotaExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "ValidationException$Message": null
+      }
+    },
+    "Field": {
+      "base": null,
+      "refs": {
+        "SortCriteria$Field": "<p>Represents the <code>Field</code> attribute to sort investigations.</p>"
+      }
+    },
+    "FilterCriteria": {
+      "base": "<p>Details on the criteria used to define the filter for investigation results.</p>",
+      "refs": {
+        "ListInvestigationsRequest$FilterCriteria": "<p>Filter the investigation results based on a criteria.</p>"
+      }
+    },
+    "FlaggedIpAddressDetail": {
+      "base": "<p>Contains information on suspicious IP addresses identified as indicators of compromise. This indicator is derived from Amazon Web Services threat intelligence.</p>",
+      "refs": {
+        "IndicatorDetail$FlaggedIpAddressDetail": "<p>Suspicious IP addresses that are flagged, which indicates critical or severe threats based on threat intelligence by Detective. This indicator is derived from AWS threat intelligence.</p>"
+      }
+    },
+    "GetInvestigationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInvestigationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetMembersRequest": {
@@ -310,20 +398,27 @@
         "DeleteMembersRequest$GraphArn": "<p>The ARN of the behavior graph to remove members from.</p>",
         "DescribeOrganizationConfigurationRequest$GraphArn": "<p>The ARN of the organization behavior graph.</p>",
         "DisassociateMembershipRequest$GraphArn": "<p>The ARN of the behavior graph to remove the member account from.</p> <p>The member account's member status in the behavior graph must be <code>ENABLED</code>.</p>",
+        "GetInvestigationRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "GetInvestigationResponse$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "GetMembersRequest$GraphArn": "<p>The ARN of the behavior graph for which to request the member details.</p>",
         "Graph$Arn": "<p>The ARN of the behavior graph.</p>",
         "GraphArnList$member": null,
         "ListDatasourcePackagesRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "ListIndicatorsRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "ListIndicatorsResponse$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "ListInvestigationsRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "ListMembersRequest$GraphArn": "<p>The ARN of the behavior graph for which to retrieve the list of member accounts.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the behavior graph for which to retrieve the tag values.</p>",
         "MemberDetail$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "MembershipDatasources$GraphArn": "<p>The ARN of the organization behavior graph.</p>",
         "RejectInvitationRequest$GraphArn": "<p>The ARN of the behavior graph to reject the invitation to.</p> <p>The member account's current member status in the behavior graph must be <code>INVITED</code>.</p>",
+        "StartInvestigationRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "StartMonitoringMemberRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the behavior graph to assign the tags to.</p>",
         "UnprocessedGraph$GraphArn": "<p>The ARN of the organization behavior graph.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The ARN of the behavior graph to remove the tags from.</p>",
         "UpdateDatasourcePackagesRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "UpdateInvestigationStateRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
         "UpdateOrganizationConfigurationRequest$GraphArn": "<p>The ARN of the organization behavior graph.</p>"
       }
     },
@@ -339,15 +434,101 @@
         "ListGraphsResponse$GraphList": "<p>A list of behavior graphs that the account is an administrator account for.</p>"
       }
     },
+    "HourlyTimeDelta": {
+      "base": null,
+      "refs": {
+        "ImpossibleTravelDetail$HourlyTimeDelta": "<p>Returns the time difference between the first and last timestamp the resource was used.</p>"
+      }
+    },
+    "Id": {
+      "base": null,
+      "refs": {
+        "RelatedFindingGroupDetail$Id": "<p>The unique identifier for the finding group.</p>"
+      }
+    },
+    "ImpossibleTravelDetail": {
+      "base": "<p>Contains information on unusual and impossible travel in an account.</p>",
+      "refs": {
+        "IndicatorDetail$ImpossibleTravelDetail": "<p>Identifies unusual and impossible user activity for an account. </p>"
+      }
+    },
+    "Indicator": {
+      "base": "<p>Investigations triages indicators of compromises such as a finding and surfaces only the most critical and suspicious issues, so you can focus on high-level investigations. </p>",
+      "refs": {
+        "Indicators$member": null
+      }
+    },
+    "IndicatorDetail": {
+      "base": "<p>Details about the indicators of compromise which are used to determine if a resource is involved in a security incident. </p>",
+      "refs": {
+        "Indicator$IndicatorDetail": "<p>Details about the indicator of compromise.</p>"
+      }
+    },
+    "IndicatorType": {
+      "base": null,
+      "refs": {
+        "Indicator$IndicatorType": "<p>The type of indicator.</p>",
+        "ListIndicatorsRequest$IndicatorType": "<p>See <a href=\"https://docs.aws.amazon.com/detective/latest/userguide/detective-investigations.html\">Detective investigations.</a>.</p>"
+      }
+    },
+    "Indicators": {
+      "base": null,
+      "refs": {
+        "ListIndicatorsResponse$Indicators": "<p>Indicators of compromise listed based on severity.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>The request was valid but failed because of a problem with the service.</p>",
       "refs": {
+      }
+    },
+    "InvestigationDetail": {
+      "base": "<p>Details about the investigation related to a potential security event identified by Detective</p>",
+      "refs": {
+        "InvestigationDetails$member": null
+      }
+    },
+    "InvestigationDetails": {
+      "base": null,
+      "refs": {
+        "ListInvestigationsResponse$InvestigationDetails": "<p>Investigations details lists the summary of uncommon behavior or malicious activity which indicates a compromise.</p>"
+      }
+    },
+    "InvestigationId": {
+      "base": null,
+      "refs": {
+        "GetInvestigationRequest$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "GetInvestigationResponse$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "InvestigationDetail$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "ListIndicatorsRequest$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "ListIndicatorsResponse$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "StartInvestigationResponse$InvestigationId": "<p>The investigation ID of the investigation report.</p>",
+        "UpdateInvestigationStateRequest$InvestigationId": "<p>The investigation ID of the investigation report.</p>"
       }
     },
     "InvitationType": {
       "base": null,
       "refs": {
         "MemberDetail$InvitationType": "<p>The type of behavior graph membership.</p> <p>For an organization account in the organization behavior graph, the type is <code>ORGANIZATION</code>.</p> <p>For an account that was invited to a behavior graph, the type is <code>INVITATION</code>. </p>"
+      }
+    },
+    "IpAddress": {
+      "base": null,
+      "refs": {
+        "FlaggedIpAddressDetail$IpAddress": "<p>IP address of the suspicious entity.</p>",
+        "ImpossibleTravelDetail$StartingIpAddress": "<p>IP address where the resource was first used in the impossible travel</p>",
+        "ImpossibleTravelDetail$EndingIpAddress": "<p>IP address where the resource was last used in the impossible travel.</p>",
+        "NewGeolocationDetail$IpAddress": "<p>IP address using which the resource was accessed.</p>",
+        "RelatedFindingDetail$IpAddress": "<p>The IP address of the finding.</p>",
+        "TTPsObservedDetail$IpAddress": "<p>The IP address where the TTP was observed.</p>"
+      }
+    },
+    "IsNewForEntireAccount": {
+      "base": null,
+      "refs": {
+        "NewAsoDetail$IsNewForEntireAccount": "<p>Checks if the ASO is for new for the entire account.</p>",
+        "NewGeolocationDetail$IsNewForEntireAccount": "<p>Checks if the gelocation is new for the entire account.</p>",
+        "NewUserAgentDetail$IsNewForEntireAccount": "<p>Checks if the user agent is new for the entire account.</p>"
       }
     },
     "LastIngestStateChangeDates": {
@@ -373,6 +554,26 @@
       }
     },
     "ListGraphsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIndicatorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIndicatorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInvestigationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInvestigationsResponse": {
       "base": null,
       "refs": {
       }
@@ -415,6 +616,21 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Location": {
+      "base": null,
+      "refs": {
+        "ImpossibleTravelDetail$StartingLocation": "<p>Location where the resource was first used in the impossible travel</p>",
+        "ImpossibleTravelDetail$EndingLocation": "<p>Location where the resource was last used in the impossible travel.</p>",
+        "NewGeolocationDetail$Location": "<p>Location where the resource was accessed.</p>"
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListIndicatorsRequest$MaxResults": "<p>List the maximum number of indicators in a page.</p>",
+        "ListInvestigationsRequest$MaxResults": "<p>List the maximum number of investigations in a page.</p>"
       }
     },
     "MemberDetail": {
@@ -467,6 +683,24 @@
         "BatchGetMembershipDatasourcesResponse$MembershipDatasources": "<p>Details on the data source package history for an member of the behavior graph.</p>"
       }
     },
+    "NewAsoDetail": {
+      "base": "<p>Details new Autonomous System Organizations (ASOs) used either at the resource or account level. </p>",
+      "refs": {
+        "IndicatorDetail$NewAsoDetail": "<p>Contains details about the new Autonomous System Organization (ASO).</p>"
+      }
+    },
+    "NewGeolocationDetail": {
+      "base": "<p>Details new geolocations used either at the resource or account level. For example, lists an observed geolocation that is an infrequent or unused location based on previous user activity.</p>",
+      "refs": {
+        "IndicatorDetail$NewGeolocationDetail": "<p>Contains details about the new geographic location.</p>"
+      }
+    },
+    "NewUserAgentDetail": {
+      "base": "<p>Details new user agents used either at the resource or account level.</p>",
+      "refs": {
+        "IndicatorDetail$NewUserAgentDetail": "<p>Contains details about the new user agent.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -488,9 +722,33 @@
         "MemberDetail$PercentOfGraphUtilization": "<p>The member account data volume as a percentage of the maximum allowed data volume. 0 indicates 0 percent, and 100 indicates 100 percent.</p> <p>Note that this is not the percentage of the behavior graph data volume.</p> <p>For example, the data volume for the behavior graph is 80 GB per day. The maximum data volume is 160 GB per day. If the data volume for the member account is 40 GB per day, then <code>PercentOfGraphUtilization</code> is 25. It represents 25% of the maximum allowed data volume. </p>"
       }
     },
+    "Procedure": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$Procedure": "<p>The procedure used, identified by the investigation.</p>"
+      }
+    },
+    "Reason": {
+      "base": null,
+      "refs": {
+        "FlaggedIpAddressDetail$Reason": "<p>Details the reason the IP address was flagged as suspicious.</p>"
+      }
+    },
     "RejectInvitationRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "RelatedFindingDetail": {
+      "base": "<p>Details related activities associated with a potential security event. Lists all distinct categories of evidence that are connected to the resource or the finding group.</p>",
+      "refs": {
+        "IndicatorDetail$RelatedFindingDetail": "<p>Contains details about related findings.</p>"
+      }
+    },
+    "RelatedFindingGroupDetail": {
+      "base": "<p>Details multiple activities as they related to a potential security event. Detective uses graph analysis technique that infers relationships between findings and entities, and groups them together as a finding group.</p>",
+      "refs": {
+        "IndicatorDetail$RelatedFindingGroupDetail": "<p>Contains details about related finding groups.</p>"
       }
     },
     "Resource": {
@@ -515,9 +773,74 @@
       "refs": {
       }
     },
+    "Severity": {
+      "base": null,
+      "refs": {
+        "GetInvestigationResponse$Severity": "<p>Severity based on the likelihood and impact of the indicators of compromise discovered in the investigation.</p>",
+        "InvestigationDetail$Severity": "<p>Severity based on the likelihood and impact of the indicators of compromise discovered in the investigation.</p>"
+      }
+    },
+    "SortCriteria": {
+      "base": "<p>Details about the criteria used for sorting investigations.</p>",
+      "refs": {
+        "ListInvestigationsRequest$SortCriteria": "<p>Sorts the investigation results based on a criteria.</p>"
+      }
+    },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "SortCriteria$SortOrder": "<p>The order by which the sorted findings are displayed.</p>"
+      }
+    },
+    "StartInvestigationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartInvestigationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartMonitoringMemberRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "State": {
+      "base": null,
+      "refs": {
+        "GetInvestigationResponse$State": "<p>The current state of the investigation. An archived investigation indicates you have completed reviewing the investigation.</p>",
+        "InvestigationDetail$State": "<p>The current state of the investigation. An archived investigation indicates you have completed reviewing the investigation.</p>",
+        "UpdateInvestigationStateRequest$State": "<p>The current state of the investigation. An archived investigation indicates you have completed reviewing the investigation.</p>"
+      }
+    },
+    "Status": {
+      "base": null,
+      "refs": {
+        "GetInvestigationResponse$Status": "<p>Status based on the completion status of the investigation.</p>",
+        "InvestigationDetail$Status": "<p>Status based on the completion status of the investigation.</p>"
+      }
+    },
+    "StringFilter": {
+      "base": "<p>A string for filtering Detective investigations.</p>",
+      "refs": {
+        "FilterCriteria$Severity": "<p>Filter the investigation results based on the severity.</p>",
+        "FilterCriteria$Status": "<p>Filter the investigation results based on the status.</p>",
+        "FilterCriteria$State": "<p>Filter the investigation results based on the state.</p>",
+        "FilterCriteria$EntityArn": "<p>Filter the investigation results based on the Amazon Resource Name (ARN) of the entity.</p>"
+      }
+    },
+    "TTPsObservedDetail": {
+      "base": "<p>Details tactics, techniques, and procedures (TTPs) used in a potential security event. Tactics are based on <a href=\"https://attack.mitre.org/matrices/enterprise/\">MITRE ATT&amp;CK Matrix for Enterprise</a>. </p>",
+      "refs": {
+        "IndicatorDetail$TTPsObservedDetail": "<p>Details about the indicator of compromise.</p>"
+      }
+    },
+    "Tactic": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$Tactic": "<p>The tactic used, identified by the investigation.</p>"
       }
     },
     "TagKey": {
@@ -557,16 +880,30 @@
         "TagMap$value": null
       }
     },
+    "Technique": {
+      "base": null,
+      "refs": {
+        "TTPsObservedDetail$Technique": "<p>The technique used, identified by the investigation. </p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
         "Administrator$DelegationTime": "<p>The date and time when the Detective administrator account was enabled. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
         "DatasourcePackageUsageInfo$VolumeUsageUpdateTime": "<p>The data and time when the member account data volume was last updated. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
+        "DateFilter$StartInclusive": "<p>A timestamp representing the start of the time period from when data is filtered, including the start date.</p>",
+        "DateFilter$EndInclusive": "<p>A timestamp representing the end date of the time period until when data is filtered , including the end date.</p>",
+        "GetInvestigationResponse$CreatedTime": "<p>The UTC time stamp of the creation time of the investigation report.</p>",
+        "GetInvestigationResponse$ScopeStartTime": "<p>The start date and time for the scope time set to generate the investigation report.</p>",
+        "GetInvestigationResponse$ScopeEndTime": "<p>The data and time when the investigation began. The value is an UTC ISO8601 formatted string. For example, 2021-08-18T16:35:56.284Z.</p>",
         "Graph$CreatedTime": "<p>The date and time that the behavior graph was created. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
+        "InvestigationDetail$CreatedTime": "<p>The UTC time stamp of the creation time of the investigation report.</p>",
         "MemberDetail$InvitedTime": "<p>For invited accounts, the date and time that Detective sent the invitation to the account. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
         "MemberDetail$UpdatedTime": "<p>The date and time that the member account was last updated. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
         "MemberDetail$VolumeUsageUpdatedTime": "<p>The data and time when the member account data volume was last updated. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
         "MemberDetail$PercentOfGraphUtilizationUpdatedTime": "<p>The date and time when the graph utilization percentage was last updated. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
+        "StartInvestigationRequest$ScopeStartTime": "<p>The data and time when the investigation began. The value is an UTC ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
+        "StartInvestigationRequest$ScopeEndTime": "<p>The data and time when the investigation began. The value is an UTC ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>",
         "TimestampForCollection$Timestamp": "<p>The data and time when data collection began for a source package. The value is an ISO8601 formatted string. For example, <code>2021-08-18T16:35:56.284Z</code>.</p>"
       }
     },
@@ -579,6 +916,12 @@
     "TooManyRequestsException": {
       "base": "<p>The request cannot be completed because too many other requests are occurring at the same time.</p>",
       "refs": {
+      }
+    },
+    "Type": {
+      "base": null,
+      "refs": {
+        "RelatedFindingDetail$Type": "<p>The type of finding.</p>"
       }
     },
     "UnprocessedAccount": {
@@ -630,14 +973,31 @@
       "refs": {
       }
     },
+    "UpdateInvestigationStateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateOrganizationConfigurationRequest": {
       "base": null,
       "refs": {
       }
     },
+    "UserAgent": {
+      "base": null,
+      "refs": {
+        "NewUserAgentDetail$UserAgent": "<p>New user agent which accessed the resource.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The request parameters are invalid.</p>",
       "refs": {
+      }
+    },
+    "Value": {
+      "base": null,
+      "refs": {
+        "StringFilter$Value": "<p>The string filter value.</p>"
       }
     },
     "VolumeUsageByDatasourcePackage": {

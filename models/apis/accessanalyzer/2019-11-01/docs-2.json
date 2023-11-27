@@ -1,9 +1,11 @@
 {
   "version": "2.0",
-  "service": "<p>Identity and Access Management Access Analyzer helps identify potential resource-access risks by enabling you to identify any policies that grant access to an external principal. It does this by using logic-based reasoning to analyze resource-based policies in your Amazon Web Services environment. An external principal can be another Amazon Web Services account, a root user, an IAM user or role, a federated user, an Amazon Web Services service, or an anonymous user. You can also use IAM Access Analyzer to preview and validate public and cross-account access to your resources before deploying permissions changes. This guide describes the Identity and Access Management Access Analyzer operations that you can call programmatically. For general information about IAM Access Analyzer, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html\">Identity and Access Management Access Analyzer</a> in the <b>IAM User Guide</b>.</p> <p>To start using IAM Access Analyzer, you first need to create an analyzer.</p>",
+  "service": "<p>Identity and Access Management Access Analyzer helps you to set, verify, and refine your IAM policies by providing a suite of capabilities. Its features include findings for external and unused access, basic and custom policy checks for validating policies, and policy generation to generate fine-grained policies. To start using IAM Access Analyzer to identify external or unused access, you first need to create an analyzer.</p> <p> <b>External access analyzers</b> help identify potential risks of accessing resources by enabling you to identify any resource policies that grant access to an external principal. It does this by using logic-based reasoning to analyze resource-based policies in your Amazon Web Services environment. An external principal can be another Amazon Web Services account, a root user, an IAM user or role, a federated user, an Amazon Web Services service, or an anonymous user. You can also use IAM Access Analyzer to preview public and cross-account access to your resources before deploying permissions changes.</p> <p> <b>Unused access analyzers</b> help identify potential identity access risks by enabling you to identify unused IAM roles, unused access keys, unused console passwords, and IAM principals with unused service and action-level permissions.</p> <p>Beyond findings, IAM Access Analyzer provides basic and custom policy checks to validate IAM policies before deploying permissions changes. You can use policy generation to refine permissions by attaching a policy generated using access activity logged in CloudTrail logs. </p> <p>This guide describes the IAM Access Analyzer operations that you can call programmatically. For general information about IAM Access Analyzer, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html\">Identity and Access Management Access Analyzer</a> in the <b>IAM User Guide</b>.</p>",
   "operations": {
     "ApplyArchiveRule": "<p>Retroactively applies the archive rule to existing findings that meet the archive rule criteria.</p>",
     "CancelPolicyGeneration": "<p>Cancels the requested policy generation.</p>",
+    "CheckAccessNotGranted": "<p>Checks whether the specified access isn't allowed by a policy.</p>",
+    "CheckNoNewAccess": "<p>Checks whether new access is allowed for an updated policy when compared to the existing policy.</p> <p>You can find examples for reference policies and learn how to set up and run a custom policy check for new access in the <a href=\"https://github.com/aws-samples/iam-access-analyzer-custom-policy-check-samples\">IAM Access Analyzer custom policy checks samples</a> repository on GitHub. The reference policies in this repository are meant to be passed to the <code>existingPolicyDocument</code> request parameter.</p>",
     "CreateAccessPreview": "<p>Creates an access preview that allows you to preview IAM Access Analyzer findings for your resource before deploying resource permissions.</p>",
     "CreateAnalyzer": "<p>Creates an analyzer for your account.</p>",
     "CreateArchiveRule": "<p>Creates an archive rule for the specified analyzer. Archive rules automatically archive new findings that meet the criteria you define when you create the rule.</p> <p>To learn about filter keys that you can use to create an archive rule, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>",
@@ -14,6 +16,7 @@
     "GetAnalyzer": "<p>Retrieves information about the specified analyzer.</p>",
     "GetArchiveRule": "<p>Retrieves information about an archive rule.</p> <p>To learn about filter keys that you can use to create an archive rule, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>",
     "GetFinding": "<p>Retrieves information about the specified finding.</p>",
+    "GetFindingV2": "<p>Retrieves information about the specified finding.</p>",
     "GetGeneratedPolicy": "<p>Retrieves the policy that was generated using <code>StartPolicyGeneration</code>. </p>",
     "ListAccessPreviewFindings": "<p>Retrieves a list of access preview findings generated by the specified access preview.</p>",
     "ListAccessPreviews": "<p>Retrieves a list of access previews for the specified analyzer.</p>",
@@ -21,6 +24,7 @@
     "ListAnalyzers": "<p>Retrieves a list of analyzers.</p>",
     "ListArchiveRules": "<p>Retrieves a list of archive rules created for the specified analyzer.</p>",
     "ListFindings": "<p>Retrieves a list of findings generated by the specified analyzer.</p> <p>To learn about filter keys that you can use to retrieve a list of findings, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>",
+    "ListFindingsV2": "<p>Retrieves a list of findings generated by the specified analyzer.</p> <p>To learn about filter keys that you can use to retrieve a list of findings, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>",
     "ListPolicyGenerations": "<p>Lists all of the policy generations requested in the last seven days.</p>",
     "ListTagsForResource": "<p>Retrieves a list of tags applied to the specified resource.</p>",
     "StartPolicyGeneration": "<p>Starts the policy generation request.</p>",
@@ -32,6 +36,33 @@
     "ValidatePolicy": "<p>Requests the validation of a policy and returns a list of findings. The findings help you identify issues and provide actionable recommendations to resolve the issue and enable you to author functional policies that meet security best practices. </p>"
   },
   "shapes": {
+    "Access": {
+      "base": "<p>Contains information about actions that define permissions to check against a policy.</p>",
+      "refs": {
+        "CheckAccessNotGrantedRequestAccessList$member": null
+      }
+    },
+    "AccessActionsList": {
+      "base": null,
+      "refs": {
+        "Access$actions": "<p>A list of actions for the access permissions.</p>"
+      }
+    },
+    "AccessCheckPolicyDocument": {
+      "base": null,
+      "refs": {
+        "CheckAccessNotGrantedRequest$policyDocument": "<p>The JSON policy document to use as the content for the policy.</p>",
+        "CheckNoNewAccessRequest$newPolicyDocument": "<p>The JSON policy document to use as the content for the updated policy.</p>",
+        "CheckNoNewAccessRequest$existingPolicyDocument": "<p>The JSON policy document to use as the content for the existing policy.</p>"
+      }
+    },
+    "AccessCheckPolicyType": {
+      "base": null,
+      "refs": {
+        "CheckAccessNotGrantedRequest$policyType": "<p>The type of policy. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups.</p> <p>Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy.</p>",
+        "CheckNoNewAccessRequest$policyType": "<p>The type of policy to compare. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups.</p> <p>Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy.</p>"
+      }
+    },
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
@@ -139,11 +170,18 @@
         "AclGrantee$uri": "<p>Used for granting permissions to a predefined group.</p>"
       }
     },
+    "Action": {
+      "base": null,
+      "refs": {
+        "AccessActionsList$member": null
+      }
+    },
     "ActionList": {
       "base": null,
       "refs": {
         "AccessPreviewFinding$action": "<p>The action in the analyzed policy statement that an external principal has permission to perform.</p>",
         "AnalyzedResource$actions": "<p>The actions that an external principal is granted permission to use by the policy that generated the finding.</p>",
+        "ExternalAccessDetails$action": "<p>The action in the analyzed policy statement that an external principal has permission to use.</p>",
         "Finding$action": "<p>The action in the analyzed policy statement that an external principal has permission to use.</p>",
         "FindingSummary$action": "<p>The action in the analyzed policy statement that an external principal has permission to use.</p>"
       }
@@ -178,12 +216,21 @@
         "GetAccessPreviewRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> used to generate the access preview.</p>",
         "GetAnalyzedResourceRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> to retrieve information from.</p>",
         "GetFindingRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> that generated the finding.</p>",
+        "GetFindingV2Request$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> that generated the finding.</p>",
         "ListAccessPreviewFindingsRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> used to generate the access.</p>",
         "ListAccessPreviewsRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> used to generate the access preview.</p>",
         "ListAnalyzedResourcesRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> to retrieve a list of analyzed resources from.</p>",
         "ListFindingsRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> to retrieve findings from.</p>",
+        "ListFindingsV2Request$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> to retrieve findings from.</p>",
         "StartResourceScanRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> to use to scan the policies applied to the specified resource.</p>",
         "UpdateFindingsRequest$analyzerArn": "<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources\">ARN of the analyzer</a> that generated the findings to update.</p>"
+      }
+    },
+    "AnalyzerConfiguration": {
+      "base": "<p>Contains information about the configuration of an unused access analyzer for an Amazon Web Services organization or account.</p>",
+      "refs": {
+        "AnalyzerSummary$configuration": "<p>Specifies whether the analyzer is an external access or unused access analyzer.</p>",
+        "CreateAnalyzerRequest$configuration": "<p>Specifies the configuration of the analyzer. If the analyzer is an unused access analyzer, the specified scope of unused access is used for the configuration. If the analyzer is an external access analyzer, this field is not used.</p>"
       }
     },
     "AnalyzerStatus": {
@@ -229,6 +276,7 @@
         "AccessPreviewFinding$isPublic": "<p>Indicates whether the policy that generated the finding allows public access to the resource.</p>",
         "AnalyzedResource$isPublic": "<p>Indicates whether the policy that generated the finding grants public access to the resource.</p>",
         "Criterion$exists": "<p>An \"exists\" operator to match for the filter used to create the rule. </p>",
+        "ExternalAccessDetails$isPublic": "<p>Specifies whether the external access finding is public.</p>",
         "Finding$isPublic": "<p>Indicates whether the policy that generated the finding allows public access to the resource.</p>",
         "FindingSummary$isPublic": "<p>Indicates whether the finding reports a resource that has a policy that allows public access.</p>",
         "GeneratedPolicyProperties$isComplete": "<p>This value is set to <code>true</code> if the generated policy contains all possible actions for a service that IAM Access Analyzer identified from the CloudTrail trail that you specified, and <code>false</code> otherwise.</p>",
@@ -248,6 +296,44 @@
     "CancelPolicyGenerationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CheckAccessNotGrantedRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CheckAccessNotGrantedRequestAccessList": {
+      "base": null,
+      "refs": {
+        "CheckAccessNotGrantedRequest$access": "<p>An access object containing the permissions that shouldn't be granted by the specified policy.</p>"
+      }
+    },
+    "CheckAccessNotGrantedResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CheckAccessNotGrantedResult": {
+      "base": null,
+      "refs": {
+        "CheckAccessNotGrantedResponse$result": "<p>The result of the check for whether the access is allowed. If the result is <code>PASS</code>, the specified policy doesn't allow any of the specified permissions in the access object. If the result is <code>FAIL</code>, the specified policy might allow some or all of the permissions in the access object.</p>"
+      }
+    },
+    "CheckNoNewAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CheckNoNewAccessResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CheckNoNewAccessResult": {
+      "base": null,
+      "refs": {
+        "CheckNoNewAccessResponse$result": "<p>The result of the check for new access. If the result is <code>PASS</code>, no new access is allowed by the updated policy. If the result is <code>FAIL</code>, the updated policy might allow new access.</p>"
       }
     },
     "CloudTrailArn": {
@@ -273,6 +359,7 @@
       "base": null,
       "refs": {
         "AccessPreviewFinding$condition": "<p>The condition in the analyzed policy statement that resulted in a finding.</p>",
+        "ExternalAccessDetails$condition": "<p>The condition in the analyzed policy statement that resulted in an external access finding.</p>",
         "Finding$condition": "<p>The condition in the analyzed policy statement that resulted in a finding.</p>",
         "FindingSummary$condition": "<p>The condition in the analyzed policy statement that resulted in a finding.</p>"
       }
@@ -402,6 +489,12 @@
         "EfsFileSystemConfiguration$fileSystemPolicy": "<p>The JSON policy definition to apply to the Amazon EFS file system. For more information on the elements that make up a file system policy, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies\">Amazon EFS Resource-based policies</a>.</p>"
       }
     },
+    "ExternalAccessDetails": {
+      "base": "<p>Contains information about an external access finding.</p>",
+      "refs": {
+        "FindingDetails$externalAccessDetails": "<p>The details for an external access analyzer finding.</p>"
+      }
+    },
     "FilterCriteriaMap": {
       "base": null,
       "refs": {
@@ -410,6 +503,7 @@
         "InlineArchiveRule$filter": "<p>The condition and values for a criterion.</p>",
         "ListAccessPreviewFindingsRequest$filter": "<p>Criteria to filter the returned findings.</p>",
         "ListFindingsRequest$filter": "<p>A filter to match for the findings to return.</p>",
+        "ListFindingsV2Request$filter": "<p>A filter to match for the findings to return.</p>",
         "UpdateArchiveRuleRequest$filter": "<p>A filter to match for the rules to update. Only rules that match the filter are updated.</p>"
       }
     },
@@ -425,6 +519,18 @@
         "AccessPreviewFinding$changeType": "<p>Provides context on how the access preview finding compares to existing access identified in IAM Access Analyzer.</p> <ul> <li> <p> <code>New</code> - The finding is for newly-introduced access.</p> </li> <li> <p> <code>Unchanged</code> - The preview finding is an existing finding that would remain unchanged.</p> </li> <li> <p> <code>Changed</code> - The preview finding is an existing finding with a change in status.</p> </li> </ul> <p>For example, a <code>Changed</code> finding with preview status <code>Resolved</code> and existing status <code>Active</code> indicates the existing <code>Active</code> finding would become <code>Resolved</code> as a result of the proposed permissions change.</p>"
       }
     },
+    "FindingDetails": {
+      "base": "<p>Contains information about an external access or unused access finding. Only one parameter can be used in a <code>FindingDetails</code> object.</p>",
+      "refs": {
+        "FindingDetailsList$member": null
+      }
+    },
+    "FindingDetailsList": {
+      "base": null,
+      "refs": {
+        "GetFindingV2Response$findingDetails": "<p>A localized message that explains the finding and provides guidance on how to address it.</p>"
+      }
+    },
     "FindingId": {
       "base": null,
       "refs": {
@@ -432,7 +538,10 @@
         "Finding$id": "<p>The ID of the finding.</p>",
         "FindingIdList$member": null,
         "FindingSummary$id": "<p>The ID of the finding.</p>",
-        "GetFindingRequest$id": "<p>The ID of the finding to retrieve.</p>"
+        "FindingSummaryV2$id": "<p>The ID of the finding.</p>",
+        "GetFindingRequest$id": "<p>The ID of the finding to retrieve.</p>",
+        "GetFindingV2Request$id": "<p>The ID of the finding to retrieve.</p>",
+        "GetFindingV2Response$id": "<p>The ID of the finding to retrieve.</p>"
       }
     },
     "FindingIdList": {
@@ -457,6 +566,7 @@
       "base": null,
       "refs": {
         "AccessPreviewFinding$sources": "<p>The sources of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>",
+        "ExternalAccessDetails$sources": "<p>The sources of the external access finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>",
         "Finding$sources": "<p>The sources of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>",
         "FindingSummary$sources": "<p>The sources of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>"
       }
@@ -474,7 +584,9 @@
         "AccessPreviewFinding$status": "<p>The preview status of the finding. This is what the status of the finding would be after permissions deployment. For example, a <code>Changed</code> finding with preview status <code>Resolved</code> and existing status <code>Active</code> indicates the existing <code>Active</code> finding would become <code>Resolved</code> as a result of the proposed permissions change.</p>",
         "AnalyzedResource$status": "<p>The current status of the finding generated from the analyzed resource.</p>",
         "Finding$status": "<p>The current status of the finding.</p>",
-        "FindingSummary$status": "<p>The status of the finding.</p>"
+        "FindingSummary$status": "<p>The status of the finding.</p>",
+        "FindingSummaryV2$status": "<p>The status of the finding.</p>",
+        "GetFindingV2Response$status": "<p>The status of the finding.</p>"
       }
     },
     "FindingStatusUpdate": {
@@ -489,10 +601,29 @@
         "FindingsList$member": null
       }
     },
+    "FindingSummaryV2": {
+      "base": "<p>Contains information about a finding.</p>",
+      "refs": {
+        "FindingsListV2$member": null
+      }
+    },
+    "FindingType": {
+      "base": null,
+      "refs": {
+        "FindingSummaryV2$findingType": "<p>The type of the external access or unused access finding.</p>",
+        "GetFindingV2Response$findingType": "<p>The type of the finding. For external access analyzers, the type is <code>ExternalAccess</code>. For unused access analyzers, the type can be <code>UnusedIAMRole</code>, <code>UnusedIAMUserAccessKey</code>, <code>UnusedIAMUserPassword</code>, or <code>UnusedPermission</code>.</p>"
+      }
+    },
     "FindingsList": {
       "base": null,
       "refs": {
         "ListFindingsResponse$findings": "<p>A list of findings retrieved from the analyzer that match the filter criteria specified, if any.</p>"
+      }
+    },
+    "FindingsListV2": {
+      "base": null,
+      "refs": {
+        "ListFindingsV2Response$findings": "<p>A list of findings retrieved from the analyzer that match the filter criteria specified, if any.</p>"
       }
     },
     "GeneratedPolicy": {
@@ -569,6 +700,16 @@
       "refs": {
       }
     },
+    "GetFindingV2Request": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFindingV2Response": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetGeneratedPolicyRequest": {
       "base": null,
       "refs": {
@@ -612,6 +753,7 @@
     "Integer": {
       "base": null,
       "refs": {
+        "GetFindingV2Request$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The seconds to wait to retry.</p>",
         "ListAccessPreviewFindingsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "ListAccessPreviewsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
@@ -619,13 +761,16 @@
         "ListAnalyzersRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "ListArchiveRulesRequest$maxResults": "<p>The maximum number of results to return in the request.</p>",
         "ListFindingsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
+        "ListFindingsV2Request$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "PathElement$index": "<p>Refers to an index in a JSON array.</p>",
         "Position$line": "<p>The line of the position, starting from 1.</p>",
         "Position$column": "<p>The column of the position, starting from 0.</p>",
         "Position$offset": "<p>The offset within the policy that corresponds to the position, starting from 0.</p>",
+        "ReasonSummary$statementIndex": "<p>The index number of the reason statement.</p>",
         "Substring$start": "<p>The start index of the substring, starting from 0.</p>",
         "Substring$length": "<p>The length of the substring.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The seconds to wait to retry.</p>",
+        "UnusedAccessConfiguration$unusedAccessAge": "<p>The specified access age in days for which to generate findings for unused access. For example, if you specify 90 days, the analyzer will generate findings for IAM entities within the accounts of the selected organization for any access that hasn't been used in 90 or more days since the analyzer's last scan. You can choose a value between 1 and 180 days.</p>",
         "ValidatePolicyRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
       }
     },
@@ -638,6 +783,11 @@
       "base": "<p>This configuration sets the network origin for the Amazon S3 access point or multi-region access point to <code>Internet</code>.</p>",
       "refs": {
         "NetworkOriginConfiguration$internetConfiguration": "<p>The configuration for the Amazon S3 access point or multi-region access point with an <code>Internet</code> origin.</p>"
+      }
+    },
+    "InvalidParameterException": {
+      "base": "<p>The specified parameter is invalid.</p>",
+      "refs": {
       }
     },
     "IssueCode": {
@@ -820,6 +970,16 @@
       "refs": {
       }
     },
+    "ListFindingsV2Request": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFindingsV2Response": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListPolicyGenerationsRequest": {
       "base": null,
       "refs": {
@@ -942,7 +1102,7 @@
     "PolicyType": {
       "base": null,
       "refs": {
-        "ValidatePolicyRequest$policyType": "<p>The type of policy to validate. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. They also include service-control policies (SCPs) that are attached to an Amazon Web Services organization, organizational unit (OU), or an account.</p> <p>Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy. </p>"
+        "ValidatePolicyRequest$policyType": "<p>The type of policy to validate. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups.</p> <p>Resource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy. </p> <p>Service control policies (SCPs) are a type of organization policy attached to an Amazon Web Services organization, organizational unit (OU), or an account.</p>"
       }
     },
     "Position": {
@@ -965,7 +1125,8 @@
       "base": null,
       "refs": {
         "AccessPreviewFinding$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>",
-        "Finding$principal": "<p>The external principal that access to a resource within the zone of trust.</p>",
+        "ExternalAccessDetails$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>",
+        "Finding$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>",
         "FindingSummary$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>"
       }
     },
@@ -1059,6 +1220,19 @@
         "StatusReason$code": "<p>The reason code for the current status of the analyzer.</p>"
       }
     },
+    "ReasonSummary": {
+      "base": "<p>Contains information about the reasoning why a check for access passed or failed.</p>",
+      "refs": {
+        "ReasonSummaryList$member": null
+      }
+    },
+    "ReasonSummaryList": {
+      "base": null,
+      "refs": {
+        "CheckAccessNotGrantedResponse$reasons": "<p>A description of the reasoning of the result.</p>",
+        "CheckNoNewAccessResponse$reasons": "<p>A description of the reasoning of the result.</p>"
+      }
+    },
     "RegionList": {
       "base": null,
       "refs": {
@@ -1089,6 +1263,8 @@
         "AnalyzedResourceSummary$resourceType": "<p>The type of resource that was analyzed.</p>",
         "Finding$resourceType": "<p>The type of the resource identified in the finding.</p>",
         "FindingSummary$resourceType": "<p>The type of the resource that the external principal has access to.</p>",
+        "FindingSummaryV2$resourceType": "<p>The type of the resource that the external principal has access to.</p>",
+        "GetFindingV2Response$resourceType": "<p>The type of the resource identified in the finding.</p>",
         "ListAnalyzedResourcesRequest$resourceType": "<p>The type of resource.</p>"
       }
     },
@@ -1191,7 +1367,8 @@
     "SortCriteria": {
       "base": "<p>The criteria used to sort.</p>",
       "refs": {
-        "ListFindingsRequest$sort": "<p>The sort order for the findings returned.</p>"
+        "ListFindingsRequest$sort": "<p>The sort order for the findings returned.</p>",
+        "ListFindingsV2Request$sort": null
       }
     },
     "Span": {
@@ -1246,6 +1423,8 @@
         "AnalyzedResourceSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "AnalyzerSummary$lastResourceAnalyzed": "<p>The resource that was most recently analyzed by the analyzer.</p>",
         "ApplyArchiveRuleRequest$clientToken": "<p>A client token.</p>",
+        "CheckAccessNotGrantedResponse$message": "<p>The message indicating whether the specified access is allowed.</p>",
+        "CheckNoNewAccessResponse$message": "<p>The message indicating whether the updated policy allows new access.</p>",
         "ConditionKeyMap$key": null,
         "ConditionKeyMap$value": null,
         "ConflictException$message": null,
@@ -1265,14 +1444,23 @@
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
         "FindingSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
+        "FindingSummaryV2$error": "<p>The error that resulted in an Error finding.</p>",
+        "FindingSummaryV2$resource": "<p>The resource that the external principal has access to.</p>",
+        "FindingSummaryV2$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "GeneratedPolicy$policy": "<p>The text to use as the content for the new policy. The policy is created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> action.</p>",
+        "GetFindingV2Response$error": "<p>An error.</p>",
+        "GetFindingV2Response$resource": "<p>The resource that generated the finding.</p>",
+        "GetFindingV2Response$resourceOwnerAccount": "<p>Tye Amazon Web Services account ID that owns the resource.</p>",
         "InternalServerException$message": null,
+        "InvalidParameterException$message": null,
         "JobError$message": "<p>Specific information about the error. For example, which service quota was exceeded or which resource was not found.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource to retrieve tags from.</p>",
         "PathElement$key": "<p>Refers to a key in a JSON object.</p>",
         "PathElement$value": "<p>Refers to the value associated with a given key in a JSON object.</p>",
         "PrincipalMap$key": null,
         "PrincipalMap$value": null,
+        "ReasonSummary$description": "<p>A description of the reasoning of a result of checking for access.</p>",
+        "ReasonSummary$statementId": "<p>The identifier for the reason statement.</p>",
         "RegionList$member": null,
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p>The ID of the resource.</p>",
@@ -1289,7 +1477,11 @@
         "TagsMap$key": null,
         "TagsMap$value": null,
         "ThrottlingException$message": null,
+        "UnprocessableEntityException$message": null,
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource to remove the tag from.</p>",
+        "UnusedAction$action": "<p>The action for which the unused access finding was generated.</p>",
+        "UnusedIamUserAccessKeyDetails$accessKeyId": "<p>The ID of the access key for which the unused access finding was generated.</p>",
+        "UnusedPermissionDetails$serviceNamespace": "<p>The namespace of the Amazon Web Services service that contains the unused actions.</p>",
         "UpdateArchiveRuleRequest$clientToken": "<p>A client token.</p>",
         "UpdateFindingsRequest$clientToken": "<p>A client token.</p>",
         "ValidatePolicyFinding$findingDetails": "<p>A localized message that explains the finding and provides guidance on how to address it.</p>",
@@ -1325,7 +1517,7 @@
       "base": null,
       "refs": {
         "AnalyzerSummary$tags": "<p>The tags added to the analyzer.</p>",
-        "CreateAnalyzerRequest$tags": "<p>The tags to apply to the analyzer.</p>",
+        "CreateAnalyzerRequest$tags": "<p>An array of key-value pairs to apply to the analyzer.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags that are applied to the specified resource.</p>",
         "TagResourceRequest$tags": "<p>The tags to add to the resource.</p>"
       }
@@ -1358,15 +1550,28 @@
         "FindingSummary$createdAt": "<p>The time at which the finding was created.</p>",
         "FindingSummary$analyzedAt": "<p>The time at which the resource-based policy that generated the finding was analyzed.</p>",
         "FindingSummary$updatedAt": "<p>The time at which the finding was most recently updated.</p>",
+        "FindingSummaryV2$analyzedAt": "<p>The time at which the resource-based policy or IAM entity that generated the finding was analyzed.</p>",
+        "FindingSummaryV2$createdAt": "<p>The time at which the finding was created.</p>",
+        "FindingSummaryV2$updatedAt": "<p>The time at which the finding was most recently updated.</p>",
+        "GetFindingV2Response$analyzedAt": "<p>The time at which the resource-based policy or IAM entity that generated the finding was analyzed.</p>",
+        "GetFindingV2Response$createdAt": "<p>The time at which the finding was created.</p>",
+        "GetFindingV2Response$updatedAt": "<p>The time at which the finding was updated.</p>",
         "JobDetails$startedOn": "<p>A timestamp of when the job was started.</p>",
         "JobDetails$completedOn": "<p>A timestamp of when the job was completed.</p>",
         "PolicyGeneration$startedOn": "<p>A timestamp of when the policy generation started.</p>",
-        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>"
+        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>",
+        "UnusedAction$lastAccessed": "<p>The time at which the action was last accessed.</p>",
+        "UnusedIamRoleDetails$lastAccessed": "<p>The time at which the role was last accessed.</p>",
+        "UnusedIamUserAccessKeyDetails$lastAccessed": "<p>The time at which the access key was last accessed.</p>",
+        "UnusedIamUserPasswordDetails$lastAccessed": "<p>The time at which the password was last accessed.</p>",
+        "UnusedPermissionDetails$lastAccessed": "<p>The time at which the permission last accessed.</p>"
       }
     },
     "Token": {
       "base": null,
       "refs": {
+        "GetFindingV2Request$nextToken": "<p>A token used for pagination of results returned.</p>",
+        "GetFindingV2Response$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListAccessPreviewFindingsRequest$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListAccessPreviewFindingsResponse$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListAccessPreviewsRequest$nextToken": "<p>A token used for pagination of results returned.</p>",
@@ -1379,6 +1584,8 @@
         "ListArchiveRulesResponse$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListFindingsRequest$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListFindingsResponse$nextToken": "<p>A token used for pagination of results returned.</p>",
+        "ListFindingsV2Request$nextToken": "<p>A token used for pagination of results returned.</p>",
+        "ListFindingsV2Response$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListPolicyGenerationsRequest$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ListPolicyGenerationsResponse$nextToken": "<p>A token used for pagination of results returned.</p>",
         "ValidatePolicyRequest$nextToken": "<p>A token used for pagination of results returned.</p>",
@@ -1413,8 +1620,13 @@
       "base": null,
       "refs": {
         "AnalyzerSummary$type": "<p>The type of analyzer, which corresponds to the zone of trust chosen for the analyzer.</p>",
-        "CreateAnalyzerRequest$type": "<p>The type of analyzer to create. Only ACCOUNT and ORGANIZATION analyzers are supported. You can create only one analyzer per account per Region. You can create up to 5 analyzers per organization per Region.</p>",
+        "CreateAnalyzerRequest$type": "<p>The type of analyzer to create. Only <code>ACCOUNT</code>, <code>ORGANIZATION</code>, <code>ACCOUNT_UNUSED_ACCESS</code>, and <code>ORGANIZTAION_UNUSED_ACCESS</code> analyzers are supported. You can create only one analyzer per account per Region. You can create up to 5 analyzers per organization per Region.</p>",
         "ListAnalyzersRequest$type": "<p>The type of analyzer.</p>"
+      }
+    },
+    "UnprocessableEntityException": {
+      "base": "<p>The specified entity could not be processed.</p>",
+      "refs": {
       }
     },
     "UntagResourceRequest": {
@@ -1425,6 +1637,48 @@
     "UntagResourceResponse": {
       "base": "<p>The response to the request.</p>",
       "refs": {
+      }
+    },
+    "UnusedAccessConfiguration": {
+      "base": "<p>Contains information about an unused access analyzer.</p>",
+      "refs": {
+        "AnalyzerConfiguration$unusedAccess": "<p>Specifies the configuration of an unused access analyzer for an Amazon Web Services organization or account. External access analyzers do not support any configuration.</p>"
+      }
+    },
+    "UnusedAction": {
+      "base": "<p>Contains information about an unused access finding for an action. IAM Access Analyzer charges for unused access analysis based on the number of IAM roles and users analyzed per month. For more details on pricing, see <a href=\"https://aws.amazon.com/iam/access-analyzer/pricing\">IAM Access Analyzer pricing</a>.</p>",
+      "refs": {
+        "UnusedActionList$member": null
+      }
+    },
+    "UnusedActionList": {
+      "base": null,
+      "refs": {
+        "UnusedPermissionDetails$actions": "<p>A list of unused actions for which the unused access finding was generated.</p>"
+      }
+    },
+    "UnusedIamRoleDetails": {
+      "base": "<p>Contains information about an unused access finding for an IAM role. IAM Access Analyzer charges for unused access analysis based on the number of IAM roles and users analyzed per month. For more details on pricing, see <a href=\"https://aws.amazon.com/iam/access-analyzer/pricing\">IAM Access Analyzer pricing</a>.</p>",
+      "refs": {
+        "FindingDetails$unusedIamRoleDetails": "<p>The details for an unused access analyzer finding with an unused IAM role finding type.</p>"
+      }
+    },
+    "UnusedIamUserAccessKeyDetails": {
+      "base": "<p>Contains information about an unused access finding for an IAM user access key. IAM Access Analyzer charges for unused access analysis based on the number of IAM roles and users analyzed per month. For more details on pricing, see <a href=\"https://aws.amazon.com/iam/access-analyzer/pricing\">IAM Access Analyzer pricing</a>.</p>",
+      "refs": {
+        "FindingDetails$unusedIamUserAccessKeyDetails": "<p>The details for an unused access analyzer finding with an unused IAM user access key finding type.</p>"
+      }
+    },
+    "UnusedIamUserPasswordDetails": {
+      "base": "<p>Contains information about an unused access finding for an IAM user password. IAM Access Analyzer charges for unused access analysis based on the number of IAM roles and users analyzed per month. For more details on pricing, see <a href=\"https://aws.amazon.com/iam/access-analyzer/pricing\">IAM Access Analyzer pricing</a>.</p>",
+      "refs": {
+        "FindingDetails$unusedIamUserPasswordDetails": "<p>The details for an unused access analyzer finding with an unused IAM user password finding type.</p>"
+      }
+    },
+    "UnusedPermissionDetails": {
+      "base": "<p>Contains information about an unused access finding for a permission. IAM Access Analyzer charges for unused access analysis based on the number of IAM roles and users analyzed per month. For more details on pricing, see <a href=\"https://aws.amazon.com/iam/access-analyzer/pricing\">IAM Access Analyzer pricing</a>.</p>",
+      "refs": {
+        "FindingDetails$unusedPermissionDetails": "<p>The details for an unused access analyzer finding with an unused permission finding type.</p>"
       }
     },
     "UpdateArchiveRuleRequest": {

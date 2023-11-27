@@ -767,6 +767,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetSecurityControlDefinition":{
+      "name":"GetSecurityControlDefinition",
+      "http":{
+        "method":"GET",
+        "requestUri":"/securityControl/definition"
+      },
+      "input":{"shape":"GetSecurityControlDefinitionRequest"},
+      "output":{"shape":"GetSecurityControlDefinitionResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "InviteMembers":{
       "name":"InviteMembers",
       "http":{
@@ -1026,6 +1042,23 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "UpdateSecurityControl":{
+      "name":"UpdateSecurityControl",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/securityControl/update"
+      },
+      "input":{"shape":"UpdateSecurityControlRequest"},
+      "output":{"shape":"UpdateSecurityControlResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "UpdateSecurityHubConfiguration":{
       "name":"UpdateSecurityHubConfiguration",
       "http":{
@@ -1213,6 +1246,10 @@
       "type":"integer",
       "max":10,
       "min":1
+    },
+    "AlphaNumericNonEmptyString":{
+      "type":"string",
+      "pattern":"^[-_ a-zA-Z0-9]+$"
     },
     "ArnList":{
       "type":"list",
@@ -6350,7 +6387,11 @@
         "FindingProviderFieldsTypes":{"shape":"StringFilterList"},
         "Sample":{"shape":"BooleanFilterList"},
         "ComplianceSecurityControlId":{"shape":"StringFilterList"},
-        "ComplianceAssociatedStandardsId":{"shape":"StringFilterList"}
+        "ComplianceAssociatedStandardsId":{"shape":"StringFilterList"},
+        "VulnerabilitiesExploitAvailable":{"shape":"StringFilterList"},
+        "VulnerabilitiesFixAvailable":{"shape":"StringFilterList"},
+        "ComplianceSecurityControlParametersName":{"shape":"StringFilterList"},
+        "ComplianceSecurityControlParametersValue":{"shape":"StringFilterList"}
       }
     },
     "AwsSecurityFindingIdentifier":{
@@ -7006,6 +7047,12 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BooleanConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"Boolean"}
+      }
+    },
     "BooleanFilter":{
       "type":"structure",
       "members":{
@@ -7093,7 +7140,8 @@
         "RelatedRequirements":{"shape":"RelatedRequirementsList"},
         "StatusReasons":{"shape":"StatusReasonsList"},
         "SecurityControlId":{"shape":"NonEmptyString"},
-        "AssociatedStandards":{"shape":"AssociatedStandardsList"}
+        "AssociatedStandards":{"shape":"AssociatedStandardsList"},
+        "SecurityControlParameters":{"shape":"SecurityControlParametersList"}
       }
     },
     "ComplianceStatus":{
@@ -7104,6 +7152,20 @@
         "FAILED",
         "NOT_AVAILABLE"
       ]
+    },
+    "ConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "Integer":{"shape":"IntegerConfigurationOptions"},
+        "IntegerList":{"shape":"IntegerListConfigurationOptions"},
+        "Double":{"shape":"DoubleConfigurationOptions"},
+        "String":{"shape":"StringConfigurationOptions"},
+        "StringList":{"shape":"StringListConfigurationOptions"},
+        "Boolean":{"shape":"BooleanConfigurationOptions"},
+        "Enum":{"shape":"EnumConfigurationOptions"},
+        "EnumList":{"shape":"EnumListConfigurationOptions"}
+      },
+      "union":true
     },
     "ContainerDetails":{
       "type":"structure",
@@ -7258,6 +7320,10 @@
         "Detections":{"shape":"CustomDataIdentifiersDetectionsList"},
         "TotalCount":{"shape":"Long"}
       }
+    },
+    "CustomizableProperties":{
+      "type":"list",
+      "member":{"shape":"SecurityControlProperty"}
     },
     "Cvss":{
       "type":"structure",
@@ -7599,6 +7665,14 @@
       }
     },
     "Double":{"type":"double"},
+    "DoubleConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"Double"},
+        "Min":{"shape":"Double"},
+        "Max":{"shape":"Double"}
+      }
+    },
     "EnableImportFindingsForProductRequest":{
       "type":"structure",
       "required":["ProductArn"],
@@ -7635,6 +7709,21 @@
     "EnableSecurityHubResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "EnumConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"NonEmptyString"},
+        "AllowedValues":{"shape":"StringList"}
+      }
+    },
+    "EnumListConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"StringList"},
+        "MaxItems":{"shape":"Integer"},
+        "AllowedValues":{"shape":"StringList"}
       }
     },
     "FieldMap":{
@@ -7931,6 +8020,24 @@
         "UnprocessedAccounts":{"shape":"ResultList"}
       }
     },
+    "GetSecurityControlDefinitionRequest":{
+      "type":"structure",
+      "required":["SecurityControlId"],
+      "members":{
+        "SecurityControlId":{
+          "shape":"NonEmptyString",
+          "location":"querystring",
+          "locationName":"SecurityControlId"
+        }
+      }
+    },
+    "GetSecurityControlDefinitionResponse":{
+      "type":"structure",
+      "required":["SecurityControlDefinition"],
+      "members":{
+        "SecurityControlDefinition":{"shape":"SecurityControlDefinition"}
+      }
+    },
     "IcmpTypeCode":{
       "type":"structure",
       "members":{
@@ -8003,9 +8110,26 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegerConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"Integer"},
+        "Min":{"shape":"Integer"},
+        "Max":{"shape":"Integer"}
+      }
+    },
     "IntegerList":{
       "type":"list",
       "member":{"shape":"Integer"}
+    },
+    "IntegerListConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"IntegerList"},
+        "Min":{"shape":"Integer"},
+        "Max":{"shape":"Integer"},
+        "MaxItems":{"shape":"Integer"}
+      }
     },
     "IntegrationType":{
       "type":"string",
@@ -8530,7 +8654,9 @@
       "members":{
         "Gte":{"shape":"Double"},
         "Lte":{"shape":"Double"},
-        "Eq":{"shape":"Double"}
+        "Eq":{"shape":"Double"},
+        "Gt":{"shape":"Double"},
+        "Lt":{"shape":"Double"}
       }
     },
     "NumberFilterList":{
@@ -8558,6 +8684,56 @@
     "Pages":{
       "type":"list",
       "member":{"shape":"Page"}
+    },
+    "ParameterConfiguration":{
+      "type":"structure",
+      "required":["ValueType"],
+      "members":{
+        "ValueType":{"shape":"ParameterValueType"},
+        "Value":{"shape":"ParameterValue"}
+      }
+    },
+    "ParameterDefinition":{
+      "type":"structure",
+      "required":[
+        "Description",
+        "ConfigurationOptions"
+      ],
+      "members":{
+        "Description":{"shape":"NonEmptyString"},
+        "ConfigurationOptions":{"shape":"ConfigurationOptions"}
+      }
+    },
+    "ParameterDefinitions":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"ParameterDefinition"}
+    },
+    "ParameterValue":{
+      "type":"structure",
+      "members":{
+        "Integer":{"shape":"Integer"},
+        "IntegerList":{"shape":"IntegerList"},
+        "Double":{"shape":"Double"},
+        "String":{"shape":"NonEmptyString"},
+        "StringList":{"shape":"StringList"},
+        "Boolean":{"shape":"Boolean"},
+        "Enum":{"shape":"NonEmptyString"},
+        "EnumList":{"shape":"StringList"}
+      },
+      "union":true
+    },
+    "ParameterValueType":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "CUSTOM"
+      ]
+    },
+    "Parameters":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"ParameterConfiguration"}
     },
     "Partition":{
       "type":"string",
@@ -8871,6 +9047,15 @@
         "AwsMskCluster":{"shape":"AwsMskClusterDetails"}
       }
     },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"NonEmptyString"},
+        "Code":{"shape":"NonEmptyString"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "ResourceList":{
       "type":"list",
       "member":{"shape":"Resource"}
@@ -9135,7 +9320,10 @@
         "Description":{"shape":"NonEmptyString"},
         "RemediationUrl":{"shape":"NonEmptyString"},
         "SeverityRating":{"shape":"SeverityRating"},
-        "SecurityControlStatus":{"shape":"ControlStatus"}
+        "SecurityControlStatus":{"shape":"ControlStatus"},
+        "UpdateStatus":{"shape":"UpdateStatus"},
+        "Parameters":{"shape":"Parameters"},
+        "LastUpdateReason":{"shape":"AlphaNumericNonEmptyString"}
       }
     },
     "SecurityControlDefinition":{
@@ -9154,12 +9342,29 @@
         "Description":{"shape":"NonEmptyString"},
         "RemediationUrl":{"shape":"NonEmptyString"},
         "SeverityRating":{"shape":"SeverityRating"},
-        "CurrentRegionAvailability":{"shape":"RegionAvailabilityStatus"}
+        "CurrentRegionAvailability":{"shape":"RegionAvailabilityStatus"},
+        "CustomizableProperties":{"shape":"CustomizableProperties"},
+        "ParameterDefinitions":{"shape":"ParameterDefinitions"}
       }
     },
     "SecurityControlDefinitions":{
       "type":"list",
       "member":{"shape":"SecurityControlDefinition"}
+    },
+    "SecurityControlParameter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Value":{"shape":"TypeList"}
+      }
+    },
+    "SecurityControlParametersList":{
+      "type":"list",
+      "member":{"shape":"SecurityControlParameter"}
+    },
+    "SecurityControlProperty":{
+      "type":"string",
+      "enum":["Parameters"]
     },
     "SecurityControls":{
       "type":"list",
@@ -9497,6 +9702,14 @@
       "type":"list",
       "member":{"shape":"StatusReason"}
     },
+    "StringConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"NonEmptyString"},
+        "Re2Expression":{"shape":"NonEmptyString"},
+        "ExpressionDescription":{"shape":"NonEmptyString"}
+      }
+    },
     "StringFilter":{
       "type":"structure",
       "members":{
@@ -9522,6 +9735,15 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}
+    },
+    "StringListConfigurationOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"StringList"},
+        "Re2Expression":{"shape":"NonEmptyString"},
+        "MaxItems":{"shape":"Integer"},
+        "ExpressionDescription":{"shape":"NonEmptyString"}
+      }
     },
     "TagKey":{
       "type":"string",
@@ -9827,6 +10049,23 @@
       "members":{
       }
     },
+    "UpdateSecurityControlRequest":{
+      "type":"structure",
+      "required":[
+        "SecurityControlId",
+        "Parameters"
+      ],
+      "members":{
+        "SecurityControlId":{"shape":"NonEmptyString"},
+        "Parameters":{"shape":"Parameters"},
+        "LastUpdateReason":{"shape":"AlphaNumericNonEmptyString"}
+      }
+    },
+    "UpdateSecurityControlResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateSecurityHubConfigurationRequest":{
       "type":"structure",
       "members":{
@@ -9856,6 +10095,13 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdateStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "UPDATING"
+      ]
     },
     "VerificationState":{
       "type":"string",

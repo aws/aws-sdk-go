@@ -174,7 +174,7 @@
     "ConfirmationState": {
       "base": null,
       "refs": {
-        "Intent$confirmationState": "<p>Contains information about whether fulfillment of the intent has been confirmed.</p>"
+        "Intent$confirmationState": "<p>Indicates whether the intent has been <code>Confirmed</code>, <code>Denied</code>, or <code>None</code> if the confirmation stage has not yet been reached.</p>"
       }
     },
     "ConflictException": {
@@ -226,7 +226,7 @@
     "DialogActionType": {
       "base": null,
       "refs": {
-        "DialogAction$type": "<p>The next action that the bot should take in its interaction with the user. The possible values are:</p> <ul> <li> <p> <code>Close</code> - Indicates that there will not be a response from the user. For example, the statement \"Your order has been placed\" does not require a response.</p> </li> <li> <p> <code>ConfirmIntent</code> - The next action is asking the user if the intent is complete and ready to be fulfilled. This is a yes/no question such as \"Place the order?\"</p> </li> <li> <p> <code>Delegate</code> - The next action is determined by Amazon Lex V2.</p> </li> <li> <p> <code>ElicitIntent</code> - The next action is to elicit an intent from the user.</p> </li> <li> <p> <code>ElicitSlot</code> - The next action is to elicit a slot value from the user.</p> </li> </ul>"
+        "DialogAction$type": "<p>The next action that the bot should take in its interaction with the user. The following values are possible:</p> <ul> <li> <p> <code>Close</code> – Indicates that there will not be a response from the user. For example, the statement \"Your order has been placed\" does not require a response.</p> </li> <li> <p> <code>ConfirmIntent</code> – The next action is asking the user if the intent is complete and ready to be fulfilled. This is a yes/no question such as \"Place the order?\"</p> </li> <li> <p> <code>Delegate</code> – The next action is determined by Amazon Lex V2.</p> </li> <li> <p> <code>ElicitIntent</code> – The next action is to elicit an intent from the user.</p> </li> <li> <p> <code>ElicitSlot</code> – The next action is to elicit a slot value from the user.</p> </li> </ul>"
       }
     },
     "DisconnectionEvent": {
@@ -306,7 +306,7 @@
     "InputMode": {
       "base": null,
       "refs": {
-        "IntentResultEvent$inputMode": "<p>Indicates whether the input to the operation was text or speech.</p>"
+        "IntentResultEvent$inputMode": "<p>Indicates whether the input to the operation was text, speech, or from a touch-tone keypad.</p>"
       }
     },
     "Intent": {
@@ -325,7 +325,7 @@
     "IntentState": {
       "base": null,
       "refs": {
-        "Intent$state": "<p>Contains fulfillment information for the intent. </p>"
+        "Intent$state": "<p>Indicates the fulfillment state for the intent. The meanings of each value are as follows:</p> <ul> <li> <p> <code>Failed</code> – The bot failed to fulfill the intent.</p> </li> <li> <p> <code>Fulfilled</code> – The bot has completed fulfillment of the intent.</p> </li> <li> <p> <code>FulfillmentInProgress</code> – The bot is in the middle of fulfilling the intent.</p> </li> <li> <p> <code>InProgress</code> – The bot is in the middle of eliciting the slot values that are necessary to fulfill the intent.</p> </li> <li> <p> <code>ReadyForFulfillment</code> – The bot has elicited all the slot values for the intent and is ready to fulfill the intent.</p> </li> <li> <p> <code>Waiting</code> – The bot is waiting for a response from the user (limited to streaming conversations).</p> </li> </ul>"
       }
     },
     "InternalServerException": {
@@ -335,9 +335,15 @@
       }
     },
     "Interpretation": {
-      "base": "<p>An intent that Amazon Lex V2 determined might satisfy the user's utterance. The intents are ordered by the confidence score. </p>",
+      "base": "<p>An object containing information about an intent that Amazon Lex V2 determined might satisfy the user's utterance. The intents are ordered by the confidence score. </p>",
       "refs": {
         "Interpretations$member": null
+      }
+    },
+    "InterpretationSource": {
+      "base": null,
+      "refs": {
+        "Interpretation$interpretationSource": "<p>Specifies the service that interpreted the input.</p>"
       }
     },
     "Interpretations": {
@@ -403,11 +409,11 @@
         "PutSessionRequest$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech depending on the value of this parameter. </p> <ul> <li> <p>If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> </ul>",
         "PutSessionResponse$contentType": "<p>The type of response. Same as the type specified in the <code>responseContentType</code> field in the request.</p>",
         "PutSessionResponse$messages": "<p>A list of messages that were last sent to the user. The messages are ordered based on how you return the messages from you Lambda function or the order that the messages are defined in the bot.</p>",
-        "PutSessionResponse$sessionState": "<p>Represents the current state of the dialog between the user and the bot.</p> <p>Use this to determine the progress of the conversation and what the next action may be.</p>",
-        "PutSessionResponse$requestAttributes": "<p>Request-specific information passed between the client application and Amazon Lex V2. These are the same as the <code>requestAttribute</code> parameter in the call to the <code>PutSession</code> operation.</p>",
+        "PutSessionResponse$sessionState": "<p>A base-64-encoded gzipped field that represents the current state of the dialog between the user and the bot. Use this to determine the progress of the conversation and what the next action may be.</p>",
+        "PutSessionResponse$requestAttributes": "<p>A base-64-encoded gzipped field that provides request-specific information passed between the client application and Amazon Lex V2. These are the same as the <code>requestAttribute</code> parameter in the call to the <code>PutSession</code> operation.</p>",
         "RecognizeUtteranceRequest$requestContentType": "<p>Indicates the format for audio input or that the content is text. The header must start with one of the following prefixes:</p> <ul> <li> <p>PCM format, audio data must be in little-endian byte order.</p> <ul> <li> <p>audio/l16; rate=16000; channels=1</p> </li> <li> <p>audio/x-l16; sample-rate=16000; channel-count=1</p> </li> <li> <p>audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false</p> </li> </ul> </li> <li> <p>Opus format</p> <ul> <li> <p>audio/x-cbr-opus-with-preamble;preamble-size=0;bit-rate=256000;frame-size-milliseconds=4</p> </li> </ul> </li> <li> <p>Text format</p> <ul> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
         "RecognizeUtteranceRequest$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech based on the <code>responseContentType</code> value.</p> <ul> <li> <p>If the value is <code>text/plain;charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex V2 returns speech in the response. Amazon Lex V2 uses Amazon Polly to generate the speech using the configuration that you specified in the <code>responseContentType</code> parameter. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex V2 returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech returned is <code>audio/pcm</code> at 16 KHz in 16-bit, little-endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p>audio/mpeg</p> </li> <li> <p>audio/ogg</p> </li> <li> <p>audio/pcm (16 KHz)</p> </li> <li> <p>audio/* (defaults to mpeg)</p> </li> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
-        "RecognizeUtteranceResponse$inputMode": "<p>Indicates whether the input mode to the operation was text or speech. </p>",
+        "RecognizeUtteranceResponse$inputMode": "<p>Indicates whether the input mode to the operation was text, speech, or from a touch-tone keypad. </p>",
         "RecognizeUtteranceResponse$contentType": "<p>Content type as specified in the <code>responseContentType</code> in the request.</p>",
         "RecognizeUtteranceResponse$messages": "<p>A list of messages that were last sent to the user. The messages are ordered based on the order that you returned the messages from your Lambda function or the order that the messages are defined in the bot.</p> <p>The <code>messages</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
         "RecognizeUtteranceResponse$interpretations": "<p>A list of intents that Amazon Lex V2 determined might satisfy the user's utterance.</p> <p>Each interpretation includes the intent, a score that indicates how confident Amazon Lex V2 is that the interpretation is the correct one, and an optional sentiment response that indicates the sentiment expressed in the utterance.</p> <p>The <code>interpretations</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
@@ -419,8 +425,8 @@
         "Slots$key": null,
         "StringList$member": null,
         "StringMap$key": null,
-        "Value$originalValue": "<p>The text of the utterance from the user that was entered for the slot.</p>",
-        "Value$interpretedValue": "<p>The value that Amazon Lex V2 determines for the slot. The actual value depends on the setting of the value selection strategy for the bot. You can choose to use the value entered by the user, or you can have Amazon Lex V2 choose the first value in the <code>resolvedValues</code> list.</p>"
+        "Value$originalValue": "<p>The part of the user's response to the slot elicitation that Amazon Lex V2 determines is relevant to the slot value.</p>",
+        "Value$interpretedValue": "<p>The value that Amazon Lex V2 determines for the slot, given the user input. The actual value depends on the setting of the value selection strategy for the bot. You can choose to use the value entered by the user, or you can have Amazon Lex V2 choose the first value in the <code>resolvedValues</code> list.</p>"
       }
     },
     "ParameterName": {
@@ -645,7 +651,7 @@
     "StringList": {
       "base": null,
       "refs": {
-        "Value$resolvedValues": "<p>A list of additional values that have been recognized for the slot.</p>"
+        "Value$resolvedValues": "<p>A list of values that Amazon Lex V2 determines are possible resolutions for the user input. The first value matches the <code>interpretedValue</code>.</p>"
       }
     },
     "StringMap": {
@@ -662,7 +668,7 @@
     "StyleType": {
       "base": null,
       "refs": {
-        "DialogAction$slotElicitationStyle": "<p>Configures the slot to use spell-by-letter or spell-by-word style. When you use a style on a slot, users can spell out their input to make it clear to your bot.</p> <ul> <li> <p>Spell by letter - \"b\" \"o\" \"b\"</p> </li> <li> <p>Spell by word - \"b as in boy\" \"o as in oscar\" \"b as in boy\"</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-spelling.html\"> Using spelling to enter slot values </a>.</p>"
+        "DialogAction$slotElicitationStyle": "<p>Configures the slot to use spell-by-letter or spell-by-word style. When you use a style on a slot, users can spell out their input to make it clear to your bot.</p> <ul> <li> <p>Spell by letter - \"b\" \"o\" \"b\"</p> </li> <li> <p>Spell by word - \"b as in boy\" \"o as in oscar\" \"b as in boy\"</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/spelling-styles.html\"> Using spelling to enter slot values </a>.</p>"
       }
     },
     "Text": {
@@ -705,7 +711,7 @@
       }
     },
     "Value": {
-      "base": "<p>The value of a slot.</p>",
+      "base": "<p>Information about the value provided for a slot and Amazon Lex V2's interpretation.</p>",
       "refs": {
         "Slot$value": "<p>The current value of the slot.</p>"
       }

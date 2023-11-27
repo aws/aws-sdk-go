@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// User does not have sufficient access to perform this action.
+	// You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
@@ -48,7 +48,8 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints specified by an AWS service.
+	// The input fails to satisfy the constraints specified by an Amazon Web Services
+	// service.
 	ErrCodeValidationException = "ValidationException"
 )
 

@@ -9579,6 +9579,49 @@ func (s *CreateWorkspacesOutput) SetPendingRequests(v []*Workspace) *CreateWorks
 	return s
 }
 
+// Describes the data replication settings.
+type DataReplicationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether data replication is enabled, and if enabled, the type of
+	// data replication.
+	DataReplication *string `type:"string" enum:"DataReplication"`
+
+	// The date and time at which the last successful snapshot was taken of the
+	// primary WorkSpace used for replicating data.
+	RecoverySnapshotTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataReplicationSettings) GoString() string {
+	return s.String()
+}
+
+// SetDataReplication sets the DataReplication field's value.
+func (s *DataReplicationSettings) SetDataReplication(v string) *DataReplicationSettings {
+	s.DataReplication = &v
+	return s
+}
+
+// SetRecoverySnapshotTime sets the RecoverySnapshotTime field's value.
+func (s *DataReplicationSettings) SetRecoverySnapshotTime(v time.Time) *DataReplicationSettings {
+	s.RecoverySnapshotTime = &v
+	return s
+}
+
 // Returns default client branding attributes that were imported. These attributes
 // display on the client login screen.
 //
@@ -15204,15 +15247,16 @@ func (s ModifyWorkspaceCreationPropertiesOutput) GoString() string {
 type ModifyWorkspacePropertiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the data replication status.
+	DataReplication *string `type:"string" enum:"DataReplication"`
+
 	// The identifier of the WorkSpace.
 	//
 	// WorkspaceId is a required field
 	WorkspaceId *string `type:"string" required:"true"`
 
 	// The properties of the WorkSpace.
-	//
-	// WorkspaceProperties is a required field
-	WorkspaceProperties *WorkspaceProperties `type:"structure" required:"true"`
+	WorkspaceProperties *WorkspaceProperties `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15239,14 +15283,17 @@ func (s *ModifyWorkspacePropertiesInput) Validate() error {
 	if s.WorkspaceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
 	}
-	if s.WorkspaceProperties == nil {
-		invalidParams.Add(request.NewErrParamRequired("WorkspaceProperties"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataReplication sets the DataReplication field's value.
+func (s *ModifyWorkspacePropertiesInput) SetDataReplication(v string) *ModifyWorkspacePropertiesInput {
+	s.DataReplication = &v
+	return s
 }
 
 // SetWorkspaceId sets the WorkspaceId field's value.
@@ -16993,6 +17040,10 @@ func (s *Snapshot) SetSnapshotTime(v time.Time) *Snapshot {
 type StandbyWorkspace struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether data replication is enabled, and if enabled, the type of
+	// data replication.
+	DataReplication *string `type:"string" enum:"DataReplication"`
+
 	// The identifier of the directory for the standby WorkSpace.
 	//
 	// DirectoryId is a required field
@@ -17057,6 +17108,12 @@ func (s *StandbyWorkspace) Validate() error {
 	return nil
 }
 
+// SetDataReplication sets the DataReplication field's value.
+func (s *StandbyWorkspace) SetDataReplication(v string) *StandbyWorkspace {
+	s.DataReplication = &v
+	return s
+}
+
 // SetDirectoryId sets the DirectoryId field's value.
 func (s *StandbyWorkspace) SetDirectoryId(v string) *StandbyWorkspace {
 	s.DirectoryId = &v
@@ -17078,6 +17135,58 @@ func (s *StandbyWorkspace) SetTags(v []*Tag) *StandbyWorkspace {
 // SetVolumeEncryptionKey sets the VolumeEncryptionKey field's value.
 func (s *StandbyWorkspace) SetVolumeEncryptionKey(v string) *StandbyWorkspace {
 	s.VolumeEncryptionKey = &v
+	return s
+}
+
+// Describes the properties of the related standby WorkSpaces.
+type StandbyWorkspacesProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether data replication is enabled, and if enabled, the type of
+	// data replication.
+	DataReplication *string `type:"string" enum:"DataReplication"`
+
+	// The date and time at which the last successful snapshot was taken of the
+	// primary WorkSpace used for replicating data.
+	RecoverySnapshotTime *time.Time `type:"timestamp"`
+
+	// The identifier of the standby WorkSpace
+	StandbyWorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandbyWorkspacesProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandbyWorkspacesProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataReplication sets the DataReplication field's value.
+func (s *StandbyWorkspacesProperties) SetDataReplication(v string) *StandbyWorkspacesProperties {
+	s.DataReplication = &v
+	return s
+}
+
+// SetRecoverySnapshotTime sets the RecoverySnapshotTime field's value.
+func (s *StandbyWorkspacesProperties) SetRecoverySnapshotTime(v time.Time) *StandbyWorkspacesProperties {
+	s.RecoverySnapshotTime = &v
+	return s
+}
+
+// SetStandbyWorkspaceId sets the StandbyWorkspaceId field's value.
+func (s *StandbyWorkspacesProperties) SetStandbyWorkspaceId(v string) *StandbyWorkspacesProperties {
+	s.StandbyWorkspaceId = &v
 	return s
 }
 
@@ -18321,6 +18430,9 @@ type Workspace struct {
 	// this name varies. For more information, see Launch a WorkSpace (https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html).
 	ComputerName *string `type:"string"`
 
+	// Indicates the settings of the data replication.
+	DataReplicationSettings *DataReplicationSettings `type:"structure"`
+
 	// The identifier of the Directory Service directory for the WorkSpace.
 	DirectoryId *string `min:"10" type:"string"`
 
@@ -18342,6 +18454,9 @@ type Workspace struct {
 
 	// Indicates whether the data stored on the root volume is encrypted.
 	RootVolumeEncryptionEnabled *bool `type:"boolean"`
+
+	// The properties of the standby WorkSpace
+	StandbyWorkspacesProperties []*StandbyWorkspacesProperties `type:"list"`
 
 	// The operational state of the WorkSpace.
 	//
@@ -18403,6 +18518,12 @@ func (s *Workspace) SetComputerName(v string) *Workspace {
 	return s
 }
 
+// SetDataReplicationSettings sets the DataReplicationSettings field's value.
+func (s *Workspace) SetDataReplicationSettings(v *DataReplicationSettings) *Workspace {
+	s.DataReplicationSettings = v
+	return s
+}
+
 // SetDirectoryId sets the DirectoryId field's value.
 func (s *Workspace) SetDirectoryId(v string) *Workspace {
 	s.DirectoryId = &v
@@ -18442,6 +18563,12 @@ func (s *Workspace) SetRelatedWorkspaces(v []*RelatedWorkspaceProperties) *Works
 // SetRootVolumeEncryptionEnabled sets the RootVolumeEncryptionEnabled field's value.
 func (s *Workspace) SetRootVolumeEncryptionEnabled(v bool) *Workspace {
 	s.RootVolumeEncryptionEnabled = &v
+	return s
+}
+
+// SetStandbyWorkspacesProperties sets the StandbyWorkspacesProperties field's value.
+func (s *Workspace) SetStandbyWorkspacesProperties(v []*StandbyWorkspacesProperties) *Workspace {
+	s.StandbyWorkspacesProperties = v
 	return s
 }
 
@@ -19929,6 +20056,22 @@ func ConnectionState_Values() []string {
 		ConnectionStateConnected,
 		ConnectionStateDisconnected,
 		ConnectionStateUnknown,
+	}
+}
+
+const (
+	// DataReplicationNoReplication is a DataReplication enum value
+	DataReplicationNoReplication = "NO_REPLICATION"
+
+	// DataReplicationPrimaryAsSource is a DataReplication enum value
+	DataReplicationPrimaryAsSource = "PRIMARY_AS_SOURCE"
+)
+
+// DataReplication_Values returns all elements of the DataReplication enum
+func DataReplication_Values() []string {
+	return []string{
+		DataReplicationNoReplication,
+		DataReplicationPrimaryAsSource,
 	}
 }
 

@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p/> <p>Amazon Managed Blockchain is a fully managed service for creating and managing blockchain networks using open-source frameworks. Blockchain allows you to build applications where multiple parties can securely and transparently run transactions and share data without the need for a trusted, central authority.</p> <p>Managed Blockchain supports the Hyperledger Fabric and Ethereum open-source frameworks. Because of fundamental differences between the frameworks, some API actions or data types may only apply in the context of one framework and not the other. For example, actions related to Hyperledger Fabric network members such as <code>CreateMember</code> and <code>DeleteMember</code> don't apply to Ethereum.</p> <p>The description for each action indicates the framework or frameworks to which it applies. Data types and properties that apply only in the context of a particular framework are similarly indicated.</p>",
   "operations": {
-    "CreateAccessor": "<p>Creates a new accessor for use with Managed Blockchain Ethereum nodes. An accessor contains information required for token based access to your Ethereum nodes.</p>",
+    "CreateAccessor": "<p>Creates a new accessor for use with Amazon Managed Blockchain service that supports token based access. The accessor contains information required for token based access.</p>",
     "CreateMember": "<p>Creates a member within a Managed Blockchain network.</p> <p>Applies only to Hyperledger Fabric.</p>",
     "CreateNetwork": "<p>Creates a new blockchain network using Amazon Managed Blockchain.</p> <p>Applies only to Hyperledger Fabric.</p>",
     "CreateNode": "<p>Creates a node on the specified blockchain network.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
@@ -45,14 +45,24 @@
     "AccessorBillingTokenString": {
       "base": null,
       "refs": {
-        "Accessor$BillingToken": "<p>The billing token is a property of the accessor. Use this token to make Ethereum API calls to your Ethereum node. The billing token is used to track your accessor object for billing Ethereum API requests made to your Ethereum nodes.</p>",
-        "CreateAccessorOutput$BillingToken": "<p>The billing token is a property of the Accessor. Use this token to make Ethereum API calls to your Ethereum node. The billing token is used to track your accessor object for billing Ethereum API requests made to your Ethereum nodes.</p>"
+        "Accessor$BillingToken": "<p>The billing token is a property of the Accessor. Use this token to when making calls to the blockchain network. The billing token is used to track your accessor token for billing requests.</p>",
+        "CreateAccessorOutput$BillingToken": "<p>The billing token is a property of the Accessor. Use this token to when making calls to the blockchain network. The billing token is used to track your accessor token for billing requests.</p>"
       }
     },
     "AccessorListMaxResults": {
       "base": null,
       "refs": {
         "ListAccessorsInput$MaxResults": "<p> The maximum number of accessors to list.</p>"
+      }
+    },
+    "AccessorNetworkType": {
+      "base": null,
+      "refs": {
+        "Accessor$NetworkType": "<p>The blockchain network that the Accessor token is created for.</p>",
+        "AccessorSummary$NetworkType": "<p>The blockchain network that the Accessor token is created for.</p>",
+        "CreateAccessorInput$NetworkType": "<p>The blockchain network that the <code>Accessor</code> token is created for.</p> <note> <p>We recommend using the appropriate <code>networkType</code> value for the blockchain network that you are creating the <code>Accessor</code> token for. You cannnot use the value <code>ETHEREUM_MAINNET_AND_GOERLI</code> to specify a <code>networkType</code> for your Accessor token.</p> <p>The default value of <code>ETHEREUM_MAINNET_AND_GOERLI</code> is only applied:</p> <ul> <li> <p>when the <code>CreateAccessor</code> action does not set a <code>networkType</code>.</p> </li> <li> <p>to all existing <code>Accessor</code> tokens that were created before the <code>networkType</code> property was introduced. </p> </li> </ul> </note>",
+        "CreateAccessorOutput$NetworkType": "<p>The blockchain network that the accessor token is created for.</p>",
+        "ListAccessorsInput$NetworkType": "<p>The blockchain network that the <code>Accessor</code> token is created for.</p> <note> <p>Use the value <code>ETHEREUM_MAINNET_AND_GOERLI</code> for all existing <code>Accessors</code> tokens that were created before the <code>networkType</code> property was introduced.</p> </note>"
       }
     },
     "AccessorStatus": {
@@ -969,7 +979,7 @@
     "ThresholdComparator": {
       "base": null,
       "refs": {
-        "ApprovalThresholdPolicy$ThresholdComparator": "<p>Determines whether the vote percentage must be greater than the <code>ThresholdPercentage</code> or must be greater than or equal to the <code>ThreholdPercentage</code> to be approved.</p>"
+        "ApprovalThresholdPolicy$ThresholdComparator": "<p>Determines whether the vote percentage must be greater than the <code>ThresholdPercentage</code> or must be greater than or equal to the <code>ThresholdPercentage</code> to be approved.</p>"
       }
     },
     "ThresholdPercentageInt": {

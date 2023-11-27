@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Control Tower.
 //	func myFunc(svc controltoweriface.ControlTowerAPI) bool {
-//	    // Make svc.DisableControl request
+//	    // Make svc.DeleteLandingZone request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockControlTowerClient struct {
 //	    controltoweriface.ControlTowerAPI
 //	}
-//	func (m *mockControlTowerClient) DisableControl(input *controltower.DisableControlInput) (*controltower.DisableControlOutput, error) {
+//	func (m *mockControlTowerClient) DeleteLandingZone(input *controltower.DeleteLandingZoneInput) (*controltower.DeleteLandingZoneOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ControlTowerAPI interface {
+	DeleteLandingZone(*controltower.DeleteLandingZoneInput) (*controltower.DeleteLandingZoneOutput, error)
+	DeleteLandingZoneWithContext(aws.Context, *controltower.DeleteLandingZoneInput, ...request.Option) (*controltower.DeleteLandingZoneOutput, error)
+	DeleteLandingZoneRequest(*controltower.DeleteLandingZoneInput) (*request.Request, *controltower.DeleteLandingZoneOutput)
+
 	DisableControl(*controltower.DisableControlInput) (*controltower.DisableControlOutput, error)
 	DisableControlWithContext(aws.Context, *controltower.DisableControlInput, ...request.Option) (*controltower.DisableControlOutput, error)
 	DisableControlRequest(*controltower.DisableControlInput) (*request.Request, *controltower.DisableControlOutput)
@@ -76,6 +80,10 @@ type ControlTowerAPI interface {
 	GetEnabledControlWithContext(aws.Context, *controltower.GetEnabledControlInput, ...request.Option) (*controltower.GetEnabledControlOutput, error)
 	GetEnabledControlRequest(*controltower.GetEnabledControlInput) (*request.Request, *controltower.GetEnabledControlOutput)
 
+	GetLandingZoneOperation(*controltower.GetLandingZoneOperationInput) (*controltower.GetLandingZoneOperationOutput, error)
+	GetLandingZoneOperationWithContext(aws.Context, *controltower.GetLandingZoneOperationInput, ...request.Option) (*controltower.GetLandingZoneOperationOutput, error)
+	GetLandingZoneOperationRequest(*controltower.GetLandingZoneOperationInput) (*request.Request, *controltower.GetLandingZoneOperationOutput)
+
 	ListEnabledControls(*controltower.ListEnabledControlsInput) (*controltower.ListEnabledControlsOutput, error)
 	ListEnabledControlsWithContext(aws.Context, *controltower.ListEnabledControlsInput, ...request.Option) (*controltower.ListEnabledControlsOutput, error)
 	ListEnabledControlsRequest(*controltower.ListEnabledControlsInput) (*request.Request, *controltower.ListEnabledControlsOutput)
@@ -83,9 +91,20 @@ type ControlTowerAPI interface {
 	ListEnabledControlsPages(*controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool) error
 	ListEnabledControlsPagesWithContext(aws.Context, *controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool, ...request.Option) error
 
+	ListLandingZones(*controltower.ListLandingZonesInput) (*controltower.ListLandingZonesOutput, error)
+	ListLandingZonesWithContext(aws.Context, *controltower.ListLandingZonesInput, ...request.Option) (*controltower.ListLandingZonesOutput, error)
+	ListLandingZonesRequest(*controltower.ListLandingZonesInput) (*request.Request, *controltower.ListLandingZonesOutput)
+
+	ListLandingZonesPages(*controltower.ListLandingZonesInput, func(*controltower.ListLandingZonesOutput, bool) bool) error
+	ListLandingZonesPagesWithContext(aws.Context, *controltower.ListLandingZonesInput, func(*controltower.ListLandingZonesOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*controltower.ListTagsForResourceInput) (*controltower.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *controltower.ListTagsForResourceInput, ...request.Option) (*controltower.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*controltower.ListTagsForResourceInput) (*request.Request, *controltower.ListTagsForResourceOutput)
+
+	ResetLandingZone(*controltower.ResetLandingZoneInput) (*controltower.ResetLandingZoneOutput, error)
+	ResetLandingZoneWithContext(aws.Context, *controltower.ResetLandingZoneInput, ...request.Option) (*controltower.ResetLandingZoneOutput, error)
+	ResetLandingZoneRequest(*controltower.ResetLandingZoneInput) (*request.Request, *controltower.ResetLandingZoneOutput)
 
 	TagResource(*controltower.TagResourceInput) (*controltower.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *controltower.TagResourceInput, ...request.Option) (*controltower.TagResourceOutput, error)

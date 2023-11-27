@@ -14679,6 +14679,9 @@ func (s *AquaConfiguration) SetAquaStatus(v string) *AquaConfiguration {
 type AssociateDataShareConsumerInput struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, allows write operations for a datashare.
+	AllowWrites *bool `type:"boolean"`
+
 	// A value that specifies whether the datashare is associated with the entire
 	// account.
 	AssociateEntireAccount *bool `type:"boolean"`
@@ -14727,6 +14730,12 @@ func (s *AssociateDataShareConsumerInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowWrites sets the AllowWrites field's value.
+func (s *AssociateDataShareConsumerInput) SetAllowWrites(v bool) *AssociateDataShareConsumerInput {
+	s.AllowWrites = &v
+	return s
 }
 
 // SetAssociateEntireAccount sets the AssociateEntireAccount field's value.
@@ -15061,6 +15070,9 @@ func (s *AuthorizeClusterSecurityGroupIngressOutput) SetClusterSecurityGroup(v *
 type AuthorizeDataShareInput struct {
 	_ struct{} `type:"structure"`
 
+	// If set to true, allows write operations for a datashare.
+	AllowWrites *bool `type:"boolean"`
+
 	// The identifier of the data consumer that is authorized to access the datashare.
 	// This identifier is an Amazon Web Services account ID or a keyword, such as
 	// ADX.
@@ -15107,6 +15119,12 @@ func (s *AuthorizeDataShareInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowWrites sets the AllowWrites field's value.
+func (s *AuthorizeDataShareInput) SetAllowWrites(v bool) *AuthorizeDataShareInput {
+	s.AllowWrites = &v
+	return s
 }
 
 // SetConsumerIdentifier sets the ConsumerIdentifier field's value.
@@ -20723,6 +20741,9 @@ func (s *DataShare) SetProducerArn(v string) *DataShare {
 type DataShareAssociation struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether write operations were allowed during data share association.
+	ConsumerAcceptedWrites *bool `type:"boolean"`
+
 	// The name of the consumer accounts that have an association with a producer
 	// datashare.
 	ConsumerIdentifier *string `type:"string"`
@@ -20733,6 +20754,9 @@ type DataShareAssociation struct {
 
 	// The creation date of the datashare that is associated.
 	CreatedDate *time.Time `type:"timestamp"`
+
+	// Specifies whether write operations were allowed during data share authorization.
+	ProducerAllowedWrites *bool `type:"boolean"`
 
 	// The status of the datashare that is associated.
 	Status *string `type:"string" enum:"DataShareStatus"`
@@ -20759,6 +20783,12 @@ func (s DataShareAssociation) GoString() string {
 	return s.String()
 }
 
+// SetConsumerAcceptedWrites sets the ConsumerAcceptedWrites field's value.
+func (s *DataShareAssociation) SetConsumerAcceptedWrites(v bool) *DataShareAssociation {
+	s.ConsumerAcceptedWrites = &v
+	return s
+}
+
 // SetConsumerIdentifier sets the ConsumerIdentifier field's value.
 func (s *DataShareAssociation) SetConsumerIdentifier(v string) *DataShareAssociation {
 	s.ConsumerIdentifier = &v
@@ -20774,6 +20804,12 @@ func (s *DataShareAssociation) SetConsumerRegion(v string) *DataShareAssociation
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *DataShareAssociation) SetCreatedDate(v time.Time) *DataShareAssociation {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetProducerAllowedWrites sets the ProducerAllowedWrites field's value.
+func (s *DataShareAssociation) SetProducerAllowedWrites(v bool) *DataShareAssociation {
+	s.ProducerAllowedWrites = &v
 	return s
 }
 

@@ -74,6 +74,9 @@ func (c *IoTFleetWise) AssociateVehicleFleetRequest(input *AssociateVehicleFleet
 //   - ResourceNotFoundException
 //     The resource wasn't found.
 //
+//   - LimitExceededException
+//     A service quota was exceeded.
+//
 //   - ThrottlingException
 //     The request couldn't be completed due to throttling.
 //
@@ -4962,17 +4965,18 @@ func (c *IoTFleetWise) RegisterAccountRequest(input *RegisterAccountInput) (req 
 // DeleteServiceLinkedRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html)
 // in the Identity and Access Management API Reference.
 //
-//	<p>Registers your Amazon Web Services account, IAM, and Amazon Timestream
-//	resources so Amazon Web Services IoT FleetWise can transfer your vehicle
-//	data to the Amazon Web Services Cloud. For more information, including
-//	step-by-step procedures, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html">Setting
-//	up Amazon Web Services IoT FleetWise</a>. </p> <note> <p>An Amazon Web
-//	Services account is <b>not</b> the same thing as a "user." An <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users">Amazon
-//	Web Services user</a> is an identity that you create using Identity and
-//	Access Management (IAM) and takes the form of either an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">IAM
-//	user</a> or an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
-//	role, both with credentials</a>. A single Amazon Web Services account
-//	can, and typically does, contain many users and roles.</p> </note>
+// Registers your Amazon Web Services account, IAM, and Amazon Timestream resources
+// so Amazon Web Services IoT FleetWise can transfer your vehicle data to the
+// Amazon Web Services Cloud. For more information, including step-by-step procedures,
+// see Setting up Amazon Web Services IoT FleetWise (https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html).
+//
+// An Amazon Web Services account is not the same thing as a "user." An Amazon
+// Web Services user (https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users)
+// is an identity that you create using Identity and Access Management (IAM)
+// and takes the form of either an IAM user (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)
+// or an IAM role, both with credentials (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html).
+// A single Amazon Web Services account can, and typically does, contain many
+// users and roles.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5924,6 +5928,11 @@ type Actuator struct {
 	// The specified possible minimum value of an actuator.
 	Min *float64 `locationName:"min" type:"double"`
 
+	// The fully qualified name of the struct node for the actuator if the data
+	// type of the actuator is Struct or StructArray. For example, the struct fully
+	// qualified name of an actuator might be Vehicle.Door.LockStruct.
+	StructFullyQualifiedName *string `locationName:"structFullyQualifiedName" min:"1" type:"string"`
+
 	// The scientific unit for the actuator.
 	Unit *string `locationName:"unit" type:"string"`
 }
@@ -5963,6 +5972,9 @@ func (s *Actuator) Validate() error {
 	}
 	if s.FullyQualifiedName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FullyQualifiedName"))
+	}
+	if s.StructFullyQualifiedName != nil && len(*s.StructFullyQualifiedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StructFullyQualifiedName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6022,6 +6034,12 @@ func (s *Actuator) SetMax(v float64) *Actuator {
 // SetMin sets the Min field's value.
 func (s *Actuator) SetMin(v float64) *Actuator {
 	s.Min = &v
+	return s
+}
+
+// SetStructFullyQualifiedName sets the StructFullyQualifiedName field's value.
+func (s *Actuator) SetStructFullyQualifiedName(v string) *Actuator {
+	s.StructFullyQualifiedName = &v
 	return s
 }
 
@@ -6682,7 +6700,8 @@ type CanDbcDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// A list of DBC files. You can upload only one DBC file for each network interface
-	// and specify up to five (inclusive) files in the list.
+	// and specify up to five (inclusive) files in the list. The DBC file can be
+	// a maximum size of 200 MB.
 	//
 	// CanDbcFiles is a required field
 	CanDbcFiles [][]byte `locationName:"canDbcFiles" min:"1" type:"list" required:"true"`
@@ -8597,6 +8616,211 @@ func (s *CreateVehicleResponseItem) SetVehicleName(v string) *CreateVehicleRespo
 	return s
 }
 
+// Represents a member of the complex data structure. The data type of the property
+// can be either primitive or another struct.
+type CustomProperty struct {
+	_ struct{} `type:"structure"`
+
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
+	// Indicates whether the property is binary data.
+	DataEncoding *string `locationName:"dataEncoding" type:"string" enum:"NodeDataEncoding"`
+
+	// The data type for the custom property.
+	//
+	// DataType is a required field
+	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"NodeDataType"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
+
+	// A brief description of the custom property.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The fully qualified name of the custom property. For example, the fully qualified
+	// name of a custom property might be ComplexDataTypes.VehicleDataTypes.SVMCamera.FPS.
+	//
+	// FullyQualifiedName is a required field
+	FullyQualifiedName *string `locationName:"fullyQualifiedName" type:"string" required:"true"`
+
+	// The fully qualified name of the struct node for the custom property if the
+	// data type of the custom property is Struct or StructArray.
+	StructFullyQualifiedName *string `locationName:"structFullyQualifiedName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomProperty) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomProperty"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
+	if s.DataType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FullyQualifiedName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FullyQualifiedName"))
+	}
+	if s.StructFullyQualifiedName != nil && len(*s.StructFullyQualifiedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StructFullyQualifiedName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *CustomProperty) SetComment(v string) *CustomProperty {
+	s.Comment = &v
+	return s
+}
+
+// SetDataEncoding sets the DataEncoding field's value.
+func (s *CustomProperty) SetDataEncoding(v string) *CustomProperty {
+	s.DataEncoding = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *CustomProperty) SetDataType(v string) *CustomProperty {
+	s.DataType = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *CustomProperty) SetDeprecationMessage(v string) *CustomProperty {
+	s.DeprecationMessage = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CustomProperty) SetDescription(v string) *CustomProperty {
+	s.Description = &v
+	return s
+}
+
+// SetFullyQualifiedName sets the FullyQualifiedName field's value.
+func (s *CustomProperty) SetFullyQualifiedName(v string) *CustomProperty {
+	s.FullyQualifiedName = &v
+	return s
+}
+
+// SetStructFullyQualifiedName sets the StructFullyQualifiedName field's value.
+func (s *CustomProperty) SetStructFullyQualifiedName(v string) *CustomProperty {
+	s.StructFullyQualifiedName = &v
+	return s
+}
+
+// The custom structure represents a complex or higher-order data structure.
+type CustomStruct struct {
+	_ struct{} `type:"structure"`
+
+	// A comment in addition to the description.
+	Comment *string `locationName:"comment" min:"1" type:"string"`
+
+	// The deprecation message for the node or the branch that was moved or deleted.
+	DeprecationMessage *string `locationName:"deprecationMessage" min:"1" type:"string"`
+
+	// A brief description of the custom structure.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The fully qualified name of the custom structure. For example, the fully
+	// qualified name of a custom structure might be ComplexDataTypes.VehicleDataTypes.SVMCamera.
+	//
+	// FullyQualifiedName is a required field
+	FullyQualifiedName *string `locationName:"fullyQualifiedName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomStruct) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomStruct) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomStruct) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomStruct"}
+	if s.Comment != nil && len(*s.Comment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comment", 1))
+	}
+	if s.DeprecationMessage != nil && len(*s.DeprecationMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeprecationMessage", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FullyQualifiedName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FullyQualifiedName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *CustomStruct) SetComment(v string) *CustomStruct {
+	s.Comment = &v
+	return s
+}
+
+// SetDeprecationMessage sets the DeprecationMessage field's value.
+func (s *CustomStruct) SetDeprecationMessage(v string) *CustomStruct {
+	s.DeprecationMessage = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CustomStruct) SetDescription(v string) *CustomStruct {
+	s.Description = &v
+	return s
+}
+
+// SetFullyQualifiedName sets the FullyQualifiedName field's value.
+func (s *CustomStruct) SetFullyQualifiedName(v string) *CustomStruct {
+	s.FullyQualifiedName = &v
+	return s
+}
+
 // The destination where the Amazon Web Services IoT FleetWise campaign sends
 // data. You can send data to be stored in Amazon S3 or Amazon Timestream.
 type DataDestinationConfig struct {
@@ -8683,6 +8907,10 @@ type DecoderManifestSummary struct {
 	// LastModificationTime is a required field
 	LastModificationTime *time.Time `locationName:"lastModificationTime" type:"timestamp" required:"true"`
 
+	// The detailed message for the decoder manifest. When a decoder manifest is
+	// in an INVALID status, the message contains detailed reason and help information.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
 	// The ARN of a vehicle model (model manifest) associated with the decoder manifest.
 	ModelManifestArn *string `locationName:"modelManifestArn" type:"string"`
 
@@ -8734,6 +8962,12 @@ func (s *DecoderManifestSummary) SetDescription(v string) *DecoderManifestSummar
 // SetLastModificationTime sets the LastModificationTime field's value.
 func (s *DecoderManifestSummary) SetLastModificationTime(v time.Time) *DecoderManifestSummary {
 	s.LastModificationTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DecoderManifestSummary) SetMessage(v string) *DecoderManifestSummary {
+	s.Message = &v
 	return s
 }
 
@@ -9923,6 +10157,10 @@ type GetDecoderManifestOutput struct {
 	// LastModificationTime is a required field
 	LastModificationTime *time.Time `locationName:"lastModificationTime" type:"timestamp" required:"true"`
 
+	// The detailed message for the decoder manifest. When a decoder manifest is
+	// in an INVALID status, the message contains detailed reason and help information.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
 	// The ARN of a vehicle model (model manifest) associated with the decoder manifest.
 	ModelManifestArn *string `locationName:"modelManifestArn" type:"string"`
 
@@ -9979,6 +10217,12 @@ func (s *GetDecoderManifestOutput) SetLastModificationTime(v time.Time) *GetDeco
 	return s
 }
 
+// SetMessage sets the Message field's value.
+func (s *GetDecoderManifestOutput) SetMessage(v string) *GetDecoderManifestOutput {
+	s.Message = &v
+	return s
+}
+
 // SetModelManifestArn sets the ModelManifestArn field's value.
 func (s *GetDecoderManifestOutput) SetModelManifestArn(v string) *GetDecoderManifestOutput {
 	s.ModelManifestArn = &v
@@ -10031,7 +10275,7 @@ type GetEncryptionConfigurationOutput struct {
 	// EncryptionStatus is a required field
 	EncryptionStatus *string `locationName:"encryptionStatus" type:"string" required:"true" enum:"EncryptionStatus"`
 
-	// The type of encryption. Set to KMS_BASED_ENCRYPTION to use an KMS key that
+	// The type of encryption. Set to KMS_BASED_ENCRYPTION to use a KMS key that
 	// you own and manage. Set to FLEETWISE_DEFAULT_ENCRYPTION to use an Amazon
 	// Web Services managed key that is owned by the Amazon Web Services IoT FleetWise
 	// service account.
@@ -11542,6 +11786,9 @@ func (s *InvalidSignal) SetReason(v string) *InvalidSignal {
 type InvalidSignalDecoder struct {
 	_ struct{} `type:"structure"`
 
+	// The possible cause for the invalid signal decoder.
+	Hint *string `locationName:"hint" min:"1" type:"string"`
+
 	// The name of a signal decoder that isn't valid.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -11565,6 +11812,12 @@ func (s InvalidSignalDecoder) String() string {
 // value will be replaced with "sensitive".
 func (s InvalidSignalDecoder) GoString() string {
 	return s.String()
+}
+
+// SetHint sets the Hint field's value.
+func (s *InvalidSignalDecoder) SetHint(v string) *InvalidSignalDecoder {
+	s.Hint = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -13181,6 +13434,78 @@ func (s *ListVehiclesOutput) SetVehicleSummaries(v []*VehicleSummary) *ListVehic
 	return s
 }
 
+// The decoding information for a specific message which support higher order
+// data types.
+type MessageSignal struct {
+	_ struct{} `type:"structure"`
+
+	// The structured message for the message signal. It can be defined with either
+	// a primitiveMessageDefinition, structuredMessageListDefinition, or structuredMessageDefinition
+	// recursively.
+	//
+	// StructuredMessage is a required field
+	StructuredMessage *StructuredMessage `locationName:"structuredMessage" type:"structure" required:"true"`
+
+	// The topic name for the message signal. It corresponds to topics in ROS 2.
+	//
+	// TopicName is a required field
+	TopicName *string `locationName:"topicName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageSignal) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageSignal) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageSignal) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageSignal"}
+	if s.StructuredMessage == nil {
+		invalidParams.Add(request.NewErrParamRequired("StructuredMessage"))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+	if s.TopicName != nil && len(*s.TopicName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicName", 1))
+	}
+	if s.StructuredMessage != nil {
+		if err := s.StructuredMessage.Validate(); err != nil {
+			invalidParams.AddNested("StructuredMessage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStructuredMessage sets the StructuredMessage field's value.
+func (s *MessageSignal) SetStructuredMessage(v *StructuredMessage) *MessageSignal {
+	s.StructuredMessage = v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *MessageSignal) SetTopicName(v string) *MessageSignal {
+	s.TopicName = &v
+	return s
+}
+
 // Information about a vehicle model (model manifest). You can use the API operation
 // to return this information about multiple vehicle models.
 type ModelManifestSummary struct {
@@ -13351,6 +13676,10 @@ type NetworkInterface struct {
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"NetworkInterfaceType"`
+
+	// The vehicle middleware defined as a type of network interface. Examples of
+	// vehicle middleware include ROS2 and SOME/IP.
+	VehicleMiddleware *VehicleMiddleware `locationName:"vehicleMiddleware" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13393,6 +13722,11 @@ func (s *NetworkInterface) Validate() error {
 			invalidParams.AddNested("ObdInterface", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.VehicleMiddleware != nil {
+		if err := s.VehicleMiddleware.Validate(); err != nil {
+			invalidParams.AddNested("VehicleMiddleware", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13424,6 +13758,12 @@ func (s *NetworkInterface) SetType(v string) *NetworkInterface {
 	return s
 }
 
+// SetVehicleMiddleware sets the VehicleMiddleware field's value.
+func (s *NetworkInterface) SetVehicleMiddleware(v *VehicleMiddleware) *NetworkInterface {
+	s.VehicleMiddleware = v
+	return s
+}
+
 // A general abstraction of a signal. A node can be specified as an actuator,
 // attribute, branch, or sensor.
 type Node struct {
@@ -13444,11 +13784,18 @@ type Node struct {
 	// A group of signals that are defined in a hierarchical structure.
 	Branch *Branch `locationName:"branch" type:"structure"`
 
+	// Represents a member of the complex data structure. The datatype of the property
+	// can be either primitive or another struct.
+	Property *CustomProperty `locationName:"property" type:"structure"`
+
 	// An input component that reports the environmental condition of a vehicle.
 	//
 	// You can collect data about fluid levels, temperatures, vibrations, or battery
 	// voltage from sensors.
 	Sensor *Sensor `locationName:"sensor" type:"structure"`
+
+	// Represents a complex or higher-order data structure.
+	Struct *CustomStruct `locationName:"struct" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13487,9 +13834,19 @@ func (s *Node) Validate() error {
 			invalidParams.AddNested("Branch", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Property != nil {
+		if err := s.Property.Validate(); err != nil {
+			invalidParams.AddNested("Property", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Sensor != nil {
 		if err := s.Sensor.Validate(); err != nil {
 			invalidParams.AddNested("Sensor", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Struct != nil {
+		if err := s.Struct.Validate(); err != nil {
+			invalidParams.AddNested("Struct", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -13517,9 +13874,21 @@ func (s *Node) SetBranch(v *Branch) *Node {
 	return s
 }
 
+// SetProperty sets the Property field's value.
+func (s *Node) SetProperty(v *CustomProperty) *Node {
+	s.Property = v
+	return s
+}
+
 // SetSensor sets the Sensor field's value.
 func (s *Node) SetSensor(v *Sensor) *Node {
 	s.Sensor = v
+	return s
+}
+
+// SetStruct sets the Struct field's value.
+func (s *Node) SetStruct(v *CustomStruct) *Node {
+	s.Struct = v
 	return s
 }
 
@@ -13539,8 +13908,14 @@ type NodeCounts struct {
 	// The total number of nodes in a vehicle network.
 	TotalNodes *int64 `locationName:"totalNodes" type:"integer"`
 
+	// The total properties for the node.
+	TotalProperties *int64 `locationName:"totalProperties" type:"integer"`
+
 	// The total number of nodes in a vehicle network that represent sensors.
 	TotalSensors *int64 `locationName:"totalSensors" type:"integer"`
+
+	// The total structure for the node.
+	TotalStructs *int64 `locationName:"totalStructs" type:"integer"`
 }
 
 // String returns the string representation.
@@ -13585,9 +13960,21 @@ func (s *NodeCounts) SetTotalNodes(v int64) *NodeCounts {
 	return s
 }
 
+// SetTotalProperties sets the TotalProperties field's value.
+func (s *NodeCounts) SetTotalProperties(v int64) *NodeCounts {
+	s.TotalProperties = &v
+	return s
+}
+
 // SetTotalSensors sets the TotalSensors field's value.
 func (s *NodeCounts) SetTotalSensors(v int64) *NodeCounts {
 	s.TotalSensors = &v
+	return s
+}
+
+// SetTotalStructs sets the TotalStructs field's value.
+func (s *NodeCounts) SetTotalStructs(v int64) *NodeCounts {
+	s.TotalStructs = &v
 	return s
 }
 
@@ -13864,6 +14251,54 @@ func (s *ObdSignal) SetStartByte(v int64) *ObdSignal {
 	return s
 }
 
+// Represents a primitive type node of the complex data structure.
+type PrimitiveMessageDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a PrimitiveMessage using a ROS 2 compliant primitive type
+	// message of the complex data structure.
+	Ros2PrimitiveMessageDefinition *ROS2PrimitiveMessageDefinition `locationName:"ros2PrimitiveMessageDefinition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrimitiveMessageDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrimitiveMessageDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrimitiveMessageDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrimitiveMessageDefinition"}
+	if s.Ros2PrimitiveMessageDefinition != nil {
+		if err := s.Ros2PrimitiveMessageDefinition.Validate(); err != nil {
+			invalidParams.AddNested("Ros2PrimitiveMessageDefinition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRos2PrimitiveMessageDefinition sets the Ros2PrimitiveMessageDefinition field's value.
+func (s *PrimitiveMessageDefinition) SetRos2PrimitiveMessageDefinition(v *ROS2PrimitiveMessageDefinition) *PrimitiveMessageDefinition {
+	s.Ros2PrimitiveMessageDefinition = v
+	return s
+}
+
 type PutEncryptionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14047,6 +14482,82 @@ func (s PutLoggingOptionsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s PutLoggingOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// Represents a ROS 2 compliant primitive type message of the complex data structure.
+type ROS2PrimitiveMessageDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The offset used to calculate the signal value. Combined with scaling, the
+	// calculation is value = raw_value * scaling + offset.
+	Offset *float64 `locationName:"offset" type:"double"`
+
+	// The primitive type (integer, floating point, boolean, etc.) for the ROS 2
+	// primitive message definition.
+	//
+	// PrimitiveType is a required field
+	PrimitiveType *string `locationName:"primitiveType" type:"string" required:"true" enum:"ROS2PrimitiveType"`
+
+	// A multiplier used to decode the message.
+	Scaling *float64 `locationName:"scaling" type:"double"`
+
+	// An optional attribute specifying the upper bound for STRING and WSTRING.
+	UpperBound *int64 `locationName:"upperBound" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ROS2PrimitiveMessageDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ROS2PrimitiveMessageDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ROS2PrimitiveMessageDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ROS2PrimitiveMessageDefinition"}
+	if s.PrimitiveType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimitiveType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOffset sets the Offset field's value.
+func (s *ROS2PrimitiveMessageDefinition) SetOffset(v float64) *ROS2PrimitiveMessageDefinition {
+	s.Offset = &v
+	return s
+}
+
+// SetPrimitiveType sets the PrimitiveType field's value.
+func (s *ROS2PrimitiveMessageDefinition) SetPrimitiveType(v string) *ROS2PrimitiveMessageDefinition {
+	s.PrimitiveType = &v
+	return s
+}
+
+// SetScaling sets the Scaling field's value.
+func (s *ROS2PrimitiveMessageDefinition) SetScaling(v float64) *ROS2PrimitiveMessageDefinition {
+	s.Scaling = &v
+	return s
+}
+
+// SetUpperBound sets the UpperBound field's value.
+func (s *ROS2PrimitiveMessageDefinition) SetUpperBound(v int64) *ROS2PrimitiveMessageDefinition {
+	s.UpperBound = &v
+	return s
 }
 
 type RegisterAccountInput struct {
@@ -14406,6 +14917,11 @@ type Sensor struct {
 	// The specified possible minimum value of the sensor.
 	Min *float64 `locationName:"min" type:"double"`
 
+	// The fully qualified name of the struct node for a sensor if the data type
+	// of the actuator is Struct or StructArray. For example, the struct fully qualified
+	// name of a sensor might be Vehicle.ADAS.CameraStruct.
+	StructFullyQualifiedName *string `locationName:"structFullyQualifiedName" min:"1" type:"string"`
+
 	// The scientific unit of measurement for data collected by the sensor.
 	Unit *string `locationName:"unit" type:"string"`
 }
@@ -14445,6 +14961,9 @@ func (s *Sensor) Validate() error {
 	}
 	if s.FullyQualifiedName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FullyQualifiedName"))
+	}
+	if s.StructFullyQualifiedName != nil && len(*s.StructFullyQualifiedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StructFullyQualifiedName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -14498,6 +15017,12 @@ func (s *Sensor) SetMax(v float64) *Sensor {
 // SetMin sets the Min field's value.
 func (s *Sensor) SetMin(v float64) *Sensor {
 	s.Min = &v
+	return s
+}
+
+// SetStructFullyQualifiedName sets the StructFullyQualifiedName field's value.
+func (s *Sensor) SetStructFullyQualifiedName(v string) *Sensor {
+	s.StructFullyQualifiedName = &v
 	return s
 }
 
@@ -14588,6 +15113,10 @@ type SignalDecoder struct {
 	// InterfaceId is a required field
 	InterfaceId *string `locationName:"interfaceId" min:"1" type:"string" required:"true"`
 
+	// The decoding information for a specific message which supports higher order
+	// data types.
+	MessageSignal *MessageSignal `locationName:"messageSignal" type:"structure"`
+
 	// Information about signal decoder using the On-board diagnostic (OBD) II protocol.
 	ObdSignal *ObdSignal `locationName:"obdSignal" type:"structure"`
 
@@ -14641,6 +15170,11 @@ func (s *SignalDecoder) Validate() error {
 			invalidParams.AddNested("CanSignal", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MessageSignal != nil {
+		if err := s.MessageSignal.Validate(); err != nil {
+			invalidParams.AddNested("MessageSignal", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ObdSignal != nil {
 		if err := s.ObdSignal.Validate(); err != nil {
 			invalidParams.AddNested("ObdSignal", err.(request.ErrInvalidParams))
@@ -14668,6 +15202,12 @@ func (s *SignalDecoder) SetFullyQualifiedName(v string) *SignalDecoder {
 // SetInterfaceId sets the InterfaceId field's value.
 func (s *SignalDecoder) SetInterfaceId(v string) *SignalDecoder {
 	s.InterfaceId = &v
+	return s
+}
+
+// SetMessageSignal sets the MessageSignal field's value.
+func (s *SignalDecoder) SetMessageSignal(v *MessageSignal) *SignalDecoder {
+	s.MessageSignal = v
 	return s
 }
 
@@ -14753,6 +15293,254 @@ func (s *SignalInformation) SetMinimumSamplingIntervalMs(v int64) *SignalInforma
 
 // SetName sets the Name field's value.
 func (s *SignalInformation) SetName(v string) *SignalInformation {
+	s.Name = &v
+	return s
+}
+
+// The structured message for the message signal. It can be defined with either
+// a primitiveMessageDefinition, structuredMessageListDefinition, or structuredMessageDefinition
+// recursively.
+type StructuredMessage struct {
+	_ struct{} `type:"structure"`
+
+	// Represents a primitive type node of the complex data structure.
+	PrimitiveMessageDefinition *PrimitiveMessageDefinition `locationName:"primitiveMessageDefinition" type:"structure"`
+
+	// Represents a struct type node of the complex data structure.
+	StructuredMessageDefinition []*StructuredMessageFieldNameAndDataTypePair `locationName:"structuredMessageDefinition" min:"1" type:"list"`
+
+	// Represents a list type node of the complex data structure.
+	StructuredMessageListDefinition *StructuredMessageListDefinition `locationName:"structuredMessageListDefinition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StructuredMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StructuredMessage"}
+	if s.StructuredMessageDefinition != nil && len(s.StructuredMessageDefinition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StructuredMessageDefinition", 1))
+	}
+	if s.PrimitiveMessageDefinition != nil {
+		if err := s.PrimitiveMessageDefinition.Validate(); err != nil {
+			invalidParams.AddNested("PrimitiveMessageDefinition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StructuredMessageDefinition != nil {
+		for i, v := range s.StructuredMessageDefinition {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StructuredMessageDefinition", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.StructuredMessageListDefinition != nil {
+		if err := s.StructuredMessageListDefinition.Validate(); err != nil {
+			invalidParams.AddNested("StructuredMessageListDefinition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrimitiveMessageDefinition sets the PrimitiveMessageDefinition field's value.
+func (s *StructuredMessage) SetPrimitiveMessageDefinition(v *PrimitiveMessageDefinition) *StructuredMessage {
+	s.PrimitiveMessageDefinition = v
+	return s
+}
+
+// SetStructuredMessageDefinition sets the StructuredMessageDefinition field's value.
+func (s *StructuredMessage) SetStructuredMessageDefinition(v []*StructuredMessageFieldNameAndDataTypePair) *StructuredMessage {
+	s.StructuredMessageDefinition = v
+	return s
+}
+
+// SetStructuredMessageListDefinition sets the StructuredMessageListDefinition field's value.
+func (s *StructuredMessage) SetStructuredMessageListDefinition(v *StructuredMessageListDefinition) *StructuredMessage {
+	s.StructuredMessageListDefinition = v
+	return s
+}
+
+// Represents a StructureMessageName to DataType map element.
+type StructuredMessageFieldNameAndDataTypePair struct {
+	_ struct{} `type:"structure"`
+
+	// The data type.
+	//
+	// DataType is a required field
+	DataType *StructuredMessage `locationName:"dataType" type:"structure" required:"true"`
+
+	// The field name of the structured message. It determines how a data value
+	// is referenced in the target language.
+	//
+	// FieldName is a required field
+	FieldName *string `locationName:"fieldName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessageFieldNameAndDataTypePair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessageFieldNameAndDataTypePair) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StructuredMessageFieldNameAndDataTypePair) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StructuredMessageFieldNameAndDataTypePair"}
+	if s.DataType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.FieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldName"))
+	}
+	if s.FieldName != nil && len(*s.FieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldName", 1))
+	}
+	if s.DataType != nil {
+		if err := s.DataType.Validate(); err != nil {
+			invalidParams.AddNested("DataType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataType sets the DataType field's value.
+func (s *StructuredMessageFieldNameAndDataTypePair) SetDataType(v *StructuredMessage) *StructuredMessageFieldNameAndDataTypePair {
+	s.DataType = v
+	return s
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *StructuredMessageFieldNameAndDataTypePair) SetFieldName(v string) *StructuredMessageFieldNameAndDataTypePair {
+	s.FieldName = &v
+	return s
+}
+
+// Represents a list type node of the complex data structure.
+type StructuredMessageListDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The capacity of the structured message list definition when the list type
+	// is FIXED_CAPACITY or DYNAMIC_BOUNDED_CAPACITY.
+	Capacity *int64 `locationName:"capacity" type:"integer"`
+
+	// The type of list of the structured message list definition.
+	//
+	// ListType is a required field
+	ListType *string `locationName:"listType" type:"string" required:"true" enum:"StructuredMessageListType"`
+
+	// The member type of the structured message list definition.
+	//
+	// MemberType is a required field
+	MemberType *StructuredMessage `locationName:"memberType" type:"structure" required:"true"`
+
+	// The name of the structured message list definition.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessageListDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StructuredMessageListDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StructuredMessageListDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StructuredMessageListDefinition"}
+	if s.ListType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListType"))
+	}
+	if s.MemberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberType"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.MemberType != nil {
+		if err := s.MemberType.Validate(); err != nil {
+			invalidParams.AddNested("MemberType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *StructuredMessageListDefinition) SetCapacity(v int64) *StructuredMessageListDefinition {
+	s.Capacity = &v
+	return s
+}
+
+// SetListType sets the ListType field's value.
+func (s *StructuredMessageListDefinition) SetListType(v string) *StructuredMessageListDefinition {
+	s.ListType = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *StructuredMessageListDefinition) SetMemberType(v *StructuredMessage) *StructuredMessageListDefinition {
+	s.MemberType = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StructuredMessageListDefinition) SetName(v string) *StructuredMessageListDefinition {
 	s.Name = &v
 	return s
 }
@@ -16573,6 +17361,71 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+// The vehicle middleware defined as a type of network interface. Examples of
+// vehicle middleware include ROS2 and SOME/IP.
+type VehicleMiddleware struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the vehicle middleware.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The protocol name of the vehicle middleware.
+	//
+	// ProtocolName is a required field
+	ProtocolName *string `locationName:"protocolName" type:"string" required:"true" enum:"VehicleMiddlewareProtocol"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VehicleMiddleware) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VehicleMiddleware) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VehicleMiddleware) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VehicleMiddleware"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ProtocolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtocolName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *VehicleMiddleware) SetName(v string) *VehicleMiddleware {
+	s.Name = &v
+	return s
+}
+
+// SetProtocolName sets the ProtocolName field's value.
+func (s *VehicleMiddleware) SetProtocolName(v string) *VehicleMiddleware {
+	s.ProtocolName = &v
+	return s
+}
+
 // Information about the state of a vehicle and how it relates to the status
 // of a campaign.
 type VehicleStatus struct {
@@ -16861,6 +17714,12 @@ const (
 
 	// ManifestStatusDraft is a ManifestStatus enum value
 	ManifestStatusDraft = "DRAFT"
+
+	// ManifestStatusInvalid is a ManifestStatus enum value
+	ManifestStatusInvalid = "INVALID"
+
+	// ManifestStatusValidating is a ManifestStatus enum value
+	ManifestStatusValidating = "VALIDATING"
 )
 
 // ManifestStatus_Values returns all elements of the ManifestStatus enum
@@ -16868,6 +17727,8 @@ func ManifestStatus_Values() []string {
 	return []string{
 		ManifestStatusActive,
 		ManifestStatusDraft,
+		ManifestStatusInvalid,
+		ManifestStatusValidating,
 	}
 }
 
@@ -16889,6 +17750,12 @@ const (
 
 	// NetworkInterfaceFailureReasonNetworkInterfaceToRemoveAssociatedWithSignals is a NetworkInterfaceFailureReason enum value
 	NetworkInterfaceFailureReasonNetworkInterfaceToRemoveAssociatedWithSignals = "NETWORK_INTERFACE_TO_REMOVE_ASSOCIATED_WITH_SIGNALS"
+
+	// NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull is a NetworkInterfaceFailureReason enum value
+	NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull = "VEHICLE_MIDDLEWARE_NETWORK_INTERFACE_INFO_IS_NULL"
+
+	// NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull is a NetworkInterfaceFailureReason enum value
+	NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull = "CUSTOMER_DECODED_SIGNAL_NETWORK_INTERFACE_INFO_IS_NULL"
 )
 
 // NetworkInterfaceFailureReason_Values returns all elements of the NetworkInterfaceFailureReason enum
@@ -16900,6 +17767,8 @@ func NetworkInterfaceFailureReason_Values() []string {
 		NetworkInterfaceFailureReasonCanNetworkInterfaceInfoIsNull,
 		NetworkInterfaceFailureReasonObdNetworkInterfaceInfoIsNull,
 		NetworkInterfaceFailureReasonNetworkInterfaceToRemoveAssociatedWithSignals,
+		NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull,
+		NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull,
 	}
 }
 
@@ -16909,6 +17778,12 @@ const (
 
 	// NetworkInterfaceTypeObdInterface is a NetworkInterfaceType enum value
 	NetworkInterfaceTypeObdInterface = "OBD_INTERFACE"
+
+	// NetworkInterfaceTypeVehicleMiddleware is a NetworkInterfaceType enum value
+	NetworkInterfaceTypeVehicleMiddleware = "VEHICLE_MIDDLEWARE"
+
+	// NetworkInterfaceTypeCustomerDecodedInterface is a NetworkInterfaceType enum value
+	NetworkInterfaceTypeCustomerDecodedInterface = "CUSTOMER_DECODED_INTERFACE"
 )
 
 // NetworkInterfaceType_Values returns all elements of the NetworkInterfaceType enum
@@ -16916,6 +17791,24 @@ func NetworkInterfaceType_Values() []string {
 	return []string{
 		NetworkInterfaceTypeCanInterface,
 		NetworkInterfaceTypeObdInterface,
+		NetworkInterfaceTypeVehicleMiddleware,
+		NetworkInterfaceTypeCustomerDecodedInterface,
+	}
+}
+
+const (
+	// NodeDataEncodingBinary is a NodeDataEncoding enum value
+	NodeDataEncodingBinary = "BINARY"
+
+	// NodeDataEncodingTyped is a NodeDataEncoding enum value
+	NodeDataEncodingTyped = "TYPED"
+)
+
+// NodeDataEncoding_Values returns all elements of the NodeDataEncoding enum
+func NodeDataEncoding_Values() []string {
+	return []string{
+		NodeDataEncodingBinary,
+		NodeDataEncodingTyped,
 	}
 }
 
@@ -17000,6 +17893,12 @@ const (
 
 	// NodeDataTypeUnknown is a NodeDataType enum value
 	NodeDataTypeUnknown = "UNKNOWN"
+
+	// NodeDataTypeStruct is a NodeDataType enum value
+	NodeDataTypeStruct = "STRUCT"
+
+	// NodeDataTypeStructArray is a NodeDataType enum value
+	NodeDataTypeStructArray = "STRUCT_ARRAY"
 )
 
 // NodeDataType_Values returns all elements of the NodeDataType enum
@@ -17032,6 +17931,76 @@ func NodeDataType_Values() []string {
 		NodeDataTypeStringArray,
 		NodeDataTypeUnixTimestampArray,
 		NodeDataTypeUnknown,
+		NodeDataTypeStruct,
+		NodeDataTypeStructArray,
+	}
+}
+
+const (
+	// ROS2PrimitiveTypeBool is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeBool = "BOOL"
+
+	// ROS2PrimitiveTypeByte is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeByte = "BYTE"
+
+	// ROS2PrimitiveTypeChar is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeChar = "CHAR"
+
+	// ROS2PrimitiveTypeFloat32 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeFloat32 = "FLOAT32"
+
+	// ROS2PrimitiveTypeFloat64 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeFloat64 = "FLOAT64"
+
+	// ROS2PrimitiveTypeInt8 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeInt8 = "INT8"
+
+	// ROS2PrimitiveTypeUint8 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeUint8 = "UINT8"
+
+	// ROS2PrimitiveTypeInt16 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeInt16 = "INT16"
+
+	// ROS2PrimitiveTypeUint16 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeUint16 = "UINT16"
+
+	// ROS2PrimitiveTypeInt32 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeInt32 = "INT32"
+
+	// ROS2PrimitiveTypeUint32 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeUint32 = "UINT32"
+
+	// ROS2PrimitiveTypeInt64 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeInt64 = "INT64"
+
+	// ROS2PrimitiveTypeUint64 is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeUint64 = "UINT64"
+
+	// ROS2PrimitiveTypeString is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeString = "STRING"
+
+	// ROS2PrimitiveTypeWstring is a ROS2PrimitiveType enum value
+	ROS2PrimitiveTypeWstring = "WSTRING"
+)
+
+// ROS2PrimitiveType_Values returns all elements of the ROS2PrimitiveType enum
+func ROS2PrimitiveType_Values() []string {
+	return []string{
+		ROS2PrimitiveTypeBool,
+		ROS2PrimitiveTypeByte,
+		ROS2PrimitiveTypeChar,
+		ROS2PrimitiveTypeFloat32,
+		ROS2PrimitiveTypeFloat64,
+		ROS2PrimitiveTypeInt8,
+		ROS2PrimitiveTypeUint8,
+		ROS2PrimitiveTypeInt16,
+		ROS2PrimitiveTypeUint16,
+		ROS2PrimitiveTypeInt32,
+		ROS2PrimitiveTypeUint32,
+		ROS2PrimitiveTypeInt64,
+		ROS2PrimitiveTypeUint64,
+		ROS2PrimitiveTypeString,
+		ROS2PrimitiveTypeWstring,
 	}
 }
 
@@ -17082,6 +18051,27 @@ const (
 
 	// SignalDecoderFailureReasonNoDecoderInfoForSignalInModel is a SignalDecoderFailureReason enum value
 	SignalDecoderFailureReasonNoDecoderInfoForSignalInModel = "NO_DECODER_INFO_FOR_SIGNAL_IN_MODEL"
+
+	// SignalDecoderFailureReasonMessageSignalInfoIsNull is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonMessageSignalInfoIsNull = "MESSAGE_SIGNAL_INFO_IS_NULL"
+
+	// SignalDecoderFailureReasonSignalDecoderTypeIncompatibleWithMessageSignalType is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonSignalDecoderTypeIncompatibleWithMessageSignalType = "SIGNAL_DECODER_TYPE_INCOMPATIBLE_WITH_MESSAGE_SIGNAL_TYPE"
+
+	// SignalDecoderFailureReasonStructSizeMismatch is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonStructSizeMismatch = "STRUCT_SIZE_MISMATCH"
+
+	// SignalDecoderFailureReasonNoSignalInCatalogForDecoderSignal is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonNoSignalInCatalogForDecoderSignal = "NO_SIGNAL_IN_CATALOG_FOR_DECODER_SIGNAL"
+
+	// SignalDecoderFailureReasonSignalDecoderIncompatibleWithSignalCatalog is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonSignalDecoderIncompatibleWithSignalCatalog = "SIGNAL_DECODER_INCOMPATIBLE_WITH_SIGNAL_CATALOG"
+
+	// SignalDecoderFailureReasonEmptyMessageSignal is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonEmptyMessageSignal = "EMPTY_MESSAGE_SIGNAL"
+
+	// SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull is a SignalDecoderFailureReason enum value
+	SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull = "CUSTOMER_DECODED_SIGNAL_INFO_IS_NULL"
 )
 
 // SignalDecoderFailureReason_Values returns all elements of the SignalDecoderFailureReason enum
@@ -17096,6 +18086,13 @@ func SignalDecoderFailureReason_Values() []string {
 		SignalDecoderFailureReasonCanSignalInfoIsNull,
 		SignalDecoderFailureReasonObdSignalInfoIsNull,
 		SignalDecoderFailureReasonNoDecoderInfoForSignalInModel,
+		SignalDecoderFailureReasonMessageSignalInfoIsNull,
+		SignalDecoderFailureReasonSignalDecoderTypeIncompatibleWithMessageSignalType,
+		SignalDecoderFailureReasonStructSizeMismatch,
+		SignalDecoderFailureReasonNoSignalInCatalogForDecoderSignal,
+		SignalDecoderFailureReasonSignalDecoderIncompatibleWithSignalCatalog,
+		SignalDecoderFailureReasonEmptyMessageSignal,
+		SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull,
 	}
 }
 
@@ -17105,6 +18102,12 @@ const (
 
 	// SignalDecoderTypeObdSignal is a SignalDecoderType enum value
 	SignalDecoderTypeObdSignal = "OBD_SIGNAL"
+
+	// SignalDecoderTypeMessageSignal is a SignalDecoderType enum value
+	SignalDecoderTypeMessageSignal = "MESSAGE_SIGNAL"
+
+	// SignalDecoderTypeCustomerDecodedSignal is a SignalDecoderType enum value
+	SignalDecoderTypeCustomerDecodedSignal = "CUSTOMER_DECODED_SIGNAL"
 )
 
 // SignalDecoderType_Values returns all elements of the SignalDecoderType enum
@@ -17112,6 +18115,8 @@ func SignalDecoderType_Values() []string {
 	return []string{
 		SignalDecoderTypeCanSignal,
 		SignalDecoderTypeObdSignal,
+		SignalDecoderTypeMessageSignal,
+		SignalDecoderTypeCustomerDecodedSignal,
 	}
 }
 
@@ -17144,6 +18149,26 @@ func StorageCompressionFormat_Values() []string {
 	return []string{
 		StorageCompressionFormatNone,
 		StorageCompressionFormatGzip,
+	}
+}
+
+const (
+	// StructuredMessageListTypeFixedCapacity is a StructuredMessageListType enum value
+	StructuredMessageListTypeFixedCapacity = "FIXED_CAPACITY"
+
+	// StructuredMessageListTypeDynamicUnboundedCapacity is a StructuredMessageListType enum value
+	StructuredMessageListTypeDynamicUnboundedCapacity = "DYNAMIC_UNBOUNDED_CAPACITY"
+
+	// StructuredMessageListTypeDynamicBoundedCapacity is a StructuredMessageListType enum value
+	StructuredMessageListTypeDynamicBoundedCapacity = "DYNAMIC_BOUNDED_CAPACITY"
+)
+
+// StructuredMessageListType_Values returns all elements of the StructuredMessageListType enum
+func StructuredMessageListType_Values() []string {
+	return []string{
+		StructuredMessageListTypeFixedCapacity,
+		StructuredMessageListTypeDynamicUnboundedCapacity,
+		StructuredMessageListTypeDynamicBoundedCapacity,
 	}
 }
 
@@ -17240,6 +18265,18 @@ func VehicleAssociationBehavior_Values() []string {
 	return []string{
 		VehicleAssociationBehaviorCreateIotThing,
 		VehicleAssociationBehaviorValidateIotThingExists,
+	}
+}
+
+const (
+	// VehicleMiddlewareProtocolRos2 is a VehicleMiddlewareProtocol enum value
+	VehicleMiddlewareProtocolRos2 = "ROS_2"
+)
+
+// VehicleMiddlewareProtocol_Values returns all elements of the VehicleMiddlewareProtocol enum
+func VehicleMiddlewareProtocol_Values() []string {
+	return []string{
+		VehicleMiddlewareProtocolRos2,
 	}
 }
 

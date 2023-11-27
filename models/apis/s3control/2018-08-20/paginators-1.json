@@ -1,5 +1,20 @@
 {
   "pagination": {
+    "ListAccessGrants": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListAccessGrantsInstances": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListAccessGrantsLocations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListAccessPoints": {
       "input_token": "NextToken",
       "output_token": "NextToken",

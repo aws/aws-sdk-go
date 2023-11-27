@@ -2691,10 +2691,11 @@ func (c *SFN) RedriveExecutionRequest(input *RedriveExecutionInput) (req *reques
 // state, RedriveExecution API action reschedules and redrives only the iterations
 // and branches that failed or aborted.
 //
-// To redrive a workflow that includes a Distributed Map state with failed child
-// workflow executions, you must redrive the parent workflow (https://docs.aws.amazon.com/step-functions/latest/dg/use-dist-map-orchestrate-large-scale-parallel-workloads.html#dist-map-orchestrate-parallel-workloads-key-terms).
-// The parent workflow redrives all the unsuccessful states, including Distributed
-// Map.
+// To redrive a workflow that includes a Distributed Map state whose Map Run
+// failed, you must redrive the parent workflow (https://docs.aws.amazon.com/step-functions/latest/dg/use-dist-map-orchestrate-large-scale-parallel-workloads.html#dist-map-orchestrate-parallel-workloads-key-terms).
+// The parent workflow redrives all the unsuccessful states, including a failed
+// Map Run. If a Map Run was not started in the original execution attempt,
+// the redriven parent workflow starts the Map Run.
 //
 // This API action is not supported by EXPRESS state machines.
 //
@@ -3478,6 +3479,137 @@ func (c *SFN) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, o
 	return out, req.Send()
 }
 
+const opTestState = "TestState"
+
+// TestStateRequest generates a "aws/request.Request" representing the
+// client's request for the TestState operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TestState for more information on using the TestState
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TestStateRequest method.
+//	req, resp := client.TestStateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/TestState
+func (c *SFN) TestStateRequest(input *TestStateInput) (req *request.Request, output *TestStateOutput) {
+	op := &request.Operation{
+		Name:       opTestState,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TestStateInput{}
+	}
+
+	output = &TestStateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("sync-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// TestState API operation for AWS Step Functions.
+//
+// Accepts the definition of a single state and executes it. You can test a
+// state without creating a state machine or updating an existing state machine.
+// Using this API, you can test the following:
+//
+//   - A state's input and output processing (https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-input-output-dataflow)
+//     data flow
+//
+//   - An Amazon Web Services service integration (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-services.html)
+//     request and response
+//
+//   - An HTTP Task (https://docs.aws.amazon.com/step-functions/latest/dg/connect-third-party-apis.html)
+//     request and response
+//
+// You can call this API on only one state at a time. The states that you can
+// test include the following:
+//
+//   - All Task types (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html#task-types)
+//     except Activity (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html)
+//
+//   - Pass (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-pass-state.html)
+//
+//   - Wait (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-wait-state.html)
+//
+//   - Choice (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html)
+//
+//   - Succeed (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-succeed-state.html)
+//
+//   - Fail (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-fail-state.html)
+//
+// The TestState API assumes an IAM role which must contain the required IAM
+// permissions for the resources your state is accessing. For information about
+// the permissions a state might need, see IAM permissions to test a state (https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-permissions).
+//
+// The TestState API can run for up to five minutes. If the execution of a state
+// exceeds this duration, it fails with the States.Timeout error.
+//
+// TestState doesn't support Activity tasks (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html),
+// .sync or .waitForTaskToken service integration patterns (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html),
+// Parallel (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html),
+// or Map (https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html)
+// states.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation TestState for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - InvalidDefinition
+//     The provided Amazon States Language definition is not valid.
+//
+//   - InvalidExecutionInput
+//     The provided JSON input data is not valid.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/TestState
+func (c *SFN) TestState(input *TestStateInput) (*TestStateOutput, error) {
+	req, out := c.TestStateRequest(input)
+	return out, req.Send()
+}
+
+// TestStateWithContext is the same as TestState with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TestState for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) TestStateWithContext(ctx aws.Context, input *TestStateInput, opts ...request.Option) (*TestStateOutput, error) {
+	req, out := c.TestStateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -3896,6 +4028,9 @@ func (c *SFN) UpdateStateMachineAliasRequest(input *UpdateStateMachineAliasInput
 //     or UpdateStateMachine with the publish parameter set to true.
 //
 //     HTTP Status Code: 409
+//
+//   - StateMachineDeleting
+//     The specified state machine is being deleted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateStateMachineAlias
 func (c *SFN) UpdateStateMachineAlias(input *UpdateStateMachineAliasInput) (*UpdateStateMachineAliasOutput, error) {
@@ -5723,8 +5858,8 @@ type DescribeExecutionOutput struct {
 	OutputDetails *CloudWatchEventsExecutionDataDetails `locationName:"outputDetails" type:"structure"`
 
 	// The number of times you've redriven an execution. If you have not yet redriven
-	// an execution, the redriveCount is 0. This count is not updated for redrives
-	// that failed to start or are pending to be redriven.
+	// an execution, the redriveCount is 0. This count is only updated if you successfully
+	// redrive an execution.
 	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
 
 	// The date the execution was last redriven. If you have not yet redriven an
@@ -6032,8 +6167,8 @@ type DescribeMapRunOutput struct {
 	MaxConcurrency *int64 `locationName:"maxConcurrency" type:"integer" required:"true"`
 
 	// The number of times you've redriven a Map Run. If you have not yet redriven
-	// a Map Run, the redriveCount is 0. This count is not updated for redrives
-	// that failed to start or are pending to be redriven.
+	// a Map Run, the redriveCount is 0. This count is only updated if you successfully
+	// redrive a Map Run.
 	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
 
 	// The date a Map Run was last redriven. If you have not yet redriven a Map
@@ -7043,8 +7178,8 @@ type ExecutionListItem struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The number of times you've redriven an execution. If you have not yet redriven
-	// an execution, the redriveCount is 0. This count is not updated for redrives
-	// that failed to start or are pending to be redriven.
+	// an execution, the redriveCount is 0. This count is only updated when you
+	// successfully redrive an execution.
 	RedriveCount *int64 `locationName:"redriveCount" type:"integer"`
 
 	// The date the execution was last redriven.
@@ -8126,6 +8261,270 @@ func (s HistoryEventExecutionDataDetails) GoString() string {
 // SetTruncated sets the Truncated field's value.
 func (s *HistoryEventExecutionDataDetails) SetTruncated(v bool) *HistoryEventExecutionDataDetails {
 	s.Truncated = &v
+	return s
+}
+
+// Contains additional details about the state's execution, including its input
+// and output data processing flow, and HTTP request and response information.
+type InspectionData struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The input after Step Functions applies the InputPath (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-inputpath-params.html#input-output-inputpath)
+	// filter.
+	//
+	// AfterInputPath is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	AfterInputPath *string `locationName:"afterInputPath" type:"string" sensitive:"true"`
+
+	// The effective input after Step Functions applies the Parameters (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-inputpath-params.html#input-output-parameters)
+	// filter.
+	//
+	// AfterParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	AfterParameters *string `locationName:"afterParameters" type:"string" sensitive:"true"`
+
+	// The effective result combined with the raw state input after Step Functions
+	// applies the ResultPath (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultpath.html)
+	// filter.
+	//
+	// AfterResultPath is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	AfterResultPath *string `locationName:"afterResultPath" type:"string" sensitive:"true"`
+
+	// The effective result after Step Functions applies the ResultSelector (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-inputpath-params.html#input-output-resultselector)
+	// filter.
+	//
+	// AfterResultSelector is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	AfterResultSelector *string `locationName:"afterResultSelector" type:"string" sensitive:"true"`
+
+	// The raw state input.
+	//
+	// Input is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	Input *string `locationName:"input" type:"string" sensitive:"true"`
+
+	// The raw HTTP request that is sent when you test an HTTP Task.
+	Request *InspectionDataRequest `locationName:"request" type:"structure"`
+
+	// The raw HTTP response that is returned when you test an HTTP Task.
+	Response *InspectionDataResponse `locationName:"response" type:"structure"`
+
+	// The state's raw result.
+	//
+	// Result is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InspectionData's
+	// String and GoString methods.
+	Result *string `locationName:"result" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionData) GoString() string {
+	return s.String()
+}
+
+// SetAfterInputPath sets the AfterInputPath field's value.
+func (s *InspectionData) SetAfterInputPath(v string) *InspectionData {
+	s.AfterInputPath = &v
+	return s
+}
+
+// SetAfterParameters sets the AfterParameters field's value.
+func (s *InspectionData) SetAfterParameters(v string) *InspectionData {
+	s.AfterParameters = &v
+	return s
+}
+
+// SetAfterResultPath sets the AfterResultPath field's value.
+func (s *InspectionData) SetAfterResultPath(v string) *InspectionData {
+	s.AfterResultPath = &v
+	return s
+}
+
+// SetAfterResultSelector sets the AfterResultSelector field's value.
+func (s *InspectionData) SetAfterResultSelector(v string) *InspectionData {
+	s.AfterResultSelector = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *InspectionData) SetInput(v string) *InspectionData {
+	s.Input = &v
+	return s
+}
+
+// SetRequest sets the Request field's value.
+func (s *InspectionData) SetRequest(v *InspectionDataRequest) *InspectionData {
+	s.Request = v
+	return s
+}
+
+// SetResponse sets the Response field's value.
+func (s *InspectionData) SetResponse(v *InspectionDataResponse) *InspectionData {
+	s.Response = v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *InspectionData) SetResult(v string) *InspectionData {
+	s.Result = &v
+	return s
+}
+
+// Contains additional details about the state's execution, including its input
+// and output data processing flow, and HTTP request information.
+type InspectionDataRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The request body for the HTTP request.
+	Body *string `locationName:"body" type:"string"`
+
+	// The request headers associated with the HTTP request.
+	Headers *string `locationName:"headers" type:"string"`
+
+	// The HTTP method used for the HTTP request.
+	Method *string `locationName:"method" type:"string"`
+
+	// The protocol used to make the HTTP request.
+	Protocol *string `locationName:"protocol" type:"string"`
+
+	// The API endpoint used for the HTTP request.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionDataRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionDataRequest) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *InspectionDataRequest) SetBody(v string) *InspectionDataRequest {
+	s.Body = &v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *InspectionDataRequest) SetHeaders(v string) *InspectionDataRequest {
+	s.Headers = &v
+	return s
+}
+
+// SetMethod sets the Method field's value.
+func (s *InspectionDataRequest) SetMethod(v string) *InspectionDataRequest {
+	s.Method = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *InspectionDataRequest) SetProtocol(v string) *InspectionDataRequest {
+	s.Protocol = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *InspectionDataRequest) SetUrl(v string) *InspectionDataRequest {
+	s.Url = &v
+	return s
+}
+
+// Contains additional details about the state's execution, including its input
+// and output data processing flow, and HTTP response information. The inspectionLevel
+// request parameter specifies which details are returned.
+type InspectionDataResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP response returned.
+	Body *string `locationName:"body" type:"string"`
+
+	// The response headers associated with the HTTP response.
+	Headers *string `locationName:"headers" type:"string"`
+
+	// The protocol used to return the HTTP response.
+	Protocol *string `locationName:"protocol" type:"string"`
+
+	// The HTTP response status code for the HTTP response.
+	StatusCode *string `locationName:"statusCode" type:"string"`
+
+	// The message associated with the HTTP status code.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionDataResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InspectionDataResponse) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *InspectionDataResponse) SetBody(v string) *InspectionDataResponse {
+	s.Body = &v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *InspectionDataResponse) SetHeaders(v string) *InspectionDataResponse {
+	s.Headers = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *InspectionDataResponse) SetProtocol(v string) *InspectionDataResponse {
+	s.Protocol = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *InspectionDataResponse) SetStatusCode(v string) *InspectionDataResponse {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *InspectionDataResponse) SetStatusMessage(v string) *InspectionDataResponse {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -9991,8 +10390,8 @@ type MapRunExecutionCounts struct {
 
 	// The number of FAILED, ABORTED, or TIMED_OUT child workflow executions that
 	// cannot be redriven because their execution status is terminal. For example,
-	// if your execution event history contains 25,000 entries, or the toleratedFailureCount
-	// or toleratedFailurePercentage for the Distributed Map has exceeded.
+	// child workflows with an execution status of FAILED, ABORTED, or TIMED_OUT
+	// and a redriveStatus of NOT_REDRIVABLE.
 	FailuresNotRedrivable *int64 `locationName:"failuresNotRedrivable" type:"long"`
 
 	// The total number of child workflow executions that were started by a Map
@@ -10186,9 +10585,8 @@ type MapRunItemCounts struct {
 
 	// The number of FAILED, ABORTED, or TIMED_OUT items in child workflow executions
 	// that cannot be redriven because the execution status of those child workflows
-	// is terminal. For example, if your execution event history contains 25,000
-	// entries, or the toleratedFailureCount or toleratedFailurePercentage for the
-	// Distributed Map has exceeded.
+	// is terminal. For example, child workflows with an execution status of FAILED,
+	// ABORTED, or TIMED_OUT and a redriveStatus of NOT_REDRIVABLE.
 	FailuresNotRedrivable *int64 `locationName:"failuresNotRedrivable" type:"long"`
 
 	// The total number of items to process in child workflow executions that haven't
@@ -10691,7 +11089,9 @@ type RedriveExecutionInput struct {
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. If you don’t specify a client token, the Amazon Web Services
 	// SDK automatically generates a client token and uses it for the request to
-	// ensure idempotency. The API uses one of the last 10 client tokens provided.
+	// ensure idempotency. The API will return idempotent responses for the last
+	// 10 client tokens used to successfully redrive the execution. These client
+	// tokens are valid for up to 15 minutes after they are first used.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the execution to be redriven.
@@ -13318,6 +13718,233 @@ func (s *TaskTimedOutEventDetails) SetResourceType(v string) *TaskTimedOutEventD
 	return s
 }
 
+type TestStateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)
+	// (ASL) definition of the state.
+	//
+	// Definition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateInput's
+	// String and GoString methods.
+	//
+	// Definition is a required field
+	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A string that contains the JSON input data for the state.
+	//
+	// Input is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateInput's
+	// String and GoString methods.
+	Input *string `locationName:"input" type:"string" sensitive:"true"`
+
+	// Determines the values to return when a state is tested. You can specify one
+	// of the following types:
+	//
+	//    * INFO: Shows the final state output. By default, Step Functions sets
+	//    inspectionLevel to INFO if you don't specify a level.
+	//
+	//    * DEBUG: Shows the final state output along with the input and output
+	//    data processing result.
+	//
+	//    * TRACE: Shows the HTTP request and response for an HTTP Task. This level
+	//    also shows the final state output along with the input and output data
+	//    processing result.
+	//
+	// Each of these levels also provide information about the status of the state
+	// execution and the next state to transition to.
+	InspectionLevel *string `locationName:"inspectionLevel" type:"string" enum:"InspectionLevel"`
+
+	// Specifies whether or not to include secret information in the test result.
+	// For HTTP Tasks, a secret includes the data that an EventBridge connection
+	// adds to modify the HTTP request headers, query parameters, and body. Step
+	// Functions doesn't omit any information included in the state definition or
+	// the HTTP response.
+	//
+	// If you set revealSecrets to true, you must make sure that the IAM user that
+	// calls the TestState API has permission for the states:RevealSecrets action.
+	// For an example of IAM policy that sets the states:RevealSecrets permission,
+	// see IAM permissions to test a state (https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-permissions).
+	// Without this permission, Step Functions throws an access denied error.
+	//
+	// By default, revealSecrets is set to false.
+	RevealSecrets *bool `locationName:"revealSecrets" type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the execution role with the required IAM
+	// permissions for the state.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestStateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestStateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestStateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestStateInput"}
+	if s.Definition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Definition"))
+	}
+	if s.Definition != nil && len(*s.Definition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Definition", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *TestStateInput) SetDefinition(v string) *TestStateInput {
+	s.Definition = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *TestStateInput) SetInput(v string) *TestStateInput {
+	s.Input = &v
+	return s
+}
+
+// SetInspectionLevel sets the InspectionLevel field's value.
+func (s *TestStateInput) SetInspectionLevel(v string) *TestStateInput {
+	s.InspectionLevel = &v
+	return s
+}
+
+// SetRevealSecrets sets the RevealSecrets field's value.
+func (s *TestStateInput) SetRevealSecrets(v bool) *TestStateInput {
+	s.RevealSecrets = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TestStateInput) SetRoleArn(v string) *TestStateInput {
+	s.RoleArn = &v
+	return s
+}
+
+type TestStateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed explanation of the cause for the error when the execution of a
+	// state fails.
+	//
+	// Cause is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateOutput's
+	// String and GoString methods.
+	Cause *string `locationName:"cause" type:"string" sensitive:"true"`
+
+	// The error returned when the execution of a state fails.
+	//
+	// Error is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateOutput's
+	// String and GoString methods.
+	Error *string `locationName:"error" type:"string" sensitive:"true"`
+
+	// Returns additional details about the state's execution, including its input
+	// and output data processing flow, and HTTP request and response information.
+	// The inspectionLevel request parameter specifies which details are returned.
+	//
+	// InspectionData is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateOutput's
+	// String and GoString methods.
+	InspectionData *InspectionData `locationName:"inspectionData" type:"structure" sensitive:"true"`
+
+	// The name of the next state to transition to. If you haven't defined a next
+	// state in your definition or if the execution of the state fails, this ﬁeld
+	// doesn't contain a value.
+	NextState *string `locationName:"nextState" min:"1" type:"string"`
+
+	// The JSON output data of the state. Length constraints apply to the payload
+	// size, and are expressed as bytes in UTF-8 encoding.
+	//
+	// Output is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestStateOutput's
+	// String and GoString methods.
+	Output *string `locationName:"output" type:"string" sensitive:"true"`
+
+	// The execution status of the state.
+	Status *string `locationName:"status" type:"string" enum:"TestExecutionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestStateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TestStateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCause sets the Cause field's value.
+func (s *TestStateOutput) SetCause(v string) *TestStateOutput {
+	s.Cause = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *TestStateOutput) SetError(v string) *TestStateOutput {
+	s.Error = &v
+	return s
+}
+
+// SetInspectionData sets the InspectionData field's value.
+func (s *TestStateOutput) SetInspectionData(v *InspectionData) *TestStateOutput {
+	s.InspectionData = v
+	return s
+}
+
+// SetNextState sets the NextState field's value.
+func (s *TestStateOutput) SetNextState(v string) *TestStateOutput {
+	s.NextState = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *TestStateOutput) SetOutput(v string) *TestStateOutput {
+	s.Output = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TestStateOutput) SetStatus(v string) *TestStateOutput {
+	s.Status = &v
+	return s
+}
+
 // You've exceeded the number of tags allowed for a resource. See the Limits
 // Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
 // in the Step Functions Developer Guide.
@@ -14294,6 +14921,26 @@ func HistoryEventType_Values() []string {
 }
 
 const (
+	// InspectionLevelInfo is a InspectionLevel enum value
+	InspectionLevelInfo = "INFO"
+
+	// InspectionLevelDebug is a InspectionLevel enum value
+	InspectionLevelDebug = "DEBUG"
+
+	// InspectionLevelTrace is a InspectionLevel enum value
+	InspectionLevelTrace = "TRACE"
+)
+
+// InspectionLevel_Values returns all elements of the InspectionLevel enum
+func InspectionLevel_Values() []string {
+	return []string{
+		InspectionLevelInfo,
+		InspectionLevelDebug,
+		InspectionLevelTrace,
+	}
+}
+
+const (
 	// LogLevelAll is a LogLevel enum value
 	LogLevelAll = "ALL"
 
@@ -14390,6 +15037,30 @@ func SyncExecutionStatus_Values() []string {
 		SyncExecutionStatusSucceeded,
 		SyncExecutionStatusFailed,
 		SyncExecutionStatusTimedOut,
+	}
+}
+
+const (
+	// TestExecutionStatusSucceeded is a TestExecutionStatus enum value
+	TestExecutionStatusSucceeded = "SUCCEEDED"
+
+	// TestExecutionStatusFailed is a TestExecutionStatus enum value
+	TestExecutionStatusFailed = "FAILED"
+
+	// TestExecutionStatusRetriable is a TestExecutionStatus enum value
+	TestExecutionStatusRetriable = "RETRIABLE"
+
+	// TestExecutionStatusCaughtError is a TestExecutionStatus enum value
+	TestExecutionStatusCaughtError = "CAUGHT_ERROR"
+)
+
+// TestExecutionStatus_Values returns all elements of the TestExecutionStatus enum
+func TestExecutionStatus_Values() []string {
+	return []string{
+		TestExecutionStatusSucceeded,
+		TestExecutionStatusFailed,
+		TestExecutionStatusRetriable,
+		TestExecutionStatusCaughtError,
 	}
 }
 

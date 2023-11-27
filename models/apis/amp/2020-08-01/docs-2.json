@@ -5,16 +5,21 @@
     "CreateAlertManagerDefinition": "<p>Create an alert manager definition.</p>",
     "CreateLoggingConfiguration": "<p>Create logging configuration.</p>",
     "CreateRuleGroupsNamespace": "<p>Create a rule group namespace.</p>",
+    "CreateScraper": "<p>Create a scraper.</p>",
     "CreateWorkspace": "<p>Creates a new AMP workspace.</p>",
     "DeleteAlertManagerDefinition": "<p>Deletes an alert manager definition.</p>",
     "DeleteLoggingConfiguration": "<p>Delete logging configuration.</p>",
     "DeleteRuleGroupsNamespace": "<p>Delete a rule groups namespace.</p>",
+    "DeleteScraper": "<p>Deletes a scraper.</p>",
     "DeleteWorkspace": "<p>Deletes an AMP workspace.</p>",
     "DescribeAlertManagerDefinition": "<p>Describes an alert manager definition.</p>",
     "DescribeLoggingConfiguration": "<p>Describes logging configuration.</p>",
     "DescribeRuleGroupsNamespace": "<p>Describe a rule groups namespace.</p>",
+    "DescribeScraper": "<p>Describe an existing scraper.</p>",
     "DescribeWorkspace": "<p>Describes an existing AMP workspace.</p>",
+    "GetDefaultScraperConfiguration": "<p>Gets a default configuration.</p>",
     "ListRuleGroupsNamespaces": "<p>Lists rule groups namespaces.</p>",
+    "ListScrapers": "<p>Lists all scrapers in a customer account, including scrapers being created or deleted. You may provide filters to return a more specific list of results.</p>",
     "ListTagsForResource": "<p>Lists the tags you have assigned to the resource.</p>",
     "ListWorkspaces": "<p>Lists all AMP workspaces, including workspaces being created or deleted.</p>",
     "PutAlertManagerDefinition": "<p>Update an alert manager definition.</p>",
@@ -58,6 +63,25 @@
         "AlertManagerDefinitionStatus$statusCode": "<p>Status code of this definition.</p>"
       }
     },
+    "AmpConfiguration": {
+      "base": "<p>A representation of an AMP destination.</p>",
+      "refs": {
+        "Destination$ampConfiguration": "<p>A representation of an AMP destination.</p>"
+      }
+    },
+    "Blob": {
+      "base": null,
+      "refs": {
+        "GetDefaultScraperConfigurationResponse$configuration": "<p>The default configuration.</p>",
+        "ScrapeConfiguration$configurationBlob": "<p>Binary data representing a Prometheus configuration file.</p>"
+      }
+    },
+    "ClusterArn": {
+      "base": "<p>The ARN of an EKS cluster.</p>",
+      "refs": {
+        "EksConfiguration$clusterArn": "<p>The ARN of an EKS cluster.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
       "refs": {
@@ -93,6 +117,16 @@
       "refs": {
       }
     },
+    "CreateScraperRequest": {
+      "base": "<p>Represents the input of a CreateScraper operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateScraperResponse": {
+      "base": "<p>Represents the output of a CreateScraper operation.</p>",
+      "refs": {
+      }
+    },
     "CreateWorkspaceRequest": {
       "base": "<p>Represents the input of a CreateWorkspace operation.</p>",
       "refs": {
@@ -115,6 +149,16 @@
     },
     "DeleteRuleGroupsNamespaceRequest": {
       "base": "<p>Represents the input of a DeleteRuleGroupsNamespace operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteScraperRequest": {
+      "base": "<p>Represents the input of a DeleteScraper operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteScraperResponse": {
+      "base": "<p>Represents the output of a DeleteScraper operation.</p>",
       "refs": {
       }
     },
@@ -153,6 +197,16 @@
       "refs": {
       }
     },
+    "DescribeScraperRequest": {
+      "base": "<p>Represents the input of a DescribeScraper operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeScraperResponse": {
+      "base": "<p>Represents the output of a DescribeScraper operation.</p>",
+      "refs": {
+      }
+    },
     "DescribeWorkspaceRequest": {
       "base": "<p>Represents the input of a DescribeWorkspace operation.</p>",
       "refs": {
@@ -163,16 +217,67 @@
       "refs": {
       }
     },
+    "Destination": {
+      "base": "<p>A representation of a destination that a scraper can produce metrics to.</p>",
+      "refs": {
+        "CreateScraperRequest$destination": "<p>The destination that the scraper will be producing metrics to.</p>",
+        "ScraperDescription$destination": "<p>The destination that the scraper is producing metrics to.</p>",
+        "ScraperSummary$destination": "<p>The destination that the scraper is producing metrics to.</p>"
+      }
+    },
+    "EksConfiguration": {
+      "base": "<p>A representation of an EKS source.</p>",
+      "refs": {
+        "Source$eksConfiguration": "<p>A representation of an EKS source.</p>"
+      }
+    },
+    "FilterKey": {
+      "base": "<p>The name of the key to filter by.</p>",
+      "refs": {
+        "ScraperFilters$key": "<p>The name of the key to filter by. Currently supported filter keys are 'status', 'sourceArn', 'destinationArn', and 'alias'.</p>"
+      }
+    },
+    "FilterValue": {
+      "base": "<p>The value of a given key to filter by.</p>",
+      "refs": {
+        "FilterValues$member": null
+      }
+    },
+    "FilterValues": {
+      "base": "<p>A list of scraper filter values.</p>",
+      "refs": {
+        "ScraperFilters$value": "<p>The values of the given key to filter by.</p>"
+      }
+    },
+    "GetDefaultScraperConfigurationRequest": {
+      "base": "<p>Represents the input of a GetDefaultScraperConfiguration operation.</p>",
+      "refs": {
+      }
+    },
+    "GetDefaultScraperConfigurationResponse": {
+      "base": "<p>Represents the output of a GetDefaultScraperConfiguration operation.</p>",
+      "refs": {
+      }
+    },
+    "IamRoleArn": {
+      "base": "<p>An ARN identifying an IAM role used by the scraper.</p>",
+      "refs": {
+        "ScraperDescription$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the scraper to dsicover, collect, and produce metrics on your behalf.</p>",
+        "ScraperSummary$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the scraper to dsicover, collect, and produce metrics on your behalf.</p>"
+      }
+    },
     "IdempotencyToken": {
       "base": "<p>An identifier used to ensure the idempotency of a write request.</p>",
       "refs": {
         "CreateAlertManagerDefinitionRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "CreateLoggingConfigurationRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "CreateRuleGroupsNamespaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
+        "CreateScraperRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "CreateWorkspaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "DeleteAlertManagerDefinitionRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "DeleteLoggingConfigurationRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "DeleteRuleGroupsNamespaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
+        "DeleteScraperRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "DeleteWorkspaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "PutAlertManagerDefinitionRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
         "PutRuleGroupsNamespaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
@@ -205,6 +310,22 @@
     },
     "ListRuleGroupsNamespacesResponse": {
       "base": "<p>Represents the output of a ListRuleGroupsNamespaces operation.</p>",
+      "refs": {
+      }
+    },
+    "ListScrapersRequest": {
+      "base": "<p>Represents the input of a ListScrapers operation.</p>",
+      "refs": {
+      }
+    },
+    "ListScrapersRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListScrapersRequest$maxResults": "<p>Maximum results to return in response (default=100, maximum=1000).</p>"
+      }
+    },
+    "ListScrapersResponse": {
+      "base": "<p>Represents the output of a ListScrapers operation.</p>",
       "refs": {
       }
     },
@@ -267,6 +388,8 @@
       "refs": {
         "ListRuleGroupsNamespacesRequest$nextToken": "<p>Pagination token to request the next page in a paginated list. This token is obtained from the output of the previous ListRuleGroupsNamespaces request.</p>",
         "ListRuleGroupsNamespacesResponse$nextToken": "<p>Pagination token to use when requesting the next page in this list.</p>",
+        "ListScrapersRequest$nextToken": "<p>Pagination token to request the next page in a paginated list. This token is obtained from the output of the previous ListScrapers request.</p>",
+        "ListScrapersResponse$nextToken": "<p>Pagination token to use when requesting the next page in this list.</p>",
         "ListWorkspacesRequest$nextToken": "<p>Pagination token to request the next page in a paginated list. This token is obtained from the output of the previous ListWorkspaces request.</p>",
         "ListWorkspacesResponse$nextToken": "<p>Pagination token to use when requesting the next page in this list.</p>"
       }
@@ -360,9 +483,109 @@
         "ListRuleGroupsNamespacesResponse$ruleGroupsNamespaces": "<p>The list of the selected rule groups namespaces.</p>"
       }
     },
+    "ScrapeConfiguration": {
+      "base": "<p>A representation of a Prometheus configuration file.</p>",
+      "refs": {
+        "CreateScraperRequest$scrapeConfiguration": "<p>The configuration used to create the scraper.</p>",
+        "ScraperDescription$scrapeConfiguration": "<p>The configuration used to create the scraper.</p>"
+      }
+    },
+    "ScraperAlias": {
+      "base": "<p>A user-assigned scraper alias.</p>",
+      "refs": {
+        "CreateScraperRequest$alias": "<p>An optional user-assigned alias for this scraper. This alias is for user reference and does not need to be unique.</p>",
+        "ScraperDescription$alias": "<p>Alias of this scraper.</p>",
+        "ScraperSummary$alias": "<p>Alias of this scraper.</p>"
+      }
+    },
+    "ScraperArn": {
+      "base": "<p>An ARN identifying a scrape configuration.</p>",
+      "refs": {
+        "CreateScraperResponse$arn": "<p>The ARN of the scraper that was just created.</p>",
+        "ScraperDescription$arn": "<p>The Amazon Resource Name (ARN) of this scraper.</p>",
+        "ScraperSummary$arn": "<p>The Amazon Resource Name (ARN) of this scraper.</p>"
+      }
+    },
+    "ScraperDescription": {
+      "base": "<p>Represents the properties of a scraper.</p>",
+      "refs": {
+        "DescribeScraperResponse$scraper": "<p>The properties of the selected scrapers.</p>"
+      }
+    },
+    "ScraperFilters": {
+      "base": "<p>A list of scraper filters.</p>",
+      "refs": {
+        "ListScrapersRequest$filters": "<p>A list of scraper filters.</p>"
+      }
+    },
+    "ScraperId": {
+      "base": "<p>A scraper ID.</p>",
+      "refs": {
+        "CreateScraperResponse$scraperId": "<p>The generated ID of the scraper that was just created.</p>",
+        "DeleteScraperRequest$scraperId": "<p>The ID of the scraper to delete.</p>",
+        "DeleteScraperResponse$scraperId": "<p>The ID of the scraper that was deleted.</p>",
+        "DescribeScraperRequest$scraperId": "<p>The IDs of the scraper to describe.</p>",
+        "ScraperDescription$scraperId": "<p>Unique string identifying this scraper.</p>",
+        "ScraperSummary$scraperId": "<p>Unique string identifying this scraper.</p>"
+      }
+    },
+    "ScraperStatus": {
+      "base": "<p>Represents the status of a scraper.</p>",
+      "refs": {
+        "CreateScraperResponse$status": "<p>The status of the scraper that was just created (usually CREATING).</p>",
+        "DeleteScraperResponse$status": "<p>The status of the scraper that is being deleted.</p>",
+        "ScraperDescription$status": "<p>The status of this scraper.</p>",
+        "ScraperSummary$status": "<p>The status of this scraper.</p>"
+      }
+    },
+    "ScraperStatusCode": {
+      "base": "<p>State of a scraper.</p>",
+      "refs": {
+        "ScraperStatus$statusCode": "<p>Status code of this scraper.</p>"
+      }
+    },
+    "ScraperSummary": {
+      "base": "<p>Represents a summary of the properties of a scraper.</p>",
+      "refs": {
+        "ScraperSummaryList$member": null
+      }
+    },
+    "ScraperSummaryList": {
+      "base": "<p>A list of scraper summaries.</p>",
+      "refs": {
+        "ListScrapersResponse$scrapers": "<p>The list of scrapers, filtered down if a set of filters was provided in the request.</p>"
+      }
+    },
+    "SecurityGroupId": {
+      "base": "<p>ID of a VPC security group.</p>",
+      "refs": {
+        "SecurityGroupIds$member": null
+      }
+    },
+    "SecurityGroupIds": {
+      "base": "<p>A list of security group IDs specified for VPC configuration.</p>",
+      "refs": {
+        "EksConfiguration$securityGroupIds": "<p>A list of security group IDs specified for VPC configuration.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>Request would cause a service quota to be exceeded.</p>",
       "refs": {
+      }
+    },
+    "Source": {
+      "base": "<p>A representation of a source that a scraper can discover and collect metrics from.</p>",
+      "refs": {
+        "CreateScraperRequest$source": "<p>The source that the scraper will be discovering and collecting metrics from.</p>",
+        "ScraperDescription$source": "<p>The source that the scraper is discovering and collecting metrics from.</p>",
+        "ScraperSummary$source": "<p>The source that the scraper is discovering and collecting metrics from.</p>"
+      }
+    },
+    "StatusReason": {
+      "base": "<p>The reason for failure if any.</p>",
+      "refs": {
+        "ScraperDescription$statusReason": "<p>The reason for failure if any.</p>",
+        "ScraperSummary$statusReason": "<p>The reason for failure if any.</p>"
       }
     },
     "String": {
@@ -395,6 +618,18 @@
         "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>"
       }
     },
+    "SubnetId": {
+      "base": "<p>ID of a VPC subnet.</p>",
+      "refs": {
+        "SubnetIds$member": null
+      }
+    },
+    "SubnetIds": {
+      "base": "<p>A list of subnet IDs specified for VPC configuration.</p>",
+      "refs": {
+        "EksConfiguration$subnetIds": "<p>A list of subnet IDs specified for VPC configuration.</p>"
+      }
+    },
     "TagKey": {
       "base": null,
       "refs": {
@@ -413,12 +648,16 @@
       "refs": {
         "CreateRuleGroupsNamespaceRequest$tags": "<p>Optional, user-provided tags for this rule groups namespace.</p>",
         "CreateRuleGroupsNamespaceResponse$tags": "<p>The tags of this rule groups namespace.</p>",
+        "CreateScraperRequest$tags": "<p>Optional, user-provided tags for this scraper.</p>",
+        "CreateScraperResponse$tags": "<p>The tags of this scraper.</p>",
         "CreateWorkspaceRequest$tags": "<p>Optional, user-provided tags for this workspace.</p>",
         "CreateWorkspaceResponse$tags": "<p>The tags of this workspace.</p>",
         "ListTagsForResourceResponse$tags": null,
         "PutRuleGroupsNamespaceResponse$tags": "<p>The tags of this rule groups namespace.</p>",
         "RuleGroupsNamespaceDescription$tags": "<p>The tags of this rule groups namespace.</p>",
         "RuleGroupsNamespaceSummary$tags": "<p>The tags of this rule groups namespace.</p>",
+        "ScraperDescription$tags": "<p>The tags of this scraper.</p>",
+        "ScraperSummary$tags": "<p>The tags of this scraper.</p>",
         "TagResourceRequest$tags": null,
         "WorkspaceDescription$tags": "<p>The tags of this workspace.</p>",
         "WorkspaceSummary$tags": "<p>The tags of this workspace.</p>"
@@ -456,6 +695,10 @@
         "RuleGroupsNamespaceDescription$modifiedAt": "<p>The time when the rule groups namespace was modified.</p>",
         "RuleGroupsNamespaceSummary$createdAt": "<p>The time when the rule groups namespace was created.</p>",
         "RuleGroupsNamespaceSummary$modifiedAt": "<p>The time when the rule groups namespace was modified.</p>",
+        "ScraperDescription$createdAt": "<p>The time when the scraper was created.</p>",
+        "ScraperDescription$lastModifiedAt": "<p>The time when the scraper was last modified.</p>",
+        "ScraperSummary$createdAt": "<p>The time when the scraper was created.</p>",
+        "ScraperSummary$lastModifiedAt": "<p>The time when the scraper was last modified.</p>",
         "WorkspaceDescription$createdAt": "<p>The time when the workspace was created.</p>",
         "WorkspaceSummary$createdAt": "<p>The time when the workspace was created.</p>"
       }
@@ -527,6 +770,7 @@
     "WorkspaceArn": {
       "base": "<p>An ARN identifying a Workspace.</p>",
       "refs": {
+        "AmpConfiguration$workspaceArn": "<p>The ARN of an AMP workspace.</p>",
         "CreateWorkspaceResponse$arn": "<p>The ARN of the workspace that was just created.</p>",
         "WorkspaceDescription$arn": "<p>The Amazon Resource Name (ARN) of this workspace.</p>",
         "WorkspaceSummary$arn": "<p>The AmazonResourceName of this workspace.</p>"

@@ -4025,6 +4025,12 @@ func (c *ECS) PutAccountSettingRequest(input *PutAccountSettingInput) (req *requ
 // (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-maintenance.html)
 // in the Amazon ECS Developer Guide.
 //
+// The guardDutyActivate parameter is read-only in Amazon ECS and indicates
+// whether Amazon ECS Runtime Monitoring is enabled or disabled by your security
+// administrator in your Amazon ECS account. Amazon GuardDuty controls this
+// account setting on your behalf. For more information, see Protecting Amazon
+// ECS workloads with Amazon ECS Runtime Monitoring (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-guard-duty-integration.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18667,6 +18673,12 @@ type PutAccountSettingDefaultInput struct {
 	// maintenance (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-maintenance.html)
 	// in the Amazon ECS Developer Guide.
 	//
+	// The guardDutyActivate parameter is read-only in Amazon ECS and indicates
+	// whether Amazon ECS Runtime Monitoring is enabled or disabled by your security
+	// administrator in your Amazon ECS account. Amazon GuardDuty controls this
+	// account setting on your behalf. For more information, see Protecting Amazon
+	// ECS workloads with Amazon ECS Runtime Monitoring (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-guard-duty-integration.html).
+	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
 
@@ -18783,6 +18795,12 @@ type PutAccountSettingInput struct {
 	// about the opt-in timeline, see Tagging authorization timeline (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#tag-resources)
 	// in the Amazon ECS Developer Guide. If you specify fargateTaskRetirementWaitPeriod,
 	// the wait time to retire a Fargate task is affected.
+	//
+	// The guardDutyActivate parameter is read-only in Amazon ECS and indicates
+	// whether Amazon ECS Runtime Monitoring is enabled or disabled by your security
+	// administrator in your Amazon ECS account. Amazon GuardDuty controls this
+	// account setting on your behalf. For more information, see Protecting Amazon
+	// ECS workloads with Amazon ECS Runtime Monitoring (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-guard-duty-integration.html).
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
@@ -21946,6 +21964,14 @@ type Setting struct {
 	// field is omitted, the authenticated user is assumed.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
+	// Indicates whether Amazon Web Services manages the account setting, or if
+	// the user manages it.
+	//
+	// aws_managed account settings are read-only, as Amazon Web Services manages
+	// such on the customer's behalf. Currently, the guardDutyActivate account setting
+	// is the only one Amazon Web Services manages.
+	Type *string `locationName:"type" type:"string" enum:"SettingType"`
+
 	// Determines whether the account setting is on or off for the specified resource.
 	Value *string `locationName:"value" type:"string"`
 }
@@ -21977,6 +22003,12 @@ func (s *Setting) SetName(v string) *Setting {
 // SetPrincipalArn sets the PrincipalArn field's value.
 func (s *Setting) SetPrincipalArn(v string) *Setting {
 	s.PrincipalArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Setting) SetType(v string) *Setting {
+	s.Type = &v
 	return s
 }
 
@@ -27382,6 +27414,9 @@ const (
 
 	// SettingNameFargateTaskRetirementWaitPeriod is a SettingName enum value
 	SettingNameFargateTaskRetirementWaitPeriod = "fargateTaskRetirementWaitPeriod"
+
+	// SettingNameGuardDutyActivate is a SettingName enum value
+	SettingNameGuardDutyActivate = "guardDutyActivate"
 )
 
 // SettingName_Values returns all elements of the SettingName enum
@@ -27395,6 +27430,23 @@ func SettingName_Values() []string {
 		SettingNameFargateFipsmode,
 		SettingNameTagResourceAuthorization,
 		SettingNameFargateTaskRetirementWaitPeriod,
+		SettingNameGuardDutyActivate,
+	}
+}
+
+const (
+	// SettingTypeUser is a SettingType enum value
+	SettingTypeUser = "user"
+
+	// SettingTypeAwsManaged is a SettingType enum value
+	SettingTypeAwsManaged = "aws_managed"
+)
+
+// SettingType_Values returns all elements of the SettingType enum
+func SettingType_Values() []string {
+	return []string{
+		SettingTypeUser,
+		SettingTypeAwsManaged,
 	}
 }
 

@@ -3756,6 +3756,105 @@ func (c *QuickSight) DeleteIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteIdentityPropagationConfig = "DeleteIdentityPropagationConfig"
+
+// DeleteIdentityPropagationConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdentityPropagationConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIdentityPropagationConfig for more information on using the DeleteIdentityPropagationConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIdentityPropagationConfigRequest method.
+//	req, resp := client.DeleteIdentityPropagationConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteIdentityPropagationConfig
+func (c *QuickSight) DeleteIdentityPropagationConfigRequest(input *DeleteIdentityPropagationConfigInput) (req *request.Request, output *DeleteIdentityPropagationConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIdentityPropagationConfig,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/identity-propagation-config/{Service}",
+	}
+
+	if input == nil {
+		input = &DeleteIdentityPropagationConfigInput{}
+	}
+
+	output = &DeleteIdentityPropagationConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteIdentityPropagationConfig API operation for Amazon QuickSight.
+//
+// Deletes all access scopes and authorized targets that are associated with
+// a service from the Amazon QuickSight IAM Identity Center application.
+//
+// This operation is only supported for Amazon QuickSight accounts that use
+// IAM Identity Center.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteIdentityPropagationConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteIdentityPropagationConfig
+func (c *QuickSight) DeleteIdentityPropagationConfig(input *DeleteIdentityPropagationConfigInput) (*DeleteIdentityPropagationConfigOutput, error) {
+	req, out := c.DeleteIdentityPropagationConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIdentityPropagationConfigWithContext is the same as DeleteIdentityPropagationConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIdentityPropagationConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteIdentityPropagationConfigWithContext(ctx aws.Context, input *DeleteIdentityPropagationConfigInput, opts ...request.Option) (*DeleteIdentityPropagationConfigOutput, error) {
+	req, out := c.DeleteIdentityPropagationConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteNamespace = "DeleteNamespace"
 
 // DeleteNamespaceRequest generates a "aws/request.Request" representing the
@@ -12027,6 +12126,105 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserPagesWithContext(ctx aws.Con
 	return p.Err()
 }
 
+const opListIdentityPropagationConfigs = "ListIdentityPropagationConfigs"
+
+// ListIdentityPropagationConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentityPropagationConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdentityPropagationConfigs for more information on using the ListIdentityPropagationConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdentityPropagationConfigsRequest method.
+//	req, resp := client.ListIdentityPropagationConfigsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListIdentityPropagationConfigs
+func (c *QuickSight) ListIdentityPropagationConfigsRequest(input *ListIdentityPropagationConfigsInput) (req *request.Request, output *ListIdentityPropagationConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListIdentityPropagationConfigs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/identity-propagation-config",
+	}
+
+	if input == nil {
+		input = &ListIdentityPropagationConfigsInput{}
+	}
+
+	output = &ListIdentityPropagationConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdentityPropagationConfigs API operation for Amazon QuickSight.
+//
+// Lists all services and authorized targets that the Amazon QuickSight IAM
+// Identity Center application can access.
+//
+// This operation is only supported for Amazon QuickSight accounts that use
+// IAM Identity Center.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListIdentityPropagationConfigs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListIdentityPropagationConfigs
+func (c *QuickSight) ListIdentityPropagationConfigs(input *ListIdentityPropagationConfigsInput) (*ListIdentityPropagationConfigsOutput, error) {
+	req, out := c.ListIdentityPropagationConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListIdentityPropagationConfigsWithContext is the same as ListIdentityPropagationConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdentityPropagationConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListIdentityPropagationConfigsWithContext(ctx aws.Context, input *ListIdentityPropagationConfigsInput, opts ...request.Option) (*ListIdentityPropagationConfigsOutput, error) {
+	req, out := c.ListIdentityPropagationConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListIngestions = "ListIngestions"
 
 // ListIngestionsRequest generates a "aws/request.Request" representing the
@@ -17689,6 +17887,105 @@ func (c *QuickSight) UpdateIAMPolicyAssignment(input *UpdateIAMPolicyAssignmentI
 // for more information on using Contexts.
 func (c *QuickSight) UpdateIAMPolicyAssignmentWithContext(ctx aws.Context, input *UpdateIAMPolicyAssignmentInput, opts ...request.Option) (*UpdateIAMPolicyAssignmentOutput, error) {
 	req, out := c.UpdateIAMPolicyAssignmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateIdentityPropagationConfig = "UpdateIdentityPropagationConfig"
+
+// UpdateIdentityPropagationConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdentityPropagationConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIdentityPropagationConfig for more information on using the UpdateIdentityPropagationConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIdentityPropagationConfigRequest method.
+//	req, resp := client.UpdateIdentityPropagationConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIdentityPropagationConfig
+func (c *QuickSight) UpdateIdentityPropagationConfigRequest(input *UpdateIdentityPropagationConfigInput) (req *request.Request, output *UpdateIdentityPropagationConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIdentityPropagationConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/identity-propagation-config/{Service}",
+	}
+
+	if input == nil {
+		input = &UpdateIdentityPropagationConfigInput{}
+	}
+
+	output = &UpdateIdentityPropagationConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIdentityPropagationConfig API operation for Amazon QuickSight.
+//
+// Adds or updates services and authorized targets to configure what the Amazon
+// QuickSight IAM Identity Center application can access.
+//
+// This operation is only supported for Amazon QuickSight accounts using IAM
+// Identity Center
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateIdentityPropagationConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIdentityPropagationConfig
+func (c *QuickSight) UpdateIdentityPropagationConfig(input *UpdateIdentityPropagationConfigInput) (*UpdateIdentityPropagationConfigOutput, error) {
+	req, out := c.UpdateIdentityPropagationConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIdentityPropagationConfigWithContext is the same as UpdateIdentityPropagationConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIdentityPropagationConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateIdentityPropagationConfigWithContext(ctx aws.Context, input *UpdateIdentityPropagationConfigInput, opts ...request.Option) (*UpdateIdentityPropagationConfigOutput, error) {
+	req, out := c.UpdateIdentityPropagationConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -24788,6 +25085,48 @@ func (s *AuroraPostgreSqlParameters) SetHost(v string) *AuroraPostgreSqlParamete
 // SetPort sets the Port field's value.
 func (s *AuroraPostgreSqlParameters) SetPort(v int64) *AuroraPostgreSqlParameters {
 	s.Port = &v
+	return s
+}
+
+// The authorized targets that are associated with a service.
+type AuthorizedTargetsByService struct {
+	_ struct{} `type:"structure"`
+
+	// Aist of authorized targets that are represented by IAM Identity Center application
+	// ARNs.
+	AuthorizedTargets []*string `type:"list"`
+
+	// The name of the Amazon Web Services service.
+	Service *string `type:"string" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizedTargetsByService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizedTargetsByService) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedTargets sets the AuthorizedTargets field's value.
+func (s *AuthorizedTargetsByService) SetAuthorizedTargets(v []*string) *AuthorizedTargetsByService {
+	s.AuthorizedTargets = v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *AuthorizedTargetsByService) SetService(v string) *AuthorizedTargetsByService {
+	s.Service = &v
 	return s
 }
 
@@ -43900,6 +44239,114 @@ func (s *DeleteIAMPolicyAssignmentOutput) SetStatus(v int64) *DeleteIAMPolicyAss
 	return s
 }
 
+type DeleteIdentityPropagationConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that you want to delete an identity
+	// propagation configuration from.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the Amazon Web Services service that you want to delete the associated
+	// access scopes and authorized targets from.
+	//
+	// Service is a required field
+	Service *string `location:"uri" locationName:"Service" type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdentityPropagationConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdentityPropagationConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdentityPropagationConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdentityPropagationConfigInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Service == nil {
+		invalidParams.Add(request.NewErrParamRequired("Service"))
+	}
+	if s.Service != nil && len(*s.Service) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Service", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteIdentityPropagationConfigInput) SetAwsAccountId(v string) *DeleteIdentityPropagationConfigInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *DeleteIdentityPropagationConfigInput) SetService(v string) *DeleteIdentityPropagationConfigInput {
+	s.Service = &v
+	return s
+}
+
+type DeleteIdentityPropagationConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdentityPropagationConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdentityPropagationConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteIdentityPropagationConfigOutput) SetRequestId(v string) *DeleteIdentityPropagationConfigOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteIdentityPropagationConfigOutput) SetStatus(v int64) *DeleteIdentityPropagationConfigOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteNamespaceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -61791,6 +62238,39 @@ func (s *IAMPolicyAssignmentSummary) SetAssignmentStatus(v string) *IAMPolicyAss
 	return s
 }
 
+// The parameters for an IAM Identity Center configuration.
+type IdentityCenterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean option that controls whether Trusted Identity Propagation should
+	// be used.
+	EnableIdentityPropagation *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityCenterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityCenterConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEnableIdentityPropagation sets the EnableIdentityPropagation field's value.
+func (s *IdentityCenterConfiguration) SetEnableIdentityPropagation(v bool) *IdentityCenterConfiguration {
+	s.EnableIdentityPropagation = &v
+	return s
+}
+
 // The identity type specified isn't supported. Supported identity types include
 // IAM and QUICKSIGHT.
 type IdentityTypeNotSupportedException struct {
@@ -67593,6 +68073,136 @@ func (s *ListIAMPolicyAssignmentsOutput) SetRequestId(v string) *ListIAMPolicyAs
 
 // SetStatus sets the Status field's value.
 func (s *ListIAMPolicyAssignmentsOutput) SetStatus(v int64) *ListIAMPolicyAssignmentsOutput {
+	s.Status = &v
+	return s
+}
+
+type ListIdentityPropagationConfigsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contain the identity propagation
+	// configurations of.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdentityPropagationConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdentityPropagationConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdentityPropagationConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdentityPropagationConfigsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListIdentityPropagationConfigsInput) SetAwsAccountId(v string) *ListIdentityPropagationConfigsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdentityPropagationConfigsInput) SetMaxResults(v int64) *ListIdentityPropagationConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPropagationConfigsInput) SetNextToken(v string) *ListIdentityPropagationConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdentityPropagationConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// A list of services and their authorized targets that the Amazon QuickSight
+	// IAM Identity Center application can access.
+	Services []*AuthorizedTargetsByService `type:"list"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdentityPropagationConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdentityPropagationConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPropagationConfigsOutput) SetNextToken(v string) *ListIdentityPropagationConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListIdentityPropagationConfigsOutput) SetRequestId(v string) *ListIdentityPropagationConfigsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *ListIdentityPropagationConfigsOutput) SetServices(v []*AuthorizedTargetsByService) *ListIdentityPropagationConfigsOutput {
+	s.Services = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListIdentityPropagationConfigsOutput) SetStatus(v int64) *ListIdentityPropagationConfigsOutput {
 	s.Status = &v
 	return s
 }
@@ -78233,6 +78843,13 @@ type RedshiftParameters struct {
 	// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DataSourceCredentials.html).
 	IAMParameters *RedshiftIAMParameters `type:"structure"`
 
+	// An optional parameter that configures IAM Identity Center authentication
+	// to grant Amazon QuickSight access to your cluster.
+	//
+	// This parameter can only be specified if your Amazon QuickSight account is
+	// configured with IAM Identity Center.
+	IdentityCenterConfiguration *IdentityCenterConfiguration `type:"structure"`
+
 	// Port. This field can be blank if the ClusterId is provided.
 	Port *int64 `type:"integer"`
 }
@@ -78303,6 +78920,12 @@ func (s *RedshiftParameters) SetHost(v string) *RedshiftParameters {
 // SetIAMParameters sets the IAMParameters field's value.
 func (s *RedshiftParameters) SetIAMParameters(v *RedshiftIAMParameters) *RedshiftParameters {
 	s.IAMParameters = v
+	return s
+}
+
+// SetIdentityCenterConfiguration sets the IdentityCenterConfiguration field's value.
+func (s *RedshiftParameters) SetIdentityCenterConfiguration(v *IdentityCenterConfiguration) *RedshiftParameters {
+	s.IdentityCenterConfiguration = v
 	return s
 }
 
@@ -99232,6 +99855,124 @@ func (s *UpdateIAMPolicyAssignmentOutput) SetStatus(v int64) *UpdateIAMPolicyAss
 	return s
 }
 
+type UpdateIdentityPropagationConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a list of application ARNs that represent the authorized targets
+	// for a service.
+	AuthorizedTargets []*string `type:"list"`
+
+	// The ID of the Amazon Web Services account that contains the identity propagation
+	// configuration that you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the Amazon Web Services service that contains the authorized
+	// targets that you want to add or update.
+	//
+	// Service is a required field
+	Service *string `location:"uri" locationName:"Service" type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityPropagationConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityPropagationConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIdentityPropagationConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIdentityPropagationConfigInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Service == nil {
+		invalidParams.Add(request.NewErrParamRequired("Service"))
+	}
+	if s.Service != nil && len(*s.Service) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Service", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizedTargets sets the AuthorizedTargets field's value.
+func (s *UpdateIdentityPropagationConfigInput) SetAuthorizedTargets(v []*string) *UpdateIdentityPropagationConfigInput {
+	s.AuthorizedTargets = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateIdentityPropagationConfigInput) SetAwsAccountId(v string) *UpdateIdentityPropagationConfigInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *UpdateIdentityPropagationConfigInput) SetService(v string) *UpdateIdentityPropagationConfigInput {
+	s.Service = &v
+	return s
+}
+
+type UpdateIdentityPropagationConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityPropagationConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityPropagationConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateIdentityPropagationConfigOutput) SetRequestId(v string) *UpdateIdentityPropagationConfigOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateIdentityPropagationConfigOutput) SetStatus(v int64) *UpdateIdentityPropagationConfigOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateIpRestrictionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -108301,6 +109042,18 @@ func SelectedTooltipType_Values() []string {
 	return []string{
 		SelectedTooltipTypeBasic,
 		SelectedTooltipTypeDetailed,
+	}
+}
+
+const (
+	// ServiceTypeRedshift is a ServiceType enum value
+	ServiceTypeRedshift = "REDSHIFT"
+)
+
+// ServiceType_Values returns all elements of the ServiceType enum
+func ServiceType_Values() []string {
+	return []string{
+		ServiceTypeRedshift,
 	}
 }
 

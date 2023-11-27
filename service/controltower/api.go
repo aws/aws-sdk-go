@@ -13,6 +13,103 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opDeleteLandingZone = "DeleteLandingZone"
+
+// DeleteLandingZoneRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLandingZone operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLandingZone for more information on using the DeleteLandingZone
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLandingZoneRequest method.
+//	req, resp := client.DeleteLandingZoneRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/DeleteLandingZone
+func (c *ControlTower) DeleteLandingZoneRequest(input *DeleteLandingZoneInput) (req *request.Request, output *DeleteLandingZoneOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLandingZone,
+		HTTPMethod: "POST",
+		HTTPPath:   "/delete-landingzone",
+	}
+
+	if input == nil {
+		input = &DeleteLandingZoneInput{}
+	}
+
+	output = &DeleteLandingZoneOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteLandingZone API operation for AWS Control Tower.
+//
+// This decommissions a landing zone. This starts an asynchronous operation
+// that deletes Amazon Web Services Control Tower resources deployed in Amazon
+// Web Services Control Tower managed accounts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Control Tower's
+// API operation DeleteLandingZone for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/DeleteLandingZone
+func (c *ControlTower) DeleteLandingZone(input *DeleteLandingZoneInput) (*DeleteLandingZoneOutput, error) {
+	req, out := c.DeleteLandingZoneRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLandingZoneWithContext is the same as DeleteLandingZone with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLandingZone for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) DeleteLandingZoneWithContext(ctx aws.Context, input *DeleteLandingZoneInput, opts ...request.Option) (*DeleteLandingZoneOutput, error) {
+	req, out := c.DeleteLandingZoneRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisableControl = "DisableControl"
 
 // DisableControlRequest generates a "aws/request.Request" representing the
@@ -57,9 +154,10 @@ func (c *ControlTower) DisableControlRequest(input *DisableControlInput) (req *r
 // DisableControl API operation for AWS Control Tower.
 //
 // This API call turns off a control. It starts an asynchronous operation that
-// deletes AWS resources on the specified organizational unit and the accounts
-// it contains. The resources will vary according to the control that you specify.
-// For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// deletes Amazon Web Services resources on the specified organizational unit
+// and the accounts it contains. The resources will vary according to the control
+// that you specify. For usage examples, see the Amazon Web Services Control
+// Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -71,7 +169,8 @@ func (c *ControlTower) DisableControlRequest(input *DisableControlInput) (req *r
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -84,7 +183,7 @@ func (c *ControlTower) DisableControlRequest(input *DisableControlInput) (req *r
 //     Unexpected error during processing of request.
 //
 //   - AccessDeniedException
-//     User does not have sufficient access to perform this action.
+//     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
@@ -158,9 +257,10 @@ func (c *ControlTower) EnableControlRequest(input *EnableControlInput) (req *req
 // EnableControl API operation for AWS Control Tower.
 //
 // This API call activates a control. It starts an asynchronous operation that
-// creates AWS resources on the specified organizational unit and the accounts
-// it contains. The resources created will vary according to the control that
-// you specify. For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// creates Amazon Web Services resources on the specified organizational unit
+// and the accounts it contains. The resources created will vary according to
+// the control that you specify. For usage examples, see the Amazon Web Services
+// Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -172,7 +272,8 @@ func (c *ControlTower) EnableControlRequest(input *EnableControlInput) (req *req
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -185,7 +286,7 @@ func (c *ControlTower) EnableControlRequest(input *EnableControlInput) (req *req
 //     Unexpected error during processing of request.
 //
 //   - AccessDeniedException
-//     User does not have sufficient access to perform this action.
+//     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
@@ -260,7 +361,8 @@ func (c *ControlTower) GetControlOperationRequest(input *GetControlOperationInpu
 //
 // Returns the status of a particular EnableControl or DisableControl operation.
 // Displays a message in case of error. Details for an operation are available
-// for 90 days. For usage examples, see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// for 90 days. For usage examples, see the Amazon Web Services Control Tower
+// User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -272,13 +374,14 @@ func (c *ControlTower) GetControlOperationRequest(input *GetControlOperationInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
 //
 //   - AccessDeniedException
-//     User does not have sufficient access to perform this action.
+//     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
@@ -351,8 +454,8 @@ func (c *ControlTower) GetEnabledControlRequest(input *GetEnabledControlInput) (
 
 // GetEnabledControl API operation for AWS Control Tower.
 //
-// Retrieves details about an enabled control. For usage examples, see the AWS
-// Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// Retrieves details about an enabled control. For usage examples, see the Amazon
+// Web Services Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -364,13 +467,14 @@ func (c *ControlTower) GetEnabledControlRequest(input *GetEnabledControlInput) (
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
 //
 //   - AccessDeniedException
-//     User does not have sufficient access to perform this action.
+//     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
@@ -395,6 +499,99 @@ func (c *ControlTower) GetEnabledControl(input *GetEnabledControlInput) (*GetEna
 // for more information on using Contexts.
 func (c *ControlTower) GetEnabledControlWithContext(ctx aws.Context, input *GetEnabledControlInput, opts ...request.Option) (*GetEnabledControlOutput, error) {
 	req, out := c.GetEnabledControlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLandingZoneOperation = "GetLandingZoneOperation"
+
+// GetLandingZoneOperationRequest generates a "aws/request.Request" representing the
+// client's request for the GetLandingZoneOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLandingZoneOperation for more information on using the GetLandingZoneOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLandingZoneOperationRequest method.
+//	req, resp := client.GetLandingZoneOperationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetLandingZoneOperation
+func (c *ControlTower) GetLandingZoneOperationRequest(input *GetLandingZoneOperationInput) (req *request.Request, output *GetLandingZoneOperationOutput) {
+	op := &request.Operation{
+		Name:       opGetLandingZoneOperation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-landingzone-operation",
+	}
+
+	if input == nil {
+		input = &GetLandingZoneOperationInput{}
+	}
+
+	output = &GetLandingZoneOperationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLandingZoneOperation API operation for AWS Control Tower.
+//
+// Returns the status of the specified landing zone operation. Details for an
+// operation are available for X days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Control Tower's
+// API operation GetLandingZoneOperation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetLandingZoneOperation
+func (c *ControlTower) GetLandingZoneOperation(input *GetLandingZoneOperationInput) (*GetLandingZoneOperationOutput, error) {
+	req, out := c.GetLandingZoneOperationRequest(input)
+	return out, req.Send()
+}
+
+// GetLandingZoneOperationWithContext is the same as GetLandingZoneOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLandingZoneOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) GetLandingZoneOperationWithContext(ctx aws.Context, input *GetLandingZoneOperationInput, opts ...request.Option) (*GetLandingZoneOperationOutput, error) {
+	req, out := c.GetLandingZoneOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -449,9 +646,9 @@ func (c *ControlTower) ListEnabledControlsRequest(input *ListEnabledControlsInpu
 
 // ListEnabledControls API operation for AWS Control Tower.
 //
-// Lists the controls enabled by AWS Control Tower on the specified organizational
-// unit and the accounts it contains. For usage examples, see the AWS Control
-// Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// Lists the controls enabled by Amazon Web Services Control Tower on the specified
+// organizational unit and the accounts it contains. For usage examples, see
+// the Amazon Web Services Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -463,13 +660,14 @@ func (c *ControlTower) ListEnabledControlsRequest(input *ListEnabledControlsInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
 //
 //   - AccessDeniedException
-//     User does not have sufficient access to perform this action.
+//     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
@@ -550,6 +748,156 @@ func (c *ControlTower) ListEnabledControlsPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListLandingZones = "ListLandingZones"
+
+// ListLandingZonesRequest generates a "aws/request.Request" representing the
+// client's request for the ListLandingZones operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLandingZones for more information on using the ListLandingZones
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLandingZonesRequest method.
+//	req, resp := client.ListLandingZonesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ListLandingZones
+func (c *ControlTower) ListLandingZonesRequest(input *ListLandingZonesInput) (req *request.Request, output *ListLandingZonesOutput) {
+	op := &request.Operation{
+		Name:       opListLandingZones,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-landingzones",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLandingZonesInput{}
+	}
+
+	output = &ListLandingZonesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLandingZones API operation for AWS Control Tower.
+//
+// Returns the landing zone ARN for the landing zone deployed in your managed
+// account. This API also creates an ARN for existing accounts that do not yet
+// have a landing zone ARN.
+//
+// The return limit is one landing zone ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Control Tower's
+// API operation ListLandingZones for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ListLandingZones
+func (c *ControlTower) ListLandingZones(input *ListLandingZonesInput) (*ListLandingZonesOutput, error) {
+	req, out := c.ListLandingZonesRequest(input)
+	return out, req.Send()
+}
+
+// ListLandingZonesWithContext is the same as ListLandingZones with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLandingZones for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) ListLandingZonesWithContext(ctx aws.Context, input *ListLandingZonesInput, opts ...request.Option) (*ListLandingZonesOutput, error) {
+	req, out := c.ListLandingZonesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLandingZonesPages iterates over the pages of a ListLandingZones operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLandingZones method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLandingZones operation.
+//	pageNum := 0
+//	err := client.ListLandingZonesPages(params,
+//	    func(page *controltower.ListLandingZonesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ControlTower) ListLandingZonesPages(input *ListLandingZonesInput, fn func(*ListLandingZonesOutput, bool) bool) error {
+	return c.ListLandingZonesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLandingZonesPagesWithContext same as ListLandingZonesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) ListLandingZonesPagesWithContext(ctx aws.Context, input *ListLandingZonesInput, fn func(*ListLandingZonesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLandingZonesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLandingZonesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLandingZonesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -594,7 +942,7 @@ func (c *ControlTower) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // ListTagsForResource API operation for AWS Control Tower.
 //
 // Returns a list of tags associated with the resource. For usage examples,
-// see the AWS Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// see the Amazon Web Services Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -606,7 +954,8 @@ func (c *ControlTower) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
@@ -631,6 +980,103 @@ func (c *ControlTower) ListTagsForResource(input *ListTagsForResourceInput) (*Li
 // for more information on using Contexts.
 func (c *ControlTower) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opResetLandingZone = "ResetLandingZone"
+
+// ResetLandingZoneRequest generates a "aws/request.Request" representing the
+// client's request for the ResetLandingZone operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResetLandingZone for more information on using the ResetLandingZone
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ResetLandingZoneRequest method.
+//	req, resp := client.ResetLandingZoneRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ResetLandingZone
+func (c *ControlTower) ResetLandingZoneRequest(input *ResetLandingZoneInput) (req *request.Request, output *ResetLandingZoneOutput) {
+	op := &request.Operation{
+		Name:       opResetLandingZone,
+		HTTPMethod: "POST",
+		HTTPPath:   "/reset-landingzone",
+	}
+
+	if input == nil {
+		input = &ResetLandingZoneInput{}
+	}
+
+	output = &ResetLandingZoneOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ResetLandingZone API operation for AWS Control Tower.
+//
+// This API call resets a landing zone. It starts an asynchronous operation
+// that resets the landing zone to the parameters specified in its original
+// configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Control Tower's
+// API operation ResetLandingZone for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ResetLandingZone
+func (c *ControlTower) ResetLandingZone(input *ResetLandingZoneInput) (*ResetLandingZoneOutput, error) {
+	req, out := c.ResetLandingZoneRequest(input)
+	return out, req.Send()
+}
+
+// ResetLandingZoneWithContext is the same as ResetLandingZone with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetLandingZone for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ControlTower) ResetLandingZoneWithContext(ctx aws.Context, input *ResetLandingZoneInput, opts ...request.Option) (*ResetLandingZoneOutput, error) {
+	req, out := c.ResetLandingZoneRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -680,8 +1126,8 @@ func (c *ControlTower) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for AWS Control Tower.
 //
-// Applies tags to a resource. For usage examples, see the AWS Control Tower
-// User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// Applies tags to a resource. For usage examples, see the Amazon Web Services
+// Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -693,7 +1139,8 @@ func (c *ControlTower) TagResourceRequest(input *TagResourceInput) (req *request
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
@@ -767,8 +1214,8 @@ func (c *ControlTower) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for AWS Control Tower.
 //
-// Removes tags from a resource. For usage examples, see the AWS Control Tower
-// User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
+// Removes tags from a resource. For usage examples, see the Amazon Web Services
+// Control Tower User Guide (https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -780,7 +1227,8 @@ func (c *ControlTower) UntagResourceRequest(input *UntagResourceInput) (req *req
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Unexpected error during processing of request.
@@ -810,7 +1258,7 @@ func (c *ControlTower) UntagResourceWithContext(ctx aws.Context, input *UntagRes
 	return out, req.Send()
 }
 
-// User does not have sufficient access to perform this action.
+// You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1007,6 +1455,87 @@ func (s *ControlOperation) SetStatusMessage(v string) *ControlOperation {
 	return s
 }
 
+type DeleteLandingZoneInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the landing zone.
+	//
+	// LandingZoneIdentifier is a required field
+	LandingZoneIdentifier *string `locationName:"landingZoneIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLandingZoneInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLandingZoneInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLandingZoneInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLandingZoneInput"}
+	if s.LandingZoneIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("LandingZoneIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLandingZoneIdentifier sets the LandingZoneIdentifier field's value.
+func (s *DeleteLandingZoneInput) SetLandingZoneIdentifier(v string) *DeleteLandingZoneInput {
+	s.LandingZoneIdentifier = &v
+	return s
+}
+
+type DeleteLandingZoneOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier assigned to a DeleteLandingZone operation. You can use
+	// this identifier as an input of GetLandingZoneOperation to check the operation's
+	// status.
+	//
+	// OperationIdentifier is a required field
+	OperationIdentifier *string `locationName:"operationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLandingZoneOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLandingZoneOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationIdentifier sets the OperationIdentifier field's value.
+func (s *DeleteLandingZoneOutput) SetOperationIdentifier(v string) *DeleteLandingZoneOutput {
+	s.OperationIdentifier = &v
+	return s
+}
+
 type DisableControlInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1112,10 +1641,10 @@ func (s *DisableControlOutput) SetOperationIdentifier(v string) *DisableControlO
 
 // The drift summary of the enabled control.
 //
-// AWS Control Tower expects the enabled control configuration to include all
-// supported and governed Regions. If the enabled control differs from the expected
-// configuration, it is defined to be in a state of drift. You can repair this
-// drift by resetting the enabled control.
+// Amazon Web Services Control Tower expects the enabled control configuration
+// to include all supported and governed Regions. If the enabled control differs
+// from the expected configuration, it is defined to be in a state of drift.
+// You can repair this drift by resetting the enabled control.
 type DriftStatusSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -1124,16 +1653,16 @@ type DriftStatusSummary struct {
 	// Valid values:
 	//
 	//    * DRIFTED: The enabledControl deployed in this configuration doesn’t
-	//    match the configuration that AWS Control Tower expected.
+	//    match the configuration that Amazon Web Services Control Tower expected.
 	//
 	//    * IN_SYNC: The enabledControl deployed in this configuration matches the
-	//    configuration that AWS Control Tower expected.
+	//    configuration that Amazon Web Services Control Tower expected.
 	//
-	//    * NOT_CHECKING: AWS Control Tower does not check drift for this enabled
-	//    control. Drift is not supported for the control type.
+	//    * NOT_CHECKING: Amazon Web Services Control Tower does not check drift
+	//    for this enabled control. Drift is not supported for the control type.
 	//
-	//    * UNKNOWN: AWS Control Tower is not able to check the drift status for
-	//    the enabled control.
+	//    * UNKNOWN: Amazon Web Services Control Tower is not able to check the
+	//    drift status for the enabled control.
 	DriftStatus *string `locationName:"driftStatus" type:"string" enum:"DriftStatus"`
 }
 
@@ -1303,7 +1832,7 @@ type EnabledControlDetails struct {
 	// see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	TargetIdentifier *string `locationName:"targetIdentifier" min:"20" type:"string"`
 
-	// Target AWS Regions for the enabled control.
+	// Target Amazon Web Services Regions for the enabled control.
 	TargetRegions []*Region `locationName:"targetRegions" type:"list"`
 }
 
@@ -1643,6 +2172,88 @@ func (s *GetEnabledControlOutput) SetEnabledControlDetails(v *EnabledControlDeta
 	return s
 }
 
+type GetLandingZoneOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier assigned to a landing zone operation.
+	//
+	// OperationIdentifier is a required field
+	OperationIdentifier *string `locationName:"operationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLandingZoneOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLandingZoneOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLandingZoneOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLandingZoneOperationInput"}
+	if s.OperationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationIdentifier"))
+	}
+	if s.OperationIdentifier != nil && len(*s.OperationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("OperationIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOperationIdentifier sets the OperationIdentifier field's value.
+func (s *GetLandingZoneOperationInput) SetOperationIdentifier(v string) *GetLandingZoneOperationInput {
+	s.OperationIdentifier = &v
+	return s
+}
+
+type GetLandingZoneOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The landing zone operation details.
+	//
+	// OperationDetails is a required field
+	OperationDetails *LandingZoneOperationDetail `locationName:"operationDetails" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLandingZoneOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLandingZoneOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationDetails sets the OperationDetails field's value.
+func (s *GetLandingZoneOperationOutput) SetOperationDetails(v *LandingZoneOperationDetail) *GetLandingZoneOperationOutput {
+	s.OperationDetails = v
+	return s
+}
+
 // Unexpected error during processing of request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -1705,6 +2316,125 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about a landing zone operation.
+type LandingZoneOperationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The landing zone operation end time.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The landing zone operation type.
+	//
+	// Valid values:
+	//
+	//    * DELETE: The DeleteLandingZone operation.
+	//
+	//    * CREATE: The CreateLandingZone operation.
+	//
+	//    * UPDATE: The UpdateLandingZone operation.
+	//
+	//    * RESET: The ResetLandingZone operation.
+	OperationType *string `locationName:"operationType" type:"string" enum:"LandingZoneOperationType"`
+
+	// The landing zone operation start time.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The landing zone operation status.
+	//
+	// Valid values:
+	//
+	//    * SUCCEEDED: The landing zone operation succeeded.
+	//
+	//    * IN_PROGRESS: The landing zone operation is in progress.
+	//
+	//    * FAILED: The landing zone operation failed.
+	Status *string `locationName:"status" type:"string" enum:"LandingZoneOperationStatus"`
+
+	// If the operation result is FAILED, this string contains a message explaining
+	// why the operation failed.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LandingZoneOperationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LandingZoneOperationDetail) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *LandingZoneOperationDetail) SetEndTime(v time.Time) *LandingZoneOperationDetail {
+	s.EndTime = &v
+	return s
+}
+
+// SetOperationType sets the OperationType field's value.
+func (s *LandingZoneOperationDetail) SetOperationType(v string) *LandingZoneOperationDetail {
+	s.OperationType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LandingZoneOperationDetail) SetStartTime(v time.Time) *LandingZoneOperationDetail {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LandingZoneOperationDetail) SetStatus(v string) *LandingZoneOperationDetail {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *LandingZoneOperationDetail) SetStatusMessage(v string) *LandingZoneOperationDetail {
+	s.StatusMessage = &v
+	return s
+}
+
+// Returns a summary of information about a landing zone.
+type LandingZoneSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the landing zone.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LandingZoneSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LandingZoneSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *LandingZoneSummary) SetArn(v string) *LandingZoneSummary {
+	s.Arn = &v
+	return s
 }
 
 type ListEnabledControlsInput struct {
@@ -1781,8 +2511,8 @@ func (s *ListEnabledControlsInput) SetTargetIdentifier(v string) *ListEnabledCon
 type ListEnabledControlsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the controls enabled by AWS Control Tower on the specified organizational
-	// unit and the accounts it contains.
+	// Lists the controls enabled by Amazon Web Services Control Tower on the specified
+	// organizational unit and the accounts it contains.
 	//
 	// EnabledControls is a required field
 	EnabledControls []*EnabledControlSummary `locationName:"enabledControls" type:"list" required:"true"`
@@ -1818,6 +2548,102 @@ func (s *ListEnabledControlsOutput) SetEnabledControls(v []*EnabledControlSummar
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEnabledControlsOutput) SetNextToken(v string) *ListEnabledControlsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLandingZonesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of returned landing zone ARNs.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to continue the list from a previous API call with the same parameters.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLandingZonesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLandingZonesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLandingZonesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLandingZonesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLandingZonesInput) SetMaxResults(v int64) *ListLandingZonesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLandingZonesInput) SetNextToken(v string) *ListLandingZonesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLandingZonesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the landing zone.
+	//
+	// LandingZones is a required field
+	LandingZones []*LandingZoneSummary `locationName:"landingZones" type:"list" required:"true"`
+
+	// Retrieves the next page of results. If the string is empty, the current response
+	// is the end of the results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLandingZonesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLandingZonesOutput) GoString() string {
+	return s.String()
+}
+
+// SetLandingZones sets the LandingZones field's value.
+func (s *ListLandingZonesOutput) SetLandingZones(v []*LandingZoneSummary) *ListLandingZonesOutput {
+	s.LandingZones = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLandingZonesOutput) SetNextToken(v string) *ListLandingZonesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -1904,7 +2730,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// An AWS Region in which AWS Control Tower expects to find the control deployed.
+// An Amazon Web Services Region in which Amazon Web Services Control Tower
+// expects to find the control deployed.
 //
 // The expected Regions are based on the Regions that are governed by the landing
 // zone. In certain cases, a control is not actually enabled in the Region as
@@ -1912,7 +2739,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type Region struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Region name.
+	// The Amazon Web Services Region name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -1937,6 +2764,87 @@ func (s Region) GoString() string {
 // SetName sets the Name field's value.
 func (s *Region) SetName(v string) *Region {
 	s.Name = &v
+	return s
+}
+
+type ResetLandingZoneInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the landing zone.
+	//
+	// LandingZoneIdentifier is a required field
+	LandingZoneIdentifier *string `locationName:"landingZoneIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetLandingZoneInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetLandingZoneInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResetLandingZoneInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResetLandingZoneInput"}
+	if s.LandingZoneIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("LandingZoneIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLandingZoneIdentifier sets the LandingZoneIdentifier field's value.
+func (s *ResetLandingZoneInput) SetLandingZoneIdentifier(v string) *ResetLandingZoneInput {
+	s.LandingZoneIdentifier = &v
+	return s
+}
+
+type ResetLandingZoneOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier assigned to a ResetLandingZone operation. You can use
+	// this identifier as an input of GetLandingZoneOperation to check the operation's
+	// status.
+	//
+	// OperationIdentifier is a required field
+	OperationIdentifier *string `locationName:"operationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetLandingZoneOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetLandingZoneOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationIdentifier sets the OperationIdentifier field's value.
+func (s *ResetLandingZoneOutput) SetOperationIdentifier(v string) *ResetLandingZoneOutput {
+	s.OperationIdentifier = &v
 	return s
 }
 
@@ -2312,7 +3220,8 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2453,5 +3362,49 @@ func EnablementStatus_Values() []string {
 		EnablementStatusSucceeded,
 		EnablementStatusFailed,
 		EnablementStatusUnderChange,
+	}
+}
+
+const (
+	// LandingZoneOperationStatusSucceeded is a LandingZoneOperationStatus enum value
+	LandingZoneOperationStatusSucceeded = "SUCCEEDED"
+
+	// LandingZoneOperationStatusFailed is a LandingZoneOperationStatus enum value
+	LandingZoneOperationStatusFailed = "FAILED"
+
+	// LandingZoneOperationStatusInProgress is a LandingZoneOperationStatus enum value
+	LandingZoneOperationStatusInProgress = "IN_PROGRESS"
+)
+
+// LandingZoneOperationStatus_Values returns all elements of the LandingZoneOperationStatus enum
+func LandingZoneOperationStatus_Values() []string {
+	return []string{
+		LandingZoneOperationStatusSucceeded,
+		LandingZoneOperationStatusFailed,
+		LandingZoneOperationStatusInProgress,
+	}
+}
+
+const (
+	// LandingZoneOperationTypeDelete is a LandingZoneOperationType enum value
+	LandingZoneOperationTypeDelete = "DELETE"
+
+	// LandingZoneOperationTypeCreate is a LandingZoneOperationType enum value
+	LandingZoneOperationTypeCreate = "CREATE"
+
+	// LandingZoneOperationTypeUpdate is a LandingZoneOperationType enum value
+	LandingZoneOperationTypeUpdate = "UPDATE"
+
+	// LandingZoneOperationTypeReset is a LandingZoneOperationType enum value
+	LandingZoneOperationTypeReset = "RESET"
+)
+
+// LandingZoneOperationType_Values returns all elements of the LandingZoneOperationType enum
+func LandingZoneOperationType_Values() []string {
+	return []string{
+		LandingZoneOperationTypeDelete,
+		LandingZoneOperationTypeCreate,
+		LandingZoneOperationTypeUpdate,
+		LandingZoneOperationTypeReset,
 	}
 }

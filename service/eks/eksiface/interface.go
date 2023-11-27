@@ -88,6 +88,10 @@ type EKSAPI interface {
 	CreateNodegroupWithContext(aws.Context, *eks.CreateNodegroupInput, ...request.Option) (*eks.CreateNodegroupOutput, error)
 	CreateNodegroupRequest(*eks.CreateNodegroupInput) (*request.Request, *eks.CreateNodegroupOutput)
 
+	CreatePodIdentityAssociation(*eks.CreatePodIdentityAssociationInput) (*eks.CreatePodIdentityAssociationOutput, error)
+	CreatePodIdentityAssociationWithContext(aws.Context, *eks.CreatePodIdentityAssociationInput, ...request.Option) (*eks.CreatePodIdentityAssociationOutput, error)
+	CreatePodIdentityAssociationRequest(*eks.CreatePodIdentityAssociationInput) (*request.Request, *eks.CreatePodIdentityAssociationOutput)
+
 	DeleteAddon(*eks.DeleteAddonInput) (*eks.DeleteAddonOutput, error)
 	DeleteAddonWithContext(aws.Context, *eks.DeleteAddonInput, ...request.Option) (*eks.DeleteAddonOutput, error)
 	DeleteAddonRequest(*eks.DeleteAddonInput) (*request.Request, *eks.DeleteAddonOutput)
@@ -107,6 +111,10 @@ type EKSAPI interface {
 	DeleteNodegroup(*eks.DeleteNodegroupInput) (*eks.DeleteNodegroupOutput, error)
 	DeleteNodegroupWithContext(aws.Context, *eks.DeleteNodegroupInput, ...request.Option) (*eks.DeleteNodegroupOutput, error)
 	DeleteNodegroupRequest(*eks.DeleteNodegroupInput) (*request.Request, *eks.DeleteNodegroupOutput)
+
+	DeletePodIdentityAssociation(*eks.DeletePodIdentityAssociationInput) (*eks.DeletePodIdentityAssociationOutput, error)
+	DeletePodIdentityAssociationWithContext(aws.Context, *eks.DeletePodIdentityAssociationInput, ...request.Option) (*eks.DeletePodIdentityAssociationOutput, error)
+	DeletePodIdentityAssociationRequest(*eks.DeletePodIdentityAssociationInput) (*request.Request, *eks.DeletePodIdentityAssociationOutput)
 
 	DeregisterCluster(*eks.DeregisterClusterInput) (*eks.DeregisterClusterOutput, error)
 	DeregisterClusterWithContext(aws.Context, *eks.DeregisterClusterInput, ...request.Option) (*eks.DeregisterClusterOutput, error)
@@ -147,6 +155,10 @@ type EKSAPI interface {
 	DescribeNodegroupWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.Option) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupRequest(*eks.DescribeNodegroupInput) (*request.Request, *eks.DescribeNodegroupOutput)
 
+	DescribePodIdentityAssociation(*eks.DescribePodIdentityAssociationInput) (*eks.DescribePodIdentityAssociationOutput, error)
+	DescribePodIdentityAssociationWithContext(aws.Context, *eks.DescribePodIdentityAssociationInput, ...request.Option) (*eks.DescribePodIdentityAssociationOutput, error)
+	DescribePodIdentityAssociationRequest(*eks.DescribePodIdentityAssociationInput) (*request.Request, *eks.DescribePodIdentityAssociationOutput)
+
 	DescribeUpdate(*eks.DescribeUpdateInput) (*eks.DescribeUpdateOutput, error)
 	DescribeUpdateWithContext(aws.Context, *eks.DescribeUpdateInput, ...request.Option) (*eks.DescribeUpdateOutput, error)
 	DescribeUpdateRequest(*eks.DescribeUpdateInput) (*request.Request, *eks.DescribeUpdateOutput)
@@ -173,6 +185,9 @@ type EKSAPI interface {
 	ListEksAnywhereSubscriptionsWithContext(aws.Context, *eks.ListEksAnywhereSubscriptionsInput, ...request.Option) (*eks.ListEksAnywhereSubscriptionsOutput, error)
 	ListEksAnywhereSubscriptionsRequest(*eks.ListEksAnywhereSubscriptionsInput) (*request.Request, *eks.ListEksAnywhereSubscriptionsOutput)
 
+	ListEksAnywhereSubscriptionsPages(*eks.ListEksAnywhereSubscriptionsInput, func(*eks.ListEksAnywhereSubscriptionsOutput, bool) bool) error
+	ListEksAnywhereSubscriptionsPagesWithContext(aws.Context, *eks.ListEksAnywhereSubscriptionsInput, func(*eks.ListEksAnywhereSubscriptionsOutput, bool) bool, ...request.Option) error
+
 	ListFargateProfiles(*eks.ListFargateProfilesInput) (*eks.ListFargateProfilesOutput, error)
 	ListFargateProfilesWithContext(aws.Context, *eks.ListFargateProfilesInput, ...request.Option) (*eks.ListFargateProfilesOutput, error)
 	ListFargateProfilesRequest(*eks.ListFargateProfilesInput) (*request.Request, *eks.ListFargateProfilesOutput)
@@ -193,6 +208,13 @@ type EKSAPI interface {
 
 	ListNodegroupsPages(*eks.ListNodegroupsInput, func(*eks.ListNodegroupsOutput, bool) bool) error
 	ListNodegroupsPagesWithContext(aws.Context, *eks.ListNodegroupsInput, func(*eks.ListNodegroupsOutput, bool) bool, ...request.Option) error
+
+	ListPodIdentityAssociations(*eks.ListPodIdentityAssociationsInput) (*eks.ListPodIdentityAssociationsOutput, error)
+	ListPodIdentityAssociationsWithContext(aws.Context, *eks.ListPodIdentityAssociationsInput, ...request.Option) (*eks.ListPodIdentityAssociationsOutput, error)
+	ListPodIdentityAssociationsRequest(*eks.ListPodIdentityAssociationsInput) (*request.Request, *eks.ListPodIdentityAssociationsOutput)
+
+	ListPodIdentityAssociationsPages(*eks.ListPodIdentityAssociationsInput, func(*eks.ListPodIdentityAssociationsOutput, bool) bool) error
+	ListPodIdentityAssociationsPagesWithContext(aws.Context, *eks.ListPodIdentityAssociationsInput, func(*eks.ListPodIdentityAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*eks.ListTagsForResourceInput) (*eks.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *eks.ListTagsForResourceInput, ...request.Option) (*eks.ListTagsForResourceOutput, error)
@@ -240,6 +262,10 @@ type EKSAPI interface {
 	UpdateNodegroupVersion(*eks.UpdateNodegroupVersionInput) (*eks.UpdateNodegroupVersionOutput, error)
 	UpdateNodegroupVersionWithContext(aws.Context, *eks.UpdateNodegroupVersionInput, ...request.Option) (*eks.UpdateNodegroupVersionOutput, error)
 	UpdateNodegroupVersionRequest(*eks.UpdateNodegroupVersionInput) (*request.Request, *eks.UpdateNodegroupVersionOutput)
+
+	UpdatePodIdentityAssociation(*eks.UpdatePodIdentityAssociationInput) (*eks.UpdatePodIdentityAssociationOutput, error)
+	UpdatePodIdentityAssociationWithContext(aws.Context, *eks.UpdatePodIdentityAssociationInput, ...request.Option) (*eks.UpdatePodIdentityAssociationOutput, error)
+	UpdatePodIdentityAssociationRequest(*eks.UpdatePodIdentityAssociationInput) (*request.Request, *eks.UpdatePodIdentityAssociationOutput)
 
 	WaitUntilAddonActive(*eks.DescribeAddonInput) error
 	WaitUntilAddonActiveWithContext(aws.Context, *eks.DescribeAddonInput, ...request.WaiterOption) error

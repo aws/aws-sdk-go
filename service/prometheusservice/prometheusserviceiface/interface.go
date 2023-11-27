@@ -72,6 +72,10 @@ type PrometheusServiceAPI interface {
 	CreateRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.CreateRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.CreateRuleGroupsNamespaceOutput, error)
 	CreateRuleGroupsNamespaceRequest(*prometheusservice.CreateRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.CreateRuleGroupsNamespaceOutput)
 
+	CreateScraper(*prometheusservice.CreateScraperInput) (*prometheusservice.CreateScraperOutput, error)
+	CreateScraperWithContext(aws.Context, *prometheusservice.CreateScraperInput, ...request.Option) (*prometheusservice.CreateScraperOutput, error)
+	CreateScraperRequest(*prometheusservice.CreateScraperInput) (*request.Request, *prometheusservice.CreateScraperOutput)
+
 	CreateWorkspace(*prometheusservice.CreateWorkspaceInput) (*prometheusservice.CreateWorkspaceOutput, error)
 	CreateWorkspaceWithContext(aws.Context, *prometheusservice.CreateWorkspaceInput, ...request.Option) (*prometheusservice.CreateWorkspaceOutput, error)
 	CreateWorkspaceRequest(*prometheusservice.CreateWorkspaceInput) (*request.Request, *prometheusservice.CreateWorkspaceOutput)
@@ -87,6 +91,10 @@ type PrometheusServiceAPI interface {
 	DeleteRuleGroupsNamespace(*prometheusservice.DeleteRuleGroupsNamespaceInput) (*prometheusservice.DeleteRuleGroupsNamespaceOutput, error)
 	DeleteRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.DeleteRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.DeleteRuleGroupsNamespaceOutput, error)
 	DeleteRuleGroupsNamespaceRequest(*prometheusservice.DeleteRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.DeleteRuleGroupsNamespaceOutput)
+
+	DeleteScraper(*prometheusservice.DeleteScraperInput) (*prometheusservice.DeleteScraperOutput, error)
+	DeleteScraperWithContext(aws.Context, *prometheusservice.DeleteScraperInput, ...request.Option) (*prometheusservice.DeleteScraperOutput, error)
+	DeleteScraperRequest(*prometheusservice.DeleteScraperInput) (*request.Request, *prometheusservice.DeleteScraperOutput)
 
 	DeleteWorkspace(*prometheusservice.DeleteWorkspaceInput) (*prometheusservice.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceWithContext(aws.Context, *prometheusservice.DeleteWorkspaceInput, ...request.Option) (*prometheusservice.DeleteWorkspaceOutput, error)
@@ -104,9 +112,17 @@ type PrometheusServiceAPI interface {
 	DescribeRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.DescribeRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.DescribeRuleGroupsNamespaceOutput, error)
 	DescribeRuleGroupsNamespaceRequest(*prometheusservice.DescribeRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.DescribeRuleGroupsNamespaceOutput)
 
+	DescribeScraper(*prometheusservice.DescribeScraperInput) (*prometheusservice.DescribeScraperOutput, error)
+	DescribeScraperWithContext(aws.Context, *prometheusservice.DescribeScraperInput, ...request.Option) (*prometheusservice.DescribeScraperOutput, error)
+	DescribeScraperRequest(*prometheusservice.DescribeScraperInput) (*request.Request, *prometheusservice.DescribeScraperOutput)
+
 	DescribeWorkspace(*prometheusservice.DescribeWorkspaceInput) (*prometheusservice.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.Option) (*prometheusservice.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceRequest(*prometheusservice.DescribeWorkspaceInput) (*request.Request, *prometheusservice.DescribeWorkspaceOutput)
+
+	GetDefaultScraperConfiguration(*prometheusservice.GetDefaultScraperConfigurationInput) (*prometheusservice.GetDefaultScraperConfigurationOutput, error)
+	GetDefaultScraperConfigurationWithContext(aws.Context, *prometheusservice.GetDefaultScraperConfigurationInput, ...request.Option) (*prometheusservice.GetDefaultScraperConfigurationOutput, error)
+	GetDefaultScraperConfigurationRequest(*prometheusservice.GetDefaultScraperConfigurationInput) (*request.Request, *prometheusservice.GetDefaultScraperConfigurationOutput)
 
 	ListRuleGroupsNamespaces(*prometheusservice.ListRuleGroupsNamespacesInput) (*prometheusservice.ListRuleGroupsNamespacesOutput, error)
 	ListRuleGroupsNamespacesWithContext(aws.Context, *prometheusservice.ListRuleGroupsNamespacesInput, ...request.Option) (*prometheusservice.ListRuleGroupsNamespacesOutput, error)
@@ -114,6 +130,13 @@ type PrometheusServiceAPI interface {
 
 	ListRuleGroupsNamespacesPages(*prometheusservice.ListRuleGroupsNamespacesInput, func(*prometheusservice.ListRuleGroupsNamespacesOutput, bool) bool) error
 	ListRuleGroupsNamespacesPagesWithContext(aws.Context, *prometheusservice.ListRuleGroupsNamespacesInput, func(*prometheusservice.ListRuleGroupsNamespacesOutput, bool) bool, ...request.Option) error
+
+	ListScrapers(*prometheusservice.ListScrapersInput) (*prometheusservice.ListScrapersOutput, error)
+	ListScrapersWithContext(aws.Context, *prometheusservice.ListScrapersInput, ...request.Option) (*prometheusservice.ListScrapersOutput, error)
+	ListScrapersRequest(*prometheusservice.ListScrapersInput) (*request.Request, *prometheusservice.ListScrapersOutput)
+
+	ListScrapersPages(*prometheusservice.ListScrapersInput, func(*prometheusservice.ListScrapersOutput, bool) bool) error
+	ListScrapersPagesWithContext(aws.Context, *prometheusservice.ListScrapersInput, func(*prometheusservice.ListScrapersOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*prometheusservice.ListTagsForResourceInput) (*prometheusservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *prometheusservice.ListTagsForResourceInput, ...request.Option) (*prometheusservice.ListTagsForResourceOutput, error)
@@ -149,6 +172,12 @@ type PrometheusServiceAPI interface {
 	UpdateWorkspaceAlias(*prometheusservice.UpdateWorkspaceAliasInput) (*prometheusservice.UpdateWorkspaceAliasOutput, error)
 	UpdateWorkspaceAliasWithContext(aws.Context, *prometheusservice.UpdateWorkspaceAliasInput, ...request.Option) (*prometheusservice.UpdateWorkspaceAliasOutput, error)
 	UpdateWorkspaceAliasRequest(*prometheusservice.UpdateWorkspaceAliasInput) (*request.Request, *prometheusservice.UpdateWorkspaceAliasOutput)
+
+	WaitUntilScraperActive(*prometheusservice.DescribeScraperInput) error
+	WaitUntilScraperActiveWithContext(aws.Context, *prometheusservice.DescribeScraperInput, ...request.WaiterOption) error
+
+	WaitUntilScraperDeleted(*prometheusservice.DescribeScraperInput) error
+	WaitUntilScraperDeletedWithContext(aws.Context, *prometheusservice.DescribeScraperInput, ...request.WaiterOption) error
 
 	WaitUntilWorkspaceActive(*prometheusservice.DescribeWorkspaceInput) error
 	WaitUntilWorkspaceActiveWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.WaiterOption) error

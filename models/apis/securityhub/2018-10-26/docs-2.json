@@ -50,6 +50,7 @@
     "GetInvitationsCount": "<p>Returns the count of all Security Hub membership invitations that were sent to the current member account, not including the currently accepted invitation. </p>",
     "GetMasterAccount": "<p>This method is deprecated. Instead, use <code>GetAdministratorAccount</code>.</p> <p>The Security Hub console continues to use <code>GetMasterAccount</code>. It will eventually change to use <code>GetAdministratorAccount</code>. Any IAM policies that specifically control access to this function must continue to use <code>GetMasterAccount</code>. You should also add <code>GetAdministratorAccount</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>GetAdministratorAccount</code>.</p> <p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "GetMembers": "<p>Returns the details for the Security Hub member accounts for the specified account IDs.</p> <p>An administrator account can be either the delegated Security Hub administrator account for an organization or an administrator account that enabled Security Hub manually.</p> <p>The results include both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
+    "GetSecurityControlDefinition": "<p> Retrieves the definition of a security control. The definition includes the control title, description, Region availability, parameter definitions, and other details. </p>",
     "InviteMembers": "<p>Invites other Amazon Web Services accounts to become member accounts for the Security Hub administrator account that the invitation is sent from.</p> <p>This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations.</p> <p>Before you can use this action to invite a member, you must first use the <code>CreateMembers</code> action to create the member account in Security Hub.</p> <p>When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated from the member account.</p>",
     "ListAutomationRules": "<p> A list of automation rules and their metadata for the calling account. </p>",
     "ListEnabledProductsForImport": "<p>Lists all findings-generating solutions (products) that you are subscribed to receive findings from in Security Hub.</p>",
@@ -67,6 +68,7 @@
     "UpdateFindings": "<p> <code>UpdateFindings</code> is deprecated. Instead of <code>UpdateFindings</code>, use <code>BatchUpdateFindings</code>.</p> <p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
     "UpdateInsight": "<p>Updates the Security Hub insight identified by the specified insight ARN.</p>",
     "UpdateOrganizationConfiguration": "<p>Used to update the configuration related to Organizations. Can only be called from a Security Hub administrator account.</p>",
+    "UpdateSecurityControl": "<p> Updates the properties of a security control. </p>",
     "UpdateSecurityHubConfiguration": "<p>Updates configuration options for Security Hub.</p>",
     "UpdateStandardsControl": "<p>Used to control whether an individual security standard control is enabled or disabled.</p>"
   },
@@ -215,6 +217,13 @@
       "base": null,
       "refs": {
         "ListOrganizationAdminAccountsRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>"
+      }
+    },
+    "AlphaNumericNonEmptyString": {
+      "base": null,
+      "refs": {
+        "SecurityControl$LastUpdateReason": "<p> The most recent reason for updating the customizable properties of a security control. This differs from the <code>UpdateReason</code> field of the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html\"> <code>BatchUpdateStandardsControlAssociations</code> </a> API, which tracks the reason for updating the enablement status of a control. This field accepts alphanumeric characters in addition to white spaces, dashes, and underscores. </p>",
+        "UpdateSecurityControlRequest$LastUpdateReason": "<p> The most recent reason for updating the properties of the security control. This field accepts alphanumeric characters in addition to white spaces, dashes, and underscores. </p>"
       }
     },
     "ArnList": {
@@ -882,7 +891,7 @@
       }
     },
     "AwsCloudFrontDistributionOriginItem": {
-      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), AWS Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
+      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
       "refs": {
         "AwsCloudFrontDistributionOriginItemList$member": null
       }
@@ -3816,7 +3825,7 @@
       }
     },
     "AwsSecurityFindingFilters": {
-      "base": "<p>A collection of attributes that are applied to all active Security Hub-aggregated findings and that result in a subset of findings that are included in this insight.</p> <p>You can filter by up to 10 finding attributes. For each attribute, you can provide up to 20 filter values.</p>",
+      "base": "<p>A collection of filters that are applied to all active findings aggregated by Security Hub.</p> <p>You can filter by up to ten finding attributes. For each attribute, you can provide up to 20 filter values.</p>",
       "refs": {
         "CreateInsightRequest$Filters": "<p>One or more attributes used to filter the findings included in the insight. The insight only includes findings that match the criteria defined in the filters.</p>",
         "GetFindingsRequest$Filters": "<p>The finding attributes used to define a condition to filter the returned findings.</p> <p>You can filter by up to 10 finding attributes. For each attribute, you can provide up to 20 filter values.</p> <p>Note that in the available filter fields, <code>WorkflowState</code> is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
@@ -4522,6 +4531,7 @@
         "AwsWafv2VisibilityConfigDetails$CloudWatchMetricsEnabled": "<p> A boolean indicating whether the associated resource sends metrics to Amazon CloudWatch. For the list of available metrics, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics\">WAF metrics and dimensions</a> in the <i>WAF Developer Guide</i>. </p>",
         "AwsWafv2VisibilityConfigDetails$SampledRequestsEnabled": "<p> A boolean indicating whether WAF should store a sampling of the web requests that match the rules. You can view the sampled requests through the WAF console. </p>",
         "AwsWafv2WebAclDetails$ManagedbyFirewallManager": "<p> Indicates whether this web ACL is managed by Firewall Manager. </p>",
+        "BooleanConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a boolean parameter. </p>",
         "BooleanFilter$Value": "<p>The value of the boolean.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "ContainerDetails$Privileged": "<p>When this parameter is <code>true</code>, the container is given elevated privileges on the host container instance (similar to the root user). </p>",
@@ -4534,6 +4544,7 @@
         "FindingHistoryRecord$FindingCreated": "<p> Identifies whether the event marks the creation of a new finding. A value of <code>True</code> means that the finding is newly created. A value of <code>False</code> means that the finding isn’t newly created. </p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the administrator account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the administrator account is set to <code>ENABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
         "NetworkConnectionAction$Blocked": "<p>Indicates whether the network connection attempt was blocked.</p>",
+        "ParameterValue$Boolean": "<p> A control parameter that is a boolean. </p>",
         "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
         "UpdateAutomationRulesRequestItem$IsTerminal": "<p>Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If a rule is terminal, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. By default, a rule isn't terminal. </p>",
@@ -4542,6 +4553,12 @@
         "VpcInfoPeeringOptionsDetails$AllowDnsResolutionFromRemoteVpc": "<p>Indicates whether a local VPC can resolve public DNS hostnames to private IP addresses when queried from instances in a peer VPC. </p>",
         "VpcInfoPeeringOptionsDetails$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>Indicates whether a local ClassicLink connection can communicate with the peer VPC over the VPC peering connection. </p>",
         "VpcInfoPeeringOptionsDetails$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>Indicates whether a local VPC can communicate with a ClassicLink connection in the peer VPC over the VPC peering connection. </p>"
+      }
+    },
+    "BooleanConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter with a boolean. For a boolean parameter, the options are <code>true</code> and <code>false</code>. </p>",
+      "refs": {
+        "ConfigurationOptions$Boolean": "<p> The options for customizing a security control parameter that is a boolean. For a boolean parameter, the options are <code>true</code> and <code>false</code>. </p>"
       }
     },
     "BooleanFilter": {
@@ -4626,6 +4643,12 @@
       "base": null,
       "refs": {
         "Compliance$Status": "<p>The result of a standards check.</p> <p>The valid values for <code>Status</code> are as follows.</p> <ul> <li> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported for your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the Config evaluation was <code>NOT_APPLICABLE</code>. If the Config evaluation result was <code>NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>"
+      }
+    },
+    "ConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter. </p>",
+      "refs": {
+        "ParameterDefinition$ConfigurationOptions": "<p> The options for customizing a control parameter. Customization options vary based on the data type of the parameter. </p>"
       }
     },
     "ContainerDetails": {
@@ -4729,6 +4752,12 @@
       "base": "<p>Contains an instance of sensitive data that was detected by a customer-defined identifier.</p>",
       "refs": {
         "ClassificationResult$CustomDataIdentifiers": "<p>Provides details about sensitive data that was identified based on customer-defined configuration.</p>"
+      }
+    },
+    "CustomizableProperties": {
+      "base": null,
+      "refs": {
+        "SecurityControlDefinition$CustomizableProperties": "<p> Security control properties that you can customize. Currently, only parameter customization is supported for select controls. An empty array is returned for controls that don’t support custom properties. </p>"
       }
     },
     "Cvss": {
@@ -4988,14 +5017,26 @@
         "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the KMS key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
+        "DoubleConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is a double. </p>",
+        "DoubleConfigurationOptions$Min": "<p> The minimum valid value for a control parameter that is a double. </p>",
+        "DoubleConfigurationOptions$Max": "<p> The maximum valid value for a control parameter that is a double. </p>",
         "GeoLocation$Lon": "<p>The longitude of the location.</p>",
         "GeoLocation$Lat": "<p>The latitude of the location.</p>",
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
-        "Severity$Product": "<p>Deprecated. This attribute is being deprecated. Instead of providing <code>Product</code>, provide <code>Original</code>.</p> <p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>",
+        "NumberFilter$Gt": "<p> The greater-than condition to be applied to a single field when querying for findings. </p>",
+        "NumberFilter$Lt": "<p> The less-than condition to be applied to a single field when querying for findings. </p>",
+        "ParameterValue$Double": "<p> A control parameter that is a double. </p>",
+        "Severity$Product": "<p>Deprecated. This attribute isn't included in findings. Instead of providing <code>Product</code>, provide <code>Original</code>.</p> <p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>",
         "SeverityUpdate$Product": "<p>The native severity as defined by the Amazon Web Services service or integrated partner product that generated the finding.</p>",
         "Vulnerability$EpssScore": "<p>The Exploit Prediction Scoring System (EPSS) score for a finding. </p>"
+      }
+    },
+    "DoubleConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is a double. </p>",
+      "refs": {
+        "ConfigurationOptions$Double": "<p> The options for customizing a security control parameter that is a double. </p>"
       }
     },
     "EnableImportFindingsForProductRequest": {
@@ -5026,6 +5067,18 @@
     "EnableSecurityHubResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "EnumConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is an enum. </p>",
+      "refs": {
+        "ConfigurationOptions$Enum": "<p> The options for customizing a security control parameter that is an enum. </p>"
+      }
+    },
+    "EnumListConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is a list of enums. </p>",
+      "refs": {
+        "ConfigurationOptions$EnumList": "<p> The options for customizing a security control parameter that is a list of enums. </p>"
       }
     },
     "FieldMap": {
@@ -5274,6 +5327,16 @@
       }
     },
     "GetMembersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSecurityControlDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSecurityControlDefinitionResponse": {
       "base": null,
       "refs": {
       }
@@ -5534,15 +5597,23 @@
         "CodeVulnerabilitiesFilePath$EndLine": "<p> The line number of the last line of code in which the vulnerability is located. </p>",
         "CodeVulnerabilitiesFilePath$StartLine": "<p> The line number of the first line of code in which the vulnerability is located. </p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
+        "EnumListConfigurationOptions$MaxItems": "<p> The maximum number of list items that an enum list control parameter can accept. </p>",
         "FirewallPolicyStatelessRuleGroupReferencesDetails$Priority": "<p>The order in which to run the stateless rule group.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation.</p>",
         "IcmpTypeCode$Code": "<p>The ICMP code for which to deny or allow access. To deny or allow all codes, use the value <code>-1</code>.</p>",
         "IcmpTypeCode$Type": "<p>The ICMP type for which to deny or allow access. To deny or allow all types, use the value <code>-1</code>.</p>",
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
+        "IntegerConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is an integer. </p>",
+        "IntegerConfigurationOptions$Min": "<p> The minimum valid value for a control parameter that is an integer. </p>",
+        "IntegerConfigurationOptions$Max": "<p> The maximum valid value for a control parameter that is an integer. </p>",
         "IntegerList$member": null,
+        "IntegerListConfigurationOptions$Min": "<p> The minimum valid value for a control parameter that is a list of integers. </p>",
+        "IntegerListConfigurationOptions$Max": "<p> The maximum valid value for a control parameter that is a list of integers. </p>",
+        "IntegerListConfigurationOptions$MaxItems": "<p> The maximum number of list items that an interger list control parameter can accept. </p>",
         "IpOrganizationDetails$Asn": "<p>The Autonomous System Number (ASN) of the internet provider</p>",
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
+        "ParameterValue$Integer": "<p> A control parameter that is an integer. </p>",
         "PatchSummary$InstalledCount": "<p>The number of patches from the compliance standard that were installed successfully.</p>",
         "PatchSummary$MissingCount": "<p>The number of patches that are part of the compliance standard but are not installed. The count includes patches that failed to install.</p>",
         "PatchSummary$FailedCount": "<p>The number of patches from the compliance standard that failed to install.</p>",
@@ -5561,16 +5632,31 @@
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$FromPort": "<p>The starting port value for the port range.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$ToPort": "<p>The ending port value for the port range.</p>",
         "RuleGroupSourceStatelessRulesDetails$Priority": "<p>Indicates the order in which to run this rule relative to all of the rules in the stateless rule group.</p>",
-        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>",
+        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>",
+        "StringListConfigurationOptions$MaxItems": "<p> The maximum number of list items that a string list control parameter can accept. </p>",
         "Threat$ItemCount": "<p>This total number of items in which the threat has been detected. </p>",
         "UnprocessedAutomationRule$ErrorCode": "<p> The error code associated with the unprocessed automation rule. </p>"
+      }
+    },
+    "IntegerConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is an integer. </p>",
+      "refs": {
+        "ConfigurationOptions$Integer": "<p> The options for customizing a security control parameter that is an integer. </p>"
       }
     },
     "IntegerList": {
       "base": null,
       "refs": {
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1DhGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.</p>",
-        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2DhGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.</p>"
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2DhGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.</p>",
+        "IntegerListConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is a list of integers. </p>",
+        "ParameterValue$IntegerList": "<p> A control parameter that is a list of integers. </p>"
+      }
+    },
+    "IntegerListConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is a list of integers. </p>",
+      "refs": {
+        "ConfigurationOptions$IntegerList": "<p> The options for customizing a security control parameter that is a list of integers. </p>"
       }
     },
     "IntegrationType": {
@@ -7335,6 +7421,7 @@
         "EnableImportFindingsForProductRequest$ProductArn": "<p>The ARN of the product to enable the integration for.</p>",
         "EnableImportFindingsForProductResponse$ProductSubscriptionArn": "<p>The ARN of your subscription to the product to enable integrations for.</p>",
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services account identifier of the account to designate as the Security Hub administrator account.</p>",
+        "EnumConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is an enum. </p>",
         "FieldMap$key": null,
         "FieldMap$value": null,
         "FilePaths$FilePath": "<p>Path to the infected or suspicious file on the resource it was detected on. </p>",
@@ -7357,6 +7444,7 @@
         "GetFindingAggregatorResponse$FindingAggregationRegion": "<p>The aggregation Region.</p>",
         "GetFindingAggregatorResponse$RegionLinkingMode": "<p>Indicates whether to link all Regions, all Regions except for a list of excluded Regions, or a list of included Regions.</p>",
         "GetInsightResultsRequest$InsightArn": "<p>The ARN of the insight for which to return results.</p>",
+        "GetSecurityControlDefinitionRequest$SecurityControlId": "<p> The ID of the security control to retrieve the definition for. This field doesn’t accept an Amazon Resource Name (ARN). </p>",
         "ImportFindingsError$Id": "<p>The identifier of the finding that could not be updated.</p>",
         "ImportFindingsError$ErrorCode": "<p>The code of the error returned by the <code>BatchImportFindings</code> operation.</p>",
         "ImportFindingsError$ErrorMessage": "<p>The message of the error returned by the <code>BatchImportFindings</code> operation.</p>",
@@ -7417,6 +7505,11 @@
         "Note$UpdatedAt": "<p>The timestamp of when the note was updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "NoteUpdate$Text": "<p>The updated note text.</p>",
         "NoteUpdate$UpdatedBy": "<p>The principal that updated the note.</p>",
+        "ParameterDefinition$Description": "<p> Description of a control parameter. </p>",
+        "ParameterDefinitions$key": null,
+        "ParameterValue$String": "<p> A control parameter that is a string. </p>",
+        "ParameterValue$Enum": "<p> A control parameter that is an enum. </p>",
+        "Parameters$key": null,
         "PatchSummary$Id": "<p>The identifier of the compliance standard that was used to determine the patch compliance status.</p>",
         "PatchSummary$OperationStartTime": "<p>Indicates when the operation started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "PatchSummary$OperationEndTime": "<p>Indicates when the operation completed.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -7447,6 +7540,8 @@
         "Resource$ResourceRole": "<p>Identifies the role of the resource in the finding. A resource is either the actor or target of the finding activity,</p>",
         "ResourceConflictException$Message": null,
         "ResourceConflictException$Code": null,
+        "ResourceInUseException$Message": null,
+        "ResourceInUseException$Code": null,
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$Code": null,
         "Result$ProcessingResult": "<p>The reason that the account was not processed.</p>",
@@ -7489,6 +7584,7 @@
         "SecurityControlDefinition$Title": "<p> The title of a security control. </p>",
         "SecurityControlDefinition$Description": "<p> The description of a security control across standards. This typically summarizes how Security Hub evaluates the control and the conditions under which it produces a failed finding. This parameter doesn't reference a specific standard. </p>",
         "SecurityControlDefinition$RemediationUrl": "<p> A link to Security Hub documentation that explains how to remediate a failed finding for a security control. </p>",
+        "SecurityControlParameter$Name": "<p> The name of a </p>",
         "SecurityGroups$member": null,
         "SensitiveDataDetections$Type": "<p>The type of sensitive data that was detected. For example, the type might indicate that the data is an email address.</p>",
         "SensitiveDataResult$Category": "<p>The category of sensitive data that was detected. For example, the category can indicate that the sensitive data involved credentials, financial information, or personal information.</p>",
@@ -7543,8 +7639,13 @@
         "StatelessCustomPublishMetricActionDimension$Value": "<p>The value to use for the custom metric dimension.</p>",
         "StatusReason$ReasonCode": "<p>A code that represents a reason for the control status. For the list of status reason codes and their meanings, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff\">Standards-related information in the ASFF</a> in the <i>Security Hub User Guide</i>. </p>",
         "StatusReason$Description": "<p>The corresponding description for the status reason code.</p>",
+        "StringConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is a string. </p>",
+        "StringConfigurationOptions$Re2Expression": "<p> An RE2 regular expression that Security Hub uses to validate a user-provided control parameter string. </p>",
+        "StringConfigurationOptions$ExpressionDescription": "<p> The description of the RE2 regular expression. </p>",
         "StringFilter$Value": "<p>The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is <code>Security Hub</code>. If you provide <code>security hub</code> as the filter value, there's no match.</p>",
         "StringList$member": null,
+        "StringListConfigurationOptions$Re2Expression": "<p> An RE2 regular expression that Security Hub uses to validate a user-provided list of strings for a control parameter. </p>",
+        "StringListConfigurationOptions$ExpressionDescription": "<p> The description of the RE2 regular expression. </p>",
         "Threat$Name": "<p>The name of the threat. </p>",
         "Threat$Severity": "<p>The severity of the threat. </p>",
         "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p>",
@@ -7572,6 +7673,7 @@
         "UpdateInsightRequest$InsightArn": "<p>The ARN of the insight that you want to update.</p>",
         "UpdateInsightRequest$Name": "<p>The updated name for the insight.</p>",
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
+        "UpdateSecurityControlRequest$SecurityControlId": "<p> The Amazon Resource Name (ARN) or ID of the control to update. </p>",
         "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the security standard control to enable or disable.</p>",
         "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a security standard control. If you are disabling a control, then this is required.</p>",
         "VolumeMount$Name": "<p>The name of the volume. </p>",
@@ -7730,6 +7832,43 @@
       "base": null,
       "refs": {
         "Occurrences$Pages": "<p>Occurrences of sensitive data in an Adobe Portable Document Format (PDF) file.</p>"
+      }
+    },
+    "ParameterConfiguration": {
+      "base": "<p> An object that provides the current value of a security control parameter and identifies whether it has been customized. </p>",
+      "refs": {
+        "Parameters$value": null
+      }
+    },
+    "ParameterDefinition": {
+      "base": "<p> An object that describes a security control parameter and the options for customizing it. </p>",
+      "refs": {
+        "ParameterDefinitions$value": null
+      }
+    },
+    "ParameterDefinitions": {
+      "base": null,
+      "refs": {
+        "SecurityControlDefinition$ParameterDefinitions": "<p> An object that provides a security control parameter name, description, and the options for customizing it. This object is excluded for a control that doesn't support custom parameters. </p>"
+      }
+    },
+    "ParameterValue": {
+      "base": "<p> An object that includes the data type of a security control parameter and its current value. </p>",
+      "refs": {
+        "ParameterConfiguration$Value": "<p> The current value of a control parameter. </p>"
+      }
+    },
+    "ParameterValueType": {
+      "base": null,
+      "refs": {
+        "ParameterConfiguration$ValueType": "<p> Identifies whether a control parameter uses a custom user-defined value or the Security Hub default value. </p>"
+      }
+    },
+    "Parameters": {
+      "base": null,
+      "refs": {
+        "SecurityControl$Parameters": "<p> An object that identifies the name of a control parameter, its current value, and whether it has been customized. </p>",
+        "UpdateSecurityControlRequest$Parameters": "<p> An object that specifies which security control parameters to update. </p>"
       }
     },
     "Partition": {
@@ -7928,6 +8067,11 @@
       "base": "<p>Additional details about a resource related to a finding.</p> <p>To provide the details, use the object that corresponds to the resource type. For example, if the resource type is <code>AwsEc2Instance</code>, then you use the <code>AwsEc2Instance</code> object to provide the details.</p> <p>If the type-specific object does not contain all of the fields you want to populate, then you use the <code>Other</code> object to populate those additional fields.</p> <p>You also use the <code>Other</code> object to populate the details when the selected type does not have a corresponding object.</p>",
       "refs": {
         "Resource$Details": "<p>Additional details about the resource related to a finding.</p>"
+      }
+    },
+    "ResourceInUseException": {
+      "base": "<p> The request was rejected because it conflicts with the resource's availability. For example, you tried to update a security control that's currently in the <code>UPDATING</code> state. </p>",
+      "refs": {
       }
     },
     "ResourceList": {
@@ -8177,6 +8321,7 @@
     "SecurityControlDefinition": {
       "base": "<p> Provides metadata for a security control, including its unique standard-agnostic identifier, title, description, severity, availability in Amazon Web Services Regions, and a link to remediation steps. </p>",
       "refs": {
+        "GetSecurityControlDefinitionResponse$SecurityControlDefinition": null,
         "SecurityControlDefinitions$member": null
       }
     },
@@ -8184,6 +8329,24 @@
       "base": null,
       "refs": {
         "ListSecurityControlDefinitionsResponse$SecurityControlDefinitions": "<p> An array of controls that apply to the specified standard. </p>"
+      }
+    },
+    "SecurityControlParameter": {
+      "base": "<p> A parameter that a security control accepts. </p>",
+      "refs": {
+        "SecurityControlParametersList$member": null
+      }
+    },
+    "SecurityControlParametersList": {
+      "base": null,
+      "refs": {
+        "Compliance$SecurityControlParameters": "<p> An object that includes security control parameter names and values. </p>"
+      }
+    },
+    "SecurityControlProperty": {
+      "base": null,
+      "refs": {
+        "CustomizableProperties$member": null
       }
     },
     "SecurityControls": {
@@ -8469,6 +8632,12 @@
         "Compliance$StatusReasons": "<p>For findings generated from controls, a list of reasons behind the value of <code>Status</code>. For the list of status reason codes and their meanings, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff\">Standards-related information in the ASFF</a> in the <i>Security Hub User Guide</i>. </p>"
       }
     },
+    "StringConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is a string. </p>",
+      "refs": {
+        "ConfigurationOptions$String": "<p> The options for customizing a security control parameter that is a string data type. </p>"
+      }
+    },
     "StringFilter": {
       "base": "<p>A string filter for filtering Security Hub findings.</p>",
       "refs": {
@@ -8572,7 +8741,11 @@
         "AwsSecurityFindingFilters$FindingProviderFieldsSeverityOriginal": "<p>The finding provider's original value for the severity.</p>",
         "AwsSecurityFindingFilters$FindingProviderFieldsTypes": "<p>One or more finding types that the finding provider assigned to the finding. Uses the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
         "AwsSecurityFindingFilters$ComplianceSecurityControlId": "<p> The unique identifier of a control across standards. Values for this field typically consist of an Amazon Web Service and a number, such as APIGateway.5. </p>",
-        "AwsSecurityFindingFilters$ComplianceAssociatedStandardsId": "<p> The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html\">DescribeStandards</a> API response. </p>"
+        "AwsSecurityFindingFilters$ComplianceAssociatedStandardsId": "<p> The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html\">DescribeStandards</a> API response. </p>",
+        "AwsSecurityFindingFilters$VulnerabilitiesExploitAvailable": "<p> Indicates whether a software vulnerability in your environment has a known exploit. You can filter findings by this field only if you use Security Hub and Amazon Inspector. </p>",
+        "AwsSecurityFindingFilters$VulnerabilitiesFixAvailable": "<p> Indicates whether a vulnerability is fixed in a newer version of the affected software packages. You can filter findings by this field only if you use Security Hub and Amazon Inspector. </p>",
+        "AwsSecurityFindingFilters$ComplianceSecurityControlParametersName": "<p> The name of a security control parameter. </p>",
+        "AwsSecurityFindingFilters$ComplianceSecurityControlParametersValue": "<p> The current value of a security control parameter. </p>"
       }
     },
     "StringList": {
@@ -8611,12 +8784,24 @@
         "BatchGetSecurityControlsRequest$SecurityControlIds": "<p> A list of security controls (identified with <code>SecurityControlId</code>, <code>SecurityControlArn</code>, or a mix of both parameters). The security control ID or Amazon Resource Name (ARN) is the same across standards. </p>",
         "CreateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region. </p>",
         "CreateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
+        "EnumConfigurationOptions$AllowedValues": "<p> The valid values for a control parameter that is an enum. </p>",
+        "EnumListConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is a list of enums. </p>",
+        "EnumListConfigurationOptions$AllowedValues": "<p> The valid values for a control parameter that is a list of enums. </p>",
         "GetFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "NetworkPathComponentDetails$Address": "<p>The IP addresses of the destination.</p>",
+        "ParameterValue$StringList": "<p> A control parameter that is a list of strings. </p>",
+        "ParameterValue$EnumList": "<p> A control parameter that is a list of enums. </p>",
+        "StringListConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is a list of strings. </p>",
         "UpdateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region.</p>",
         "UpdateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "Vulnerability$RelatedVulnerabilities": "<p>List of vulnerabilities that are related to this vulnerability.</p>",
         "Vulnerability$ReferenceUrls": "<p>A list of URLs that provide additional information about the vulnerability.</p>"
+      }
+    },
+    "StringListConfigurationOptions": {
+      "base": "<p> The options for customizing a security control parameter that is a list of strings. </p>",
+      "refs": {
+        "ConfigurationOptions$StringList": "<p> The options for customizing a security control parameter that is a list of strings. </p>"
       }
     },
     "TagKey": {
@@ -8719,6 +8904,7 @@
         "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>",
         "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
         "GeneratorDetails$Labels": "<p> An array of tags used to identify the detector associated with the finding. </p>",
+        "SecurityControlParameter$Value": "<p> The current value of a control parameter. </p>",
         "VulnerabilityCodeVulnerabilities$Cwes": "<p> The Common Weakness Enumeration (CWE) item associated with the detected code vulnerability. </p>"
       }
     },
@@ -8852,6 +9038,16 @@
       "refs": {
       }
     },
+    "UpdateSecurityControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSecurityControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateSecurityHubConfigurationRequest": {
       "base": null,
       "refs": {
@@ -8870,6 +9066,12 @@
     "UpdateStandardsControlResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateStatus": {
+      "base": null,
+      "refs": {
+        "SecurityControl$UpdateStatus": "<p> Identifies whether customizable properties of a security control are reflected in Security Hub findings. A status of <code>READY</code> indicates findings include the current parameter values. A status of <code>UPDATING</code> indicates that all findings may not include the current parameter values. </p>"
       }
     },
     "VerificationState": {

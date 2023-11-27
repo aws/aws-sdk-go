@@ -2213,7 +2213,7 @@ type DialogAction struct {
 	//
 	//    * Spell by word - "b as in boy" "o as in oscar" "b as in boy"
 	//
-	// For more information, see Using spelling to enter slot values (https://docs.aws.amazon.com/lexv2/latest/dg/using-spelling.html).
+	// For more information, see Using spelling to enter slot values (https://docs.aws.amazon.com/lexv2/latest/dg/spelling-styles.html).
 	SlotElicitationStyle *string `locationName:"slotElicitationStyle" type:"string" enum:"StyleType"`
 
 	// The name of the slot that should be elicited from the user.
@@ -2224,21 +2224,21 @@ type DialogAction struct {
 	SubSlotToElicit *ElicitSubSlot `locationName:"subSlotToElicit" type:"structure"`
 
 	// The next action that the bot should take in its interaction with the user.
-	// The possible values are:
+	// The following values are possible:
 	//
-	//    * Close - Indicates that there will not be a response from the user. For
-	//    example, the statement "Your order has been placed" does not require a
-	//    response.
+	//    * Close – Indicates that there will not be a response from the user.
+	//    For example, the statement "Your order has been placed" does not require
+	//    a response.
 	//
-	//    * ConfirmIntent - The next action is asking the user if the intent is
+	//    * ConfirmIntent – The next action is asking the user if the intent is
 	//    complete and ready to be fulfilled. This is a yes/no question such as
 	//    "Place the order?"
 	//
-	//    * Delegate - The next action is determined by Amazon Lex V2.
+	//    * Delegate – The next action is determined by Amazon Lex V2.
 	//
-	//    * ElicitIntent - The next action is to elicit an intent from the user.
+	//    * ElicitIntent – The next action is to elicit an intent from the user.
 	//
-	//    * ElicitSlot - The next action is to elicit a slot value from the user.
+	//    * ElicitSlot – The next action is to elicit a slot value from the user.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"DialogActionType"`
@@ -2784,7 +2784,8 @@ func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 type Intent struct {
 	_ struct{} `type:"structure"`
 
-	// Contains information about whether fulfillment of the intent has been confirmed.
+	// Indicates whether the intent has been Confirmed, Denied, or None if the confirmation
+	// stage has not yet been reached.
 	ConfirmationState *string `locationName:"confirmationState" type:"string" enum:"ConfirmationState"`
 
 	// The name of the intent.
@@ -2796,7 +2797,24 @@ type Intent struct {
 	// value of the slot. If a slot has not been filled, the value is null.
 	Slots map[string]*Slot `locationName:"slots" type:"map"`
 
-	// Contains fulfillment information for the intent.
+	// Indicates the fulfillment state for the intent. The meanings of each value
+	// are as follows:
+	//
+	//    * Failed – The bot failed to fulfill the intent.
+	//
+	//    * Fulfilled – The bot has completed fulfillment of the intent.
+	//
+	//    * FulfillmentInProgress – The bot is in the middle of fulfilling the
+	//    intent.
+	//
+	//    * InProgress – The bot is in the middle of eliciting the slot values
+	//    that are necessary to fulfill the intent.
+	//
+	//    * ReadyForFulfillment – The bot has elicited all the slot values for
+	//    the intent and is ready to fulfill the intent.
+	//
+	//    * Waiting – The bot is waiting for a response from the user (limited
+	//    to streaming conversations).
 	State *string `locationName:"state" type:"string" enum:"IntentState"`
 }
 
@@ -2878,7 +2896,8 @@ type IntentResultEvent struct {
 	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
-	// Indicates whether the input to the operation was text or speech.
+	// Indicates whether the input to the operation was text, speech, or from a
+	// touch-tone keypad.
 	InputMode *string `locationName:"inputMode" type:"string" enum:"InputMode"`
 
 	// A list of intents that Amazon Lex V2 determined might satisfy the user's
@@ -3083,14 +3102,18 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An intent that Amazon Lex V2 determined might satisfy the user's utterance.
-// The intents are ordered by the confidence score.
+// An object containing information about an intent that Amazon Lex V2 determined
+// might satisfy the user's utterance. The intents are ordered by the confidence
+// score.
 type Interpretation struct {
 	_ struct{} `type:"structure"`
 
 	// A list of intents that might satisfy the user's utterance. The intents are
 	// ordered by the confidence score.
 	Intent *Intent `locationName:"intent" type:"structure"`
+
+	// Specifies the service that interpreted the input.
+	InterpretationSource *string `locationName:"interpretationSource" type:"string" enum:"InterpretationSource"`
 
 	// Determines the threshold where Amazon Lex V2 will insert the AMAZON.FallbackIntent,
 	// AMAZON.KendraSearchIntent, or both when returning alternative intents in
@@ -3126,6 +3149,12 @@ func (s Interpretation) GoString() string {
 // SetIntent sets the Intent field's value.
 func (s *Interpretation) SetIntent(v *Intent) *Interpretation {
 	s.Intent = v
+	return s
+}
+
+// SetInterpretationSource sets the InterpretationSource field's value.
+func (s *Interpretation) SetInterpretationSource(v string) *Interpretation {
+	s.InterpretationSource = &v
 	return s
 }
 
@@ -3570,18 +3599,17 @@ type PutSessionOutput struct {
 	// that the messages are defined in the bot.
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
-	// Request-specific information passed between the client application and Amazon
-	// Lex V2. These are the same as the requestAttribute parameter in the call
-	// to the PutSession operation.
+	// A base-64-encoded gzipped field that provides request-specific information
+	// passed between the client application and Amazon Lex V2. These are the same
+	// as the requestAttribute parameter in the call to the PutSession operation.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" min:"1" type:"string"`
 
 	// The identifier of the session that received the data.
 	SessionId *string `location:"header" locationName:"x-amz-lex-session-id" min:"2" type:"string"`
 
-	// Represents the current state of the dialog between the user and the bot.
-	//
-	// Use this to determine the progress of the conversation and what the next
-	// action may be.
+	// A base-64-encoded gzipped field that represents the current state of the
+	// dialog between the user and the bot. Use this to determine the progress of
+	// the conversation and what the next action may be.
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" min:"1" type:"string"`
 }
 
@@ -4096,7 +4124,8 @@ type RecognizeUtteranceOutput struct {
 	// Content type as specified in the responseContentType in the request.
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
-	// Indicates whether the input mode to the operation was text or speech.
+	// Indicates whether the input mode to the operation was text, speech, or from
+	// a touch-tone keypad.
 	InputMode *string `location:"header" locationName:"x-amz-lex-input-mode" min:"1" type:"string"`
 
 	// The text used to process the request.
@@ -5639,22 +5668,24 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The value of a slot.
+// Information about the value provided for a slot and Amazon Lex V2's interpretation.
 type Value struct {
 	_ struct{} `type:"structure"`
 
-	// The value that Amazon Lex V2 determines for the slot. The actual value depends
-	// on the setting of the value selection strategy for the bot. You can choose
-	// to use the value entered by the user, or you can have Amazon Lex V2 choose
-	// the first value in the resolvedValues list.
+	// The value that Amazon Lex V2 determines for the slot, given the user input.
+	// The actual value depends on the setting of the value selection strategy for
+	// the bot. You can choose to use the value entered by the user, or you can
+	// have Amazon Lex V2 choose the first value in the resolvedValues list.
 	//
 	// InterpretedValue is a required field
 	InterpretedValue *string `locationName:"interpretedValue" min:"1" type:"string" required:"true"`
 
-	// The text of the utterance from the user that was entered for the slot.
+	// The part of the user's response to the slot elicitation that Amazon Lex V2
+	// determines is relevant to the slot value.
 	OriginalValue *string `locationName:"originalValue" min:"1" type:"string"`
 
-	// A list of additional values that have been recognized for the slot.
+	// A list of values that Amazon Lex V2 determines are possible resolutions for
+	// the user input. The first value matches the interpretedValue.
 	ResolvedValues []*string `locationName:"resolvedValues" type:"list"`
 }
 
@@ -5830,6 +5861,22 @@ func IntentState_Values() []string {
 		IntentStateReadyForFulfillment,
 		IntentStateWaiting,
 		IntentStateFulfillmentInProgress,
+	}
+}
+
+const (
+	// InterpretationSourceBedrock is a InterpretationSource enum value
+	InterpretationSourceBedrock = "Bedrock"
+
+	// InterpretationSourceLex is a InterpretationSource enum value
+	InterpretationSourceLex = "Lex"
+)
+
+// InterpretationSource_Values returns all elements of the InterpretationSource enum
+func InterpretationSource_Values() []string {
+	return []string{
+		InterpretationSourceBedrock,
+		InterpretationSourceLex,
 	}
 }
 

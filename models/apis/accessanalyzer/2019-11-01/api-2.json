@@ -46,6 +46,42 @@
       ],
       "idempotent":true
     },
+    "CheckAccessNotGranted":{
+      "name":"CheckAccessNotGranted",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/check-access-not-granted",
+        "responseCode":200
+      },
+      "input":{"shape":"CheckAccessNotGrantedRequest"},
+      "output":{"shape":"CheckAccessNotGrantedResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnprocessableEntityException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CheckNoNewAccess":{
+      "name":"CheckNoNewAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/check-no-new-access",
+        "responseCode":200
+      },
+      "input":{"shape":"CheckNoNewAccessRequest"},
+      "output":{"shape":"CheckNoNewAccessResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnprocessableEntityException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateAccessPreview":{
       "name":"CreateAccessPreview",
       "http":{
@@ -223,6 +259,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetFindingV2":{
+      "name":"GetFindingV2",
+      "http":{
+        "method":"GET",
+        "requestUri":"/findingv2/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFindingV2Request"},
+      "output":{"shape":"GetFindingV2Response"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetGeneratedPolicy":{
       "name":"GetGeneratedPolicy",
       "http":{
@@ -332,6 +385,23 @@
       },
       "input":{"shape":"ListFindingsRequest"},
       "output":{"shape":"ListFindingsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListFindingsV2":{
+      "name":"ListFindingsV2",
+      "http":{
+        "method":"POST",
+        "requestUri":"/findingv2",
+        "responseCode":200
+      },
+      "input":{"shape":"ListFindingsV2Request"},
+      "output":{"shape":"ListFindingsV2Response"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
@@ -496,6 +566,30 @@
     }
   },
   "shapes":{
+    "Access":{
+      "type":"structure",
+      "required":["actions"],
+      "members":{
+        "actions":{"shape":"AccessActionsList"}
+      }
+    },
+    "AccessActionsList":{
+      "type":"list",
+      "member":{"shape":"Action"},
+      "max":100,
+      "min":0
+    },
+    "AccessCheckPolicyDocument":{
+      "type":"string",
+      "sensitive":true
+    },
+    "AccessCheckPolicyType":{
+      "type":"string",
+      "enum":[
+        "IDENTITY_POLICY",
+        "RESOURCE_POLICY"
+      ]
+    },
     "AccessDeniedException":{
       "type":"structure",
       "required":["message"],
@@ -630,6 +724,7 @@
       ]
     },
     "AclUri":{"type":"string"},
+    "Action":{"type":"string"},
     "ActionList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -680,6 +775,13 @@
       "type":"string",
       "pattern":"[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:analyzer/.{1,255}"
     },
+    "AnalyzerConfiguration":{
+      "type":"structure",
+      "members":{
+        "unusedAccess":{"shape":"UnusedAccessConfiguration"}
+      },
+      "union":true
+    },
     "AnalyzerStatus":{
       "type":"string",
       "enum":[
@@ -707,7 +809,8 @@
         "lastResourceAnalyzedAt":{"shape":"Timestamp"},
         "tags":{"shape":"TagsMap"},
         "status":{"shape":"AnalyzerStatus"},
-        "statusReason":{"shape":"StatusReason"}
+        "statusReason":{"shape":"StatusReason"},
+        "configuration":{"shape":"AnalyzerConfiguration"}
       }
     },
     "AnalyzersList":{
@@ -767,6 +870,68 @@
       "type":"structure",
       "members":{
       }
+    },
+    "CheckAccessNotGrantedRequest":{
+      "type":"structure",
+      "required":[
+        "policyDocument",
+        "access",
+        "policyType"
+      ],
+      "members":{
+        "policyDocument":{"shape":"AccessCheckPolicyDocument"},
+        "access":{"shape":"CheckAccessNotGrantedRequestAccessList"},
+        "policyType":{"shape":"AccessCheckPolicyType"}
+      }
+    },
+    "CheckAccessNotGrantedRequestAccessList":{
+      "type":"list",
+      "member":{"shape":"Access"},
+      "max":1,
+      "min":0
+    },
+    "CheckAccessNotGrantedResponse":{
+      "type":"structure",
+      "members":{
+        "result":{"shape":"CheckAccessNotGrantedResult"},
+        "message":{"shape":"String"},
+        "reasons":{"shape":"ReasonSummaryList"}
+      }
+    },
+    "CheckAccessNotGrantedResult":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "CheckNoNewAccessRequest":{
+      "type":"structure",
+      "required":[
+        "newPolicyDocument",
+        "existingPolicyDocument",
+        "policyType"
+      ],
+      "members":{
+        "newPolicyDocument":{"shape":"AccessCheckPolicyDocument"},
+        "existingPolicyDocument":{"shape":"AccessCheckPolicyDocument"},
+        "policyType":{"shape":"AccessCheckPolicyType"}
+      }
+    },
+    "CheckNoNewAccessResponse":{
+      "type":"structure",
+      "members":{
+        "result":{"shape":"CheckNoNewAccessResult"},
+        "message":{"shape":"String"},
+        "reasons":{"shape":"ReasonSummaryList"}
+      }
+    },
+    "CheckNoNewAccessResult":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL"
+      ]
     },
     "CloudTrailArn":{
       "type":"string",
@@ -881,7 +1046,8 @@
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "configuration":{"shape":"AnalyzerConfiguration"}
       }
     },
     "CreateAnalyzerResponse":{
@@ -995,6 +1161,17 @@
       }
     },
     "EfsFileSystemPolicy":{"type":"string"},
+    "ExternalAccessDetails":{
+      "type":"structure",
+      "required":["condition"],
+      "members":{
+        "action":{"shape":"ActionList"},
+        "condition":{"shape":"ConditionKeyMap"},
+        "isPublic":{"shape":"Boolean"},
+        "principal":{"shape":"PrincipalMap"},
+        "sources":{"shape":"FindingSourceList"}
+      }
+    },
     "FilterCriteriaMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1036,6 +1213,21 @@
         "NEW",
         "UNCHANGED"
       ]
+    },
+    "FindingDetails":{
+      "type":"structure",
+      "members":{
+        "externalAccessDetails":{"shape":"ExternalAccessDetails"},
+        "unusedPermissionDetails":{"shape":"UnusedPermissionDetails"},
+        "unusedIamUserAccessKeyDetails":{"shape":"UnusedIamUserAccessKeyDetails"},
+        "unusedIamRoleDetails":{"shape":"UnusedIamRoleDetails"},
+        "unusedIamUserPasswordDetails":{"shape":"UnusedIamUserPasswordDetails"}
+      },
+      "union":true
+    },
+    "FindingDetailsList":{
+      "type":"list",
+      "member":{"shape":"FindingDetails"}
     },
     "FindingId":{"type":"string"},
     "FindingIdList":{
@@ -1114,9 +1306,47 @@
         "sources":{"shape":"FindingSourceList"}
       }
     },
+    "FindingSummaryV2":{
+      "type":"structure",
+      "required":[
+        "analyzedAt",
+        "createdAt",
+        "id",
+        "resourceType",
+        "resourceOwnerAccount",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "analyzedAt":{"shape":"Timestamp"},
+        "createdAt":{"shape":"Timestamp"},
+        "error":{"shape":"String"},
+        "id":{"shape":"FindingId"},
+        "resource":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"},
+        "resourceOwnerAccount":{"shape":"String"},
+        "status":{"shape":"FindingStatus"},
+        "updatedAt":{"shape":"Timestamp"},
+        "findingType":{"shape":"FindingType"}
+      }
+    },
+    "FindingType":{
+      "type":"string",
+      "enum":[
+        "ExternalAccess",
+        "UnusedIAMRole",
+        "UnusedIAMUserAccessKey",
+        "UnusedIAMUserPassword",
+        "UnusedPermission"
+      ]
+    },
     "FindingsList":{
       "type":"list",
       "member":{"shape":"FindingSummary"}
+    },
+    "FindingsListV2":{
+      "type":"list",
+      "member":{"shape":"FindingSummaryV2"}
     },
     "GeneratedPolicy":{
       "type":"structure",
@@ -1266,6 +1496,62 @@
         "finding":{"shape":"Finding"}
       }
     },
+    "GetFindingV2Request":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "id"
+      ],
+      "members":{
+        "analyzerArn":{
+          "shape":"AnalyzerArn",
+          "location":"querystring",
+          "locationName":"analyzerArn"
+        },
+        "id":{
+          "shape":"FindingId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "maxResults":{
+          "shape":"Integer",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetFindingV2Response":{
+      "type":"structure",
+      "required":[
+        "analyzedAt",
+        "createdAt",
+        "id",
+        "resourceType",
+        "resourceOwnerAccount",
+        "status",
+        "updatedAt",
+        "findingDetails"
+      ],
+      "members":{
+        "analyzedAt":{"shape":"Timestamp"},
+        "createdAt":{"shape":"Timestamp"},
+        "error":{"shape":"String"},
+        "id":{"shape":"FindingId"},
+        "nextToken":{"shape":"Token"},
+        "resource":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"},
+        "resourceOwnerAccount":{"shape":"String"},
+        "status":{"shape":"FindingStatus"},
+        "updatedAt":{"shape":"Timestamp"},
+        "findingDetails":{"shape":"FindingDetailsList"},
+        "findingType":{"shape":"FindingType"}
+      }
+    },
     "GetGeneratedPolicyRequest":{
       "type":"structure",
       "required":["jobId"],
@@ -1345,6 +1631,18 @@
       "type":"structure",
       "members":{
       }
+    },
+    "InvalidParameterException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "IssueCode":{"type":"string"},
     "IssuingAccount":{"type":"string"},
@@ -1612,6 +1910,25 @@
         "nextToken":{"shape":"Token"}
       }
     },
+    "ListFindingsV2Request":{
+      "type":"structure",
+      "required":["analyzerArn"],
+      "members":{
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "filter":{"shape":"FilterCriteriaMap"},
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"Token"},
+        "sort":{"shape":"SortCriteria"}
+      }
+    },
+    "ListFindingsV2Response":{
+      "type":"structure",
+      "required":["findings"],
+      "members":{
+        "findings":{"shape":"FindingsListV2"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
     "ListPolicyGenerationsRequest":{
       "type":"structure",
       "members":{
@@ -1846,6 +2163,18 @@
         "ORGANIZATION_DELETED",
         "SERVICE_LINKED_ROLE_CREATION_FAILED"
       ]
+    },
+    "ReasonSummary":{
+      "type":"structure",
+      "members":{
+        "description":{"shape":"String"},
+        "statementIndex":{"shape":"Integer"},
+        "statementId":{"shape":"String"}
+      }
+    },
+    "ReasonSummaryList":{
+      "type":"list",
+      "member":{"shape":"ReasonSummary"}
     },
     "RegionList":{
       "type":"list",
@@ -2144,8 +2473,23 @@
       "type":"string",
       "enum":[
         "ACCOUNT",
-        "ORGANIZATION"
+        "ORGANIZATION",
+        "ACCOUNT_UNUSED_ACCESS",
+        "ORGANIZATION_UNUSED_ACCESS"
       ]
+    },
+    "UnprocessableEntityException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":422,
+        "senderFault":true
+      },
+      "exception":true,
+      "retryable":{"throttling":false}
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -2169,6 +2513,53 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UnusedAccessConfiguration":{
+      "type":"structure",
+      "members":{
+        "unusedAccessAge":{"shape":"Integer"}
+      }
+    },
+    "UnusedAction":{
+      "type":"structure",
+      "required":["action"],
+      "members":{
+        "action":{"shape":"String"},
+        "lastAccessed":{"shape":"Timestamp"}
+      }
+    },
+    "UnusedActionList":{
+      "type":"list",
+      "member":{"shape":"UnusedAction"}
+    },
+    "UnusedIamRoleDetails":{
+      "type":"structure",
+      "members":{
+        "lastAccessed":{"shape":"Timestamp"}
+      }
+    },
+    "UnusedIamUserAccessKeyDetails":{
+      "type":"structure",
+      "required":["accessKeyId"],
+      "members":{
+        "accessKeyId":{"shape":"String"},
+        "lastAccessed":{"shape":"Timestamp"}
+      }
+    },
+    "UnusedIamUserPasswordDetails":{
+      "type":"structure",
+      "members":{
+        "lastAccessed":{"shape":"Timestamp"}
+      }
+    },
+    "UnusedPermissionDetails":{
+      "type":"structure",
+      "required":["serviceNamespace"],
+      "members":{
+        "actions":{"shape":"UnusedActionList"},
+        "serviceNamespace":{"shape":"String"},
+        "lastAccessed":{"shape":"Timestamp"}
       }
     },
     "UpdateArchiveRuleRequest":{

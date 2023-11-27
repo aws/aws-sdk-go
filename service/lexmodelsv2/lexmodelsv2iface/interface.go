@@ -196,6 +196,10 @@ type LexModelsV2API interface {
 	DescribeBotRecommendationWithContext(aws.Context, *lexmodelsv2.DescribeBotRecommendationInput, ...request.Option) (*lexmodelsv2.DescribeBotRecommendationOutput, error)
 	DescribeBotRecommendationRequest(*lexmodelsv2.DescribeBotRecommendationInput) (*request.Request, *lexmodelsv2.DescribeBotRecommendationOutput)
 
+	DescribeBotResourceGeneration(*lexmodelsv2.DescribeBotResourceGenerationInput) (*lexmodelsv2.DescribeBotResourceGenerationOutput, error)
+	DescribeBotResourceGenerationWithContext(aws.Context, *lexmodelsv2.DescribeBotResourceGenerationInput, ...request.Option) (*lexmodelsv2.DescribeBotResourceGenerationOutput, error)
+	DescribeBotResourceGenerationRequest(*lexmodelsv2.DescribeBotResourceGenerationInput) (*request.Request, *lexmodelsv2.DescribeBotResourceGenerationOutput)
+
 	DescribeBotVersion(*lexmodelsv2.DescribeBotVersionInput) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionWithContext(aws.Context, *lexmodelsv2.DescribeBotVersionInput, ...request.Option) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionRequest(*lexmodelsv2.DescribeBotVersionInput) (*request.Request, *lexmodelsv2.DescribeBotVersionOutput)
@@ -244,6 +248,10 @@ type LexModelsV2API interface {
 	DescribeTestSetGenerationWithContext(aws.Context, *lexmodelsv2.DescribeTestSetGenerationInput, ...request.Option) (*lexmodelsv2.DescribeTestSetGenerationOutput, error)
 	DescribeTestSetGenerationRequest(*lexmodelsv2.DescribeTestSetGenerationInput) (*request.Request, *lexmodelsv2.DescribeTestSetGenerationOutput)
 
+	GenerateBotElement(*lexmodelsv2.GenerateBotElementInput) (*lexmodelsv2.GenerateBotElementOutput, error)
+	GenerateBotElementWithContext(aws.Context, *lexmodelsv2.GenerateBotElementInput, ...request.Option) (*lexmodelsv2.GenerateBotElementOutput, error)
+	GenerateBotElementRequest(*lexmodelsv2.GenerateBotElementInput) (*request.Request, *lexmodelsv2.GenerateBotElementOutput)
+
 	GetTestExecutionArtifactsUrl(*lexmodelsv2.GetTestExecutionArtifactsUrlInput) (*lexmodelsv2.GetTestExecutionArtifactsUrlOutput, error)
 	GetTestExecutionArtifactsUrlWithContext(aws.Context, *lexmodelsv2.GetTestExecutionArtifactsUrlInput, ...request.Option) (*lexmodelsv2.GetTestExecutionArtifactsUrlOutput, error)
 	GetTestExecutionArtifactsUrlRequest(*lexmodelsv2.GetTestExecutionArtifactsUrlInput) (*request.Request, *lexmodelsv2.GetTestExecutionArtifactsUrlOutput)
@@ -275,6 +283,13 @@ type LexModelsV2API interface {
 
 	ListBotRecommendationsPages(*lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool) error
 	ListBotRecommendationsPagesWithContext(aws.Context, *lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool, ...request.Option) error
+
+	ListBotResourceGenerations(*lexmodelsv2.ListBotResourceGenerationsInput) (*lexmodelsv2.ListBotResourceGenerationsOutput, error)
+	ListBotResourceGenerationsWithContext(aws.Context, *lexmodelsv2.ListBotResourceGenerationsInput, ...request.Option) (*lexmodelsv2.ListBotResourceGenerationsOutput, error)
+	ListBotResourceGenerationsRequest(*lexmodelsv2.ListBotResourceGenerationsInput) (*request.Request, *lexmodelsv2.ListBotResourceGenerationsOutput)
+
+	ListBotResourceGenerationsPages(*lexmodelsv2.ListBotResourceGenerationsInput, func(*lexmodelsv2.ListBotResourceGenerationsOutput, bool) bool) error
+	ListBotResourceGenerationsPagesWithContext(aws.Context, *lexmodelsv2.ListBotResourceGenerationsInput, func(*lexmodelsv2.ListBotResourceGenerationsOutput, bool) bool, ...request.Option) error
 
 	ListBotVersions(*lexmodelsv2.ListBotVersionsInput) (*lexmodelsv2.ListBotVersionsOutput, error)
 	ListBotVersionsWithContext(aws.Context, *lexmodelsv2.ListBotVersionsInput, ...request.Option) (*lexmodelsv2.ListBotVersionsOutput, error)
@@ -438,6 +453,10 @@ type LexModelsV2API interface {
 	StartBotRecommendation(*lexmodelsv2.StartBotRecommendationInput) (*lexmodelsv2.StartBotRecommendationOutput, error)
 	StartBotRecommendationWithContext(aws.Context, *lexmodelsv2.StartBotRecommendationInput, ...request.Option) (*lexmodelsv2.StartBotRecommendationOutput, error)
 	StartBotRecommendationRequest(*lexmodelsv2.StartBotRecommendationInput) (*request.Request, *lexmodelsv2.StartBotRecommendationOutput)
+
+	StartBotResourceGeneration(*lexmodelsv2.StartBotResourceGenerationInput) (*lexmodelsv2.StartBotResourceGenerationOutput, error)
+	StartBotResourceGenerationWithContext(aws.Context, *lexmodelsv2.StartBotResourceGenerationInput, ...request.Option) (*lexmodelsv2.StartBotResourceGenerationOutput, error)
+	StartBotResourceGenerationRequest(*lexmodelsv2.StartBotResourceGenerationInput) (*request.Request, *lexmodelsv2.StartBotResourceGenerationOutput)
 
 	StartImport(*lexmodelsv2.StartImportInput) (*lexmodelsv2.StartImportOutput, error)
 	StartImportWithContext(aws.Context, *lexmodelsv2.StartImportInput, ...request.Option) (*lexmodelsv2.StartImportOutput, error)

@@ -45,7 +45,7 @@
     "ListVehiclesInFleet": "<p> Retrieves a list of summaries of all vehicles associated with a fleet. </p> <note> <p>This API operation uses pagination. Specify the <code>nextToken</code> parameter in the request to return more results.</p> </note>",
     "PutEncryptionConfiguration": "<p>Creates or updates the encryption configuration. Amazon Web Services IoT FleetWise can encrypt your data and resources using an Amazon Web Services managed key. Or, you can use a KMS key that you own and manage. For more information, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/data-encryption.html\">Data encryption</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.</p>",
     "PutLoggingOptions": "<p>Creates or updates the logging option.</p>",
-    "RegisterAccount": "<important> <p>This API operation contains deprecated parameters. Register your account again without the Timestream resources parameter so that Amazon Web Services IoT FleetWise can remove the Timestream metadata stored. You should then pass the data destination into the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CreateCampaign.html\">CreateCampaign</a> API operation.</p> <p>You must delete any existing campaigns that include an empty data destination before you register your account again. For more information, see the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_DeleteCampaign.html\">DeleteCampaign</a> API operation.</p> <p>If you want to delete the Timestream inline policy from the service-linked role, such as to mitigate an overly permissive policy, you must first delete any existing campaigns. Then delete the service-linked role and register your account again to enable CloudWatch metrics. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html\">DeleteServiceLinkedRole</a> in the <i>Identity and Access Management API Reference</i>.</p> </important> <pre><code> &lt;p&gt;Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services Cloud. For more information, including step-by-step procedures, see &lt;a href=&quot;https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html&quot;&gt;Setting up Amazon Web Services IoT FleetWise&lt;/a&gt;. &lt;/p&gt; &lt;note&gt; &lt;p&gt;An Amazon Web Services account is &lt;b&gt;not&lt;/b&gt; the same thing as a &quot;user.&quot; An &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users&quot;&gt;Amazon Web Services user&lt;/a&gt; is an identity that you create using Identity and Access Management (IAM) and takes the form of either an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html&quot;&gt;IAM user&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM role, both with credentials&lt;/a&gt;. A single Amazon Web Services account can, and typically does, contain many users and roles.&lt;/p&gt; &lt;/note&gt; </code></pre>",
+    "RegisterAccount": "<important> <p>This API operation contains deprecated parameters. Register your account again without the Timestream resources parameter so that Amazon Web Services IoT FleetWise can remove the Timestream metadata stored. You should then pass the data destination into the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_CreateCampaign.html\">CreateCampaign</a> API operation.</p> <p>You must delete any existing campaigns that include an empty data destination before you register your account again. For more information, see the <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/API_DeleteCampaign.html\">DeleteCampaign</a> API operation.</p> <p>If you want to delete the Timestream inline policy from the service-linked role, such as to mitigate an overly permissive policy, you must first delete any existing campaigns. Then delete the service-linked role and register your account again to enable CloudWatch metrics. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html\">DeleteServiceLinkedRole</a> in the <i>Identity and Access Management API Reference</i>.</p> </important> <p>Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web Services Cloud. For more information, including step-by-step procedures, see <a href=\"https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html\">Setting up Amazon Web Services IoT FleetWise</a>. </p> <note> <p>An Amazon Web Services account is <b>not</b> the same thing as a \"user.\" An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users\">Amazon Web Services user</a> is an identity that you create using Identity and Access Management (IAM) and takes the form of either an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html\">IAM user</a> or an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html\">IAM role, both with credentials</a>. A single Amazon Web Services account can, and typically does, contain many users and roles.</p> </note>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateCampaign": "<p> Updates a campaign. </p>",
@@ -277,6 +277,18 @@
         "createVehicleResponses$member": null
       }
     },
+    "CustomProperty": {
+      "base": "<p>Represents a member of the complex data structure. The data type of the property can be either primitive or another <code>struct</code>.</p>",
+      "refs": {
+        "Node$property": "<p>Represents a member of the complex data structure. The <code>datatype</code> of the property can be either primitive or another <code>struct</code>.</p>"
+      }
+    },
+    "CustomStruct": {
+      "base": "<p>The custom structure represents a complex or higher-order data structure.</p>",
+      "refs": {
+        "Node$struct": "<p>Represents a complex or higher-order data structure.</p>"
+      }
+    },
     "DataDestinationConfig": {
       "base": "<p>The destination where the Amazon Web Services IoT FleetWise campaign sends data. You can send data to be stored in Amazon S3 or Amazon Timestream.</p>",
       "refs": {
@@ -402,7 +414,7 @@
     "EncryptionType": {
       "base": null,
       "refs": {
-        "GetEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption. Set to <code>KMS_BASED_ENCRYPTION</code> to use an KMS key that you own and manage. Set to <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key that is owned by the Amazon Web Services IoT FleetWise service account.</p>",
+        "GetEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption. Set to <code>KMS_BASED_ENCRYPTION</code> to use a KMS key that you own and manage. Set to <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key that is owned by the Amazon Web Services IoT FleetWise service account.</p>",
         "PutEncryptionConfigurationRequest$encryptionType": "<p>The type of encryption. Choose <code>KMS_BASED_ENCRYPTION</code> to use a KMS key or <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key.</p>",
         "PutEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption. Set to <code>KMS_BASED_ENCRYPTION</code> to use an KMS key that you own and manage. Set to <code>FLEETWISE_DEFAULT_ENCRYPTION</code> to use an Amazon Web Services managed key that is owned by the Amazon Web Services IoT FleetWise service account.</p>"
       }
@@ -793,6 +805,12 @@
         "UpdateModelManifestRequest$status": "<p> The state of the vehicle model. If the status is <code>ACTIVE</code>, the vehicle model can't be edited. If the status is <code>DRAFT</code>, you can edit the vehicle model. </p>"
       }
     },
+    "MessageSignal": {
+      "base": "<p>The decoding information for a specific message which support higher order data types. </p>",
+      "refs": {
+        "SignalDecoder$messageSignal": "<p>The decoding information for a specific message which supports higher order data types. </p>"
+      }
+    },
     "ModelManifestSummary": {
       "base": "<p>Information about a vehicle model (model manifest). You can use the API operation to return this information about multiple vehicle models.</p>",
       "refs": {
@@ -826,7 +844,7 @@
     "NetworkFilesList": {
       "base": null,
       "refs": {
-        "CanDbcDefinition$canDbcFiles": "<p>A list of DBC files. You can upload only one DBC file for each network interface and specify up to five (inclusive) files in the list.</p>"
+        "CanDbcDefinition$canDbcFiles": "<p>A list of DBC files. You can upload only one DBC file for each network interface and specify up to five (inclusive) files in the list. The DBC file can be a maximum size of 200 MB.</p>"
       }
     },
     "NetworkInterface": {
@@ -868,19 +886,29 @@
         "GetSignalCatalogResponse$nodeCounts": "<p> The total number of network nodes specified in a signal catalog. </p>"
       }
     },
+    "NodeDataEncoding": {
+      "base": null,
+      "refs": {
+        "CustomProperty$dataEncoding": "<p>Indicates whether the property is binary data.</p>"
+      }
+    },
     "NodeDataType": {
       "base": null,
       "refs": {
         "Actuator$dataType": "<p>The specified data type of the actuator. </p>",
         "Attribute$dataType": "<p>The specified data type of the attribute. </p>",
+        "CustomProperty$dataType": "<p>The data type for the custom property. </p>",
         "Sensor$dataType": "<p>The specified data type of the sensor. </p>"
       }
     },
     "NodePath": {
       "base": null,
       "refs": {
+        "Actuator$structFullyQualifiedName": "<p>The fully qualified name of the struct node for the actuator if the data type of the actuator is <code>Struct</code> or <code>StructArray</code>. For example, the struct fully qualified name of an actuator might be <code>Vehicle.Door.LockStruct</code>.</p>",
+        "CustomProperty$structFullyQualifiedName": "<p>The fully qualified name of the struct node for the custom property if the data type of the custom property is <code>Struct</code> or <code>StructArray</code>. </p>",
         "DataExtraDimensionNodePathList$member": null,
-        "NodePaths$member": null
+        "NodePaths$member": null,
+        "Sensor$structFullyQualifiedName": "<p>The fully qualified name of the struct node for a sensor if the data type of the actuator is <code>Struct</code> or <code>StructArray</code>. For example, the struct fully qualified name of a sensor might be <code>Vehicle.ADAS.CameraStruct</code>.</p>"
       }
     },
     "NodePaths": {
@@ -944,6 +972,21 @@
         "S3Config$prefix": "<p>(Optional) Enter an S3 bucket prefix. The prefix is the string of characters after the bucket name and before the object name. You can use the prefix to organize data stored in Amazon S3 buckets. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p> <p>By default, Amazon Web Services IoT FleetWise sets the prefix <code>processed-data/year=YY/month=MM/date=DD/hour=HH/</code> (in UTC) to data it delivers to Amazon S3. You can enter a prefix to append it to this default prefix. For example, if you enter the prefix <code>vehicles</code>, the prefix will be <code>vehicles/processed-data/year=YY/month=MM/date=DD/hour=HH/</code>.</p>"
       }
     },
+    "PrimitiveBoolean": {
+      "base": null,
+      "refs": {
+        "CanSignal$isBigEndian": "<p>Whether the byte ordering of a CAN message is big-endian.</p>",
+        "CanSignal$isSigned": "<p>Whether the message data is specified as a signed value.</p>",
+        "ObdInterface$useExtendedIds": "<p>Whether to use extended IDs in the message.</p>",
+        "ObdInterface$hasTransmissionEcu": "<p>Whether the vehicle has a transmission control module (TCM).</p>"
+      }
+    },
+    "PrimitiveMessageDefinition": {
+      "base": "<p>Represents a primitive type node of the complex data structure.</p>",
+      "refs": {
+        "StructuredMessage$primitiveMessageDefinition": "<p>Represents a primitive type node of the complex data structure.</p>"
+      }
+    },
     "ProtocolName": {
       "base": null,
       "refs": {
@@ -961,6 +1004,12 @@
       "refs": {
       }
     },
+    "PutEncryptionConfigurationRequestKmsKeyIdString": {
+      "base": null,
+      "refs": {
+        "PutEncryptionConfigurationRequest$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>"
+      }
+    },
     "PutEncryptionConfigurationResponse": {
       "base": null,
       "refs": {
@@ -974,6 +1023,24 @@
     "PutLoggingOptionsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ROS2PrimitiveMessageDefinition": {
+      "base": "<p>Represents a ROS 2 compliant primitive type message of the complex data structure.</p>",
+      "refs": {
+        "PrimitiveMessageDefinition$ros2PrimitiveMessageDefinition": "<p>Information about a <code>PrimitiveMessage</code> using a ROS 2 compliant primitive type message of the complex data structure.</p>"
+      }
+    },
+    "ROS2PrimitiveMessageDefinitionUpperBoundLong": {
+      "base": null,
+      "refs": {
+        "ROS2PrimitiveMessageDefinition$upperBound": "<p>An optional attribute specifying the upper bound for <code>STRING</code> and <code>WSTRING</code>.</p>"
+      }
+    },
+    "ROS2PrimitiveType": {
+      "base": null,
+      "refs": {
+        "ROS2PrimitiveMessageDefinition$primitiveType": "<p>The primitive type (integer, floating point, boolean, etc.) for the ROS 2 primitive message definition.</p>"
       }
     },
     "RegisterAccountRequest": {
@@ -1089,10 +1156,48 @@
       "refs": {
         "FormattedVss$vssJson": "<p>Provides the VSS in JSON format.</p>",
         "GetEncryptionConfigurationResponse$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
-        "PutEncryptionConfigurationRequest$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
         "PutEncryptionConfigurationResponse$kmsKeyId": "<p>The ID of the KMS key that is used for encryption.</p>",
         "ValidationExceptionField$name": "<p>The name of the parameter field with the validation error.</p>",
         "ValidationExceptionField$message": "<p>A message about the validation error.</p>"
+      }
+    },
+    "StructureMessageName": {
+      "base": null,
+      "refs": {
+        "StructuredMessageFieldNameAndDataTypePair$fieldName": "<p>The field name of the structured message. It determines how a data value is referenced in the target language. </p>",
+        "StructuredMessageListDefinition$name": "<p>The name of the structured message list definition. </p>"
+      }
+    },
+    "StructuredMessage": {
+      "base": "<p>The structured message for the message signal. It can be defined with either a <code>primitiveMessageDefinition</code>, <code>structuredMessageListDefinition</code>, or <code>structuredMessageDefinition</code> recursively.</p>",
+      "refs": {
+        "MessageSignal$structuredMessage": "<p>The structured message for the message signal. It can be defined with either a <code>primitiveMessageDefinition</code>, <code>structuredMessageListDefinition</code>, or <code>structuredMessageDefinition</code> recursively.</p>",
+        "StructuredMessageFieldNameAndDataTypePair$dataType": "<p>The data type. </p>",
+        "StructuredMessageListDefinition$memberType": "<p>The member type of the structured message list definition.</p>"
+      }
+    },
+    "StructuredMessageDefinition": {
+      "base": null,
+      "refs": {
+        "StructuredMessage$structuredMessageDefinition": "<p>Represents a struct type node of the complex data structure.</p>"
+      }
+    },
+    "StructuredMessageFieldNameAndDataTypePair": {
+      "base": "<p>Represents a <code>StructureMessageName</code> to <code>DataType</code> map element.</p>",
+      "refs": {
+        "StructuredMessageDefinition$member": null
+      }
+    },
+    "StructuredMessageListDefinition": {
+      "base": "<p>Represents a list type node of the complex data structure.</p>",
+      "refs": {
+        "StructuredMessage$structuredMessageListDefinition": "<p>Represents a list type node of the complex data structure.</p>"
+      }
+    },
+    "StructuredMessageListType": {
+      "base": null,
+      "refs": {
+        "StructuredMessageListDefinition$listType": "<p>The type of list of the structured message list definition.</p>"
       }
     },
     "Tag": {
@@ -1193,6 +1298,12 @@
       "refs": {
         "TimestreamRegistrationResponse$timestreamTableName": "<p>The name of the Timestream database table.</p>",
         "TimestreamResources$timestreamTableName": "<p>The name of the registered Amazon Timestream database table.</p>"
+      }
+    },
+    "TopicName": {
+      "base": null,
+      "refs": {
+        "MessageSignal$topicName": "<p>The topic name for the message signal. It corresponds to topics in ROS 2. </p>"
       }
     },
     "TriggerMode": {
@@ -1332,6 +1443,24 @@
         "CreateVehicleRequestItem$associationBehavior": "<p>An option to create a new Amazon Web Services IoT thing when creating a vehicle, or to validate an existing thing as a vehicle.</p>"
       }
     },
+    "VehicleMiddleware": {
+      "base": "<p>The vehicle middleware defined as a type of network interface. Examples of vehicle middleware include <code>ROS2</code> and <code>SOME/IP</code>.</p>",
+      "refs": {
+        "NetworkInterface$vehicleMiddleware": "<p>The vehicle middleware defined as a type of network interface. Examples of vehicle middleware include <code>ROS2</code> and <code>SOME/IP</code>.</p>"
+      }
+    },
+    "VehicleMiddlewareName": {
+      "base": null,
+      "refs": {
+        "VehicleMiddleware$name": "<p>The name of the vehicle middleware. </p>"
+      }
+    },
+    "VehicleMiddlewareProtocol": {
+      "base": null,
+      "refs": {
+        "VehicleMiddleware$protocolName": "<p>The protocol name of the vehicle middleware. </p>"
+      }
+    },
     "VehicleState": {
       "base": null,
       "refs": {
@@ -1452,15 +1581,6 @@
         "UpdateVehicleRequestItem$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>"
       }
     },
-    "boolean": {
-      "base": null,
-      "refs": {
-        "CanSignal$isBigEndian": "<p>Whether the byte ordering of a CAN message is big-endian.</p>",
-        "CanSignal$isSigned": "<p>Whether the message data is specified as a signed value.</p>",
-        "ObdInterface$useExtendedIds": "<p>Whether to use extended IDs in the message.</p>",
-        "ObdInterface$hasTransmissionEcu": "<p>Whether the vehicle has a transmission control module (TCM).</p>"
-      }
-    },
     "campaignName": {
       "base": null,
       "refs": {
@@ -1529,6 +1649,8 @@
         "CreateFleetRequest$description": "<p> A brief description of the fleet to create. </p>",
         "CreateModelManifestRequest$description": "<p> A brief description of the vehicle model. </p>",
         "CreateSignalCatalogRequest$description": "<p>A brief description of the signal catalog.</p>",
+        "CustomProperty$description": "<p>A brief description of the custom property.</p>",
+        "CustomStruct$description": "<p>A brief description of the custom structure.</p>",
         "DecoderManifestSummary$description": "<p>A brief description of the decoder manifest.</p>",
         "FleetSummary$description": "<p>A brief description of the fleet.</p>",
         "GetCampaignResponse$description": "<p>The description of the campaign.</p>",
@@ -1557,6 +1679,8 @@
         "CanSignal$factor": "<p>A multiplier used to decode the CAN message.</p>",
         "ObdSignal$scaling": "<p>A multiplier used to decode the message.</p>",
         "ObdSignal$offset": "<p>The offset used to calculate the signal value. Combined with scaling, the calculation is <code>value = raw_value * scaling + offset</code>.</p>",
+        "ROS2PrimitiveMessageDefinition$offset": "<p>The offset used to calculate the signal value. Combined with scaling, the calculation is <code>value = raw_value * scaling + offset</code>.</p>",
+        "ROS2PrimitiveMessageDefinition$scaling": "<p>A multiplier used to decode the message.</p>",
         "Sensor$min": "<p>The specified possible minimum value of the sensor.</p>",
         "Sensor$max": "<p>The specified possible maximum value of the sensor.</p>"
       }
@@ -1658,6 +1782,13 @@
         "Attribute$comment": "<p>A comment in addition to the description.</p>",
         "Branch$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
         "Branch$comment": "<p>A comment in addition to the description.</p>",
+        "CustomProperty$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "CustomProperty$comment": "<p>A comment in addition to the description.</p>",
+        "CustomStruct$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
+        "CustomStruct$comment": "<p>A comment in addition to the description.</p>",
+        "DecoderManifestSummary$message": "<p>The detailed message for the decoder manifest. When a decoder manifest is in an <code>INVALID</code> status, the message contains detailed reason and help information.</p>",
+        "GetDecoderManifestResponse$message": "<p>The detailed message for the decoder manifest. When a decoder manifest is in an <code>INVALID</code> status, the message contains detailed reason and help information.</p>",
+        "InvalidSignalDecoder$hint": "<p>The possible cause for the invalid signal decoder.</p>",
         "Sensor$deprecationMessage": "<p>The deprecation message for the node or the branch that was moved or deleted.</p>",
         "Sensor$comment": "<p>A comment in addition to the description.</p>"
       }
@@ -1711,7 +1842,8 @@
         "ObdSignal$serviceMode": "<p>The mode of operation (diagnostic service) in a message.</p>",
         "ObdSignal$pid": "<p>The diagnostic code used to request data from a vehicle for this signal.</p>",
         "ObdSignal$startByte": "<p>Indicates the beginning of the message.</p>",
-        "ObdSignal$bitRightShift": "<p>The number of positions to shift bits in the message.</p>"
+        "ObdSignal$bitRightShift": "<p>The number of positions to shift bits in the message.</p>",
+        "StructuredMessageListDefinition$capacity": "<p>The capacity of the structured message list definition when the list type is <code>FIXED_CAPACITY</code> or <code>DYNAMIC_BOUNDED_CAPACITY</code>.</p>"
       }
     },
     "number": {
@@ -1722,6 +1854,8 @@
         "NodeCounts$totalSensors": "<p>The total number of nodes in a vehicle network that represent sensors.</p>",
         "NodeCounts$totalAttributes": "<p>The total number of nodes in a vehicle network that represent attributes.</p>",
         "NodeCounts$totalActuators": "<p>The total number of nodes in a vehicle network that represent actuators.</p>",
+        "NodeCounts$totalStructs": "<p>The total structure for the node.</p>",
+        "NodeCounts$totalProperties": "<p>The total properties for the node.</p>",
         "UpdateVehicleError$code": "<p>The relevant HTTP error code (400+).</p>"
       }
     },
@@ -1803,6 +1937,8 @@
         "ConflictException$resourceType": "<p>The type of resource on which there are conflicting operations..</p>",
         "CreateVehicleError$code": "<p>An HTTP error code.</p>",
         "CreateVehicleError$message": "<p>A description of the HTTP error.</p>",
+        "CustomProperty$fullyQualifiedName": "<p>The fully qualified name of the custom property. For example, the fully qualified name of a custom property might be <code>ComplexDataTypes.VehicleDataTypes.SVMCamera.FPS</code>.</p>",
+        "CustomStruct$fullyQualifiedName": "<p>The fully qualified name of the custom structure. For example, the fully qualified name of a custom structure might be <code>ComplexDataTypes.VehicleDataTypes.SVMCamera</code>.</p>",
         "DecoderManifestSummary$name": "<p>The name of the decoder manifest.</p>",
         "DecoderManifestValidationException$message": null,
         "GetDecoderManifestResponse$name": "<p> The name of the decoder manifest. </p>",

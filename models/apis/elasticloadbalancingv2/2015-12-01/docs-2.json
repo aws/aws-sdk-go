@@ -3,15 +3,18 @@
   "service": "<fullname>Elastic Load Balancing</fullname> <p>A load balancer distributes incoming traffic across targets, such as your EC2 instances. This enables you to increase the availability of your application. The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. You configure your load balancer to accept incoming traffic by specifying one or more listeners, which are configured with a protocol and port number for connections from clients to the load balancer. You configure a target group with a protocol and port number for connections from the load balancer to the targets, and with health check settings to be used when checking the health status of the targets.</p> <p>Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, Gateway Load Balancers, and Classic Load Balancers. This reference covers the following load balancer types:</p> <ul> <li> <p>Application Load Balancer - Operates at the application layer (layer 7) and supports HTTP and HTTPS.</p> </li> <li> <p>Network Load Balancer - Operates at the transport layer (layer 4) and supports TCP, TLS, and UDP.</p> </li> <li> <p>Gateway Load Balancer - Operates at the network layer (layer 3).</p> </li> </ul> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/\">Elastic Load Balancing User Guide</a>.</p> <p>All Elastic Load Balancing operations are idempotent, which means that they complete at most one time. If you repeat an operation, it succeeds.</p>",
   "operations": {
     "AddListenerCertificates": "<p>Adds the specified SSL server certificate to the certificate list for the specified HTTPS or TLS listener.</p> <p>If the certificate in already in the certificate list, the call is successful but the certificate is not added again.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html\">HTTPS listeners</a> in the <i>Application Load Balancers Guide</i> or <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html\">TLS listeners</a> in the <i>Network Load Balancers Guide</i>.</p>",
-    "AddTags": "<p>Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, and rules.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, <code>AddTags</code> updates its value.</p>",
+    "AddTags": "<p>Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, trust stores, listeners, and rules.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, <code>AddTags</code> updates its value.</p>",
+    "AddTrustStoreRevocations": "<p>Adds the specified revocation file to the specified trust store.</p>",
     "CreateListener": "<p>Creates a listener for the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html\">Listeners for your Application Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html\">Listeners for your Network Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-listeners.html\">Listeners for your Gateway Load Balancers</a> </p> </li> </ul> <p>This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple listeners with the same settings, each call succeeds.</p>",
     "CreateLoadBalancer": "<p>Creates an Application Load Balancer, Network Load Balancer, or Gateway Load Balancer.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html\">Application Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancers.html\">Network Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-load-balancers.html\">Gateway Load Balancers</a> </p> </li> </ul> <p>This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple load balancers with the same settings, each call succeeds.</p>",
     "CreateRule": "<p>Creates a rule for the specified listener. The listener must be associated with an Application Load Balancer.</p> <p>Each rule consists of a priority, one or more actions, and one or more conditions. Rules are evaluated in priority order, from the lowest value to the highest value. When the conditions for a rule are met, its actions are performed. If the conditions for no rules are met, the actions for the default rule are performed. For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules\">Listener rules</a> in the <i>Application Load Balancers Guide</i>.</p>",
     "CreateTargetGroup": "<p>Creates a target group.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html\">Target groups for your Application Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html\">Target groups for your Network Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html\">Target groups for your Gateway Load Balancers</a> </p> </li> </ul> <p>This operation is idempotent, which means that it completes at most one time. If you attempt to create multiple target groups with the same settings, each call succeeds.</p>",
+    "CreateTrustStore": "<p>Creates a trust store.</p>",
     "DeleteListener": "<p>Deletes the specified listener.</p> <p>Alternatively, your listener is deleted when you delete the load balancer to which it is attached.</p>",
     "DeleteLoadBalancer": "<p>Deletes the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer. Deleting a load balancer also deletes its listeners.</p> <p>You can't delete a load balancer if deletion protection is enabled. If the load balancer does not exist or has already been deleted, the call succeeds.</p> <p>Deleting a load balancer does not affect its registered targets. For example, your EC2 instances continue to run and are still registered to their target groups. If you no longer need these EC2 instances, you can stop or terminate them.</p>",
     "DeleteRule": "<p>Deletes the specified rule.</p> <p>You can't delete the default rule.</p>",
     "DeleteTargetGroup": "<p>Deletes the specified target group.</p> <p>You can delete a target group if it is not referenced by any actions. Deleting a target group also deletes any associated health checks. Deleting a target group does not affect its registered targets. For example, any EC2 instances continue to run until you stop or terminate them.</p>",
+    "DeleteTrustStore": "<p>Deletes a trust store.</p>",
     "DeregisterTargets": "<p>Deregisters the specified targets from the specified target group. After the targets are deregistered, they no longer receive traffic from the load balancer.</p> <p>The load balancer stops sending requests to targets that are deregistering, but uses connection draining to ensure that in-flight traffic completes on the existing connections. This deregistration delay is configured by default but can be updated for each target group.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Application Load Balancers User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Network Load Balancers User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Gateway Load Balancers User Guide</i> </p> </li> </ul> <p>Note: If the specified target does not exist, the action returns successfully.</p>",
     "DescribeAccountLimits": "<p>Describes the current Elastic Load Balancing resource limits for your Amazon Web Services account.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html\">Quotas for your Application Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-limits.html\">Quotas for your Network Load Balancers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/quotas-limits.html\">Quotas for your Gateway Load Balancers</a> </p> </li> </ul>",
     "DescribeListenerCertificates": "<p>Describes the default certificate and the certificate list for the specified HTTPS or TLS listener.</p> <p>If the default certificate is also in the certificate list, it appears twice in the results (once with <code>IsDefault</code> set to true and once with <code>IsDefault</code> set to false).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#https-listener-certificates\">SSL certificates</a> in the <i>Application Load Balancers Guide</i> or <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#tls-listener-certificate\">Server certificates</a> in the <i>Network Load Balancers Guide</i>.</p>",
@@ -24,14 +27,21 @@
     "DescribeTargetGroupAttributes": "<p>Describes the attributes for the specified target group.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-attributes\">Target group attributes</a> in the <i>Application Load Balancers Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#target-group-attributes\">Target group attributes</a> in the <i>Network Load Balancers Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html#target-group-attributes\">Target group attributes</a> in the <i>Gateway Load Balancers Guide</i> </p> </li> </ul>",
     "DescribeTargetGroups": "<p>Describes the specified target groups or all of your target groups. By default, all target groups are described. Alternatively, you can specify one of the following to filter the results: the ARN of the load balancer, the names of one or more target groups, or the ARNs of one or more target groups.</p>",
     "DescribeTargetHealth": "<p>Describes the health of the specified targets or all of your targets.</p>",
+    "DescribeTrustStoreAssociations": "<p>Describes all resources associated with the specified trust store.</p>",
+    "DescribeTrustStoreRevocations": "<p>Describes the revocation files in use by the specified trust store arn, or revocation ID.</p>",
+    "DescribeTrustStores": "<p>Describes all trust stores for a given account by trust store arn’s or name.</p>",
+    "GetTrustStoreCaCertificatesBundle": "<p>Retrieves the ca certificate bundle.</p> <p>This action returns a pre-signed S3 URI which is active for ten minutes.</p>",
+    "GetTrustStoreRevocationContent": "<p>Retrieves the specified revocation file.</p> <p>This action returns a pre-signed S3 URI which is active for ten minutes.</p>",
     "ModifyListener": "<p>Replaces the specified properties of the specified listener. Any properties that you do not specify remain unchanged.</p> <p>Changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy and default certificate properties. If you change the protocol from HTTP to HTTPS, or from TCP to TLS, you must add the security policy and default certificate properties.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p>",
     "ModifyLoadBalancerAttributes": "<p>Modifies the specified attributes of the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer.</p> <p>If any of the specified attributes can't be modified as requested, the call fails. Any existing attributes that you do not modify retain their current values.</p>",
     "ModifyRule": "<p>Replaces the specified properties of the specified rule. Any properties that you do not specify are unchanged.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p>",
     "ModifyTargetGroup": "<p>Modifies the health checks used when evaluating the health state of the targets in the specified target group.</p>",
     "ModifyTargetGroupAttributes": "<p>Modifies the specified attributes of the specified target group.</p>",
+    "ModifyTrustStore": "<p>Update the ca certificate bundle for a given trust store.</p>",
     "RegisterTargets": "<p>Registers the specified targets with the specified target group.</p> <p>If the target is an EC2 instance, it must be in the <code>running</code> state when you register it.</p> <p>By default, the load balancer routes requests to registered targets using the protocol and port for the target group. Alternatively, you can override the port for a target when you register it. You can register each EC2 instance or IP address with the same target group multiple times using different ports.</p> <p>With a Network Load Balancer, you cannot register instances by instance ID if they have the following instance types: C1, CC1, CC2, CG1, CG2, CR1, CS1, G1, G2, HI1, HS1, M1, M2, M3, and T1. You can register instances of these types by IP address.</p>",
     "RemoveListenerCertificates": "<p>Removes the specified certificate from the certificate list for the specified HTTPS or TLS listener.</p>",
     "RemoveTags": "<p>Removes the specified tags from the specified Elastic Load Balancing resources. You can remove the tags for one or more Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, or rules.</p>",
+    "RemoveTrustStoreRevocations": "<p>Removes the specified revocation file from the specified trust store.</p>",
     "SetIpAddressType": "<p>Sets the type of IP addresses used by the subnets of the specified load balancer.</p>",
     "SetRulePriorities": "<p>Sets the priorities of the specified rules.</p> <p>You can reorder the rules as long as there are no priority conflicts in the new order. Any existing rules that you do not specify retain their current priority.</p>",
     "SetSecurityGroups": "<p>Associates the specified security groups with the specified Application Load Balancer or Network Load Balancer. The specified security groups override the previously associated security groups.</p> <p>You can't perform this operation on a Network Load Balancer unless you specified a security group for the load balancer when you created it.</p> <p>You can't associate a security group with a Gateway Load Balancer.</p>",
@@ -92,6 +102,16 @@
       "refs": {
       }
     },
+    "AddTrustStoreRevocationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AddTrustStoreRevocationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AllocationId": {
       "base": null,
       "refs": {
@@ -116,6 +136,18 @@
       "base": null,
       "refs": {
         "AlpnPolicyName$member": null
+      }
+    },
+    "AnomalyDetection": {
+      "base": "<p>Information about anomaly detection and mitigation.</p>",
+      "refs": {
+        "TargetHealthDescription$AnomalyDetection": "<p>The anomaly detection result for the target.</p> <p>If no anomalies were detected, the result is <code>normal</code>.</p> <p>If anomalies were detected, the result is <code>anomalous</code>.</p>"
+      }
+    },
+    "AnomalyResultEnum": {
+      "base": null,
+      "refs": {
+        "AnomalyDetection$Result": "<p>The latest anomaly detection result.</p>"
       }
     },
     "AuthenticateCognitoActionAuthenticationRequestExtraParams": {
@@ -292,6 +324,11 @@
         "SetSubnetsOutput$AvailabilityZones": "<p>Information about the subnets.</p>"
       }
     },
+    "CaCertificatesBundleNotFoundException": {
+      "base": "<p>The specified ca certificate bundle does not exist.</p>",
+      "refs": {
+      }
+    },
     "CanonicalHostedZoneId": {
       "base": null,
       "refs": {
@@ -397,6 +434,16 @@
       "refs": {
       }
     },
+    "CreateTrustStoreInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTrustStoreOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatedTime": {
       "base": null,
       "refs": {
@@ -458,6 +505,16 @@
       }
     },
     "DeleteTargetGroupOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTrustStoreInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTrustStoreOutput": {
       "base": null,
       "refs": {
       }
@@ -577,7 +634,55 @@
       "refs": {
       }
     },
+    "DescribeTargetHealthInputIncludeEnum": {
+      "base": null,
+      "refs": {
+        "ListOfDescribeTargetHealthIncludeOptions$member": null
+      }
+    },
     "DescribeTargetHealthOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoreAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoreAssociationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoreRevocation": {
+      "base": "<p>Information about the revocations used by a trust store.</p>",
+      "refs": {
+        "DescribeTrustStoreRevocationResponse$member": null
+      }
+    },
+    "DescribeTrustStoreRevocationResponse": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreRevocationsOutput$TrustStoreRevocations": "<p>Information about the revocation file in the trust store.</p>"
+      }
+    },
+    "DescribeTrustStoreRevocationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoreRevocationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoresInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrustStoresOutput": {
       "base": null,
       "refs": {
       }
@@ -605,6 +710,11 @@
     },
     "DuplicateTargetGroupNameException": {
       "base": "<p>A target group with the specified name already exists.</p>",
+      "refs": {
+      }
+    },
+    "DuplicateTrustStoreNameException": {
+      "base": "<p>A trust store with the specified name already exists.</p>",
       "refs": {
       }
     },
@@ -649,6 +759,26 @@
       "base": "<p>Information about a forward action.</p>",
       "refs": {
         "Action$ForwardConfig": "<p>Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when <code>Type</code> is <code>forward</code>. If you specify both <code>ForwardConfig</code> and <code>TargetGroupArn</code>, you can specify only one target group using <code>ForwardConfig</code> and it must be the same target group specified in <code>TargetGroupArn</code>.</p>"
+      }
+    },
+    "GetTrustStoreCaCertificatesBundleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTrustStoreCaCertificatesBundleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTrustStoreRevocationContentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTrustStoreRevocationContentOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "GrpcCode": {
@@ -743,8 +873,19 @@
         "SubnetMapping$IPv6Address": "<p>[Network Load Balancers] The IPv6 address.</p>"
       }
     },
+    "IgnoreClientCertificateExpiry": {
+      "base": null,
+      "refs": {
+        "MutualAuthenticationAttributes$IgnoreClientCertificateExpiry": "<p>Indicates whether expired client certificates are ignored.</p>"
+      }
+    },
     "IncompatibleProtocolsException": {
       "base": "<p>The specified configuration is not valid with this protocol.</p>",
+      "refs": {
+      }
+    },
+    "InvalidCaCertificatesBundleException": {
+      "base": "<p>The specified ca certificate bundle is in an invalid format, or corrupt.</p>",
       "refs": {
       }
     },
@@ -755,6 +896,11 @@
     },
     "InvalidLoadBalancerActionException": {
       "base": "<p>The requested action is not valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidRevocationContentException": {
+      "base": "<p>The provided revocation file is an invalid format, or uses an incorrect algorithm.</p>",
       "refs": {
       }
     },
@@ -811,6 +957,12 @@
       "base": null,
       "refs": {
         "DescribeAccountLimitsOutput$Limits": "<p>Information about the limits.</p>"
+      }
+    },
+    "ListOfDescribeTargetHealthIncludeOptions": {
+      "base": null,
+      "refs": {
+        "DescribeTargetHealthInput$Include": "<p>Used to inclue anomaly detection information.</p>"
       }
     },
     "ListOfString": {
@@ -915,7 +1067,7 @@
     "LoadBalancerAttributeKey": {
       "base": null,
       "refs": {
-        "LoadBalancerAttribute$Key": "<p>The name of the attribute.</p> <p>The following attributes are supported by all load balancers:</p> <ul> <li> <p> <code>deletion_protection.enabled</code> - Indicates whether deletion protection is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>load_balancing.cross_zone.enabled</code> - Indicates whether cross-zone load balancing is enabled. The possible values are <code>true</code> and <code>false</code>. The default for Network Load Balancers and Gateway Load Balancers is <code>false</code>. The default for Application Load Balancers is <code>true</code>, and cannot be changed.</p> </li> </ul> <p>The following attributes are supported by both Application Load Balancers and Network Load Balancers:</p> <ul> <li> <p> <code>access_logs.s3.enabled</code> - Indicates whether access logs are enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>access_logs.s3.bucket</code> - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.</p> </li> <li> <p> <code>access_logs.s3.prefix</code> - The prefix for the location in the S3 bucket for the access logs.</p> </li> <li> <p> <code>ipv6.deny_all_igw_traffic</code> - Blocks internet gateway (IGW) access to the load balancer. It is set to <code>false</code> for internet-facing load balancers and <code>true</code> for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.</p> </li> </ul> <p>The following attributes are supported by only Application Load Balancers:</p> <ul> <li> <p> <code>idle_timeout.timeout_seconds</code> - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.</p> </li> <li> <p> <code>routing.http.desync_mitigation_mode</code> - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are <code>monitor</code>, <code>defensive</code>, and <code>strictest</code>. The default is <code>defensive</code>.</p> </li> <li> <p> <code>routing.http.drop_invalid_header_fields.enabled</code> - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (<code>true</code>) or routed to targets (<code>false</code>). The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.preserve_host_header.enabled</code> - Indicates whether the Application Load Balancer should preserve the <code>Host</code> header in the HTTP request and send it to the target without any change. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.x_amzn_tls_version_and_cipher_suite.enabled</code> - Indicates whether the two headers (<code>x-amzn-tls-version</code> and <code>x-amzn-tls-cipher-suite</code>), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The <code>x-amzn-tls-version</code> header has information about the TLS protocol version negotiated with the client, and the <code>x-amzn-tls-cipher-suite</code> header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.xff_client_port.enabled</code> - Indicates whether the <code>X-Forwarded-For</code> header should preserve the source port that the client used to connect to the load balancer. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.xff_header_processing.mode</code> - Enables you to modify, preserve, or remove the <code>X-Forwarded-For</code> header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are <code>append</code>, <code>preserve</code>, and <code>remove</code>. The default is <code>append</code>.</p> <ul> <li> <p>If the value is <code>append</code>, the Application Load Balancer adds the client IP address (of the last hop) to the <code>X-Forwarded-For</code> header in the HTTP request before it sends it to targets.</p> </li> <li> <p>If the value is <code>preserve</code> the Application Load Balancer preserves the <code>X-Forwarded-For</code> header in the HTTP request, and sends it to targets without any change.</p> </li> <li> <p>If the value is <code>remove</code>, the Application Load Balancer removes the <code>X-Forwarded-For</code> header in the HTTP request before it sends it to targets.</p> </li> </ul> </li> <li> <p> <code>routing.http2.enabled</code> - Indicates whether HTTP/2 is enabled. The possible values are <code>true</code> and <code>false</code>. The default is <code>true</code>. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.</p> </li> <li> <p> <code>waf.fail_open.enabled</code> - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to Amazon Web Services WAF. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> </ul> <p>The following attributes are supported by only Network Load Balancers:</p> <ul> <li> <p> <code>dns_record.client_routing_policy</code> - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are <code>availability_zone_affinity</code> with 100 percent zonal affinity, <code>partial_availability_zone_affinity</code> with 85 percent zonal affinity, and <code>any_availability_zone</code> with 0 percent zonal affinity.</p> </li> </ul>"
+        "LoadBalancerAttribute$Key": "<p>The name of the attribute.</p> <p>The following attributes are supported by all load balancers:</p> <ul> <li> <p> <code>deletion_protection.enabled</code> - Indicates whether deletion protection is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>load_balancing.cross_zone.enabled</code> - Indicates whether cross-zone load balancing is enabled. The possible values are <code>true</code> and <code>false</code>. The default for Network Load Balancers and Gateway Load Balancers is <code>false</code>. The default for Application Load Balancers is <code>true</code>, and cannot be changed.</p> </li> </ul> <p>The following attributes are supported by both Application Load Balancers and Network Load Balancers:</p> <ul> <li> <p> <code>access_logs.s3.enabled</code> - Indicates whether access logs are enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>access_logs.s3.bucket</code> - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.</p> </li> <li> <p> <code>access_logs.s3.prefix</code> - The prefix for the location in the S3 bucket for the access logs.</p> </li> <li> <p> <code>ipv6.deny_all_igw_traffic</code> - Blocks internet gateway (IGW) access to the load balancer. It is set to <code>false</code> for internet-facing load balancers and <code>true</code> for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.</p> </li> </ul> <p>The following attributes are supported by only Application Load Balancers:</p> <ul> <li> <p> <code>idle_timeout.timeout_seconds</code> - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.</p> </li> <li> <p> <code>connection_logs.s3.enabled</code> - Indicates whether connection logs are enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>connection_logs.s3.bucket</code> - The name of the S3 bucket for the connection logs. This attribute is required if connection logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.</p> </li> <li> <p> <code>connection_logs.s3.prefix</code> - The prefix for the location in the S3 bucket for the connection logs.</p> </li> <li> <p> <code>routing.http.desync_mitigation_mode</code> - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are <code>monitor</code>, <code>defensive</code>, and <code>strictest</code>. The default is <code>defensive</code>.</p> </li> <li> <p> <code>routing.http.drop_invalid_header_fields.enabled</code> - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (<code>true</code>) or routed to targets (<code>false</code>). The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.preserve_host_header.enabled</code> - Indicates whether the Application Load Balancer should preserve the <code>Host</code> header in the HTTP request and send it to the target without any change. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.x_amzn_tls_version_and_cipher_suite.enabled</code> - Indicates whether the two headers (<code>x-amzn-tls-version</code> and <code>x-amzn-tls-cipher-suite</code>), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The <code>x-amzn-tls-version</code> header has information about the TLS protocol version negotiated with the client, and the <code>x-amzn-tls-cipher-suite</code> header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.xff_client_port.enabled</code> - Indicates whether the <code>X-Forwarded-For</code> header should preserve the source port that the client used to connect to the load balancer. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>routing.http.xff_header_processing.mode</code> - Enables you to modify, preserve, or remove the <code>X-Forwarded-For</code> header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are <code>append</code>, <code>preserve</code>, and <code>remove</code>. The default is <code>append</code>.</p> <ul> <li> <p>If the value is <code>append</code>, the Application Load Balancer adds the client IP address (of the last hop) to the <code>X-Forwarded-For</code> header in the HTTP request before it sends it to targets.</p> </li> <li> <p>If the value is <code>preserve</code> the Application Load Balancer preserves the <code>X-Forwarded-For</code> header in the HTTP request, and sends it to targets without any change.</p> </li> <li> <p>If the value is <code>remove</code>, the Application Load Balancer removes the <code>X-Forwarded-For</code> header in the HTTP request before it sends it to targets.</p> </li> </ul> </li> <li> <p> <code>routing.http2.enabled</code> - Indicates whether HTTP/2 is enabled. The possible values are <code>true</code> and <code>false</code>. The default is <code>true</code>. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.</p> </li> <li> <p> <code>waf.fail_open.enabled</code> - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to Amazon Web Services WAF. The possible values are <code>true</code> and <code>false</code>. The default is <code>false</code>.</p> </li> </ul> <p>The following attributes are supported by only Network Load Balancers:</p> <ul> <li> <p> <code>dns_record.client_routing_policy</code> - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are <code>availability_zone_affinity</code> with 100 percent zonal affinity, <code>partial_availability_zone_affinity</code> with 85 percent zonal affinity, and <code>any_availability_zone</code> with 0 percent zonal affinity.</p> </li> </ul>"
       }
     },
     "LoadBalancerAttributeValue": {
@@ -985,6 +1137,13 @@
         "DescribeLoadBalancersOutput$LoadBalancers": "<p>Information about the load balancers.</p>"
       }
     },
+    "Location": {
+      "base": null,
+      "refs": {
+        "GetTrustStoreCaCertificatesBundleOutput$Location": "<p>The ca certificate bundles Amazon S3 URI.</p>",
+        "GetTrustStoreRevocationContentOutput$Location": "<p>The revocation files Amazon S3 URI.</p>"
+      }
+    },
     "Marker": {
       "base": null,
       "refs": {
@@ -1001,7 +1160,13 @@
         "DescribeSSLPoliciesInput$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
         "DescribeSSLPoliciesOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>",
         "DescribeTargetGroupsInput$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
-        "DescribeTargetGroupsOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>"
+        "DescribeTargetGroupsOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>",
+        "DescribeTrustStoreAssociationsInput$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
+        "DescribeTrustStoreAssociationsOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>",
+        "DescribeTrustStoreRevocationsInput$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
+        "DescribeTrustStoreRevocationsOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>",
+        "DescribeTrustStoresInput$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
+        "DescribeTrustStoresOutput$NextMarker": "<p>If there are additional results, this is the marker for the next set of results. Otherwise, this is null.</p>"
       }
     },
     "Matcher": {
@@ -1016,6 +1181,18 @@
       "base": null,
       "refs": {
         "Limit$Max": "<p>The maximum value of the limit.</p>"
+      }
+    },
+    "MitigationInEffectEnum": {
+      "base": null,
+      "refs": {
+        "AnomalyDetection$MitigationInEffect": "<p>Indicates whether anomaly mitigation is in progress.</p>"
+      }
+    },
+    "Mode": {
+      "base": null,
+      "refs": {
+        "MutualAuthenticationAttributes$Mode": "<p>The client certificate handling method. Options are <code>off</code>, <code>passthrough</code> or <code>verify</code>. The default value is <code>off</code>.</p>"
       }
     },
     "ModifyListenerInput": {
@@ -1068,10 +1245,41 @@
       "refs": {
       }
     },
+    "ModifyTrustStoreInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyTrustStoreOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MutualAuthenticationAttributes": {
+      "base": "<p>Information about the mutual authentication attributes of a listener.</p>",
+      "refs": {
+        "CreateListenerInput$MutualAuthentication": "<p>The mutual authentication configuration information.</p>",
+        "Listener$MutualAuthentication": "<p>The mutual authentication configuration information.</p>",
+        "ModifyListenerInput$MutualAuthentication": "<p>The mutual authentication configuration information.</p>"
+      }
+    },
     "Name": {
       "base": null,
       "refs": {
         "Limit$Name": "<p>The name of the limit. The possible values are:</p> <ul> <li> <p>application-load-balancers</p> </li> <li> <p>condition-values-per-alb-rule</p> </li> <li> <p>condition-wildcards-per-alb-rule</p> </li> <li> <p>gateway-load-balancers</p> </li> <li> <p>gateway-load-balancers-per-vpc</p> </li> <li> <p>geneve-target-groups</p> </li> <li> <p>listeners-per-application-load-balancer</p> </li> <li> <p>listeners-per-network-load-balancer</p> </li> <li> <p>network-load-balancers</p> </li> <li> <p>rules-per-application-load-balancer</p> </li> <li> <p>target-groups</p> </li> <li> <p>target-groups-per-action-on-application-load-balancer</p> </li> <li> <p>target-groups-per-action-on-network-load-balancer</p> </li> <li> <p>target-groups-per-application-load-balancer</p> </li> <li> <p>targets-per-application-load-balancer</p> </li> <li> <p>targets-per-availability-zone-per-gateway-load-balancer</p> </li> <li> <p>targets-per-availability-zone-per-network-load-balancer</p> </li> <li> <p>targets-per-network-load-balancer</p> </li> </ul>"
+      }
+    },
+    "NumberOfCaCertificates": {
+      "base": null,
+      "refs": {
+        "TrustStore$NumberOfCaCertificates": "<p>The number of ca certificates in the trust store.</p>"
+      }
+    },
+    "NumberOfRevokedEntries": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreRevocation$NumberOfRevokedEntries": "<p>The number of revoked certificates.</p>",
+        "TrustStoreRevocation$NumberOfRevokedEntries": "<p>The number of revoked certificates.</p>"
       }
     },
     "OperationNotPermittedException": {
@@ -1094,7 +1302,10 @@
         "DescribeLoadBalancersInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
         "DescribeRulesInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
         "DescribeSSLPoliciesInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
-        "DescribeTargetGroupsInput$PageSize": "<p>The maximum number of results to return with this call.</p>"
+        "DescribeTargetGroupsInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
+        "DescribeTrustStoreAssociationsInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
+        "DescribeTrustStoreRevocationsInput$PageSize": "<p>The maximum number of results to return with this call.</p>",
+        "DescribeTrustStoresInput$PageSize": "<p>The maximum number of results to return with this call.</p>"
       }
     },
     "Path": {
@@ -1244,6 +1455,16 @@
       "refs": {
       }
     },
+    "RemoveTrustStoreRevocationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveTrustStoreRevocationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -1262,6 +1483,52 @@
     "ResourceInUseException": {
       "base": "<p>A specified resource is in use.</p>",
       "refs": {
+      }
+    },
+    "RevocationContent": {
+      "base": "<p>Information about a revocation file.</p>",
+      "refs": {
+        "RevocationContents$member": null
+      }
+    },
+    "RevocationContentNotFoundException": {
+      "base": "<p>The specified revocation file does not exist.</p>",
+      "refs": {
+      }
+    },
+    "RevocationContents": {
+      "base": null,
+      "refs": {
+        "AddTrustStoreRevocationsInput$RevocationContents": "<p>The revocation file to add.</p>"
+      }
+    },
+    "RevocationId": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreRevocation$RevocationId": "<p>The revocation ID of a revocation file in use.</p>",
+        "GetTrustStoreRevocationContentInput$RevocationId": "<p>The revocation ID of the revocation file.</p>",
+        "RevocationIds$member": null,
+        "TrustStoreRevocation$RevocationId": "<p>The revocation ID of the revocation file.</p>"
+      }
+    },
+    "RevocationIdNotFoundException": {
+      "base": "<p>The specified revocation ID does not exist.</p>",
+      "refs": {
+      }
+    },
+    "RevocationIds": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreRevocationsInput$RevocationIds": "<p>The revocation IDs of the revocation files you want to describe.</p>",
+        "RemoveTrustStoreRevocationsInput$RevocationIds": "<p>The revocation IDs of the revocation files you want to remove.</p>"
+      }
+    },
+    "RevocationType": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreRevocation$RevocationType": "<p>The type of revocation file.</p>",
+        "RevocationContent$RevocationType": "<p>The type of revocation file.</p>",
+        "TrustStoreRevocation$RevocationType": "<p>The type of revocation file.</p>"
       }
     },
     "Rule": {
@@ -1331,6 +1598,30 @@
         "DescribeRulesOutput$Rules": "<p>Information about the rules.</p>",
         "ModifyRuleOutput$Rules": "<p>Information about the modified rule.</p>",
         "SetRulePrioritiesOutput$Rules": "<p>Information about the rules.</p>"
+      }
+    },
+    "S3Bucket": {
+      "base": null,
+      "refs": {
+        "CreateTrustStoreInput$CaCertificatesBundleS3Bucket": "<p>The Amazon S3 bucket for the ca certificates bundle.</p>",
+        "ModifyTrustStoreInput$CaCertificatesBundleS3Bucket": "<p>The Amazon S3 bucket for the ca certificates bundle.</p>",
+        "RevocationContent$S3Bucket": "<p>The Amazon S3 bucket for the revocation file.</p>"
+      }
+    },
+    "S3Key": {
+      "base": null,
+      "refs": {
+        "CreateTrustStoreInput$CaCertificatesBundleS3Key": "<p>The Amazon S3 path for the ca certificates bundle.</p>",
+        "ModifyTrustStoreInput$CaCertificatesBundleS3Key": "<p>The Amazon S3 path for the ca certificates bundle.</p>",
+        "RevocationContent$S3Key": "<p>The Amazon S3 path for the revocation file.</p>"
+      }
+    },
+    "S3ObjectVersion": {
+      "base": null,
+      "refs": {
+        "CreateTrustStoreInput$CaCertificatesBundleS3ObjectVersion": "<p>The Amazon S3 object version for the ca certificates bundle. If undefined the current version is used.</p>",
+        "ModifyTrustStoreInput$CaCertificatesBundleS3ObjectVersion": "<p>The Amazon S3 object version for the ca certificates bundle. If undefined the current version is used.</p>",
+        "RevocationContent$S3ObjectVersion": "<p>The Amazon S3 object version of the revocation file.</p>"
       }
     },
     "SSLPolicyNotFoundException": {
@@ -1531,6 +1822,7 @@
         "CreateLoadBalancerInput$Tags": "<p>The tags to assign to the load balancer.</p>",
         "CreateRuleInput$Tags": "<p>The tags to assign to the rule.</p>",
         "CreateTargetGroupInput$Tags": "<p>The tags to assign to the target group.</p>",
+        "CreateTrustStoreInput$Tags": "<p>The tags to assign to the trust store.</p>",
         "TagDescription$Tags": "<p>Information about the tags.</p>"
       }
     },
@@ -1597,7 +1889,7 @@
     "TargetGroupAttributeKey": {
       "base": null,
       "refs": {
-        "TargetGroupAttribute$Key": "<p>The name of the attribute.</p> <p>The following attributes are supported by all load balancers:</p> <ul> <li> <p> <code>deregistration_delay.timeout_seconds</code> - The amount of time, in seconds, for Elastic Load Balancing to wait before changing the state of a deregistering target from <code>draining</code> to <code>unused</code>. The range is 0-3600 seconds. The default value is 300 seconds. If the target is a Lambda function, this attribute is not supported.</p> </li> <li> <p> <code>stickiness.enabled</code> - Indicates whether target stickiness is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>stickiness.type</code> - Indicates the type of stickiness. The possible values are:</p> <ul> <li> <p> <code>lb_cookie</code> and <code>app_cookie</code> for Application Load Balancers.</p> </li> <li> <p> <code>source_ip</code> for Network Load Balancers.</p> </li> <li> <p> <code>source_ip_dest_ip</code> and <code>source_ip_dest_ip_proto</code> for Gateway Load Balancers.</p> </li> </ul> </li> </ul> <p>The following attributes are supported by Application Load Balancers and Network Load Balancers:</p> <ul> <li> <p> <code>load_balancing.cross_zone.enabled</code> - Indicates whether cross zone load balancing is enabled. The value is <code>true</code>, <code>false</code> or <code>use_load_balancer_configuration</code>. The default is <code>use_load_balancer_configuration</code>.</p> </li> <li> <p> <code>target_group_health.dns_failover.minimum_healthy_targets.count</code> - The minimum number of targets that must be healthy. If the number of healthy targets is below this value, mark the zone as unhealthy in DNS, so that traffic is routed only to healthy zones. The possible values are <code>off</code> or an integer from 1 to the maximum number of targets. The default is <code>off</code>.</p> </li> <li> <p> <code>target_group_health.dns_failover.minimum_healthy_targets.percentage</code> - The minimum percentage of targets that must be healthy. If the percentage of healthy targets is below this value, mark the zone as unhealthy in DNS, so that traffic is routed only to healthy zones. The possible values are <code>off</code> or an integer from 1 to 100. The default is <code>off</code>.</p> </li> <li> <p> <code>target_group_health.unhealthy_state_routing.minimum_healthy_targets.count</code> - The minimum number of targets that must be healthy. If the number of healthy targets is below this value, send traffic to all targets, including unhealthy targets. The possible values are 1 to the maximum number of targets. The default is 1.</p> </li> <li> <p> <code>target_group_health.unhealthy_state_routing.minimum_healthy_targets.percentage</code> - The minimum percentage of targets that must be healthy. If the percentage of healthy targets is below this value, send traffic to all targets, including unhealthy targets. The possible values are <code>off</code> or an integer from 1 to 100. The default is <code>off</code>.</p> </li> </ul> <p>The following attributes are supported only if the load balancer is an Application Load Balancer and the target is an instance or an IP address:</p> <ul> <li> <p> <code>load_balancing.algorithm.type</code> - The load balancing algorithm determines how the load balancer selects targets when routing requests. The value is <code>round_robin</code> or <code>least_outstanding_requests</code>. The default is <code>round_robin</code>.</p> </li> <li> <p> <code>slow_start.duration_seconds</code> - The time period, in seconds, during which a newly registered target receives an increasing share of the traffic to the target group. After this time period ends, the target receives its full share of traffic. The range is 30-900 seconds (15 minutes). The default is 0 seconds (disabled).</p> </li> <li> <p> <code>stickiness.app_cookie.cookie_name</code> - Indicates the name of the application-based cookie. Names that start with the following prefixes are not allowed: <code>AWSALB</code>, <code>AWSALBAPP</code>, and <code>AWSALBTG</code>; they're reserved for use by the load balancer.</p> </li> <li> <p> <code>stickiness.app_cookie.duration_seconds</code> - The time period, in seconds, during which requests from a client should be routed to the same target. After this time period expires, the application-based cookie is considered stale. The range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds).</p> </li> <li> <p> <code>stickiness.lb_cookie.duration_seconds</code> - The time period, in seconds, during which requests from a client should be routed to the same target. After this time period expires, the load balancer-generated cookie is considered stale. The range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds). </p> </li> </ul> <p>The following attribute is supported only if the load balancer is an Application Load Balancer and the target is a Lambda function:</p> <ul> <li> <p> <code>lambda.multi_value_headers.enabled</code> - Indicates whether the request and response headers that are exchanged between the load balancer and the Lambda function include arrays of values or strings. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>. If the value is <code>false</code> and the request contains a duplicate header field name or query parameter key, the load balancer uses the last value sent by the client.</p> </li> </ul> <p>The following attributes are supported only by Network Load Balancers:</p> <ul> <li> <p> <code>deregistration_delay.connection_termination.enabled</code> - Indicates whether the load balancer terminates connections at the end of the deregistration timeout. The value is <code>true</code> or <code>false</code>. For new UDP/TCP_UDP target groups the default is <code>true</code>. Otherwise, the default is <code>false</code>.</p> </li> <li> <p> <code>preserve_client_ip.enabled</code> - Indicates whether client IP preservation is enabled. The value is <code>true</code> or <code>false</code>. The default is disabled if the target group type is IP address and the target group protocol is TCP or TLS. Otherwise, the default is enabled. Client IP preservation cannot be disabled for UDP and TCP_UDP target groups.</p> </li> <li> <p> <code>proxy_protocol_v2.enabled</code> - Indicates whether Proxy Protocol version 2 is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>. </p> </li> <li> <p> <code>target_health_state.unhealthy.connection_termination.enabled</code> - Indicates whether the load balancer terminates connections to unhealthy targets. The value is <code>true</code> or <code>false</code>. The default is <code>true</code>.</p> </li> </ul> <p>The following attributes are supported only by Gateway Load Balancers:</p> <ul> <li> <p> <code>target_failover.on_deregistration</code> - Indicates how the Gateway Load Balancer handles existing flows when a target is deregistered. The possible values are <code>rebalance</code> and <code>no_rebalance</code>. The default is <code>no_rebalance</code>. The two attributes (<code>target_failover.on_deregistration</code> and <code>target_failover.on_unhealthy</code>) can't be set independently. The value you set for both attributes must be the same. </p> </li> <li> <p> <code>target_failover.on_unhealthy</code> - Indicates how the Gateway Load Balancer handles existing flows when a target is unhealthy. The possible values are <code>rebalance</code> and <code>no_rebalance</code>. The default is <code>no_rebalance</code>. The two attributes (<code>target_failover.on_deregistration</code> and <code>target_failover.on_unhealthy</code>) cannot be set independently. The value you set for both attributes must be the same. </p> </li> </ul>"
+        "TargetGroupAttribute$Key": "<p>The name of the attribute.</p> <p>The following attributes are supported by all load balancers:</p> <ul> <li> <p> <code>deregistration_delay.timeout_seconds</code> - The amount of time, in seconds, for Elastic Load Balancing to wait before changing the state of a deregistering target from <code>draining</code> to <code>unused</code>. The range is 0-3600 seconds. The default value is 300 seconds. If the target is a Lambda function, this attribute is not supported.</p> </li> <li> <p> <code>stickiness.enabled</code> - Indicates whether target stickiness is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>.</p> </li> <li> <p> <code>stickiness.type</code> - Indicates the type of stickiness. The possible values are:</p> <ul> <li> <p> <code>lb_cookie</code> and <code>app_cookie</code> for Application Load Balancers.</p> </li> <li> <p> <code>source_ip</code> for Network Load Balancers.</p> </li> <li> <p> <code>source_ip_dest_ip</code> and <code>source_ip_dest_ip_proto</code> for Gateway Load Balancers.</p> </li> </ul> </li> </ul> <p>The following attributes are supported by Application Load Balancers and Network Load Balancers:</p> <ul> <li> <p> <code>load_balancing.cross_zone.enabled</code> - Indicates whether cross zone load balancing is enabled. The value is <code>true</code>, <code>false</code> or <code>use_load_balancer_configuration</code>. The default is <code>use_load_balancer_configuration</code>.</p> </li> <li> <p> <code>target_group_health.dns_failover.minimum_healthy_targets.count</code> - The minimum number of targets that must be healthy. If the number of healthy targets is below this value, mark the zone as unhealthy in DNS, so that traffic is routed only to healthy zones. The possible values are <code>off</code> or an integer from 1 to the maximum number of targets. The default is <code>off</code>.</p> </li> <li> <p> <code>target_group_health.dns_failover.minimum_healthy_targets.percentage</code> - The minimum percentage of targets that must be healthy. If the percentage of healthy targets is below this value, mark the zone as unhealthy in DNS, so that traffic is routed only to healthy zones. The possible values are <code>off</code> or an integer from 1 to 100. The default is <code>off</code>.</p> </li> <li> <p> <code>target_group_health.unhealthy_state_routing.minimum_healthy_targets.count</code> - The minimum number of targets that must be healthy. If the number of healthy targets is below this value, send traffic to all targets, including unhealthy targets. The possible values are 1 to the maximum number of targets. The default is 1.</p> </li> <li> <p> <code>target_group_health.unhealthy_state_routing.minimum_healthy_targets.percentage</code> - The minimum percentage of targets that must be healthy. If the percentage of healthy targets is below this value, send traffic to all targets, including unhealthy targets. The possible values are <code>off</code> or an integer from 1 to 100. The default is <code>off</code>.</p> </li> </ul> <p>The following attributes are supported only if the load balancer is an Application Load Balancer and the target is an instance or an IP address:</p> <ul> <li> <p> <code>load_balancing.algorithm.type</code> - The load balancing algorithm determines how the load balancer selects targets when routing requests. The value is <code>round_robin</code>, <code>least_outstanding_requests</code>, or <code>weighted_random</code>. The default is <code>round_robin</code>.</p> </li> <li> <p> <code>load_balancing.algorithm.anomaly_mitigation</code> - Only available when <code>load_balancing.algorithm.type</code> is <code>weighted_random</code>. Indicates whether anomaly mitigation is enabled. The value is <code>on</code> or <code>off</code>. The default is <code>off</code>.</p> </li> <li> <p> <code>slow_start.duration_seconds</code> - The time period, in seconds, during which a newly registered target receives an increasing share of the traffic to the target group. After this time period ends, the target receives its full share of traffic. The range is 30-900 seconds (15 minutes). The default is 0 seconds (disabled).</p> </li> <li> <p> <code>stickiness.app_cookie.cookie_name</code> - Indicates the name of the application-based cookie. Names that start with the following prefixes are not allowed: <code>AWSALB</code>, <code>AWSALBAPP</code>, and <code>AWSALBTG</code>; they're reserved for use by the load balancer.</p> </li> <li> <p> <code>stickiness.app_cookie.duration_seconds</code> - The time period, in seconds, during which requests from a client should be routed to the same target. After this time period expires, the application-based cookie is considered stale. The range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds).</p> </li> <li> <p> <code>stickiness.lb_cookie.duration_seconds</code> - The time period, in seconds, during which requests from a client should be routed to the same target. After this time period expires, the load balancer-generated cookie is considered stale. The range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds). </p> </li> </ul> <p>The following attribute is supported only if the load balancer is an Application Load Balancer and the target is a Lambda function:</p> <ul> <li> <p> <code>lambda.multi_value_headers.enabled</code> - Indicates whether the request and response headers that are exchanged between the load balancer and the Lambda function include arrays of values or strings. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>. If the value is <code>false</code> and the request contains a duplicate header field name or query parameter key, the load balancer uses the last value sent by the client.</p> </li> </ul> <p>The following attributes are supported only by Network Load Balancers:</p> <ul> <li> <p> <code>deregistration_delay.connection_termination.enabled</code> - Indicates whether the load balancer terminates connections at the end of the deregistration timeout. The value is <code>true</code> or <code>false</code>. For new UDP/TCP_UDP target groups the default is <code>true</code>. Otherwise, the default is <code>false</code>.</p> </li> <li> <p> <code>preserve_client_ip.enabled</code> - Indicates whether client IP preservation is enabled. The value is <code>true</code> or <code>false</code>. The default is disabled if the target group type is IP address and the target group protocol is TCP or TLS. Otherwise, the default is enabled. Client IP preservation cannot be disabled for UDP and TCP_UDP target groups.</p> </li> <li> <p> <code>proxy_protocol_v2.enabled</code> - Indicates whether Proxy Protocol version 2 is enabled. The value is <code>true</code> or <code>false</code>. The default is <code>false</code>. </p> </li> <li> <p> <code>target_health_state.unhealthy.connection_termination.enabled</code> - Indicates whether the load balancer terminates connections to unhealthy targets. The value is <code>true</code> or <code>false</code>. The default is <code>true</code>.</p> </li> </ul> <p>The following attributes are supported only by Gateway Load Balancers:</p> <ul> <li> <p> <code>target_failover.on_deregistration</code> - Indicates how the Gateway Load Balancer handles existing flows when a target is deregistered. The possible values are <code>rebalance</code> and <code>no_rebalance</code>. The default is <code>no_rebalance</code>. The two attributes (<code>target_failover.on_deregistration</code> and <code>target_failover.on_unhealthy</code>) can't be set independently. The value you set for both attributes must be the same. </p> </li> <li> <p> <code>target_failover.on_unhealthy</code> - Indicates how the Gateway Load Balancer handles existing flows when a target is unhealthy. The possible values are <code>rebalance</code> and <code>no_rebalance</code>. The default is <code>no_rebalance</code>. The two attributes (<code>target_failover.on_deregistration</code> and <code>target_failover.on_unhealthy</code>) cannot be set independently. The value you set for both attributes must be the same. </p> </li> </ul>"
       }
     },
     "TargetGroupAttributeValue": {
@@ -1758,7 +2050,7 @@
       }
     },
     "TooManyTagsException": {
-      "base": "<p>You've reached the limit on the number of tags per load balancer.</p>",
+      "base": "<p>You've reached the limit on the number of tags for this resource.</p>",
       "refs": {
       }
     },
@@ -1772,9 +2064,128 @@
       "refs": {
       }
     },
+    "TooManyTrustStoreRevocationEntriesException": {
+      "base": "<p>The specified trust store has too many revocation entries.</p>",
+      "refs": {
+      }
+    },
+    "TooManyTrustStoresException": {
+      "base": "<p>You've reached the limit on the number of trust stores for your Amazon Web Services account.</p>",
+      "refs": {
+      }
+    },
     "TooManyUniqueTargetGroupsPerLoadBalancerException": {
       "base": "<p>You've reached the limit on the number of unique target groups per load balancer across all listeners. If a target group is used by multiple actions for a load balancer, it is counted as only one use.</p>",
       "refs": {
+      }
+    },
+    "TotalRevokedEntries": {
+      "base": null,
+      "refs": {
+        "TrustStore$TotalRevokedEntries": "<p>The number of revoked certificates in the trust store.</p>"
+      }
+    },
+    "TrustStore": {
+      "base": "<p>Information about a trust store.</p>",
+      "refs": {
+        "TrustStores$member": null
+      }
+    },
+    "TrustStoreArn": {
+      "base": null,
+      "refs": {
+        "AddTrustStoreRevocationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "DeleteTrustStoreInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "DescribeTrustStoreAssociationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "DescribeTrustStoreRevocation$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "DescribeTrustStoreRevocationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "GetTrustStoreCaCertificatesBundleInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "GetTrustStoreRevocationContentInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "ModifyTrustStoreInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "MutualAuthenticationAttributes$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "RemoveTrustStoreRevocationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "TrustStore$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "TrustStoreArns$member": null,
+        "TrustStoreRevocation$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>"
+      }
+    },
+    "TrustStoreArns": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoresInput$TrustStoreArns": "<p>The Amazon Resource Name (ARN) of the trust store.</p>"
+      }
+    },
+    "TrustStoreAssociation": {
+      "base": "<p>Information about the resources a trust store is associated with.</p>",
+      "refs": {
+        "TrustStoreAssociations$member": null
+      }
+    },
+    "TrustStoreAssociationResourceArn": {
+      "base": null,
+      "refs": {
+        "TrustStoreAssociation$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
+      }
+    },
+    "TrustStoreAssociations": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoreAssociationsOutput$TrustStoreAssociations": "<p>Information about the resources the trust store is associated to.</p>"
+      }
+    },
+    "TrustStoreInUseException": {
+      "base": "<p>The specified trust store is currently in use.</p>",
+      "refs": {
+      }
+    },
+    "TrustStoreName": {
+      "base": null,
+      "refs": {
+        "CreateTrustStoreInput$Name": "<p>The name of the trust store.</p> <p>This name must be unique per region and cannot be changed after creation.</p>",
+        "TrustStore$Name": "<p>The name of the trust store.</p>",
+        "TrustStoreNames$member": null
+      }
+    },
+    "TrustStoreNames": {
+      "base": null,
+      "refs": {
+        "DescribeTrustStoresInput$Names": "<p>The names of the trust stores.</p>"
+      }
+    },
+    "TrustStoreNotFoundException": {
+      "base": "<p>The specified trust store does not exist.</p>",
+      "refs": {
+      }
+    },
+    "TrustStoreNotReadyException": {
+      "base": "<p>The specified trust store is not active.</p>",
+      "refs": {
+      }
+    },
+    "TrustStoreRevocation": {
+      "base": "<p>Information about a revocation file in use by a trust store.</p>",
+      "refs": {
+        "TrustStoreRevocations$member": null
+      }
+    },
+    "TrustStoreRevocations": {
+      "base": null,
+      "refs": {
+        "AddTrustStoreRevocationsOutput$TrustStoreRevocations": "<p>Information about the revocation file added to the trust store.</p>"
+      }
+    },
+    "TrustStoreStatus": {
+      "base": null,
+      "refs": {
+        "TrustStore$Status": "<p>The current status of the trust store.</p>"
+      }
+    },
+    "TrustStores": {
+      "base": null,
+      "refs": {
+        "CreateTrustStoreOutput$TrustStores": "<p>Information about the trust store created.</p>",
+        "DescribeTrustStoresOutput$TrustStores": "<p>Information about the trust stores.</p>",
+        "ModifyTrustStoreOutput$TrustStores": "<p>Information about the modified trust store.</p>"
       }
     },
     "UnsupportedProtocolException": {

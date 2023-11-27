@@ -21,6 +21,12 @@ const (
 	// The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 	ErrCodeARNInvalidException = "CloudTrailARNInvalidException"
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// You do not have sufficient access to perform this action.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeAccessNotEnabledException for service response error code
 	// "CloudTrailAccessNotEnabledException".
 	//
@@ -111,6 +117,14 @@ const (
 	// Cannot set a CloudWatch Logs delivery for this Region.
 	ErrCodeCloudWatchLogsDeliveryUnavailableException = "CloudWatchLogsDeliveryUnavailableException"
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// You are trying to update a resource when another request is in progress.
+	// Allow sufficient wait time for the previous request to complete, then retry
+	// your request.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
@@ -140,6 +154,14 @@ const (
 	//
 	// An event data store with that name already exists.
 	ErrCodeEventDataStoreAlreadyExistsException = "EventDataStoreAlreadyExistsException"
+
+	// ErrCodeEventDataStoreFederationEnabledException for service response error code
+	// "EventDataStoreFederationEnabledException".
+	//
+	// You cannot delete the event data store because Lake query federation is enabled.
+	// To delete the event data store, run the DisableFederation operation to disable
+	// Lake query federation on the event data store.
+	ErrCodeEventDataStoreFederationEnabledException = "EventDataStoreFederationEnabledException"
 
 	// ErrCodeEventDataStoreHasOngoingImportException for service response error code
 	// "EventDataStoreHasOngoingImportException".
@@ -618,6 +640,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
+	"AccessDeniedException":                                  newErrorAccessDeniedException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
 	"AccountHasOngoingImportException":                       newErrorAccountHasOngoingImportException,
 	"AccountNotFoundException":                               newErrorAccountNotFoundException,
@@ -631,10 +654,12 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
+	"ConcurrentModificationException":                        newErrorConcurrentModificationException,
 	"ConflictException":                                      newErrorConflictException,
 	"DelegatedAdminAccountLimitExceededException":            newErrorDelegatedAdminAccountLimitExceededException,
 	"EventDataStoreARNInvalidException":                      newErrorEventDataStoreARNInvalidException,
 	"EventDataStoreAlreadyExistsException":                   newErrorEventDataStoreAlreadyExistsException,
+	"EventDataStoreFederationEnabledException":               newErrorEventDataStoreFederationEnabledException,
 	"EventDataStoreHasOngoingImportException":                newErrorEventDataStoreHasOngoingImportException,
 	"EventDataStoreMaxLimitExceededException":                newErrorEventDataStoreMaxLimitExceededException,
 	"EventDataStoreNotFoundException":                        newErrorEventDataStoreNotFoundException,

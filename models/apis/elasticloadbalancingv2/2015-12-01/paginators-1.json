@@ -14,6 +14,21 @@
       "input_token": "Marker",
       "output_token": "NextMarker",
       "result_key": "TargetGroups"
+    },
+    "DescribeTrustStoreAssociations": {
+      "input_token": "Marker",
+      "limit_key": "PageSize",
+      "output_token": "NextMarker"
+    },
+    "DescribeTrustStoreRevocations": {
+      "input_token": "Marker",
+      "limit_key": "PageSize",
+      "output_token": "NextMarker"
+    },
+    "DescribeTrustStores": {
+      "input_token": "Marker",
+      "limit_key": "PageSize",
+      "output_token": "NextMarker"
     }
   }
 }

@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "GetFindingV2": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "findingDetails"
+    },
     "ListAccessPreviewFindings": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -31,6 +37,12 @@
       "result_key": "archiveRules"
     },
     "ListFindings": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "findings"
+    },
+    "ListFindingsV2": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults",

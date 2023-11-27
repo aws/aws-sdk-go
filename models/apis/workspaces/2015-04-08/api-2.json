@@ -1749,6 +1749,20 @@
         "PendingRequests":{"shape":"WorkspaceList"}
       }
     },
+    "DataReplication":{
+      "type":"string",
+      "enum":[
+        "NO_REPLICATION",
+        "PRIMARY_AS_SOURCE"
+      ]
+    },
+    "DataReplicationSettings":{
+      "type":"structure",
+      "members":{
+        "DataReplication":{"shape":"DataReplication"},
+        "RecoverySnapshotTime":{"shape":"Timestamp"}
+      }
+    },
     "DedicatedTenancyCidrRangeList":{
       "type":"list",
       "member":{"shape":"DedicatedTenancyManagementCidrRange"}
@@ -2789,13 +2803,11 @@
     },
     "ModifyWorkspacePropertiesRequest":{
       "type":"structure",
-      "required":[
-        "WorkspaceId",
-        "WorkspaceProperties"
-      ],
+      "required":["WorkspaceId"],
       "members":{
         "WorkspaceId":{"shape":"WorkspaceId"},
-        "WorkspaceProperties":{"shape":"WorkspaceProperties"}
+        "WorkspaceProperties":{"shape":"WorkspaceProperties"},
+        "DataReplication":{"shape":"DataReplication"}
       }
     },
     "ModifyWorkspacePropertiesResult":{
@@ -3169,7 +3181,8 @@
         "PrimaryWorkspaceId":{"shape":"WorkspaceId"},
         "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
         "DirectoryId":{"shape":"DirectoryId"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataReplication":{"shape":"DataReplication"}
       }
     },
     "StandbyWorkspaceRelationshipType":{
@@ -3182,6 +3195,18 @@
     "StandbyWorkspacesList":{
       "type":"list",
       "member":{"shape":"StandbyWorkspace"}
+    },
+    "StandbyWorkspacesProperties":{
+      "type":"structure",
+      "members":{
+        "StandbyWorkspaceId":{"shape":"WorkspaceId"},
+        "DataReplication":{"shape":"DataReplication"},
+        "RecoverySnapshotTime":{"shape":"Timestamp"}
+      }
+    },
+    "StandbyWorkspacesPropertiesList":{
+      "type":"list",
+      "member":{"shape":"StandbyWorkspacesProperties"}
     },
     "StartRequest":{
       "type":"structure",
@@ -3515,7 +3540,9 @@
         "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "WorkspaceProperties":{"shape":"WorkspaceProperties"},
         "ModificationStates":{"shape":"ModificationStateList"},
-        "RelatedWorkspaces":{"shape":"RelatedWorkspaces"}
+        "RelatedWorkspaces":{"shape":"RelatedWorkspaces"},
+        "DataReplicationSettings":{"shape":"DataReplicationSettings"},
+        "StandbyWorkspacesProperties":{"shape":"StandbyWorkspacesPropertiesList"}
       }
     },
     "WorkspaceAccessProperties":{

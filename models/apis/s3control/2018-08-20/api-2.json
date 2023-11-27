@@ -11,6 +11,85 @@
     "uid":"s3control-2018-08-20"
   },
   "operations":{
+    "AssociateAccessGrantsIdentityCenter":{
+      "name":"AssociateAccessGrantsIdentityCenter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/accessgrantsinstance/identitycenter"
+      },
+      "input":{
+        "shape":"AssociateAccessGrantsIdentityCenterRequest",
+        "locationName":"AssociateAccessGrantsIdentityCenterRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "CreateAccessGrant":{
+      "name":"CreateAccessGrant",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/accessgrantsinstance/grant"
+      },
+      "input":{
+        "shape":"CreateAccessGrantRequest",
+        "locationName":"CreateAccessGrantRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"CreateAccessGrantResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "CreateAccessGrantsInstance":{
+      "name":"CreateAccessGrantsInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/accessgrantsinstance"
+      },
+      "input":{
+        "shape":"CreateAccessGrantsInstanceRequest",
+        "locationName":"CreateAccessGrantsInstanceRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"CreateAccessGrantsInstanceResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "CreateAccessGrantsLocation":{
+      "name":"CreateAccessGrantsLocation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/accessgrantsinstance/location"
+      },
+      "input":{
+        "shape":"CreateAccessGrantsLocationRequest",
+        "locationName":"CreateAccessGrantsLocationRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"CreateAccessGrantsLocationResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "CreateAccessPoint":{
       "name":"CreateAccessPoint",
       "http":{
@@ -123,6 +202,66 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "DeleteAccessGrant":{
+      "name":"DeleteAccessGrant",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accessgrantsinstance/grant/{id}"
+      },
+      "input":{"shape":"DeleteAccessGrantRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "DeleteAccessGrantsInstance":{
+      "name":"DeleteAccessGrantsInstance",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accessgrantsinstance"
+      },
+      "input":{"shape":"DeleteAccessGrantsInstanceRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "DeleteAccessGrantsInstanceResourcePolicy":{
+      "name":"DeleteAccessGrantsInstanceResourcePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accessgrantsinstance/resourcepolicy"
+      },
+      "input":{"shape":"DeleteAccessGrantsInstanceResourcePolicyRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "DeleteAccessGrantsLocation":{
+      "name":"DeleteAccessGrantsLocation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accessgrantsinstance/location/{id}"
+      },
+      "input":{"shape":"DeleteAccessGrantsLocationRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
       "staticContextParams":{
         "RequiresAccountId":{"value":true}
       }
@@ -389,6 +528,101 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "DissociateAccessGrantsIdentityCenter":{
+      "name":"DissociateAccessGrantsIdentityCenter",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accessgrantsinstance/identitycenter"
+      },
+      "input":{"shape":"DissociateAccessGrantsIdentityCenterRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetAccessGrant":{
+      "name":"GetAccessGrant",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/grant/{id}"
+      },
+      "input":{"shape":"GetAccessGrantRequest"},
+      "output":{"shape":"GetAccessGrantResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetAccessGrantsInstance":{
+      "name":"GetAccessGrantsInstance",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance"
+      },
+      "input":{"shape":"GetAccessGrantsInstanceRequest"},
+      "output":{"shape":"GetAccessGrantsInstanceResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetAccessGrantsInstanceForPrefix":{
+      "name":"GetAccessGrantsInstanceForPrefix",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/prefix"
+      },
+      "input":{"shape":"GetAccessGrantsInstanceForPrefixRequest"},
+      "output":{"shape":"GetAccessGrantsInstanceForPrefixResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetAccessGrantsInstanceResourcePolicy":{
+      "name":"GetAccessGrantsInstanceResourcePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/resourcepolicy"
+      },
+      "input":{"shape":"GetAccessGrantsInstanceResourcePolicyRequest"},
+      "output":{"shape":"GetAccessGrantsInstanceResourcePolicyResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetAccessGrantsLocation":{
+      "name":"GetAccessGrantsLocation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/location/{id}"
+      },
+      "input":{"shape":"GetAccessGrantsLocationRequest"},
+      "output":{"shape":"GetAccessGrantsLocationResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "GetAccessPoint":{
       "name":"GetAccessPoint",
       "http":{
@@ -584,6 +818,22 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "GetDataAccess":{
+      "name":"GetDataAccess",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/dataaccess"
+      },
+      "input":{"shape":"GetDataAccessRequest"},
+      "output":{"shape":"GetDataAccessResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "GetJobTagging":{
       "name":"GetJobTagging",
       "http":{
@@ -731,6 +981,54 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "ListAccessGrants":{
+      "name":"ListAccessGrants",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/grants"
+      },
+      "input":{"shape":"ListAccessGrantsRequest"},
+      "output":{"shape":"ListAccessGrantsResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "ListAccessGrantsInstances":{
+      "name":"ListAccessGrantsInstances",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstances"
+      },
+      "input":{"shape":"ListAccessGrantsInstancesRequest"},
+      "output":{"shape":"ListAccessGrantsInstancesResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "ListAccessGrantsLocations":{
+      "name":"ListAccessGrantsLocations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accessgrantsinstance/locations"
+      },
+      "input":{"shape":"ListAccessGrantsLocationsRequest"},
+      "output":{"shape":"ListAccessGrantsLocationsResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "ListAccessPoints":{
       "name":"ListAccessPoints",
       "http":{
@@ -853,6 +1151,26 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "PutAccessGrantsInstanceResourcePolicy":{
+      "name":"PutAccessGrantsInstanceResourcePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/accessgrantsinstance/resourcepolicy"
+      },
+      "input":{
+        "shape":"PutAccessGrantsInstanceResourcePolicyRequest",
+        "locationName":"PutAccessGrantsInstanceResourcePolicyRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"PutAccessGrantsInstanceResourcePolicyResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
       "staticContextParams":{
         "RequiresAccountId":{"value":true}
       }
@@ -1142,6 +1460,26 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "UpdateAccessGrantsLocation":{
+      "name":"UpdateAccessGrantsLocation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/accessgrantsinstance/location/{id}"
+      },
+      "input":{
+        "shape":"UpdateAccessGrantsLocationRequest",
+        "locationName":"UpdateAccessGrantsLocationRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"UpdateAccessGrantsLocationResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "UpdateJobPriority":{
       "name":"UpdateJobPriority",
       "http":{
@@ -1219,6 +1557,73 @@
         "Owner":{"shape":"OwnerOverride"}
       }
     },
+    "AccessGrantArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:[a-z\\-]+:s3:[a-z0-9\\-]+:\\d{12}:access\\-grants\\/grant/[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantsInstanceArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:[a-z\\-]+:s3:[a-z0-9\\-]+:\\d{12}:access\\-grants\\/[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantsInstanceId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantsInstancesList":{
+      "type":"list",
+      "member":{
+        "shape":"ListAccessGrantsInstanceEntry",
+        "locationName":"AccessGrantsInstance"
+      }
+    },
+    "AccessGrantsList":{
+      "type":"list",
+      "member":{
+        "shape":"ListAccessGrantEntry",
+        "locationName":"AccessGrant"
+      }
+    },
+    "AccessGrantsLocationArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:[a-z\\-]+:s3:[a-z0-9\\-]+:\\d{12}:access\\-grants\\/location/[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantsLocationConfiguration":{
+      "type":"structure",
+      "members":{
+        "S3SubPrefix":{"shape":"S3Prefix"}
+      }
+    },
+    "AccessGrantsLocationId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\-]+"
+    },
+    "AccessGrantsLocationsList":{
+      "type":"list",
+      "member":{
+        "shape":"ListAccessGrantsLocationsEntry",
+        "locationName":"AccessGrantsLocation"
+      }
+    },
+    "AccessKeyId":{
+      "type":"string",
+      "sensitive":true
+    },
     "AccessPoint":{
       "type":"structure",
       "required":[
@@ -1287,6 +1692,23 @@
       "type":"string",
       "max":63,
       "pattern":"^[0-9a-z\\\\-]{63}"
+    },
+    "AssociateAccessGrantsIdentityCenterRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "IdentityCenterArn"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "IdentityCenterArn":{"shape":"IdentityCenterArn"}
+      }
     },
     "AsyncCreationTimestamp":{"type":"timestamp"},
     "AsyncErrorDetails":{
@@ -1445,6 +1867,99 @@
     "ConfirmRemoveSelfBucketAccess":{"type":"boolean"},
     "ConfirmationRequired":{"type":"boolean"},
     "ContinuationToken":{"type":"string"},
+    "CreateAccessGrantRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantsLocationId",
+        "Grantee",
+        "Permission"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationConfiguration":{"shape":"AccessGrantsLocationConfiguration"},
+        "Grantee":{"shape":"Grantee"},
+        "Permission":{"shape":"Permission"},
+        "ApplicationArn":{"shape":"IdentityCenterApplicationArn"},
+        "S3PrefixType":{"shape":"S3PrefixType"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateAccessGrantResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantId":{"shape":"AccessGrantId"},
+        "AccessGrantArn":{"shape":"AccessGrantArn"},
+        "Grantee":{"shape":"Grantee"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationConfiguration":{"shape":"AccessGrantsLocationConfiguration"},
+        "Permission":{"shape":"Permission"},
+        "ApplicationArn":{"shape":"IdentityCenterApplicationArn"},
+        "GrantScope":{"shape":"S3Prefix"}
+      }
+    },
+    "CreateAccessGrantsInstanceRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "IdentityCenterArn":{"shape":"IdentityCenterArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateAccessGrantsInstanceResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantsInstanceId":{"shape":"AccessGrantsInstanceId"},
+        "AccessGrantsInstanceArn":{"shape":"AccessGrantsInstanceArn"},
+        "IdentityCenterArn":{"shape":"IdentityCenterArn"}
+      }
+    },
+    "CreateAccessGrantsLocationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "LocationScope",
+        "IAMRoleArn"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "LocationScope":{"shape":"S3Prefix"},
+        "IAMRoleArn":{"shape":"IAMRoleArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateAccessGrantsLocationResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationArn":{"shape":"AccessGrantsLocationArn"},
+        "LocationScope":{"shape":"S3Prefix"},
+        "IAMRoleArn":{"shape":"IAMRoleArn"}
+      }
+    },
     "CreateAccessPointForObjectLambdaRequest":{
       "type":"structure",
       "required":[
@@ -1692,9 +2207,87 @@
     },
     "CreationDate":{"type":"timestamp"},
     "CreationTimestamp":{"type":"timestamp"},
+    "Credentials":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{"shape":"AccessKeyId"},
+        "SecretAccessKey":{"shape":"SecretAccessKey"},
+        "SessionToken":{"shape":"SessionToken"},
+        "Expiration":{"shape":"Expiration"}
+      },
+      "sensitive":true
+    },
     "Date":{"type":"timestamp"},
     "Days":{"type":"integer"},
     "DaysAfterInitiation":{"type":"integer"},
+    "DeleteAccessGrantRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantId":{
+          "shape":"AccessGrantId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DeleteAccessGrantsInstanceRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "DeleteAccessGrantsInstanceResourcePolicyRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "DeleteAccessGrantsLocationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantsLocationId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantsLocationId":{
+          "shape":"AccessGrantsLocationId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
     "DeleteAccessPointForObjectLambdaRequest":{
       "type":"structure",
       "required":[
@@ -2120,6 +2713,25 @@
         "IsEnabled":{"shape":"IsEnabled"}
       }
     },
+    "DissociateAccessGrantsIdentityCenterRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "DurationSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":43200,
+      "min":900
+    },
     "EncryptionConfiguration":{
       "type":"structure",
       "members":{
@@ -2166,6 +2778,7 @@
         "Disabled"
       ]
     },
+    "Expiration":{"type":"timestamp"},
     "ExpirationStatus":{
       "type":"string",
       "enum":[
@@ -2203,6 +2816,143 @@
     "GeneratedManifestFormat":{
       "type":"string",
       "enum":["S3InventoryReport_CSV_20211130"]
+    },
+    "GetAccessGrantRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantId":{
+          "shape":"AccessGrantId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GetAccessGrantResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantId":{"shape":"AccessGrantId"},
+        "AccessGrantArn":{"shape":"AccessGrantArn"},
+        "Grantee":{"shape":"Grantee"},
+        "Permission":{"shape":"Permission"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationConfiguration":{"shape":"AccessGrantsLocationConfiguration"},
+        "GrantScope":{"shape":"S3Prefix"},
+        "ApplicationArn":{"shape":"IdentityCenterApplicationArn"}
+      }
+    },
+    "GetAccessGrantsInstanceForPrefixRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "S3Prefix"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "S3Prefix":{
+          "shape":"S3Prefix",
+          "location":"querystring",
+          "locationName":"s3prefix"
+        }
+      }
+    },
+    "GetAccessGrantsInstanceForPrefixResult":{
+      "type":"structure",
+      "members":{
+        "AccessGrantsInstanceArn":{"shape":"AccessGrantsInstanceArn"},
+        "AccessGrantsInstanceId":{"shape":"AccessGrantsInstanceId"}
+      }
+    },
+    "GetAccessGrantsInstanceRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "GetAccessGrantsInstanceResourcePolicyRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        }
+      }
+    },
+    "GetAccessGrantsInstanceResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"PolicyDocument"},
+        "Organization":{"shape":"Organization"},
+        "CreatedAt":{"shape":"CreationTimestamp"}
+      }
+    },
+    "GetAccessGrantsInstanceResult":{
+      "type":"structure",
+      "members":{
+        "AccessGrantsInstanceArn":{"shape":"AccessGrantsInstanceArn"},
+        "AccessGrantsInstanceId":{"shape":"AccessGrantsInstanceId"},
+        "IdentityCenterArn":{"shape":"IdentityCenterArn"},
+        "CreatedAt":{"shape":"CreationTimestamp"}
+      }
+    },
+    "GetAccessGrantsLocationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantsLocationId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantsLocationId":{
+          "shape":"AccessGrantsLocationId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GetAccessGrantsLocationResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationArn":{"shape":"AccessGrantsLocationArn"},
+        "LocationScope":{"shape":"S3Prefix"},
+        "IAMRoleArn":{"shape":"IAMRoleArn"}
+      }
     },
     "GetAccessPointConfigurationForObjectLambdaRequest":{
       "type":"structure",
@@ -2583,6 +3333,55 @@
         }
       }
     },
+    "GetDataAccessRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Target",
+        "Permission"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Target":{
+          "shape":"S3Prefix",
+          "location":"querystring",
+          "locationName":"target"
+        },
+        "Permission":{
+          "shape":"Permission",
+          "location":"querystring",
+          "locationName":"permission"
+        },
+        "DurationSeconds":{
+          "shape":"DurationSeconds",
+          "location":"querystring",
+          "locationName":"durationSeconds"
+        },
+        "Privilege":{
+          "shape":"Privilege",
+          "location":"querystring",
+          "locationName":"privilege"
+        },
+        "TargetType":{
+          "shape":"S3PrefixType",
+          "location":"querystring",
+          "locationName":"targetType"
+        }
+      }
+    },
+    "GetDataAccessResult":{
+      "type":"structure",
+      "members":{
+        "Credentials":{"shape":"Credentials"},
+        "MatchedGrantTarget":{"shape":"S3Prefix"}
+      }
+    },
     "GetJobTaggingRequest":{
       "type":"structure",
       "required":[
@@ -2827,6 +3626,22 @@
     "GrantReadACP":{"type":"string"},
     "GrantWrite":{"type":"string"},
     "GrantWriteACP":{"type":"string"},
+    "Grantee":{
+      "type":"structure",
+      "members":{
+        "GranteeType":{"shape":"GranteeType"},
+        "GranteeIdentifier":{"shape":"GranteeIdentifier"}
+      }
+    },
+    "GranteeIdentifier":{"type":"string"},
+    "GranteeType":{
+      "type":"string",
+      "enum":[
+        "DIRECTORY_USER",
+        "DIRECTORY_GROUP",
+        "IAM"
+      ]
+    },
     "IAMRoleArn":{
       "type":"string",
       "max":2048,
@@ -2840,6 +3655,18 @@
         "Message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "IdentityCenterApplicationArn":{
+      "type":"string",
+      "max":1224,
+      "min":10,
+      "pattern":"arn:[^:]+:sso:.*$"
+    },
+    "IdentityCenterArn":{
+      "type":"string",
+      "max":1224,
+      "min":10,
+      "pattern":"arn:[^:]+:sso::(\\d{12}){0,1}:instance/.*$"
     },
     "Include":{
       "type":"structure",
@@ -3313,6 +4140,159 @@
       "member":{
         "shape":"LifecycleRule",
         "locationName":"Rule"
+      }
+    },
+    "ListAccessGrantEntry":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantId":{"shape":"AccessGrantId"},
+        "AccessGrantArn":{"shape":"AccessGrantArn"},
+        "Grantee":{"shape":"Grantee"},
+        "Permission":{"shape":"Permission"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationConfiguration":{"shape":"AccessGrantsLocationConfiguration"},
+        "GrantScope":{"shape":"S3Prefix"},
+        "ApplicationArn":{"shape":"IdentityCenterApplicationArn"}
+      }
+    },
+    "ListAccessGrantsInstanceEntry":{
+      "type":"structure",
+      "members":{
+        "AccessGrantsInstanceId":{"shape":"AccessGrantsInstanceId"},
+        "AccessGrantsInstanceArn":{"shape":"AccessGrantsInstanceArn"},
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "IdentityCenterArn":{"shape":"IdentityCenterArn"}
+      }
+    },
+    "ListAccessGrantsInstancesRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "NextToken":{
+          "shape":"ContinuationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAccessGrantsInstancesResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ContinuationToken"},
+        "AccessGrantsInstancesList":{"shape":"AccessGrantsInstancesList"}
+      }
+    },
+    "ListAccessGrantsLocationsEntry":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationArn":{"shape":"AccessGrantsLocationArn"},
+        "LocationScope":{"shape":"S3Prefix"},
+        "IAMRoleArn":{"shape":"IAMRoleArn"}
+      }
+    },
+    "ListAccessGrantsLocationsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "NextToken":{
+          "shape":"ContinuationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "LocationScope":{
+          "shape":"S3Prefix",
+          "location":"querystring",
+          "locationName":"locationscope"
+        }
+      }
+    },
+    "ListAccessGrantsLocationsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ContinuationToken"},
+        "AccessGrantsLocationsList":{"shape":"AccessGrantsLocationsList"}
+      }
+    },
+    "ListAccessGrantsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "NextToken":{
+          "shape":"ContinuationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "GranteeType":{
+          "shape":"GranteeType",
+          "location":"querystring",
+          "locationName":"granteetype"
+        },
+        "GranteeIdentifier":{
+          "shape":"GranteeIdentifier",
+          "location":"querystring",
+          "locationName":"granteeidentifier"
+        },
+        "Permission":{
+          "shape":"Permission",
+          "location":"querystring",
+          "locationName":"permission"
+        },
+        "GrantScope":{
+          "shape":"S3Prefix",
+          "location":"querystring",
+          "locationName":"grantscope"
+        },
+        "ApplicationArn":{
+          "shape":"IdentityCenterApplicationArn",
+          "location":"querystring",
+          "locationName":"application_arn"
+        }
+      }
+    },
+    "ListAccessGrantsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ContinuationToken"},
+        "AccessGrantsList":{"shape":"AccessGrantsList"}
       }
     },
     "ListAccessPointsForObjectLambdaRequest":{
@@ -3977,6 +4957,12 @@
         "S3ReplicateObject"
       ]
     },
+    "Organization":{
+      "type":"string",
+      "max":34,
+      "min":12,
+      "pattern":"^o-[a-z0-9]{10,32}$"
+    },
     "OutputSchemaVersion":{
       "type":"string",
       "enum":["V_1"]
@@ -3985,7 +4971,20 @@
       "type":"string",
       "enum":["Destination"]
     },
+    "Permission":{
+      "type":"string",
+      "enum":[
+        "READ",
+        "WRITE",
+        "READWRITE"
+      ]
+    },
     "Policy":{"type":"string"},
+    "PolicyDocument":{
+      "type":"string",
+      "max":350000,
+      "min":1
+    },
     "PolicyStatus":{
       "type":"structure",
       "members":{
@@ -4011,6 +5010,13 @@
       }
     },
     "Priority":{"type":"integer"},
+    "Privilege":{
+      "type":"string",
+      "enum":[
+        "Minimal",
+        "Default"
+      ]
+    },
     "ProposedMultiRegionAccessPointPolicy":{
       "type":"structure",
       "members":{
@@ -4039,6 +5045,32 @@
       }
     },
     "PublicAccessBlockEnabled":{"type":"boolean"},
+    "PutAccessGrantsInstanceResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Policy"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Policy":{"shape":"PolicyDocument"},
+        "Organization":{"shape":"Organization"}
+      }
+    },
+    "PutAccessGrantsInstanceResourcePolicyResult":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"PolicyDocument"},
+        "Organization":{"shape":"Organization"},
+        "CreatedAt":{"shape":"CreationTimestamp"}
+      }
+    },
     "PutAccessPointConfigurationForObjectLambdaRequest":{
       "type":"structure",
       "required":[
@@ -4901,6 +5933,16 @@
         "WRITE_ACP"
       ]
     },
+    "S3Prefix":{
+      "type":"string",
+      "max":2000,
+      "min":1,
+      "pattern":"^.+$"
+    },
+    "S3PrefixType":{
+      "type":"string",
+      "enum":["Object"]
+    },
     "S3RegionalBucketArn":{
       "type":"string",
       "max":128,
@@ -5022,6 +6064,10 @@
       },
       "locationName":"SSE-S3"
     },
+    "SecretAccessKey":{
+      "type":"string",
+      "sensitive":true
+    },
     "SelectionCriteria":{
       "type":"structure",
       "members":{
@@ -5029,6 +6075,10 @@
         "MaxDepth":{"shape":"StorageLensPrefixLevelMaxDepth"},
         "MinStorageBytesPercentage":{"shape":"MinStorageBytesPercentage"}
       }
+    },
+    "SessionToken":{
+      "type":"string",
+      "sensitive":true
     },
     "Setting":{"type":"boolean"},
     "SourceSelectionCriteria":{
@@ -5422,6 +6472,39 @@
     "UntagResourceResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateAccessGrantsLocationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "AccessGrantsLocationId",
+        "IAMRoleArn"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "AccessGrantsLocationId":{
+          "shape":"AccessGrantsLocationId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "IAMRoleArn":{"shape":"IAMRoleArn"}
+      }
+    },
+    "UpdateAccessGrantsLocationResult":{
+      "type":"structure",
+      "members":{
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "AccessGrantsLocationId":{"shape":"AccessGrantsLocationId"},
+        "AccessGrantsLocationArn":{"shape":"AccessGrantsLocationArn"},
+        "LocationScope":{"shape":"S3Prefix"},
+        "IAMRoleArn":{"shape":"IAMRoleArn"}
       }
     },
     "UpdateJobPriorityRequest":{

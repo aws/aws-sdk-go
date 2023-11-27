@@ -76,6 +76,10 @@ type CloudWatchLogsAPI interface {
 	CreateExportTaskWithContext(aws.Context, *cloudwatchlogs.CreateExportTaskInput, ...request.Option) (*cloudwatchlogs.CreateExportTaskOutput, error)
 	CreateExportTaskRequest(*cloudwatchlogs.CreateExportTaskInput) (*request.Request, *cloudwatchlogs.CreateExportTaskOutput)
 
+	CreateLogAnomalyDetector(*cloudwatchlogs.CreateLogAnomalyDetectorInput) (*cloudwatchlogs.CreateLogAnomalyDetectorOutput, error)
+	CreateLogAnomalyDetectorWithContext(aws.Context, *cloudwatchlogs.CreateLogAnomalyDetectorInput, ...request.Option) (*cloudwatchlogs.CreateLogAnomalyDetectorOutput, error)
+	CreateLogAnomalyDetectorRequest(*cloudwatchlogs.CreateLogAnomalyDetectorInput) (*request.Request, *cloudwatchlogs.CreateLogAnomalyDetectorOutput)
+
 	CreateLogGroup(*cloudwatchlogs.CreateLogGroupInput) (*cloudwatchlogs.CreateLogGroupOutput, error)
 	CreateLogGroupWithContext(aws.Context, *cloudwatchlogs.CreateLogGroupInput, ...request.Option) (*cloudwatchlogs.CreateLogGroupOutput, error)
 	CreateLogGroupRequest(*cloudwatchlogs.CreateLogGroupInput) (*request.Request, *cloudwatchlogs.CreateLogGroupOutput)
@@ -111,6 +115,10 @@ type CloudWatchLogsAPI interface {
 	DeleteDestination(*cloudwatchlogs.DeleteDestinationInput) (*cloudwatchlogs.DeleteDestinationOutput, error)
 	DeleteDestinationWithContext(aws.Context, *cloudwatchlogs.DeleteDestinationInput, ...request.Option) (*cloudwatchlogs.DeleteDestinationOutput, error)
 	DeleteDestinationRequest(*cloudwatchlogs.DeleteDestinationInput) (*request.Request, *cloudwatchlogs.DeleteDestinationOutput)
+
+	DeleteLogAnomalyDetector(*cloudwatchlogs.DeleteLogAnomalyDetectorInput) (*cloudwatchlogs.DeleteLogAnomalyDetectorOutput, error)
+	DeleteLogAnomalyDetectorWithContext(aws.Context, *cloudwatchlogs.DeleteLogAnomalyDetectorInput, ...request.Option) (*cloudwatchlogs.DeleteLogAnomalyDetectorOutput, error)
+	DeleteLogAnomalyDetectorRequest(*cloudwatchlogs.DeleteLogAnomalyDetectorInput) (*request.Request, *cloudwatchlogs.DeleteLogAnomalyDetectorOutput)
 
 	DeleteLogGroup(*cloudwatchlogs.DeleteLogGroupInput) (*cloudwatchlogs.DeleteLogGroupOutput, error)
 	DeleteLogGroupWithContext(aws.Context, *cloudwatchlogs.DeleteLogGroupInput, ...request.Option) (*cloudwatchlogs.DeleteLogGroupOutput, error)
@@ -247,6 +255,10 @@ type CloudWatchLogsAPI interface {
 	GetDeliverySourceWithContext(aws.Context, *cloudwatchlogs.GetDeliverySourceInput, ...request.Option) (*cloudwatchlogs.GetDeliverySourceOutput, error)
 	GetDeliverySourceRequest(*cloudwatchlogs.GetDeliverySourceInput) (*request.Request, *cloudwatchlogs.GetDeliverySourceOutput)
 
+	GetLogAnomalyDetector(*cloudwatchlogs.GetLogAnomalyDetectorInput) (*cloudwatchlogs.GetLogAnomalyDetectorOutput, error)
+	GetLogAnomalyDetectorWithContext(aws.Context, *cloudwatchlogs.GetLogAnomalyDetectorInput, ...request.Option) (*cloudwatchlogs.GetLogAnomalyDetectorOutput, error)
+	GetLogAnomalyDetectorRequest(*cloudwatchlogs.GetLogAnomalyDetectorInput) (*request.Request, *cloudwatchlogs.GetLogAnomalyDetectorOutput)
+
 	GetLogEvents(*cloudwatchlogs.GetLogEventsInput) (*cloudwatchlogs.GetLogEventsOutput, error)
 	GetLogEventsWithContext(aws.Context, *cloudwatchlogs.GetLogEventsInput, ...request.Option) (*cloudwatchlogs.GetLogEventsOutput, error)
 	GetLogEventsRequest(*cloudwatchlogs.GetLogEventsInput) (*request.Request, *cloudwatchlogs.GetLogEventsOutput)
@@ -265,6 +277,20 @@ type CloudWatchLogsAPI interface {
 	GetQueryResults(*cloudwatchlogs.GetQueryResultsInput) (*cloudwatchlogs.GetQueryResultsOutput, error)
 	GetQueryResultsWithContext(aws.Context, *cloudwatchlogs.GetQueryResultsInput, ...request.Option) (*cloudwatchlogs.GetQueryResultsOutput, error)
 	GetQueryResultsRequest(*cloudwatchlogs.GetQueryResultsInput) (*request.Request, *cloudwatchlogs.GetQueryResultsOutput)
+
+	ListAnomalies(*cloudwatchlogs.ListAnomaliesInput) (*cloudwatchlogs.ListAnomaliesOutput, error)
+	ListAnomaliesWithContext(aws.Context, *cloudwatchlogs.ListAnomaliesInput, ...request.Option) (*cloudwatchlogs.ListAnomaliesOutput, error)
+	ListAnomaliesRequest(*cloudwatchlogs.ListAnomaliesInput) (*request.Request, *cloudwatchlogs.ListAnomaliesOutput)
+
+	ListAnomaliesPages(*cloudwatchlogs.ListAnomaliesInput, func(*cloudwatchlogs.ListAnomaliesOutput, bool) bool) error
+	ListAnomaliesPagesWithContext(aws.Context, *cloudwatchlogs.ListAnomaliesInput, func(*cloudwatchlogs.ListAnomaliesOutput, bool) bool, ...request.Option) error
+
+	ListLogAnomalyDetectors(*cloudwatchlogs.ListLogAnomalyDetectorsInput) (*cloudwatchlogs.ListLogAnomalyDetectorsOutput, error)
+	ListLogAnomalyDetectorsWithContext(aws.Context, *cloudwatchlogs.ListLogAnomalyDetectorsInput, ...request.Option) (*cloudwatchlogs.ListLogAnomalyDetectorsOutput, error)
+	ListLogAnomalyDetectorsRequest(*cloudwatchlogs.ListLogAnomalyDetectorsInput) (*request.Request, *cloudwatchlogs.ListLogAnomalyDetectorsOutput)
+
+	ListLogAnomalyDetectorsPages(*cloudwatchlogs.ListLogAnomalyDetectorsInput, func(*cloudwatchlogs.ListLogAnomalyDetectorsOutput, bool) bool) error
+	ListLogAnomalyDetectorsPagesWithContext(aws.Context, *cloudwatchlogs.ListLogAnomalyDetectorsInput, func(*cloudwatchlogs.ListLogAnomalyDetectorsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*cloudwatchlogs.ListTagsForResourceInput) (*cloudwatchlogs.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *cloudwatchlogs.ListTagsForResourceInput, ...request.Option) (*cloudwatchlogs.ListTagsForResourceOutput, error)
@@ -353,6 +379,14 @@ type CloudWatchLogsAPI interface {
 	UntagResource(*cloudwatchlogs.UntagResourceInput) (*cloudwatchlogs.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *cloudwatchlogs.UntagResourceInput, ...request.Option) (*cloudwatchlogs.UntagResourceOutput, error)
 	UntagResourceRequest(*cloudwatchlogs.UntagResourceInput) (*request.Request, *cloudwatchlogs.UntagResourceOutput)
+
+	UpdateAnomaly(*cloudwatchlogs.UpdateAnomalyInput) (*cloudwatchlogs.UpdateAnomalyOutput, error)
+	UpdateAnomalyWithContext(aws.Context, *cloudwatchlogs.UpdateAnomalyInput, ...request.Option) (*cloudwatchlogs.UpdateAnomalyOutput, error)
+	UpdateAnomalyRequest(*cloudwatchlogs.UpdateAnomalyInput) (*request.Request, *cloudwatchlogs.UpdateAnomalyOutput)
+
+	UpdateLogAnomalyDetector(*cloudwatchlogs.UpdateLogAnomalyDetectorInput) (*cloudwatchlogs.UpdateLogAnomalyDetectorOutput, error)
+	UpdateLogAnomalyDetectorWithContext(aws.Context, *cloudwatchlogs.UpdateLogAnomalyDetectorInput, ...request.Option) (*cloudwatchlogs.UpdateLogAnomalyDetectorOutput, error)
+	UpdateLogAnomalyDetectorRequest(*cloudwatchlogs.UpdateLogAnomalyDetectorInput) (*request.Request, *cloudwatchlogs.UpdateLogAnomalyDetectorOutput)
 }
 
 var _ CloudWatchLogsAPI = (*cloudwatchlogs.CloudWatchLogs)(nil)

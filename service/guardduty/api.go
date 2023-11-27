@@ -7372,6 +7372,38 @@ func (s *Administrator) SetRelationshipStatus(v string) *Administrator {
 	return s
 }
 
+// Information about the installed GuardDuty security agent.
+type AgentDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Version of the installed GuardDuty security agent.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentDetails) GoString() string {
+	return s.String()
+}
+
+// SetVersion sets the Version field's value.
+func (s *AgentDetails) SetVersion(v string) *AgentDetails {
+	s.Version = &v
+	return s
+}
+
 // Contains information about the anomalies.
 type Anomaly struct {
 	_ struct{} `type:"structure"`
@@ -8290,6 +8322,49 @@ func (s *Container) SetVolumeMounts(v []*VolumeMount) *Container {
 	return s
 }
 
+// Contains information about the Amazon EC2 instance that is running the Amazon
+// ECS container.
+type ContainerInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Represents total number of nodes in the Amazon ECS cluster.
+	CompatibleContainerInstances *int64 `locationName:"compatibleContainerInstances" type:"long"`
+
+	// Represents the nodes in the Amazon ECS cluster that has a HEALTHY coverage
+	// status.
+	CoveredContainerInstances *int64 `locationName:"coveredContainerInstances" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCompatibleContainerInstances sets the CompatibleContainerInstances field's value.
+func (s *ContainerInstanceDetails) SetCompatibleContainerInstances(v int64) *ContainerInstanceDetails {
+	s.CompatibleContainerInstances = &v
+	return s
+}
+
+// SetCoveredContainerInstances sets the CoveredContainerInstances field's value.
+func (s *ContainerInstanceDetails) SetCoveredContainerInstances(v int64) *ContainerInstanceDetails {
+	s.CoveredContainerInstances = &v
+	return s
+}
+
 // Contains information about the country where the remote IP address is located.
 type Country struct {
 	_ struct{} `type:"structure"`
@@ -8328,6 +8403,136 @@ func (s *Country) SetCountryCode(v string) *Country {
 // SetCountryName sets the CountryName field's value.
 func (s *Country) SetCountryName(v string) *Country {
 	s.CountryName = &v
+	return s
+}
+
+// This API is also used when you use GuardDuty Runtime Monitoring for your
+// Amazon EC2 instances (currently in preview release) and is subject to change.
+//
+// Contains information about the Amazon EC2 instance runtime coverage details.
+type CoverageEc2InstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the installed security agent.
+	AgentDetails *AgentDetails `locationName:"agentDetails" type:"structure"`
+
+	// The cluster ARN of the Amazon ECS cluster running on the Amazon EC2 instance.
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	// The Amazon EC2 instance ID.
+	InstanceId *string `locationName:"instanceId" type:"string"`
+
+	// The instance type of the Amazon EC2 instance.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// Indicates how the GuardDuty security agent is managed for this resource.
+	//
+	//    * AUTO_MANAGED indicates that GuardDuty deploys and manages updates for
+	//    this resource.
+	//
+	//    * MANUAL indicates that you are responsible to deploy, update, and manage
+	//    the GuardDuty security agent updates for this resource.
+	//
+	// The DISABLED status doesn't apply to Amazon EC2 instances and Amazon EKS
+	// clusters that run on Amazon EC2 instances.
+	ManagementType *string `locationName:"managementType" type:"string" enum:"ManagementType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageEc2InstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageEc2InstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetAgentDetails sets the AgentDetails field's value.
+func (s *CoverageEc2InstanceDetails) SetAgentDetails(v *AgentDetails) *CoverageEc2InstanceDetails {
+	s.AgentDetails = v
+	return s
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *CoverageEc2InstanceDetails) SetClusterArn(v string) *CoverageEc2InstanceDetails {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CoverageEc2InstanceDetails) SetInstanceId(v string) *CoverageEc2InstanceDetails {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *CoverageEc2InstanceDetails) SetInstanceType(v string) *CoverageEc2InstanceDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetManagementType sets the ManagementType field's value.
+func (s *CoverageEc2InstanceDetails) SetManagementType(v string) *CoverageEc2InstanceDetails {
+	s.ManagementType = &v
+	return s
+}
+
+// Contains information about Amazon ECS cluster runtime coverage details.
+type CoverageEcsClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon ECS cluster.
+	ClusterName *string `locationName:"clusterName" type:"string"`
+
+	// Information about the Amazon ECS container running on Amazon EC2 instance.
+	ContainerInstanceDetails *ContainerInstanceDetails `locationName:"containerInstanceDetails" type:"structure"`
+
+	// Information about the Fargate details associated with the Amazon ECS cluster.
+	FargateDetails *FargateDetails `locationName:"fargateDetails" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageEcsClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CoverageEcsClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *CoverageEcsClusterDetails) SetClusterName(v string) *CoverageEcsClusterDetails {
+	s.ClusterName = &v
+	return s
+}
+
+// SetContainerInstanceDetails sets the ContainerInstanceDetails field's value.
+func (s *CoverageEcsClusterDetails) SetContainerInstanceDetails(v *ContainerInstanceDetails) *CoverageEcsClusterDetails {
+	s.ContainerInstanceDetails = v
+	return s
+}
+
+// SetFargateDetails sets the FargateDetails field's value.
+func (s *CoverageEcsClusterDetails) SetFargateDetails(v *FargateDetails) *CoverageEcsClusterDetails {
+	s.FargateDetails = v
 	return s
 }
 
@@ -8619,6 +8824,16 @@ func (s *CoverageResource) SetUpdatedAt(v time.Time) *CoverageResource {
 type CoverageResourceDetails struct {
 	_ struct{} `type:"structure"`
 
+	//
+	// This API is also used when you use GuardDuty Runtime Monitoring for your
+	// Amazon EC2 instances (currently in preview release) and is subject to change.
+	//
+	// Information about the Amazon EC2 instance assessed for runtime coverage.
+	Ec2InstanceDetails *CoverageEc2InstanceDetails `locationName:"ec2InstanceDetails" type:"structure"`
+
+	// Information about the Amazon ECS cluster that is assessed for runtime coverage.
+	EcsClusterDetails *CoverageEcsClusterDetails `locationName:"ecsClusterDetails" type:"structure"`
+
 	// EKS cluster details involved in the coverage statistics.
 	EksClusterDetails *CoverageEksClusterDetails `locationName:"eksClusterDetails" type:"structure"`
 
@@ -8642,6 +8857,18 @@ func (s CoverageResourceDetails) String() string {
 // value will be replaced with "sensitive".
 func (s CoverageResourceDetails) GoString() string {
 	return s.String()
+}
+
+// SetEc2InstanceDetails sets the Ec2InstanceDetails field's value.
+func (s *CoverageResourceDetails) SetEc2InstanceDetails(v *CoverageEc2InstanceDetails) *CoverageResourceDetails {
+	s.Ec2InstanceDetails = v
+	return s
+}
+
+// SetEcsClusterDetails sets the EcsClusterDetails field's value.
+func (s *CoverageResourceDetails) SetEcsClusterDetails(v *CoverageEcsClusterDetails) *CoverageResourceDetails {
+	s.EcsClusterDetails = v
+	return s
 }
 
 // SetEksClusterDetails sets the EksClusterDetails field's value.
@@ -12714,6 +12941,57 @@ func (s Evidence) GoString() string {
 // SetThreatIntelligenceDetails sets the ThreatIntelligenceDetails field's value.
 func (s *Evidence) SetThreatIntelligenceDetails(v []*ThreatIntelligenceDetail) *Evidence {
 	s.ThreatIntelligenceDetails = v
+	return s
+}
+
+// Contains information about AWS Fargate details associated with an Amazon
+// ECS cluster.
+type FargateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Runtime coverage issues identified for the resource running on AWS Fargate.
+	Issues []*string `locationName:"issues" type:"list"`
+
+	// Indicates how the GuardDuty security agent is managed for this resource.
+	//
+	//    * AUTO_MANAGED indicates that GuardDuty deploys and manages updates for
+	//    this resource.
+	//
+	//    * MANUAL indicates that you are responsible to deploy, update, and manage
+	//    the GuardDuty security agent updates for this resource.
+	//
+	//    * DISABLED indicates that the deployment of the GuardDuty security agent
+	//    is disabled for this resource.
+	ManagementType *string `locationName:"managementType" type:"string" enum:"ManagementType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateDetails) GoString() string {
+	return s.String()
+}
+
+// SetIssues sets the Issues field's value.
+func (s *FargateDetails) SetIssues(v []*string) *FargateDetails {
+	s.Issues = v
+	return s
+}
+
+// SetManagementType sets the ManagementType field's value.
+func (s *FargateDetails) SetManagementType(v string) *FargateDetails {
+	s.ManagementType = &v
 	return s
 }
 
@@ -24503,6 +24781,18 @@ const (
 
 	// CoverageFilterCriterionKeyEksClusterName is a CoverageFilterCriterionKey enum value
 	CoverageFilterCriterionKeyEksClusterName = "EKS_CLUSTER_NAME"
+
+	// CoverageFilterCriterionKeyEcsClusterName is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyEcsClusterName = "ECS_CLUSTER_NAME"
+
+	// CoverageFilterCriterionKeyAgentVersion is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyAgentVersion = "AGENT_VERSION"
+
+	// CoverageFilterCriterionKeyInstanceId is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyInstanceId = "INSTANCE_ID"
+
+	// CoverageFilterCriterionKeyClusterArn is a CoverageFilterCriterionKey enum value
+	CoverageFilterCriterionKeyClusterArn = "CLUSTER_ARN"
 )
 
 // CoverageFilterCriterionKey_Values returns all elements of the CoverageFilterCriterionKey enum
@@ -24515,6 +24805,10 @@ func CoverageFilterCriterionKey_Values() []string {
 		CoverageFilterCriterionKeyAddonVersion,
 		CoverageFilterCriterionKeyManagementType,
 		CoverageFilterCriterionKeyEksClusterName,
+		CoverageFilterCriterionKeyEcsClusterName,
+		CoverageFilterCriterionKeyAgentVersion,
+		CoverageFilterCriterionKeyInstanceId,
+		CoverageFilterCriterionKeyClusterArn,
 	}
 }
 
@@ -24539,6 +24833,12 @@ const (
 
 	// CoverageSortKeyEksClusterName is a CoverageSortKey enum value
 	CoverageSortKeyEksClusterName = "EKS_CLUSTER_NAME"
+
+	// CoverageSortKeyEcsClusterName is a CoverageSortKey enum value
+	CoverageSortKeyEcsClusterName = "ECS_CLUSTER_NAME"
+
+	// CoverageSortKeyInstanceId is a CoverageSortKey enum value
+	CoverageSortKeyInstanceId = "INSTANCE_ID"
 )
 
 // CoverageSortKey_Values returns all elements of the CoverageSortKey enum
@@ -24551,6 +24851,8 @@ func CoverageSortKey_Values() []string {
 		CoverageSortKeyAddonVersion,
 		CoverageSortKeyUpdatedAt,
 		CoverageSortKeyEksClusterName,
+		CoverageSortKeyEcsClusterName,
+		CoverageSortKeyInstanceId,
 	}
 }
 
@@ -24700,6 +25002,9 @@ const (
 
 	// DetectorFeatureLambdaNetworkLogs is a DetectorFeature enum value
 	DetectorFeatureLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
+
+	// DetectorFeatureRuntimeMonitoring is a DetectorFeature enum value
+	DetectorFeatureRuntimeMonitoring = "RUNTIME_MONITORING"
 )
 
 // DetectorFeature_Values returns all elements of the DetectorFeature enum
@@ -24711,6 +25016,7 @@ func DetectorFeature_Values() []string {
 		DetectorFeatureRdsLoginEvents,
 		DetectorFeatureEksRuntimeMonitoring,
 		DetectorFeatureLambdaNetworkLogs,
+		DetectorFeatureRuntimeMonitoring,
 	}
 }
 
@@ -24741,6 +25047,9 @@ const (
 
 	// DetectorFeatureResultLambdaNetworkLogs is a DetectorFeatureResult enum value
 	DetectorFeatureResultLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
+
+	// DetectorFeatureResultRuntimeMonitoring is a DetectorFeatureResult enum value
+	DetectorFeatureResultRuntimeMonitoring = "RUNTIME_MONITORING"
 )
 
 // DetectorFeatureResult_Values returns all elements of the DetectorFeatureResult enum
@@ -24755,6 +25064,7 @@ func DetectorFeatureResult_Values() []string {
 		DetectorFeatureResultRdsLoginEvents,
 		DetectorFeatureResultEksRuntimeMonitoring,
 		DetectorFeatureResultLambdaNetworkLogs,
+		DetectorFeatureResultRuntimeMonitoring,
 	}
 }
 
@@ -24793,12 +25103,16 @@ func EbsSnapshotPreservation_Values() []string {
 const (
 	// FeatureAdditionalConfigurationEksAddonManagement is a FeatureAdditionalConfiguration enum value
 	FeatureAdditionalConfigurationEksAddonManagement = "EKS_ADDON_MANAGEMENT"
+
+	// FeatureAdditionalConfigurationEcsFargateAgentManagement is a FeatureAdditionalConfiguration enum value
+	FeatureAdditionalConfigurationEcsFargateAgentManagement = "ECS_FARGATE_AGENT_MANAGEMENT"
 )
 
 // FeatureAdditionalConfiguration_Values returns all elements of the FeatureAdditionalConfiguration enum
 func FeatureAdditionalConfiguration_Values() []string {
 	return []string{
 		FeatureAdditionalConfigurationEksAddonManagement,
+		FeatureAdditionalConfigurationEcsFargateAgentManagement,
 	}
 }
 
@@ -24909,6 +25223,12 @@ const (
 
 	// FreeTrialFeatureResultLambdaNetworkLogs is a FreeTrialFeatureResult enum value
 	FreeTrialFeatureResultLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
+
+	// FreeTrialFeatureResultFargateRuntimeMonitoring is a FreeTrialFeatureResult enum value
+	FreeTrialFeatureResultFargateRuntimeMonitoring = "FARGATE_RUNTIME_MONITORING"
+
+	// FreeTrialFeatureResultEc2RuntimeMonitoring is a FreeTrialFeatureResult enum value
+	FreeTrialFeatureResultEc2RuntimeMonitoring = "EC2_RUNTIME_MONITORING"
 )
 
 // FreeTrialFeatureResult_Values returns all elements of the FreeTrialFeatureResult enum
@@ -24923,6 +25243,8 @@ func FreeTrialFeatureResult_Values() []string {
 		FreeTrialFeatureResultRdsLoginEvents,
 		FreeTrialFeatureResultEksRuntimeMonitoring,
 		FreeTrialFeatureResultLambdaNetworkLogs,
+		FreeTrialFeatureResultFargateRuntimeMonitoring,
+		FreeTrialFeatureResultEc2RuntimeMonitoring,
 	}
 }
 
@@ -25000,6 +25322,9 @@ const (
 
 	// ManagementTypeManual is a ManagementType enum value
 	ManagementTypeManual = "MANUAL"
+
+	// ManagementTypeDisabled is a ManagementType enum value
+	ManagementTypeDisabled = "DISABLED"
 )
 
 // ManagementType_Values returns all elements of the ManagementType enum
@@ -25007,6 +25332,7 @@ func ManagementType_Values() []string {
 	return []string{
 		ManagementTypeAutoManaged,
 		ManagementTypeManual,
+		ManagementTypeDisabled,
 	}
 }
 
@@ -25044,6 +25370,9 @@ const (
 
 	// OrgFeatureLambdaNetworkLogs is a OrgFeature enum value
 	OrgFeatureLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
+
+	// OrgFeatureRuntimeMonitoring is a OrgFeature enum value
+	OrgFeatureRuntimeMonitoring = "RUNTIME_MONITORING"
 )
 
 // OrgFeature_Values returns all elements of the OrgFeature enum
@@ -25055,18 +25384,23 @@ func OrgFeature_Values() []string {
 		OrgFeatureRdsLoginEvents,
 		OrgFeatureEksRuntimeMonitoring,
 		OrgFeatureLambdaNetworkLogs,
+		OrgFeatureRuntimeMonitoring,
 	}
 }
 
 const (
 	// OrgFeatureAdditionalConfigurationEksAddonManagement is a OrgFeatureAdditionalConfiguration enum value
 	OrgFeatureAdditionalConfigurationEksAddonManagement = "EKS_ADDON_MANAGEMENT"
+
+	// OrgFeatureAdditionalConfigurationEcsFargateAgentManagement is a OrgFeatureAdditionalConfiguration enum value
+	OrgFeatureAdditionalConfigurationEcsFargateAgentManagement = "ECS_FARGATE_AGENT_MANAGEMENT"
 )
 
 // OrgFeatureAdditionalConfiguration_Values returns all elements of the OrgFeatureAdditionalConfiguration enum
 func OrgFeatureAdditionalConfiguration_Values() []string {
 	return []string{
 		OrgFeatureAdditionalConfigurationEksAddonManagement,
+		OrgFeatureAdditionalConfigurationEcsFargateAgentManagement,
 	}
 }
 
@@ -25153,12 +25487,20 @@ func PublishingStatus_Values() []string {
 const (
 	// ResourceTypeEks is a ResourceType enum value
 	ResourceTypeEks = "EKS"
+
+	// ResourceTypeEcs is a ResourceType enum value
+	ResourceTypeEcs = "ECS"
+
+	// ResourceTypeEc2 is a ResourceType enum value
+	ResourceTypeEc2 = "EC2"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeEks,
+		ResourceTypeEcs,
+		ResourceTypeEc2,
 	}
 }
 
@@ -25327,6 +25669,12 @@ const (
 
 	// UsageFeatureEksRuntimeMonitoring is a UsageFeature enum value
 	UsageFeatureEksRuntimeMonitoring = "EKS_RUNTIME_MONITORING"
+
+	// UsageFeatureFargateRuntimeMonitoring is a UsageFeature enum value
+	UsageFeatureFargateRuntimeMonitoring = "FARGATE_RUNTIME_MONITORING"
+
+	// UsageFeatureEc2RuntimeMonitoring is a UsageFeature enum value
+	UsageFeatureEc2RuntimeMonitoring = "EC2_RUNTIME_MONITORING"
 )
 
 // UsageFeature_Values returns all elements of the UsageFeature enum
@@ -25341,6 +25689,8 @@ func UsageFeature_Values() []string {
 		UsageFeatureRdsLoginEvents,
 		UsageFeatureLambdaNetworkLogs,
 		UsageFeatureEksRuntimeMonitoring,
+		UsageFeatureFargateRuntimeMonitoring,
+		UsageFeatureEc2RuntimeMonitoring,
 	}
 }
 

@@ -24,6 +24,7 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -922,7 +923,8 @@
           "deprecatedMessage":"assignedValue is no longer in use"
         },
         "deprecationMessage":{"shape":"message"},
-        "comment":{"shape":"message"}
+        "comment":{"shape":"message"},
+        "structFullyQualifiedName":{"shape":"NodePath"}
       }
     },
     "AmazonResourceName":{
@@ -1073,8 +1075,8 @@
       ],
       "members":{
         "messageId":{"shape":"nonNegativeInteger"},
-        "isBigEndian":{"shape":"boolean"},
-        "isSigned":{"shape":"boolean"},
+        "isBigEndian":{"shape":"PrimitiveBoolean"},
+        "isSigned":{"shape":"PrimitiveBoolean"},
         "startBit":{"shape":"nonNegativeInteger"},
         "offset":{"shape":"double"},
         "factor":{"shape":"double"},
@@ -1327,6 +1329,32 @@
         "thingArn":{"shape":"arn"}
       }
     },
+    "CustomProperty":{
+      "type":"structure",
+      "required":[
+        "fullyQualifiedName",
+        "dataType"
+      ],
+      "members":{
+        "fullyQualifiedName":{"shape":"string"},
+        "dataType":{"shape":"NodeDataType"},
+        "dataEncoding":{"shape":"NodeDataEncoding"},
+        "description":{"shape":"description"},
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"},
+        "structFullyQualifiedName":{"shape":"NodePath"}
+      }
+    },
+    "CustomStruct":{
+      "type":"structure",
+      "required":["fullyQualifiedName"],
+      "members":{
+        "fullyQualifiedName":{"shape":"string"},
+        "description":{"shape":"description"},
+        "deprecationMessage":{"shape":"message"},
+        "comment":{"shape":"message"}
+      }
+    },
     "DataDestinationConfig":{
       "type":"structure",
       "members":{
@@ -1367,7 +1395,8 @@
         "description":{"shape":"description"},
         "status":{"shape":"ManifestStatus"},
         "creationTime":{"shape":"timestamp"},
-        "lastModificationTime":{"shape":"timestamp"}
+        "lastModificationTime":{"shape":"timestamp"},
+        "message":{"shape":"message"}
       }
     },
     "DecoderManifestValidationException":{
@@ -1605,7 +1634,8 @@
         "modelManifestArn":{"shape":"arn"},
         "status":{"shape":"ManifestStatus"},
         "creationTime":{"shape":"timestamp"},
-        "lastModificationTime":{"shape":"timestamp"}
+        "lastModificationTime":{"shape":"timestamp"},
+        "message":{"shape":"message"}
       }
     },
     "GetEncryptionConfigurationRequest":{
@@ -1892,7 +1922,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"FullyQualifiedName"},
-        "reason":{"shape":"SignalDecoderFailureReason"}
+        "reason":{"shape":"SignalDecoderFailureReason"},
+        "hint":{"shape":"message"}
       }
     },
     "InvalidSignalDecoders":{
@@ -2133,8 +2164,21 @@
       "type":"string",
       "enum":[
         "ACTIVE",
-        "DRAFT"
+        "DRAFT",
+        "INVALID",
+        "VALIDATING"
       ]
+    },
+    "MessageSignal":{
+      "type":"structure",
+      "required":[
+        "topicName",
+        "structuredMessage"
+      ],
+      "members":{
+        "topicName":{"shape":"TopicName"},
+        "structuredMessage":{"shape":"StructuredMessage"}
+      }
     },
     "ModelManifestSummary":{
       "type":"structure",
@@ -2157,7 +2201,11 @@
       "key":{"shape":"string"},
       "value":{"shape":"string"}
     },
-    "NetworkFileBlob":{"type":"blob"},
+    "NetworkFileBlob":{
+      "type":"blob",
+      "max":200000000,
+      "min":0
+    },
     "NetworkFileDefinition":{
       "type":"structure",
       "members":{
@@ -2185,7 +2233,8 @@
         "interfaceId":{"shape":"InterfaceId"},
         "type":{"shape":"NetworkInterfaceType"},
         "canInterface":{"shape":"CanInterface"},
-        "obdInterface":{"shape":"ObdInterface"}
+        "obdInterface":{"shape":"ObdInterface"},
+        "vehicleMiddleware":{"shape":"VehicleMiddleware"}
       }
     },
     "NetworkInterfaceFailureReason":{
@@ -2196,14 +2245,18 @@
         "NETWORK_INTERFACE_TO_ADD_ALREADY_EXISTS",
         "CAN_NETWORK_INTERFACE_INFO_IS_NULL",
         "OBD_NETWORK_INTERFACE_INFO_IS_NULL",
-        "NETWORK_INTERFACE_TO_REMOVE_ASSOCIATED_WITH_SIGNALS"
+        "NETWORK_INTERFACE_TO_REMOVE_ASSOCIATED_WITH_SIGNALS",
+        "VEHICLE_MIDDLEWARE_NETWORK_INTERFACE_INFO_IS_NULL",
+        "CUSTOMER_DECODED_SIGNAL_NETWORK_INTERFACE_INFO_IS_NULL"
       ]
     },
     "NetworkInterfaceType":{
       "type":"string",
       "enum":[
         "CAN_INTERFACE",
-        "OBD_INTERFACE"
+        "OBD_INTERFACE",
+        "VEHICLE_MIDDLEWARE",
+        "CUSTOMER_DECODED_INTERFACE"
       ]
     },
     "NetworkInterfaces":{
@@ -2218,7 +2271,9 @@
         "branch":{"shape":"Branch"},
         "sensor":{"shape":"Sensor"},
         "actuator":{"shape":"Actuator"},
-        "attribute":{"shape":"Attribute"}
+        "attribute":{"shape":"Attribute"},
+        "struct":{"shape":"CustomStruct"},
+        "property":{"shape":"CustomProperty"}
       },
       "union":true
     },
@@ -2229,8 +2284,17 @@
         "totalBranches":{"shape":"number"},
         "totalSensors":{"shape":"number"},
         "totalAttributes":{"shape":"number"},
-        "totalActuators":{"shape":"number"}
+        "totalActuators":{"shape":"number"},
+        "totalStructs":{"shape":"number"},
+        "totalProperties":{"shape":"number"}
       }
+    },
+    "NodeDataEncoding":{
+      "type":"string",
+      "enum":[
+        "BINARY",
+        "TYPED"
+      ]
     },
     "NodeDataType":{
       "type":"string",
@@ -2261,7 +2325,9 @@
         "DOUBLE_ARRAY",
         "STRING_ARRAY",
         "UNIX_TIMESTAMP_ARRAY",
-        "UNKNOWN"
+        "UNKNOWN",
+        "STRUCT",
+        "STRUCT_ARRAY"
       ]
     },
     "NodePath":{
@@ -2306,8 +2372,8 @@
         "obdStandard":{"shape":"ObdStandard"},
         "pidRequestIntervalSeconds":{"shape":"nonNegativeInteger"},
         "dtcRequestIntervalSeconds":{"shape":"nonNegativeInteger"},
-        "useExtendedIds":{"shape":"boolean"},
-        "hasTransmissionEcu":{"shape":"boolean"}
+        "useExtendedIds":{"shape":"PrimitiveBoolean"},
+        "hasTransmissionEcu":{"shape":"PrimitiveBoolean"}
       }
     },
     "ObdInterfaceName":{
@@ -2349,6 +2415,14 @@
       "min":1,
       "pattern":"[a-zA-Z0-9-_:./!*'()]+"
     },
+    "PrimitiveBoolean":{"type":"boolean"},
+    "PrimitiveMessageDefinition":{
+      "type":"structure",
+      "members":{
+        "ros2PrimitiveMessageDefinition":{"shape":"ROS2PrimitiveMessageDefinition"}
+      },
+      "union":true
+    },
     "ProtocolName":{
       "type":"string",
       "max":50,
@@ -2363,9 +2437,14 @@
       "type":"structure",
       "required":["encryptionType"],
       "members":{
-        "kmsKeyId":{"shape":"String"},
+        "kmsKeyId":{"shape":"PutEncryptionConfigurationRequestKmsKeyIdString"},
         "encryptionType":{"shape":"EncryptionType"}
       }
+    },
+    "PutEncryptionConfigurationRequestKmsKeyIdString":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "PutEncryptionConfigurationResponse":{
       "type":"structure",
@@ -2390,6 +2469,42 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ROS2PrimitiveMessageDefinition":{
+      "type":"structure",
+      "required":["primitiveType"],
+      "members":{
+        "primitiveType":{"shape":"ROS2PrimitiveType"},
+        "offset":{"shape":"double"},
+        "scaling":{"shape":"double"},
+        "upperBound":{"shape":"ROS2PrimitiveMessageDefinitionUpperBoundLong"}
+      }
+    },
+    "ROS2PrimitiveMessageDefinitionUpperBoundLong":{
+      "type":"long",
+      "box":true,
+      "max":2048,
+      "min":0
+    },
+    "ROS2PrimitiveType":{
+      "type":"string",
+      "enum":[
+        "BOOL",
+        "BYTE",
+        "CHAR",
+        "FLOAT32",
+        "FLOAT64",
+        "INT8",
+        "UINT8",
+        "INT16",
+        "UINT16",
+        "INT32",
+        "UINT32",
+        "INT64",
+        "UINT64",
+        "STRING",
+        "WSTRING"
+      ]
     },
     "RegisterAccountRequest":{
       "type":"structure",
@@ -2476,7 +2591,8 @@
         "min":{"shape":"double"},
         "max":{"shape":"double"},
         "deprecationMessage":{"shape":"message"},
-        "comment":{"shape":"message"}
+        "comment":{"shape":"message"},
+        "structFullyQualifiedName":{"shape":"NodePath"}
       }
     },
     "SignalCatalogSummary":{
@@ -2500,7 +2616,8 @@
         "type":{"shape":"SignalDecoderType"},
         "interfaceId":{"shape":"InterfaceId"},
         "canSignal":{"shape":"CanSignal"},
-        "obdSignal":{"shape":"ObdSignal"}
+        "obdSignal":{"shape":"ObdSignal"},
+        "messageSignal":{"shape":"MessageSignal"}
       }
     },
     "SignalDecoderFailureReason":{
@@ -2514,14 +2631,23 @@
         "SIGNAL_NOT_IN_MODEL",
         "CAN_SIGNAL_INFO_IS_NULL",
         "OBD_SIGNAL_INFO_IS_NULL",
-        "NO_DECODER_INFO_FOR_SIGNAL_IN_MODEL"
+        "NO_DECODER_INFO_FOR_SIGNAL_IN_MODEL",
+        "MESSAGE_SIGNAL_INFO_IS_NULL",
+        "SIGNAL_DECODER_TYPE_INCOMPATIBLE_WITH_MESSAGE_SIGNAL_TYPE",
+        "STRUCT_SIZE_MISMATCH",
+        "NO_SIGNAL_IN_CATALOG_FOR_DECODER_SIGNAL",
+        "SIGNAL_DECODER_INCOMPATIBLE_WITH_SIGNAL_CATALOG",
+        "EMPTY_MESSAGE_SIGNAL",
+        "CUSTOMER_DECODED_SIGNAL_INFO_IS_NULL"
       ]
     },
     "SignalDecoderType":{
       "type":"string",
       "enum":[
         "CAN_SIGNAL",
-        "OBD_SIGNAL"
+        "OBD_SIGNAL",
+        "MESSAGE_SIGNAL",
+        "CUSTOMER_DECODED_SIGNAL"
       ]
     },
     "SignalDecoders":{
@@ -2560,6 +2686,59 @@
       ]
     },
     "String":{"type":"string"},
+    "StructureMessageName":{
+      "type":"string",
+      "max":150,
+      "min":1
+    },
+    "StructuredMessage":{
+      "type":"structure",
+      "members":{
+        "primitiveMessageDefinition":{"shape":"PrimitiveMessageDefinition"},
+        "structuredMessageListDefinition":{"shape":"StructuredMessageListDefinition"},
+        "structuredMessageDefinition":{"shape":"StructuredMessageDefinition"}
+      },
+      "union":true
+    },
+    "StructuredMessageDefinition":{
+      "type":"list",
+      "member":{"shape":"StructuredMessageFieldNameAndDataTypePair"},
+      "max":500,
+      "min":1
+    },
+    "StructuredMessageFieldNameAndDataTypePair":{
+      "type":"structure",
+      "required":[
+        "fieldName",
+        "dataType"
+      ],
+      "members":{
+        "fieldName":{"shape":"StructureMessageName"},
+        "dataType":{"shape":"StructuredMessage"}
+      }
+    },
+    "StructuredMessageListDefinition":{
+      "type":"structure",
+      "required":[
+        "name",
+        "memberType",
+        "listType"
+      ],
+      "members":{
+        "name":{"shape":"StructureMessageName"},
+        "memberType":{"shape":"StructuredMessage"},
+        "listType":{"shape":"StructuredMessageListType"},
+        "capacity":{"shape":"nonNegativeInteger"}
+      }
+    },
+    "StructuredMessageListType":{
+      "type":"string",
+      "enum":[
+        "FIXED_CAPACITY",
+        "DYNAMIC_UNBOUNDED_CAPACITY",
+        "DYNAMIC_BOUNDED_CAPACITY"
+      ]
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -2682,6 +2861,12 @@
       "max":255,
       "min":3,
       "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "TopicName":{
+      "type":"string",
+      "max":150,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_\\-#:./]+"
     },
     "TriggerMode":{
       "type":"string",
@@ -2913,6 +3098,26 @@
         "ValidateIotThingExists"
       ]
     },
+    "VehicleMiddleware":{
+      "type":"structure",
+      "required":[
+        "name",
+        "protocolName"
+      ],
+      "members":{
+        "name":{"shape":"VehicleMiddlewareName"},
+        "protocolName":{"shape":"VehicleMiddlewareProtocol"}
+      }
+    },
+    "VehicleMiddlewareName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "VehicleMiddlewareProtocol":{
+      "type":"string",
+      "enum":["ROS_2"]
+    },
     "VehicleState":{
       "type":"string",
       "enum":[
@@ -2967,7 +3172,6 @@
       "key":{"shape":"attributeName"},
       "value":{"shape":"attributeValue"}
     },
-    "boolean":{"type":"boolean"},
     "campaignName":{
       "type":"string",
       "max":100,
@@ -3081,6 +3285,7 @@
     "number":{"type":"integer"},
     "positiveInteger":{
       "type":"integer",
+      "box":true,
       "min":1
     },
     "priority":{

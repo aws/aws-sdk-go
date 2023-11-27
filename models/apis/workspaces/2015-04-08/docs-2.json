@@ -672,6 +672,21 @@
       "refs": {
       }
     },
+    "DataReplication": {
+      "base": null,
+      "refs": {
+        "DataReplicationSettings$DataReplication": "<p>Indicates whether data replication is enabled, and if enabled, the type of data replication.</p>",
+        "ModifyWorkspacePropertiesRequest$DataReplication": "<p>Indicates the data replication status.</p>",
+        "StandbyWorkspace$DataReplication": "<p>Indicates whether data replication is enabled, and if enabled, the type of data replication.</p>",
+        "StandbyWorkspacesProperties$DataReplication": "<p>Indicates whether data replication is enabled, and if enabled, the type of data replication.</p>"
+      }
+    },
+    "DataReplicationSettings": {
+      "base": "<p>Describes the data replication settings.</p>",
+      "refs": {
+        "Workspace$DataReplicationSettings": "<p>Indicates the settings of the data replication.</p>"
+      }
+    },
     "DedicatedTenancyCidrRangeList": {
       "base": null,
       "refs": {
@@ -2015,6 +2030,18 @@
         "CreateStandbyWorkspacesRequest$StandbyWorkspaces": "<p>Information about the standby WorkSpace to be created.</p>"
       }
     },
+    "StandbyWorkspacesProperties": {
+      "base": "<p>Describes the properties of the related standby WorkSpaces. </p>",
+      "refs": {
+        "StandbyWorkspacesPropertiesList$member": null
+      }
+    },
+    "StandbyWorkspacesPropertiesList": {
+      "base": null,
+      "refs": {
+        "Workspace$StandbyWorkspacesProperties": "<p>The properties of the standby WorkSpace</p>"
+      }
+    },
     "StartRequest": {
       "base": "<p>Information used to start a WorkSpace.</p>",
       "refs": {
@@ -2165,9 +2192,11 @@
         "BundleResourceAssociation$Created": "<p>The time the association is created.</p>",
         "BundleResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
         "CreateWorkspaceImageResult$Created": "<p>The date when the image was created.</p>",
+        "DataReplicationSettings$RecoverySnapshotTime": "<p>The date and time at which the last successful snapshot was taken of the primary WorkSpace used for replicating data.</p>",
         "ImageResourceAssociation$Created": "<p>The time the association is created.</p>",
         "ImageResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
         "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
+        "StandbyWorkspacesProperties$RecoverySnapshotTime": "<p>The date and time at which the last successful snapshot was taken of the primary WorkSpace used for replicating data.</p>",
         "WorkSpaceApplication$Created": "<p>The time the application is created.</p>",
         "WorkspaceBundle$LastUpdatedTime": "<p>The last time that the bundle was updated.</p>",
         "WorkspaceBundle$CreationTime": "<p>The time when the bundle was created.</p>",
@@ -2452,6 +2481,7 @@
         "RelatedWorkspaceProperties$WorkspaceId": "<p>The identifier of the related WorkSpace.</p>",
         "RestoreWorkspaceRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "StandbyWorkspace$PrimaryWorkspaceId": "<p>The identifier of the standby WorkSpace.</p>",
+        "StandbyWorkspacesProperties$StandbyWorkspaceId": "<p>The identifier of the standby WorkSpace</p>",
         "StartRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "StopRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "TerminateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",

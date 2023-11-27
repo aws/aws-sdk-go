@@ -3165,7 +3165,8 @@
       "members":{
         "name":{"shape":"SettingName"},
         "value":{"shape":"String"},
-        "principalArn":{"shape":"String"}
+        "principalArn":{"shape":"String"},
+        "type":{"shape":"SettingType"}
       }
     },
     "SettingName":{
@@ -3178,7 +3179,15 @@
         "containerInsights",
         "fargateFIPSMode",
         "tagResourceAuthorization",
-        "fargateTaskRetirementWaitPeriod"
+        "fargateTaskRetirementWaitPeriod",
+        "guardDutyActivate"
+      ]
+    },
+    "SettingType":{
+      "type":"string",
+      "enum":[
+        "user",
+        "aws_managed"
       ]
     },
     "Settings":{
